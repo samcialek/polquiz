@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.png">
+    <title>Political Disposition Model - Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #E8E4DC;
+            --bg-secondary: #D4CFC4;
+            --bg-card: #FFFFFF;
+            --figure-bg: #F5F3EF;
+            --accent-coral: #E07A5F;
+            --accent-green: #2D5A3D;
+            --accent-gold: #C9A227;
+            --accent-blue: #4A90A4;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-light: #888;
+            --border-heavy: #1a1a1a;
+            --border-light: #D1CEC6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .site-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent-coral);
+            margin-bottom: 0.25rem;
+        }
+
+        .site-subtitle {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: lowercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .start-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: 0.02em;
+            padding: 1rem 3rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-heavy);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .start-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .quiz-container { display: none; }
+        .quiz-container.active { display: block; }
+
+        .progress-sidebar {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            z-index: 100;
+        }
+
+        .progress-section {
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-left: 2px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .progress-section:hover {
+            border-left-color: var(--accent-coral);
+        }
+
+        .progress-section.active {
+            border-left-color: var(--accent-coral);
+            color: var(--text-primary);
+        }
+
+        .progress-section.complete {
+            border-left-color: var(--accent-green);
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-heavy);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .section-label:first-child { margin-top: 0; }
+
+        .question-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .question-id {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .likert-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            text-transform: lowercase;
+        }
+
+        .likert-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .likert-option input {
+            display: none;
+        }
+
+        .likert-option label {
+            display: block;
+            padding: 0.75rem 0.5rem;
+            border: 1px solid var(--border-light);
+            background: var(--figure-bg);
+            cursor: pointer;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+        }
+
+        .likert-option label:hover {
+            border-color: var(--accent-coral);
+            background: #fff;
+        }
+
+        .likert-option input:checked + label {
+            background: var(--accent-coral);
+            border-color: var(--accent-coral);
+            color: #fff;
+        }
+
+        .slider-container {
+            padding: 1rem 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .slider-track {
+            position: relative;
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border-light);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .slider-input::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            border: 2px solid var(--bg-card);
+            cursor: pointer;
+        }
+
+        .slider-value {
+            text-align: center;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-coral);
+            margin-top: 0.75rem;
+            font-weight: 700;
+        }
+
+        .mc-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mc-option {
+            display: block;
+        }
+
+        .mc-option input {
+            display: none;
+        }
+
+        .mc-option label {
+            display: block;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--figure-bg);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.15s;
+        }
+
+        .mc-option label:hover {
+            border-color: var(--accent-coral);
+            background: #fff;
+        }
+
+        .mc-option input:checked + label {
+            border-color: var(--accent-coral);
+            border-left: 4px solid var(--accent-coral);
+            background: #fff;
+        }
+
+        .fc-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .fc-option {
+            display: block;
+        }
+
+        .fc-option input {
+            display: none;
+        }
+
+        .fc-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            background: var(--figure-bg);
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.15s;
+        }
+
+        .fc-option label:hover {
+            border-color: var(--accent-coral);
+            background: #fff;
+        }
+
+        .fc-option input:checked + label {
+            border-color: var(--accent-coral);
+            background: var(--accent-coral);
+            color: #fff;
+        }
+
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+        }
+
+        .grid-table th {
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+            font-weight: 400;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-heavy);
+            font-size: 0.7rem;
+            text-transform: lowercase;
+        }
+
+        .grid-table td {
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .grid-table td:first-child {
+            text-align: left;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+        }
+
+        .grid-table input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-coral);
+        }
+
+        .maxdiff-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .maxdiff-table th {
+            padding: 0.5rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-transform: lowercase;
+        }
+
+        .maxdiff-table td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .maxdiff-table td:first-child,
+        .maxdiff-table td:last-child {
+            text-align: center;
+            width: 60px;
+        }
+
+        .maxdiff-table input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .maxdiff-table input.most-btn {
+            accent-color: var(--accent-green);
+        }
+
+        .maxdiff-table input.least-btn {
+            accent-color: var(--accent-coral);
+        }
+
+        .demographic-select {
+            width: 100%;
+            padding: 0.75rem;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--figure-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .demographic-select:focus {
+            outline: none;
+            border-color: var(--accent-coral);
+        }
+
+        .submit-section {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: lowercase;
+            padding: 1rem 4rem;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border: 2px solid var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-coral);
+            border-color: var(--accent-coral);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results-container { display: none; }
+        .results-container.active { display: block; }
+
+        .results-header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .results-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: lowercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin: 2rem 0;
+            border: 1px solid var(--border-heavy);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .results-tab {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--figure-bg);
+            border: none;
+            border-right: 1px solid var(--border-heavy);
+            cursor: pointer;
+            text-transform: lowercase;
+            transition: all 0.15s;
+        }
+
+        .results-tab:last-child {
+            border-right: none;
+        }
+
+        .results-tab:hover {
+            background: var(--bg-card);
+        }
+
+        .results-tab.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .results-panel {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .results-panel.active {
+            display: block;
+        }
+
+        .archetype-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .archetype-card.primary {
+            border: 2px solid var(--accent-coral);
+            border-left: 6px solid var(--accent-coral);
+        }
+
+        .archetype-rank {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .archetype-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .archetype-tagline {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .archetype-pct {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-coral);
+        }
+
+        .archetype-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .archetype-meta {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .archetype-tag {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            background: var(--figure-bg);
+            padding: 0.15rem 0.5rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .archetype-examples {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-top: 0.4rem;
+        }
+
+        .founder-section {
+            margin-top: 2.5rem;
+        }
+
+        .founder-hero {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-green);
+            border-left: 6px solid var(--accent-green);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .founder-hero-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .founder-hero-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .founder-hero-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+        }
+
+        .founder-hero-pct {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .founder-hero-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--border-light);
+            line-height: 1.5;
+        }
+
+        .founder-hero-traits {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .founder-trait-tag {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            background: var(--figure-bg);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 0.2rem 0.5rem;
+        }
+
+        .founder-hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .founder-grid-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+        }
+
+        .founder-grid-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .founder-grid-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            margin-top: 0.15rem;
+        }
+
+        .founder-grid-pct {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-top: 0.5rem;
+        }
+
+        .founder-unavailable {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-style: italic;
+            padding: 1rem;
+            text-align: center;
+            border: 1px dashed var(--border-light);
+        }
+
+        .score-section {
+            margin-bottom: 2rem;
+        }
+
+        .score-section h3 {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-heavy);
+        }
+
+        .score-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .score-label {
+            width: 140px;
+            font-size: 0.95rem;
+        }
+
+        .score-bar-container {
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .score-bar-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .score-bar {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .score-value {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            width: 40px;
+            text-align: right;
+        }
+
+        .gate-display {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gate-item {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .gate-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .gate-label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .historical-era {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            margin-bottom: 1rem;
+        }
+
+        .era-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            background: var(--figure-bg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .election-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .election-row:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .candidate-name {
+            font-weight: 500;
+        }
+
+        .candidate-party {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        .candidate-check {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .match-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .match-bar {
+            width: 80px;
+            height: 6px;
+            background: var(--border-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .match-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .match-fill.high { background: var(--accent-green); }
+        .match-fill.medium { background: var(--accent-gold); }
+        .match-fill.low { background: var(--accent-coral); }
+
+        .match-pct {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            width: 35px;
+        }
+
+        .franchise-note {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-gold);
+            padding: 0.5rem 1rem;
+            background: #fffbeb;
+            font-style: italic;
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 1200px) {
+            .progress-sidebar { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            .fc-pair { grid-template-columns: 1fr; }
+            .likert-scale { flex-wrap: wrap; }
+            .likert-option { flex: 0 0 calc(20% - 0.5rem); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" style="text-decoration: none;">
+            <div class="site-title">matrices of confusion!</div>
+        </a>
+        <div class="site-subtitle">political disposition model · assessment instrument</div>
+    </header>
+
+    <div id="intro-screen" class="intro-section">
+        <h1>political disposition model</h1>
+        <p>A 49-question assessment mapping psychological traits to political dispositions, predicting how you might have voted throughout history.</p>
+        <button class="start-btn" onclick="startQuiz()">begin assessment</button>
+    </div>
+
+    <div id="quiz-container" class="quiz-container">
+        <div class="progress-sidebar" id="progress-sidebar"></div>
+
+        <div class="container">
+            <div id="questions-container"></div>
+
+            <div class="submit-section">
+                <button class="submit-btn" id="submit-btn" onclick="submitQuiz()" disabled>see results</button>
+                <p style="font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: var(--text-light); margin-top: 1rem;">
+                    <span id="completion-count">0</span> of <span id="total-questions">0</span> questions answered
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="results-container" class="results-container">
+        <div class="results-header">
+            <h1>your political profile</h1>
+            <p style="color: var(--text-secondary);">Based on your psychological traits and dispositions</p>
+        </div>
+
+        <div class="container">
+            <div class="results-tabs">
+                <button class="results-tab active" onclick="showResultsTab('archetypes')">archetypes</button>
+                <button class="results-tab" onclick="showResultsTab('scores')">scores</button>
+                <button class="results-tab" onclick="showResultsTab('history')">historical</button>
+            </div>
+
+            <div id="panel-archetypes" class="results-panel active">
+                <div class="section-label">top 5 archetypes</div>
+                <div id="archetype-results"></div>
+                <div id="founder-results"></div>
+            </div>
+
+            <div id="panel-scores" class="results-panel">
+                <div class="score-section">
+                    <h3>L1.5 Gates</h3>
+                    <div id="gate-scores" class="gate-display"></div>
+                </div>
+
+                <div class="score-section">
+                    <h3>L1 Psychological Traits</h3>
+                    <div id="l1-scores"></div>
+                </div>
+
+                <div class="score-section">
+                    <h3>L2 Political Dispositions</h3>
+                    <div id="l2-scores"></div>
+                </div>
+
+                <div class="score-section">
+                    <h3>5-Dimension Profile</h3>
+                    <div id="profile-scores"></div>
+                </div>
+            </div>
+
+            <div id="panel-history" class="results-panel">
+                <div class="section-label">historical voting alignment</div>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">How your psychological profile would have aligned with candidates throughout American history.</p>
+                <div id="historical-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const SECTIONS = [
+    { id: 'engagement', name: 'engagement & awareness' },
+    { id: 'values', name: 'values & foundations' },
+    { id: 'epistemic', name: 'epistemic style' },
+    { id: 'leadership', name: 'leadership & institutions' },
+    { id: 'identity', name: 'identity & coalition' },
+    { id: 'tradeoffs', name: 'trade-offs' },
+    { id: 'openness', name: 'openness & change' },
+    { id: 'demographics', name: 'demographics' }
+];
+
+const QUESTIONS = [
+    { id: 'Q1', section: 'engagement', type: 'labeled_slider', text: 'How often do you read, watch, or listen to political news?',
+      min: 0, max: 6, minLabel: 'Less than once a week', maxLabel: 'Multiple times per day',
+      stops: ['Less than once a week', 'About once a week', 'A few times a week', 'Most days', 'Once a day', 'A few times a day', 'Multiple times per day'],
+      traits: { ENG: 1.0 } },
+    { id: 'Q2', section: 'engagement', type: 'labeled_slider', text: 'What percentage of people who vote differently than you do so for reasons you\'d consider reasonable?',
+      min: 0, max: 5, minLabel: '0%', maxLabel: '100%',
+      stops: ['Almost none', 'A few', 'Some', 'About half', 'Most', 'Almost all'],
+      traits: { O: 0.5, ET: 0.5 } },
+    { id: 'Q3', section: 'engagement', type: 'likert5', text: 'I feel a strong sense of connection to my political party or movement.', traits: { G: 0.6, PF: 0.4 } },
+    { id: 'Q4', section: 'engagement', type: 'likert5', text: 'Voting is more of a duty than a choice.', traits: { AD: 0.6, ENG: 0.4 } },
+    { id: 'Q5', section: 'engagement', type: 'mc', text: 'In the last 3 general elections you were eligible to vote in, how many did you actually vote in?',
+      options: ['0 of 3', '1 of 3', '2 of 3', '3 of 3', 'Not eligible for 3 yet'],
+      traits: { VPT_BASE: { 0: 0.9, 1: 0.6, 2: 0.3, 3: 0, 4: 0 } } },
+    { id: 'Q6', section: 'engagement', type: 'likert5', text: 'Most political problems have clear right and wrong answers.', traits: { EC: 0.7, O: -0.3 } },
+    { id: 'Q7', section: 'engagement', type: 'grid', text: 'Think about your position on each issue 5 years ago. Has your view changed?',
+      rows: ['Foreign policy', 'Immigration', 'Tax policy'],
+      cols: ['Same', 'Shifted', 'Flipped', 'No opinion'],
+      traits: { O: { shifted: 0.3, flipped: 0.6 }, ENG: { noopinion: -0.3 } } },
+
+    { id: 'Q8', section: 'values', type: 'maxdiff', text: 'Which value is MOST important and which is LEAST important to you?',
+      options: ['Fairness and equal treatment', 'Loyalty to your community', 'Respect for authority and tradition', 'Protection from harm', 'Personal liberty and freedom', 'Purity and sanctity'],
+      traits: { H: { 2: 0.5, 5: -0.3 }, G: { 1: 0.4 }, O: { 4: 0.3, 5: -0.3 } } },
+    { id: 'Q9a', section: 'values', type: 'mc', text: 'A factory closure would devastate a small town. The government should:',
+      options: ['Stay out of it—businesses must adapt or fail', 'Offer retraining programs but let the market decide', 'Subsidize the factory to save the community', 'Take over the factory to preserve jobs'],
+      traits: { L: { 0: 0.8, 1: 0.4, 2: -0.3, 3: -0.6 }, G: { 0: -0.4, 2: 0.4, 3: 0.5 } } },
+    { id: 'Q9b', section: 'values', type: 'mc', text: 'Your city is deciding whether to rename a street currently named after a historical figure who owned slaves. You would:',
+      options: ['Keep the name—we shouldn\'t erase history', 'Keep it but add context with a plaque', 'Rename it—times have changed', 'Never should have been named that in the first place'],
+      traits: { O: { 2: 0.5, 3: 0.7, 0: -0.5 }, CSO: { 0: 0.6, 1: 0.3, 2: -0.3, 3: -0.5 } } },
+    { id: 'Q9c', section: 'values', type: 'mc', text: 'A trade deal would lower consumer prices but cost 10,000 domestic manufacturing jobs. You would:',
+      options: ['Support it—cheaper goods help everyone', 'Support with worker retraining programs', 'Oppose it—protect domestic jobs first', 'Oppose it—we shouldn\'t rely on foreign production'],
+      traits: { CNA: { 2: 0.5, 3: 0.7, 0: -0.4 }, T: { 3: 0.4 }, MAT: { 0: 0.4, 3: -0.3 } } },
+    { id: 'Q10', section: 'values', type: 'mc', text: 'A company has two equally qualified candidates. One is from a group historically underrepresented in the industry. They should:',
+      options: ['Hire based purely on fit and flip a coin if tied', 'Give slight preference to the underrepresented candidate', 'Actively prioritize diversity in hiring', 'Ignore demographics entirely—it\'s irrelevant'],
+      traits: { H: { 0: 0.2, 3: 0.5, 1: -0.2, 2: -0.5 }, MOR: { 3: 0.3, 2: -0.3 } } },
+
+    { id: 'Q11', section: 'epistemic', type: 'maxdiff', text: 'When making decisions, which is MOST and LEAST important?',
+      options: ['Expert consensus', 'Personal experience', 'Trusted community members', 'Scientific data', 'Gut feeling', 'Historical precedent'],
+      traits: { ET: { 0: 0.5, 3: 0.4 }, EC: { 4: 0.4 }, AD: { 2: 0.4, 5: 0.3 } } },
+    { id: 'Q12', section: 'epistemic', type: 'mc', text: 'A policy shows promising early results but experts warn it may have long-term problems. You would:',
+      options: ['Support it - results matter more than predictions', 'Oppose it - experts know best', 'Wait for more data', 'Depends on who proposed it'],
+      traits: { ET: { 1: 0.6 }, EC: { 0: 0.4 }, AD: { 1: 0.4 }, PF: { 3: 0.5 } } },
+    { id: 'Q13', section: 'epistemic', type: 'likert5', text: 'Complex social problems usually have simple solutions if we just had the will to implement them.', traits: { EC: 0.6, EPS: 0.4 } },
+    { id: 'Q14', section: 'epistemic', type: 'likert5', text: 'I prefer leaders who speak plainly over those who acknowledge nuance and uncertainty.', traits: { EC: 0.5, AES: 0.5 } },
+    { id: 'Q15', section: 'epistemic', type: 'likert5', text: 'The government should leave more decisions to markets and individuals.', traits: { L: 0.6, MAT: 0.6 } },
+
+    { id: 'Q16', section: 'leadership', type: 'maxdiff', text: 'In a leader, which quality is MOST and LEAST important?',
+      options: ['Strong and decisive', 'Thoughtful and deliberate', 'Authentic and relatable', 'Experienced and credentialed', 'Visionary and inspiring', 'Practical and effective'],
+      traits: { AES: { 0: 0.5, 2: 0.3 }, AD: { 3: 0.5 }, O: { 4: 0.3 }, EC: { 1: -0.3 } } },
+    { id: 'Q17', section: 'leadership', type: 'mc', text: 'Do you believe the 2020 presidential election result accurately reflected how people voted?',
+      options: ['Yes, definitely', 'Probably yes', 'Unsure', 'Probably no', 'No, definitely not'],
+      traits: { ET: { 0: 0.6, 1: 0.3, 2: 0, 3: -0.3, 4: -0.6 }, PRO: { 0: -0.4, 1: -0.2, 3: 0.2, 4: 0.4 } } },
+    { id: 'Q18', section: 'leadership', type: 'likert5', text: 'Sometimes breaking the rules is necessary to achieve important goals.', traits: { PRO: 0.6, AR: 0.4 } },
+
+    { id: 'QPR2', section: 'identity', type: 'likert5', text: 'My political opponents sometimes have good ideas.', traits: { PF: -0.5, O: 0.4 } },
+    { id: 'QPR4', section: 'identity', type: 'likert5', text: 'Political party labels help voters make good decisions.', traits: { PF: 0.4, EC: 0.3 } },
+    { id: 'Q19', section: 'identity', type: 'mc', text: 'When your side loses a political battle, the best response is:',
+      options: ['Accept it and work within the system', 'Fight harder using every available tactic', 'Build coalitions for the next fight', 'Question whether the process was fair'],
+      traits: { PRO: { 0: -0.5, 1: 0.5 }, AES: { 1: 0.5 }, AR: { 3: 0.4 } } },
+    { id: 'Q20', section: 'identity', type: 'likert5', text: 'Politics is fundamentally about power, not persuasion.', traits: { AES: 0.5, ET: -0.3, T: 0.3 } },
+    { id: 'Q21', section: 'identity', type: 'maxdiff', text: 'Which group membership feels MOST and LEAST central to who you are?',
+      options: ['Nationality', 'Religion/spirituality', 'Political beliefs', 'Profession/work', 'Family role', 'Local community'],
+      traits: { CNA: { 0: 0.4 }, CSO: { 1: 0.3 }, PF: { 2: 0.5 }, G: { 4: 0.3, 5: 0.3 } } },
+    { id: 'Q22', section: 'identity', type: 'likert5', text: 'People who share my political views are generally more moral than those who don\'t.', traits: { PF: 0.6, MOR: 0.4 } },
+    { id: 'Q23', section: 'identity', type: 'likert5', text: 'I feel threatened when my group\'s status in society is challenged.', traits: { T: 0.6, G: 0.4 } },
+    { id: 'Q24', section: 'identity', type: 'likert5', text: 'Immigration generally benefits the country.', traits: { CNA: -0.5, O: 0.3 } },
+    { id: 'Q25', section: 'identity', type: 'likert5', text: 'Traditional family structures are the foundation of a healthy society.', traits: { CSO: 0.7, AD: 0.3 } },
+
+    { id: 'Q26', section: 'tradeoffs', type: 'slider', text: 'Economic policy should prioritize:', min: 0, max: 100, minLabel: 'Equality of outcomes', maxLabel: 'Economic growth', traits: { MAT: 0.7, H: 0.3 } },
+    { id: 'Q27', section: 'tradeoffs', type: 'slider', text: 'Society should prioritize:', min: 0, max: 100, minLabel: 'Security and stability', maxLabel: 'Freedom and opportunity', traits: { T: -0.5, L: 0.5, O: 0.3 } },
+    { id: 'ERR1', section: 'tradeoffs', type: 'slider', text: 'How many guilty people going free is acceptable to prevent one innocent person being punished?',
+      min: 1, max: 100, minLabel: '1 guilty free', maxLabel: '100 guilty free', traits: { PRO: -0.4, MOR: -0.3 } },
+    { id: 'ERR2', section: 'tradeoffs', type: 'slider', text: 'How much economic inefficiency is acceptable to ensure no one falls into poverty?',
+      min: 0, max: 100, minLabel: 'None - efficiency first', maxLabel: 'A lot - no poverty first', traits: { MAT: -0.5, MOR: -0.3 } },
+
+    { id: 'O_FC', section: 'openness', type: 'fc', text: 'Which sounds more appealing?', optionA: 'A trip to a familiar favorite destination', optionB: 'An adventure somewhere completely new', traits: { O: { B: 0.7 } } },
+    { id: 'O_IDEA', section: 'openness', type: 'likert5', text: 'I enjoy exploring ideas that challenge my current worldview.', traits: { O: 0.7 } },
+    { id: 'O_ABSTRACT', section: 'openness', type: 'likert5', text: 'I find abstract theoretical discussions stimulating.', traits: { O: 0.6, EPS: -0.3 } },
+    { id: 'EC_AMBIG', section: 'openness', type: 'likert5', text: 'I find ambiguous situations uncomfortable.', traits: { EC: 0.7 } },
+    { id: 'EC_SPEED', section: 'openness', type: 'fc', text: 'When making decisions:', optionA: 'I prefer to decide quickly and move on', optionB: 'I like to keep my options open as long as possible', traits: { EC: { A: 0.6 } } },
+    { id: 'EC_IDK', section: 'openness', type: 'likert5', text: 'Saying "I don\'t know" feels like admitting failure.', traits: { EC: 0.5, AD: 0.3 } },
+    { id: 'T_VIGIL', section: 'openness', type: 'likert5', text: 'I often notice potential dangers that others miss.', traits: { T: 0.6 } },
+    { id: 'T_NEWSIT', section: 'openness', type: 'likert5', text: 'I feel uneasy in unfamiliar social situations.', traits: { T: 0.5, O: -0.3 } },
+    { id: 'ENG_DISCUSS', section: 'openness', type: 'likert5', text: 'I frequently discuss politics with friends and family.', traits: { ENG: 0.7 } },
+    { id: 'ENG_IMPORT', section: 'openness', type: 'likert5', text: 'Who wins elections significantly affects my daily life.', traits: { ENG: 0.5, T: 0.3 } },
+    { id: 'AR_SHOULD', section: 'openness', type: 'likert5', text: 'When someone tells me I "should" do something, my first instinct is to resist.', traits: { AR: 0.7 } },
+    { id: 'AR_CONFORM', section: 'openness', type: 'likert5', text: 'I dislike feeling pressured to conform to group expectations.', traits: { AR: 0.6, G: -0.3 } }
+];
+
+const DEMOGRAPHICS = [
+    { id: 'D1', section: 'demographics', type: 'select', text: 'What is your age range?',
+      options: ['18-29', '30-44', '45-59', '60-74', '75+'] },
+    { id: 'D2', section: 'demographics', type: 'select', text: 'What is your gender?',
+      options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'] },
+    { id: 'D3', section: 'demographics', type: 'select', text: 'What is your race/ethnicity?',
+      options: ['White', 'Black/African American', 'Hispanic/Latino', 'Asian', 'Mixed/Multiple', 'Other', 'Prefer not to say'] },
+    { id: 'D4', section: 'demographics', type: 'select', text: 'What is your religious affiliation?',
+      options: ['Protestant Christian', 'Catholic', 'Jewish', 'Muslim', 'Buddhist', 'Hindu', 'Other religion', 'Agnostic', 'Atheist', 'None/Secular'] },
+    { id: 'D5', section: 'demographics', type: 'select', text: 'What best describes your childhood community?',
+      options: ['Rural', 'Small town', 'Suburban', 'Urban'] },
+    { id: 'D7', section: 'demographics', type: 'select', text: 'What is your highest level of education?',
+      options: ['High school or less', 'Some college', 'Bachelor\'s degree', 'Graduate degree'] },
+    { id: 'D8', section: 'demographics', type: 'select', text: 'What best describes your household income?',
+      options: ['Working class', 'Middle class', 'Upper middle class', 'Wealthy'] },
+    { id: 'D10', section: 'demographics', type: 'select', text: 'Did your family discuss politics when you were growing up?',
+      options: ['Never', 'Rarely', 'Sometimes', 'Often'] },
+    { id: 'D_IDENT', section: 'demographics', type: 'select', text: 'Which identity feels most politically relevant to you?',
+      options: ['Race/ethnicity', 'Religion', 'Class/economic', 'Gender', 'Region', 'None in particular'] }
+];
+
+const HISTORICAL_ELECTIONS = [
+    { year: 1860, candidates: [
+        { name: 'Abraham Lincoln', party: 'Republican', profile: { economic: 0.1, democracy: 0.7, social: 0.3, nationalism: 0.3, religion: 0.2 } },
+        { name: 'Stephen Douglas', party: 'Democrat', profile: { economic: 0.2, democracy: 0.4, social: -0.2, nationalism: 0.2, religion: 0.1 } }
+    ], franchise: { groups: ['white', 'male'] } },
+    { year: 1896, candidates: [
+        { name: 'William McKinley', party: 'Republican', profile: { economic: 0.6, democracy: 0.5, social: 0.1, nationalism: 0.4, religion: 0.3 } },
+        { name: 'William J. Bryan', party: 'Democrat', profile: { economic: -0.4, democracy: 0.6, social: 0.0, nationalism: 0.3, religion: 0.6 } }
+    ], franchise: { groups: ['male'], note: 'Jim Crow restrictions' } },
+    { year: 1932, candidates: [
+        { name: 'Franklin Roosevelt', party: 'Democrat', profile: { economic: -0.5, democracy: 0.6, social: 0.1, nationalism: 0.2, religion: 0.1 } },
+        { name: 'Herbert Hoover', party: 'Republican', profile: { economic: 0.5, democracy: 0.5, social: 0.0, nationalism: 0.3, religion: 0.2 } }
+    ], franchise: { groups: ['all'], note: 'Widespread voter suppression' } },
+    { year: 1964, candidates: [
+        { name: 'Lyndon Johnson', party: 'Democrat', profile: { economic: -0.4, democracy: 0.7, social: 0.4, nationalism: 0.2, religion: 0.1 } },
+        { name: 'Barry Goldwater', party: 'Republican', profile: { economic: 0.7, democracy: 0.4, social: -0.2, nationalism: 0.5, religion: 0.3 } }
+    ], franchise: { groups: ['all'], note: 'Pre-VRA restrictions in South' } },
+    { year: 1980, candidates: [
+        { name: 'Ronald Reagan', party: 'Republican', profile: { economic: 0.7, democracy: 0.5, social: 0.3, nationalism: 0.6, religion: 0.5 } },
+        { name: 'Jimmy Carter', party: 'Democrat', profile: { economic: -0.1, democracy: 0.6, social: 0.2, nationalism: 0.1, religion: 0.4 } }
+    ], franchise: { groups: ['all'] } },
+    { year: 2008, candidates: [
+        { name: 'Barack Obama', party: 'Democrat', profile: { economic: -0.3, democracy: 0.7, social: 0.5, nationalism: -0.1, religion: 0.1 } },
+        { name: 'John McCain', party: 'Republican', profile: { economic: 0.4, democracy: 0.6, social: 0.1, nationalism: 0.4, religion: 0.3 } }
+    ], franchise: { groups: ['all'] } },
+    { year: 2016, candidates: [
+        { name: 'Donald Trump', party: 'Republican', profile: { economic: 0.3, democracy: 0.2, social: 0.4, nationalism: 0.8, religion: 0.3 } },
+        { name: 'Hillary Clinton', party: 'Democrat', profile: { economic: -0.2, democracy: 0.6, social: 0.5, nationalism: 0.0, religion: 0.1 } }
+    ], franchise: { groups: ['all'] } },
+    { year: 2024, candidates: [
+        { name: 'Donald Trump', party: 'Republican', profile: { economic: 0.4, democracy: 0.1, social: 0.5, nationalism: 0.9, religion: 0.4 } },
+        { name: 'Kamala Harris', party: 'Democrat', profile: { economic: -0.3, democracy: 0.7, social: 0.6, nationalism: -0.1, religion: 0.0 } }
+    ], franchise: { groups: ['all'] } }
+];
+
+const L1_TO_L2_WEIGHTS = {
+    O: { CSO: -0.50, CNA: -0.30, MOR: -0.30, EPS: -0.25, AES: -0.15 },
+    T: { CSO: 0.25, CNA: 0.40, MOR: 0.30, AES: 0.40, PRO: -0.30 },
+    L: { MAT: 0.55 },
+    G: { CNA: 0.25, MOR: 0.25, AES: 0.25, PRO: -0.20 },
+    H: { MAT: 0.35, MOR: 0.20 },
+    ET: { EPS: -0.30, PRO: -0.20 },
+    EC: { EPS: 0.35, CSO: 0.15 },
+    AD: { CSO: 0.20, EPS: 0.20, PRO: 0.40 }
+};
+
+const L2_TO_PROFILE = {
+    MAT: { economic: 0.8 },
+    CSO: { social: -0.6, religion: 0.4 },
+    CNA: { nationalism: 0.7 },
+    MOR: { social: -0.3 },
+    EPS: {},
+    AES: {},
+    PRO: { democracy: -0.5 }
+};
+
+let responses = {};
+let allQuestions = [...QUESTIONS, ...DEMOGRAPHICS];
+
+function startQuiz() {
+    document.getElementById('intro-screen').classList.add('hidden');
+    document.getElementById('quiz-container').classList.add('active');
+    document.getElementById('total-questions').textContent = allQuestions.length;
+    buildProgressSidebar();
+    renderAllQuestions();
+}
+
+function buildProgressSidebar() {
+    const sidebar = document.getElementById('progress-sidebar');
+    sidebar.innerHTML = SECTIONS.map(s =>
+        `<div class="progress-section" data-section="${s.id}" onclick="scrollToSection('${s.id}')">${s.name}</div>`
+    ).join('');
+}
+
+function scrollToSection(sectionId) {
+    const el = document.getElementById(`section-${sectionId}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderAllQuestions() {
+    const container = document.getElementById('questions-container');
+    let html = '';
+    let currentSection = '';
+
+    allQuestions.forEach((q, idx) => {
+        if (q.section !== currentSection) {
+            currentSection = q.section;
+            const sectionInfo = SECTIONS.find(s => s.id === currentSection);
+            html += `<div class="section-label" id="section-${currentSection}">${sectionInfo ? sectionInfo.name : currentSection}</div>`;
+        }
+        html += renderQuestion(q, idx);
+    });
+
+    container.innerHTML = html;
+}
+
+function renderQuestion(q, idx) {
+    let inputHtml = '';
+
+    if (q.type === 'likert5') {
+        inputHtml = `
+            <div class="likert-labels"><span>strongly disagree</span><span>strongly agree</span></div>
+            <div class="likert-scale">
+                ${[1,2,3,4,5].map(i => `
+                    <div class="likert-option">
+                        <input type="radio" name="${q.id}" id="${q.id}_${i}" value="${i}" onchange="recordResponse('${q.id}', ${i})">
+                        <label for="${q.id}_${i}">${i}</label>
+                    </div>
+                `).join('')}
+            </div>`;
+    } else if (q.type === 'slider' || q.type === 'labeled_slider') {
+        const defaultVal = q.type === 'labeled_slider' ? Math.floor((q.max - q.min) / 2) : 50;
+        const displayVal = q.type === 'labeled_slider' ? q.stops[defaultVal] : defaultVal;
+        inputHtml = `
+            <div class="slider-container">
+                <div class="slider-labels"><span>${q.minLabel || 'Low'}</span><span>${q.maxLabel || 'High'}</span></div>
+                <input type="range" class="slider-input" id="slider-${q.id}" min="${q.min || 0}" max="${q.max || 100}" value="${defaultVal}"
+                    oninput="updateSlider('${q.id}', this.value, ${q.type === 'labeled_slider'})">
+                <div class="slider-value" id="slider-val-${q.id}">${displayVal}</div>
+            </div>`;
+        setTimeout(() => { responses[q.id] = defaultVal; updateCompletion(); }, 0);
+    } else if (q.type === 'mc') {
+        inputHtml = `<div class="mc-options">
+            ${q.options.map((opt, i) => `
+                <div class="mc-option">
+                    <input type="radio" name="${q.id}" id="${q.id}_${i}" value="${i}" onchange="recordResponse('${q.id}', ${i})">
+                    <label for="${q.id}_${i}">${opt}</label>
+                </div>
+            `).join('')}
+        </div>`;
+    } else if (q.type === 'fc') {
+        inputHtml = `<div class="fc-pair">
+            <div class="fc-option">
+                <input type="radio" name="${q.id}" id="${q.id}_A" value="A" onchange="recordResponse('${q.id}', 'A')">
+                <label for="${q.id}_A">${q.optionA}</label>
+            </div>
+            <div class="fc-option">
+                <input type="radio" name="${q.id}" id="${q.id}_B" value="B" onchange="recordResponse('${q.id}', 'B')">
+                <label for="${q.id}_B">${q.optionB}</label>
+            </div>
+        </div>`;
+    } else if (q.type === 'grid') {
+        inputHtml = `<table class="grid-table">
+            <tr><th></th>${q.cols.map(c => `<th>${c}</th>`).join('')}</tr>
+            ${q.rows.map((row, ri) => `
+                <tr>
+                    <td>${row}</td>
+                    ${q.cols.map((col, ci) => `
+                        <td><input type="radio" name="${q.id}_${ri}" value="${ci}" onchange="recordGridResponse('${q.id}', ${ri}, ${ci})"></td>
+                    `).join('')}
+                </tr>
+            `).join('')}
+        </table>`;
+    } else if (q.type === 'maxdiff') {
+        inputHtml = `<table class="maxdiff-table">
+            <tr><th>most</th><th></th><th>least</th></tr>
+            ${q.options.map((opt, i) => `
+                <tr>
+                    <td><input type="radio" class="most-btn" name="${q.id}_most" value="${i}" onchange="recordMaxDiff('${q.id}', 'most', ${i})"></td>
+                    <td>${opt}</td>
+                    <td><input type="radio" class="least-btn" name="${q.id}_least" value="${i}" onchange="recordMaxDiff('${q.id}', 'least', ${i})"></td>
+                </tr>
+            `).join('')}
+        </table>`;
+    } else if (q.type === 'select') {
+        inputHtml = `<select class="demographic-select" onchange="recordResponse('${q.id}', this.value === '' ? undefined : parseInt(this.value))">
+            <option value="">Select an option...</option>
+            ${q.options.map((opt, i) => `<option value="${i}">${opt}</option>`).join('')}
+        </select>`;
+    }
+
+    return `<div class="question-block" id="q-${q.id}">
+        <div class="question-id">${q.id}</div>
+        <div class="question-text">${q.text}</div>
+        ${inputHtml}
+    </div>`;
+}
+
+function recordResponse(id, value) {
+    responses[id] = value;
+    updateCompletion();
+}
+
+function updateSlider(id, value, isLabeled) {
+    responses[id] = parseInt(value);
+    const q = allQuestions.find(q => q.id === id);
+    const display = isLabeled && q.stops ? q.stops[value] : value;
+    document.getElementById(`slider-val-${id}`).textContent = display;
+    updateCompletion();
+}
+
+function recordGridResponse(id, row, col) {
+    if (!responses[id]) responses[id] = {};
+    responses[id][row] = col;
+    updateCompletion();
+}
+
+function recordMaxDiff(id, type, idx) {
+    if (!responses[id]) responses[id] = { most: null, least: null };
+    if (type === 'most' && responses[id].least === idx) return;
+    if (type === 'least' && responses[id].most === idx) return;
+    responses[id][type] = idx;
+    updateCompletion();
+}
+
+function updateCompletion() {
+    let answered = 0;
+    allQuestions.forEach(q => {
+        if (q.type === 'grid') {
+            const gridQ = QUESTIONS.find(x => x.id === q.id);
+            if (gridQ && responses[q.id] && Object.keys(responses[q.id]).length === gridQ.rows.length) answered++;
+        } else if (q.type === 'maxdiff') {
+            if (responses[q.id]?.most !== null && responses[q.id]?.least !== null) answered++;
+        } else if (q.type === 'slider' || q.type === 'labeled_slider') {
+            if (responses[q.id] !== undefined) answered++;
+        } else {
+            if (responses[q.id] !== undefined) answered++;
+        }
+    });
+    document.getElementById('completion-count').textContent = answered;
+    document.getElementById('submit-btn').disabled = answered < allQuestions.length * 0.8;
+}
+
+async function submitQuiz() {
+    document.getElementById('quiz-container').classList.remove('active');
+    document.getElementById('results-container').classList.add('active');
+    let quizData = null;
+    try {
+        const resp = await fetch('data/quiz_archetype_data.json');
+        if (resp.ok) quizData = await resp.json();
+    } catch (e) {
+        // file:// protocol or network error — archetype/founder cards will show fallback
+    }
+    calculateAndDisplayResults(quizData);
+}
+
+function showResultsTab(tabName) {
+    document.querySelectorAll('.results-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.results-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.results-tab[onclick="showResultsTab('${tabName}')"]`).classList.add('active');
+    document.getElementById(`panel-${tabName}`).classList.add('active');
+}
+
+function computeL1Scores() {
+    const l1 = { O: 50, T: 50, L: 50, G: 50, H: 50, ET: 50, EC: 50, AD: 50, AR: 50, ENG: 50, PF: 50 };
+
+    QUESTIONS.forEach(q => {
+        if (!q.traits || responses[q.id] === undefined) return;
+
+        if (q.type === 'likert5') {
+            const normalized = (responses[q.id] - 3) / 2;
+            Object.entries(q.traits).forEach(([trait, weight]) => {
+                if (typeof weight === 'number') l1[trait] = (l1[trait] || 50) + normalized * weight * 25;
+            });
+        } else if (q.type === 'slider') {
+            const normalized = (responses[q.id] - 50) / 50;
+            Object.entries(q.traits).forEach(([trait, weight]) => {
+                if (typeof weight === 'number') l1[trait] = (l1[trait] || 50) + normalized * weight * 25;
+            });
+        } else if (q.type === 'labeled_slider') {
+            const normalized = (responses[q.id] - (q.max - q.min) / 2) / ((q.max - q.min) / 2);
+            Object.entries(q.traits).forEach(([trait, weight]) => {
+                if (typeof weight === 'number') l1[trait] = (l1[trait] || 50) + normalized * weight * 25;
+            });
+        } else if (q.type === 'fc') {
+            const choice = responses[q.id];
+            Object.entries(q.traits).forEach(([trait, weights]) => {
+                if (typeof weights === 'object' && weights[choice]) l1[trait] = (l1[trait] || 50) + weights[choice] * 15;
+            });
+        } else if (q.type === 'mc') {
+            const choice = responses[q.id];
+            Object.entries(q.traits).forEach(([trait, weights]) => {
+                if (typeof weights === 'object' && weights[choice] !== undefined) l1[trait] = (l1[trait] || 50) + weights[choice] * 15;
+            });
+        } else if (q.type === 'maxdiff') {
+            const resp = responses[q.id];
+            if (resp) {
+                Object.entries(q.traits).forEach(([trait, weights]) => {
+                    if (typeof weights === 'object') {
+                        if (weights[resp.most]) l1[trait] = (l1[trait] || 50) + weights[resp.most] * 20;
+                        if (weights[resp.least]) l1[trait] = (l1[trait] || 50) - weights[resp.least] * 20;
+                    }
+                });
+            }
+        } else if (q.type === 'grid') {
+            const resp = responses[q.id];
+            if (resp) {
+                Object.entries(resp).forEach(([rowIdx, colIdx]) => {
+                    const colName = q.cols[colIdx].toLowerCase().replace(' ', '');
+                    Object.entries(q.traits).forEach(([trait, weights]) => {
+                        if (typeof weights === 'object' && weights[colName]) l1[trait] = (l1[trait] || 50) + weights[colName] * 15;
+                    });
+                });
+            }
+        }
+    });
+
+    Object.keys(l1).forEach(trait => { l1[trait] = Math.max(0, Math.min(100, l1[trait])); });
+    return l1;
+}
+
+function computeL2FromL1(l1) {
+    const l2 = { MAT: 50, CSO: 50, CNA: 50, MOR: 50, EPS: 50, AES: 50, PRO: 50 };
+    Object.entries(L1_TO_L2_WEIGHTS).forEach(([l1Trait, l2Weights]) => {
+        Object.entries(l2Weights).forEach(([l2Trait, weight]) => {
+            l2[l2Trait] += weight * (l1[l1Trait] - 50);
+        });
+    });
+    Object.keys(l2).forEach(trait => { l2[trait] = Math.max(0, Math.min(100, l2[trait])); });
+    return l2;
+}
+
+function computeGates(l1, threatEnv = 0.3) {
+    const norm = (score) => (score - 50) / 50;
+    let zBase = 0.45 * norm(l1.G) + 0.25 * norm(l1.T) - 0.20 * norm(l1.AR) + 0.20 * norm(l1.ENG);
+    const pfBase = 1 / (1 + Math.exp(-zBase * 3));
+    const zAct = 0.30 * threatEnv * 2 + 0.15 * norm(l1.ENG);
+    const activated = 1 / (1 + Math.exp(-zAct * 3));
+    const deltaPF = activated - 0.5;
+    const pfAct = Math.max(0, Math.min(1, pfBase + deltaPF));
+    let zPIS = 0.30 * norm(l1.G) + 0.40 * (pfAct - 0.5) * 2 + 0.15 * norm(l1.ENG) + 0.25 * (threatEnv - 0.5) * 2;
+    const pis = 1 / (1 + Math.exp(-zPIS * 3));
+    return { pfBase, pfAct, pis };
+}
+
+function computeProfile(l2) {
+    const profile = { economic: 0, democracy: 0, social: 0, nationalism: 0, religion: 0 };
+    Object.entries(L2_TO_PROFILE).forEach(([l2Trait, profileWeights]) => {
+        const normalized = (l2[l2Trait] - 50) / 50;
+        Object.entries(profileWeights).forEach(([dim, weight]) => { profile[dim] += normalized * weight; });
+    });
+    Object.keys(profile).forEach(dim => { profile[dim] = Math.max(-1, Math.min(1, profile[dim])); });
+    return profile;
+}
+
+function matchArchetype(userL2, archetypeL2) {
+    const dims = ['MAT', 'CSO', 'CNA', 'MOR', 'EPS', 'PRO'];
+    let weightedSumSquares = 0;
+    let totalWeight = 0;
+    for (const d of dims) {
+        const userVal = userL2[d] || 50;
+        const archVal = archetypeL2[d].v;
+        const salience = archetypeL2[d].s;
+        const weight = salience / 100;
+        weightedSumSquares += weight * Math.pow((userVal - archVal) / 100, 2);
+        totalWeight += weight;
+    }
+    if (totalWeight === 0) return 50;
+    return Math.max(0, (1 - Math.sqrt(weightedSumSquares / totalWeight))) * 100;
+}
+
+function matchAllArchetypes(userL2, archetypes) {
+    return archetypes.map(a => ({
+        ...a,
+        score: matchArchetype(userL2, a.l2)
+    })).sort((a, b) => b.score - a.score);
+}
+
+function matchFounders(userL2, founders) {
+    const dims = ['MAT', 'CSO', 'CNA', 'MOR', 'EPS', 'PRO'];
+    return founders.map(f => {
+        let sumSquares = 0;
+        for (const d of dims) {
+            const userVal = userL2[d] || 50;
+            const founderVal = f.l2[d] || 50;
+            sumSquares += Math.pow((userVal - founderVal) / 100, 2);
+        }
+        return { ...f, score: Math.max(0, (1 - Math.sqrt(sumSquares / dims.length))) * 100 };
+    }).sort((a, b) => b.score - a.score);
+}
+
+function renderArchetypeResults(top5) {
+    let html = '';
+    top5.forEach((arch, i) => {
+        html += `<div class="archetype-card ${i === 0 ? 'primary' : ''}">
+            <div>
+                <div class="archetype-rank">#${i + 1}</div>
+                <div class="archetype-name">${arch.name}</div>
+                <div class="archetype-desc">${arch.desc}</div>
+                ${arch.examples ? `<div class="archetype-examples">e.g. ${arch.examples}</div>` : ''}
+                <div class="archetype-meta">
+                    <span class="archetype-tag">${arch.tier}</span>
+                    <span class="archetype-tag">${arch.lean}</span>
+                    <span class="archetype-tag">${arch.freq}% of population</span>
+                </div>
+            </div>
+            <div class="archetype-pct">${Math.round(arch.score)}%</div>
+        </div>`;
+    });
+    document.getElementById('archetype-results').innerHTML = html;
+}
+
+function renderFounderResults(founders) {
+    if (!founders || founders.length === 0) {
+        document.getElementById('founder-results').innerHTML =
+            '<div class="founder-unavailable">Founder matching not available</div>';
+        return;
+    }
+    const top = founders[0];
+    const rest = founders.slice(1, 5);
+    let html = `<div class="founder-section">
+        <div class="section-label">founding father alignment</div>
+        <div class="founder-hero">
+            <div class="founder-hero-header">
+                <div>
+                    <div class="founder-hero-name">${top.name}</div>
+                    <div class="founder-hero-title">${top.title}</div>
+                </div>
+                <div class="founder-hero-pct">${Math.round(top.score)}%</div>
+            </div>
+            <div class="founder-hero-quote">"${top.quote}"</div>
+            <div class="founder-hero-traits">
+                ${top.traits.map(t => `<span class="founder-trait-tag">${t}</span>`).join('')}
+            </div>
+            <div class="founder-hero-desc">${top.desc}</div>
+        </div>`;
+
+    if (rest.length > 0) {
+        html += `<div class="founder-grid">`;
+        rest.forEach(f => {
+            html += `<div class="founder-grid-card">
+                <div class="founder-grid-name">${f.name}</div>
+                <div class="founder-grid-title">${f.title}</div>
+                <div class="founder-grid-pct">${Math.round(f.score)}% match</div>
+            </div>`;
+        });
+        html += `</div>`;
+    }
+
+    html += `</div>`;
+    document.getElementById('founder-results').innerHTML = html;
+}
+
+function computeVPT(l1) {
+    const votingHistory = responses['Q5'];
+    let vptBase = 50;
+    if (votingHistory === 0) vptBase = 80;
+    else if (votingHistory === 1) vptBase = 65;
+    else if (votingHistory === 2) vptBase = 45;
+    else if (votingHistory === 3) vptBase = 30;
+    vptBase += (l1.AR - 50) * 0.3 - (l1.ENG - 50) * 0.4 - (l1.AD - 50) * 0.2;
+    return Math.max(0, Math.min(100, vptBase));
+}
+
+function computeCAS(profile, candidateProfile) {
+    let alignment = 0;
+    Object.keys(profile).forEach(dim => {
+        alignment += (1 - Math.abs(profile[dim] - candidateProfile[dim])) * 20;
+    });
+    return alignment;
+}
+
+function checkFranchise(year, demographics) {
+    const race = DEMOGRAPHICS[2].options[responses['D3']] || '';
+    const gender = DEMOGRAPHICS[1].options[responses['D2']] || '';
+    if (year < 1870 && race !== 'White') return { had: false, barrier: 'Race-based exclusion before 15th Amendment (1870)' };
+    if (year < 1920 && gender === 'Female') return { had: false, barrier: 'Women could not vote before 19th Amendment (1920)' };
+    if (year < 1965 && race === 'Black/African American') return { had: false, barrier: 'Effective disenfranchisement through Jim Crow laws' };
+    return { had: true, barrier: null };
+}
+
+function calculateAndDisplayResults(quizData) {
+    const l1 = computeL1Scores();
+    const l2 = computeL2FromL1(l1);
+    const gates = computeGates(l1);
+    const profile = computeProfile(l2);
+    const vpt = computeVPT(l1);
+
+    if (quizData) {
+        const ranked = matchAllArchetypes(l2, quizData.archetypes);
+        renderArchetypeResults(ranked.slice(0, 5));
+        const rankedFounders = matchFounders(l2, quizData.founders);
+        renderFounderResults(rankedFounders);
+    } else {
+        document.getElementById('archetype-results').innerHTML =
+            '<div class="founder-unavailable">Archetype matching requires serving over HTTP. Open with a local server (e.g. npx serve .)</div>';
+        document.getElementById('founder-results').innerHTML =
+            '<div class="founder-unavailable">Founder matching not available</div>';
+    }
+
+    let gateHtml = `
+        <div class="gate-item"><div class="gate-value">${(gates.pfBase * 100).toFixed(0)}%</div><div class="gate-label">PF Base</div></div>
+        <div class="gate-item"><div class="gate-value">${(gates.pfAct * 100).toFixed(0)}%</div><div class="gate-label">PF Active</div></div>
+        <div class="gate-item"><div class="gate-value">${(gates.pis * 100).toFixed(0)}%</div><div class="gate-label">PIS</div></div>`;
+    document.getElementById('gate-scores').innerHTML = gateHtml;
+
+    const l1Labels = {
+        O: ['Closed', 'Open', 'Openness'], T: ['Secure', 'Vigilant', 'Threat Sensitivity'],
+        L: ['Structural', 'Individual', 'Locus of Control'], G: ['Individual', 'Collective', 'Group Orientation'],
+        H: ['Egalitarian', 'Hierarchical', 'Hierarchy'], ET: ['Suspicious', 'Trusting', 'Epistemic Trust'],
+        EC: ['Low', 'High', 'Epistemic Closure'], AD: ['Low', 'High', 'Deference'],
+        AR: ['Low', 'High', 'Reactance'], ENG: ['Low', 'High', 'Engagement']
+    };
+    let l1Html = '';
+    ['O', 'T', 'L', 'G', 'H', 'ET', 'EC', 'AD', 'AR', 'ENG'].forEach(trait => {
+        const labels = l1Labels[trait];
+        l1Html += `<div class="score-row">
+            <div class="score-label">${labels[2]}</div>
+            <div class="score-bar-container">
+                <div class="score-bar-labels"><span>${labels[0]}</span><span>${labels[1]}</span></div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:${l1[trait]}%;background:linear-gradient(90deg,var(--accent-blue),var(--accent-coral))"></div></div>
+            </div>
+            <div class="score-value">${Math.round(l1[trait])}</div>
+        </div>`;
+    });
+    document.getElementById('l1-scores').innerHTML = l1Html;
+
+    const l2Labels = {
+        MAT: ['Structuralist', 'Marketist', 'Material'], CSO: ['Progressive', 'Traditional', 'Social Values'],
+        CNA: ['Cosmopolitan', 'Particularist', 'Belonging'], MOR: ['Universalist', 'Communitarian', 'Moral Circle'],
+        EPS: ['Illegibilist', 'Engineerist', 'Epistemic Style'], AES: ['Decorum', 'Fighter', 'Aesthetic'],
+        PRO: ['Rules-bound', 'Outcome-focused', 'Procedural']
+    };
+    let l2Html = '';
+    ['MAT', 'CSO', 'CNA', 'MOR', 'EPS', 'AES', 'PRO'].forEach(trait => {
+        const labels = l2Labels[trait];
+        l2Html += `<div class="score-row">
+            <div class="score-label">${labels[2]}</div>
+            <div class="score-bar-container">
+                <div class="score-bar-labels"><span>${labels[0]}</span><span>${labels[1]}</span></div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:${l2[trait]}%;background:linear-gradient(90deg,var(--accent-green),var(--accent-coral))"></div></div>
+            </div>
+            <div class="score-value">${Math.round(l2[trait])}</div>
+        </div>`;
+    });
+    document.getElementById('l2-scores').innerHTML = l2Html;
+
+    const profileLabels = { economic: ['Left', 'Right'], democracy: ['Authoritarian', 'Democratic'], social: ['Progressive', 'Traditional'], nationalism: ['Internationalist', 'Nationalist'], religion: ['Secular', 'Religious'] };
+    let profileHtml = '';
+    Object.entries(profile).forEach(([dim, val]) => {
+        const pct = (val + 1) / 2 * 100;
+        const labels = profileLabels[dim];
+        profileHtml += `<div class="score-row">
+            <div class="score-label">${dim.charAt(0).toUpperCase() + dim.slice(1)}</div>
+            <div class="score-bar-container">
+                <div class="score-bar-labels"><span>${labels[0]}</span><span>${labels[1]}</span></div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--accent-blue),var(--accent-coral))"></div></div>
+            </div>
+            <div class="score-value">${val.toFixed(2)}</div>
+        </div>`;
+    });
+    document.getElementById('profile-scores').innerHTML = profileHtml;
+
+    let histHtml = '';
+    HISTORICAL_ELECTIONS.forEach(election => {
+        const franchise = checkFranchise(election.year, responses);
+        const candidateScores = election.candidates.map(c => ({ name: c.name, party: c.party, cas: computeCAS(profile, c.profile) }));
+        candidateScores.sort((a, b) => b.cas - a.cas);
+        const topCandidate = candidateScores[0];
+        const wouldVote = topCandidate.cas >= vpt;
+
+        histHtml += `<div class="historical-era">
+            <div class="era-header">${election.year}</div>
+            ${!franchise.had ? `<div class="franchise-note">${franchise.barrier}</div>` : ''}
+            ${candidateScores.map(c => {
+                const matchClass = c.cas >= 70 ? 'high' : c.cas >= 50 ? 'medium' : 'low';
+                const isSupported = wouldVote && c.name === topCandidate.name;
+                return `<div class="election-row">
+                    <div class="candidate-info">
+                        <span class="candidate-name">${c.name}</span>
+                        <span class="candidate-party">${c.party}</span>
+                        ${isSupported ? '<span class="candidate-check">✓</span>' : ''}
+                    </div>
+                    <div class="match-display">
+                        <div class="match-bar"><div class="match-fill ${matchClass}" style="width:${c.cas}%"></div></div>
+                        <span class="match-pct">${Math.round(c.cas)}%</span>
+                    </div>
+                </div>`;
+            }).join('')}
+        </div>`;
+    });
+    document.getElementById('historical-results').innerHTML = histHtml;
+}
+    </script>
+</body>
+</html>
