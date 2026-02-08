@@ -11,6 +11,8 @@
 <script src="prism_scorer_v156.js"></script>
 <style>
         :root {
+            --bg: #E8E4DC;
+            --bg-secondary: #D4CFC4;
             --pool: #d1f6ff;
             --pool-deep: #89ccf0;
             --pool-shadow: #6BB8D9;
@@ -27,7 +29,7 @@
 
         body {
             font-family: 'EB Garamond', Georgia, serif;
-            background: var(--pool);
+            background: var(--bg);
             color: var(--ink);
             line-height: 1.7;
             font-size: 18px;
@@ -157,13 +159,13 @@
         }
 
         .question-text {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             line-height: 1.6;
             margin-bottom: 1.25rem;
         }
 
         .question-subtext {
-            font-size: 0.9rem;
+            font-size: 1.0rem;
             color: var(--ink-light);
             font-style: italic;
             margin-top: -0.75rem;
@@ -200,7 +202,7 @@
             background: var(--pool);
             cursor: pointer;
             font-family: 'Courier Prime', monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-align: center;
             transition: all 0.1s;
         }
@@ -354,7 +356,7 @@
 
         .mc-text {
             flex: 1;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             line-height: 1.5;
         }
 
@@ -391,7 +393,7 @@
         }
 
         .conjoint-text {
-            font-size: 0.9rem;
+            font-size: 1.0rem;
             line-height: 1.5;
         }
 
@@ -404,7 +406,7 @@
         .conjoint-params li {
             padding: 0.4rem 0;
             border-bottom: 1px dotted var(--pool-shadow);
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: flex-start;
             gap: 0.5rem;
@@ -1060,7 +1062,7 @@
             background: var(--pool);
             cursor: pointer;
             font-family: 'Courier Prime', monospace;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             text-align: center;
             transition: all 0.1s;
             min-height: 70px;
