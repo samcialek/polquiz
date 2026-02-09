@@ -1,0 +1,104 @@
+{
+  "founderDistribution": {
+    "Thomas Jefferson": 37,
+    "Alexander Hamilton": 11,
+    "John Adams": 16,
+    "George Washington": 49,
+    "Benjamin Franklin": 14,
+    "James Madison": 5
+  },
+  "leanDistribution": {
+    "Strong D": 67,
+    "Mod D": 21,
+    "Split": 2,
+    "Mod R": 9,
+    "Strong R": 33
+  },
+  "electionAccuracy": {
+    "avg": 46,
+    "min": 27,
+    "max": 70
+  },
+  "countryVariances": {
+    "United Kingdom": {
+      "variance": 0.1,
+      "mean": -0.03
+    },
+    "France": {
+      "variance": 0.059,
+      "mean": -0.03
+    },
+    "Germany": {
+      "variance": 0.024,
+      "mean": -0.02
+    },
+    "Russia": {
+      "variance": 0.158,
+      "mean": 0.02
+    },
+    "Italy": {
+      "variance": 0.012,
+      "mean": -0.01
+    },
+    "Spain": {
+      "variance": 0.002,
+      "mean": 0
+    },
+    "China": {
+      "variance": 0.117,
+      "mean": 0
+    },
+    "United States": {
+      "variance": 0.188,
+      "mean": -0.03
+    },
+    "Taiwan": {
+      "variance": 0.2,
+      "mean": 0
+    },
+    "Japan": {
+      "variance": 0.091,
+      "mean": -0.02
+    },
+    "Canada": {
+      "variance": 0.292,
+      "mean": 0.01
+    },
+    "Mexico": {
+      "variance": 0.124,
+      "mean": 0.04
+    },
+    "Brazil": {
+      "variance": 0.178,
+      "mean": -0.02
+    },
+    "India": {
+      "variance": 0.106,
+      "mean": -0.02
+    },
+    "South Korea": {
+      "variance": 0.156,
+      "mean": 0.01
+    },
+    "Israel": {
+      "variance": 0.133,
+      "mean": -0.03
+    },
+    "Iran": {
+      "variance": 0.092,
+      "mean": 0
+    },
+    "Turkey": {
+      "variance": 0.129,
+      "mean": 0
+    },
+    "Australia": {
+      "variance": 0.141,
+      "mean": -0.04
+    },
+    "South Africa": {
+      "variance": 0.072,
+      "mean": 0
+    }
+  }
+}

@@ -1,0 +1,1036 @@
+{
+  "elections": [
+    {
+      "year": 1968,
+      "candidates": [
+        {
+          "name": "Richard Nixon",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 58,
+            "CNA": 62,
+            "MOR": 62,
+            "EPS": 50,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 45,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "white_working_class": 60,
+            "white_college": 55,
+            "black": 10,
+            "hispanic": 25,
+            "evangelical": 55,
+            "secular": 40,
+            "rural": 60,
+            "urban": 35,
+            "union": 35,
+            "suburban": 65
+          }
+        },
+        {
+          "name": "Hubert Humphrey",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 40,
+            "CNA": 40,
+            "MOR": 35,
+            "EPS": 40,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.72,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 70,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "white_working_class": 52,
+            "white_college": 48,
+            "black": 90,
+            "hispanic": 72,
+            "evangelical": 25,
+            "secular": 58,
+            "rural": 42,
+            "urban": 68,
+            "union": 75,
+            "suburban": 45
+          }
+        },
+        {
+          "name": "George Wallace",
+          "party": "American Independent",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 78,
+            "CNA": 80,
+            "MOR": 68,
+            "EPS": 55,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.25,
+            "technocratic_competent": 0.25,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.85,
+            "fighter_warrior": 0.75,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 45,
+            "integrity": 50,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "white_working_class": 75,
+            "white_college": 25,
+            "black": 2,
+            "hispanic": 15,
+            "evangelical": 65,
+            "secular": 22,
+            "rural": 72,
+            "urban": 25,
+            "union": 45,
+            "suburban": 35
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 65,
+            "CNA": 60,
+            "MOR": 60,
+            "EPS": 55,
+            "PRO": 45
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 35,
+            "CNA": 40,
+            "MOR": 35,
+            "EPS": 40,
+            "PRO": 65
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.8,
+        "CSO": 1.5,
+        "CNA": 1.8,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.65
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.55,
+        "CNA": 0.55,
+        "MOR": 0.6,
+        "EPS": 0.45,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1972,
+      "candidates": [
+        {
+          "name": "Richard Nixon",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 68,
+            "CNA": 65,
+            "MOR": 68,
+            "EPS": 52,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.28,
+            "authentic_plainspoken": 0.38,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.38
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 42,
+            "empathy": 32
+          },
+          "self_resonance": {
+            "white_working_class": 65,
+            "white_college": 62,
+            "black": 12,
+            "hispanic": 28,
+            "evangelical": 62,
+            "secular": 45,
+            "rural": 65,
+            "urban": 38,
+            "union": 42,
+            "suburban": 68
+          }
+        },
+        {
+          "name": "George McGovern",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 18,
+            "CSO": 18,
+            "CNA": 22,
+            "MOR": 15,
+            "EPS": 35,
+            "PRO": 78
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.65,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 78,
+            "empathy": 75
+          },
+          "self_resonance": {
+            "white_working_class": 32,
+            "white_college": 45,
+            "black": 85,
+            "hispanic": 65,
+            "evangelical": 15,
+            "secular": 68,
+            "rural": 28,
+            "urban": 62,
+            "union": 52,
+            "suburban": 38
+          }
+        },
+        {
+          "name": "John Schmitz",
+          "party": "American",
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 88,
+            "CNA": 85,
+            "MOR": 85,
+            "EPS": 75,
+            "PRO": 25
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.3,
+            "pastoral_empathetic": 0.25,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 42,
+            "integrity": 55,
+            "empathy": 28
+          },
+          "self_resonance": {
+            "white_working_class": 45,
+            "white_college": 22,
+            "black": 2,
+            "hispanic": 12,
+            "evangelical": 55,
+            "secular": 15,
+            "rural": 48,
+            "urban": 18,
+            "union": 25,
+            "suburban": 28
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 68,
+            "CNA": 65,
+            "MOR": 65,
+            "EPS": 52,
+            "PRO": 52
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 22,
+            "CSO": 22,
+            "CNA": 28,
+            "MOR": 22,
+            "EPS": 40,
+            "PRO": 75
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 2,
+        "CNA": 1.5,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 58,
+        "threat_environment": 0.55
+      },
+      "tau": {
+        "MAT": 0.48,
+        "CSO": 0.58,
+        "CNA": 0.6,
+        "MOR": 0.55,
+        "EPS": 0.42,
+        "PRO": 0.48
+      }
+    },
+    {
+      "year": 1976,
+      "candidates": [
+        {
+          "name": "Jimmy Carter",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 52,
+            "CNA": 48,
+            "MOR": 42,
+            "EPS": 58,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.72,
+            "authentic_plainspoken": 0.82,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 82,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "white_working_class": 58,
+            "white_college": 48,
+            "black": 88,
+            "hispanic": 72,
+            "evangelical": 55,
+            "secular": 45,
+            "rural": 62,
+            "urban": 58,
+            "union": 68,
+            "suburban": 52
+          }
+        },
+        {
+          "name": "Gerald Ford",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 60,
+            "CNA": 58,
+            "MOR": 58,
+            "EPS": 42,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.48,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.28
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 72,
+            "empathy": 52
+          },
+          "self_resonance": {
+            "white_working_class": 48,
+            "white_college": 55,
+            "black": 15,
+            "hispanic": 28,
+            "evangelical": 48,
+            "secular": 45,
+            "rural": 52,
+            "urban": 38,
+            "union": 35,
+            "suburban": 58
+          }
+        },
+        {
+          "name": "Eugene McCarthy",
+          "party": "Independent",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 32,
+            "CNA": 35,
+            "MOR": 28,
+            "EPS": 42,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 72,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "white_working_class": 35,
+            "white_college": 48,
+            "black": 45,
+            "hispanic": 38,
+            "evangelical": 22,
+            "secular": 58,
+            "rural": 32,
+            "urban": 52,
+            "union": 42,
+            "suburban": 45
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 62,
+            "CNA": 60,
+            "MOR": 60,
+            "EPS": 45,
+            "PRO": 45
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 48,
+            "CNA": 45,
+            "MOR": 42,
+            "EPS": 55,
+            "PRO": 60
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 1,
+        "PRO": 2.5
+      },
+      "context": {
+        "conditions": 48,
+        "threat_environment": 0.42
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.5,
+        "CNA": 0.48,
+        "MOR": 0.48,
+        "EPS": 0.52,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1980,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 52,
+            "CNA": 62,
+            "MOR": 58,
+            "EPS": 50,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.62,
+            "authentic_plainspoken": 0.72,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.82
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 72,
+            "empathy": 65
+          },
+          "self_resonance": {
+            "white_working_class": 72,
+            "white_college": 62,
+            "black": 12,
+            "hispanic": 32,
+            "evangelical": 82,
+            "secular": 35,
+            "rural": 75,
+            "urban": 35,
+            "union": 42,
+            "suburban": 68
+          }
+        },
+        {
+          "name": "Jimmy Carter",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 45,
+            "CNA": 38,
+            "MOR": 40,
+            "EPS": 52,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.48,
+            "pastoral_empathetic": 0.68,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.22,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 45,
+            "integrity": 78,
+            "empathy": 68
+          },
+          "self_resonance": {
+            "white_working_class": 42,
+            "white_college": 42,
+            "black": 85,
+            "hispanic": 62,
+            "evangelical": 42,
+            "secular": 48,
+            "rural": 48,
+            "urban": 55,
+            "union": 58,
+            "suburban": 42
+          }
+        },
+        {
+          "name": "John Anderson",
+          "party": "Independent",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 32,
+            "CNA": 28,
+            "MOR": 38,
+            "EPS": 28,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.52,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.48
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 75,
+            "empathy": 48
+          },
+          "self_resonance": {
+            "white_working_class": 35,
+            "white_college": 55,
+            "black": 25,
+            "hispanic": 28,
+            "evangelical": 28,
+            "secular": 58,
+            "rural": 32,
+            "urban": 48,
+            "union": 35,
+            "suburban": 52
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 80,
+            "CSO": 78,
+            "CNA": 75,
+            "MOR": 72,
+            "EPS": 65,
+            "PRO": 28
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 52,
+            "CNA": 42,
+            "MOR": 45,
+            "EPS": 52,
+            "PRO": 62
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 1.0,
+        "CNA": 2.0,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 32,
+        "threat_environment": 0.68
+      },
+      "tau": {
+        "MAT": 0.65,
+        "CSO": 0.52,
+        "CNA": 0.58,
+        "MOR": 0.48,
+        "EPS": 0.48,
+        "PRO": 0.42
+      }
+    },
+    {
+      "year": 1984,
+      "candidates": [
+        {
+          "name": "Ronald Reagan",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 85,
+            "CSO": 80,
+            "CNA": 78,
+            "MOR": 72,
+            "EPS": 65,
+            "PRO": 25
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.42,
+            "pastoral_empathetic": 0.65,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.6,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 72,
+            "empathy": 65
+          },
+          "self_resonance": {
+            "white_working_class": 75,
+            "white_college": 68,
+            "black": 10,
+            "hispanic": 35,
+            "evangelical": 85,
+            "secular": 38,
+            "rural": 78,
+            "urban": 38,
+            "union": 45,
+            "suburban": 72
+          }
+        },
+        {
+          "name": "Walter Mondale",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 28,
+            "CNA": 32,
+            "MOR": 28,
+            "EPS": 28,
+            "PRO": 75
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.62,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.42
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 72,
+            "empathy": 62
+          },
+          "self_resonance": {
+            "white_working_class": 38,
+            "white_college": 42,
+            "black": 88,
+            "hispanic": 62,
+            "evangelical": 18,
+            "secular": 58,
+            "rural": 32,
+            "urban": 62,
+            "union": 68,
+            "suburban": 38
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 85,
+            "CSO": 80,
+            "CNA": 78,
+            "MOR": 72,
+            "EPS": 62,
+            "PRO": 25
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 30,
+            "CNA": 35,
+            "MOR": 30,
+            "EPS": 32,
+            "PRO": 72
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 0.3,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 62,
+        "threat_environment": 0.52
+      },
+      "tau": {
+        "MAT": 0.62,
+        "CSO": 0.55,
+        "CNA": 0.55,
+        "MOR": 0.48,
+        "EPS": 0.48,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1988,
+      "candidates": [
+        {
+          "name": "George H.W. Bush",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 72,
+            "CNA": 70,
+            "MOR": 68,
+            "EPS": 52,
+            "PRO": 38
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.72,
+            "technocratic_competent": 0.62,
+            "pastoral_empathetic": 0.42,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.52,
+            "prophetic_visionary": 0.32
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 68,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "white_working_class": 62,
+            "white_college": 65,
+            "black": 12,
+            "hispanic": 32,
+            "evangelical": 72,
+            "secular": 42,
+            "rural": 65,
+            "urban": 38,
+            "union": 38,
+            "suburban": 68
+          }
+        },
+        {
+          "name": "Michael Dukakis",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 28,
+            "CNA": 32,
+            "MOR": 28,
+            "EPS": 22,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.82,
+            "pastoral_empathetic": 0.38,
+            "authentic_plainspoken": 0.35,
+            "fighter_warrior": 0.12,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 68,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "white_working_class": 38,
+            "white_college": 48,
+            "black": 85,
+            "hispanic": 68,
+            "evangelical": 18,
+            "secular": 58,
+            "rural": 32,
+            "urban": 62,
+            "union": 62,
+            "suburban": 42
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 75,
+            "CNA": 72,
+            "MOR": 68,
+            "EPS": 55,
+            "PRO": 35
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 30,
+            "CNA": 35,
+            "MOR": 30,
+            "EPS": 28,
+            "PRO": 68
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 1.5,
+        "CNA": 1,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 65,
+        "threat_environment": 0.42
+      },
+      "tau": {
+        "MAT": 0.58,
+        "CSO": 0.55,
+        "CNA": 0.52,
+        "MOR": 0.48,
+        "EPS": 0.45,
+        "PRO": 0.48
+      }
+    },
+    {
+      "year": 1992,
+      "candidates": [
+        {
+          "name": "Bill Clinton",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 38,
+            "CNA": 42,
+            "MOR": 38,
+            "EPS": 45,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.82,
+            "authentic_plainspoken": 0.62,
+            "fighter_warrior": 0.28,
+            "prophetic_visionary": 0.62
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 45,
+            "empathy": 78
+          },
+          "self_resonance": {
+            "white_working_class": 52,
+            "white_college": 52,
+            "black": 88,
+            "hispanic": 68,
+            "evangelical": 28,
+            "secular": 58,
+            "rural": 45,
+            "urban": 65,
+            "union": 68,
+            "suburban": 52
+          }
+        },
+        {
+          "name": "George H.W. Bush",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 70,
+            "CNA": 68,
+            "MOR": 65,
+            "EPS": 48,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.62,
+            "pastoral_empathetic": 0.38,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.28
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 65,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "white_working_class": 48,
+            "white_college": 58,
+            "black": 10,
+            "hispanic": 28,
+            "evangelical": 68,
+            "secular": 38,
+            "rural": 58,
+            "urban": 35,
+            "union": 32,
+            "suburban": 58
+          }
+        },
+        {
+          "name": "H. Ross Perot",
+          "party": "Independent",
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 45,
+            "CNA": 75,
+            "MOR": 42,
+            "EPS": 55,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.18,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.22,
+            "authentic_plainspoken": 0.85,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 62,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "white_working_class": 58,
+            "white_college": 48,
+            "black": 8,
+            "hispanic": 18,
+            "evangelical": 38,
+            "secular": 48,
+            "rural": 52,
+            "urban": 38,
+            "union": 42,
+            "suburban": 52
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 72,
+            "CNA": 70,
+            "MOR": 68,
+            "EPS": 52,
+            "PRO": 38
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 38,
+            "CNA": 42,
+            "MOR": 38,
+            "EPS": 48,
+            "PRO": 58
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 0.3,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 42,
+        "threat_environment": 0.32
+      },
+      "tau": {
+        "MAT": 0.65,
+        "CSO": 0.48,
+        "CNA": 0.5,
+        "MOR": 0.45,
+        "EPS": 0.52,
+        "PRO": 0.48
+      }
+    }
+  ]
+}

@@ -1,0 +1,1428 @@
+{
+  "elections": [
+    {
+      "year": 1856,
+      "candidates": [
+        {
+          "name": "James Buchanan",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 55,
+            "CNA": 60,
+            "MOR": 70,
+            "EPS": 55,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.3,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.2
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 50,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "planter": 80,
+            "yeoman_farmer": 55,
+            "industrial_worker": 40,
+            "merchant": 50,
+            "frontier": 45,
+            "immigrant": 55,
+            "freedmen": 5
+          }
+        },
+        {
+          "name": "John C. Fremont",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 48,
+            "CNA": 52,
+            "MOR": 25,
+            "EPS": 50,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.4,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.75,
+            "prophetic_visionary": 0.65
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 65,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 5,
+            "yeoman_farmer": 65,
+            "industrial_worker": 60,
+            "merchant": 55,
+            "frontier": 70,
+            "immigrant": 45,
+            "freedmen": 75
+          }
+        },
+        {
+          "name": "Millard Fillmore",
+          "party": "Know-Nothing",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 65,
+            "CNA": 80,
+            "MOR": 55,
+            "EPS": 60,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 55,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "planter": 45,
+            "yeoman_farmer": 50,
+            "industrial_worker": 55,
+            "merchant": 55,
+            "frontier": 45,
+            "immigrant": 10,
+            "freedmen": 20
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 65,
+            "EPS": 55,
+            "PRO": 35
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 45,
+            "CNA": 50,
+            "MOR": 30,
+            "EPS": 40,
+            "PRO": 65
+          }
+        },
+        "Know-Nothing": {
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 65,
+            "CNA": 82,
+            "MOR": 55,
+            "EPS": 62,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 1,
+        "CNA": 1.5,
+        "MOR": 2,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.7
+      },
+      "tau": {
+        "MAT": 0.4,
+        "CSO": 0.45,
+        "CNA": 0.5,
+        "MOR": 0.7,
+        "EPS": 0.35,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1860,
+      "candidates": [
+        {
+          "name": "Abraham Lincoln",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 48,
+            "CSO": 50,
+            "CNA": 72,
+            "MOR": 32,
+            "EPS": 55,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.6,
+            "authentic_plainspoken": 0.8,
+            "fighter_warrior": 0.4,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 90,
+            "empathy": 70
+          },
+          "self_resonance": {
+            "planter": 5,
+            "yeoman_farmer": 75,
+            "industrial_worker": 70,
+            "merchant": 65,
+            "frontier": 80,
+            "immigrant": 55,
+            "freedmen": 85
+          }
+        },
+        {
+          "name": "Stephen Douglas",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 55,
+            "CNA": 25,
+            "MOR": 65,
+            "EPS": 52,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 55,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 35,
+            "yeoman_farmer": 60,
+            "industrial_worker": 55,
+            "merchant": 55,
+            "frontier": 60,
+            "immigrant": 65,
+            "freedmen": 25
+          }
+        },
+        {
+          "name": "John Breckinridge",
+          "party": "Southern Democratic",
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 62,
+            "CNA": 28,
+            "MOR": 82,
+            "EPS": 50,
+            "PRO": 35
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 55,
+            "empathy": 30
+          },
+          "self_resonance": {
+            "planter": 90,
+            "yeoman_farmer": 55,
+            "industrial_worker": 25,
+            "merchant": 40,
+            "frontier": 45,
+            "immigrant": 30,
+            "freedmen": 2
+          }
+        },
+        {
+          "name": "John Bell",
+          "party": "Constitutional Union",
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 52,
+            "CNA": 68,
+            "MOR": 48,
+            "EPS": 48,
+            "PRO": 75
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 70,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 60,
+            "yeoman_farmer": 55,
+            "industrial_worker": 45,
+            "merchant": 60,
+            "frontier": 45,
+            "immigrant": 40,
+            "freedmen": 15
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 48,
+            "CNA": 52,
+            "MOR": 18,
+            "EPS": 45,
+            "PRO": 62
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 60,
+            "EPS": 52,
+            "PRO": 45
+          }
+        },
+        "Southern Democratic": {
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 65,
+            "CNA": 68,
+            "MOR": 92,
+            "EPS": 55,
+            "PRO": 32
+          }
+        },
+        "Constitutional Union": {
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 58,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 35,
+            "PRO": 50
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.3,
+        "CSO": 0.5,
+        "CNA": 2.5,
+        "MOR": 2.5,
+        "EPS": 0.3,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 45,
+        "threat_environment": 0.9
+      },
+      "tau": {
+        "MAT": 0.35,
+        "CSO": 0.4,
+        "CNA": 0.5,
+        "MOR": 0.85,
+        "EPS": 0.4,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1864,
+      "candidates": [
+        {
+          "name": "Abraham Lincoln",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 48,
+            "CNA": 85,
+            "MOR": 8,
+            "EPS": 50,
+            "PRO": 70
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.75,
+            "authentic_plainspoken": 0.8,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.9
+          },
+          "means": {
+            "competence": 82,
+            "integrity": 92,
+            "empathy": 78
+          },
+          "self_resonance": {
+            "planter": 2,
+            "yeoman_farmer": 75,
+            "industrial_worker": 72,
+            "merchant": 70,
+            "frontier": 78,
+            "immigrant": 60,
+            "freedmen": 95
+          }
+        },
+        {
+          "name": "George McClellan",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 55,
+            "CNA": 45,
+            "MOR": 60,
+            "EPS": 45,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.65,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 58,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 60,
+            "yeoman_farmer": 50,
+            "industrial_worker": 55,
+            "merchant": 55,
+            "frontier": 45,
+            "immigrant": 58,
+            "freedmen": 15
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 45,
+            "CNA": 62,
+            "MOR": 15,
+            "EPS": 42,
+            "PRO": 72
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 48,
+            "CSO": 58,
+            "CNA": 48,
+            "MOR": 58,
+            "EPS": 48,
+            "PRO": 42
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.2,
+        "CSO": 0.3,
+        "CNA": 3,
+        "MOR": 2,
+        "EPS": 0.3,
+        "PRO": 0.3
+      },
+      "context": {
+        "conditions": 35,
+        "threat_environment": 0.95
+      },
+      "tau": {
+        "MAT": 0.35,
+        "CSO": 0.35,
+        "CNA": 0.6,
+        "MOR": 0.8,
+        "EPS": 0.35,
+        "PRO": 0.55
+      }
+    },
+    {
+      "year": 1868,
+      "candidates": [
+        {
+          "name": "Ulysses Grant",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 50,
+            "CNA": 58,
+            "MOR": 20,
+            "EPS": 55,
+            "PRO": 65
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.95,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 70,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 10,
+            "yeoman_farmer": 70,
+            "industrial_worker": 68,
+            "merchant": 65,
+            "frontier": 75,
+            "immigrant": 55,
+            "freedmen": 90
+          }
+        },
+        {
+          "name": "Horatio Seymour",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 58,
+            "CNA": 55,
+            "MOR": 70,
+            "EPS": 50,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 55,
+            "empathy": 40
+          },
+          "self_resonance": {
+            "planter": 75,
+            "yeoman_farmer": 55,
+            "industrial_worker": 50,
+            "merchant": 50,
+            "frontier": 45,
+            "immigrant": 60,
+            "freedmen": 8
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 48,
+            "CNA": 60,
+            "MOR": 22,
+            "EPS": 45,
+            "PRO": 68
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 60,
+            "CNA": 52,
+            "MOR": 72,
+            "EPS": 52,
+            "PRO": 38
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 2,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 50,
+        "threat_environment": 0.6
+      },
+      "tau": {
+        "MAT": 0.42,
+        "CSO": 0.4,
+        "CNA": 0.55,
+        "MOR": 0.7,
+        "EPS": 0.38,
+        "PRO": 0.55
+      }
+    },
+    {
+      "year": 1872,
+      "candidates": [
+        {
+          "name": "Ulysses Grant",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 52,
+            "CNA": 58,
+            "MOR": 25,
+            "EPS": 52,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.9,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 55,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 12,
+            "yeoman_farmer": 65,
+            "industrial_worker": 65,
+            "merchant": 68,
+            "frontier": 72,
+            "immigrant": 55,
+            "freedmen": 88
+          }
+        },
+        {
+          "name": "Horace Greeley",
+          "party": "Liberal Republican",
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 48,
+            "CNA": 48,
+            "MOR": 40,
+            "EPS": 55,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 60,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "planter": 45,
+            "yeoman_farmer": 58,
+            "industrial_worker": 55,
+            "merchant": 50,
+            "frontier": 55,
+            "immigrant": 55,
+            "freedmen": 35
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 50,
+            "CNA": 58,
+            "MOR": 28,
+            "EPS": 42,
+            "PRO": 65
+          }
+        },
+        "Liberal Republican": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 48,
+            "CNA": 48,
+            "MOR": 42,
+            "EPS": 55,
+            "PRO": 55
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 58,
+            "CNA": 52,
+            "MOR": 65,
+            "EPS": 52,
+            "PRO": 40
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.5
+      },
+      "tau": {
+        "MAT": 0.45,
+        "CSO": 0.4,
+        "CNA": 0.5,
+        "MOR": 0.62,
+        "EPS": 0.4,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1876,
+      "candidates": [
+        {
+          "name": "Rutherford Hayes",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 35,
+            "EPS": 40,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 75,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 20,
+            "yeoman_farmer": 62,
+            "industrial_worker": 58,
+            "merchant": 68,
+            "frontier": 60,
+            "immigrant": 48,
+            "freedmen": 70
+          }
+        },
+        {
+          "name": "Samuel Tilden",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 52,
+            "CNA": 52,
+            "MOR": 60,
+            "EPS": 45,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.75,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 70,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "planter": 65,
+            "yeoman_farmer": 58,
+            "industrial_worker": 55,
+            "merchant": 60,
+            "frontier": 50,
+            "immigrant": 62,
+            "freedmen": 15
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 52,
+            "CNA": 55,
+            "MOR": 38,
+            "EPS": 38,
+            "PRO": 60
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 62,
+            "EPS": 48,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 2.5
+      },
+      "context": {
+        "conditions": 48,
+        "threat_environment": 0.45
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.42,
+        "CNA": 0.48,
+        "MOR": 0.58,
+        "EPS": 0.4,
+        "PRO": 0.48
+      }
+    },
+    {
+      "year": 1880,
+      "candidates": [
+        {
+          "name": "James Garfield",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 38,
+            "EPS": 42,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 72,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "planter": 18,
+            "yeoman_farmer": 65,
+            "industrial_worker": 60,
+            "merchant": 70,
+            "frontier": 62,
+            "immigrant": 50,
+            "freedmen": 72
+          }
+        },
+        {
+          "name": "Winfield Hancock",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 58,
+            "EPS": 48,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.75,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 70,
+            "empathy": 48
+          },
+          "self_resonance": {
+            "planter": 62,
+            "yeoman_farmer": 58,
+            "industrial_worker": 55,
+            "merchant": 52,
+            "frontier": 55,
+            "immigrant": 60,
+            "freedmen": 20
+          }
+        },
+        {
+          "name": "James Weaver",
+          "party": "Greenback",
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 50,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 65,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.4,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.65,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 65,
+            "empathy": 62
+          },
+          "self_resonance": {
+            "planter": 15,
+            "yeoman_farmer": 70,
+            "industrial_worker": 68,
+            "merchant": 25,
+            "frontier": 65,
+            "immigrant": 55,
+            "freedmen": 40
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 40,
+            "EPS": 38,
+            "PRO": 60
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 60,
+            "EPS": 50,
+            "PRO": 45
+          }
+        },
+        "Greenback": {
+          "l2_profile": {
+            "MAT": 22,
+            "CSO": 50,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 68,
+            "PRO": 58
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.42,
+        "CNA": 0.48,
+        "MOR": 0.52,
+        "EPS": 0.42,
+        "PRO": 0.48
+      }
+    },
+    {
+      "year": 1884,
+      "candidates": [
+        {
+          "name": "Grover Cleveland",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 52,
+            "CNA": 52,
+            "MOR": 55,
+            "EPS": 45,
+            "PRO": 42
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 72,
+            "empathy": 40
+          },
+          "self_resonance": {
+            "planter": 55,
+            "yeoman_farmer": 58,
+            "industrial_worker": 55,
+            "merchant": 62,
+            "frontier": 52,
+            "immigrant": 58,
+            "freedmen": 22
+          }
+        },
+        {
+          "name": "James Blaine",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 42,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.4,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 40,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "planter": 25,
+            "yeoman_farmer": 58,
+            "industrial_worker": 55,
+            "merchant": 70,
+            "frontier": 58,
+            "immigrant": 40,
+            "freedmen": 60
+          }
+        },
+        {
+          "name": "Benjamin Butler",
+          "party": "Greenback",
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 48,
+            "CNA": 55,
+            "MOR": 42,
+            "EPS": 68,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.6,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 45,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "planter": 12,
+            "yeoman_farmer": 62,
+            "industrial_worker": 70,
+            "merchant": 28,
+            "frontier": 55,
+            "immigrant": 58,
+            "freedmen": 45
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 38,
+            "PRO": 62
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 58,
+            "EPS": 48,
+            "PRO": 42
+          }
+        },
+        "Greenback": {
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 48,
+            "CNA": 55,
+            "MOR": 42,
+            "EPS": 70,
+            "PRO": 60
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 2
+      },
+      "context": {
+        "conditions": 52,
+        "threat_environment": 0.32
+      },
+      "tau": {
+        "MAT": 0.58,
+        "CSO": 0.42,
+        "CNA": 0.48,
+        "MOR": 0.5,
+        "EPS": 0.42,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1888,
+      "candidates": [
+        {
+          "name": "Benjamin Harrison",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 38,
+            "PRO": 65
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 70,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "planter": 22,
+            "yeoman_farmer": 58,
+            "industrial_worker": 58,
+            "merchant": 72,
+            "frontier": 55,
+            "immigrant": 42,
+            "freedmen": 65
+          }
+        },
+        {
+          "name": "Grover Cleveland",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 52,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.58,
+            "fighter_warrior": 0.28,
+            "prophetic_visionary": 0.32
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 70,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "planter": 58,
+            "yeoman_farmer": 58,
+            "industrial_worker": 52,
+            "merchant": 58,
+            "frontier": 50,
+            "immigrant": 60,
+            "freedmen": 20
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 35,
+            "PRO": 68
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 52,
+            "CNA": 50,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 40
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.28
+      },
+      "tau": {
+        "MAT": 0.62,
+        "CSO": 0.42,
+        "CNA": 0.48,
+        "MOR": 0.48,
+        "EPS": 0.4,
+        "PRO": 0.48
+      }
+    },
+    {
+      "year": 1892,
+      "candidates": [
+        {
+          "name": "Grover Cleveland",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 52,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 38
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 68,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "planter": 58,
+            "yeoman_farmer": 55,
+            "industrial_worker": 52,
+            "merchant": 62,
+            "frontier": 48,
+            "immigrant": 58,
+            "freedmen": 18
+          }
+        },
+        {
+          "name": "Benjamin Harrison",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 35,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.52,
+            "pastoral_empathetic": 0.32,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.42,
+            "prophetic_visionary": 0.32
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 68,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "planter": 22,
+            "yeoman_farmer": 52,
+            "industrial_worker": 55,
+            "merchant": 72,
+            "frontier": 52,
+            "immigrant": 40,
+            "freedmen": 62
+          }
+        },
+        {
+          "name": "James Weaver",
+          "party": "Populist",
+          "l2_profile": {
+            "MAT": 20,
+            "CSO": 52,
+            "CNA": 62,
+            "MOR": 48,
+            "EPS": 72,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.7,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.7
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 68,
+            "empathy": 68
+          },
+          "self_resonance": {
+            "planter": 25,
+            "yeoman_farmer": 78,
+            "industrial_worker": 65,
+            "merchant": 18,
+            "frontier": 75,
+            "immigrant": 52,
+            "freedmen": 45
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 45,
+            "EPS": 32,
+            "PRO": 70
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 52,
+            "CSO": 52,
+            "CNA": 50,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 38
+          }
+        },
+        "Populist": {
+          "l2_profile": {
+            "MAT": 18,
+            "CSO": 52,
+            "CNA": 65,
+            "MOR": 48,
+            "EPS": 75,
+            "PRO": 58
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 45,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.6,
+        "CSO": 0.42,
+        "CNA": 0.48,
+        "MOR": 0.48,
+        "EPS": 0.48,
+        "PRO": 0.48
+      }
+    }
+  ]
+}

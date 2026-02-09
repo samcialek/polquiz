@@ -1,0 +1,926 @@
+[
+  {
+    "id": "001",
+    "name": "Hopeful Democrat",
+    "tier": "T1",
+    "frequency": 1.9,
+    "file": "archetypes/001_hopeful_democrat.json"
+  },
+  {
+    "id": "002",
+    "name": "Sunrise Conservative",
+    "tier": "T1",
+    "frequency": 1.4,
+    "file": "archetypes/002_sunrise_conservative.json"
+  },
+  {
+    "id": "003",
+    "name": "Heritage Conservative",
+    "tier": "T1",
+    "frequency": 3.2,
+    "file": "archetypes/003_heritage_conservative.json"
+  },
+  {
+    "id": "004",
+    "name": "Heritage Fortress Conservative",
+    "tier": "T1",
+    "frequency": 2,
+    "file": "archetypes/004_heritage_fortress_conservative.json"
+  },
+  {
+    "id": "005",
+    "name": "Quiet Middle",
+    "tier": "T1",
+    "frequency": 3.5,
+    "file": "archetypes/005_quiet_middle.json"
+  },
+  {
+    "id": "006",
+    "name": "Rising Tide Progressive",
+    "tier": "T1",
+    "frequency": 2.1,
+    "file": "archetypes/006_rising_tide_progressive.json"
+  },
+  {
+    "id": "007",
+    "name": "Prosperity Democrat",
+    "tier": "T1",
+    "frequency": 1.3,
+    "file": "archetypes/007_prosperity_democrat.json"
+  },
+  {
+    "id": "008",
+    "name": "Institutional Progressive",
+    "tier": "T1",
+    "frequency": 3.1,
+    "file": "archetypes/008_institutional_progressive.json"
+  },
+  {
+    "id": "009",
+    "name": "Global Citizen Liberal",
+    "tier": "T1",
+    "frequency": 2.6,
+    "file": "archetypes/009_global_citizen_liberal.json"
+  },
+  {
+    "id": "010",
+    "name": "Full Spectrum Conservative",
+    "tier": "T1",
+    "frequency": 1.8,
+    "file": "archetypes/010_full_spectrum_conservative.json"
+  },
+  {
+    "id": "011",
+    "name": "Class Conflict Progressive",
+    "tier": "T1",
+    "frequency": 1.8,
+    "file": "archetypes/011_class_conflict_progressive.json"
+  },
+  {
+    "id": "012",
+    "name": "Markets-First Conservative",
+    "tier": "T1",
+    "frequency": 1.5,
+    "file": "archetypes/012_markets_first_conservative.json"
+  },
+  {
+    "id": "013",
+    "name": "Statistical Middle",
+    "tier": "T1",
+    "frequency": 1.2,
+    "file": "archetypes/013_statistical_middle.json"
+  },
+  {
+    "id": "014",
+    "name": "Faith and Family Traditionalist",
+    "tier": "T1",
+    "frequency": 2,
+    "file": "archetypes/014_faith_and_family_traditionalist.json"
+  },
+  {
+    "id": "016",
+    "name": "Evidence-Based Progressive",
+    "tier": "T1",
+    "frequency": 1.5,
+    "file": "archetypes/016_evidence_based_progressive.json"
+  },
+  {
+    "id": "017",
+    "name": "Evidence-Based Free Marketer",
+    "tier": "T1",
+    "frequency": 1.1,
+    "file": "archetypes/017_evidence_based_free_marketer.json"
+  },
+  {
+    "id": "018",
+    "name": "Movement Conservative",
+    "tier": "T1",
+    "frequency": 1.8,
+    "file": "archetypes/018_movement_conservative.json"
+  },
+  {
+    "id": "019",
+    "name": "Expanding Pie Moderate",
+    "tier": "T1",
+    "frequency": 1.5,
+    "file": "archetypes/019_expanding_pie_moderate.json"
+  },
+  {
+    "id": "020",
+    "name": "Parish Traditionalist",
+    "tier": "T1",
+    "frequency": 1,
+    "file": "archetypes/020_parish_traditionalist.json"
+  },
+  {
+    "id": "021",
+    "name": "Cultural Regionalist",
+    "tier": "T2",
+    "frequency": 1.5,
+    "file": "archetypes/021_cultural_regionalist.json"
+  },
+  {
+    "id": "022",
+    "name": "Identity-Rooted Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/022_identity_rooted_progressive.json"
+  },
+  {
+    "id": "023",
+    "name": "Rationalist Libertarian",
+    "tier": "T2",
+    "frequency": 1.3,
+    "file": "archetypes/023_rationalist_libertarian.json"
+  },
+  {
+    "id": "024",
+    "name": "Movement Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/024_movement_progressive.json"
+  },
+  {
+    "id": "025",
+    "name": "Prophetic Progressive",
+    "tier": "T2",
+    "frequency": 1.1,
+    "file": "archetypes/025_prophetic_progressive.json"
+  },
+  {
+    "id": "026",
+    "name": "Competitive Conservative",
+    "tier": "T2",
+    "frequency": 1.5,
+    "file": "archetypes/026_competitive_conservative.json"
+  },
+  {
+    "id": "027",
+    "name": "Idealist Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/027_idealist_progressive.json"
+  },
+  {
+    "id": "028",
+    "name": "Entrepreneurial Conservative",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/028_entrepreneurial_conservative.json"
+  },
+  {
+    "id": "029",
+    "name": "Quiet Conservative",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/029_quiet_conservative.json"
+  },
+  {
+    "id": "030",
+    "name": "Globally Minded Social Democrat",
+    "tier": "T2",
+    "frequency": 2.1,
+    "file": "archetypes/030_globally_minded_social_democrat.json"
+  },
+  {
+    "id": "031",
+    "name": "Siege Mentality Partisan",
+    "tier": "T2",
+    "frequency": 1.3,
+    "file": "archetypes/031_siege_mentality_partisan.json"
+  },
+  {
+    "id": "032",
+    "name": "Neighborhood Democrat",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/032_neighborhood_democrat.json"
+  },
+  {
+    "id": "033",
+    "name": "Team Player Capitalist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/033_team_player_capitalist.json"
+  },
+  {
+    "id": "034",
+    "name": "Rising Tide Social Democrat",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/034_rising_tide_social_democrat.json"
+  },
+  {
+    "id": "035",
+    "name": "Free-Thinking Moderate",
+    "tier": "T2",
+    "frequency": 2.6,
+    "file": "archetypes/035_free_thinking_moderate.json"
+  },
+  {
+    "id": "036",
+    "name": "Optimistic Progressive",
+    "tier": "T2",
+    "frequency": 1.3,
+    "file": "archetypes/036_optimistic_progressive.json"
+  },
+  {
+    "id": "037",
+    "name": "Deliberative Centrist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/037_deliberative_centrist.json"
+  },
+  {
+    "id": "038",
+    "name": "Cosmopolitan Centrist",
+    "tier": "T2",
+    "frequency": 1.6,
+    "file": "archetypes/038_cosmopolitan_centrist.json"
+  },
+  {
+    "id": "039",
+    "name": "Rooted Centrist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/039_rooted_centrist.json"
+  },
+  {
+    "id": "040",
+    "name": "Win-Win Centrist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/040_win_win_centrist.json"
+  },
+  {
+    "id": "041",
+    "name": "All-In Traditionalist",
+    "tier": "T2",
+    "frequency": 1.5,
+    "file": "archetypes/041_all_in_traditionalist.json"
+  },
+  {
+    "id": "042",
+    "name": "Borderless Moderate",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/042_borderless_moderate.json"
+  },
+  {
+    "id": "043",
+    "name": "Common Ground Seeker",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/043_common_ground_seeker.json"
+  },
+  {
+    "id": "044",
+    "name": "Neoliberal Progressive",
+    "tier": "T2",
+    "frequency": 1.3,
+    "file": "archetypes/044_neoliberal_progressive.json"
+  },
+  {
+    "id": "045",
+    "name": "Policy Over Party",
+    "tier": "T2",
+    "frequency": 2,
+    "file": "archetypes/045_policy_over_party.json"
+  },
+  {
+    "id": "046",
+    "name": "Solutions-Oriented Moderate",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/046_solutions_oriented_moderate.json"
+  },
+  {
+    "id": "047",
+    "name": "Hardline Movement Conservative",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/047_hardline_movement_conservative.json"
+  },
+  {
+    "id": "049",
+    "name": "Global Markets Libertarian",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/049_global_markets_libertarian.json"
+  },
+  {
+    "id": "050",
+    "name": "Data-Driven Democrat",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/050_data_driven_democrat.json"
+  },
+  {
+    "id": "051",
+    "name": "Working-Class Traditionalist",
+    "tier": "T2",
+    "frequency": 2.3,
+    "file": "archetypes/051_working_class_traditionalist.json"
+  },
+  {
+    "id": "052",
+    "name": "Cosmopolitan Libertarian",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/052_cosmopolitan_libertarian.json"
+  },
+  {
+    "id": "053",
+    "name": "Culturally Cautious Centrist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/053_culturally_cautious_centrist.json"
+  },
+  {
+    "id": "055",
+    "name": "Conflict-Minded Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/055_conflict_minded_progressive.json"
+  },
+  {
+    "id": "056",
+    "name": "Structure and Community",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/056_structure_and_community.json"
+  },
+  {
+    "id": "058",
+    "name": "Community-Rooted Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/058_community_rooted_progressive.json"
+  },
+  {
+    "id": "059",
+    "name": "Independent Social Democrat",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/059_independent_social_democrat.json"
+  },
+  {
+    "id": "060",
+    "name": "Mutual Aid Progressive",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/060_mutual_aid_progressive.json"
+  },
+  {
+    "id": "061",
+    "name": "Neoliberal",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/061_neoliberal.json"
+  },
+  {
+    "id": "062",
+    "name": "Ordoliberal",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/062_ordoliberal.json"
+  },
+  {
+    "id": "063",
+    "name": "Christian Democrat",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/063_christian_democrat.json"
+  },
+  {
+    "id": "064",
+    "name": "Market Socialist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/064_market_socialist.json"
+  },
+  {
+    "id": "065",
+    "name": "Georgist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/065_georgist.json"
+  },
+  {
+    "id": "066",
+    "name": "Civic Republican",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/066_civic_republican.json"
+  },
+  {
+    "id": "067",
+    "name": "Communitarian Centrist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/067_communitarian_centrist.json"
+  },
+  {
+    "id": "068",
+    "name": "Third Way Democrat",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/068_third_way_democrat.json"
+  },
+  {
+    "id": "070",
+    "name": "Rockefeller Republican",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/070_rockefeller_republican.json"
+  },
+  {
+    "id": "071",
+    "name": "Catholic Worker",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/071_catholic_worker.json"
+  },
+  {
+    "id": "072",
+    "name": "Distributist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/072_distributist.json"
+  },
+  {
+    "id": "073",
+    "name": "Agrarian Populist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/073_agrarian_populist.json"
+  },
+  {
+    "id": "074",
+    "name": "Localist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/074_localist.json"
+  },
+  {
+    "id": "075",
+    "name": "Mutualist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/075_mutualist.json"
+  },
+  {
+    "id": "076",
+    "name": "Guild Socialist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/076_guild_socialist.json"
+  },
+  {
+    "id": "077",
+    "name": "Conservative Socialist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/077_conservative_socialist.json"
+  },
+  {
+    "id": "078",
+    "name": "National Conservative",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/078_national_conservative.json"
+  },
+  {
+    "id": "079",
+    "name": "Civic Nationalist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/079_civic_nationalist.json"
+  },
+  {
+    "id": "081",
+    "name": "Minarchist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/081_minarchist.json"
+  },
+  {
+    "id": "082",
+    "name": "Anarcho-Communist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/082_anarcho_communist.json"
+  },
+  {
+    "id": "084",
+    "name": "Syndicalist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/084_syndicalist.json"
+  },
+  {
+    "id": "085",
+    "name": "Primitivist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/085_primitivist.json"
+  },
+  {
+    "id": "086",
+    "name": "Transhumanist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/086_transhumanist.json"
+  },
+  {
+    "id": "087",
+    "name": "Post-Ideological Technocrat",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/087_post_ideological_technocrat.json"
+  },
+  {
+    "id": "088",
+    "name": "Meritocrat",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/088_meritocrat.json"
+  },
+  {
+    "id": "089",
+    "name": "Elitist Democrat",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/089_elitist_democrat.json"
+  },
+  {
+    "id": "091",
+    "name": "Fortress Traditionalist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/091_fortress_traditionalist.json"
+  },
+  {
+    "id": "092",
+    "name": "National Bolshevik",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/092_national_bolshevik.json"
+  },
+  {
+    "id": "093",
+    "name": "Traditional Cosmopolitan",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/093_traditional_cosmopolitan.json"
+  },
+  {
+    "id": "094",
+    "name": "Post-Left Anarchist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/094_post_left_anarchist.json"
+  },
+  {
+    "id": "095",
+    "name": "Dark Enlightenment",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/095_dark_enlightenment.json"
+  },
+  {
+    "id": "096",
+    "name": "Radical Centrist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/096_radical_centrist.json"
+  },
+  {
+    "id": "097",
+    "name": "Anti-Politics",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/097_anti_politics.json"
+  },
+  {
+    "id": "098",
+    "name": "Techno-Feudalist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/098_techno_feudalist.json"
+  },
+  {
+    "id": "099",
+    "name": "Post-Scarcity Utopian",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/099_post_scarcity_utopian.json"
+  },
+  {
+    "id": "100",
+    "name": "Fully Automated Luxury Communist",
+    "tier": "T2",
+    "frequency": 1.2,
+    "file": "archetypes/100_fully_automated_luxury_communist.json"
+  },
+  {
+    "id": "G01",
+    "name": "Survival Pragmatist",
+    "tier": "GATE",
+    "frequency": 3.5,
+    "file": "archetypes/G01_survival_pragmatist.json"
+  },
+  {
+    "id": "G04",
+    "name": "Private-Life Progressive",
+    "tier": "GATE",
+    "frequency": 1.5,
+    "file": "archetypes/G04_private_life_progressive.json"
+  },
+  {
+    "id": "G06",
+    "name": "Identity Networker",
+    "tier": "GATE",
+    "frequency": 1.8,
+    "file": "archetypes/G06_identity_networker.json"
+  },
+  {
+    "id": "G07",
+    "name": "Rule-Following Citizen",
+    "tier": "GATE",
+    "frequency": 1.8,
+    "file": "archetypes/G07_rule_following_citizen.json"
+  },
+  {
+    "id": "G10",
+    "name": "Online Spectator",
+    "tier": "GATE",
+    "frequency": 1.8,
+    "file": "archetypes/G10_online_spectator.json"
+  },
+  {
+    "id": "G11",
+    "name": "Quiet Dissident",
+    "tier": "GATE",
+    "frequency": 1.5,
+    "file": "archetypes/G11_quiet_dissident.json"
+  },
+  {
+    "id": "M02",
+    "name": "Constitutional Purist",
+    "tier": "MEANS",
+    "frequency": 1.5,
+    "file": "archetypes/M02_constitutional_purist.json"
+  },
+  {
+    "id": "M03",
+    "name": "Norm Guardian",
+    "tier": "MEANS",
+    "frequency": 1.3,
+    "file": "archetypes/M03_norm_guardian.json"
+  },
+  {
+    "id": "M06",
+    "name": "Technocratic Free Marketer",
+    "tier": "MEANS",
+    "frequency": 1.5,
+    "file": "archetypes/M06_technocratic_free_marketer.json"
+  },
+  {
+    "id": "M07",
+    "name": "Rationalist Technocrat",
+    "tier": "MEANS",
+    "frequency": 1.5,
+    "file": "archetypes/M07_rationalist_technocrat.json"
+  },
+  {
+    "id": "M09",
+    "name": "Street Advocate",
+    "tier": "MEANS",
+    "frequency": 1.8,
+    "file": "archetypes/M09_street_advocate.json"
+  },
+  {
+    "id": "M10",
+    "name": "Burkean Epistemicist",
+    "tier": "MEANS",
+    "frequency": 1.8,
+    "file": "archetypes/M10_burkean_epistemicist.json"
+  },
+  {
+    "id": "M11",
+    "name": "Armchair Analyst",
+    "tier": "MEANS",
+    "frequency": 1.5,
+    "file": "archetypes/M11_armchair_analyst.json"
+  },
+  {
+    "id": "M12",
+    "name": "Deliberative Moderate",
+    "tier": "MEANS",
+    "frequency": 1.5,
+    "file": "archetypes/M12_deliberative_moderate.json"
+  },
+  {
+    "id": "M15",
+    "name": "Evidence-First Reformer",
+    "tier": "MEANS",
+    "frequency": 1.3,
+    "file": "archetypes/M15_evidence_first_reformer.json"
+  },
+  {
+    "id": "N01",
+    "name": "Nonpartisan Activist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/N01_nonpartisan_activist.json"
+  },
+  {
+    "id": "N02",
+    "name": "Issue-First Independent",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/N02_issue_first_independent.json"
+  },
+  {
+    "id": "N03",
+    "name": "Civic Engagement Maximalist",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/N03_civic_engagement_maximalist.json"
+  },
+  {
+    "id": "N04",
+    "name": "Digital Warrior",
+    "tier": "GATE",
+    "frequency": 2,
+    "file": "archetypes/N04_digital_warrior.json"
+  },
+  {
+    "id": "N05",
+    "name": "Armchair Combatant",
+    "tier": "GATE",
+    "frequency": 1.5,
+    "file": "archetypes/N05_armchair_combatant.json"
+  },
+  {
+    "id": "N08",
+    "name": "Reluctant Partisan",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/N08_reluctant_partisan.json"
+  },
+  {
+    "id": "N09",
+    "name": "Social Liberal Moderate",
+    "tier": "T2",
+    "frequency": 1.8,
+    "file": "archetypes/N09_social_liberal_moderate.json"
+  },
+  {
+    "id": "N10",
+    "name": "Social Conservative Moderate",
+    "tier": "T2",
+    "frequency": 1.5,
+    "file": "archetypes/N10_social_conservative_moderate.json"
+  },
+  {
+    "id": "N11",
+    "name": "Progressive Civic Nationalist",
+    "tier": "T1",
+    "frequency": 1.2,
+    "file": "archetypes/N11_progressive_civic_nationalist.json"
+  },
+  {
+    "id": "N12",
+    "name": "Social Civic Nationalist",
+    "tier": "T1",
+    "frequency": 2,
+    "file": "archetypes/N12_social_civic_nationalist.json"
+  },
+  {
+    "id": "N13",
+    "name": "Vigilant Democrat",
+    "tier": "T1",
+    "frequency": 1.9,
+    "file": "archetypes/N13_vigilant_democrat.json"
+  },
+  {
+    "id": "N14",
+    "name": "Fortress Conservative",
+    "tier": "T1",
+    "frequency": 1.5,
+    "file": "archetypes/N14_fortress_conservative.json"
+  },
+  {
+    "id": "N15",
+    "name": "Fighting-Class Democrat",
+    "tier": "T1",
+    "frequency": 1.3,
+    "file": "archetypes/N15_fighting_class_democrat.json"
+  },
+  {
+    "id": "N16",
+    "name": "Social Gospel Voter",
+    "tier": "T1",
+    "frequency": 1,
+    "file": "archetypes/N16_social_gospel_voter.json"
+  },
+  {
+    "id": "O04",
+    "name": "Doomer Leftist",
+    "tier": "ONT",
+    "frequency": 1.5,
+    "file": "archetypes/O04_doomer_leftist.json"
+  },
+  {
+    "id": "O13",
+    "name": "Reform-Optimist Progressive",
+    "tier": "ONT",
+    "frequency": 1.6,
+    "file": "archetypes/O13_reform_optimist_progressive.json"
+  },
+  {
+    "id": "O14",
+    "name": "Pragmatic Establishmentarian",
+    "tier": "ONT",
+    "frequency": 2.3,
+    "file": "archetypes/O14_pragmatic_establishmentarian.json"
+  },
+  {
+    "id": "O17",
+    "name": "Progress Capitalist",
+    "tier": "ONT",
+    "frequency": 0.9,
+    "file": "archetypes/O17_progress_capitalist.json"
+  },
+  {
+    "id": "O18",
+    "name": "Pragmatic Neoliberal",
+    "tier": "ONT",
+    "frequency": 1.5,
+    "file": "archetypes/O18_pragmatic_neoliberal.json"
+  },
+  {
+    "id": "O19",
+    "name": "Institutional Skeptic",
+    "tier": "ONT",
+    "frequency": 1.5,
+    "file": "archetypes/O19_institutional_skeptic.json"
+  },
+  {
+    "id": "O24",
+    "name": "Siege Mentality Conservative",
+    "tier": "ONT",
+    "frequency": 1.9,
+    "file": "archetypes/O24_siege_mentality_conservative.json"
+  },
+  {
+    "id": "O25",
+    "name": "Aspirational Kitchen Table Democrat",
+    "tier": "ONT",
+    "frequency": 1.3,
+    "file": "archetypes/O25_aspirational_kitchen_table_democrat.json"
+  },
+  {
+    "id": "O26",
+    "name": "Anxious Kitchen Table Democrat",
+    "tier": "ONT",
+    "frequency": 1.3,
+    "file": "archetypes/O26_anxious_kitchen_table_democrat.json"
+  },
+  {
+    "id": "R01",
+    "name": "Grievance-Activated Populist",
+    "tier": "REALITY",
+    "frequency": 3.5,
+    "file": "archetypes/R01_grievance_activated_populist.json"
+  },
+  {
+    "id": "R03",
+    "name": "Decline-Anxious Swing Voter",
+    "tier": "REALITY",
+    "frequency": 1.8,
+    "file": "archetypes/R03_decline_anxious_swing_voter.json"
+  }
+]

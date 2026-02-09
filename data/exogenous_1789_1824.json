@@ -1,0 +1,1042 @@
+{
+  "elections": [
+    {
+      "year": 1789,
+      "candidates": [
+        {
+          "name": "George Washington",
+          "party": "Nonpartisan",
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 35,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.95,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.9,
+            "prophetic_visionary": 0.7
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 95,
+            "empathy": 60
+          },
+          "self_resonance": {
+            "gentry": 90,
+            "yeoman_farmer": 75,
+            "merchant": 80,
+            "artisan": 65,
+            "frontier": 70
+          }
+        }
+      ],
+      "coalitions": {
+        "Nonpartisan": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 40,
+            "PRO": 55
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.3,
+        "CSO": 0.25,
+        "CNA": 0.35,
+        "MOR": 0.3,
+        "EPS": 0.25,
+        "PRO": 0.3
+      }
+    },
+    {
+      "year": 1792,
+      "candidates": [
+        {
+          "name": "George Washington",
+          "party": "Nonpartisan",
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 35,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.95,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.85,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 95,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 90,
+            "yeoman_farmer": 75,
+            "merchant": 80,
+            "artisan": 65,
+            "frontier": 70
+          }
+        }
+      ],
+      "coalitions": {
+        "Nonpartisan": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 55,
+            "EPS": 40,
+            "PRO": 55
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.3
+      },
+      "tau": {
+        "MAT": 0.35,
+        "CSO": 0.25,
+        "CNA": 0.3,
+        "MOR": 0.3,
+        "EPS": 0.25,
+        "PRO": 0.3
+      }
+    },
+    {
+      "year": 1796,
+      "candidates": [
+        {
+          "name": "John Adams",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 60,
+            "CNA": 45,
+            "MOR": 55,
+            "EPS": 25,
+            "PRO": 60
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.8,
+            "technocratic_competent": 0.75,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 80,
+            "integrity": 85,
+            "empathy": 40
+          },
+          "self_resonance": {
+            "gentry": 75,
+            "yeoman_farmer": 45,
+            "merchant": 80,
+            "artisan": 50,
+            "frontier": 35
+          }
+        },
+        {
+          "name": "Thomas Jefferson",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 40,
+            "CNA": 55,
+            "MOR": 50,
+            "EPS": 45,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 70,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 70,
+            "yeoman_farmer": 80,
+            "merchant": 40,
+            "artisan": 65,
+            "frontier": 75
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 60,
+            "CNA": 40,
+            "MOR": 55,
+            "EPS": 25,
+            "PRO": 65
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 40,
+            "CNA": 60,
+            "MOR": 50,
+            "EPS": 50,
+            "PRO": 35
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.4
+      },
+      "tau": {
+        "MAT": 0.45,
+        "CSO": 0.3,
+        "CNA": 0.4,
+        "MOR": 0.3,
+        "EPS": 0.3,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1800,
+      "candidates": [
+        {
+          "name": "Thomas Jefferson",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 38,
+            "CNA": 55,
+            "MOR": 50,
+            "EPS": 50,
+            "PRO": 35
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.85
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 68,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 70,
+            "yeoman_farmer": 85,
+            "merchant": 35,
+            "artisan": 70,
+            "frontier": 80
+          }
+        },
+        {
+          "name": "John Adams",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 62,
+            "CNA": 42,
+            "MOR": 55,
+            "EPS": 22,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.25,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 80,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "gentry": 70,
+            "yeoman_farmer": 40,
+            "merchant": 75,
+            "artisan": 45,
+            "frontier": 30
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 62,
+            "CNA": 38,
+            "MOR": 55,
+            "EPS": 22,
+            "PRO": 65
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 38,
+            "CNA": 62,
+            "MOR": 50,
+            "EPS": 52,
+            "PRO": 32
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 2
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.45
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.35,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 0.35,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1804,
+      "candidates": [
+        {
+          "name": "Thomas Jefferson",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 35,
+            "CNA": 52,
+            "MOR": 50,
+            "EPS": 48,
+            "PRO": 38
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.8,
+            "technocratic_competent": 0.85,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 88,
+            "integrity": 70,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 75,
+            "yeoman_farmer": 85,
+            "merchant": 40,
+            "artisan": 70,
+            "frontier": 85
+          }
+        },
+        {
+          "name": "Charles Pinckney",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 65,
+            "CNA": 40,
+            "MOR": 60,
+            "EPS": 25,
+            "PRO": 60
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 65,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "gentry": 70,
+            "yeoman_farmer": 35,
+            "merchant": 70,
+            "artisan": 40,
+            "frontier": 25
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 65,
+            "CNA": 35,
+            "MOR": 58,
+            "EPS": 22,
+            "PRO": 62
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 35,
+            "CNA": 65,
+            "MOR": 50,
+            "EPS": 50,
+            "PRO": 35
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 70,
+        "threat_environment": 0.25
+      },
+      "tau": {
+        "MAT": 0.45,
+        "CSO": 0.3,
+        "CNA": 0.4,
+        "MOR": 0.3,
+        "EPS": 0.3,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1808,
+      "candidates": [
+        {
+          "name": "James Madison",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 40,
+            "CNA": 50,
+            "MOR": 50,
+            "EPS": 25,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.9,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.15,
+            "prophetic_visionary": 0.7
+          },
+          "means": {
+            "competence": 90,
+            "integrity": 80,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "gentry": 80,
+            "yeoman_farmer": 70,
+            "merchant": 45,
+            "artisan": 60,
+            "frontier": 65
+          }
+        },
+        {
+          "name": "Charles Pinckney",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 62,
+            "CNA": 42,
+            "MOR": 58,
+            "EPS": 25,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 62,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "gentry": 68,
+            "yeoman_farmer": 35,
+            "merchant": 72,
+            "artisan": 40,
+            "frontier": 28
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 62,
+            "CNA": 38,
+            "MOR": 58,
+            "EPS": 22,
+            "PRO": 60
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 38,
+            "CNA": 58,
+            "MOR": 50,
+            "EPS": 48,
+            "PRO": 40
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 50,
+        "threat_environment": 0.5
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 0.25,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1812,
+      "candidates": [
+        {
+          "name": "James Madison",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 42,
+            "CNA": 55,
+            "MOR": 50,
+            "EPS": 28,
+            "PRO": 50
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.85,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 80,
+            "integrity": 78,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "gentry": 75,
+            "yeoman_farmer": 70,
+            "merchant": 40,
+            "artisan": 60,
+            "frontier": 70
+          }
+        },
+        {
+          "name": "DeWitt Clinton",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 55,
+            "CNA": 40,
+            "MOR": 52,
+            "EPS": 30,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 60,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "gentry": 65,
+            "yeoman_farmer": 50,
+            "merchant": 70,
+            "artisan": 55,
+            "frontier": 40
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 58,
+            "CNA": 35,
+            "MOR": 55,
+            "EPS": 25,
+            "PRO": 58
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 42,
+            "CNA": 60,
+            "MOR": 50,
+            "EPS": 45,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 0.5,
+        "CNA": 2.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 40,
+        "threat_environment": 0.75
+      },
+      "tau": {
+        "MAT": 0.4,
+        "CSO": 0.3,
+        "CNA": 0.65,
+        "MOR": 0.3,
+        "EPS": 0.25,
+        "PRO": 0.4
+      }
+    },
+    {
+      "year": 1816,
+      "candidates": [
+        {
+          "name": "James Monroe",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 45,
+            "CNA": 52,
+            "MOR": 52,
+            "EPS": 30,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.85,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 80,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 80,
+            "yeoman_farmer": 75,
+            "merchant": 55,
+            "artisan": 65,
+            "frontier": 70
+          }
+        },
+        {
+          "name": "Rufus King",
+          "party": "Federalist",
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 60,
+            "CNA": 38,
+            "MOR": 55,
+            "EPS": 22,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 70,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "gentry": 65,
+            "yeoman_farmer": 30,
+            "merchant": 70,
+            "artisan": 40,
+            "frontier": 25
+          }
+        }
+      ],
+      "coalitions": {
+        "Federalist": {
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 60,
+            "CNA": 35,
+            "MOR": 55,
+            "EPS": 22,
+            "PRO": 58
+          }
+        },
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 42,
+            "CNA": 58,
+            "MOR": 52,
+            "EPS": 42,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 65,
+        "threat_environment": 0.25
+      },
+      "tau": {
+        "MAT": 0.4,
+        "CSO": 0.3,
+        "CNA": 0.4,
+        "MOR": 0.3,
+        "EPS": 0.3,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1820,
+      "candidates": [
+        {
+          "name": "James Monroe",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 48,
+            "CNA": 50,
+            "MOR": 52,
+            "EPS": 32,
+            "PRO": 50
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.85,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 82,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 82,
+            "yeoman_farmer": 78,
+            "merchant": 60,
+            "artisan": 68,
+            "frontier": 72
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 45,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 40,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 70,
+        "threat_environment": 0.15
+      },
+      "tau": {
+        "MAT": 0.35,
+        "CSO": 0.3,
+        "CNA": 0.35,
+        "MOR": 0.35,
+        "EPS": 0.3,
+        "PRO": 0.35
+      }
+    },
+    {
+      "year": 1824,
+      "candidates": [
+        {
+          "name": "John Quincy Adams",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 50,
+            "CNA": 42,
+            "MOR": 45,
+            "EPS": 20,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.8,
+            "technocratic_competent": 0.9,
+            "pastoral_empathetic": 0.25,
+            "authentic_plainspoken": 0.3,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 92,
+            "integrity": 85,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "gentry": 75,
+            "yeoman_farmer": 40,
+            "merchant": 70,
+            "artisan": 50,
+            "frontier": 30
+          }
+        },
+        {
+          "name": "Andrew Jackson",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 55,
+            "CNA": 65,
+            "MOR": 60,
+            "EPS": 70,
+            "PRO": 40
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.4,
+            "technocratic_competent": 0.3,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.85,
+            "fighter_warrior": 0.95,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 65,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 45,
+            "yeoman_farmer": 85,
+            "merchant": 35,
+            "artisan": 75,
+            "frontier": 90
+          }
+        },
+        {
+          "name": "William Crawford",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 50,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 35,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 55,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "gentry": 65,
+            "yeoman_farmer": 60,
+            "merchant": 50,
+            "artisan": 55,
+            "frontier": 55
+          }
+        },
+        {
+          "name": "Henry Clay",
+          "party": "Democratic-Republican",
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 48,
+            "CNA": 45,
+            "MOR": 48,
+            "EPS": 40,
+            "PRO": 65
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.4,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 60,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "gentry": 70,
+            "yeoman_farmer": 55,
+            "merchant": 75,
+            "artisan": 60,
+            "frontier": 65
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic-Republican": {
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 50,
+            "CNA": 52,
+            "MOR": 52,
+            "EPS": 45,
+            "PRO": 50
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 1.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.25
+      },
+      "tau": {
+        "MAT": 0.4,
+        "CSO": 0.35,
+        "CNA": 0.4,
+        "MOR": 0.4,
+        "EPS": 0.45,
+        "PRO": 0.4
+      }
+    }
+  ]
+}

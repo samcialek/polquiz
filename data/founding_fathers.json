@@ -1,0 +1,103 @@
+{
+  "founders": [
+    {
+      "id": "washington",
+      "name": "George Washington",
+      "title": "First President, Commander-in-Chief",
+      "years": "1732-1799",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/440px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg",
+      "l2_profile": {"MAT": 50, "CSO": 55, "CNA": 50, "MOR": 55, "EPS": 35, "PRO": 55},
+      "quote": "Liberty, when it begins to take root, is a plant of rapid growth.",
+      "traits": ["Pragmatic", "Unifying", "Dignified"],
+      "description": "The indispensable man who held the nation together through sheer force of character. Cautious with power, he set precedents that would last centuries."
+    },
+    {
+      "id": "adams",
+      "name": "John Adams",
+      "title": "Second President, First Vice President",
+      "years": "1735-1826",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg/440px-John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg",
+      "l2_profile": {"MAT": 65, "CSO": 60, "CNA": 45, "MOR": 55, "EPS": 25, "PRO": 60},
+      "quote": "Facts are stubborn things; and whatever may be our wishes, our inclinations, or the dictates of our passion, they cannot alter the state of facts and evidence.",
+      "traits": ["Principled", "Intellectual", "Independent"],
+      "description": "A brilliant legal mind and fierce advocate for independence. Trusted institutions over populism and believed in ordered liberty through law."
+    },
+    {
+      "id": "jefferson",
+      "name": "Thomas Jefferson",
+      "title": "Third President, Author of Declaration",
+      "years": "1743-1826",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/440px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg",
+      "l2_profile": {"MAT": 35, "CSO": 40, "CNA": 55, "MOR": 50, "EPS": 45, "PRO": 40},
+      "quote": "I hold it that a little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical.",
+      "traits": ["Visionary", "Democratic", "Idealistic"],
+      "description": "The philosopher of American liberty who believed in the wisdom of common people. Championed agrarian democracy and limited government."
+    },
+    {
+      "id": "madison",
+      "name": "James Madison",
+      "title": "Fourth President, Father of Constitution",
+      "years": "1751-1836",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Madison.jpg/440px-James_Madison.jpg",
+      "l2_profile": {"MAT": 30, "CSO": 40, "CNA": 50, "MOR": 50, "EPS": 30, "PRO": 45},
+      "quote": "If men were angels, no government would be necessary.",
+      "traits": ["Systematic", "Balanced", "Thoughtful"],
+      "description": "The architect of checks and balances who understood both the necessity and danger of power. Master of political theory turned practical statesman."
+    },
+    {
+      "id": "hamilton",
+      "name": "Alexander Hamilton",
+      "title": "First Treasury Secretary",
+      "years": "1755-1804",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Alexander_Hamilton_portrait_by_John_Trumbull_1806.jpg/440px-Alexander_Hamilton_portrait_by_John_Trumbull_1806.jpg",
+      "l2_profile": {"MAT": 75, "CSO": 50, "CNA": 47, "MOR": 50, "EPS": 20, "PRO": 70},
+      "quote": "Those who stand for nothing fall for anything.",
+      "traits": ["Ambitious", "Financial", "Energetic"],
+      "description": "The self-made genius who built America's financial system from scratch. Believed in strong central government, national banks, and manufacturing."
+    },
+    {
+      "id": "franklin",
+      "name": "Benjamin Franklin",
+      "title": "Diplomat, Inventor, Sage",
+      "years": "1706-1790",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/BenFranklinDupworking.jpg/440px-BenFranklinDupworking.jpg",
+      "l2_profile": {"MAT": 45, "CSO": 30, "CNA": 30, "MOR": 40, "EPS": 40, "PRO": 50},
+      "quote": "They who can give up essential liberty to obtain a little temporary safety deserve neither liberty nor safety.",
+      "traits": ["Pragmatic", "Witty", "Cosmopolitan"],
+      "description": "America's first citizen of the world. Combined practical wisdom with philosophical depth, believing in self-improvement and civic virtue."
+    },
+    {
+      "id": "jay",
+      "name": "John Jay",
+      "title": "First Chief Justice, Federalist",
+      "years": "1745-1829",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/John_Jay_%28Gilbert_Stuart_portrait%29.jpg/440px-John_Jay_%28Gilbert_Stuart_portrait%29.jpg",
+      "l2_profile": {"MAT": 60, "CSO": 55, "CNA": 45, "MOR": 48, "EPS": 35, "PRO": 80},
+      "quote": "Those who own the country ought to govern it.",
+      "traits": ["Judicious", "Orderly", "Cosmopolitan"],
+      "description": "The architect of American jurisprudence and first Chief Justice. A devout Christian, abolitionist, and institutionalist who believed the republic's survival depended on law, order, and moral governance."
+    },
+    {
+      "id": "samuel_adams",
+      "name": "Samuel Adams",
+      "title": "Father of the American Revolution",
+      "years": "1722-1803",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/J_S_Copley_-_Samuel_Adams.jpg/440px-J_S_Copley_-_Samuel_Adams.jpg",
+      "l2_profile": {"MAT": 35, "CSO": 70, "CNA": 75, "MOR": 70, "EPS": 60, "PRO": 25},
+      "quote": "It does not take a majority to prevail, but rather an irate, tireless minority keen to set brush fires in people's minds.",
+      "traits": ["Firebrand", "Populist", "Moralist"],
+      "description": "The original American populist who organized the Sons of Liberty and the Boston Tea Party. Deeply puritanical, fiercely nationalist, and distrustful of elites and centralized power. Believed virtue came from the common people, not institutions."
+    },
+    {
+      "id": "paine",
+      "name": "Thomas Paine",
+      "title": "Revolutionary Pamphleteer",
+      "years": "1737-1809",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Thomas_Paine_rev1.jpg/440px-Thomas_Paine_rev1.jpg",
+      "l2_profile": {"MAT": 20, "CSO": 25, "CNA": 30, "MOR": 35, "EPS": 45, "PRO": 25},
+      "quote": "These are the times that try men's souls. The summer soldier and the sunshine patriot will, in this crisis, shrink from the service of their country.",
+      "traits": ["Radical", "Egalitarian", "Internationalist"],
+      "description": "The most radical voice of the Revolution who went further than any founder. Advocated wealth redistribution, abolition, women's rights, and world revolution. Rejected organized religion, monarchy, and aristocracy in all forms."
+    }
+  ]
+}

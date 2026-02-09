@@ -1,0 +1,2492 @@
+{
+  "salienceWeights": {
+    "1789": {
+      "MAT": 2.9,
+      "CSO": 0.19,
+      "CNA": 1.43,
+      "MOR": 0.17,
+      "EPS": 0.05,
+      "PRO": 1.28
+    },
+    "1792": {
+      "MAT": 2.94,
+      "CSO": 0.25,
+      "CNA": 1.62,
+      "MOR": 0.26,
+      "EPS": 0.05,
+      "PRO": 0.91
+    },
+    "1796": {
+      "MAT": 1.63,
+      "CSO": 0.19,
+      "CNA": 3.04,
+      "MOR": 0.17,
+      "EPS": 0.11,
+      "PRO": 0.85
+    },
+    "1800": {
+      "MAT": 1.75,
+      "CSO": 0.31,
+      "CNA": 2.54,
+      "MOR": 0.31,
+      "EPS": 0.05,
+      "PRO": 1.07
+    },
+    "1804": {
+      "MAT": 3.04,
+      "CSO": 0.26,
+      "CNA": 1.68,
+      "MOR": 0.27,
+      "EPS": 0.11,
+      "PRO": 0.64
+    },
+    "1808": {
+      "MAT": 3.62,
+      "CSO": 0.07,
+      "CNA": 1.92,
+      "MOR": 0.07,
+      "EPS": 0.05,
+      "PRO": 0.32
+    },
+    "1812": {
+      "MAT": 1.29,
+      "CSO": 0.07,
+      "CNA": 4.03,
+      "MOR": 0.07,
+      "EPS": 0.05,
+      "PRO": 0.54
+    },
+    "1816": {
+      "MAT": 3.16,
+      "CSO": 0.43,
+      "CNA": 1.28,
+      "MOR": 0.42,
+      "EPS": 0.12,
+      "PRO": 0.59
+    },
+    "1820": {
+      "MAT": 3.72,
+      "CSO": 0.46,
+      "CNA": 0.86,
+      "MOR": 0.64,
+      "EPS": 0.09,
+      "PRO": 0.22
+    },
+    "1824": {
+      "MAT": 3.24,
+      "CSO": 0.53,
+      "CNA": 0.69,
+      "MOR": 0.57,
+      "EPS": 0.15,
+      "PRO": 0.82
+    },
+    "1828": {
+      "MAT": 3.13,
+      "CSO": 0.53,
+      "CNA": 0.21,
+      "MOR": 0.43,
+      "EPS": 0.21,
+      "PRO": 1.49
+    },
+    "1832": {
+      "MAT": 4.28,
+      "CSO": 0.37,
+      "CNA": 0.26,
+      "MOR": 0.36,
+      "EPS": 0.13,
+      "PRO": 0.6
+    },
+    "1836": {
+      "MAT": 3.77,
+      "CSO": 0.41,
+      "CNA": 0.83,
+      "MOR": 0.39,
+      "EPS": 0.11,
+      "PRO": 0.49
+    },
+    "1840": {
+      "MAT": 5,
+      "CSO": 0.13,
+      "CNA": 0.14,
+      "MOR": 0.12,
+      "EPS": 0.08,
+      "PRO": 0.24
+    },
+    "1844": {
+      "MAT": 1.76,
+      "CSO": 0.42,
+      "CNA": 2.72,
+      "MOR": 0.54,
+      "EPS": 0.09,
+      "PRO": 0.47
+    },
+    "1848": {
+      "MAT": 1.87,
+      "CSO": 0.74,
+      "CNA": 1.81,
+      "MOR": 1.13,
+      "EPS": 0.1,
+      "PRO": 0.35
+    },
+    "1852": {
+      "MAT": 1.95,
+      "CSO": 0.77,
+      "CNA": 1.37,
+      "MOR": 1.17,
+      "EPS": 0.13,
+      "PRO": 0.6
+    },
+    "1856": {
+      "MAT": 0.85,
+      "CSO": 1.18,
+      "CNA": 1.81,
+      "MOR": 1.77,
+      "EPS": 0.1,
+      "PRO": 0.29
+    },
+    "1860": {
+      "MAT": 0.4,
+      "CSO": 0.5,
+      "CNA": 2.2,
+      "MOR": 1.0,
+      "EPS": 0.3,
+      "PRO": 1.6
+    },
+    "1864": {
+      "MAT": 0.49,
+      "CSO": 0.11,
+      "CNA": 4.63,
+      "MOR": 0.17,
+      "EPS": 0.05,
+      "PRO": 0.61
+    },
+    "1868": {
+      "MAT": 1.98,
+      "CSO": 0.79,
+      "CNA": 0.96,
+      "MOR": 1.2,
+      "EPS": 0.17,
+      "PRO": 0.91
+    },
+    "1872": {
+      "MAT": 2.61,
+      "CSO": 0.54,
+      "CNA": 0.64,
+      "MOR": 0.75,
+      "EPS": 0.2,
+      "PRO": 1.25
+    },
+    "1876": {
+      "MAT": 3.65,
+      "CSO": 0.31,
+      "CNA": 0.22,
+      "MOR": 0.36,
+      "EPS": 0.13,
+      "PRO": 1.33
+    },
+    "1880": {
+      "MAT": 3.81,
+      "CSO": 0.34,
+      "CNA": 0.61,
+      "MOR": 0.34,
+      "EPS": 0.14,
+      "PRO": 0.76
+    },
+    "1884": {
+      "MAT": 3.17,
+      "CSO": 0.39,
+      "CNA": 0.29,
+      "MOR": 0.32,
+      "EPS": 0.3,
+      "PRO": 1.54
+    },
+    "1888": {
+      "MAT": 4.71,
+      "CSO": 0.23,
+      "CNA": 0.42,
+      "MOR": 0.19,
+      "EPS": 0.09,
+      "PRO": 0.36
+    },
+    "1892": {
+      "MAT": 3.76,
+      "CSO": 0.27,
+      "CNA": 0.78,
+      "MOR": 0.23,
+      "EPS": 0.14,
+      "PRO": 0.83
+    },
+    "1896": {
+      "MAT": 5,
+      "CSO": 0.19,
+      "CNA": 0.19,
+      "MOR": 0.15,
+      "EPS": 0.14,
+      "PRO": 0.28
+    },
+    "1900": {
+      "MAT": 2.96,
+      "CSO": 0.24,
+      "CNA": 2.01,
+      "MOR": 0.19,
+      "EPS": 0.1,
+      "PRO": 0.49
+    },
+    "1904": {
+      "MAT": 2.51,
+      "CSO": 0.27,
+      "CNA": 0.85,
+      "MOR": 0.21,
+      "EPS": 0.31,
+      "PRO": 1.83
+    },
+    "1908": {
+      "MAT": 3.13,
+      "CSO": 0.26,
+      "CNA": 0.5,
+      "MOR": 0.2,
+      "EPS": 0.3,
+      "PRO": 1.62
+    },
+    "1912": {
+      "MAT": 2.45,
+      "CSO": 0.27,
+      "CNA": 0.51,
+      "MOR": 0.21,
+      "EPS": 0.35,
+      "PRO": 2.21
+    },
+    "1916": {
+      "MAT": 1.63,
+      "CSO": 0.17,
+      "CNA": 2.95,
+      "MOR": 0.14,
+      "EPS": 0.12,
+      "PRO": 0.99
+    },
+    "1920": {
+      "MAT": 3.05,
+      "CSO": 0.24,
+      "CNA": 1.76,
+      "MOR": 0.2,
+      "EPS": 0.11,
+      "PRO": 0.63
+    },
+    "1924": {
+      "MAT": 3.26,
+      "CSO": 0.39,
+      "CNA": 0.59,
+      "MOR": 0.29,
+      "EPS": 0.27,
+      "PRO": 1.2
+    },
+    "1928": {
+      "MAT": 2.03,
+      "CSO": 1.45,
+      "CNA": 0.56,
+      "MOR": 1.04,
+      "EPS": 0.37,
+      "PRO": 0.55
+    },
+    "1932": {
+      "MAT": 5,
+      "CSO": 0.05,
+      "CNA": 0.05,
+      "MOR": 0.05,
+      "EPS": 0.05,
+      "PRO": 0.11
+    },
+    "1936": {
+      "MAT": 4.95,
+      "CSO": 0.11,
+      "CNA": 0.22,
+      "MOR": 0.09,
+      "EPS": 0.11,
+      "PRO": 0.52
+    },
+    "1940": {
+      "MAT": 2.2,
+      "CSO": 0.1,
+      "CNA": 2.16,
+      "MOR": 0.09,
+      "EPS": 0.15,
+      "PRO": 1.29
+    },
+    "1944": {
+      "MAT": 0.52,
+      "CSO": 0.09,
+      "CNA": 4.46,
+      "MOR": 0.07,
+      "EPS": 0.08,
+      "PRO": 0.78
+    },
+    "1948": {
+      "MAT": 2.44,
+      "CSO": 0.31,
+      "CNA": 1.8,
+      "MOR": 0.38,
+      "EPS": 0.14,
+      "PRO": 0.93
+    },
+    "1952": {
+      "MAT": 1.1,
+      "CSO": 0.17,
+      "CNA": 2.88,
+      "MOR": 0.15,
+      "EPS": 0.16,
+      "PRO": 1.54
+    },
+    "1956": {
+      "MAT": 1.75,
+      "CSO": 0.27,
+      "CNA": 2.6,
+      "MOR": 0.27,
+      "EPS": 0.24,
+      "PRO": 0.88
+    },
+    "1960": {
+      "MAT": 1.74,
+      "CSO": 0.4,
+      "CNA": 2.67,
+      "MOR": 0.39,
+      "EPS": 0.11,
+      "PRO": 0.69
+    },
+    "1964": {
+      "MAT": 1.23,
+      "CSO": 0.48,
+      "CNA": 2.66,
+      "MOR": 0.61,
+      "EPS": 0.16,
+      "PRO": 0.85
+    },
+    "1968": {
+      "MAT": 0.66,
+      "CSO": 0.43,
+      "CNA": 3.62,
+      "MOR": 0.55,
+      "EPS": 0.09,
+      "PRO": 0.64
+    },
+    "1972": {
+      "MAT": 1.74,
+      "CSO": 0.4,
+      "CNA": 2.67,
+      "MOR": 0.39,
+      "EPS": 0.11,
+      "PRO": 0.69
+    },
+    "1976": {
+      "MAT": 3.63,
+      "CSO": 0.19,
+      "CNA": 0.98,
+      "MOR": 0.2,
+      "EPS": 0.14,
+      "PRO": 0.86
+    },
+    "1980": {
+      "MAT": 3.9,
+      "CSO": 0.12,
+      "CNA": 1.43,
+      "MOR": 0.1,
+      "EPS": 0.05,
+      "PRO": 0.39
+    },
+    "1984": {
+      "MAT": 3.63,
+      "CSO": 0.21,
+      "CNA": 1.28,
+      "MOR": 0.19,
+      "EPS": 0.2,
+      "PRO": 0.5
+    },
+    "1988": {
+      "MAT": 2.62,
+      "CSO": 0.45,
+      "CNA": 1.3,
+      "MOR": 0.44,
+      "EPS": 0.47,
+      "PRO": 0.73
+    },
+    "1992": {
+      "MAT": 5,
+      "CSO": 0.16,
+      "CNA": 0.15,
+      "MOR": 0.16,
+      "EPS": 0.15,
+      "PRO": 0.36
+    },
+    "1996": {
+      "MAT": 3.26,
+      "CSO": 0.36,
+      "CNA": 0.46,
+      "MOR": 0.3,
+      "EPS": 0.69,
+      "PRO": 0.91
+    },
+    "2000": {
+      "MAT": 2.22,
+      "CSO": 0.39,
+      "CNA": 0.5,
+      "MOR": 0.36,
+      "EPS": 1.06,
+      "PRO": 1.46
+    },
+    "2004": {
+      "MAT": 1.67,
+      "CSO": 0.31,
+      "CNA": 3.02,
+      "MOR": 0.24,
+      "EPS": 0.1,
+      "PRO": 0.65
+    },
+    "2008": {
+      "MAT": 4.54,
+      "CSO": 0.12,
+      "CNA": 0.86,
+      "MOR": 0.11,
+      "EPS": 0.08,
+      "PRO": 0.3
+    },
+    "2012": {
+      "MAT": 4.34,
+      "CSO": 0.25,
+      "CNA": 0.48,
+      "MOR": 0.21,
+      "EPS": 0.28,
+      "PRO": 0.43
+    },
+    "2016": {
+      "MAT": 2.72,
+      "CSO": 0.51,
+      "CNA": 1.67,
+      "MOR": 0.44,
+      "EPS": 0.18,
+      "PRO": 0.48
+    },
+    "2020": {
+      "MAT": 3.02,
+      "CSO": 0.36,
+      "CNA": 0.48,
+      "MOR": 0.49,
+      "EPS": 0.53,
+      "PRO": 1.12
+    },
+    "2024": {
+      "MAT": 3.37,
+      "CSO": 0.55,
+      "CNA": 1.06,
+      "MOR": 0.43,
+      "EPS": 0.12,
+      "PRO": 0.48
+    }
+  },
+  "candidateViability": {
+    "1789": [
+      {
+        "name": "George Washington",
+        "party": "Independent",
+        "popular_vote_pct": 100,
+        "won": true,
+        "position": "nominee"
+      }
+    ],
+    "1792": [
+      {
+        "name": "George Washington",
+        "party": "Independent/Federalist-leaning",
+        "popular_vote_pct": 100,
+        "won": true,
+        "position": "incumbent"
+      }
+    ],
+    "1796": [
+      {
+        "name": "John Adams",
+        "party": "Federalist",
+        "popular_vote_pct": 53.4,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Thomas Jefferson",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 46.6,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1800": [
+      {
+        "name": "Thomas Jefferson",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 61.4,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "John Adams",
+        "party": "Federalist",
+        "popular_vote_pct": 38.6,
+        "won": false,
+        "position": "incumbent"
+      }
+    ],
+    "1804": [
+      {
+        "name": "Thomas Jefferson",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 72.8,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Charles C. Pinckney",
+        "party": "Federalist",
+        "popular_vote_pct": 27.2,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1808": [
+      {
+        "name": "James Madison",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 64.7,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Charles C. Pinckney",
+        "party": "Federalist",
+        "popular_vote_pct": 32.4,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1812": [
+      {
+        "name": "James Madison",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 50.4,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "DeWitt Clinton",
+        "party": "Federalist/Antiwar D-R",
+        "popular_vote_pct": 47.6,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1816": [
+      {
+        "name": "James Monroe",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 68.2,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Rufus King",
+        "party": "Federalist",
+        "popular_vote_pct": 30.9,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1820": [
+      {
+        "name": "James Monroe",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 80.6,
+        "won": true,
+        "position": "incumbent"
+      }
+    ],
+    "1824": [
+      {
+        "name": "John Quincy Adams",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 30.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Andrew Jackson",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 41.4,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "William H. Crawford",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 11.2,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Henry Clay",
+        "party": "Democratic-Republican",
+        "popular_vote_pct": 13,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1828": [
+      {
+        "name": "Andrew Jackson",
+        "party": "Democratic",
+        "popular_vote_pct": 56,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "John Quincy Adams",
+        "party": "National Republican",
+        "popular_vote_pct": 43.6,
+        "won": false,
+        "position": "incumbent"
+      }
+    ],
+    "1832": [
+      {
+        "name": "Andrew Jackson",
+        "party": "Democratic",
+        "popular_vote_pct": 54.2,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Henry Clay",
+        "party": "National Republican",
+        "popular_vote_pct": 37.4,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "William Wirt",
+        "party": "Anti-Masonic",
+        "popular_vote_pct": 7.8,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1836": [
+      {
+        "name": "Martin Van Buren",
+        "party": "Democratic",
+        "popular_vote_pct": 50.8,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "William Henry Harrison",
+        "party": "Whig",
+        "popular_vote_pct": 36.6,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Hugh Lawson White",
+        "party": "Whig",
+        "popular_vote_pct": 9.7,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Daniel Webster",
+        "party": "Whig",
+        "popular_vote_pct": 2.7,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1840": [
+      {
+        "name": "William Henry Harrison",
+        "party": "Whig",
+        "popular_vote_pct": 52.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Martin Van Buren",
+        "party": "Democratic",
+        "popular_vote_pct": 46.8,
+        "won": false,
+        "position": "incumbent"
+      }
+    ],
+    "1844": [
+      {
+        "name": "James K. Polk",
+        "party": "Democratic",
+        "popular_vote_pct": 49.5,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Henry Clay",
+        "party": "Whig",
+        "popular_vote_pct": 48.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "James G. Birney",
+        "party": "Liberty",
+        "popular_vote_pct": 2.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1848": [
+      {
+        "name": "Zachary Taylor",
+        "party": "Whig",
+        "popular_vote_pct": 47.3,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Lewis Cass",
+        "party": "Democratic",
+        "popular_vote_pct": 42.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Martin Van Buren",
+        "party": "Free Soil",
+        "popular_vote_pct": 10.1,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1852": [
+      {
+        "name": "Franklin Pierce",
+        "party": "Democratic",
+        "popular_vote_pct": 50.8,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Winfield Scott",
+        "party": "Whig",
+        "popular_vote_pct": 43.9,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "John P. Hale",
+        "party": "Free Soil",
+        "popular_vote_pct": 4.9,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1856": [
+      {
+        "name": "James Buchanan",
+        "party": "Democratic",
+        "popular_vote_pct": 45.3,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "John C. Frémont",
+        "party": "Republican",
+        "popular_vote_pct": 33.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Millard Fillmore",
+        "party": "Know-Nothing (American)",
+        "popular_vote_pct": 21.6,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1860": [
+      {
+        "name": "Abraham Lincoln",
+        "party": "Republican",
+        "popular_vote_pct": 39.8,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "John C. Breckinridge",
+        "party": "Southern Democratic",
+        "popular_vote_pct": 18.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Stephen A. Douglas",
+        "party": "Northern Democratic",
+        "popular_vote_pct": 29.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "John Bell",
+        "party": "Constitutional Union",
+        "popular_vote_pct": 12.6,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1864": [
+      {
+        "name": "Abraham Lincoln",
+        "party": "National Union (Republican)",
+        "popular_vote_pct": 55,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "George B. McClellan",
+        "party": "Democratic",
+        "popular_vote_pct": 45,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1868": [
+      {
+        "name": "Ulysses S. Grant",
+        "party": "Republican",
+        "popular_vote_pct": 52.7,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Horatio Seymour",
+        "party": "Democratic",
+        "popular_vote_pct": 47.3,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1872": [
+      {
+        "name": "Ulysses S. Grant",
+        "party": "Republican",
+        "popular_vote_pct": 55.6,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Horace Greeley",
+        "party": "Democratic/Liberal Republican",
+        "popular_vote_pct": 43.8,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Charles O'Conor",
+        "party": "Straight-Out Democratic",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1876": [
+      {
+        "name": "Rutherford B. Hayes",
+        "party": "Republican",
+        "popular_vote_pct": 47.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Samuel J. Tilden",
+        "party": "Democratic",
+        "popular_vote_pct": 50.9,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Peter Cooper",
+        "party": "Greenback",
+        "popular_vote_pct": 0.9,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1880": [
+      {
+        "name": "James A. Garfield",
+        "party": "Republican",
+        "popular_vote_pct": 48.3,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Winfield S. Hancock",
+        "party": "Democratic",
+        "popular_vote_pct": 48.2,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "James B. Weaver",
+        "party": "Greenback",
+        "popular_vote_pct": 3.3,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Neal Dow",
+        "party": "Prohibition",
+        "popular_vote_pct": 0.1,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1884": [
+      {
+        "name": "Grover Cleveland",
+        "party": "Democratic",
+        "popular_vote_pct": 48.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "James G. Blaine",
+        "party": "Republican",
+        "popular_vote_pct": 48.3,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Benjamin Butler",
+        "party": "Greenback",
+        "popular_vote_pct": 1.7,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "John St. John",
+        "party": "Prohibition",
+        "popular_vote_pct": 1.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1888": [
+      {
+        "name": "Benjamin Harrison",
+        "party": "Republican",
+        "popular_vote_pct": 47.8,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Grover Cleveland",
+        "party": "Democratic",
+        "popular_vote_pct": 48.6,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "Clinton B. Fisk",
+        "party": "Prohibition",
+        "popular_vote_pct": 2.2,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1892": [
+      {
+        "name": "Grover Cleveland",
+        "party": "Democratic",
+        "popular_vote_pct": 46,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Benjamin Harrison",
+        "party": "Republican",
+        "popular_vote_pct": 43,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "James B. Weaver",
+        "party": "Populist",
+        "popular_vote_pct": 8.5,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "John Bidwell",
+        "party": "Prohibition",
+        "popular_vote_pct": 2.2,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1896": [
+      {
+        "name": "William McKinley",
+        "party": "Republican",
+        "popular_vote_pct": 51,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "William Jennings Bryan",
+        "party": "Democratic",
+        "popular_vote_pct": 46.7,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "John M. Palmer",
+        "party": "National Democratic (Gold)",
+        "popular_vote_pct": 1,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Joshua Levering",
+        "party": "Prohibition",
+        "popular_vote_pct": 0.9,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1900": [
+      {
+        "name": "William McKinley",
+        "party": "Republican",
+        "popular_vote_pct": 51.6,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "William Jennings Bryan",
+        "party": "Democratic",
+        "popular_vote_pct": 45.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "John G. Woolley",
+        "party": "Prohibition",
+        "popular_vote_pct": 1.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1904": [
+      {
+        "name": "Theodore Roosevelt",
+        "party": "Republican",
+        "popular_vote_pct": 56.4,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Alton B. Parker",
+        "party": "Democratic",
+        "popular_vote_pct": 37.6,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Eugene V. Debs",
+        "party": "Socialist",
+        "popular_vote_pct": 3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1908": [
+      {
+        "name": "William Howard Taft",
+        "party": "Republican",
+        "popular_vote_pct": 51.6,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "William Jennings Bryan",
+        "party": "Democratic",
+        "popular_vote_pct": 43,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Eugene V. Debs",
+        "party": "Socialist",
+        "popular_vote_pct": 2.8,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1912": [
+      {
+        "name": "Woodrow Wilson",
+        "party": "Democratic",
+        "popular_vote_pct": 41.8,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Theodore Roosevelt",
+        "party": "Progressive (Bull Moose)",
+        "popular_vote_pct": 27.4,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "William Howard Taft",
+        "party": "Republican",
+        "popular_vote_pct": 23.2,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "Eugene V. Debs",
+        "party": "Socialist",
+        "popular_vote_pct": 6,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1916": [
+      {
+        "name": "Woodrow Wilson",
+        "party": "Democratic",
+        "popular_vote_pct": 49.2,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Charles Evans Hughes",
+        "party": "Republican",
+        "popular_vote_pct": 46.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Allan L. Benson",
+        "party": "Socialist",
+        "popular_vote_pct": 3.2,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1920": [
+      {
+        "name": "Warren G. Harding",
+        "party": "Republican",
+        "popular_vote_pct": 60.3,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "James M. Cox",
+        "party": "Democratic",
+        "popular_vote_pct": 34.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Eugene V. Debs",
+        "party": "Socialist",
+        "popular_vote_pct": 3.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1924": [
+      {
+        "name": "Calvin Coolidge",
+        "party": "Republican",
+        "popular_vote_pct": 54,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "John W. Davis",
+        "party": "Democratic",
+        "popular_vote_pct": 28.8,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Robert M. La Follette",
+        "party": "Progressive",
+        "popular_vote_pct": 16.6,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1928": [
+      {
+        "name": "Herbert C. Hoover",
+        "party": "Republican",
+        "popular_vote_pct": 58.2,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Alfred E. Smith",
+        "party": "Democratic",
+        "popular_vote_pct": 40.8,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Norman Thomas",
+        "party": "Socialist",
+        "popular_vote_pct": 0.7,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1932": [
+      {
+        "name": "Franklin D. Roosevelt",
+        "party": "Democratic",
+        "popular_vote_pct": 57.4,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Herbert C. Hoover",
+        "party": "Republican",
+        "popular_vote_pct": 39.7,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "Norman Thomas",
+        "party": "Socialist",
+        "popular_vote_pct": 2.2,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1936": [
+      {
+        "name": "Franklin D. Roosevelt",
+        "party": "Democratic",
+        "popular_vote_pct": 60.8,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Alfred M. Landon",
+        "party": "Republican",
+        "popular_vote_pct": 36.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "William Lemke",
+        "party": "Union",
+        "popular_vote_pct": 1.9,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1940": [
+      {
+        "name": "Franklin D. Roosevelt",
+        "party": "Democratic",
+        "popular_vote_pct": 54.7,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Wendell L. Willkie",
+        "party": "Republican",
+        "popular_vote_pct": 44.8,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1944": [
+      {
+        "name": "Franklin D. Roosevelt",
+        "party": "Democratic",
+        "popular_vote_pct": 53.4,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Thomas E. Dewey",
+        "party": "Republican",
+        "popular_vote_pct": 45.9,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1948": [
+      {
+        "name": "Harry S. Truman",
+        "party": "Democratic",
+        "popular_vote_pct": 49.6,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Thomas E. Dewey",
+        "party": "Republican",
+        "popular_vote_pct": 45.1,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Strom Thurmond",
+        "party": "States' Rights (Dixiecrat)",
+        "popular_vote_pct": 2.4,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Henry A. Wallace",
+        "party": "Progressive",
+        "popular_vote_pct": 2.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1952": [
+      {
+        "name": "Dwight D. Eisenhower",
+        "party": "Republican",
+        "popular_vote_pct": 55.2,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Adlai E. Stevenson II",
+        "party": "Democratic",
+        "popular_vote_pct": 44.3,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1956": [
+      {
+        "name": "Dwight D. Eisenhower",
+        "party": "Republican",
+        "popular_vote_pct": 57.4,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Adlai E. Stevenson II",
+        "party": "Democratic",
+        "popular_vote_pct": 42,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "T. Coleman Andrews",
+        "party": "States' Rights",
+        "popular_vote_pct": 0.2,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1960": [
+      {
+        "name": "John F. Kennedy",
+        "party": "Democratic",
+        "popular_vote_pct": 49.7,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Richard M. Nixon",
+        "party": "Republican",
+        "popular_vote_pct": 49.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Harry F. Byrd",
+        "party": "Democratic (Unpledged)",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1964": [
+      {
+        "name": "Lyndon B. Johnson",
+        "party": "Democratic",
+        "popular_vote_pct": 61.1,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Barry M. Goldwater",
+        "party": "Republican",
+        "popular_vote_pct": 38.5,
+        "won": false,
+        "position": "nominee"
+      }
+    ],
+    "1968": [
+      {
+        "name": "Richard M. Nixon",
+        "party": "Republican",
+        "popular_vote_pct": 43.4,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Hubert H. Humphrey",
+        "party": "Democratic",
+        "popular_vote_pct": 42.7,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "George C. Wallace",
+        "party": "American Independent",
+        "popular_vote_pct": 13.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1972": [
+      {
+        "name": "Richard M. Nixon",
+        "party": "Republican",
+        "popular_vote_pct": 60.7,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "George S. McGovern",
+        "party": "Democratic",
+        "popular_vote_pct": 37.5,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "John G. Schmitz",
+        "party": "American Independent",
+        "popular_vote_pct": 1.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1976": [
+      {
+        "name": "James E. Carter Jr.",
+        "party": "Democratic",
+        "popular_vote_pct": 50.1,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Gerald R. Ford Jr.",
+        "party": "Republican",
+        "popular_vote_pct": 48,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "Eugene McCarthy",
+        "party": "Independent",
+        "popular_vote_pct": 0.9,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1980": [
+      {
+        "name": "Ronald W. Reagan",
+        "party": "Republican",
+        "popular_vote_pct": 50.7,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "James E. Carter Jr.",
+        "party": "Democratic",
+        "popular_vote_pct": 41,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "John B. Anderson",
+        "party": "Independent",
+        "popular_vote_pct": 6.6,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Ed Clark",
+        "party": "Libertarian",
+        "popular_vote_pct": 1.1,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1984": [
+      {
+        "name": "Ronald W. Reagan",
+        "party": "Republican",
+        "popular_vote_pct": 58.8,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Walter F. Mondale",
+        "party": "Democratic",
+        "popular_vote_pct": 40.6,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "David Bergland",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1988": [
+      {
+        "name": "George H.W. Bush",
+        "party": "Republican",
+        "popular_vote_pct": 53.4,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Michael S. Dukakis",
+        "party": "Democratic",
+        "popular_vote_pct": 45.6,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Ron Paul",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1992": [
+      {
+        "name": "William J. Clinton",
+        "party": "Democratic",
+        "popular_vote_pct": 43,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "George H.W. Bush",
+        "party": "Republican",
+        "popular_vote_pct": 37.4,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "H. Ross Perot",
+        "party": "Independent",
+        "popular_vote_pct": 18.9,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Andre Marrou",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "1996": [
+      {
+        "name": "William J. Clinton",
+        "party": "Democratic",
+        "popular_vote_pct": 49.2,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Robert J. Dole",
+        "party": "Republican",
+        "popular_vote_pct": 40.7,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "H. Ross Perot",
+        "party": "Reform",
+        "popular_vote_pct": 8.4,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Ralph Nader",
+        "party": "Green",
+        "popular_vote_pct": 0.7,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Harry Browne",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2000": [
+      {
+        "name": "George W. Bush",
+        "party": "Republican",
+        "popular_vote_pct": 47.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Albert A. Gore Jr.",
+        "party": "Democratic",
+        "popular_vote_pct": 48.4,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Ralph Nader",
+        "party": "Green",
+        "popular_vote_pct": 2.7,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Patrick J. Buchanan",
+        "party": "Reform",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Harry Browne",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2004": [
+      {
+        "name": "George W. Bush",
+        "party": "Republican",
+        "popular_vote_pct": 50.7,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "John F. Kerry",
+        "party": "Democratic",
+        "popular_vote_pct": 48.3,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Ralph Nader",
+        "party": "Independent",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Michael Badnarik",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2008": [
+      {
+        "name": "Barack H. Obama",
+        "party": "Democratic",
+        "popular_vote_pct": 52.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "John S. McCain III",
+        "party": "Republican",
+        "popular_vote_pct": 45.7,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Ralph Nader",
+        "party": "Independent",
+        "popular_vote_pct": 0.6,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Bob Barr",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2012": [
+      {
+        "name": "Barack H. Obama",
+        "party": "Democratic",
+        "popular_vote_pct": 51.1,
+        "won": true,
+        "position": "incumbent"
+      },
+      {
+        "name": "Willard Mitt Romney",
+        "party": "Republican",
+        "popular_vote_pct": 47.2,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Gary Johnson",
+        "party": "Libertarian",
+        "popular_vote_pct": 1,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Jill Stein",
+        "party": "Green",
+        "popular_vote_pct": 0.4,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2016": [
+      {
+        "name": "Donald J. Trump",
+        "party": "Republican",
+        "popular_vote_pct": 46.1,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Hillary Rodham Clinton",
+        "party": "Democratic",
+        "popular_vote_pct": 48.2,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Gary Johnson",
+        "party": "Libertarian",
+        "popular_vote_pct": 3.3,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Jill Stein",
+        "party": "Green",
+        "popular_vote_pct": 1.1,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Evan McMullin",
+        "party": "Independent",
+        "popular_vote_pct": 0.5,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2020": [
+      {
+        "name": "Joseph R. Biden Jr.",
+        "party": "Democratic",
+        "popular_vote_pct": 51.3,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Donald J. Trump",
+        "party": "Republican",
+        "popular_vote_pct": 46.9,
+        "won": false,
+        "position": "incumbent"
+      },
+      {
+        "name": "Jo Jorgensen",
+        "party": "Libertarian",
+        "popular_vote_pct": 1.2,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Howie Hawkins",
+        "party": "Green",
+        "popular_vote_pct": 0.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ],
+    "2024": [
+      {
+        "name": "Donald J. Trump",
+        "party": "Republican",
+        "popular_vote_pct": 49.9,
+        "won": true,
+        "position": "nominee"
+      },
+      {
+        "name": "Kamala D. Harris",
+        "party": "Democratic",
+        "popular_vote_pct": 48.4,
+        "won": false,
+        "position": "nominee"
+      },
+      {
+        "name": "Robert F. Kennedy Jr.",
+        "party": "Independent",
+        "popular_vote_pct": 0.6,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Jill Stein",
+        "party": "Green",
+        "popular_vote_pct": 0.5,
+        "won": false,
+        "position": "third_party"
+      },
+      {
+        "name": "Chase Oliver",
+        "party": "Libertarian",
+        "popular_vote_pct": 0.3,
+        "won": false,
+        "position": "third_party"
+      }
+    ]
+  },
+  "issueAgdRaw": {
+    "1789": {
+      "economy": 0.35,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.2,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1792": {
+      "economy": 0.35,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.1,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1796": {
+      "economy": 0.25,
+      "foreign_security": 0.4,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1800": {
+      "economy": 0.25,
+      "foreign_security": 0.3,
+      "race_civil_rights": 0.1,
+      "immigration": 0.1,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1804": {
+      "economy": 0.35,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.1,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1808": {
+      "economy": 0.45,
+      "foreign_security": 0.35,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.05,
+      "governance": 0.05,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1812": {
+      "economy": 0.25,
+      "foreign_security": 0.55,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.05,
+      "governance": 0.05,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1816": {
+      "economy": 0.35,
+      "foreign_security": 0.2,
+      "race_civil_rights": 0.1,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1820": {
+      "economy": 0.4,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.25,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.05,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1824": {
+      "economy": 0.35,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.15,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1828": {
+      "economy": 0.35,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.2,
+      "governance": 0.25,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1832": {
+      "economy": 0.45,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.1,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1836": {
+      "economy": 0.4,
+      "foreign_security": 0.15,
+      "race_civil_rights": 0.1,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1840": {
+      "economy": 0.6,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1844": {
+      "economy": 0.25,
+      "foreign_security": 0.3,
+      "race_civil_rights": 0.2,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.05,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1848": {
+      "economy": 0.25,
+      "foreign_security": 0.15,
+      "race_civil_rights": 0.35,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.05,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1852": {
+      "economy": 0.25,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.35,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1856": {
+      "economy": 0.15,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.45,
+      "immigration": 0.15,
+      "culture_values": 0.1,
+      "governance": 0.05,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1860": {
+      "economy": 0.15,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.5,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1864": {
+      "economy": 0.15,
+      "foreign_security": 0.6,
+      "race_civil_rights": 0.15,
+      "immigration": 0,
+      "culture_values": 0.05,
+      "governance": 0.05,
+      "candidate_persona": 0,
+      "sectional": 0
+    },
+    "1868": {
+      "economy": 0.25,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.35,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1872": {
+      "economy": 0.3,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.25,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.2,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1876": {
+      "economy": 0.4,
+      "foreign_security": 0.02,
+      "race_civil_rights": 0.15,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.25,
+      "candidate_persona": 0.03,
+      "sectional": 0
+    },
+    "1880": {
+      "economy": 0.4,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.1,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0.05
+    },
+    "1884": {
+      "economy": 0.35,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.05,
+      "immigration": 0.08,
+      "culture_values": 0.15,
+      "governance": 0.25,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1888": {
+      "economy": 0.5,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.05,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0.05
+    },
+    "1892": {
+      "economy": 0.4,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.05,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0.1
+    },
+    "1896": {
+      "economy": 0.55,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.03,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.1,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1900": {
+      "economy": 0.35,
+      "foreign_security": 0.3,
+      "race_civil_rights": 0.03,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.07,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1904": {
+      "economy": 0.3,
+      "foreign_security": 0.15,
+      "race_civil_rights": 0.03,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.25,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1908": {
+      "economy": 0.35,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.03,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.25,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1912": {
+      "economy": 0.3,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.03,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.3,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1916": {
+      "economy": 0.25,
+      "foreign_security": 0.4,
+      "race_civil_rights": 0.03,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.12,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1920": {
+      "economy": 0.35,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.05,
+      "immigration": 0.1,
+      "culture_values": 0.1,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1924": {
+      "economy": 0.35,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.03,
+      "immigration": 0.1,
+      "culture_values": 0.15,
+      "governance": 0.2,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1928": {
+      "economy": 0.25,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.02,
+      "immigration": 0.08,
+      "culture_values": 0.35,
+      "governance": 0.1,
+      "candidate_persona": 0.1,
+      "sectional": 0
+    },
+    "1932": {
+      "economy": 0.75,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.02,
+      "immigration": 0.02,
+      "culture_values": 0.05,
+      "governance": 0.08,
+      "candidate_persona": 0.03,
+      "sectional": 0
+    },
+    "1936": {
+      "economy": 0.55,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.03,
+      "immigration": 0.02,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1940": {
+      "economy": 0.3,
+      "foreign_security": 0.35,
+      "race_civil_rights": 0.03,
+      "immigration": 0.02,
+      "culture_values": 0.08,
+      "governance": 0.17,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1944": {
+      "economy": 0.15,
+      "foreign_security": 0.6,
+      "race_civil_rights": 0.03,
+      "immigration": 0.02,
+      "culture_values": 0.08,
+      "governance": 0.07,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1948": {
+      "economy": 0.3,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.15,
+      "immigration": 0.02,
+      "culture_values": 0.1,
+      "governance": 0.13,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1952": {
+      "economy": 0.2,
+      "foreign_security": 0.4,
+      "race_civil_rights": 0.05,
+      "immigration": 0.02,
+      "culture_values": 0.1,
+      "governance": 0.18,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1956": {
+      "economy": 0.25,
+      "foreign_security": 0.35,
+      "race_civil_rights": 0.08,
+      "immigration": 0.02,
+      "culture_values": 0.12,
+      "governance": 0.1,
+      "candidate_persona": 0.08,
+      "sectional": 0
+    },
+    "1960": {
+      "economy": 0.25,
+      "foreign_security": 0.35,
+      "race_civil_rights": 0.1,
+      "immigration": 0.02,
+      "culture_values": 0.15,
+      "governance": 0.08,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1964": {
+      "economy": 0.2,
+      "foreign_security": 0.3,
+      "race_civil_rights": 0.2,
+      "immigration": 0.02,
+      "culture_values": 0.12,
+      "governance": 0.1,
+      "candidate_persona": 0.06,
+      "sectional": 0
+    },
+    "1968": {
+      "economy": 0.15,
+      "foreign_security": 0.4,
+      "race_civil_rights": 0.2,
+      "immigration": 0.02,
+      "culture_values": 0.12,
+      "governance": 0.06,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1972": {
+      "economy": 0.25,
+      "foreign_security": 0.35,
+      "race_civil_rights": 0.1,
+      "immigration": 0.02,
+      "culture_values": 0.15,
+      "governance": 0.08,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1976": {
+      "economy": 0.4,
+      "foreign_security": 0.2,
+      "race_civil_rights": 0.08,
+      "immigration": 0.02,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "1980": {
+      "economy": 0.45,
+      "foreign_security": 0.3,
+      "race_civil_rights": 0.03,
+      "immigration": 0.02,
+      "culture_values": 0.1,
+      "governance": 0.07,
+      "candidate_persona": 0.03,
+      "sectional": 0
+    },
+    "1984": {
+      "economy": 0.4,
+      "foreign_security": 0.25,
+      "race_civil_rights": 0.05,
+      "immigration": 0.02,
+      "culture_values": 0.12,
+      "governance": 0.08,
+      "candidate_persona": 0.08,
+      "sectional": 0
+    },
+    "1988": {
+      "economy": 0.3,
+      "foreign_security": 0.2,
+      "race_civil_rights": 0.1,
+      "immigration": 0.03,
+      "culture_values": 0.15,
+      "governance": 0.1,
+      "candidate_persona": 0.12,
+      "sectional": 0
+    },
+    "1992": {
+      "economy": 0.55,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.08,
+      "immigration": 0.03,
+      "culture_values": 0.1,
+      "governance": 0.12,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "1996": {
+      "economy": 0.35,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.15,
+      "candidate_persona": 0.15,
+      "sectional": 0
+    },
+    "2000": {
+      "economy": 0.25,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.2,
+      "candidate_persona": 0.15,
+      "sectional": 0,
+      "environment": 0.05
+    },
+    "2004": {
+      "economy": 0.25,
+      "foreign_security": 0.4,
+      "race_civil_rights": 0.03,
+      "immigration": 0.05,
+      "culture_values": 0.15,
+      "governance": 0.07,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "2008": {
+      "economy": 0.5,
+      "foreign_security": 0.2,
+      "race_civil_rights": 0.05,
+      "immigration": 0.05,
+      "culture_values": 0.08,
+      "governance": 0.07,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    },
+    "2012": {
+      "economy": 0.45,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.05,
+      "immigration": 0.08,
+      "culture_values": 0.12,
+      "governance": 0.1,
+      "candidate_persona": 0.1,
+      "sectional": 0
+    },
+    "2016": {
+      "economy": 0.3,
+      "foreign_security": 0.15,
+      "race_civil_rights": 0.08,
+      "immigration": 0.2,
+      "culture_values": 0.12,
+      "governance": 0.08,
+      "candidate_persona": 0.07,
+      "sectional": 0
+    },
+    "2020": {
+      "economy": 0.3,
+      "foreign_security": 0.05,
+      "race_civil_rights": 0.15,
+      "immigration": 0.05,
+      "culture_values": 0.1,
+      "governance": 0.15,
+      "candidate_persona": 0.1,
+      "sectional": 0,
+      "special_issue_COVID": 0.1
+    },
+    "2024": {
+      "economy": 0.35,
+      "foreign_security": 0.1,
+      "race_civil_rights": 0.05,
+      "immigration": 0.2,
+      "culture_values": 0.15,
+      "governance": 0.1,
+      "candidate_persona": 0.05,
+      "sectional": 0
+    }
+  },
+  "generatedAt": "2026-02-03T12:50:40.341Z"
+}

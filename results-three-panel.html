@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM Results — Your Political Profile</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pool: #d1f6ff;
+      --pool-deep: #89ccf0;
+      --flesh: #fa8072;
+      --cream: #FFFEF8;
+      --ink: #1a1a1a;
+      --dem-blue: #3333FF;
+      --rep-red: #E9141D;
+      --gold: #FFD700;
+      --dpp-green: #1B9431;
+      --kmt-blue: #0066B3;
+      --ccp-red: #DE2910;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--cream);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ===== SECTION 3: FOUNDING FATHERS ===== */
+    #founding-fathers-section {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: var(--cream);
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.3rem 0.8rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .founders-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 2rem 0;
+    }
+
+    .founder-card {
+      width: 160px;
+      background: #2a2a2a;
+      border: 2px solid #444;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .founder-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pool-deep);
+    }
+
+    .founder-card.best-match {
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      transform: scale(1.05);
+    }
+
+    .founder-card.best-match::before {
+      content: 'YOUR MATCH';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      white-space: nowrap;
+    }
+
+    .founder-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top;
+      background: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .founder-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .founder-title {
+      font-size: 0.65rem;
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .founder-match {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--pool-deep);
+    }
+
+    .founder-card.best-match .founder-match {
+      color: var(--gold);
+    }
+
+    .founder-quote {
+      max-width: 700px;
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #222;
+      border-left: 3px solid var(--gold);
+    }
+
+    .founder-quote-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .founder-quote-author {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ===== SECTION 2: PRESIDENTIAL VOTING HISTORY ===== */
+    #voting-history-section {
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--ink);
+      padding: 3rem 2rem;
+    }
+
+    .voting-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .voting-header .section-tag {
+      background: var(--flesh);
+    }
+
+    .elections-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1000px) {
+      .elections-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .elections-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .election-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid transparent;
+      padding: 0.3rem;
+      transition: all 0.2s ease;
+      position: relative;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center top;
+      overflow: hidden;
+    }
+
+    .election-cell .election-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .election-cell .election-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .election-cell:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+
+    .election-cell:hover .election-overlay {
+      opacity: 0.5 !important;
+    }
+
+    .election-cell.winner {
+      border-color: rgba(255, 215, 0, 0.4);
+    }
+
+    .election-year {
+      font-size: 0.6rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .election-candidate {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      line-height: 1.2;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .election-cell.winner::after {
+      content: '✓';
+      position: absolute;
+      bottom: 2px;
+      right: 4px;
+      font-size: 0.65rem;
+      color: rgba(255, 215, 0, 0.6);
+      font-weight: bold;
+      z-index: 3;
+      text-shadow: 0 0 3px rgba(0,0,0,0.8);
+    }
+
+    /* Abstention styling */
+    .election-cell.abstained {
+      opacity: 0.3;
+      filter: grayscale(0.8);
+      border-color: transparent;
+    }
+
+    .election-cell.abstained .election-overlay {
+      background: #555 !important;
+      opacity: 0.9 !important;
+    }
+
+    .election-cell.abstained .election-candidate {
+      font-size: 0.55rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .election-cell.abstained::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,0.04) 3px,
+        rgba(255,255,255,0.04) 6px
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .election-cell.abstained:hover {
+      opacity: 0.5;
+      filter: grayscale(0.5);
+    }
+
+    .voting-legend {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--ink);
+    }
+
+    .legend-color.winner-border {
+      border: 3px solid var(--gold);
+    }
+
+    .voting-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #f5f5f0;
+      border: 1px solid #ddd;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    /* ===== SECTION 4: GLOBAL MAP ===== */
+    #map-section {
+      height: 100vh;
+      position: relative;
+      background: var(--cream);
+    }
+
+    #controls {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: rgba(255, 254, 248, 0.98);
+      border-bottom: 2px solid var(--ink);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    #year-display {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--ink);
+      min-width: 70px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #slider-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    #year-slider {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--ink);
+      border-radius: 0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    #year-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--pool-deep);
+      border-radius: 0;
+      cursor: pointer;
+      border: 2px solid var(--ink);
+    }
+
+    .year-label {
+      font-size: 0.7rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      padding-top: 60px;
+    }
+
+    .country {
+      stroke: var(--ink);
+      stroke-width: 0.3px;
+      transition: all 0.2s ease;
+    }
+
+    .country.inactive {
+      fill: #e5e5e5 !important;
+      cursor: default;
+    }
+
+    .country.active {
+      cursor: pointer;
+    }
+
+    .country.active:hover {
+      stroke-width: 2px;
+      filter: brightness(1.1);
+    }
+
+    #legend {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      background: rgba(255, 254, 248, 0.98);
+      border: 2px solid var(--ink);
+      padding: 1rem;
+      z-index: 50;
+    }
+
+    #legend-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    #legend-gradient {
+      width: 150px;
+      height: 14px;
+      border: 1px solid var(--ink);
+    }
+
+    #legend-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      color: #666;
+      margin-top: 0.4rem;
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: fixed;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 1000;
+      min-width: 280px;
+      max-width: 360px;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .tooltip-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid #333;
+    }
+
+    .tooltip-image {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      background: #333;
+      flex-shrink: 0;
+    }
+
+    .tooltip-title {
+      flex: 1;
+    }
+
+    .tooltip-country {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tooltip-leader {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 0.25rem;
+    }
+
+    .tooltip-party-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+
+    .tooltip-alignment {
+      padding: 1rem;
+      background: #222;
+    }
+
+    .tooltip-election {
+      padding: 0.75rem 1rem;
+      background: #1a1a1a;
+      border-top: 1px solid #333;
+    }
+
+    .tooltip-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: #111;
+      font-size: 0.6rem;
+      color: #777;
+      border-top: 1px solid #333;
+    }
+
+    /* Country detail panel */
+    .country-detail-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      overflow-y: auto;
+    }
+    .country-detail-overlay.active {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .country-detail-panel {
+      background: var(--ink);
+      color: var(--cream);
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .country-detail-close {
+      position: sticky;
+      top: 0;
+      right: 0;
+      float: right;
+      background: #333;
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .country-detail-close:hover {
+      background: #555;
+    }
+    .country-detail-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid #333;
+    }
+    .country-detail-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .country-detail-header .detail-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    .country-detail-header .detail-stats span {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .country-detail-header .detail-stats .stat-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .detail-tabs {
+      display: flex;
+      border-bottom: 2px solid #333;
+    }
+    .detail-tab {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: inherit;
+    }
+    .detail-tab.active {
+      color: #fff;
+      border-bottom-color: #00D4FF;
+    }
+    .detail-content {
+      padding: 1.5rem 2rem;
+    }
+    .election-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+    .election-cell {
+      padding: 0.5rem 0.6rem;
+      background: #222;
+      font-size: 0.7rem;
+    }
+    .election-cell .ec-year {
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    .election-cell .ec-candidate {
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .election-cell .ec-party {
+      color: #aaa;
+      font-size: 0.65rem;
+    }
+    .election-cell .ec-result {
+      display: inline-block;
+      padding: 0.1rem 0.3rem;
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+    /* Won/Lost result badges removed — replaced with subtle ✓ for correct predictions */
+    .era-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .era-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.6rem;
+      background: #222;
+      font-size: 0.75rem;
+    }
+    .era-row .era-years {
+      font-weight: 700;
+      min-width: 100px;
+      font-size: 0.7rem;
+    }
+    .era-row .era-leader {
+      flex: 1;
+    }
+    .era-row .era-score {
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    /* Navigation */
+    .scroll-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-dot:hover, .nav-dot.active {
+      background: var(--ink);
+    }
+
+    /* Loading */
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--ink);
+      color: var(--cream);
+      padding: 2rem 3rem;
+      font-size: 1rem;
+      z-index: 2000;
+    }
+
+    /* ===== SECTION 1: ARCHETYPE ===== */
+    #archetype-section {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: var(--cream);
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== SECTION 5: PROFILE BREAKDOWN ===== */
+    #profile-section {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%);
+      color: var(--cream);
+      padding: 3rem 2rem;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .profile-header .section-tag {
+      background: var(--pool-deep);
+    }
+
+    .archetype-hero {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .archetype-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .archetype-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .archetype-tier {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--pool-deep);
+      margin-bottom: 1rem;
+    }
+
+    .archetype-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .archetype-examples {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      font-style: italic;
+    }
+
+    .confidence-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .confidence-bar-bg {
+      width: 200px;
+      height: 8px;
+      background: #444;
+      position: relative;
+    }
+
+    .confidence-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      transition: width 0.5s ease;
+    }
+
+    .confidence-percent {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* Alternative matches */
+    .alt-matches {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .alt-matches-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .alt-matches-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .alt-match-card {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      padding: 1rem 1.5rem;
+      min-width: 180px;
+      text-align: center;
+    }
+
+    .alt-match-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .alt-match-percent {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pool-deep);
+    }
+
+    /* L3 Profile Display */
+    .l3-profile {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .l3-cluster {
+      margin-bottom: 2rem;
+    }
+
+    .l3-cluster-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--pool-deep);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .l3-node {
+      display: grid;
+      grid-template-columns: 120px 1fr 50px;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .l3-node-name {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .l3-node-bar-container {
+      position: relative;
+    }
+
+    .l3-node-bar {
+      height: 12px;
+      background: #333;
+      position: relative;
+    }
+
+    .l3-node-bar-fill {
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .l3-node-bar-fill.low { background: var(--pool-deep); }
+    .l3-node-bar-fill.mid { background: #ede2ab; }
+    .l3-node-bar-fill.high { background: var(--flesh); }
+
+    .l3-node-bar-center {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: #666;
+    }
+
+    .l3-node-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .l3-node-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      margin-left: 136px;
+      margin-right: 66px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading your results...</div>
+
+  <!-- Navigation dots -->
+  <div class="scroll-nav">
+    <div class="nav-dot active" onclick="scrollToSection('archetype-section')"></div>
+    <div class="nav-dot" onclick="scrollToSection('voting-history-section')"></div>
+    <div class="nav-dot" onclick="scrollToSection('founding-fathers-section')"></div>
+    <div class="nav-dot" onclick="scrollToSection('map-section')"></div>
+    <div class="nav-dot" onclick="scrollToSection('profile-section')"></div>
+  </div>
+
+  <!-- SECTION 1: YOUR ARCHETYPE -->
+  <section id="archetype-section">
+    <div class="profile-header">
+      <span class="section-tag">Section I</span>
+      <h1 class="section-title">Your Political Archetype</h1>
+      <p class="section-subtitle">Your PRISM political identity</p>
+    </div>
+
+    <div class="archetype-hero" id="archetype-hero">
+      <!-- Populated by JavaScript -->
+    </div>
+
+    <div class="alt-matches" id="alt-matches">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- SECTION 2: VOTING HISTORY -->
+  <section id="voting-history-section">
+    <div class="voting-header">
+      <span class="section-tag">Section II</span>
+      <h1 class="section-title">Your Presidential Voting History</h1>
+      <p class="section-subtitle">Who you would have voted for in every election from 1789 to 2024</p>
+    </div>
+    <div class="elections-grid" id="elections-grid">
+      <!-- Populated by JavaScript -->
+    </div>
+    <div class="voting-legend">
+      <div class="legend-item"><div class="legend-color" style="background: var(--dem-blue)"></div> Democrat</div>
+      <div class="legend-item"><div class="legend-color" style="background: var(--rep-red)"></div> Republican</div>
+      <div class="legend-item"><div class="legend-color" style="background: #006400"></div> Dem-Republican</div>
+      <div class="legend-item"><div class="legend-color" style="background: #FF9900"></div> Whig</div>
+      <div class="legend-item"><div class="legend-color winner-border"></div> ✓ Correct</div>
+      <div class="legend-item"><div class="legend-color" style="background: #555; opacity: 0.3;"></div> Abstained</div>
+    </div>
+    <div class="voting-stats" id="voting-stats">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- SECTION 3: FOUNDING FATHERS -->
+  <section id="founding-fathers-section">
+    <div class="section-header">
+      <span class="section-tag">Section III</span>
+      <h1 class="section-title">Which Founding Father Are You?</h1>
+      <p class="section-subtitle">Based on your political profile, here's how you align with America's founders</p>
+    </div>
+    <div class="founders-grid" id="founders-grid">
+      <!-- Populated by JavaScript -->
+    </div>
+    <div class="founder-quote" id="founder-quote">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- SECTION 4: GLOBAL MAP -->
+  <section id="map-section">
+    <div id="controls">
+      <div id="title">Global Political Alignment</div>
+      <div id="year-display">2024</div>
+      <div id="slider-container">
+        <span class="year-label">1789</span>
+        <input type="range" id="year-slider" min="1789" max="2024" value="2024">
+        <span class="year-label">2024</span>
+      </div>
+    </div>
+    <svg id="map"></svg>
+    <div id="legend">
+      <div id="legend-title">Your Alignment</div>
+      <canvas id="legend-gradient" width="150" height="14"></canvas>
+      <div id="legend-labels">
+        <span>Opposed</span>
+        <span>Neutral</span>
+        <span>Aligned</span>
+      </div>
+    </div>
+    <div id="map-assumptions" style="max-width:700px;margin:1rem auto 0;padding:0.75rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:0.65rem;line-height:1.5;color:rgba(255,255,255,0.5);">
+      <strong style="color:rgba(255,255,255,0.7);">Modeling Assumptions:</strong>
+      For each country, the simulated person is assumed to be median-income, a member of the plurality/majority ethnic and religious group, and a native-born citizen of that country.
+      However, their political psychology (values, epistemics, moral foundations) is scored as if they were raised in the United States with equivalent American formative experiences.
+      This means the alignment reflects <em>dispositional compatibility</em> with each regime or government&mdash;not how a native citizen of that country would actually evaluate their own government given local socialization, media environment, or lived experience.
+      Cross-national comparisons should therefore be read as: "How would <em>your</em> psychology respond to <em>their</em> politics?"&mdash;not as a prediction of actual domestic approval.
+    </div>
+  </section>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <!-- Country detail panel (click-to-open from map) -->
+  <div class="country-detail-overlay" id="country-detail-overlay">
+    <div class="country-detail-panel" id="country-detail-panel">
+      <button class="country-detail-close" id="country-detail-close">X</button>
+      <div id="country-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: DETAILED BREAKDOWN -->
+  <section id="profile-section">
+    <div class="profile-header">
+      <span class="section-tag">Section V</span>
+      <h1 class="section-title">Your Dimensional Breakdown</h1>
+      <p class="section-subtitle">Your detailed PRISM profile scores across all dimensions</p>
+    </div>
+
+    <div class="l3-profile" id="l3-profile">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+<script>
+(async function() {
+  // ============================================
+  // LOAD USER PROFILE FROM LOCALSTORAGE
+  // ============================================
+  // Sample profile for demonstration (Jeffersonian Democrat profile)
+  const SAMPLE_PROFILE = {
+    l2: {
+      MAT: 35,  // Favors some redistribution
+      CD: 45,   // Moderately progressive
+      CU: 40,   // Pluralist-leaning
+      MOR: 45,  // Slightly universalist
+      EPS: 40,  // Empirical-leaning
+      PRO: 42,  // Rules-bound
+      CSO: 45,  // For compatibility
+      CNA: 40   // For compatibility
+    }
+  };
+
+  const storedResults = localStorage.getItem('prism_quiz_results');
+  let userProfile;
+
+  let usingSample = false;
+  if (!storedResults) {
+    // Use sample profile for demonstration
+    userProfile = SAMPLE_PROFILE;
+    usingSample = true;
+    console.log('Using sample profile for demonstration');
+  } else {
+    try {
+      userProfile = JSON.parse(storedResults);
+    } catch (e) {
+      userProfile = SAMPLE_PROFILE;
+      console.log('Error parsing results, using sample profile');
+    }
+  }
+
+  const userL2 = userProfile.l2;
+
+  // ============================================
+  // LOAD PRECOMPUTED ARCHETYPE DATA (if available)
+  // ============================================
+  let precomputed = null;
+  if (userProfile.archetype && userProfile.archetype.id) {
+    try {
+      const indexData = await fetch('precomputed/index.json').then(r => r.json());
+      const entry = indexData.find(e => e.id === userProfile.archetype.id);
+      if (entry) {
+        precomputed = await fetch('precomputed/' + entry.file).then(r => r.json());
+        console.log('Loaded precomputed data for:', precomputed.meta.archetypeName);
+      }
+    } catch (e) {
+      console.warn('Precomputed data not available, using live computation', e);
+    }
+  }
+
+  // ============================================
+  // LOAD DATA FILES
+  // ============================================
+  // Always need founders (images), winners (party colors), candidate photos
+  const [foundersData, winnersData, candidatePhotos] = await Promise.all([
+    fetch('data/founding_fathers.json').then(r => r.json()),
+    fetch('data/election_winners.json').then(r => r.json()),
+    fetch('data/candidate_photos.json').then(r => r.json()).catch(() => ({ candidates: {} }))
+  ]);
+
+  // Only load election data files if no precomputed data
+  const allElections = [];
+  if (!precomputed) {
+    const electionFiles = [
+      'data/exogenous_1789_1824.json',
+      'data/exogenous_1828_1852.json',
+      'data/exogenous_1856_1892.json',
+      'data/exogenous_1896_1928.json',
+      'data/exogenous_1932_1964.json',
+      'data/exogenous_1968_1992.json',
+      'data/exogenous_median_1996_2024.json'
+    ];
+
+    for (const file of electionFiles) {
+      try {
+        const data = await fetch(file).then(r => r.json());
+        allElections.push(...data.elections);
+      } catch (e) {
+        console.warn('Could not load', file, e);
+      }
+    }
+
+    // Sort elections by year
+    allElections.sort((a, b) => a.year - b.year);
+  }
+
+  // ============================================
+  // SECTION 3: FOUNDING FATHERS
+  // ============================================
+  function matchFounder(founderL2) {
+    const dims = ['MAT', 'CSO', 'CNA', 'MOR', 'EPS', 'PRO'];
+    const userValues = {
+      MAT: userL2.MAT || 50,
+      CSO: userL2.CD || userL2.CSO || 50,
+      CNA: userL2.CU || userL2.CNA || 50,
+      MOR: userL2.MOR || 50,
+      EPS: userL2.EPS || 50,
+      PRO: userL2.PRO || 50
+    };
+
+    let sumSquares = 0;
+    for (const d of dims) {
+      const userVal = userValues[d];
+      const founderVal = founderL2[d] || 50;
+      sumSquares += Math.pow((userVal - founderVal) / 100, 2);
+    }
+    return Math.max(0, (1 - Math.sqrt(sumSquares / dims.length))) * 100;
+  }
+
+  // Calculate match scores — use precomputed if available
+  let founderScores;
+  if (precomputed && precomputed.founders) {
+    // Merge precomputed scores with static data (images, years, title)
+    founderScores = foundersData.founders.map(f => {
+      const preScore = precomputed.founders.allScores.find(s => s.id === f.id);
+      return { ...f, matchScore: preScore ? preScore.matchScore : matchFounder(f.l2_profile) };
+    });
+  } else {
+    founderScores = foundersData.founders.map(f => ({
+      ...f,
+      matchScore: matchFounder(f.l2_profile)
+    }));
+  }
+
+  founderScores.sort((a, b) => b.matchScore - a.matchScore);
+  const bestFounder = founderScores[0];
+
+  // Render founders grid
+  const foundersGrid = document.getElementById('founders-grid');
+  // Display in original order but highlight best match
+  foundersData.founders.forEach(founder => {
+    const score = founderScores.find(f => f.id === founder.id).matchScore;
+    const isBest = founder.id === bestFounder.id;
+
+    const card = document.createElement('div');
+    card.className = 'founder-card' + (isBest ? ' best-match' : '');
+    card.innerHTML = `
+      <img class="founder-image" src="${founder.image}" alt="${founder.name}" onerror="this.style.background='#444'">
+      <div class="founder-name">${founder.name}</div>
+      <div class="founder-title">${founder.years}</div>
+      <div class="founder-match">${Math.round(score)}%</div>
+    `;
+    foundersGrid.appendChild(card);
+  });
+
+  // Show quote from best match
+  const quoteDiv = document.getElementById('founder-quote');
+  quoteDiv.innerHTML = `
+    <div class="founder-quote-text">"${bestFounder.quote}"</div>
+    <div class="founder-quote-author">— ${bestFounder.name}</div>
+  `;
+
+  // ============================================
+  // SECTION 2: PRESIDENTIAL VOTING HISTORY
+  // ============================================
+
+  // Turnout-calibrated abstention thresholds (per-election)
+  let turnoutThresholds = null;
+  try {
+    const ttResp = await fetch('precomputed/turnout_thresholds.json');
+    if (ttResp.ok) turnoutThresholds = await ttResp.json();
+  } catch(e) { /* will use embedded fallback */ }
+  if (!turnoutThresholds) {
+    turnoutThresholds = { thresholds: {}, turnoutRates: {} };
+  }
+
+  // ISSUE_AGD-derived per-election L2 dimension weights
+  let issueAgdWeights = {};
+  try {
+    const agdResp = await fetch('precomputed/issue_agenda_weights.json');
+    if (agdResp.ok) {
+      const agdData = await agdResp.json();
+      issueAgdWeights = agdData.weights || {};
+    }
+  } catch(e) { /* no issue agenda weighting */ }
+
+  // Issue salience + viability constants (must match generate_all_archetype_data.js)
+  const SUPPORT_SIGMA = 35;
+  const L4_ATTENTION_FLOOR = 0.25;
+  const VIABILITY_THRESHOLD = 20;
+  const VIABILITY_PENALTY_STRENGTH = 1.2;
+
+  // Candidate viability data from election YAMLs
+  let candidateViability = {};
+  try {
+    const isResp = await fetch('precomputed/issue_salience_weights.json');
+    if (isResp.ok) {
+      const isData = await isResp.json();
+      candidateViability = isData.candidateViability || {};
+    }
+  } catch(e) { /* no viability data */ }
+
+  function getViabilityFactor(candidateName, candidateParty, electionYear) {
+    const yearData = candidateViability[electionYear];
+    if (!yearData) return 1.0;
+    const lastName = candidateName.split(' ').pop().toLowerCase();
+    const firstName = candidateName.split(' ')[0].toLowerCase();
+    let match = yearData.find(c => c.name === candidateName);
+    if (!match) match = yearData.find(c => {
+      const ln = c.name.split(' ').pop().toLowerCase();
+      const fn = c.name.split(' ')[0].toLowerCase();
+      return ln === lastName && fn[0] === firstName[0];
+    });
+    if (!match) match = yearData.find(c => c.party === candidateParty);
+    if (!match) return 1.0;
+    const pct = match.popular_vote_pct;
+    if (pct >= VIABILITY_THRESHOLD) return 1.0;
+    const penalty = Math.max(0, (VIABILITY_THRESHOLD - pct) / VIABILITY_THRESHOLD) * VIABILITY_PENALTY_STRENGTH;
+    return 1 / (1 + penalty);
+  }
+
+  // Gaussian support score with ISSUE_AGD salience weighting + attention floor
+  // (matches precomputed pipeline in generate_all_archetype_data.js)
+  function computeLiveSupport(candidates, electionYear) {
+    const dims = ['MAT', 'CSO', 'CNA', 'MOR', 'EPS', 'PRO'];
+    const userValues = {
+      MAT: userL2.MAT || 50,
+      CSO: userL2.CD || userL2.CSO || 50,
+      CNA: userL2.CU || userL2.CNA || 50,
+      MOR: userL2.MOR || 50,
+      EPS: userL2.EPS || 50,
+      PRO: userL2.PRO || 50
+    };
+    const l4Weights = issueAgdWeights[electionYear] || null;
+
+    return candidates.map(c => {
+      let weightedDist = 0;
+      let totalWeight = 0;
+      for (const d of dims) {
+        const userVal = userValues[d];
+        const candVal = c.l2_profile[d] || 50;
+        const l4Mult = (l4Weights && l4Weights[d]) || 1.0;
+        // Match generator: (archWeight + floor) * l4Mult
+        // In live mode, archetype salience isn't available, so use floor as base
+        const weight = (0.5 + L4_ATTENTION_FLOOR) * l4Mult;
+        weightedDist += weight * Math.pow(userVal - candVal, 2);
+        totalWeight += weight;
+      }
+      const distance = totalWeight > 0 ? Math.sqrt(weightedDist / totalWeight) : 100;
+      const support = 100 * Math.exp(-Math.pow(distance / SUPPORT_SIGMA, 2));
+      return { candidate: c, support, distance };
+    }).sort((a, b) => b.support - a.support);
+  }
+
+  function predictVote(candidates, electionYear) {
+    const scores = computeLiveSupport(candidates, electionYear);
+    if (scores.length === 0) return { candidate: null, abstained: true };
+
+    // Abstention: use RAW top score (viability doesn't affect turnout)
+    const rawTopScore = scores[0];
+    const threshold = turnoutThresholds.thresholds[electionYear] || 0;
+    const abstained = rawTopScore.support < threshold;
+
+    if (abstained) {
+      return { candidate: null, abstained: true, support: rawTopScore.support, threshold };
+    }
+
+    // Candidate selection: apply viability penalty (Duverger's law)
+    const adjusted = scores.map(s => ({
+      ...s,
+      adjustedSupport: s.support * getViabilityFactor(s.candidate.name, s.candidate.party, electionYear)
+    }));
+    adjusted.sort((a, b) => b.adjustedSupport - a.adjustedSupport);
+
+    return {
+      candidate: adjusted[0].candidate,
+      abstained: false,
+      support: rawTopScore.support,
+      threshold
+    };
+  }
+
+  const partyColors = winnersData.partyColors;
+  const electionsGrid = document.getElementById('elections-grid');
+  let correctPredictions = 0;
+  let demVotes = 0;
+  let repVotes = 0;
+
+  // Use precomputed election predictions if available
+  const electionPredictions = precomputed && precomputed.elections
+    ? precomputed.elections.predictions
+    : null;
+
+  if (electionPredictions) {
+    // === PRECOMPUTED PATH ===
+    correctPredictions = precomputed.elections.stats.winnersPickedCount;
+    demVotes = precomputed.elections.stats.demLeanCount;
+    repVotes = precomputed.elections.stats.repLeanCount;
+
+    let abstentionCount = 0;
+    electionPredictions.forEach(pred => {
+      const cell = document.createElement('div');
+
+      if (pred.abstained) {
+        // Abstained cell: muted/grayed
+        abstentionCount++;
+        cell.className = 'election-cell abstained';
+        cell.title = `${pred.year}: Abstained (below motivation threshold)`;
+        const turnoutNote = pred.turnoutRate ? ` | National turnout: ${pred.turnoutRate}%` : '';
+        cell.title += turnoutNote;
+
+        cell.innerHTML = `
+          <div class="election-overlay" style="background: #444; opacity: 0.9;"></div>
+          <div class="election-content">
+            <div class="election-year">${pred.year}</div>
+            <div class="election-candidate">—</div>
+          </div>
+        `;
+      } else {
+        // Voted cell
+        const bgColor = partyColors[pred.party] || '#666';
+        const photoUrl = candidatePhotos.candidates[pred.voted];
+
+        cell.className = 'election-cell' + (pred.won ? ' winner' : '');
+        cell.title = `${pred.year}: ${pred.voted} (${pred.party})`;
+
+        const nameParts = pred.voted.split(' ');
+        const shortName = nameParts.length > 1
+          ? nameParts[0][0] + '. ' + nameParts[nameParts.length - 1]
+          : pred.voted;
+
+        if (photoUrl) {
+          cell.style.backgroundImage = `url(${photoUrl})`;
+        }
+
+        cell.innerHTML = `
+          <div class="election-overlay" style="background: ${bgColor}; opacity: 0.75;"></div>
+          <div class="election-content">
+            <div class="election-year">${pred.year}</div>
+            <div class="election-candidate">${shortName}</div>
+          </div>
+        `;
+      }
+
+      electionsGrid.appendChild(cell);
+    });
+  } else {
+    // === LIVE COMPUTATION PATH (fallback) ===
+    let liveAbstentionCount = 0;
+    allElections.forEach(election => {
+      const result = predictVote(election.candidates, election.year);
+      const cell = document.createElement('div');
+
+      if (result.abstained) {
+        // Abstained
+        liveAbstentionCount++;
+        cell.className = 'election-cell abstained';
+        const turnoutRate = turnoutThresholds.turnoutRates[election.year];
+        cell.title = `${election.year}: Abstained` + (turnoutRate ? ` (national turnout: ${turnoutRate}%)` : '');
+
+        cell.innerHTML = `
+          <div class="election-overlay" style="background: #444; opacity: 0.9;"></div>
+          <div class="election-content">
+            <div class="election-year">${election.year}</div>
+            <div class="election-candidate">—</div>
+          </div>
+        `;
+      } else {
+        const predicted = result.candidate;
+        const winner = winnersData.winners[election.year.toString()];
+        const isWinner = winner && predicted.name === winner.name;
+        if (isWinner) correctPredictions++;
+
+        const party = predicted.party;
+        if (party === 'Democratic' || party === 'Democratic-Republican') demVotes++;
+        else if (party === 'Republican' || party === 'Whig' || party === 'Federalist') repVotes++;
+
+        let bgColor = partyColors[party] || '#666';
+        const photoUrl = candidatePhotos.candidates[predicted.name];
+
+        cell.className = 'election-cell' + (isWinner ? ' winner' : '');
+        cell.title = `${election.year}: ${predicted.name} (${party})`;
+
+        const nameParts = predicted.name.split(' ');
+        const shortName = nameParts.length > 1
+          ? nameParts[0][0] + '. ' + nameParts[nameParts.length - 1]
+          : predicted.name;
+
+        if (photoUrl) {
+          cell.style.backgroundImage = `url(${photoUrl})`;
+        }
+
+        cell.innerHTML = `
+          <div class="election-overlay" style="background: ${bgColor}; opacity: 0.75;"></div>
+          <div class="election-content">
+            <div class="election-year">${election.year}</div>
+            <div class="election-candidate">${shortName}</div>
+          </div>
+        `;
+      }
+
+      electionsGrid.appendChild(cell);
+    });
+  }
+
+  // Voting stats
+  const statsDiv = document.getElementById('voting-stats');
+  const totalElections = electionPredictions ? electionPredictions.length : allElections.length;
+  const totalAbstentions = electionPredictions
+    ? electionPredictions.filter(p => p.abstained).length
+    : (typeof liveAbstentionCount !== 'undefined' ? liveAbstentionCount : 0);
+  const votedElections = totalElections - totalAbstentions;
+  const accuracy = votedElections > 0 ? Math.round((correctPredictions / votedElections) * 100) : 0;
+  statsDiv.innerHTML = `
+    <div class="stat-item">
+      <div class="stat-value">${votedElections}/${totalElections}</div>
+      <div class="stat-label">Elections Voted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">${accuracy}%</div>
+      <div class="stat-label">Accuracy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" style="color: var(--dem-blue)">${demVotes}</div>
+      <div class="stat-label">Dem-Leaning</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" style="color: var(--rep-red)">${repVotes}</div>
+      <div class="stat-label">Rep-Leaning</div>
+    </div>
+  `;
+
+  // ============================================
+  // SECTION 4: GLOBAL MAP (from alignment-map-focused.html)
+  // ============================================
+  const COLORS = {
+    aligned: '#00D4FF',
+    neutral: '#FFE135',
+    opposed: '#FF6B6B',
+    inactive: '#e5e5e5'
+  };
+
+  // Draw legend gradient
+  const legendCanvas = document.getElementById('legend-gradient');
+  const ctx = legendCanvas.getContext('2d');
+  const gradient = ctx.createLinearGradient(0, 0, 150, 0);
+  gradient.addColorStop(0, COLORS.opposed);
+  gradient.addColorStop(0.5, COLORS.neutral);
+  gradient.addColorStop(1, COLORS.aligned);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 150, 14);
+
+  // Convert user L2 to map profile scale (-1 to 1) — fallback for live computation
+  const mapUserProfile = {
+    economic: (userL2.MAT - 50) / 50 * -1,
+    democracy: (userL2.PRO - 50) / 50 * -1,
+    social: ((userL2.CD || userL2.CSO || 50) - 50) / 50 * -1,
+    nationalism: ((userL2.CU || userL2.CNA || 50) - 50) / 50
+  };
+
+  // Country flags lookup
+  const COUNTRY_FLAGS = {
+    'United States': '\u{1F1FA}\u{1F1F8}', 'United Kingdom': '\u{1F1EC}\u{1F1E7}',
+    'France': '\u{1F1EB}\u{1F1F7}', 'Germany': '\u{1F1E9}\u{1F1EA}',
+    'Russia': '\u{1F1F7}\u{1F1FA}', 'Italy': '\u{1F1EE}\u{1F1F9}',
+    'Spain': '\u{1F1EA}\u{1F1F8}', 'China': '\u{1F1E8}\u{1F1F3}',
+    'Taiwan': '\u{1F1F9}\u{1F1FC}', 'Japan': '\u{1F1EF}\u{1F1F5}',
+    'Canada': '\u{1F1E8}\u{1F1E6}', 'Mexico': '\u{1F1F2}\u{1F1FD}',
+    'Brazil': '\u{1F1E7}\u{1F1F7}', 'India': '\u{1F1EE}\u{1F1F3}',
+    'South Korea': '\u{1F1F0}\u{1F1F7}', 'Israel': '\u{1F1EE}\u{1F1F1}',
+    'Iran': '\u{1F1EE}\u{1F1F7}', 'Turkey': '\u{1F1F9}\u{1F1F7}',
+    'Australia': '\u{1F1E6}\u{1F1FA}', 'South Africa': '\u{1F1FF}\u{1F1E6}'
+  };
+
+  // Base regime data with images (US, China, Taiwan)
+  const regimeData = {
+    'United States': {
+      flag: '🇺🇸',
+      eras: [
+        { start: 1789, end: 1829, leader: 'Founders Era', party: 'Federalist/D-R', partyColor: '#006400', profile: { economic: -0.3, democracy: 0.5, social: -0.3, nationalism: 0.2 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/220px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg' },
+        { start: 1829, end: 1861, leader: 'Jacksonian Era', party: 'Democratic', partyColor: '#3333FF', profile: { economic: -0.4, democracy: 0.6, social: -0.5, nationalism: 0.4 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Andrew_jackson_head.jpg/220px-Andrew_jackson_head.jpg' },
+        { start: 1861, end: 1865, leader: 'Abraham Lincoln', party: 'Republican', partyColor: '#E9141D', profile: { economic: 0.1, democracy: 0.7, social: 0.3, nationalism: 0.3 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/220px-Abraham_Lincoln_O-77_matte_collodion_print.jpg' },
+        { start: 1865, end: 1901, leader: 'Gilded Age', party: 'Republican', partyColor: '#E9141D', profile: { economic: -0.6, democracy: 0.4, social: -0.2, nationalism: 0.3 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Ulysses_S_Grant_by_Brady_c1870-restored.jpg/220px-Ulysses_S_Grant_by_Brady_c1870-restored.jpg' },
+        { start: 1901, end: 1933, leader: 'Progressive/Republican Era', party: 'Republican', partyColor: '#E9141D', profile: { economic: -0.3, democracy: 0.5, social: -0.1, nationalism: 0.4 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/President_Roosevelt_-_Pach_Bros.jpg/220px-President_Roosevelt_-_Pach_Bros.jpg' },
+        { start: 1933, end: 1969, leader: 'New Deal Era', party: 'Democratic', partyColor: '#3333FF', profile: { economic: 0.4, democracy: 0.7, social: 0.2, nationalism: 0.0 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/FDR_1944_Color_Portrait.jpg/220px-FDR_1944_Color_Portrait.jpg' },
+        { start: 1969, end: 1993, leader: 'Conservative Era', party: 'Republican', partyColor: '#E9141D', profile: { economic: -0.4, democracy: 0.6, social: -0.2, nationalism: 0.4 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Portrait_of_President_Reagan_1981.jpg/220px-Official_Portrait_of_President_Reagan_1981.jpg' },
+        { start: 1993, end: 2017, leader: 'Modern Era', party: 'Mixed', partyColor: '#800080', profile: { economic: 0.1, democracy: 0.8, social: 0.3, nationalism: -0.1 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg' },
+        { start: 2017, end: 2021, leader: 'Donald Trump', party: 'Republican', partyColor: '#E9141D', profile: { economic: -0.4, democracy: 0.2, social: -0.4, nationalism: 0.8 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/220px-Donald_Trump_official_portrait.jpg' },
+        { start: 2021, end: 2025, leader: 'Joe Biden', party: 'Democratic', partyColor: '#3333FF', profile: { economic: 0.3, democracy: 0.8, social: 0.5, nationalism: -0.2 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/220px-Joe_Biden_presidential_portrait.jpg' },
+        { start: 2025, end: 2029, leader: 'Donald Trump', party: 'Republican', partyColor: '#E9141D', profile: { economic: -0.4, democracy: 0.1, social: -0.5, nationalism: 0.9 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/220px-Donald_Trump_official_portrait.jpg' }
+      ]
+    },
+    'China': {
+      flag: '🇨🇳',
+      eras: [
+        { start: 1789, end: 1912, leader: 'Qing Dynasty', party: 'Imperial', partyColor: '#FFD700', profile: { economic: -0.2, democracy: -0.8, social: -0.6, nationalism: 0.4 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Portrait_of_the_Qianlong_Emperor_in_Court_Dress.jpg/220px-Portrait_of_the_Qianlong_Emperor_in_Court_Dress.jpg' },
+        { start: 1912, end: 1949, leader: 'Republic Era', party: 'Kuomintang', partyColor: '#0055A4', profile: { economic: -0.1, democracy: 0.1, social: -0.1, nationalism: 0.7 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Chiang_Kai-shek%EF%BC%88%E8%94%A3%E4%B8%AD%E6%AD%A3%EF%BC%89.jpg/220px-Chiang_Kai-shek%EF%BC%88%E8%94%A3%E4%B8%AD%E6%AD%A3%EF%BC%89.jpg' },
+        { start: 1949, end: 1976, leader: 'Mao Zedong', party: 'CCP', partyColor: '#DE2910', profile: { economic: 0.9, democracy: -0.9, social: -0.3, nationalism: 0.7 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Mao_Zedong_portrait.jpg/220px-Mao_Zedong_portrait.jpg' },
+        { start: 1976, end: 2012, leader: 'Reform Era', party: 'CCP', partyColor: '#DE2910', profile: { economic: -0.3, democracy: -0.7, social: -0.2, nationalism: 0.5 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Deng_Xiaoping_and_Jimmy_Carter_at_the_arrival_ceremony_for_the_Vice_Premier_of_China._-_NARA_-_183157-restored%28cropped%29.jpg/220px-Deng_Xiaoping_and_Jimmy_Carter_at_the_arrival_ceremony_for_the_Vice_Premier_of_China._-_NARA_-_183157-restored%28cropped%29.jpg' },
+        { start: 2012, end: 2030, leader: 'Xi Jinping', party: 'CCP', partyColor: '#DE2910', profile: { economic: 0.1, democracy: -0.8, social: -0.4, nationalism: 0.8 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Xi_Jinping_2019.jpg/220px-Xi_Jinping_2019.jpg' }
+      ]
+    },
+    'Taiwan': {
+      flag: '🇹🇼',
+      eras: [
+        { start: 1945, end: 1988, leader: 'Authoritarian KMT', party: 'KMT', partyColor: '#0066B3', profile: { economic: -0.2, democracy: -0.1, social: -0.1, nationalism: 0.6 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Chiang_Kai-shek%EF%BC%88%E8%94%A3%E4%B8%AD%E6%AD%A3%EF%BC%89.jpg/220px-Chiang_Kai-shek%EF%BC%88%E8%94%A3%E4%B8%AD%E6%AD%A3%EF%BC%89.jpg' },
+        { start: 1988, end: 2000, leader: 'Lee Teng-hui', party: 'KMT', partyColor: '#0066B3', profile: { economic: -0.2, democracy: 0.7, social: 0.2, nationalism: 0.6 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/%E7%B8%BD%E7%B5%B1%E6%9D%8E%E7%99%BB%E8%BC%9D%E5%85%88%E7%94%9F%E7%8E%89%E7%85%A7_%28cropped%29.jpg/220px-%E7%B8%BD%E7%B5%B1%E6%9D%8E%E7%99%BB%E8%BC%9D%E5%85%88%E7%94%9F%E7%8E%89%E7%85%A7_%28cropped%29.jpg' },
+        { start: 2000, end: 2008, leader: 'Chen Shui-bian', party: 'DPP', partyColor: '#1B9431', profile: { economic: 0.1, democracy: 0.85, social: 0.4, nationalism: 0.5 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/%E9%99%B3%E6%B0%B4%E6%89%81%E7%B8%BD%E7%B5%B1%E7%85%A7.png/220px-%E9%99%B3%E6%B0%B4%E6%89%81%E7%B8%BD%E7%B5%B1%E7%85%A7.png' },
+        { start: 2008, end: 2016, leader: 'Ma Ying-jeou', party: 'KMT', partyColor: '#0066B3', profile: { economic: -0.2, democracy: 0.85, social: 0.2, nationalism: 0.3 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/%E9%A6%AC%E8%8B%B1%E4%B9%9D%E7%B8%BD%E7%B5%B1%E5%AE%98%E6%96%B9%E8%82%96%E5%83%8F%E7%85%A7.jpg/220px-%E9%A6%AC%E8%8B%B1%E4%B9%9D%E7%B8%BD%E7%B5%B1%E5%AE%98%E6%96%B9%E8%82%96%E5%83%8F%E7%85%A7.jpg' },
+        { start: 2016, end: 2024, leader: 'Tsai Ing-wen', party: 'DPP', partyColor: '#1B9431', profile: { economic: 0.1, democracy: 0.9, social: 0.5, nationalism: 0.5 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/%E8%94%A1%E8%8B%B1%E6%96%87%E5%AE%98%E6%96%B9%E5%85%83%E9%A6%96%E8%82%96%E5%83%8F%E7%85%A7.png/220px-%E8%94%A1%E8%8B%B1%E6%96%87%E5%AE%98%E6%96%B9%E5%85%83%E9%A6%96%E8%82%96%E5%83%8F%E7%85%A7.png' },
+        { start: 2024, end: 2028, leader: 'Lai Ching-te', party: 'DPP', partyColor: '#1B9431', profile: { economic: 0.1, democracy: 0.9, social: 0.5, nationalism: 0.6 }, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/%E8%B3%B4%E6%B8%85%E5%BE%B7%E5%89%AF%E7%B8%BD%E7%B5%B1%E5%AE%98%E6%96%B9%E8%82%96%E5%83%8F%E7%85%A7.jpg/220px-%E8%B3%B4%E6%B8%85%E5%BE%B7%E5%89%AF%E7%B8%BD%E7%B5%B1%E5%AE%98%E6%96%B9%E8%82%96%E5%83%8F%E7%85%A7.jpg' }
+      ]
+    }
+  };
+
+  // Aliases
+  regimeData['USA'] = regimeData['United States'];
+  regimeData["People's Republic of China"] = regimeData['China'];
+
+  // Expand regime data with precomputed alignment for all 20 countries
+  // Use full timeline (regime + election entries) for richer per-election granularity
+  const countryTimelines = {};  // Store full timeline per country for detail view
+  if (precomputed && precomputed.alignment) {
+    for (const [country, data] of Object.entries(precomputed.alignment)) {
+      // Store full timeline for detail panel
+      if (data.timeline && data.timeline.length > 0) {
+        countryTimelines[country] = data.timeline;
+      }
+
+      // Build regime eras from timeline regime entries, or fall back to .eras
+      const regimeEntries = data.timeline
+        ? data.timeline.filter(e => e.type === 'regime')
+        : data.eras || [];
+      // Build election entries from timeline
+      const electionEntries = data.timeline
+        ? data.timeline.filter(e => e.type === 'election')
+        : [];
+
+      if (!regimeData[country]) {
+        // New country — add from precomputed (no images)
+        regimeData[country] = {
+          flag: COUNTRY_FLAGS[country] || '',
+          eras: regimeEntries.map(era => ({
+            start: era.start,
+            end: era.end,
+            leader: era.leader || era.label,
+            party: era.party || '',
+            partyColor: era.partyColor || '#888',
+            precomputedAlignment: era.alignment
+          })),
+          elections: electionEntries
+        };
+      } else {
+        // Existing country (US/China/Taiwan) — merge precomputed alignment into existing eras
+        const existingEras = regimeData[country].eras;
+        for (const preEra of regimeEntries) {
+          const match = existingEras.find(e => e.start === preEra.start && e.end === preEra.end);
+          if (match) {
+            match.precomputedAlignment = preEra.alignment;
+          } else if (!existingEras.find(e => e.start === preEra.start)) {
+            // Add missing era
+            existingEras.push({
+              start: preEra.start,
+              end: preEra.end,
+              leader: preEra.leader || preEra.label,
+              party: preEra.party || '',
+              partyColor: preEra.partyColor || '#888',
+              precomputedAlignment: preEra.alignment
+            });
+          }
+        }
+        existingEras.sort((a, b) => a.start - b.start);
+        regimeData[country].elections = electionEntries;
+      }
+    }
+    // Refresh aliases
+    regimeData['USA'] = regimeData['United States'];
+    regimeData["People's Republic of China"] = regimeData['China'];
+  }
+
+  // Extract global election data per country from precomputed
+  const countryElections = {};
+  const countryElectionStats = {};
+  if (precomputed && precomputed.alignment) {
+    for (const [country, data] of Object.entries(precomputed.alignment)) {
+      // electionPredictions contains the per-country vote-pick data (Sheet 4)
+      // Fallback to elections for backward compat
+      const elecData = data.electionPredictions || data.elections;
+      if (elecData && elecData.length > 0) {
+        countryElections[country] = elecData;
+      }
+      if (data.electionStats) {
+        countryElectionStats[country] = data.electionStats;
+      }
+    }
+  }
+
+  // Helper: find the most recent election at or before a given year for a country
+  function getElectionForYear(countryName, year) {
+    const elections = countryElections[countryName];
+    if (!elections || elections.length === 0) return null;
+    // Exact match first
+    const exact = elections.find(e => e.year === year);
+    if (exact) return exact;
+    // Find the most recent election before this year (within 5 years)
+    let best = null;
+    for (const e of elections) {
+      if (e.year <= year && year - e.year <= 5) {
+        if (!best || e.year > best.year) best = e;
+      }
+    }
+    return best;
+  }
+
+  // Helper: get all elections for a country within an era
+  function getElectionsInEra(countryName, startYear, endYear) {
+    const elections = countryElections[countryName];
+    if (!elections) return [];
+    return elections.filter(e => e.year >= startYear && e.year < endYear);
+  }
+
+  const alignmentScale = d3.scaleLinear()
+    .domain([-1, 0, 1])
+    .range([COLORS.opposed, COLORS.neutral, COLORS.aligned])
+    .interpolate(d3.interpolateRgb);
+
+  // Alignment calculation — dot-product formula (matches pipeline)
+  // Uses precomputed value when available; this is the live fallback
+  function calculateAlignment(userProf, regimeProf) {
+    if (!userProf || !regimeProf) return 0;
+    const BASE_WEIGHTS = { economic: 0.3, democracy: 0.3, social: 0.25, nationalism: 0.15 };
+    let alignment = 0;
+    let totalWeight = 0;
+    for (const dim of Object.keys(BASE_WEIGHTS)) {
+      if (userProf[dim] !== undefined && regimeProf[dim] !== undefined) {
+        const weight = BASE_WEIGHTS[dim];
+        // Dot product: same-sign = aligned, opposite-sign = opposed
+        const dotProduct = userProf[dim] * regimeProf[dim];
+        alignment += dotProduct * weight;
+        totalWeight += weight;
+      }
+    }
+    if (totalWeight === 0) return 0;
+    // Amplify to fill [-1, +1] range (raw products of moderate profiles are small)
+    return Math.max(-1, Math.min(1, (alignment / totalWeight) * 5));
+  }
+
+  function getAlignmentForEra(era) {
+    // Prefer precomputed alignment, fall back to live calculation
+    if (era.precomputedAlignment !== undefined) {
+      // Precomputed alignment is on [-3, 3] scale, normalize to [-1, 1] for color scale
+      return Math.max(-1, Math.min(1, era.precomputedAlignment / 3));
+    }
+    if (era.profile) {
+      return calculateAlignment(mapUserProfile, era.profile);
+    }
+    return 0;
+  }
+
+  function getRawAlignmentForEra(era) {
+    // Return the raw alignment score (for tooltip display)
+    if (era.precomputedAlignment !== undefined) {
+      return era.precomputedAlignment;
+    }
+    if (era.profile) {
+      return calculateAlignment(mapUserProfile, era.profile) * 3;
+    }
+    return 0;
+  }
+
+  function getRegimeForYear(countryName, year) {
+    const country = regimeData[countryName];
+    if (!country) return null;
+
+    // Check for a per-election timeline entry first (more granular)
+    if (country.elections && country.elections.length > 0) {
+      // Find election at this exact year or the most recent election before it
+      let bestElection = null;
+      for (const elec of country.elections) {
+        const ey = elec.year || elec.start;
+        if (ey === year) { bestElection = elec; break; }
+        if (ey <= year && ey > year - 6) {
+          if (!bestElection || ey > (bestElection.year || bestElection.start)) {
+            bestElection = elec;
+          }
+        }
+      }
+      if (bestElection) {
+        return {
+          start: bestElection.year || bestElection.start,
+          end: bestElection.year ? bestElection.year + 4 : bestElection.end,
+          leader: bestElection.winner || bestElection.label || 'Unknown',
+          party: bestElection.party || '',
+          partyColor: bestElection.partyColor || '#888',
+          precomputedAlignment: bestElection.alignment,
+          flag: country.flag,
+          isElection: true,
+          support: bestElection.support,
+          distance: bestElection.distance
+        };
+      }
+    }
+
+    // Fall back to regime eras
+    if (!country.eras || country.eras.length === 0) return null;
+    for (const era of country.eras) {
+      if (year >= era.start && year < era.end) {
+        return { ...era, flag: country.flag };
+      }
+    }
+    // If year is at or past the last era's end, extend the last era to cover it
+    const lastEra = country.eras[country.eras.length - 1];
+    if (year >= lastEra.start) {
+      return { ...lastEra, flag: country.flag };
+    }
+    return null;
+  }
+
+  function getCountryNameFromId(id) {
+    const countryIdMap = {
+      4: 'Afghanistan', 8: 'Albania', 12: 'Algeria', 24: 'Angola', 32: 'Argentina',
+      36: 'Australia', 40: 'Austria', 50: 'Bangladesh', 56: 'Belgium', 68: 'Bolivia',
+      76: 'Brazil', 100: 'Bulgaria', 104: 'Myanmar', 116: 'Cambodia', 120: 'Cameroon',
+      124: 'Canada', 144: 'Sri Lanka', 152: 'Chile', 156: 'China', 170: 'Colombia',
+      180: 'DR Congo', 188: 'Costa Rica', 191: 'Croatia', 192: 'Cuba', 196: 'Cyprus',
+      203: 'Czechia', 208: 'Denmark', 214: 'Dominican Republic', 218: 'Ecuador',
+      818: 'Egypt', 222: 'El Salvador', 231: 'Ethiopia', 246: 'Finland', 250: 'France',
+      276: 'Germany', 288: 'Ghana', 300: 'Greece', 320: 'Guatemala', 332: 'Haiti',
+      340: 'Honduras', 348: 'Hungary', 352: 'Iceland', 356: 'India', 360: 'Indonesia',
+      364: 'Iran', 368: 'Iraq', 372: 'Ireland', 376: 'Israel', 380: 'Italy',
+      384: 'Ivory Coast', 388: 'Jamaica', 392: 'Japan', 400: 'Jordan', 398: 'Kazakhstan',
+      404: 'Kenya', 408: 'North Korea', 410: 'South Korea', 414: 'Kuwait', 422: 'Lebanon',
+      434: 'Libya', 440: 'Lithuania', 458: 'Malaysia', 484: 'Mexico', 504: 'Morocco',
+      508: 'Mozambique', 528: 'Netherlands', 554: 'New Zealand', 558: 'Nicaragua',
+      566: 'Nigeria', 578: 'Norway', 586: 'Pakistan', 591: 'Panama', 598: 'Papua New Guinea',
+      600: 'Paraguay', 604: 'Peru', 608: 'Philippines', 616: 'Poland', 620: 'Portugal',
+      630: 'Puerto Rico', 634: 'Qatar', 642: 'Romania', 643: 'Russia', 682: 'Saudi Arabia',
+      688: 'Serbia', 702: 'Singapore', 703: 'Slovakia', 704: 'Vietnam', 705: 'Slovenia',
+      706: 'Somalia', 710: 'South Africa', 724: 'Spain', 729: 'Sudan', 752: 'Sweden',
+      756: 'Switzerland', 760: 'Syria', 764: 'Thailand', 792: 'Turkey', 804: 'Ukraine',
+      784: 'United Arab Emirates', 826: 'United Kingdom', 840: 'United States',
+      858: 'Uruguay', 860: 'Uzbekistan', 862: 'Venezuela', 887: 'Yemen', 894: 'Zambia',
+      716: 'Zimbabwe', 158: 'Taiwan'
+    };
+    return countryIdMap[id] || `Country ${id}`;
+  }
+
+  function matchCountryName(geoName) {
+    if (!geoName) return null;
+    const normalized = geoName.toLowerCase().trim();
+
+    // Direct match against regimeData keys
+    for (const key of Object.keys(regimeData)) {
+      if (normalized === key.toLowerCase()) return key;
+    }
+
+    // Fuzzy/alias matching
+    if (normalized.includes('united states') || normalized === 'usa') return 'United States';
+    if (normalized.includes('china') || normalized.includes('prc')) return 'China';
+    if (normalized.includes('taiwan') || normalized.includes('formosa')) return 'Taiwan';
+    if (normalized.includes('united kingdom') || normalized === 'uk' || normalized.includes('great britain')) return 'United Kingdom';
+    if (normalized.includes('south korea') || normalized === 'korea, republic of' || normalized === 'republic of korea') return 'South Korea';
+    if (normalized.includes('south africa')) return 'South Africa';
+    if (normalized.includes('iran') || normalized.includes('persia')) return 'Iran';
+    if (normalized.includes('turkey') || normalized.includes('turkiye') || normalized.includes('t\u00fcrkiye')) return 'Turkey';
+    if (normalized.includes('russia') || normalized.includes('russian federation')) return 'Russia';
+
+    // Simple contains match for remaining countries
+    const simpleCountries = ['France', 'Germany', 'Italy', 'Spain', 'Japan', 'Canada', 'Mexico', 'Brazil', 'India', 'Israel', 'Australia'];
+    for (const c of simpleCountries) {
+      if (normalized.includes(c.toLowerCase())) return regimeData[c] ? c : null;
+    }
+
+    return null;
+  }
+
+  function isFocusCountry(name) {
+    return matchCountryName(name) !== null;
+  }
+
+  // Map rendering - with historical basemap support
+  const svg = d3.select('#map');
+  const tooltip = d3.select('#tooltip');
+  const yearSlider = document.getElementById('year-slider');
+  const yearDisplay = document.getElementById('year-display');
+
+  // Historical map configuration
+  const availableMapYears = [1715, 1783, 1815, 1880, 1914, 1920, 1938, 1945, 1960, 1994];
+  const mapBaseUrl = 'https://raw.githubusercontent.com/aourednik/historical-basemaps/master/geojson/';
+  const modernMapUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+  const mapCache = {};
+  let currentMapYear = null;
+  let currentYear = 2024;
+  let mapData = null;
+
+  // Find closest available historical map year
+  function getClosestMapYear(year) {
+    if (year >= 1994) return 'modern';
+    let closest = availableMapYears[0];
+    for (const mapYear of availableMapYears) {
+      if (mapYear <= year) closest = mapYear;
+      else break;
+    }
+    return closest;
+  }
+
+  function updateMap() {
+    if (!mapData) return;
+
+    svg.selectAll('.country')
+      .attr('fill', function(d) {
+        const name = d.properties.name || d.properties.NAME || d.properties.ADMIN;
+        const matched = matchCountryName(name);
+        if (!matched) return COLORS.inactive;
+        const regime = getRegimeForYear(matched, currentYear);
+        if (!regime) return COLORS.inactive;
+        const alignment = getAlignmentForEra(regime);
+        return alignmentScale(alignment);
+      })
+      .classed('active', function(d) {
+        const name = d.properties.name || d.properties.NAME || d.properties.ADMIN;
+        return isFocusCountry(name);
+      })
+      .classed('inactive', function(d) {
+        const name = d.properties.name || d.properties.NAME || d.properties.ADMIN;
+        return !isFocusCountry(name);
+      });
+  }
+
+  function generateTooltipHTML(countryName, year) {
+    const regime = getRegimeForYear(countryName, year);
+    if (!regime) return '';
+
+    const rawAlignment = getRawAlignmentForEra(regime);
+    const alignmentScore = rawAlignment.toFixed(1);
+    const normalizedAlignment = rawAlignment / 3;
+    const scoreColor = normalizedAlignment > 0.3 ? '#00D4FF' : normalizedAlignment < -0.3 ? '#FF6B6B' : '#FFE135';
+    const scoreLabel = normalizedAlignment > 0.3 ? 'Aligned' : normalizedAlignment < -0.3 ? 'Opposed' : 'Neutral';
+    const markerPos = Math.max(0, Math.min(100, ((parseFloat(alignmentScore) + 3) / 6) * 100));
+
+    const imageHTML = regime.image
+      ? `<img class="tooltip-image" src="${regime.image}" alt="${regime.leader}" onerror="this.style.display='none'">`
+      : '';
+
+    // Check for election data near this year
+    const election = getElectionForYear(countryName, year);
+    const stats = countryElectionStats[countryName];
+
+    let electionHTML = '';
+    if (election) {
+      if (election.abstained) {
+        const yearLabel = election.year === year ? year : election.year;
+        electionHTML = `
+          <div class="tooltip-election" style="opacity:0.5;">
+            <div style="font-size:0.6rem;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4rem;">Your Vote (${yearLabel})</div>
+            <div style="font-size:0.85rem;color:#888;font-style:italic;">Abstained</div>
+          </div>
+        `;
+      } else {
+        const yearLabel = election.year === year ? year : election.year;
+        const correctIndicator = election.won ? ' <span style="color:rgba(255,215,0,0.7);font-size:0.7rem;">✓</span>' : '';
+        electionHTML = `
+          <div class="tooltip-election">
+            <div style="font-size:0.6rem;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4rem;">Your Vote (${yearLabel})</div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <div style="font-size:0.95rem;font-weight:700;flex:1;">${election.voted}${correctIndicator}</div>
+            </div>
+            <div style="font-size:0.7rem;color:#aaa;margin-top:0.2rem;">${election.party}</div>
+          </div>
+        `;
+      }
+    }
+
+    let statsHTML = '';
+    if (stats && stats.totalElections > 0) {
+      statsHTML = `
+        <div class="tooltip-stats">
+          <span>${stats.totalElections} elections</span>
+          <span>|</span>
+          <span>${stats.dominantParty} ${stats.dominantPct}%</span>
+          <span>|</span>
+          <span>${stats.winnersPickedPct}% accuracy</span>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="tooltip-header">
+        ${imageHTML}
+        <div class="tooltip-title">
+          <div class="tooltip-country">${regime.flag} ${countryName}</div>
+          <div class="tooltip-leader">${regime.leader}</div>
+          <span class="tooltip-party-badge" style="background:${regime.partyColor};color:#fff;">${regime.party}</span>
+        </div>
+      </div>
+      <div class="tooltip-alignment">
+        <div style="text-align:center;margin-bottom:0.75rem;">
+          <div style="font-size:0.65rem;color:#888;margin-bottom:0.25rem;">ALIGNMENT SCORE</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:${scoreColor};">
+            ${alignmentScore > 0 ? '+' : ''}${alignmentScore}
+          </div>
+          <div style="font-size:0.7rem;color:${scoreColor};">${scoreLabel}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span style="font-size:0.6rem;color:#888;">-3</span>
+          <div style="flex:1;height:8px;background:linear-gradient(to right, #FF6B6B, #FFE135 50%, #00D4FF);position:relative;border:1px solid #444;">
+            <div style="position:absolute;top:-3px;left:${markerPos}%;width:3px;height:14px;background:#fff;border:1px solid #1a1a1a;transform:translateX(-50%);"></div>
+          </div>
+          <span style="font-size:0.6rem;color:#888;">+3</span>
+        </div>
+      </div>
+      ${electionHTML}
+      ${statsHTML}
+    `;
+  }
+
+  // Load map data with caching and fallback
+  async function loadMapData(mapYear) {
+    if (mapCache[mapYear]) return mapCache[mapYear];
+
+    // Use modern TopoJSON for recent years
+    if (mapYear === 'modern') {
+      try {
+        const response = await fetch(modernMapUrl);
+        if (!response.ok) throw new Error('Failed to load modern map');
+        const topoData = await response.json();
+        const countries = topojson.feature(topoData, topoData.objects.countries);
+        countries.features.forEach(f => {
+          if (!f.properties) f.properties = {};
+          f.properties.NAME = getCountryNameFromId(f.id);
+        });
+        mapCache[mapYear] = countries;
+        return countries;
+      } catch (error) {
+        console.error('Error loading modern map:', error);
+        return null;
+      }
+    }
+
+    // Load historical GeoJSON map
+    try {
+      const url = `${mapBaseUrl}world_${mapYear}.geojson`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Failed to load map for ${mapYear}`);
+      const data = await response.json();
+      mapCache[mapYear] = data;
+      return data;
+    } catch (error) {
+      console.error(`Error loading map for ${mapYear}:`, error);
+
+      // Fallback: try the previous available year
+      const currentIndex = availableMapYears.indexOf(mapYear);
+      if (currentIndex > 0) {
+        const fallbackYear = availableMapYears[currentIndex - 1];
+        console.log(`Falling back to ${fallbackYear}`);
+        return loadMapData(fallbackYear);
+      }
+
+      // Ultimate fallback: use modern map
+      return loadMapData('modern');
+    }
+  }
+
+  async function renderMap() {
+    const neededMapYear = getClosestMapYear(currentYear);
+
+    // Only reload map data if the map year changed
+    if (neededMapYear !== currentMapYear || !mapData) {
+      currentMapYear = neededMapYear;
+      mapData = await loadMapData(neededMapYear);
+    }
+
+    if (!mapData) return;
+
+    const container = document.getElementById('map-section');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    svg.attr('width', width).attr('height', height);
+
+    const projection = d3.geoNaturalEarth1()
+      .scale(width / 5.5)
+      .translate([width / 2, height / 2]);
+
+    const path = d3.geoPath().projection(projection);
+
+    // Clear and redraw
+    svg.selectAll('.country').remove();
+
+    svg.selectAll('.country')
+      .data(mapData.features)
+      .enter()
+      .append('path')
+      .attr('class', 'country')
+      .attr('d', path)
+      .on('mouseenter', function(event, d) {
+        const name = d.properties.name || d.properties.NAME || d.properties.ADMIN;
+        const matched = matchCountryName(name);
+        if (!matched) return;
+        const html = generateTooltipHTML(matched, currentYear);
+        if (html) {
+          tooltip.html(html)
+            .style('opacity', 1)
+            .style('left', (event.clientX + 15) + 'px')
+            .style('top', (event.clientY - 10) + 'px');
+        }
+      })
+      .on('mousemove', function(event) {
+        tooltip
+          .style('left', (event.clientX + 15) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mouseleave', function() {
+        tooltip.style('opacity', 0);
+      })
+      .on('click', function(event, d) {
+        const name = d.properties.name || d.properties.NAME || d.properties.ADMIN;
+        const matched = matchCountryName(name);
+        if (matched && (countryElections[matched] || regimeData[matched])) {
+          tooltip.style('opacity', 0);
+          openCountryDetail(matched);
+        }
+      });
+
+    updateMap();
+  }
+
+  // Country detail panel
+  const detailOverlay = document.getElementById('country-detail-overlay');
+  const detailContent = document.getElementById('country-detail-content');
+  const detailClose = document.getElementById('country-detail-close');
+
+  detailClose.addEventListener('click', () => {
+    detailOverlay.classList.remove('active');
+  });
+  detailOverlay.addEventListener('click', (e) => {
+    if (e.target === detailOverlay) detailOverlay.classList.remove('active');
+  });
+
+  function openCountryDetail(countryName) {
+    const flag = COUNTRY_FLAGS[countryName] || '';
+    const votePicks = countryElections[countryName] || [];
+    const stats = countryElectionStats[countryName];
+    const country = regimeData[countryName];
+    const eras = country ? country.eras : [];
+    const timeline = countryTimelines[countryName] || [];
+
+    // Header with stats
+    const timelineElections = timeline.filter(e => e.type === 'election');
+    const timelineRegimes = timeline.filter(e => e.type === 'regime');
+    let statsHTML = '';
+    if (stats || timeline.length > 0) {
+      const elecCount = stats ? stats.totalElections : timelineElections.length;
+      const accuracy = stats ? stats.winnersPickedPct + '%' : '—';
+      const dominant = stats ? stats.dominantParty : '—';
+      const dominantPct = stats ? stats.dominantPct + '%' : '';
+      statsHTML = `
+        <div class="detail-stats">
+          <span><div class="stat-value">${elecCount}</div>Elections</span>
+          <span><div class="stat-value">${accuracy}</div>Accuracy</span>
+          <span><div class="stat-value">${dominant}</div>Most voted ${dominantPct ? '(' + dominantPct + ')' : ''}</span>
+          <span><div class="stat-value">${timelineRegimes.length || eras.length}</div>Regime eras</span>
+        </div>`;
+    }
+
+    // Vote picks (which candidate the archetype would vote for)
+    let votePicksHTML = '';
+    if (votePicks.length > 0) {
+      const cells = votePicks.map(e => {
+        if (e.abstained) {
+          return `
+            <div class="election-cell abstained" style="opacity:0.3;">
+              <div class="ec-year">${e.year}</div>
+              <div class="ec-candidate" style="color:#888;font-style:italic;">—</div>
+            </div>`;
+        }
+        const correctMark = e.won ? ' <span style="color:rgba(255,215,0,0.6);font-size:0.6rem;">✓</span>' : '';
+        return `
+          <div class="election-cell"${e.won ? ' style="border-color:rgba(255,215,0,0.3);"' : ''}>
+            <div class="ec-year">${e.year}</div>
+            <div class="ec-candidate">${e.voted}${correctMark}</div>
+            <div class="ec-party">${e.party}</div>
+          </div>`;
+      }).join('');
+      votePicksHTML = `<div class="election-timeline">${cells}</div>`;
+    } else {
+      votePicksHTML = '<div style="color:#888;padding:1rem;">No vote-pick data available for this country.</div>';
+    }
+
+    // Full alignment timeline (regime periods + per-election approval)
+    let timelineHTML = '';
+    if (timeline.length > 0) {
+      const rows = timeline.map(entry => {
+        const raw = entry.alignment || 0;
+        const norm = raw / 3;
+        const color = norm > 0.3 ? '#00D4FF' : norm < -0.3 ? '#FF6B6B' : '#FFE135';
+        const isElec = entry.type === 'election';
+        const yearStr = isElec ? String(entry.year) : `${entry.start}–${entry.end}`;
+        const typeTag = isElec
+          ? `<span style="font-size:0.55rem;padding:0.1rem 0.3rem;background:#333;color:#aaa;margin-left:0.3rem;">ELEC</span>`
+          : `<span style="font-size:0.55rem;padding:0.1rem 0.3rem;background:#555;color:#ddd;margin-left:0.3rem;">ERA</span>`;
+        const label = entry.leader || entry.winner || entry.label || '';
+        const partyStr = entry.party ? `<span style="font-size:0.65rem;color:#aaa;">${entry.party}</span>` : '';
+        const supportStr = entry.support !== undefined ? `<span style="font-size:0.6rem;color:#888;margin-left:0.3rem;">${entry.support.toFixed(0)}% support</span>` : '';
+        return `
+          <div class="era-row" style="${isElec ? 'padding-left:1rem;border-left:2px solid #444;' : 'font-weight:600;'}">
+            <div class="era-years" style="min-width:${isElec ? '50px' : '85px'};">${yearStr}</div>
+            <div class="era-leader">${label} ${partyStr} ${typeTag} ${supportStr}</div>
+            <div class="era-score" style="color:${color};">${raw > 0 ? '+' : ''}${raw.toFixed(1)}</div>
+          </div>`;
+      }).join('');
+      timelineHTML = `<div class="era-timeline">${rows}</div>`;
+    } else if (eras.length > 0) {
+      // Fallback to eras-only
+      const rows = eras.map(era => {
+        const raw = getRawAlignmentForEra(era);
+        const norm = raw / 3;
+        const color = norm > 0.3 ? '#00D4FF' : norm < -0.3 ? '#FF6B6B' : '#FFE135';
+        return `
+          <div class="era-row">
+            <div class="era-years">${era.start}–${era.end}</div>
+            <div class="era-leader">${era.leader} <span style="font-size:0.65rem;color:#aaa;">${era.party || ''}</span></div>
+            <div class="era-score" style="color:${color};">${raw > 0 ? '+' : ''}${raw.toFixed(1)}</div>
+          </div>`;
+      }).join('');
+      timelineHTML = `<div class="era-timeline">${rows}</div>`;
+    }
+
+    // Build tabs: Timeline (primary), Vote Picks (if available)
+    const hasVotePicks = votePicks.length > 0;
+    detailContent.innerHTML = `
+      <div class="country-detail-header">
+        <h2>${flag} ${countryName}</h2>
+        ${statsHTML}
+      </div>
+      <div class="detail-tabs">
+        <button class="detail-tab active" data-tab="timeline">Alignment Timeline (${timeline.length || eras.length})</button>
+        ${hasVotePicks ? `<button class="detail-tab" data-tab="votepicks">Your Votes (${votePicks.length})</button>` : ''}
+      </div>
+      <div class="detail-content" id="detail-tab-timeline">${timelineHTML}</div>
+      ${hasVotePicks ? `<div class="detail-content" id="detail-tab-votepicks" style="display:none;">${votePicksHTML}</div>` : ''}
+    `;
+
+    // Tab switching
+    detailContent.querySelectorAll('.detail-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        detailContent.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const tabName = tab.getAttribute('data-tab');
+        const timelineDiv = document.getElementById('detail-tab-timeline');
+        const voteDiv = document.getElementById('detail-tab-votepicks');
+        if (timelineDiv) timelineDiv.style.display = tabName === 'timeline' ? '' : 'none';
+        if (voteDiv) voteDiv.style.display = tabName === 'votepicks' ? '' : 'none';
+      });
+    });
+
+    detailOverlay.classList.add('active');
+  }
+
+  yearSlider.addEventListener('input', function() {
+    currentYear = parseInt(this.value);
+    yearDisplay.textContent = currentYear;
+    renderMap();  // Re-render to potentially load different historical map
+  });
+
+  await renderMap();
+  window.addEventListener('resize', renderMap);
+
+  // ============================================
+  // SECTION 1: ARCHETYPE (rendered at top)
+  // SECTION 5: PROFILE BREAKDOWN
+  // ============================================
+  const L3_NODES = {
+    // ENDS - What You Want
+    MAT: { name: 'Material', low: 'Redistribution', high: 'Free Market', cluster: 'ENDS' },
+    CD: { name: 'Cultural Defense', low: 'Progressive', high: 'Traditional', cluster: 'ENDS' },
+    CU: { name: 'Cultural Uniformity', low: 'Pluralist', high: 'Assimilationist', cluster: 'ENDS' },
+    MOR: { name: 'Moral Circle', low: 'Universal', high: 'Particularist', cluster: 'ENDS' },
+    // MEANS - How You Get There
+    PRO: { name: 'Proceduralism', low: 'Rules-bound', high: 'Outcome-focused', cluster: 'MEANS' },
+    EPS: { name: 'Epistemics', low: 'Empirical', high: 'Intuitive', cluster: 'MEANS' },
+    AES: { name: 'Aesthetics', low: 'Deliberative', high: 'Inspirational', cluster: 'MEANS' },
+    COM: { name: 'Compromise', low: 'Principled', high: 'Pragmatic', cluster: 'MEANS' },
+    // REALITY - How You See The World
+    ZS: { name: 'Zero-Sum', low: 'Positive-sum', high: 'Zero-sum', cluster: 'REALITY' },
+    H: { name: 'Hierarchy', low: 'Egalitarian', high: 'Hierarchical', cluster: 'REALITY' },
+    // SELF - Political Identity
+    ONT_S: { name: 'Societal View', low: 'Pessimistic', high: 'Optimistic', cluster: 'SELF' },
+    PF: { name: 'Political Fusion', low: 'Low', high: 'High', cluster: 'SELF' },
+    ENG: { name: 'Engagement', low: 'Low', high: 'High', cluster: 'SELF' },
+    PIS: { name: 'Identity Salience', low: 'Low', high: 'High', cluster: 'SELF' }
+  };
+
+  const CLUSTER_LABELS = {
+    ENDS: 'ENDS — What You Want',
+    MEANS: 'MEANS — How You Get There',
+    REALITY: 'REALITY — How You See The World',
+    SELF: 'SELF — Your Political Identity'
+  };
+
+  // Render archetype hero
+  const archHero = document.getElementById('archetype-hero');
+  const archetype = userProfile.archetype;
+
+  if (archetype && archetype.name && archetype.name !== 'Unknown') {
+    archHero.innerHTML = `
+      <div class="archetype-label">You are</div>
+      <div class="archetype-name">${archetype.name}</div>
+      ${archetype.tier ? `<div class="archetype-tier">${archetype.tier}</div>` : ''}
+      ${archetype.desc ? `<div class="archetype-description">${archetype.desc}</div>` : ''}
+      ${archetype.examples ? `<div class="archetype-examples">Examples: ${archetype.examples}</div>` : ''}
+      <div class="confidence-display">
+        <span style="font-size: 0.75rem; opacity: 0.6;">Match Confidence:</span>
+        <div class="confidence-bar-bg">
+          <div class="confidence-bar-fill" style="width: ${archetype.confidence || 0}%"></div>
+        </div>
+        <span class="confidence-percent">${Math.round(archetype.confidence || 0)}%</span>
+      </div>
+    `;
+  } else {
+    archHero.innerHTML = `
+      <div class="archetype-label">Archetype</div>
+      <div class="archetype-name" style="color: var(--pool-deep);">Profile Generated</div>
+      <div class="archetype-description">Your political profile has been calculated. See your dimensional scores below.</div>
+    `;
+  }
+
+  // Render alternative archetype matches
+  const altMatchesDiv = document.getElementById('alt-matches');
+  const allArchetypes = userProfile.allArchetypes || [];
+
+  if (allArchetypes.length > 1) {
+    const otherMatches = allArchetypes.slice(1, 5);  // Show positions 2-5
+    altMatchesDiv.innerHTML = `
+      <div class="alt-matches-title">Other Strong Matches</div>
+      <div class="alt-matches-grid">
+        ${otherMatches.map(m => `
+          <div class="alt-match-card">
+            <div class="alt-match-name">${m.name}</div>
+            <div class="alt-match-percent">${Math.round(m.matchPercent || m.fitScore || 0)}%</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Render L3 profile
+  const l3Div = document.getElementById('l3-profile');
+  const fullProfile = userProfile.fullProfile || {};
+
+  // Group nodes by cluster
+  const clusters = ['ENDS', 'MEANS', 'REALITY', 'SELF'];
+  let l3HTML = '';
+
+  for (const cluster of clusters) {
+    const nodesInCluster = Object.entries(L3_NODES).filter(([k, v]) => v.cluster === cluster);
+    if (nodesInCluster.length === 0) continue;
+
+    // Check if we have any data for this cluster
+    const hasData = nodesInCluster.some(([k]) => fullProfile[k]?.position !== undefined);
+    if (!hasData && cluster !== 'ENDS' && cluster !== 'MEANS') continue;  // Skip empty clusters except core ones
+
+    l3HTML += `<div class="l3-cluster">
+      <div class="l3-cluster-title">${CLUSTER_LABELS[cluster]}</div>`;
+
+    for (const [nodeKey, nodeDef] of nodesInCluster) {
+      const pos = fullProfile[nodeKey]?.position ?? 50;
+      const barClass = pos < 40 ? 'low' : pos > 60 ? 'high' : 'mid';
+
+      l3HTML += `
+        <div class="l3-node">
+          <div class="l3-node-name">${nodeDef.name}</div>
+          <div class="l3-node-bar-container">
+            <div class="l3-node-bar">
+              <div class="l3-node-bar-fill ${barClass}" style="width: ${pos}%"></div>
+              <div class="l3-node-bar-center"></div>
+            </div>
+          </div>
+          <div class="l3-node-value">${Math.round(pos)}</div>
+        </div>
+        <div class="l3-node-labels">
+          <span>${nodeDef.low}</span>
+          <span>${nodeDef.high}</span>
+        </div>
+      `;
+    }
+
+    l3HTML += '</div>';
+  }
+
+  // Also show L2 values if available but fullProfile isn't
+  if (!Object.keys(fullProfile).length && userL2) {
+    l3HTML = `<div class="l3-cluster">
+      <div class="l3-cluster-title">L2 PROFILE — Core Dimensions</div>`;
+
+    const l2Nodes = {
+      MAT: { name: 'Material', low: 'Redistribution', high: 'Free Market' },
+      CD: { name: 'Cultural Defense', low: 'Progressive', high: 'Traditional' },
+      CU: { name: 'Cultural Uniformity', low: 'Pluralist', high: 'Assimilationist' },
+      MOR: { name: 'Moral Circle', low: 'Universal', high: 'Particularist' },
+      PRO: { name: 'Proceduralism', low: 'Rules-bound', high: 'Outcome-focused' },
+      EPS: { name: 'Epistemics', low: 'Empirical', high: 'Intuitive' }
+    };
+
+    for (const [key, def] of Object.entries(l2Nodes)) {
+      const pos = userL2[key] ?? userL2[key === 'CD' ? 'CSO' : key] ?? 50;
+      const barClass = pos < 40 ? 'low' : pos > 60 ? 'high' : 'mid';
+
+      l3HTML += `
+        <div class="l3-node">
+          <div class="l3-node-name">${def.name}</div>
+          <div class="l3-node-bar-container">
+            <div class="l3-node-bar">
+              <div class="l3-node-bar-fill ${barClass}" style="width: ${pos}%"></div>
+              <div class="l3-node-bar-center"></div>
+            </div>
+          </div>
+          <div class="l3-node-value">${Math.round(pos)}</div>
+        </div>
+        <div class="l3-node-labels">
+          <span>${def.low}</span>
+          <span>${def.high}</span>
+        </div>
+      `;
+    }
+    l3HTML += '</div>';
+  }
+
+  l3Div.innerHTML = l3HTML || '<p style="text-align:center;opacity:0.6;">Profile data not available</p>';
+
+  // ============================================
+  // NAVIGATION
+  // ============================================
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+  window.scrollToSection = scrollToSection;
+
+  // Update nav dots on scroll
+  const sections = ['archetype-section', 'voting-history-section', 'founding-fathers-section', 'map-section', 'profile-section'];
+  const navDots = document.querySelectorAll('.nav-dot');
+
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    sections.forEach((id, i) => {
+      const section = document.getElementById(id);
+      if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+        navDots.forEach(d => d.classList.remove('active'));
+        navDots[i].classList.add('active');
+      }
+    });
+  });
+
+  // Hide loading and show sample banner if needed
+  document.getElementById('loading').style.display = 'none';
+
+  if (usingSample) {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:var(--gold);color:var(--ink);text-align:center;padding:0.5rem;font-size:0.8rem;z-index:9999;font-weight:600;';
+    banner.innerHTML = 'SAMPLE RESULTS — <a href="prism_dense_quiz_v7.html" style="color:var(--ink);text-decoration:underline;">Take the quiz</a> to see your actual profile';
+    document.body.prepend(banner);
+  }
+
+  // ============================================
+  // EXPORT FUNCTIONALITY
+  // ============================================
+  function exportResults() {
+    const storedData = localStorage.getItem('prism_quiz_results');
+    if (!storedData) {
+      alert('No quiz results found to export.');
+      return;
+    }
+
+    const data = JSON.parse(storedData);
+    const exportData = {
+      exportVersion: 'PRISM v156 Quiz Export',
+      exportDate: new Date().toISOString(),
+      ...data
+    };
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `prism_results_${new Date().toISOString().slice(0,19).replace(/[T:]/g, '-')}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log('Exported results:', exportData);
+  }
+  window.exportResults = exportResults;
+
+  // Add export button to page
+  const exportBtn = document.createElement('button');
+  exportBtn.textContent = '📥 Export Results (JSON)';
+  exportBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;background:var(--ink);color:var(--cream);border:2px solid var(--pool-deep);padding:0.75rem 1.5rem;font-family:IBM Plex Mono,monospace;font-size:0.85rem;cursor:pointer;z-index:9999;transition:all 0.2s;';
+  exportBtn.onmouseover = () => { exportBtn.style.background = '#333'; exportBtn.style.borderColor = 'var(--gold)'; };
+  exportBtn.onmouseout = () => { exportBtn.style.background = 'var(--ink)'; exportBtn.style.borderColor = 'var(--pool-deep)'; };
+  exportBtn.onclick = exportResults;
+  document.body.appendChild(exportBtn);
+
+})();
+</script>
+</body>
+</html>

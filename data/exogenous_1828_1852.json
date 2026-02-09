@@ -1,0 +1,1033 @@
+{
+  "elections": [
+    {
+      "year": 1828,
+      "candidates": [
+        {
+          "name": "Andrew Jackson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 55,
+            "CNA": 68,
+            "MOR": 62,
+            "EPS": 75,
+            "PRO": 35
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.25,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.9,
+            "fighter_warrior": 0.95,
+            "prophetic_visionary": 0.6
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 62,
+            "empathy": 60
+          },
+          "self_resonance": {
+            "planter": 60,
+            "yeoman_farmer": 90,
+            "merchant": 30,
+            "artisan": 80,
+            "frontier": 95,
+            "immigrant": 70
+          }
+        },
+        {
+          "name": "John Quincy Adams",
+          "party": "National Republican",
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 48,
+            "CNA": 40,
+            "MOR": 42,
+            "EPS": 18,
+            "PRO": 60
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.8,
+            "technocratic_competent": 0.9,
+            "pastoral_empathetic": 0.2,
+            "authentic_plainspoken": 0.25,
+            "fighter_warrior": 0.15,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 90,
+            "integrity": 85,
+            "empathy": 30
+          },
+          "self_resonance": {
+            "planter": 40,
+            "yeoman_farmer": 35,
+            "merchant": 75,
+            "artisan": 45,
+            "frontier": 25,
+            "immigrant": 35
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 55,
+            "CNA": 70,
+            "MOR": 65,
+            "EPS": 70,
+            "PRO": 30
+          }
+        },
+        "National Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 48,
+            "CNA": 38,
+            "MOR": 42,
+            "EPS": 20,
+            "PRO": 62
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 2,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.3
+      },
+      "tau": {
+        "MAT": 0.45,
+        "CSO": 0.4,
+        "CNA": 0.5,
+        "MOR": 0.45,
+        "EPS": 0.55,
+        "PRO": 0.4
+      }
+    },
+    {
+      "year": 1832,
+      "candidates": [
+        {
+          "name": "Andrew Jackson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 58,
+            "CNA": 70,
+            "MOR": 65,
+            "EPS": 78,
+            "PRO": 32
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.4,
+            "technocratic_competent": 0.3,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.9,
+            "fighter_warrior": 0.9,
+            "prophetic_visionary": 0.65
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 60,
+            "empathy": 58
+          },
+          "self_resonance": {
+            "planter": 62,
+            "yeoman_farmer": 88,
+            "merchant": 25,
+            "artisan": 82,
+            "frontier": 92,
+            "immigrant": 72
+          }
+        },
+        {
+          "name": "Henry Clay",
+          "party": "National Republican",
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 50,
+            "CNA": 42,
+            "MOR": 48,
+            "EPS": 35,
+            "PRO": 70
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 55,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 55,
+            "yeoman_farmer": 45,
+            "merchant": 80,
+            "artisan": 55,
+            "frontier": 50,
+            "immigrant": 40
+          }
+        },
+        {
+          "name": "William Wirt",
+          "party": "Anti-Masonic",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 65,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 60,
+            "PRO": 50
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 70,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 30,
+            "yeoman_farmer": 55,
+            "merchant": 55,
+            "artisan": 60,
+            "frontier": 45,
+            "immigrant": 35
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 58,
+            "CNA": 72,
+            "MOR": 68,
+            "EPS": 72,
+            "PRO": 28
+          }
+        },
+        "National Republican": {
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 50,
+            "CNA": 40,
+            "MOR": 45,
+            "EPS": 25,
+            "PRO": 68
+          }
+        },
+        "Anti-Masonic": {
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 65,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 62,
+            "PRO": 52
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 58,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.4,
+        "CNA": 0.45,
+        "MOR": 0.45,
+        "EPS": 0.5,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1836,
+      "candidates": [
+        {
+          "name": "Martin Van Buren",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 52,
+            "CNA": 60,
+            "MOR": 58,
+            "EPS": 55,
+            "PRO": 38
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 55,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 55,
+            "yeoman_farmer": 70,
+            "merchant": 40,
+            "artisan": 65,
+            "frontier": 60,
+            "immigrant": 70
+          }
+        },
+        {
+          "name": "William Henry Harrison",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 50,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.8,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 65,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "planter": 50,
+            "yeoman_farmer": 65,
+            "merchant": 60,
+            "artisan": 60,
+            "frontier": 75,
+            "immigrant": 45
+          }
+        },
+        {
+          "name": "Hugh White",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 60,
+            "CNA": 58,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 50
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 68,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 70,
+            "yeoman_farmer": 55,
+            "merchant": 55,
+            "artisan": 50,
+            "frontier": 55,
+            "immigrant": 35
+          }
+        },
+        {
+          "name": "Daniel Webster",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 55,
+            "CNA": 45,
+            "MOR": 48,
+            "EPS": 25,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.85,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 60,
+            "empathy": 35
+          },
+          "self_resonance": {
+            "planter": 35,
+            "yeoman_farmer": 35,
+            "merchant": 85,
+            "artisan": 45,
+            "frontier": 30,
+            "immigrant": 40
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 55,
+            "CNA": 65,
+            "MOR": 62,
+            "EPS": 58,
+            "PRO": 35
+          }
+        },
+        "Whig": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 52,
+            "EPS": 35,
+            "PRO": 58
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.3
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.4,
+        "CNA": 0.45,
+        "MOR": 0.45,
+        "EPS": 0.45,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1840,
+      "candidates": [
+        {
+          "name": "William Henry Harrison",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 55,
+            "EPS": 60,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.35,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.85,
+            "fighter_warrior": 0.85,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 68,
+            "empathy": 60
+          },
+          "self_resonance": {
+            "planter": 50,
+            "yeoman_farmer": 78,
+            "merchant": 55,
+            "artisan": 70,
+            "frontier": 85,
+            "immigrant": 55
+          }
+        },
+        {
+          "name": "Martin Van Buren",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 52,
+            "CNA": 58,
+            "MOR": 55,
+            "EPS": 48,
+            "PRO": 42
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.35,
+            "fighter_warrior": 0.15,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 50,
+            "empathy": 40
+          },
+          "self_resonance": {
+            "planter": 55,
+            "yeoman_farmer": 55,
+            "merchant": 40,
+            "artisan": 55,
+            "frontier": 45,
+            "immigrant": 65
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 52,
+            "CNA": 62,
+            "MOR": 58,
+            "EPS": 52,
+            "PRO": 40
+          }
+        },
+        "Whig": {
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 52,
+            "EPS": 40,
+            "PRO": 55
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 35,
+        "threat_environment": 0.4
+      },
+      "tau": {
+        "MAT": 0.6,
+        "CSO": 0.4,
+        "CNA": 0.45,
+        "MOR": 0.42,
+        "EPS": 0.5,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1844,
+      "candidates": [
+        {
+          "name": "James K. Polk",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 58,
+            "CNA": 72,
+            "MOR": 65,
+            "EPS": 55,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 65,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "planter": 70,
+            "yeoman_farmer": 72,
+            "merchant": 35,
+            "artisan": 60,
+            "frontier": 80,
+            "immigrant": 55
+          }
+        },
+        {
+          "name": "Henry Clay",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 52,
+            "CNA": 48,
+            "MOR": 50,
+            "EPS": 35,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 52,
+            "empathy": 48
+          },
+          "self_resonance": {
+            "planter": 55,
+            "yeoman_farmer": 50,
+            "merchant": 78,
+            "artisan": 55,
+            "frontier": 52,
+            "immigrant": 40
+          }
+        },
+        {
+          "name": "James Birney",
+          "party": "Liberty",
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 45,
+            "MOR": 15,
+            "EPS": 45,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.6,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.75
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 80,
+            "empathy": 65
+          },
+          "self_resonance": {
+            "planter": 5,
+            "yeoman_farmer": 45,
+            "merchant": 40,
+            "artisan": 55,
+            "frontier": 35,
+            "immigrant": 45
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 60,
+            "CNA": 75,
+            "MOR": 68,
+            "EPS": 55,
+            "PRO": 42
+          }
+        },
+        "Whig": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 52,
+            "CNA": 45,
+            "MOR": 48,
+            "EPS": 32,
+            "PRO": 65
+          }
+        },
+        "Liberty": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 55,
+            "CNA": 42,
+            "MOR": 12,
+            "EPS": 45,
+            "PRO": 55
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.45
+      },
+      "tau": {
+        "MAT": 0.45,
+        "CSO": 0.42,
+        "CNA": 0.6,
+        "MOR": 0.55,
+        "EPS": 0.4,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1848,
+      "candidates": [
+        {
+          "name": "Zachary Taylor",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 58,
+            "CNA": 60,
+            "MOR": 58,
+            "EPS": 55,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.3,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.9,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 72,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "planter": 65,
+            "yeoman_farmer": 70,
+            "merchant": 55,
+            "artisan": 60,
+            "frontier": 80,
+            "immigrant": 45
+          }
+        },
+        {
+          "name": "Lewis Cass",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 58,
+            "CNA": 65,
+            "MOR": 68,
+            "EPS": 48,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 55,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 70,
+            "yeoman_farmer": 62,
+            "merchant": 40,
+            "artisan": 55,
+            "frontier": 65,
+            "immigrant": 58
+          }
+        },
+        {
+          "name": "Martin Van Buren",
+          "party": "Free Soil",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 48,
+            "CNA": 52,
+            "MOR": 25,
+            "EPS": 52,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 68,
+            "integrity": 58,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "planter": 10,
+            "yeoman_farmer": 55,
+            "merchant": 45,
+            "artisan": 60,
+            "frontier": 50,
+            "immigrant": 50
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 60,
+            "CNA": 68,
+            "MOR": 70,
+            "EPS": 50,
+            "PRO": 42
+          }
+        },
+        "Whig": {
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 38,
+            "PRO": 52
+          }
+        },
+        "Free Soil": {
+          "l2_profile": {
+            "MAT": 48,
+            "CSO": 48,
+            "CNA": 50,
+            "MOR": 22,
+            "EPS": 52,
+            "PRO": 50
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 58,
+        "threat_environment": 0.5
+      },
+      "tau": {
+        "MAT": 0.42,
+        "CSO": 0.42,
+        "CNA": 0.55,
+        "MOR": 0.6,
+        "EPS": 0.38,
+        "PRO": 0.42
+      }
+    },
+    {
+      "year": 1852,
+      "candidates": [
+        {
+          "name": "Franklin Pierce",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 70,
+            "EPS": 45,
+            "PRO": 42
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 58,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "planter": 72,
+            "yeoman_farmer": 65,
+            "merchant": 42,
+            "artisan": 58,
+            "frontier": 62,
+            "immigrant": 60
+          }
+        },
+        {
+          "name": "Winfield Scott",
+          "party": "Whig",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 50,
+            "EPS": 35,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.45,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.85,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 68,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "planter": 45,
+            "yeoman_farmer": 55,
+            "merchant": 62,
+            "artisan": 55,
+            "frontier": 60,
+            "immigrant": 50
+          }
+        },
+        {
+          "name": "John Hale",
+          "party": "Free Soil",
+          "l2_profile": {
+            "MAT": 48,
+            "CSO": 45,
+            "CNA": 48,
+            "MOR": 18,
+            "EPS": 50,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.65
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 75,
+            "empathy": 58
+          },
+          "self_resonance": {
+            "planter": 5,
+            "yeoman_farmer": 50,
+            "merchant": 42,
+            "artisan": 58,
+            "frontier": 45,
+            "immigrant": 48
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 58,
+            "CNA": 62,
+            "MOR": 72,
+            "EPS": 48,
+            "PRO": 40
+          }
+        },
+        "Whig": {
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 48,
+            "EPS": 35,
+            "PRO": 55
+          }
+        },
+        "Free Soil": {
+          "l2_profile": {
+            "MAT": 50,
+            "CSO": 45,
+            "CNA": 48,
+            "MOR": 15,
+            "EPS": 52,
+            "PRO": 52
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 1,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.55
+      },
+      "tau": {
+        "MAT": 0.42,
+        "CSO": 0.42,
+        "CNA": 0.52,
+        "MOR": 0.65,
+        "EPS": 0.38,
+        "PRO": 0.4
+      }
+    }
+  ]
+}

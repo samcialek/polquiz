@@ -1,0 +1,1322 @@
+{
+  "elections": [
+    {
+      "year": 1896,
+      "candidates": [
+        {
+          "name": "William McKinley",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 80,
+            "CSO": 60,
+            "CNA": 65,
+            "MOR": 55,
+            "EPS": 45,
+            "PRO": 70
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 70,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "industrial_worker": 50,
+            "farmer": 40,
+            "business": 85,
+            "professional": 70,
+            "immigrant": 40,
+            "black": 35
+          }
+        },
+        {
+          "name": "William Jennings Bryan",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 15,
+            "CSO": 55,
+            "CNA": 62,
+            "MOR": 55,
+            "EPS": 70,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.4,
+            "technocratic_competent": 0.35,
+            "pastoral_empathetic": 0.8,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.85
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 75,
+            "empathy": 75
+          },
+          "self_resonance": {
+            "industrial_worker": 55,
+            "farmer": 85,
+            "business": 15,
+            "professional": 40,
+            "immigrant": 50,
+            "black": 30
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 60,
+            "CNA": 60,
+            "MOR": 55,
+            "EPS": 45,
+            "PRO": 65
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 45,
+            "CNA": 50,
+            "MOR": 60,
+            "EPS": 60,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 3,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 45,
+        "threat_environment": 0.25
+      },
+      "tau": {
+        "MAT": 0.6,
+        "CSO": 0.4,
+        "CNA": 0.45,
+        "MOR": 0.35,
+        "EPS": 0.4,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1900,
+      "candidates": [
+        {
+          "name": "William McKinley",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 60,
+            "CNA": 70,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 72
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 72,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "industrial_worker": 52,
+            "farmer": 42,
+            "business": 85,
+            "professional": 72,
+            "immigrant": 42,
+            "black": 38
+          }
+        },
+        {
+          "name": "William Jennings Bryan",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 18,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 68,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.42,
+            "technocratic_competent": 0.35,
+            "pastoral_empathetic": 0.78,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.48,
+            "prophetic_visionary": 0.82
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 72,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "industrial_worker": 55,
+            "farmer": 80,
+            "business": 18,
+            "professional": 42,
+            "immigrant": 52,
+            "black": 28
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 60,
+            "CNA": 68,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 70
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 48,
+            "CNA": 52,
+            "MOR": 58,
+            "EPS": 62,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 1.5,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.42,
+        "CNA": 0.55,
+        "MOR": 0.38,
+        "EPS": 0.4,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1904,
+      "candidates": [
+        {
+          "name": "Theodore Roosevelt",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 45,
+            "CNA": 65,
+            "MOR": 45,
+            "EPS": 55,
+            "PRO": 75
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.8,
+            "fighter_warrior": 0.85,
+            "prophetic_visionary": 0.7
+          },
+          "means": {
+            "competence": 80,
+            "integrity": 78,
+            "empathy": 60
+          },
+          "self_resonance": {
+            "industrial_worker": 62,
+            "farmer": 58,
+            "business": 65,
+            "professional": 78,
+            "immigrant": 50,
+            "black": 45
+          }
+        },
+        {
+          "name": "Alton Parker",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 52,
+            "CNA": 48,
+            "MOR": 55,
+            "EPS": 35,
+            "PRO": 42
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 68,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "industrial_worker": 48,
+            "farmer": 52,
+            "business": 55,
+            "professional": 55,
+            "immigrant": 55,
+            "black": 25
+          }
+        },
+        {
+          "name": "Eugene Debs",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 25,
+            "CNA": 35,
+            "MOR": 25,
+            "EPS": 65,
+            "PRO": 70
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.3,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.8,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.9
+          },
+          "means": {
+            "competence": 50,
+            "integrity": 82,
+            "empathy": 80
+          },
+          "self_resonance": {
+            "industrial_worker": 75,
+            "farmer": 55,
+            "business": 5,
+            "professional": 35,
+            "immigrant": 65,
+            "black": 40
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 48,
+            "CNA": 62,
+            "MOR": 48,
+            "EPS": 45,
+            "PRO": 72
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 52,
+            "CNA": 48,
+            "MOR": 58,
+            "EPS": 40,
+            "PRO": 42
+          }
+        },
+        "Socialist": {
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 25,
+            "CNA": 35,
+            "MOR": 25,
+            "EPS": 68,
+            "PRO": 72
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 65,
+        "threat_environment": 0.28
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.48,
+        "CNA": 0.52,
+        "MOR": 0.38,
+        "EPS": 0.42,
+        "PRO": 0.55
+      }
+    },
+    {
+      "year": 1908,
+      "candidates": [
+        {
+          "name": "William Howard Taft",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 50,
+            "EPS": 35,
+            "PRO": 65
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.75,
+            "pastoral_empathetic": 0.4,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 75,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "industrial_worker": 48,
+            "farmer": 45,
+            "business": 78,
+            "professional": 72,
+            "immigrant": 42,
+            "black": 42
+          }
+        },
+        {
+          "name": "William Jennings Bryan",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 20,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 55,
+            "EPS": 65,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.38,
+            "pastoral_empathetic": 0.75,
+            "authentic_plainspoken": 0.68,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.78
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 70,
+            "empathy": 70
+          },
+          "self_resonance": {
+            "industrial_worker": 58,
+            "farmer": 75,
+            "business": 20,
+            "professional": 42,
+            "immigrant": 55,
+            "black": 28
+          }
+        },
+        {
+          "name": "Eugene Debs",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 25,
+            "CNA": 35,
+            "MOR": 25,
+            "EPS": 68,
+            "PRO": 72
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.32,
+            "technocratic_competent": 0.42,
+            "pastoral_empathetic": 0.82,
+            "authentic_plainspoken": 0.78,
+            "fighter_warrior": 0.52,
+            "prophetic_visionary": 0.88
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 82,
+            "empathy": 82
+          },
+          "self_resonance": {
+            "industrial_worker": 78,
+            "farmer": 55,
+            "business": 5,
+            "professional": 38,
+            "immigrant": 68,
+            "black": 42
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 52,
+            "EPS": 38,
+            "PRO": 65
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 52,
+            "CNA": 50,
+            "MOR": 58,
+            "EPS": 58,
+            "PRO": 50
+          }
+        },
+        "Socialist": {
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 25,
+            "CNA": 35,
+            "MOR": 25,
+            "EPS": 70,
+            "PRO": 75
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2,
+        "CSO": 0.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.5
+      },
+      "context": {
+        "conditions": 58,
+        "threat_environment": 0.25
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.5,
+        "CNA": 0.48,
+        "MOR": 0.38,
+        "EPS": 0.45,
+        "PRO": 0.52
+      }
+    },
+    {
+      "year": 1912,
+      "candidates": [
+        {
+          "name": "Woodrow Wilson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 50,
+            "CNA": 42,
+            "MOR": 50,
+            "EPS": 52,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.75
+          },
+          "means": {
+            "competence": 82,
+            "integrity": 75,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "industrial_worker": 55,
+            "farmer": 62,
+            "business": 45,
+            "professional": 72,
+            "immigrant": 52,
+            "black": 35
+          }
+        },
+        {
+          "name": "Theodore Roosevelt",
+          "party": "Progressive",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 42,
+            "CNA": 62,
+            "MOR": 48,
+            "EPS": 55,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.58,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.58,
+            "authentic_plainspoken": 0.82,
+            "fighter_warrior": 0.8,
+            "prophetic_visionary": 0.85
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 75,
+            "empathy": 62
+          },
+          "self_resonance": {
+            "industrial_worker": 68,
+            "farmer": 62,
+            "business": 45,
+            "professional": 75,
+            "immigrant": 52,
+            "black": 48
+          }
+        },
+        {
+          "name": "William Howard Taft",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 75,
+            "CNA": 55,
+            "MOR": 55,
+            "EPS": 40,
+            "PRO": 75
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.22,
+            "prophetic_visionary": 0.28
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 72,
+            "empathy": 40
+          },
+          "self_resonance": {
+            "industrial_worker": 42,
+            "farmer": 42,
+            "business": 78,
+            "professional": 65,
+            "immigrant": 38,
+            "black": 40
+          }
+        },
+        {
+          "name": "Eugene Debs",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 10,
+            "CSO": 15,
+            "CNA": 32,
+            "MOR": 40,
+            "EPS": 50,
+            "PRO": 25
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.3,
+            "technocratic_competent": 0.42,
+            "pastoral_empathetic": 0.85,
+            "authentic_plainspoken": 0.8,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.9
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 85,
+            "empathy": 85
+          },
+          "self_resonance": {
+            "industrial_worker": 82,
+            "farmer": 55,
+            "business": 5,
+            "professional": 38,
+            "immigrant": 72,
+            "black": 45
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 48,
+            "CNA": 45,
+            "MOR": 58,
+            "EPS": 38,
+            "PRO": 62
+          }
+        },
+        "Progressive": {
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 35,
+            "CNA": 60,
+            "MOR": 40,
+            "EPS": 60,
+            "PRO": 80
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 62,
+            "CNA": 58,
+            "MOR": 55,
+            "EPS": 32,
+            "PRO": 55
+          }
+        },
+        "Socialist": {
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 22,
+            "CNA": 32,
+            "MOR": 22,
+            "EPS": 72,
+            "PRO": 78
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.2,
+        "CSO": 1.0,
+        "CNA": 1.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 1.2
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.3
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.55,
+        "CNA": 0.48,
+        "MOR": 0.4,
+        "EPS": 0.48,
+        "PRO": 0.55
+      }
+    },
+    {
+      "year": 1916,
+      "candidates": [
+        {
+          "name": "Woodrow Wilson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 48,
+            "CNA": 40,
+            "MOR": 55,
+            "EPS": 38,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.78,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.52,
+            "authentic_plainspoken": 0.48,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.78
+          },
+          "means": {
+            "competence": 80,
+            "integrity": 72,
+            "empathy": 52
+          },
+          "self_resonance": {
+            "industrial_worker": 58,
+            "farmer": 65,
+            "business": 48,
+            "professional": 72,
+            "immigrant": 55,
+            "black": 38
+          }
+        },
+        {
+          "name": "Charles Evans Hughes",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 58,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 35,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.78,
+            "pastoral_empathetic": 0.38,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.32,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 75,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "industrial_worker": 48,
+            "farmer": 48,
+            "business": 75,
+            "professional": 72,
+            "immigrant": 42,
+            "black": 45
+          }
+        },
+        {
+          "name": "Allan Benson",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 10,
+            "CSO": 24,
+            "CNA": 18,
+            "MOR": 24,
+            "EPS": 62,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.25,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.65,
+            "authentic_plainspoken": 0.72,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.65
+          },
+          "means": {
+            "competence": 48,
+            "integrity": 80,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "industrial_worker": 72,
+            "farmer": 48,
+            "business": 5,
+            "professional": 42,
+            "immigrant": 65,
+            "black": 40
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 40,
+            "CSO": 48,
+            "CNA": 38,
+            "MOR": 58,
+            "EPS": 40,
+            "PRO": 68
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 70,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 52,
+            "EPS": 35,
+            "PRO": 58
+          }
+        },
+        "Socialist": {
+          "l2_profile": {
+            "MAT": 10,
+            "CSO": 24,
+            "CNA": 18,
+            "MOR": 24,
+            "EPS": 62,
+            "PRO": 68
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.65
+      },
+      "tau": {
+        "MAT": 0.48,
+        "CSO": 0.48,
+        "CNA": 0.62,
+        "MOR": 0.4,
+        "EPS": 0.42,
+        "PRO": 0.52
+      }
+    },
+    {
+      "year": 1920,
+      "candidates": [
+        {
+          "name": "Warren Harding",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 65,
+            "CNA": 72,
+            "MOR": 58,
+            "EPS": 55,
+            "PRO": 45
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.35,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 45,
+            "integrity": 45,
+            "empathy": 50
+          },
+          "self_resonance": {
+            "industrial_worker": 52,
+            "farmer": 55,
+            "business": 80,
+            "professional": 62,
+            "immigrant": 35,
+            "black": 40
+          }
+        },
+        {
+          "name": "James Cox",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 48,
+            "CSO": 52,
+            "CNA": 42,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.48,
+            "authentic_plainspoken": 0.52,
+            "fighter_warrior": 0.3,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 60,
+            "integrity": 62,
+            "empathy": 52
+          },
+          "self_resonance": {
+            "industrial_worker": 55,
+            "farmer": 55,
+            "business": 42,
+            "professional": 58,
+            "immigrant": 58,
+            "black": 35
+          }
+        },
+        {
+          "name": "Eugene Debs",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 22,
+            "CNA": 28,
+            "MOR": 20,
+            "EPS": 72,
+            "PRO": 78
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.35,
+            "technocratic_competent": 0.42,
+            "pastoral_empathetic": 0.85,
+            "authentic_plainspoken": 0.82,
+            "fighter_warrior": 0.58,
+            "prophetic_visionary": 0.9
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 88,
+            "empathy": 85
+          },
+          "self_resonance": {
+            "industrial_worker": 78,
+            "farmer": 52,
+            "business": 5,
+            "professional": 35,
+            "immigrant": 72,
+            "black": 48
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 78,
+            "CSO": 65,
+            "CNA": 75,
+            "MOR": 58,
+            "EPS": 48,
+            "PRO": 42
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 52,
+            "CNA": 40,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 62
+          }
+        },
+        "Socialist": {
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 22,
+            "CNA": 28,
+            "MOR": 20,
+            "EPS": 75,
+            "PRO": 80
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 1,
+        "CNA": 1.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 45,
+        "threat_environment": 0.35
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.48,
+        "CNA": 0.58,
+        "MOR": 0.38,
+        "EPS": 0.45,
+        "PRO": 0.42
+      }
+    },
+    {
+      "year": 1924,
+      "candidates": [
+        {
+          "name": "Calvin Coolidge",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 85,
+            "CSO": 68,
+            "CNA": 70,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 35
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.65,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.2
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 78,
+            "empathy": 32
+          },
+          "self_resonance": {
+            "industrial_worker": 45,
+            "farmer": 45,
+            "business": 88,
+            "professional": 70,
+            "immigrant": 32,
+            "black": 42
+          }
+        },
+        {
+          "name": "John Davis",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 60,
+            "EPS": 38,
+            "PRO": 42
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.72,
+            "technocratic_competent": 0.68,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.22,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 70,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "industrial_worker": 48,
+            "farmer": 52,
+            "business": 65,
+            "professional": 62,
+            "immigrant": 52,
+            "black": 32
+          }
+        },
+        {
+          "name": "Robert La Follette",
+          "party": "Progressive",
+          "l2_profile": {
+            "MAT": 20,
+            "CSO": 38,
+            "CNA": 55,
+            "MOR": 35,
+            "EPS": 68,
+            "PRO": 72
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.7,
+            "authentic_plainspoken": 0.75,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.78
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 80,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "industrial_worker": 75,
+            "farmer": 72,
+            "business": 12,
+            "professional": 52,
+            "immigrant": 62,
+            "black": 42
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 85,
+            "CSO": 68,
+            "CNA": 72,
+            "MOR": 58,
+            "EPS": 42,
+            "PRO": 32
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 55,
+            "CNA": 50,
+            "MOR": 62,
+            "EPS": 42,
+            "PRO": 45
+          }
+        },
+        "Progressive": {
+          "l2_profile": {
+            "MAT": 18,
+            "CSO": 38,
+            "CNA": 55,
+            "MOR": 35,
+            "EPS": 70,
+            "PRO": 75
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 1.5,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 68,
+        "threat_environment": 0.22
+      },
+      "tau": {
+        "MAT": 0.58,
+        "CSO": 0.48,
+        "CNA": 0.52,
+        "MOR": 0.38,
+        "EPS": 0.45,
+        "PRO": 0.45
+      }
+    },
+    {
+      "year": 1928,
+      "candidates": [
+        {
+          "name": "Herbert Hoover",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 82,
+            "CSO": 62,
+            "CNA": 68,
+            "MOR": 55,
+            "EPS": 25,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.9,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.45,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 88,
+            "integrity": 80,
+            "empathy": 48
+          },
+          "self_resonance": {
+            "industrial_worker": 52,
+            "farmer": 50,
+            "business": 85,
+            "professional": 78,
+            "immigrant": 38,
+            "black": 45
+          }
+        },
+        {
+          "name": "Al Smith",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 42,
+            "CNA": 35,
+            "MOR": 52,
+            "EPS": 52,
+            "PRO": 58
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.68,
+            "authentic_plainspoken": 0.82,
+            "fighter_warrior": 0.4,
+            "prophetic_visionary": 0.48
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 68,
+            "empathy": 68
+          },
+          "self_resonance": {
+            "industrial_worker": 72,
+            "farmer": 35,
+            "business": 38,
+            "professional": 52,
+            "immigrant": 82,
+            "black": 35
+          }
+        }
+      ],
+      "coalitions": {
+        "Republican": {
+          "l2_profile": {
+            "MAT": 82,
+            "CSO": 65,
+            "CNA": 70,
+            "MOR": 55,
+            "EPS": 28,
+            "PRO": 52
+          }
+        },
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 42,
+            "CNA": 35,
+            "MOR": 55,
+            "EPS": 52,
+            "PRO": 58
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 2,
+        "CNA": 0.5,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 75,
+        "threat_environment": 0.18
+      },
+      "tau": {
+        "MAT": 0.58,
+        "CSO": 0.52,
+        "CNA": 0.52,
+        "MOR": 0.38,
+        "EPS": 0.42,
+        "PRO": 0.45
+      }
+    }
+  ]
+}

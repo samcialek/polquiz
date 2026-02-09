@@ -1,0 +1,1217 @@
+{
+  "elections": [
+    {
+      "year": 1932,
+      "candidates": [
+        {
+          "name": "Franklin D. Roosevelt",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 35,
+            "CNA": 40,
+            "MOR": 45,
+            "EPS": 35,
+            "PRO": 80
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.7,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.8,
+            "authentic_plainspoken": 0.5,
+            "fighter_warrior": 0.4,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 80,
+            "integrity": 65,
+            "empathy": 80
+          },
+          "self_resonance": {
+            "working_class": 85,
+            "farmer": 75,
+            "business": 35,
+            "professional": 60,
+            "black": 70,
+            "southern_white": 70,
+            "catholic": 75,
+            "jewish": 85
+          }
+        },
+        {
+          "name": "Herbert Hoover",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 85,
+            "CSO": 62,
+            "CNA": 65,
+            "MOR": 55,
+            "EPS": 22,
+            "PRO": 35
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.25,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.2,
+            "prophetic_visionary": 0.25
+          },
+          "means": {
+            "competence": 70,
+            "integrity": 75,
+            "empathy": 30
+          },
+          "self_resonance": {
+            "working_class": 25,
+            "farmer": 30,
+            "business": 75,
+            "professional": 60,
+            "black": 35,
+            "southern_white": 35,
+            "catholic": 35,
+            "jewish": 30
+          }
+        },
+        {
+          "name": "Norman Thomas",
+          "party": "Socialist",
+          "l2_profile": {
+            "MAT": 5,
+            "CSO": 25,
+            "CNA": 32,
+            "MOR": 22,
+            "EPS": 55,
+            "PRO": 85
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.8,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.85
+          },
+          "means": {
+            "competence": 58,
+            "integrity": 85,
+            "empathy": 82
+          },
+          "self_resonance": {
+            "working_class": 65,
+            "farmer": 45,
+            "business": 5,
+            "professional": 45,
+            "black": 55,
+            "southern_white": 15,
+            "catholic": 40,
+            "jewish": 65
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 35,
+            "CNA": 40,
+            "MOR": 50,
+            "EPS": 35,
+            "PRO": 75
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 80,
+            "CSO": 65,
+            "CNA": 55,
+            "MOR": 50,
+            "EPS": 50,
+            "PRO": 25
+          }
+        }
+      },
+      "salience": {
+        "MAT": 3,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 15,
+        "threat_environment": 0.4
+      },
+      "tau": {
+        "MAT": 0.7,
+        "CSO": 0.4,
+        "CNA": 0.35,
+        "MOR": 0.4,
+        "EPS": 0.35,
+        "PRO": 0.6
+      }
+    },
+    {
+      "year": 1936,
+      "candidates": [
+        {
+          "name": "Franklin D. Roosevelt",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 42,
+            "CNA": 42,
+            "MOR": 45,
+            "EPS": 45,
+            "PRO": 62
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.85,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.85
+          },
+          "means": {
+            "competence": 82,
+            "integrity": 65,
+            "empathy": 85
+          },
+          "self_resonance": {
+            "working_class": 90,
+            "farmer": 78,
+            "business": 28,
+            "professional": 62,
+            "black": 78,
+            "southern_white": 72,
+            "catholic": 82,
+            "jewish": 90
+          }
+        },
+        {
+          "name": "Alf Landon",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 58,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 48,
+            "PRO": 38
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.5,
+            "pastoral_empathetic": 0.45,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.3
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 68,
+            "empathy": 45
+          },
+          "self_resonance": {
+            "working_class": 28,
+            "farmer": 42,
+            "business": 78,
+            "professional": 55,
+            "black": 25,
+            "southern_white": 30,
+            "catholic": 28,
+            "jewish": 22
+          }
+        },
+        {
+          "name": "William Lemke",
+          "party": "Union",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 68,
+            "CNA": 70,
+            "MOR": 55,
+            "EPS": 72,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.3,
+            "technocratic_competent": 0.35,
+            "pastoral_empathetic": 0.6,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.5,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 45,
+            "integrity": 55,
+            "empathy": 58
+          },
+          "self_resonance": {
+            "working_class": 48,
+            "farmer": 58,
+            "business": 25,
+            "professional": 32,
+            "black": 18,
+            "southern_white": 45,
+            "catholic": 55,
+            "jewish": 25
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 22,
+            "CSO": 32,
+            "CNA": 38,
+            "MOR": 45,
+            "EPS": 38,
+            "PRO": 82
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 75,
+            "CSO": 60,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 45,
+            "PRO": 32
+          }
+        }
+      },
+      "salience": {
+        "MAT": 2.5,
+        "CSO": 0.3,
+        "CNA": 0.5,
+        "MOR": 0.3,
+        "EPS": 1,
+        "PRO": 1
+      },
+      "context": {
+        "conditions": 32,
+        "threat_environment": 0.42
+      },
+      "tau": {
+        "MAT": 0.72,
+        "CSO": 0.38,
+        "CNA": 0.35,
+        "MOR": 0.38,
+        "EPS": 0.42,
+        "PRO": 0.65
+      }
+    },
+    {
+      "year": 1940,
+      "candidates": [
+        {
+          "name": "Franklin D. Roosevelt",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 48,
+            "CNA": 45,
+            "MOR": 48,
+            "EPS": 48,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.8,
+            "technocratic_competent": 0.7,
+            "pastoral_empathetic": 0.82,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.82
+          },
+          "means": {
+            "competence": 85,
+            "integrity": 62,
+            "empathy": 82
+          },
+          "self_resonance": {
+            "working_class": 85,
+            "farmer": 72,
+            "business": 32,
+            "professional": 62,
+            "black": 75,
+            "southern_white": 68,
+            "catholic": 78,
+            "jewish": 88
+          }
+        },
+        {
+          "name": "Wendell Willkie",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 52,
+            "CNA": 48,
+            "MOR": 48,
+            "EPS": 52,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.6,
+            "pastoral_empathetic": 0.5,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.45
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 68,
+            "empathy": 52
+          },
+          "self_resonance": {
+            "working_class": 38,
+            "farmer": 48,
+            "business": 72,
+            "professional": 62,
+            "black": 32,
+            "southern_white": 35,
+            "catholic": 38,
+            "jewish": 32
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 25,
+            "CSO": 35,
+            "CNA": 35,
+            "MOR": 45,
+            "EPS": 38,
+            "PRO": 80
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 50,
+            "EPS": 48,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 45,
+        "threat_environment": 0.72
+      },
+      "tau": {
+        "MAT": 0.58,
+        "CSO": 0.4,
+        "CNA": 0.62,
+        "MOR": 0.4,
+        "EPS": 0.4,
+        "PRO": 0.58
+      }
+    },
+    {
+      "year": 1944,
+      "candidates": [
+        {
+          "name": "Franklin D. Roosevelt",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 45,
+            "CSO": 48,
+            "CNA": 45,
+            "MOR": 48,
+            "EPS": 48,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.85,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.8,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.65,
+            "prophetic_visionary": 0.8
+          },
+          "means": {
+            "competence": 82,
+            "integrity": 62,
+            "empathy": 78
+          },
+          "self_resonance": {
+            "working_class": 82,
+            "farmer": 68,
+            "business": 38,
+            "professional": 62,
+            "black": 78,
+            "southern_white": 65,
+            "catholic": 78,
+            "jewish": 88
+          }
+        },
+        {
+          "name": "Thomas Dewey",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 55,
+            "CNA": 52,
+            "MOR": 50,
+            "EPS": 38,
+            "PRO": 48
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.68,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.38,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.35,
+            "prophetic_visionary": 0.38
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 70,
+            "empathy": 42
+          },
+          "self_resonance": {
+            "working_class": 35,
+            "farmer": 48,
+            "business": 72,
+            "professional": 65,
+            "black": 28,
+            "southern_white": 32,
+            "catholic": 35,
+            "jewish": 28
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 28,
+            "CSO": 38,
+            "CNA": 32,
+            "MOR": 42,
+            "EPS": 35,
+            "PRO": 82
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 55,
+            "CNA": 55,
+            "MOR": 52,
+            "EPS": 42,
+            "PRO": 45
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 0.3,
+        "CNA": 2.5,
+        "MOR": 1.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 55,
+        "threat_environment": 0.88
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.38,
+        "CNA": 0.72,
+        "MOR": 0.4,
+        "EPS": 0.38,
+        "PRO": 0.55
+      }
+    },
+    {
+      "year": 1948,
+      "candidates": [
+        {
+          "name": "Harry Truman",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 36,
+            "CSO": 45,
+            "CNA": 42,
+            "MOR": 38,
+            "EPS": 50,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.5,
+            "technocratic_competent": 0.55,
+            "pastoral_empathetic": 0.7,
+            "authentic_plainspoken": 0.85,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 65,
+            "integrity": 75,
+            "empathy": 68
+          },
+          "self_resonance": {
+            "working_class": 78,
+            "farmer": 68,
+            "business": 35,
+            "professional": 55,
+            "black": 72,
+            "southern_white": 55,
+            "catholic": 72,
+            "jewish": 78
+          }
+        },
+        {
+          "name": "Thomas Dewey",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 72,
+            "CSO": 65,
+            "CNA": 58,
+            "MOR": 55,
+            "EPS": 38,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.72,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.38,
+            "fighter_warrior": 0.32,
+            "prophetic_visionary": 0.35
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 68,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "working_class": 32,
+            "farmer": 48,
+            "business": 75,
+            "professional": 68,
+            "black": 25,
+            "southern_white": 28,
+            "catholic": 32,
+            "jewish": 28
+          }
+        },
+        {
+          "name": "Strom Thurmond",
+          "party": "Dixiecrat",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 78,
+            "CNA": 82,
+            "MOR": 98,
+            "EPS": 68,
+            "PRO": 28
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.6,
+            "fighter_warrior": 0.65,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 52,
+            "integrity": 48,
+            "empathy": 25
+          },
+          "self_resonance": {
+            "working_class": 35,
+            "farmer": 55,
+            "business": 55,
+            "professional": 42,
+            "black": 2,
+            "southern_white": 85,
+            "catholic": 25,
+            "jewish": 8
+          }
+        },
+        {
+          "name": "Henry Wallace",
+          "party": "Progressive",
+          "l2_profile": {
+            "MAT": 12,
+            "CSO": 18,
+            "CNA": 18,
+            "MOR": 15,
+            "EPS": 42,
+            "PRO": 82
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.58,
+            "pastoral_empathetic": 0.72,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.75
+          },
+          "means": {
+            "competence": 62,
+            "integrity": 72,
+            "empathy": 72
+          },
+          "self_resonance": {
+            "working_class": 55,
+            "farmer": 48,
+            "business": 18,
+            "professional": 52,
+            "black": 65,
+            "southern_white": 12,
+            "catholic": 42,
+            "jewish": 68
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 42,
+            "CNA": 38,
+            "MOR": 38,
+            "EPS": 52,
+            "PRO": 70
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 68,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 52,
+            "EPS": 38,
+            "PRO": 42
+          }
+        },
+        "Dixiecrat": {
+          "l2_profile": {
+            "MAT": 55,
+            "CSO": 75,
+            "CNA": 78,
+            "MOR": 95,
+            "EPS": 62,
+            "PRO": 30
+          }
+        },
+        "Progressive": {
+          "l2_profile": {
+            "MAT": 15,
+            "CSO": 25,
+            "CNA": 22,
+            "MOR": 18,
+            "EPS": 48,
+            "PRO": 80
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1.5,
+        "CSO": 1.5,
+        "CNA": 1.5,
+        "MOR": 1,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 60,
+        "threat_environment": 0.55
+      },
+      "tau": {
+        "MAT": 0.55,
+        "CSO": 0.42,
+        "CNA": 0.55,
+        "MOR": 0.58,
+        "EPS": 0.4,
+        "PRO": 0.52
+      }
+    },
+    {
+      "year": 1952,
+      "candidates": [
+        {
+          "name": "Dwight Eisenhower",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 58,
+            "CSO": 55,
+            "CNA": 58,
+            "MOR": 52,
+            "EPS": 45,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.85,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.9,
+            "prophetic_visionary": 0.5
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 88,
+            "empathy": 58
+          },
+          "self_resonance": {
+            "working_class": 55,
+            "farmer": 62,
+            "business": 78,
+            "professional": 75,
+            "black": 32,
+            "southern_white": 48,
+            "catholic": 48,
+            "jewish": 38
+          }
+        },
+        {
+          "name": "Adlai Stevenson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 38,
+            "CSO": 35,
+            "CNA": 35,
+            "MOR": 35,
+            "EPS": 22,
+            "PRO": 65
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.75,
+            "technocratic_competent": 0.82,
+            "pastoral_empathetic": 0.52,
+            "authentic_plainspoken": 0.4,
+            "fighter_warrior": 0.25,
+            "prophetic_visionary": 0.55
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 75,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "working_class": 62,
+            "farmer": 52,
+            "business": 38,
+            "professional": 68,
+            "black": 72,
+            "southern_white": 58,
+            "catholic": 62,
+            "jewish": 75
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 38,
+            "CNA": 35,
+            "MOR": 38,
+            "EPS": 28,
+            "PRO": 65
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 58,
+            "CNA": 60,
+            "MOR": 55,
+            "EPS": 45,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 0.5,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 58,
+        "threat_environment": 0.68
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.45,
+        "CNA": 0.62,
+        "MOR": 0.45,
+        "EPS": 0.42,
+        "PRO": 0.52
+      }
+    },
+    {
+      "year": 1956,
+      "candidates": [
+        {
+          "name": "Dwight Eisenhower",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 60,
+            "CSO": 58,
+            "CNA": 60,
+            "MOR": 52,
+            "EPS": 42,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.88,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.62,
+            "fighter_warrior": 0.85,
+            "prophetic_visionary": 0.48
+          },
+          "means": {
+            "competence": 78,
+            "integrity": 88,
+            "empathy": 58
+          },
+          "self_resonance": {
+            "working_class": 55,
+            "farmer": 62,
+            "business": 80,
+            "professional": 78,
+            "black": 35,
+            "southern_white": 52,
+            "catholic": 50,
+            "jewish": 40
+          }
+        },
+        {
+          "name": "Adlai Stevenson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 32,
+            "CNA": 32,
+            "MOR": 32,
+            "EPS": 22,
+            "PRO": 68
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.72,
+            "technocratic_competent": 0.8,
+            "pastoral_empathetic": 0.55,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.22,
+            "prophetic_visionary": 0.58
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 72,
+            "empathy": 55
+          },
+          "self_resonance": {
+            "working_class": 60,
+            "farmer": 50,
+            "business": 35,
+            "professional": 65,
+            "black": 75,
+            "southern_white": 55,
+            "catholic": 60,
+            "jewish": 78
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 35,
+            "CNA": 32,
+            "MOR": 35,
+            "EPS": 28,
+            "PRO": 68
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 60,
+            "CNA": 62,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 0.5,
+        "CNA": 2,
+        "MOR": 0.5,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 68,
+        "threat_environment": 0.62
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.45,
+        "CNA": 0.65,
+        "MOR": 0.45,
+        "EPS": 0.4,
+        "PRO": 0.52
+      }
+    },
+    {
+      "year": 1960,
+      "candidates": [
+        {
+          "name": "John F. Kennedy",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 42,
+            "CSO": 45,
+            "CNA": 45,
+            "MOR": 42,
+            "EPS": 45,
+            "PRO": 55
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.72,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.62,
+            "authentic_plainspoken": 0.55,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.72
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 68,
+            "empathy": 65
+          },
+          "self_resonance": {
+            "working_class": 68,
+            "farmer": 52,
+            "business": 42,
+            "professional": 62,
+            "black": 78,
+            "southern_white": 48,
+            "catholic": 88,
+            "jewish": 82
+          }
+        },
+        {
+          "name": "Richard Nixon",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 62,
+            "CSO": 58,
+            "CNA": 58,
+            "MOR": 55,
+            "EPS": 42,
+            "PRO": 52
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.55,
+            "technocratic_competent": 0.72,
+            "pastoral_empathetic": 0.35,
+            "authentic_plainspoken": 0.42,
+            "fighter_warrior": 0.45,
+            "prophetic_visionary": 0.4
+          },
+          "means": {
+            "competence": 72,
+            "integrity": 52,
+            "empathy": 38
+          },
+          "self_resonance": {
+            "working_class": 45,
+            "farmer": 58,
+            "business": 72,
+            "professional": 68,
+            "black": 28,
+            "southern_white": 52,
+            "catholic": 32,
+            "jewish": 28
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 35,
+            "CSO": 38,
+            "CNA": 38,
+            "MOR": 35,
+            "EPS": 35,
+            "PRO": 65
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 65,
+            "CSO": 60,
+            "CNA": 60,
+            "MOR": 58,
+            "EPS": 45,
+            "PRO": 48
+          }
+        }
+      },
+      "salience": {
+        "MAT": 0.5,
+        "CSO": 1,
+        "CNA": 2,
+        "MOR": 0.5,
+        "EPS": 1,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 62,
+        "threat_environment": 0.58
+      },
+      "tau": {
+        "MAT": 0.52,
+        "CSO": 0.48,
+        "CNA": 0.6,
+        "MOR": 0.48,
+        "EPS": 0.4,
+        "PRO": 0.5
+      }
+    },
+    {
+      "year": 1964,
+      "candidates": [
+        {
+          "name": "Lyndon B. Johnson",
+          "party": "Democratic",
+          "l2_profile": {
+            "MAT": 32,
+            "CSO": 35,
+            "CNA": 40,
+            "MOR": 28,
+            "EPS": 38,
+            "PRO": 78
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.6,
+            "technocratic_competent": 0.65,
+            "pastoral_empathetic": 0.72,
+            "authentic_plainspoken": 0.7,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.65
+          },
+          "means": {
+            "competence": 75,
+            "integrity": 55,
+            "empathy": 65
+          },
+          "self_resonance": {
+            "working_class": 75,
+            "farmer": 62,
+            "business": 45,
+            "professional": 65,
+            "black": 95,
+            "southern_white": 52,
+            "catholic": 72,
+            "jewish": 85
+          }
+        },
+        {
+          "name": "Barry Goldwater",
+          "party": "Republican",
+          "l2_profile": {
+            "MAT": 90,
+            "CSO": 75,
+            "CNA": 72,
+            "MOR": 68,
+            "EPS": 68,
+            "PRO": 18
+          },
+          "aes_profile": {
+            "dignified_statesman": 0.45,
+            "technocratic_competent": 0.4,
+            "pastoral_empathetic": 0.3,
+            "authentic_plainspoken": 0.65,
+            "fighter_warrior": 0.55,
+            "prophetic_visionary": 0.7
+          },
+          "means": {
+            "competence": 55,
+            "integrity": 72,
+            "empathy": 32
+          },
+          "self_resonance": {
+            "working_class": 28,
+            "farmer": 42,
+            "business": 72,
+            "professional": 48,
+            "black": 5,
+            "southern_white": 62,
+            "catholic": 28,
+            "jewish": 12
+          }
+        }
+      ],
+      "coalitions": {
+        "Democratic": {
+          "l2_profile": {
+            "MAT": 30,
+            "CSO": 35,
+            "CNA": 38,
+            "MOR": 30,
+            "EPS": 38,
+            "PRO": 78
+          }
+        },
+        "Republican": {
+          "l2_profile": {
+            "MAT": 88,
+            "CSO": 75,
+            "CNA": 72,
+            "MOR": 68,
+            "EPS": 65,
+            "PRO": 18
+          }
+        }
+      },
+      "salience": {
+        "MAT": 1,
+        "CSO": 2,
+        "CNA": 0.5,
+        "MOR": 2,
+        "EPS": 0.5,
+        "PRO": 0.5
+      },
+      "context": {
+        "conditions": 72,
+        "threat_environment": 0.55
+      },
+      "tau": {
+        "MAT": 0.5,
+        "CSO": 0.5,
+        "CNA": 0.55,
+        "MOR": 0.58,
+        "EPS": 0.4,
+        "PRO": 0.52
+      }
+    }
+  ]
+}
