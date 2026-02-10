@@ -137,9 +137,11 @@ const QUESTION_NODE_COUNTS = {
     // 6+ nodes (weight 0.55)
     // 'q43': 8,    // DEPRECATED: was Group identity, now blame attribution (q43a-e)
     'q69': 6,    // Article choice
-    'q130': 6,   // Leadership style
-    'q132': 6,   // Leader qualities
-    'q133': 6,   // Political pitch
+
+    // 3 nodes (weight 0.70) — reduced from 6 to increase AES signal strength
+    'q130': 3,   // Leadership style (AES, TRB, ZS)
+    'q132': 3,   // Leader qualities (AES, PRO, TRB)
+    'q133': 3,   // Political pitch (AES, PRO, TRB)
 
     // 5 nodes (weight 0.55)
     'q29': 5,    // Human progress view
@@ -168,8 +170,8 @@ const QUESTION_NODE_COUNTS = {
     // 'q76': 3,    // Community homogeneity - REMOVED: no HTML
     // 'q135': 3,   // Political speech preference - REMOVED from quiz
     // 'q96': 3,    // Political ad preference - REMOVED from quiz
-    'q94': 2,    // What changed minds (AES, EPS)
-    'q98': 2,    // Political aesthetics (AES, EPS)
+    'q94': 2,    // What changed minds (AES, EPS primary; also TRB, MAT secondary)
+    'q98': 2,    // Political aesthetics (AES, EPS primary; also TRB secondary)
     'q59': 3,    // Criminal trials error
     'q60': 3,    // Welfare error
     'q63': 3,    // FDA error
@@ -401,9 +403,10 @@ const MC_MAPPINGS = {
 
     // Q29: Human progress view (HTML field q29)
     q29: {
-        'progress': { ZS: 20, ONT_S: 75, ONT_H: 70 },
-        'cycles': { ZS: 50, ONT_S: 50, ONT_H: 50 },
-        'illusion': { ZS: 75, ONT_S: 30, ONT_H: 35 }
+        // Added EPS signal: belief in progress correlates with empirical orientation
+        'progress': { ZS: 20, ONT_S: 75, ONT_H: 70, EPS: 25 },
+        'cycles': { ZS: 50, ONT_S: 50, ONT_H: 50, EPS: 45 },
+        'illusion': { ZS: 75, ONT_S: 30, ONT_H: 35, EPS: 65 }
     },
 
     // Q30: REMOVED from MC_MAPPINGS - now a slider in HTML (rehabilitation rate belief)
@@ -680,11 +683,12 @@ const MC_MAPPINGS = {
     // },
     q94: {  // "Which has changed more minds throughout history?"
         // Measures belief in rational vs emotional/aesthetic persuasion
+        // Added EPS signal: low EPS = empirical, high EPS = intuitive
         'logical_arguments':     { AES: 20, EPS: 25 },   // Values empiricism
-        'compelling_narratives': { AES: 70 },            // Values storytelling
-        'religious_spiritual':   { AES: 55, TRB: 30 },   // Transcendent experience
-        'economic_necessity':    { MAT: 60, AES: 35 },   // Materialist view
-        'art_music':             { AES: 85 }             // High aesthetic value
+        'compelling_narratives': { AES: 70, EPS: 70 },   // Values storytelling (intuitive)
+        'religious_spiritual':   { AES: 55, TRB: 30, EPS: 65 },  // Transcendent experience (intuitive)
+        'economic_necessity':    { MAT: 60, AES: 35, EPS: 40 },  // Materialist view (moderately empirical)
+        'art_music':             { AES: 85, EPS: 80 }    // High aesthetic value (highly intuitive)
     },
     // Q96: REMOVED from quiz - AES oversaturation
     // q96: {
@@ -704,11 +708,12 @@ const MC_MAPPINGS = {
     // },
     q98: {  // "When political movement develops strong aesthetics..."
         // Measures receptiveness to political aesthetics/symbolism
-        'warning_sign':        { AES: 20, EPS: 30 },   // Skeptical of symbolism
-        'sometimes_necessary': { AES: 40, EPS: 20 },   // Cautious pragmatist
-        'neutral_tool':        { AES: 50 },            // Pure pragmatist
-        'natural_healthy':     { AES: 65 },            // Moderate embrace
-        'essential_power':     { AES: 90, TRB: 25 }    // Aesthetics = power
+        // Added EPS signal: skepticism of aesthetics = empirical orientation
+        'warning_sign':        { AES: 20, EPS: 30 },   // Skeptical of symbolism (empirical)
+        'sometimes_necessary': { AES: 40, EPS: 20 },   // Cautious pragmatist (empirical)
+        'neutral_tool':        { AES: 50, EPS: 45 },   // Pure pragmatist (moderate)
+        'natural_healthy':     { AES: 65, EPS: 55 },   // Moderate embrace (leaning intuitive)
+        'essential_power':     { AES: 90, TRB: 25, EPS: 75 }  // Aesthetics = power (highly intuitive)
     },
 
     // === COM (Compromise) - Principled vs Pragmatic ===
@@ -848,7 +853,7 @@ const MC_MAPPINGS = {
     // Distinguishes civic nationalism (shared values) from ethnic nationalism (blood/soil)
     // Also feeds CU (Cultural Uniformity) as secondary signal
     q_nat_1: {
-        'shared_values':    { NAT: 30, CU: 40 },   // Civic nationalism - shared principles matter most
+        'shared_values':    { NAT: 30, CU: 65 },   // Civic nationalism - shared principles matter most
         'born_raised':      { NAT: 70, CU: 60 },   // Ethnic lean - birthright/ancestry
         'legal_status':     { NAT: 50, CU: 50 },   // Legal formalism - moderate position
         'cultural_adoption': { NAT: 55, CU: 75 },  // Cultural assimilation emphasis
@@ -860,28 +865,30 @@ const MC_MAPPINGS = {
     // Also influences PRO, COM, TRB based on leadership approach
 
     q130: {  // "The most effective political leaders are those who:"
-        // v157: Added ZS signal to all options - leadership style reveals zero-sum vs positive-sum worldview
+        // Reduced from 6 nodes to 3 (AES, TRB, ZS) to increase cross-load weight from 0.55x to 0.70x
         'channel_anger':    { AES: 85, TRB: 70, ZS: 65 },    // Fighter-Warrior: emotional, tribal, zero-sum
-        'compelling_vision': { AES: 95, PRO: 55, ZS: 40 },   // Prophetic-Visionary: can frame as us-vs-them
-        'fight_win':        { AES: 75, PRO: 70, COM: 70, ZS: 55 },  // Results-focused: "fight" implies adversaries
-        'policy_detail':    { AES: 25, EPS: 25, PRO: 35, ZS: 25 },  // Technocratic: sees positive-sum solutions
-        'expert_coalitions': { AES: 30, EPS: 20, COM: 65, ZS: 20 }  // Coalition-builder: explicitly positive-sum
+        'compelling_vision': { AES: 95, ZS: 40 },             // Prophetic-Visionary: positive-sum framing
+        'fight_win':        { AES: 75, ZS: 55 },              // Results-focused: "fight" implies adversaries
+        'policy_detail':    { AES: 25, ZS: 25 },              // Technocratic: sees positive-sum solutions
+        'expert_coalitions': { AES: 30, ZS: 20 }              // Coalition-builder: explicitly positive-sum
     },
 
     q132: {  // "What matters more in a political leader?"
+        // Reduced from 6 nodes to 3 (AES, PRO, TRB) to increase cross-load weight from 0.55x to 0.70x
         'coherent_vision':  { AES: 90, PRO: 40 },            // Prophetic-Visionary: unified narrative
-        'gets_results':     { AES: 50, PRO: 75, COM: 75 },   // Pragmatist: outcome-focused, compromise
-        'expert_team':      { AES: 25, EPS: 20, PRO: 45 },   // Technocratic: deliberative, empirical
-        'fighting_spirit':  { AES: 80, TRB: 75, ZS: 60 },    // Fighter-Warrior: tribal, conflict-oriented
-        'right_positions':  { AES: 35, PRO: 30, COM: 25 }    // Principled: deliberative, rules-bound
+        'gets_results':     { AES: 50, PRO: 75 },            // Pragmatist: outcome-focused
+        'expert_team':      { AES: 25, PRO: 45 },            // Technocratic: deliberative
+        'fighting_spirit':  { AES: 80, TRB: 75 },            // Fighter-Warrior: tribal
+        'right_positions':  { AES: 35, PRO: 30 }             // Principled: deliberative, rules-bound
     },
 
     q133: {  // "Which political pitch would resonate most with you?"
-        'data_driven':      { AES: 20, EPS: 15, PRO: 40 },   // Technocratic: highly empirical, deliberative
-        'enemy_focus':      { AES: 85, TRB: 80, ZS: 75 },    // Fighter: tribal, zero-sum, emotional
+        // Reduced from 6 nodes to 3 (AES, PRO, TRB) to increase cross-load weight from 0.55x to 0.70x
+        'data_driven':      { AES: 20, PRO: 40 },             // Technocratic: highly deliberative
+        'enemy_focus':      { AES: 85, TRB: 80 },             // Fighter: tribal, emotional
         'unified_narrative': { AES: 95, PRO: 50 },            // Prophetic-Visionary: highest AES
-        'policy_specifics': { AES: 30, EPS: 25, PRO: 35 },   // Technocratic: deliberative, evidence-based
-        'practical_results': { AES: 45, PRO: 70, COM: 70 }   // Pragmatist: results-focused
+        'policy_specifics': { AES: 30, PRO: 35 },             // Technocratic: deliberative
+        'practical_results': { AES: 45, PRO: 70 }             // Pragmatist: results-focused
     },
 };
 
@@ -1157,9 +1164,7 @@ const PRIMARY_TRAIT_CONFIG = {
 
   // 6-trait offenders
   'q69': 'CD',      // Culture/tradition is primary
-  'q130': 'AES',    // Aesthetic style is primary
-  'q132': 'AES',    // Aesthetic style is primary
-  'q133': 'AES',    // Aesthetic style is primary
+  // q130, q132, q133 reduced to 3 nodes each — no longer 6-trait offenders
 
   // 5-trait offenders
   // 'q115': 'EPS',    // REMOVED from quiz
@@ -2092,16 +2097,20 @@ function scoreQuizToL3Profile(responses) {
             ONT_H: 2.5,  // Human Optimism - was narrow (std=7.6)
             // Phase 3 additions: Additional narrow nodes
             MOR: 2.8,    // Moralism - std=10.3, blocking many archetypes
-            PRO: 3.0,    // Proceduralism - std=9.9, left-shifted mean=42.8
+            PRO: 2.0,    // Proceduralism - reduced from 3.0; tanh handles tail compression
             H: 2.5,      // Hierarchy - std=10.6, blocking archetypes
             NAT: 2.5,    // Nationalism - std=10.4, narrow
-            AES: 2.5,    // Aesthetics - std=27.5 but mean=25.3 (left-skewed)
-            EPS: 2.5,    // Epistemics - std=12.3 but mean=34.4 (left-shifted)
+            AES: 2.8,    // Aesthetics - increased from 2.5 to compensate for cross-load compression
+            EPS: 2.3,    // Epistemics - increased from 1.8; more sources now mapped (q94, q98, q29)
+            PF: 2.8,     // Partisan Fusion - only 4-5 active sources, needs amplification
             // All other nodes use default 2.0x
         };
         const amplification = NODE_AMPLIFICATION[node] || 2.0;
         const deviation = rawPosition - 50;
-        const amplifiedDeviation = deviation * amplification;
+        // Use tanh to spread the distribution without clamping at 0/100.
+        // For small deviations tanh(x)≈x so behavior is unchanged;
+        // for large deviations it compresses smoothly toward the poles.
+        const amplifiedDeviation = 50 * Math.tanh(deviation * amplification / 50);
         let position = Math.round(Math.max(0, Math.min(100, 50 + amplifiedDeviation)));
 
         // === APPLY L1 → L3 INFLUENCE ===
@@ -2210,31 +2219,52 @@ function scoreQuizToL3Profile(responses) {
 // =============================================================================
 
 function matchArchetypeFromProfile(profile) {
-    // Use the findTopArchetypes function for multiple matches if available
-    if (typeof findTopArchetypes === 'function') {
-        const topResults = findTopArchetypes(profile, {
-            maxResults: 3,
-            minFitScore: 0.4,
-            minRelativeScore: 0.5
-        });
-
-        // Return in format compatible with existing code, but with additional matches
-        if (topResults.primary) {
-            return {
-                archetype: topResults.primary.archetype,
-                score: topResults.primary.matchPercent,
-                baseArchetype: topResults.primary.baseArchetype,
-                matchConfidence: topResults.primary.fitScore,
-                // NEW: Additional strong matches
-                allMatches: topResults.matches,
-                hasMultipleMatches: topResults.hasMultiple
-            };
-        }
-    }
-
-    // Fallback to single best match
+    // Use findBestArchetype (tier-cascading) as the PRIMARY match,
+    // and findTopArchetypes for the alternative matches list.
+    // findBestArchetype respects tier priority (T1 > MEANS > T2 > ...)
+    // so well-specified archetypes are preferred over sparse ones.
     if (typeof findBestArchetype === 'function') {
-        return findBestArchetype(profile);
+        const bestResult = findBestArchetype(profile);
+
+        // Compute the raw fitScore for the primary match (for consistent scale)
+        let primaryFitScore = bestResult.matchConfidence;
+        if (typeof computeArchetypeFitScore === 'function') {
+            const primaryFit = computeArchetypeFitScore(profile, bestResult.archetype);
+            if (!primaryFit.hardFail) primaryFitScore = primaryFit.fitScore;
+        }
+
+        // Get alternative matches from findTopArchetypes if available
+        let allMatches = [];
+        let hasMultiple = false;
+        if (typeof findTopArchetypes === 'function') {
+            const topResults = findTopArchetypes(profile, {
+                maxResults: 5,
+                minFitScore: 0.3,
+                minRelativeScore: 0.4
+            });
+            allMatches = topResults.matches || [];
+            hasMultiple = topResults.hasMultiple || false;
+
+            // Ensure the primary match is first in the list
+            const primaryId = bestResult.archetype.id;
+            allMatches = allMatches.filter(function(m) { return m.archetype.id !== primaryId; });
+            allMatches.unshift({
+                archetype: bestResult.archetype,
+                baseArchetype: bestResult.baseArchetype,
+                fitScore: primaryFitScore,
+                posterior: 0,
+                matchPercent: Math.round(primaryFitScore * 100)
+            });
+        }
+
+        return {
+            archetype: bestResult.archetype,
+            score: bestResult.score,
+            baseArchetype: bestResult.baseArchetype,
+            matchConfidence: primaryFitScore,
+            allMatches: allMatches,
+            hasMultipleMatches: hasMultiple
+        };
     }
 
     // Fallback: simple matching if external script not loaded
@@ -2347,7 +2377,7 @@ function displayResults(profile, archetypeResult, behavior) {
                 ${arch.id} | ${arch.tier}${arch.ontLevel ? ' | ' + arch.ontLevel + ' ONT' : ''}
             </div>
             <div style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;margin-bottom:0.5rem;">${arch.name}</div>
-            <div style="font-family:'Courier Prime',monospace;font-size:1.1rem;color:#89ccf0;margin-bottom:1rem;">${archetypeResult.score.toFixed(1)}% match</div>
+            <div style="font-family:'Courier Prime',monospace;font-size:1.1rem;color:#89ccf0;margin-bottom:1rem;">${(archetypeResult.matchConfidence * 100).toFixed(1)}% match</div>
             <div style="font-size:1.1rem;opacity:0.9;line-height:1.5;margin-bottom:0.75rem;">${arch.description || ''}</div>
             <div style="font-size:0.9rem;opacity:0.7;font-style:italic;">${arch.examples ? 'Examples: ' + arch.examples : ''}</div>
         </div>
