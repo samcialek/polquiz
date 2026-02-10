@@ -1108,26 +1108,26 @@
       },
       "MOR": {
         "value": 50,
-        "salience": 25
+        "salience": 60
       },
       "EPS": {
         "value": 50,
         "salience": 25
       },
       "PRO": {
-        "value": 50,
-        "salience": 25
+        "value": 55,
+        "salience": 60
       }
     },
     "map": {
       "economic": 0.5,
-      "democracy": 0,
+      "democracy": -0.1,
       "social": 0,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 70,
-      "democracy": 25,
+      "democracy": 60,
       "social": 25,
       "nationalism": 25
     },
@@ -1146,7 +1146,7 @@
       },
       "MOR": {
         "position": 50,
-        "salience": 25
+        "salience": 60
       },
       "H": {
         "position": 23,
@@ -1165,8 +1165,8 @@
         "salience": 25
       },
       "PRO": {
-        "position": 50,
-        "salience": 25
+        "position": 55,
+        "salience": 60
       },
       "ENG": {
         "position": 50,
@@ -3369,8 +3369,8 @@
         "salience": 25
       },
       "COM": {
-        "position": 50,
-        "salience": 25
+        "position": 23,
+        "salience": 70
       },
       "NAT": {
         "position": 50,
@@ -3493,8 +3493,8 @@
     "tier": "T2",
     "l2": {
       "MAT": {
-        "value": 25,
-        "salience": 70
+        "value": 20,
+        "salience": 88
       },
       "CSO": {
         "value": 50,
@@ -3509,30 +3509,30 @@
         "salience": 62
       },
       "EPS": {
-        "value": 50,
-        "salience": 25
+        "value": 38,
+        "salience": 65
       },
       "PRO": {
-        "value": 50,
-        "salience": 25
+        "value": 65,
+        "salience": 70
       }
     },
     "map": {
-      "economic": 0.5,
-      "democracy": 0,
+      "economic": 0.6,
+      "democracy": -0.3,
       "social": 0,
       "nationalism": 0
     },
     "mapSalience": {
-      "economic": 70,
-      "democracy": 25,
+      "economic": 87.5,
+      "democracy": 70,
       "social": 25,
       "nationalism": 25
     },
     "l3": {
       "MAT": {
-        "position": 25,
-        "salience": 70
+        "position": 20,
+        "salience": 88
       },
       "CD": {
         "position": 50,
@@ -3559,12 +3559,12 @@
         "salience": 25
       },
       "EPS": {
-        "position": 50,
-        "salience": 25
+        "position": 38,
+        "salience": 65
       },
       "PRO": {
-        "position": 50,
-        "salience": 25
+        "position": 65,
+        "salience": 70
       },
       "ENG": {
         "position": 50,
@@ -5148,19 +5148,19 @@
         "salience": 80
       },
       "PRO": {
-        "value": 50,
-        "salience": 25
+        "value": 68,
+        "salience": 70
       }
     },
     "map": {
       "economic": 0.45,
-      "democracy": 0,
+      "democracy": -0.35,
       "social": 0,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 70,
-      "democracy": 25,
+      "democracy": 70,
       "social": 25,
       "nationalism": 25
     },
@@ -5198,16 +5198,16 @@
         "salience": 80
       },
       "PRO": {
-        "position": 50,
-        "salience": 25
+        "position": 68,
+        "salience": 70
       },
       "ENG": {
         "position": 50,
         "salience": 25
       },
       "ZS": {
-        "position": 50,
-        "salience": 25
+        "position": 23,
+        "salience": 65
       },
       "ONT_H": {
         "position": 50,
@@ -5218,8 +5218,8 @@
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 18,
+        "salience": 70
       },
       "COM": {
         "position": 50,
@@ -5981,8 +5981,8 @@
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 35,
+        "salience": 60
       },
       "COM": {
         "position": 50,
@@ -6078,8 +6078,8 @@
         "salience": 65
       },
       "ZS": {
-        "position": 50,
-        "salience": 25
+        "position": 20,
+        "salience": 70
       },
       "ONT_H": {
         "position": 50,
@@ -6090,8 +6090,8 @@
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 18,
+        "salience": 65
       },
       "COM": {
         "position": 78,
@@ -6222,8 +6222,8 @@
         "salience": 70
       },
       "CSO": {
-        "value": 50,
-        "salience": 25
+        "value": 35,
+        "salience": 55
       },
       "CNA": {
         "value": 50,
@@ -6245,13 +6245,13 @@
     "map": {
       "economic": -0.45,
       "democracy": -0.55,
-      "social": 0,
+      "social": 0.3,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 70,
       "democracy": 75,
-      "social": 25,
+      "social": 55,
       "nationalism": 25
     },
     "l3": {
@@ -6260,8 +6260,8 @@
         "salience": 70
       },
       "CD": {
-        "position": 50,
-        "salience": 25
+        "position": 35,
+        "salience": 55
       },
       "CU": {
         "position": 50,
@@ -6603,8 +6603,8 @@
         "salience": 65
       },
       "TRB": {
-        "position": 50,
-        "salience": 25
+        "position": 18,
+        "salience": 70
       },
       "PF": {
         "position": 50,
@@ -6635,8 +6635,8 @@
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 40,
+        "salience": 60
       },
       "COM": {
         "position": 50,
@@ -6666,27 +6666,27 @@
         "salience": 25
       },
       "MOR": {
-        "value": 50,
-        "salience": 60
+        "value": 68,
+        "salience": 75
       },
       "EPS": {
         "value": 50,
         "salience": 25
       },
       "PRO": {
-        "value": 78,
-        "salience": 70
+        "value": 73,
+        "salience": 75
       }
     },
     "map": {
       "economic": 0,
-      "democracy": -0.55,
+      "democracy": -0.45,
       "social": 0,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 25,
-      "democracy": 70,
+      "democracy": 75,
       "social": 25,
       "nationalism": 25
     },
@@ -6704,12 +6704,12 @@
         "salience": 25
       },
       "MOR": {
-        "position": 50,
-        "salience": 60
+        "position": 68,
+        "salience": 75
       },
       "H": {
-        "position": 50,
-        "salience": 60
+        "position": 55,
+        "salience": 65
       },
       "TRB": {
         "position": 50,
@@ -6724,8 +6724,8 @@
         "salience": 25
       },
       "PRO": {
-        "position": 78,
-        "salience": 70
+        "position": 73,
+        "salience": 75
       },
       "ENG": {
         "position": 75,
@@ -6749,7 +6749,7 @@
       },
       "COM": {
         "position": 50,
-        "salience": 25
+        "salience": 65
       },
       "NAT": {
         "position": 50,
@@ -6775,7 +6775,7 @@
         "salience": 25
       },
       "MOR": {
-        "value": 48,
+        "value": 63,
         "salience": 70
       },
       "EPS": {
@@ -6813,7 +6813,7 @@
         "salience": 25
       },
       "MOR": {
-        "position": 48,
+        "position": 63,
         "salience": 70
       },
       "H": {
@@ -6821,7 +6821,7 @@
         "salience": 25
       },
       "TRB": {
-        "position": 60,
+        "position": 58,
         "salience": 65
       },
       "PF": {
@@ -6837,8 +6837,8 @@
         "salience": 25
       },
       "ENG": {
-        "position": 50,
-        "salience": 25
+        "position": 68,
+        "salience": 70
       },
       "ZS": {
         "position": 50,
@@ -6849,8 +6849,8 @@
         "salience": 25
       },
       "ONT_S": {
-        "position": 50,
-        "salience": 25
+        "position": 68,
+        "salience": 65
       },
       "AES": {
         "position": 50,
@@ -7152,8 +7152,8 @@
         "salience": 25
       },
       "PF": {
-        "position": 50,
-        "salience": 25
+        "position": 13,
+        "salience": 65
       },
       "EPS": {
         "position": 50,
@@ -7180,8 +7180,8 @@
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 18,
+        "salience": 70
       },
       "COM": {
         "position": 73,
@@ -7293,8 +7293,8 @@
         "salience": 25
       },
       "COM": {
-        "position": 50,
-        "salience": 25
+        "position": 23,
+        "salience": 65
       },
       "NAT": {
         "position": 50,
@@ -7693,8 +7693,8 @@
         "salience": 60
       },
       "TRB": {
-        "position": 50,
-        "salience": 25
+        "position": 20,
+        "salience": 65
       },
       "PF": {
         "position": 50,
@@ -8402,12 +8402,12 @@
         "salience": 70
       },
       "CSO": {
-        "value": 50,
-        "salience": 25
+        "value": 80,
+        "salience": 70
       },
       "CNA": {
-        "value": 50,
-        "salience": 25
+        "value": 20,
+        "salience": 65
       },
       "MOR": {
         "value": 50,
@@ -8425,14 +8425,14 @@
     "map": {
       "economic": 0.55,
       "democracy": 0.6,
-      "social": 0,
-      "nationalism": 0
+      "social": -0.6,
+      "nationalism": -0.6
     },
     "mapSalience": {
       "economic": 70,
       "democracy": 65,
-      "social": 25,
-      "nationalism": 25
+      "social": 70,
+      "nationalism": 65
     },
     "l3": {
       "MAT": {
@@ -8440,12 +8440,12 @@
         "salience": 70
       },
       "CD": {
-        "position": 50,
-        "salience": 25
+        "position": 80,
+        "salience": 70
       },
       "CU": {
-        "position": 50,
-        "salience": 25
+        "position": 20,
+        "salience": 65
       },
       "MOR": {
         "position": 50,
@@ -8488,8 +8488,8 @@
         "salience": 70
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 15,
+        "salience": 65
       },
       "COM": {
         "position": 50,
@@ -9106,8 +9106,8 @@
         "salience": 25
       },
       "H": {
-        "position": 50,
-        "salience": 25
+        "position": 73,
+        "salience": 70
       },
       "TRB": {
         "position": 78,
@@ -9130,20 +9130,20 @@
         "salience": 25
       },
       "ZS": {
-        "position": 73,
-        "salience": 60
+        "position": 85,
+        "salience": 80
       },
       "ONT_H": {
         "position": 50,
         "salience": 25
       },
       "ONT_S": {
-        "position": 50,
-        "salience": 25
+        "position": 20,
+        "salience": 70
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 78,
+        "salience": 70
       },
       "COM": {
         "position": 50,
@@ -9566,20 +9566,20 @@
         "salience": 70
       },
       "ZS": {
-        "position": 50,
-        "salience": 25
+        "position": 58,
+        "salience": 65
       },
       "ONT_H": {
-        "position": 50,
-        "salience": 25
+        "position": 55,
+        "salience": 60
       },
       "ONT_S": {
         "position": 50,
         "salience": 25
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 68,
+        "salience": 70
       },
       "COM": {
         "position": 80,
@@ -9905,8 +9905,8 @@
         "salience": 75
       },
       "AES": {
-        "position": 50,
-        "salience": 25
+        "position": 55,
+        "salience": 65
       },
       "COM": {
         "position": 50,
@@ -11793,23 +11793,23 @@
         "salience": 25
       },
       "EPS": {
-        "value": 50,
-        "salience": 60
+        "value": 40,
+        "salience": 70
       },
       "PRO": {
-        "value": 50,
-        "salience": 25
+        "value": 63,
+        "salience": 65
       }
     },
     "map": {
       "economic": 0,
-      "democracy": 0,
+      "democracy": -0.25,
       "social": 0,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 25,
-      "democracy": 25,
+      "democracy": 65,
       "social": 25,
       "nationalism": 25
     },
@@ -11843,16 +11843,16 @@
         "salience": 70
       },
       "EPS": {
-        "position": 50,
-        "salience": 60
+        "position": 40,
+        "salience": 70
       },
       "PRO": {
-        "position": 50,
-        "salience": 25
+        "position": 63,
+        "salience": 65
       },
       "ENG": {
-        "position": 78,
-        "salience": 70
+        "position": 73,
+        "salience": 75
       },
       "ZS": {
         "position": 50,
@@ -12631,7 +12631,7 @@
       },
       "AES": {
         "position": 65,
-        "salience": 68
+        "salience": 70
       },
       "COM": {
         "position": 50,
@@ -13191,7 +13191,7 @@
   {
     "id": "O04",
     "name": "Doomer Leftist",
-    "tier": "ONT",
+    "tier": "T2",
     "l2": {
       "MAT": {
         "value": 25,
@@ -13409,7 +13409,7 @@
   {
     "id": "O14",
     "name": "Pragmatic Establishmentarian",
-    "tier": "ONT",
+    "tier": "T2",
     "l2": {
       "MAT": {
         "value": 50,
@@ -13634,8 +13634,8 @@
         "salience": 65
       },
       "CSO": {
-        "value": 50,
-        "salience": 25
+        "value": 40,
+        "salience": 50
       },
       "CNA": {
         "value": 50,
@@ -13657,13 +13657,13 @@
     "map": {
       "economic": -0.55,
       "democracy": -0.15,
-      "social": 0,
+      "social": 0.2,
       "nationalism": 0
     },
     "mapSalience": {
       "economic": 65,
       "democracy": 60,
-      "social": 25,
+      "social": 50,
       "nationalism": 25
     },
     "l3": {
@@ -13672,8 +13672,8 @@
         "salience": 65
       },
       "CD": {
-        "position": 50,
-        "salience": 25
+        "position": 40,
+        "salience": 50
       },
       "CU": {
         "position": 50,

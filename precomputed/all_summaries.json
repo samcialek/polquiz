@@ -7,10 +7,10 @@
     "description": "Believes in gradual progress and institutional reform; sees America as imperfect but improving. Votes Democratic with confidence rather than fear.",
     "examples": "Joe Biden, Tim Walz, Obama coalition optimists",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 89.7,
-    "electionAccuracy": 54,
-    "electionLean": "D+26",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 89.8,
+    "electionAccuracy": 52,
+    "electionLean": "D+25",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -28,11 +28,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2
+        "score": -2.2
       },
       {
         "name": "China",
-        "score": -0.7
+        "score": -0.6
       },
       {
         "name": "Israel",
@@ -115,9 +115,9 @@
     "examples": "Reagan heirs, Chamber of Commerce optimists, Nikki Haley",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 87.9,
-    "electionAccuracy": 48,
-    "electionLean": "R+35",
+    "founderMatchScore": 88.3,
+    "electionAccuracy": 44,
+    "electionLean": "R+36",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -135,7 +135,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.9
+        "score": -2
       },
       {
         "name": "United States",
@@ -223,8 +223,8 @@
     "ideologicalLean": "Moderate Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 83.1,
-    "electionAccuracy": 40,
-    "electionLean": "R+2",
+    "electionAccuracy": 48,
+    "electionLean": "R+1",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -242,7 +242,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.1
+        "score": -1
       },
       {
         "name": "United States",
@@ -328,10 +328,10 @@
     "description": "Maximum cultural defense posture; pessimistic about reversing decline but committed to holding the line.",
     "examples": "Tucker Carlson (2020s)",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 78.2,
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 86.7,
     "electionAccuracy": 70,
-    "electionLean": "R+5",
+    "electionLean": "R+6",
     "topAlignedCountries": [
       {
         "name": "Israel",
@@ -434,11 +434,11 @@
     "frequency": 3.5,
     "description": "Holds no strong political views; content with status quo and avoids political engagement. Politics is irrelevant distraction. 'I just want to grill.'",
     "examples": "Michael Jordan (1990s), Derek Jeter, Tim Duncan",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.5,
-    "electionAccuracy": 48,
-    "electionLean": "D+7",
+    "electionAccuracy": 57,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -542,10 +542,10 @@
     "description": "Believes progress lifts everyone; combines social liberalism with genuine optimism about human potential and positive-sum politics.",
     "examples": "Pete Buttigieg, Gavin Newsom",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 87.8,
-    "electionAccuracy": 38,
-    "electionLean": "D+15",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 88.6,
+    "electionAccuracy": 35,
+    "electionLean": "D+14",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -563,11 +563,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.1
+        "score": -2.3
       },
       {
         "name": "China",
-        "score": -1
+        "score": -0.9
       },
       {
         "name": "Israel",
@@ -651,8 +651,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 92.5,
-    "electionAccuracy": 50,
-    "electionLean": "D+43",
+    "electionAccuracy": 51,
+    "electionLean": "D+42",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -674,7 +674,7 @@
       },
       {
         "name": "China",
-        "score": -0.1
+        "score": 0
       },
       {
         "name": "United States",
@@ -758,8 +758,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 86.9,
-    "electionAccuracy": 52,
-    "electionLean": "D+29",
+    "electionAccuracy": 50,
+    "electionLean": "D+30",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -777,11 +777,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.7
+        "score": -1.8
       },
       {
         "name": "China",
-        "score": -0.5
+        "score": -0.3
       },
       {
         "name": "United States",
@@ -864,9 +864,9 @@
     "examples": "Samantha Power, Angelina Jolie, George Clooney",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 85.9,
-    "electionAccuracy": 44,
-    "electionLean": "D+11",
+    "founderMatchScore": 88.3,
+    "electionAccuracy": 39,
+    "electionLean": "D+13",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -884,7 +884,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.1
+        "score": -2.3
       },
       {
         "name": "Iran",
@@ -991,7 +991,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
+        "score": -1.3
       },
       {
         "name": "South Africa",
@@ -1077,10 +1077,10 @@
     "description": "Views politics through lens of class struggle; corporations and billionaires are the enemy. Economic redistribution is the terminal goal.",
     "examples": "Bernie Sanders, Robert Reich",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 91.8,
-    "electionAccuracy": 54,
-    "electionLean": "D+39",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 91.3,
+    "electionAccuracy": 53,
+    "electionLean": "D+44",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -1088,7 +1088,7 @@
       },
       {
         "name": "Mexico",
-        "score": 2
+        "score": 2.1
       },
       {
         "name": "Brazil",
@@ -1098,14 +1098,14 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.1
-      },
-      {
-        "name": "China",
-        "score": -0.1
+        "score": -1.2
       },
       {
         "name": "United States",
+        "score": 0
+      },
+      {
+        "name": "China",
         "score": 0.1
       }
     ],
@@ -1143,8 +1143,8 @@
         "label": "Center"
       },
       "PRO": {
-        "value": 50,
-        "label": "Center"
+        "value": 55,
+        "label": "High"
       },
       "ENG": {
         "value": 50,
@@ -1184,10 +1184,10 @@
     "description": "Economic freedom is the primary value; government intervention in markets is the main concern. Culture is secondary.",
     "examples": "Steve Forbes, Larry Kudlow, Art Laffer",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "John Adams",
-    "founderMatchScore": 87.9,
-    "electionAccuracy": 47,
-    "electionLean": "R+33",
+    "founderMatch": "Alexander Hamilton",
+    "founderMatchScore": 88.4,
+    "electionAccuracy": 46,
+    "electionLean": "R+31",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -1205,7 +1205,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.9
+        "score": -2
       },
       {
         "name": "United States",
@@ -1293,8 +1293,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.9,
-    "electionAccuracy": 45,
-    "electionLean": "D+9",
+    "electionAccuracy": 57,
+    "electionLean": "D+12",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -1312,7 +1312,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -1320,7 +1320,7 @@
       },
       {
         "name": "China",
-        "score": 1.1
+        "score": 1.2
       }
     ],
     "keyDimensions": {
@@ -1398,10 +1398,10 @@
     "description": "Religious faith and scripture are the foundation of political knowledge; family and church structure are paramount.",
     "examples": "Mike Pence, Mike Huckabee",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 71.6,
-    "electionAccuracy": 50,
-    "electionLean": "R+8",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 86.3,
+    "electionAccuracy": 60,
+    "electionLean": "R+7",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -1506,9 +1506,9 @@
     "examples": "Nate Silver, some policy wonks",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "James Madison",
-    "founderMatchScore": 93.3,
-    "electionAccuracy": 43,
-    "electionLean": "D+36",
+    "founderMatchScore": 92.8,
+    "electionAccuracy": 48,
+    "electionLean": "D+37",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -1526,11 +1526,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.2
+        "score": -1.4
       },
       {
         "name": "China",
-        "score": -0.2
+        "score": -0.1
       },
       {
         "name": "United States",
@@ -1613,7 +1613,7 @@
     "examples": "Larry Summers, Greg Mankiw, Tyler Cowen",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 92.6,
+    "founderMatchScore": 93.1,
     "electionAccuracy": 40,
     "electionLean": "R+36",
     "topAlignedCountries": [
@@ -1633,7 +1633,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1
+        "score": -1.1
       },
       {
         "name": "United States",
@@ -1721,8 +1721,8 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 85.9,
-    "electionAccuracy": 45,
-    "electionLean": "R+39",
+    "electionAccuracy": 46,
+    "electionLean": "R+40",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -1740,7 +1740,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.3
+        "score": -1.2
       },
       {
         "name": "South Africa",
@@ -1825,11 +1825,11 @@
     "frequency": 1.5,
     "description": "Believes growth can benefit everyone; seeks win-win solutions across partisan lines. Positive-sum worldview is central.",
     "examples": "Ro Khanna, Jared Polis",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -1847,7 +1847,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -1933,10 +1933,10 @@
     "description": "Faith rooted in local community and inherited tradition; the church as anchor against a changing world. Heritage-preserving, locally focused religious voter.",
     "examples": "Traditional parish leaders, Southern Baptist community, Orthodox congregations",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 83.6,
-    "electionAccuracy": 52,
-    "electionLean": "R+12",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 88.3,
+    "electionAccuracy": 55,
+    "electionLean": "R+14",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -1953,11 +1953,11 @@
     ],
     "topOpposedCountries": [
       {
-        "name": "Russia",
-        "score": -0.2
+        "name": "United States",
+        "score": -0.1
       },
       {
-        "name": "United States",
+        "name": "Russia",
         "score": -0.1
       },
       {
@@ -2039,11 +2039,11 @@
     "frequency": 1.5,
     "description": "Regional/cultural identity drives politics; \"common sense\" epistemology; suspicious of outsiders and elites.",
     "examples": "Rural identity voters; \"real America\" types",
-    "ideologicalLean": "Split/Independent",
+    "ideologicalLean": "Moderate Republican lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 90.8,
-    "electionAccuracy": 47,
-    "electionLean": "Even",
+    "electionAccuracy": 51,
+    "electionLean": "R+3",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -2147,10 +2147,10 @@
     "description": "Lived experience and testimony are epistemically central; ethno-racial identity drives political positions.",
     "examples": "Ta-Nehisi Coates (method)",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 84.8,
-    "electionAccuracy": 38,
-    "electionLean": "D+20",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 91.2,
+    "electionAccuracy": 37,
+    "electionLean": "D+18",
     "topAlignedCountries": [
       {
         "name": "Brazil",
@@ -2168,7 +2168,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.2
+        "score": -2.3
       },
       {
         "name": "Israel",
@@ -2256,7 +2256,7 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 83.5,
-    "electionAccuracy": 52,
+    "electionAccuracy": 54,
     "electionLean": "R+24",
     "topAlignedCountries": [
       {
@@ -2361,10 +2361,10 @@
     "description": "Politics is about vision and hope; the aesthetic of uplift and inspiration IS the politics.",
     "examples": "Obama (2008 campaign)",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 84.7,
-    "electionAccuracy": 37,
-    "electionLean": "D+19",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 89.8,
+    "electionAccuracy": 43,
+    "electionLean": "D+18",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -2382,11 +2382,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.8
       },
       {
         "name": "China",
-        "score": -0.6
+        "score": -0.5
       },
       {
         "name": "Israel",
@@ -2468,10 +2468,10 @@
     "description": "Moral witness IS the politics; speaking truth to power regardless of effectiveness.",
     "examples": "William Barber, Cornel West (style)",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 84.7,
-    "electionAccuracy": 41,
-    "electionLean": "D+21",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 86.4,
+    "electionAccuracy": 39,
+    "electionLean": "D+20",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -2489,7 +2489,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.5
+        "score": -0.6
       },
       {
         "name": "United States",
@@ -2497,7 +2497,7 @@
       },
       {
         "name": "China",
-        "score": 0.1
+        "score": 0.2
       }
     ],
     "keyDimensions": {
@@ -2575,10 +2575,10 @@
     "description": "Politics is competition; pro-market but sees economy as zero-sum race.",
     "examples": "James Carville, Rahm Emanuel",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "John Adams",
-    "founderMatchScore": 87.9,
-    "electionAccuracy": 45,
-    "electionLean": "R+39",
+    "founderMatch": "Alexander Hamilton",
+    "founderMatchScore": 88,
+    "electionAccuracy": 46,
+    "electionLean": "R+40",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -2596,7 +2596,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.8
+        "score": -1.9
       },
       {
         "name": "United States",
@@ -2682,9 +2682,9 @@
     "description": "Believes in human perfectibility through reason; transformative potential of collective action.",
     "examples": "Peter Singer, Rutger Bregman",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 86.6,
-    "electionAccuracy": 47,
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 89.8,
+    "electionAccuracy": 44,
     "electionLean": "D+28",
     "topAlignedCountries": [
       {
@@ -2703,11 +2703,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
+        "score": -1.6
       },
       {
         "name": "China",
-        "score": -0.3
+        "score": -0.2
       },
       {
         "name": "United States",
@@ -2789,10 +2789,10 @@
     "description": "Pro-business moderate who believes entrepreneurship solves social problems; not strongly partisan.",
     "examples": "Michael Bloomberg, Mark Cuban, Howard Schultz",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "John Adams",
-    "founderMatchScore": 87.9,
-    "electionAccuracy": 45,
-    "electionLean": "R+39",
+    "founderMatch": "Alexander Hamilton",
+    "founderMatchScore": 88,
+    "electionAccuracy": 46,
+    "electionLean": "R+40",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -2810,7 +2810,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.8
+        "score": -1.9
       },
       {
         "name": "United States",
@@ -2898,8 +2898,8 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 85.6,
-    "electionAccuracy": 49,
-    "electionLean": "R+36",
+    "electionAccuracy": 48,
+    "electionLean": "R+35",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -2917,7 +2917,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.7
+        "score": -1.6
       },
       {
         "name": "Brazil",
@@ -3003,10 +3003,10 @@
     "description": "Combines progressive economics with cosmopolitan internationalism; believes in global cooperation.",
     "examples": "Barack Obama, Justin Trudeau",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 82.8,
-    "electionAccuracy": 27,
-    "electionLean": "D+17",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 89,
+    "electionAccuracy": 29,
+    "electionLean": "D+14",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -3024,11 +3024,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.7
+        "score": -1.9
       },
       {
         "name": "China",
-        "score": -0.8
+        "score": -0.7
       },
       {
         "name": "Israel",
@@ -3109,11 +3109,11 @@
     "frequency": 1.3,
     "description": "Sees politics as existential warfare between in-group and threatening out-groups.",
     "examples": "Marjorie Taylor Greene, Steve Bannon, Matt Gaetz",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.3,
-    "electionAccuracy": 47,
-    "electionLean": "D+7",
+    "electionAccuracy": 56,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -3217,10 +3217,10 @@
     "description": "Progressive on economics, rooted in local community and often faith tradition.",
     "examples": "Jimmy Carter, Tulsi Gabbard (2012–2019)",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 83.6,
-    "electionAccuracy": 48,
-    "electionLean": "D+27",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 84.2,
+    "electionAccuracy": 55,
+    "electionLean": "D+29",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -3307,8 +3307,8 @@
         "label": "Center"
       },
       "COM": {
-        "value": 50,
-        "label": "Center"
+        "value": 23,
+        "label": "Strong Low"
       },
       "NAT": {
         "value": 50,
@@ -3326,8 +3326,8 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 87,
-    "electionAccuracy": 46,
-    "electionLean": "R+39",
+    "electionAccuracy": 48,
+    "electionLean": "R+41",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -3345,7 +3345,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.7
       },
       {
         "name": "United States",
@@ -3431,41 +3431,41 @@
     "description": "Believes redistribution can happen through growth, not conflict; abundance mentality.",
     "examples": "Jason Furman, Brad DeLong",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 92.4,
-    "electionAccuracy": 51,
-    "electionLean": "D+41",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 88.7,
+    "electionAccuracy": 33,
+    "electionLean": "D+13",
     "topAlignedCountries": [
       {
         "name": "South Africa",
-        "score": 2.6
+        "score": 2.2
       },
       {
         "name": "Mexico",
-        "score": 2.1
+        "score": 1.7
       },
       {
-        "name": "Germany",
-        "score": 1.9
+        "name": "Iran",
+        "score": 1.6
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.3
+        "score": -1
+      },
+      {
+        "name": "United States",
+        "score": -0.4
       },
       {
         "name": "China",
         "score": 0
-      },
-      {
-        "name": "United States",
-        "score": 0.1
       }
     ],
     "keyDimensions": {
       "MAT": {
-        "value": 25,
+        "value": 20,
         "label": "Strong Low"
       },
       "CD": {
@@ -3493,12 +3493,12 @@
         "label": "Center"
       },
       "EPS": {
-        "value": 50,
-        "label": "Center"
+        "value": 38,
+        "label": "Low"
       },
       "PRO": {
-        "value": 50,
-        "label": "Center"
+        "value": 65,
+        "label": "High"
       },
       "ENG": {
         "value": 50,
@@ -3540,8 +3540,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 95.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+13",
+    "electionAccuracy": 57,
+    "electionLean": "D+16",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -3559,7 +3559,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.3
+        "score": -0.4
       },
       {
         "name": "United States",
@@ -3646,9 +3646,9 @@
     "examples": "Cory Booker, Oprah Winfrey",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 89.9,
-    "electionAccuracy": 44,
-    "electionLean": "D+8",
+    "founderMatchScore": 90.2,
+    "electionAccuracy": 50,
+    "electionLean": "D+11",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -3666,7 +3666,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.3
+        "score": -1.6
       },
       {
         "name": "United States",
@@ -3751,11 +3751,11 @@
     "frequency": 1.2,
     "description": "The quality of democratic conversation IS the value; civility matters intrinsically.",
     "examples": "Arthur Brooks",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -3773,7 +3773,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -3860,9 +3860,9 @@
     "examples": "Fareed Zakaria, Thomas Friedman, Steven Pinker",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 87.3,
-    "electionAccuracy": 41,
-    "electionLean": "D+9",
+    "founderMatchScore": 88.4,
+    "electionAccuracy": 39,
+    "electionLean": "D+10",
     "topAlignedCountries": [
       {
         "name": "France",
@@ -3968,8 +3968,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 94.1,
-    "electionAccuracy": 46,
-    "electionLean": "D+8",
+    "electionAccuracy": 54,
+    "electionLean": "D+11",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -3987,7 +3987,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.7
       },
       {
         "name": "United States",
@@ -3995,7 +3995,7 @@
       },
       {
         "name": "China",
-        "score": 0.6
+        "score": 0.7
       }
     ],
     "keyDimensions": {
@@ -4072,11 +4072,11 @@
     "frequency": 1.2,
     "description": "Believes most political problems have solutions that benefit everyone; actively seeks compromise.",
     "examples": "Larry Hogan, Charlie Baker, Jon Huntsman",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -4094,7 +4094,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -4180,8 +4180,8 @@
     "description": "Maximum commitment to traditional values, hierarchy, and in-group boundaries; no compromise.",
     "examples": "Mike Johnson, Josh Hawley",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 76.9,
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 88.8,
     "electionAccuracy": 50,
     "electionLean": "R+6",
     "topAlignedCountries": [
@@ -4201,7 +4201,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.2
+        "score": -1.1
       },
       {
         "name": "China",
@@ -4288,8 +4288,8 @@
     "examples": "Kofi Annan †",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 86.1,
-    "electionAccuracy": 42,
+    "founderMatchScore": 86.7,
+    "electionAccuracy": 38,
     "electionLean": "D+11",
     "topAlignedCountries": [
       {
@@ -4308,7 +4308,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
+        "score": -1.5
       },
       {
         "name": "United States",
@@ -4393,11 +4393,11 @@
     "frequency": 1.2,
     "description": "Actively seeks compromise across partisan divides; frustrated by tribalism on both sides.",
     "examples": "Will Marshall (PPI)",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -4415,7 +4415,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -4502,9 +4502,9 @@
     "examples": "Matt Yglesias, Noah Smith, Elon Musk (2012–2020)",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 80.6,
-    "electionAccuracy": 36,
-    "electionLean": "R+20",
+    "founderMatchScore": 81.1,
+    "electionAccuracy": 40,
+    "electionLean": "R+19",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -4522,7 +4522,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.5
+        "score": -2.7
       },
       {
         "name": "Iran",
@@ -4610,8 +4610,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 96.9,
-    "electionAccuracy": 48,
-    "electionLean": "D+11",
+    "electionAccuracy": 56,
+    "electionLean": "D+12",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -4629,7 +4629,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.4
+        "score": -0.5
       },
       {
         "name": "United States",
@@ -4717,8 +4717,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 96.6,
-    "electionAccuracy": 48,
-    "electionLean": "D+11",
+    "electionAccuracy": 57,
+    "electionLean": "D+13",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -4736,7 +4736,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.4
+        "score": -0.5
       },
       {
         "name": "United States",
@@ -4824,7 +4824,7 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 83.2,
-    "electionAccuracy": 50,
+    "electionAccuracy": 47,
     "electionLean": "R+32",
     "topAlignedCountries": [
       {
@@ -4843,7 +4843,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.5
+        "score": -1.4
       },
       {
         "name": "South Africa",
@@ -4930,9 +4930,9 @@
     "examples": "Johan Norberg, Deirdre McCloskey",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 80.6,
+    "founderMatchScore": 78.2,
     "electionAccuracy": 43,
-    "electionLean": "R+6",
+    "electionLean": "R+5",
     "topAlignedCountries": [
       {
         "name": "China",
@@ -5037,35 +5037,35 @@
     "examples": "Some policy wonks, data journalists",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "James Madison",
-    "founderMatchScore": 96.2,
-    "electionAccuracy": 51,
-    "electionLean": "D+46",
+    "founderMatchScore": 88.6,
+    "electionAccuracy": 49,
+    "electionLean": "D+36",
     "topAlignedCountries": [
       {
         "name": "South Africa",
-        "score": 1.9
+        "score": 1.8
       },
       {
         "name": "Turkey",
-        "score": 1.6
+        "score": 1.7
       },
       {
-        "name": "Mexico",
-        "score": 1.4
+        "name": "Iran",
+        "score": 1.5
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1
+        "score": -0.7
       },
       {
         "name": "United States",
-        "score": 0
+        "score": -0.4
       },
       {
         "name": "China",
-        "score": 0
+        "score": 0.2
       }
     ],
     "keyDimensions": {
@@ -5102,16 +5102,16 @@
         "label": "Strong Low"
       },
       "PRO": {
-        "value": 50,
-        "label": "Center"
+        "value": 68,
+        "label": "High"
       },
       "ENG": {
         "value": 50,
         "label": "Center"
       },
       "ZS": {
-        "value": 50,
-        "label": "Center"
+        "value": 23,
+        "label": "Strong Low"
       },
       "ONT_H": {
         "value": 50,
@@ -5122,8 +5122,8 @@
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 18,
+        "label": "Strong Low"
       },
       "COM": {
         "value": 50,
@@ -5143,10 +5143,10 @@
     "description": "Economically left, culturally conservative working-class; wants redistribution but distrusts cultural outsiders. The 'Obama-Trump' crossover type.",
     "examples": "Robert Casey Sr. †, Huey Long †, Father Coughlin †",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 78.5,
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 86.7,
     "electionAccuracy": 29,
-    "electionLean": "D+8",
+    "electionLean": "D+6",
     "topAlignedCountries": [
       {
         "name": "Iran",
@@ -5250,10 +5250,10 @@
     "description": "Socially liberal, economically libertarian, globally oriented; dislikes both parties equally.",
     "examples": "Nick Gillespie, Bryan Caplan",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 81.2,
-    "electionAccuracy": 43,
-    "electionLean": "R+6",
+    "founderMatch": "Benjamin Franklin",
+    "founderMatchScore": 81.4,
+    "electionAccuracy": 33,
+    "electionLean": "R+5",
     "topAlignedCountries": [
       {
         "name": "France",
@@ -5271,7 +5271,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.7
+        "score": -2.8
       },
       {
         "name": "Iran",
@@ -5359,8 +5359,8 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 88.9,
-    "electionAccuracy": 43,
-    "electionLean": "R+8",
+    "electionAccuracy": 52,
+    "electionLean": "R+9",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -5378,7 +5378,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -5386,7 +5386,7 @@
       },
       {
         "name": "China",
-        "score": 0.4
+        "score": 0.3
       }
     ],
     "keyDimensions": {
@@ -5467,7 +5467,7 @@
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 89.4,
     "electionAccuracy": 47,
-    "electionLean": "D+30",
+    "electionLean": "D+32",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -5485,11 +5485,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2
+        "score": -2.2
       },
       {
         "name": "China",
-        "score": -0.7
+        "score": -0.6
       },
       {
         "name": "Israel",
@@ -5571,10 +5571,10 @@
     "description": "Values social order, hierarchy, and strong community bonds.",
     "examples": "Rod Dreher",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 81.1,
-    "electionAccuracy": 60,
-    "electionLean": "R+8",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 85.5,
+    "electionAccuracy": 65,
+    "electionLean": "R+9",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -5680,8 +5680,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 88.1,
-    "electionAccuracy": 48,
-    "electionLean": "D+24",
+    "electionAccuracy": 50,
+    "electionLean": "D+25",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -5699,11 +5699,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.4
+        "score": -2.6
       },
       {
         "name": "China",
-        "score": -0.9
+        "score": -0.8
       },
       {
         "name": "Israel",
@@ -5785,9 +5785,9 @@
     "description": "Supports social democratic policies but dislikes Democratic Party establishment.",
     "examples": "Left-independents frustrated with Dems",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 90.5,
-    "electionAccuracy": 45,
+    "founderMatch": "James Madison",
+    "founderMatchScore": 90.7,
+    "electionAccuracy": 49,
     "electionLean": "D+29",
     "topAlignedCountries": [
       {
@@ -5810,7 +5810,7 @@
       },
       {
         "name": "China",
-        "score": -0.3
+        "score": -0.2
       },
       {
         "name": "United States",
@@ -5871,8 +5871,8 @@
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 35,
+        "label": "Low"
       },
       "COM": {
         "value": 50,
@@ -5894,8 +5894,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 92.8,
-    "electionAccuracy": 52,
-    "electionLean": "D+46",
+    "electionAccuracy": 53,
+    "electionLean": "D+47",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -5917,7 +5917,7 @@
       },
       {
         "name": "China",
-        "score": 0
+        "score": 0.1
       },
       {
         "name": "United States",
@@ -5966,8 +5966,8 @@
         "label": "High"
       },
       "ZS": {
-        "value": 50,
-        "label": "Center"
+        "value": 20,
+        "label": "Strong Low"
       },
       "ONT_H": {
         "value": 50,
@@ -5978,8 +5978,8 @@
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 18,
+        "label": "Strong Low"
       },
       "COM": {
         "value": 78,
@@ -6000,9 +6000,9 @@
     "examples": "Matt Yglesias, Noah Smith",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 83.8,
+    "founderMatchScore": 84.1,
     "electionAccuracy": 33,
-    "electionLean": "R+14",
+    "electionLean": "R+13",
     "topAlignedCountries": [
       {
         "name": "United Kingdom",
@@ -6020,7 +6020,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.3
+        "score": -2.5
       },
       {
         "name": "Iran",
@@ -6107,35 +6107,35 @@
     "examples": "German economic tradition",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 89.7,
+    "founderMatchScore": 88.7,
     "electionAccuracy": 42,
-    "electionLean": "R+32",
+    "electionLean": "R+27",
     "topAlignedCountries": [
       {
         "name": "Japan",
-        "score": 1.6
+        "score": 1.3
+      },
+      {
+        "name": "France",
+        "score": 1.2
       },
       {
         "name": "Israel",
-        "score": 1.5
-      },
-      {
-        "name": "Turkey",
-        "score": 1.5
+        "score": 1.1
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.2
+        "score": -1.6
       },
       {
         "name": "United States",
-        "score": -0.4
+        "score": -0.5
       },
       {
-        "name": "Canada",
-        "score": 0.1
+        "name": "Iran",
+        "score": 0.2
       }
     ],
     "keyDimensions": {
@@ -6144,8 +6144,8 @@
         "label": "Strong High"
       },
       "CD": {
-        "value": 50,
-        "label": "Center"
+        "value": 35,
+        "label": "Low"
       },
       "CU": {
         "value": 50,
@@ -6212,11 +6212,11 @@
     "frequency": 1.2,
     "description": "Center-right with religious moral framework; supports welfare state within traditional values.",
     "examples": "European Christian Democratic parties",
-    "ideologicalLean": "Moderate Republican lean",
+    "ideologicalLean": "Moderate Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 90.1,
-    "electionAccuracy": 47,
-    "electionLean": "R+1",
+    "electionAccuracy": 59,
+    "electionLean": "D+3",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -6321,9 +6321,9 @@
     "examples": "Worker cooperative advocates",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "James Madison",
-    "founderMatchScore": 87.2,
-    "electionAccuracy": 46,
-    "electionLean": "D+38",
+    "founderMatchScore": 88.2,
+    "electionAccuracy": 50,
+    "electionLean": "D+39",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -6341,7 +6341,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.6
+        "score": -0.7
       },
       {
         "name": "United States",
@@ -6349,7 +6349,7 @@
       },
       {
         "name": "China",
-        "score": 0.2
+        "score": 0.3
       }
     ],
     "keyDimensions": {
@@ -6427,10 +6427,10 @@
     "description": "Land value tax as primary policy; believes unearned land rents are the source of inequality.",
     "examples": "Henry George followers",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 89,
-    "electionAccuracy": 39,
-    "electionLean": "D+19",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 89.4,
+    "electionAccuracy": 44,
+    "electionLean": "D+22",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -6448,7 +6448,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.2
+        "score": -0.3
       },
       {
         "name": "United States",
@@ -6481,8 +6481,8 @@
         "label": "Low"
       },
       "TRB": {
-        "value": 50,
-        "label": "Center"
+        "value": 18,
+        "label": "Strong Low"
       },
       "PF": {
         "value": 50,
@@ -6513,8 +6513,8 @@
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 40,
+        "label": "Low"
       },
       "COM": {
         "value": 50,
@@ -6533,37 +6533,37 @@
     "frequency": 1.8,
     "description": "Active citizenship and civic virtue are essential; constitutional process is sacred. Freedom through participation; popular sovereignty within constitutional bounds.",
     "examples": "Hannah Arendt tradition, Federalist Society members, Larry Kramer",
-    "ideologicalLean": "Split/Independent",
+    "ideologicalLean": "Moderate Democratic lean",
     "founderMatch": "George Washington",
-    "founderMatchScore": 86.3,
-    "electionAccuracy": 55,
-    "electionLean": "Even",
+    "founderMatchScore": 87.2,
+    "electionAccuracy": 52,
+    "electionLean": "D+5",
     "topAlignedCountries": [
-      {
-        "name": "Turkey",
-        "score": 2
-      },
       {
         "name": "Mexico",
         "score": 1.7
       },
       {
+        "name": "South Africa",
+        "score": 1.7
+      },
+      {
         "name": "Japan",
-        "score": 1.6
+        "score": 1.5
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.9
+        "score": -2.3
       },
       {
         "name": "United States",
-        "score": -0.4
+        "score": -0.2
       },
       {
-        "name": "Canada",
-        "score": 0.4
+        "name": "China",
+        "score": -0.1
       }
     ],
     "keyDimensions": {
@@ -6580,12 +6580,12 @@
         "label": "Center"
       },
       "MOR": {
-        "value": 50,
-        "label": "Center"
+        "value": 68,
+        "label": "High"
       },
       "H": {
-        "value": 50,
-        "label": "Center"
+        "value": 55,
+        "label": "High"
       },
       "TRB": {
         "value": 50,
@@ -6600,7 +6600,7 @@
         "label": "Center"
       },
       "PRO": {
-        "value": 78,
+        "value": 73,
         "label": "Strong High"
       },
       "ENG": {
@@ -6643,13 +6643,9 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.1,
-    "electionAccuracy": 43,
-    "electionLean": "D+10",
+    "electionAccuracy": 57,
+    "electionLean": "D+13",
     "topAlignedCountries": [
-      {
-        "name": "Japan",
-        "score": 2.6
-      },
       {
         "name": "Germany",
         "score": 2.5
@@ -6657,20 +6653,24 @@
       {
         "name": "United Kingdom",
         "score": 2.3
+      },
+      {
+        "name": "South Africa",
+        "score": 2.3
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.9
+        "score": -2
       },
       {
         "name": "United States",
-        "score": 0.4
+        "score": 0.2
       },
       {
         "name": "China",
-        "score": 1
+        "score": 0.4
       }
     ],
     "keyDimensions": {
@@ -6687,15 +6687,15 @@
         "label": "Center"
       },
       "MOR": {
-        "value": 48,
-        "label": "Center"
+        "value": 63,
+        "label": "High"
       },
       "H": {
         "value": 50,
         "label": "Center"
       },
       "TRB": {
-        "value": 60,
+        "value": 58,
         "label": "High"
       },
       "PF": {
@@ -6711,8 +6711,8 @@
         "label": "Center"
       },
       "ENG": {
-        "value": 50,
-        "label": "Center"
+        "value": 68,
+        "label": "High"
       },
       "ZS": {
         "value": 50,
@@ -6723,8 +6723,8 @@
         "label": "Center"
       },
       "ONT_S": {
-        "value": 50,
-        "label": "Center"
+        "value": 68,
+        "label": "High"
       },
       "AES": {
         "value": 50,
@@ -6749,9 +6749,9 @@
     "examples": "1990s Clinton Democrats, DLC Democrats",
     "ideologicalLean": "Moderate Republican lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 89.9,
-    "electionAccuracy": 33,
-    "electionLean": "R+4",
+    "founderMatchScore": 90,
+    "electionAccuracy": 41,
+    "electionLean": "R+5",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -6769,7 +6769,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.9
       },
       {
         "name": "United States",
@@ -6856,9 +6856,9 @@
     "examples": "Pre-Reagan GOP moderates",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 84.7,
-    "electionAccuracy": 37,
-    "electionLean": "R+18",
+    "founderMatchScore": 84.8,
+    "electionAccuracy": 42,
+    "electionLean": "R+17",
     "topAlignedCountries": [
       {
         "name": "France",
@@ -6876,7 +6876,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.1
+        "score": -2.3
       },
       {
         "name": "United States",
@@ -6964,8 +6964,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 93.3,
-    "electionAccuracy": 53,
-    "electionLean": "D+45",
+    "electionAccuracy": 52,
+    "electionLean": "D+48",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -6983,14 +6983,14 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
-      },
-      {
-        "name": "China",
-        "score": -0.1
+        "score": -1.5
       },
       {
         "name": "United States",
+        "score": 0.1
+      },
+      {
+        "name": "China",
         "score": 0.1
       }
     ],
@@ -7020,8 +7020,8 @@
         "label": "Center"
       },
       "PF": {
-        "value": 50,
-        "label": "Center"
+        "value": 13,
+        "label": "Strong Low"
       },
       "EPS": {
         "value": 50,
@@ -7048,8 +7048,8 @@
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 18,
+        "label": "Strong Low"
       },
       "COM": {
         "value": 73,
@@ -7071,8 +7071,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 91.2,
-    "electionAccuracy": 50,
-    "electionLean": "D+9",
+    "electionAccuracy": 61,
+    "electionLean": "D+14",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -7098,7 +7098,7 @@
       },
       {
         "name": "China",
-        "score": 0.7
+        "score": 0.6
       }
     ],
     "keyDimensions": {
@@ -7159,8 +7159,8 @@
         "label": "Center"
       },
       "COM": {
-        "value": 50,
-        "label": "Center"
+        "value": 23,
+        "label": "Strong Low"
       },
       "NAT": {
         "value": 50,
@@ -7178,8 +7178,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 86.2,
-    "electionAccuracy": 55,
-    "electionLean": "D+22",
+    "electionAccuracy": 64,
+    "electionLean": "D+27",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -7197,7 +7197,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.5
+        "score": -0.4
       },
       {
         "name": "United States",
@@ -7285,8 +7285,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 91.2,
-    "electionAccuracy": 49,
-    "electionLean": "D+11",
+    "electionAccuracy": 54,
+    "electionLean": "D+12",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -7392,7 +7392,7 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 88.4,
-    "electionAccuracy": 50,
+    "electionAccuracy": 54,
     "electionLean": "D+28",
     "topAlignedCountries": [
       {
@@ -7415,7 +7415,7 @@
       },
       {
         "name": "China",
-        "score": -0.2
+        "score": -0.1
       },
       {
         "name": "United States",
@@ -7497,9 +7497,9 @@
     "description": "Worker control through trade guilds or councils; decentralized socialism with workplace democracy.",
     "examples": "G.D.H. Cole, Anton Pannekoek",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 89.2,
-    "electionAccuracy": 51,
+    "founderMatch": "James Madison",
+    "founderMatchScore": 90.1,
+    "electionAccuracy": 53,
     "electionLean": "D+44",
     "topAlignedCountries": [
       {
@@ -7518,7 +7518,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.7
+        "score": -0.8
       },
       {
         "name": "United States",
@@ -7551,8 +7551,8 @@
         "label": "Low"
       },
       "TRB": {
-        "value": 50,
-        "label": "Center"
+        "value": 20,
+        "label": "Strong Low"
       },
       "PF": {
         "value": 50,
@@ -7604,8 +7604,8 @@
     "description": "Economic leftism combined with cultural conservatism; working-class traditionalist.",
     "examples": "Blue Labour",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 81.3,
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 87.5,
     "electionAccuracy": 48,
     "electionLean": "D+20",
     "topAlignedCountries": [
@@ -7711,10 +7711,10 @@
     "description": "Nation-state as primary unit; cultural preservation, skeptical of globalism.",
     "examples": "Yoram Hazony",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 81.8,
-    "electionAccuracy": 46,
-    "electionLean": "R+18",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 85.6,
+    "electionAccuracy": 53,
+    "electionLean": "R+19",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -7732,7 +7732,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.4
+        "score": -0.3
       },
       {
         "name": "Brazil",
@@ -7818,10 +7818,10 @@
     "description": "National identity based on civic values, not ethnicity; patriotic liberal.",
     "examples": "Civic nationalism advocates",
     "ideologicalLean": "Moderate Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 87.1,
-    "electionAccuracy": 48,
-    "electionLean": "R+4",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 88,
+    "electionAccuracy": 52,
+    "electionLean": "R+6",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -7927,8 +7927,8 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 78.2,
-    "electionAccuracy": 61,
-    "electionLean": "R+15",
+    "electionAccuracy": 63,
+    "electionLean": "R+14",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -8032,10 +8032,10 @@
     "description": "Abolish state and capitalism; mutual aid and gift economy.",
     "examples": "Kropotkin tradition",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 83.8,
-    "electionAccuracy": 36,
-    "electionLean": "D+19",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 89.8,
+    "electionAccuracy": 40,
+    "electionLean": "D+17",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -8053,7 +8053,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.8
+        "score": -2
       },
       {
         "name": "China",
@@ -8142,7 +8142,7 @@
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 91.7,
     "electionAccuracy": 55,
-    "electionLean": "D+38",
+    "electionLean": "D+40",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -8246,36 +8246,36 @@
     "description": "Civilization is the problem; return to pre-industrial or pre-agricultural life.",
     "examples": "John Zerzan",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 86.8,
-    "electionAccuracy": 47,
-    "electionLean": "D+19",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 73.5,
+    "electionAccuracy": 30,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Germany",
-        "score": 1.7
+        "score": 0.4
       },
       {
         "name": "Taiwan",
-        "score": 1.7
+        "score": 0.3
       },
       {
-        "name": "South Africa",
-        "score": 1.7
+        "name": "United Kingdom",
+        "score": 0.1
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.3
+        "score": -2.4
+      },
+      {
+        "name": "United States",
+        "score": -0.9
       },
       {
         "name": "China",
         "score": -0.8
-      },
-      {
-        "name": "United States",
-        "score": -0.1
       }
     ],
     "keyDimensions": {
@@ -8284,12 +8284,12 @@
         "label": "Strong Low"
       },
       "CD": {
-        "value": 50,
-        "label": "Center"
+        "value": 80,
+        "label": "Strong High"
       },
       "CU": {
-        "value": 50,
-        "label": "Center"
+        "value": 20,
+        "label": "Strong Low"
       },
       "MOR": {
         "value": 50,
@@ -8332,8 +8332,8 @@
         "label": "Strong Low"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 15,
+        "label": "Strong Low"
       },
       "COM": {
         "value": 50,
@@ -8355,8 +8355,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 92.1,
-    "electionAccuracy": 46,
-    "electionLean": "D+10",
+    "electionAccuracy": 51,
+    "electionLean": "D+14",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -8374,7 +8374,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.6
+        "score": -0.7
       },
       {
         "name": "United States",
@@ -8460,10 +8460,10 @@
     "description": "Expert rule; policy should be determined by technical knowledge.",
     "examples": "Technocracy movement",
     "ideologicalLean": "Moderate Democratic lean",
-    "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 90.4,
-    "electionAccuracy": 54,
-    "electionLean": "D+3",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 92,
+    "electionAccuracy": 52,
+    "electionLean": "D+1",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -8488,8 +8488,8 @@
         "score": -0.4
       },
       {
-        "name": "Canada",
-        "score": -0.3
+        "name": "Russia",
+        "score": -0.4
       }
     ],
     "keyDimensions": {
@@ -8568,9 +8568,9 @@
     "examples": "Singapore model advocates",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 95.9,
-    "electionAccuracy": 42,
-    "electionLean": "R+37",
+    "founderMatchScore": 97.1,
+    "electionAccuracy": 43,
+    "electionLean": "R+38",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -8588,7 +8588,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.9
+        "score": -1
       },
       {
         "name": "United States",
@@ -8676,8 +8676,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "James Madison",
     "founderMatchScore": 89.6,
-    "electionAccuracy": 47,
-    "electionLean": "D+35",
+    "electionAccuracy": 48,
+    "electionLean": "D+40",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -8695,11 +8695,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.7
+        "score": -1.9
       },
       {
         "name": "China",
-        "score": -0.4
+        "score": -0.2
       },
       {
         "name": "Israel",
@@ -8778,12 +8778,12 @@
     "archetypeName": "Fortress Traditionalist",
     "tier": "T2",
     "frequency": 1.8,
-    "description": "Authoritarian environmentalism; population control, deep ecology with force.",
+    "description": "Scarcity-driven authoritarianism; zero-sum resource thinking, hierarchical traditionalism, siege mentality.",
     "examples": "Pentti Linkola",
     "ideologicalLean": "Moderate Republican lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 85.3,
-    "electionAccuracy": 39,
+    "electionAccuracy": 47,
     "electionLean": "R+3",
     "topAlignedCountries": [
       {
@@ -8802,7 +8802,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.6
+        "score": -0.5
       },
       {
         "name": "United States",
@@ -8888,10 +8888,10 @@
     "description": "Synthesis of far-left economics and far-right nationalism.",
     "examples": "Limonov's NBP",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 80.4,
-    "electionAccuracy": 45,
-    "electionLean": "D+19",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 84.3,
+    "electionAccuracy": 55,
+    "electionLean": "D+21",
     "topAlignedCountries": [
       {
         "name": "Iran",
@@ -8917,7 +8917,7 @@
       },
       {
         "name": "China",
-        "score": -0.1
+        "score": -0.2
       }
     ],
     "keyDimensions": {
@@ -8938,8 +8938,8 @@
         "label": "Center"
       },
       "H": {
-        "value": 50,
-        "label": "Center"
+        "value": 73,
+        "label": "Strong High"
       },
       "TRB": {
         "value": 78,
@@ -8962,7 +8962,7 @@
         "label": "Center"
       },
       "ZS": {
-        "value": 73,
+        "value": 85,
         "label": "Strong High"
       },
       "ONT_H": {
@@ -8970,12 +8970,12 @@
         "label": "Center"
       },
       "ONT_S": {
-        "value": 50,
-        "label": "Center"
+        "value": 20,
+        "label": "Strong Low"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 78,
+        "label": "Strong High"
       },
       "COM": {
         "value": 50,
@@ -8994,11 +8994,11 @@
     "frequency": 1.2,
     "description": "Holds traditional values but applies them universally to all humans, not just their own tribe. Believes in timeless moral truths that transcend cultural and national boundaries. May be religious universalist or natural law adherent.",
     "examples": "Catholic social teaching adherents, natural law philosophers, some religious humanitarians, cosmopolitan conservatives",
-    "ideologicalLean": "Moderate Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 80,
-    "electionAccuracy": 48,
-    "electionLean": "R+3",
+    "ideologicalLean": "Moderate Democratic lean",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 80.5,
+    "electionAccuracy": 64,
+    "electionLean": "D+3",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -9104,7 +9104,7 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 89.9,
-    "electionAccuracy": 40,
+    "electionAccuracy": 43,
     "electionLean": "D+13",
     "topAlignedCountries": [
       {
@@ -9123,7 +9123,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.8
+        "score": -1.9
       },
       {
         "name": "United States",
@@ -9131,7 +9131,7 @@
       },
       {
         "name": "China",
-        "score": 0.4
+        "score": 0.5
       }
     ],
     "keyDimensions": {
@@ -9211,8 +9211,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 91.4,
-    "electionAccuracy": 41,
-    "electionLean": "D+10",
+    "electionAccuracy": 49,
+    "electionLean": "D+11",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -9238,7 +9238,7 @@
       },
       {
         "name": "China",
-        "score": 0.7
+        "score": 0.8
       }
     ],
     "keyDimensions": {
@@ -9315,11 +9315,11 @@
     "frequency": 1.8,
     "description": "Synthesize best ideas from all sides; reject tribal politics.",
     "examples": "Andrew Yang style",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -9337,7 +9337,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -9390,20 +9390,20 @@
         "label": "Strong High"
       },
       "ZS": {
-        "value": 50,
-        "label": "Center"
+        "value": 58,
+        "label": "High"
       },
       "ONT_H": {
-        "value": 50,
-        "label": "Center"
+        "value": 55,
+        "label": "High"
       },
       "ONT_S": {
         "value": 50,
         "label": "Center"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 68,
+        "label": "High"
       },
       "COM": {
         "value": 80,
@@ -9425,7 +9425,7 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 87.8,
-    "electionAccuracy": 42,
+    "electionAccuracy": 45,
     "electionLean": "D+15",
     "topAlignedCountries": [
       {
@@ -9533,7 +9533,7 @@
     "founderMatch": "John Adams",
     "founderMatchScore": 80.3,
     "electionAccuracy": 46,
-    "electionLean": "R+21",
+    "electionLean": "R+19",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -9639,8 +9639,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 91.9,
-    "electionAccuracy": 55,
-    "electionLean": "D+40",
+    "electionAccuracy": 53,
+    "electionLean": "D+41",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -9723,8 +9723,8 @@
         "label": "Strong High"
       },
       "AES": {
-        "value": 50,
-        "label": "Center"
+        "value": 55,
+        "label": "High"
       },
       "COM": {
         "value": 50,
@@ -9744,8 +9744,8 @@
     "description": "FALC; technology enables communist utopia without sacrifice.",
     "examples": "Aaron Bastani",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 86.3,
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 88.3,
     "electionAccuracy": 42,
     "electionLean": "D+18",
     "topAlignedCountries": [
@@ -9765,11 +9765,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.3
+        "score": -2.5
       },
       {
         "name": "China",
-        "score": -1.2
+        "score": -1
       },
       {
         "name": "Israel",
@@ -9853,8 +9853,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.1,
-    "electionAccuracy": 49,
-    "electionLean": "D+32",
+    "electionAccuracy": 52,
+    "electionLean": "D+36",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -9880,7 +9880,7 @@
       },
       {
         "name": "China",
-        "score": 1
+        "score": 1.1
       }
     ],
     "keyDimensions": {
@@ -9958,10 +9958,10 @@
     "description": "Progressive values but not politically engaged; lives values privately.",
     "examples": "Socially liberal professionals who avoid politics",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 84.9,
-    "electionAccuracy": 41,
-    "electionLean": "D+23",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 88.4,
+    "electionAccuracy": 46,
+    "electionLean": "D+22",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -9979,11 +9979,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.8
       },
       {
         "name": "China",
-        "score": -0.5
+        "score": -0.4
       },
       {
         "name": "Israel",
@@ -10064,11 +10064,11 @@
     "frequency": 1.8,
     "description": "Politics is primarily social; votes how their community votes.",
     "examples": "James Michael Curley †",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -10086,7 +10086,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -10171,11 +10171,11 @@
     "frequency": 1.8,
     "description": "Participates through proper channels; believes in following rules and procedures.",
     "examples": "Sandra Day O'Connor †",
-    "ideologicalLean": "Moderate Democratic lean",
-    "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 84.5,
+    "ideologicalLean": "Moderate Republican lean",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 93.1,
     "electionAccuracy": 58,
-    "electionLean": "D+1",
+    "electionLean": "R+1",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -10192,11 +10192,11 @@
     ],
     "topOpposedCountries": [
       {
-        "name": "United States",
-        "score": -0.5
+        "name": "Russia",
+        "score": -0.6
       },
       {
-        "name": "Russia",
+        "name": "United States",
         "score": -0.5
       },
       {
@@ -10278,11 +10278,11 @@
     "frequency": 1.8,
     "description": "Highly engaged online but doesn't participate offline; politics as entertainment.",
     "examples": "Twitter power users who never vote",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -10300,7 +10300,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -10385,11 +10385,11 @@
     "frequency": 1.5,
     "description": "Silently disagrees with both parties; keeps head down and disengages.",
     "examples": "Philip Roth † (2000s)",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -10407,7 +10407,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -10495,7 +10495,7 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 89.8,
-    "electionAccuracy": 38,
+    "electionAccuracy": 41,
     "electionLean": "D+12",
     "topAlignedCountries": [
       {
@@ -10600,10 +10600,10 @@
     "description": "Institutionalist who cares about norms above outcomes; \"how we do things\" defines political identity.",
     "examples": "Adam Kinzinger, David French, Liz Cheney (J6 focus)",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 83.5,
-    "electionAccuracy": 46,
-    "electionLean": "D+9",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 85.9,
+    "electionAccuracy": 50,
+    "electionLean": "D+8",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -10709,7 +10709,7 @@
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 77.3,
-    "electionAccuracy": 39,
+    "electionAccuracy": 43,
     "electionLean": "R+14",
     "topAlignedCountries": [
       {
@@ -10814,10 +10814,10 @@
     "description": "First-principles reasoning + technical competence; believes rational analysis should drive policy.",
     "examples": "Some EA-adjacent policy types",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 79.7,
-    "electionAccuracy": 46,
-    "electionLean": "R+32",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 85.2,
+    "electionAccuracy": 41,
+    "electionLean": "R+30",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -10922,8 +10922,8 @@
     "examples": "DeRay Mckesson, John Lewis †, Dolores Huerta",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 90.3,
-    "electionAccuracy": 43,
+    "founderMatchScore": 90.6,
+    "electionAccuracy": 50,
     "electionLean": "D+15",
     "topAlignedCountries": [
       {
@@ -10942,15 +10942,15 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.9
-      },
-      {
-        "name": "China",
-        "score": -0.1
+        "score": -2.2
       },
       {
         "name": "United States",
         "score": 0
+      },
+      {
+        "name": "Iran",
+        "score": 0.2
       }
     ],
     "keyDimensions": {
@@ -11027,11 +11027,11 @@
     "frequency": 1.8,
     "description": "Tradition is *how we know*, not just *what we prefer*; reason is limited; accumulated wisdom trumps abstract theory.",
     "examples": "Yuval Levin, Michael Oakeshott tradition",
-    "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 82,
-    "electionAccuracy": 50,
-    "electionLean": "R+9",
+    "ideologicalLean": "Split/Independent",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 82.6,
+    "electionAccuracy": 66,
+    "electionLean": "Even",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -11134,11 +11134,11 @@
     "frequency": 1.5,
     "description": "Loves analyzing politics but never participates; pundit mindset without action.",
     "examples": "Larry Sabato",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "John Adams",
     "founderMatchScore": 93,
-    "electionAccuracy": 48,
-    "electionLean": "D+5",
+    "electionAccuracy": 55,
+    "electionLean": "D+10",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -11156,7 +11156,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.4
+        "score": -0.5
       },
       {
         "name": "United States",
@@ -11244,8 +11244,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 93.8,
-    "electionAccuracy": 45,
-    "electionLean": "D+13",
+    "electionAccuracy": 58,
+    "electionLean": "D+15",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -11263,7 +11263,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.5
+        "score": -0.6
       },
       {
         "name": "United States",
@@ -11351,8 +11351,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "James Madison",
     "founderMatchScore": 90.2,
-    "electionAccuracy": 36,
-    "electionLean": "D+9",
+    "electionAccuracy": 44,
+    "electionLean": "D+10",
     "topAlignedCountries": [
       {
         "name": "Italy",
@@ -11378,7 +11378,7 @@
       },
       {
         "name": "China",
-        "score": 0.6
+        "score": 0.7
       }
     ],
     "keyDimensions": {
@@ -11455,11 +11455,11 @@
     "frequency": 1.8,
     "description": "Highly engaged in politics but refuses partisan identity; advocates for issues rather than parties. Believes both parties are captured by special interests.",
     "examples": "Ralph Nader, some civic reform advocates, League of Women Voters activists",
-    "ideologicalLean": "Moderate Republican lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 85.8,
-    "electionAccuracy": 52,
-    "electionLean": "R+2",
+    "ideologicalLean": "Moderate Democratic lean",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 92.7,
+    "electionAccuracy": 58,
+    "electionLean": "D+1",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -11477,7 +11477,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.5
+        "score": -0.6
       },
       {
         "name": "United States",
@@ -11563,35 +11563,35 @@
     "description": "Votes based on specific issues rather than party loyalty; highly engaged but switches parties based on candidates and issues.",
     "examples": "Split-ticket voters, some suburban independents",
     "ideologicalLean": "Moderate Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 91.7,
-    "electionAccuracy": 44,
-    "electionLean": "D+4",
+    "founderMatch": "George Washington",
+    "founderMatchScore": 94.7,
+    "electionAccuracy": 58,
+    "electionLean": "D+2",
     "topAlignedCountries": [
       {
+        "name": "Turkey",
+        "score": 2.4
+      },
+      {
         "name": "Japan",
-        "score": 2.5
+        "score": 2.1
       },
       {
-        "name": "United Kingdom",
-        "score": 2.4
-      },
-      {
-        "name": "Germany",
-        "score": 2.4
+        "name": "Mexico",
+        "score": 2.1
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.6
+        "score": -0.3
       },
       {
         "name": "United States",
-        "score": 0.2
+        "score": -0.1
       },
       {
-        "name": "China",
+        "name": "Canada",
         "score": 1.2
       }
     ],
@@ -11625,15 +11625,15 @@
         "label": "Strong Low"
       },
       "EPS": {
-        "value": 50,
-        "label": "Center"
+        "value": 40,
+        "label": "Low"
       },
       "PRO": {
-        "value": 50,
-        "label": "Center"
+        "value": 63,
+        "label": "High"
       },
       "ENG": {
-        "value": 78,
+        "value": 73,
         "label": "Strong High"
       },
       "ZS": {
@@ -11670,10 +11670,10 @@
     "description": "Believes participation itself is the highest political value; votes, volunteers, attends meetings regardless of party. Process-focused independent.",
     "examples": "Town hall regulars, PTA-to-politics pipeline",
     "ideologicalLean": "Moderate Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 85.3,
-    "electionAccuracy": 53,
-    "electionLean": "D+1",
+    "founderMatch": "John Jay",
+    "founderMatchScore": 92.9,
+    "electionAccuracy": 59,
+    "electionLean": "D+2",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -11691,7 +11691,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.5
+        "score": -0.6
       },
       {
         "name": "United States",
@@ -11776,11 +11776,11 @@
     "frequency": 2,
     "description": "Extremely combative online but rarely participates offline. Politics as spectator sport and identity performance. High engagement online, zero offline.",
     "examples": "Twitter/Reddit political posters who never vote, reply guys",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -11798,7 +11798,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -11886,8 +11886,8 @@
     "ideologicalLean": "Moderate Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 91.2,
-    "electionAccuracy": 43,
-    "electionLean": "D+5",
+    "electionAccuracy": 53,
+    "electionLean": "D+7",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -11990,11 +11990,11 @@
     "frequency": 1.8,
     "description": "Would prefer to be independent but feels forced to choose sides by polarization. High engagement, uncomfortable with party identity.",
     "examples": "'I'm not a Democrat, I just always vote for them', Never-Trumpers",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -12012,7 +12012,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -12099,9 +12099,9 @@
     "examples": "Suburban moderates who vote on social issues, 'socially liberal, fiscally moderate' types",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 91.4,
-    "electionAccuracy": 45,
-    "electionLean": "D+14",
+    "founderMatchScore": 91.2,
+    "electionAccuracy": 50,
+    "electionLean": "D+15",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -12119,7 +12119,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1
+        "score": -1.2
       },
       {
         "name": "United States",
@@ -12204,11 +12204,11 @@
     "frequency": 1.5,
     "description": "Fiscally centrist but culturally traditional; values stability and tradition while pragmatic on economics. Common in rural and religious communities.",
     "examples": "Rural moderates, church-going centrists uncomfortable with both parties",
-    "ideologicalLean": "Moderate Republican lean",
+    "ideologicalLean": "Split/Independent",
     "founderMatch": "George Washington",
     "founderMatchScore": 84.8,
-    "electionAccuracy": 39,
-    "electionLean": "R+3",
+    "electionAccuracy": 47,
+    "electionLean": "Even",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -12226,7 +12226,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.6
+        "score": -1.5
       },
       {
         "name": "United States",
@@ -12234,7 +12234,7 @@
       },
       {
         "name": "China",
-        "score": 0.1
+        "score": 0
       }
     ],
     "keyDimensions": {
@@ -12314,8 +12314,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 86.9,
-    "electionAccuracy": 52,
-    "electionLean": "D+16",
+    "electionAccuracy": 55,
+    "electionLean": "D+19",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -12333,7 +12333,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.3
+        "score": -0.4
       },
       {
         "name": "United States",
@@ -12341,7 +12341,7 @@
       },
       {
         "name": "China",
-        "score": 0.2
+        "score": 0.4
       }
     ],
     "keyDimensions": {
@@ -12421,8 +12421,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 90.5,
-    "electionAccuracy": 34,
-    "electionLean": "D+25",
+    "electionAccuracy": 38,
+    "electionLean": "D+23",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -12440,11 +12440,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.8
+        "score": -2
       },
       {
         "name": "China",
-        "score": -0.7
+        "score": -0.5
       },
       {
         "name": "Israel",
@@ -12526,10 +12526,10 @@
     "description": "Worried about democratic backsliding, climate crisis, or authoritarian threats; votes with urgency and alarm. Sees elections as existential battles.",
     "examples": "Rachel Maddow viewers, Democracy-in-peril activists",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 89.7,
-    "electionAccuracy": 54,
-    "electionLean": "D+26",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 89.8,
+    "electionAccuracy": 52,
+    "electionLean": "D+25",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -12547,11 +12547,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2
+        "score": -2.2
       },
       {
         "name": "China",
-        "score": -0.7
+        "score": -0.6
       },
       {
         "name": "Israel",
@@ -12634,9 +12634,9 @@
     "examples": "Laura Ingraham listeners, cultural anxiety voters",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Alexander Hamilton",
-    "founderMatchScore": 87.9,
-    "electionAccuracy": 48,
-    "electionLean": "R+35",
+    "founderMatchScore": 88.3,
+    "electionAccuracy": 44,
+    "electionLean": "R+36",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -12654,7 +12654,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.9
+        "score": -2
       },
       {
         "name": "United States",
@@ -12740,10 +12740,10 @@
     "description": "Sees economics as zero-sum struggle between workers and the powerful; combative 'fighting for working families' framing. Economic combat, not wonkery.",
     "examples": "Sherrod Brown supporters, union Democrats, populist left",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 91.1,
-    "electionAccuracy": 48,
-    "electionLean": "D+29",
+    "founderMatch": "James Madison",
+    "founderMatchScore": 91.5,
+    "electionAccuracy": 52,
+    "electionLean": "D+27",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -12761,7 +12761,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
+        "score": -1.5
       },
       {
         "name": "China",
@@ -12847,10 +12847,10 @@
     "description": "Faith calls them to universal justice—welcoming the stranger, caring for the poor, healing the world. Cosmopolitan, interfaith-friendly, progressive religious tradition.",
     "examples": "William Barber, Jim Wallis, liberation theology Catholics, progressive evangelicals",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "George Washington",
-    "founderMatchScore": 83.2,
-    "electionAccuracy": 44,
-    "electionLean": "D+22",
+    "founderMatch": "Samuel Adams",
+    "founderMatchScore": 84.9,
+    "electionAccuracy": 52,
+    "electionLean": "D+25",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -12949,15 +12949,15 @@
   {
     "archetypeId": "O04",
     "archetypeName": "Doomer Leftist",
-    "tier": "ONT",
+    "tier": "T2",
     "frequency": 1.5,
     "description": "\"It's all rigged.\" Disengaged or purely expressive politics.",
     "examples": "Amber A'Lee Frost",
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 91.8,
-    "electionAccuracy": 54,
-    "electionLean": "D+39",
+    "electionAccuracy": 55,
+    "electionLean": "D+40",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -13063,8 +13063,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 88.7,
-    "electionAccuracy": 42,
-    "electionLean": "D+23",
+    "electionAccuracy": 48,
+    "electionLean": "D+22",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -13082,11 +13082,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.7
+        "score": -1.9
       },
       {
         "name": "China",
-        "score": -0.5
+        "score": -0.3
       },
       {
         "name": "United States",
@@ -13163,15 +13163,15 @@
   {
     "archetypeId": "O14",
     "archetypeName": "Pragmatic Establishmentarian",
-    "tier": "ONT",
+    "tier": "T2",
     "frequency": 2.3,
     "description": "Works within institutions because that's what works; no illusions about transformation.",
     "examples": "Rahm Emanuel",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -13189,7 +13189,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -13276,9 +13276,9 @@
     "examples": "Patrick Collison (Stripe)",
     "ideologicalLean": "Strong Republican lean",
     "founderMatch": "Benjamin Franklin",
-    "founderMatchScore": 80.6,
-    "electionAccuracy": 36,
-    "electionLean": "R+20",
+    "founderMatchScore": 81.1,
+    "electionAccuracy": 40,
+    "electionLean": "R+19",
     "topAlignedCountries": [
       {
         "name": "Germany",
@@ -13296,7 +13296,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.5
+        "score": -2.7
       },
       {
         "name": "Iran",
@@ -13382,36 +13382,36 @@
     "description": "Markets are the least bad option; no illusions about perfection.",
     "examples": "Sebastian Mallaby",
     "ideologicalLean": "Strong Republican lean",
-    "founderMatch": "John Adams",
-    "founderMatchScore": 88.5,
-    "electionAccuracy": 45,
-    "electionLean": "R+39",
+    "founderMatch": "Alexander Hamilton",
+    "founderMatchScore": 87.8,
+    "electionAccuracy": 43,
+    "electionLean": "R+34",
     "topAlignedCountries": [
       {
         "name": "Japan",
-        "score": 2.1
+        "score": 1.9
       },
       {
-        "name": "Israel",
-        "score": 1.8
+        "name": "United Kingdom",
+        "score": 1.5
       },
       {
-        "name": "South Korea",
+        "name": "France",
         "score": 1.5
       }
     ],
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.4
+        "score": -1.6
       },
       {
         "name": "United States",
         "score": -0.2
       },
       {
-        "name": "Brazil",
-        "score": 0.4
+        "name": "Iran",
+        "score": 0.3
       }
     ],
     "keyDimensions": {
@@ -13420,8 +13420,8 @@
         "label": "Strong High"
       },
       "CD": {
-        "value": 50,
-        "label": "Center"
+        "value": 40,
+        "label": "Low"
       },
       "CU": {
         "value": 50,
@@ -13491,7 +13491,7 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 90.5,
-    "electionAccuracy": 41,
+    "electionAccuracy": 48,
     "electionLean": "D+13",
     "topAlignedCountries": [
       {
@@ -13595,11 +13595,11 @@
     "frequency": 1.9,
     "description": "Traditional values are under permanent attack from hostile forces; defensive, embattled, sees betrayal everywhere.",
     "examples": "Culture war conservatives, Benedict Option types",
-    "ideologicalLean": "Moderate Republican lean",
+    "ideologicalLean": "Split/Independent",
     "founderMatch": "John Adams",
     "founderMatchScore": 83.7,
-    "electionAccuracy": 40,
-    "electionLean": "R+2",
+    "electionAccuracy": 47,
+    "electionLean": "Even",
     "topAlignedCountries": [
       {
         "name": "Turkey",
@@ -13617,7 +13617,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.1
+        "score": -1
       },
       {
         "name": "United States",
@@ -13705,8 +13705,8 @@
     "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "Thomas Jefferson",
     "founderMatchScore": 92.5,
-    "electionAccuracy": 50,
-    "electionLean": "D+43",
+    "electionAccuracy": 51,
+    "electionLean": "D+42",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -13728,7 +13728,7 @@
       },
       {
         "name": "China",
-        "score": -0.1
+        "score": 0
       },
       {
         "name": "United States",
@@ -13831,7 +13831,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -1.3
+        "score": -1.4
       },
       {
         "name": "China",
@@ -13916,11 +13916,11 @@
     "frequency": 3.5,
     "description": "No coherent ideology; activated by zero-sum framing and anti-elite messaging. Votes AGAINST system, not FOR policy. First-time Trump voter archetype.",
     "examples": "2016 Obama→Trump voters; non-voters activated by Trump",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -13938,7 +13938,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",
@@ -14023,11 +14023,11 @@
     "frequency": 1.8,
     "description": "High threat sensitivity; responds to \"things are getting worse\" messaging. Swings based on which party seems more threatening. No coherent ideology.",
     "examples": "Anxious swing voters in Rust Belt",
-    "ideologicalLean": "Moderate Democratic lean",
+    "ideologicalLean": "Strong Democratic lean",
     "founderMatch": "George Washington",
     "founderMatchScore": 92.9,
-    "electionAccuracy": 46,
-    "electionLean": "D+7",
+    "electionAccuracy": 55,
+    "electionLean": "D+9",
     "topAlignedCountries": [
       {
         "name": "Japan",
@@ -14045,7 +14045,7 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -0.8
+        "score": -0.9
       },
       {
         "name": "United States",

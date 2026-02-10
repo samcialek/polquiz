@@ -849,7 +849,7 @@
   {
     "id": "O04",
     "name": "Doomer Leftist",
-    "tier": "ONT",
+    "tier": "T2",
     "frequency": 1.5,
     "file": "archetypes/O04_doomer_leftist.json"
   },
@@ -863,7 +863,7 @@
   {
     "id": "O14",
     "name": "Pragmatic Establishmentarian",
-    "tier": "ONT",
+    "tier": "T2",
     "frequency": 2.3,
     "file": "archetypes/O14_pragmatic_establishmentarian.json"
   },

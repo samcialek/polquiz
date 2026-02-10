@@ -7,7 +7,7 @@
     "description": "Believes progress lifts everyone; combines social liberalism with genuine optimism about human potential and positive-sum politics.",
     "examples": "Pete Buttigieg, Gavin Newsom",
     "ontLevel": "High",
-    "generatedAt": "2026-02-03T13:14:45.721Z"
+    "generatedAt": "2026-02-10T13:39:43.609Z"
   },
   "profiles": {
     "l3": {
@@ -117,17 +117,39 @@
   },
   "founders": {
     "bestMatch": {
-      "id": "jefferson",
-      "name": "Thomas Jefferson",
-      "matchScore": 87.8,
-      "quote": "I hold it that a little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical.",
+      "id": "paine",
+      "name": "Thomas Paine",
+      "matchScore": 88.6,
+      "quote": "These are the times that try men's souls. The summer soldier and the sunshine patriot will, in this crisis, shrink from the service of their country.",
       "traits": [
-        "Visionary",
-        "Democratic",
-        "Idealistic"
+        "Radical",
+        "Egalitarian",
+        "Internationalist"
       ]
     },
     "allScores": [
+      {
+        "id": "paine",
+        "name": "Thomas Paine",
+        "matchScore": 88.6,
+        "quote": "These are the times that try men's souls. The summer soldier and the sunshine patriot will, in this crisis, shrink from the service of their country.",
+        "traits": [
+          "Radical",
+          "Egalitarian",
+          "Internationalist"
+        ]
+      },
+      {
+        "id": "madison",
+        "name": "James Madison",
+        "matchScore": 88.2,
+        "quote": "If men were angels, no government would be necessary.",
+        "traits": [
+          "Systematic",
+          "Balanced",
+          "Thoughtful"
+        ]
+      },
       {
         "id": "jefferson",
         "name": "Thomas Jefferson",
@@ -140,20 +162,9 @@
         ]
       },
       {
-        "id": "madison",
-        "name": "James Madison",
-        "matchScore": 87.3,
-        "quote": "If men were angels, no government would be necessary.",
-        "traits": [
-          "Systematic",
-          "Balanced",
-          "Thoughtful"
-        ]
-      },
-      {
         "id": "franklin",
         "name": "Benjamin Franklin",
-        "matchScore": 83.9,
+        "matchScore": 84.1,
         "quote": "They who can give up essential liberty to obtain a little temporary safety deserve neither liberty nor safety.",
         "traits": [
           "Pragmatic",
@@ -173,6 +184,28 @@
         ]
       },
       {
+        "id": "samuel_adams",
+        "name": "Samuel Adams",
+        "matchScore": 70.9,
+        "quote": "It does not take a majority to prevail, but rather an irate, tireless minority keen to set brush fires in people's minds.",
+        "traits": [
+          "Firebrand",
+          "Populist",
+          "Moralist"
+        ]
+      },
+      {
+        "id": "jay",
+        "name": "John Jay",
+        "matchScore": 70.7,
+        "quote": "Those who own the country ought to govern it.",
+        "traits": [
+          "Judicious",
+          "Orderly",
+          "Cosmopolitan"
+        ]
+      },
+      {
         "id": "adams",
         "name": "John Adams",
         "matchScore": 67.7,
@@ -186,7 +219,7 @@
       {
         "id": "hamilton",
         "name": "Alexander Hamilton",
-        "matchScore": 65,
+        "matchScore": 65.2,
         "quote": "Those who stand for nothing fall for anything.",
         "traits": [
           "Ambitious",
@@ -260,7 +293,7 @@
       },
       {
         "year": 1800,
-        "threshold": 91,
+        "threshold": 90.6,
         "turnoutRate": 32.3,
         "scores": [
           {
@@ -284,7 +317,7 @@
       },
       {
         "year": 1804,
-        "threshold": 94.9,
+        "threshold": 94.8,
         "turnoutRate": 23.8,
         "scores": [
           {
@@ -308,7 +341,7 @@
       },
       {
         "year": 1808,
-        "threshold": 93.9,
+        "threshold": 93.7,
         "turnoutRate": 36.8,
         "scores": [
           {
@@ -356,7 +389,7 @@
       },
       {
         "year": 1816,
-        "threshold": 93.8,
+        "threshold": 92.7,
         "turnoutRate": 16.9,
         "scores": [
           {
@@ -380,7 +413,7 @@
       },
       {
         "year": 1820,
-        "threshold": 92.9,
+        "threshold": 92.8,
         "turnoutRate": 10.1,
         "scores": [
           {
@@ -398,7 +431,7 @@
       },
       {
         "year": 1824,
-        "threshold": 94,
+        "threshold": 93.8,
         "turnoutRate": 26.9,
         "scores": [
           {
@@ -434,7 +467,7 @@
       },
       {
         "year": 1828,
-        "threshold": 83.3,
+        "threshold": 83,
         "turnoutRate": 57.3,
         "scores": [
           {
@@ -458,7 +491,7 @@
       },
       {
         "year": 1832,
-        "threshold": 90.6,
+        "threshold": 90.4,
         "turnoutRate": 55.4,
         "scores": [
           {
@@ -488,7 +521,7 @@
       },
       {
         "year": 1836,
-        "threshold": 91.4,
+        "threshold": 91.1,
         "turnoutRate": 57.8,
         "scores": [
           {
@@ -548,7 +581,7 @@
       },
       {
         "year": 1844,
-        "threshold": 80.2,
+        "threshold": 79.5,
         "turnoutRate": 78.9,
         "scores": [
           {
@@ -578,7 +611,7 @@
       },
       {
         "year": 1848,
-        "threshold": 80.5,
+        "threshold": 79.3,
         "turnoutRate": 72.7,
         "scores": [
           {
@@ -608,7 +641,7 @@
       },
       {
         "year": 1852,
-        "threshold": 82.1,
+        "threshold": 81.4,
         "turnoutRate": 69.6,
         "scores": [
           {
@@ -638,7 +671,7 @@
       },
       {
         "year": 1856,
-        "threshold": 74.3,
+        "threshold": 74.2,
         "turnoutRate": 78.9,
         "scores": [
           {
@@ -668,32 +701,32 @@
       },
       {
         "year": 1860,
-        "threshold": 71.1,
+        "threshold": 74.3,
         "turnoutRate": 81.2,
         "scores": [
           {
+            "name": "Abraham Lincoln",
+            "party": "Republican",
+            "score": 73.2,
+            "distance": 19.6
+          },
+          {
             "name": "John Bell",
             "party": "Constitutional Union",
-            "score": 64.6,
-            "distance": 23.1
+            "score": 68.9,
+            "distance": 21.4
           },
           {
             "name": "Stephen Douglas",
             "party": "Democratic",
-            "score": 56.9,
-            "distance": 26.3
-          },
-          {
-            "name": "Abraham Lincoln",
-            "party": "Republican",
-            "score": 53.3,
-            "distance": 27.8
+            "score": 67.4,
+            "distance": 22
           },
           {
             "name": "John Breckinridge",
             "party": "Southern Democratic",
-            "score": 38.7,
-            "distance": 34.1
+            "score": 61.4,
+            "distance": 24.4
           }
         ],
         "voted": null,
@@ -704,7 +737,7 @@
       },
       {
         "year": 1864,
-        "threshold": 86.7,
+        "threshold": 86.6,
         "turnoutRate": 73.8,
         "scores": [
           {
@@ -728,7 +761,7 @@
       },
       {
         "year": 1868,
-        "threshold": 69.7,
+        "threshold": 69.5,
         "turnoutRate": 78.1,
         "scores": [
           {
@@ -800,7 +833,7 @@
       },
       {
         "year": 1880,
-        "threshold": 87,
+        "threshold": 87.1,
         "turnoutRate": 79.4,
         "scores": [
           {
@@ -884,7 +917,7 @@
       },
       {
         "year": 1892,
-        "threshold": 90.2,
+        "threshold": 89.7,
         "turnoutRate": 74.7,
         "scores": [
           {
@@ -962,7 +995,7 @@
       },
       {
         "year": 1904,
-        "threshold": 77.9,
+        "threshold": 78.1,
         "turnoutRate": 65.2,
         "scores": [
           {
@@ -992,7 +1025,7 @@
       },
       {
         "year": 1908,
-        "threshold": 85.1,
+        "threshold": 85,
         "turnoutRate": 65.4,
         "scores": [
           {
@@ -1022,32 +1055,32 @@
       },
       {
         "year": 1912,
-        "threshold": 84.9,
+        "threshold": 86.1,
         "turnoutRate": 58.8,
         "scores": [
           {
-            "name": "Woodrow Wilson",
-            "party": "Democratic",
-            "score": 77.2,
-            "distance": 17.8
-          },
-          {
             "name": "Eugene Debs",
             "party": "Socialist",
-            "score": 75.7,
-            "distance": 18.5
+            "score": 81.9,
+            "distance": 15.6
+          },
+          {
+            "name": "Woodrow Wilson",
+            "party": "Democratic",
+            "score": 75.2,
+            "distance": 18.7
           },
           {
             "name": "Theodore Roosevelt",
             "party": "Progressive",
-            "score": 62.7,
-            "distance": 23.9
+            "score": 73.2,
+            "distance": 19.5
           },
           {
             "name": "William Howard Taft",
             "party": "Republican",
-            "score": 26.8,
-            "distance": 40.2
+            "score": 16.7,
+            "distance": 46.8
           }
         ],
         "voted": null,
@@ -1058,7 +1091,7 @@
       },
       {
         "year": 1916,
-        "threshold": 84.8,
+        "threshold": 84.9,
         "turnoutRate": 61.6,
         "scores": [
           {
@@ -1118,7 +1151,7 @@
       },
       {
         "year": 1924,
-        "threshold": 90.9,
+        "threshold": 90.7,
         "turnoutRate": 48.9,
         "scores": [
           {
@@ -1148,7 +1181,7 @@
       },
       {
         "year": 1928,
-        "threshold": 82.5,
+        "threshold": 81.8,
         "turnoutRate": 56.9,
         "scores": [
           {
@@ -1172,7 +1205,7 @@
       },
       {
         "year": 1932,
-        "threshold": 61.6,
+        "threshold": 61.9,
         "turnoutRate": 56.9,
         "scores": [
           {
@@ -1202,14 +1235,14 @@
       },
       {
         "year": 1936,
-        "threshold": 83.4,
+        "threshold": 84.8,
         "turnoutRate": 61,
         "scores": [
           {
             "name": "Franklin D. Roosevelt",
             "party": "Democratic",
-            "score": 94.6,
-            "distance": 8.3
+            "score": 83.9,
+            "distance": 14.7
           },
           {
             "name": "William Lemke",
@@ -1224,22 +1257,22 @@
             "distance": 49.4
           }
         ],
-        "voted": "Franklin D. Roosevelt",
-        "party": "Democratic",
-        "abstained": false,
-        "won": true,
+        "voted": null,
+        "party": null,
+        "abstained": true,
+        "won": false,
         "actualWinner": "Franklin D. Roosevelt"
       },
       {
         "year": 1940,
-        "threshold": 82.6,
+        "threshold": 86.3,
         "turnoutRate": 62.5,
         "scores": [
           {
             "name": "Franklin D. Roosevelt",
             "party": "Democratic",
-            "score": 80.8,
-            "distance": 16.2
+            "score": 79.7,
+            "distance": 16.7
           },
           {
             "name": "Wendell Willkie",
@@ -1256,20 +1289,20 @@
       },
       {
         "year": 1944,
-        "threshold": 86.6,
+        "threshold": 93.1,
         "turnoutRate": 55.9,
         "scores": [
+          {
+            "name": "Franklin D. Roosevelt",
+            "party": "Democratic",
+            "score": 90.1,
+            "distance": 11.3
+          },
           {
             "name": "Thomas Dewey",
             "party": "Republican",
             "score": 78.2,
             "distance": 17.3
-          },
-          {
-            "name": "Franklin D. Roosevelt",
-            "party": "Democratic",
-            "score": 72.7,
-            "distance": 19.7
           }
         ],
         "voted": null,
@@ -1280,32 +1313,32 @@
       },
       {
         "year": 1948,
-        "threshold": 88.5,
+        "threshold": 87.5,
         "turnoutRate": 53,
         "scores": [
           {
             "name": "Harry Truman",
             "party": "Democratic",
-            "score": 85.5,
-            "distance": 13.9
+            "score": 83.3,
+            "distance": 15
           },
           {
             "name": "Henry Wallace",
             "party": "Progressive",
-            "score": 78.5,
-            "distance": 17.2
+            "score": 71.1,
+            "distance": 20.5
           },
           {
             "name": "Strom Thurmond",
             "party": "Dixiecrat",
-            "score": 41.1,
-            "distance": 33
+            "score": 32.7,
+            "distance": 37
           },
           {
             "name": "Thomas Dewey",
             "party": "Republican",
-            "score": 37.3,
-            "distance": 34.7
+            "score": 26.6,
+            "distance": 40.3
           }
         ],
         "voted": null,
@@ -1316,7 +1349,7 @@
       },
       {
         "year": 1952,
-        "threshold": 83.5,
+        "threshold": 83.6,
         "turnoutRate": 63.3,
         "scores": [
           {
@@ -1340,7 +1373,7 @@
       },
       {
         "year": 1956,
-        "threshold": 83.4,
+        "threshold": 83.5,
         "turnoutRate": 60.6,
         "scores": [
           {
@@ -1364,14 +1397,14 @@
       },
       {
         "year": 1960,
-        "threshold": 86.3,
+        "threshold": 86.5,
         "turnoutRate": 63.8,
         "scores": [
           {
             "name": "John F. Kennedy",
             "party": "Democratic",
-            "score": 82.2,
-            "distance": 15.5
+            "score": 81.1,
+            "distance": 16
           },
           {
             "name": "Richard Nixon",
@@ -1388,7 +1421,7 @@
       },
       {
         "year": 1964,
-        "threshold": 74.2,
+        "threshold": 74.1,
         "turnoutRate": 61.9,
         "scores": [
           {
@@ -1412,26 +1445,26 @@
       },
       {
         "year": 1968,
-        "threshold": 83.9,
+        "threshold": 87.8,
         "turnoutRate": 60.8,
         "scores": [
           {
             "name": "Hubert Humphrey",
             "party": "Democratic",
-            "score": 82.6,
-            "distance": 15.3
+            "score": 85.9,
+            "distance": 13.6
           },
           {
             "name": "Richard Nixon",
             "party": "Republican",
-            "score": 59.7,
-            "distance": 25.1
+            "score": 61.9,
+            "distance": 24.2
           },
           {
             "name": "George Wallace",
             "party": "American Independent",
-            "score": 32.9,
-            "distance": 36.9
+            "score": 46.1,
+            "distance": 30.8
           }
         ],
         "voted": null,
@@ -1472,7 +1505,7 @@
       },
       {
         "year": 1976,
-        "threshold": 89.1,
+        "threshold": 89,
         "turnoutRate": 53.6,
         "scores": [
           {
@@ -1502,26 +1535,26 @@
       },
       {
         "year": 1980,
-        "threshold": 88.3,
+        "threshold": 90.5,
         "turnoutRate": 52.6,
         "scores": [
           {
             "name": "Jimmy Carter",
             "party": "Democratic",
-            "score": 65.3,
-            "distance": 22.8
-          },
-          {
-            "name": "John Anderson",
-            "party": "Independent",
-            "score": 45.6,
-            "distance": 31
+            "score": 83.6,
+            "distance": 14.8
           },
           {
             "name": "Ronald Reagan",
             "party": "Republican",
-            "score": 7.6,
-            "distance": 56.3
+            "score": 38.8,
+            "distance": 34.1
+          },
+          {
+            "name": "John Anderson",
+            "party": "Independent",
+            "score": 37.5,
+            "distance": 34.7
           }
         ],
         "voted": null,
@@ -1532,7 +1565,7 @@
       },
       {
         "year": 1984,
-        "threshold": 71.6,
+        "threshold": 71.2,
         "turnoutRate": 53.3,
         "scores": [
           {
@@ -1580,7 +1613,7 @@
       },
       {
         "year": 1992,
-        "threshold": 89.6,
+        "threshold": 89.9,
         "turnoutRate": 55.2,
         "scores": [
           {
@@ -1590,16 +1623,16 @@
             "distance": 21
           },
           {
-            "name": "Ross Perot",
-            "party": "Independent",
-            "score": 26.6,
-            "distance": 40.3
-          },
-          {
             "name": "George H.W. Bush",
             "party": "Republican",
             "score": 13.1,
             "distance": 49.9
+          },
+          {
+            "name": "H. Ross Perot",
+            "party": "Independent",
+            "score": 8.4,
+            "distance": 55.1
           }
         ],
         "voted": null,
@@ -1610,7 +1643,7 @@
       },
       {
         "year": 1996,
-        "threshold": 86.6,
+        "threshold": 86.8,
         "turnoutRate": 49,
         "scores": [
           {
@@ -1640,7 +1673,7 @@
       },
       {
         "year": 2000,
-        "threshold": 81.9,
+        "threshold": 81.6,
         "turnoutRate": 54.2,
         "scores": [
           {
@@ -1694,7 +1727,7 @@
       },
       {
         "year": 2008,
-        "threshold": 83,
+        "threshold": 82.8,
         "turnoutRate": 61.6,
         "scores": [
           {
@@ -1718,7 +1751,7 @@
       },
       {
         "year": 2012,
-        "threshold": 79.8,
+        "threshold": 79.1,
         "turnoutRate": 58.6,
         "scores": [
           {
@@ -1742,7 +1775,7 @@
       },
       {
         "year": 2016,
-        "threshold": 71.9,
+        "threshold": 71.3,
         "turnoutRate": 60.1,
         "scores": [
           {
@@ -1772,7 +1805,7 @@
       },
       {
         "year": 2020,
-        "threshold": 64.1,
+        "threshold": 63.5,
         "turnoutRate": 66.8,
         "scores": [
           {
@@ -1822,15 +1855,15 @@
     "votingThreshold": 43.6,
     "stats": {
       "totalElections": 60,
-      "votedCount": 21,
-      "winnersPickedCount": 8,
-      "winnersPickedPct": 38,
-      "demLeanCount": 16,
+      "votedCount": 20,
+      "winnersPickedCount": 7,
+      "winnersPickedPct": 35,
+      "demLeanCount": 15,
       "repLeanCount": 1,
       "otherCount": 4,
-      "abstentionCount": 39,
-      "abstentionPct": 65,
-      "leanRatio": "D+15"
+      "abstentionCount": 40,
+      "abstentionPct": 67,
+      "leanRatio": "D+14"
     }
   },
   "alignment": {
@@ -1845,9 +1878,9 @@
           "leader": "George III / William Pitt the Younger",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.7,
-          "distance": 33.6,
+          "alignment": -0.8,
+          "support": 36.3,
+          "distance": 35.2,
           "alignmentLabel": "Opposed"
         },
         {
@@ -1859,9 +1892,9 @@
           "leader": "George IV / Lord Liverpool",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -1.3,
-          "support": 28.2,
-          "distance": 36.1,
+          "alignment": -1.6,
+          "support": 23.3,
+          "distance": 38.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -1873,9 +1906,9 @@
           "leader": "William IV / Earl Grey",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 45.1,
-          "distance": 31.2,
+          "alignment": -0.4,
+          "support": 43.8,
+          "distance": 31.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -2477,9 +2510,9 @@
           "leader": "George III / William Pitt the Younger",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.7,
-          "distance": 33.6,
+          "alignment": -0.8,
+          "support": 36.3,
+          "distance": 35.2,
           "alignmentLabel": "Opposed"
         },
         {
@@ -2491,9 +2524,9 @@
           "leader": "George IV / Lord Liverpool",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -1.3,
-          "support": 28.2,
-          "distance": 36.1,
+          "alignment": -1.6,
+          "support": 23.3,
+          "distance": 38.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -2505,9 +2538,9 @@
           "leader": "William IV / Earl Grey",
           "party": "Limited Franchise Oligarchy",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 45.1,
-          "distance": 31.2,
+          "alignment": -0.4,
+          "support": 43.8,
+          "distance": 31.8,
           "alignmentLabel": "Opposed"
         }
       ],
@@ -2520,7 +2553,7 @@
         },
         "worstEntry": {
           "label": "1815-1830 George IV / Lord Liverpool",
-          "score": -1.3
+          "score": -1.6
         },
         "entryCount": 52
       },
@@ -2904,8 +2937,8 @@
           "party": "Revolutionary",
           "partyColor": "#888888",
           "alignment": 1.2,
-          "support": 69.7,
-          "distance": 21,
+          "support": 70.3,
+          "distance": 20.8,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -2918,8 +2951,8 @@
           "party": "Revolutionary Republic",
           "partyColor": "#888888",
           "alignment": 2.5,
-          "support": 91.6,
-          "distance": 10.4,
+          "support": 91.7,
+          "distance": 10.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -2931,9 +2964,9 @@
           "leader": "Paul Barras",
           "party": "Revolutionary Republic",
           "partyColor": "#888888",
-          "alignment": 1.3,
-          "support": 72.2,
-          "distance": 20,
+          "alignment": 1.4,
+          "support": 72.9,
+          "distance": 19.7,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -2945,9 +2978,9 @@
           "leader": "Napoleon Bonaparte",
           "party": "Napoleonic Authoritarian",
           "partyColor": "#888888",
-          "alignment": 0.8,
-          "support": 63,
-          "distance": 23.8,
+          "alignment": 0.7,
+          "support": 61.7,
+          "distance": 24.3,
           "alignmentLabel": "Aligned"
         },
         {
@@ -2960,8 +2993,8 @@
           "party": "Napoleonic Empire",
           "partyColor": "#888888",
           "alignment": 2.5,
-          "support": 91.6,
-          "distance": 10.4,
+          "support": 91.7,
+          "distance": 10.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -2973,9 +3006,9 @@
           "leader": "Louis XVIII / Charles X",
           "party": "Restored Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.2,
-          "support": 29.9,
-          "distance": 35.3,
+          "alignment": -1.5,
+          "support": 24.9,
+          "distance": 37.5,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -2987,9 +3020,9 @@
           "leader": "Louis-Philippe I",
           "party": "Orleanist Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 23.2,
-          "distance": 35.4,
+          "alignment": -1.7,
+          "support": 21.5,
+          "distance": 35.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -3013,9 +3046,9 @@
           "leader": "Napoleon III",
           "party": "Bonapartist Empire",
           "partyColor": "#888888",
-          "alignment": 0.5,
-          "support": 58,
-          "distance": 25.8,
+          "alignment": 0.4,
+          "support": 57.3,
+          "distance": 26.1,
           "alignmentLabel": "Aligned"
         },
         {
@@ -3231,9 +3264,9 @@
           "leader": "Philippe Petain",
           "party": "Authoritarian Collaborationist",
           "partyColor": "#888888",
-          "alignment": -2.8,
-          "support": 2.8,
-          "distance": 31.7,
+          "alignment": -3,
+          "support": 0,
+          "distance": 34.7,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -3440,8 +3473,8 @@
           "party": "Revolutionary",
           "partyColor": "#888888",
           "alignment": 1.2,
-          "support": 69.7,
-          "distance": 21,
+          "support": 70.3,
+          "distance": 20.8,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -3454,8 +3487,8 @@
           "party": "Revolutionary Republic",
           "partyColor": "#888888",
           "alignment": 2.5,
-          "support": 91.6,
-          "distance": 10.4,
+          "support": 91.7,
+          "distance": 10.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -3467,9 +3500,9 @@
           "leader": "Paul Barras",
           "party": "Revolutionary Republic",
           "partyColor": "#888888",
-          "alignment": 1.3,
-          "support": 72.2,
-          "distance": 20,
+          "alignment": 1.4,
+          "support": 72.9,
+          "distance": 19.7,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -3481,9 +3514,9 @@
           "leader": "Napoleon Bonaparte",
           "party": "Napoleonic Authoritarian",
           "partyColor": "#888888",
-          "alignment": 0.8,
-          "support": 63,
-          "distance": 23.8,
+          "alignment": 0.7,
+          "support": 61.7,
+          "distance": 24.3,
           "alignmentLabel": "Aligned"
         },
         {
@@ -3496,8 +3529,8 @@
           "party": "Napoleonic Empire",
           "partyColor": "#888888",
           "alignment": 2.5,
-          "support": 91.6,
-          "distance": 10.4,
+          "support": 91.7,
+          "distance": 10.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -3509,9 +3542,9 @@
           "leader": "Louis XVIII / Charles X",
           "party": "Restored Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.2,
-          "support": 29.9,
-          "distance": 35.3,
+          "alignment": -1.5,
+          "support": 24.9,
+          "distance": 37.5,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -3523,9 +3556,9 @@
           "leader": "Louis-Philippe I",
           "party": "Orleanist Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 23.2,
-          "distance": 35.4,
+          "alignment": -1.7,
+          "support": 21.5,
+          "distance": 35.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -3537,9 +3570,9 @@
           "leader": "Napoleon III",
           "party": "Bonapartist Empire",
           "partyColor": "#888888",
-          "alignment": 0.5,
-          "support": 58,
-          "distance": 25.8,
+          "alignment": 0.4,
+          "support": 57.3,
+          "distance": 26.1,
           "alignmentLabel": "Aligned"
         },
         {
@@ -3551,14 +3584,14 @@
           "leader": "Philippe Petain",
           "party": "Authoritarian Collaborationist",
           "partyColor": "#888888",
-          "alignment": -2.8,
-          "support": 2.8,
-          "distance": 31.7,
+          "alignment": -3,
+          "support": 0,
+          "distance": 34.7,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
       "summary": {
-        "averageAlignment": 1.4,
+        "averageAlignment": 1.3,
         "modernAlignment": 1,
         "bestEntry": {
           "label": "1792-1794 Maximilien Robespierre",
@@ -3566,7 +3599,7 @@
         },
         "worstEntry": {
           "label": "1940-1944 Philippe Petain",
-          "score": -2.8
+          "score": -3
         },
         "entryCount": 43
       },
@@ -3901,9 +3934,9 @@
           "leader": "Frederick William III (Prussia) / Francis I (Austria)",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 52.8,
-          "distance": 28,
+          "alignment": -0.1,
+          "support": 48.3,
+          "distance": 29.9,
           "alignmentLabel": "Neutral"
         },
         {
@@ -3915,9 +3948,9 @@
           "leader": "Metternich / Frederick William III-IV",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": -0.4,
-          "support": 42.9,
-          "distance": 32.2,
+          "alignment": -0.7,
+          "support": 38.8,
+          "distance": 34,
           "alignmentLabel": "Opposed"
         },
         {
@@ -3943,9 +3976,9 @@
           "leader": "Frederick William IV / William I",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.6,
-          "distance": 31.5,
+          "alignment": -0.6,
+          "support": 40.8,
+          "distance": 33.2,
           "alignmentLabel": "Opposed"
         },
         {
@@ -3957,9 +3990,9 @@
           "leader": "Otto von Bismarck / William I",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 53.2,
-          "distance": 27.8,
+          "alignment": 0,
+          "support": 50.2,
+          "distance": 29.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -4225,7 +4258,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 38,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -4251,7 +4284,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.8,
+          "distance": 38.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -4265,7 +4298,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 38.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -4531,9 +4564,9 @@
           "leader": "Frederick William III (Prussia) / Francis I (Austria)",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 52.8,
-          "distance": 28,
+          "alignment": -0.1,
+          "support": 48.3,
+          "distance": 29.9,
           "alignmentLabel": "Neutral"
         },
         {
@@ -4545,9 +4578,9 @@
           "leader": "Metternich / Frederick William III-IV",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": -0.4,
-          "support": 42.9,
-          "distance": 32.2,
+          "alignment": -0.7,
+          "support": 38.8,
+          "distance": 34,
           "alignmentLabel": "Opposed"
         },
         {
@@ -4573,9 +4606,9 @@
           "leader": "Frederick William IV / William I",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.6,
-          "distance": 31.5,
+          "alignment": -0.6,
+          "support": 40.8,
+          "distance": 33.2,
           "alignmentLabel": "Opposed"
         },
         {
@@ -4587,9 +4620,9 @@
           "leader": "Otto von Bismarck / William I",
           "party": "Various Monarchies / Confederation",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 53.2,
-          "distance": 27.8,
+          "alignment": 0,
+          "support": 50.2,
+          "distance": 29.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -4603,7 +4636,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 38,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -4617,7 +4650,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.8,
+          "distance": 38.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -4631,7 +4664,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 38.1,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
@@ -4997,9 +5030,9 @@
           "leader": "Alexander I",
           "party": "Tsarist Autocracy",
           "partyColor": "#888888",
-          "alignment": -2.2,
-          "support": 12.9,
-          "distance": 30.6,
+          "alignment": -2.5,
+          "support": 7.9,
+          "distance": 32.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5013,7 +5046,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.3,
+          "distance": 37.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5027,7 +5060,7 @@
           "partyColor": "#888888",
           "alignment": -0.9,
           "support": 34.7,
-          "distance": 24.1,
+          "distance": 24.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5041,7 +5074,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 36.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5101,9 +5134,9 @@
           "leader": "Vladimir Lenin",
           "party": "Soviet Union / Communist Party",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 22.7,
-          "distance": 21.2,
+          "alignment": -1.7,
+          "support": 21.1,
+          "distance": 21.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5143,7 +5176,7 @@
           "partyColor": "#888888",
           "alignment": -2,
           "support": 15.9,
-          "distance": 17.9,
+          "distance": 17.7,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5157,7 +5190,7 @@
           "partyColor": "#888888",
           "alignment": -2.6,
           "support": 5.9,
-          "distance": 22.4,
+          "distance": 22.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5171,7 +5204,7 @@
           "partyColor": "#888888",
           "alignment": -2.1,
           "support": 14.2,
-          "distance": 18.5,
+          "distance": 18.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5185,7 +5218,7 @@
           "partyColor": "#888888",
           "alignment": 0.3,
           "support": 54.6,
-          "distance": 12.8,
+          "distance": 12.3,
           "alignmentLabel": "Neutral"
         },
         {
@@ -5199,7 +5232,7 @@
           "partyColor": "#888888",
           "alignment": -0.4,
           "support": 42.8,
-          "distance": 15.3,
+          "distance": 15,
           "alignmentLabel": "Opposed"
         },
         {
@@ -5226,8 +5259,8 @@
           "party": "Soviet Union / Communist Party",
           "partyColor": "#888888",
           "alignment": 1.1,
-          "support": 68.5,
-          "distance": 21.5,
+          "support": 68.9,
+          "distance": 21.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -5301,7 +5334,7 @@
           "partyColor": "#888888",
           "alignment": -0.6,
           "support": 39.8,
-          "distance": 27.5,
+          "distance": 27.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -5313,9 +5346,9 @@
           "leader": "Vladimir Putin",
           "party": "United Russia / Managed Democracy",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.6,
-          "distance": 30.1,
+          "alignment": -2.3,
+          "support": 11.2,
+          "distance": 31.6,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
@@ -5329,9 +5362,9 @@
           "leader": "Alexander I",
           "party": "Tsarist Autocracy",
           "partyColor": "#888888",
-          "alignment": -2.2,
-          "support": 12.9,
-          "distance": 30.6,
+          "alignment": -2.5,
+          "support": 7.9,
+          "distance": 32.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5345,7 +5378,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.3,
+          "distance": 37.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5359,7 +5392,7 @@
           "partyColor": "#888888",
           "alignment": -0.9,
           "support": 34.7,
-          "distance": 24.1,
+          "distance": 24.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5373,7 +5406,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.4,
+          "distance": 36.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5385,9 +5418,9 @@
           "leader": "Vladimir Lenin",
           "party": "Soviet Union / Communist Party",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 22.7,
-          "distance": 21.2,
+          "alignment": -1.7,
+          "support": 21.1,
+          "distance": 21.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5415,7 +5448,7 @@
           "partyColor": "#888888",
           "alignment": -2,
           "support": 15.9,
-          "distance": 17.9,
+          "distance": 17.7,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5429,7 +5462,7 @@
           "partyColor": "#888888",
           "alignment": -2.6,
           "support": 5.9,
-          "distance": 22.4,
+          "distance": 22.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5443,7 +5476,7 @@
           "partyColor": "#888888",
           "alignment": -2.1,
           "support": 14.2,
-          "distance": 18.5,
+          "distance": 18.4,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5457,7 +5490,7 @@
           "partyColor": "#888888",
           "alignment": 0.3,
           "support": 54.6,
-          "distance": 12.8,
+          "distance": 12.3,
           "alignmentLabel": "Neutral"
         },
         {
@@ -5471,7 +5504,7 @@
           "partyColor": "#888888",
           "alignment": -0.4,
           "support": 42.8,
-          "distance": 15.3,
+          "distance": 15,
           "alignmentLabel": "Opposed"
         },
         {
@@ -5498,8 +5531,8 @@
           "party": "Soviet Union / Communist Party",
           "partyColor": "#888888",
           "alignment": 1.1,
-          "support": 68.5,
-          "distance": 21.5,
+          "support": 68.9,
+          "distance": 21.3,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -5513,7 +5546,7 @@
           "partyColor": "#888888",
           "alignment": -0.6,
           "support": 39.8,
-          "distance": 27.5,
+          "distance": 27.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -5525,15 +5558,15 @@
           "leader": "Vladimir Putin",
           "party": "United Russia / Managed Democracy",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.6,
-          "distance": 30.1,
+          "alignment": -2.3,
+          "support": 11.2,
+          "distance": 31.6,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
       "summary": {
-        "averageAlignment": -0.3,
-        "modernAlignment": -2.1,
+        "averageAlignment": -0.4,
+        "modernAlignment": -2.3,
         "bestEntry": {
           "label": "1917 SR (Socialist Revolutionaries (Viktor Chernov))",
           "score": 2.7
@@ -5668,9 +5701,9 @@
           "leader": "Napoleon Bonaparte (via satellite rulers)",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": 1.1,
-          "support": 68.1,
-          "distance": 21.7,
+          "alignment": 1.2,
+          "support": 70,
+          "distance": 20.9,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -5682,10 +5715,10 @@
           "leader": "Various Restoration Monarchs",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": -0.1,
-          "support": 47.9,
-          "distance": 30,
-          "alignmentLabel": "Neutral"
+          "alignment": -0.6,
+          "support": 40.6,
+          "distance": 33.2,
+          "alignmentLabel": "Opposed"
         },
         {
           "type": "regime",
@@ -5696,10 +5729,10 @@
           "leader": "Vittorio Emanuele II / Cavour",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": 0.3,
-          "support": 55.7,
-          "distance": 26.8,
-          "alignmentLabel": "Neutral"
+          "alignment": 0.4,
+          "support": 56.3,
+          "distance": 26.5,
+          "alignmentLabel": "Aligned"
         },
         {
           "type": "election",
@@ -5856,7 +5889,7 @@
           "partyColor": "#888888",
           "alignment": -2.6,
           "support": 6.2,
-          "distance": 30.5,
+          "distance": 30.9,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -5896,9 +5929,9 @@
           "leader": "Alcide De Gasperi / Various DC PMs",
           "party": "Transitional Government",
           "partyColor": "#888888",
-          "alignment": 0.1,
-          "support": 52.1,
-          "distance": 28.3,
+          "alignment": 0,
+          "support": 49.4,
+          "distance": 29.4,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6152,9 +6185,9 @@
           "leader": "Napoleon Bonaparte (via satellite rulers)",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": 1.1,
-          "support": 68.1,
-          "distance": 21.7,
+          "alignment": 1.2,
+          "support": 70,
+          "distance": 20.9,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -6166,10 +6199,10 @@
           "leader": "Various Restoration Monarchs",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": -0.1,
-          "support": 47.9,
-          "distance": 30,
-          "alignmentLabel": "Neutral"
+          "alignment": -0.6,
+          "support": 40.6,
+          "distance": 33.2,
+          "alignmentLabel": "Opposed"
         },
         {
           "type": "regime",
@@ -6180,10 +6213,10 @@
           "leader": "Vittorio Emanuele II / Cavour",
           "party": "Various Monarchies",
           "partyColor": "#888888",
-          "alignment": 0.3,
-          "support": 55.7,
-          "distance": 26.8,
-          "alignmentLabel": "Neutral"
+          "alignment": 0.4,
+          "support": 56.3,
+          "distance": 26.5,
+          "alignmentLabel": "Aligned"
         },
         {
           "type": "regime",
@@ -6196,7 +6229,7 @@
           "partyColor": "#888888",
           "alignment": -2.6,
           "support": 6.2,
-          "distance": 30.5,
+          "distance": 30.9,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -6236,9 +6269,9 @@
           "leader": "Alcide De Gasperi / Various DC PMs",
           "party": "Transitional Government",
           "partyColor": "#888888",
-          "alignment": 0.1,
-          "support": 52.1,
-          "distance": 28.3,
+          "alignment": 0,
+          "support": 49.4,
+          "distance": 29.4,
           "alignmentLabel": "Neutral"
         }
       ],
@@ -6536,9 +6569,9 @@
           "leader": "Charles IV / Ferdinand VII / Joseph Bonaparte",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.3,
-          "support": 55.4,
-          "distance": 26.9,
+          "alignment": 0,
+          "support": 49.8,
+          "distance": 29.2,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6550,9 +6583,9 @@
           "leader": "Ferdinand VII",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.7,
-          "distance": 31.4,
+          "alignment": -0.8,
+          "support": 37.4,
+          "distance": 34.7,
           "alignmentLabel": "Opposed"
         },
         {
@@ -6564,10 +6597,10 @@
           "leader": "Isabella II / Espartero / Narvaez / O'Donnell",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.4,
-          "support": 57.4,
-          "distance": 26.1,
-          "alignmentLabel": "Aligned"
+          "alignment": 0.3,
+          "support": 55.6,
+          "distance": 26.8,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "regime",
@@ -6580,7 +6613,7 @@
           "partyColor": "#888888",
           "alignment": 0.7,
           "support": 61.6,
-          "distance": 21.8,
+          "distance": 21.4,
           "alignmentLabel": "Aligned"
         },
         {
@@ -6592,9 +6625,9 @@
           "leader": "Alfonso XII / Alfonso XIII / Canovas / Sagasta",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0,
-          "support": 49.8,
-          "distance": 29.2,
+          "alignment": -0.1,
+          "support": 48.3,
+          "distance": 29.9,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6607,8 +6640,8 @@
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
           "alignment": 0.3,
-          "support": 55.8,
-          "distance": 26.7,
+          "support": 54.3,
+          "distance": 27.4,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6620,10 +6653,10 @@
           "leader": "Miguel Primo de Rivera",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.4,
-          "support": 56.3,
-          "distance": 26.5,
-          "alignmentLabel": "Aligned"
+          "alignment": 0.3,
+          "support": 54.4,
+          "distance": 27.3,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "election",
@@ -6658,9 +6691,9 @@
           "leader": "Francisco Franco / Republican Government",
           "party": "Francoist Dictatorship",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.8,
-          "distance": 25.3,
+          "alignment": -0.8,
+          "support": 36.4,
+          "distance": 26.3,
           "alignmentLabel": "Opposed"
         },
         {
@@ -6686,7 +6719,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.6,
+          "distance": 37.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -6698,9 +6731,9 @@
           "leader": "Francisco Franco",
           "party": "Francoist Dictatorship",
           "partyColor": "#888888",
-          "alignment": -2.5,
-          "support": 7.9,
-          "distance": 33.1,
+          "alignment": -2.8,
+          "support": 2.9,
+          "distance": 34.7,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -6920,9 +6953,9 @@
           "leader": "Charles IV / Ferdinand VII / Joseph Bonaparte",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.3,
-          "support": 55.4,
-          "distance": 26.9,
+          "alignment": 0,
+          "support": 49.8,
+          "distance": 29.2,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6934,9 +6967,9 @@
           "leader": "Ferdinand VII",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.7,
-          "distance": 31.4,
+          "alignment": -0.8,
+          "support": 37.4,
+          "distance": 34.7,
           "alignmentLabel": "Opposed"
         },
         {
@@ -6948,10 +6981,10 @@
           "leader": "Isabella II / Espartero / Narvaez / O'Donnell",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.4,
-          "support": 57.4,
-          "distance": 26.1,
-          "alignmentLabel": "Aligned"
+          "alignment": 0.3,
+          "support": 55.6,
+          "distance": 26.8,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "regime",
@@ -6964,7 +6997,7 @@
           "partyColor": "#888888",
           "alignment": 0.7,
           "support": 61.6,
-          "distance": 21.8,
+          "distance": 21.4,
           "alignmentLabel": "Aligned"
         },
         {
@@ -6976,9 +7009,9 @@
           "leader": "Alfonso XII / Alfonso XIII / Canovas / Sagasta",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0,
-          "support": 49.8,
-          "distance": 29.2,
+          "alignment": -0.1,
+          "support": 48.3,
+          "distance": 29.9,
           "alignmentLabel": "Neutral"
         },
         {
@@ -6991,8 +7024,8 @@
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
           "alignment": 0.3,
-          "support": 55.8,
-          "distance": 26.7,
+          "support": 54.3,
+          "distance": 27.4,
           "alignmentLabel": "Neutral"
         },
         {
@@ -7004,10 +7037,10 @@
           "leader": "Miguel Primo de Rivera",
           "party": "Monarchy / Constitutional Monarchy",
           "partyColor": "#888888",
-          "alignment": 0.4,
-          "support": 56.3,
-          "distance": 26.5,
-          "alignmentLabel": "Aligned"
+          "alignment": 0.3,
+          "support": 54.4,
+          "distance": 27.3,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "regime",
@@ -7018,9 +7051,9 @@
           "leader": "Francisco Franco / Republican Government",
           "party": "Francoist Dictatorship",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.8,
-          "distance": 25.3,
+          "alignment": -0.8,
+          "support": 36.4,
+          "distance": 26.3,
           "alignmentLabel": "Opposed"
         },
         {
@@ -7034,7 +7067,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 34.6,
+          "distance": 37.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7046,9 +7079,9 @@
           "leader": "Francisco Franco",
           "party": "Francoist Dictatorship",
           "partyColor": "#888888",
-          "alignment": -2.5,
-          "support": 7.9,
-          "distance": 33.1,
+          "alignment": -2.8,
+          "support": 2.9,
+          "distance": 34.7,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7263,7 +7296,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 37,
+          "distance": 35.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7277,7 +7310,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 38.5,
+          "distance": 36.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7291,7 +7324,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 38.7,
+          "distance": 36.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7303,9 +7336,9 @@
           "leader": "Empress Dowager Cixi / Tongzhi / Guangxu",
           "party": "Imperial Monarchy",
           "partyColor": "#888888",
-          "alignment": -2.9,
-          "support": 1.2,
-          "distance": 35.7,
+          "alignment": -2.7,
+          "support": 4.6,
+          "distance": 34.5,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7317,9 +7350,9 @@
           "leader": "Empress Dowager Cixi / Guangxu / Puyi",
           "party": "Imperial Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 23.1,
-          "distance": 31.9,
+          "alignment": -1.5,
+          "support": 24.8,
+          "distance": 31.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7331,9 +7364,9 @@
           "leader": "Yuan Shikai",
           "party": "Fragmented Military Rule",
           "partyColor": "#888888",
-          "alignment": -2.4,
-          "support": 9.6,
-          "distance": 31.7,
+          "alignment": -2.2,
+          "support": 12.9,
+          "distance": 30.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7359,7 +7392,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 31.9,
+          "distance": 30.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7371,9 +7404,9 @@
           "leader": "Chiang Kai-shek",
           "party": "KMT / Republic of China",
           "partyColor": "#888888",
-          "alignment": -2.5,
-          "support": 8,
-          "distance": 35.8,
+          "alignment": -2.4,
+          "support": 9.7,
+          "distance": 35.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7385,9 +7418,9 @@
           "leader": "Chiang Kai-shek (KMT) / Mao Zedong (CCP)",
           "party": "KMT / Republic of China",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.6,
-          "distance": 29.5,
+          "alignment": -2,
+          "support": 16.2,
+          "distance": 28.9,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7427,7 +7460,7 @@
           "partyColor": "#888888",
           "alignment": -0.5,
           "support": 41.2,
-          "distance": 15.7,
+          "distance": 15.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -7467,9 +7500,9 @@
           "leader": "Hua Guofeng / Deng Xiaoping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 53.1,
-          "distance": 19.4,
+          "alignment": 0.3,
+          "support": 54.8,
+          "distance": 19.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -7481,9 +7514,9 @@
           "leader": "Deng Xiaoping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.8,
-          "distance": 27.4,
+          "alignment": -0.5,
+          "support": 41.5,
+          "distance": 26.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -7495,10 +7528,10 @@
           "leader": "Jiang Zemin",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.7,
-          "distance": 31.4,
-          "alignmentLabel": "Opposed"
+          "alignment": -0.2,
+          "support": 45.9,
+          "distance": 30.9,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "regime",
@@ -7510,8 +7543,8 @@
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
           "alignment": 0.1,
-          "support": 51.9,
-          "distance": 28.3,
+          "support": 52.5,
+          "distance": 28.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -7523,9 +7556,9 @@
           "leader": "Xi Jinping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.7,
-          "distance": 32.8,
+          "alignment": -1.9,
+          "support": 18,
+          "distance": 31.4,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
@@ -7541,7 +7574,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 37,
+          "distance": 35.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7555,7 +7588,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 38.5,
+          "distance": 36.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7569,7 +7602,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 38.7,
+          "distance": 36.8,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7581,9 +7614,9 @@
           "leader": "Empress Dowager Cixi / Tongzhi / Guangxu",
           "party": "Imperial Monarchy",
           "partyColor": "#888888",
-          "alignment": -2.9,
-          "support": 1.2,
-          "distance": 35.7,
+          "alignment": -2.7,
+          "support": 4.6,
+          "distance": 34.5,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7595,9 +7628,9 @@
           "leader": "Empress Dowager Cixi / Guangxu / Puyi",
           "party": "Imperial Monarchy",
           "partyColor": "#888888",
-          "alignment": -1.6,
-          "support": 23.1,
-          "distance": 31.9,
+          "alignment": -1.5,
+          "support": 24.8,
+          "distance": 31.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7609,9 +7642,9 @@
           "leader": "Yuan Shikai",
           "party": "Fragmented Military Rule",
           "partyColor": "#888888",
-          "alignment": -2.4,
-          "support": 9.6,
-          "distance": 31.7,
+          "alignment": -2.2,
+          "support": 12.9,
+          "distance": 30.3,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7625,7 +7658,7 @@
           "partyColor": "#888888",
           "alignment": -3,
           "support": 0,
-          "distance": 31.9,
+          "distance": 30.6,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7637,9 +7670,9 @@
           "leader": "Chiang Kai-shek",
           "party": "KMT / Republic of China",
           "partyColor": "#888888",
-          "alignment": -2.5,
-          "support": 8,
-          "distance": 35.8,
+          "alignment": -2.4,
+          "support": 9.7,
+          "distance": 35.1,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7651,9 +7684,9 @@
           "leader": "Chiang Kai-shek (KMT) / Mao Zedong (CCP)",
           "party": "KMT / Republic of China",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.6,
-          "distance": 29.5,
+          "alignment": -2,
+          "support": 16.2,
+          "distance": 28.9,
           "alignmentLabel": "Strongly Opposed"
         },
         {
@@ -7681,7 +7714,7 @@
           "partyColor": "#888888",
           "alignment": -0.5,
           "support": 41.2,
-          "distance": 15.7,
+          "distance": 15.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -7721,9 +7754,9 @@
           "leader": "Hua Guofeng / Deng Xiaoping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": 0.2,
-          "support": 53.1,
-          "distance": 19.4,
+          "alignment": 0.3,
+          "support": 54.8,
+          "distance": 19.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -7735,9 +7768,9 @@
           "leader": "Deng Xiaoping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -0.6,
-          "support": 39.8,
-          "distance": 27.4,
+          "alignment": -0.5,
+          "support": 41.5,
+          "distance": 26.8,
           "alignmentLabel": "Opposed"
         },
         {
@@ -7749,10 +7782,10 @@
           "leader": "Jiang Zemin",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -0.3,
-          "support": 44.7,
-          "distance": 31.4,
-          "alignmentLabel": "Opposed"
+          "alignment": -0.2,
+          "support": 45.9,
+          "distance": 30.9,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "regime",
@@ -7764,8 +7797,8 @@
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
           "alignment": 0.1,
-          "support": 51.9,
-          "distance": 28.3,
+          "support": 52.5,
+          "distance": 28.1,
           "alignmentLabel": "Neutral"
         },
         {
@@ -7777,15 +7810,15 @@
           "leader": "Xi Jinping",
           "party": "Chinese Communist Party",
           "partyColor": "#888888",
-          "alignment": -2.1,
-          "support": 14.7,
-          "distance": 32.8,
+          "alignment": -1.9,
+          "support": 18,
+          "distance": 31.4,
           "alignmentLabel": "Strongly Opposed"
         }
       ],
       "summary": {
-        "averageAlignment": -1.5,
-        "modernAlignment": -1,
+        "averageAlignment": -1.4,
+        "modernAlignment": -0.9,
         "bestEntry": {
           "label": "1913 KMT (Kuomintang (Song Jiaoren))",
           "score": 2.2
@@ -8079,10 +8112,10 @@
           "label": "1860 Republican (Abraham Lincoln)",
           "winner": "Abraham Lincoln",
           "party": "Republican",
-          "alignment": 0.6,
-          "support": 59.5,
-          "distance": 25.2,
-          "alignmentLabel": "Aligned"
+          "alignment": 1.1,
+          "support": 67.7,
+          "distance": 21.9,
+          "alignmentLabel": "Strongly Aligned"
         },
         {
           "type": "election",
@@ -8235,9 +8268,9 @@
           "label": "1912 Democratic (Woodrow Wilson)",
           "winner": "Woodrow Wilson",
           "party": "Democratic",
-          "alignment": 1.8,
-          "support": 79.6,
-          "distance": 16.7,
+          "alignment": 1.6,
+          "support": 76.8,
+          "distance": 18,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8307,9 +8340,9 @@
           "label": "1936 Democratic (Franklin D. Roosevelt)",
           "winner": "Franklin D. Roosevelt",
           "party": "Democratic",
-          "alignment": 2.1,
-          "support": 85.2,
-          "distance": 14,
+          "alignment": 2.2,
+          "support": 86.8,
+          "distance": 13.2,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8319,9 +8352,9 @@
           "label": "1940 Democratic (Franklin D. Roosevelt)",
           "winner": "Franklin D. Roosevelt",
           "party": "Democratic",
-          "alignment": 2.1,
-          "support": 84.4,
-          "distance": 14.4,
+          "alignment": 1.8,
+          "support": 79.7,
+          "distance": 16.7,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8332,8 +8365,8 @@
           "winner": "Franklin D. Roosevelt",
           "party": "Democratic",
           "alignment": 1.7,
-          "support": 79,
-          "distance": 17,
+          "support": 78.8,
+          "distance": 17.1,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8343,9 +8376,9 @@
           "label": "1948 Democratic (Harry Truman)",
           "winner": "Harry Truman",
           "party": "Democratic",
-          "alignment": 2,
-          "support": 83.9,
-          "distance": 14.7,
+          "alignment": 1.9,
+          "support": 82.1,
+          "distance": 15.5,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8380,8 +8413,8 @@
           "winner": "John F. Kennedy",
           "party": "Democratic",
           "alignment": 1.9,
-          "support": 82,
-          "distance": 15.6,
+          "support": 81.8,
+          "distance": 15.7,
           "alignmentLabel": "Strongly Aligned"
         },
         {
@@ -8403,10 +8436,10 @@
           "label": "1968 Republican (Richard Nixon)",
           "winner": "Richard Nixon",
           "party": "Republican",
-          "alignment": -0.4,
-          "support": 43.6,
-          "distance": 31.9,
-          "alignmentLabel": "Opposed"
+          "alignment": 0,
+          "support": 49.5,
+          "distance": 29.3,
+          "alignmentLabel": "Neutral"
         },
         {
           "type": "election",
@@ -8439,10 +8472,10 @@
           "label": "1980 Republican (Ronald Reagan)",
           "winner": "Ronald Reagan",
           "party": "Republican",
-          "alignment": -2,
-          "support": 17.1,
-          "distance": 46.5,
-          "alignmentLabel": "Strongly Opposed"
+          "alignment": 0.4,
+          "support": 57.4,
+          "distance": 26.1,
+          "alignmentLabel": "Aligned"
         },
         {
           "type": "election",
@@ -8597,16 +8630,30 @@
         {
           "type": "regime",
           "start": 1945,
-          "end": 1988,
+          "end": 1975,
           "year": 1945,
-          "label": "1945-1988 Authoritarian KMT",
-          "leader": "Authoritarian KMT",
+          "label": "1945-1975 Chiang Kai-shek",
+          "leader": "Chiang Kai-shek",
           "party": "Kuomintang (One-Party State / Martial Law until 1987)",
           "partyColor": "#0066B3",
-          "alignment": -0.2,
-          "support": 46.6,
-          "distance": 27.5,
-          "alignmentLabel": "Neutral"
+          "alignment": -1.3,
+          "support": 28.1,
+          "distance": 29.8,
+          "alignmentLabel": "Strongly Opposed"
+        },
+        {
+          "type": "regime",
+          "start": 1975,
+          "end": 1988,
+          "year": 1975,
+          "label": "1975-1988 Chiang Ching-kuo",
+          "leader": "Chiang Ching-kuo",
+          "party": "Kuomintang (One-Party State / Martial Law until 1987)",
+          "partyColor": "#0066B3",
+          "alignment": 0.4,
+          "support": 56.4,
+          "distance": 26.5,
+          "alignmentLabel": "Aligned"
         },
         {
           "type": "regime",
@@ -8723,16 +8770,30 @@
         {
           "type": "regime",
           "start": 1945,
-          "end": 1988,
+          "end": 1975,
           "year": 1945,
-          "label": "1945-1988 Authoritarian KMT",
-          "leader": "Authoritarian KMT",
+          "label": "1945-1975 Chiang Kai-shek",
+          "leader": "Chiang Kai-shek",
           "party": "Kuomintang (One-Party State / Martial Law until 1987)",
           "partyColor": "#0066B3",
-          "alignment": -0.2,
-          "support": 46.6,
-          "distance": 27.5,
-          "alignmentLabel": "Neutral"
+          "alignment": -1.3,
+          "support": 28.1,
+          "distance": 29.8,
+          "alignmentLabel": "Strongly Opposed"
+        },
+        {
+          "type": "regime",
+          "start": 1975,
+          "end": 1988,
+          "year": 1975,
+          "label": "1975-1988 Chiang Ching-kuo",
+          "leader": "Chiang Ching-kuo",
+          "party": "Kuomintang (One-Party State / Martial Law until 1987)",
+          "partyColor": "#0066B3",
+          "alignment": 0.4,
+          "support": 56.4,
+          "distance": 26.5,
+          "alignmentLabel": "Aligned"
         },
         {
           "type": "regime",
@@ -8750,17 +8811,17 @@
         }
       ],
       "summary": {
-        "averageAlignment": 1.2,
+        "averageAlignment": 1,
         "modernAlignment": 1.5,
         "bestEntry": {
           "label": "2024 DPP (Lai Ching-te (DPP))",
           "score": 2.1
         },
         "worstEntry": {
-          "label": "1945-1988 Authoritarian KMT",
-          "score": -0.2
+          "label": "1945-1975 Chiang Kai-shek",
+          "score": -1.3
         },
-        "entryCount": 10
+        "entryCount": 11
       },
       "electionPredictions": [
         {
@@ -15312,10 +15373,10 @@
     "description": "Believes progress lifts everyone; combines social liberalism with genuine optimism about human potential and positive-sum politics.",
     "examples": "Pete Buttigieg, Gavin Newsom",
     "ideologicalLean": "Strong Democratic lean",
-    "founderMatch": "Thomas Jefferson",
-    "founderMatchScore": 87.8,
-    "electionAccuracy": 38,
-    "electionLean": "D+15",
+    "founderMatch": "Thomas Paine",
+    "founderMatchScore": 88.6,
+    "electionAccuracy": 35,
+    "electionLean": "D+14",
     "topAlignedCountries": [
       {
         "name": "South Africa",
@@ -15333,11 +15394,11 @@
     "topOpposedCountries": [
       {
         "name": "Russia",
-        "score": -2.1
+        "score": -2.3
       },
       {
         "name": "China",
-        "score": -1
+        "score": -0.9
       },
       {
         "name": "Israel",
