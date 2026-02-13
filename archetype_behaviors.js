@@ -2,8 +2,16 @@
 // Deterministic mapping from archetype to political behavior
 
 const ARCHETYPE_BEHAVIORS = {
+  "100": {
+    name: "Fully Automated Luxury Communist",
+    tier: "T2",
+    usPattern: "D",
+    taiwan: "SWING",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
   "001": {
-    name: "Mainstream Democrat",
+    name: "Hopeful Democrat",
     tier: "T1",
     usPattern: "D",
     taiwan: "DPP",
@@ -11,7 +19,7 @@ const ARCHETYPE_BEHAVIORS = {
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
   "002": {
-    name: "Mainstream Republican",
+    name: "Sunrise Conservative",
     tier: "T1",
     usPattern: "R",
     taiwan: "KMT>DPP",
@@ -42,16 +50,8 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "APOLITICAL",
     votes: { "1964": "NV", "1968": "NV", "1972": "NV", "1976": "NV", "1980": "NV", "1984": "NV", "1988": "NV", "1992": "NV", "1996": "NV", "2000": "NV", "2004": "NV", "2008": "NV", "2012": "NV", "2016": "NV", "2020": "NV", "2024": "NV" }
   },
-  "006": {
-    name: "Rising Tide Progressive",
-    tier: "T1",
-    usPattern: "D",
-    taiwan: "DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
   "007": {
-    name: "Kitchen Table Democrat",
+    name: "Prosperity Democrat",
     tier: "T1",
     usPattern: "D",
     taiwan: "DPP",
@@ -106,14 +106,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
-  "014": {
-    name: "Faith and Family Traditionalist",
-    tier: "T1",
-    usPattern: "I",
-    taiwan: "KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
-  },
   "016": {
     name: "Evidence-Based Progressive",
     tier: "T1",
@@ -121,14 +113,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "DPP>TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "017": {
-    name: "Evidence-Based Free Marketer",
-    tier: "T1",
-    usPattern: "R",
-    taiwan: "KMT>DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "018": {
     name: "Movement Conservative",
@@ -147,17 +131,9 @@ const ARCHETYPE_BEHAVIORS = {
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "I", "1984": "R", "1988": "R", "1992": "P", "1996": "R", "2000": "R", "2004": "R", "2008": "D", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "020": {
-    name: "Faith Community Pillar",
+    name: "Parish Traditionalist",
     tier: "T1",
     usPattern: "R",
-    taiwan: "KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
-  },
-  "021": {
-    name: "Cultural Regionalist",
-    tier: "T2",
-    usPattern: "I",
     taiwan: "KMT",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
@@ -169,14 +145,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "DPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "023": {
-    name: "Rationalist Libertarian",
-    tier: "T2",
-    usPattern: "R",
-    taiwan: "DPP>KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "024": {
     name: "Movement Progressive",
@@ -193,14 +161,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "DPP>TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "026": {
-    name: "Competitive Conservative",
-    tier: "T2",
-    usPattern: "R",
-    taiwan: "KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "R", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
   },
   "027": {
     name: "Idealist Progressive",
@@ -226,14 +186,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "APOLITICAL",
     votes: { "1964": "NV", "1968": "NV", "1972": "NV", "1976": "NV", "1980": "NV", "1984": "NV", "1988": "NV", "1992": "NV", "1996": "NV", "2000": "NV", "2004": "NV", "2008": "NV", "2012": "NV", "2016": "NV", "2020": "NV", "2024": "NV" }
   },
-  "030": {
-    name: "Globally Minded Social Democrat",
-    tier: "T2",
-    usPattern: "D",
-    taiwan: "DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
   "031": {
     name: "Siege Mentality Partisan",
     tier: "T2",
@@ -249,14 +201,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "KMT",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "R", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "033": {
-    name: "Team Player Capitalist",
-    tier: "T2",
-    usPattern: "R",
-    taiwan: "KMT>DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "034": {
     name: "Rising Tide Social Democrat",
@@ -297,14 +241,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "DPP>TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "I", "1984": "D", "1988": "D", "1992": "P", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "039": {
-    name: "Rooted Centrist",
-    tier: "T2",
-    usPattern: "I",
-    taiwan: "TPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "I", "1984": "R", "1988": "R", "1992": "P", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "040": {
     name: "Win-Win Centrist",
@@ -538,14 +474,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
-  "073": {
-    name: "Agrarian Populist",
-    tier: "T2",
-    usPattern: "I",
-    taiwan: "KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
-  },
   "074": {
     name: "Localist",
     tier: "T2",
@@ -553,22 +481,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "075": {
-    name: "Mutualist",
-    tier: "T2",
-    usPattern: "D",
-    taiwan: "DPP>KMT",
-    prc: "CRITICAL",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "076": {
-    name: "Guild Socialist",
-    tier: "T2",
-    usPattern: "D",
-    taiwan: "SWING",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
   "077": {
     name: "Conservative Socialist",
@@ -610,14 +522,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "CRITICAL",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
-  "084": {
-    name: "Syndicalist",
-    tier: "T2",
-    usPattern: "D",
-    taiwan: "SWING",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
   "085": {
     name: "Primitivist",
     tier: "T2",
@@ -628,14 +532,6 @@ const ARCHETYPE_BEHAVIORS = {
   },
   "086": {
     name: "Transhumanist",
-    tier: "T2",
-    usPattern: "I",
-    taiwan: "TPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "087": {
-    name: "Post-Ideological Technocrat",
     tier: "T2",
     usPattern: "I",
     taiwan: "TPP",
@@ -675,7 +571,7 @@ const ARCHETYPE_BEHAVIORS = {
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "R", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
   "093": {
-    name: "Anarcho-Primitivist",
+    name: "Traditional Cosmopolitan",
     tier: "T2",
     usPattern: "I",
     taiwan: "TPP",
@@ -730,14 +626,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
-  "100": {
-    name: "Fully Automated Luxury Communist",
-    tier: "T2",
-    usPattern: "D",
-    taiwan: "SWING",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
   "M01": {
     name: "Civic Watchdog",
     tier: "MEANS",
@@ -778,14 +666,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "DISSIDENT",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
-  "M06": {
-    name: "Technocratic Free Marketer",
-    tier: "MEANS",
-    usPattern: "R+20B+PR",
-    taiwan: "DPP>KMT",
-    prc: "INCOMPATIBLE",
-    votes: { "1964": "R", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
-  },
   "M07": {
     name: "Rationalist Technocrat",
     tier: "MEANS",
@@ -799,14 +679,6 @@ const ARCHETYPE_BEHAVIORS = {
     tier: "MEANS",
     usPattern: "D",
     taiwan: "TPP>DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "M09": {
-    name: "Street Advocate",
-    tier: "MEANS",
-    usPattern: "I",
-    taiwan: "DPP>TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
@@ -1115,7 +987,7 @@ const ARCHETYPE_BEHAVIORS = {
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
   },
   "O13": {
-    name: "Reform-Optimist Progressive",
+    name: "Rising Tide Progressive",
     tier: "ONT",
     usPattern: "I",
     taiwan: "DPP",
@@ -1145,30 +1017,6 @@ const ARCHETYPE_BEHAVIORS = {
     taiwan: "TPP",
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "O17": {
-    name: "Progress Capitalist",
-    tier: "ONT",
-    usPattern: "I",
-    taiwan: "KMT>DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "O18": {
-    name: "Pragmatic Neoliberal",
-    tier: "ONT",
-    usPattern: "I",
-    taiwan: "DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
-  },
-  "O19": {
-    name: "Reform-Optimist Democrat",
-    tier: "ONT",
-    usPattern: "D",
-    taiwan: "DPP",
-    prc: "PRAGMATIC",
-    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
   "O20": {
     name: "Defensive Democrat",
@@ -1202,14 +1050,6 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "PRAGMATIC",
     votes: { "1964": "R", "1968": "R", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
   },
-  "O24": {
-    name: "Siege Mentality Conservative",
-    tier: "ONT",
-    usPattern: "I",
-    taiwan: "KMT",
-    prc: "PRAGMATIC",
-    votes: { "1964": "R", "1968": "R", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
-  },
   "O25": {
     name: "Aspirational Kitchen Table Democrat",
     tier: "ONT",
@@ -1226,6 +1066,94 @@ const ARCHETYPE_BEHAVIORS = {
     prc: "PRAGMATIC",
     votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
   },
+  "N03": {
+    name: "Civic Engagement Maximalist",
+    tier: "T2",
+    usPattern: "I",
+    taiwan: "DPP>TPP",
+    prc: "DISSIDENT",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "I", "1984": "D", "1988": "D", "1992": "P", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N04": {
+    name: "Digital Warrior",
+    tier: "GATE",
+    usPattern: "I",
+    taiwan: "TPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N05": {
+    name: "Armchair Combatant",
+    tier: "GATE",
+    usPattern: "I",
+    taiwan: "TPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N08": {
+    name: "Reluctant Partisan",
+    tier: "T2",
+    usPattern: "I",
+    taiwan: "TPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "I", "1984": "R", "1988": "R", "1992": "P", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N10": {
+    name: "Social Conservative Moderate",
+    tier: "T2",
+    usPattern: "R",
+    taiwan: "KMT",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
+  },
+  "N11": {
+    name: "Progressive Civic Nationalist",
+    tier: "T1",
+    usPattern: "D",
+    taiwan: "DPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N12": {
+    name: "Social Civic Nationalist",
+    tier: "T1",
+    usPattern: "D",
+    taiwan: "DPP>KMT",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N13": {
+    name: "Vigilant Democrat",
+    tier: "T1",
+    usPattern: "D",
+    taiwan: "DPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N14": {
+    name: "Fortress Conservative",
+    tier: "T1",
+    usPattern: "R",
+    taiwan: "KMT",
+    prc: "PRAGMATIC",
+    votes: { "1964": "R", "1968": "R", "1972": "R", "1976": "R", "1980": "R", "1984": "R", "1988": "R", "1992": "R", "1996": "R", "2000": "R", "2004": "R", "2008": "R", "2012": "R", "2016": "R", "2020": "R", "2024": "R" }
+  },
+  "N15": {
+    name: "Fighting-Class Democrat",
+    tier: "T1",
+    usPattern: "D",
+    taiwan: "DPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  },
+  "N16": {
+    name: "Social Gospel Voter",
+    tier: "T1",
+    usPattern: "D",
+    taiwan: "DPP",
+    prc: "PRAGMATIC",
+    votes: { "1964": "D", "1968": "D", "1972": "R", "1976": "D", "1980": "D", "1984": "D", "1988": "D", "1992": "D", "1996": "D", "2000": "D", "2004": "D", "2008": "D", "2012": "D", "2016": "D", "2020": "D", "2024": "D" }
+  }
 };
 
 
