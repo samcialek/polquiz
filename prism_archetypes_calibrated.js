@@ -97,6 +97,18 @@ const ARCHETYPES = [
       "ONT_H": [
         0,
         45
+      ],
+      "ZS": [
+        60,
+        100
+      ],
+      "ONT_S": [
+        0,
+        45
+      ],
+      "ENG": [
+        0,
+        35
       ]
     }
   },
@@ -180,7 +192,7 @@ const ARCHETYPES = [
     "id": "003",
     "name": "Heritage Conservative",
     "tier": "T1",
-    "frequency": 3.2,
+    "frequency": 2.5,
     "description": "Defends traditional culture and hierarchy against perceived threats; cultural identity is central to politics.",
     "examples": "Pat Buchanan, Laura Ingraham",
     "ontLevel": "Low",
@@ -244,6 +256,22 @@ const ARCHETYPES = [
       ],
       "CU": [
         60,
+        100
+      ],
+      "ENG": [
+        70,
+        100
+      ],
+      "PF": [
+        0,
+        25
+      ],
+      "ONT_S": [
+        0,
+        45
+      ],
+      "COM": [
+        45,
         100
       ]
     }
@@ -324,7 +352,7 @@ const ARCHETYPES = [
     "id": "005",
     "name": "Quiet Middle",
     "tier": "T1",
-    "frequency": 3.5,
+    "frequency": 2.8,
     "description": "Holds no strong political views; content with status quo and avoids political engagement. Politics is irrelevant distraction. 'I just want to grill.'",
     "examples": "Michael Jordan (1990s), Derek Jeter, Tim Duncan",
     "ontLevel": "Mid",
@@ -333,7 +361,7 @@ const ARCHETYPES = [
       "PF": {
         "pos": [
           0,
-          50
+          40
         ],
         "sal": [
           65,
@@ -343,17 +371,17 @@ const ARCHETYPES = [
       "ENG": {
         "pos": [
           0,
-          48
+          38
         ],
         "sal": [
-          65,
-          100
+          45,
+          75
         ]
       },
       "TRB": {
         "pos": [
           30,
-          60
+          55
         ],
         "sal": [
           35,
@@ -362,8 +390,8 @@ const ARCHETYPES = [
       },
       "COM": {
         "pos": [
-          35,
-          70
+          38,
+          65
         ],
         "sal": [
           35,
@@ -372,8 +400,8 @@ const ARCHETYPES = [
       },
       "MOR": {
         "pos": [
-          35,
-          70
+          38,
+          65
         ],
         "sal": [
           30,
@@ -391,90 +419,14 @@ const ARCHETYPES = [
         100
       ],
       "CD": [
-        65,
+        55,
         100
       ],
       "H": [
         65,
         100
-      ]
-    }
-  },
-  {
-    "id": "006",
-    "name": "Rising Tide Progressive",
-    "tier": "T1",
-    "frequency": 2.1,
-    "description": "Believes progress lifts everyone; combines social liberalism with genuine optimism about human potential and positive-sum politics.",
-    "examples": "Pete Buttigieg, Gavin Newsom",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "CD": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "ONT_H": {
-        "pos": [
-          45,
-          100
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "ONT_S": {
-        "pos": [
-          55,
-          95
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      }
-    },
-    "antiTraits": {
-      "COM": [
-        60,
-        100
       ],
-      "CU": [
-        55,
-        100
-      ],
-      "ZS": [
-        55,
-        100
-      ],
-      "AES": [
+      "MAT": [
         60,
         100
       ]
@@ -560,7 +512,7 @@ const ARCHETYPES = [
     "id": "008",
     "name": "Institutional Progressive",
     "tier": "T1",
-    "frequency": 2.2,
+    "frequency": 1.8,
     "description": "Works through established institutions to achieve progressive goals; believes in reform within the system.",
     "examples": "Hillary Clinton, Nancy Pelosi, Chuck Schumer",
     "ontLevel": "Mid",
@@ -568,8 +520,8 @@ const ARCHETYPES = [
     "traits": {
       "MAT": {
         "pos": [
-          0,
-          50
+          5,
+          45
         ],
         "sal": [
           60,
@@ -579,7 +531,7 @@ const ARCHETYPES = [
       "CD": {
         "pos": [
           0,
-          40
+          38
         ],
         "sal": [
           50,
@@ -588,8 +540,8 @@ const ARCHETYPES = [
       },
       "PRO": {
         "pos": [
-          40,
-          75
+          45,
+          72
         ],
         "sal": [
           55,
@@ -599,7 +551,7 @@ const ARCHETYPES = [
       "EPS": {
         "pos": [
           30,
-          65
+          62
         ],
         "sal": [
           50,
@@ -608,8 +560,8 @@ const ARCHETYPES = [
       },
       "ENG": {
         "pos": [
-          50,
-          85
+          55,
+          80
         ],
         "sal": [
           50,
@@ -625,6 +577,18 @@ const ARCHETYPES = [
       "ZS": [
         60,
         100
+      ],
+      "TRB": [
+        60,
+        100
+      ],
+      "NAT": [
+        60,
+        100
+      ],
+      "MOR": [
+        0,
+        25
       ]
     }
   },
@@ -688,13 +652,31 @@ const ARCHETYPES = [
           85
         ]
       }
+    },
+    "antiTraits": {
+      "MAT": [
+        70,
+        100
+      ],
+      "H": [
+        70,
+        100
+      ],
+      "PF": [
+        65,
+        100
+      ],
+      "ONT_S": [
+        0,
+        50
+      ]
     }
   },
   {
     "id": "010",
     "name": "Full Spectrum Conservative",
     "tier": "T1",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Combines free-market economics with traditional values and strong national identity; Reaganite fusion conservative.",
     "examples": "Ted Cruz, Ron DeSantis, Marco Rubio",
     "ontLevel": "Low",
@@ -752,7 +734,7 @@ const ARCHETYPES = [
       ],
       "MOR": [
         0,
-        55
+        38
       ]
     }
   },
@@ -858,7 +840,7 @@ const ARCHETYPES = [
     "id": "012",
     "name": "Markets-First Conservative",
     "tier": "T1",
-    "frequency": 2,
+    "frequency": 1.8,
     "description": "Economic freedom is the primary value; government intervention in markets is the main concern. Culture is secondary.",
     "examples": "Steve Forbes, Larry Kudlow, Art Laffer",
     "ontLevel": "Mid",
@@ -870,7 +852,7 @@ const ARCHETYPES = [
           100
         ],
         "sal": [
-          70,
+          75,
           100
         ]
       },
@@ -927,6 +909,18 @@ const ARCHETYPES = [
       "H": [
         0,
         25
+      ],
+      "CU": [
+        0,
+        45
+      ],
+      "MOR": [
+        0,
+        45
+      ],
+      "ONT_H": [
+        0,
+        50
       ]
     }
   },
@@ -934,70 +928,80 @@ const ARCHETYPES = [
     "id": "013",
     "name": "Statistical Middle",
     "tier": "T1",
-    "frequency": 1.6,
-    "description": "Represents the mathematical center of American opinion; no strong ideological commitments on any dimension.",
-    "examples": "Colin Powell (1990s)",
+    "frequency": 1.8,
+    "description": "Represents the mathematical center of American opinion; moderate epistemic humility and community orientation. No strong ideological commitments.",
+    "examples": "Colin Powell (1990s), suburban swing voters",
     "ontLevel": "Mid",
     "baseId": null,
     "traits": {
       "MOR": {
         "pos": [
-          47,
-          53
+          35,
+          65
         ],
         "sal": [
-          30,
+          40,
           70
         ]
       },
       "H": {
         "pos": [
-          47,
-          53
+          35,
+          65
         ],
         "sal": [
-          30,
-          70
+          35,
+          65
         ]
       },
       "MAT": {
         "pos": [
-          47,
-          53
+          35,
+          65
         ],
         "sal": [
-          30,
-          70
-        ]
-      },
-      "PRO": {
-        "pos": [
-          47,
-          53
-        ],
-        "sal": [
-          30,
-          70
+          35,
+          65
         ]
       },
       "CD": {
         "pos": [
-          45,
-          55
+          35,
+          65
         ],
         "sal": [
-          30,
-          70
+          35,
+          65
         ]
       },
       "ENG": {
         "pos": [
-          40,
-          60
+          30,
+          65
         ],
         "sal": [
-          30,
-          70
+          35,
+          65
+        ]
+      },
+      "EPS": {
+        "pos": [
+          50,
+          80
+        ],
+        "sal": [
+          55,
+          85
+        ]
+      },
+      "COM": {
+        "pos": [
+          45,
+          75
+        ],
+        "sal": [
+          55,
+          85
         ]
       }
     },
@@ -1017,92 +1021,32 @@ const ARCHETYPES = [
       "ONT_S": [
         70,
         100
-      ]
-    }
-  },
-  {
-    "id": "014",
-    "name": "Faith and Family Traditionalist",
-    "tier": "T1",
-    "frequency": 2,
-    "description": "Religious faith and scripture are the foundation of political knowledge; family and church structure are paramount.",
-    "examples": "Mike Pence, Mike Huckabee",
-    "ontLevel": "Low",
-    "baseId": null,
-    "traits": {
-      "CD": {
-        "pos": [
-          60,
-          100
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "CU": {
-        "pos": [
-          60,
-          100
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "MOR": {
-        "pos": [
-          45,
-          85
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "PF": {
-        "pos": [
-          50,
-          95
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "EPS": {
-        "pos": [
-          60,
-          100
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      }
-    },
-    "antiTraits": {
-      "AES": [
-        60,
+      ],
+      "TRB": [
+        65,
+        100
+      ],
+      "NAT": [
+        65,
         100
       ],
       "PF": [
-        0,
-        40
-      ],
-      "EPS": [
-        0,
-        50
-      ],
-      "ENG": [
-        65,
+        70,
         100
+      ],
+      "CU": [
+        0,
+        25
+      ],
+      "AES": [
+        45,
+        80
       ]
     }
   },
   {
     "id": "016",
-    "name": "Evidence-Based Progressive",
+    "name": "Humanist Progressive",
     "tier": "T1",
     "frequency": 1.5,
     "description": "\"Follow the data\" as methodology for achieving progressive ends. Epistemology is instrumental but load-bearing.",
@@ -1133,7 +1077,7 @@ const ARCHETYPES = [
       "EPS": {
         "pos": [
           0,
-          50
+          60
         ],
         "sal": [
           60,
@@ -1142,8 +1086,18 @@ const ARCHETYPES = [
       },
       "PRO": {
         "pos": [
-          30,
-          75
+          25,
+          80
+        ],
+        "sal": [
+          50,
+          80
+        ]
+      },
+      "ONT_H": {
+        "pos": [
+          50,
+          95
         ],
         "sal": [
           50,
@@ -1171,72 +1125,10 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "017",
-    "name": "Evidence-Based Free Marketer",
-    "tier": "T1",
-    "frequency": 1.5,
-    "description": "Supports markets based on empirical evidence of efficiency; economics-first worldview grounded in data.",
-    "examples": "Larry Summers, Greg Mankiw, Tyler Cowen",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          60,
-          95
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "EPS": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "PRO": {
-        "pos": [
-          40,
-          75
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "CD": {
-        "pos": [
-          30,
-          65
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      }
-    }
-  },
-  {
     "id": "018",
     "name": "Movement Conservative",
     "tier": "T1",
-    "frequency": 1.8,
+    "frequency": 2.1,
     "description": "Committed ideological conservative active in the movement; fuses economics, culture, and nationalism with combative style.",
     "examples": "Mark Levin, Tucker Carlson (2000–2015)",
     "ontLevel": "Low",
@@ -1313,8 +1205,8 @@ const ARCHETYPES = [
     "name": "Expanding Pie Moderate",
     "tier": "T1",
     "frequency": 1.5,
-    "description": "Believes growth can benefit everyone; seeks win-win solutions across partisan lines. Positive-sum worldview is central.",
-    "examples": "Ro Khanna, Jared Polis",
+    "description": "Believes growth can benefit everyone; seeks win-win solutions across partisan lines. Positive-sum worldview with moderate economic nationalism and belief in institutional progress.",
+    "examples": "Ro Khanna, Jared Polis, pro-growth moderates",
     "ontLevel": "High",
     "baseId": null,
     "traits": {
@@ -1324,8 +1216,8 @@ const ARCHETYPES = [
           45
         ],
         "sal": [
-          60,
-          90
+          55,
+          85
         ]
       },
       "ONT_H": {
@@ -1357,6 +1249,26 @@ const ARCHETYPES = [
           45,
           75
         ]
+      },
+      "NAT": {
+        "pos": [
+          35,
+          70
+        ],
+        "sal": [
+          45,
+          75
+        ]
+      },
+      "PRO": {
+        "pos": [
+          50,
+          85
+        ],
+        "sal": [
+          50,
+          80
+        ]
       }
     },
     "antiTraits": {
@@ -1365,7 +1277,7 @@ const ARCHETYPES = [
         100
       ],
       "ENG": [
-        75,
+        60,
         100
       ],
       "ZS": [
@@ -1384,7 +1296,7 @@ const ARCHETYPES = [
   },
   {
     "id": "020",
-    "name": "Parish Traditionalist",
+    "name": "Provincial Traditionalist",
     "tier": "T1",
     "frequency": 1.5,
     "description": "Faith rooted in local community and inherited tradition; the church as anchor against a changing world. Heritage-preserving, locally focused religious voter.",
@@ -1483,78 +1395,6 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "021",
-    "name": "Cultural Regionalist",
-    "tier": "T2",
-    "frequency": 1.5,
-    "description": "Regional/cultural identity drives politics; \"common sense\" epistemology; suspicious of outsiders and elites.",
-    "examples": "Rural identity voters; \"real America\" types",
-    "ontLevel": "Low",
-    "baseId": null,
-    "traits": {
-      "CU": {
-        "pos": [
-          35,
-          80
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          50,
-          95
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "MOR": {
-        "pos": [
-          45,
-          85
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "CD": {
-        "pos": [
-          45,
-          85
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "NAT": {
-        "pos": [
-          40,
-          80
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      }
-    },
-    "antiTraits": {
-      "PF": [
-        0,
-        45
-      ],
-      "CU": [
-        0,
-        34
-      ]
-    }
-  },
-  {
     "id": "022",
     "name": "Identity-Rooted Progressive",
     "tier": "T2",
@@ -1617,68 +1457,6 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "023",
-    "name": "Rationalist Libertarian",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Derives political positions from first principles and logical deduction; believes in human reason and markets.",
-    "examples": "Bryan Caplan, Yaron Brook",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          65,
-          100
-        ],
-        "sal": [
-          65,
-          100
-        ]
-      },
-      "EPS": {
-        "pos": [
-          30,
-          65
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "H": {
-        "pos": [
-          30,
-          65
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "ONT_H": {
-        "pos": [
-          55,
-          90
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      }
-    }
-  },
-  {
     "id": "024",
     "name": "Movement Progressive",
     "tier": "T2",
@@ -1724,8 +1502,8 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          55,
-          90
+          60,
+          95
         ]
       },
       "ENG": {
@@ -1734,8 +1512,8 @@ const ARCHETYPES = [
           100
         ],
         "sal": [
-          60,
-          95
+          65,
+          100
         ]
       }
     },
@@ -1754,7 +1532,7 @@ const ARCHETYPES = [
     "id": "025",
     "name": "Prophetic Progressive",
     "tier": "T2",
-    "frequency": 2,
+    "frequency": 1.6,
     "description": "Moral witness IS the politics; speaking truth to power regardless of effectiveness.",
     "examples": "William Barber, Cornel West (style)",
     "ontLevel": "High",
@@ -1810,68 +1588,6 @@ const ARCHETYPES = [
           90
         ]
       }
-    }
-  },
-  {
-    "id": "026",
-    "name": "Competitive Conservative",
-    "tier": "T2",
-    "frequency": 1.5,
-    "description": "Politics is competition; pro-market but sees economy as zero-sum race.",
-    "examples": "James Carville, Rahm Emanuel",
-    "ontLevel": "Low",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "MOR": {
-        "pos": [
-          34,
-          66
-        ],
-        "sal": [
-          50,
-          74
-        ]
-      },
-      "ZS": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "H": {
-        "pos": [
-          50,
-          90
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      }
-    },
-    "antiTraits": {
-      "ZS": [
-        0,
-        50
-      ],
-      "COM": [
-        60,
-        100
-      ]
     }
   },
   {
@@ -1933,6 +1649,16 @@ const ARCHETYPES = [
           55,
           85
         ]
+      },
+      "TRB": {
+        "pos": [
+          0,
+          35
+        ],
+        "sal": [
+          55,
+          85
+        ]
       }
     },
     "antiTraits": {
@@ -1948,9 +1674,9 @@ const ARCHETYPES = [
   },
   {
     "id": "028",
-    "name": "Entrepreneurial Conservative",
+    "name": "Entrepreneurial Independent",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.7,
     "description": "Pro-business moderate who believes entrepreneurship solves social problems; not strongly partisan.",
     "examples": "Michael Bloomberg, Mark Cuban, Howard Schultz",
     "ontLevel": "Mid",
@@ -1982,8 +1708,8 @@ const ARCHETYPES = [
           70
         ],
         "sal": [
-          55,
-          85
+          60,
+          90
         ]
       },
       "PF": {
@@ -2002,8 +1728,8 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          50,
-          80
+          55,
+          85
         ]
       }
     },
@@ -2013,6 +1739,22 @@ const ARCHETYPES = [
         100
       ],
       "ZS": [
+        60,
+        100
+      ],
+      "AES": [
+        0,
+        25
+      ],
+      "ENG": [
+        0,
+        35
+      ],
+      "ONT_S": [
+        60,
+        100
+      ],
+      "CD": [
         60,
         100
       ]
@@ -2092,68 +1834,6 @@ const ARCHETYPES = [
         0,
         30
       ]
-    }
-  },
-  {
-    "id": "030",
-    "name": "Globally Minded Social Democrat",
-    "tier": "T2",
-    "frequency": 2.1,
-    "description": "Combines progressive economics with cosmopolitan internationalism; believes in global cooperation.",
-    "examples": "Barack Obama, Justin Trudeau",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "CD": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "MOR": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "TRB": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      }
     }
   },
   {
@@ -2254,7 +1934,7 @@ const ARCHETYPES = [
   },
   {
     "id": "032",
-    "name": "Neighborhood Democrat",
+    "name": "Traditional Values Democrat",
     "tier": "T2",
     "frequency": 1.8,
     "description": "Progressive on economics, rooted in local community and often faith tradition.",
@@ -2325,68 +2005,6 @@ const ARCHETYPES = [
       "MOR": [
         71,
         100
-      ]
-    }
-  },
-  {
-    "id": "033",
-    "name": "Team Player Capitalist",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Strongly pro-business but primarily motivated by partisan team loyalty.",
-    "examples": "Sheldon Adelson †, Harold Hamm",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "H": {
-        "pos": [
-          30,
-          70
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "PF": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "TRB": {
-        "pos": [
-          55,
-          95
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      }
-    },
-    "antiTraits": {
-      "PF": [
-        0,
-        45
-      ],
-      "TRB": [
-        0,
-        45
       ]
     }
   },
@@ -2480,7 +2098,7 @@ const ARCHETYPES = [
     "id": "035",
     "name": "Free-Thinking Moderate",
     "tier": "T2",
-    "frequency": 2.6,
+    "frequency": 1.6,
     "description": "Takes positions from both parties; resists ideological conformity and tribal pressure. Actually has no partisan lean; evaluates each election independently.",
     "examples": "Bill Maher, Joe Rogan (2015–2020), Angus King",
     "ontLevel": "Mid",
@@ -2528,8 +2146,8 @@ const ARCHETYPES = [
       },
       "MAT": {
         "pos": [
-          35,
-          65
+          38,
+          62
         ],
         "sal": [
           40,
@@ -2538,8 +2156,8 @@ const ARCHETYPES = [
       },
       "CD": {
         "pos": [
-          35,
-          65
+          38,
+          62
         ],
         "sal": [
           40,
@@ -2566,7 +2184,7 @@ const ARCHETYPES = [
     "id": "036",
     "name": "Optimistic Progressive",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Culturally liberal with genuine optimism about human nature and social progress.",
     "examples": "Cory Booker, Oprah Winfrey",
     "ontLevel": "High",
@@ -2622,6 +2240,28 @@ const ARCHETYPES = [
           85
         ]
       }
+    },
+    "antiTraits": {
+      "TRB": [
+        60,
+        100
+      ],
+      "H": [
+        70,
+        100
+      ],
+      "NAT": [
+        65,
+        100
+      ],
+      "ONT_S": [
+        0,
+        50
+      ],
+      "PF": [
+        50,
+        100
+      ]
     }
   },
   {
@@ -2660,8 +2300,8 @@ const ARCHETYPES = [
           95
         ],
         "sal": [
-          60,
-          90
+          70,
+          95
         ]
       },
       "ZS": {
@@ -2700,6 +2340,10 @@ const ARCHETYPES = [
       ],
       "CD": [
         60,
+        100
+      ],
+      "MOR": [
+        55,
         100
       ]
     }
@@ -2797,68 +2441,6 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "039",
-    "name": "Rooted Centrist",
-    "tier": "T2",
-    "frequency": 1.2,
-    "description": "Strong attachment to local community and civic institutions but centrist on economics/culture.",
-    "examples": "Robert Putnam",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          35,
-          65
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "CD": {
-        "pos": [
-          35,
-          65
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          50,
-          85
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "MOR": {
-        "pos": [
-          45,
-          75
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ENG": {
-        "pos": [
-          40,
-          75
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      }
-    }
-  },
-  {
     "id": "040",
     "name": "Win-Win Centrist",
     "tier": "T2",
@@ -2871,11 +2453,11 @@ const ARCHETYPES = [
       "ZS": {
         "pos": [
           0,
-          50
+          40
         ],
         "sal": [
-          55,
-          85
+          65,
+          95
         ]
       },
       "ONT_S": {
@@ -2894,8 +2476,8 @@ const ARCHETYPES = [
           100
         ],
         "sal": [
-          55,
-          85
+          65,
+          95
         ]
       },
       "PF": {
@@ -2907,7 +2489,31 @@ const ARCHETYPES = [
           50,
           80
         ]
+      },
+      "ENG": {
+        "pos": [
+          40,
+          80
+        ],
+        "sal": [
+          45,
+          75
+        ]
       }
+    },
+    "antiTraits": {
+      "MAT": [
+        60,
+        100
+      ],
+      "TRB": [
+        50,
+        100
+      ],
+      "CD": [
+        65,
+        100
+      ]
     }
   },
   {
@@ -2970,6 +2576,24 @@ const ARCHETYPES = [
           85
         ]
       }
+    },
+    "antiTraits": {
+      "MAT": [
+        0,
+        30
+      ],
+      "PRO": [
+        0,
+        30
+      ],
+      "AES": [
+        60,
+        100
+      ],
+      "ENG": [
+        0,
+        30
+      ]
     }
   },
   {
@@ -3126,9 +2750,9 @@ const ARCHETYPES = [
   },
   {
     "id": "044",
-    "name": "Neoliberal Progressive",
+    "name": "Pragmatic Market Progressive",
     "tier": "T2",
-    "frequency": 1.6,
+    "frequency": 2,
     "description": "Socially liberal, economically market-friendly; believes markets and social progress are compatible.",
     "examples": "Matt Yglesias, Noah Smith, Elon Musk (2012–2020)",
     "ontLevel": "High",
@@ -3187,7 +2811,7 @@ const ARCHETYPES = [
     },
     "antiTraits": {
       "ONT_H": [
-        75,
+        55,
         100
       ],
       "ONT_S": [
@@ -3238,12 +2862,12 @@ const ARCHETYPES = [
       },
       "ENG": {
         "pos": [
-          75,
+          70,
           100
         ],
         "sal": [
-          60,
-          90
+          65,
+          95
         ]
       },
       "COM": {
@@ -3255,14 +2879,38 @@ const ARCHETYPES = [
           60,
           90
         ]
+      },
+      "PRO": {
+        "pos": [
+          35,
+          75
+        ],
+        "sal": [
+          50,
+          80
+        ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "AES": [
+        60,
+        100
+      ],
+      "MAT": [
+        0,
+        50
+      ]
     }
   },
   {
     "id": "046",
     "name": "Solutions-Oriented Moderate",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.5,
     "description": "Focuses on practical problem-solving rather than ideological purity.",
     "examples": "Mike DeWine",
     "ontLevel": "High",
@@ -3274,8 +2922,8 @@ const ARCHETYPES = [
           40
         ],
         "sal": [
-          65,
-          95
+          75,
+          100
         ]
       },
       "ONT_S": {
@@ -3333,6 +2981,18 @@ const ARCHETYPES = [
       "TRB": [
         50,
         100
+      ],
+      "CD": [
+        65,
+        100
+      ],
+      "NAT": [
+        60,
+        100
+      ],
+      "H": [
+        0,
+        25
       ]
     }
   },
@@ -3340,7 +3000,7 @@ const ARCHETYPES = [
     "id": "047",
     "name": "Hardline Movement Conservative",
     "tier": "T2",
-    "frequency": 2.0,
+    "frequency": 2.3,
     "description": "Combines aggressive capitalism with authoritarian cultural conservatism; outcomes justify means.",
     "examples": "Stephen Miller",
     "ontLevel": "Low",
@@ -3395,14 +3055,34 @@ const ARCHETYPES = [
           60,
           95
         ]
+      },
+      "H": {
+        "pos": [
+          65,
+          100
+        ],
+        "sal": [
+          60,
+          95
+        ]
       }
+    },
+    "antiTraits": {
+      "EPS": [
+        55,
+        100
+      ],
+      "MOR": [
+        0,
+        40
+      ]
     }
   },
   {
     "id": "049",
     "name": "Global Markets Libertarian",
     "tier": "T2",
-    "frequency": 2,
+    "frequency": 1.8,
     "description": "Believes in free markets and free trade across borders; economically libertarian globalist.",
     "examples": "Johan Norberg, Deirdre McCloskey",
     "ontLevel": "Mid",
@@ -3458,11 +3138,29 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "ENG": [
+        65,
+        100
+      ],
+      "PF": [
+        60,
+        100
+      ],
+      "EPS": [
+        0,
+        45
+      ]
     }
   },
   {
     "id": "050",
-    "name": "Data-Driven Democrat",
+    "name": "Procedural Democrat",
     "tier": "T2",
     "frequency": 1.8,
     "description": "Left-leaning but epistemology is load-bearing; follows evidence to progressive conclusions.",
@@ -3561,6 +3259,10 @@ const ARCHETYPES = [
       "H": [
         0,
         29
+      ],
+      "PF": [
+        0,
+        55
       ]
     }
   },
@@ -3703,7 +3405,7 @@ const ARCHETYPES = [
         100
       ],
       "CU": [
-        50,
+        45,
         100
       ],
       "TRB": [
@@ -3852,9 +3554,9 @@ const ARCHETYPES = [
   },
   {
     "id": "056",
-    "name": "Structure and Community",
+    "name": "Cultural Traditionalist",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Values social order, hierarchy, and strong community bonds.",
     "examples": "Rod Dreher",
     "ontLevel": "Mid",
@@ -3904,6 +3606,10 @@ const ARCHETYPES = [
     "antiTraits": {
       "PRO": [
         55,
+        100
+      ],
+      "EPS": [
+        70,
         100
       ]
     }
@@ -4016,8 +3722,8 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          50,
-          80
+          55,
+          85
         ]
       },
       "AES": {
@@ -4053,8 +3759,8 @@ const ARCHETYPES = [
         100
       ],
       "ONT_H": [
-        60,
-        100
+        0,
+        45
       ]
     }
   },
@@ -4062,7 +3768,7 @@ const ARCHETYPES = [
     "id": "060",
     "name": "Mutual Aid Progressive",
     "tier": "T2",
-    "frequency": 1.5,
+    "frequency": 1.7,
     "description": "Focuses on being a good community member; believes in local cooperation and mutual aid.",
     "examples": "Mutual aid organizers",
     "ontLevel": "High",
@@ -4074,8 +3780,8 @@ const ARCHETYPES = [
           55
         ],
         "sal": [
-          55,
-          85
+          60,
+          95
         ]
       },
       "COM": {
@@ -4142,7 +3848,7 @@ const ARCHETYPES = [
   },
   {
     "id": "061",
-    "name": "Neoliberal",
+    "name": "Market Optimist",
     "tier": "T2",
     "frequency": 1.6,
     "description": "Free markets plus social liberalism; globalist, pro-immigration, optimistic about growth.",
@@ -4186,8 +3892,8 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          55,
-          90
+          70,
+          100
         ]
       },
       "EPS": {
@@ -4200,6 +3906,28 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "TRB": [
+        55,
+        100
+      ],
+      "CU": [
+        0,
+        40
+      ],
+      "NAT": [
+        55,
+        100
+      ],
+      "ONT_S": [
+        0,
+        45
+      ],
+      "ENG": [
+        50,
+        95
+      ]
     }
   },
   {
@@ -4229,7 +3957,7 @@ const ARCHETYPES = [
         ],
         "sal": [
           60,
-          90
+          95
         ]
       },
       "MOR": {
@@ -4283,6 +4011,14 @@ const ARCHETYPES = [
       "MOR": [
         71,
         100
+      ],
+      "ONT_S": [
+        0,
+        45
+      ],
+      "AES": [
+        0,
+        45
       ]
     }
   },
@@ -4290,7 +4026,7 @@ const ARCHETYPES = [
     "id": "063",
     "name": "Christian Democrat",
     "tier": "T2",
-    "frequency": 1.6,
+    "frequency": 1.4,
     "description": "Center-right with religious moral framework; supports welfare state within traditional values.",
     "examples": "European Christian Democratic parties",
     "ontLevel": "Mid",
@@ -4308,12 +4044,12 @@ const ARCHETYPES = [
       },
       "CD": {
         "pos": [
-          55,
-          90
+          60,
+          95
         ],
         "sal": [
-          55,
-          90
+          70,
+          95
         ]
       },
       "MOR": {
@@ -4346,6 +4082,24 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "ZS": [
+        65,
+        100
+      ],
+      "ENG": [
+        75,
+        100
+      ],
+      "TRB": [
+        65,
+        100
+      ],
+      "ONT_S": [
+        0,
+        40
+      ]
     }
   },
   {
@@ -4374,8 +4128,8 @@ const ARCHETYPES = [
           50
         ],
         "sal": [
-          55,
-          85
+          60,
+          90
         ]
       },
       "ZS": {
@@ -4409,6 +4163,10 @@ const ARCHETYPES = [
         100
       ],
       "ONT_S": [
+        55,
+        100
+      ],
+      "ENG": [
         55,
         100
       ]
@@ -4495,8 +4253,16 @@ const ARCHETYPES = [
         100
       ],
       "PF": [
-        40,
+        56,
         100
+      ],
+      "EPS": [
+        0,
+        40
+      ],
+      "ENG": [
+        0,
+        40
       ]
     }
   },
@@ -4577,6 +4343,10 @@ const ARCHETYPES = [
       "PRO": [
         0,
         45
+      ],
+      "CD": [
+        60,
+        100
       ]
     }
   },
@@ -4662,6 +4432,14 @@ const ARCHETYPES = [
       ],
       "PF": [
         60,
+        100
+      ],
+      "ZS": [
+        65,
+        100
+      ],
+      "CD": [
+        55,
         100
       ]
     }
@@ -4802,6 +4580,20 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "ZS": [
+        60,
+        100
+      ],
+      "CU": [
+        55,
+        100
+      ],
+      "TRB": [
+        60,
+        100
+      ]
     }
   },
   {
@@ -4830,8 +4622,8 @@ const ARCHETYPES = [
           75
         ],
         "sal": [
-          55,
-          85
+          60,
+          90
         ]
       },
       "COM": {
@@ -4840,8 +4632,8 @@ const ARCHETYPES = [
           95
         ],
         "sal": [
-          50,
-          80
+          55,
+          85
         ]
       },
       "H": {
@@ -4887,12 +4679,16 @@ const ARCHETYPES = [
       "ONT_H": [
         60,
         100
+      ],
+      "ZS": [
+        55,
+        100
       ]
     }
   },
   {
     "id": "072",
-    "name": "Distributist",
+    "name": "Organic Conservative",
     "tier": "T2",
     "frequency": 1.5,
     "description": "Widespread property ownership; against both big business and big government.",
@@ -4963,62 +4759,6 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "073",
-    "name": "Agrarian Populist",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Rural-focused; suspicious of banks, corporations, and urban elites.",
-    "examples": "Historical Populist Party",
-    "ontLevel": "Low",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          20,
-          65
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "CD": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "ZS": {
-        "pos": [
-          50,
-          95
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          50,
-          85
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
-    },
-    "antiTraits": {
-      "ENG": [65, 100],
-      "AES": [65, 100]
-    }
-  },
-  {
     "id": "074",
     "name": "Localist",
     "tier": "T2",
@@ -5034,7 +4774,7 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          60,
+          65,
           95
         ]
       },
@@ -5078,142 +4818,18 @@ const ARCHETYPES = [
           85
         ]
       }
-    }
-  },
-  {
-    "id": "075",
-    "name": "Mutualist",
-    "tier": "T2",
-    "frequency": 1.6,
-    "description": "Market anarchism; free markets without capitalism, mutual credit.",
-    "examples": "Proudhon tradition",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          20,
-          55
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "H": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "PRO": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
     },
     "antiTraits": {
+      "PF": [
+        65,
+        100
+      ],
       "CD": [
-        45,
-        100
-      ]
-    }
-  },
-  {
-    "id": "076",
-    "name": "Guild Socialist",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Worker control through trade guilds or councils; decentralized socialism with workplace democracy.",
-    "examples": "G.D.H. Cole, Anton Pannekoek",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "H": {
-        "pos": [
-          20,
-          60
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "PRO": {
-        "pos": [
-          35,
-          80
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "COM": {
-        "pos": [
-          50,
-          95
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
-    },
-    "antiTraits": {
-      "EPS": [
-        0,
-        35
-      ],
-      "CU": [
-        55,
-        100
-      ],
-      "AES": [
         70,
         100
       ],
-      "PF": [
-        40,
+      "ZS": [
+        70,
         100
       ]
     }
@@ -5422,13 +5038,14 @@ const ARCHETYPES = [
           80
         ]
       }
-    }
+    },
+    "antiTraits": {}
   },
   {
     "id": "081",
     "name": "Minarchist",
     "tier": "T2",
-    "frequency": 2,
+    "frequency": 1.7,
     "description": "Minimal state; only police, courts, military. Night-watchman state.",
     "examples": "Robert Nozick tradition",
     "ontLevel": "Mid",
@@ -5484,6 +5101,20 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "CU": [
+        55,
+        100
+      ],
+      "ENG": [
+        65,
+        100
+      ]
     }
   },
   {
@@ -5546,68 +5177,16 @@ const ARCHETYPES = [
           85
         ]
       }
-    }
-  },
-  {
-    "id": "084",
-    "name": "Syndicalist",
-    "tier": "T2",
-    "frequency": 1.3,
-    "description": "Revolutionary trade unionism; workers control through direct action.",
-    "examples": "IWW tradition",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "H": {
-        "pos": [
-          0,
-          58
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "ZS": {
-        "pos": [
-          40,
-          90
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "ENG": {
-        "pos": [
-          55,
-          90
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "AES": {
-        "pos": [
-          25,
-          90
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
+    },
+    "antiTraits": {
+      "PF": [
+        40,
+        100
+      ],
+      "CD": [
+        50,
+        100
+      ]
     }
   },
   {
@@ -5708,7 +5287,7 @@ const ARCHETYPES = [
   },
   {
     "id": "086",
-    "name": "Transhumanist",
+    "name": "Civilizational Optimist",
     "tier": "T2",
     "frequency": 1.8,
     "description": "Technology will transcend human limitations; embrace enhancement.",
@@ -5777,74 +5356,8 @@ const ARCHETYPES = [
     }
   },
   {
-    "id": "087",
-    "name": "Post-Ideological Technocrat",
-    "tier": "T2",
-    "frequency": 1.6,
-    "description": "Expert rule; policy should be determined by technical knowledge.",
-    "examples": "Technocracy movement",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "EPS": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "H": {
-        "pos": [
-          50,
-          90
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "PRO": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "TRB": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      }
-    },
-    "antiTraits": {
-      "H": [
-        0,
-        45
-      ],
-      "EPS": [
-        55,
-        100
-      ],
-      "TRB": [
-        56,
-        100
-      ]
-    }
-  },
-  {
     "id": "088",
-    "name": "Meritocrat",
+    "name": "Market Individualist",
     "tier": "T2",
     "frequency": 1.8,
     "description": "Reward talent and effort; inequality is acceptable if earned.",
@@ -5912,7 +5425,8 @@ const ARCHETYPES = [
           80
         ]
       }
-    }
+    },
+    "antiTraits": {}
   },
   {
     "id": "089",
@@ -5974,13 +5488,31 @@ const ARCHETYPES = [
           85
         ]
       }
+    },
+    "antiTraits": {
+      "TRB": [
+        55,
+        100
+      ],
+      "CU": [
+        55,
+        100
+      ],
+      "ZS": [
+        60,
+        100
+      ],
+      "NAT": [
+        60,
+        100
+      ]
     }
   },
   {
     "id": "091",
     "name": "Fortress Traditionalist",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Scarcity-driven authoritarianism; zero-sum resource thinking, hierarchical traditionalism, siege mentality.",
     "examples": "Pentti Linkola",
     "ontLevel": "Low",
@@ -6026,11 +5558,29 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "MAT": [
+        0,
+        30
+      ],
+      "EPS": [
+        0,
+        30
+      ],
+      "PF": [
+        0,
+        30
+      ],
+      "ENG": [
+        65,
+        100
+      ]
     }
   },
   {
     "id": "092",
-    "name": "National Bolshevik",
+    "name": "Left Authoritarian",
     "tier": "T2",
     "frequency": 1.8,
     "description": "Synthesis of far-left economics and far-right nationalism.",
@@ -6246,15 +5796,21 @@ const ARCHETYPES = [
       }
     },
     "antiTraits": {
-      "PF": [55, 100],
-      "CD": [55, 100]
+      "PF": [
+        55,
+        100
+      ],
+      "CD": [
+        55,
+        100
+      ]
     }
   },
   {
     "id": "095",
-    "name": "Dark Enlightenment",
+    "name": "Neo-Reactionary",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Neoreaction; democracy is a failed experiment, return to traditional authority.",
     "examples": "Curtis Yarvin (Moldbug)",
     "ontLevel": "Low",
@@ -6302,15 +5858,21 @@ const ARCHETYPES = [
       }
     },
     "antiTraits": {
-      "MOR": [0, 35],
-      "CD": [0, 35]
+      "MOR": [
+        0,
+        35
+      ],
+      "CD": [
+        0,
+        35
+      ]
     }
   },
   {
     "id": "096",
     "name": "Radical Centrist",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Synthesize best ideas from all sides; reject tribal politics.",
     "examples": "Andrew Yang style",
     "ontLevel": "Mid",
@@ -6362,8 +5924,8 @@ const ARCHETYPES = [
           85
         ],
         "sal": [
-          55,
-          85
+          60,
+          90
         ]
       },
       "ZS": {
@@ -6399,6 +5961,14 @@ const ARCHETYPES = [
       "MOR": [
         70,
         100
+      ],
+      "EPS": [
+        0,
+        50
+      ],
+      "ENG": [
+        70,
+        100
       ]
     }
   },
@@ -6418,8 +5988,8 @@ const ARCHETYPES = [
           40
         ],
         "sal": [
-          55,
-          85
+          60,
+          90
         ]
       },
       "PF": {
@@ -6452,6 +6022,32 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "ZS": [
+        50,
+        100
+      ],
+      "CD": [
+        65,
+        100
+      ],
+      "TRB": [
+        60,
+        100
+      ],
+      "H": [
+        60,
+        100
+      ],
+      "MAT": [
+        0,
+        45
+      ],
+      "ONT_H": [
+        0,
+        35
+      ]
     }
   },
   {
@@ -6506,8 +6102,14 @@ const ARCHETYPES = [
       }
     },
     "antiTraits": {
-      "CD": [0, 40],
-      "ENG": [0, 35]
+      "CD": [
+        0,
+        40
+      ],
+      "ENG": [
+        0,
+        35
+      ]
     }
   },
   {
@@ -6598,7 +6200,7 @@ const ARCHETYPES = [
     "id": "100",
     "name": "Fully Automated Luxury Communist",
     "tier": "T2",
-    "frequency": 2.0,
+    "frequency": 2,
     "description": "FALC; technology enables communist utopia without sacrifice.",
     "examples": "Aaron Bastani",
     "ontLevel": "High",
@@ -6660,7 +6262,7 @@ const ARCHETYPES = [
     "id": "G01",
     "name": "Survival Pragmatist",
     "tier": "GATE",
-    "frequency": 3.5,
+    "frequency": 2.5,
     "description": "Too focused on economic survival to engage in politics; sees politics as zero-sum but irrelevant to daily life.",
     "examples": "Working multiple jobs; politics is a luxury",
     "ontLevel": "Low",
@@ -6708,14 +6310,28 @@ const ARCHETYPES = [
       },
       "MAT": {
         "pos": [
-          25,
-          65
+          30,
+          60
         ],
         "sal": [
           50,
           80
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        0,
+        25
+      ],
+      "H": [
+        0,
+        25
+      ],
+      "PRO": [
+        60,
+        100
+      ]
     }
   },
   {
@@ -6788,6 +6404,20 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "H": [
+        0,
+        30
+      ],
+      "ZS": [
+        60,
+        100
+      ],
+      "NAT": [
+        60,
+        100
+      ]
     }
   },
   {
@@ -6910,7 +6540,7 @@ const ARCHETYPES = [
   },
   {
     "id": "G10",
-    "name": "Online Spectator",
+    "name": "Political Hobbyist",
     "tier": "GATE",
     "frequency": 1.8,
     "description": "Highly engaged online but doesn't participate offline; politics as entertainment.",
@@ -6930,8 +6560,8 @@ const ARCHETYPES = [
       },
       "AES": {
         "pos": [
-          25,
-          95
+          35,
+          85
         ],
         "sal": [
           50,
@@ -6958,13 +6588,31 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        70,
+        100
+      ],
+      "PRO": [
+        65,
+        100
+      ],
+      "MOR": [
+        0,
+        20
+      ],
+      "NAT": [
+        35,
+        100
+      ]
     }
   },
   {
     "id": "G11",
     "name": "Quiet Dissident",
     "tier": "GATE",
-    "frequency": 1.8,
+    "frequency": 2.3,
     "description": "Silently disagrees with both parties; keeps head down and disengages.",
     "examples": "Philip Roth † (2000s)",
     "ontLevel": "Low",
@@ -7010,11 +6658,29 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "H": [
+        65,
+        100
+      ],
+      "ZS": [
+        65,
+        100
+      ],
+      "MOR": [
+        0,
+        40
+      ]
     }
   },
   {
     "id": "M02",
-    "name": "Constitutional Purist",
+    "name": "Engaged Independent",
     "tier": "MEANS",
     "frequency": 1.8,
     "description": "Constitutional process is sacred; outcomes are legitimate only if process is. Will oppose \"their side\" on procedural grounds.",
@@ -7062,11 +6728,29 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        60,
+        100
+      ],
+      "TRB": [
+        50,
+        100
+      ],
+      "ZS": [
+        55,
+        100
+      ],
+      "ONT_H": [
+        0,
+        45
+      ]
     }
   },
   {
     "id": "M03",
-    "name": "Norm Guardian",
+    "name": "Cultural Steward",
     "tier": "MEANS",
     "frequency": 1.3,
     "description": "Institutionalist who cares about norms above outcomes; \"how we do things\" defines political identity.",
@@ -7080,7 +6764,7 @@ const ARCHETYPES = [
           35
         ],
         "sal": [
-          60,
+          65,
           95
         ]
       },
@@ -7124,70 +6808,18 @@ const ARCHETYPES = [
           80
         ]
       }
-    }
-  },
-  {
-    "id": "M06",
-    "name": "Technocratic Free Marketer",
-    "tier": "MEANS",
-    "frequency": 1.5,
-    "description": "Markets + evidence + proper process; technocratic governance as ideal. Depoliticization is the goal.",
-    "examples": "Bloomberg (governance style)",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "PRO": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "EPS": {
-        "pos": [
-          35,
-          80
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "MAT": {
-        "pos": [
-          55,
-          95
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "H": {
-        "pos": [
-          35,
-          80
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      }
     },
     "antiTraits": {
-      "CD": [
-        55,
+      "MAT": [
+        60,
         100
       ],
-      "TRB": [
-        50,
+      "ZS": [
+        65,
         100
       ],
-      "MOR": [
-        55,
+      "CU": [
+        60,
         100
       ]
     }
@@ -7196,7 +6828,7 @@ const ARCHETYPES = [
     "id": "M07",
     "name": "Rationalist Technocrat",
     "tier": "MEANS",
-    "frequency": 1.5,
+    "frequency": 1.8,
     "description": "First-principles reasoning + technical competence; believes rational analysis should drive policy.",
     "examples": "Some EA-adjacent policy types",
     "ontLevel": "High",
@@ -7242,69 +6874,27 @@ const ARCHETYPES = [
           75
         ]
       }
-    }
-  },
-  {
-    "id": "M09",
-    "name": "Street Advocate",
-    "tier": "MEANS",
-    "frequency": 1.8,
-    "description": "Protest-oriented activist; believes in direct action and movement politics; prophetic style in the streets.",
-    "examples": "DeRay Mckesson, John Lewis †, Dolores Huerta",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "COM": {
-        "pos": [
-          50,
-          95
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "CD": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "ENG": {
-        "pos": [
-          55,
-          95
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "AES": {
-        "pos": [
-          30,
-          70
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      }
     },
     "antiTraits": {
-      "H": [65, 100],
-      "PRO": [65, 100]
+      "CD": [
+        65,
+        100
+      ],
+      "TRB": [
+        60,
+        100
+      ],
+      "NAT": [
+        60,
+        100
+      ]
     }
   },
   {
     "id": "M10",
     "name": "Burkean Epistemicist",
     "tier": "MEANS",
-    "frequency": 1.8,
+    "frequency": 1.7,
     "description": "Tradition is *how we know*, not just *what we prefer*; reason is limited; accumulated wisdom trumps abstract theory.",
     "examples": "Yuval Levin, Michael Oakeshott tradition",
     "ontLevel": "Low",
@@ -7352,13 +6942,19 @@ const ARCHETYPES = [
       }
     },
     "antiTraits": {
-      "ZS": [0, 25],
-      "ENG": [75, 100]
+      "ZS": [
+        0,
+        25
+      ],
+      "ENG": [
+        0,
+        55
+      ]
     }
   },
   {
     "id": "M11",
-    "name": "Armchair Analyst",
+    "name": "Armchair Observer",
     "tier": "MEANS",
     "frequency": 1.5,
     "description": "Loves analyzing politics but never participates; pundit mindset without action.",
@@ -7406,6 +7002,24 @@ const ARCHETYPES = [
           80
         ]
       }
+    },
+    "antiTraits": {
+      "TRB": [
+        55,
+        100
+      ],
+      "CD": [
+        65,
+        100
+      ],
+      "MAT": [
+        60,
+        100
+      ],
+      "H": [
+        65,
+        100
+      ]
     }
   },
   {
@@ -7424,7 +7038,7 @@ const ARCHETYPES = [
           40
         ],
         "sal": [
-          60,
+          65,
           95
         ]
       },
@@ -7468,11 +7082,29 @@ const ARCHETYPES = [
           85
         ]
       }
+    },
+    "antiTraits": {
+      "TRB": [
+        55,
+        100
+      ],
+      "H": [
+        0,
+        30
+      ],
+      "ZS": [
+        60,
+        100
+      ],
+      "ENG": [
+        65,
+        100
+      ]
     }
   },
   {
     "id": "M15",
-    "name": "Evidence-First Reformer",
+    "name": "Collaborative Reformer",
     "tier": "MEANS",
     "frequency": 1.8,
     "description": "Progressive goals, evidence-based methods, principled about process; reform must be both effective and sound.",
@@ -7530,133 +7162,23 @@ const ARCHETYPES = [
           85
         ]
       }
-    }
-  },
-  {
-    "id": "N01",
-    "name": "Nonpartisan Activist",
-    "tier": "T2",
-    "frequency": 2.2,
-    "description": "Highly engaged in politics but refuses partisan identity; advocates for issues rather than parties. Believes both parties are captured by special interests.",
-    "examples": "Ralph Nader, some civic reform advocates, League of Women Voters activists",
-    "ontLevel": "High",
-    "baseId": null,
-    "traits": {
-      "ENG": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "PF": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "PRO": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      }
-    }
-  },
-  {
-    "id": "N02",
-    "name": "Issue-First Independent",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Votes based on specific issues rather than party loyalty; highly engaged but switches parties based on candidates and issues.",
-    "examples": "Split-ticket voters, some suburban independents",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "ENG": {
-        "pos": [
-          55,
-          90
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "PF": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "TRB": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "EPS": {
-        "pos": [
-          20,
-          60
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "PRO": {
-        "pos": [
-          45,
-          80
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
     },
     "antiTraits": {
-      "EPS": [
-        0,
-        19
-      ],
-      "ENG": [
-        10,
-        45
+      "MAT": [
+        60,
+        100
       ],
       "TRB": [
+        60,
+        100
+      ],
+      "H": [
         65,
         100
+      ],
+      "AES": [
+        0,
+        45
       ]
     }
   },
@@ -7710,11 +7232,33 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "TRB": [
+        60,
+        100
+      ],
+      "H": [
+        70,
+        100
+      ],
+      "MOR": [
+        0,
+        55
+      ],
+      "AES": [
+        45,
+        100
+      ]
     }
   },
   {
     "id": "N04",
-    "name": "Digital Warrior",
+    "name": "Online Tribalist",
     "tier": "GATE",
     "frequency": 2,
     "description": "Extremely combative online but rarely participates offline. Politics as spectator sport and identity performance. High engagement online, zero offline.",
@@ -7762,6 +7306,20 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "ZS": [
+        0,
+        40
+      ],
+      "ONT_S": [
+        55,
+        100
+      ],
+      "MAT": [
+        55,
+        100
+      ]
     }
   },
   {
@@ -7814,13 +7372,27 @@ const ARCHETYPES = [
           75
         ]
       }
+    },
+    "antiTraits": {
+      "MAT": [
+        0,
+        25
+      ],
+      "CD": [
+        70,
+        100
+      ],
+      "PRO": [
+        60,
+        100
+      ]
     }
   },
   {
     "id": "N08",
     "name": "Reluctant Partisan",
     "tier": "T2",
-    "frequency": 1.8,
+    "frequency": 1.6,
     "description": "Would prefer to be independent but feels forced to choose sides by polarization. High engagement, uncomfortable with party identity.",
     "examples": "'I'm not a Democrat, I just always vote for them', Never-Trumpers",
     "ontLevel": "Mid",
@@ -7866,65 +7438,31 @@ const ARCHETYPES = [
           75
         ]
       }
-    }
-  },
-  {
-    "id": "N09",
-    "name": "Social Liberal Moderate",
-    "tier": "T2",
-    "frequency": 1.8,
-    "description": "Fiscally centrist but socially progressive; open to cultural change while pragmatic on economics. Common among educated suburbanites.",
-    "examples": "Suburban moderates who vote on social issues, 'socially liberal, fiscally moderate' types",
-    "ontLevel": "Mid",
-    "baseId": null,
-    "traits": {
-      "MAT": {
-        "pos": [
-          35,
-          65
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "CD": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "PF": {
-        "pos": [
-          0,
-          50
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "MOR": {
-        "pos": [
-          10,
-          50
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      }
+    },
+    "antiTraits": {
+      "CD": [
+        65,
+        100
+      ],
+      "MAT": [
+        0,
+        25
+      ],
+      "H": [
+        0,
+        25
+      ],
+      "CU": [
+        60,
+        100
+      ]
     }
   },
   {
     "id": "N10",
     "name": "Social Conservative Moderate",
     "tier": "T2",
-    "frequency": 1.5,
+    "frequency": 1.8,
     "description": "Fiscally centrist but culturally traditional; values stability and tradition while pragmatic on economics. Common in rural and religious communities.",
     "examples": "Rural moderates, church-going centrists uncomfortable with both parties",
     "ontLevel": "Mid",
@@ -7990,6 +7528,20 @@ const ARCHETYPES = [
           70
         ]
       }
+    },
+    "antiTraits": {
+      "ZS": [
+        65,
+        100
+      ],
+      "AES": [
+        0,
+        25
+      ],
+      "ENG": [
+        75,
+        100
+      ]
     }
   },
   {
@@ -8075,7 +7627,7 @@ const ARCHETYPES = [
     },
     "antiTraits": {
       "ZS": [
-        70,
+        40,
         100
       ],
       "AES": [
@@ -8089,6 +7641,22 @@ const ARCHETYPES = [
       "PF": [
         10,
         14
+      ],
+      "TRB": [
+        60,
+        100
+      ],
+      "H": [
+        0,
+        25
+      ],
+      "CU": [
+        0,
+        30
+      ],
+      "EPS": [
+        45,
+        100
       ]
     }
   },
@@ -8096,7 +7664,7 @@ const ARCHETYPES = [
     "id": "N12",
     "name": "Social Civic Nationalist",
     "tier": "T1",
-    "frequency": 2,
+    "frequency": 1.6,
     "description": "Social democratic economics combined with civic nationalism. Believes in rebuilding American identity around civic participation, shared democratic values, and economic solidarity. Policy-focused rather than populist; sees national cohesion through inclusive institutions.",
     "examples": "Union Democrats, civic renewal advocates, some New Deal coalition inheritors",
     "ontLevel": "Mid",
@@ -8165,7 +7733,7 @@ const ARCHETYPES = [
     },
     "antiTraits": {
       "TRB": [
-        40,
+        56,
         100
       ],
       "H": [
@@ -8178,7 +7746,7 @@ const ARCHETYPES = [
     "id": "N13",
     "name": "Vigilant Democrat",
     "tier": "T1",
-    "frequency": 2.3,
+    "frequency": 1.8,
     "description": "Worried about democratic backsliding, climate crisis, or authoritarian threats; votes with urgency and alarm. Sees elections as existential battles.",
     "examples": "Rachel Maddow viewers, Democracy-in-peril activists",
     "ontLevel": "Low",
@@ -8276,7 +7844,7 @@ const ARCHETYPES = [
     "id": "N14",
     "name": "Fortress Conservative",
     "tier": "T1",
-    "frequency": 1.9,
+    "frequency": 1.8,
     "description": "Feels traditional America is under siege from cultural and demographic change; votes defensively to preserve what remains of the country they knew.",
     "examples": "Laura Ingraham listeners, cultural anxiety voters",
     "ontLevel": "Low",
@@ -8351,6 +7919,10 @@ const ARCHETYPES = [
       "ONT_S": [
         75,
         100
+      ],
+      "CD": [
+        35,
+        75
       ]
     }
   },
@@ -8358,7 +7930,7 @@ const ARCHETYPES = [
     "id": "N15",
     "name": "Fighting-Class Democrat",
     "tier": "T1",
-    "frequency": 1.8,
+    "frequency": 1.5,
     "description": "Sees economics as zero-sum struggle between workers and the powerful; combative 'fighting for working families' framing. Economic combat, not wonkery.",
     "examples": "Sherrod Brown supporters, union Democrats, populist left",
     "ontLevel": "Mid",
@@ -8571,11 +8143,11 @@ const ARCHETYPES = [
       "ONT_H": {
         "pos": [
           0,
-          40
+          35
         ],
         "sal": [
-          60,
-          90
+          65,
+          95
         ]
       }
     },
@@ -8596,7 +8168,7 @@ const ARCHETYPES = [
   },
   {
     "id": "O13",
-    "name": "Reform-Optimist Progressive",
+    "name": "Rising Tide Progressive",
     "tier": "ONT",
     "frequency": 1.6,
     "description": "Institutions can be reformed to achieve transformative goals.",
@@ -8676,8 +8248,14 @@ const ARCHETYPES = [
       }
     },
     "antiTraits": {
-      "H": [60, 100],
-      "TRB": [60, 100]
+      "H": [
+        60,
+        100
+      ],
+      "TRB": [
+        60,
+        100
+      ]
     },
     "_inheritedFrom": "008"
   },
@@ -8746,308 +8324,6 @@ const ARCHETYPES = [
         100
       ]
     }
-  },
-  {
-    "id": "O17",
-    "name": "Progress Capitalist",
-    "tier": "ONT",
-    "frequency": 0.9,
-    "description": "Markets plus progress can solve everything; techno-optimist.",
-    "examples": "Patrick Collison (Stripe)",
-    "ontLevel": "High",
-    "baseId": "044",
-    "traits": {
-      "MAT": {
-        "pos": [
-          55,
-          95
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "CD": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ZS": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "ONT_S": {
-        "pos": [
-          60,
-          100
-        ],
-        "sal": [
-          60,
-          90
-        ]
-      },
-      "ENG": {
-        "pos": [
-          50,
-          85
-        ],
-        "sal": [
-          50,
-          85
-        ]
-      },
-      "ONT_H": {
-        "pos": [
-          60,
-          100
-        ],
-        "sal": [
-          65,
-          95
-        ]
-      }
-    },
-    "_inheritedFrom": "044"
-  },
-  {
-    "id": "O18",
-    "name": "Pragmatic Neoliberal",
-    "tier": "ONT",
-    "frequency": 1.5,
-    "description": "Markets are the least bad option; no illusions about perfection.",
-    "examples": "Sebastian Mallaby",
-    "ontLevel": "Low",
-    "baseId": "044",
-    "traits": {
-      "ONT_S": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "MAT": {
-        "pos": [
-          55,
-          100
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "PRO": {
-        "pos": [
-          35,
-          80
-        ],
-        "sal": [
-          45,
-          75
-        ]
-      },
-      "CD": {
-        "pos": [
-          25,
-          55
-        ],
-        "sal": [
-          35,
-          65
-        ]
-      }
-    },
-    "antiTraits": {
-      "CD": [
-        60,
-        100
-      ],
-      "TRB": [
-        50,
-        100
-      ],
-      "MOR": [
-        55,
-        100
-      ]
-    }
-  },
-  {
-    "id": "O19",
-    "name": "Institutional Skeptic",
-    "tier": "ONT",
-    "frequency": 1.5,
-    "description": "Believes in human potential but distrusts institutions. Sees bureaucracies, corporations, and governments as corrupting forces that stifle human goodness. Prefers grassroots, community-based, and direct approaches over institutional channels.",
-    "examples": "Some localists, mutual aid organizers, back-to-land movement, skeptical community activists",
-    "ontLevel": "Low",
-    "baseId": "075",
-    "traits": {
-      "ONT_S": {
-        "pos": [
-          0,
-          55
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "H": {
-        "pos": [
-          0,
-          58
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "PRO": {
-        "pos": [
-          0,
-          58
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          0,
-          45
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      }
-    },
-    "antiTraits": {
-      "TRB": [
-        55,
-        100
-      ],
-      "MOR": [
-        55,
-        100
-      ],
-      "ENG": [
-        60,
-        100
-      ]
-    }
-  },
-  {
-    "id": "O24",
-    "name": "Siege Mentality Conservative",
-    "tier": "ONT",
-    "frequency": 1.9,
-    "description": "Traditional values are under permanent attack from hostile forces; defensive, embattled, sees betrayal everywhere.",
-    "examples": "Culture war conservatives, Benedict Option types",
-    "ontLevel": "Low",
-    "baseId": "003",
-    "traits": {
-      "CD": {
-        "pos": [
-          65,
-          100
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "MOR": {
-        "pos": [
-          34,
-          66
-        ],
-        "sal": [
-          55,
-          85
-        ]
-      },
-      "ZS": {
-        "pos": [
-          60,
-          95
-        ],
-        "sal": [
-          60,
-          95
-        ]
-      },
-      "H": {
-        "pos": [
-          34,
-          66
-        ],
-        "sal": [
-          50,
-          80
-        ]
-      },
-      "TRB": {
-        "pos": [
-          55,
-          90
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ONT_H": {
-        "pos": [
-          0,
-          40
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      },
-      "ONT_S": {
-        "pos": [
-          0,
-          58
-        ],
-        "sal": [
-          55,
-          90
-        ]
-      }
-    },
-    "antiTraits": {
-      "ONT_H": [
-        45,
-        100
-      ],
-      "ONT_S": [
-        60,
-        100
-      ],
-      "COM": [
-        60,
-        100
-      ]
-    },
-    "_inheritedFrom": "003"
   },
   {
     "id": "O25",
@@ -9150,9 +8426,9 @@ const ARCHETYPES = [
     "id": "O26",
     "name": "Anxious Kitchen Table Democrat",
     "tier": "ONT",
-    "frequency": 1.6,
-    "description": "Worried about economic security and falling behind; needs reassurance that the system hasn't forgotten them.",
-    "examples": "Economically anxious swing voters",
+    "frequency": 2.2,
+    "description": "Worried about economic security and falling behind; protective of local economy with moderate economic nationalism. Anxious rather than hopeful.",
+    "examples": "Economically anxious Democrats, Obama-to-couch pipeline, Rust Belt worriers",
     "ontLevel": "Low",
     "baseId": "007",
     "traits": {
@@ -9162,8 +8438,8 @@ const ARCHETYPES = [
           50
         ],
         "sal": [
-          65,
-          95
+          70,
+          100
         ]
       },
       "PF": {
@@ -9172,7 +8448,7 @@ const ARCHETYPES = [
           90
         ],
         "sal": [
-          55,
+          60,
           90
         ]
       },
@@ -9199,11 +8475,11 @@ const ARCHETYPES = [
       "ONT_S": {
         "pos": [
           0,
-          58
+          50
         ],
         "sal": [
-          55,
-          90
+          75,
+          100
         ]
       },
       "CD": {
@@ -9214,6 +8490,16 @@ const ARCHETYPES = [
         "sal": [
           45,
           75
+        ]
+      },
+      "NAT": {
+        "pos": [
+          40,
+          75
+        ],
+        "sal": [
+          50,
+          80
         ]
       }
     },
@@ -9229,15 +8515,19 @@ const ARCHETYPES = [
       "TRB": [
         65,
         100
+      ],
+      "ONT_H": [
+        50,
+        100
       ]
     },
     "_inheritedFrom": "007"
   },
   {
     "id": "R01",
-    "name": "Grievance-Activated Populist",
+    "name": "Simmering Populist",
     "tier": "REALITY",
-    "frequency": 2.5,
+    "frequency": 2,
     "description": "No coherent ideology; activated by zero-sum framing and anti-elite messaging. Votes AGAINST system, not FOR policy. First-time Trump voter archetype.",
     "examples": "2016 Obama→Trump voters; non-voters activated by Trump",
     "ontLevel": "Low",
@@ -9307,18 +8597,28 @@ const ARCHETYPES = [
     "traits": {
       "ZS": {
         "pos": [
-          50,
-          100
+          55,
+          95
         ],
         "sal": [
           55,
           85
         ]
       },
+      "CD": {
+        "pos": [
+          30,
+          65
+        ],
+        "sal": [
+          40,
+          70
+        ]
+      },
       "ONT_H": {
         "pos": [
           0,
-          50
+          48
         ],
         "sal": [
           50,
@@ -9328,7 +8628,7 @@ const ARCHETYPES = [
       "ONT_S": {
         "pos": [
           0,
-          55
+          52
         ],
         "sal": [
           50,
@@ -9337,8 +8637,8 @@ const ARCHETYPES = [
       },
       "PF": {
         "pos": [
-          25,
-          75
+          32,
+          68
         ],
         "sal": [
           45,
@@ -9347,8 +8647,8 @@ const ARCHETYPES = [
       },
       "ENG": {
         "pos": [
-          45,
-          80
+          50,
+          75
         ],
         "sal": [
           50,
@@ -9358,16 +8658,40 @@ const ARCHETYPES = [
     },
     "antiTraits": {
       "MAT": [
-        45,
-        55
-      ],
-      "CD": [
-        43,
-        57
+        48,
+        52
       ],
       "ENG": [
         35,
         44
+      ],
+      "H": [
+        0,
+        28
+      ],
+      "PRO": [
+        0,
+        28
+      ],
+      "MOR": [
+        0,
+        28
+      ],
+      "TRB": [
+        65,
+        100
+      ],
+      "AES": [
+        60,
+        100
+      ],
+      "COM": [
+        60,
+        100
+      ],
+      "CD": [
+        70,
+        100
       ]
     }
   }
