@@ -42,8 +42,18 @@ Organized into 4 clusters:
 | TRB | Tribe | continuous | 1-5 |
 | ENG | Engagement Level | continuous | 1-5 |
 
-## Archetype Node Signatures
-Each archetype is defined by its position (pos 1-5) and salience (sal 0-3) on each node, plus optional anti-positions. Categorical nodes use probability distributions over their 6 categories.
+## Position vs. Salience — Two Independent Dimensions
+Every person has both a **position** and a **salience** on each node:
+- **Position** = *where* you fall on a node (e.g., redistributionist vs. free-market on MAT). Scale 1-5.
+- **Salience** = *how much that node matters to you* — whether it's activated in your political identity. A person can have a clear MAT position but zero MAT salience because economic issues simply don't define their politics.
+
+These are independent: someone may care deeply about a node they're moderate on, or be extreme on a node they don't care about.
+
+At the **question level**, touch targets have a `role` field:
+- `role: "position"` → the response moves the person's estimated position on that node
+- `role: "salience"` → the response tells us how much the person *cares about* that node
+
+At the **archetype level**, each archetype is defined by its position (pos 1-5) and salience (sal 0-3) on each node, plus optional anti-positions. Categorical nodes use probability distributions over their 6 categories. The engine matches a respondent to archetypes using both dimensions.
 
 ## Key Numbers — DO NOT CHANGE
 - **124 archetypes** (reduced from 132 — 8 removed for signature overlap)

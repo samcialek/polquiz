@@ -8,7 +8,7 @@ These are facts. They do not change between sessions.
 3. Nodes belong to exactly **4 clusters**: ENDS, MEANS, REALITY, SELF.
 4. **12 nodes are continuous** (scale 1-5). **2 are categorical** (EPS, AES — 6 categories each).
 5. Each archetype has a **prior** (base rate), **node positions**, **salience scores**, and optional **anti-positions**.
-6. The question bank targets specific nodes via **touch targets** with weights.
+6. The question bank targets specific nodes via **touch targets** with weights. Each touch target has a **role**: `position` (where you fall on a node) or `salience` (how much that node matters to you). These are independent dimensions — a person can be extreme on a node they don't care about, or moderate on a node that defines their politics.
 7. The quiz engine uses **Bayesian posterior updating** — not nearest-neighbor or scoring.
 
 ## 8 Removed Archetypes (from 132 → 124)
