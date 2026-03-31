@@ -79,9 +79,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     0.90,
     false,
     [
-      t("CD", "continuous", "position", 0.90, "direct_placement"),
-      t("CU", "continuous", "position", 0.30, "boundary_proxy"),
-      t("MOR", "continuous", "position", 0.20, "values_proxy")
+      t("CD", "continuous", "position", 0.90, "direct_placement")
     ],
     { goodFollowupsIfUnresolved: [4, 50, 52] }
   ),
@@ -96,7 +94,6 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("CD", "continuous", "salience", 0.90, "direct_salience"),
-      t("CU", "continuous", "salience", 0.45, "boundary_salience"),
       t("MOR", "continuous", "salience", 0.20, "values_salience")
     ],
     { goodFollowupsIfUnresolved: [51, 48] }
@@ -111,11 +108,11 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     0.86,
     false,
     [
-      t("ENG", "continuous", "position", 0.55, "motive_selection"),
-      t("TRB", "continuous", "position", 0.30, "motive_selection"),
-      t("PRO", "continuous", "position", 0.20, "motive_selection"),
-      t("COM", "continuous", "position", 0.20, "motive_selection"),
-      t("EPS", "categorical", "category", 0.20, "motive_selection")
+      t("ENG", "continuous", "salience", 0.55, "motive_salience"),
+      t("TRB", "continuous", "salience", 0.30, "motive_salience"),
+      t("PRO", "continuous", "salience", 0.20, "motive_salience"),
+      t("COM", "continuous", "salience", 0.20, "motive_salience"),
+      t("EPS", "categorical", "category", 0.20, "motive_salience")
     ],
     {
       eligibleIf: ["ENG_live_or_unresolved", "PF_live_or_unresolved", "TRB_live_or_unresolved"],
@@ -172,7 +169,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("MOR", "continuous", "position", 0.90, "moral_scope_tradeoff"),
       t("TRB", "continuous", "position", 0.25, "moral_scope_tradeoff"),
-      t("ZS", "continuous", "position", 0.15, "moral_scope_tradeoff")
+      t("MOR", "continuous", "salience", 0.85, "checkbox_salience")
     ],
     {
       eligibleIf: ["MOR_live_or_unresolved"],
@@ -208,8 +205,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     true,
     [
       t("MAT", "continuous", "position", 0.55, "policy_bundle"),
-      t("ONT_S", "continuous", "position", 0.35, "policy_bundle"),
-      t("PRO", "continuous", "position", 0.10, "policy_bundle")
+      t("ONT_S", "continuous", "position", 0.35, "policy_bundle")
     ],
     {
       eligibleIf: ["late_consistency_check_only"],
@@ -302,7 +298,8 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("MAT", "continuous", "position", 0.85, "causal_allocation"),
       t("ONT_S", "continuous", "position", 0.55, "causal_allocation"),
-
+      t("MAT", "continuous", "salience", 0.55, "derived_allocation_concentration"),
+      t("ONT_S", "continuous", "salience", 0.50, "derived_allocation_concentration")
     ],
     {
       goodFollowupsIfUnresolved: [29, 13, 17]
@@ -338,6 +335,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("MAT", "continuous", "position", 0.90, "fairness_threshold"),
+      t("MAT", "continuous", "salience", 0.85, "checkbox_salience")
     ],
     {
       eligibleIf: ["MAT_live_or_unresolved"],
@@ -391,7 +389,9 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("ONT_S", "continuous", "position", 0.85, "causal_allocation"),
       t("ZS", "continuous", "position", 0.55, "conflict_attribution"),
-      t("ONT_H", "continuous", "position", 0.25, "motive_model")
+      t("ONT_H", "continuous", "position", 0.25, "motive_model"),
+      t("ZS", "continuous", "salience", 0.50, "derived_allocation_concentration"),
+      t("ONT_S", "continuous", "salience", 0.55, "derived_allocation_concentration")
     ],
     {
       goodFollowupsIfUnresolved: [29, 31, 34, 48]
@@ -408,8 +408,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("PRO", "continuous", "position", 0.80, "rights_tradeoff"),
-      t("COM", "continuous", "position", 0.35, "civic_balance"),
-      t("EPS", "categorical", "category", 0.15, "truth_authority_proxy")
+      t("COM", "continuous", "position", 0.35, "civic_balance")
     ],
     {
       goodFollowupsIfUnresolved: [30, 38, 41]
@@ -518,8 +517,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("MAT", "continuous", "position", 0.70, "error_asymmetry"),
-      t("PRO", "continuous", "position", 0.25, "error_asymmetry"),
-      t("MOR", "continuous", "position", 0.35, "deservingness_proxy")
+      t("PRO", "continuous", "position", 0.25, "error_asymmetry")
     ],
     {
       eligibleIf: ["MAT_live_or_unresolved", "PRO_live_or_unresolved"],
@@ -527,6 +525,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     }
   ),
 
+  // SAM DECISION 2026-03-28: CUT - weak signal, dated COVID framing
   q(
     28,
     "stage2",
@@ -535,11 +534,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     "single_choice",
     0.76,
     false,
-    [
-      t("PRO", "continuous", "position", 0.55, "public_health_authority"),
-      t("CU", "continuous", "position", 0.25, "collective_uniformity"),
-      t("COM", "continuous", "position", 0.10, "collective_action_proxy")
-    ],
+    [],
     {
       eligibleIf: ["PRO_live_or_unresolved", "CU_live_or_unresolved"],
       goodFollowupsIfUnresolved: [41, 38]
@@ -556,8 +551,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("MAT", "continuous", "position", 0.70, "economic_attribution"),
-      t("ONT_S", "continuous", "position", 0.65, "economic_attribution"),
-      t("ZS", "continuous", "position", 0.40, "conflict_attribution"),
+      t("ONT_S", "continuous", "position", 0.65, "economic_attribution")
     ],
     {
       eligibleIf: ["MAT_live_or_unresolved", "ONT_S_live_or_unresolved", "ZS_live_or_unresolved"],
@@ -650,7 +644,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("ZS", "continuous", "position", 0.60, "threat_bundle"),
       t("TRB", "continuous", "position", 0.25, "threat_bundle"),
-      t("CU", "continuous", "position", 0.10, "threat_bundle")
+      t("ONT_S", "continuous", "position", 0.10, "threat_bundle")
     ],
     {
       eligibleIf: ["late_consistency_check_only"],
@@ -669,7 +663,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("TRB", "continuous", "position", 0.80, "outgroup_trust_estimate"),
       t("COM", "continuous", "position", 0.35, "outgroup_trust_estimate"),
-      t("ZS", "continuous", "position", 0.30, "outgroup_trust_estimate")
+      t("PF", "continuous", "position", 0.15, "outgroup_trust_estimate")
     ],
     {
       eligibleIf: ["TRB_live_or_unresolved", "COM_live_or_unresolved"],
@@ -781,7 +775,6 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("PRO", "continuous", "position", 0.70, "error_asymmetry"),
-      t("CU", "continuous", "position", 0.20, "boundary_order_proxy"),
       t("TRB", "continuous", "position", 0.15, "partisan_fairness_proxy")
     ],
     {
@@ -817,9 +810,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("MAT", "continuous", "position", 0.70, "distributive_choice"),
-      t("MOR", "continuous", "position", 0.35, "fairness_scope"),
-      t("ZS", "continuous", "position", 0.15, "distributional_worldview"),
-      t("ONT_S", "continuous", "position", 0.15, "structural_choice")
+      t("MOR", "continuous", "position", 0.35, "fairness_scope")
     ],
     {
       eligibleIf: ["MAT_live_or_unresolved", "MOR_live_or_unresolved"],
@@ -864,6 +855,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     }
   ),
 
+  // SAM DECISION 2026-03-28: CUT - not a real question, delete entirely
   q(
     46,
     "stage3",
@@ -872,10 +864,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     "slider",
     0.30,
     false,
-    [
-      t("COM", "continuous", "position", 0.05, "background_context"),
-      t("TRB", "continuous", "position", 0.05, "background_context")
-    ],
+    [],
     {
       eligibleIf: ["background_prior_only"]
     }
@@ -945,8 +934,6 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("CU", "continuous", "position", 0.80, "membership_expectation"),
-      t("CD", "continuous", "position", 0.35, "membership_expectation"),
-      t("MOR", "continuous", "position", 0.15, "membership_expectation"),
       t("TRB", "continuous", "position", 0.15, "boundary_identity")
     ],
     {
@@ -985,7 +972,6 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("CU", "continuous", "position", 0.85, "membership_boundary"),
-      t("MOR", "continuous", "position", 0.15, "membership_boundary"),
       t("TRB", "continuous", "position", 0.15, "membership_boundary"),
       t("TRB_ANCHOR", "derived", "anchor", 0.25, "nationality_anchor")
     ],
@@ -1027,7 +1013,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     [
       t("MOR", "continuous", "position", 0.10, "background_context"),
       t("CD", "continuous", "position", 0.10, "background_context"),
-      t("TRB", "continuous", "position", 0.10, "background_context"),
+      // SAM DECISION 2026-03-28: TRB dropped - factual background, not tribal position
       t("TRB_ANCHOR", "derived", "anchor", 0.35, "religious_anchor")
     ],
     {
@@ -1045,8 +1031,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("EPS", "categorical", "category", 0.88, "updating_channel"),
-      t("PRO", "continuous", "position", 0.15, "updating_channel"),
-      t("MOR", "continuous", "position", 0.15, "updating_channel")
+      t("PRO", "continuous", "position", 0.15, "updating_channel")
     ],
     {
       eligibleIf: ["EPS_live_or_unresolved"],
@@ -1064,7 +1049,8 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("AES", "categorical", "category", 0.90, "leader_style"),
-      t("PRO", "continuous", "position", 0.20, "governance_style")
+      t("PRO", "continuous", "position", 0.20, "governance_style"),
+      t("AES", "categorical", "salience", 0.85, "checkbox_salience")
     ],
     {
       eligibleIf: ["AES_live_or_unresolved"],
@@ -1159,7 +1145,8 @@ export const FULL_QUESTIONS: QuestionDef[] = [
       t("EPS", "categorical", "category", 0.30, "rhetorical_preference"),
       t("TRB", "continuous", "position", 0.20, "rhetorical_preference"),
       t("ZS", "continuous", "position", 0.15, "rhetorical_preference"),
-      t("PRO", "continuous", "position", 0.15, "rhetorical_preference")
+      t("PRO", "continuous", "position", 0.15, "rhetorical_preference"),
+      t("AES", "categorical", "salience", 0.80, "checkbox_salience")
     ],
     {
       eligibleIf: ["AES_live_or_unresolved", "EPS_live_or_unresolved"],
@@ -1366,8 +1353,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
   ),
   */ // end Q70 comment block
 
-  /* Q71 — individually safe (98.4%) but causes interaction with Q72 that breaks 117.
-     Re-enable if Q72 is removed, or if evidence maps are recalibrated.
+  // Q71 — Re-enabled: Q72 was removed, so interaction no longer applies.
   q(
     71,
     "stage2",
@@ -1385,7 +1371,6 @@ export const FULL_QUESTIONS: QuestionDef[] = [
       goodFollowupsIfUnresolved: [56, 61, 62]
     }
   ),
-  */
 
   /* Q72 removed — PRO+COM process/outcome tradeoff is already well-covered
      by existing questions in the bank. */
@@ -1470,7 +1455,8 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("ONT_S", "continuous", "position", 0.90, "causal_attribution"),
-      t("ZS", "continuous", "position", 0.20, "distributional_worldview")
+      t("ZS", "continuous", "position", 0.20, "distributional_worldview"),
+      t("ONT_S", "continuous", "salience", 0.85, "checkbox_salience")
     ],
     {
       eligibleIf: ["ONT_S_live_or_unresolved"],

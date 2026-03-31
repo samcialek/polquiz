@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRISM Population Weights — Final</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 20px; background: #0d1117; color: #c9d1d9; }
+  h1 { color: #58a6ff; font-size: 1.4em; }
+  h2 { color: #8b949e; font-size: 1.1em; margin-top: 24px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th { background: #161b22; color: #58a6ff; padding: 8px 10px; text-align: left; position: sticky; top: 0; cursor: pointer; user-select: none; }
+  th:hover { background: #1f2937; }
+  td { padding: 6px 10px; border-bottom: 1px solid #21262d; }
+  tr:hover { background: #161b22; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bar { display: inline-block; height: 14px; border-radius: 2px; vertical-align: middle; }
+  .bar-final { background: linear-gradient(90deg, #22c55e, #16a34a); }
+  .bar-emp { background: #f97316; opacity: 0.6; }
+  .bar-pew { background: #3b82f6; opacity: 0.6; }
+  .legend { margin: 10px 0 20px; font-size: 13px; }
+  .legend span { margin-right: 20px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+  .summary { background: #161b22; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; font-size: 13px; line-height: 1.8; }
+  .stat { display: inline-block; background: #21262d; padding: 4px 10px; border-radius: 4px; margin: 2px 4px; }
+  .good { color: #22c55e; }
+  .warn { color: #f97316; }
+  .sort-arrow { font-size: 10px; margin-left: 4px; }
+  .target-row { background: #1a2332 !important; }
+</style>
+</head>
+<body>
+<h1>PRISM Population Weights — Optimized Blend</h1>
+<div class="summary">
+  <strong>Final weights</strong> = 60% hand-tuned (election-calibrated) + 40% Pew 2021 typology, with Loyal Republican adjusted to 1.8%<br>
+  <span class="stat">Range: <span class="good">0.31% – 2.33%</span></span>
+  <span class="stat">All 130 in 0.3–3%: <span class="good">✓</span></span>
+  <span class="stat">Election sim: separate weights (15/17 correct)</span>
+</div>
+<div class="legend">
+  <span><span class="dot" style="background:#22c55e"></span>Final (deployed)</span>
+  <span><span class="dot" style="background:#f97316;opacity:0.6"></span>Empirical (258K survey)</span>
+  <span><span class="dot" style="background:#3b82f6;opacity:0.6"></span>Pew Raw</span>
+</div>
+<table id="tbl">
+<thead>
+<tr>
+  <th onclick="sortTable(0)">ID <span class="sort-arrow" id="s0"></span></th>
+  <th onclick="sortTable(1)">Archetype <span class="sort-arrow" id="s1"></span></th>
+  <th onclick="sortTable(2)" class="num">Final % <span class="sort-arrow" id="s2"></span></th>
+  <th></th>
+  <th onclick="sortTable(4)" class="num">Empirical % <span class="sort-arrow" id="s4"></span></th>
+  <th onclick="sortTable(5)" class="num">Pew % <span class="sort-arrow" id="s5"></span></th>
+  <th onclick="sortTable(6)" class="num">Respondents <span class="sort-arrow" id="s6"></span></th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+
+<script>
+const data = [{"id":"001","name":"Rawlsian Reformer","final":0.007667,"emp":0.000162,"pew":0.008667,"respondents":42},{"id":"002","name":"Independent Social Democrat","final":0.011828,"emp":0.001387,"pew":0.007071,"respondents":359},{"id":"003","name":"Welfare Modernizer","final":0.009382,"emp":0.011367,"pew":0.005456,"respondents":2942},{"id":"004","name":"Labor Reformer","final":0.008378,"emp":0.011255,"pew":0.005945,"respondents":2913},{"id":"005","name":"Public Guardian","final":0.010692,"emp":0.01649,"pew":0.004231,"respondents":4268},{"id":"006","name":"Fairness Pragmatist","final":0.013856,"emp":0.004408,"pew":0.007641,"respondents":1141},{"id":"007","name":"Solidarist Reformer","final":0.004813,"emp":0.008199,"pew":0.004532,"respondents":2122},{"id":"008","name":"Municipal Equalizer","final":0.005702,"emp":0.000073,"pew":0.005256,"respondents":19},{"id":"009","name":"Social Stabilizer","final":0.007912,"emp":0.023382,"pew":0.004779,"respondents":6052},{"id":"010","name":"Bread-and-Butter Progressive","final":0.023281,"emp":0.00022,"pew":0.004532,"respondents":57},{"id":"011","name":"Jacobin Egalitarian","final":0.005064,"emp":0.000147,"pew":0.008161,"respondents":38},{"id":"012","name":"Class-War Leftist","final":0.003104,"emp":0.000054,"pew":0.003261,"respondents":14},{"id":"013","name":"Radical Leveler","final":0.004798,"emp":0.000348,"pew":0.007496,"respondents":90},{"id":"014","name":"Movement Egalitarian","final":0.005398,"emp":0.0009,"pew":0.007496,"respondents":233},{"id":"015","name":"Moral Firebrand","final":0.005178,"emp":0.038597,"pew":0.006946,"respondents":9990},{"id":"016","name":"Insurgent Equalizer","final":0.004036,"emp":0.000077,"pew":0.007089,"respondents":20},{"id":"017","name":"Uncompromising Redistributionist","final":0.004082,"emp":0.000008,"pew":0.007204,"respondents":0},{"id":"019","name":"Anarchist Mutualist","final":0.003089,"emp":0.000139,"pew":0.006222,"respondents":36},{"id":"020","name":"Horizontalist Dissenter","final":0.003139,"emp":0.00012,"pew":0.006347,"respondents":31},{"id":"021","name":"Kantian Cosmopolitan","final":0.006663,"emp":0.000124,"pew":0.009157,"respondents":32},{"id":"022","name":"Pluralist Universalist","final":0.009034,"emp":0.000931,"pew":0.007584,"respondents":241},{"id":"023","name":"Rights Cosmopolitan","final":0.006603,"emp":0.000703,"pew":0.006008,"respondents":182},{"id":"024","name":"Ethical Internationalist","final":0.005924,"emp":0.005498,"pew":0.00731,"respondents":1423},{"id":"025","name":"World-Minded Reformer","final":0.006524,"emp":0.000108,"pew":0.00731,"respondents":28},{"id":"026","name":"Cosmopolitan Pragmatist","final":0.006832,"emp":0.00041,"pew":0.00508,"respondents":106},{"id":"027","name":"Popperian Liberal","final":0.005569,"emp":0.090149,"pew":0.004922,"respondents":23333},{"id":"028","name":"Global Caretaker","final":0.005587,"emp":0.001221,"pew":0.006467,"respondents":316},{"id":"029","name":"Liberationist Progressive","final":0.005403,"emp":0.000286,"pew":0.006008,"respondents":74},{"id":"030","name":"Cultural Pluralist","final":0.009034,"emp":0.000209,"pew":0.007584,"respondents":54},{"id":"031","name":"Planetary Steward","final":0.00546,"emp":0.001117,"pew":0.006149,"respondents":289},{"id":"032","name":"Hamiltonian Technocrat","final":0.006302,"emp":0.022984,"pew":0.005256,"respondents":5949},{"id":"033","name":"Systems Modernizer","final":0.006663,"emp":0.049048,"pew":0.009157,"respondents":12695},{"id":"034","name":"Evidence Reformer","final":0.007178,"emp":0.051104,"pew":0.005945,"respondents":13227},{"id":"035","name":"Administrative Liberal","final":0.009663,"emp":0.004072,"pew":0.009157,"respondents":1054},{"id":"036","name":"Institutional Optimizer","final":0.005273,"emp":0.000263,"pew":0.005683,"respondents":68},{"id":"037","name":"Fabian Modernizer","final":0.005782,"emp":0.01292,"pew":0.005456,"respondents":3344},{"id":"039","name":"Data-Driven Moderate","final":0.010028,"emp":0.002855,"pew":0.007071,"respondents":739},{"id":"040","name":"Reform Engineer","final":0.004834,"emp":0.001387,"pew":0.007584,"respondents":359},{"id":"042","name":"Localist Progressive","final":0.006101,"emp":0.003902,"pew":0.006253,"respondents":1010},{"id":"043","name":"Neighborly Egalitarian","final":0.011717,"emp":0.000599,"pew":0.018792,"respondents":155},{"id":"045","name":"Rooted Social Reformer","final":0.005702,"emp":0.001287,"pew":0.005256,"respondents":333},{"id":"046","name":"Pastoral Leftist","final":0.005305,"emp":0.000267,"pew":0.005763,"respondents":69},{"id":"047","name":"Common-Life Reformer","final":0.005873,"emp":0.000552,"pew":0.005683,"respondents":143},{"id":"048","name":"Solidaristic Localist","final":0.005182,"emp":0.002963,"pew":0.005456,"respondents":767},{"id":"049","name":"Paternal Egalitarian","final":0.004369,"emp":0.000108,"pew":0.004922,"respondents":28},{"id":"050","name":"Religious Leftist","final":0.007559,"emp":0.000386,"pew":0.005398,"respondents":100},{"id":"051","name":"Ecological Localist","final":0.004969,"emp":0.001399,"pew":0.004922,"respondents":362},{"id":"052","name":"Distributist Localist","final":0.00366,"emp":0.000019,"pew":0.00465,"respondents":5},{"id":"053","name":"Consensus Builder","final":0.009473,"emp":0.000452,"pew":0.005683,"respondents":117},{"id":"054","name":"Arbiter Moderate","final":0.008182,"emp":0.050999,"pew":0.005456,"respondents":13200},{"id":"055","name":"Halifax Moderate","final":0.007356,"emp":0.012329,"pew":0.006389,"respondents":3191},{"id":"056","name":"Institutional Centrist","final":0.007958,"emp":0.002716,"pew":0.007895,"respondents":703},{"id":"057","name":"Temperate Pluralist","final":0.008102,"emp":0.000012,"pew":0.005256,"respondents":3},{"id":"059","name":"Public-Minded Moderate","final":0.009473,"emp":0.000344,"pew":0.005683,"respondents":89},{"id":"060","name":"Hinge Citizen","final":0.010026,"emp":0.011683,"pew":0.007065,"respondents":3024},{"id":"061","name":"Millian Liberal","final":0.004812,"emp":0.007036,"pew":0.004529,"respondents":1821},{"id":"062","name":"Meritocratic Liberal","final":0.006885,"emp":0.000062,"pew":0.005213,"respondents":16},{"id":"063","name":"Enterprise Pluralist","final":0.006492,"emp":0.00775,"pew":0.004231,"respondents":2006},{"id":"064","name":"Market Optimist","final":0.011351,"emp":0.134858,"pew":0.005878,"respondents":34905},{"id":"065","name":"Opportunity Liberal","final":0.009938,"emp":0.047256,"pew":0.006846,"respondents":12231},{"id":"067","name":"Free-Exchange Modernist","final":0.004468,"emp":0.000734,"pew":0.005169,"respondents":190},{"id":"069","name":"Bleeding-Heart Libertarian","final":0.005068,"emp":0.017966,"pew":0.005169,"respondents":4650},{"id":"070","name":"Burkean Steward","final":0.008172,"emp":0.000583,"pew":0.005431,"respondents":151},{"id":"071","name":"Constitutional Conservative","final":0.009964,"emp":0.000421,"pew":0.00991,"respondents":109},{"id":"072","name":"Blackstone Conservative","final":0.006823,"emp":0.000371,"pew":0.008057,"respondents":96},{"id":"073","name":"Civic Traditionalist","final":0.009372,"emp":0.000027,"pew":0.005431,"respondents":7},{"id":"074","name":"Responsible Conservative","final":0.011826,"emp":0.000085,"pew":0.007065,"respondents":22},{"id":"075","name":"Institutional Conservative","final":0.009501,"emp":0.007032,"pew":0.010253,"respondents":1820},{"id":"076","name":"Fiscal Gradualist","final":0.006346,"emp":0.001669,"pew":0.005366,"respondents":432},{"id":"077","name":"Ordered Libertarian","final":0.006921,"emp":0.003025,"pew":0.008303,"respondents":783},{"id":"078","name":"Meritocratic Conservative","final":0.006885,"emp":0.042233,"pew":0.005213,"respondents":10931},{"id":"079","name":"National Developmentalist","final":0.00776,"emp":0.007341,"pew":0.010401,"respondents":1900},{"id":"080","name":"Chestertonian Traditionalist","final":0.005556,"emp":0.000019,"pew":0.006389,"respondents":5},{"id":"081","name":"Heritage Guardian","final":0.007388,"emp":0.000012,"pew":0.00647,"respondents":3},{"id":"082","name":"Altar-and-Hearth Conservative","final":0.010802,"emp":0.000008,"pew":0.006005,"respondents":0},{"id":"083","name":"Sacred-Order Defender","final":0.007054,"emp":0.000039,"pew":0.005635,"respondents":10},{"id":"084","name":"Civilizational Conservative","final":0.007528,"emp":0.000066,"pew":0.012819,"respondents":17},{"id":"085","name":"Customary Localist","final":0.007122,"emp":0.000004,"pew":0.005804,"respondents":1},{"id":"086","name":"Duty Traditionalist","final":0.010322,"emp":0.000193,"pew":0.010804,"respondents":50},{"id":"087","name":"Continuity Conservative","final":0.007,"emp":0.000027,"pew":0.005499,"respondents":7},{"id":"088","name":"Gentle Traditionalist","final":0.009501,"emp":0.006491,"pew":0.008753,"respondents":1680},{"id":"089","name":"Integral Traditionalist","final":0.007853,"emp":0.000537,"pew":0.013632,"respondents":139},{"id":"090","name":"Hobbesian Guardian","final":0.004269,"emp":0.000008,"pew":0.004672,"respondents":0},{"id":"091","name":"Security Paternalist","final":0.006144,"emp":0.001136,"pew":0.004861,"respondents":294},{"id":"092","name":"Disciplined Majoritarian","final":0.005733,"emp":0.000127,"pew":0.005332,"respondents":33},{"id":"093","name":"Stability-First Voter","final":0.008031,"emp":0.000158,"pew":0.005078,"respondents":41},{"id":"094","name":"Hard-State Manager","final":0.006122,"emp":0.000008,"pew":0.010804,"respondents":0},{"id":"095","name":"Emergency Orderist","final":0.003144,"emp":0.000274,"pew":0.004861,"respondents":71},{"id":"096","name":"Civic Disciplinarian","final":0.00776,"emp":0.000104,"pew":0.010401,"respondents":27},{"id":"097","name":"Authority Pragmatist","final":0.006309,"emp":0.000684,"pew":0.005273,"respondents":177},{"id":"098","name":"Anti-Elite Populist","final":0.007944,"emp":0.000012,"pew":0.004861,"respondents":3},{"id":"099","name":"Scarcity Populist","final":0.006491,"emp":0.000019,"pew":0.004228,"respondents":5},{"id":"100","name":"Tribal Insurgent","final":0.003325,"emp":0.000104,"pew":0.003812,"respondents":27},{"id":"101","name":"Embattled Majoritarian","final":0.007633,"emp":0.000131,"pew":0.007082,"respondents":34},{"id":"102","name":"Folk Tribune","final":0.006444,"emp":0.000657,"pew":0.004109,"respondents":170},{"id":"103","name":"Grievance Mobilizer","final":0.005402,"emp":0.000046,"pew":0.006005,"respondents":12},{"id":"104","name":"National Protector","final":0.007388,"emp":0.009103,"pew":0.00647,"respondents":2356},{"id":"105","name":"Combative Populist","final":0.004269,"emp":0.000008,"pew":0.004672,"respondents":0},{"id":"106","name":"Leader-Centered Insurgent","final":0.003831,"emp":0.000201,"pew":0.005078,"respondents":52},{"id":"107","name":"Resentful Localist","final":0.005226,"emp":0.000151,"pew":0.004065,"respondents":39},{"id":"108","name":"Passive Cynic","final":0.017532,"emp":0.009937,"pew":0.03216,"respondents":2572},{"id":"109","name":"Alienated Outsider","final":0.012317,"emp":0.005583,"pew":0.018792,"respondents":1445},{"id":"110","name":"Principled Abstainer","final":0.008749,"emp":0.000008,"pew":0.014372,"respondents":2},{"id":"111","name":"Diogenes Independent","final":0.00974,"emp":0.000301,"pew":0.019849,"respondents":78},{"id":"112","name":"Contrarian Intellectual","final":0.004834,"emp":0.002824,"pew":0.007584,"respondents":731},{"id":"115","name":"Quietist","final":0.013009,"emp":0.000077,"pew":0.020522,"respondents":20},{"id":"116","name":"Quiet Middle","final":0.015185,"emp":0.000274,"pew":0.018792,"respondents":71},{"id":"117","name":"Comfortable Bystander","final":0.009723,"emp":0.000564,"pew":0.004808,"respondents":146},{"id":"118","name":"Survival Pragmatist","final":0.013839,"emp":0.000529,"pew":0.019598,"respondents":137},{"id":"119","name":"Apolitical Striver","final":0.007269,"emp":0.00051,"pew":0.006173,"respondents":132},{"id":"120","name":"Good Neighbor","final":0.008759,"emp":0.000023,"pew":0.005398,"respondents":6},{"id":"121","name":"Spectator Citizen","final":0.007178,"emp":0.000464,"pew":0.005945,"respondents":120},{"id":"122","name":"Civic Minimalist","final":0.005873,"emp":0.0001,"pew":0.005683,"respondents":26},{"id":"124","name":"Crisis-Activated Sleeper","final":0.013809,"emp":0.00753,"pew":0.028852,"respondents":1949},{"id":"125","name":"Reluctant Partisan","final":0.00988,"emp":0.00039,"pew":0.0097,"respondents":101},{"id":"126","name":"Single-Issue Activator","final":0.007954,"emp":0.001225,"pew":0.007884,"respondents":317},{"id":"127","name":"Tribal Loyalist","final":0.00745,"emp":0.011861,"pew":0.005125,"respondents":3070},{"id":"128","name":"Loyal Democrat","final":0.021009,"emp":0.003879,"pew":0.028852,"respondents":1004},{"id":"129","name":"Loyal Republican","final":0.018,"emp":0.006591,"pew":0.005847,"respondents":1706},{"id":"130","name":"Legacy Partisan","final":0.006955,"emp":0.001484,"pew":0.005388,"respondents":384},{"id":"131","name":"Duty Voter","final":0.013,"emp":0.000131,"pew":0.005499,"respondents":34},{"id":"132","name":"Negative Partisan","final":0.008281,"emp":0.029394,"pew":0.005703,"respondents":7608},{"id":"133","name":"Sporadic Alarm Voter","final":0.01464,"emp":0.000549,"pew":0.024599,"respondents":142},{"id":"134","name":"Progressive Civic Nationalist","final":0.007301,"emp":0.003864,"pew":0.006253,"respondents":1000},{"id":"135","name":"Disruptive Cosmopolitan","final":0.003434,"emp":0.000236,"pew":0.004084,"respondents":61},{"id":"136","name":"Aspirational Traditionalist","final":0.004912,"emp":0.002407,"pew":0.004779,"respondents":623},{"id":"137","name":"Prophetic Revivalist","final":0.004122,"emp":0.000243,"pew":0.004305,"respondents":63},{"id":"138","name":"Holistic Dissenter","final":0.006912,"emp":0.141597,"pew":0.01128,"respondents":36649},{"id":"139","name":"Civic Assimilationist","final":0.005569,"emp":0.000842,"pew":0.004922,"respondents":218},{"id":"140","name":"Market Green Modernist","final":0.003828,"emp":0.015068,"pew":0.003571,"respondents":3900}];
+const targetIds = new Set(['128','129','116','108','010','006','071','082','075','132','133','124','109','115','060','088']);
+
+function render(data) {
+  const tbody = document.getElementById('tbody');
+  const maxFinal = Math.max(...data.map(d => d.final));
+  const maxBar = 160;
+
+  tbody.innerHTML = data.map(d => {
+    const finalPct = (d.final * 100).toFixed(2);
+    const empPct = (d.emp * 100).toFixed(2);
+    const pewPct = (d.pew * 100).toFixed(2);
+    const finalBar = Math.round(d.final / maxFinal * maxBar);
+    const cls = targetIds.has(d.id) ? ' class="target-row"' : '';
+    return '<tr' + cls + '>' +
+      '<td>' + d.id + '</td>' +
+      '<td>' + d.name + '</td>' +
+      '<td class="num">' + finalPct + '%</td>' +
+      '<td><span class="bar bar-final" style="width:' + finalBar + 'px"></span></td>' +
+      '<td class="num">' + empPct + '%</td>' +
+      '<td class="num">' + pewPct + '%</td>' +
+      '<td class="num">' + d.respondents.toLocaleString() + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+let sortCol = 2, sortAsc = false;
+function sortTable(col) {
+  document.querySelectorAll('.sort-arrow').forEach(e => e.textContent = '');
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = col <= 1; }
+  const el = document.getElementById('s' + col);
+  if (el) el.textContent = sortAsc ? '▲' : '▼';
+  const keys = ['id','name','final','final','emp','pew','respondents'];
+  const key = keys[col];
+  data.sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+    return sortAsc ? va - vb : vb - va;
+  });
+  render(data);
+}
+
+document.getElementById('s2').textContent = '▼';
+render(data);
+</script>
+</body>
+</html>

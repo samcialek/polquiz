@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-03-29T15:15:25.653Z",
+  "config": {
+    "temperature": 0.35,
+    "runsPerArchetype": 100,
+    "randomWalkCount": 10000,
+    "maxQuestions": 65,
+    "archetypeCount": 130
+  },
+  "archetypeSimulation": {
+    "totalRuns": 13000,
+    "top1Accuracy": 0.094,
+    "top3Accuracy": 0.19915384615384615,
+    "top5Accuracy": 0.27584615384615385,
+    "avgQuestions": 60.171615384615386,
+    "avgMargin": 0.028348225867981854,
+    "avgTopPosterior": 0.08116500556229307,
+    "tierBreakdown": [
+      {
+        "tier": "T1",
+        "archetypeCount": 130,
+        "runs": 13000,
+        "top1Accuracy": 0.094
+      }
+    ]
+  },
+  "randomWalks": {
+    "totalWalks": 10000,
+    "avgQuestions": 60.8608,
+    "avgTopPosterior": 0.07474818677771876,
+    "avgMargin": 0.02553571026335369,
+    "avgEntropy": 6.102818328662358,
+    "uniqueAssigned": 101,
+    "topAttractor": {
+      "id": "091",
+      "name": "Security Paternalist",
+      "count": 2302,
+      "pct": 0.2302
+    }
+  }
+}

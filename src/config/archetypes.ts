@@ -14,14 +14,14 @@ import type { Archetype } from "../types.js";
 //   114  Political Nihilist       — collapsed into 111 Diogenes Independent
 //   123  Contented Householder    — collapsed into 122 Civic Minimalist
 //
-// Priors updated from 1/132 → 1/124 (uniform) to reflect the new total.
+// Priors uniform at 1/130.
 
 export const ARCHETYPES: Archetype[] = [
   {
     id: "001",
     name: "Rawlsian Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -43,7 +43,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "002",
     name: "Independent Social Democrat",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -65,7 +65,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "003",
     name: "Welfare Modernizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -87,7 +87,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "004",
     name: "Labor Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -109,7 +109,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "005",
     name: "Public Guardian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -131,7 +131,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "006",
     name: "Fairness Pragmatist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -153,7 +153,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "007",
     name: "Solidarist Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -175,7 +175,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "008",
     name: "Municipal Equalizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -197,7 +197,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "009",
     name: "Social Stabilizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -219,7 +219,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "010",
     name: "Bread-and-Butter Progressive",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -241,7 +241,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "011",
     name: "Jacobin Egalitarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -263,7 +263,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "012",
     name: "Class-War Leftist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -285,7 +285,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "013",
     name: "Radical Leveler",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -307,7 +307,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "014",
     name: "Movement Egalitarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -329,7 +329,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "015",
     name: "Moral Firebrand",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -351,7 +351,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "016",
     name: "Insurgent Equalizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -373,7 +373,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "017",
     name: "Uncompromising Redistributionist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -395,7 +395,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "019",
     name: "Anarchist Mutualist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -417,7 +417,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "020",
     name: "Horizontalist Dissenter",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -439,7 +439,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "021",
     name: "Kantian Cosmopolitan",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -461,7 +461,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "022",
     name: "Pluralist Universalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -483,7 +483,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "023",
     name: "Rights Cosmopolitan",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -505,7 +505,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "024",
     name: "Ethical Internationalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -527,7 +527,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "025",
     name: "World-Minded Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -549,7 +549,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "026",
     name: "Cosmopolitan Pragmatist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -571,7 +571,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "027",
     name: "Popperian Liberal",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -593,7 +593,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "028",
     name: "Global Caretaker",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -615,7 +615,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "029",
     name: "Liberationist Progressive",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -637,7 +637,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "030",
     name: "Cultural Pluralist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -659,7 +659,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "031",
     name: "Planetary Steward",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -681,7 +681,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "032",
     name: "Hamiltonian Technocrat",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -692,7 +692,7 @@ export const ARCHETYPES: Archetype[] = [
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0, anti: "high" },
+      PF: { kind: "continuous", pos: 3, sal: 1, anti: "high" }, // Fixed: sal 0→1 (can't have anti on sal=0)
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ENG: { kind: "continuous", pos: 4, sal: 1 },
       EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
@@ -703,7 +703,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "033",
     name: "Systems Modernizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -725,7 +725,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "034",
     name: "Evidence Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -738,7 +738,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 2, sal: 1 },
       PF: { kind: "continuous", pos: 3, sal: 0 },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
     }
@@ -747,7 +747,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "035",
     name: "Administrative Liberal",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -769,7 +769,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "036",
     name: "Institutional Optimizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -791,7 +791,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "037",
     name: "Fabian Modernizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -813,7 +813,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "039",
     name: "Data-Driven Moderate",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -835,7 +835,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "040",
     name: "Reform Engineer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -857,7 +857,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "042",
     name: "Localist Progressive",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -879,7 +879,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "043",
     name: "Neighborly Egalitarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -901,7 +901,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "045",
     name: "Rooted Social Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -923,7 +923,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "046",
     name: "Pastoral Leftist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -945,7 +945,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "047",
     name: "Common-Life Reformer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -967,7 +967,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "048",
     name: "Solidaristic Localist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -989,7 +989,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "049",
     name: "Paternal Egalitarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1011,7 +1011,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "050",
     name: "Religious Leftist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1033,7 +1033,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "051",
     name: "Ecological Localist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1055,7 +1055,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "052",
     name: "Distributist Localist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       CD: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
@@ -1077,7 +1077,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "053",
     name: "Consensus Builder",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1099,20 +1099,20 @@ export const ARCHETYPES: Archetype[] = [
     id: "054",
     name: "Arbiter Moderate",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
       CU: { kind: "continuous", pos: 4, sal: 1 },
       MOR: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
       PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      COM: { kind: "continuous", pos: 2, sal: 3 },
+      COM: { kind: "continuous", pos: 4, sal: 3 }, // Fixed: Moderate = high compromise
       ZS: { kind: "continuous", pos: 1, sal: 2 },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       ONT_S: { kind: "continuous", pos: 2, sal: 2 },
       PF: { kind: "continuous", pos: 3, sal: 1 },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
     }
@@ -1121,7 +1121,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "055",
     name: "Halifax Moderate",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1143,7 +1143,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "056",
     name: "Institutional Centrist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1165,7 +1165,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "057",
     name: "Temperate Pluralist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1187,7 +1187,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "059",
     name: "Public-Minded Moderate",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1200,7 +1200,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 2, sal: 1 },
       PF: { kind: "continuous", pos: 3, sal: 0 },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
+      ENG: { kind: "continuous", pos: 3, sal: 2 },
       EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
     }
@@ -1209,7 +1209,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "060",
     name: "Hinge Citizen",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1222,7 +1222,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
       PF: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
     }
@@ -1231,7 +1231,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "061",
     name: "Millian Liberal",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1253,7 +1253,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "062",
     name: "Meritocratic Liberal",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1275,7 +1275,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "063",
     name: "Enterprise Pluralist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1297,7 +1297,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "064",
     name: "Market Optimist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1319,7 +1319,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "065",
     name: "Opportunity Liberal",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1341,7 +1341,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "067",
     name: "Free-Exchange Modernist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -1363,7 +1363,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "069",
     name: "Bleeding-Heart Libertarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1385,7 +1385,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "070",
     name: "Burkean Steward",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1407,7 +1407,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "071",
     name: "Constitutional Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1429,7 +1429,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "072",
     name: "Blackstone Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1451,7 +1451,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "073",
     name: "Civic Traditionalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1473,7 +1473,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "074",
     name: "Responsible Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1495,7 +1495,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "075",
     name: "Institutional Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1517,7 +1517,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "076",
     name: "Fiscal Gradualist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1539,7 +1539,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "077",
     name: "Ordered Libertarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1561,7 +1561,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "078",
     name: "Meritocratic Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1583,7 +1583,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "079",
     name: "National Developmentalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1605,7 +1605,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "080",
     name: "Chestertonian Traditionalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1627,7 +1627,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "081",
     name: "Heritage Guardian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1649,7 +1649,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "082",
     name: "Altar-and-Hearth Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1662,7 +1662,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 4, sal: 1 },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
     }
@@ -1671,7 +1671,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "083",
     name: "Sacred-Order Defender",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1693,7 +1693,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "084",
     name: "Civilizational Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1715,7 +1715,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "085",
     name: "Customary Localist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1737,7 +1737,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "086",
     name: "Duty Traditionalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1759,7 +1759,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "087",
     name: "Continuity Conservative",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1772,7 +1772,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 4, sal: 2 },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 3, sal: 0 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
     }
@@ -1781,7 +1781,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "088",
     name: "Gentle Traditionalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1803,7 +1803,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "089",
     name: "Integral Traditionalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1825,7 +1825,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "090",
     name: "Hobbesian Guardian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1833,8 +1833,8 @@ export const ARCHETYPES: Archetype[] = [
       MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 2, sal: 2 },
-      ZS: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
+      ZS: { kind: "continuous", pos: 5, sal: 3 }, // Hobbesian: life is zero-sum, strong differentiator
+      ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // Hobbesian: humans are NOT perfectible
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 2 },
       TRB: { kind: "continuous", pos: 3, sal: 1 },
@@ -1847,7 +1847,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "091",
     name: "Security Paternalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1860,7 +1860,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
     }
@@ -1869,7 +1869,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "092",
     name: "Disciplined Majoritarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1891,7 +1891,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "093",
     name: "Stability-First Voter",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1904,7 +1904,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 1 }, // Fixed: Voter = some engagement, removed anti
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
     }
@@ -1913,7 +1913,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "094",
     name: "Hard-State Manager",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1935,7 +1935,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "095",
     name: "Emergency Orderist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1957,7 +1957,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "096",
     name: "Civic Disciplinarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1979,7 +1979,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "097",
     name: "Authority Pragmatist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1992,7 +1992,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
     }
@@ -2001,7 +2001,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "098",
     name: "Anti-Elite Populist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2023,7 +2023,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "099",
     name: "Scarcity Populist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2045,7 +2045,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "100",
     name: "Tribal Insurgent",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2067,7 +2067,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "101",
     name: "Embattled Majoritarian",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2089,7 +2089,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "102",
     name: "Folk Tribune",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2111,7 +2111,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "103",
     name: "Grievance Mobilizer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2124,7 +2124,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
+      ENG: { kind: "continuous", pos: 4, sal: 2 }, // Fixed: Mobilizer = high engagement
       EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
     }
@@ -2133,7 +2133,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "104",
     name: "National Protector",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2155,7 +2155,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "105",
     name: "Combative Populist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2177,7 +2177,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "106",
     name: "Leader-Centered Insurgent",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2199,7 +2199,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "107",
     name: "Resentful Localist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2221,7 +2221,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "108",
     name: "Passive Cynic",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2243,7 +2243,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "109",
     name: "Alienated Outsider",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2265,7 +2265,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "110",
     name: "Principled Abstainer",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2287,7 +2287,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "111",
     name: "Diogenes Independent",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2309,7 +2309,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "112",
     name: "Contrarian Intellectual",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2331,7 +2331,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "115",
     name: "Quietist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2353,7 +2353,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "116",
     name: "Quiet Middle",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2375,21 +2375,21 @@ export const ARCHETYPES: Archetype[] = [
     id: "117",
     name: "Comfortable Bystander",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
-      CU: { kind: "continuous", pos: 3, sal: 3 },
-      MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
+      MOR: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 5, sal: 1 },
-      ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 2, sal: 3, anti: "low" },
+      ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
+      ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
       ONT_S: { kind: "continuous", pos: 2, sal: 2 },
       PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
+      ENG: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // Bystander's defining trait: extremely disengaged
+      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
     }
   },
@@ -2397,7 +2397,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "118",
     name: "Survival Pragmatist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2410,7 +2410,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 4, sal: 2 },
       PF: { kind: "continuous", pos: 3, sal: 1 },
       TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
     }
@@ -2419,7 +2419,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "119",
     name: "Apolitical Striver",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2441,7 +2441,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "120",
     name: "Good Neighbor",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -2463,7 +2463,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "121",
     name: "Spectator Citizen",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2485,7 +2485,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "122",
     name: "Civic Minimalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2507,7 +2507,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "124",
     name: "Crisis-Activated Sleeper",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
@@ -2520,7 +2520,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 4, sal: 1 },
       TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
     }
@@ -2529,7 +2529,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "125",
     name: "Reluctant Partisan",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2551,7 +2551,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "126",
     name: "Single-Issue Activator",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2573,7 +2573,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "127",
     name: "Tribal Loyalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2595,7 +2595,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "128",
     name: "Loyal Democrat",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2606,7 +2606,7 @@ export const ARCHETYPES: Archetype[] = [
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
       ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4, sal: 2 }, // Fixed: Loyal = high PF
       TRB: { kind: "continuous", pos: 4, sal: 2 },
       ENG: { kind: "continuous", pos: 3, sal: 1 },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
@@ -2617,7 +2617,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "129",
     name: "Loyal Republican",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2639,7 +2639,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "130",
     name: "Legacy Partisan",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2652,7 +2652,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 4, sal: 1 },
       PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
     }
@@ -2661,7 +2661,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "131",
     name: "Duty Voter",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2683,7 +2683,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "132",
     name: "Negative Partisan",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2705,7 +2705,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "133",
     name: "Sporadic Alarm Voter",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2718,7 +2718,7 @@ export const ARCHETYPES: Archetype[] = [
       ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
       TRB: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
     }
@@ -2727,7 +2727,7 @@ export const ARCHETYPES: Archetype[] = [
     id: "134",
     name: "Progressive Civic Nationalist",
     tier: "T1",
-    prior: 1/124,
+    prior: 1/130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2743,6 +2743,146 @@ export const ARCHETYPES: Archetype[] = [
       ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
+    }
+  },
+
+  // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
+
+  {
+    id: "135",
+    name: "Disruptive Cosmopolitan",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 5, sal: 2 },
+      CD: { kind: "continuous", pos: 1, sal: 2 },
+      CU: { kind: "continuous", pos: 5, sal: 2 },
+      MOR: { kind: "continuous", pos: 1, sal: 2 },
+      PRO: { kind: "continuous", pos: 1, sal: 2 }, // Anti-bureaucratic
+      COM: { kind: "continuous", pos: 1, sal: 1 },
+      ZS: { kind: "continuous", pos: 1, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 1, sal: 1 },
+      TRB: { kind: "continuous", pos: 1, sal: 1 },
+      ENG: { kind: "continuous", pos: 4, sal: 2 },
+      EPS: { kind: "categorical", probs: [0.60, 0.05, 0.15, 0.05, 0.10, 0.05], sal: 2 },
+      AES: { kind: "categorical", probs: [0.60, 0.15, 0.05, 0.05, 0.10, 0.05], sal: 2 },
+    }
+  },
+
+  {
+    id: "136",
+    name: "Aspirational Traditionalist",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 5, sal: 2 },
+      CD: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 4, sal: 2 },
+      MOR: { kind: "continuous", pos: 5, sal: 3 },
+      PRO: { kind: "continuous", pos: 3, sal: 2 },
+      COM: { kind: "continuous", pos: 3, sal: 1 },
+      ZS: { kind: "continuous", pos: 2, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 2, sal: 1 },
+      TRB: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 3, sal: 2 },
+      EPS: { kind: "categorical", probs: [0.10, 0.15, 0.50, 0.10, 0.05, 0.10], sal: 2 },
+      AES: { kind: "categorical", probs: [0.10, 0.10, 0.50, 0.15, 0.05, 0.10], sal: 2 },
+    }
+  },
+
+  {
+    id: "137",
+    name: "Prophetic Revivalist",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 4, sal: 1 },
+      CD: { kind: "continuous", pos: 4, sal: 2 },
+      CU: { kind: "continuous", pos: 2, sal: 1 },
+      MOR: { kind: "continuous", pos: 5, sal: 3 },
+      PRO: { kind: "continuous", pos: 2, sal: 2 },
+      COM: { kind: "continuous", pos: 2, sal: 1 },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 4, sal: 2 },
+      TRB: { kind: "continuous", pos: 4, sal: 2 },
+      ENG: { kind: "continuous", pos: 5, sal: 3 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.10, 0.05, 0.70], sal: 3 }, // Revelatory
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic
+    }
+  },
+
+  {
+    id: "138",
+    name: "Holistic Dissenter",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 1 },
+      CD: { kind: "continuous", pos: 2, sal: 1 },
+      CU: { kind: "continuous", pos: 4, sal: 1 },
+      MOR: { kind: "continuous", pos: 2, sal: 1 },
+      PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      COM: { kind: "continuous", pos: 1, sal: 1 },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 5, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 1, sal: 1 },
+      TRB: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 4, sal: 2 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.10, 0.05, 0.70], sal: 3 }, // Revelatory
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.60, 0.10, 0.10], sal: 2 }, // Experiential
+    }
+  },
+
+  {
+    id: "139",
+    name: "Civic Assimilationist",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 4, sal: 2 },
+      CD: { kind: "continuous", pos: 4, sal: 2 },
+      CU: { kind: "continuous", pos: 5, sal: 2 },
+      MOR: { kind: "continuous", pos: 3, sal: 1 },
+      PRO: { kind: "continuous", pos: 4, sal: 2 },
+      COM: { kind: "continuous", pos: 3, sal: 1 },
+      ZS: { kind: "continuous", pos: 2, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 3, sal: 1 },
+      TRB: { kind: "continuous", pos: 2, sal: 1 },
+      ENG: { kind: "continuous", pos: 4, sal: 2 },
+      EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 }, // Traditionalist
+      AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 }, // Systematic
+    }
+  },
+
+  {
+    id: "140",
+    name: "Market Green Modernist",
+    tier: "T1",
+    prior: 1/130,
+    nodes: {
+      MAT: { kind: "continuous", pos: 4, sal: 2 },
+      CD: { kind: "continuous", pos: 1, sal: 2 },
+      CU: { kind: "continuous", pos: 5, sal: 2 },
+      MOR: { kind: "continuous", pos: 2, sal: 1 },
+      PRO: { kind: "continuous", pos: 5, sal: 2 },
+      COM: { kind: "continuous", pos: 4, sal: 2 },
+      ZS: { kind: "continuous", pos: 1, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 5, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+      PF: { kind: "continuous", pos: 1, sal: 1 },
+      TRB: { kind: "continuous", pos: 1, sal: 1 },
+      ENG: { kind: "continuous", pos: 4, sal: 2 },
+      EPS: { kind: "categorical", probs: [0.70, 0.05, 0.10, 0.05, 0.05, 0.05], sal: 3 }, // Empiricist
+      AES: { kind: "categorical", probs: [0.10, 0.60, 0.10, 0.05, 0.10, 0.05], sal: 2 }, // Systematic
     }
   },
 ];

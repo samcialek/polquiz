@@ -8,6 +8,7 @@ import type {
   SalienceDist
 } from "../types.js";
 import { multiplyAndNormalize, normalize, addToAnchorDist } from "./math.js";
+import { NODE_NORM_FACTORS } from "../config/normalization.js";
 
 // Salience likelihood ratios keyed by rank position (6-item ranking).
 // Rank 1 = most important → high salience; Rank 6 = least → low salience.
@@ -35,6 +36,9 @@ function registerTouches(state: RespondentState, q: QuestionDef): void {
   }
 }
 
+// TODO: applyOptionEvidence uses pre-computed likelihood ratios, so NODE_NORM_FACTORS
+// should be applied when the evidence is constructed (in question authoring), not here
+// at runtime. Future work: bake norm factors into the optionEvidence generation pipeline.
 function applyOptionEvidence(state: RespondentState, evidence: OptionEvidence | undefined): void {
   if (!evidence) return;
 
@@ -108,8 +112,9 @@ export function applyAllocationAnswer(
     if (map.continuous) {
       for (const [nodeId, signal] of Object.entries(map.continuous)) {
         const node = state.continuous[nodeId as ContinuousNodeId];
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
         const current = node.posDist;
-        const bump = current.map((p, i) => p * Math.exp((signal ?? 0) * share * ((i + 1) - 3)));
+        const bump = current.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * share * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
       }
     }
@@ -117,7 +122,9 @@ export function applyAllocationAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
-        const mixed = node.catDist.map((v, i) => v * (1 - 0.35 * share) + (catDist[i] ?? 0) * (0.35 * share));
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+        const mixWeight = 0.35 * share * normFactor;
+        const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
         node.catDist = normalize(mixed as typeof node.catDist);
       }
     }
@@ -158,7 +165,8 @@ export function applyRankingAnswer(
     if (map.continuous) {
       for (const [nodeId, signal] of Object.entries(map.continuous)) {
         const node = state.continuous[nodeId as ContinuousNodeId];
-        const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * rankWeight * ((i + 1) - 3)));
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+        const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * rankWeight * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
         if (salLikelihood) {
           node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -169,7 +177,9 @@ export function applyRankingAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
-        const mixed = node.catDist.map((v, i) => v * (1 - 0.4 * rankWeight) + (catDist[i] ?? 0) * (0.4 * rankWeight));
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+        const mixWeight = 0.4 * rankWeight * normFactor;
+        const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
         node.catDist = normalize(mixed as typeof node.catDist);
         if (salLikelihood) {
           node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -204,7 +214,8 @@ export function applyPairwiseAnswer(
     if (map.continuous) {
       for (const [nodeId, signal] of Object.entries(map.continuous)) {
         const node = state.continuous[nodeId as ContinuousNodeId];
-        const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * ((i + 1) - 3)));
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+        const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
       }
     }
@@ -212,7 +223,9 @@ export function applyPairwiseAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
-        const mixed = node.catDist.map((v, i) => v * 0.6 + (catDist[i] ?? 0) * 0.4);
+        const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+        const mixWeight = 0.4 * normFactor;
+        const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
         node.catDist = normalize(mixed as typeof node.catDist);
       }
     }

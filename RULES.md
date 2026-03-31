@@ -35,3 +35,9 @@ These were collapsed due to node signature overlap:
 - Confusing `gh-dashboard/` outputs with source files
 - Looking at `archive/` or backup files for current state
 - Treating `prism_archetypes_calibrated.js` (111 archetypes, v157) as current
+
+## Source of Truth Hierarchy (UPDATED 2026-03-26)
+- **Which questions exist:** prism-quiz.html is the LIVE truth. If a question isn't in the quiz HTML, it doesn't exist for users.
+- **How questions map to nodes:** prism_scorer_v156.js is the LIVE scorer. This is what actually runs.
+- **questions.full.ts is ASPIRATIONAL** — it contains questions planned for the new engine that haven't been built into the quiz yet. DO NOT use it as source of truth for what's live.
+- **Known divergence:** Quiz HTML has 61 questions. questions.full.ts has 79. Only 40 overlap. 21 quiz questions aren't in the engine. 39 engine questions aren't in the quiz.

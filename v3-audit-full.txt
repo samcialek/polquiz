@@ -1,0 +1,336 @@
+────────────────────────────────────────────────────────────
+Q1 [cultural_social_placement] (slider)
+On cultural and social issues - things like abortion, traditional values, and social norms - where would you place yourself?
+  very progressive / open ←→ very conservative / traditional
+────────────────────────────────────────────────────────────
+Q2 [cultural_social_salience] (slider)
+How much do cultural and social issues matter to you personally, relative to other political concerns?
+  not important to me at all ←→ one of my most important concerns
+────────────────────────────────────────────────────────────
+Q3 [engagement_motivations_top2] (multi)
+What are the top two reasons you engage (or would engage) with politics? Select exactly two.
+  A) Civic duty - it's my responsibility as a citizen
+  B) Protect my values - the other side threatens what I care about
+  C) Help my community - politics is how we solve local problems
+  D) Fight injustice - the system is broken and needs to change
+  E) Are acting out of self-interest
+  F) Intellectual challenge - I find policy and strategy fascinating
+────────────────────────────────────────────────────────────
+Q4 [surveillance_enforcement_due_process_bundle] (single_choice)
+Which approach to law enforcement do you prefer?
+  A) Due process comes first - better to let some guilty go free than convict the innocent
+  B) Balance both - reasonable measures that respect rights
+  C) Security comes first - we need strong enforcement even if some rights are curtailed
+────────────────────────────────────────────────────────────
+Q5 [coalition_vs_principle] (single_choice)
+Your political party or movement takes a position you disagree with on an important issue. What do you do?
+  A) Maintain a clear, principled message, even if it alienates moderate voters.
+  B) Dilute the message to build a broader coalition with people you disagree with.
+  C) Depends on the issue - some principles are non-negotiable, others aren't worth splitting over
+────────────────────────────────────────────────────────────
+Q6 [domestic_vs_abroad_lives] (slider)
+Your government can fund one program this year. Program A saves an estimated 10 lives in your country. Program B saves an estimated 100 lives in a developing nation. Where should the money go?
+  program A - save 10 lives domestically ←→ program B - save 100 lives abroad
+────────────────────────────────────────────────────────────
+Q7 [politics_at_social_gatherings] (single_choice)
+When politics comes up at social gatherings, you typically:
+  A) Share your views but try to keep it civil
+  B) Avoid entirely—politics ruins social situations
+  C) Try to change the subject—not the place
+  D) Engage passionately—these conversations matter
+  E) Listen mostly, share selectively
+────────────────────────────────────────────────────────────
+Q8 [climate_energy_bundle] (single_choice)
+Which approach to climate and energy policy do you prefer?
+  A) Aggressive transition - phase out fossil fuels as fast as possible
+  B) Gradual transition - move toward renewables but protect jobs and energy security
+  C) Market-led - let innovation and market forces drive the transition
+  D) No major action needed - climate concerns are overstated
+────────────────────────────────────────────────────────────
+Q9 [guess_top_marginal_tax_rate] (slider)
+What do you think the current top marginal federal income tax rate is?
+  0% ←→ 100%
+────────────────────────────────────────────────────────────
+Q10 [preferred_top_marginal_tax_rate] (slider)
+What should the top marginal federal income tax rate be?
+  0% ←→ 100%
+────────────────────────────────────────────────────────────
+Q11 [university_admissions_approach] (single_choice)
+A prestigious university is deciding how to allocate limited spots. Which approach do you support?
+  A) Purely by academic merit (test scores, grades)
+  B) Merit plus consideration for economic disadvantage
+  C) Quotas to ensure proportional representation of all groups
+  D) Random lottery among qualified applicants
+────────────────────────────────────────────────────────────
+Q12 [criminal_justice_bundle] (single_choice)
+Which criminal justice approach do you prefer?
+  A) Rehabilitation focus - invest in reform, reduce incarceration
+  B) A balanced approach — weigh both sides and find a reasonable middle ground
+  C) Punishment focus - crime requires strong deterrence and consequences
+────────────────────────────────────────────────────────────
+Q13 [ceo_worker_pay_ratio] (single_choice)
+What's the maximum acceptable ratio between CEO pay and average worker pay?
+  A) 10:1 or less
+  B) 50:1
+  C) 100:1
+  D) 300:1 (about current average)
+  E) No limit - the market should decide
+────────────────────────────────────────────────────────────
+Q14 [human_progress_view] (single_choice)
+How do you view human progress over time?
+  A) Humanity is generally progressing - things get better over time
+  B) Progress is real but slow, uneven, and fragile
+  C) History moves in cycles - neither improving nor declining overall
+  D) Progress is mostly an illusion - human nature doesn't change
+────────────────────────────────────────────────────────────
+Q15 [human_progress_salience] (slider)
+When you think about the future, how much do you focus on whether humanity as a whole is getting better or worse?
+  rarely think about it ←→ think about it constantly
+────────────────────────────────────────────────────────────
+Q16 [factual_estimates_and_confidence] (allocation)
+For each factual question below, give your best estimate and your confidence in that estimate.
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q17 [criminal_trial_error_tradeoff] (single_choice)
+In criminal trials, which type of error is worse?
+  A) Convicting an innocent person
+  B) Both roughly equally bad
+  C) Letting a guilty person go free
+────────────────────────────────────────────────────────────
+Q18 [vacation_new_vs_familiar] (single_choice)
+For your next vacation, which would you prefer?
+  A) Visit somewhere completely new and unfamiliar
+  B) Return to a favorite destination you know well
+  C) A mix - revisit a favorite but explore new parts
+────────────────────────────────────────────────────────────
+Q19 [welfare_error_tradeoff] (single_choice)
+In welfare programs, which error is worse?
+  A) Denying benefits to someone who genuinely needs them
+  B) Both roughly equally bad
+  C) Giving benefits to someone who doesn't need them
+────────────────────────────────────────────────────────────
+Q20 [mask_mandate_acceptability] (single_choice)
+Think back to the COVID-19 pandemic. Assuming you could confirm indoor mask use reduced spread of the virus moderately, how acceptable is a mask mandate for indoor public spaces during a surge?
+  A) Fully support-public health requires collective action
+  B) Accept - reasonable given the circumstances
+  C) Strongly oppose any mandate-no authority should mandate personal choices
+────────────────────────────────────────────────────────────
+Q21 [factory_closure_causes_ranking] (ranking)
+A major factory in your region announces it's closing, eliminating 2,000 jobs. Rank these causes from most to least responsible:
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q22 [information_control_error_tradeoff] (single_choice)
+Information Control: Platforms and governments must balance two risks. Which error is worse?
+  A) Empowering authorities to decide what is true, potentially silencing dissent
+  B) Both roughly equally bad
+  C) Allowing disinformation to spread, causing harm
+────────────────────────────────────────────────────────────
+Q23 [trade_liberalization_effects] (single_choice)
+Looking at the last 50 years of global trade, countries that significantly opened their economies generally...
+  A) Grew wealthier, as did their trading partners
+  B) Grew wealthier overall, but the gains were uneven — some workers and industries were left behind
+  C) No clear pattern — some countries thrived, others stagnated, depending on circumstances
+  D) Often stagnated or fell behind more protectionist countries
+────────────────────────────────────────────────────────────
+Q24 [mainstream_media_accuracy_estimate] (slider)
+Combining the Wall Street Journal, Bloomberg, and New York Times: what percentage of their factual claims do you believe are accurate?
+  0% - almost none is accurate ←→ 100% - almost all is accurate
+────────────────────────────────────────────────────────────
+Q25 [immigration_enforcement_error_tradeoff] (single_choice)
+Immigration Enforcement: Immigration enforcement can be stricter or looser. Which error is worse?
+  A) We should welcome anyone who wants to come — borders create more problems than they solve
+  B) Generous legal immigration with a path to citizenship, but some enforcement
+  C) A balanced approach — weigh both sides and find a reasonable middle ground
+  D) Strict enforcement first — you can't have a country without borders
+────────────────────────────────────────────────────────────
+Q26 [threats_to_america_external_internal] (single_choice)
+Where do the biggest threats to America come from?
+  A) External - foreign powers, terrorism, immigration
+  B) Internal - domestic extremism, inequality, institutional decay
+  C) Both roughly equally
+────────────────────────────────────────────────────────────
+Q27 [percent_groups_want_best_share_values] (slider)
+Think about people in your country. What percentage of them do you believe genuinely want what is best for the country, even if they disagree with you about how to get there?
+  0% - almost nobody ←→ 100% - almost everyone
+────────────────────────────────────────────────────────────
+Q28 [fda_speed_vs_safety] (single_choice)
+Medical Regulation: The FDA must balance speed vs. safety in approving new treatments. Which error is worse?
+  A) Blocking a treatment that would have helped patients (FDA too slow)
+  B) Both roughly equally bad
+  C) Approving a treatment that causes harm (FDA too fast)
+────────────────────────────────────────────────────────────
+Q29 [stupid_workplace_rule_response] (single_choice)
+Your workplace implements a new rule everyone agrees is stupid but technically required by policy. What do you do?
+  A) Follow it - rules are rules
+  B) Follow while working through proper channels to change it
+  C) Quietly ignore when possible
+  D) Malicious compliance to expose the absurdity
+────────────────────────────────────────────────────────────
+Q30 [rules_procedures_matter_salience] (slider)
+When evaluating a political outcome, how much do you care about whether the right process was followed, independent of the result?
+  doesn't matter - results are what count ←→ matters enormously - process is everything
+────────────────────────────────────────────────────────────
+Q31 [opponents_matter_to_identity] (slider)
+How much does having a clearly defined political opponent or outgroup matter to your sense of political identity?
+  not at all ←→ a great deal
+────────────────────────────────────────────────────────────
+Q32 [election_access_vs_security] (single_choice)
+Electoral Security: Election rules can prioritize access or security. Which error is worse?
+  A) Preventing a legitimate voter from voting (disenfranchisement)
+  B) A balanced approach — weigh both sides and find a reasonable middle ground
+  C) Allowing an illegitimate vote to count (voter fraud)
+────────────────────────────────────────────────────────────
+Q33 [close_friends_voted_differently] (single_choice)
+You discover that a close friend voted for a candidate or party you strongly oppose. How do you feel?
+  A) No big deal - wouldn't affect the friendship at all
+  B) A bit uncomfortable but wouldn't change anything
+  C) Would create some distance in the friendship
+  D) Would seriously strain or end the friendship
+────────────────────────────────────────────────────────────
+Q34 [veil_of_ignorance_society_choice] (single_choice)
+If you didn't know what position you would occupy (rich or poor, lucky or unlucky), which society would you choose to live in?
+  A) A very equal society with a high floor but lower ceiling
+  B) A society with a strong safety net and moderate inequality
+  C) A society with high opportunity and significant inequality
+  D) A free market society with minimal redistribution
+────────────────────────────────────────────────────────────
+Q35 [views_changed_in_10_years] (slider)
+How much do you think your political views have changed in the past 10 years?
+  not at all - same views as a decade ago ←→ dramatically - almost unrecognizable
+────────────────────────────────────────────────────────────
+Q36 [what_changed_minds_through_history] (single_choice)
+Which has changed more minds throughout history?
+  A) Logical arguments and empirical evidence
+  B) Compelling narratives and storytelling
+  C) Economic necessity and material conditions
+  D) Art, music, and cultural expression
+────────────────────────────────────────────────────────────
+Q37 [caregiver_emotional_availability] (slider)
+Emotional availability of primary caregivers growing up:
+  emotionally distant ←→ warm and available
+────────────────────────────────────────────────────────────
+Q38 [political_conflict_with_close_others] (single_choice)
+When your political views conflict with those of close friends or family...
+  A) I usually keep quiet to avoid conflict
+  B) I engage in discussion but stay respectful
+  C) I argue my position strongly
+  D) I enjoy the debate — bring it on
+────────────────────────────────────────────────────────────
+Q39 [social_progress_view] (single_choice)
+Social progress achieved in the last century is:
+  A) Solid and likely to continue expanding
+  B) Real but fragile - could easily be reversed
+  C) Mostly illusory - superficial changes hiding deeper problems
+  D) Progress is mostly an illusion - human nature doesn't change
+────────────────────────────────────────────────────────────
+Q40 [social_progress_salience] (slider)
+How much do you personally care about the question of whether society is making social progress?
+  don't care much ←→ care deeply
+────────────────────────────────────────────────────────────
+Q41 [integration_expectations_rewrite] (ranking)
+What should be expected of immigrants who want to become full citizens of your country?
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q42 [immigration_national_identity_salience] (slider)
+How much do immigration and national identity issues matter to your politics?
+  not important to me ←→ extremely important to me
+────────────────────────────────────────────────────────────
+Q43 [political_membership_criterion_rewrite] (single_choice)
+When you think about what makes someone "truly American," which matters most?
+  A) Participating in civic life (voting, community involvement)
+  B) Sharing core American values and beliefs (freedom, democracy, opportunity)
+  C) Adopting American culture, customs, and way of life
+  D) Being born and raised in America
+────────────────────────────────────────────────────────────
+Q44 [parents_politics_growing_up] (single_choice)
+How would you describe your parents' or guardians' political views when you were growing up?
+  A) Strongly conservative
+  B) Mixed or moderate
+  C) Strongly liberal/progressive
+  D) Apolitical - politics was rarely discussed
+────────────────────────────────────────────────────────────
+Q45 [religion_in_upbringing] (single_choice)
+How would you describe the role of religion in your upbringing?
+  A) Central-religion shaped daily life, values, and community
+  B) Important - regular practice and religious identity
+  C) Secular - raised without religion
+────────────────────────────────────────────────────────────
+Q46 [what_changed_your_mind] (multi)
+Think of a time you changed your mind on a political issue. What caused the change?
+  A) A personal experience that challenged my assumptions
+  B) Data or evidence that contradicted what I believed
+  C) A person I respected who held different views
+  D) A religious or moral awakening
+  E) My core views haven't really changed
+────────────────────────────────────────────────────────────
+Q47 [parents_political_engagement] (single_choice)
+How politically engaged were your parents or guardians when you were growing up?
+  A) Very engaged-politics was frequently discussed, they voted regularly, may have been activists
+  B) Somewhat engaged-they voted and occasionally discussed politics
+  C) Minimally engaged-they rarely discussed politics or participated
+────────────────────────────────────────────────────────────
+Q48 [neighborhood_safety_childhood] (single_choice)
+During your childhood and teenage years, how safe did you feel in your neighborhood?
+  A) Very safe—crime and danger were not concerns
+  B) Mostly safe—occasional concerns but generally secure
+  C) Somewhat unsafe—regularly aware of crime or danger
+  D) Very unsafe—violence or crime was a constant presence
+────────────────────────────────────────────────────────────
+Q49 [what_matters_more_in_leader] (single_choice)
+What matters more in a political leader?
+  A) A track record of actually getting results
+  B) Articulating a coherent vision that connects all their positions
+  C) The will to fight for their side against opposition
+  D) Surrounding themselves with experts who craft smart policy
+────────────────────────────────────────────────────────────
+Q50 [political_pitch_resonance] (single_choice)
+Which political pitch would resonate most with you?
+  A) The data shows these three interventions will have the highest impact
+  B) Here's my vision for what this country can become and how we get there
+  C) The other side is destroying everything — we have to stop them
+  D) I've done it before and I'll do it again — check my record
+────────────────────────────────────────────────────────────
+Q51 [movement_aesthetics_reaction] (single_choice)
+When a political movement develops strong aesthetics (flags, songs, slogans), this is:
+  A) Natural and healthy-movements need identity
+  B) Sometimes necessary but should be viewed skeptically
+  C) A neutral tool - depends how it's used
+  D) A warning sign-substance is being replaced by style
+────────────────────────────────────────────────────────────
+Q52 [best_worst_battery] (best_worst)
+Which of these political issues matters MOST and LEAST to you personally?
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q53 [community_fund_allocation] (allocation)
+Your community receives an unexpected windfall of $10 million. How would you allocate it?
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q54 [universal_vs_local_obligations] (pairwise)
+When it comes to moral obligations, which statement is closer to your view?
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q55 [opponent_success_response] (single_choice)
+A political opponent achieves a policy outcome you actually agree with. How do you react?
+  A) Wait and see - maybe the outcome won't be as good as it looks
+  B) Worried but accept - that's how democracy works
+  C) Fight to reverse it - elections aren't a blank check
+  D) The system that produced this outcome is broken
+────────────────────────────────────────────────────────────
+Q56 [zero_sum_politics_view] (slider)
+In politics, when one group gains power or resources, another group usually loses.
+  strongly disagree - politics can be win-win ←→ strongly agree - someone always loses
+────────────────────────────────────────────────────────────
+Q57 [inequality_solutions_ranking] (ranking)
+Rank these approaches to reducing economic inequality from most to least effective.
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q58 [culture_vs_diversity_scope] (pairwise)
+Which statement is closer to your view?
+  (no options parsed - ranking/allocation/multi)
+────────────────────────────────────────────────────────────
+Q59 [cross_party_marriage_comfort] (single_choice)
+How comfortable would you be if a close family member married someone with very different political views?
+  A) No problem at all - wouldn't affect my feelings about them
+  B) Slightly uncomfortable but wouldn't say anything
+  C) A serious concern - would create real tension
+  D) Very upset - might reconsider the relationship

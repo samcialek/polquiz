@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "q1b",
+    "text": "How many days per week do you typically consume political content (news, podcasts, social media, discussions)?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "0",
+        "label": "Rarely or never (less than once a week)"
+      },
+      {
+        "value": "1-2",
+        "label": "1-2 days per week"
+      },
+      {
+        "value": "5-6",
+        "label": "5-6 days per week"
+      },
+      {
+        "value": "3-4",
+        "label": "3-4 days per week"
+      },
+      {
+        "value": "daily",
+        "label": "Every day"
+      },
+      {
+        "value": "0",
+        "label": "<strong>Movement:</strong> Being part of something bigger\u2014collective action, shared vision"
+      },
+      {
+        "value": "POLICY",
+        "label": "<strong>Policy:</strong> Achieving specific outcomes\u2014I care about results, not rhetoric"
+      },
+      {
+        "value": "RESISTANCE",
+        "label": "<strong>Resistance:</strong> Fighting against threats\u2014powerful interests, bad actors"
+      },
+      {
+        "value": "DUTY",
+        "label": "<strong>Duty:</strong> Civic responsibility\u2014participating is important regardless of outcome"
+      },
+      {
+        "value": "INDEPENDENCE",
+        "label": "<strong>Independence:</strong> Thinking for myself\u2014I distrust establishments and movements alike"
+      }
+    ]
+  },
+  {
+    "id": "q4b",
+    "text": "Which policy bundle would you prefer?",
+    "type": "conjoint",
+    "options": [
+      {
+        "label": "Minimal government surveillance"
+      },
+      {
+        "label": "Strong local police presence and enforcement"
+      },
+      {
+        "label": "Expedited trials for serious crimes"
+      },
+      {
+        "label": "Expanded digital surveillance and monitoring"
+      },
+      {
+        "label": "Community-based alternatives to policing"
+      },
+      {
+        "label": "Full due process protections even if slower"
+      }
+    ]
+  },
+  {
+    "id": "q53",
+    "text": "To win an election, is it better to:",
+    "type": "mc",
+    "options": [
+      {
+        "value": "tent",
+        "label": "Dilute the message to build a broader coalition with people you disagree with."
+      },
+      {
+        "value": "purity",
+        "label": "Maintain a clear, principled message, even if it alienates moderate voters."
+      }
+    ]
+  },
+  {
+    "id": "q56",
+    "text": "A fixed budget can either save 10 lives domestically or 100 lives abroad. What should it do?",
+    "type": "slider",
+    "labels": [
+      "Save more lives abroad",
+      "Prioritize our own citizens"
+    ]
+  },
+  {
+    "id": "q125",
+    "text": "When politics comes up at social gatherings, you typically:",
+    "type": "mc",
+    "options": [
+      {
+        "value": "share_views",
+        "label": "Share your views but try to keep it civil"
+      },
+      {
+        "value": "avoid_entirely",
+        "label": "Avoid entirely\u2014politics ruins social situations"
+      },
+      {
+        "value": "change_subject",
+        "label": "Try to change the subject\u2014not the place"
+      },
+      {
+        "value": "engage_passionately",
+        "label": "Engage passionately\u2014these conversations matter"
+      },
+      {
+        "value": "listen_mostly",
+        "label": "Listen mostly, share selectively"
+      }
+    ]
+  },
+  {
+    "id": "q6",
+    "text": "Which approach to climate and energy do you prefer?",
+    "type": "conjoint",
+    "options": [
+      {
+        "label": "Aggressive emissions reductions now"
+      },
+      {
+        "label": "Accept short-term economic disruption for green transition"
+      },
+      {
+        "label": "Higher costs acceptable for clean energy"
+      },
+      {
+        "label": "Gradual transition as technology improves"
+      },
+      {
+        "label": "Protect existing energy jobs"
+      },
+      {
+        "label": "Keep energy affordable for families"
+      },
+      {
+        "label": "Carbon tax letting market find solutions"
+      },
+      {
+        "label": "All low-carbon sources including nuclear"
+      },
+      {
+        "label": "Costs passed to consumers (polluter pays)"
+      },
+      {
+        "label": "Direct regulation and mandates"
+      },
+      {
+        "label": "Renewables only (solar, wind)"
+      },
+      {
+        "label": "Subsidized transition, government absorbs cost"
+      }
+    ]
+  },
+  {
+    "id": "q69",
+    "text": "You have 30 minutes to read one article in the New York Times. Which headline do you click?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "tradition",
+        "label": "The proven principles that have guided successful societies for centuries"
+      },
+      {
+        "value": "novelty",
+        "label": "A bizarre new scientific theory that upends everything we know about physics"
+      },
+      {
+        "value": "practical",
+        "label": "Ten practical tips to organize your home and life"
+      },
+      {
+        "value": "tribal",
+        "label": "Why the other political side is even worse than you thought"
+      }
+    ]
+  },
+  {
+    "id": "q80",
+    "text": "What do you think the current top marginal federal income tax rate is?",
+    "type": "slider",
+    "labels": [
+      "0%",
+      "100%"
+    ]
+  },
+  {
+    "id": "q57",
+    "text": "What should the top marginal federal income tax rate be?",
+    "type": "slider",
+    "labels": [
+      "0%",
+      "100%"
+    ]
+  },
+  {
+    "id": "q13",
+    "text": "A prestigious university is deciding how to allocate limited spots. Which approach do you support?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "economic_aa",
+        "label": "Merit plus consideration for economic disadvantage"
+      },
+      {
+        "value": "lottery",
+        "label": "Lottery among all qualified applicants"
+      },
+      {
+        "value": "quotas",
+        "label": "Quotas to ensure proportional representation of all groups"
+      },
+      {
+        "value": "pure_merit",
+        "label": "Purely by academic merit (test scores, grades)"
+      }
+    ]
+  },
+  {
+    "id": "q58",
+    "text": "What portion of economic inequality is caused by each? (Must sum to 100%)"
+  },
+  {
+    "id": "q7",
+    "text": "Which criminal justice approach do you prefer?",
+    "type": "conjoint",
+    "options": [
+      {
+        "label": "Focus on rehabilitation and reform"
+      },
+      {
+        "label": "Reduce incarceration/alternatives to prison"
+      },
+      {
+        "label": "Address root causes (poverty, addiction, mental health)"
+      },
+      {
+        "label": "Focus on punishment and deterrence"
+      },
+      {
+        "label": "Longer sentences for violent crime"
+      },
+      {
+        "label": "Protect society by removing criminals from streets"
+      },
+      {
+        "label": "Heavy funding for prevention programs"
+      },
+      {
+        "label": "Shorter sentences with early release options"
+      },
+      {
+        "label": "Restorative justice, victim compensation focus"
+      },
+      {
+        "label": "Balanced funding across system"
+      },
+      {
+        "label": "Mandatory minimums, truth in sentencing"
+      },
+      {
+        "label": "Incapacitation focus (keep offenders away)"
+      }
+    ]
+  },
+  {
+    "id": "q25",
+    "text": "What's the maximum acceptable ratio between CEO pay and average worker pay?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "10",
+        "label": "10:1 or less"
+      },
+      {
+        "value": "50",
+        "label": "50:1"
+      },
+      {
+        "value": "100",
+        "label": "100:1"
+      },
+      {
+        "value": "300",
+        "label": "300:1 (about current average)"
+      },
+      {
+        "value": "no_limit",
+        "label": "No limit - the market should decide"
+      }
+    ]
+  },
+  {
+    "id": "q29",
+    "text": "How do you view human progress over time?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "progress",
+        "label": "Humanity is generally progressing - things get better over time"
+      },
+      {
+        "value": "cycles",
+        "label": "History moves in cycles - neither improving nor declining overall"
+      },
+      {
+        "value": "illusion",
+        "label": "Progress is mostly an illusion - human nature doesn't change"
+      }
+    ]
+  },
+  {
+    "id": "q43",
+    "text": "When bad things happen in politics or the economy, what portion of the blame belongs to each cause? (Must sum to 100%)"
+  },
+  {
+    "id": "q15",
+    "text": "A controversial speaker is invited to a university. They have views many find deeply offensive but haven't called for violence. What should happen?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "cancel",
+        "label": "Cancel the event - some views shouldn't be platformed"
+      },
+      {
+        "value": "restrict",
+        "label": "Allow but with some restrictions on content"
+      },
+      {
+        "value": "allow_counter",
+        "label": "Allow but also provide platform for counter-speech"
+      },
+      {
+        "value": "allow_full",
+        "label": "Allow them to speak with no restrictions"
+      }
+    ]
+  },
+  {
+    "id": "calibration",
+    "text": "Give your best estimate for each, along with your confidence:",
+    "type": "slider",
+    "labels": [
+      "%"
+    ]
+  },
+  {
+    "id": "q_rank_policy",
+    "text": "A new law will significantly affect your community. Rank who should have the MOST say in shaping it (drag to reorder, 1 = most influence):"
+  },
+  {
+    "id": "q9",
+    "text": "Which trait is more important to teach children?"
+  },
+  {
+    "id": "q59",
+    "text": "In criminal trials, which type of error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "fp",
+        "label": "Convicting an innocent person"
+      },
+      {
+        "value": "fn",
+        "label": "Letting a guilty person go free"
+      },
+      {
+        "value": "eq",
+        "label": "Both roughly equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q70",
+    "text": "For your next vacation, which would you prefer?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "novel",
+        "label": "Visit somewhere completely new and unfamiliar"
+      },
+      {
+        "value": "familiar",
+        "label": "Return to a favorite destination you know well"
+      }
+    ]
+  },
+  {
+    "id": "q60",
+    "text": "In welfare programs, which error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "fn",
+        "label": "Denying benefits to someone who genuinely needs them"
+      },
+      {
+        "value": "fp",
+        "label": "Giving benefits to someone who doesn't qualify"
+      },
+      {
+        "value": "eq",
+        "label": "Both roughly equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q71",
+    "text": "Think back to the COVID-19 pandemic. Assuming you could confirm indoor mask use reduced spread of the virus moderately, how acceptable is a mask mandate for indoor public spaces during a surge?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "mixed",
+        "label": "Mixed feelings\u2014understand the goal but dislike the mandate"
+      },
+      {
+        "value": "oppose",
+        "label": "Strongly oppose any mandate\u2014no authority should mandate personal choices"
+      },
+      {
+        "value": "full_support",
+        "label": "Fully support\u2014public health requires collective action"
+      },
+      {
+        "value": "resent",
+        "label": "Resent as overreach\u2014even if masks help"
+      },
+      {
+        "value": "accept",
+        "label": "Accept\u2014reasonable given the circumstances"
+      }
+    ]
+  },
+  {
+    "id": "q10_ranking",
+    "text": "A major factory in your region announces it's closing, eliminating 2,000 jobs. Rank these causes from most to least responsible:"
+  },
+  {
+    "id": "q61",
+    "text": "Information Control: Platforms and governments must balance two risks. Which error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "silence",
+        "label": "Empowering authorities to decide what is true, potentially silencing dissent"
+      },
+      {
+        "value": "disinfo",
+        "label": "Allowing disinformation to spread, causing harm"
+      },
+      {
+        "value": "eq",
+        "label": "Both roughly equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q38",
+    "text": "Looking at the last 50 years of global trade, countries that significantly opened their economies generally...",
+    "type": "mc",
+    "options": [
+      {
+        "value": "mixed",
+        "label": "Saw mixed results - some sectors and groups gained, others lost"
+      },
+      {
+        "value": "hurt",
+        "label": "Often stagnated or fell behind more protectionist countries"
+      },
+      {
+        "value": "winner_takes",
+        "label": "Grew wealthier, often at trading partners' expense"
+      },
+      {
+        "value": "varied",
+        "label": "Results varied too much by country to generalize"
+      },
+      {
+        "value": "mutual_gain",
+        "label": "Grew wealthier, as did their trading partners"
+      }
+    ]
+  },
+  {
+    "id": "q93",
+    "text": "Combining the Wall Street Journal, Bloomberg, and New York Times: what percentage of their factual claims do you believe are accurate?",
+    "type": "slider",
+    "labels": [
+      "0%",
+      "100%"
+    ]
+  },
+  {
+    "id": "q62",
+    "text": "Immigration Enforcement: Immigration enforcement can be stricter or looser. Which error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "deport_legal",
+        "label": "Deporting someone who is legally eligible to stay"
+      },
+      {
+        "value": "allow_illegal",
+        "label": "Allowing someone to stay who should be deported"
+      },
+      {
+        "value": "eq",
+        "label": "Equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q37",
+    "text": "Where do the biggest threats to America come from?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "external",
+        "label": "External - foreign powers, terrorism, immigration"
+      },
+      {
+        "value": "both",
+        "label": "Both roughly equally"
+      },
+      {
+        "value": "internal",
+        "label": "Internal - domestic extremism, inequality, institutional decay"
+      }
+    ]
+  },
+  {
+    "id": "rea4",
+    "text": "What percentage of the people comprising each group do you think...",
+    "type": "slider",
+    "labels": [
+      "0%",
+      "100%"
+    ]
+  },
+  {
+    "id": "q63",
+    "text": "Medical Regulation: The FDA must balance speed vs. safety in approving new treatments. Which error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "too_slow",
+        "label": "Blocking a treatment that would have helped patients (FDA too slow)"
+      },
+      {
+        "value": "too_fast",
+        "label": "Approving a treatment that causes harm (FDA too fast)"
+      },
+      {
+        "value": "eq",
+        "label": "Equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q35",
+    "text": "Your workplace implements a new rule everyone agrees is stupid but technically required by policy. What do you do?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "compliant",
+        "label": "Follow it - rules are rules"
+      },
+      {
+        "value": "bypass",
+        "label": "Quietly ignore when possible"
+      },
+      {
+        "value": "reform",
+        "label": "Follow while working through proper channels to change it"
+      },
+      {
+        "value": "subvert",
+        "label": "Malicious compliance to expose the absurdity"
+      }
+    ]
+  },
+  {
+    "id": "q39",
+    "text": "What portion of people who vote for the party you oppose fall into each category? (Must sum to 100%)"
+  },
+  {
+    "id": "q64",
+    "text": "Electoral Security: Election rules can prioritize access or security. Which error is worse?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "disenfranchise",
+        "label": "Preventing a legitimate voter from voting (disenfranchisement)"
+      },
+      {
+        "value": "fraud",
+        "label": "Allowing an illegitimate vote to count (voter fraud)"
+      },
+      {
+        "value": "eq",
+        "label": "Both roughly equally bad"
+      }
+    ]
+  },
+  {
+    "id": "q40",
+    "text": "What percentage of your close friends voted differently from you in the last presidential election?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "0",
+        "label": "0% - None of them"
+      },
+      {
+        "value": "10-25",
+        "label": "Around 10-25%"
+      },
+      {
+        "value": "25-50",
+        "label": "Around 25-50%"
+      },
+      {
+        "value": "50+",
+        "label": "More than 50%"
+      },
+      {
+        "value": "unknown",
+        "label": "I don't know how most of them voted"
+      }
+    ]
+  },
+  {
+    "id": "q55",
+    "text": "If you didn't know what position you would occupy (rich or poor, lucky or unlucky), which society would you choose to live in?",
+    "type": "conjoint",
+    "options": [
+      {
+        "label": "$90,000"
+      },
+      {
+        "label": "$300,000+"
+      },
+      {
+        "label": "$15,000"
+      },
+      {
+        "label": "High (20:1 ratio)"
+      },
+      {
+        "label": "$70,000"
+      },
+      {
+        "label": "$120,000"
+      },
+      {
+        "label": "$40,000"
+      },
+      {
+        "label": "Moderate (3:1 ratio)"
+      },
+      {
+        "label": "$60,000"
+      },
+      {
+        "label": "$65,000"
+      },
+      {
+        "label": "$55,000"
+      },
+      {
+        "label": "Very Low (1.2:1 ratio)"
+      }
+    ]
+  },
+  {
+    "id": "self1",
+    "text": "How much do you think your political views have changed in the past 10 years?",
+    "type": "slider",
+    "labels": [
+      "Not at all",
+      "Completely different"
+    ]
+  },
+  {
+    "id": "q94",
+    "text": "Which has changed more minds throughout history?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "logical_arguments",
+        "label": "Logical arguments and empirical evidence"
+      },
+      {
+        "value": "compelling_narratives",
+        "label": "Compelling narratives and storytelling"
+      },
+      {
+        "value": "religious_spiritual",
+        "label": "Religious and spiritual experiences"
+      },
+      {
+        "value": "economic_necessity",
+        "label": "Economic necessity and material conditions"
+      },
+      {
+        "value": "art_music",
+        "label": "Art, music, and cultural expression"
+      }
+    ]
+  },
+  {
+    "id": "q46",
+    "text": "Emotional availability of primary caregivers growing up:"
+  },
+  {
+    "id": "self4",
+    "text": "When your political views conflict with those of close friends or family...",
+    "type": "mc",
+    "options": [
+      {
+        "value": "discuss",
+        "label": "I engage in discussion but stay respectful"
+      },
+      {
+        "value": "quiet",
+        "label": "I usually keep quiet to avoid conflict"
+      },
+      {
+        "value": "argue",
+        "label": "I argue my position strongly\u2014truth matters more"
+      },
+      {
+        "value": "mention",
+        "label": "I'll mention my view but won't argue"
+      }
+    ]
+  },
+  {
+    "id": "q110",
+    "text": "Social progress achieved in the last century is:",
+    "type": "mc",
+    "options": [
+      {
+        "value": "illusory_superficial",
+        "label": "Mostly illusory\u2014superficial changes hiding deeper problems"
+      },
+      {
+        "value": "fragile_reversible",
+        "label": "Fragile\u2014could easily be reversed"
+      },
+      {
+        "value": "solid_continue",
+        "label": "Solid\u2014likely to continue expanding"
+      },
+      {
+        "value": "real_contested",
+        "label": "Real but contested\u2014requires constant defense"
+      },
+      {
+        "value": "permanent_irreversible",
+        "label": "Permanent\u2014these gains are essentially irreversible"
+      }
+    ]
+  },
+  {
+    "id": "q129",
+    "text": "Which of the following should be expected of immigrants for proper integration into American society? (Select all that apply)",
+    "type": "mc",
+    "options": [
+      {
+        "value": "1",
+        "label": "Learn to speak English"
+      },
+      {
+        "value": "1",
+        "label": "Learn American history and civics"
+      },
+      {
+        "value": "1",
+        "label": "Adhere to core American values (democracy, freedom, rule of law)"
+      },
+      {
+        "value": "1",
+        "label": "Follow American laws"
+      },
+      {
+        "value": "1",
+        "label": "Work and contribute economically"
+      },
+      {
+        "value": "1",
+        "label": "Adopt American customs and traditions"
+      },
+      {
+        "value": "1",
+        "label": "Identify primarily as American"
+      },
+      {
+        "value": "1",
+        "label": "Abandon previous cultural practices"
+      },
+      {
+        "value": "1",
+        "label": "None of the above\u2014integration should not be expected"
+      }
+    ]
+  },
+  {
+    "id": "q_nat_1",
+    "text": "When you think about what makes someone \"truly American,\" which matters most?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "shared_values",
+        "label": "Sharing core American values and beliefs (freedom, democracy, opportunity)"
+      },
+      {
+        "value": "born_raised",
+        "label": "Being born and raised in America"
+      },
+      {
+        "value": "legal_status",
+        "label": "Having legal citizenship status"
+      },
+      {
+        "value": "cultural_adoption",
+        "label": "Adopting American culture, customs, and way of life"
+      },
+      {
+        "value": "none_matters",
+        "label": "None of these\u2014anyone can be truly American regardless"
+      }
+    ]
+  },
+  {
+    "id": "q73",
+    "text": "How would you describe your parents' or guardians' political views when you were growing up?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "strong_lib",
+        "label": "Strongly liberal/progressive"
+      },
+      {
+        "value": "some_lib",
+        "label": "Somewhat liberal/progressive"
+      },
+      {
+        "value": "mixed",
+        "label": "Mixed or moderate"
+      },
+      {
+        "value": "apolitical",
+        "label": "Apolitical\u2014politics was rarely discussed"
+      },
+      {
+        "value": "some_con",
+        "label": "Somewhat conservative"
+      },
+      {
+        "value": "strong_con",
+        "label": "Strongly conservative"
+      }
+    ]
+  },
+  {
+    "id": "q75",
+    "text": "How would you describe the role of religion in your upbringing?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "secular",
+        "label": "Secular\u2014raised without religion or with explicit non-religious worldview"
+      },
+      {
+        "value": "minimal",
+        "label": "Minimal\u2014rarely attended services or discussed religion"
+      },
+      {
+        "value": "moderate",
+        "label": "Moderate\u2014some religious exposure but not a major influence"
+      },
+      {
+        "value": "important",
+        "label": "Important\u2014regular practice and religious identity, but not all-encompassing"
+      },
+      {
+        "value": "central",
+        "label": "Central\u2014religion shaped daily life, values, and community"
+      }
+    ]
+  },
+  {
+    "id": "q2",
+    "text": "Think of times you changed your mind on a significant political issue in the past couple of years. What caused the change? <em>(Check all that apply)</em>",
+    "type": "mc",
+    "options": [
+      {
+        "value": "data",
+        "label": "Read a study, article, or book with new data"
+      },
+      {
+        "value": "conversation",
+        "label": "Conversation with someone who disagreed with me"
+      },
+      {
+        "value": "experience",
+        "label": "Personal experience that contradicted my view"
+      },
+      {
+        "value": "values",
+        "label": "Realized my position conflicted with my deeper values"
+      },
+      {
+        "value": "community",
+        "label": "Saw trusted figures in my community change their view"
+      },
+      {
+        "value": "none",
+        "label": "I can't recall changing my mind on anything significant"
+      }
+    ]
+  },
+  {
+    "id": "q130",
+    "text": "The most effective political leaders are those who:",
+    "type": "mc",
+    "options": [
+      {
+        "value": "channel_anger",
+        "label": "Channel popular anger and frustration into political energy"
+      },
+      {
+        "value": "compelling_vision",
+        "label": "Paint a compelling vision of what the country could become"
+      },
+      {
+        "value": "fight_win",
+        "label": "Fight hard and win\u2014results matter more than style"
+      },
+      {
+        "value": "policy_detail",
+        "label": "Master policy details and explain complex tradeoffs clearly"
+      },
+      {
+        "value": "expert_coalitions",
+        "label": "Build expert coalitions and institutional support"
+      }
+    ]
+  },
+  {
+    "id": "q74",
+    "text": "How politically engaged were your parents or guardians when you were growing up?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "somewhat",
+        "label": "Somewhat engaged\u2014they voted and occasionally discussed politics"
+      },
+      {
+        "value": "minimal",
+        "label": "Minimally engaged\u2014they rarely discussed politics or participated"
+      },
+      {
+        "value": "very",
+        "label": "Very engaged\u2014politics was frequently discussed, they voted regularly, may have been activists"
+      },
+      {
+        "value": "none",
+        "label": "Not at all\u2014politics was essentially absent from my upbringing"
+      }
+    ]
+  },
+  {
+    "id": "q77",
+    "text": "During your childhood and teenage years, how safe did you feel in your neighborhood?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "mostly_safe",
+        "label": "Mostly safe\u2014occasional concerns but generally secure"
+      },
+      {
+        "value": "very_unsafe",
+        "label": "Very unsafe\u2014violence or crime was a constant presence"
+      },
+      {
+        "value": "somewhat_unsafe",
+        "label": "Somewhat unsafe\u2014regularly aware of crime or danger"
+      },
+      {
+        "value": "very_safe",
+        "label": "Very safe\u2014crime and danger were not concerns"
+      }
+    ]
+  },
+  {
+    "id": "q132",
+    "text": "What matters more in a political leader?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "coherent_vision",
+        "label": "Articulating a coherent vision that connects all their positions"
+      },
+      {
+        "value": "gets_results",
+        "label": "A track record of actually getting results"
+      },
+      {
+        "value": "expert_team",
+        "label": "Surrounding themselves with experts who craft smart policy"
+      },
+      {
+        "value": "fighting_spirit",
+        "label": "The will to fight for their side against opposition"
+      },
+      {
+        "value": "right_positions",
+        "label": "Having the right position on each individual issue"
+      }
+    ]
+  },
+  {
+    "id": "q18_ranking",
+    "text": "Which identities feel most important to you politically? Rank from most to least:"
+  },
+  {
+    "id": "q133",
+    "text": "Which political pitch would resonate most with you?",
+    "type": "mc",
+    "options": [
+      {
+        "value": "data_driven",
+        "label": "\"The data shows these three interventions will have the highest impact\""
+      },
+      {
+        "value": "enemy_focus",
+        "label": "\"The other side is destroying everything\u2014we have to stop them\""
+      },
+      {
+        "value": "unified_narrative",
+        "label": "\"Here's my vision for what this country can become and how we get there\""
+      },
+      {
+        "value": "policy_specifics",
+        "label": "\"Here are my 12 detailed policy proposals with cost estimates\""
+      },
+      {
+        "value": "practical_results",
+        "label": "\"I've done it before and I'll do it again\u2014check my record\""
+      }
+    ]
+  },
+  {
+    "id": "q98",
+    "text": "When a political movement develops strong aesthetics (flags, songs, slogans), this is:",
+    "type": "mc",
+    "options": [
+      {
+        "value": "sometimes_necessary",
+        "label": "Sometimes necessary but should be viewed skeptically"
+      },
+      {
+        "value": "natural_healthy",
+        "label": "Natural and healthy\u2014movements need identity"
+      },
+      {
+        "value": "essential_power",
+        "label": "Essential\u2014aesthetic power is political power"
+      },
+      {
+        "value": "warning_sign",
+        "label": "A warning sign\u2014substance is being replaced by style"
+      },
+      {
+        "value": "neutral_tool",
+        "label": "A neutral tool\u2014depends how it's used"
+      }
+    ]
+  },
+  {
+    "id": "demo",
+    "text": "?"
+  },
+  {
+    "id": "md1",
+    "text": "Which of these political issues matters MOST and LEAST to you personally?",
+    "type": "slider",
+    "labels": [
+      "Matters Most",
+      "Issue"
+    ]
+  },
+  {
+    "id": "md2",
+    "text": "Which of these concerns is MOST and LEAST central to your political thinking?",
+    "type": "slider",
+    "labels": [
+      "Most Central",
+      "Concern"
+    ]
+  },
+  {
+    "id": "md3",
+    "text": "When evaluating political claims, which matters MOST and LEAST to you?",
+    "type": "slider",
+    "labels": [
+      "Most Important",
+      "Criterion"
+    ]
+  },
+  {
+    "id": "md4",
+    "text": "Which social/moral concern do you prioritize MOST and LEAST?",
+    "type": "slider",
+    "labels": [
+      "Highest Priority",
+      "Concern"
+    ]
+  },
+  {
+    "id": "md5",
+    "text": "What aspect of politics engages you MOST and LEAST?",
+    "type": "slider",
+    "labels": [
+      "Most Engaging",
+      "Aspect"
+    ]
+  },
+  {
+    "id": "md6",
+    "text": "When you think about your political identity, which element is MOST and LEAST defining?",
+    "type": "slider",
+    "labels": [
+      "Most Defining",
+      "Element"
+    ]
+  }
+]

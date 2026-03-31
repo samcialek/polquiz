@@ -1,0 +1,316 @@
+PRISM V3 — FULL QUESTION AUDIT
+Generated: 2026-03-30T20:58:36.304Z
+Questions: 72
+================================================================================
+
+QUESTION 1 (engine id: 3, key: cultural_social_placement)
+Type: slider
+Text: On cultural and social issues - things like abortion, traditional values, and social norms - where would you place yourself?
+  Slider: "very progressive / open" ←→ "very conservative / traditional"
+
+QUESTION 2 (engine id: 4, key: cultural_social_salience)
+Type: slider
+Text: How much do cultural and social issues matter to you personally, relative to other political concerns?
+  Slider: "not important to me at all" ←→ "one of my most important concerns"
+
+QUESTION 3 (engine id: 5, key: engagement_motivations_top2)
+Type: multi
+Text: What are the top two reasons you engage (or would engage) with politics? Select exactly two.
+
+QUESTION 4 (engine id: 6, key: surveillance_enforcement_due_process_bundle)
+Type: single_choice
+Text: Which approach to law enforcement do you prefer?
+
+QUESTION 5 (engine id: 7, key: coalition_vs_principle)
+Type: single_choice
+Text: Your political party or movement takes a position you disagree with on an important issue. What do you do?
+
+QUESTION 6 (engine id: 8, key: domestic_vs_abroad_lives)
+Type: slider
+Text: Your government can fund one program this year. Program A saves an estimated 10 lives in your country. Program B saves an estimated 100 lives in a developing nation. Where should the money go?
+  Slider: "program A - save 10 lives domestically" ←→ "program B - save 100 lives abroad"
+
+QUESTION 7 (engine id: 9, key: politics_at_social_gatherings)
+Type: single_choice
+Text: When politics comes up at social gatherings, you typically:
+
+QUESTION 8 (engine id: 10, key: climate_energy_bundle)
+Type: single_choice
+Text: Which approach to climate and energy policy do you prefer?
+
+QUESTION 9 (engine id: 12, key: guess_top_marginal_tax_rate)
+Type: slider
+Text: What do you think the current top marginal federal income tax rate is?
+  Slider: "0%" ←→ "100%"
+
+QUESTION 10 (engine id: 13, key: preferred_top_marginal_tax_rate)
+Type: slider
+Text: What should the top marginal federal income tax rate be?
+  Slider: "0%" ←→ "100%"
+
+QUESTION 11 (engine id: 14, key: university_admissions_approach)
+Type: single_choice
+Text: A prestigious university is deciding how to allocate limited spots. Which approach do you support?
+
+QUESTION 12 (engine id: 16, key: criminal_justice_bundle)
+Type: single_choice
+Text: Which criminal justice approach do you prefer?
+
+QUESTION 13 (engine id: 17, key: ceo_worker_pay_ratio)
+Type: single_choice
+Text: What's the maximum acceptable ratio between CEO pay and average worker pay?
+
+QUESTION 14 (engine id: 18, key: human_progress_view)
+Type: single_choice
+Text: How do you view human progress over time?
+
+QUESTION 15 (engine id: 19, key: human_progress_salience)
+Type: slider
+Text: When you think about the future, how much do you focus on whether humanity as a whole is getting better or worse?
+  Slider: "rarely think about it" ←→ "think about it constantly"
+
+QUESTION 16 (engine id: 22, key: factual_estimates_and_confidence)
+Type: allocation
+Text: For each factual question below, give your best estimate and your confidence in that estimate.
+  (allocation — items defined in engine config)
+
+QUESTION 17 (engine id: 25, key: criminal_trial_error_tradeoff)
+Type: single_choice
+Text: In criminal trials, which type of error is worse?
+
+QUESTION 18 (engine id: 26, key: vacation_new_vs_familiar)
+Type: single_choice
+Text: For your next vacation, which would you prefer?
+
+QUESTION 19 (engine id: 27, key: welfare_error_tradeoff)
+Type: single_choice
+Text: In welfare programs, which error is worse?
+
+QUESTION 20 (engine id: 28, key: mask_mandate_acceptability)
+Type: single_choice
+Text: Think back to the COVID-19 pandemic. Assuming you could confirm indoor mask use reduced spread of the virus moderately, how acceptable is a mask mandate for indoor public spaces during a surge?
+
+QUESTION 21 (engine id: 29, key: factory_closure_causes_ranking)
+Type: ranking
+Text: A major factory in your region announces it's closing, eliminating 2,000 jobs. Rank these causes from most to least responsible:
+  (ranking — items defined in engine config)
+
+QUESTION 22 (engine id: 30, key: information_control_error_tradeoff)
+Type: single_choice
+Text: Information Control: Platforms and governments must balance two risks. Which error is worse?
+
+QUESTION 23 (engine id: 31, key: trade_liberalization_effects)
+Type: single_choice
+Text: Looking at the last 50 years of global trade, countries that significantly opened their economies generally...
+
+QUESTION 24 (engine id: 32, key: mainstream_media_accuracy_estimate)
+Type: slider
+Text: Combining the Wall Street Journal, Bloomberg, and New York Times: what percentage of their factual claims do you believe are accurate?
+  Slider: "0% - almost none is accurate" ←→ "100% - almost all is accurate"
+
+QUESTION 25 (engine id: 33, key: immigration_enforcement_error_tradeoff)
+Type: single_choice
+Text: Immigration Enforcement: Immigration enforcement can be stricter or looser. Which error is worse?
+
+QUESTION 26 (engine id: 34, key: threats_to_america_external_internal)
+Type: single_choice
+Text: Where do the biggest threats to America come from?
+
+QUESTION 27 (engine id: 35, key: percent_groups_want_best_share_values)
+Type: slider
+Text: Think about people in your country. What percentage of them do you believe genuinely want what is best for the country, even if they disagree with you about how to get there?
+  Slider: "0% - almost nobody" ←→ "100% - almost everyone"
+
+QUESTION 28 (engine id: 36, key: fda_speed_vs_safety)
+Type: single_choice
+Text: Medical Regulation: The FDA must balance speed vs. safety in approving new treatments. Which error is worse?
+
+QUESTION 29 (engine id: 37, key: stupid_workplace_rule_response)
+Type: single_choice
+Text: Your workplace implements a new rule everyone agrees is stupid but technically required by policy. What do you do?
+
+QUESTION 30 (engine id: 38, key: rules_procedures_matter_salience)
+Type: slider
+Text: When evaluating a political outcome, how much do you care about whether the right process was followed, independent of the result?
+  Slider: "doesn't matter - results are what count" ←→ "matters enormously - process is everything"
+
+QUESTION 31 (engine id: 40, key: opponents_matter_to_identity)
+Type: slider
+Text: How much does having a clearly defined political opponent or outgroup matter to your sense of political identity?
+  Slider: "not at all" ←→ "a great deal"
+
+QUESTION 32 (engine id: 41, key: election_access_vs_security)
+Type: single_choice
+Text: Electoral Security: Election rules can prioritize access or security. Which error is worse?
+
+QUESTION 33 (engine id: 42, key: close_friends_voted_differently)
+Type: single_choice
+Text: You discover that a close friend voted for a candidate or party you strongly oppose. How do you feel?
+
+QUESTION 34 (engine id: 43, key: veil_of_ignorance_society_choice)
+Type: single_choice
+Text: If you didn't know what position you would occupy (rich or poor, lucky or unlucky), which society would you choose to live in?
+
+QUESTION 35 (engine id: 44, key: views_changed_in_10_years)
+Type: slider
+Text: How much do you think your political views have changed in the past 10 years?
+  Slider: "not at all - same views as a decade ago" ←→ "dramatically - almost unrecognizable"
+
+QUESTION 36 (engine id: 45, key: what_changed_minds_through_history)
+Type: single_choice
+Text: Which has changed more minds throughout history?
+
+QUESTION 37 (engine id: 46, key: caregiver_emotional_availability)
+Type: slider
+Text: Emotional availability of primary caregivers growing up:
+  Slider: "emotionally distant" ←→ "warm and available"
+
+QUESTION 38 (engine id: 47, key: political_conflict_with_close_others)
+Type: single_choice
+Text: When your political views conflict with those of close friends or family...
+
+QUESTION 39 (engine id: 48, key: social_progress_view)
+Type: single_choice
+Text: Social progress achieved in the last century is:
+
+QUESTION 40 (engine id: 49, key: social_progress_salience)
+Type: slider
+Text: How much do you personally care about the question of whether society is making social progress?
+  Slider: "don't care much" ←→ "care deeply"
+
+QUESTION 41 (engine id: 50, key: integration_expectations_rewrite)
+Type: ranking
+Text: What should be expected of immigrants who want to become full citizens of your country?
+  (ranking — items defined in engine config)
+
+QUESTION 42 (engine id: 51, key: immigration_national_identity_salience)
+Type: slider
+Text: How much do immigration and national identity issues matter to your politics?
+  Slider: "not important to me" ←→ "extremely important to me"
+
+QUESTION 43 (engine id: 52, key: political_membership_criterion_rewrite)
+Type: single_choice
+Text: When you think about what makes someone "truly American," which matters most?
+
+QUESTION 44 (engine id: 53, key: parents_politics_growing_up)
+Type: single_choice
+Text: How would you describe your parents' or guardians' political views when you were growing up?
+
+QUESTION 45 (engine id: 54, key: religion_in_upbringing)
+Type: single_choice
+Text: How would you describe the role of religion in your upbringing?
+
+QUESTION 46 (engine id: 55, key: what_changed_your_mind)
+Type: multi
+Text: Think of a time you changed your mind on a political issue. What caused the change?
+
+QUESTION 47 (engine id: 57, key: parents_political_engagement)
+Type: single_choice
+Text: How politically engaged were your parents or guardians when you were growing up?
+
+QUESTION 48 (engine id: 58, key: neighborhood_safety_childhood)
+Type: single_choice
+Text: During your childhood and teenage years, how safe did you feel in your neighborhood?
+
+QUESTION 49 (engine id: 59, key: what_matters_more_in_leader)
+Type: single_choice
+Text: What matters more in a political leader?
+
+QUESTION 50 (engine id: 61, key: political_pitch_resonance)
+Type: single_choice
+Text: Which political pitch would resonate most with you?
+
+QUESTION 51 (engine id: 62, key: movement_aesthetics_reaction)
+Type: single_choice
+Text: When a political movement develops strong aesthetics (flags, songs, slogans), this is:
+
+QUESTION 52 (engine id: 63, key: best_worst_battery)
+Type: best_worst
+Text: Which of these political issues matters MOST and LEAST to you personally?
+
+QUESTION 53 (engine id: 64, key: political_frustration)
+Type: single_choice
+Text: What frustrates you most about politics?
+
+QUESTION 54 (engine id: 65, key: party_culture_conflict_response)
+Type: single_choice
+Text: Your political party takes a position that conflicts with a deeply held cultural or moral value of yours. What do you do?
+
+QUESTION 55 (engine id: 66, key: community_fund_allocation)
+Type: allocation
+Text: Your community receives an unexpected windfall of $10 million. How would you allocate it?
+  (allocation — items defined in engine config)
+
+QUESTION 56 (engine id: 67, key: universal_vs_local_obligations)
+Type: pairwise
+Text: When it comes to moral obligations, which statement is closer to your view?
+
+QUESTION 57 (engine id: 68, key: opponent_success_response)
+Type: single_choice
+Text: A political opponent achieves a policy outcome you actually agree with. How do you react?
+
+QUESTION 58 (engine id: 69, key: common_ground_salience)
+Type: slider
+Text: How important is it to you to find common ground with political opponents?
+  Slider: "not important - stand on principle" ←→ "extremely important - compromise is essential"
+
+QUESTION 59 (engine id: 70, key: zero_sum_politics_view)
+Type: slider
+Text: In politics, when one group gains power or resources, another group usually loses.
+  Slider: "strongly disagree - politics can be win-win" ←→ "strongly agree - someone always loses"
+
+QUESTION 60 (engine id: 71, key: rhetoric_style_importance)
+Type: slider
+Text: How much does the style and tone of political communication matter to you, independent of the substance?
+  Slider: "doesn't matter at all - only substance counts" ←→ "matters enormously - tone is everything"
+
+QUESTION 61 (engine id: 73, key: inequality_solutions_ranking)
+Type: ranking
+Text: Rank these approaches to reducing economic inequality from most to least effective.
+  (ranking — items defined in engine config)
+
+QUESTION 62 (engine id: 74, key: culture_vs_diversity_scope)
+Type: pairwise
+Text: Which statement is closer to your view?
+
+QUESTION 63 (engine id: 75, key: cross_party_marriage_comfort)
+Type: single_choice
+Text: How comfortable would you be if a close family member married someone with very different political views?
+
+QUESTION 64 (engine id: 76, key: success_attribution)
+Type: single_choice
+Text: When someone achieves great success in life, how much is due to their own effort versus circumstances and luck?
+
+QUESTION 65 (engine id: 77, key: decision_making_style)
+Type: single_choice
+Text: When making an important political decision, do you rely more on careful analysis or gut instinct?
+
+QUESTION 66 (engine id: 78, key: speaker_appeal)
+Type: single_choice
+Text: Which type of political speaker do you find most compelling?
+
+QUESTION 67 (engine id: 79, key: expert_disagreement_reaction)
+Type: single_choice
+Text: When credentialed experts disagree on a policy question, what do you typically conclude?
+
+QUESTION 68 (engine id: 81, key: party_vs_cause_loyalty)
+Type: single_choice
+Text: When your political side takes a position you think is wrong, what is your instinct?
+
+QUESTION 69 (engine id: 82, key: openness_assimilation_closure)
+Type: single_choice
+Text: Which comes closest to your view?
+
+QUESTION 70 (engine id: 83, key: broken_politics_diagnosis)
+Type: single_choice
+Text: What feels most broken about politics?
+
+QUESTION 71 (engine id: 84, key: institutions_harden_into_domination)
+Type: slider
+Text: Even organizations built for good reasons usually harden into domination over time. (strongly disagree ← → strongly agree)
+  Slider: "strongly disagree" ←→ "strongly agree"
+
+QUESTION 72 (engine id: 85, key: institutional_legitimacy_source)
+Type: single_choice
+Text: What gives a political institution the strongest claim to obedience?
+

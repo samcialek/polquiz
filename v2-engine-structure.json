@@ -1,0 +1,793 @@
+{
+  "questions": [
+    {
+      "promptShort": "political_content_frequency",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "never",
+        "few_days",
+        "most_days",
+        "every_day"
+      ]
+    },
+    {
+      "promptShort": "political_identity_centrality",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "timeless_principles",
+        "weird_science",
+        "practical_tips",
+        "other_side_bad"
+      ]
+    },
+    {
+      "promptShort": "inequality_causes_allocation",
+      "uiType": "allocation",
+      "optionKeys": [
+        "effort_choices",
+        "family_background",
+        "discrimination_bias",
+        "luck_random"
+      ]
+    },
+    {
+      "promptShort": "bad_outcomes_blame_allocation",
+      "uiType": "allocation",
+      "optionKeys": [
+        "complex_forces",
+        "powerful_incompetent",
+        "powerful_selfish",
+        "ordinary_choices"
+      ]
+    },
+    {
+      "promptShort": "controversial_speaker",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "cancel",
+        "restricted",
+        "allow_with_counterspeech",
+        "allow_no_restrictions"
+      ]
+    },
+    {
+      "promptShort": "who_should_shape_a_law",
+      "uiType": "ranking",
+      "optionKeys": [
+        "researchers",
+        "organized_residents",
+        "elected_officials",
+        "elders_religious",
+        "business_stakeholders"
+      ]
+    },
+    {
+      "promptShort": "child_traits",
+      "uiType": "pairwise",
+      "optionKeys": [
+        "independence",
+        "respect_for_elders",
+        "obedience",
+        "self_reliance"
+      ]
+    },
+    {
+      "promptShort": "opponent_model_allocation",
+      "uiType": "allocation",
+      "optionKeys": [
+        "legitimate_values",
+        "misinformed",
+        "self_interest",
+        "bad_motives"
+      ]
+    },
+    {
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "channel_anger",
+        "paint_vision",
+        "fight_to_win",
+        "master_policy_details",
+        "build_expert_coalitions"
+      ]
+    },
+    {
+      "promptShort": "politically_important_identities",
+      "uiType": "ranking",
+      "optionKeys": [
+        "national_identity",
+        "ideological_identity",
+        "religious_identity",
+        "class_identity",
+        "ethnic_racial_identity",
+        "global_citizen"
+      ]
+    },
+    {
+      "promptShort": "cultural_social_placement",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "cultural_social_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "guess_top_marginal_tax_rate",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "preferred_top_marginal_tax_rate",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "mainstream_media_accuracy_estimate",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "percent_groups_want_best_share_values",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "rules_procedures_matter_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "opponents_matter_to_identity",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "views_changed_in_10_years",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "caregiver_emotional_availability",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "surveillance_enforcement_due_process_bundle",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "due_process_priority",
+        "balanced_security",
+        "security_priority"
+      ]
+    },
+    {
+      "promptShort": "coalition_vs_principle",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "principle_first",
+        "coalition_first",
+        "depends_on_issue"
+      ]
+    },
+    {
+      "promptShort": "politics_at_social_gatherings",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "share_views",
+        "avoid_entirely",
+        "change_subject",
+        "engage_passionately",
+        "listen_mostly"
+      ]
+    },
+    {
+      "promptShort": "climate_energy_bundle",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "aggressive_transition",
+        "gradual_transition",
+        "market_led",
+        "no_action_needed"
+      ]
+    },
+    {
+      "promptShort": "university_admissions_approach",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "strict_merit",
+        "holistic_review",
+        "affirmative_action",
+        "lottery"
+      ]
+    },
+    {
+      "promptShort": "criminal_justice_bundle",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "rehabilitation_focus",
+        "balanced_approach",
+        "punishment_focus"
+      ]
+    },
+    {
+      "promptShort": "ceo_worker_pay_ratio",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "ratio_10_to_1",
+        "ratio_50_to_1",
+        "ratio_100_to_1",
+        "ratio_300_to_1",
+        "market_decides"
+      ]
+    },
+    {
+      "promptShort": "human_progress_view",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "steady_improvement",
+        "gradual_progress",
+        "cyclical",
+        "decline"
+      ]
+    },
+    {
+      "promptShort": "criminal_trial_error_tradeoff",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "rather_free_guilty",
+        "balance_both_errors",
+        "rather_convict_innocent"
+      ]
+    },
+    {
+      "promptShort": "vacation_new_vs_familiar",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "new_place",
+        "familiar_place",
+        "mix_both"
+      ]
+    },
+    {
+      "promptShort": "welfare_error_tradeoff",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "rather_help_undeserving",
+        "balanced_errors",
+        "rather_miss_needy"
+      ]
+    },
+    {
+      "promptShort": "mask_mandate_acceptability",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "accept_mandate",
+        "comply_reluctantly",
+        "resist_mandate"
+      ]
+    },
+    {
+      "promptShort": "information_control_error_tradeoff",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "remove_immediately",
+        "allow_with_labels",
+        "allow_fully"
+      ]
+    },
+    {
+      "promptShort": "trade_liberalization_effects",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "net_positive_clear",
+        "net_positive_but_uneven",
+        "mixed_effects",
+        "mostly_harmful"
+      ]
+    },
+    {
+      "promptShort": "immigration_enforcement_error_tradeoff",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "open_borders",
+        "generous_policy",
+        "balanced_approach",
+        "strict_enforcement"
+      ]
+    },
+    {
+      "promptShort": "threats_to_america_external_internal",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "external_threats",
+        "internal_division",
+        "both_equally"
+      ]
+    },
+    {
+      "promptShort": "fda_speed_vs_safety",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "prioritize_safety",
+        "balanced_timeline",
+        "prioritize_speed"
+      ]
+    },
+    {
+      "promptShort": "stupid_workplace_rule_response",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "follow_always",
+        "follow_then_advocate",
+        "ignore_quietly",
+        "openly_challenge"
+      ]
+    },
+    {
+      "promptShort": "election_access_vs_security",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "easier_access",
+        "balanced_approach",
+        "tighter_security"
+      ]
+    },
+    {
+      "promptShort": "close_friends_voted_differently",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "no_big_deal",
+        "keep_friendship",
+        "distance_somewhat",
+        "end_friendship"
+      ]
+    },
+    {
+      "promptShort": "veil_of_ignorance_society_choice",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "equal_society",
+        "safety_net_society",
+        "opportunity_society",
+        "free_market_society"
+      ]
+    },
+    {
+      "promptShort": "what_changed_minds_through_history",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "evidence_and_argument",
+        "moral_movements",
+        "economic_interests",
+        "power_struggles"
+      ]
+    },
+    {
+      "promptShort": "political_conflict_with_close_others",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "avoid_if_possible",
+        "engage_carefully",
+        "stand_ground",
+        "enjoy_debate"
+      ]
+    },
+    {
+      "promptShort": "social_progress_view",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "continuous_improvement",
+        "gradual_improvement",
+        "stagnation",
+        "decline"
+      ]
+    },
+    {
+      "promptShort": "political_membership_criterion_rewrite",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "civic_participation",
+        "shared_values",
+        "cultural_heritage",
+        "born_here"
+      ]
+    },
+    {
+      "promptShort": "parents_politics_growing_up",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "very_conservative",
+        "moderate_household",
+        "very_progressive",
+        "not_political"
+      ]
+    },
+    {
+      "promptShort": "religion_in_upbringing",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "very_religious",
+        "somewhat_religious",
+        "not_religious"
+      ]
+    },
+    {
+      "promptShort": "parents_political_engagement",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "very_engaged",
+        "occasionally_discussed",
+        "never_discussed"
+      ]
+    },
+    {
+      "promptShort": "neighborhood_safety_childhood",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "very_safe",
+        "mostly_safe",
+        "somewhat_unsafe",
+        "very_unsafe"
+      ]
+    },
+    {
+      "promptShort": "what_matters_more_in_leader",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "competence_record",
+        "moral_character",
+        "fights_for_us",
+        "unifying_vision"
+      ]
+    },
+    {
+      "promptShort": "political_pitch_resonance",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "evidence_pitch",
+        "values_pitch",
+        "fight_pitch",
+        "unity_pitch"
+      ]
+    },
+    {
+      "promptShort": "movement_aesthetics_reaction",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "fiery_rally",
+        "measured_rally",
+        "grassroots_community",
+        "data_driven_campaign"
+      ]
+    },
+    {
+      "promptShort": "engagement_motivations_top2",
+      "uiType": "multi",
+      "optionKeys": [
+        "civic_duty",
+        "protect_values",
+        "help_community",
+        "fight_injustice",
+        "self_interest",
+        "intellectual_challenge"
+      ]
+    },
+    {
+      "promptShort": "what_changed_your_mind",
+      "uiType": "multi",
+      "optionKeys": [
+        "personal_experience",
+        "data_evidence",
+        "trusted_authority",
+        "religious_moral",
+        "never_changed"
+      ]
+    },
+    {
+      "promptShort": "factual_estimates_and_confidence",
+      "uiType": "allocation",
+      "optionKeys": [
+        "expert_consensus",
+        "personal_research",
+        "lived_experience",
+        "tradition"
+      ]
+    },
+    {
+      "promptShort": "factory_closure_causes_ranking",
+      "uiType": "ranking",
+      "optionKeys": [
+        "global_competition",
+        "automation",
+        "corporate_decisions",
+        "government_policy",
+        "worker_choices"
+      ]
+    },
+    {
+      "promptShort": "integration_expectations_rewrite",
+      "uiType": "ranking",
+      "optionKeys": [
+        "learn_language",
+        "follow_laws",
+        "adopt_values",
+        "economic_contribution",
+        "cultural_customs"
+      ]
+    },
+    {
+      "promptShort": "best_worst_battery",
+      "uiType": "best_worst",
+      "optionKeys": [
+        "fairness",
+        "procedural_integrity",
+        "national_strength",
+        "community_bonds",
+        "individual_freedom",
+        "tradition_continuity"
+      ]
+    },
+    {
+      "promptShort": "political_frustration",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "corporate_power_inequality",
+        "government_overreach",
+        "both_sides_broken",
+        "system_unjust",
+        "values_eroding",
+        "politics_irrelevant"
+      ]
+    },
+    {
+      "promptShort": "common_ground_salience",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "rhetoric_style_importance",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "success_attribution",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "hard_work_talent",
+        "good_choices",
+        "right_connections",
+        "system_advantages",
+        "whole_system"
+      ]
+    },
+    {
+      "promptShort": "decision_making_style",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "research_data",
+        "trusted_advice",
+        "values_tradition",
+        "gut_feeling",
+        "own_reasoning",
+        "cant_predict"
+      ]
+    },
+    {
+      "promptShort": "speaker_appeal",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "bridge_builder",
+        "deep_expertise",
+        "community_voice",
+        "says_what_they_think",
+        "calls_out_power",
+        "big_picture",
+        "dont_care_style"
+      ]
+    },
+    {
+      "promptShort": "expert_disagreement_reaction",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "check_evidence",
+        "check_credentials",
+        "check_values",
+        "check_experience",
+        "both_wrong",
+        "tune_out"
+      ]
+    },
+    {
+      "promptShort": "political_attention_style",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "look_up_facts",
+        "watch_leaders",
+        "ask_trusted_people",
+        "check_personal_impact",
+        "skip_it"
+      ]
+    },
+    {
+      "promptShort": "party_vs_cause_loyalty",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "say_so_publicly",
+        "push_back_internally",
+        "stick_with_side",
+        "cause_over_party"
+      ]
+    },
+    {
+      "promptShort": "openness_assimilation_closure",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "preserve_culture",
+        "civic_assimilation",
+        "open_pluralist",
+        "economics_first"
+      ]
+    },
+    {
+      "promptShort": "broken_politics_diagnosis",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "elite_exclusion",
+        "no_representation",
+        "combative_mobilization",
+        "civic_loss"
+      ]
+    },
+    {
+      "promptShort": "institutions_harden_into_domination",
+      "uiType": "slider",
+      "optionKeys": [
+        "0-20",
+        "21-40",
+        "41-60",
+        "61-80",
+        "81-100"
+      ]
+    },
+    {
+      "promptShort": "institutional_legitimacy_source",
+      "uiType": "single_choice",
+      "optionKeys": [
+        "inherited_tradition",
+        "procedural_rules",
+        "order_and_results",
+        "justice_first"
+      ]
+    }
+  ]
+}

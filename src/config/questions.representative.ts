@@ -110,6 +110,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
       { node: "ONT_S", kind: "continuous", role: "position", weight: 0.55, touchType: "causal_allocation" },
+      { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" },
+      { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.50, touchType: "derived_allocation_concentration" }
     ],
     allocationMap: {
       effort_choices: { continuous: { MAT: 0.8, ONT_S: -0.5, COM: -0.4 } },
@@ -129,14 +131,15 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
       { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" }
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
+      { node: "ZS", kind: "continuous", role: "salience", weight: 0.50, touchType: "derived_allocation_concentration" },
+      { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
     ],
     allocationMap: {
-      complex_forces: { continuous: { ONT_S: 0.9, COM: 0.5 } },
+      complex_forces: { continuous: { ONT_S: 0.6, COM: 0.4 } },
       powerful_incompetent: { continuous: { ONT_S: 0.2, COM: -0.3 } },
       powerful_selfish: { continuous: { ZS: 0.9, ONT_H: -0.5, COM: -0.6 } },
-      ordinary_choices: { continuous: { ONT_S: -0.8, COM: -0.4 } },
-      random_luck: { continuous: { ONT_S: 0.3, COM: 0.3 } }
+      ordinary_choices: { continuous: { ONT_S: -0.8, COM: -0.4 } }
     }
   },
   {
@@ -271,7 +274,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "AES", kind: "categorical", role: "category", weight: 0.90, touchType: "leader_style" },
       { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "governance_style" },
-      { node: "ENG", kind: "continuous", role: "salience", weight: 0.10, touchType: "mobilization_proxy" }
+      { node: "ENG", kind: "continuous", role: "salience", weight: 0.10, touchType: "mobilization_proxy" },
+      { node: "AES", kind: "categorical", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
     ],
     optionEvidence: {
       channel_anger: {
@@ -376,7 +380,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MOR", kind: "continuous", role: "position", weight: 0.90, touchType: "moral_scope_tradeoff" },
       { node: "TRB", kind: "continuous", role: "position", weight: 0.25, touchType: "moral_scope_tradeoff" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "moral_scope_tradeoff" }
+      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "moral_scope_tradeoff" },
+      { node: "MOR", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
     ],
     sliderMap: {
       "0-20":   { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
@@ -717,22 +722,39 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "PF", kind: "continuous", role: "salience", weight: 0.15, touchType: "social_behavior" }
     ],
     optionEvidence: {
+      // V1: "Share your views but try to keep it civil"
+      share_views: {
+        continuous: {
+          ENG: { pos: [0.05, 0.15, 0.35, 0.30, 0.15] },
+          COM: { pos: [0.06, 0.12, 0.30, 0.32, 0.20] }
+        }
+      },
+      // V1: "Avoid entirely — politics ruins social situations"
       avoid_entirely: {
         continuous: {
           ENG: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
           COM: { pos: [0.08, 0.15, 0.28, 0.30, 0.19] }
         }
       },
-      discuss_if_comes_up: {
+      // V1: "Try to change the subject — not the place"
+      change_subject: {
         continuous: {
-          ENG: { pos: [0.08, 0.22, 0.40, 0.22, 0.08] },
-          COM: { pos: [0.06, 0.12, 0.30, 0.32, 0.20] }
+          ENG: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] },
+          COM: { pos: [0.05, 0.12, 0.28, 0.35, 0.20] }
         }
       },
-      actively_bring_up: {
+      // V1: "Engage passionately — these conversations matter"
+      engage_passionately: {
         continuous: {
           ENG: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] },
           COM: { pos: [0.15, 0.22, 0.28, 0.22, 0.13] }
+        }
+      },
+      // V1: "Listen mostly, share selectively"
+      listen_mostly: {
+        continuous: {
+          ENG: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
+          COM: { pos: [0.04, 0.10, 0.25, 0.35, 0.26] }
         }
       }
     }
@@ -868,6 +890,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.90, touchType: "fairness_threshold" },
+      { node: "MAT", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
     ],
     optionEvidence: {
       ratio_10_to_1: {
@@ -880,7 +903,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MAT: { pos: [0.17, 0.32, 0.35, 0.12, 0.04] }
         }
       },
-      ratio_200_to_1: {
+      // V1: "100:1"
+      ratio_100_to_1: {
+        continuous: {
+          MAT: { pos: [0.08, 0.20, 0.35, 0.25, 0.12] }
+        }
+      },
+      // V1: "300:1 (about current average)" — renamed from ratio_200_to_1
+      ratio_300_to_1: {
         continuous: {
           MAT: { pos: [0.05, 0.12, 0.28, 0.35, 0.20] }
         }
@@ -1793,7 +1823,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "EPS", kind: "categorical", role: "category", weight: 0.30, touchType: "rhetorical_preference" },
       { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_preference" },
       { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "rhetorical_preference" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "rhetorical_preference" }
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "rhetorical_preference" },
+      { node: "AES", kind: "categorical", role: "salience", weight: 0.80, touchType: "checkbox_salience" }
     ],
     optionEvidence: {
       evidence_pitch: {
@@ -1875,43 +1906,54 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.86,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.55, touchType: "motive_selection" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.35, touchType: "motive_selection" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.30, touchType: "motive_selection" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "motive_selection" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "motive_selection" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "motive_selection" }
+      { node: "ENG", kind: "continuous", role: "salience", weight: 0.55, touchType: "motive_salience" },
+      { node: "PF", kind: "continuous", role: "salience", weight: 0.35, touchType: "motive_salience" },
+      { node: "TRB", kind: "continuous", role: "salience", weight: 0.30, touchType: "motive_salience" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.20, touchType: "motive_salience" },
+      { node: "COM", kind: "continuous", role: "salience", weight: 0.20, touchType: "motive_salience" },
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "motive_salience" }
     ],
     optionEvidence: {
       civic_duty: {
+        // Civic duty → high salience on COM, PRO (process matters to this person)
         continuous: {
-          COM: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
+          COM: { sal: [0.05, 0.15, 0.35, 0.45] },
+          PRO: { sal: [0.05, 0.15, 0.35, 0.45] }
         }
       },
       protect_values: {
+        // Protect values → high salience on TRB, PF (tribal/partisan identity matters)
         continuous: {
-          TRB: { pos: [0.08, 0.15, 0.28, 0.30, 0.19] }
+          TRB: { sal: [0.05, 0.15, 0.35, 0.45] },
+          PF: { sal: [0.05, 0.15, 0.35, 0.45] }
         }
       },
       help_community: {
+        // Help community → high salience on COM, MOR (community/moral concern matters)
         continuous: {
-          COM: { pos: [0.04, 0.10, 0.25, 0.35, 0.26] },
-          MOR: { pos: [0.04, 0.10, 0.28, 0.35, 0.23] }
+          COM: { sal: [0.04, 0.12, 0.38, 0.46] },
+          MOR: { sal: [0.04, 0.14, 0.38, 0.44] }
         }
       },
       fight_injustice: {
+        // Fight injustice → high salience on ENG, TRB (engaged, cause-driven)
         continuous: {
-          TRB: { pos: [0.12, 0.20, 0.30, 0.24, 0.14] },
-          PRO: { pos: [0.04, 0.10, 0.25, 0.35, 0.26] }
+          ENG: { sal: [0.03, 0.10, 0.37, 0.50] },
+          TRB: { sal: [0.05, 0.15, 0.35, 0.45] }
         }
       },
       self_interest: {
+        // Self-interest → high salience on ENG (engaged for personal stakes)
         continuous: {
-          ENG: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
+          ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
         },
         categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
       },
       intellectual_challenge: {
+        // Intellectual challenge → salience on ENG, EPS category
+        continuous: {
+          ENG: { sal: [0.03, 0.10, 0.37, 0.50] }
+        },
         categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } }
       }
     }
@@ -2365,9 +2407,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   */ // end Q70 comment block
 
-  /* Q71 — individually safe (98.4%) but causes interaction with Q72 that breaks 117.
-     Re-enable if Q72 is removed, or if evidence maps are recalibrated.
-  {
+  // Q71 — Re-enabled: Q72 was removed, so interaction no longer applies.
+  ,{
     id: 71,
     stage: "stage2",
     section: "VI",
@@ -2380,14 +2421,13 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "ENG", kind: "continuous", role: "salience", weight: 0.20, touchType: "attention_proxy" }
     ],
     sliderMap: {
-      "0-20":   { categorical: { AES: { } } },
-      "21-40":  { categorical: { AES: { } } },
-      "41-60":  { categorical: { AES: { } } },
-      "61-80":  { categorical: { AES: { } } },
-      "81-100": { categorical: { AES: { } } }
+      "0-20":   { categorical: { AES: { sal: [0.55, 0.30, 0.12, 0.03] } } },
+      "21-40":  { categorical: { AES: { sal: [0.25, 0.40, 0.25, 0.10] } } },
+      "41-60":  { categorical: { AES: { sal: [0.08, 0.28, 0.40, 0.24] } } },
+      "61-80":  { categorical: { AES: { sal: [0.03, 0.12, 0.40, 0.45] } } },
+      "81-100": { categorical: { AES: { sal: [0.02, 0.08, 0.30, 0.60] } } }
     }
-  },
-  */
+  }
 
   /* Q72 removed — PRO+COM process/outcome tradeoff is already well-covered
      by existing questions in the bank. */
@@ -2504,7 +2544,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "ONT_S", kind: "continuous", role: "position",  weight: 0.90, touchType: "causal_attribution" },
       { node: "ONT_S", kind: "continuous", role: "salience",  weight: 0.40, touchType: "causal_attribution" },
-      { node: "ZS",    kind: "continuous", role: "position",  weight: 0.20, touchType: "distributional_worldview" }
+      { node: "ZS",    kind: "continuous", role: "position",  weight: 0.20, touchType: "distributional_worldview" },
+      { node: "ONT_S", kind: "continuous", role: "salience",  weight: 0.85, touchType: "checkbox_salience" }
     ],
     optionEvidence: {
       hard_work_talent: {
@@ -2707,70 +2748,291 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // "When you encounter a new political issue you haven't thought about before,
   //  what's the first thing you do?"
   // Behavioral framing reveals which dimension the respondent naturally
-  // activates first — engagement style, epistemological approach, or aesthetic
-  // evaluation. The "skip it" option provides a low-salience anchor for all three.
+  // Q80 — political_attention_style — DELETED per Sam's request (question didn't match options)
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // NEW DISCRIMINATOR QUESTIONS (81-85) — from ChatGPT audit
+  // Added 2026-03-28 to address simulation misses and thin node coverage
+  // ═══════════════════════════════════════════════════════════════════════
+
+  // Q81 — Party loyalty vs cause loyalty
+  // Addresses: 100 Tribal Insurgent ↔ 012 Class-War Leftist confusion; weak PF-position
   {
-    id: 80,
-    stage: "stage2",
-    section: "I",
-    promptShort: "political_attention_style",
+    id: 81,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "party_vs_cause_loyalty",
+    uiType: "single_choice",
+    quality: 0.92,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "PF", kind: "continuous", role: "position", weight: 0.90, touchType: "identity_loyalty" },
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.35, touchType: "camp_attachment" },
+      { node: "ENG", kind: "continuous", role: "position", weight: 0.20, touchType: "activation_proxy" }
+    ],
+    optionEvidence: {
+      // A: Say so publicly, even if it weakens my side
+      say_so_publicly: {
+        continuous: {
+          PF:  { pos: [0.55, 0.25, 0.12, 0.05, 0.03] },
+          TRB: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
+          ENG: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
+        }
+      },
+      // B: Push back internally, but keep public unity
+      push_back_internally: {
+        continuous: {
+          PF:  { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
+          TRB: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
+          ENG: { pos: [0.10, 0.20, 0.35, 0.25, 0.10] }
+        }
+      },
+      // C: Stick with my side; the other camp is the real threat
+      stick_with_side: {
+        continuous: {
+          PF:  { pos: [0.03, 0.05, 0.12, 0.25, 0.55] },
+          TRB: { pos: [0.04, 0.08, 0.18, 0.30, 0.40] },
+          ENG: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
+        }
+      },
+      // D: Party labels matter less than whether the position serves the cause
+      cause_over_party: {
+        continuous: {
+          PF:  { pos: [0.55, 0.25, 0.12, 0.05, 0.03] },
+          TRB: { pos: [0.25, 0.30, 0.25, 0.12, 0.08] },
+          ENG: { pos: [0.03, 0.08, 0.20, 0.35, 0.34] }
+        }
+      }
+    }
+  },
+
+  // Q82 — Openness vs assimilation vs closure
+  // Addresses: 050 Religious Leftist ↔ 049 Paternal Egalitarian; 070 ↔ 075; CD/CU seam
+  {
+    id: 82,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "openness_assimilation_closure",
     uiType: "single_choice",
     quality: 0.91,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "ENG", kind: "continuous",   role: "salience", weight: 0.70, touchType: "attention_behavior" },
-      { node: "EPS", kind: "categorical",  role: "salience", weight: 0.65, touchType: "attention_behavior" },
-      { node: "AES", kind: "categorical",  role: "salience", weight: 0.55, touchType: "attention_behavior" }
+      { node: "CD", kind: "continuous", role: "position", weight: 0.75, touchType: "cultural_direction" },
+      { node: "CU", kind: "continuous", role: "position", weight: 0.85, touchType: "cultural_uniformity" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "moral_scope" },
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "economics_signal" }
     ],
     optionEvidence: {
-      // "I look up the facts and data first"
-      look_up_facts: {
+      // A: Preserve inherited culture, tighter limits on openness
+      preserve_culture: {
         continuous: {
-          ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
-        },
-        categorical: {
-          EPS: { sal: [0.03, 0.07, 0.25, 0.65] },
-          AES: { sal: [0.20, 0.30, 0.30, 0.20] }
+          CD:  { pos: [0.02, 0.05, 0.13, 0.30, 0.50] },
+          CU:  { pos: [0.50, 0.28, 0.14, 0.05, 0.03] },
+          MOR: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
         }
       },
-      // "I pay attention to how leaders are talking about it"
-      watch_leaders: {
+      // B: Stay open, but newcomers should adopt common civic culture
+      civic_assimilation: {
         continuous: {
-          ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
-        },
-        categorical: {
-          EPS: { sal: [0.20, 0.30, 0.30, 0.20] },
-          AES: { sal: [0.03, 0.07, 0.25, 0.65] }
+          CD:  { pos: [0.05, 0.12, 0.28, 0.35, 0.20] },
+          CU:  { pos: [0.05, 0.12, 0.25, 0.35, 0.23] },
+          MOR: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
         }
       },
-      // "I talk to people I trust about it"
-      ask_trusted_people: {
+      // C: Stay open, don't demand cultural convergence
+      open_pluralist: {
         continuous: {
-          ENG: { sal: [0.08, 0.20, 0.35, 0.37] }
-        },
-        categorical: {
-          EPS: { sal: [0.12, 0.25, 0.33, 0.30] },
-          AES: { sal: [0.15, 0.25, 0.30, 0.30] }
+          CD:  { pos: [0.50, 0.30, 0.13, 0.05, 0.02] },
+          CU:  { pos: [0.03, 0.05, 0.14, 0.28, 0.50] },
+          MOR: { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
         }
       },
-      // "I check whether it affects me or my community directly"
-      check_personal_impact: {
+      // D: Cultural questions matter less than economic fairness
+      economics_first: {
         continuous: {
-          ENG: { sal: [0.03, 0.10, 0.30, 0.57] }
-        },
-        categorical: {
-          EPS: { sal: [0.20, 0.28, 0.28, 0.24] },
-          AES: { sal: [0.20, 0.28, 0.28, 0.24] }
+          MAT: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
+          CD:  { pos: [0.15, 0.25, 0.35, 0.15, 0.10] },
+          CU:  { pos: [0.15, 0.25, 0.30, 0.20, 0.10] },
+          MOR: { pos: [0.15, 0.25, 0.35, 0.15, 0.10] }
+        }
+      }
+    }
+  },
+
+  // Q83 — Anti-elite rage vs tribune politics
+  // Addresses: 098 Anti-Elite Populist ↔ 102 Folk Tribune
+  {
+    id: 83,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "broken_politics_diagnosis",
+    uiType: "single_choice",
+    quality: 0.90,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "ENG", kind: "continuous", role: "position", weight: 0.55, touchType: "mobilization_style" },
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.45, touchType: "camp_attachment" },
+      { node: "CD", kind: "continuous", role: "position", weight: 0.35, touchType: "cultural_direction" },
+      { node: "CU", kind: "continuous", role: "position", weight: 0.25, touchType: "cultural_uniformity" },
+      { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "compromise_signal" }
+    ],
+    optionEvidence: {
+      // A: Elites make real decisions and shut ordinary people out
+      elite_exclusion: {
+        continuous: {
+          ENG: { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
+          TRB: { pos: [0.06, 0.12, 0.25, 0.32, 0.25] },
+          COM: { pos: [0.30, 0.28, 0.22, 0.12, 0.08] }
         }
       },
-      // "I usually skip it — there's too much to keep up with"
-      skip_it: {
+      // B: Ordinary people have no one who truly speaks for them
+      no_representation: {
         continuous: {
-          ENG: { sal: [0.60, 0.25, 0.10, 0.05] }
+          ENG: { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
+          TRB: { pos: [0.02, 0.05, 0.13, 0.30, 0.50] },
+          COM: { pos: [0.15, 0.25, 0.30, 0.18, 0.12] }
+        }
+      },
+      // C: Politics is too restrained; needs leaders willing to fight harder
+      combative_mobilization: {
+        continuous: {
+          ENG: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] },
+          TRB: { pos: [0.06, 0.12, 0.25, 0.32, 0.25] },
+          COM: { pos: [0.45, 0.28, 0.15, 0.08, 0.04] }
+        }
+      },
+      // D: People no longer share a common civic and national life
+      civic_loss: {
+        continuous: {
+          CD:  { pos: [0.04, 0.08, 0.18, 0.30, 0.40] },
+          CU:  { pos: [0.40, 0.28, 0.18, 0.10, 0.04] },
+          ENG: { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
+          TRB: { pos: [0.06, 0.12, 0.25, 0.32, 0.25] }
+        }
+      }
+    }
+  },
+
+  // Q84 — Mutual-aid optimism vs domination suspicion (Likert)
+  // Addresses: 019 Anarchist Mutualist ↔ 020 Horizontalist Dissenter
+  {
+    id: 84,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "institutions_harden_into_domination",
+    uiType: "slider",
+    quality: 0.89,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "ZS", kind: "continuous", role: "position", weight: 0.60, touchType: "zero_sum_institutions" },
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.45, touchType: "hierarchy_trust" },
+      { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "compromise_signal" },
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "procedural_trust" }
+    ],
+    sliderMap: {
+      // 1 = strongly disagree (institutions are fine, hierarchy natural)
+      "0-20": {
+        continuous: {
+          ZS:    { pos: [0.55, 0.25, 0.12, 0.05, 0.03] },
+          ONT_H: { pos: [0.03, 0.05, 0.12, 0.28, 0.52] },
+          COM:   { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
+          PRO:   { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
+        }
+      },
+      // 2 = disagree
+      "21-40": {
+        continuous: {
+          ZS:    { pos: [0.30, 0.35, 0.22, 0.08, 0.05] },
+          ONT_H: { pos: [0.05, 0.10, 0.22, 0.38, 0.25] },
+          COM:   { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
+          PRO:   { pos: [0.08, 0.12, 0.30, 0.30, 0.20] }
+        }
+      },
+      // 3 = mixed
+      "41-60": {
+        continuous: {
+          ZS:    { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
+          ONT_H: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
+          COM:   { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
+          PRO:   { pos: [0.12, 0.22, 0.32, 0.22, 0.12] }
+        }
+      },
+      // 4 = agree
+      "61-80": {
+        continuous: {
+          ZS:    { pos: [0.05, 0.08, 0.22, 0.35, 0.30] },
+          ONT_H: { pos: [0.25, 0.38, 0.22, 0.10, 0.05] },
+          COM:   { pos: [0.17, 0.30, 0.30, 0.15, 0.08] },
+          PRO:   { pos: [0.20, 0.30, 0.30, 0.12, 0.08] }
+        }
+      },
+      // 5 = strongly agree (institutions always corrupt, domination inevitable)
+      "81-100": {
+        continuous: {
+          ZS:    { pos: [0.03, 0.05, 0.12, 0.25, 0.55] },
+          ONT_H: { pos: [0.52, 0.28, 0.12, 0.05, 0.03] },
+          COM:   { pos: [0.28, 0.35, 0.22, 0.10, 0.05] },
+          PRO:   { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
+        }
+      }
+    }
+  },
+
+  // Q85 — What makes institutions legitimate?
+  // Addresses: 070 Burkean Steward ↔ 075 Institutional Conservative; 091 ↔ 097
+  {
+    id: 85,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "institutional_legitimacy_source",
+    uiType: "single_choice",
+    quality: 0.91,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.80, touchType: "procedural_legitimacy" },
+      { node: "CD", kind: "continuous", role: "position", weight: 0.35, touchType: "cultural_direction" },
+      { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "compromise_signal" }
+    ],
+    optionEvidence: {
+      // A: It carries inherited ways of life forward
+      inherited_tradition: {
+        continuous: {
+          PRO: { pos: [0.05, 0.12, 0.25, 0.35, 0.23] },
+          CD:  { pos: [0.04, 0.08, 0.18, 0.30, 0.40] }
         },
         categorical: {
-          EPS: { sal: [0.50, 0.28, 0.15, 0.07] },
-          AES: { sal: [0.50, 0.28, 0.15, 0.07] }
+          EPS: { probs: [0.05, 0.10, 0.55, 0.15, 0.10, 0.05] }
+        }
+      },
+      // B: It follows neutral constitutional rules and procedures
+      procedural_rules: {
+        continuous: {
+          PRO: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] },
+          COM: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
+        },
+        categorical: {
+          EPS: { probs: [0.35, 0.30, 0.10, 0.10, 0.10, 0.05] }
+        }
+      },
+      // C: It keeps order and gets results when things are unstable
+      order_and_results: {
+        continuous: {
+          PRO: { pos: [0.20, 0.30, 0.28, 0.15, 0.07] },
+          COM: { pos: [0.25, 0.30, 0.25, 0.12, 0.08] },
+          CD:  { pos: [0.08, 0.12, 0.25, 0.30, 0.25] }
+        },
+        categorical: {
+          EPS: { probs: [0.15, 0.15, 0.10, 0.10, 0.40, 0.10] }
+        }
+      },
+      // D: It advances justice, even if rules sometimes have to bend
+      justice_first: {
+        continuous: {
+          PRO: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] },
+          COM: { pos: [0.25, 0.30, 0.25, 0.12, 0.08] }
+        },
+        categorical: {
+          EPS: { probs: [0.05, 0.05, 0.05, 0.50, 0.15, 0.20] }
         }
       }
     }

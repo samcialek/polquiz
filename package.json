@@ -1,0 +1,22 @@
+{
+  "name": "prism-quiz-engine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "build:browser": "node scripts/build-browser.mjs",
+    "sim": "tsx src/test/simulation.ts",
+    "sim:quick": "tsx src/test/simulation.ts --quick",
+    "diagnostic": "tsx src/test/full-diagnostic.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "esbuild": "^0.27.4",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

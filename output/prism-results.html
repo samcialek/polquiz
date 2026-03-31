@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRISM Results</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/topojson.v3.min.js"></script>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card-bg: #12121a;
+  --text: #e8e8f0;
+  --muted: #888;
+  --accent: #7b68ee;
+  --dem-blue: #3355ff;
+  --rep-red: #e9141d;
+  --third-gold: #d4a017;
+  --border: rgba(255,255,255,0.06);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+.section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 1rem; }
+.archetype-name { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.archetype-tier { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem; }
+.archetype-desc { color: #bbb; font-size: 0.95rem; line-height: 1.5; }
+.confidence-bar { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+.stat-box { background: rgba(255,255,255,0.04); padding: 0.8rem 1.2rem; border-radius: 8px; text-align: center; }
+.stat-number { font-size: 1.4rem; font-weight: 700; }
+.stat-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
+.top5-item { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
+.top5-rank { font-size: 0.8rem; color: var(--muted); width: 20px; }
+.top5-info { flex: 1; }
+.top5-name { font-size: 0.85rem; margin-bottom: 0.2rem; }
+.top5-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; }
+.top5-bar-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+.top5-score { font-size: 0.8rem; color: var(--muted); width: 50px; text-align: right; }
+
+/* Elections grid */
+.elections-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+}
+.election-cell {
+  padding: 0.2rem 0.15rem;
+  text-align: center;
+  font-size: 0.55rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s;
+  position: relative;
+  min-height: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.election-cell img.pres-photo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2px;
+}
+.election-cell:hover { transform: scale(1.15); z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.election-cell.dem { background: var(--dem-blue); color: #fff; border-color: rgba(51,51,255,0.3); }
+.election-cell.rep { background: var(--rep-red); color: #fff; border-color: rgba(233,20,29,0.3); }
+.election-cell.third { background: var(--third-gold); color: #000; }
+.election-cell.other { background: #888; color: #fff; }
+.election-cell.abstain { background: #333; color: #666; }
+.cell-year { font-weight: 600; display: block; }
+.cell-name { font-size: 0.45rem; display: block; opacity: 0.9; }
+
+/* Map */
+.map-full-width {
+  margin-left: calc(-1.5rem);
+  margin-right: calc(-1.5rem);
+  margin-bottom: -1.5rem;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+#alignment-map { width: 100%; background: var(--card-bg); }
+
+/* Node profile */
+.cluster-group { margin-bottom: 1.5rem; }
+.cluster-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+.node-row {
+  display: grid;
+  grid-template-columns: 35px 110px 1fr 40px;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.node-value { font-size: 0.7rem; font-weight: 600; color: var(--accent); text-align: center; }
+.node-name { font-size: 0.7rem; color: #bbb; }
+.node-bar-track { background: rgba(255,255,255,0.06); border-radius: 4px; position: relative; }
+.node-bar-fill { border-radius: 4px; transition: width 0.3s; }
+.node-labels { display: flex; justify-content: space-between; margin-top: 1px; }
+.node-label-low, .node-label-high { font-size: 0.5rem; }
+.node-sal { font-size: 0.6rem; color: var(--muted); text-align: right; }
+.no-salience { font-size: 0.6rem; color: #555; font-style: italic; margin-bottom: 0.4rem; padding-left: 150px; }
+
+/* Categorical */
+.cat-bar-container { margin-bottom: 0.5rem; }
+.cat-label { font-size: 0.65rem; color: #bbb; margin-bottom: 2px; }
+.cat-bars { display: flex; height: 16px; border-radius: 3px; overflow: hidden; gap: 1px; }
+.cat-bar-seg { transition: width 0.3s; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; color: #fff; min-width: 0; }
+
+.loading { text-align: center; padding: 4rem; color: var(--muted); font-size: 1.2rem; }
+
+@media (max-width: 600px) {
+  .elections-grid { grid-template-columns: repeat(6, 1fr); }
+  .cell-name { display: none; }
+  .node-row { grid-template-columns: 30px 80px 1fr 30px; gap: 0.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <div class="loading">Loading your results...</div>
+</div>
+
+<script>
+// President photo mappings
+const PP = 'img/presidents/';
+const PHOTOS = {
+  'Washington': PP+'washington.jpg', 'Jefferson': PP+'jefferson.jpg',
+  'Madison': PP+'madison.jpg', 'Monroe': PP+'monroe.jpg',
+  'J.Q. Adams': PP+'jqadams.jpg', 'Jackson': PP+'jackson.jpg',
+  'Van Buren': PP+'vanburen.jpg', 'Harrison': PP+'harrison.jpg',
+  'Polk': PP+'polk.jpg', 'Taylor': PP+'taylor.jpg',
+  'Buchanan': PP+'buchanan.jpg', 'Pierce': PP+'pierce.jpg',
+  'Fremont': PP+'fremont.jpg', 'Lincoln': PP+'lincoln.jpg',
+  'Grant': PP+'grant.jpg', 'Tilden': PP+'tilden.jpg',
+  'Hancock': PP+'hancock.jpg', 'Cleveland': PP+'cleveland.jpg',
+  'Bryan': PP+'bryan.jpg', 'T. Roosevelt': PP+'troosevelt.jpg',
+  'McKinley': PP+'mckinley.jpg', 'Wilson': PP+'wilson.jpg',
+  'Taft': PP+'taft.jpg', 'Debs': PP+'debs.jpg',
+  'Harding': PP+'harding.jpg', 'La Follette': PP+'lafollette.jpg',
+  'Coolidge': PP+'coolidge.jpg', 'Smith': PP+'smith.jpg',
+  'Hoover': PP+'hoover.jpg', 'Landon': PP+'landon.jpg',
+  'FDR': PP+'fdr.jpg', 'Willkie': PP+'willkie.jpg',
+  'Dewey': PP+'dewey.jpg', 'Truman': PP+'truman.jpg',
+  'Eisenhower': PP+'eisenhower.jpg', 'Stevenson': PP+'stevenson.jpg',
+  'Kennedy': PP+'kennedy.jpg', 'Nixon': PP+'nixon.jpg',
+  'Goldwater': PP+'goldwater.jpg', 'LBJ': PP+'lbj.jpg',
+  'Johnson': PP+'lbj.jpg', 'Humphrey': PP+'humphrey.jpg',
+  'McGovern': PP+'mcgovern.jpg', 'Carter': PP+'carter.jpg',
+  'Ford': PP+'ford.jpg', 'Reagan': PP+'reagan.jpg',
+  'Mondale': PP+'mondale.jpg', 'Bush': PP+'bush.jpg',
+  'Dukakis': PP+'dukakis.jpg', 'Clinton': PP+'clinton.jpg',
+  'H. Clinton': PP+'hclinton.jpg', 'Dole': PP+'dole.jpg',
+  'Gore': PP+'gore.jpg', 'Kerry': PP+'kerry.jpg',
+  'Obama': PP+'obama.jpg', 'McCain': PP+'mccain.jpg',
+  'Romney': PP+'romney.jpg', 'Trump': PP+'trump.jpg',
+  'Biden': PP+'biden.jpg', 'Harris': PP+'harris.jpg',
+  'Weaver': PP+'weaver.jpg', 'Wallace': PP+'wallace.jpg',
+};
+
+// Node definitions with polarity labels
+const NODE_DEFS = {
+  MAT: { name: 'Material', low: 'Redistributionist', high: 'Free Market', cluster: 'ENDS' },
+  CD:  { name: 'Cultural Direction', low: 'Progressive', high: 'Traditional', cluster: 'ENDS' },
+  CU:  { name: 'Cultural Unity', low: 'Assimilationist', high: 'Pluralist', cluster: 'ENDS' },
+  MOR: { name: 'Moral Circle', low: 'Particularist', high: 'Universalist', cluster: 'ENDS' },
+  PRO: { name: 'Procedural Faith', low: 'Outcome-First', high: 'Procedural', cluster: 'MEANS' },
+  COM: { name: 'Compromise', low: 'Uncompromising', high: 'Consensus-Seeking', cluster: 'MEANS' },
+  ZS:  { name: 'Zero-Sum', low: 'Positive-Sum', high: 'Zero-Sum', cluster: 'REALITY' },
+  ONT_H: { name: 'Human Nature', low: 'Pessimistic', high: 'Optimistic', cluster: 'REALITY' },
+  ONT_S: { name: 'Institutional Trust', low: 'System Stable', high: 'Deep Critique', cluster: 'REALITY' },
+  PF:  { name: 'Partisan Fusion', low: 'Non-Partisan', high: 'Partisan', cluster: 'SELF' },
+  TRB: { name: 'Tribalism', low: 'Independent', high: 'Tribal', cluster: 'SELF' },
+  ENG: { name: 'Engagement', low: 'Disengaged', high: 'Highly Engaged', cluster: 'SELF' },
+};
+
+const CLUSTER_LABELS = {
+  ENDS: { title: 'ENDS — What You Want', color: '#e6a23c' },
+  MEANS: { title: 'MEANS — How You Get There', color: '#6699ff' },
+  REALITY: { title: 'REALITY — How You See the World', color: '#9966cc' },
+  SELF: { title: 'SELF — Who You Are', color: '#e6726c' },
+};
+
+const CAT_LABELS = {
+  EPS: { name: 'Epistemics', cats: ['Empiricist','Institutionalist','Traditionalist','Intuitionist','Autonomous','Nihilist'], cluster: 'MEANS' },
+  AES: { name: 'Aesthetics', cats: ['Statesman','Technocrat','Pastoral','Authentic','Fighter','Visionary'], cluster: 'MEANS' },
+};
+
+const CAT_COLORS = ['#e6a23c','#6699ff','#9966cc','#e6726c','#66cc99','#cc6699'];
+
+// ── Load data and render ──
+async function init() {
+  // Get results from localStorage
+  const stored = localStorage.getItem('prism-results');
+  if (!stored) {
+    document.getElementById('app').innerHTML = '<div class="loading">No quiz results found. <a href="prism-quiz-v2.html" style="color:var(--accent)">Take the quiz</a></div>';
+    return;
+  }
+  const prism = JSON.parse(stored);
+  const archetypeId = prism.archetypeId;
+
+  // Fetch data files
+  const [archetypesRes, electionsRes, alignmentsRes] = await Promise.all([
+    fetch('data/archetypes.json').then(r => r.json()),
+    fetch('data/elections.json').then(r => r.json()),
+    fetch('data/alignments.json').then(r => r.json()),
+  ]);
+
+  const archetype = archetypesRes.find(a => a.id === parseInt(archetypeId) || a.id === archetypeId || String(a.id) === archetypeId);
+  const elections = electionsRes[archetypeId] || electionsRes[String(parseInt(archetypeId))] || [];
+  const alignments = alignmentsRes[archetypeId] || alignmentsRes[String(parseInt(archetypeId))] || {};
+
+  render(prism, archetype, elections, alignments);
+}
+
+function render(prism, archetype, elections, alignments) {
+  const app = document.getElementById('app');
+
+  // Use respondent's actual node state if available, otherwise fall back to archetype centroid
+  const respondentState = prism.respondentState;
+  const useCentroid = !respondentState;
+
+  let html = '';
+
+  // ── Section 1: Archetype Identity ──
+  html += '<div class="section">';
+  html += '<h2>Your Political Archetype</h2>';
+  html += `<div class="archetype-name">${prism.archetypeName}</div>`;
+  if (archetype) {
+    html += `<div class="archetype-tier">Tier ${archetype.tier?.replace('T','') || '?'} · Archetype #${archetype.id}</div>`;
+    if (archetype.description) {
+      html += `<div class="archetype-desc">${archetype.description}</div>`;
+    }
+    if (archetype.populationWeight) {
+      const popPct = (archetype.populationWeight * 100).toFixed(1);
+      html += `<div style="margin-top:0.6rem;font-size:0.85rem;color:var(--accent);">About ${popPct}% of the US population shares this archetype</div>`;
+    }
+  }
+  html += '<div class="confidence-bar">';
+  html += `<div class="stat-box"><div class="stat-number">${(prism.confidence * 100).toFixed(1)}%</div><div class="stat-label">Confidence</div></div>`;
+  html += `<div class="stat-box"><div class="stat-number">${prism.questionsAnswered}</div><div class="stat-label">Questions</div></div>`;
+  html += '</div>';
+
+  // Top 5
+  if (prism.top5 && prism.top5.length > 0) {
+    html += '<div style="margin-top:1rem;">';
+    const maxPost = prism.top5[0].posterior;
+    prism.top5.forEach((r, i) => {
+      const pct = (r.posterior / maxPost * 100).toFixed(1);
+      html += `<div class="top5-item">
+        <div class="top5-rank">${i+1}</div>
+        <div class="top5-info">
+          <div class="top5-name">${r.name}</div>
+          <div class="top5-bar"><div class="top5-bar-fill" style="width:${pct}%"></div></div>
+        </div>
+        <div class="top5-score">${(r.posterior*100).toFixed(1)}%</div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // ── Section 2: Elections ──
+  if (elections.length > 0) {
+    html += '<div class="section">';
+    html += '<h2>US Presidential Elections · 1789–2024</h2>';
+    html += '<div class="elections-grid">';
+    elections.forEach(e => {
+      const photoUrl = PHOTOS[e.c] || '';
+      const photoHtml = photoUrl ? `<img class="pres-photo" src="${photoUrl}" alt="${e.c}" loading="lazy" onerror="this.style.display='none'">` : '';
+      html += `<div class="election-cell ${e.p}" title="${e.y}: ${e.c}">
+        ${photoHtml}<span class="cell-year">${e.y}</span><span class="cell-name">${e.c}</span>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // ── Section 3: World Alignment Map ──
+  html += '<div class="section">';
+  html += '<h2>World Alignment Map</h2>';
+  html += '<div class="map-full-width"><div id="alignment-map"></div></div>';
+  html += '</div>';
+
+  // ── Section 4: Your Profile ──
+  html += '<div class="section">';
+  html += `<h2>${useCentroid ? 'Archetype Profile' : 'Your Profile'} · 14 Dimensions</h2>`;
+
+  // Group nodes by cluster
+  const clusters = ['ENDS', 'MEANS', 'REALITY', 'SELF'];
+  clusters.forEach(cluster => {
+    const clusterInfo = CLUSTER_LABELS[cluster];
+    html += `<div class="cluster-group">`;
+    html += `<div class="cluster-title" style="color:${clusterInfo.color}">${clusterInfo.title}</div>`;
+
+    // Get continuous nodes for this cluster, sorted by salience
+    const clusterNodes = Object.entries(NODE_DEFS)
+      .filter(([,def]) => def.cluster === cluster)
+      .map(([id, def]) => {
+        let pos, sal;
+        if (respondentState && respondentState.continuous && respondentState.continuous[id]) {
+          pos = respondentState.continuous[id].expectedPos;
+          sal = respondentState.continuous[id].salience;
+        } else if (archetype && archetype.nodes && archetype.nodes[id]) {
+          pos = archetype.nodes[id].pos;
+          sal = archetype.nodes[id].sal || 1;
+        } else {
+          pos = 3; sal = 0;
+        }
+        return { id, ...def, pos, sal };
+      })
+      .sort((a, b) => b.sal - a.sal);
+
+    clusterNodes.forEach(node => {
+      // Scale to 1-10
+      const display10 = ((node.pos - 1) * 9/4) + 1;
+
+      // Flip if < 5.5 on 1-10 scale (dominant side always right)
+      let displayVal = display10;
+      let lowLabel = node.low;
+      let highLabel = node.high;
+      if (display10 < 5.5) {
+        displayVal = 11 - display10;
+        lowLabel = node.high;
+        highLabel = node.low;
+      }
+
+      const barPct = ((displayVal - 1) / 9 * 100).toFixed(1);
+      const barHeight = Math.max(4, Math.round(node.sal * 12));
+
+      if (node.sal < 0.1) {
+        html += `<div class="no-salience">${node.name}: no salience</div>`;
+      } else {
+        const lowEmph = displayVal <= 5.5 ? 'font-size:0.65rem;font-weight:600;color:#aaa' : 'font-size:0.5rem;color:#555';
+        const highEmph = displayVal > 5.5 ? 'font-size:0.65rem;font-weight:600;color:#aaa' : 'font-size:0.5rem;color:#555';
+
+        html += `<div class="node-row">
+          <div class="node-value">${displayVal.toFixed(1)}</div>
+          <div class="node-name">${node.name}</div>
+          <div>
+            <div class="node-bar-track" style="height:${barHeight}px">
+              <div class="node-bar-fill" style="width:${barPct}%;height:100%;background:${clusterInfo.color}"></div>
+            </div>
+            <div class="node-labels">
+              <span class="node-label-low" style="${lowEmph}">${lowLabel}</span>
+              <span class="node-label-high" style="${highEmph}">${highLabel}</span>
+            </div>
+          </div>
+          <div class="node-sal">${(node.sal).toFixed(1)}</div>
+        </div>`;
+      }
+    });
+
+    // Categorical nodes in this cluster
+    if (cluster === 'MEANS') {
+      ['EPS', 'AES'].forEach(catId => {
+        const catDef = CAT_LABELS[catId];
+        let probs;
+        if (respondentState && respondentState.categorical && respondentState.categorical[catId]) {
+          probs = respondentState.categorical[catId].catDist;
+        } else if (archetype && archetype.nodes && archetype.nodes[catId]) {
+          probs = archetype.nodes[catId].probs;
+        }
+        if (!probs) return;
+
+        html += `<div class="cat-bar-container">
+          <div class="cat-label">${catDef.name}</div>
+          <div class="cat-bars">`;
+        probs.forEach((p, i) => {
+          const widthPct = (p * 100).toFixed(1);
+          if (p > 0.02) {
+            html += `<div class="cat-bar-seg" style="width:${widthPct}%;background:${CAT_COLORS[i]}" title="${catDef.cats[i]}: ${(p*100).toFixed(0)}%">
+              ${p > 0.12 ? catDef.cats[i].substring(0,4) : ''}
+            </div>`;
+          }
+        });
+        html += '</div></div>';
+      });
+    }
+
+    html += '</div>';
+  });
+
+  html += '</div>';
+
+  // Retake button
+  html += '<div style="text-align:center;margin:2rem 0"><a href="prism-quiz-v2.html" style="color:var(--accent);font-size:0.9rem">← Retake Quiz</a></div>';
+
+  app.innerHTML = html;
+
+  // Render map after DOM is ready
+  if (Object.keys(alignments).length > 0) {
+    renderMap(alignments);
+  }
+}
+
+// ── World Alignment Map ──
+async function renderMap(alignments) {
+  const container = document.getElementById('alignment-map');
+  if (!container) return;
+
+  const width = container.clientWidth || 1000;
+  const height = width / 1.8;
+
+  const svg = d3.select('#alignment-map')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`);
+
+  // Load world topology
+  const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  const countries = topojson.feature(world, world.objects.countries);
+
+  const projection = d3.geoNaturalEarth1()
+    .fitSize([width, height], countries);
+  const path = d3.geoPath(projection);
+
+  // Map country names from alignment data to ISO codes
+  // For now, compute average alignment per country across all eras
+  const countryScores = {};
+  for (const [country, regimes] of Object.entries(alignments)) {
+    const scores = regimes.map(r => r.v);
+    countryScores[country] = scores.reduce((a,b) => a+b, 0) / scores.length;
+  }
+
+  // Simple name→ID mapping for major countries
+  const NAME_TO_ID = {
+    'USA': '840', 'United Kingdom': '826', 'France': '250', 'Germany/Prussia': '276',
+    'Russia/USSR': '643', 'China': '156', 'Japan': '392', 'India': '356',
+    'Brazil': '076', 'Mexico': '484', 'Canada': '124', 'Argentina': '032',
+    'Australia': '036', 'South Africa': '710', 'Nigeria': '566', 'Egypt': '818',
+    'Turkey': '792', 'Ottoman Empire/Turkey': '792',
+    'Iran': '364', 'Iraq': '368', 'Saudi Arabia': '682',
+    'Spain': '724', 'Italy': '380', 'Netherlands': '528', 'Belgium': '056',
+    'Sweden': '752', 'Poland': '616', 'Greece': '300', 'Portugal': '620',
+    'Switzerland': '756', 'Austria/Austria-Hungary': '040',
+    'Hungary': '348', 'Romania': '642', 'Czech/Czechoslovakia': '203',
+    'Colombia': '170', 'Chile': '152', 'Peru': '604', 'Venezuela': '862',
+    'Cuba': '192', 'Indonesia': '360', 'Philippines': '608',
+    'Thailand': '764', 'Vietnam': '704', 'South Korea': '410', 'Korea': '410',
+    'Pakistan': '586', 'Israel': '376', 'Algeria': '012', 'Ethiopia': '231',
+  };
+
+  const idToScore = {};
+  for (const [name, score] of Object.entries(countryScores)) {
+    const id = NAME_TO_ID[name];
+    if (id) idToScore[id] = score;
+  }
+
+  const colorScale = d3.scaleSequential(d3.interpolateRdYlGn)
+    .domain([-2, 2.5]);
+
+  // Draw countries
+  svg.selectAll('path')
+    .data(countries.features)
+    .join('path')
+    .attr('d', path)
+    .attr('fill', d => {
+      const score = idToScore[d.id];
+      return score !== undefined ? colorScale(score) : '#1a1a2e';
+    })
+    .attr('stroke', '#333')
+    .attr('stroke-width', 0.5)
+    .append('title')
+    .text(d => {
+      const score = idToScore[d.id];
+      const name = Object.entries(NAME_TO_ID).find(([,v]) => v === d.id)?.[0] || d.id;
+      return score !== undefined ? `${name}: ${score.toFixed(2)}` : name;
+    });
+
+  // Legend
+  const legendWidth = 200;
+  const legendHeight = 10;
+  const legendX = width - legendWidth - 20;
+  const legendY = height - 30;
+
+  const defs = svg.append('defs');
+  const gradient = defs.append('linearGradient').attr('id', 'legend-gradient');
+  gradient.append('stop').attr('offset', '0%').attr('stop-color', colorScale(-2));
+  gradient.append('stop').attr('offset', '50%').attr('stop-color', colorScale(0.25));
+  gradient.append('stop').attr('offset', '100%').attr('stop-color', colorScale(2.5));
+
+  svg.append('rect').attr('x', legendX).attr('y', legendY)
+    .attr('width', legendWidth).attr('height', legendHeight)
+    .attr('fill', 'url(#legend-gradient)').attr('rx', 3);
+
+  svg.append('text').attr('x', legendX).attr('y', legendY - 3)
+    .attr('fill', '#888').attr('font-size', '9px').text('Opposed');
+  svg.append('text').attr('x', legendX + legendWidth).attr('y', legendY - 3)
+    .attr('fill', '#888').attr('font-size', '9px').attr('text-anchor', 'end').text('Aligned');
+}
+
+init();
+</script>
+</body>
+</html>

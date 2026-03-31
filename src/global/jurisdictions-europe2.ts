@@ -1,0 +1,795 @@
+/**
+ * Historical regime profiles for 9 European countries (Part 2):
+ * Netherlands, Sweden, Portugal, Greece, Belgium, Switzerland,
+ * Romania, Hungary, Czech/Czechoslovakia.
+ *
+ * Each entry captures the dominant political disposition of the
+ * jurisdiction during that period, scored on the 14 PRISM nodes.
+ */
+
+import type { RegimePeriod } from "./jurisdictions-europe1.js";
+
+export const EUROPE_PART2: RegimePeriod[] = [
+
+  // ─────────────────────────────────────────────────────────────
+  // 10. NETHERLANDS
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Netherlands",
+    regime: "Batavian/French Period",
+    startYear: 1789,
+    endYear: 1813,
+    description:
+      "The Netherlands became a French satellite state under revolutionary and then Napoleonic influence, importing Enlightenment ideals and centralized governance to the formerly decentralized Dutch Republic.",
+    MAT: 3, CD: 2, CU: 3, MOR: 4, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 4, ONT_S: 4, PF: 3, TRB: 2, ENG: 4,
+    EPS: 0, AES: 5,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "United Kingdom of Netherlands",
+    startYear: 1814,
+    endYear: 1830,
+    description:
+      "Under William I, the Congress of Vienna merged the northern and southern Netherlands into a single kingdom, an arrangement that proved unstable due to religious, linguistic, and economic tensions with the Belgian south.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 4, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 2, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "Liberal Era",
+    startYear: 1831,
+    endYear: 1887,
+    description:
+      "Thorbecke's constitutional reforms established parliamentary sovereignty and liberal governance, while the Netherlands expanded its colonial empire in the East Indies and embraced free-trade economics.",
+    MAT: 5, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 4,
+    ZS: 2, ONT_H: 3, ONT_S: 2, PF: 3, TRB: 2, ENG: 3,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "Pillarization",
+    startYear: 1888,
+    endYear: 1939,
+    description:
+      "Dutch society organized into distinct confessional and ideological 'pillars' (verzuiling), each with its own parties, schools, media, and unions, governed at the top by elite consensus and proportional representation.",
+    MAT: 3, CD: 4, CU: 3, MOR: 3, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 4, ENG: 4,
+    EPS: 1, AES: 2,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "WWII Occupation",
+    startYear: 1940,
+    endYear: 1945,
+    description:
+      "German occupation brought deportation of Dutch Jews, forced labor, and the catastrophic Hunger Winter of 1944-45, shattering the prewar social order and leaving deep scars on national memory.",
+    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 5, ENG: 5,
+    EPS: 3, AES: 4,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "Reconstruction/Consensus",
+    startYear: 1946,
+    endYear: 1965,
+    description:
+      "Postwar reconstruction fueled by Marshall Plan aid built a comprehensive welfare state, while decolonization of Indonesia and Suriname transformed the Netherlands from colonial empire to European middle power.",
+    MAT: 2, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "Cultural Revolution/Progressive",
+    startYear: 1966,
+    endYear: 2001,
+    description:
+      "The Provo movement and depillarization unleashed radical cultural liberalism, making the Netherlands a global byword for tolerance on drugs, sexuality, and euthanasia, while the polder model maintained economic consensus.",
+    MAT: 2, CD: 1, CU: 5, MOR: 5, PRO: 4, COM: 5,
+    ZS: 1, ONT_H: 5, ONT_S: 2, PF: 3, TRB: 1, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Netherlands",
+    regime: "Populist Turn",
+    startYear: 2002,
+    endYear: 2026,
+    description:
+      "The assassinations of Pim Fortuyn and Theo van Gogh shattered the progressive consensus, opening space for Geert Wilders and the PVV to reframe Dutch politics around immigration, Islam, and national identity.",
+    MAT: 3, CD: 3, CU: 3, MOR: 3, PRO: 4, COM: 3,
+    ZS: 3, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 3, ENG: 5,
+    EPS: 3, AES: 3,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 11. SWEDEN
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Sweden",
+    regime: "Gustavian/Bernadotte Early",
+    startYear: 1789,
+    endYear: 1865,
+    description:
+      "From Gustav III's enlightened absolutism through the Bernadotte dynasty's establishment, Sweden gradually transitioned from royal autocracy toward constitutional governance while losing Finland to Russia in 1809.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 2, TRB: 3, ENG: 2,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Sweden",
+    regime: "Liberal Reform Era",
+    startYear: 1866,
+    endYear: 1913,
+    description:
+      "Rapid industrialization and mass emigration to America coexisted with parliamentary reform that replaced the old four-estate Riksdag, as liberal and agrarian movements pushed for universal suffrage.",
+    MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 3, ONT_S: 3, PF: 3, TRB: 2, ENG: 3,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Sweden",
+    regime: "Social Democratic Rise",
+    startYear: 1914,
+    endYear: 1945,
+    description:
+      "Sweden maintained neutrality through both world wars while the Social Democrats rose to dominance, culminating in the 1938 Saltsjobaden Agreement that institutionalized labor-capital cooperation.",
+    MAT: 2, CD: 3, CU: 3, MOR: 4, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 3, PF: 4, TRB: 2, ENG: 4,
+    EPS: 0, AES: 1,
+  },
+  {
+    jurisdiction: "Sweden",
+    regime: "Folkhem Peak",
+    startYear: 1946,
+    endYear: 1975,
+    description:
+      "The 'People's Home' vision reached its zenith with the world's most comprehensive welfare state, combining high taxes, universal services, and active labor market policy under unbroken Social Democratic rule and strict Cold War neutrality.",
+    MAT: 1, CD: 2, CU: 4, MOR: 5, PRO: 5, COM: 5,
+    ZS: 1, ONT_H: 5, ONT_S: 1, PF: 4, TRB: 1, ENG: 4,
+    EPS: 0, AES: 1,
+  },
+  {
+    jurisdiction: "Sweden",
+    regime: "Neoliberal Turn",
+    startYear: 1976,
+    endYear: 2005,
+    description:
+      "The 1990s financial crisis triggered deregulation, pension reform, and EU accession, as the Swedish Model adapted to globalization while preserving its core welfare commitments under alternating center-left and center-right governments.",
+    MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 2, ENG: 4,
+    EPS: 0, AES: 1,
+  },
+  {
+    jurisdiction: "Sweden",
+    regime: "Immigration Debate",
+    startYear: 2006,
+    endYear: 2026,
+    description:
+      "The Sweden Democrats' rise from pariah to kingmaker transformed Swedish politics around immigration and integration, while the 2015 refugee crisis and gang violence eroded the postwar consensus, culminating in NATO membership.",
+    MAT: 3, CD: 3, CU: 3, MOR: 4, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 3, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 12. PORTUGAL
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Portugal",
+    regime: "Late Monarchy",
+    startYear: 1789,
+    endYear: 1807,
+    description:
+      "Under the mentally unstable Maria I and her son Joao as regent, Portugal clung to absolutism and close alliance with Britain while the French revolutionary threat loomed over the Iberian Peninsula.",
+    MAT: 4, CD: 5, CU: 2, MOR: 2, PRO: 3, COM: 2,
+    ZS: 3, ONT_H: 2, ONT_S: 2, PF: 2, TRB: 4, ENG: 2,
+    EPS: 2, AES: 0,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Brazilian Exile/Liberalism",
+    startYear: 1808,
+    endYear: 1833,
+    description:
+      "The royal court fled to Brazil during the Napoleonic invasion, and the 1820 liberal revolution inaugurated decades of conflict between absolutists and constitutionalists that culminated in civil war.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 4, PF: 3, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Constitutional Monarchy",
+    startYear: 1834,
+    endYear: 1909,
+    description:
+      "The rotativismo system alternated two liberal parties in power under constitutional monarchy, while Portugal pursued its African colonial ambitions and faced the humiliation of the 1890 British Ultimatum.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 3, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "First Republic",
+    startYear: 1910,
+    endYear: 1925,
+    description:
+      "The republican revolution overthrew the monarchy and launched aggressive anticlerical reforms, but chronic political instability with dozens of governments in 16 years discredited democratic governance.",
+    MAT: 3, CD: 2, CU: 3, MOR: 4, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 4, ONT_S: 4, PF: 5, TRB: 3, ENG: 4,
+    EPS: 0, AES: 5,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Estado Novo/Salazar",
+    startYear: 1926,
+    endYear: 1968,
+    description:
+      "Antonio de Oliveira Salazar built a corporatist Catholic authoritarian state emphasizing austerity, rural values, and imperial unity, maintaining neutrality in WWII while brutally suppressing dissent and clinging to African colonies.",
+    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 1,
+    ZS: 3, ONT_H: 1, ONT_S: 2, PF: 1, TRB: 4, ENG: 2,
+    EPS: 2, AES: 2,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Caetano/Revolution",
+    startYear: 1969,
+    endYear: 1976,
+    description:
+      "Caetano's failed liberalization and the unwinnable colonial wars radicalized the military, leading to the 1974 Carnation Revolution that unleashed a tumultuous period of revolutionary leftism before democratic stabilization.",
+    MAT: 1, CD: 1, CU: 4, MOR: 5, PRO: 2, COM: 2,
+    ZS: 3, ONT_H: 5, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
+    EPS: 4, AES: 5,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Democratic Consolidation",
+    startYear: 1977,
+    endYear: 2007,
+    description:
+      "EU accession in 1986 anchored Portuguese democracy and funded rapid modernization, as the PS and PSD alternated in power and structural funds transformed infrastructure across a formerly impoverished periphery.",
+    MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 2, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Portugal",
+    regime: "Austerity Portugal",
+    startYear: 2008,
+    endYear: 2026,
+    description:
+      "The eurozone debt crisis brought troika-imposed austerity and mass emigration, followed by the innovative geringonca left-wing coalition that combined fiscal discipline with restored social spending during recovery.",
+    MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 2, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 13. GREECE
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Greece",
+    regime: "Ottoman Rule/Independence",
+    startYear: 1789,
+    endYear: 1832,
+    description:
+      "The Greek War of Independence against Ottoman rule, inspired by Enlightenment ideals and Romantic philhellenism, secured sovereignty through Great Power intervention but left a fractured, impoverished new state.",
+    MAT: 3, CD: 4, CU: 2, MOR: 3, PRO: 2, COM: 2,
+    ZS: 4, ONT_H: 3, ONT_S: 5, PF: 3, TRB: 5, ENG: 5,
+    EPS: 3, AES: 5,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Othonian/Early Kingdom",
+    startYear: 1833,
+    endYear: 1862,
+    description:
+      "The Bavarian-imposed King Otto struggled to build a modern state in a country riven by regional factions and foreign interference, until a military coup expelled him and opened the way for a new constitution.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Trikoupis/Deliyannis",
+    startYear: 1863,
+    endYear: 1909,
+    description:
+      "The rivalry between modernizer Trikoupis and populist Deliyannis defined Greek politics as the country pursued the Megali Idea of territorial expansion while suffering state bankruptcy in 1893.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Venizelos/National Schism",
+    startYear: 1910,
+    endYear: 1935,
+    description:
+      "Eleftherios Venizelos modernized Greece and doubled its territory through the Balkan Wars, but the National Schism between Venizelists and royalists and the Asia Minor Catastrophe left lasting political trauma.",
+    MAT: 3, CD: 3, CU: 2, MOR: 3, PRO: 3, COM: 2,
+    ZS: 4, ONT_H: 3, ONT_S: 4, PF: 5, TRB: 4, ENG: 5,
+    EPS: 0, AES: 4,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Metaxas/WWII/Civil War",
+    startYear: 1936,
+    endYear: 1949,
+    description:
+      "The Metaxas dictatorship gave way to Axis occupation and devastating famine, followed by a brutal civil war between communist and royalist forces that became an early proxy conflict of the Cold War.",
+    MAT: 3, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 4, TRB: 5, ENG: 5,
+    EPS: 3, AES: 4,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Cold War Greece",
+    startYear: 1950,
+    endYear: 1966,
+    description:
+      "US-backed right-wing governments pursued reconstruction and NATO integration while suppressing the left through surveillance, political exclusion, and the notorious 'certificates of political reliability.'",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 4, ONT_H: 2, ONT_S: 3, PF: 4, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Junta",
+    startYear: 1967,
+    endYear: 1974,
+    description:
+      "The Colonels' military dictatorship imposed censorship, torture, and exile on political opponents before collapsing after its reckless sponsorship of a coup in Cyprus triggered the Turkish invasion.",
+    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 3, PF: 1, TRB: 5, ENG: 3,
+    EPS: 2, AES: 4,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Metapolitefsi",
+    startYear: 1975,
+    endYear: 2008,
+    description:
+      "The democratic transition saw PASOK and New Democracy alternate in power, with EU accession in 1981 bringing modernization funds and the 2004 Athens Olympics symbolizing Greece's European integration success.",
+    MAT: 3, CD: 3, CU: 3, MOR: 3, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 5, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Greece",
+    regime: "Crisis Greece",
+    startYear: 2009,
+    endYear: 2026,
+    description:
+      "The sovereign debt crisis devastated the economy with GDP falling 25%, bringing Syriza to power, three bailouts, punishing austerity, and the rise of Golden Dawn before a fragile recovery under New Democracy.",
+    MAT: 3, CD: 3, CU: 3, MOR: 3, PRO: 3, COM: 3,
+    ZS: 4, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 3, ENG: 5,
+    EPS: 0, AES: 3,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 14. BELGIUM
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Belgium",
+    regime: "Revolution/Independence",
+    startYear: 1830,
+    endYear: 1847,
+    description:
+      "The Belgian Revolution of 1830 broke from the United Netherlands, establishing a constitutional monarchy under Leopold I with a progressive liberal constitution forged from Catholic-Liberal cooperation.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 3, PF: 3, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "Liberal/Catholic Rivalry",
+    startYear: 1848,
+    endYear: 1913,
+    description:
+      "The 'school war' between Catholics and Liberals over education dominated Belgian politics while the country became the most industrialized in continental Europe and Leopold II's Congo became a byword for colonial brutality.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "WWI/Interwar",
+    startYear: 1914,
+    endYear: 1939,
+    description:
+      "German occupation in WWI forged Belgian national solidarity, but the interwar period saw the language question intensify and the fascist Rex movement emerge alongside growing Flemish nationalism.",
+    MAT: 3, CD: 4, CU: 3, MOR: 3, PRO: 3, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "WWII/Reconstruction",
+    startYear: 1940,
+    endYear: 1957,
+    description:
+      "A second German occupation and the divisive Royal Question over Leopold III's wartime conduct gave way to postwar reconstruction, with Belgium playing a founding role in the ECSC and European integration.",
+    MAT: 3, CD: 3, CU: 3, MOR: 4, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "Linguistic Federalization",
+    startYear: 1958,
+    endYear: 1992,
+    description:
+      "The language border was fixed in 1962 and successive state reforms devolved power to linguistic communities and regions, transforming Belgium from a unitary state into a complex federal system.",
+    MAT: 3, CD: 3, CU: 4, MOR: 4, PRO: 5, COM: 5,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "Federal Belgium",
+    startYear: 1993,
+    endYear: 2010,
+    description:
+      "Fully federalized Belgium hosted EU institutions in Brussels and navigated linguistic compromise through elaborate power-sharing, while Flemish separatism grew as the economic balance shifted northward.",
+    MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Belgium",
+    regime: "Modern Belgium",
+    startYear: 2011,
+    endYear: 2026,
+    description:
+      "The record 541-day government formation crisis of 2010-11 epitomized Belgian fragmentation, as the N-VA became Flanders' largest party and coalition-building grew ever more laborious in a splintered political landscape.",
+    MAT: 3, CD: 3, CU: 4, MOR: 4, PRO: 4, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 15. SWITZERLAND
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Switzerland",
+    regime: "Helvetic/Mediation",
+    startYear: 1789,
+    endYear: 1847,
+    description:
+      "Napoleon imposed the centralized Helvetic Republic before the Act of Mediation restored cantonal autonomy; the period culminated in the Sonderbund War between Catholic and Protestant cantons over federal power.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 4, PF: 3, TRB: 4, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Switzerland",
+    regime: "Federal State",
+    startYear: 1848,
+    endYear: 1913,
+    description:
+      "The 1848 constitution created a federal state with pioneering direct democracy, as Switzerland industrialized rapidly while maintaining armed neutrality and becoming a haven for political exiles.",
+    MAT: 4, CD: 3, CU: 4, MOR: 3, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 3, ONT_S: 1, PF: 3, TRB: 3, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Switzerland",
+    regime: "Interwar/WWII",
+    startYear: 1914,
+    endYear: 1945,
+    description:
+      "Switzerland maintained armed neutrality through both world wars while its banking sector attracted international capital; the Geistige Landesverteidigung movement rallied national defense against fascist encirclement.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 5, COM: 4,
+    ZS: 3, ONT_H: 2, ONT_S: 2, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Switzerland",
+    regime: "Magic Formula Era",
+    startYear: 1946,
+    endYear: 1990,
+    description:
+      "The 'Magic Formula' allocated Federal Council seats among four major parties in fixed proportion, producing exceptional stability, banking secrecy, Cold War neutrality, and quiet prosperity.",
+    MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 5,
+    ZS: 2, ONT_H: 3, ONT_S: 1, PF: 3, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Switzerland",
+    regime: "SVP Rise",
+    startYear: 1991,
+    endYear: 2010,
+    description:
+      "Christoph Blocher transformed the SVP from a rural agrarian party into a nationalist anti-immigration force that shattered the Magic Formula, while Switzerland charted a bilateral path with the EU rather than joining.",
+    MAT: 4, CD: 4, CU: 3, MOR: 3, PRO: 5, COM: 4,
+    ZS: 3, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 3, ENG: 4,
+    EPS: 1, AES: 3,
+  },
+  {
+    jurisdiction: "Switzerland",
+    regime: "Modern Switzerland",
+    startYear: 2011,
+    endYear: 2026,
+    description:
+      "Referendums on minarets, mass immigration, and corporate responsibility reflected tensions between Switzerland's direct-democratic traditions and globalization pressures, while banking secrecy eroded under international pressure.",
+    MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 3, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 16. ROMANIA
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Romania",
+    regime: "Phanariot/Early Principalities",
+    startYear: 1789,
+    endYear: 1829,
+    description:
+      "The Danubian Principalities languished under Ottoman suzerainty administered by Greek Phanariot princes, with Russian military interventions gradually shifting the balance of power in the region.",
+    MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 2,
+    ZS: 4, ONT_H: 2, ONT_S: 3, PF: 1, TRB: 4, ENG: 2,
+    EPS: 2, AES: 0,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Organic Statutes/Union",
+    startYear: 1830,
+    endYear: 1866,
+    description:
+      "Russian-imposed Organic Statutes modernized governance in Wallachia and Moldavia, and Alexandru Ioan Cuza unified the principalities in 1859 before being forced to abdicate in favor of a foreign prince.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 4, PF: 3, TRB: 4, ENG: 4,
+    EPS: 1, AES: 5,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Romanian Kingdom",
+    startYear: 1867,
+    endYear: 1913,
+    description:
+      "Under Carol I, Romania gained full independence and developed as a constitutional monarchy with a landowning oligarchy, while the unresolved peasant question erupted in the massive 1907 revolt.",
+    MAT: 5, CD: 4, CU: 2, MOR: 2, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 2, ONT_S: 3, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Greater Romania",
+    startYear: 1914,
+    endYear: 1937,
+    description:
+      "WWI brought the unification of Transylvania, Bessarabia, and Bukovina into Greater Romania, but interwar democracy proved fragile as ethnic tensions, land reform, and the rise of the fascist Iron Guard destabilized the state.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Royal Dictatorship/WWII",
+    startYear: 1938,
+    endYear: 1944,
+    description:
+      "Carol II's royal dictatorship gave way to Marshal Antonescu's alliance with Nazi Germany, leading Romania into the invasion of the USSR, the Holocaust in Transnistria, and eventual capitulation to the Soviets in August 1944.",
+    MAT: 4, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 1, TRB: 5, ENG: 5,
+    EPS: 3, AES: 4,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Communist Romania",
+    startYear: 1945,
+    endYear: 1964,
+    description:
+      "Soviet-backed communists seized power, abolished the monarchy, collectivized agriculture, and industrialized under Gheorghiu-Dej while purging rivals and imprisoning hundreds of thousands in forced labor camps.",
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    EPS: 1, AES: 1,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Ceausescu",
+    startYear: 1965,
+    endYear: 1989,
+    description:
+      "Nicolae Ceausescu built a nationalist communist personality cult, pursuing an independent foreign policy while imposing devastating austerity to repay foreign debt, banning abortion, and demolishing villages for systematization.",
+    MAT: 1, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 3, ONT_S: 2, PF: 1, TRB: 5, ENG: 4,
+    EPS: 3, AES: 4,
+  },
+  {
+    jurisdiction: "Romania",
+    regime: "Post-Communist Romania",
+    startYear: 1990,
+    endYear: 2026,
+    description:
+      "The violent 1989 revolution and disputed transition under Iliescu gave way to EU accession in 2007, but persistent corruption and judicial battles have defined Romanian politics alongside economic growth and emigration.",
+    MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 17. HUNGARY
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Hungary",
+    regime: "Habsburg Hungary",
+    startYear: 1789,
+    endYear: 1847,
+    description:
+      "Hungarian reform nobles like Szechenyi and Kossuth pushed for modernization and Magyar language rights within the Habsburg framework, setting the stage for the revolutionary explosion of 1848.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 5,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "1848/Compromise",
+    startYear: 1848,
+    endYear: 1867,
+    description:
+      "The 1848 revolution proclaimed liberal Hungarian self-governance before Russian intervention crushed it; decades of passive resistance culminated in the 1867 Ausgleich that created the Dual Monarchy.",
+    MAT: 3, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 4, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 5, ENG: 5,
+    EPS: 1, AES: 4,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Dual Monarchy",
+    startYear: 1868,
+    endYear: 1918,
+    description:
+      "As co-equal partner in Austria-Hungary, the Magyar elite pursued aggressive Magyarization of minorities while industrializing Budapest into a major European capital, before WWI destroyed the empire.",
+    MAT: 4, CD: 4, CU: 1, MOR: 2, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 5, ENG: 4,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Horthy Era",
+    startYear: 1920,
+    endYear: 1944,
+    description:
+      "Admiral Horthy's regency was defined by irredentist revisionism after the Treaty of Trianon, the White Terror against leftists, and a gradual slide into the Nazi orbit that ended with German occupation and the Holocaust.",
+    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 2,
+    ZS: 5, ONT_H: 1, ONT_S: 4, PF: 3, TRB: 5, ENG: 4,
+    EPS: 2, AES: 4,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Stalinist Hungary",
+    startYear: 1945,
+    endYear: 1956,
+    description:
+      "Matyas Rakosi's Stalinist regime imposed terror, show trials, and forced industrialization before the 1956 Hungarian Revolution briefly overthrew communist rule, only to be crushed by Soviet tanks.",
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    EPS: 1, AES: 1,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Kadar Era",
+    startYear: 1957,
+    endYear: 1989,
+    description:
+      "Janos Kadar's 'goulash communism' traded political conformity for consumer goods and the New Economic Mechanism, making Hungary the most liberal Warsaw Pact state and a bridge between East and West.",
+    MAT: 2, CD: 3, CU: 2, MOR: 3, PRO: 2, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 1, TRB: 3, ENG: 2,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Post-Communist/Liberal",
+    startYear: 1990,
+    endYear: 2009,
+    description:
+      "Hungary's negotiated transition was hailed as a democratic success story, with EU and NATO accession, market reforms, and a functioning multi-party system alternating between left and right coalitions.",
+    MAT: 4, CD: 2, CU: 3, MOR: 4, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 3, PF: 4, TRB: 2, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Hungary",
+    regime: "Orban's Hungary",
+    startYear: 2010,
+    endYear: 2026,
+    description:
+      "Viktor Orban's Fidesz built an 'illiberal democracy' with a constitutional supermajority, capturing state institutions, media, and courts while championing Christian nationalism and anti-immigration politics within the EU.",
+    MAT: 3, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 1,
+    ZS: 4, ONT_H: 1, ONT_S: 4, PF: 5, TRB: 5, ENG: 5,
+    EPS: 3, AES: 4,
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 18. CZECH / CZECHOSLOVAKIA
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Habsburg Bohemia",
+    startYear: 1789,
+    endYear: 1867,
+    description:
+      "The Czech national revival within the Habsburg Empire fostered linguistic and cultural consciousness, with the 1848 Prague uprising marking an early but unsuccessful bid for Slavic autonomy within the monarchy.",
+    MAT: 4, CD: 4, CU: 2, MOR: 3, PRO: 3, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Austria-Hungary/Czech Politics",
+    startYear: 1868,
+    endYear: 1918,
+    description:
+      "Czech political parties flourished within Austria-Hungary's parliamentary system, with Young Czechs and Social Democrats competing alongside Tomas Masaryk's Realist movement that would lead to independence.",
+    MAT: 3, CD: 3, CU: 3, MOR: 3, PRO: 4, COM: 3,
+    ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 4, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "First Republic",
+    startYear: 1918,
+    endYear: 1938,
+    description:
+      "Masaryk's Czechoslovakia was interwar Central Europe's only stable democracy, with a strong industrial base, progressive constitution, and commitment to minority rights, though Sudeten German grievances festered.",
+    MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 5, COM: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 2, ENG: 4,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Munich/Protectorate",
+    startYear: 1938,
+    endYear: 1945,
+    description:
+      "The Munich Agreement dismembered Czechoslovakia, and the subsequent Nazi Protectorate of Bohemia and Moravia imposed terror, Germanization, and the destruction of Lidice, while the Sudeten Germans were expelled after liberation.",
+    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 1, TRB: 5, ENG: 5,
+    EPS: 3, AES: 4,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Communist Czechoslovakia",
+    startYear: 1948,
+    endYear: 1967,
+    description:
+      "The 1948 communist coup imposed Stalinist rule under Gottwald with show trials, collectivization, and heavy industrialization, while Czechoslovakia became one of the most rigidly orthodox Warsaw Pact states.",
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    EPS: 1, AES: 1,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Prague Spring/Normalization",
+    startYear: 1968,
+    endYear: 1989,
+    description:
+      "Dubcek's 'socialism with a human face' was crushed by Warsaw Pact invasion in August 1968, ushering in two decades of Husak's normalization that enforced conformity while dissidents like Havel kept civic ideals alive.",
+    MAT: 1, CD: 3, CU: 2, MOR: 3, PRO: 2, COM: 2,
+    ZS: 4, ONT_H: 3, ONT_S: 4, PF: 1, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Czech Republic",
+    startYear: 1993,
+    endYear: 2026,
+    description:
+      "After the Velvet Divorce from Slovakia, the Czech Republic pursued rapid market reforms under Klaus, joined NATO and the EU, and navigated from Havel's idealism to Babis's populist technocracy.",
+    MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 2, ENG: 3,
+    EPS: 0, AES: 0,
+  },
+];

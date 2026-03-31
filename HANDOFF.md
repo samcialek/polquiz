@@ -15,7 +15,14 @@
 6. Run verification checks from VERIFICATION.md
 
 ## Session Log
-*(Append session summaries here)*
+
+## Session 2026-03-26
+- **Task:** Verify 8 salience changes in questions.full.ts and questions.representative.ts
+- **Changes:** TASK.md and HANDOFF.md updated. No code changes needed — all 8 requested salience modifications were already present in both question files.
+- **Decisions:** Confirmed all changes exist by reading both files end-to-end. Q70 remains commented out (breaks archetypes 029, 052). Q71 is active with AES salience 0.90.
+- **Status:** Complete. All 8 items verified present.
+- **Next:** No follow-up needed for this task.
+- **Blockers:** None.
 
 ### Template
 ```

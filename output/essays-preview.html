@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>matrices - essays</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="imgs/favicon.png">
+    <link rel="preload" as="image" href="imgs/states_of_world.gif">
+    <link rel="preload" as="image" href="imgs/optimizing.gif">
+    <link rel="preload" as="image" href="imgs/geometry_of_preference.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap">
+
+  <style>
+    /* Custom Styles - Inline */
+    @font-face {
+        font-family: 'RollerGI';
+        src: url('fonts/ROLLERGI.TTF')
+    }
+
+    :root {
+        --bs-danger: #fa8072;
+        --bs-danger-rgb: 250, 128, 114;
+        --bs-warning: #ede2ab;
+        --bs-warning-rgb: 237, 226, 171;
+        --bs-body-bg-rgb: 209, 246, 255;
+        --bs-body-bg: #d1f6ff;
+        --bs-highlight-bg: #D1F6FF;
+        --bs-font-sans-serif:"EB Garamond", Georgia, serif;
+        --bs-body-font-size: 1rem;
+        --bs-body-font-weight: 400;
+        --bs-body-line-height: 1.5;
+        --bs-link-color: #000000;
+        --bs-link-color-rgb: 0, 0, 0;
+        --bs-link-decoration: none;
+        --bs-link-hover-color: #000000;
+        --bs-link-hover-color-rgb: 0, 0, 0;
+    }
+
+    body{font-size:15px; font-family: 'EB Garamond', Georgia, serif;}
+    h1, h2, h3, h4, h5, h6 {font-family: 'Space Grotesk', sans-serif;}
+    h1 {font-size: 60px;}
+    h2 {font-size: 36px;}
+    h3 {font-size: 26px;}
+    h4 {font-size: 20px;}
+    h5 {font-size: 18px;}
+    h6 {font-size: 16px;}
+
+    footer p{
+        font-family: 'Courier Prime', monospace;
+        font-size: 16px;
+        letter-spacing: .25em;
+        line-height: 1.8em;
+        text-transform: lowercase;
+    }
+
+    footer .footer-tag {
+        margin: 0 0.4rem;
+    }
+
+    ::selection {background: #ffffff;color: #000000;}
+
+    .series-nav {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+    .series-nav a {
+        color: #E07A5F;
+        text-decoration: none;
+    }
+    .series-nav a:hover {
+        text-decoration: underline;
+    }
+
+    a{text-decoration: var(--bs-link-decoration);}
+    @-moz-document url-prefix(){
+        select, select:-moz-focusring, select::-moz-focus-inner{color:transparent !important;text-shadow: 0 0 0 #000 !important;background-image: none !important;border:0;}
+    }
+    input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active{transition: background-color 5000s ease-in-out 0s;-webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.6) inset;}
+
+    .bg-center-url{background-size: cover; background-repeat: no-repeat;background-position: center center;}
+
+    header .navbar-nav{
+        --bs-nav-link-padding-y: 1rem;
+        --bs-navbar-nav-link-padding-x: 1.0rem;
+    }
+
+    header .nav-link {
+        --bs-nav-link-font-weight:500;
+        --bs-nav-link-color: var(--bs-dark);
+        --bs-nav-link-hover-color: var(--bs-danger);
+        --bs-navbar-active-color: var(--bs-black);
+        --bs-nav-link-font-size:12px;
+        font-family: 'Work Sans', Arial, sans-serif;
+        text-transform: lowercase;
+    }
+
+    header .nav-link:hover {
+        color: #fa8072 !important;
+    }
+
+    .hero-sec1{background-size: cover; background-repeat: no-repeat;background-position: center center;padding: 20px;}
+    .hero-sec1 .row{ min-height: 310px;}
+    .hero-sec1 h2,
+    .hero-sec1 .h2{
+        font-family: 'RollerGI';
+        font-style: normal;
+        text-transform: lowercase;
+        font-size: 100px;
+        line-height: 1.1;
+    }
+    .navbar-brand{width: 600px}
+
+    .btn-warning{
+        --bs-btn-color: :var(--bs-light);
+        --bs-btn-bg: var(--bs-warning);
+        --bs-btn-border-color: var(--bs-warning);
+        --bs-btn-hover-color: :var(--bs-light);
+        --bs-btn-hover-bg: rgba(var(--bs-warning-rgb),0.9);
+        --bs-btn-hover-border-color: rgba(var(--bs-warning-rgb),0.9);
+        --bs-btn-active-color: :var(--bs-light);
+        --bs-btn-active-bg: rgba(var(--bs-warning-rgb),0.9);
+        --bs-btn-active-border-color: rgba(var(--bs-warning-rgb),0.9);
+        --bs-btn-disabled-color: :var(--bs-light);
+        --bs-btn-disabled-bg: var(--bs-warning);
+        --bs-btn-disabled-border-color: var(--bs-warning);
+    }
+    .btn-lg {
+        --bs-btn-padding-y: 25px;
+        --bs-btn-padding-x: 46px;
+        --bs-btn-font-family:'RollerGI';
+        --bs-btn-font-size: 50px;
+        --bs-btn-font-weight:400;
+        --bs-btn-line-height:40px;
+        text-transform: lowercase;
+        letter-spacing: .05em;
+        --bs-border-radius-lg: 0rem;
+    }
+    .btn:hover{opacity: .8;}
+
+    .bs-title{font-size:4rem;font-style: italic;}
+
+    .bs-title.text-danger{
+         --e-stroke-color: #E96353 ;
+          text-shadow:-1px -1px 0px var(--e-stroke-color), 1px -1px 0px var(--e-stroke-color), 1px -1px 0px var(--e-stroke-color), 1px -1px 0px var(--e-stroke-color), 0px -1px 0px var(--e-stroke-color), -1px -1px 0px var(--e-stroke-color), -1px -1px 0px var(--e-stroke-color), -0px -1px 0px var(--e-stroke-color), 1px -1px 0px var(--e-stroke-color), -1px 1px 0px var(--e-stroke-color), 1px 1px 0px var(--e-stroke-color);
+    }
+
+    .bs-top-title{
+        background: #FA8072;
+        background: linear-gradient(160deg, rgba(250, 128, 114, 1) calc(60% - 20px), rgba(209, 246, 255, 1) calc(60% - 20px), rgba(209, 246, 255, 1) calc(60% + 20px), rgba(250, 128, 114, 1) calc(60% + 20px));
+        text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .article-card {
+        margin-bottom: 2.6rem;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.1s ease, filter 0.1s ease, opacity 0.5s ease-in-out;
+        transform: scale(0.85);
+        transform-origin: center top;
+        opacity: 0;
+    }
+
+    .article-card.loaded {
+        opacity: 1;
+    }
+
+    .article-card:nth-child(4) {
+        transform: scale(0.85) rotate(-0.5deg);
+    }
+    .article-card:nth-child(4):hover {
+        transform: scale(0.85) rotate(0.5deg) translateX(8px);
+    }
+
+    .article-card:nth-child(5) {
+        transform: scale(0.85) rotate(-1deg);
+    }
+    .article-card:nth-child(5):hover {
+        transform: scale(0.85) rotate(0.5deg) translateX(10px);
+    }
+
+    .article-card:nth-child(6) {
+        transform: scale(0.85) rotate(0.5deg);
+    }
+    .article-card:nth-child(6):hover {
+        transform: scale(0.85) rotate(-0.5deg) translateX(-8px);
+    }
+
+    .article-card:nth-child(7) {
+        transform: scale(0.85) rotate(-0.75deg);
+    }
+    .article-card:nth-child(7):hover {
+        transform: scale(0.85) rotate(0.5deg) translateX(9px);
+    }
+
+    .article-card:nth-child(8) {
+        transform: scale(0.85) rotate(1deg);
+    }
+    .article-card:nth-child(8):hover {
+        transform: scale(0.85) rotate(-0.5deg) translateX(-10px);
+    }
+
+    .article-card:nth-child(4):active {
+        transform: scale(0.85) rotate(-0.5deg) translateY(4px);
+    }
+    .article-card:nth-child(5):active {
+        transform: scale(0.85) rotate(-1deg) translateY(4px);
+    }
+    .article-card:nth-child(6):active {
+        transform: scale(0.85) rotate(0.5deg) translateY(4px);
+    }
+    .article-card:nth-child(7):active {
+        transform: scale(0.85) rotate(-0.75deg) translateY(4px);
+    }
+    .article-card:nth-child(8):active {
+        transform: scale(0.85) rotate(1deg) translateY(4px);
+    }
+
+    .article-card:active .article {
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .content-type-label {
+        display: inline-block;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .content-type-essay {
+        background: #FFFFFF;
+        color: #000000;
+        border: 2px solid #195E35;
+    }
+
+    .content-type-data {
+        background: #F4E7A3;
+        color: #000000;
+        border: 1px dashed #000000;
+        animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+        0%, 100% {
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+            box-shadow: 3px 3px 0px rgba(107, 91, 149, 0.6), 0 0 10px rgba(244, 231, 163, 0.5);
+        }
+    }
+
+    /* Article 1: Portfolio Optimization */
+    .article-card:nth-child(4) .article {
+        position: relative;
+        background: #6B5B95;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        border: 5px dashed #F4E7A3;
+    }
+
+    .article-card:nth-child(4) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(4) .article::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 60%;
+        background-color: #6B5B95;
+        background-image: url('imgs/optimizing.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.75;
+    }
+
+    .article-card:nth-child(4):hover .article::after {
+        background-image: url('imgs/optimizing.gif');
+    }
+
+    .article-card:nth-child(4) .article .content-wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 55%;
+        margin-right: auto;
+    }
+
+    .article-card:nth-child(4) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+
+    /* Article 2: World in 2032 - Image LEFT, Content RIGHT */
+    .article-card:nth-child(5) .article {
+        position: relative;
+        background: #2C3E50;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .article-card:nth-child(5) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 60%;
+        background-color: #2C3E50;
+        background-image: url('imgs/states_of_world.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.75;
+    }
+
+    .article-card:nth-child(5):hover .article::before {
+        background-image: url('imgs/states_of_world.gif');
+    }
+
+    .article-card:nth-child(5) .article::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 40%;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(5) .article .content-wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 55%;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Article 3: Lakes of Matrisonia - Image RIGHT, Content LEFT */
+    .article-card:nth-child(6) .article {
+        position: relative;
+        background: #1A5F5F;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .article-card:nth-child(6) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img1.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(6) .article::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 60%;
+        background-color: rgba(255, 255, 255, 1.0);
+        background-image: url('imgs/article-img1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.9;
+    }
+
+    .article-card:nth-child(6):hover .article::after {
+        background-image: url('imgs/lakes_of_matrisonia.gif');
+    }
+
+    .article-card:nth-child(6) .article .content-wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 55%;
+        margin-right: auto;
+    }
+    .article-meta { font-family: 'Courier Prime', monospace; font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;}
+    .article-title { font-size: 2.8rem;font-weight: 900; color: #000000; text-transform: lowercase; margin-bottom: 1rem; line-height: 1.1; text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.3); transition: all 0.4s ease;}
+    .article-card:hover .article-title { color: #d1f6ff; font-size: 3.0rem; }
+    .article-excerpt{font-family: 'Courier Prime', monospace; font-size: 0.95rem; line-height: 1.6; color: #2d2a24; margin-bottom: 1.5rem; background: linear-gradient(135deg, rgba(244, 231, 163, 0.92) 0%, rgba(237, 224, 155, 0.88) 100%); padding: 1.25rem 1.5rem; box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.08), 3px 3px 0px rgba(0, 0, 0, 0.12); border: 1px solid rgba(180, 160, 100, 0.3);}
+    .read-more {
+        display: none;
+        background: #000000;
+        color: #FFFFFF;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        font-family: 'Courier Prime', monospace;
+        font-weight: 700;
+        font-size: 0.9rem;
+        box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.3);
+        transition: transform 0.2s;
+        text-transform: lowercase;
+    }
+    .article-card:nth-child(4) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+    .article-card:nth-child(6) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+    .tags{display: flex;flex-wrap: wrap;gap: 0.5rem;margin-top: 1.5rem;}
+    .tag {
+        background: #FFFFFF;
+        color: #000000;
+        padding: 0.4rem 0.8rem;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.75rem;
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+        border: 1px solid #ddd;
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+
+    /* Tag Animation Styles - Only for footer tags */
+    /* Function vs Form */
+    .tag.term-function-form:hover {
+        /* No animation for article card tags */
+    }
+    @keyframes function-to-form {
+        0% {
+            transform: rotate(0deg) scale(1);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            letter-spacing: 0;
+            font-weight: normal;
+            text-shadow: none;
+        }
+        50% {
+            transform: rotate(-4deg) scale(1.15);
+            box-shadow: 6px 6px 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(255,255,255,0.4), 0 0 15px rgba(244,231,163,0.8);
+            border-radius: 15px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6), -1px -1px 3px rgba(255,255,255,0.4);
+        }
+        100% {
+            transform: rotate(0deg) scale(1);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            letter-spacing: 0;
+            font-weight: normal;
+            text-shadow: none;
+        }
+    }
+
+    /* Declaration vs Revelation */
+    .tag.term-declaration-revelation .declaration {
+        position: relative;
+    }
+    .tag.term-declaration-revelation:hover .declaration::after {
+        /* No animation for article card tags */
+    }
+    .tag.term-declaration-revelation:hover .revelation {
+        /* No animation for article card tags */
+    }
+    @keyframes underline-grow {
+        to { width: 100%; }
+    }
+    @keyframes reveal {
+        from {
+            text-shadow: 0 0 10px #000, 0 0 20px #000;
+            filter: blur(5px);
+            opacity: 0.3;
+        }
+        to {
+            text-shadow: 0 0 0 #000;
+            filter: blur(0);
+            opacity: 1;
+        }
+    }
+
+    /* Experiencing vs Remembering */
+    .tag.term-experiencing-remembering:hover {
+        /* No animation for article card tags */
+    }
+    @keyframes memory-fade {
+        0%, 100% { opacity: 1; filter: blur(0); }
+        50% { opacity: 0.4; filter: blur(2px); transform: scale(0.95); }
+    }
+
+    /* Loss & Uncertainty */
+    .tag.term-loss-uncertainty:hover {
+        /* No animation for article card tags */
+    }
+    @keyframes scatter {
+        0%, 100% { transform: translate(0, 0); }
+        10% { transform: translate(-2px, 1px); }
+        20% { transform: translate(3px, -2px); }
+        30% { transform: translate(-1px, -3px); }
+        40% { transform: translate(3px, 2px); }
+        50% { transform: translate(-3px, -1px); }
+        60% { transform: translate(2px, 3px); }
+        70% { transform: translate(-3px, 1px); }
+        80% { transform: translate(1px, -2px); }
+        90% { transform: translate(-1px, 2px); }
+    }
+
+    /* Decomposition & Distillation */
+    .tag.term-decomposition-distillation span {
+        display: inline-block;
+        transition: opacity 0.3s ease-out;
+    }
+    .tag.term-decomposition-distillation:hover span {
+        /* No animation for article card tags */
+    }
+    @keyframes letter-fade {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    /* Measurement Error */
+    .tag.term-measurement-error:hover {
+        /* No animation for article card tags */
+    }
+    @keyframes misalign {
+        0% { transform: translate(0, 0) skew(0deg); }
+        25% { transform: translate(2px, -1px) skew(2deg); }
+        50% { transform: translate(-2px, 1px) skew(-2deg); }
+        75% { transform: translate(1px, 2px) skew(1deg); }
+        100% { transform: translate(0, 0) skew(0deg); }
+    }
+
+    /* Second-Best Worlds */
+    .tag.term-second-best:hover::after {
+        /* No animation for article card tags */
+    }
+    @keyframes reflection-ripple {
+        0%, 100% {
+            opacity: 0.5;
+            filter: blur(1px);
+            transform: scaleY(-1) translateY(5px);
+        }
+        50% {
+            opacity: 0.25;
+            filter: blur(2px);
+            transform: scaleY(-1) translateY(8px);
+        }
+    }
+
+    /* Cycles, Spirals & Companions */
+    .tag.term-cycles-spirals:hover {
+        /* No animation for article card tags */
+    }
+    @keyframes spiral {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.1); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+
+    /* Footer tag styles */
+    footer .footer-tag {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        margin: 0 0.25rem;
+    }
+
+    /* Apply same animations to footer tags */
+    .footer-tag.term-function-form:hover {
+        animation: function-to-form 3s ease-in-out infinite;
+        transform-origin: center;
+    }
+    .footer-tag.term-declaration-revelation .declaration {
+        position: relative;
+    }
+    .footer-tag.term-declaration-revelation:hover .declaration::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: #000000;
+        animation: underline-grow 1.0s forwards;
+    }
+    .footer-tag.term-declaration-revelation:hover .revelation {
+        animation: reveal 3.0s ease-out forwards;
+    }
+    .footer-tag.term-experiencing-remembering:hover {
+        animation: memory-fade 4s ease-in-out infinite;
+    }
+    .footer-tag.term-loss-uncertainty:hover {
+        animation: scatter 1.0s ease-in-out infinite;
+    }
+    .footer-tag.term-decomposition-distillation span {
+        display: inline-block;
+        transition: opacity 0.3s ease-out;
+    }
+    .footer-tag.term-decomposition-distillation:hover span {
+        animation: letter-fade 4s ease-in-out infinite;
+    }
+    .footer-tag.term-decomposition-distillation:hover span:nth-child(2n) {
+        animation-delay: 0.1s;
+    }
+    .footer-tag.term-decomposition-distillation:hover span:nth-child(3n) {
+        animation-delay: 0.3s;
+    }
+    .footer-tag.term-decomposition-distillation:hover span:nth-child(4n) {
+        animation-delay: 0.5s;
+    }
+    .footer-tag.term-decomposition-distillation:hover span:nth-child(5n) {
+        animation-delay: 0.7s;
+    }
+    .footer-tag.term-measurement-error:hover {
+        animation: misalign 0.6s infinite;
+    }
+    .footer-tag.term-second-best:hover::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        color: #666;
+        opacity: 0.5;
+        transform: scaleY(-1) translateY(5px);
+        filter: blur(1px);
+        animation: reflection-ripple 3.0s ease-in-out infinite;
+        pointer-events: none;
+    }
+    .footer-tag.term-cycles-spirals:hover {
+        animation: spiral 3.0s ease-in-out infinite;
+    }
+
+    /* Article 4: Geometry of Preference - Image LEFT, Content RIGHT */
+    .article-card:nth-child(7) .article {
+        position: relative;
+        background: #9A5245;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .article-card:nth-child(7) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 60%;
+        background-color: rgba(255, 255, 255, 1.0);
+        background-image: url('imgs/geometry_of_preference.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.9;
+    }
+
+    .article-card:nth-child(7):hover .article::before {
+        background-image: url('imgs/geometry_of_preference.gif');
+    }
+
+    .article-card:nth-child(7) .article::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 40%;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(7) .article .content-wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 55%;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Article 5: Capital Pricing Geocentric - Image RIGHT, Content LEFT */
+    .article-card:nth-child(8) .article {
+        position: relative;
+        background: #1C2833;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .article-card:nth-child(8) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img1.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(8) .article::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 60%;
+        background-color: rgba(255, 255, 255, 1.0);
+        background-image: url('imgs/asset_prices-img1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.9;
+    }
+
+    .article-card:nth-child(8):hover .article::after {
+        background-image: url('imgs/asset_price_geocentric.gif');
+    }
+
+    .article-card:nth-child(8) .article .content-wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 55%;
+        margin-right: auto;
+    }
+
+    .article-card:nth-child(8) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+
+    /* Article 6: PRISM Quiz - Image LEFT, Content RIGHT */
+    .article-card:nth-child(1) {
+        transform: scale(0.85) rotate(-0.5deg);
+    }
+    .article-card:nth-child(1):hover {
+        transform: scale(0.85) rotate(0.5deg) translateX(8px);
+    }
+    .article-card:nth-child(1):active {
+        transform: scale(0.85) rotate(-0.5deg) translateY(4px);
+    }
+    .article-card:nth-child(1):active .article {
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .article-card:nth-child(1) .article {
+        position: relative;
+        background: #2D4A3E;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        border: 5px dashed #F4E7A3;
+    }
+
+    .article-card:nth-child(1) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+
+    .article-card:nth-child(1) .article .card-video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 55%;
+        overflow: hidden;
+        z-index: 1;
+        background: #2D4A3E;
+    }
+    .article-card:nth-child(1) .article .card-video-wrapper video,
+    .article-card:nth-child(1) .article .card-video-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+    }
+
+    .article-card:nth-child(1) .article .content-wrapper {
+        position: relative;
+        z-index: 3;
+        max-width: 50%;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .content-type-quiz {
+        background: #2D4A3E;
+        color: #FFFFFF;
+        border: 2px solid #7DCEA0;
+        animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    /* Article 7: The Surface of Action - Video card, Image RIGHT, Content LEFT */
+    .article-card:nth-child(3) {
+        transform: scale(0.85) rotate(-0.5deg);
+    }
+    .article-card:nth-child(3):hover {
+        transform: scale(0.85) rotate(0.5deg) translateX(8px);
+    }
+    .article-card:nth-child(3):active {
+        transform: scale(0.85) rotate(-0.5deg) translateY(4px);
+    }
+    .article-card:nth-child(3):active .article {
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+    }
+    .article-card:nth-child(3) .article {
+        position: relative;
+        background: #2a1a3e;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        border: 3px solid rgba(244, 231, 163, 0.3);
+    }
+    .article-card:nth-child(3) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+    .article-card:nth-child(3) .article .card-video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 55%;
+        overflow: hidden;
+        z-index: 1;
+        background: #2a1a3e;
+    }
+    .article-card:nth-child(3) .article .card-video-wrapper video,
+    .article-card:nth-child(3) .article .card-video-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+    }
+    .article-card:nth-child(3) .article .content-wrapper {
+        position: relative;
+        z-index: 3;
+        max-width: 50%;
+        margin-left: auto;
+        text-align: right;
+    }
+    .article-card:nth-child(3) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+
+    /* Article 8: The Cause of Our Politics - Video card, Image RIGHT, Content LEFT */
+    .article-card:nth-child(2) {
+        transform: scale(0.85) rotate(0.5deg);
+    }
+    .article-card:nth-child(2):hover {
+        transform: scale(0.85) rotate(-0.5deg) translateX(-8px);
+    }
+    .article-card:nth-child(2):active {
+        transform: scale(0.85) rotate(0.5deg) translateY(4px);
+    }
+    .article-card:nth-child(2):active .article {
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+    }
+    .article-card:nth-child(2) .article {
+        position: relative;
+        background: #1a1a2e;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        padding: 3rem;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    .article-card:nth-child(2) .article::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('imgs/bg-article-img2.png');
+        background-size: 200px 120px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: 0.6;
+    }
+    .article-card:nth-child(2) .article .card-video-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 62%;
+        overflow: hidden;
+        z-index: 1;
+        background: #1a1a2e;
+    }
+    .article-card:nth-child(2) .article .card-video-wrapper video,
+    .article-card:nth-child(2) .article .card-video-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.85;
+    }
+    .article-card:nth-child(2) .article .content-wrapper {
+        position: relative;
+        z-index: 3;
+        max-width: 60%;
+        margin-right: auto;
+    }
+    .article-card:nth-child(2) .article .tags {
+        max-width: 120%;
+        margin-right: -10%;
+    }
+
+    /* Loading Screen - Vintage Academic Textbook Style */
+    #loading-screen {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #F4F1EA;
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loading-screen.active {
+        display: flex;
+    }
+
+    .loading-container {
+        text-align: center;
+        padding: 3rem;
+        border: 4px solid #000000;
+        background: #F4F1EA;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+        position: relative;
+        max-width: 500px;
+        width: 90%;
+    }
+
+    .loading-container::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px solid #1C4E80;
+        pointer-events: none;
+    }
+
+    .loading-header {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        font-style: italic;
+        color: #1C4E80;
+        margin-bottom: 2rem;
+        letter-spacing: 0.05em;
+        text-transform: lowercase;
+    }
+
+    .loading-bar-container {
+        width: 100%;
+        height: 24px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        position: relative;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .loading-bar-fill {
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            #1C4E80,
+            #1C4E80 10px,
+            #2A5F8F 10px,
+            #2A5F8F 20px
+        );
+        width: 0%;
+    }
+
+    .loading-bar-fill.animate {
+        animation: inconsistent-load 2s forwards;
+    }
+
+    @keyframes inconsistent-load {
+        0% {
+            width: 0%;
+            animation-timing-function: linear;
+        }
+        30% {
+            width: 30%;
+            animation-timing-function: steps(6);
+        }
+        60% {
+            width: 60%;
+            animation-timing-function: ease-out;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+
+    .loading-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9rem;
+        color: #C43210;
+        letter-spacing: 0.1em;
+        animation: typewriter 1s steps(22) infinite;
+    }
+
+    @keyframes typewriter {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .loading-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            linear-gradient(0deg, transparent 24%, rgba(28, 78, 128, 0.05) 25%, rgba(28, 78, 128, 0.05) 26%, transparent 27%, transparent 74%, rgba(28, 78, 128, 0.05) 75%, rgba(28, 78, 128, 0.05) 76%, transparent 77%, transparent),
+            linear-gradient(90deg, transparent 24%, rgba(28, 78, 128, 0.05) 25%, rgba(28, 78, 128, 0.05) 26%, transparent 27%, transparent 74%, rgba(28, 78, 128, 0.05) 75%, rgba(28, 78, 128, 0.05) 76%, transparent 77%, transparent);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .coming-soon-banner {
+        position: absolute;
+        top: 30px;
+        right: -35px;
+        background: #C43210;
+        color: #FFFFFF;
+        padding: 0.5rem 3rem;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transform: rotate(45deg);
+        z-index: 10;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .coming-soon-banner.coming-soon-left {
+        right: auto;
+        left: -35px;
+        transform: rotate(-45deg);
+    }
+
+    @media only screen and (max-width:519px) {
+
+    }
+    @media only screen and (max-width:991px) {
+      .article-card:nth-child(4) .article .content-wrapper{max-width: 100%;}
+      .article-title {font-size: 2rem;}
+      .article-excerpt {font-size:0.9rem;}
+      .tag{font-size: 0.70rem;}
+      .read-more {font-size: 0.8rem;}
+        .article-card:nth-child(4) .article .tags{max-width: 100%; margin-right: 0%;}
+        .article-card:nth-child(6) .article .tags{max-width: 100%; margin-right: 0%;}
+        .article-card:nth-child(8) .article .tags{max-width: 100%; margin-right: 0%;}
+
+        .article-card:nth-child(1) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(1) .article{padding-top:300px;}
+        .article-card:nth-child(1) .article .card-video-wrapper {left: 0; bottom: 60%; right: 0; top: 0;}
+        .article-card:nth-child(1) .article .tags{max-width: 100%; margin-right: 0%;}
+
+        .article-card:nth-child(3) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(3) .article{padding-top:300px;}
+        .article-card:nth-child(3) .article .card-video-wrapper {left: 0; bottom: 60%; right: 0; top: 0;}
+        .article-card:nth-child(3) .article .tags{max-width: 100%; margin-right: 0%;}
+
+        .article-card:nth-child(2) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(2) .article{padding-top:300px;}
+        .article-card:nth-child(2) .article .card-video-wrapper {left: 0; bottom: 60%; right: 0; top: 0;}
+        .article-card:nth-child(2) .article .tags{max-width: 100%; margin-right: 0%;}
+
+        .article-card:nth-child(4) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(4) .article{padding-top:300px;}
+        .article-card:nth-child(4) .article::before {bottom: 60%;right: 0;}
+        .article-card:nth-child(4) .article::after {top: 40%;left: 0;}
+
+        .article-card:nth-child(5) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(5) .article{padding-top:300px;}
+        .article-card:nth-child(5) .article::before {top: 40%;right: 0;}
+        .article-card:nth-child(5) .article::after {bottom: 60%;left: 0;}
+
+        .article-card:nth-child(6) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(6) .article{padding-top:300px;}
+        .article-card:nth-child(6) .article::before {bottom: 60%;right: 0;}
+        .article-card:nth-child(6) .article::after {top: 40%;left: 0;}
+
+        .article-card:nth-child(7) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(7) .article{padding-top:300px;}
+        .article-card:nth-child(7) .article::before {bottom: 60%;right: 0;}
+        .article-card:nth-child(7) .article::after {top: 40%;left: 0;}
+        .article-card:nth-child(7) .article .tags{max-width: 100%; margin-right: 0%;}
+
+        .article-card:nth-child(8) .article .content-wrapper {max-width: 100%;}
+        .article-card:nth-child(8) .article{padding-top:300px;}
+        .article-card:nth-child(8) .article::before {bottom: 60%;right: 0;}
+        .article-card:nth-child(8) .article::after {top: 40%;left: 0;}
+        .article-card:nth-child(8) .article .tags{max-width: 100%; margin-right: 0%;}
+    }
+    @media only screen and (max-width:767px){
+        footer p {font-size: 14px;}
+        .hero-sec1 h2,
+        .hero-sec1 .h2{font-size: 60px;}
+        .article-card:nth-child(4) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(5) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(6) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(7) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(8) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(1) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(3) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+        .article-card:nth-child(2) .article {padding-top: 440px;padding-left:20px;padding-right:20px;}
+
+    }
+    @media only screen and (max-width:480px){
+        .article-card:nth-child(4) .article {padding-top: 450px;}
+        .article-card:nth-child(5) .article {padding-top: 500px;}
+        .article-card:nth-child(6) .article {padding-top: 500px;}
+        .article-card:nth-child(7) .article {padding-top: 500px;}
+        .article-card:nth-child(8) .article {padding-top: 500px;}
+        .article-card:nth-child(1) .article {padding-top: 500px;}
+        .article-card:nth-child(3) .article {padding-top: 500px;}
+        .article-card:nth-child(2) .article {padding-top: 500px;}
+    }
+
+    @media only screen and (min-width:768px){
+
+    }
+
+    @media only screen and (min-width:1200px){
+
+    }
+  </style>
+</head>
+<body>
+<!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loading-grid"></div>
+    <div class="loading-container">
+        <div class="loading-header">loading article</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar-fill" id="loading-bar"></div>
+        </div>
+        <div class="loading-text">reticulating splines...</div>
+    </div>
+</div>
+
+<header>
+  <nav class="navbar navbar-expand">
+    <div class="container-lg text-center">
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="row w-100">
+              <div class="col-5 col-sm-4">
+                <ul class="navbar-nav navbar-light">
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">about</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-7 col-sm-4">
+                <ul class="navbar-nav navbar-light justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link" href="essays-preview.html">earth</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="essays-preview.html">people</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="essays-preview.html">markets</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-lg pt-1 pb-3 text-center">
+  <p class="h1 bs-title text-danger"><a href="index.html"><img src="imgs/matrices-logo.png"  class="img-fluid navbar-brand"></a></p>
+</div>
+
+<div class="mt-3 mb-5">
+  <div class="container-lg articles-container">
+        <!-- Article 6: PRISM Quiz - Video LEFT -->
+        <article class="article-card card" style="position: relative; overflow: hidden;" onmouseenter="this.querySelector('video')?.play()" onmouseleave="var v=this.querySelector('video');if(v){v.pause();v.currentTime=0;}">
+            <div class="coming-soon-banner">Coming Soon</div>
+            <div class="coming-soon-banner coming-soon-left">Coming Soon</div>
+            <div class="card-body article">
+                <div class="card-video-wrapper">
+                    <img src="combo_still.jpg" class="card-video-poster" style="display:block;">
+                    <video muted loop playsinline preload="metadata" poster="combo_still.jpg" style="display:none;">
+                        <source src="combo_600.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="content-wrapper">
+                    <span class="content-type-label content-type-quiz">Interactive Quiz</span>
+                    <div class="article-meta">february 2026 &middot; coming soon</div>
+                    <h2 class="article-title">what's your political disposition?<br>the PRISM quiz</h2>
+                    <p class="article-excerpt">
+                        132 archetypes. Four layers of identity — from hardwired moral foundations to the beliefs you'd change if the world did. Most political quizzes flatten you onto a line. This one maps you into a space, decomposes your disposition into independent dimensions, and shows you which archetypes you neighbor — and why you vote the way you do (or don't).
+                    </p>
+                    <a href="prism-quiz-v2.html" class="read-more">take the quiz ?</a>
+                    <div class="tags">
+                        <span class="tag term-function-form">function v form</span>
+                        <span class="tag term-measurement-error">measurement error</span>
+                        <span class="tag term-declaration-revelation"><span class="declaration">declaration</span> v <span class="revelation">revelation</span></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 8: The Cause of Our Politics - Video hover, Coming Soon -->
+        <article class="article-card card" style="position: relative; overflow: hidden;" onmouseenter="this.querySelector('video')?.play()" onmouseleave="var v=this.querySelector('video');if(v){v.pause();v.currentTime=0;}">
+            <div class="coming-soon-banner">Coming Soon</div>
+            <div class="coming-soon-banner coming-soon-left">Coming Soon</div>
+            <div class="card-body article">
+                <div class="card-video-wrapper">
+                    <img src="cause_still.jpg" class="card-video-poster" style="display:block;">
+                    <video muted loop playsinline preload="metadata" poster="cause_still.jpg" style="display:none;">
+                        <source src="cause_600.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="content-wrapper">
+                    <div class="article-meta">coming soon</div>
+                    <h2 class="article-title">the cause of our politics</h2>
+                    <p class="article-excerpt">
+                        Your political temperament isn't one thing — it's four layers of refraction. From the exogenous forces that shaped you before you could choose, through the dispositions they produced, to the beliefs you hold and the actions you take. PRISM traces the full causal chain across all four layers, mapping the architecture that generates political identity from its deepest roots.
+                    </p>
+                    <a href="#" class="read-more">coming soon &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-declaration-revelation"><span class="declaration">exogenous</span> <span class="revelation">refraction</span></span>
+                        <span class="tag term-decomposition-distillation">decomposition &amp; distillation</span>
+                        <span class="tag term-cycles-spirals">the four layers</span>
+                    </div>
+                </div>
+            </div>
+        </article><!-- Article 7: The Surface of Action - Video hover -->
+        <article class="article-card card" onmouseenter="this.querySelector('video')?.play()" onmouseleave="var v=this.querySelector('video');if(v){v.pause();v.currentTime=0;}">
+            <div class="card-body article">
+                <div class="card-video-wrapper">
+                    <img src="surface_action_still.jpg" class="card-video-poster" style="display:block;">
+                    <video muted loop playsinline preload="metadata" poster="surface_action_still.jpg" style="display:none;">
+                        <source src="surface_action_600.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="content-wrapper">
+                    <span class="content-type-label content-type-essay">Essay</span>
+                    <div class="article-meta">march 2026 &middot; 12 min read</div>
+                    <h2 class="article-title">beneath the surface of action</h2>
+                    <p class="article-excerpt">
+                        The same observed behavior can emerge from completely different causal structures. Is Steve's patriotism an expression of identity or ideology? The answer changes everything about what happens under stress. This is the XOR problem at the heart of political modeling.
+                    </p>
+                    <a href="article_surface_of_action.html" class="read-more">read more &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-declaration-revelation"><span class="declaration">declaration</span> v <span class="revelation">revelation</span></span>
+                        <span class="tag term-measurement-error">measurement error</span>
+                        <span class="tag term-function-form">function v form</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 1: Portfolio Optimization - Image RIGHT -->
+        <article class="article-card card">
+            <div class="card-body article">
+                <div class="content-wrapper">
+                    <span class="content-type-label content-type-data">Interactive Data</span>
+                    <div class="article-meta">december 2025 &middot; 13 min read</div>
+                    <h2 class="article-title">optimizing a stock portfolio across a distribution of futures</h2>
+                    <p class="article-excerpt">
+                        Sharpe Ratio is so 2010. Move beyond mean-variance optimization in this interactive tool, designing portfolios that account for the full distribution of possible outcomes across 13 different macro regimes, because your capital assets don't correlate on a single number.
+                    </p>
+                    <a href="portfolio_v4.html" class="read-more">explore tool &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-experiencing-remembering">{experiencing v remembering}</span>
+                        <span class="tag term-loss-uncertainty">loss &amp; uncertainty</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 2: World in 2032 - Image LEFT -->
+        <article id="article-world-2032" class="article-card card">
+            <div class="card-body article">
+                <div class="content-wrapper">
+                    <div class="article-meta">november 2025 &middot; 26 min read</div>
+                    <h2 class="article-title">the world in 2032:<br>13 exogenous regimes</h2>
+                    <p class="article-excerpt">
+                        The forces outside your control define the distribution of possible futures. Thirteen macro questions&mdash;spanning geopolitics, energy, AI, inflation, interest rates, semiconductors, and climate&mdash;each with four discrete scenarios, yield 52 possible worlds with probability weights assigned via hybrid human-AI forecasting.
+                    </p>
+                    <a href="thirteen-exogenous-realities.html" class="read-more">read more &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-declaration-revelation"><span class="declaration">declaration</span> v <span class="revelation">revelation</span></span>
+                        <span class="tag term-second-best" data-text="second-best worlds">second-best worlds</span>
+                        <span class="tag term-decomposition-distillation">decomposition &amp; distillation</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 3: Lakes of Matrisonia - Image RIGHT -->
+        <article class="article-card card" style="position: relative; overflow: hidden;">
+            <div class="coming-soon-banner">Coming Soon</div>
+            <div class="coming-soon-banner coming-soon-left">Coming Soon</div>
+            <div class="card-body article">
+                <div class="content-wrapper">
+                    <h2 class="article-title">preamble: the lakes of matrisonia</h2>
+                    <p class="article-excerpt">
+                        Thousands of lakes, each with its own geology, its own tributaries, its own cycles of clarity and fog. The Matrisonians have built their civilization around these lakes, harvesting Matrisonium, the ore suspended in their lakes that fuels everything in their society. What do their concepts around understanding the stocks and flows of matrisonium have to teach us about political-economy here on earth?
+                    </p>
+                    <a href="#" class="read-more">read more &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-cycles-spirals">cycles, spirals, &amp; their companions</span>
+                        <span class="tag term-second-best" data-text="second-best worlds">second-best worlds</span>
+                        <span class="tag term-experiencing-remembering">{experiencing v remembering}</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 4: Geometry of Preference - Image LEFT -->
+        <article class="article-card card">
+            <div class="card-body article">
+                <div class="content-wrapper">
+                    <div class="article-meta">september 2025 &middot; 13 min read</div>
+                    <h2 class="article-title">the geometry of preference</h2>
+                    <p class="article-excerpt">
+                        Ignoring expected value isn't a cognitive bias, it's the correct adaptation to reality's structure. How we consider outcomes across the entire distribution shapes everything from equity performance to political alignment, yet lacking shared language for distribution shape, it's routinely mislabeled as bias or conflated with fundamental forces.
+                    </p>
+                    <a href="geometry-of-preference.html" class="read-more">read more &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-experiencing-remembering">{experiencing v remembering}</span>
+                        <span class="tag term-loss-uncertainty">loss &amp; uncertainty</span>
+                        <span class="tag term-second-best" data-text="second-best worlds">second-best worlds</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Article 5: Capital Pricing Geocentric - Image RIGHT -->
+        <article class="article-card card">
+            <div class="card-body article">
+                <div class="content-wrapper">
+                    <div class="article-meta">july 2025 &middot; 16 min read</div>
+                    <h2 class="article-title">the end of capital pricing's geocentric era</h2>
+                    <p class="article-excerpt">
+                        Popular equity models like CAPM and factor investing mistake results for drivers. They've become a self-referential exercise in fitting lines to past data while conflating the real and financial forces that actually move markets. I take a stab at looking at which causal forces created these prices in the first place.
+                    </p>
+                    <a href="ending-capital-asset-pricing-geocentric-era.html" class="read-more">read more &#8594;</a>
+                    <div class="tags">
+                        <span class="tag term-decomposition-distillation">decomposition &amp; distillation</span>
+                        <span class="tag term-function-form">function v form</span>
+                        <span class="tag term-measurement-error">measurement error</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        
+
+  </div>
+</div>
+
+<footer>
+  <div class="container-lg py-4 text-center">
+    <p>
+      <a href="essays-preview.html"><span class="footer-tag term-function-form">function v form</span></a>
+      <span style="margin: 0 0.75rem; opacity: 0.4;">|</span>
+      <a href="essays-preview.html"><span class="footer-tag term-declaration-revelation"><span class="declaration">declaration</span> v <span class="revelation">revelation</span></span></a>
+      <span style="margin: 0 0.75rem; opacity: 0.4;">|</span>
+      <a href="essays-preview.html"><span class="footer-tag term-experiencing-remembering">{experiencing v remembering}</span></a>
+      <span style="margin: 0 0.75rem; opacity: 0.4;">|</span>
+      <a href="essays-preview.html"><span class="footer-tag term-loss-uncertainty">loss & uncertainty</span></a>
+      <span style="margin: 0 0.75rem; opacity: 0.4;">|</span>
+      <a href="essays-preview.html"><span class="footer-tag term-decomposition-distillation">decomposition & distillation</span></a>
+      <span style="margin: 0 0.75rem; opacity: 0.4;">|</span>
+      <a href="essays-preview.html"><span class="footer-tag term-measurement-error">[measurement error]</span></a>
+      <a href="essays-preview.html"><span class="footer-tag term-second-best" data-text="second-best worlds">second-best worlds</span></a>
+      <a href="essays-preview.html"><span class="footer-tag term-cycles-spirals">cycles, spiral, & their companions</span></a>
+    </p>
+  </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JavaScript - Inline -->
+<script>
+    var $url = window.location;
+    //$('header ul.navbar-nav a[href="'+ $url +'.html"]').closest('.nav-item').addClass('active');
+    $('header ul.navbar-nav a').filter(function() {
+         return this.href == $url;
+    }).addClass('active');
+
+    // Wrap letters for term animations that need individual letter control
+    function wrapLetters(element) {
+        const text = element.textContent;
+        element.textContent = '';
+
+        for (let char of text) {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if (char === ' ') {
+                span.style.marginRight = '0.15em';
+            }
+            element.appendChild(span);
+        }
+    }
+
+    // Apply letter wrapping to decomposition-distillation tags (in article cards)
+    document.querySelectorAll('.tag.term-decomposition-distillation').forEach(function(tag) {
+        wrapLetters(tag);
+    });
+
+    // Apply letter wrapping to footer decomposition-distillation tags
+    document.querySelectorAll('.footer-tag.term-decomposition-distillation').forEach(function(tag) {
+        wrapLetters(tag);
+    });
+
+    // Add haptic feedback on hover for article cards
+    document.querySelectorAll('.article-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function(e) {
+            // Haptic feedback (if supported)
+            if (navigator.vibrate) {
+                navigator.vibrate(50); // 50ms vibration
+            }
+        });
+    });
+
+    // Hide loading screen on page load/back navigation (bfcache fix)
+    window.addEventListener('pageshow', function(event) {
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingBar = document.getElementById('loading-bar');
+        loadingScreen.classList.remove('active');
+        if (loadingBar) loadingBar.classList.remove('animate');
+    });
+
+    // Loading screen functionality for article links and cards
+    function showLoadingAndNavigate(href) {
+        if (href && href !== '#' && href !== '') {
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingBar = document.getElementById('loading-bar');
+
+            loadingScreen.classList.add('active');
+
+            setTimeout(function() {
+                loadingBar.classList.add('animate');
+            }, 10);
+
+            if (href.includes('portfolio_v4')) {
+                fetch('04_precomputed_results_01.csv')
+                    .then(response => response.text())
+                    .catch(() => {});
+                loadingBar.style.animationDuration = '10s';
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 10000);
+            } else {
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 2000);
+            }
+        }
+    }
+
+    // Handle clicks on read-more links
+    document.querySelectorAll('.article-card .read-more').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            showLoadingAndNavigate(href);
+        });
+    });
+
+    // Handle clicks on article cards themselves
+    document.querySelectorAll('.article-card').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+            // Only trigger if not clicking on a link or tag
+            if (!e.target.closest('a, .tag')) {
+                const readMoreLink = this.querySelector('.read-more');
+                if (readMoreLink) {
+                    const href = readMoreLink.getAttribute('href');
+                    showLoadingAndNavigate(href);
+                }
+            }
+        });
+    });
+
+    // Hero image hover effect - swap to gif
+    const heroContainer = document.querySelector('.hero-image-container');
+    if (heroContainer) {
+        const heroStatic = heroContainer.querySelector('.hero-static');
+        const heroGif = heroContainer.querySelector('.hero-gif');
+
+        heroContainer.addEventListener('mouseenter', function() {
+            heroStatic.style.display = 'none';
+            heroGif.style.display = 'block';
+        });
+
+        heroContainer.addEventListener('mouseleave', function() {
+            heroGif.style.display = 'none';
+            heroStatic.style.display = 'block';
+        });
+    }
+
+    // Video hover: show video on enter, show poster on leave
+    document.querySelectorAll('.article-card .card-video-wrapper').forEach(function(wrapper) {
+        var video = wrapper.querySelector('video');
+        var poster = wrapper.querySelector('.card-video-poster');
+        if (!video || !poster) return;
+        wrapper.closest('.article-card').addEventListener('mouseenter', function() {
+            poster.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+        wrapper.closest('.article-card').addEventListener('mouseleave', function() {
+            video.pause();
+            video.currentTime = 0;
+            video.style.display = 'none';
+            poster.style.display = 'block';
+        });
+    });
+
+    // Preload images and reveal cards when ready
+    (function() {
+        const imageUrls = [
+            'imgs/bg-article-img2.png',
+            'imgs/optimizing.png',
+            'imgs/states_of_world.png',
+            'imgs/bg-article-img1.png',
+            'imgs/article-img1.jpg',
+            'imgs/geometry_of_preference.png',
+            'imgs/asset_prices-img1.jpg'
+        ];
+
+        const cardImages = [
+            [],                                                               // 1: PRISM Quiz (video)
+            [],                                                               // 2: Cause of Our Politics (video)
+            [],                                                               // 3: Beneath Surface of Action (video)
+            ['imgs/bg-article-img2.png', 'imgs/optimizing.png'],             // 4: Portfolio Optimization
+            ['imgs/states_of_world.png', 'imgs/bg-article-img2.png'],        // 5: World 2032
+            ['imgs/bg-article-img1.png', 'imgs/article-img1.jpg'],           // 6: Lakes of Matrisonia
+            ['imgs/geometry_of_preference.png', 'imgs/bg-article-img2.png'], // 7: Geometry of Preference
+            ['imgs/bg-article-img1.png', 'imgs/asset_prices-img1.jpg']       // 8: Capital Pricing
+        ];
+
+        const loadedImages = new Set();
+
+        function checkCardReady(cardIndex) {
+            const needed = cardImages[cardIndex];
+            const allLoaded = needed.every(url => loadedImages.has(url));
+            if (allLoaded) {
+                const card = document.querySelectorAll('.article-card')[cardIndex];
+                if (card && !card.classList.contains('loaded')) {
+                    card.classList.add('loaded');
+                }
+            }
+        }
+
+        function preloadImage(url) {
+            const img = new Image();
+            img.onload = img.onerror = function() {
+                loadedImages.add(url);
+                cardImages.forEach((_, index) => checkCardReady(index));
+            };
+            img.src = url;
+        }
+
+        imageUrls.forEach(preloadImage);
+
+        // Immediately mark video cards (2, 3) and quiz (1) as loaded
+        var allCards = document.querySelectorAll('.article-card');
+        if (allCards[0]) allCards[0].classList.add('loaded');
+        if (allCards[1]) allCards[1].classList.add('loaded');
+        if (allCards[2]) allCards[2].classList.add('loaded');
+
+        setTimeout(function() {
+            document.querySelectorAll('.article-card').forEach(card => {
+                card.classList.add('loaded');
+            });
+        }, 3000);
+    })();
+</script>
+
+</body>
+</html>

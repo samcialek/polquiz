@@ -179,5 +179,8 @@ export function shouldStop(
     margin >= cfg.LATE_GAME_MARGIN &&
     consecutiveCount >= cfg.LATE_GAME_CONSECUTIVE;
 
-  return primaryStop || secondaryStop || ultraConfStop || lateGameStop;
+  // Hard cap: always stop at 55 questions regardless of convergence
+  const hardCapStop = nAnswered >= 55;
+
+  return primaryStop || secondaryStop || ultraConfStop || lateGameStop || hardCapStop;
 }

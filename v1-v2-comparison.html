@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRISM Quiz: V1 → V2 Option Changes Review</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0f; color: #e0e0e0; padding: 2rem; line-height: 1.6; }
+h1 { text-align: center; margin-bottom: 0.5rem; color: #fff; font-size: 1.8rem; }
+.subtitle { text-align: center; color: #888; margin-bottom: 2rem; font-size: 0.95rem; }
+.stats { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.stat { background: #1a1a2e; padding: 0.8rem 1.5rem; border-radius: 8px; text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: #60a5fa; }
+.stat-label { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+.comparison { background: #12121f; border: 1px solid #2a2a3e; border-radius: 12px; margin-bottom: 1.5rem; overflow: hidden; }
+.comp-header { padding: 1rem 1.5rem; background: #1a1a2e; border-bottom: 1px solid #2a2a3e; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.comp-header h3 { font-size: 1rem; color: #fff; }
+.badge { font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 600; }
+.badge-changed { background: #f59e0b22; color: #f59e0b; border: 1px solid #f59e0b44; }
+.badge-reworded { background: #ef444422; color: #ef4444; border: 1px solid #ef444444; }
+.badge-count-diff { background: #8b5cf622; color: #8b5cf6; border: 1px solid #8b5cf644; }
+.badge-ok { background: #10b98122; color: #10b981; border: 1px solid #10b98144; }
+.comp-body { display: grid; grid-template-columns: 1fr 1fr; }
+.version { padding: 1rem 1.5rem; }
+.version:first-child { border-right: 1px solid #2a2a3e; }
+.version-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+.v1-label { color: #60a5fa; }
+.v2-label { color: #f59e0b; }
+.q-text { font-size: 0.85rem; color: #ccc; margin-bottom: 0.8rem; font-style: italic; }
+.opt-list { list-style: none; }
+.opt-list li { padding: 0.4rem 0.6rem; margin-bottom: 0.3rem; border-radius: 6px; font-size: 0.85rem; background: #1a1a2e; }
+.opt-list li.added { background: #10b98115; border-left: 3px solid #10b981; }
+.opt-list li.removed { background: #ef444415; border-left: 3px solid #ef4444; }
+.opt-list li.changed { background: #f59e0b15; border-left: 3px solid #f59e0b; }
+.opt-key { color: #666; font-size: 0.7rem; font-family: monospace; }
+.legend { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: #888; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+.dot-removed { background: #ef4444; }
+.dot-added { background: #10b981; }
+.dot-changed { background: #f59e0b; }
+@media (max-width: 768px) { .comp-body { grid-template-columns: 1fr; } .version:first-child { border-right: none; border-bottom: 1px solid #2a2a3e; } }
+</style>
+</head>
+<body>
+<h1>PRISM Quiz: V1 → V2 Changes</h1>
+<p class="subtitle">Complete comparison of every option that changed between versions</p>
+<div class="stats">
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label">Questions Changed</div></div>
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label">Options Reworded</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Option Count Changed</div></div>
+</div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot dot-removed"></div>Removed in V2</div>
+  <div class="legend-item"><div class="legend-dot dot-added"></div>Added in V2</div>
+  <div class="legend-item"><div class="legend-dot dot-changed"></div>Reworded in V2</div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q125 → V2: Q9 (politics_at_social_gatherings)</h3>
+    <div><span class="badge badge-count-diff">5 → 3 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">When politics comes up at social gatherings, you typically:</div>
+      <ul class="opt-list"><li><span class="opt-key">share_views</span> Share your views but try to keep it civil</li><li><span class="opt-key">avoid_entirely</span> Avoid entirely—politics ruins social situations</li><li><span class="opt-key">change_subject</span> Try to change the subject—not the place</li><li><span class="opt-key">engage_passionately</span> Engage passionately—these conversations matter</li><li><span class="opt-key">listen_mostly</span> Listen mostly, share selectively</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: politics_at_social_gatherings]</div>
+      <ul class="opt-list"><li><span class="opt-key">avoid_entirely</span> Avoid entirely-politics ruins social situations</li><li><span class="opt-key">discuss_if_comes_up</span> Share your views but try to keep it civil</li><li><span class="opt-key">actively_bring_up</span> Engage passionately - these conversations matter</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q53 → V2: Q7 (coalition_vs_principle)</h3>
+    <div><span class="badge badge-count-diff">2 → 3 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">To win an election, is it better to:</div>
+      <ul class="opt-list"><li><span class="opt-key">tent</span> Dilute the message to build a broader coalition with people you disagree with.</li><li><span class="opt-key">purity</span> Maintain a clear, principled message, even if it alienates moderate voters.</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: coalition_vs_principle]</div>
+      <ul class="opt-list"><li><span class="opt-key">principle_first</span> Maintain a clear, principled message, even if it alienates moderate voters.</li><li><span class="opt-key">coalition_first</span> Dilute the message to build a broader coalition with people you disagree with.</li><li><span class="opt-key">depends_on_issue</span> Depends on the issue - some principles are non-negotiable, others aren't</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q6 → V2: Q10 (climate_energy_bundle)</h3>
+    <div><span class="badge badge-count-diff">12 → 4 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">Which approach to climate and energy do you prefer?</div>
+      <ul class="opt-list"><li><span class="opt-key"></span> Aggressive emissions reductions now</li><li><span class="opt-key"></span> Accept short-term economic disruption for green transition</li><li><span class="opt-key"></span> Higher costs acceptable for clean energy</li><li><span class="opt-key"></span> Gradual transition as technology improves</li><li><span class="opt-key"></span> Protect existing energy jobs</li><li><span class="opt-key"></span> Keep energy affordable for families</li><li><span class="opt-key"></span> Carbon tax letting market find solutions</li><li><span class="opt-key"></span> All low-carbon sources including nuclear</li><li><span class="opt-key"></span> Costs passed to consumers (polluter pays)</li><li><span class="opt-key"></span> Direct regulation and mandates</li><li><span class="opt-key"></span> Renewables only (solar, wind)</li><li><span class="opt-key"></span> Subsidized transition, government absorbs cost</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: climate_energy_bundle]</div>
+      <ul class="opt-list"><li><span class="opt-key">aggressive_transition</span> Aggressive transition - phase out fossil fuels as fast as possible</li><li><span class="opt-key">gradual_transition</span> Gradual transition - move toward renewables but protect jobs and energy security</li><li><span class="opt-key">market_led</span> Market-led - let innovation and market forces drive the transition</li><li><span class="opt-key">no_action_needed</span> No major action needed - climate concerns are overstated</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q80 → V2: Q12 (guess_top_marginal_tax_rate)</h3>
+    <div><span class="badge badge-count-diff">0 → 5 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">What do you think the current top marginal federal income tax rate is?</div>
+      <ul class="opt-list"></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: guess_top_marginal_tax_rate]</div>
+      <ul class="opt-list"><li><span class="opt-key">0-20</span> [NO LABEL: 0-20]</li><li><span class="opt-key">21-40</span> [NO LABEL: 21-40]</li><li><span class="opt-key">41-60</span> [NO LABEL: 41-60]</li><li><span class="opt-key">61-80</span> [NO LABEL: 61-80]</li><li><span class="opt-key">81-100</span> [NO LABEL: 81-100]</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q57 → V2: Q13 (preferred_top_marginal_tax_rate)</h3>
+    <div><span class="badge badge-count-diff">0 → 5 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">What should the top marginal federal income tax rate be?</div>
+      <ul class="opt-list"></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: preferred_top_marginal_tax_rate]</div>
+      <ul class="opt-list"><li><span class="opt-key">0-20</span> [NO LABEL: 0-20]</li><li><span class="opt-key">21-40</span> [NO LABEL: 21-40]</li><li><span class="opt-key">41-60</span> [NO LABEL: 41-60]</li><li><span class="opt-key">61-80</span> [NO LABEL: 61-80]</li><li><span class="opt-key">81-100</span> [NO LABEL: 81-100]</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q29 → V2: Q48 (social_progress_view)</h3>
+    <div><span class="badge badge-count-diff">3 → 5 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">How do you view human progress over time?</div>
+      <ul class="opt-list"><li><span class="opt-key">progress</span> Humanity is generally progressing - things get better over time</li><li><span class="opt-key">cycles</span> History moves in cycles - neither improving nor declining overall</li><li><span class="opt-key">illusion</span> Progress is mostly an illusion - human nature doesn't change</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: social_progress_view]</div>
+      <ul class="opt-list"><li><span class="opt-key">optionEvidence</span> [NO LABEL: optionEvidence]</li><li><span class="opt-key">_improvement</span> [NO LABEL: _improvement]</li><li><span class="opt-key">gradual_improvement</span> Progress is real but slow, uneven, and fragile</li><li><span class="opt-key">stagnation</span> History moves in cycles - neither improving nor declining overall</li><li><span class="opt-key">decline</span> Progress is mostly an illusion - human nature doesn't change</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q74 → V2: Q57 (parents_political_engagement)</h3>
+    <div><span class="badge badge-count-diff">4 → 3 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">How politically engaged were your parents or guardians when you were growing up?</div>
+      <ul class="opt-list"><li><span class="opt-key">somewhat</span> Somewhat engaged—they voted and occasionally discussed politics</li><li><span class="opt-key">minimal</span> Minimally engaged—they rarely discussed politics or participated</li><li><span class="opt-key">very</span> Very engaged—politics was frequently discussed, they voted regularly, may have been activists</li><li><span class="opt-key">none</span> Not at all—politics was essentially absent from my upbringing</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: parents_political_engagement]</div>
+      <ul class="opt-list"><li><span class="opt-key">very_engaged</span> Very engaged-politics was frequently discussed, they voted regularly, may have been activists</li><li><span class="opt-key">occasionally_discussed</span> Somewhat engaged-they voted and occasionally discussed politics</li><li><span class="opt-key">never_discussed</span> Minimally engaged-they rarely discussed politics or participated</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: q133 → V2: Q61 (political_pitch_resonance)</h3>
+    <div><span class="badge badge-count-diff">5 → 4 options</span> <span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">Which political pitch would resonate most with you?</div>
+      <ul class="opt-list"><li><span class="opt-key">data_driven</span> "The data shows these three interventions will have the highest impact"</li><li><span class="opt-key">enemy_focus</span> "The other side is destroying everything—we have to stop them"</li><li><span class="opt-key">unified_narrative</span> "Here's my vision for what this country can become and how we get there"</li><li><span class="opt-key">policy_specifics</span> "Here are my 12 detailed policy proposals with cost estimates"</li><li><span class="opt-key">practical_results</span> "I've done it before and I'll do it again—check my record"</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: political_pitch_resonance]</div>
+      <ul class="opt-list"><li><span class="opt-key">evidence_pitch</span> \</li><li><span class="opt-key">values_pitch</span> \</li><li><span class="opt-key">fight_pitch</span> \</li><li><span class="opt-key">unity_pitch</span> \</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="comparison">
+  <div class="comp-header">
+    <h3>V1: self4 → V2: Q47 (political_conflict_with_close_others)</h3>
+    <div><span class="badge badge-reworded">Reworded</span></div>
+  </div>
+  <div class="comp-body">
+    <div class="version">
+      <div class="version-label v1-label">V1 Original</div>
+      <div class="q-text">When your political views conflict with those of close friends or family...</div>
+      <ul class="opt-list"><li><span class="opt-key">discuss</span> I engage in discussion but stay respectful</li><li><span class="opt-key">quiet</span> I usually keep quiet to avoid conflict</li><li><span class="opt-key">argue</span> I argue my position strongly—truth matters more</li><li><span class="opt-key">mention</span> I'll mention my view but won't argue</li></ul>
+    </div>
+    <div class="version">
+      <div class="version-label v2-label">V2 Current</div>
+      <div class="q-text">[NO PROMPT: political_conflict_with_close_others]</div>
+      <ul class="opt-list"><li><span class="opt-key">avoid_if_possible</span> I usually keep quiet to avoid conflict</li><li><span class="opt-key">engage_carefully</span> I engage in discussion but stay respectful</li><li><span class="opt-key">stand_ground</span> I argue my position strongly - truth matters more</li><li><span class="opt-key">enjoy_debate</span> I'll mention my view but won't argue</li></ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

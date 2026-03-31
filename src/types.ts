@@ -135,6 +135,8 @@ export interface QuestionDef {
   stage: QuestionStage;
   section: string;
   promptShort: string;
+  promptFull?: string;
+  optionLabels?: Record<string, string>;
   uiType: QuestionUiType;
   quality: number;
   rewriteNeeded: boolean;
