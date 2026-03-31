@@ -1,0 +1,12 @@
+﻿const fs = require('fs');
+const results = JSON.parse(fs.readFileSync('output/archetype-quiz-results.json', 'utf8'));
+const r080 = results.find(r => r.archetypeId === '080');
+console.log("080 winner:", r080?.gotName, "id:", r080?.top5?.[0]?.id);
+const r108 = results.find(r => r.archetypeId === '108');
+console.log("108 winner:", r108?.gotName, "id:", r108?.top5?.[0]?.id);
+const r006 = results.find(r => r.archetypeId === '006');
+console.log("006 winner:", r006?.gotName);
+const r019 = results.find(r => r.archetypeId === '019');
+console.log("019 winner:", r019?.gotName);
+const r115 = results.find(r => r.archetypeId === '115');
+console.log("115 winner:", r115?.gotName);

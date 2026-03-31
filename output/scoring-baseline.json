@@ -1,0 +1,797 @@
+{
+  "variant": "baseline",
+  "total": 128,
+  "top1": 126,
+  "top3": 128,
+  "top5": 128,
+  "top1Pct": 98.4,
+  "top3Pct": 100,
+  "top5Pct": 100,
+  "avgQuestions": 38.9,
+  "misses": [
+    {
+      "archetypeId": "006",
+      "archetypeName": "Fairness Pragmatist",
+      "gotId": "009",
+      "gotName": "Social Stabilizer",
+      "rank": 2
+    },
+    {
+      "archetypeId": "019",
+      "archetypeName": "Anarchist Mutualist",
+      "gotId": "020",
+      "gotName": "Horizontalist Dissenter",
+      "rank": 3
+    }
+  ],
+  "allResults": [
+    {
+      "archetypeId": "001",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 30
+    },
+    {
+      "archetypeId": "002",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "003",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "004",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "005",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "006",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "007",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "008",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "009",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 38
+    },
+    {
+      "archetypeId": "010",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "011",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "012",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 32
+    },
+    {
+      "archetypeId": "013",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "014",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 32
+    },
+    {
+      "archetypeId": "015",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 35
+    },
+    {
+      "archetypeId": "016",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "017",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 43
+    },
+    {
+      "archetypeId": "019",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "020",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "021",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 48
+    },
+    {
+      "archetypeId": "022",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "023",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "024",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 43
+    },
+    {
+      "archetypeId": "025",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "026",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "027",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "028",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "029",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 32
+    },
+    {
+      "archetypeId": "030",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "031",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 28
+    },
+    {
+      "archetypeId": "032",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "033",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 35
+    },
+    {
+      "archetypeId": "034",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "035",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "036",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "037",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "039",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 30
+    },
+    {
+      "archetypeId": "040",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "042",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "043",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "045",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 40
+    },
+    {
+      "archetypeId": "046",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "047",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "048",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 38
+    },
+    {
+      "archetypeId": "049",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 38
+    },
+    {
+      "archetypeId": "050",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 44
+    },
+    {
+      "archetypeId": "051",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "052",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "053",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "054",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "055",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "056",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 46
+    },
+    {
+      "archetypeId": "057",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 40
+    },
+    {
+      "archetypeId": "059",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 47
+    },
+    {
+      "archetypeId": "060",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "061",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 38
+    },
+    {
+      "archetypeId": "062",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "063",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "064",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "065",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 35
+    },
+    {
+      "archetypeId": "067",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "069",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "070",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "071",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "072",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 35
+    },
+    {
+      "archetypeId": "073",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "074",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "075",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "076",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "077",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 40
+    },
+    {
+      "archetypeId": "078",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 39
+    },
+    {
+      "archetypeId": "079",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "081",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "082",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "083",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 32
+    },
+    {
+      "archetypeId": "084",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 28
+    },
+    {
+      "archetypeId": "085",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "086",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 36
+    },
+    {
+      "archetypeId": "087",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 36
+    },
+    {
+      "archetypeId": "088",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "089",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "090",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 36
+    },
+    {
+      "archetypeId": "091",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "092",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 38
+    },
+    {
+      "archetypeId": "093",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "094",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "095",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 44
+    },
+    {
+      "archetypeId": "096",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "097",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "098",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "099",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 35
+    },
+    {
+      "archetypeId": "100",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "101",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "102",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "103",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 40
+    },
+    {
+      "archetypeId": "104",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "105",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 40
+    },
+    {
+      "archetypeId": "106",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "107",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "109",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 32
+    },
+    {
+      "archetypeId": "110",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "111",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 36
+    },
+    {
+      "archetypeId": "112",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "115",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 43
+    },
+    {
+      "archetypeId": "116",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 36
+    },
+    {
+      "archetypeId": "117",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    },
+    {
+      "archetypeId": "118",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "119",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "120",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "121",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 43
+    },
+    {
+      "archetypeId": "122",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 55
+    },
+    {
+      "archetypeId": "124",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "125",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "126",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "127",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 50
+    },
+    {
+      "archetypeId": "128",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 45
+    },
+    {
+      "archetypeId": "129",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 47
+    },
+    {
+      "archetypeId": "130",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 34
+    },
+    {
+      "archetypeId": "131",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 41
+    },
+    {
+      "archetypeId": "132",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 37
+    },
+    {
+      "archetypeId": "133",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 47
+    },
+    {
+      "archetypeId": "134",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "135",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 30
+    },
+    {
+      "archetypeId": "136",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 30
+    },
+    {
+      "archetypeId": "137",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "138",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 42
+    },
+    {
+      "archetypeId": "139",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 33
+    },
+    {
+      "archetypeId": "140",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 31
+    }
+  ]
+}

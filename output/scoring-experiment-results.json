@@ -1,0 +1,898 @@
+{
+  "summary": {
+    "baseline": {
+      "top1": 96.2,
+      "top3": 100,
+      "top5": 100,
+      "avgQ": 39.4
+    },
+    "v1": {
+      "top1": 17.7,
+      "top3": 43.8,
+      "top5": 53.1,
+      "avgQ": 25.6
+    },
+    "v2": {
+      "top1": 93.1,
+      "top3": 97.7,
+      "top5": 97.7,
+      "avgQ": 32.9
+    }
+  },
+  "baselineMissesFixedByV1": [
+    "108"
+  ],
+  "baselineMissesFixedByV2": [
+    "080"
+  ],
+  "newMissesInV1": [
+    "001",
+    "005",
+    "007",
+    "011",
+    "012",
+    "013",
+    "014",
+    "015",
+    "016",
+    "017",
+    "020",
+    "021",
+    "022",
+    "023",
+    "024",
+    "025",
+    "026",
+    "027",
+    "028",
+    "029",
+    "030",
+    "031",
+    "032",
+    "033",
+    "034",
+    "035",
+    "036",
+    "037",
+    "042",
+    "046",
+    "048",
+    "050",
+    "052",
+    "053",
+    "054",
+    "055",
+    "056",
+    "057",
+    "059",
+    "060",
+    "061",
+    "063",
+    "064",
+    "065",
+    "067",
+    "069",
+    "070",
+    "071",
+    "073",
+    "074",
+    "075",
+    "076",
+    "077",
+    "078",
+    "079",
+    "081",
+    "082",
+    "083",
+    "084",
+    "085",
+    "086",
+    "087",
+    "088",
+    "089",
+    "090",
+    "092",
+    "093",
+    "094",
+    "095",
+    "096",
+    "097",
+    "098",
+    "099",
+    "100",
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "106",
+    "107",
+    "109",
+    "110",
+    "111",
+    "112",
+    "116",
+    "117",
+    "118",
+    "120",
+    "121",
+    "125",
+    "127",
+    "128",
+    "129",
+    "131",
+    "133",
+    "134",
+    "135",
+    "136",
+    "137",
+    "138",
+    "139",
+    "140"
+  ],
+  "newMissesInV2": [
+    "033",
+    "069",
+    "093",
+    "101",
+    "138"
+  ],
+  "perMissTable": [
+    {
+      "id": "001",
+      "name": "Rawlsian Reformer",
+      "baselineRank": 1,
+      "v1Rank": 10,
+      "v2Rank": 1
+    },
+    {
+      "id": "005",
+      "name": "Public Guardian",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "006",
+      "name": "Fairness Pragmatist",
+      "baselineRank": 2,
+      "v1Rank": 2,
+      "v2Rank": 2
+    },
+    {
+      "id": "007",
+      "name": "Solidarist Reformer",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "011",
+      "name": "Jacobin Egalitarian",
+      "baselineRank": 1,
+      "v1Rank": 16,
+      "v2Rank": 1
+    },
+    {
+      "id": "012",
+      "name": "Class-War Leftist",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "013",
+      "name": "Radical Leveler",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "014",
+      "name": "Movement Egalitarian",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "015",
+      "name": "Moral Firebrand",
+      "baselineRank": 1,
+      "v1Rank": 51,
+      "v2Rank": 1
+    },
+    {
+      "id": "016",
+      "name": "Insurgent Equalizer",
+      "baselineRank": 1,
+      "v1Rank": 9,
+      "v2Rank": 1
+    },
+    {
+      "id": "017",
+      "name": "Uncompromising Redistributionist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "019",
+      "name": "Anarchist Mutualist",
+      "baselineRank": 3,
+      "v1Rank": 41,
+      "v2Rank": 2
+    },
+    {
+      "id": "020",
+      "name": "Horizontalist Dissenter",
+      "baselineRank": 1,
+      "v1Rank": 12,
+      "v2Rank": 1
+    },
+    {
+      "id": "021",
+      "name": "Kantian Cosmopolitan",
+      "baselineRank": 1,
+      "v1Rank": 12,
+      "v2Rank": 1
+    },
+    {
+      "id": "022",
+      "name": "Pluralist Universalist",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 1
+    },
+    {
+      "id": "023",
+      "name": "Rights Cosmopolitan",
+      "baselineRank": 1,
+      "v1Rank": 47,
+      "v2Rank": 1
+    },
+    {
+      "id": "024",
+      "name": "Ethical Internationalist",
+      "baselineRank": 1,
+      "v1Rank": 11,
+      "v2Rank": 1
+    },
+    {
+      "id": "025",
+      "name": "World-Minded Reformer",
+      "baselineRank": 1,
+      "v1Rank": 43,
+      "v2Rank": 1
+    },
+    {
+      "id": "026",
+      "name": "Cosmopolitan Pragmatist",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 1
+    },
+    {
+      "id": "027",
+      "name": "Popperian Liberal",
+      "baselineRank": 1,
+      "v1Rank": 32,
+      "v2Rank": 1
+    },
+    {
+      "id": "028",
+      "name": "Global Caretaker",
+      "baselineRank": 1,
+      "v1Rank": 15,
+      "v2Rank": 1
+    },
+    {
+      "id": "029",
+      "name": "Liberationist Progressive",
+      "baselineRank": 1,
+      "v1Rank": 12,
+      "v2Rank": 1
+    },
+    {
+      "id": "030",
+      "name": "Cultural Pluralist",
+      "baselineRank": 1,
+      "v1Rank": 20,
+      "v2Rank": 1
+    },
+    {
+      "id": "031",
+      "name": "Planetary Steward",
+      "baselineRank": 1,
+      "v1Rank": 15,
+      "v2Rank": 1
+    },
+    {
+      "id": "032",
+      "name": "Hamiltonian Technocrat",
+      "baselineRank": 1,
+      "v1Rank": 11,
+      "v2Rank": 1
+    },
+    {
+      "id": "033",
+      "name": "Systems Modernizer",
+      "baselineRank": 1,
+      "v1Rank": 37,
+      "v2Rank": 11
+    },
+    {
+      "id": "034",
+      "name": "Evidence Reformer",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "035",
+      "name": "Administrative Liberal",
+      "baselineRank": 1,
+      "v1Rank": 11,
+      "v2Rank": 1
+    },
+    {
+      "id": "036",
+      "name": "Institutional Optimizer",
+      "baselineRank": 1,
+      "v1Rank": 18,
+      "v2Rank": 1
+    },
+    {
+      "id": "037",
+      "name": "Fabian Modernizer",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "042",
+      "name": "Localist Progressive",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "046",
+      "name": "Pastoral Leftist",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 1
+    },
+    {
+      "id": "048",
+      "name": "Solidaristic Localist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "050",
+      "name": "Religious Leftist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "052",
+      "name": "Distributist Localist",
+      "baselineRank": 1,
+      "v1Rank": 20,
+      "v2Rank": 1
+    },
+    {
+      "id": "053",
+      "name": "Consensus Builder",
+      "baselineRank": 1,
+      "v1Rank": 6,
+      "v2Rank": 1
+    },
+    {
+      "id": "054",
+      "name": "Arbiter Moderate",
+      "baselineRank": 1,
+      "v1Rank": 13,
+      "v2Rank": 1
+    },
+    {
+      "id": "055",
+      "name": "Halifax Moderate",
+      "baselineRank": 1,
+      "v1Rank": 23,
+      "v2Rank": 1
+    },
+    {
+      "id": "056",
+      "name": "Institutional Centrist",
+      "baselineRank": 1,
+      "v1Rank": 49,
+      "v2Rank": 1
+    },
+    {
+      "id": "057",
+      "name": "Temperate Pluralist",
+      "baselineRank": 1,
+      "v1Rank": 6,
+      "v2Rank": 1
+    },
+    {
+      "id": "059",
+      "name": "Public-Minded Moderate",
+      "baselineRank": 1,
+      "v1Rank": 6,
+      "v2Rank": 1
+    },
+    {
+      "id": "060",
+      "name": "Hinge Citizen",
+      "baselineRank": 1,
+      "v1Rank": 23,
+      "v2Rank": 1
+    },
+    {
+      "id": "061",
+      "name": "Millian Liberal",
+      "baselineRank": 1,
+      "v1Rank": 9,
+      "v2Rank": 1
+    },
+    {
+      "id": "063",
+      "name": "Enterprise Pluralist",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "064",
+      "name": "Market Optimist",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "065",
+      "name": "Opportunity Liberal",
+      "baselineRank": 1,
+      "v1Rank": 33,
+      "v2Rank": 1
+    },
+    {
+      "id": "067",
+      "name": "Free-Exchange Modernist",
+      "baselineRank": 1,
+      "v1Rank": 25,
+      "v2Rank": 1
+    },
+    {
+      "id": "069",
+      "name": "Bleeding-Heart Libertarian",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 2
+    },
+    {
+      "id": "070",
+      "name": "Burkean Steward",
+      "baselineRank": 1,
+      "v1Rank": 25,
+      "v2Rank": 1
+    },
+    {
+      "id": "071",
+      "name": "Constitutional Conservative",
+      "baselineRank": 1,
+      "v1Rank": 10,
+      "v2Rank": 1
+    },
+    {
+      "id": "073",
+      "name": "Civic Traditionalist",
+      "baselineRank": 1,
+      "v1Rank": 6,
+      "v2Rank": 1
+    },
+    {
+      "id": "074",
+      "name": "Responsible Conservative",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "075",
+      "name": "Institutional Conservative",
+      "baselineRank": 1,
+      "v1Rank": 15,
+      "v2Rank": 1
+    },
+    {
+      "id": "076",
+      "name": "Fiscal Gradualist",
+      "baselineRank": 1,
+      "v1Rank": 13,
+      "v2Rank": 1
+    },
+    {
+      "id": "077",
+      "name": "Ordered Libertarian",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "078",
+      "name": "Meritocratic Conservative",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "079",
+      "name": "National Developmentalist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "080",
+      "name": "Chestertonian Traditionalist",
+      "baselineRank": 2,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "081",
+      "name": "Heritage Guardian",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "082",
+      "name": "Altar-and-Hearth Conservative",
+      "baselineRank": 1,
+      "v1Rank": 13,
+      "v2Rank": 1
+    },
+    {
+      "id": "083",
+      "name": "Sacred-Order Defender",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "085",
+      "name": "Customary Localist",
+      "baselineRank": 1,
+      "v1Rank": 13,
+      "v2Rank": 1
+    },
+    {
+      "id": "086",
+      "name": "Duty Traditionalist",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "087",
+      "name": "Continuity Conservative",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "088",
+      "name": "Gentle Traditionalist",
+      "baselineRank": 1,
+      "v1Rank": 34,
+      "v2Rank": 1
+    },
+    {
+      "id": "089",
+      "name": "Integral Traditionalist",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "090",
+      "name": "Hobbesian Guardian",
+      "baselineRank": 1,
+      "v1Rank": 21,
+      "v2Rank": 1
+    },
+    {
+      "id": "092",
+      "name": "Disciplined Majoritarian",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "093",
+      "name": "Stability-First Voter",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 2
+    },
+    {
+      "id": "094",
+      "name": "Hard-State Manager",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "095",
+      "name": "Emergency Orderist",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "096",
+      "name": "Civic Disciplinarian",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 1
+    },
+    {
+      "id": "097",
+      "name": "Authority Pragmatist",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "098",
+      "name": "Anti-Elite Populist",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "099",
+      "name": "Scarcity Populist",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "100",
+      "name": "Tribal Insurgent",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "101",
+      "name": "Embattled Majoritarian",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 3
+    },
+    {
+      "id": "102",
+      "name": "Folk Tribune",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "103",
+      "name": "Grievance Mobilizer",
+      "baselineRank": 1,
+      "v1Rank": 7,
+      "v2Rank": 1
+    },
+    {
+      "id": "104",
+      "name": "National Protector",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "105",
+      "name": "Combative Populist",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "106",
+      "name": "Leader-Centered Insurgent",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "107",
+      "name": "Resentful Localist",
+      "baselineRank": 1,
+      "v1Rank": 14,
+      "v2Rank": 1
+    },
+    {
+      "id": "108",
+      "name": "Passive Cynic",
+      "baselineRank": 2,
+      "v1Rank": 1,
+      "v2Rank": 15
+    },
+    {
+      "id": "109",
+      "name": "Alienated Outsider",
+      "baselineRank": 1,
+      "v1Rank": 13,
+      "v2Rank": 1
+    },
+    {
+      "id": "110",
+      "name": "Principled Abstainer",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "111",
+      "name": "Diogenes Independent",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "112",
+      "name": "Contrarian Intellectual",
+      "baselineRank": 1,
+      "v1Rank": 11,
+      "v2Rank": 1
+    },
+    {
+      "id": "115",
+      "name": "Quietist",
+      "baselineRank": 3,
+      "v1Rank": 2,
+      "v2Rank": 2
+    },
+    {
+      "id": "116",
+      "name": "Quiet Middle",
+      "baselineRank": 1,
+      "v1Rank": 6,
+      "v2Rank": 1
+    },
+    {
+      "id": "117",
+      "name": "Comfortable Bystander",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "118",
+      "name": "Survival Pragmatist",
+      "baselineRank": 1,
+      "v1Rank": 24,
+      "v2Rank": 1
+    },
+    {
+      "id": "120",
+      "name": "Good Neighbor",
+      "baselineRank": 1,
+      "v1Rank": 21,
+      "v2Rank": 1
+    },
+    {
+      "id": "121",
+      "name": "Spectator Citizen",
+      "baselineRank": 1,
+      "v1Rank": 19,
+      "v2Rank": 1
+    },
+    {
+      "id": "125",
+      "name": "Reluctant Partisan",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "127",
+      "name": "Tribal Loyalist",
+      "baselineRank": 1,
+      "v1Rank": 3,
+      "v2Rank": 1
+    },
+    {
+      "id": "128",
+      "name": "Loyal Democrat",
+      "baselineRank": 1,
+      "v1Rank": 4,
+      "v2Rank": 1
+    },
+    {
+      "id": "129",
+      "name": "Loyal Republican",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "131",
+      "name": "Duty Voter",
+      "baselineRank": 1,
+      "v1Rank": 23,
+      "v2Rank": 1
+    },
+    {
+      "id": "133",
+      "name": "Sporadic Alarm Voter",
+      "baselineRank": 1,
+      "v1Rank": 16,
+      "v2Rank": 1
+    },
+    {
+      "id": "134",
+      "name": "Progressive Civic Nationalist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "135",
+      "name": "Disruptive Cosmopolitan",
+      "baselineRank": 1,
+      "v1Rank": 5,
+      "v2Rank": 1
+    },
+    {
+      "id": "136",
+      "name": "Aspirational Traditionalist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "137",
+      "name": "Prophetic Revivalist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "138",
+      "name": "Holistic Dissenter",
+      "baselineRank": 1,
+      "v1Rank": 8,
+      "v2Rank": 11
+    },
+    {
+      "id": "139",
+      "name": "Civic Assimilationist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    },
+    {
+      "id": "140",
+      "name": "Market Green Modernist",
+      "baselineRank": 1,
+      "v1Rank": 2,
+      "v2Rank": 1
+    }
+  ]
+}

@@ -1,0 +1,1544 @@
+{
+  "variant": "v1",
+  "total": 130,
+  "top1": 23,
+  "top3": 57,
+  "top5": 69,
+  "top1Pct": 17.7,
+  "top3Pct": 43.8,
+  "top5Pct": 53.1,
+  "avgQuestions": 25.6,
+  "misses": [
+    {
+      "archetypeId": "001",
+      "archetypeName": "Rawlsian Reformer",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 10
+    },
+    {
+      "archetypeId": "005",
+      "archetypeName": "Public Guardian",
+      "gotId": "009",
+      "gotName": "Social Stabilizer",
+      "rank": 3
+    },
+    {
+      "archetypeId": "006",
+      "archetypeName": "Fairness Pragmatist",
+      "gotId": "009",
+      "gotName": "Social Stabilizer",
+      "rank": 2
+    },
+    {
+      "archetypeId": "007",
+      "archetypeName": "Solidarist Reformer",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 2
+    },
+    {
+      "archetypeId": "011",
+      "archetypeName": "Jacobin Egalitarian",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 16
+    },
+    {
+      "archetypeId": "012",
+      "archetypeName": "Class-War Leftist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 7
+    },
+    {
+      "archetypeId": "013",
+      "archetypeName": "Radical Leveler",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "014",
+      "archetypeName": "Movement Egalitarian",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "015",
+      "archetypeName": "Moral Firebrand",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 51
+    },
+    {
+      "archetypeId": "016",
+      "archetypeName": "Insurgent Equalizer",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 9
+    },
+    {
+      "archetypeId": "017",
+      "archetypeName": "Uncompromising Redistributionist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "019",
+      "archetypeName": "Anarchist Mutualist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 41
+    },
+    {
+      "archetypeId": "020",
+      "archetypeName": "Horizontalist Dissenter",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 12
+    },
+    {
+      "archetypeId": "021",
+      "archetypeName": "Kantian Cosmopolitan",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 12
+    },
+    {
+      "archetypeId": "022",
+      "archetypeName": "Pluralist Universalist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 8
+    },
+    {
+      "archetypeId": "023",
+      "archetypeName": "Rights Cosmopolitan",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 47
+    },
+    {
+      "archetypeId": "024",
+      "archetypeName": "Ethical Internationalist",
+      "gotId": "003",
+      "gotName": "Welfare Modernizer",
+      "rank": 11
+    },
+    {
+      "archetypeId": "025",
+      "archetypeName": "World-Minded Reformer",
+      "gotId": "009",
+      "gotName": "Social Stabilizer",
+      "rank": 43
+    },
+    {
+      "archetypeId": "026",
+      "archetypeName": "Cosmopolitan Pragmatist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 8
+    },
+    {
+      "archetypeId": "027",
+      "archetypeName": "Popperian Liberal",
+      "gotId": "009",
+      "gotName": "Social Stabilizer",
+      "rank": 32
+    },
+    {
+      "archetypeId": "028",
+      "archetypeName": "Global Caretaker",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 15
+    },
+    {
+      "archetypeId": "029",
+      "archetypeName": "Liberationist Progressive",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 12
+    },
+    {
+      "archetypeId": "030",
+      "archetypeName": "Cultural Pluralist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 20
+    },
+    {
+      "archetypeId": "031",
+      "archetypeName": "Planetary Steward",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 15
+    },
+    {
+      "archetypeId": "032",
+      "archetypeName": "Hamiltonian Technocrat",
+      "gotId": "128",
+      "gotName": "Loyal Democrat",
+      "rank": 11
+    },
+    {
+      "archetypeId": "033",
+      "archetypeName": "Systems Modernizer",
+      "gotId": "003",
+      "gotName": "Welfare Modernizer",
+      "rank": 37
+    },
+    {
+      "archetypeId": "034",
+      "archetypeName": "Evidence Reformer",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 2
+    },
+    {
+      "archetypeId": "035",
+      "archetypeName": "Administrative Liberal",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 11
+    },
+    {
+      "archetypeId": "036",
+      "archetypeName": "Institutional Optimizer",
+      "gotId": "039",
+      "gotName": "Data-Driven Moderate",
+      "rank": 18
+    },
+    {
+      "archetypeId": "037",
+      "archetypeName": "Fabian Modernizer",
+      "gotId": "122",
+      "gotName": "Civic Minimalist",
+      "rank": 4
+    },
+    {
+      "archetypeId": "042",
+      "archetypeName": "Localist Progressive",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "046",
+      "archetypeName": "Pastoral Leftist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 8
+    },
+    {
+      "archetypeId": "048",
+      "archetypeName": "Solidaristic Localist",
+      "gotId": "042",
+      "gotName": "Localist Progressive",
+      "rank": 2
+    },
+    {
+      "archetypeId": "050",
+      "archetypeName": "Religious Leftist",
+      "gotId": "049",
+      "gotName": "Paternal Egalitarian",
+      "rank": 2
+    },
+    {
+      "archetypeId": "052",
+      "archetypeName": "Distributist Localist",
+      "gotId": "125",
+      "gotName": "Reluctant Partisan",
+      "rank": 20
+    },
+    {
+      "archetypeId": "053",
+      "archetypeName": "Consensus Builder",
+      "gotId": "122",
+      "gotName": "Civic Minimalist",
+      "rank": 6
+    },
+    {
+      "archetypeId": "054",
+      "archetypeName": "Arbiter Moderate",
+      "gotId": "122",
+      "gotName": "Civic Minimalist",
+      "rank": 13
+    },
+    {
+      "archetypeId": "055",
+      "archetypeName": "Halifax Moderate",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 23
+    },
+    {
+      "archetypeId": "056",
+      "archetypeName": "Institutional Centrist",
+      "gotId": "122",
+      "gotName": "Civic Minimalist",
+      "rank": 49
+    },
+    {
+      "archetypeId": "057",
+      "archetypeName": "Temperate Pluralist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 6
+    },
+    {
+      "archetypeId": "059",
+      "archetypeName": "Public-Minded Moderate",
+      "gotId": "122",
+      "gotName": "Civic Minimalist",
+      "rank": 6
+    },
+    {
+      "archetypeId": "060",
+      "archetypeName": "Hinge Citizen",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 23
+    },
+    {
+      "archetypeId": "061",
+      "archetypeName": "Millian Liberal",
+      "gotId": "111",
+      "gotName": "Diogenes Independent",
+      "rank": 9
+    },
+    {
+      "archetypeId": "063",
+      "archetypeName": "Enterprise Pluralist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 3
+    },
+    {
+      "archetypeId": "064",
+      "archetypeName": "Market Optimist",
+      "gotId": "039",
+      "gotName": "Data-Driven Moderate",
+      "rank": 7
+    },
+    {
+      "archetypeId": "065",
+      "archetypeName": "Opportunity Liberal",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 33
+    },
+    {
+      "archetypeId": "067",
+      "archetypeName": "Free-Exchange Modernist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 25
+    },
+    {
+      "archetypeId": "069",
+      "archetypeName": "Bleeding-Heart Libertarian",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 7
+    },
+    {
+      "archetypeId": "070",
+      "archetypeName": "Burkean Steward",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 25
+    },
+    {
+      "archetypeId": "071",
+      "archetypeName": "Constitutional Conservative",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 10
+    },
+    {
+      "archetypeId": "073",
+      "archetypeName": "Civic Traditionalist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 6
+    },
+    {
+      "archetypeId": "074",
+      "archetypeName": "Responsible Conservative",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 7
+    },
+    {
+      "archetypeId": "075",
+      "archetypeName": "Institutional Conservative",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 15
+    },
+    {
+      "archetypeId": "076",
+      "archetypeName": "Fiscal Gradualist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 13
+    },
+    {
+      "archetypeId": "077",
+      "archetypeName": "Ordered Libertarian",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 4
+    },
+    {
+      "archetypeId": "078",
+      "archetypeName": "Meritocratic Conservative",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "079",
+      "archetypeName": "National Developmentalist",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 2
+    },
+    {
+      "archetypeId": "080",
+      "archetypeName": "Chestertonian Traditionalist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 7
+    },
+    {
+      "archetypeId": "081",
+      "archetypeName": "Heritage Guardian",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 2
+    },
+    {
+      "archetypeId": "082",
+      "archetypeName": "Altar-and-Hearth Conservative",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 13
+    },
+    {
+      "archetypeId": "083",
+      "archetypeName": "Sacred-Order Defender",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 2
+    },
+    {
+      "archetypeId": "084",
+      "archetypeName": "Civilizational Conservative",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 3
+    },
+    {
+      "archetypeId": "085",
+      "archetypeName": "Customary Localist",
+      "gotId": "115",
+      "gotName": "Quietist",
+      "rank": 13
+    },
+    {
+      "archetypeId": "086",
+      "archetypeName": "Duty Traditionalist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 4
+    },
+    {
+      "archetypeId": "087",
+      "archetypeName": "Continuity Conservative",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 2
+    },
+    {
+      "archetypeId": "088",
+      "archetypeName": "Gentle Traditionalist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 34
+    },
+    {
+      "archetypeId": "089",
+      "archetypeName": "Integral Traditionalist",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 3
+    },
+    {
+      "archetypeId": "090",
+      "archetypeName": "Hobbesian Guardian",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 21
+    },
+    {
+      "archetypeId": "092",
+      "archetypeName": "Disciplined Majoritarian",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 2
+    },
+    {
+      "archetypeId": "093",
+      "archetypeName": "Stability-First Voter",
+      "gotId": "091",
+      "gotName": "Security Paternalist",
+      "rank": 2
+    },
+    {
+      "archetypeId": "094",
+      "archetypeName": "Hard-State Manager",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 7
+    },
+    {
+      "archetypeId": "095",
+      "archetypeName": "Emergency Orderist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 4
+    },
+    {
+      "archetypeId": "096",
+      "archetypeName": "Civic Disciplinarian",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 8
+    },
+    {
+      "archetypeId": "097",
+      "archetypeName": "Authority Pragmatist",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 5
+    },
+    {
+      "archetypeId": "098",
+      "archetypeName": "Anti-Elite Populist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 5
+    },
+    {
+      "archetypeId": "099",
+      "archetypeName": "Scarcity Populist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 5
+    },
+    {
+      "archetypeId": "100",
+      "archetypeName": "Tribal Insurgent",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 3
+    },
+    {
+      "archetypeId": "101",
+      "archetypeName": "Embattled Majoritarian",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 8
+    },
+    {
+      "archetypeId": "102",
+      "archetypeName": "Folk Tribune",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "103",
+      "archetypeName": "Grievance Mobilizer",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 7
+    },
+    {
+      "archetypeId": "104",
+      "archetypeName": "National Protector",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 5
+    },
+    {
+      "archetypeId": "105",
+      "archetypeName": "Combative Populist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 4
+    },
+    {
+      "archetypeId": "106",
+      "archetypeName": "Leader-Centered Insurgent",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 3
+    },
+    {
+      "archetypeId": "107",
+      "archetypeName": "Resentful Localist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 14
+    },
+    {
+      "archetypeId": "109",
+      "archetypeName": "Alienated Outsider",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 13
+    },
+    {
+      "archetypeId": "110",
+      "archetypeName": "Principled Abstainer",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 5
+    },
+    {
+      "archetypeId": "111",
+      "archetypeName": "Diogenes Independent",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 2
+    },
+    {
+      "archetypeId": "112",
+      "archetypeName": "Contrarian Intellectual",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 11
+    },
+    {
+      "archetypeId": "115",
+      "archetypeName": "Quietist",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 2
+    },
+    {
+      "archetypeId": "116",
+      "archetypeName": "Quiet Middle",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 6
+    },
+    {
+      "archetypeId": "117",
+      "archetypeName": "Comfortable Bystander",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 2
+    },
+    {
+      "archetypeId": "118",
+      "archetypeName": "Survival Pragmatist",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 24
+    },
+    {
+      "archetypeId": "120",
+      "archetypeName": "Good Neighbor",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 21
+    },
+    {
+      "archetypeId": "121",
+      "archetypeName": "Spectator Citizen",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 19
+    },
+    {
+      "archetypeId": "125",
+      "archetypeName": "Reluctant Partisan",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 2
+    },
+    {
+      "archetypeId": "127",
+      "archetypeName": "Tribal Loyalist",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 3
+    },
+    {
+      "archetypeId": "128",
+      "archetypeName": "Loyal Democrat",
+      "gotId": "108",
+      "gotName": "Passive Cynic",
+      "rank": 4
+    },
+    {
+      "archetypeId": "129",
+      "archetypeName": "Loyal Republican",
+      "gotId": "132",
+      "gotName": "Negative Partisan",
+      "rank": 2
+    },
+    {
+      "archetypeId": "131",
+      "archetypeName": "Duty Voter",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 23
+    },
+    {
+      "archetypeId": "133",
+      "archetypeName": "Sporadic Alarm Voter",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 16
+    },
+    {
+      "archetypeId": "134",
+      "archetypeName": "Progressive Civic Nationalist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "135",
+      "archetypeName": "Disruptive Cosmopolitan",
+      "gotId": "119",
+      "gotName": "Apolitical Striver",
+      "rank": 5
+    },
+    {
+      "archetypeId": "136",
+      "archetypeName": "Aspirational Traditionalist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "137",
+      "archetypeName": "Prophetic Revivalist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "138",
+      "archetypeName": "Holistic Dissenter",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 8
+    },
+    {
+      "archetypeId": "139",
+      "archetypeName": "Civic Assimilationist",
+      "gotId": "126",
+      "gotName": "Single-Issue Activator",
+      "rank": 2
+    },
+    {
+      "archetypeId": "140",
+      "archetypeName": "Market Green Modernist",
+      "gotId": "124",
+      "gotName": "Crisis-Activated Sleeper",
+      "rank": 2
+    }
+  ],
+  "allResults": [
+    {
+      "archetypeId": "001",
+      "correct": false,
+      "rank": 10,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "002",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "003",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "004",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "005",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "006",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "007",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "008",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "009",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "010",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "011",
+      "correct": false,
+      "rank": 16,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "012",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "013",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "014",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "015",
+      "correct": false,
+      "rank": 51,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "016",
+      "correct": false,
+      "rank": 9,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "017",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "019",
+      "correct": false,
+      "rank": 41,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "020",
+      "correct": false,
+      "rank": 12,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "021",
+      "correct": false,
+      "rank": 12,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "022",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "023",
+      "correct": false,
+      "rank": 47,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "024",
+      "correct": false,
+      "rank": 11,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "025",
+      "correct": false,
+      "rank": 43,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "026",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "027",
+      "correct": false,
+      "rank": 32,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "028",
+      "correct": false,
+      "rank": 15,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "029",
+      "correct": false,
+      "rank": 12,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "030",
+      "correct": false,
+      "rank": 20,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "031",
+      "correct": false,
+      "rank": 15,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "032",
+      "correct": false,
+      "rank": 11,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "033",
+      "correct": false,
+      "rank": 37,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "034",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "035",
+      "correct": false,
+      "rank": 11,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "036",
+      "correct": false,
+      "rank": 18,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "037",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "039",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "040",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "042",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "043",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "045",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "046",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "047",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "048",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "049",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "050",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "051",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "052",
+      "correct": false,
+      "rank": 20,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "053",
+      "correct": false,
+      "rank": 6,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "054",
+      "correct": false,
+      "rank": 13,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "055",
+      "correct": false,
+      "rank": 23,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "056",
+      "correct": false,
+      "rank": 49,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "057",
+      "correct": false,
+      "rank": 6,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "059",
+      "correct": false,
+      "rank": 6,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "060",
+      "correct": false,
+      "rank": 23,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "061",
+      "correct": false,
+      "rank": 9,
+      "questionsAnswered": 28
+    },
+    {
+      "archetypeId": "062",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 28
+    },
+    {
+      "archetypeId": "063",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "064",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "065",
+      "correct": false,
+      "rank": 33,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "067",
+      "correct": false,
+      "rank": 25,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "069",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "070",
+      "correct": false,
+      "rank": 25,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "071",
+      "correct": false,
+      "rank": 10,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "072",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "073",
+      "correct": false,
+      "rank": 6,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "074",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "075",
+      "correct": false,
+      "rank": 15,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "076",
+      "correct": false,
+      "rank": 13,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "077",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "078",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 30
+    },
+    {
+      "archetypeId": "079",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "080",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "081",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "082",
+      "correct": false,
+      "rank": 13,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "083",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "084",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "085",
+      "correct": false,
+      "rank": 13,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "086",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "087",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "088",
+      "correct": false,
+      "rank": 34,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "089",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "090",
+      "correct": false,
+      "rank": 21,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "091",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "092",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "093",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "094",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "095",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "096",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "097",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "098",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "099",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "100",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "101",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "102",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "103",
+      "correct": false,
+      "rank": 7,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "104",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "105",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "106",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "107",
+      "correct": false,
+      "rank": 14,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "108",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "109",
+      "correct": false,
+      "rank": 13,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "110",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "111",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "112",
+      "correct": false,
+      "rank": 11,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "115",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "116",
+      "correct": false,
+      "rank": 6,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "117",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "118",
+      "correct": false,
+      "rank": 24,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "119",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "120",
+      "correct": false,
+      "rank": 21,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "121",
+      "correct": false,
+      "rank": 19,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "122",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "124",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "125",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 29
+    },
+    {
+      "archetypeId": "126",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "127",
+      "correct": false,
+      "rank": 3,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "128",
+      "correct": false,
+      "rank": 4,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "129",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "130",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 26
+    },
+    {
+      "archetypeId": "131",
+      "correct": false,
+      "rank": 23,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "132",
+      "correct": true,
+      "rank": 1,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "133",
+      "correct": false,
+      "rank": 16,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "134",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 28
+    },
+    {
+      "archetypeId": "135",
+      "correct": false,
+      "rank": 5,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "136",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "137",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "138",
+      "correct": false,
+      "rank": 8,
+      "questionsAnswered": 25
+    },
+    {
+      "archetypeId": "139",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 27
+    },
+    {
+      "archetypeId": "140",
+      "correct": false,
+      "rank": 2,
+      "questionsAnswered": 25
+    }
+  ]
+}

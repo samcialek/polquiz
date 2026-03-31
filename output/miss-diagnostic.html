@@ -1,0 +1,672 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRISM Quiz — Miss Diagnostic Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0c0a08;color:#e8e2d8;font-family:'Inter',sans-serif;padding:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:#fff;margin-bottom:.5rem}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;margin:2rem 0 1rem}
+h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#5BA8D9;margin:.5rem 0}
+.subtitle{color:#888;font-size:.9rem;margin-bottom:2rem}
+.summary-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.summary-table th{background:#1a1816;color:#5BA8D9;padding:.7rem 1rem;text-align:left;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.summary-table td{padding:.6rem 1rem;border-bottom:1px solid #222;font-size:.9rem}
+.summary-table tr:hover{background:#1a1816}
+.rank-bad{color:#EC1014;font-weight:600}
+.rank-ok{color:#FFB800;font-weight:600}
+.miss-card{background:#141210;border:1px solid #2a2826;border-radius:12px;margin:1.5rem 0;overflow:hidden}
+.miss-header{padding:1.2rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.miss-header:hover{background:#1a1816}
+.miss-header .left{display:flex;align-items:center;gap:1rem}
+.miss-header .id{color:#5BA8D9;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700}
+.miss-header .name{font-size:1.1rem}
+.miss-header .arrow{color:#666;font-size:1.2rem;transition:transform .3s}
+.miss-header.open .arrow{transform:rotate(180deg)}
+.miss-body{display:none;padding:0 1.5rem 1.5rem}
+.miss-body.open{display:block}
+.rec{display:inline-block;padding:.3rem .8rem;border-radius:6px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.rec-merge{background:rgba(236,16,20,.15);color:#EC1014;border:1px solid rgba(236,16,20,.3)}
+.rec-fix{background:rgba(3,232,122,.15);color:#03E87A;border:1px solid rgba(3,232,122,.3)}
+.node-row{display:grid;grid-template-columns:60px 1fr 60px 1fr 60px 120px;gap:.5rem;align-items:center;padding:.4rem 0;border-bottom:1px solid #1a1816;font-size:.85rem}
+.node-label{color:#5BA8D9;font-weight:600;font-family:monospace}
+.bar-container{height:20px;background:#1a1816;border-radius:4px;position:relative;overflow:hidden}
+.bar{height:100%;border-radius:4px;transition:width .3s}
+.bar-true{background:linear-gradient(90deg,#1019EC,#5BA8D9)}
+.bar-winner{background:linear-gradient(90deg,#EC1014,#ff6b6b)}
+.bar-same{background:#444}
+.sal-dots{display:flex;gap:3px}
+.sal-dot{width:8px;height:8px;border-radius:50%}
+.sal-filled{background:#5BA8D9}
+.sal-empty{background:#2a2826}
+.delta{font-weight:600;text-align:center}
+.delta-0{color:#666}
+.delta-1{color:#FFB800}
+.delta-2{color:#EC1014}
+.verdict{font-size:.8rem;padding:.2rem .5rem;border-radius:4px}
+.v-ident{background:rgba(236,16,20,.1);color:#EC1014}
+.v-sim{background:rgba(255,184,0,.1);color:#FFB800}
+.v-diff{background:rgba(3,232,122,.1);color:#03E87A}
+.node-grid-header{display:grid;grid-template-columns:60px 1fr 60px 1fr 60px 120px;gap:.5rem;padding:.4rem 0;border-bottom:2px solid #333;font-size:.75rem;color:#888;text-transform:uppercase;letter-spacing:.05em}
+.cat-compare{display:flex;gap:2rem;margin-top:1rem;padding:1rem;background:#1a1816;border-radius:8px}
+.cat-col{flex:1}
+.cat-col h4{font-size:.8rem;color:#888;text-transform:uppercase;margin-bottom:.5rem}
+.cat-bar{display:flex;align-items:center;gap:.5rem;margin:.3rem 0;font-size:.8rem}
+.cat-bar-fill{height:14px;border-radius:3px;min-width:2px}
+.top5{margin-top:1rem;padding:1rem;background:#1a1816;border-radius:8px}
+.top5 h4{font-size:.8rem;color:#888;text-transform:uppercase;margin-bottom:.5rem}
+.top5-item{display:flex;justify-content:space-between;padding:.3rem 0;font-size:.85rem;border-bottom:1px solid #222}
+.top5-item.true-arch{color:#03E87A;font-weight:600}
+.top5-item.winner{color:#EC1014;font-weight:600}
+</style></head><body>
+<h1>PRISM Quiz — Miss Diagnostic Report</h1>
+<p class="subtitle">Generated 2026-03-31 · Baseline scoring · 5 misses out of 108 archetypes tested</p>
+<h2>Summary</h2>
+<table class="summary-table"><thead><tr><th>ID</th><th>Archetype</th><th>Rank</th><th>Winner</th><th>Discriminators (Δ≥2)</th><th>Recommendation</th></tr></thead><tbody><tr>
+    <td>006</td><td>Fairness Pragmatist</td>
+    <td class="rank-ok">#2</td>
+    <td>Social Stabilizer (18.5%)</td>
+    <td>ZS, ONT_S</td>
+    <td><span class="rec rec-fix">FIX</span></td>
+  </tr><tr>
+    <td>019</td><td>Anarchist Mutualist</td>
+    <td class="rank-ok">#3</td>
+    <td>Horizontalist Dissenter (15.7%)</td>
+    <td>ZS</td>
+    <td><span class="rec rec-fix">FIX</span></td>
+  </tr><tr>
+    <td>080</td><td>Chestertonian Traditionalist</td>
+    <td class="rank-ok">#2</td>
+    <td>Security Paternalist (13.5%)</td>
+    <td><span style="color:#EC1014">NONE</span></td>
+    <td><span class="rec rec-merge">MERGE</span></td>
+  </tr><tr>
+    <td>108</td><td>Passive Cynic</td>
+    <td class="rank-ok">#2</td>
+    <td>Survival Pragmatist (10.2%)</td>
+    <td>ENG</td>
+    <td><span class="rec rec-fix">FIX</span></td>
+  </tr><tr>
+    <td>115</td><td>Quietist</td>
+    <td class="rank-ok">#3</td>
+    <td>Quietist (14.6%)</td>
+    <td><span style="color:#EC1014">NONE</span></td>
+    <td><span class="rec rec-merge">MERGE</span></td>
+  </tr></tbody></table><h2>Detailed Analysis</h2><div class="miss-card"><div class="miss-header open" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <div class="left">
+      <span class="id">#006</span>
+      <span class="name">Fairness Pragmatist</span>
+      <span class="rec rec-fix">FIX</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span style="color:#888;font-size:.85rem">→ Social Stabilizer (rank #2)</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+  <div class="miss-body open"><div class="top5"><h4>Quiz Result — 37 questions</h4><div class="top5-item winner">
+      <span>1. Social Stabilizer</span>
+      <span>18.5%</span>
+    </div><div class="top5-item ">
+      <span>2. Welfare Modernizer</span>
+      <span>8.1%</span>
+    </div><div class="top5-item true-arch">
+      <span>3. Fairness Pragmatist ← TRUE</span>
+      <span>7.2%</span>
+    </div><div class="top5-item ">
+      <span>4. Municipal Equalizer</span>
+      <span>5.9%</span>
+    </div><div class="top5-item ">
+      <span>5. Independent Social Democrat</span>
+      <span>4.6%</span>
+    </div></div><h3 style="margin-top:1.5rem">Node Comparison (ranked by discrimination potential)</h3>
+  <div class="node-grid-header">
+    <span>Node</span><span>Fairness Pragmatist</span><span>Δ</span><span>Social Stabilizer</span><span>Sal</span><span>Verdict</span>
+  </div><div class="node-row">
+      <span class="node-label">ONT_S</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-2">2</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-diff">Δ2 DISC</span>
+    </div><div class="node-row">
+      <span class="node-label">ZS</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-2">2</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-diff">Δ2 DISC</span>
+    </div><div class="node-row">
+      <span class="node-label">MAT</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">PRO</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">COM</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">CU</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">MOR</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">CD</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_H</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PF</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">TRB</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ENG</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="cat-compare">
+    <div class="cat-col"><h4>EPS — Fairness Pragma</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:124px;background:#5BA8D9"></div><span>62%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:48px;background:#5BA8D9"></div><span>24%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:6px;background:#5BA8D9"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:6px;background:#5BA8D9"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div></div><div class="cat-col"><h4>EPS — Social Stabiliz</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:50px;background:#EC1014"></div><span>25%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:115.99999999999999px;background:#EC1014"></div><span>58%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:6px;background:#EC1014"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:6px;background:#EC1014"></div><span>3%</span></div></div></div><div class="cat-compare">
+    <div class="cat-col"><h4>AES — Fairness Pragma</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:120px;background:#5BA8D9"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:40px;background:#5BA8D9"></div><span>20%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div></div><div class="cat-col"><h4>AES — Social Stabiliz</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:120px;background:#EC1014"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:20px;background:#EC1014"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:28.000000000000004px;background:#EC1014"></div><span>14%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:8px;background:#EC1014"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div></div></div></div></div><div class="miss-card"><div class="miss-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <div class="left">
+      <span class="id">#019</span>
+      <span class="name">Anarchist Mutualist</span>
+      <span class="rec rec-fix">FIX</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span style="color:#888;font-size:.85rem">→ Horizontalist Dissenter (rank #3)</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+  <div class="miss-body"><div class="top5"><h4>Quiz Result — 52 questions</h4><div class="top5-item winner">
+      <span>1. Horizontalist Dissenter</span>
+      <span>15.7%</span>
+    </div><div class="top5-item true-arch">
+      <span>2. Anarchist Mutualist ← TRUE</span>
+      <span>12.2%</span>
+    </div><div class="top5-item ">
+      <span>3. Pluralist Universalist</span>
+      <span>9.7%</span>
+    </div><div class="top5-item ">
+      <span>4. Liberationist Progressive</span>
+      <span>8.5%</span>
+    </div><div class="top5-item ">
+      <span>5. Progressive Civic Nationalist</span>
+      <span>4.9%</span>
+    </div></div><h3 style="margin-top:1.5rem">Node Comparison (ranked by discrimination potential)</h3>
+  <div class="node-grid-header">
+    <span>Node</span><span>Anarchist Mutualist</span><span>Δ</span><span>Horizontalist Dissen</span><span>Sal</span><span>Verdict</span>
+  </div><div class="node-row">
+      <span class="node-label">ZS</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-2">2</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-diff">Δ2 DISC</span>
+    </div><div class="node-row">
+      <span class="node-label">COM</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">TRB</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_H</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">PRO</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">MAT</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CD</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CU</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">MOR</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PF</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ENG</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_S</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="cat-compare">
+    <div class="cat-col"><h4>EPS — Anarchist Mutua</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:40px;background:#5BA8D9"></div><span>20%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:100px;background:#5BA8D9"></div><span>50%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div></div><div class="cat-col"><h4>EPS — Horizontalist D</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:40px;background:#EC1014"></div><span>20%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:100px;background:#EC1014"></div><span>50%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div></div></div><div class="cat-compare">
+    <div class="cat-col"><h4>AES — Anarchist Mutua</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:124px;background:#5BA8D9"></div><span>62%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:34px;background:#5BA8D9"></div><span>17%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:6px;background:#5BA8D9"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#5BA8D9"></div><span>7%</span></div></div><div class="cat-col"><h4>AES — Horizontalist D</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:36px;background:#EC1014"></div><span>18%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:120px;background:#EC1014"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#EC1014"></div><span>7%</span></div></div></div></div></div><div class="miss-card"><div class="miss-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <div class="left">
+      <span class="id">#080</span>
+      <span class="name">Chestertonian Traditionalist</span>
+      <span class="rec rec-merge">MERGE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span style="color:#888;font-size:.85rem">→ Security Paternalist (rank #2)</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+  <div class="miss-body"><div class="top5"><h4>Quiz Result — 55 questions</h4><div class="top5-item winner">
+      <span>1. Security Paternalist</span>
+      <span>13.5%</span>
+    </div><div class="top5-item ">
+      <span>2. Civic Disciplinarian</span>
+      <span>10.9%</span>
+    </div><div class="top5-item ">
+      <span>3. Authority Pragmatist</span>
+      <span>6.9%</span>
+    </div><div class="top5-item ">
+      <span>4. National Developmentalist</span>
+      <span>6.0%</span>
+    </div><div class="top5-item ">
+      <span>5. Stability-First Voter</span>
+      <span>5.3%</span>
+    </div><div class="top5-item" style="color:#EC1014">True archetype NOT in top 5</div></div><h3 style="margin-top:1.5rem">Node Comparison (ranked by discrimination potential)</h3>
+  <div class="node-grid-header">
+    <span>Node</span><span>Chestertonian Tradit</span><span>Δ</span><span>Security Paternalist</span><span>Sal</span><span>Verdict</span>
+  </div><div class="node-row">
+      <span class="node-label">CU</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">CD</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">MOR</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ZS</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_S</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:100%"></div></div><span style="font-size:.75rem;color:#888">pos=5</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_H</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">PRO</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">TRB</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">MAT</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">COM</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PF</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ENG</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="cat-compare">
+    <div class="cat-col"><h4>EPS — Chestertonian T</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:36px;background:#5BA8D9"></div><span>18%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:120px;background:#5BA8D9"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div></div><div class="cat-col"><h4>EPS — Security Patern</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:20px;background:#EC1014"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:115.99999999999999px;background:#EC1014"></div><span>58%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:30px;background:#EC1014"></div><span>15%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div></div></div><div class="cat-compare">
+    <div class="cat-col"><h4>AES — Chestertonian T</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:120px;background:#5BA8D9"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:20px;background:#5BA8D9"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:28.000000000000004px;background:#5BA8D9"></div><span>14%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div></div><div class="cat-col"><h4>AES — Security Patern</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:120px;background:#EC1014"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:20px;background:#EC1014"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:8px;background:#EC1014"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:28.000000000000004px;background:#EC1014"></div><span>14%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div></div></div></div></div><div class="miss-card"><div class="miss-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <div class="left">
+      <span class="id">#108</span>
+      <span class="name">Passive Cynic</span>
+      <span class="rec rec-fix">FIX</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span style="color:#888;font-size:.85rem">→ Survival Pragmatist (rank #2)</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+  <div class="miss-body"><div class="top5"><h4>Quiz Result — 40 questions</h4><div class="top5-item winner">
+      <span>1. Survival Pragmatist</span>
+      <span>10.2%</span>
+    </div><div class="top5-item ">
+      <span>2. Crisis-Activated Sleeper</span>
+      <span>5.6%</span>
+    </div><div class="top5-item true-arch">
+      <span>3. Passive Cynic ← TRUE</span>
+      <span>4.7%</span>
+    </div><div class="top5-item ">
+      <span>4. Ecological Localist</span>
+      <span>4.5%</span>
+    </div><div class="top5-item ">
+      <span>5. Altar-and-Hearth Conservative</span>
+      <span>4.3%</span>
+    </div></div><h3 style="margin-top:1.5rem">Node Comparison (ranked by discrimination potential)</h3>
+  <div class="node-grid-header">
+    <span>Node</span><span>Passive Cynic</span><span>Δ</span><span>Survival Pragmatist</span><span>Sal</span><span>Verdict</span>
+  </div><div class="node-row">
+      <span class="node-label">ENG</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-2">2</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-diff">Δ2 DISC</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_H</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">MAT</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">PRO</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ZS</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_S</span>
+      <div><div class="bar-container"><div class="bar bar-true" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-1">1</span>
+      <div><div class="bar-container"><div class="bar bar-winner" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-sim">Similar</span>
+    </div><div class="node-row">
+      <span class="node-label">TRB</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CD</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CU</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">MOR</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">COM</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PF</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="cat-compare">
+    <div class="cat-col"><h4>EPS — Passive Cynic</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:6px;background:#5BA8D9"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:20px;background:#5BA8D9"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:148px;background:#5BA8D9"></div><span>74%</span></div></div><div class="cat-col"><h4>EPS — Survival Pragma</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:20px;background:#EC1014"></div><span>10%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:115.99999999999999px;background:#EC1014"></div><span>58%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:6px;background:#EC1014"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:32px;background:#EC1014"></div><span>16%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div></div></div><div class="cat-compare">
+    <div class="cat-col"><h4>AES — Passive Cynic</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:140px;background:#5BA8D9"></div><span>70%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#5BA8D9"></div><span>7%</span></div></div><div class="cat-col"><h4>AES — Survival Pragma</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:36px;background:#EC1014"></div><span>18%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:120px;background:#EC1014"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#EC1014"></div><span>7%</span></div></div></div></div></div><div class="miss-card"><div class="miss-header" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <div class="left">
+      <span class="id">#115</span>
+      <span class="name">Quietist</span>
+      <span class="rec rec-merge">MERGE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span style="color:#888;font-size:.85rem">→ Quietist (rank #3)</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+  <div class="miss-body"><div class="top5"><h4>Quiz Result — 54 questions</h4><div class="top5-item true-arch">
+      <span>1. Quietist ← TRUE</span>
+      <span>14.6%</span>
+    </div><div class="top5-item ">
+      <span>2. Ecological Localist</span>
+      <span>10.6%</span>
+    </div><div class="top5-item ">
+      <span>3. Gentle Traditionalist</span>
+      <span>6.4%</span>
+    </div><div class="top5-item ">
+      <span>4. Altar-and-Hearth Conservative</span>
+      <span>6.1%</span>
+    </div><div class="top5-item ">
+      <span>5. Halifax Moderate</span>
+      <span>5.8%</span>
+    </div></div><h3 style="margin-top:1.5rem">Node Comparison (ranked by discrimination potential)</h3>
+  <div class="node-grid-header">
+    <span>Node</span><span>Quietist</span><span>Δ</span><span>Quietist</span><span>Sal</span><span>Verdict</span>
+  </div><div class="node-row">
+      <span class="node-label">MOR</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PRO</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_H</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:80%"></div></div><span style="font-size:.75rem;color:#888">pos=4</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">TRB</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ENG</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:20%"></div></div><span style="font-size:.75rem;color:#888">pos=1</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">COM</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:40%"></div></div><span style="font-size:.75rem;color:#888">pos=2</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-filled"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">MAT</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CD</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">CU</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ZS</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">ONT_S</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="node-row">
+      <span class="node-label">PF</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <span class="delta delta-0">0</span>
+      <div><div class="bar-container"><div class="bar bar-same" style="width:60%"></div></div><span style="font-size:.75rem;color:#888">pos=3</span></div>
+      <div class="sal-dots"><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span> / <span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span><span class="sal-dot sal-empty"></span></div>
+      <span class="verdict v-ident">IDENTICAL</span>
+    </div><div class="cat-compare">
+    <div class="cat-col"><h4>EPS — Quietist</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:120px;background:#5BA8D9"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:32px;background:#5BA8D9"></div><span>16%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:16px;background:#5BA8D9"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:8px;background:#5BA8D9"></div><span>4%</span></div></div><div class="cat-col"><h4>EPS — Quietist</h4><div class="cat-bar"><span style="width:90px;text-align:right">empiricist</span><div class="cat-bar-fill" style="width:8px;background:#EC1014"></div><span>4%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">institutionalist</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">traditionalist</span><div class="cat-bar-fill" style="width:120px;background:#EC1014"></div><span>60%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">intuitionist</span><div class="cat-bar-fill" style="width:32px;background:#EC1014"></div><span>16%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">autonomous</span><div class="cat-bar-fill" style="width:16px;background:#EC1014"></div><span>8%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">nihilist</span><div class="cat-bar-fill" style="width:8px;background:#EC1014"></div><span>4%</span></div></div></div><div class="cat-compare">
+    <div class="cat-col"><h4>AES — Quietist</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:12px;background:#5BA8D9"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#5BA8D9"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:144px;background:#5BA8D9"></div><span>72%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#5BA8D9"></div><span>7%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:6px;background:#5BA8D9"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#5BA8D9"></div><span>7%</span></div></div><div class="cat-col"><h4>AES — Quietist</h4><div class="cat-bar"><span style="width:90px;text-align:right">statesman</span><div class="cat-bar-fill" style="width:12px;background:#EC1014"></div><span>6%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">technocrat</span><div class="cat-bar-fill" style="width:10px;background:#EC1014"></div><span>5%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">pastoral</span><div class="cat-bar-fill" style="width:144px;background:#EC1014"></div><span>72%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">authentic</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#EC1014"></div><span>7%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">fighter</span><div class="cat-bar-fill" style="width:6px;background:#EC1014"></div><span>3%</span></div><div class="cat-bar"><span style="width:90px;text-align:right">visionary</span><div class="cat-bar-fill" style="width:14.000000000000002px;background:#EC1014"></div><span>7%</span></div></div></div></div></div><div style="margin-top:3rem;padding:2rem;background:#141210;border-radius:12px;border:1px solid #2a2826">
+<h2 style="margin-top:0">Recommendations</h2>
+<p style="color:#888;margin:.5rem 0">Based on the analysis above:</p>
+<ul style="margin:1rem 0;padding-left:1.5rem;line-height:1.8"><li><span class="rec rec-fix">FIX</span> <strong>Fairness Pragmatist</strong> — raise salience on: ZS, ONT_S. These nodes differentiate it but aren't weighted enough.</li><li><span class="rec rec-fix">FIX</span> <strong>Anarchist Mutualist</strong> — raise salience on: ZS. These nodes differentiate it but aren't weighted enough.</li><li><span class="rec rec-merge">MERGE</span> <strong>Chestertonian Traditionalist</strong> — no discriminating nodes (Δ≥2). Consider absorbing into the winner archetype.</li><li><span class="rec rec-fix">FIX</span> <strong>Passive Cynic</strong> — raise salience on: ENG. These nodes differentiate it but aren't weighted enough.</li><li><span class="rec rec-merge">MERGE</span> <strong>Quietist</strong> — no discriminating nodes (Δ≥2). Consider absorbing into the winner archetype.</li></ul></div></body></html>
