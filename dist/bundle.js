@@ -1232,28 +1232,29 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
-    {
-      id: "064",
-      name: "Market Optimist",
-      tier: "T1",
-      prior: 1 / 121,
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
-    },
+    // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
+    // {
+    //   id: "064",
+    //   name: "Market Optimist",
+    //   tier: "T1",
+    //   prior: 1/121,
+    //   nodes: {
+    //     MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     CD: { kind: "continuous", pos: 2, sal: 2 },
+    //     CU: { kind: "continuous", pos: 4, sal: 2 },
+    //     MOR: { kind: "continuous", pos: 2, sal: 2 },
+    //     PRO: { kind: "continuous", pos: 3, sal: 2 },
+    //     COM: { kind: "continuous", pos: 4, sal: 2 },
+    //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+    //     PF: { kind: "continuous", pos: 3, sal: 2 },
+    //     TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+    //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
+    //   }
+    // },
     {
       id: "065",
       name: "Opportunity Liberal",
