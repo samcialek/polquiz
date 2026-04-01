@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PRISM Archetype Rename Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'EB Garamond', serif; max-width: 1200px; margin: 0 auto; padding: 2rem; background: #FFFEF8; color: #1a1a1a; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .subtitle { color: #888; font-size: 1rem; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { font-family: 'Space Grotesk', sans-serif; font-weight: 500; text-align: left; padding: 0.6rem 0.8rem; background: #f5f0e0; border-bottom: 2px solid #ccc; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 0.6rem 0.8rem; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.4; }
+    tr:hover { background: #faf8f0; }
+    .type-badge { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.4rem; border-radius: 3px; display: inline-block; margin-bottom: 0.2rem; }
+    .type-2 { background: #ffcccc; color: #8b0000; }
+    .type-3 { background: #ffe0b2; color: #8b4500; }
+    .type-1 { background: #fff3cd; color: #856404; }
+    .type-4 { background: #d4edda; color: #155724; }
+    .old-name { font-weight: 600; color: #c0392b; }
+    .new-name { font-weight: 600; color: #27ae60; }
+    .sig { font-family: monospace; font-size: 0.75rem; color: #666; display: block; margin-top: 0.3rem; }
+    .count { font-family: 'Space Grotesk', sans-serif; color: #888; font-size: 0.9rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+<h1>PRISM Archetype Rename Audit</h1>
+<div class="subtitle">30 archetypes flagged across 4 failure modes &middot; April 1, 2026</div>
+<div class="count">
+    <span class="type-badge type-2">Contradiction</span> 3 &nbsp;
+    <span class="type-badge type-3">Over-specific</span> 4 &nbsp;
+    <span class="type-badge type-1">Unencoded content</span> 13 &nbsp;
+    <span class="type-badge type-4">Atmospherically off</span> 10
+</div>
+<table>
+<thead>
+<tr><th style="width:14%">Old Name</th><th style="width:14%">Proposed Name</th><th style="width:30%">Problem</th><th style="width:25%">How Rename Fixes It</th><th style="width:17%">Other Actions</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="type-badge type-2">Contradiction</span><br/><span class="old-name">Principled Abstainer</span><span class="sig">CU=4(s2), MOR=5(s3), PRO=1(s3), ZS=4(s2), ONT_H=4(s2), PF=1(s3), TRB=1(s2), ENG=1(s2)</span></td>
+<td><span class="new-name">Idealist Dropout</span></td>
+<td>PRO=1 (outcome-first) contradicts 'principled' which implies rules-bound (PRO=5). ENG=1 disengaged + PF=1 non-partisan + MOR=5 universalist moral = someone with strong moral beliefs who refuses to engage.</td>
+<td>'Idealist' captures MOR=5 universalist moral conviction; 'Dropout' captures ENG=1 disengaged + PF=1 non-partisan withdrawal. No longer implies proceduralism.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-2">Contradiction</span><br/><span class="old-name">Spectator Citizen</span><span class="sig">MAT=3(s2), CD=3(s2), MOR=3(s3), PRO=4(s3), COM=3(s2), ONT_S=2(s2), TRB=1(s2), ENG=3(s2)</span></td>
+<td><span class="new-name">Moderate Observer</span></td>
+<td>ENG=3 (moderate engagement) is too active for 'spectator.' Everything else is centrist/moderate (MAT=3, CD=3, MOR=3, PRO=4, COM=3). This is a moderate who pays attention, not someone watching from the sidelines.</td>
+<td>'Observer' is softer than spectator — implies watching with mild interest rather than true passivity. 'Moderate' captures the centrist signature.</td>
+<td>Very similar to Quiet Middle (ID 116) — consider merging. Both are moderate, low-salience, centrist. Quiet Middle has fewer visible nodes.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-2">Contradiction</span><br/><span class="old-name">Crisis-Activated Sleeper</span><span class="sig">COM=2(s2), ZS=4(s2), ONT_S=4(s2), TRB=2(s2), ENG=3(s2)</span></td>
+<td><span class="new-name">Dormant Critic</span></td>
+<td>ENG=3 is not 'sleeper' (disengaged). ONT_S=4 (system broken) + ZS=4 (competitive) shows someone who sees problems but isn't fully mobilized. The 'crisis-activated' narrative imports a temporal dynamic the static signature can't encode.</td>
+<td>'Dormant' captures the moderate engagement (not fully active, not asleep). 'Critic' captures ONT_S=4 + ZS=4 systemic dissatisfaction.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-3">Over-specific</span><br/><span class="old-name">Municipal Equalizer</span><span class="sig">MAT=1(s2), PRO=5(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Procedural Redistributionist</span></td>
+<td>Nothing in the signature (MAT=1, PRO=5, ENG=5) makes this specifically 'municipal.' It's just redistributive + rules-bound + activist.</td>
+<td>Directly maps: 'Procedural' = PRO=5, 'Redistributionist' = MAT=1. No unsupported specificity.</td>
+<td>Sparse signature (3 visible nodes). Consider whether this is distinct enough from other redistributive archetypes.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-3">Over-specific</span><br/><span class="old-name">Single-Issue Activator</span><span class="sig">COM=1(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Uncompromising Activist</span></td>
+<td>Only 2 visible nodes (COM=1 uncompromising, ENG=5 activist). Nothing encodes 'single-issue' — that's an inference about breadth of concern that the nodes don't capture.</td>
+<td>Direct 1:1 mapping: COM=1 = uncompromising, ENG=5 = activist. No added content.</td>
+<td>Only 2 visible nodes — very sparse signature. Consider merging with similar high-engagement archetypes.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-3">Over-specific</span><br/><span class="old-name">Leader-Centered Insurgent</span><span class="sig">CU=1(s2), MOR=1(s2), PRO=2(s2), COM=2(s2), ZS=5(s2), ONT_S=5(s2), PF=5(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Militant Partisan Insurgent</span></td>
+<td>No node encodes 'leader-centered.' The rich signature (CU=1, MOR=1, PRO=2, COM=2, ZS=5, ONT_S=5, PF=5, ENG=5) describes someone closed, narrow-circle, zero-sum, system-broken, strongly partisan, and activist — but nothing about deference to a leader.</td>
+<td>'Militant' captures the intensity (ENG=5 + ZS=5 + COM=2). 'Partisan' captures PF=5. 'Insurgent' captures ONT_S=5 deep critique. Drops the unsupported leader dimension.</td>
+<td>None — this is a rich, distinctive signature.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-3">Over-specific</span><br/><span class="old-name">Diogenes Independent</span><span class="sig">CD=1(s2), CU=5(s2), PRO=1(s2), TRB=1(s2)</span></td>
+<td><span class="new-name">Progressive Nonconformist</span></td>
+<td>'Diogenes' is too literary/philosophical. The signature (CD=1 progressive, CU=5 universalist, PRO=1 outcome-first, TRB=1 universalist) shows a progressive, universalist person who rejects procedural constraints.</td>
+<td>'Progressive' = CD=1. 'Nonconformist' captures PRO=1 outcome-first + the universalist/anti-tribal stance without importing Greek philosophy.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Religious Leftist</span><span class="sig">MAT=2(s2), CD=5(s2), MOR=5(s2)</span></td>
+<td><span class="new-name">Traditionalist Moralist</span></td>
+<td>Religion is not a node. The signature (MAT=2 left-leaning, CD=5 traditionalist, MOR=5 universalist moral) shows someone culturally traditional with broad moral concern and left economics — but 'religious' is an inference beyond what CD=5 encodes.</td>
+<td>'Traditionalist' = CD=5. 'Moralist' = MOR=5 universalist moral. The economic left-lean (MAT=2) is lower salience. Drops the religious inference while keeping the distinctive CD=5 + MOR=5 combo.</td>
+<td>None — the CD=5 + MOR=5 + MAT=2 combo is genuinely distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Ecological Localist</span><span class="sig">MAT=1(s2), CU=3(s2), MOR=3(s2), ONT_S=5(s2)</span></td>
+<td><span class="new-name">Systemic Redistributionist</span></td>
+<td>Nothing encodes 'ecological.' The signature (MAT=1, CU=3, MOR=3, ONT_S=5) shows redistributive views + deep systemic critique. 'Localist' is also unsupported — CU=3 is moderate pluralist, not localist.</td>
+<td>'Systemic' captures ONT_S=5 deep critique. 'Redistributionist' captures MAT=1. No added ecological or local content.</td>
+<td>Similar to other redistributive + critique archetypes. Check for merge candidates.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Contrarian Intellectual</span><span class="sig">CU=4(s2), MOR=4(s2), ONT_H=4(s2), TRB=1(s2), ENG=4(s2)</span></td>
+<td><span class="new-name">Engaged Cosmopolitan</span></td>
+<td>'Contrarian' is barely defensible and 'intellectual' is not encoded at all. The signature (CU=4, MOR=4, ONT_H=4, TRB=1, ENG=4) shows a pluralist, broad-circle, hopeful, universalist, engaged person.</td>
+<td>'Engaged' = ENG=4. 'Cosmopolitan' captures CU=4 pluralist + TRB=1 universalist + MOR=4 broad circle. No intellectual or contrarian content needed.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Holistic Dissenter</span><span class="sig">MOR=4(s2), PRO=1(s2), ZS=4(s2), ONT_H=5(s2), ENG=4(s2)</span></td>
+<td><span class="new-name">Optimistic Challenger</span></td>
+<td>'Holistic' is not encoded. The signature (MOR=4, PRO=1, ZS=4, ONT_H=5, ENG=4) shows broad moral circle + outcome-first + competitive + optimistic + engaged.</td>
+<td>'Optimistic' = ONT_H=5. 'Challenger' captures PRO=1 outcome-first + ZS=4 competitive + ENG=4 engaged — someone who fights for change through results, not process.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Legacy Partisan</span><span class="sig">PF=5(s2), TRB=4(s2), ENG=3(s2)</span></td>
+<td><span class="new-name">Habitual Partisan</span></td>
+<td>'Legacy' implies inherited partisanship, which is not encoded. The signature (PF=5, TRB=4, ENG=3) shows strong partisan identity + tribal loyalty + moderate engagement.</td>
+<td>'Habitual' captures the strong partisanship (PF=5) without implying inheritance. The moderate engagement (ENG=3) suggests partisan identity is more about belonging than activism.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Comfortable Bystander</span><span class="sig">CD=3(s2), PRO=4(s2), ONT_S=2(s2), TRB=1(s2), ENG=1(s3)</span></td>
+<td><span class="new-name">Contented Bystander</span></td>
+<td>'Comfortable' adds psychological content beyond the nodes. ONT_S=2 (minor reform needed) does suggest someone not deeply troubled by the system, which partially supports 'comfortable,' but it's still an inference. ENG=1 disengaged = bystander fits well.</td>
+<td>'Contented' is more directly linked to ONT_S=2 (system mostly fine) than 'comfortable' (which implies material ease). 'Bystander' stays — ENG=1 disengaged supports it.</td>
+<td>Minor fix — 'comfortable' is the least wrong word here.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Opportunity Liberal</span><span class="sig">MAT=3(s3), CD=2(s2), CU=5(s2), MOR=5(s2), PRO=1(s3), COM=3(s2), ZS=1(s3), ONT_H=5(s3), ONT_S=2(s2), TRB=1(s2), ENG=4(s2)</span></td>
+<td><span class="new-name">Cosmopolitan Optimist</span></td>
+<td>'Opportunity' is not a distinct node output. The signature is very rich (11 visible nodes!) with mixed economy, culturally open, universalist, universalist-moral, outcome-first, positive-sum, optimistic. This is a distinctive archetype.</td>
+<td>'Cosmopolitan' captures CU=5 + TRB=1 + MOR=5 universalist cluster. 'Optimist' captures ZS=1 positive-sum + ONT_H=5 optimistic. The name captures the dominant energy of the signature.</td>
+<td>None — 11 visible nodes make this very distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Welfare Modernizer</span><span class="sig">MAT=1(s2), PRO=5(s2), COM=5(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Activist Procedural Redistributionist</span></td>
+<td>'Welfare' is too program-specific. The signature (MAT=1, PRO=5, COM=5, ENG=5) shows redistributive + rules-bound + consensus-seeking + activist.</td>
+<td>Direct mapping: MAT=1 redistributive, PRO=5 procedural, COM=5 consensus, ENG=5 activist. But the 4-word name is long.</td>
+<td>Could shorten to 'Consensus Redistributionist' — captures the MAT=1 + COM=5 distinctiveness. PRO=5 + ENG=5 are shared with Municipal Equalizer → Procedural Redistributionist.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Evidence Reformer</span><span class="sig">PRO=3(s2), ONT_H=5(s2), TRB=1(s2)</span></td>
+<td><span class="new-name">Optimistic Universalist</span></td>
+<td>Only 3 visible nodes (PRO=3 balanced, ONT_H=5 optimistic, TRB=1 universalist). 'Evidence' is not encoded — EPS is not visible. 'Reformer' is only weakly implied.</td>
+<td>'Optimistic' = ONT_H=5. 'Universalist' = TRB=1. Direct, no added content.</td>
+<td>Very sparse signature — only 3 visible nodes. Strong merge candidate.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Common-Life Reformer</span><span class="sig">MAT=1(s2), MOR=3(s2), PRO=5(s2)</span></td>
+<td><span class="new-name">Steady Redistributionist</span></td>
+<td>'Common-life' is poetic and not node-derived. The signature (MAT=1, MOR=3, PRO=5) shows redistributive + moderate moral circle + rules-bound.</td>
+<td>'Steady' captures PRO=5 rules-bound approach. 'Redistributionist' captures MAT=1. Drops the poetic framing.</td>
+<td>Similar to Municipal Equalizer (now Procedural Redistributionist). Check if distinct enough.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-1">Unencoded</span><br/><span class="old-name">Neighborly Egalitarian</span><span class="sig">MAT=1(s2), MOR=4(s2)</span></td>
+<td><span class="new-name">Quiet Egalitarian</span></td>
+<td>'Neighborly' is atmospheric, not node-derived. The signature (MAT=1, MOR=4) shows only redistributive + broad moral circle — very sparse.</td>
+<td>'Quiet' captures the sparse signature (most nodes invisible/low salience, no engagement shown). 'Egalitarian' captures MAT=1 + MOR=4.</td>
+<td>Only 2 visible nodes. Strong merge candidate with Paternal Egalitarian (also MAT=1 + MOR=5) or similar sparse redistributive types.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Independent Social Democrat</span><span class="sig">MAT=1(s2), MOR=5(s2), PRO=3(s2)</span></td>
+<td><span class="new-name">Social Democrat</span></td>
+<td>The 'independent' part is under-supported — PF and TRB aren't visible in the signature (MAT=1, MOR=5, PRO=3). The social-democrat part fits well.</td>
+<td>Drops the unsupported 'independent' qualifier. MAT=1 redistributive + MOR=5 universalist moral = social democrat core.</td>
+<td>Now that we capture party ID in demographics, 'Independent' as a political identity is handled there.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Public Guardian</span><span class="sig">MAT=2(s2), CU=4(s2), MOR=4(s2), PRO=5(s2), ZS=4(s2), ONT_S=5(s2)</span></td>
+<td><span class="new-name">Pluralist Structuralist</span></td>
+<td>'Guardian' implies protective/order-focused politics not clearly established. The signature (MAT=2, CU=4, MOR=4, PRO=5, ZS=4, ONT_S=5) shows left-leaning + pluralist + broad-circle + rules-bound + competitive + deep systemic critique.</td>
+<td>'Pluralist' = CU=4. 'Structuralist' captures ONT_S=5 deep critique + PRO=5 rules-bound — someone who sees systemic problems and wants procedural solutions.</td>
+<td>None — distinctive 6-node signature.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Paternal Egalitarian</span><span class="sig">MAT=1(s2), MOR=5(s2)</span></td>
+<td><span class="new-name">Moral Egalitarian</span></td>
+<td>'Paternal' implies hierarchy/authority not present in the signature (MAT=1, MOR=5). Only 2 visible nodes, both about redistribution + universalist morality.</td>
+<td>'Moral' captures MOR=5 universalist moral. 'Egalitarian' captures MAT=1. No hierarchical implication.</td>
+<td>Only 2 visible nodes — very similar to Neighborly Egalitarian (MAT=1, MOR=4). Strong merge candidate.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Meritocratic Liberal</span><span class="sig">MAT=5(s2), PRO=5(s3), ZS=2(s2), TRB=1(s2)</span></td>
+<td><span class="new-name">Procedural Market Liberal</span></td>
+<td>'Meritocratic' is too specific — no node encodes meritocracy directly. The signature (MAT=5, PRO=5(s3), ZS=2, TRB=1) shows free-market + strongly rules-bound + cooperative + universalist.</td>
+<td>'Procedural' = PRO=5 (high salience). 'Market' = MAT=5. 'Liberal' captures ZS=2 cooperative + TRB=1 universalist orientation.</td>
+<td>None — PRO=5 at salience 3 is highly distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Meritocratic Conservative</span><span class="sig">MAT=5(s2), ZS=3(s2), ONT_H=4(s2), ONT_S=3(s2)</span></td>
+<td><span class="new-name">Hopeful Market Conservative</span></td>
+<td>Same 'meritocratic' problem. The signature (MAT=5, ZS=3, ONT_H=4, ONT_S=3) shows free-market + hopeful + mild reform view — a conservative who thinks things can get better.</td>
+<td>'Hopeful' = ONT_H=4. 'Market' = MAT=5. 'Conservative' retained as the cluster identity. Drops unencoded meritocratic.</td>
+<td>Sparse (4 visible). Check similarity to other market-right archetypes.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">National Developmentalist</span><span class="sig">MAT=4(s2), MOR=2(s2), PRO=4(s2), ZS=4(s2), ONT_S=5(s2), TRB=3(s2)</span></td>
+<td><span class="new-name">Competitive Structuralist</span></td>
+<td>'National' is not strongly licensed — TRB=3 is only moderate tribal. The signature (MAT=4, MOR=2, PRO=4, ZS=4, ONT_S=5, TRB=3) shows market-leaning + particularist + procedural + competitive + deep critique.</td>
+<td>'Competitive' = ZS=4. 'Structuralist' = ONT_S=5 deep critique + PRO=4 procedural. Drops the unsupported national framing.</td>
+<td>None — 6 visible nodes, distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Disciplined Majoritarian</span><span class="sig">CU=1(s2), ONT_S=5(s2), PF=5(s2), TRB=5(s2)</span></td>
+<td><span class="new-name">Partisan Tribalist</span></td>
+<td>'Disciplined' is not shown. The signature (CU=1, ONT_S=5, PF=5, TRB=5) shows assimilationist + deep critique + strong partisan + high tribal.</td>
+<td>'Partisan' = PF=5. 'Tribalist' = TRB=5 + CU=1 assimilationist. Direct node mapping.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Authority Pragmatist</span><span class="sig">CU=1(s2), MOR=1(s2), ZS=4(s2), ONT_S=5(s2)</span></td>
+<td><span class="new-name">Narrow-Order Critic</span></td>
+<td>'Pragmatist' implies compromise/flexibility not present. The signature (CU=1, MOR=1, ZS=4, ONT_S=5) shows assimilationist + narrow moral circle + competitive + deep systemic critique — this is an authoritarian critic, not a pragmatist.</td>
+<td>'Narrow-Order' captures CU=1 assimilationist + MOR=1 narrow circle. 'Critic' captures ONT_S=5 deep critique + ZS=4 competitive.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Progressive Civic Nationalist</span><span class="sig">MAT=1(s2), CU=4(s2), MOR=4(s2), PRO=4(s2), COM=4(s2), PF=2(s2), TRB=4(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Engaged Communitarian Progressive</span></td>
+<td>CU=4 (pluralist) undermines 'nationalist.' The signature (MAT=1, CU=4, MOR=4, PRO=4, COM=4, PF=2, TRB=4, ENG=5) shows redistributive + pluralist + broad-circle + procedural + accommodating + tribal + activist.</td>
+<td>'Communitarian' captures TRB=4 tribal + COM=4 accommodating — community-oriented but open. 'Progressive' = MAT=1 + CU=4. 'Engaged' = ENG=5. Drops the 'nationalist' that contradicts CU=4.</td>
+<td>None — rich 8-node signature, very distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Movement Egalitarian</span><span class="sig">MAT=1(s2), CD=2(s2), ZS=5(s2), ENG=5(s2)</span></td>
+<td><span class="new-name">Activist Progressive</span></td>
+<td>'Movement' is generic and under-earned. The signature (MAT=1, CD=2, ZS=5, ENG=5) shows redistributive + culturally open + zero-sum + activist.</td>
+<td>'Activist' = ENG=5. 'Progressive' captures MAT=1 redistributive + CD=2 culturally open. The zero-sum orientation (ZS=5) gives this a combative edge.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Prophetic Revivalist</span><span class="sig">CD=4(s2), MOR=5(s3), PRO=2(s2), ZS=4(s2), PF=4(s2), TRB=4(s2), ENG=5(s3)</span></td>
+<td><span class="new-name">Moral Crusader</span></td>
+<td>'Prophetic' and 'revivalist' add religious-charismatic content not encoded. The signature (CD=4, MOR=5(s3), PRO=2, ZS=4, PF=4, TRB=4, ENG=5(s3)) shows traditionalist + strongly universalist-moral + competitive + partisan + tribal + strongly activist.</td>
+<td>'Moral' = MOR=5 (salience 3, dominant node). 'Crusader' captures the intensity: ENG=5 activist + ZS=4 competitive + PF=4 partisan. Drops religious framing.</td>
+<td>None — rich 7-node signature, very distinctive.</td>
+</tr>
+<tr>
+<td><span class="type-badge type-4">Atmospheric</span><br/><span class="old-name">Sacred-Order Defender</span><span class="sig">CD=5(s2), CU=1(s2), MOR=4(s2), ZS=5(s2)</span></td>
+<td><span class="new-name">Traditionalist Zero-Sum Moralist</span></td>
+<td>'Sacred' not licensed by nodes. The signature (CD=5, CU=1, MOR=4, ZS=5) shows traditionalist + assimilationist + broad moral circle + zero-sum.</td>
+<td>'Traditionalist' = CD=5. 'Zero-Sum' = ZS=5. 'Moralist' = MOR=4 broad circle. Direct node mapping. But 3-word name is long — could shorten to 'Closed Traditionalist.'</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
