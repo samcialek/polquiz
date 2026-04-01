@@ -57,8 +57,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
     },
     {
@@ -79,8 +79,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -101,8 +101,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -123,8 +123,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -145,8 +145,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
       }
     },
     {
@@ -169,8 +169,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -191,8 +191,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -213,8 +213,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -235,8 +235,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -257,8 +257,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -279,8 +279,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
     {
@@ -301,7 +301,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
@@ -323,8 +323,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
     },
     {
@@ -346,7 +346,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
       }
     },
     {
@@ -367,7 +367,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
@@ -389,8 +389,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -413,7 +413,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
     {
@@ -456,7 +456,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
@@ -478,8 +478,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2 },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -500,8 +500,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
     },
     {
@@ -522,8 +522,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
     {
@@ -544,7 +544,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
@@ -566,8 +566,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -589,7 +589,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -610,8 +610,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -632,7 +632,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
@@ -654,7 +654,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -699,7 +699,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
       }
     },
@@ -721,8 +721,8 @@ var PrismEngine = (() => {
     // PF: { kind: "continuous", pos: 3, sal: 0 },
     // TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
     // ENG: { kind: "continuous", pos: 3, sal: 1 },
-    // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-    // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
+    // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+    // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
     // }
     // },
     {
@@ -765,8 +765,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
@@ -787,7 +787,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
@@ -809,8 +809,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       }
     },
     {
@@ -831,8 +831,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
@@ -853,8 +853,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -875,7 +875,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -897,7 +897,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 2 },
+        EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -919,8 +919,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
       }
     },
     // {
@@ -941,8 +941,8 @@ var PrismEngine = (() => {
     // PF: { kind: "continuous", pos: 2, sal: 1 },
     // TRB: { kind: "continuous", pos: 2, sal: 1 },
     // ENG: { kind: "continuous", pos: 4, sal: 1 },
-    // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-    // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+    // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+    // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
     // }
     // },
     {
@@ -963,7 +963,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -985,8 +985,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1007,8 +1007,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1029,8 +1029,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1051,8 +1051,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1075,7 +1075,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
@@ -1096,8 +1096,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1118,8 +1118,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1140,8 +1140,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1162,8 +1162,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
       }
     },
     {
@@ -1184,8 +1184,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1206,8 +1206,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1228,8 +1228,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -1250,8 +1250,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -1272,8 +1272,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -1294,8 +1294,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
@@ -1316,8 +1316,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -1383,7 +1383,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1404,8 +1404,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1426,8 +1426,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1448,8 +1448,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1470,8 +1470,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1492,8 +1492,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1514,8 +1514,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
       }
     },
     // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Δ≥2 discriminators)
@@ -1543,7 +1543,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1565,7 +1565,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1587,7 +1587,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1609,7 +1609,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -1630,7 +1630,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
     },
@@ -1653,7 +1653,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1674,8 +1674,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 0 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -1696,8 +1696,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
     },
     {
@@ -1718,8 +1718,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1742,8 +1742,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1764,8 +1764,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1786,8 +1786,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1808,8 +1808,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1830,8 +1830,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
@@ -1852,8 +1852,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
       }
     },
     {
@@ -1874,7 +1874,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -1896,8 +1896,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -1918,7 +1918,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
@@ -1940,7 +1940,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -1963,7 +1963,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
         // Fixed: Mobilizer = high engagement
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -1985,8 +1985,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
@@ -2007,8 +2007,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
     },
     {
@@ -2029,8 +2029,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
     },
     {
@@ -2051,8 +2051,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
       }
     },
     // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Δ≥2 discriminators, profile was mostly sal=0)
@@ -2079,8 +2079,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2102,7 +2102,7 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2145,8 +2145,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
       }
     },
     {
@@ -2169,8 +2169,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
@@ -2191,8 +2191,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2215,7 +2215,7 @@ var PrismEngine = (() => {
         ENG: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // Bystander's defining trait: extremely disengaged
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2236,8 +2236,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2258,8 +2258,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2280,8 +2280,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
     },
     {
@@ -2302,8 +2302,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2324,8 +2324,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2346,8 +2346,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2 },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2368,8 +2368,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2390,8 +2390,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2412,8 +2412,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2435,8 +2435,8 @@ var PrismEngine = (() => {
         // Fixed: Loyal = high PF
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2457,8 +2457,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2479,8 +2479,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2501,8 +2501,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2523,8 +2523,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
@@ -2545,8 +2545,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
@@ -2570,8 +2570,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 2 },
-        AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
         // FIX: Disruptive = visionary, not statesman
       }
     },
@@ -2597,8 +2597,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 2 },
-        AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
+        AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
       }
     },
     {
@@ -2619,7 +2619,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 3 },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
         // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
         // Prophetic visionary
@@ -2644,7 +2644,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 3 },
+        EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
         // FIX: Holistic = intuitionist+autonomous, not nihilist
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
         // Experiential
@@ -2669,8 +2669,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 },
-        AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
       }
     },
     {
@@ -2692,9 +2692,9 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 3 },
+        EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
         // Empiricist
-        AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 2 }
+        AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
         // Systematic
       }
     }
