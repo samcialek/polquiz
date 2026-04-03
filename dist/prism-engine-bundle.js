@@ -43,7 +43,7 @@ var PrismEngine = (() => {
       id: "001",
       name: "Rawlsian Reformer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -57,15 +57,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "002",
       name: "Independent Social Democrat",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -79,15 +79,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "003",
-      name: "Welfare Modernizer",
+      name: "Consensus Redistributionist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -101,15 +101,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "004",
       name: "Labor Reformer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -123,37 +123,37 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
       id: "005",
-      name: "Public Guardian",
+      name: "Pluralist Structuralist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
+        CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 2 },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        ENG: { kind: "continuous", pos: 4, sal: 1 },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
       }
     },
     {
       id: "006",
       name: "Fairness Pragmatist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -169,15 +169,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "007",
       name: "Solidarist Reformer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -191,20 +191,20 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "008",
-      name: "Municipal Equalizer",
+      name: "Procedural Redistributionist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
@@ -213,37 +213,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
-    },
-    {
-      id: "009",
-      name: "Social Stabilizer",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "010",
       name: "Bread-and-Butter Progressive",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -257,15 +235,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "011",
       name: "Jacobin Egalitarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -275,19 +253,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
       id: "012",
       name: "Class-War Leftist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -297,19 +275,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
     {
       id: "013",
       name: "Radical Leveler",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -319,19 +297,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
     {
       id: "014",
-      name: "Movement Egalitarian",
+      name: "Activist Progressive",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -341,19 +319,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
     },
     {
       id: "015",
       name: "Moral Firebrand",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -363,19 +341,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
       }
     },
     {
       id: "016",
       name: "Insurgent Equalizer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -385,11 +363,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
@@ -397,7 +375,7 @@ var PrismEngine = (() => {
       id: "017",
       name: "Uncompromising Redistributionist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -407,19 +385,21 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
+    // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
       id: "019",
       name: "Anarchist Mutualist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 0,
+      // DEACTIVATED — merged into 020
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -429,56 +409,72 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        // raised sal 1→2 (help distinguish from Horizontalist Dissenter)
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
     {
+      // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
+      // "Grassroots Autonomist" — anti-hierarchical, anti-institutional, bottom-up direct action
       id: "020",
-      name: "Horizontalist Dissenter",
+      name: "Grassroots Autonomist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        // kept 019's stronger anti-proceduralism
+        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        // kept 019's uncompromising stance
+        ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        // split the difference (1+3)/2
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+        // 019's optimism
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        // kept 020's stronger anti-partisan
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        // kept 020's anti-tribal
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.4, 0.38, 0.04, 0.08], sal: 2 }
+        // blend pastoral+authentic
       }
     },
     {
+      // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
+      // "Principled Cosmopolitan" — universal moral principles, cross-border ethics, anti-tribal
       id: "021",
-      name: "Kantian Cosmopolitan",
+      name: "Principled Cosmopolitan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
+        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        // cosmopolitanism is core
+        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        // moral universalism is core
+        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        // procedural (from 023/025)
+        COM: { kind: "continuous", pos: 2, sal: 2 },
+        // leans uncompromising (from 023)
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+        // blend of 3/3/4
+        PF: { kind: "continuous", pos: 2, sal: 2 },
+        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        // anti-tribalism is core
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
@@ -486,51 +482,58 @@ var PrismEngine = (() => {
       id: "022",
       name: "Pluralist Universalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        CU: { kind: "continuous", pos: 5, sal: 2 },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        PRO: { kind: "continuous", pos: 2, sal: 2 },
+        COM: { kind: "continuous", pos: 3, sal: 2 },
+        ZS: { kind: "continuous", pos: 1, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        TRB: { kind: "continuous", pos: 1, sal: 2 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
+      // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
       id: "023",
       name: "Rights Cosmopolitan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 0,
+      // DEACTIVATED
       nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
+        MAT: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
+        // added anti:low — not redistributionist
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
         MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        // added anti:low — strongly optimistic
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        // raised sal 2→3
+        ENG: { kind: "continuous", pos: 3, sal: 2 },
+        // raised sal 1→2 — low engagement is distinctive
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+        // raised sal 1→2
       }
     },
     {
       id: "024",
       name: "Ethical Internationalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -544,15 +547,17 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
     {
+      // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
       id: "025",
       name: "World-Minded Reformer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 0,
+      // DEACTIVATED
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -562,11 +567,13 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+        // raised sal 2→3: system critique is core
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        // raised sal 1→2
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
@@ -574,7 +581,7 @@ var PrismEngine = (() => {
       id: "026",
       name: "Cosmopolitan Pragmatist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -588,15 +595,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
       id: "027",
       name: "Popperian Liberal",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -611,14 +618,14 @@ var PrismEngine = (() => {
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "028",
       name: "Global Caretaker",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -632,15 +639,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "029",
       name: "Liberationist Progressive",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -654,29 +661,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      }
-    },
-    {
-      id: "030",
-      name: "Cultural Pluralist",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
     },
@@ -684,7 +669,7 @@ var PrismEngine = (() => {
       id: "031",
       name: "Planetary Steward",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -694,11 +679,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -706,7 +691,7 @@ var PrismEngine = (() => {
       id: "032",
       name: "Hamiltonian Technocrat",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -729,7 +714,7 @@ var PrismEngine = (() => {
       id: "033",
       name: "Systems Modernizer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -739,41 +724,41 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 3 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 3 },
         PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
       }
     },
-    {
-      id: "034",
-      name: "Evidence Reformer",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
-    },
+    // {
+    // id: "034",
+    // name: "Evidence Reformer",
+    // tier: "T1",
+    // prior: 1/112,
+    // nodes: {
+    // MAT: { kind: "continuous", pos: 2, sal: 1 },
+    // CD: { kind: "continuous", pos: 2, sal: 1 },
+    // CU: { kind: "continuous", pos: 4, sal: 1 },
+    // MOR: { kind: "continuous", pos: 4, sal: 1 },
+    // PRO: { kind: "continuous", pos: 3, sal: 2 },
+    // COM: { kind: "continuous", pos: 3, sal: 1 },
+    // ZS: { kind: "continuous", pos: 2, sal: 1 },
+    // ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    // ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+    // PF: { kind: "continuous", pos: 3, sal: 0 },
+    // TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    // ENG: { kind: "continuous", pos: 3, sal: 1 },
+    // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+    // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
+    // }
+    // },
     {
       id: "035",
       name: "Administrative Liberal",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -783,7 +768,7 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
@@ -795,7 +780,7 @@ var PrismEngine = (() => {
       id: "036",
       name: "Institutional Optimizer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -805,19 +790,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "037",
       name: "Fabian Modernizer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -827,11 +812,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
@@ -839,7 +824,7 @@ var PrismEngine = (() => {
       id: "039",
       name: "Data-Driven Moderate",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -849,19 +834,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       }
     },
     {
       id: "040",
       name: "Reform Engineer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -875,15 +860,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "042",
       name: "Localist Progressive",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -897,15 +882,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "043",
-      name: "Neighborly Egalitarian",
+      name: "Quiet Egalitarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -919,7 +904,7 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -927,21 +912,21 @@ var PrismEngine = (() => {
       id: "045",
       name: "Rooted Social Reformer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+        CU: { kind: "continuous", pos: 2, sal: 2 },
+        MOR: { kind: "continuous", pos: 3, sal: 2 },
+        PRO: { kind: "continuous", pos: 4, sal: 2 },
+        COM: { kind: "continuous", pos: 5, sal: 2 },
+        ZS: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2, sal: 2 },
+        TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
@@ -949,7 +934,7 @@ var PrismEngine = (() => {
       id: "046",
       name: "Pastoral Leftist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -963,37 +948,37 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
       }
     },
-    {
-      id: "047",
-      name: "Common-Life Reformer",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
-    },
+    // {
+    // id: "047",
+    // name: "Common-Life Reformer",
+    // tier: "T1",
+    // prior: 1/112,
+    // nodes: {
+    // MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    // CD: { kind: "continuous", pos: 3, sal: 1 },
+    // CU: { kind: "continuous", pos: 2, sal: 1 },
+    // MOR: { kind: "continuous", pos: 3, sal: 2 },
+    // PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    // COM: { kind: "continuous", pos: 3, sal: 1 },
+    // ZS: { kind: "continuous", pos: 2, sal: 1 },
+    // ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+    // ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+    // PF: { kind: "continuous", pos: 2, sal: 1 },
+    // TRB: { kind: "continuous", pos: 2, sal: 1 },
+    // ENG: { kind: "continuous", pos: 4, sal: 1 },
+    // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+    // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
+    // }
+    // },
     {
       id: "048",
       name: "Solidaristic Localist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1007,15 +992,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
     },
     {
       id: "049",
-      name: "Paternal Egalitarian",
+      name: "Moral Egalitarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1025,19 +1010,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "050",
-      name: "Religious Leftist",
+      name: "Traditionalist Moralist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1051,15 +1036,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "051",
-      name: "Ecological Localist",
+      name: "Systemic Redistributionist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1069,41 +1054,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
-    },
-    {
-      id: "052",
-      name: "Distributist Localist",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CD: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 3 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "053",
       name: "Consensus Builder",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1113,19 +1076,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "054",
       name: "Arbiter Moderate",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1136,41 +1099,19 @@ var PrismEngine = (() => {
         // Fixed: Moderate = high compromise
         ZS: { kind: "continuous", pos: 1, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-      }
-    },
-    {
-      id: "055",
-      name: "Halifax Moderate",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "056",
       name: "Institutional Centrist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1180,19 +1121,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "057",
       name: "Temperate Pluralist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1202,19 +1143,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "059",
       name: "Public-Minded Moderate",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1224,41 +1165,41 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "060",
       name: "Hinge Citizen",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 3 },
-        MOR: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        CU: { kind: "continuous", pos: 2, sal: 2 },
+        MOR: { kind: "continuous", pos: 3, sal: 2 },
+        PRO: { kind: "continuous", pos: 4, sal: 2 },
+        COM: { kind: "continuous", pos: 3, sal: 2 },
+        ZS: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 4, sal: 2 },
+        TRB: { kind: "continuous", pos: 1, sal: 2 },
+        ENG: { kind: "continuous", pos: 3, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
       }
     },
     {
       id: "061",
       name: "Millian Liberal",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1268,19 +1209,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "062",
       name: "Meritocratic Liberal",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1290,19 +1231,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "063",
       name: "Enterprise Pluralist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1312,41 +1253,42 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
-    {
-      id: "064",
-      name: "Market Optimist",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      }
-    },
+    // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
+    // {
+    //   id: "064",
+    //   name: "Market Optimist",
+    //   tier: "T1",
+    //   prior: 1/112,
+    //   nodes: {
+    //     MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     CD: { kind: "continuous", pos: 2, sal: 2 },
+    //     CU: { kind: "continuous", pos: 4, sal: 2 },
+    //     MOR: { kind: "continuous", pos: 2, sal: 2 },
+    //     PRO: { kind: "continuous", pos: 3, sal: 2 },
+    //     COM: { kind: "continuous", pos: 4, sal: 2 },
+    //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+    //     PF: { kind: "continuous", pos: 3, sal: 2 },
+    //     TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+    //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
+    //   }
+    // },
     {
       id: "065",
       name: "Opportunity Liberal",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1356,19 +1298,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
       id: "067",
       name: "Free-Exchange Modernist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -1378,19 +1320,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
     },
     {
       id: "069",
       name: "Bleeding-Heart Libertarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1400,19 +1342,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "070",
       name: "Burkean Steward",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1434,29 +1376,29 @@ var PrismEngine = (() => {
       id: "071",
       name: "Constitutional Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        MAT: { kind: "continuous", pos: 4, sal: 2 },
+        CD: { kind: "continuous", pos: 5, sal: 2 },
+        CU: { kind: "continuous", pos: 1, sal: 2 },
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
       }
     },
     {
       id: "072",
       name: "Blackstone Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1466,19 +1408,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "073",
       name: "Civic Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1492,15 +1434,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "074",
       name: "Responsible Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1514,37 +1456,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 3, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
-      }
-    },
-    {
-      id: "075",
-      name: "Institutional Conservative",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "076",
       name: "Fiscal Gradualist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1558,15 +1478,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "077",
       name: "Ordered Libertarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1580,15 +1500,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "078",
       name: "Meritocratic Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1602,33 +1522,33 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "079",
       name: "National Developmentalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
       }
     },
-    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Δ≥2 discriminators)
+    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
     //   id: "080",
     //   name: "Chestertonian Traditionalist",
@@ -1638,7 +1558,7 @@ var PrismEngine = (() => {
       id: "081",
       name: "Heritage Guardian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1648,19 +1568,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "082",
       name: "Altar-and-Hearth Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1670,19 +1590,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "083",
-      name: "Sacred-Order Defender",
+      name: "Closed Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1692,19 +1612,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "084",
       name: "Civilizational Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1714,19 +1634,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
       id: "085",
       name: "Customary Localist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1736,11 +1656,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
     },
@@ -1748,7 +1668,7 @@ var PrismEngine = (() => {
       id: "086",
       name: "Duty Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1758,19 +1678,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "087",
       name: "Continuity Conservative",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1780,19 +1700,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 0 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "088",
       name: "Gentle Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1802,19 +1722,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
     },
     {
       id: "089",
       name: "Integral Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1824,19 +1744,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "090",
       name: "Hobbesian Guardian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1848,19 +1768,19 @@ var PrismEngine = (() => {
         // Hobbesian: life is zero-sum, strong differentiator
         ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // Hobbesian: humans are NOT perfectible
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "091",
       name: "Security Paternalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1870,19 +1790,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "092",
-      name: "Disciplined Majoritarian",
+      name: "Partisan Tribalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1892,42 +1812,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
-      }
-    },
-    {
-      id: "093",
-      name: "Stability-First Voter",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        // Fixed: Voter = some engagement, removed anti
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "094",
       name: "Hard-State Manager",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1937,19 +1834,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "095",
       name: "Emergency Orderist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1959,77 +1856,55 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
-      }
-    },
-    {
-      id: "096",
-      name: "Civic Disciplinarian",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
     },
     {
       id: "097",
       name: "Authority Pragmatist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        CU: { kind: "continuous", pos: 1, sal: 2 },
+        MOR: { kind: "continuous", pos: 1, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
       }
     },
     {
       id: "098",
       name: "Anti-Elite Populist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        CU: { kind: "continuous", pos: 1, sal: 2 },
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        PRO: { kind: "continuous", pos: 1, sal: 2 },
+        COM: { kind: "continuous", pos: 2, sal: 2 },
+        ZS: { kind: "continuous", pos: 5, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
-        ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -2037,7 +1912,7 @@ var PrismEngine = (() => {
       id: "099",
       name: "Scarcity Populist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2047,19 +1922,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
       id: "100",
       name: "Tribal Insurgent",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2069,11 +1944,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
     },
@@ -2081,7 +1956,7 @@ var PrismEngine = (() => {
       id: "101",
       name: "Embattled Majoritarian",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2091,33 +1966,11 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 3, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      }
-    },
-    {
-      id: "102",
-      name: "Folk Tribune",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
-        ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -2125,7 +1978,7 @@ var PrismEngine = (() => {
       id: "103",
       name: "Grievance Mobilizer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2135,12 +1988,12 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
         // Fixed: Mobilizer = high engagement
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
@@ -2148,7 +2001,7 @@ var PrismEngine = (() => {
       id: "104",
       name: "National Protector",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2158,19 +2011,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
     },
     {
       id: "105",
       name: "Combative Populist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2180,19 +2033,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 1 },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
     },
     {
       id: "106",
-      name: "Leader-Centered Insurgent",
+      name: "Militant Partisan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2202,19 +2055,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 1 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
     },
     {
       id: "107",
       name: "Resentful Localist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2224,15 +2077,15 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
       }
     },
-    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Δ≥2 discriminators, profile was mostly sal=0)
+    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Î”â‰¥2 discriminators, profile was mostly sal=0)
     // {
     //   id: "108",
     //   name: "Passive Cynic",
@@ -2242,7 +2095,7 @@ var PrismEngine = (() => {
       id: "109",
       name: "Alienated Outsider",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2252,19 +2105,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "110",
       name: "Principled Abstainer",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2274,19 +2127,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
         PF: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "111",
-      name: "Diogenes Independent",
+      name: "Cosmopolitan Nonconformist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2306,9 +2159,9 @@ var PrismEngine = (() => {
     },
     {
       id: "112",
-      name: "Contrarian Intellectual",
+      name: "Engaged Cosmopolitan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2322,15 +2175,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 3 }
+        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
       }
     },
     {
       id: "115",
       name: "Quietist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         // raised sal 0→1 (discriminator vs Ecological Localist)
@@ -2346,15 +2199,15 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
       }
     },
     {
       id: "116",
       name: "Quiet Middle",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2364,19 +2217,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "117",
       name: "Comfortable Bystander",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2386,20 +2239,20 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // Bystander's defining trait: extremely disengaged
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "118",
       name: "Survival Pragmatist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2409,19 +2262,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "119",
       name: "Apolitical Striver",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2431,19 +2284,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "120",
       name: "Good Neighbor",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -2453,19 +2306,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
         PF: { kind: "continuous", pos: 3, sal: 2 },
         TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "121",
       name: "Spectator Citizen",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2475,19 +2328,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        ENG: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
+        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "122",
       name: "Civic Minimalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2497,41 +2350,41 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "124",
-      name: "Crisis-Activated Sleeper",
+      name: "Latent Alarmist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
         MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 1 },
+        COM: { kind: "continuous", pos: 2, sal: 2 },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-        ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        ENG: { kind: "continuous", pos: 3, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "125",
       name: "Reluctant Partisan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2541,19 +2394,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "126",
-      name: "Single-Issue Activator",
+      name: "Uncompromising Activist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2563,19 +2416,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "127",
       name: "Tribal Loyalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2585,19 +2438,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ENG: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "128",
       name: "Loyal Democrat",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2607,20 +2460,20 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 4, sal: 2 },
         // Fixed: Loyal = high PF
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "129",
       name: "Loyal Republican",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2630,41 +2483,42 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
-    {
-      id: "130",
-      name: "Legacy Partisan",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
-        ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
-      }
-    },
+    // MERGED into Duty Voter (ID 131) — 2026-04-01
+    // {
+    //   id: "130",
+    //   name: "Habitual Partisan",
+    //   tier: "T1",
+    //   prior: 1/112,
+    //   nodes: {
+    //     MAT: { kind: "continuous", pos: 3, sal: 1 },
+    //     CD: { kind: "continuous", pos: 4, sal: 1 },
+    //     CU: { kind: "continuous", pos: 3, sal: 0 },
+    //     MOR: { kind: "continuous", pos: 2, sal: 1 },
+    //     PRO: { kind: "continuous", pos: 3, sal: 0 },
+    //     COM: { kind: "continuous", pos: 2, sal: 1 },
+    //     ZS: { kind: "continuous", pos: 3, sal: 1 },
+    //     ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+    //     ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+    //     PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     TRB: { kind: "continuous", pos: 4, sal: 2 },
+    //     ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+    //     EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+    //     AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
+    //   }
+    // },
     {
       id: "131",
       name: "Duty Voter",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2674,19 +2528,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "132",
       name: "Negative Partisan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2696,41 +2550,19 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
-      }
-    },
-    {
-      id: "133",
-      name: "Sporadic Alarm Voter",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-        ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
     },
     {
       id: "134",
       name: "Progressive Civic Nationalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2744,8 +2576,8 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 2, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
@@ -2753,52 +2585,58 @@ var PrismEngine = (() => {
       id: "135",
       name: "Disruptive Cosmopolitan",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 1, sal: 2 },
+        MOR: { kind: "continuous", pos: 5, sal: 2 },
+        // FIX: Cosmopolitan = wide moral circle (was 1)
         PRO: { kind: "continuous", pos: 1, sal: 2 },
         // Anti-bureaucratic
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.15, 0.05, 0.05, 0.1, 0.05], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
+        // FIX: Disruptive = visionary, not statesman
       }
     },
     {
       id: "136",
       name: "Aspirational Traditionalist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 3 },
+        CD: { kind: "continuous", pos: 4, sal: 2 },
+        // FIX: Traditionalist = culturally conservative (was 2)
+        CU: { kind: "continuous", pos: 2, sal: 2 },
+        // FIX: Traditionalist = assimilationist (was 4)
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        // FIX: Traditionalist = particularist (was 5/sal3)
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+        // Aspirational = optimistic (was 3/sal1)
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 2 },
-        AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 2 }
+        EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
+        AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
       }
     },
     {
       id: "137",
-      name: "Prophetic Revivalist",
+      name: "Moral Crusader",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2812,32 +2650,33 @@ var PrismEngine = (() => {
         PF: { kind: "continuous", pos: 4, sal: 2 },
         TRB: { kind: "continuous", pos: 4, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.05, 0.7], sal: 3 },
-        // Revelatory
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
+        // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
-        // Prophetic
+        // Prophetic visionary
       }
     },
     {
       id: "138",
-      name: "Holistic Dissenter",
+      name: "Optimistic Challenger",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
+        // FIX: Holistic = broad concern (was 2/sal1)
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.05, 0.7], sal: 3 },
-        // Revelatory
+        EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
+        // FIX: Holistic = intuitionist+autonomous, not nihilist
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
         // Experiential
       }
@@ -2846,47 +2685,47 @@ var PrismEngine = (() => {
       id: "139",
       name: "Civic Assimilationist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2 },
+        CU: { kind: "continuous", pos: 1, sal: 3 },
+        // FIX: Assimilationist = CU=1, not CU=5 (was 5/sal2)
         MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 3, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 },
-        // Traditionalist
-        AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 }
-        // Systematic
+        EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
       }
     },
     {
       id: "140",
       name: "Market Green Modernist",
       tier: "T1",
-      prior: 1 / 130,
+      prior: 1 / 112,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
+        // FIX: Green = wide moral concern (was 2/sal1)
         PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
         PF: { kind: "continuous", pos: 1, sal: 1 },
         TRB: { kind: "continuous", pos: 1, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 3 },
+        EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
         // Empiricist
-        AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 2 }
+        AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
         // Systematic
       }
     }
@@ -3048,9 +2887,9 @@ var PrismEngine = (() => {
       ],
       allocationMap: {
         effort_choices: { continuous: { MAT: 0.8, ONT_S: -0.5, COM: -0.4 } },
-        family_background: { continuous: { MAT: -0.6, ONT_S: 0.7, COM: 0.3 } },
-        discrimination_bias: { continuous: { MAT: -0.8, ONT_S: 0.8, COM: 0.5 } },
-        luck_random: { continuous: { ONT_S: 0.4, COM: 0.2 } }
+        family_background: { continuous: { MAT: -0.6, ONT_S: -0.7, COM: 0.3 } },
+        discrimination_bias: { continuous: { MAT: -0.8, ONT_S: -0.8, COM: 0.5 } },
+        luck_random: { continuous: { ONT_S: -0.4, COM: 0.2 } }
       }
     },
     {
@@ -3069,10 +2908,10 @@ var PrismEngine = (() => {
         { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
-        complex_forces: { continuous: { ONT_S: 0.6, COM: 0.4 } },
-        powerful_incompetent: { continuous: { ONT_S: 0.2, COM: -0.3 } },
+        complex_forces: { continuous: { ONT_S: -0.6, COM: 0.4 } },
+        powerful_incompetent: { continuous: { ONT_S: -0.2, COM: -0.3 } },
         powerful_selfish: { continuous: { ZS: 0.9, ONT_H: -0.5, COM: -0.6 } },
-        ordinary_choices: { continuous: { ONT_S: -0.8, COM: -0.4 } }
+        ordinary_choices: { continuous: { ONT_S: 0.8, COM: -0.4 } }
       }
     },
     {
@@ -3382,27 +3221,6 @@ var PrismEngine = (() => {
         "81-100": { continuous: { ONT_H: { sal: [0.02, 0.08, 0.3, 0.6] } } }
       }
     },
-    // Q32 — mainstream_media_accuracy_estimate (slider)
-    {
-      id: 32,
-      stage: "stage3",
-      section: "III",
-      promptShort: "mainstream_media_accuracy_estimate",
-      uiType: "slider",
-      quality: 0.4,
-      rewriteNeeded: true,
-      touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.4, touchType: "institutional_trust_proxy" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.15, touchType: "trust_hostility_proxy" }
-      ],
-      sliderMap: {
-        "0-20": { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } },
-        "21-40": { categorical: { EPS: { cat: EPS_PROTOTYPES.intuitionist } } },
-        "41-60": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-        "61-80": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-        "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } }
-      }
-    },
     // Q35 — percent_groups_want_best_share_values (slider)
     {
       id: 35,
@@ -3485,28 +3303,6 @@ var PrismEngine = (() => {
         "41-60": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
         "61-80": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
         "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } }
-      }
-    },
-    // Q46 — caregiver_emotional_availability (slider, background)
-    {
-      id: 46,
-      stage: "stage3",
-      section: "IV",
-      promptShort: "caregiver_emotional_availability",
-      uiType: "slider",
-      quality: 0.3,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-        { node: "COM", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-      ],
-      sliderMap: {
-        "0-20": { continuous: { COM: { pos: [0.28, 0.27, 0.22, 0.14, 0.09] }, TRB: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] } } },
-        "21-40": { continuous: { COM: { pos: [0.22, 0.28, 0.25, 0.16, 0.09] }, TRB: { pos: [0.14, 0.2, 0.28, 0.22, 0.16] } } },
-        "41-60": { continuous: { COM: { pos: [0.15, 0.22, 0.3, 0.2, 0.13] }, TRB: { pos: [0.17, 0.22, 0.28, 0.2, 0.13] } } },
-        "61-80": { continuous: { COM: { pos: [0.09, 0.16, 0.25, 0.28, 0.22] }, TRB: { pos: [0.18, 0.23, 0.28, 0.18, 0.13] } } },
-        "81-100": { continuous: { COM: { pos: [0.06, 0.12, 0.22, 0.3, 0.3] }, TRB: { pos: [0.2, 0.24, 0.26, 0.18, 0.12] } } }
       }
     },
     // Q49 — social_progress_salience (slider)
@@ -3692,25 +3488,25 @@ var PrismEngine = (() => {
         aggressive_transition: {
           continuous: {
             MAT: { pos: [0.35, 0.35, 0.2, 0.08, 0.02] },
-            ONT_S: { pos: [0.03, 0.1, 0.25, 0.35, 0.27] }
+            ONT_S: { pos: [0.27, 0.35, 0.25, 0.1, 0.03] }
           }
         },
         gradual_transition: {
           continuous: {
             MAT: { pos: [0.1, 0.24, 0.4, 0.18, 0.08] },
-            ONT_S: { pos: [0.08, 0.18, 0.4, 0.24, 0.1] }
+            ONT_S: { pos: [0.1, 0.24, 0.4, 0.18, 0.08] }
           }
         },
         market_led: {
           continuous: {
             MAT: { pos: [0.04, 0.09, 0.22, 0.35, 0.3] },
-            ONT_S: { pos: [0.2, 0.3, 0.3, 0.14, 0.06] }
+            ONT_S: { pos: [0.06, 0.14, 0.3, 0.3, 0.2] }
           }
         },
         no_action_needed: {
           continuous: {
             MAT: { pos: [0.03, 0.07, 0.15, 0.3, 0.45] },
-            ONT_S: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] }
+            ONT_S: { pos: [0.05, 0.1, 0.25, 0.3, 0.3] }
           }
         }
       }
@@ -3808,21 +3604,14 @@ var PrismEngine = (() => {
             MAT: { pos: [0.45, 0.35, 0.15, 0.04, 0.01] }
           }
         },
-        ratio_50_to_1: {
-          continuous: {
-            MAT: { pos: [0.17, 0.32, 0.35, 0.12, 0.04] }
-          }
-        },
-        // V1: "100:1"
         ratio_100_to_1: {
           continuous: {
-            MAT: { pos: [0.08, 0.2, 0.35, 0.25, 0.12] }
+            MAT: { pos: [0.1, 0.25, 0.35, 0.2, 0.1] }
           }
         },
-        // V1: "300:1 (about current average)" — renamed from ratio_200_to_1
-        ratio_300_to_1: {
+        ratio_1000_to_1: {
           continuous: {
-            MAT: { pos: [0.05, 0.12, 0.28, 0.35, 0.2] }
+            MAT: { pos: [0.04, 0.1, 0.25, 0.35, 0.26] }
           }
         },
         market_decides: {
@@ -3872,7 +3661,10 @@ var PrismEngine = (() => {
         }
       }
     },
-    // Q25 — criminal_trial_error_tradeoff
+    // Q25 — criminal_trial_error_tradeoff (error_tradeoff with ratio slider)
+    // "In criminal trials, which type of error is worse?"
+    // A: Convicting an innocent person  B: Letting a guilty person go free
+    // Ratio slider: 1.5:1 → 100+:1 drives salience
     {
       id: 25,
       stage: "screen20",
@@ -3881,62 +3673,28 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.92,
       rewriteNeeded: false,
+      options: ["convict_innocent", "free_guilty"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
+        { node: "PRO", kind: "continuous", role: "salience", weight: 0.6, touchType: "error_asymmetry" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.15, touchType: "human_motive_proxy" }
       ],
       optionEvidence: {
-        rather_free_guilty: {
+        convict_innocent: {
           continuous: {
             PRO: { pos: [0.02, 0.08, 0.2, 0.35, 0.35] }
           }
         },
-        balance_both_errors: {
-          continuous: {
-            PRO: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] }
-          }
-        },
-        rather_convict_innocent: {
+        free_guilty: {
           continuous: {
             PRO: { pos: [0.35, 0.35, 0.2, 0.08, 0.02] }
           }
         }
       }
     },
-    // Q26 — vacation_new_vs_familiar
-    {
-      id: 26,
-      stage: "stage2",
-      section: "III",
-      promptShort: "vacation_new_vs_familiar",
-      uiType: "single_choice",
-      quality: 0.52,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "novelty_preference" },
-        { node: "AES", kind: "categorical", role: "category", weight: 0.1, touchType: "taste_proxy" }
-      ],
-      optionEvidence: {
-        new_place: {
-          continuous: {
-            ONT_H: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
-          },
-          categorical: { AES: { cat: AES_PROTOTYPES.visionary } }
-        },
-        familiar_place: {
-          continuous: {
-            ONT_H: { pos: [0.22, 0.33, 0.28, 0.12, 0.05] }
-          },
-          categorical: { AES: { cat: AES_PROTOTYPES.pastoral } }
-        },
-        mix_both: {
-          continuous: {
-            ONT_H: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
-          }
-        }
-      }
-    },
-    // Q27 — welfare_error_tradeoff
+    // Q27 — welfare_error_tradeoff (error_tradeoff with ratio slider)
+    // "In welfare programs, which error is worse?"
+    // A: Giving benefits to someone who doesn't qualify  B: Denying benefits to someone who genuinely needs them
     {
       id: 27,
       stage: "stage2",
@@ -3945,28 +3703,24 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.89,
       rewriteNeeded: false,
+      options: ["fp", "fn"],
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.7, touchType: "error_asymmetry" },
+        { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "error_asymmetry" },
         { node: "PRO", kind: "continuous", role: "position", weight: 0.25, touchType: "error_asymmetry" },
         { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "deservingness_proxy" }
       ],
       optionEvidence: {
-        rather_help_undeserving: {
-          continuous: {
-            MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
-            MOR: { pos: [0.03, 0.1, 0.25, 0.35, 0.27] }
-          }
-        },
-        balanced_errors: {
-          continuous: {
-            MAT: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
-            MOR: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
-          }
-        },
-        rather_miss_needy: {
+        fp: {
           continuous: {
             MAT: { pos: [0.02, 0.08, 0.22, 0.35, 0.33] },
             MOR: { pos: [0.27, 0.35, 0.25, 0.1, 0.03] }
+          }
+        },
+        fn: {
+          continuous: {
+            MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
+            MOR: { pos: [0.03, 0.1, 0.25, 0.35, 0.27] }
           }
         }
       }
@@ -4015,29 +3769,25 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.9,
       rewriteNeeded: false,
+      options: ["allow_harmful", "censor_legitimate"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.7, touchType: "speech_harm_tradeoff" },
+        { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "speech_harm_tradeoff" },
         { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "truth_authority_proxy" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.2, touchType: "pluralism_proxy" }
       ],
       optionEvidence: {
-        remove_immediately: {
-          continuous: {
-            PRO: { pos: [0.4, 0.32, 0.18, 0.07, 0.03] }
-          },
-          categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
-        },
-        allow_with_labels: {
-          continuous: {
-            PRO: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] }
-          },
-          categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } }
-        },
-        allow_fully: {
+        allow_harmful: {
           continuous: {
             PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] }
           },
           categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
+        },
+        censor_legitimate: {
+          continuous: {
+            PRO: { pos: [0.4, 0.32, 0.18, 0.07, 0.03] }
+          },
+          categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
         }
       }
     },
@@ -4059,25 +3809,25 @@ var PrismEngine = (() => {
         net_positive_clear: {
           continuous: {
             ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01] },
-            ONT_S: { pos: [0.03, 0.1, 0.25, 0.38, 0.24] }
+            ONT_S: { pos: [0.24, 0.38, 0.25, 0.1, 0.03] }
           }
         },
         net_positive_but_uneven: {
           continuous: {
             ZS: { pos: [0.15, 0.3, 0.35, 0.15, 0.05] },
-            ONT_S: { pos: [0.05, 0.15, 0.4, 0.28, 0.12] }
+            ONT_S: { pos: [0.12, 0.28, 0.4, 0.15, 0.05] }
           }
         },
         mixed_effects: {
           continuous: {
             ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15] },
-            ONT_S: { pos: [0.1, 0.22, 0.4, 0.2, 0.08] }
+            ONT_S: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] }
           }
         },
         mostly_harmful: {
           continuous: {
             ZS: { pos: [0.03, 0.07, 0.18, 0.3, 0.42] },
-            ONT_S: { pos: [0.25, 0.3, 0.28, 0.12, 0.05] }
+            ONT_S: { pos: [0.05, 0.12, 0.28, 0.3, 0.25] }
           }
         }
       }
@@ -4094,31 +3844,21 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.86,
       rewriteNeeded: false,
+      options: ["deport_legal", "let_stay_illegal"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "boundary_error_asymmetry" },
         { node: "CU", kind: "continuous", role: "position", weight: 0.45, touchType: "boundary_error_asymmetry" },
+        { node: "CU", kind: "continuous", role: "salience", weight: 0.5, touchType: "boundary_error_asymmetry" },
         { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "moral_scope_boundary" }
       ],
       optionEvidence: {
-        open_borders: {
+        deport_legal: {
           continuous: {
             CU: { pos: [0.01, 0.04, 0.12, 0.33, 0.5] },
             MOR: { pos: [0.02, 0.08, 0.2, 0.35, 0.35] }
           }
         },
-        generous_policy: {
-          continuous: {
-            CU: { pos: [0.04, 0.12, 0.25, 0.35, 0.24] },
-            MOR: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
-          }
-        },
-        balanced_approach: {
-          continuous: {
-            CU: { pos: [0.1, 0.22, 0.38, 0.22, 0.08] },
-            MOR: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
-          }
-        },
-        strict_enforcement: {
+        let_stay_illegal: {
           continuous: {
             CU: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
             MOR: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] }
@@ -4345,47 +4085,6 @@ var PrismEngine = (() => {
     // =========================================================================
     // SINGLE_CHOICE EVIDENCE MAPS (batch 4: Q45, Q47, Q48, Q52, Q53, Q54, Q57, Q58)
     // =========================================================================
-    // Q45 — what_changed_minds_through_history
-    {
-      id: 45,
-      stage: "stage3",
-      section: "IV",
-      promptShort: "what_changed_minds_through_history",
-      uiType: "single_choice",
-      quality: 0.36,
-      rewriteNeeded: true,
-      touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "abstract_style" },
-        { node: "AES", kind: "categorical", role: "category", weight: 0.2, touchType: "abstract_style" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.1, touchType: "abstract_style" }
-      ],
-      optionEvidence: {
-        evidence_and_argument: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.empiricist },
-            AES: { cat: AES_PROTOTYPES.technocrat }
-          }
-        },
-        moral_movements: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.intuitionist },
-            AES: { cat: AES_PROTOTYPES.pastoral }
-          }
-        },
-        economic_interests: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.institutionalist },
-            AES: { cat: AES_PROTOTYPES.statesman }
-          }
-        },
-        power_struggles: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.autonomous },
-            AES: { cat: AES_PROTOTYPES.fighter }
-          }
-        }
-      }
-    },
     // Q47 — political_conflict_with_close_others
     {
       id: 47,
@@ -4502,47 +4201,6 @@ var PrismEngine = (() => {
         }
       }
     },
-    // Q53 — parents_politics_growing_up (background, mild)
-    {
-      id: 53,
-      stage: "stage3",
-      section: "V",
-      promptShort: "parents_politics_growing_up",
-      uiType: "single_choice",
-      quality: 0.34,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-        { node: "MAT", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-      ],
-      optionEvidence: {
-        very_conservative: {
-          continuous: {
-            CD: { pos: [0.28, 0.25, 0.22, 0.15, 0.1] },
-            MAT: { pos: [0.11, 0.16, 0.22, 0.25, 0.26] }
-          }
-        },
-        moderate_household: {
-          continuous: {
-            CD: { pos: [0.15, 0.22, 0.3, 0.2, 0.13] },
-            MAT: { pos: [0.13, 0.2, 0.3, 0.22, 0.15] }
-          }
-        },
-        very_progressive: {
-          continuous: {
-            CD: { pos: [0.1, 0.15, 0.22, 0.25, 0.28] },
-            MAT: { pos: [0.26, 0.25, 0.22, 0.16, 0.11] }
-          }
-        },
-        not_political: {
-          continuous: {
-            CD: { pos: [0.18, 0.22, 0.25, 0.2, 0.15] }
-          }
-        }
-      }
-    },
     // Q54 — religion_in_upbringing (background, mild)
     {
       id: 54,
@@ -4575,73 +4233,6 @@ var PrismEngine = (() => {
           continuous: {
             MOR: { pos: [0.1, 0.15, 0.25, 0.27, 0.23] },
             CD: { pos: [0.1, 0.15, 0.25, 0.27, 0.23] }
-          }
-        }
-      }
-    },
-    // Q57 — parents_political_engagement (background, mild)
-    {
-      id: 57,
-      stage: "stage3",
-      section: "V",
-      promptShort: "parents_political_engagement",
-      uiType: "single_choice",
-      quality: 0.3,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "ENG", kind: "continuous", role: "position", weight: 0.08, touchType: "background_context" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" }
-      ],
-      optionEvidence: {
-        very_engaged: {
-          continuous: {
-            ENG: { pos: [0.1, 0.15, 0.25, 0.28, 0.22] }
-          }
-        },
-        occasionally_discussed: {
-          continuous: {
-            ENG: { pos: [0.15, 0.22, 0.3, 0.2, 0.13] }
-          }
-        },
-        never_discussed: {
-          continuous: {
-            ENG: { pos: [0.25, 0.27, 0.24, 0.15, 0.09] }
-          }
-        }
-      }
-    },
-    // Q58 — neighborhood_safety_childhood (background, mild)
-    {
-      id: 58,
-      stage: "stage3",
-      section: "V",
-      promptShort: "neighborhood_safety_childhood",
-      uiType: "single_choice",
-      quality: 0.3,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-      ],
-      optionEvidence: {
-        very_safe: {
-          continuous: {
-            ZS: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] }
-          }
-        },
-        mostly_safe: {
-          continuous: {
-            ZS: { pos: [0.15, 0.22, 0.28, 0.22, 0.13] }
-          }
-        },
-        somewhat_unsafe: {
-          continuous: {
-            ZS: { pos: [0.2, 0.25, 0.27, 0.18, 0.1] }
-          }
-        },
-        very_unsafe: {
-          continuous: {
-            ZS: { pos: [0.25, 0.27, 0.25, 0.15, 0.08] }
           }
         }
       }
@@ -4922,19 +4513,19 @@ var PrismEngine = (() => {
       ],
       rankingMap: {
         global_competition: {
-          continuous: { ONT_S: 0.7, ZS: 0.4 }
+          continuous: { ONT_S: -0.7, ZS: 0.4 }
         },
         automation: {
-          continuous: { ONT_S: 0.6 }
+          continuous: { ONT_S: -0.6 }
         },
         corporate_decisions: {
           continuous: { MAT: -0.7, ZS: 0.6 }
         },
         government_policy: {
-          continuous: { MAT: -0.3, ONT_S: 0.3 }
+          continuous: { MAT: -0.3, ONT_S: -0.3 }
         },
         worker_choices: {
-          continuous: { MAT: 0.6, ONT_S: -0.5 }
+          continuous: { MAT: 0.6, ONT_S: 0.5 }
         }
       }
     },
@@ -5025,8 +4616,6 @@ var PrismEngine = (() => {
     // NEW QUESTIONS 64-75: Gap-targeted expansion
     // =========================================================================
     // Q64 — Political Frustration (PF position via grievance framing + salience)
-    // "When you think about what's most wrong with the country right now,
-    //  which frustration resonates most?"
     {
       id: 64,
       stage: "stage2",
@@ -5036,44 +4625,50 @@ var PrismEngine = (() => {
       quality: 0.93,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "PF", kind: "continuous", role: "position", weight: 0.9, touchType: "grievance_proxy" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.4, touchType: "frustration_intensity" }
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "grievance_proxy" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.8, touchType: "grievance_proxy" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "grievance_proxy" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.2, touchType: "grievance_proxy" },
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.25, touchType: "frustration_intensity" }
       ],
       optionEvidence: {
         // "Corporations and the wealthy have too much power, ordinary people are left behind"
         corporate_power_inequality: {
           continuous: {
-            PF: { pos: [0.55, 0.3, 0.1, 0.03, 0.02] }
+            MAT: { pos: [0.18, 0.32, 0.28, 0.15, 0.07] },
+            ONT_S: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] }
           }
         },
         // "Government has grown too large and intrusive, individual freedom is eroding"
         government_overreach: {
           continuous: {
-            PF: { pos: [0.02, 0.05, 0.12, 0.36, 0.45] }
+            ONT_S: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            PRO: { pos: [0.18, 0.28, 0.3, 0.16, 0.08] }
           }
         },
         // "Both sides are more interested in fighting than solving real problems"
         both_sides_broken: {
           continuous: {
-            PF: { pos: [0.06, 0.14, 0.58, 0.14, 0.08] }
+            ONT_S: { pos: [0.6, 0.24, 0.1, 0.04, 0.02] }
           }
         },
         // "The system itself is fundamentally unjust and needs radical change"
         system_unjust: {
           continuous: {
-            PF: { pos: [0.6, 0.22, 0.1, 0.05, 0.03] }
+            ONT_S: { pos: [0.72, 0.18, 0.06, 0.03, 0.01] }
           }
         },
         // "Traditional values and social cohesion are being abandoned"
         values_eroding: {
           continuous: {
-            PF: { pos: [0.02, 0.03, 0.08, 0.32, 0.55] }
+            CD: { pos: [0.03, 0.07, 0.15, 0.3, 0.45] },
+            ONT_S: { pos: [0.35, 0.3, 0.2, 0.1, 0.05] }
           }
         },
         // "I don't think much about politics — it doesn't affect my daily life"
         politics_irrelevant: {
           continuous: {
-            PF: { pos: [0.1, 0.15, 0.45, 0.18, 0.12] }
+            ENG: { pos: [0.62, 0.22, 0.1, 0.04, 0.02] }
           }
         }
       }
@@ -5118,56 +4713,6 @@ var PrismEngine = (() => {
         "81-100": { categorical: { AES: { sal: [0.02, 0.08, 0.3, 0.6] } } }
       }
     },
-    {
-      id: 76,
-      stage: "stage2",
-      section: "IV",
-      promptShort: "success_attribution",
-      uiType: "single_choice",
-      quality: 0.91,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.9, touchType: "causal_attribution" },
-        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.4, touchType: "causal_attribution" },
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.2, touchType: "distributional_worldview" },
-        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
-      ],
-      optionEvidence: {
-        hard_work_talent: {
-          continuous: {
-            ONT_S: { pos: [0.62, 0.22, 0.1, 0.04, 0.02] },
-            ZS: { pos: [0.35, 0.3, 0.22, 0.09, 0.04] }
-          }
-        },
-        good_choices: {
-          continuous: {
-            ONT_S: { pos: [0.22, 0.48, 0.2, 0.07, 0.03] },
-            ZS: { pos: [0.25, 0.35, 0.25, 0.1, 0.05] }
-          }
-        },
-        right_connections: {
-          continuous: {
-            ONT_S: { pos: [0.06, 0.14, 0.48, 0.22, 0.1] },
-            ZS: { pos: [0.08, 0.18, 0.38, 0.24, 0.12] }
-          }
-        },
-        system_advantages: {
-          continuous: {
-            ONT_S: { pos: [0.02, 0.06, 0.15, 0.45, 0.32] },
-            ZS: { pos: [0.05, 0.1, 0.25, 0.35, 0.25] }
-          }
-        },
-        whole_system: {
-          continuous: {
-            ONT_S: { pos: [0.01, 0.03, 0.08, 0.28, 0.6] },
-            ZS: { pos: [0.03, 0.07, 0.18, 0.32, 0.4] }
-          }
-        }
-      }
-    },
-    // Q77 — Decision-Making Style (EPS intuitionist + nihilist coverage)
-    // Life-decision framing (not political) avoids priming institutional answers.
-    // "gut_feeling" gives intuitionist a dignified path; "cant_predict" normalizes nihilism.
     {
       id: 77,
       stage: "stage2",

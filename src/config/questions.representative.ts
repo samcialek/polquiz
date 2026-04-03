@@ -457,27 +457,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     }
   },
 
-  // Q32 — mainstream_media_accuracy_estimate (slider)
-  {
-    id: 32,
-    stage: "stage3",
-    section: "III",
-    promptShort: "mainstream_media_accuracy_estimate",
-    uiType: "slider",
-    quality: 0.40,
-    rewriteNeeded: true,
-    touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.40, touchType: "institutional_trust_proxy" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.15, touchType: "trust_hostility_proxy" }
-    ],
-    sliderMap: {
-      "0-20":   { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } },
-      "21-40":  { categorical: { EPS: { cat: EPS_PROTOTYPES.intuitionist } } },
-      "41-60":  { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-      "61-80":  { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-      "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } }
-    }
-  },
 
   // Q35 — percent_groups_want_best_share_values (slider)
   {
@@ -567,28 +546,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     }
   },
 
-  // Q46 — caregiver_emotional_availability (slider, background)
-  {
-    id: 46,
-    stage: "stage3",
-    section: "IV",
-    promptShort: "caregiver_emotional_availability",
-    uiType: "slider",
-    quality: 0.30,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-    ],
-    sliderMap: {
-      "0-20":   { continuous: { COM: { pos: [0.28, 0.27, 0.22, 0.14, 0.09] }, TRB: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] } } },
-      "21-40":  { continuous: { COM: { pos: [0.22, 0.28, 0.25, 0.16, 0.09] }, TRB: { pos: [0.14, 0.20, 0.28, 0.22, 0.16] } } },
-      "41-60":  { continuous: { COM: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] }, TRB: { pos: [0.17, 0.22, 0.28, 0.20, 0.13] } } },
-      "61-80":  { continuous: { COM: { pos: [0.09, 0.16, 0.25, 0.28, 0.22] }, TRB: { pos: [0.18, 0.23, 0.28, 0.18, 0.13] } } },
-      "81-100": { continuous: { COM: { pos: [0.06, 0.12, 0.22, 0.30, 0.30] }, TRB: { pos: [0.20, 0.24, 0.26, 0.18, 0.12] } } }
-    }
-  },
 
   // Q49 — social_progress_salience (slider)
   {
@@ -990,39 +947,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     }
   },
 
-  // Q26 — vacation_new_vs_familiar
-  {
-    id: 26,
-    stage: "stage2",
-    section: "III",
-    promptShort: "vacation_new_vs_familiar",
-    uiType: "single_choice",
-    quality: 0.52,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "novelty_preference" },
-      { node: "AES", kind: "categorical", role: "category", weight: 0.10, touchType: "taste_proxy" }
-    ],
-    optionEvidence: {
-      new_place: {
-        continuous: {
-          ONT_H: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
-        },
-        categorical: { AES: { cat: AES_PROTOTYPES.visionary } }
-      },
-      familiar_place: {
-        continuous: {
-          ONT_H: { pos: [0.22, 0.33, 0.28, 0.12, 0.05] }
-        },
-        categorical: { AES: { cat: AES_PROTOTYPES.pastoral } }
-      },
-      mix_both: {
-        continuous: {
-          ONT_H: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-        }
-      }
-    }
-  },
 
   // Q27 — welfare_error_tradeoff (error_tradeoff with ratio slider)
   // "In welfare programs, which error is worse?"
@@ -1430,47 +1354,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // SINGLE_CHOICE EVIDENCE MAPS (batch 4: Q45, Q47, Q48, Q52, Q53, Q54, Q57, Q58)
   // =========================================================================
 
-  // Q45 — what_changed_minds_through_history
-  {
-    id: 45,
-    stage: "stage3",
-    section: "IV",
-    promptShort: "what_changed_minds_through_history",
-    uiType: "single_choice",
-    quality: 0.36,
-    rewriteNeeded: true,
-    touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "abstract_style" },
-      { node: "AES", kind: "categorical", role: "category", weight: 0.20, touchType: "abstract_style" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "abstract_style" }
-    ],
-    optionEvidence: {
-      evidence_and_argument: {
-        categorical: {
-          EPS: { cat: EPS_PROTOTYPES.empiricist },
-          AES: { cat: AES_PROTOTYPES.technocrat }
-        }
-      },
-      moral_movements: {
-        categorical: {
-          EPS: { cat: EPS_PROTOTYPES.intuitionist },
-          AES: { cat: AES_PROTOTYPES.pastoral }
-        }
-      },
-      economic_interests: {
-        categorical: {
-          EPS: { cat: EPS_PROTOTYPES.institutionalist },
-          AES: { cat: AES_PROTOTYPES.statesman }
-        }
-      },
-      power_struggles: {
-        categorical: {
-          EPS: { cat: EPS_PROTOTYPES.autonomous },
-          AES: { cat: AES_PROTOTYPES.fighter }
-        }
-      }
-    }
-  },
 
   // Q47 — political_conflict_with_close_others
   {
@@ -1591,47 +1474,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     }
   },
 
-  // Q53 — parents_politics_growing_up (background, mild)
-  {
-    id: 53,
-    stage: "stage3",
-    section: "V",
-    promptShort: "parents_politics_growing_up",
-    uiType: "single_choice",
-    quality: 0.34,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-      { node: "CD", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-    ],
-    optionEvidence: {
-      very_conservative: {
-        continuous: {
-          CD: { pos: [0.28, 0.25, 0.22, 0.15, 0.10] },
-          MAT: { pos: [0.11, 0.16, 0.22, 0.25, 0.26] }
-        }
-      },
-      moderate_household: {
-        continuous: {
-          CD: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] },
-          MAT: { pos: [0.13, 0.20, 0.30, 0.22, 0.15] }
-        }
-      },
-      very_progressive: {
-        continuous: {
-          CD: { pos: [0.10, 0.15, 0.22, 0.25, 0.28] },
-          MAT: { pos: [0.26, 0.25, 0.22, 0.16, 0.11] }
-        }
-      },
-      not_political: {
-        continuous: {
-          CD: { pos: [0.18, 0.22, 0.25, 0.20, 0.15] }
-        }
-      }
-    }
-  },
 
   // Q54 — religion_in_upbringing (background, mild)
   {
@@ -1670,74 +1512,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     }
   },
 
-  // Q57 — parents_political_engagement (background, mild)
-  {
-    id: 57,
-    stage: "stage3",
-    section: "V",
-    promptShort: "parents_political_engagement",
-    uiType: "single_choice",
-    quality: 0.30,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.08, touchType: "background_context" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" }
-    ],
-    optionEvidence: {
-      very_engaged: {
-        continuous: {
-          ENG: { pos: [0.10, 0.15, 0.25, 0.28, 0.22] }
-        }
-      },
-      occasionally_discussed: {
-        continuous: {
-          ENG: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] }
-        }
-      },
-      never_discussed: {
-        continuous: {
-          ENG: { pos: [0.25, 0.27, 0.24, 0.15, 0.09] }
-        }
-      }
-    }
-  },
 
-  // Q58 — neighborhood_safety_childhood (background, mild)
-  {
-    id: 58,
-    stage: "stage3",
-    section: "V",
-    promptShort: "neighborhood_safety_childhood",
-    uiType: "single_choice",
-    quality: 0.30,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-    ],
-    optionEvidence: {
-      very_safe: {
-        continuous: {
-          ZS: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] }
-        }
-      },
-      mostly_safe: {
-        continuous: {
-          ZS: { pos: [0.15, 0.22, 0.28, 0.22, 0.13] }
-        }
-      },
-      somewhat_unsafe: {
-        continuous: {
-          ZS: { pos: [0.20, 0.25, 0.27, 0.18, 0.10] }
-        }
-      },
-      very_unsafe: {
-        continuous: {
-          ZS: { pos: [0.25, 0.27, 0.25, 0.15, 0.08] }
-        }
-      }
-    }
-  },
 
   // =========================================================================
   // SINGLE_CHOICE EVIDENCE MAPS (batch 5: Q59, Q61, Q62)
