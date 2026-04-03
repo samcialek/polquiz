@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRISM — Sam Decision Brief</title>
+<style>
+  :root {
+    --bg: #f7f4ee;
+    --paper: #fffdf8;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #d6d3d1;
+    --accent: #8b5e3c;
+    --accent-2: #355c7d;
+    --warn: #a16207;
+    --danger: #991b1b;
+    --ok: #166534;
+    --chip: #efe7dc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  .hero {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+  }
+  h1,h2,h3 { margin: 0 0 12px; line-height: 1.2; }
+  h1 { font-size: 2.2rem; color: var(--accent); }
+  h2 { font-size: 1.5rem; color: var(--accent-2); margin-top: 34px; }
+  h3 { font-size: 1.1rem; color: var(--ink); }
+  p { margin: 10px 0; }
+  .sub { color: var(--muted); font-size: 0.98rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .muted { color: var(--muted); }
+  .section {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
+    margin-top: 22px;
+  }
+  .decision {
+    border-left: 5px solid var(--accent);
+    padding-left: 16px;
+    margin: 18px 0 22px;
+  }
+  .decision.important { border-left-color: var(--danger); }
+  .decision.medium { border-left-color: var(--warn); }
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--chip);
+    color: var(--ink);
+    font-size: 0.85rem;
+    margin: 4px 6px 0 0;
+  }
+  .good { color: var(--ok); }
+  .warn { color: var(--warn); }
+  .bad { color: var(--danger); }
+  ul { margin: 10px 0 10px 20px; }
+  li { margin: 6px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.97rem;
+  }
+  th, td {
+    border-top: 1px solid var(--line);
+    padding: 10px 8px;
+    vertical-align: top;
+    text-align: left;
+  }
+  th { color: var(--accent-2); }
+  .small { font-size: 0.92rem; }
+  .footer-links a { color: var(--accent-2); text-decoration: none; }
+  .footer-links li { word-break: break-all; }
+  .quote {
+    background: #faf6ef;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>PRISM — Decision Brief for Sam</h1>
+      <p class="sub">Prepared 2026-04-03 from the latest diagnostic outputs already in the project. This is meant to be the easiest single page to scan for: what looks good, what looks unresolved, and where your judgment is needed.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="muted">Targeted top-1 accuracy</div>
+          <div class="value good">94.8%</div>
+          <div class="small muted">109 / 115 clean archetypes in the 40K diagnostic summary</div>
+        </div>
+        <div class="card">
+          <div class="muted">Targeted top-3 accuracy</div>
+          <div class="value good">100%</div>
+          <div class="small muted">Misses are usually near-neighbor confusion, not total collapse</div>
+        </div>
+        <div class="card">
+          <div class="muted">Average questions asked</div>
+          <div class="value warn">54.9</div>
+          <div class="small muted">Very close to the effective ceiling; quiz often runs long</div>
+        </div>
+        <div class="card">
+          <div class="muted">Average final entropy</div>
+          <div class="value warn">5.81 bits</div>
+          <div class="small muted">The engine often ends without a really decisive posterior</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Bottom line</h2>
+      <p>The emergency work from yesterday looks <strong>substantially successful</strong>: the live quiz was repaired, label corruption was fixed, merged archetypes were cleaned up, and the engine still performs strongly in the clean targeted sense.</p>
+      <p>But the diagnostics say the system is now in a <strong>refinement / product judgment phase</strong>, not a pure bug-fix phase. The big questions are no longer “is it broken?” They are mostly:</p>
+      <ul>
+        <li>How much ambiguity is acceptable in a real political quiz?</li>
+        <li>Do you want broader archetypal nuance, or sharper discrimination at the cost of some subtlety?</li>
+        <li>Which diagnostic problems are worth tackling now versus later?</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>What looks good enough to leave alone for now</h2>
+      <ul>
+        <li><strong>Core engine viability:</strong> 94.8% top-1 and 100% top-3 on clean targeted tests is a strong foundation.</li>
+        <li><strong>Yesterday's merges:</strong> the previously problematic cosmopolitan cluster and the anarchist/horizontalist overlap were already identified and acted on conceptually.</li>
+        <li><strong>Live deployment stability:</strong> the syntax-breaking label truncation issue appears to have been the major immediate blocker, and that was fixed.</li>
+        <li><strong>Question UX improvements:</strong> font sizing, ranking visual distinctions, and some rewritten prompts were all sensible product improvements.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Decision points that need your judgment</h2>
+
+      <div class="decision important">
+        <h3>1) Do you want to prioritize sharper convergence, or preserve broad nuance?</h3>
+        <p><strong>The issue:</strong> even with decent targeted accuracy, the quiz often ends with high entropy and low confidence. In plain English: it frequently lands in the right neighborhood, but not with enough force.</p>
+        <p><strong>Evidence:</strong> average final entropy is 5.81 bits; average top posterior is only 0.083; average margin between top-1 and top-2 is 0.026.</p>
+        <p><strong>Your choice:</strong></p>
+        <ul>
+          <li><strong>Option A — prioritize sharper classification:</strong> prune weak questions, add more pairwise discriminators, tighten stopping logic, and accept a more opinionated engine.</li>
+          <li><strong>Option B — preserve nuance:</strong> accept that many people really do span adjacent archetypes, and treat top-3 / cluster outputs as a feature rather than a defect.</li>
+        </ul>
+        <p class="quote">My read: this is the biggest product-level decision. Technically, the quiz is functioning. Philosophically, you need to decide whether PRISM is aiming for “single best identity” or “structured ideological neighborhood.”</p>
+      </div>
+
+      <div class="decision important">
+        <h3>2) What do you want to do about the Hinge Citizen attractor?</h3>
+        <p><strong>The issue:</strong> <code>060 Hinge Citizen</code> wins far more often than expected — about 10.6% of all wins, or 12.2× expected rate.</p>
+        <p><strong>Likely interpretation:</strong> it may be functioning as a “moderate / underspecified / catch-all” sink.</p>
+        <p><strong>Your choice:</strong></p>
+        <ul>
+          <li><strong>Option A — attack it now:</strong> make Hinge Citizen narrower, reduce its prior or broaden competing moderates, and add discriminator questions specifically against its nearest rivals.</li>
+          <li><strong>Option B — leave it for later:</strong> treat it as a known attractor during stabilization and revisit after other question changes.</li>
+        </ul>
+      </div>
+
+      <div class="decision medium">
+        <h3>3) Should the 7 never-asked questions be removed, rewritten, or deliberately surfaced?</h3>
+        <p><strong>Dead questions identified:</strong> Q6, Q10, Q16, Q34, Q46, Q53, Q57.</p>
+        <p><strong>What this means:</strong> they currently add maintenance burden and conceptual clutter without contributing to classification in practice.</p>
+        <p><strong>Your choice:</strong></p>
+        <ul>
+          <li><strong>Remove:</strong> cleaner instrument, less dead weight.</li>
+          <li><strong>Rewrite and reinsert:</strong> if you think these themes matter conceptually and deserve representation.</li>
+          <li><strong>Keep as reserve bank:</strong> useful for a future expanded or alternative mode, but not part of the main adaptive path.</li>
+        </ul>
+      </div>
+
+      <div class="decision medium">
+        <h3>4) Do you want more MaxDiff / conjoint structure, or not yet?</h3>
+        <p><strong>Current state:</strong> only one best-worst item is in play, and no conjoint module is really present.</p>
+        <p><strong>Your earlier instinct already points here:</strong> one maxdiff is not enough to build a robust ordering.</p>
+        <p><strong>Your choice:</strong></p>
+        <ul>
+          <li><strong>Option A — expand best-worst now:</strong> a practical next step that deepens discrimination without a full redesign.</li>
+          <li><strong>Option B — add conjoint questions:</strong> richer and potentially more realistic, but a larger design lift.</li>
+          <li><strong>Option C — postpone both:</strong> focus first on cleaning dead questions and confusion pairs.</li>
+        </ul>
+      </div>
+
+      <div class="decision medium">
+        <h3>5) Do you want to keep the current merged archetype philosophy?</h3>
+        <p><strong>Context:</strong> several archetypes were merged because they were semantically weak or structurally indistinguishable.</p>
+        <p><strong>The live design question:</strong> should the system favor semantically vivid archetypes with broader umbrellas, or maintain finer-grained distinctions even when classification between them is weak?</p>
+        <p><strong>Your choice:</strong></p>
+        <ul>
+          <li><strong>Broader, stronger archetypes:</strong> easier to explain, more legible to users, probably better product design.</li>
+          <li><strong>Finer-grained archetypes:</strong> more intellectually satisfying, but risks near-duplicate categories and chronic ambiguity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Highest-signal diagnostic findings</h2>
+      <table>
+        <tr>
+          <th>Finding</th>
+          <th>Why it matters</th>
+          <th>My take</th>
+        </tr>
+        <tr>
+          <td>Hinge Citizen wins 4237 times</td>
+          <td>Suggests a broad attractor / sink archetype</td>
+          <td>Worth targeted intervention if you want sharper outputs</td>
+        </tr>
+        <tr>
+          <td>7 never-asked questions</td>
+          <td>Dead inventory in the instrument</td>
+          <td>Probably prune or redesign rather than leave ambiguous</td>
+        </tr>
+        <tr>
+          <td>Several confused pair clusters</td>
+          <td>Shows where additional discriminators would pay off most</td>
+          <td>This feels like the most actionable technical next step</td>
+        </tr>
+        <tr>
+          <td>Top-1 targeted misses are mostly near-neighbors</td>
+          <td>The ontology is mostly coherent, but some distinctions remain too subtle</td>
+          <td>Good news overall — not a catastrophic model failure</td>
+        </tr>
+        <tr>
+          <td>Semantic playthrough reports are terrible</td>
+          <td>But those are mostly about LLM ideological bias, not mechanical quiz scoring</td>
+          <td>Interesting for research, but I would not let that dominate product decisions</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Things I do <em>not</em> think need your immediate attention</h2>
+      <ul>
+        <li><strong>The ugly semantic-playthrough failure rates</strong> — these seem much more about Claude’s baked-in political priors than the quiz engine itself.</li>
+        <li><strong>Perfecting every rare archetype right now</strong> — the bigger product win is probably fixing attractors and dead questions first.</li>
+        <li><strong>Another major ontology rewrite</strong> — I don’t see evidence yet that the whole framework is wrong. The problems look local, not foundational.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>My recommendation</h2>
+      <p>If I were calling the next sprint, I would recommend:</p>
+      <ol>
+        <li><strong>Decide explicitly that PRISM should optimize for sharper top-1 outputs</strong> rather than treating ambiguity as the final answer.</li>
+        <li><strong>Then target the biggest confusion sinks first:</strong> especially Hinge Citizen and the top confused pairs.</li>
+        <li><strong>Then clean the dead question inventory:</strong> either cut those 7 or rewrite them with a clear reason to exist.</li>
+        <li><strong>Only after that</strong>, decide whether to add more MaxDiff or conjoint structure.</li>
+      </ol>
+      <p class="quote">In other words: I’d treat this as an instrument-tuning problem, not a theory crisis.</p>
+    </div>
+
+    <div class="section footer-links">
+      <h2>Relevant existing project outputs</h2>
+      <ul>
+        <li><a href="quiz-diagnostic-40k.html">quiz-diagnostic-40k.html</a></li>
+        <li><a href="semantic-diagnostic-report.html">semantic-diagnostic-report.html</a></li>
+        <li><a href="playthrough-diagnostic.html">playthrough-diagnostic.html</a></li>
+        <li><a href="archetype-final-list.html">archetype-final-list.html</a></li>
+        <li><a href="archetype-reference.html">archetype-reference.html</a></li>
+      </ul>
+      <p class="small muted">This brief lives at: <code>output/sam-decision-brief-2026-04-03.html</code></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRISM Quiz Diagnostic — 40K Simulations</title>
+<style>
+  :root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; --accent2: #f0883e; 
+    --green: #3fb950; --red: #f85149; --yellow: #d29922; --border: #30363d; --card: #161b22; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto; }
+  h1 { color: var(--accent); font-size: 2em; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+  h2 { color: var(--accent2); margin-top: 30px; margin-bottom: 15px; font-size: 1.4em; }
+  h3 { color: var(--accent); margin-top: 20px; margin-bottom: 10px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 15px; }
+  .stat-card .label { font-size: 0.85em; color: #8b949e; }
+  .stat-card .value { font-size: 1.8em; font-weight: bold; color: var(--accent); }
+  .stat-card .sub { font-size: 0.8em; color: #8b949e; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: var(--card); border-radius: 8px; overflow: hidden; }
+  th { background: #21262d; color: var(--accent); padding: 10px 12px; text-align: left; font-size: 0.85em; }
+  td { padding: 8px 12px; border-top: 1px solid var(--border); font-size: 0.85em; }
+  tr:hover { background: #1c2128; }
+  .bar-container { display: flex; align-items: center; gap: 8px; }
+  .bar { height: 16px; background: var(--accent); border-radius: 3px; min-width: 2px; }
+  .bar.red { background: var(--red); }
+  .bar.green { background: var(--green); }
+  .bar.yellow { background: var(--yellow); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; }
+  .badge.ok { background: #0d3321; color: var(--green); }
+  .badge.warn { background: #3d2e00; color: var(--yellow); }
+  .badge.err { background: #3d1418; color: var(--red); }
+  .alert { background: #3d1418; border: 1px solid var(--red); border-radius: 8px; padding: 15px; margin: 10px 0; }
+  .alert.warn { background: #3d2e00; border-color: var(--yellow); }
+  .alert.ok { background: #0d3321; border-color: var(--green); }
+  .chart-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+  .chart-label { width: 200px; text-align: right; font-size: 0.8em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chart-bar { height: 18px; border-radius: 3px; transition: width 0.3s; }
+  .chart-value { font-size: 0.75em; color: #8b949e; min-width: 50px; }
+  .section { margin: 30px 0; }
+  .meta { color: #8b949e; font-size: 0.9em; margin-bottom: 20px; }
+  code { background: #21262d; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+  .heatcell { display: inline-block; width: 20px; height: 20px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<h1>🔬 PRISM Quiz Diagnostic — 40K Simulations</h1>
+<p class="meta">Generated 2026-04-02T04:55:27.771Z | 40,000 simulations | 261.0s runtime | 115 archetypes | 75 questions</p>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="label">Clean Targeted Accuracy (Top-1)</div>
+    <div class="value" style="color: var(--green)">94.8%</div>
+    <div class="sub">109/115 archetypes correctly identified</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Top-3 / Top-5 Accuracy</div>
+    <div class="value">100% / 100%</div>
+    <div class="sub">115 top-3, 115 top-5</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Avg Posterior Entropy</div>
+    <div class="value">5.81</div>
+    <div class="sub">bits (min 2.76, max 6.44)</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Avg Questions Asked</div>
+    <div class="value">54.9</div>
+    <div class="sub">out of 75 available</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Unreachable Archetypes</div>
+    <div class="value" style="color: var(--red)">1</div>
+    <div class="sub">Some never win!</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Never-Asked Questions</div>
+    <div class="value" style="color: var(--yellow)">7</div>
+    <div class="sub">Dead questions detected</div>
+  </div>
+</div>
+
+<div class="alert">
+<strong>⚠ UNREACHABLE ARCHETYPES</strong> — These archetypes never won across 40,000 simulations:
+<ul><li><code>019</code> Anarchist Mutualist</li></ul>
+</div>
+
+<div class="alert warn">
+<strong>⚠ ABSORBING ARCHETYPES</strong> — These win disproportionately (>3× expected):
+<ul><li><code>060</code> Hinge Citizen — 4237 wins (12.2× expected)</li><li><code>109</code> Alienated Outsider — 2843 wins (8.2× expected)</li><li><code>118</code> Survival Pragmatist — 2709 wins (7.8× expected)</li><li><code>006</code> Fairness Pragmatist — 2664 wins (7.7× expected)</li><li><code>090</code> Hobbesian Guardian — 2301 wins (6.6× expected)</li><li><code>140</code> Market Green Modernist — 1884 wins (5.4× expected)</li><li><code>032</code> Hamiltonian Technocrat — 1777 wins (5.1× expected)</li><li><code>010</code> Bread-and-Butter Progressive — 1402 wins (4.0× expected)</li><li><code>079</code> National Developmentalist — 1329 wins (3.8× expected)</li><li><code>084</code> Civilizational Conservative — 1328 wins (3.8× expected)</li><li><code>091</code> Security Paternalist — 1248 wins (3.6× expected)</li><li><code>097</code> Authority Pragmatist — 1214 wins (3.5× expected)</li><li><code>045</code> Rooted Social Reformer — 1105 wins (3.2× expected)</li><li><code>005</code> Pluralist Structuralist — 1099 wins (3.2× expected)</li></ul>
+</div>
+
+<div class="section">
+<h2>📊 Noise Degradation Curve</h2>
+<p>How accuracy degrades as answer noise increases (0 = perfect archetype answers, 0.6 = highly noisy):</p>
+<table>
+<tr><th>Profile</th><th>Accuracy</th><th></th></tr>
+<tr>
+<td><code>clean</code></td>
+<td>94.8%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 284.3478260869565px"></div></div></td>
+</tr><tr>
+<td><code>n=0.05</code></td>
+<td>97.4%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 292.17391304347825px"></div></div></td>
+</tr><tr>
+<td><code>n=0.1</code></td>
+<td>88.7%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 266.0869565217391px"></div></div></td>
+</tr><tr>
+<td><code>n=0.15</code></td>
+<td>90.4%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 271.304347826087px"></div></div></td>
+</tr><tr>
+<td><code>n=0.2</code></td>
+<td>92.2%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 276.5217391304348px"></div></div></td>
+</tr><tr>
+<td><code>n=0.25</code></td>
+<td>72.2%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 216.5217391304348px"></div></div></td>
+</tr><tr>
+<td><code>n=0.3</code></td>
+<td>80.9%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 242.60869565217388px"></div></div></td>
+</tr><tr>
+<td><code>n=0.4</code></td>
+<td>64.3%</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 193.04347826086956px"></div></div></td>
+</tr><tr>
+<td><code>n=0.5</code></td>
+<td>47.8%</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 143.47826086956522px"></div></div></td>
+</tr><tr>
+<td><code>n=0.6</code></td>
+<td>29.6%</td>
+<td><div class="bar-container"><div class="bar red" style="width: 88.69565217391305px"></div></div></td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📈 Per-Profile Statistics</h2>
+<table>
+<tr><th>Profile Type</th><th>Count</th><th>Avg Entropy</th><th>Avg Questions</th><th>Avg Margin</th><th>Avg Top Posterior</th></tr>
+<tr>
+<td><code>adversarial_always_first</code></td>
+<td>2712</td>
+<td>5.76</td>
+<td>55.0</td>
+<td>0.053</td>
+<td>0.115</td>
+</tr><tr>
+<td><code>adversarial_always_last</code></td>
+<td>2712</td>
+<td>5.62</td>
+<td>55.0</td>
+<td>0.039</td>
+<td>0.092</td>
+</tr><tr>
+<td><code>adversarial_anti_leader</code></td>
+<td>2712</td>
+<td>6.07</td>
+<td>55.0</td>
+<td>0.011</td>
+<td>0.058</td>
+</tr><tr>
+<td><code>adversarial_oscillating</code></td>
+<td>2714</td>
+<td>5.53</td>
+<td>55.0</td>
+<td>0.010</td>
+<td>0.078</td>
+</tr><tr>
+<td><code>centrist_strong</code></td>
+<td>3000</td>
+<td>6.10</td>
+<td>55.0</td>
+<td>0.018</td>
+<td>0.067</td>
+</tr><tr>
+<td><code>centrist_weak</code></td>
+<td>3000</td>
+<td>6.05</td>
+<td>55.0</td>
+<td>0.019</td>
+<td>0.068</td>
+</tr><tr>
+<td><code>moderate_conservative</code></td>
+<td>3000</td>
+<td>5.70</td>
+<td>55.0</td>
+<td>0.022</td>
+<td>0.083</td>
+</tr><tr>
+<td><code>moderate_liberal</code></td>
+<td>3000</td>
+<td>5.77</td>
+<td>55.0</td>
+<td>0.029</td>
+<td>0.090</td>
+</tr><tr>
+<td><code>random_uniform</code></td>
+<td>10000</td>
+<td>6.00</td>
+<td>55.0</td>
+<td>0.019</td>
+<td>0.070</td>
+</tr><tr>
+<td><code>strong_conservative</code></td>
+<td>3000</td>
+<td>5.48</td>
+<td>55.0</td>
+<td>0.021</td>
+<td>0.085</td>
+</tr><tr>
+<td><code>strong_liberal</code></td>
+<td>3000</td>
+<td>5.65</td>
+<td>54.9</td>
+<td>0.028</td>
+<td>0.097</td>
+</tr><tr>
+<td><code>targeted_clean</code></td>
+<td>115</td>
+<td>5.16</td>
+<td>37.3</td>
+<td>0.111</td>
+<td>0.190</td>
+</tr><tr>
+<td><code>targeted_noise_0.05</code></td>
+<td>115</td>
+<td>4.54</td>
+<td>50.1</td>
+<td>0.194</td>
+<td>0.283</td>
+</tr><tr>
+<td><code>targeted_noise_0.1</code></td>
+<td>115</td>
+<td>4.67</td>
+<td>52.0</td>
+<td>0.172</td>
+<td>0.258</td>
+</tr><tr>
+<td><code>targeted_noise_0.15</code></td>
+<td>115</td>
+<td>4.71</td>
+<td>51.8</td>
+<td>0.159</td>
+<td>0.249</td>
+</tr><tr>
+<td><code>targeted_noise_0.2</code></td>
+<td>115</td>
+<td>4.89</td>
+<td>53.2</td>
+<td>0.134</td>
+<td>0.219</td>
+</tr><tr>
+<td><code>targeted_noise_0.25</code></td>
+<td>115</td>
+<td>5.03</td>
+<td>53.0</td>
+<td>0.103</td>
+<td>0.189</td>
+</tr><tr>
+<td><code>targeted_noise_0.3</code></td>
+<td>115</td>
+<td>5.16</td>
+<td>54.2</td>
+<td>0.096</td>
+<td>0.176</td>
+</tr><tr>
+<td><code>targeted_noise_0.4</code></td>
+<td>115</td>
+<td>5.32</td>
+<td>54.2</td>
+<td>0.075</td>
+<td>0.151</td>
+</tr><tr>
+<td><code>targeted_noise_0.5</code></td>
+<td>115</td>
+<td>5.55</td>
+<td>55.0</td>
+<td>0.046</td>
+<td>0.116</td>
+</tr><tr>
+<td><code>targeted_noise_0.6</code></td>
+<td>115</td>
+<td>5.71</td>
+<td>55.0</td>
+<td>0.030</td>
+<td>0.094</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🏆 Winner Distribution (Top 30)</h2>
+<div class="chart-row">
+<span class="chart-label" title="Hinge Citizen">060 Hinge Citizen</span>
+<div class="chart-bar" style="width: 300px; background: var(--accent)"></div>
+<span class="chart-value">4237 (10.6%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Alienated Outsider">109 Alienated Outsider</span>
+<div class="chart-bar" style="width: 201.29808827000235px; background: var(--accent)"></div>
+<span class="chart-value">2843 (7.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Survival Pragmatist">118 Survival Pragmatist</span>
+<div class="chart-bar" style="width: 191.81024309653054px; background: var(--accent)"></div>
+<span class="chart-value">2709 (6.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Fairness Pragmatist">006 Fairness Pragmatist</span>
+<div class="chart-bar" style="width: 188.62402643379752px; background: var(--accent)"></div>
+<span class="chart-value">2664 (6.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Hobbesian Guardian">090 Hobbesian Guardian</span>
+<div class="chart-bar" style="width: 162.92187868775076px; background: var(--accent)"></div>
+<span class="chart-value">2301 (5.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Market Green Modernist">140 Market Green Modernist</span>
+<div class="chart-bar" style="width: 133.39627094642432px; background: var(--accent)"></div>
+<span class="chart-value">1884 (4.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Hamiltonian Technocrat">032 Hamiltonian Technocrat</span>
+<div class="chart-bar" style="width: 125.8201557705924px; background: var(--accent)"></div>
+<span class="chart-value">1777 (4.4%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Bread-and-Butter Progressive">010 Bread-and-Butter Progressive</span>
+<div class="chart-bar" style="width: 99.26835024781684px; background: var(--accent)"></div>
+<span class="chart-value">1402 (3.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="National Developmentalist">079 National Developmentalist</span>
+<div class="chart-bar" style="width: 94.09959877271653px; background: var(--accent)"></div>
+<span class="chart-value">1329 (3.3%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Civilizational Conservative">084 Civilizational Conservative</span>
+<div class="chart-bar" style="width: 94.02879395798912px; background: var(--accent)"></div>
+<span class="chart-value">1328 (3.3%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Security Paternalist">091 Security Paternalist</span>
+<div class="chart-bar" style="width: 88.364408779797px; background: var(--accent)"></div>
+<span class="chart-value">1248 (3.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Authority Pragmatist">097 Authority Pragmatist</span>
+<div class="chart-bar" style="width: 85.95704507906535px; background: var(--accent)"></div>
+<span class="chart-value">1214 (3.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Rooted Social Reformer">045 Rooted Social Reformer</span>
+<div class="chart-bar" style="width: 78.23932027377862px; background: var(--accent)"></div>
+<span class="chart-value">1105 (2.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Pluralist Structuralist">005 Pluralist Structuralist</span>
+<div class="chart-bar" style="width: 77.81449138541421px; background: var(--accent)"></div>
+<span class="chart-value">1099 (2.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Civic Assimilationist">139 Civic Assimilationist</span>
+<div class="chart-bar" style="width: 61.458579183384465px; background: var(--accent)"></div>
+<span class="chart-value">868 (2.2%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Reluctant Partisan">125 Reluctant Partisan</span>
+<div class="chart-bar" style="width: 59.12202029738022px; background: var(--accent)"></div>
+<span class="chart-value">835 (2.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Gentle Traditionalist">088 Gentle Traditionalist</span>
+<div class="chart-bar" style="width: 51.262685862638655px; background: var(--accent)"></div>
+<span class="chart-value">724 (1.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Negative Partisan">132 Negative Partisan</span>
+<div class="chart-bar" style="width: 49.138541420816615px; background: var(--accent)"></div>
+<span class="chart-value">694 (1.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Institutional Optimizer">036 Institutional Optimizer</span>
+<div class="chart-bar" style="width: 41.491621430257254px; background: var(--accent)"></div>
+<span class="chart-value">586 (1.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Constitutional Conservative">071 Constitutional Conservative</span>
+<div class="chart-bar" style="width: 41.13759735662024px; background: var(--accent)"></div>
+<span class="chart-value">581 (1.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Loyal Democrat">128 Loyal Democrat</span>
+<div class="chart-bar" style="width: 34.057115883880094px; background: var(--accent)"></div>
+<span class="chart-value">481 (1.2%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Quiet Middle">116 Quiet Middle</span>
+<div class="chart-bar" style="width: 31.932971442058054px; background: var(--accent)"></div>
+<span class="chart-value">451 (1.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Engaged Cosmopolitan">112 Engaged Cosmopolitan</span>
+<div class="chart-bar" style="width: 27.25985367004956px; background: var(--accent)"></div>
+<span class="chart-value">385 (1.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Data-Driven Moderate">039 Data-Driven Moderate</span>
+<div class="chart-bar" style="width: 26.905829596412552px; background: var(--accent)"></div>
+<span class="chart-value">380 (0.9%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Class-War Leftist">012 Class-War Leftist</span>
+<div class="chart-bar" style="width: 25.91456219022893px; background: var(--accent)"></div>
+<span class="chart-value">366 (0.9%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Fiscal Gradualist">076 Fiscal Gradualist</span>
+<div class="chart-bar" style="width: 24.002832192589096px; background: var(--accent)"></div>
+<span class="chart-value">339 (0.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Solidaristic Localist">048 Solidaristic Localist</span>
+<div class="chart-bar" style="width: 22.445126268586264px; background: var(--accent)"></div>
+<span class="chart-value">317 (0.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Latent Alarmist">124 Latent Alarmist</span>
+<div class="chart-bar" style="width: 21.737078121312248px; background: var(--accent)"></div>
+<span class="chart-value">307 (0.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Reform Engineer">040 Reform Engineer</span>
+<div class="chart-bar" style="width: 19.966957753127208px; background: var(--accent)"></div>
+<span class="chart-value">282 (0.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Systemic Redistributionist">051 Systemic Redistributionist</span>
+<div class="chart-bar" style="width: 17.276374793485957px; background: var(--accent)"></div>
+<span class="chart-value">244 (0.6%)</span>
+</div>
+</div>
+
+<div class="section">
+<h2>❌ Targeted Misses</h2>
+
+<table>
+<tr><th>Target</th><th>Target Name</th><th>Got</th><th>Got Name</th><th>Rank</th><th>Top Posterior</th><th>Margin</th></tr>
+<tr>
+<td><code>019</code></td>
+<td>Anarchist Mutualist</td>
+<td><code>020</code></td>
+<td>Horizontalist Dissenter</td>
+<td><span class="badge warn">3</span></td>
+<td>0.161</td>
+<td>0.057</td>
+</tr><tr>
+<td><code>023</code></td>
+<td>Rights Cosmopolitan</td>
+<td><code>001</code></td>
+<td>Rawlsian Reformer</td>
+<td><span class="badge warn">3</span></td>
+<td>0.157</td>
+<td>0.049</td>
+</tr><tr>
+<td><code>006</code></td>
+<td>Fairness Pragmatist</td>
+<td><code>140</code></td>
+<td>Market Green Modernist</td>
+<td><span class="badge warn">2</span></td>
+<td>0.093</td>
+<td>0.006</td>
+</tr><tr>
+<td><code>021</code></td>
+<td>Kantian Cosmopolitan</td>
+<td><code>001</code></td>
+<td>Rawlsian Reformer</td>
+<td><span class="badge warn">2</span></td>
+<td>0.152</td>
+<td>0.066</td>
+</tr><tr>
+<td><code>025</code></td>
+<td>World-Minded Reformer</td>
+<td><code>001</code></td>
+<td>Rawlsian Reformer</td>
+<td><span class="badge warn">2</span></td>
+<td>0.218</td>
+<td>0.036</td>
+</tr><tr>
+<td><code>107</code></td>
+<td>Resentful Localist</td>
+<td><code>098</code></td>
+<td>Anti-Elite Populist</td>
+<td><span class="badge warn">2</span></td>
+<td>0.224</td>
+<td>0.016</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🔄 Top 25 Confused Pairs (co-top-2)</h2>
+<table>
+<tr><th>Archetype A</th><th>Archetype B</th><th>Co-occurrences</th><th></th></tr>
+<tr>
+<td><code>002</code> Independent Social Democrat</td>
+<td><code>006</code> Fairness Pragmatist</td>
+<td>1686</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 200px"></div></div></td>
+</tr><tr>
+<td><code>032</code> Hamiltonian Technocrat</td>
+<td><code>060</code> Hinge Citizen</td>
+<td>1401</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 166.19217081850536px"></div></div></td>
+</tr><tr>
+<td><code>045</code> Rooted Social Reformer</td>
+<td><code>109</code> Alienated Outsider</td>
+<td>1200</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 142.34875444839858px"></div></div></td>
+</tr><tr>
+<td><code>109</code> Alienated Outsider</td>
+<td><code>118</code> Survival Pragmatist</td>
+<td>1178</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 139.73902728351126px"></div></div></td>
+</tr><tr>
+<td><code>084</code> Civilizational Conservative</td>
+<td><code>140</code> Market Green Modernist</td>
+<td>1043</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 123.72479240806642px"></div></div></td>
+</tr><tr>
+<td><code>090</code> Hobbesian Guardian</td>
+<td><code>103</code> Grievance Mobilizer</td>
+<td>1017</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 120.64056939501779px"></div></div></td>
+</tr><tr>
+<td><code>060</code> Hinge Citizen</td>
+<td><code>118</code> Survival Pragmatist</td>
+<td>933</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 110.6761565836299px"></div></div></td>
+</tr><tr>
+<td><code>005</code> Pluralist Structuralist</td>
+<td><code>006</code> Fairness Pragmatist</td>
+<td>806</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 95.61091340450771px"></div></div></td>
+</tr><tr>
+<td><code>005</code> Pluralist Structuralist</td>
+<td><code>140</code> Market Green Modernist</td>
+<td>764</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 90.62870699881375px"></div></div></td>
+</tr><tr>
+<td><code>091</code> Security Paternalist</td>
+<td><code>097</code> Authority Pragmatist</td>
+<td>714</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 84.69750889679716px"></div></div></td>
+</tr><tr>
+<td><code>090</code> Hobbesian Guardian</td>
+<td><code>139</code> Civic Assimilationist</td>
+<td>710</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 84.22301304863582px"></div></div></td>
+</tr><tr>
+<td><code>060</code> Hinge Citizen</td>
+<td><code>091</code> Security Paternalist</td>
+<td>689</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 81.73190984578885px"></div></div></td>
+</tr><tr>
+<td><code>010</code> Bread-and-Butter Progressive</td>
+<td><code>109</code> Alienated Outsider</td>
+<td>662</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 78.52906287069989px"></div></div></td>
+</tr><tr>
+<td><code>010</code> Bread-and-Butter Progressive</td>
+<td><code>045</code> Rooted Social Reformer</td>
+<td>555</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 65.83629893238434px"></div></div></td>
+</tr><tr>
+<td><code>060</code> Hinge Citizen</td>
+<td><code>088</code> Gentle Traditionalist</td>
+<td>510</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 60.4982206405694px"></div></div></td>
+</tr><tr>
+<td><code>060</code> Hinge Citizen</td>
+<td><code>125</code> Reluctant Partisan</td>
+<td>505</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 59.90510083036773px"></div></div></td>
+</tr><tr>
+<td><code>097</code> Authority Pragmatist</td>
+<td><code>139</code> Civic Assimilationist</td>
+<td>487</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 57.76986951364176px"></div></div></td>
+</tr><tr>
+<td><code>010</code> Bread-and-Butter Progressive</td>
+<td><code>139</code> Civic Assimilationist</td>
+<td>474</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 56.22775800711744px"></div></div></td>
+</tr><tr>
+<td><code>010</code> Bread-and-Butter Progressive</td>
+<td><code>097</code> Authority Pragmatist</td>
+<td>409</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 48.517200474495844px"></div></div></td>
+</tr><tr>
+<td><code>071</code> Constitutional Conservative</td>
+<td><code>140</code> Market Green Modernist</td>
+<td>356</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 42.23013048635824px"></div></div></td>
+</tr><tr>
+<td><code>032</code> Hamiltonian Technocrat</td>
+<td><code>036</code> Institutional Optimizer</td>
+<td>353</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 41.87425860023725px"></div></div></td>
+</tr><tr>
+<td><code>081</code> Heritage Guardian</td>
+<td><code>084</code> Civilizational Conservative</td>
+<td>339</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 40.213523131672595px"></div></div></td>
+</tr><tr>
+<td><code>079</code> National Developmentalist</td>
+<td><code>132</code> Negative Partisan</td>
+<td>317</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 37.60379596678529px"></div></div></td>
+</tr><tr>
+<td><code>032</code> Hamiltonian Technocrat</td>
+<td><code>039</code> Data-Driven Moderate</td>
+<td>295</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 34.99406880189798px"></div></div></td>
+</tr><tr>
+<td><code>083</code> Closed Traditionalist</td>
+<td><code>090</code> Hobbesian Guardian</td>
+<td>282</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 33.45195729537366px"></div></div></td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📋 Question Usage</h2>
+<h3>Most Used (Top 20)</h3>
+<table>
+<tr><th>Q#</th><th>Prompt</th><th>Type</th><th>Stage</th><th>Quality</th><th>Times Asked</th><th>% of Sims</th></tr>
+<tr>
+<td><code>1</code></td>
+<td>political_content_frequency</td>
+<td>single_choice</td>
+<td>fixed12</td>
+<td>0.92</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>2</code></td>
+<td>political_identity_centrality</td>
+<td>slider</td>
+<td>fixed12</td>
+<td>0.94</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>4</code></td>
+<td>cultural_social_salience</td>
+<td>slider</td>
+<td>fixed12</td>
+<td>0.93</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>8</code></td>
+<td>domestic_vs_abroad_lives</td>
+<td>slider</td>
+<td>screen20</td>
+<td>0.89</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>19</code></td>
+<td>human_progress_salience</td>
+<td>slider</td>
+<td>screen20</td>
+<td>0.93</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>22</code></td>
+<td>factual_estimates_and_confidence</td>
+<td>allocation</td>
+<td>screen20</td>
+<td>0.95</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>38</code></td>
+<td>rules_procedures_matter_salience</td>
+<td>slider</td>
+<td>screen20</td>
+<td>0.94</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>40</code></td>
+<td>opponents_matter_to_identity</td>
+<td>slider</td>
+<td>fixed12</td>
+<td>0.91</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>49</code></td>
+<td>social_progress_salience</td>
+<td>slider</td>
+<td>stage2</td>
+<td>0.92</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>51</code></td>
+<td>immigration_national_identity_salience</td>
+<td>slider</td>
+<td>screen20</td>
+<td>0.93</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>64</code></td>
+<td>political_frustration</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.93</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>20</code></td>
+<td>bad_outcomes_blame_allocation</td>
+<td>allocation</td>
+<td>fixed12</td>
+<td>0.90</td>
+<td>39999</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>63</code></td>
+<td>best_worst_battery</td>
+<td>best_worst</td>
+<td>screen20</td>
+<td>0.95</td>
+<td>39999</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>78</code></td>
+<td>speaker_appeal</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.92</td>
+<td>39996</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>3</code></td>
+<td>cultural_social_placement</td>
+<td>slider</td>
+<td>fixed12</td>
+<td>0.90</td>
+<td>39995</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>56</code></td>
+<td>effective_leader_style</td>
+<td>single_choice</td>
+<td>screen20</td>
+<td>0.95</td>
+<td>39995</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>61</code></td>
+<td>political_pitch_resonance</td>
+<td>single_choice</td>
+<td>screen20</td>
+<td>0.94</td>
+<td>39993</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>69</code></td>
+<td>common_ground_salience</td>
+<td>slider</td>
+<td>stage2</td>
+<td>0.91</td>
+<td>39992</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>76</code></td>
+<td>success_attribution</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.91</td>
+<td>39992</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>60</code></td>
+<td>politically_important_identities</td>
+<td>ranking</td>
+<td>screen20</td>
+<td>0.96</td>
+<td>39991</td>
+<td>100.0%</td>
+</tr>
+</table>
+
+<h3>Least Used (Bottom 15)</h3>
+<table>
+<tr><th>Q#</th><th>Prompt</th><th>Type</th><th>Stage</th><th>Quality</th><th>Times Asked</th></tr>
+<tr>
+<td><code>58</code></td>
+<td>neighborhood_safety_childhood</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.30</td>
+<td>1</td>
+</tr><tr>
+<td><code>45</code></td>
+<td>what_changed_minds_through_history</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.36</td>
+<td>1</td>
+</tr><tr>
+<td><code>32</code></td>
+<td>mainstream_media_accuracy_estimate</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.40</td>
+<td>1</td>
+</tr><tr>
+<td><code>54</code></td>
+<td>religion_in_upbringing</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.40</td>
+<td>2</td>
+</tr><tr>
+<td><code>52</code></td>
+<td>political_membership_criterion_rewrite</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.64</td>
+<td>2</td>
+</tr><tr>
+<td><code>50</code></td>
+<td>integration_expectations_rewrite</td>
+<td>ranking</td>
+<td>stage2</td>
+<td>0.62</td>
+<td>2</td>
+</tr><tr>
+<td><code>26</code></td>
+<td>vacation_new_vs_familiar</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.52</td>
+<td>3</td>
+</tr><tr>
+<td><code>44</code></td>
+<td>views_changed_in_10_years</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.58</td>
+<td>17</td>
+</tr><tr>
+<td><code>81</code></td>
+<td>party_vs_cause_loyalty</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.92</td>
+<td>38</td>
+</tr><tr>
+<td><code>84</code></td>
+<td>institutions_harden_into_domination</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.89</td>
+<td>50</td>
+</tr><tr>
+<td><code>83</code></td>
+<td>broken_politics_diagnosis</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.90</td>
+<td>55</td>
+</tr><tr>
+<td><code>82</code></td>
+<td>openness_assimilation_closure</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.91</td>
+<td>78</td>
+</tr><tr>
+<td><code>85</code></td>
+<td>institutional_legitimacy_source</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.91</td>
+<td>95</td>
+</tr><tr>
+<td><code>37</code></td>
+<td>stupid_workplace_rule_response</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.80</td>
+<td>39635</td>
+</tr><tr>
+<td><code>28</code></td>
+<td>mask_mandate_acceptability</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.76</td>
+<td>39636</td>
+</tr>
+</table>
+
+<h3>⚠ Never Asked</h3>
+<table>
+<tr><th>Q#</th><th>Prompt</th><th>Type</th><th>Stage</th><th>Quality</th></tr>
+<tr>
+<td><code>46</code></td>
+<td>caregiver_emotional_availability</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.30</td>
+</tr><tr>
+<td><code>6</code></td>
+<td>surveillance_enforcement_due_process_bundle</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.45</td>
+</tr><tr>
+<td><code>10</code></td>
+<td>climate_energy_bundle</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.42</td>
+</tr><tr>
+<td><code>16</code></td>
+<td>criminal_justice_bundle</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.40</td>
+</tr><tr>
+<td><code>34</code></td>
+<td>threats_to_america_external_internal</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.38</td>
+</tr><tr>
+<td><code>53</code></td>
+<td>parents_politics_growing_up</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.34</td>
+</tr><tr>
+<td><code>57</code></td>
+<td>parents_political_engagement</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.30</td>
+</tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📉 Entropy Distribution</h2>
+<p>Posterior entropy at quiz completion (lower = more confident assignment):</p>
+<div class="chart-row">
+<span class="chart-label">2-3 bits</span>
+<div class="chart-bar" style="width: 0.014826895989324636px; background: var(--green)"></div>
+<span class="chart-value">1 (0.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label">3-4 bits</span>
+<div class="chart-bar" style="width: 1.0082289272740752px; background: var(--yellow)"></div>
+<span class="chart-value">68 (0.2%)</span>
+</div><div class="chart-row">
+<span class="chart-label">4-5 bits</span>
+<div class="chart-bar" style="width: 7.146563866854475px; background: var(--yellow)"></div>
+<span class="chart-value">482 (1.2%)</span>
+</div><div class="chart-row">
+<span class="chart-label">5-6 bits</span>
+<div class="chart-bar" style="width: 400px; background: var(--red)"></div>
+<span class="chart-value">26978 (67.4%)</span>
+</div><div class="chart-row">
+<span class="chart-label">6-7 bits</span>
+<div class="chart-bar" style="width: 184.90621988286753px; background: var(--red)"></div>
+<span class="chart-value">12471 (31.2%)</span>
+</div>
+</div>
+
+<div class="section">
+<h2>📊 Questions-per-Quiz Distribution</h2>
+<div class="chart-row">
+<span class="chart-label">25-29 questions</span>
+<div class="chart-bar" style="width: 0.11103260320985162px; background: var(--accent)"></div>
+<span class="chart-value">11</span>
+</div><div class="chart-row">
+<span class="chart-label">30-34 questions</span>
+<div class="chart-bar" style="width: 0.2523468254769355px; background: var(--accent)"></div>
+<span class="chart-value">25</span>
+</div><div class="chart-row">
+<span class="chart-label">35-39 questions</span>
+<div class="chart-bar" style="width: 0.5349752700111032px; background: var(--accent)"></div>
+<span class="chart-value">53</span>
+</div><div class="chart-row">
+<span class="chart-label">40-44 questions</span>
+<div class="chart-bar" style="width: 1.322297365499142px; background: var(--accent)"></div>
+<span class="chart-value">131</span>
+</div><div class="chart-row">
+<span class="chart-label">45-49 questions</span>
+<div class="chart-bar" style="width: 0.5551630160492581px; background: var(--accent)"></div>
+<span class="chart-value">55</span>
+</div><div class="chart-row">
+<span class="chart-label">50-54 questions</span>
+<div class="chart-bar" style="width: 0.9791056828505097px; background: var(--accent)"></div>
+<span class="chart-value">97</span>
+</div><div class="chart-row">
+<span class="chart-label">55-59 questions</span>
+<div class="chart-bar" style="width: 400px; background: var(--accent)"></div>
+<span class="chart-value">39628</span>
+</div>
+</div>
+
+<div class="section" style="color: #8b949e; font-size: 0.8em; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 15px;">
+  PRISM Quiz Engine Diagnostic | 40,000 simulations | Generated by OpenClaw automated audit
+</div>
+
+</body>
+</html>

@@ -15,7 +15,7 @@ import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
 import { applySingleChoiceAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, } from "../engine/update.js";
 import { selectNextQuestion } from "../engine/nextQuestion.js";
 import { shouldStop } from "../engine/stopRule.js";
-import { archetypeDistance } from "../engine/archetypeDistance.js";
+import { archetypeDistance, archetypeDistanceV1, archetypeDistanceV2 } from "../engine/archetypeDistance.js";
 import { resetConfig } from "../optimize/runtimeConfig.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 // ---------------------------------------------------------------------------
@@ -398,9 +398,15 @@ function generateMulti(archetype, question, state) {
         apply: () => applySingleChoiceAnswer(state, question, topPick),
     };
 }
-// ---------------------------------------------------------------------------
-// Posterior update: compute archetype posteriors from respondent state
-// ---------------------------------------------------------------------------
+// Module-level scoring variant — set from CLI args in main()
+let activeScoringVariant = "baseline";
+function getDistanceFunction() {
+    switch (activeScoringVariant) {
+        case "v1": return archetypeDistanceV1;
+        case "v2": return archetypeDistanceV2;
+        default: return archetypeDistance;
+    }
+}
 /**
  * Update archetype posteriors based on the current respondent state.
  * Uses distance-based likelihood: P(state | archetype) ∝ exp(-distance/temperature).
@@ -411,19 +417,20 @@ function generateMulti(archetype, question, state) {
  */
 function updatePosteriors(state, archetypes) {
     const nAnswered = Object.keys(state.answers).length;
+    const distFn = getDistanceFunction();
     // Compute distances
     const distances = {};
     let minDist = Infinity;
     for (const a of archetypes) {
-        const dist = archetypeDistance(state, a);
+        const dist = distFn(state, a);
         distances[a.id] = dist;
         if (dist < minDist)
             minDist = dist;
     }
-    // Adaptive temperature: starts warm (0.12), cools to 0.04 by question 40
-    // This lets the posterior be exploratory early and decisive late
+    // Adaptive temperature: starts warm (0.12), cools by question 40
+    // V2 uses a sharper minimum temperature (0.02 instead of 0.04)
     const baseTemp = 0.12;
-    const minTemp = 0.04;
+    const minTemp = activeScoringVariant === "v2" ? 0.02 : 0.04;
     const coolRate = Math.min(1.0, nAnswered / 40);
     const temperature = baseTemp - (baseTemp - minTemp) * coolRate;
     let totalLikelihood = 0;
@@ -513,13 +520,26 @@ function simulateArchetype(target, archetypes, questions, maxQuestions = 65) {
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
-function main() {
+async function main() {
     const args = process.argv.slice(2);
     const isQuick = args.includes("--quick");
+    // Parse --scoring flag
+    const scoringIdx = args.indexOf("--scoring");
+    if (scoringIdx !== -1 && args[scoringIdx + 1]) {
+        const variant = args[scoringIdx + 1];
+        if (["baseline", "v1", "v2"].includes(variant)) {
+            activeScoringVariant = variant;
+        }
+        else {
+            console.error(`Unknown scoring variant: ${variant}. Use baseline, v1, or v2.`);
+            process.exit(1);
+        }
+    }
     resetConfig();
     const archetypes = ARCHETYPES;
     const questions = REPRESENTATIVE_QUESTIONS;
     console.log("=== PRISM Quiz Engine — Simulation Diagnostic ===");
+    console.log(`Scoring variant: ${activeScoringVariant}`);
     console.log(`Archetypes: ${archetypes.length}`);
     console.log(`Questions available: ${questions.length}`);
     console.log(`Questions with evidence: ${questions.filter(q => q.touchProfile.length > 0).length}`);
@@ -622,6 +642,38 @@ function main() {
     const maxQ = Math.max(...qCounts);
     const medianQ = qCounts.sort((a, b) => a - b)[Math.floor(qCounts.length / 2)];
     console.log(`  Min: ${minQ}, Median: ${medianQ}, Max: ${maxQ}`);
+    // Write JSON results
+    const fs = await import("fs");
+    const path = await import("path");
+    const outputDir = path.join(process.cwd(), "output");
+    fs.mkdirSync(outputDir, { recursive: true });
+    const jsonResult = {
+        variant: activeScoringVariant,
+        total: targets.length,
+        top1: correct,
+        top3: top3Count,
+        top5: top5Count,
+        top1Pct: +(correct / targets.length * 100).toFixed(1),
+        top3Pct: +(top3Count / targets.length * 100).toFixed(1),
+        top5Pct: +(top5Count / targets.length * 100).toFixed(1),
+        avgQuestions: +(totalQuestions / targets.length).toFixed(1),
+        misses: misses.map((m) => ({
+            archetypeId: m.archetypeId,
+            archetypeName: m.archetypeName,
+            gotId: m.resultId,
+            gotName: m.resultName,
+            rank: m.rank,
+        })),
+        allResults: results.map((r) => ({
+            archetypeId: r.archetypeId,
+            correct: r.correct,
+            rank: r.rank,
+            questionsAnswered: r.questionsAnswered,
+        })),
+    };
+    const outFile = path.join(outputDir, `scoring-${activeScoringVariant}.json`);
+    fs.writeFileSync(outFile, JSON.stringify(jsonResult, null, 2));
+    console.log(`\nResults written to ${outFile}`);
 }
 main();
 //# sourceMappingURL=simulation.js.map

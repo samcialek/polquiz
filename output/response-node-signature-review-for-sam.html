@@ -1,0 +1,2462 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Response-node signature review for Sam</title><style>
+body{font-family:Georgia,serif;background:#f8f5ef;color:#1f2937;margin:0}
+.wrap{max-width:1150px;margin:0 auto;padding:24px}
+.card{background:#fffdf8;border:1px solid #ddd6ce;border-radius:16px;padding:20px;margin:18px 0}
+h1,h2,h3{line-height:1.2} h1{color:#7c4f2f} h2{color:#355c7d}
+.meta{color:#6b7280}.pill{display:inline-block;background:#eee3d4;padding:3px 8px;border-radius:999px;margin:4px 6px 0 0;font-size:0.85rem}
+pre{white-space:pre-wrap;word-break:break-word;background:#f6f1ea;border:1px solid #e7e2da;padding:12px;border-radius:10px}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border-top:1px solid #e7e2da;padding:8px;text-align:left;vertical-align:top}th{color:#355c7d}
+.good{color:#166534}.warn{color:#a16207}.bad{color:#991b1b}
+details{margin-top:12px} summary{cursor:pointer;font-weight:700}
+</style></head><body><div class="wrap"><h1>PRISM response-node signature review for Sam</h1><p class="meta">Focused review sheet for the question/response mappings that look suspicious, incomplete, weak, or especially worth your judgment. Built from live extracted question payload in `live-questions.json`.</p><div class="card"><h2>How to use this</h2><ul><li>Each section shows the actual response-to-node mapping currently visible in the extracted live payload.</li><li>I included only questions I think are worth your review or likely to be important anchors.</li><li>The “Question for Sam” line is the specific judgment call I think matters most.</li></ul></div><div class="card"><h2>Q27 — welfare_error_tradeoff</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.89</span><span class="pill">status: Review / likely incomplete</span></p><p class="warn"><strong>Why this is on the review list:</strong> Core welfare error-tradeoff item. Main MAT direction looks sensible, but promised salience and PRO signal are not visibly exposed in extracted live response map.</p><p><strong>Question for Sam:</strong> Should this question also encode how strongly the person cares about welfare false positives vs false negatives, not just which side they choose?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>MAT</td><td>continuous</td><td>position</td><td>0.7</td><td>error_asymmetry</td></tr><tr><td>MAT</td><td>continuous</td><td>salience</td><td>0.55</td><td>error_asymmetry</td></tr><tr><td>PRO</td><td>continuous</td><td>position</td><td>0.25</td><td>error_asymmetry</td></tr><tr><td>MOR</td><td>continuous</td><td>position</td><td>0.2</td><td>deservingness_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>fp</td><td>MAT.pos</td><td><code>[0.02, 0.08, 0.22, 0.35, 0.33]</code></td></tr><tr><td>fp</td><td>MOR.pos</td><td><code>[0.27, 0.35, 0.25, 0.1, 0.03]</code></td></tr><tr><td>fn</td><td>MAT.pos</td><td><code>[0.33, 0.35, 0.22, 0.08, 0.02]</code></td></tr><tr><td>fn</td><td>MOR.pos</td><td><code>[0.03, 0.1, 0.25, 0.35, 0.27]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 27,
+  &quot;stage&quot;: &quot;stage2&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;welfare_error_tradeoff&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.89,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;options&quot;: [
+    &quot;fp&quot;,
+    &quot;fn&quot;
+  ],
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.7,
+      &quot;touchType&quot;: &quot;error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MOR&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;deservingness_proxy&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;fp&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.08,
+            0.22,
+            0.35,
+            0.33
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.27,
+            0.35,
+            0.25,
+            0.1,
+            0.03
+          ]
+        }
+      }
+    },
+    &quot;fn&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.33,
+            0.35,
+            0.22,
+            0.08,
+            0.02
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.1,
+            0.25,
+            0.35,
+            0.27
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q31 — trade_liberalization_effects</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.9</span><span class="pill">status: High-priority review</span></p><p class="bad"><strong>Why this is on the review list:</strong> Trade question appears to push net-positive-trade respondents toward higher ONT_S (system broken), which looks backwards.</p><p><strong>Question for Sam:</strong> Do you agree this ONT_S direction should be reversed or rethought?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ZS</td><td>continuous</td><td>position</td><td>0.85</td><td>macro_sum_view</td></tr><tr><td>ONT_S</td><td>continuous</td><td>position</td><td>0.45</td><td>systems_view</td></tr><tr><td>MAT</td><td>continuous</td><td>position</td><td>0.2</td><td>distribution_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>net_positive_clear</td><td>ZS.pos</td><td><code>[0.41, 0.38, 0.15, 0.05, 0.01]</code></td></tr><tr><td>net_positive_clear</td><td>ONT_S.pos</td><td><code>[0.03, 0.1, 0.25, 0.38, 0.24]</code></td></tr><tr><td>net_positive_but_uneven</td><td>ZS.pos</td><td><code>[0.15, 0.3, 0.35, 0.15, 0.05]</code></td></tr><tr><td>net_positive_but_uneven</td><td>ONT_S.pos</td><td><code>[0.05, 0.15, 0.4, 0.28, 0.12]</code></td></tr><tr><td>mixed_effects</td><td>ZS.pos</td><td><code>[0.07, 0.18, 0.35, 0.25, 0.15]</code></td></tr><tr><td>mixed_effects</td><td>ONT_S.pos</td><td><code>[0.1, 0.22, 0.4, 0.2, 0.08]</code></td></tr><tr><td>mostly_harmful</td><td>ZS.pos</td><td><code>[0.03, 0.07, 0.18, 0.3, 0.42]</code></td></tr><tr><td>mostly_harmful</td><td>ONT_S.pos</td><td><code>[0.25, 0.3, 0.28, 0.12, 0.05]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 31,
+  &quot;stage&quot;: &quot;fixed12&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;trade_liberalization_effects&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.9,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ZS&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.85,
+      &quot;touchType&quot;: &quot;macro_sum_view&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.45,
+      &quot;touchType&quot;: &quot;systems_view&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;distribution_proxy&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;net_positive_clear&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.41,
+            0.38,
+            0.15,
+            0.05,
+            0.01
+          ]
+        },
+        &quot;ONT_S&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.1,
+            0.25,
+            0.38,
+            0.24
+          ]
+        }
+      }
+    },
+    &quot;net_positive_but_uneven&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.3,
+            0.35,
+            0.15,
+            0.05
+          ]
+        },
+        &quot;ONT_S&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.15,
+            0.4,
+            0.28,
+            0.12
+          ]
+        }
+      }
+    },
+    &quot;mixed_effects&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.07,
+            0.18,
+            0.35,
+            0.25,
+            0.15
+          ]
+        },
+        &quot;ONT_S&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.22,
+            0.4,
+            0.2,
+            0.08
+          ]
+        }
+      }
+    },
+    &quot;mostly_harmful&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.07,
+            0.18,
+            0.3,
+            0.42
+          ]
+        },
+        &quot;ONT_S&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.3,
+            0.28,
+            0.12,
+            0.05
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q64 — political_frustration</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.93</span><span class="pill">status: High-priority review</span></p><p class="bad"><strong>Why this is on the review list:</strong> Political frustration answers look like ideology/grievance content, not PF as you defined it (partisan identity fused with self).</p><p><strong>Question for Sam:</strong> Should this be rewritten, or moved off PF-position entirely?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PF</td><td>continuous</td><td>position</td><td>0.9</td><td>grievance_proxy</td></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.4</td><td>frustration_intensity</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>corporate_power_inequality</td><td>PF.pos</td><td><code>[0.55, 0.3, 0.1, 0.03, 0.02]</code></td></tr><tr><td>government_overreach</td><td>PF.pos</td><td><code>[0.02, 0.05, 0.12, 0.36, 0.45]</code></td></tr><tr><td>both_sides_broken</td><td>PF.pos</td><td><code>[0.06, 0.14, 0.58, 0.14, 0.08]</code></td></tr><tr><td>system_unjust</td><td>PF.pos</td><td><code>[0.6, 0.22, 0.1, 0.05, 0.03]</code></td></tr><tr><td>values_eroding</td><td>PF.pos</td><td><code>[0.02, 0.03, 0.08, 0.32, 0.55]</code></td></tr><tr><td>politics_irrelevant</td><td>PF.pos</td><td><code>[0.1, 0.15, 0.45, 0.18, 0.12]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 64,
+  &quot;stage&quot;: &quot;stage2&quot;,
+  &quot;section&quot;: &quot;VI&quot;,
+  &quot;promptShort&quot;: &quot;political_frustration&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.93,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.9,
+      &quot;touchType&quot;: &quot;grievance_proxy&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.4,
+      &quot;touchType&quot;: &quot;frustration_intensity&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;corporate_power_inequality&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.55,
+            0.3,
+            0.1,
+            0.03,
+            0.02
+          ]
+        }
+      }
+    },
+    &quot;government_overreach&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.05,
+            0.12,
+            0.36,
+            0.45
+          ]
+        }
+      }
+    },
+    &quot;both_sides_broken&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.06,
+            0.14,
+            0.58,
+            0.14,
+            0.08
+          ]
+        }
+      }
+    },
+    &quot;system_unjust&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.6,
+            0.22,
+            0.1,
+            0.05,
+            0.03
+          ]
+        }
+      }
+    },
+    &quot;values_eroding&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.03,
+            0.08,
+            0.32,
+            0.55
+          ]
+        }
+      }
+    },
+    &quot;politics_irrelevant&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.15,
+            0.45,
+            0.18,
+            0.12
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q33 — immigration_enforcement_error_tradeoff</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.86</span><span class="pill">status: Review / likely incomplete</span></p><p class="warn"><strong>Why this is on the review list:</strong> CU direction looks sensible, but expected PRO and CU salience do not visibly appear in extracted response map.</p><p><strong>Question for Sam:</strong> Should immigration enforcement tradeoff also encode how identity-central / salient the boundary issue is?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PRO</td><td>continuous</td><td>position</td><td>0.55</td><td>boundary_error_asymmetry</td></tr><tr><td>CU</td><td>continuous</td><td>position</td><td>0.45</td><td>boundary_error_asymmetry</td></tr><tr><td>CU</td><td>continuous</td><td>salience</td><td>0.5</td><td>boundary_error_asymmetry</td></tr><tr><td>MOR</td><td>continuous</td><td>position</td><td>0.2</td><td>moral_scope_boundary</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>deport_legal</td><td>CU.pos</td><td><code>[0.01, 0.04, 0.12, 0.33, 0.5]</code></td></tr><tr><td>deport_legal</td><td>MOR.pos</td><td><code>[0.02, 0.08, 0.2, 0.35, 0.35]</code></td></tr><tr><td>let_stay_illegal</td><td>CU.pos</td><td><code>[0.4, 0.3, 0.18, 0.08, 0.04]</code></td></tr><tr><td>let_stay_illegal</td><td>MOR.pos</td><td><code>[0.3, 0.3, 0.25, 0.1, 0.05]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 33,
+  &quot;stage&quot;: &quot;stage2&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;immigration_enforcement_error_tradeoff&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.86,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;options&quot;: [
+    &quot;deport_legal&quot;,
+    &quot;let_stay_illegal&quot;
+  ],
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;boundary_error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CU&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.45,
+      &quot;touchType&quot;: &quot;boundary_error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CU&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.5,
+      &quot;touchType&quot;: &quot;boundary_error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MOR&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;moral_scope_boundary&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;deport_legal&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.01,
+            0.04,
+            0.12,
+            0.33,
+            0.5
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.08,
+            0.2,
+            0.35,
+            0.35
+          ]
+        }
+      }
+    },
+    &quot;let_stay_illegal&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.4,
+            0.3,
+            0.18,
+            0.08,
+            0.04
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.3,
+            0.3,
+            0.25,
+            0.1,
+            0.05
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q60 — politically_important_identities</h2><p><span class="pill">uiType: ranking</span><span class="pill">quality: 0.96</span><span class="pill">status: High-value review</span></p><p class="good"><strong>Why this is on the review list:</strong> This looks like one of the best potential PF/TRB questions, but visible extraction is mostly anchor-style and seems to leave real signal on the table.</p><p><strong>Question for Sam:</strong> Which identity rankings should most strongly count as PF salience vs TRB position?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.7</td><td>identity_ranking</td></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.4</td><td>identity_ranking</td></tr><tr><td>TRB_ANCHOR</td><td>derived</td><td>anchor</td><td>0.95</td><td>identity_ranking</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>national_identity</td><td>trbAnchor.derived</td><td><code>{&quot;national&quot;: 1}</code></td></tr><tr><td>ideological_identity</td><td>trbAnchor.derived</td><td><code>{&quot;ideological&quot;: 1}</code></td></tr><tr><td>religious_identity</td><td>trbAnchor.derived</td><td><code>{&quot;religious&quot;: 1}</code></td></tr><tr><td>class_identity</td><td>trbAnchor.derived</td><td><code>{&quot;class&quot;: 1}</code></td></tr><tr><td>ethnic_racial_identity</td><td>trbAnchor.derived</td><td><code>{&quot;ethnic_racial&quot;: 1}</code></td></tr><tr><td>global_citizen</td><td>trbAnchor.derived</td><td><code>{&quot;global&quot;: 1}</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 60,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;V&quot;,
+  &quot;promptShort&quot;: &quot;politically_important_identities&quot;,
+  &quot;uiType&quot;: &quot;ranking&quot;,
+  &quot;quality&quot;: 0.96,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.7,
+      &quot;touchType&quot;: &quot;identity_ranking&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.4,
+      &quot;touchType&quot;: &quot;identity_ranking&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB_ANCHOR&quot;,
+      &quot;kind&quot;: &quot;derived&quot;,
+      &quot;role&quot;: &quot;anchor&quot;,
+      &quot;weight&quot;: 0.95,
+      &quot;touchType&quot;: &quot;identity_ranking&quot;
+    }
+  ],
+  &quot;rankingMap&quot;: {
+    &quot;national_identity&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;national&quot;: 1
+      }
+    },
+    &quot;ideological_identity&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;ideological&quot;: 1
+      }
+    },
+    &quot;religious_identity&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;religious&quot;: 1
+      }
+    },
+    &quot;class_identity&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;class&quot;: 1
+      }
+    },
+    &quot;ethnic_racial_identity&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;ethnic_racial&quot;: 1
+      }
+    },
+    &quot;global_citizen&quot;: {
+      &quot;trbAnchor&quot;: {
+        &quot;global&quot;: 1
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q63 — best_worst_battery</h2><p><span class="pill">uiType: best_worst</span><span class="pill">quality: 0.95</span><span class="pill">status: High-value review</span></p><p class="good"><strong>Why this is on the review list:</strong> Best-worst battery is a strong design, but current extracted response logic looks too coarse for the salience it claims to capture.</p><p><strong>Question for Sam:</strong> Do you want richer salience extraction from best/worst choices instead of only sparse directional deltas?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>MAT</td><td>continuous</td><td>salience</td><td>0.25</td><td>best_worst</td></tr><tr><td>CD</td><td>continuous</td><td>salience</td><td>0.2</td><td>best_worst</td></tr><tr><td>CU</td><td>continuous</td><td>salience</td><td>0.25</td><td>best_worst</td></tr><tr><td>MOR</td><td>continuous</td><td>salience</td><td>0.35</td><td>best_worst</td></tr><tr><td>PRO</td><td>continuous</td><td>salience</td><td>0.3</td><td>best_worst</td></tr><tr><td>EPS</td><td>categorical</td><td>salience</td><td>0.35</td><td>best_worst</td></tr><tr><td>AES</td><td>categorical</td><td>salience</td><td>0.3</td><td>best_worst</td></tr><tr><td>COM</td><td>continuous</td><td>salience</td><td>0.3</td><td>best_worst</td></tr><tr><td>ZS</td><td>continuous</td><td>salience</td><td>0.2</td><td>best_worst</td></tr><tr><td>ONT_H</td><td>continuous</td><td>salience</td><td>0.2</td><td>best_worst</td></tr><tr><td>ONT_S</td><td>continuous</td><td>salience</td><td>0.2</td><td>best_worst</td></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.35</td><td>best_worst</td></tr><tr><td>TRB</td><td>continuous</td><td>salience</td><td>0.35</td><td>best_worst</td></tr><tr><td>ENG</td><td>continuous</td><td>salience</td><td>0.25</td><td>best_worst</td></tr><tr><td>TRB_ANCHOR</td><td>derived</td><td>anchor</td><td>0.2</td><td>best_worst</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>fairness</td><td>MAT.delta</td><td><code>-0.5</code></td></tr><tr><td>fairness</td><td>MOR.delta</td><td><code>0.4</code></td></tr><tr><td>fairness</td><td>PRO.delta</td><td><code>0.3</code></td></tr><tr><td>procedural_integrity</td><td>PRO.delta</td><td><code>0.6</code></td></tr><tr><td>procedural_integrity</td><td>COM.delta</td><td><code>0.3</code></td></tr><tr><td>national_strength</td><td>CU.delta</td><td><code>-0.5</code></td></tr><tr><td>national_strength</td><td>TRB.delta</td><td><code>0.4</code></td></tr><tr><td>national_strength</td><td>ZS.delta</td><td><code>-0.3</code></td></tr><tr><td>community_bonds</td><td>COM.delta</td><td><code>0.5</code></td></tr><tr><td>community_bonds</td><td>TRB.delta</td><td><code>-0.3</code></td></tr><tr><td>community_bonds</td><td>MOR.delta</td><td><code>0.3</code></td></tr><tr><td>individual_freedom</td><td>PRO.delta</td><td><code>0.5</code></td></tr><tr><td>individual_freedom</td><td>MAT.delta</td><td><code>0.3</code></td></tr><tr><td>tradition_continuity</td><td>CD.delta</td><td><code>-0.5</code></td></tr><tr><td>tradition_continuity</td><td>CU.delta</td><td><code>-0.4</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 63,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;VI&quot;,
+  &quot;promptShort&quot;: &quot;best_worst_battery&quot;,
+  &quot;uiType&quot;: &quot;best_worst&quot;,
+  &quot;quality&quot;: 0.95,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CD&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CU&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MOR&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.3,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;AES&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.3,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;COM&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.3,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ZS&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_H&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ENG&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB_ANCHOR&quot;,
+      &quot;kind&quot;: &quot;derived&quot;,
+      &quot;role&quot;: &quot;anchor&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;best_worst&quot;
+    }
+  ],
+  &quot;rankingMap&quot;: {
+    &quot;fairness&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: -0.5,
+        &quot;MOR&quot;: 0.4,
+        &quot;PRO&quot;: 0.3
+      }
+    },
+    &quot;procedural_integrity&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: 0.6,
+        &quot;COM&quot;: 0.3
+      }
+    },
+    &quot;national_strength&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CU&quot;: -0.5,
+        &quot;TRB&quot;: 0.4,
+        &quot;ZS&quot;: -0.3
+      }
+    },
+    &quot;community_bonds&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: 0.5,
+        &quot;TRB&quot;: -0.3,
+        &quot;MOR&quot;: 0.3
+      }
+    },
+    &quot;individual_freedom&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: 0.5,
+        &quot;MAT&quot;: 0.3
+      }
+    },
+    &quot;tradition_continuity&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: -0.5,
+        &quot;CU&quot;: -0.4
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q15 — inequality_causes_allocation</h2><p><span class="pill">uiType: allocation</span><span class="pill">quality: 0.91</span><span class="pill">status: Review</span></p><p class="warn"><strong>Why this is on the review list:</strong> Allocation structure is conceptually strong, but it is not obvious from extracted live payload how much concentration/salience is being captured.</p><p><strong>Question for Sam:</strong> Should concentrated allocation itself strongly increase salience / conviction?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>MAT</td><td>continuous</td><td>position</td><td>0.85</td><td>causal_allocation</td></tr><tr><td>ONT_S</td><td>continuous</td><td>position</td><td>0.55</td><td>causal_allocation</td></tr><tr><td>MAT</td><td>continuous</td><td>salience</td><td>0.55</td><td>derived_allocation_concentration</td></tr><tr><td>ONT_S</td><td>continuous</td><td>salience</td><td>0.5</td><td>derived_allocation_concentration</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 15,
+  &quot;stage&quot;: &quot;fixed12&quot;,
+  &quot;section&quot;: &quot;II&quot;,
+  &quot;promptShort&quot;: &quot;inequality_causes_allocation&quot;,
+  &quot;uiType&quot;: &quot;allocation&quot;,
+  &quot;quality&quot;: 0.91,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.85,
+      &quot;touchType&quot;: &quot;causal_allocation&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;causal_allocation&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;derived_allocation_concentration&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.5,
+      &quot;touchType&quot;: &quot;derived_allocation_concentration&quot;
+    }
+  ],
+  &quot;allocationMap&quot;: {
+    &quot;effort_choices&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: 0.8,
+        &quot;ONT_S&quot;: -0.5,
+        &quot;COM&quot;: -0.4
+      }
+    },
+    &quot;family_background&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: -0.6,
+        &quot;ONT_S&quot;: 0.7,
+        &quot;COM&quot;: 0.3
+      }
+    },
+    &quot;discrimination_bias&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: -0.8,
+        &quot;ONT_S&quot;: 0.8,
+        &quot;COM&quot;: 0.5
+      }
+    },
+    &quot;luck_random&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_S&quot;: 0.4,
+        &quot;COM&quot;: 0.2
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q20 — bad_outcomes_blame_allocation</h2><p><span class="pill">uiType: allocation</span><span class="pill">quality: 0.9</span><span class="pill">status: Review</span></p><p class="warn"><strong>Why this is on the review list:</strong> Another strong allocation form, but likely under-auditable from current visible extraction.</p><p><strong>Question for Sam:</strong> Should blame concentration produce explicit salience signal?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ONT_S</td><td>continuous</td><td>position</td><td>0.85</td><td>causal_allocation</td></tr><tr><td>ZS</td><td>continuous</td><td>position</td><td>0.55</td><td>conflict_attribution</td></tr><tr><td>ONT_H</td><td>continuous</td><td>position</td><td>0.25</td><td>motive_model</td></tr><tr><td>ZS</td><td>continuous</td><td>salience</td><td>0.5</td><td>derived_allocation_concentration</td></tr><tr><td>ONT_S</td><td>continuous</td><td>salience</td><td>0.55</td><td>derived_allocation_concentration</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 20,
+  &quot;stage&quot;: &quot;fixed12&quot;,
+  &quot;section&quot;: &quot;II&quot;,
+  &quot;promptShort&quot;: &quot;bad_outcomes_blame_allocation&quot;,
+  &quot;uiType&quot;: &quot;allocation&quot;,
+  &quot;quality&quot;: 0.9,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.85,
+      &quot;touchType&quot;: &quot;causal_allocation&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ZS&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;conflict_attribution&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_H&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;motive_model&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ZS&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.5,
+      &quot;touchType&quot;: &quot;derived_allocation_concentration&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_S&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.55,
+      &quot;touchType&quot;: &quot;derived_allocation_concentration&quot;
+    }
+  ],
+  &quot;allocationMap&quot;: {
+    &quot;complex_forces&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_S&quot;: 0.6,
+        &quot;COM&quot;: 0.4
+      }
+    },
+    &quot;powerful_incompetent&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_S&quot;: 0.2,
+        &quot;COM&quot;: -0.3
+      }
+    },
+    &quot;powerful_selfish&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: 0.9,
+        &quot;ONT_H&quot;: -0.5,
+        &quot;COM&quot;: -0.6
+      }
+    },
+    &quot;ordinary_choices&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_S&quot;: -0.8,
+        &quot;COM&quot;: -0.4
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q22 — factual_estimates_and_confidence</h2><p><span class="pill">uiType: allocation</span><span class="pill">quality: 0.95</span><span class="pill">status: Review</span></p><p class="warn"><strong>Why this is on the review list:</strong> Potentially one of the best EPS questions, but downstream concentration/category behavior is not fully transparent from extracted payload.</p><p><strong>Question for Sam:</strong> Should strong concentration on one epistemic source imply stronger EPS salience?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>EPS</td><td>categorical</td><td>category</td><td>0.92</td><td>factual_calibration</td></tr><tr><td>EPS</td><td>categorical</td><td>salience</td><td>0.45</td><td>factual_calibration</td></tr><tr><td>ENG</td><td>continuous</td><td>position</td><td>0.1</td><td>issue_attention</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 22,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;II&quot;,
+  &quot;promptShort&quot;: &quot;factual_estimates_and_confidence&quot;,
+  &quot;uiType&quot;: &quot;allocation&quot;,
+  &quot;quality&quot;: 0.95,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.92,
+      &quot;touchType&quot;: &quot;factual_calibration&quot;
+    },
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.45,
+      &quot;touchType&quot;: &quot;factual_calibration&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ENG&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.1,
+      &quot;touchType&quot;: &quot;issue_attention&quot;
+    }
+  ],
+  &quot;allocationMap&quot;: {
+    &quot;expert_consensus&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: [
+          0.15,
+          0.68,
+          0.05,
+          0.03,
+          0.06,
+          0.03
+        ]
+      }
+    },
+    &quot;personal_research&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: [
+          0.72,
+          0.14,
+          0.03,
+          0.04,
+          0.05,
+          0.02
+        ]
+      }
+    },
+    &quot;lived_experience&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: [
+          0.05,
+          0.05,
+          0.08,
+          0.68,
+          0.09,
+          0.05
+        ]
+      }
+    },
+    &quot;tradition&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: [
+          0.04,
+          0.08,
+          0.7,
+          0.06,
+          0.08,
+          0.04
+        ]
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q24 — child_traits</h2><p><span class="pill">uiType: pairwise</span><span class="pill">quality: 0.9</span><span class="pill">status: Review / semantically suspect</span></p><p class="warn"><strong>Why this is on the review list:</strong> Child-traits question may be overusing ONT_H for what could really be cultural authority / socialization signal.</p><p><strong>Question for Sam:</strong> Do you actually want this to be mostly ONT_H?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ONT_H</td><td>continuous</td><td>position</td><td>0.2</td><td>human_nature_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 24,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;child_traits&quot;,
+  &quot;uiType&quot;: &quot;pairwise&quot;,
+  &quot;quality&quot;: 0.9,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ONT_H&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;human_nature_proxy&quot;
+    }
+  ],
+  &quot;pairMaps&quot;: {
+    &quot;independence_vs_elders&quot;: {
+      &quot;independence&quot;: {
+        &quot;continuous&quot;: {
+          &quot;ONT_H&quot;: 0.6
+        },
+        &quot;categorical&quot;: {
+          &quot;EPS&quot;: [
+            0.08,
+            0.08,
+            0.08,
+            0.1,
+            0.6,
+            0.06
+          ],
+          &quot;AES&quot;: [
+            0.05,
+            0.05,
+            0.08,
+            0.7,
+            0.05,
+            0.07
+          ]
+        }
+      },
+      &quot;respect_for_elders&quot;: {
+        &quot;continuous&quot;: {
+          &quot;ONT_H&quot;: -0.6
+        },
+        &quot;categorical&quot;: {
+          &quot;EPS&quot;: [
+            0.04,
+            0.08,
+            0.7,
+            0.06,
+            0.08,
+            0.04
+          ],
+          &quot;AES&quot;: [
+            0.06,
+            0.05,
+            0.72,
+            0.07,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    },
+    &quot;obedience_vs_self_reliance&quot;: {
+      &quot;obedience&quot;: {
+        &quot;continuous&quot;: {
+          &quot;ONT_H&quot;: -0.5
+        },
+        &quot;categorical&quot;: {
+          &quot;EPS&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ],
+          &quot;AES&quot;: [
+            0.7,
+            0.1,
+            0.04,
+            0.06,
+            0.04,
+            0.06
+          ]
+        }
+      },
+      &quot;self_reliance&quot;: {
+        &quot;continuous&quot;: {
+          &quot;ONT_H&quot;: 0.5
+        },
+        &quot;categorical&quot;: {
+          &quot;EPS&quot;: [
+            0.72,
+            0.14,
+            0.03,
+            0.04,
+            0.05,
+            0.02
+          ],
+          &quot;AES&quot;: [
+            0.08,
+            0.74,
+            0.04,
+            0.04,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q26 — vacation_new_vs_familiar</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.52</span><span class="pill">status: Weak / likely prune</span></p><p class="bad"><strong>Why this is on the review list:</strong> Vacation preference looks like a weak lifestyle proxy and may overfit AES.</p><p><strong>Question for Sam:</strong> Is this doing anything worth keeping?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ONT_H</td><td>continuous</td><td>position</td><td>0.25</td><td>novelty_preference</td></tr><tr><td>AES</td><td>categorical</td><td>category</td><td>0.1</td><td>taste_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>new_place</td><td>ONT_H.pos</td><td><code>[0.05, 0.12, 0.28, 0.33, 0.22]</code></td></tr><tr><td>new_place</td><td>AES.cat</td><td><code>[0.06, 0.08, 0.05, 0.06, 0.08, 0.67]</code></td></tr><tr><td>familiar_place</td><td>ONT_H.pos</td><td><code>[0.22, 0.33, 0.28, 0.12, 0.05]</code></td></tr><tr><td>familiar_place</td><td>AES.cat</td><td><code>[0.06, 0.05, 0.72, 0.07, 0.03, 0.07]</code></td></tr><tr><td>mix_both</td><td>ONT_H.pos</td><td><code>[0.1, 0.2, 0.4, 0.2, 0.1]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 26,
+  &quot;stage&quot;: &quot;stage2&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;vacation_new_vs_familiar&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.52,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ONT_H&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;novelty_preference&quot;
+    },
+    {
+      &quot;node&quot;: &quot;AES&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.1,
+      &quot;touchType&quot;: &quot;taste_proxy&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;new_place&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_H&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.12,
+            0.28,
+            0.33,
+            0.22
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.06,
+            0.08,
+            0.05,
+            0.06,
+            0.08,
+            0.67
+          ]
+        }
+      }
+    },
+    &quot;familiar_place&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_H&quot;: {
+          &quot;pos&quot;: [
+            0.22,
+            0.33,
+            0.28,
+            0.12,
+            0.05
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.06,
+            0.05,
+            0.72,
+            0.07,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    },
+    &quot;mix_both&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ONT_H&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.2,
+            0.4,
+            0.2,
+            0.1
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q32 — mainstream_media_accuracy_estimate</h2><p><span class="pill">uiType: slider</span><span class="pill">quality: 0.4</span><span class="pill">status: Weak / likely prune or simplify</span></p><p class="bad"><strong>Why this is on the review list:</strong> Mainstream media accuracy estimate is a confounded trust proxy and may waste scale resolution.</p><p><strong>Question for Sam:</strong> Is this worth keeping as an EPS measure?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>EPS</td><td>categorical</td><td>category</td><td>0.4</td><td>institutional_trust_proxy</td></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.15</td><td>trust_hostility_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>0-20</td><td>EPS.cat</td><td><code>[0.08, 0.08, 0.08, 0.1, 0.6, 0.06]</code></td></tr><tr><td>21-40</td><td>EPS.cat</td><td><code>[0.05, 0.05, 0.08, 0.68, 0.09, 0.05]</code></td></tr><tr><td>41-60</td><td>EPS.cat</td><td><code>[0.15, 0.68, 0.05, 0.03, 0.06, 0.03]</code></td></tr><tr><td>61-80</td><td>EPS.cat</td><td><code>[0.15, 0.68, 0.05, 0.03, 0.06, 0.03]</code></td></tr><tr><td>81-100</td><td>EPS.cat</td><td><code>[0.15, 0.68, 0.05, 0.03, 0.06, 0.03]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 32,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;mainstream_media_accuracy_estimate&quot;,
+  &quot;uiType&quot;: &quot;slider&quot;,
+  &quot;quality&quot;: 0.4,
+  &quot;rewriteNeeded&quot;: true,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.4,
+      &quot;touchType&quot;: &quot;institutional_trust_proxy&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.15,
+      &quot;touchType&quot;: &quot;trust_hostility_proxy&quot;
+    }
+  ],
+  &quot;sliderMap&quot;: {
+    &quot;0-20&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.08,
+            0.08,
+            0.08,
+            0.1,
+            0.6,
+            0.06
+          ]
+        }
+      }
+    },
+    &quot;21-40&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.05,
+            0.05,
+            0.08,
+            0.68,
+            0.09,
+            0.05
+          ]
+        }
+      }
+    },
+    &quot;41-60&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ]
+        }
+      }
+    },
+    &quot;61-80&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ]
+        }
+      }
+    },
+    &quot;81-100&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q44 — views_changed_in_10_years</h2><p><span class="pill">uiType: slider</span><span class="pill">quality: 0.58</span><span class="pill">status: Review / likely overinterpreted</span></p><p class="warn"><strong>Why this is on the review list:</strong> Views changed in 10 years may be too confounded to support strong EPS mapping.</p><p><strong>Question for Sam:</strong> Do you want a gentler interpretation here, or should this be demoted?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>EPS</td><td>categorical</td><td>category</td><td>0.2</td><td>updating_proxy</td></tr><tr><td>PF</td><td>continuous</td><td>position</td><td>0.1</td><td>identity_rigidity_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>0-20</td><td>EPS.cat</td><td><code>[0.04, 0.08, 0.7, 0.06, 0.08, 0.04]</code></td></tr><tr><td>21-40</td><td>EPS.cat</td><td><code>[0.15, 0.68, 0.05, 0.03, 0.06, 0.03]</code></td></tr><tr><td>41-60</td><td>EPS.cat</td><td><code>[0.72, 0.14, 0.03, 0.04, 0.05, 0.02]</code></td></tr><tr><td>61-80</td><td>EPS.cat</td><td><code>[0.72, 0.14, 0.03, 0.04, 0.05, 0.02]</code></td></tr><tr><td>81-100</td><td>EPS.cat</td><td><code>[0.08, 0.08, 0.08, 0.1, 0.6, 0.06]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 44,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;views_changed_in_10_years&quot;,
+  &quot;uiType&quot;: &quot;slider&quot;,
+  &quot;quality&quot;: 0.58,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;updating_proxy&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.1,
+      &quot;touchType&quot;: &quot;identity_rigidity_proxy&quot;
+    }
+  ],
+  &quot;sliderMap&quot;: {
+    &quot;0-20&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.04,
+            0.08,
+            0.7,
+            0.06,
+            0.08,
+            0.04
+          ]
+        }
+      }
+    },
+    &quot;21-40&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ]
+        }
+      }
+    },
+    &quot;41-60&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.72,
+            0.14,
+            0.03,
+            0.04,
+            0.05,
+            0.02
+          ]
+        }
+      }
+    },
+    &quot;61-80&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.72,
+            0.14,
+            0.03,
+            0.04,
+            0.05,
+            0.02
+          ]
+        }
+      }
+    },
+    &quot;81-100&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.08,
+            0.08,
+            0.08,
+            0.1,
+            0.6,
+            0.06
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q45 — what_changed_minds_through_history</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.36</span><span class="pill">status: Weak / likely prune or weaken</span></p><p class="bad"><strong>Why this is on the review list:</strong> What changed minds through history looks like philosophy-of-history taste more than reliable response-to-node signal.</p><p><strong>Question for Sam:</strong> Is this interesting but too indirect to keep strong?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>EPS</td><td>categorical</td><td>category</td><td>0.25</td><td>abstract_style</td></tr><tr><td>AES</td><td>categorical</td><td>category</td><td>0.2</td><td>abstract_style</td></tr><tr><td>MOR</td><td>continuous</td><td>position</td><td>0.1</td><td>abstract_style</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>evidence_and_argument</td><td>EPS.cat</td><td><code>[0.72, 0.14, 0.03, 0.04, 0.05, 0.02]</code></td></tr><tr><td>evidence_and_argument</td><td>AES.cat</td><td><code>[0.08, 0.74, 0.04, 0.04, 0.03, 0.07]</code></td></tr><tr><td>moral_movements</td><td>EPS.cat</td><td><code>[0.05, 0.05, 0.08, 0.68, 0.09, 0.05]</code></td></tr><tr><td>moral_movements</td><td>AES.cat</td><td><code>[0.06, 0.05, 0.72, 0.07, 0.03, 0.07]</code></td></tr><tr><td>economic_interests</td><td>EPS.cat</td><td><code>[0.15, 0.68, 0.05, 0.03, 0.06, 0.03]</code></td></tr><tr><td>economic_interests</td><td>AES.cat</td><td><code>[0.7, 0.1, 0.04, 0.06, 0.04, 0.06]</code></td></tr><tr><td>power_struggles</td><td>EPS.cat</td><td><code>[0.08, 0.08, 0.08, 0.1, 0.6, 0.06]</code></td></tr><tr><td>power_struggles</td><td>AES.cat</td><td><code>[0.04, 0.03, 0.04, 0.08, 0.73, 0.08]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 45,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;what_changed_minds_through_history&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.36,
+  &quot;rewriteNeeded&quot;: true,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;EPS&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.25,
+      &quot;touchType&quot;: &quot;abstract_style&quot;
+    },
+    {
+      &quot;node&quot;: &quot;AES&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;abstract_style&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MOR&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.1,
+      &quot;touchType&quot;: &quot;abstract_style&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;evidence_and_argument&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.72,
+            0.14,
+            0.03,
+            0.04,
+            0.05,
+            0.02
+          ]
+        },
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.08,
+            0.74,
+            0.04,
+            0.04,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    },
+    &quot;moral_movements&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.05,
+            0.05,
+            0.08,
+            0.68,
+            0.09,
+            0.05
+          ]
+        },
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.06,
+            0.05,
+            0.72,
+            0.07,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    },
+    &quot;economic_interests&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.15,
+            0.68,
+            0.05,
+            0.03,
+            0.06,
+            0.03
+          ]
+        },
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.7,
+            0.1,
+            0.04,
+            0.06,
+            0.04,
+            0.06
+          ]
+        }
+      }
+    },
+    &quot;power_struggles&quot;: {
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;cat&quot;: [
+            0.08,
+            0.08,
+            0.08,
+            0.1,
+            0.6,
+            0.06
+          ]
+        },
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.04,
+            0.03,
+            0.04,
+            0.08,
+            0.73,
+            0.08
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q46 — caregiver_emotional_availability</h2><p><span class="pill">uiType: slider</span><span class="pill">quality: 0.3</span><span class="pill">status: Background only</span></p><p class="warn"><strong>Why this is on the review list:</strong> Caregiver emotional availability should stay very weak if kept at all.</p><p><strong>Question for Sam:</strong> Keep as tiny background prior only?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.05</td><td>background_context</td></tr><tr><td>COM</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>0-20</td><td>COM.pos</td><td><code>[0.28, 0.27, 0.22, 0.14, 0.09]</code></td></tr><tr><td>0-20</td><td>TRB.pos</td><td><code>[0.12, 0.18, 0.28, 0.25, 0.17]</code></td></tr><tr><td>21-40</td><td>COM.pos</td><td><code>[0.22, 0.28, 0.25, 0.16, 0.09]</code></td></tr><tr><td>21-40</td><td>TRB.pos</td><td><code>[0.14, 0.2, 0.28, 0.22, 0.16]</code></td></tr><tr><td>41-60</td><td>COM.pos</td><td><code>[0.15, 0.22, 0.3, 0.2, 0.13]</code></td></tr><tr><td>41-60</td><td>TRB.pos</td><td><code>[0.17, 0.22, 0.28, 0.2, 0.13]</code></td></tr><tr><td>61-80</td><td>COM.pos</td><td><code>[0.09, 0.16, 0.25, 0.28, 0.22]</code></td></tr><tr><td>61-80</td><td>TRB.pos</td><td><code>[0.18, 0.23, 0.28, 0.18, 0.13]</code></td></tr><tr><td>81-100</td><td>COM.pos</td><td><code>[0.06, 0.12, 0.22, 0.3, 0.3]</code></td></tr><tr><td>81-100</td><td>TRB.pos</td><td><code>[0.2, 0.24, 0.26, 0.18, 0.12]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 46,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;caregiver_emotional_availability&quot;,
+  &quot;uiType&quot;: &quot;slider&quot;,
+  &quot;quality&quot;: 0.3,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;COM&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    }
+  ],
+  &quot;sliderMap&quot;: {
+    &quot;0-20&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.28,
+            0.27,
+            0.22,
+            0.14,
+            0.09
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.12,
+            0.18,
+            0.28,
+            0.25,
+            0.17
+          ]
+        }
+      }
+    },
+    &quot;21-40&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.22,
+            0.28,
+            0.25,
+            0.16,
+            0.09
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.14,
+            0.2,
+            0.28,
+            0.22,
+            0.16
+          ]
+        }
+      }
+    },
+    &quot;41-60&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.22,
+            0.3,
+            0.2,
+            0.13
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.17,
+            0.22,
+            0.28,
+            0.2,
+            0.13
+          ]
+        }
+      }
+    },
+    &quot;61-80&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.09,
+            0.16,
+            0.25,
+            0.28,
+            0.22
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.18,
+            0.23,
+            0.28,
+            0.18,
+            0.13
+          ]
+        }
+      }
+    },
+    &quot;81-100&quot;: {
+      &quot;continuous&quot;: {
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.06,
+            0.12,
+            0.22,
+            0.3,
+            0.3
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.2,
+            0.24,
+            0.26,
+            0.18,
+            0.12
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q53 — parents_politics_growing_up</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.34</span><span class="pill">status: Background only</span></p><p class="warn"><strong>Why this is on the review list:</strong> Parents’ politics growing up is weak and likely exploratory only.</p><p><strong>Question for Sam:</strong> Keep tiny or remove?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.05</td><td>background_context</td></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr><tr><td>MAT</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr><tr><td>CD</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>very_conservative</td><td>CD.pos</td><td><code>[0.28, 0.25, 0.22, 0.15, 0.1]</code></td></tr><tr><td>very_conservative</td><td>MAT.pos</td><td><code>[0.11, 0.16, 0.22, 0.25, 0.26]</code></td></tr><tr><td>moderate_household</td><td>CD.pos</td><td><code>[0.15, 0.22, 0.3, 0.2, 0.13]</code></td></tr><tr><td>moderate_household</td><td>MAT.pos</td><td><code>[0.13, 0.2, 0.3, 0.22, 0.15]</code></td></tr><tr><td>very_progressive</td><td>CD.pos</td><td><code>[0.1, 0.15, 0.22, 0.25, 0.28]</code></td></tr><tr><td>very_progressive</td><td>MAT.pos</td><td><code>[0.26, 0.25, 0.22, 0.16, 0.11]</code></td></tr><tr><td>not_political</td><td>CD.pos</td><td><code>[0.18, 0.22, 0.25, 0.2, 0.15]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 53,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;V&quot;,
+  &quot;promptShort&quot;: &quot;parents_politics_growing_up&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.34,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CD&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;very_conservative&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.28,
+            0.25,
+            0.22,
+            0.15,
+            0.1
+          ]
+        },
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.11,
+            0.16,
+            0.22,
+            0.25,
+            0.26
+          ]
+        }
+      }
+    },
+    &quot;moderate_household&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.22,
+            0.3,
+            0.2,
+            0.13
+          ]
+        },
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.13,
+            0.2,
+            0.3,
+            0.22,
+            0.15
+          ]
+        }
+      }
+    },
+    &quot;very_progressive&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.15,
+            0.22,
+            0.25,
+            0.28
+          ]
+        },
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.26,
+            0.25,
+            0.22,
+            0.16,
+            0.11
+          ]
+        }
+      }
+    },
+    &quot;not_political&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.18,
+            0.22,
+            0.25,
+            0.2,
+            0.15
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q57 — parents_political_engagement</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.3</span><span class="pill">status: Background only</span></p><p class="warn"><strong>Why this is on the review list:</strong> Parents’ political engagement is weak background signal.</p><p><strong>Question for Sam:</strong> Keep tiny or remove?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ENG</td><td>continuous</td><td>position</td><td>0.08</td><td>background_context</td></tr><tr><td>PF</td><td>continuous</td><td>salience</td><td>0.05</td><td>background_context</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>very_engaged</td><td>ENG.pos</td><td><code>[0.1, 0.15, 0.25, 0.28, 0.22]</code></td></tr><tr><td>occasionally_discussed</td><td>ENG.pos</td><td><code>[0.15, 0.22, 0.3, 0.2, 0.13]</code></td></tr><tr><td>never_discussed</td><td>ENG.pos</td><td><code>[0.25, 0.27, 0.24, 0.15, 0.09]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 57,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;V&quot;,
+  &quot;promptShort&quot;: &quot;parents_political_engagement&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.3,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ENG&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.08,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;very_engaged&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.15,
+            0.25,
+            0.28,
+            0.22
+          ]
+        }
+      }
+    },
+    &quot;occasionally_discussed&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.22,
+            0.3,
+            0.2,
+            0.13
+          ]
+        }
+      }
+    },
+    &quot;never_discussed&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.27,
+            0.24,
+            0.15,
+            0.09
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q58 — neighborhood_safety_childhood</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.3</span><span class="pill">status: Background only</span></p><p class="warn"><strong>Why this is on the review list:</strong> Neighborhood safety childhood is weak and likely too indirect.</p><p><strong>Question for Sam:</strong> Keep tiny or remove?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>ZS</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.05</td><td>background_context</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>very_safe</td><td>ZS.pos</td><td><code>[0.12, 0.18, 0.28, 0.25, 0.17]</code></td></tr><tr><td>mostly_safe</td><td>ZS.pos</td><td><code>[0.15, 0.22, 0.28, 0.22, 0.13]</code></td></tr><tr><td>somewhat_unsafe</td><td>ZS.pos</td><td><code>[0.2, 0.25, 0.27, 0.18, 0.1]</code></td></tr><tr><td>very_unsafe</td><td>ZS.pos</td><td><code>[0.25, 0.27, 0.25, 0.15, 0.08]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 58,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;V&quot;,
+  &quot;promptShort&quot;: &quot;neighborhood_safety_childhood&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.3,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;ZS&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.05,
+      &quot;touchType&quot;: &quot;background_context&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;very_safe&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.12,
+            0.18,
+            0.28,
+            0.25,
+            0.17
+          ]
+        }
+      }
+    },
+    &quot;mostly_safe&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.22,
+            0.28,
+            0.22,
+            0.13
+          ]
+        }
+      }
+    },
+    &quot;somewhat_unsafe&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.2,
+            0.25,
+            0.27,
+            0.18,
+            0.1
+          ]
+        }
+      }
+    },
+    &quot;very_unsafe&quot;: {
+      &quot;continuous&quot;: {
+        &quot;ZS&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.27,
+            0.25,
+            0.15,
+            0.08
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q25 — criminal_trial_error_tradeoff</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.92</span><span class="pill">status: Stronger item / review completeness</span></p><p class="good"><strong>Why this is on the review list:</strong> Criminal-trial error tradeoff is conceptually strong and likely worth preserving, but visible salience/secondary signals may still be incomplete.</p><p><strong>Question for Sam:</strong> Do you want this as a model for the other error-tradeoff items?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PRO</td><td>continuous</td><td>position</td><td>0.75</td><td>error_asymmetry</td></tr><tr><td>PRO</td><td>continuous</td><td>salience</td><td>0.6</td><td>error_asymmetry</td></tr><tr><td>ONT_H</td><td>continuous</td><td>position</td><td>0.15</td><td>human_motive_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>convict_innocent</td><td>PRO.pos</td><td><code>[0.02, 0.08, 0.2, 0.35, 0.35]</code></td></tr><tr><td>free_guilty</td><td>PRO.pos</td><td><code>[0.35, 0.35, 0.2, 0.08, 0.02]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 25,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;III&quot;,
+  &quot;promptShort&quot;: &quot;criminal_trial_error_tradeoff&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.92,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;options&quot;: [
+    &quot;convict_innocent&quot;,
+    &quot;free_guilty&quot;
+  ],
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.75,
+      &quot;touchType&quot;: &quot;error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.6,
+      &quot;touchType&quot;: &quot;error_asymmetry&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ONT_H&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.15,
+      &quot;touchType&quot;: &quot;human_motive_proxy&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;convict_innocent&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.08,
+            0.2,
+            0.35,
+            0.35
+          ]
+        }
+      }
+    },
+    &quot;free_guilty&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.35,
+            0.35,
+            0.2,
+            0.08,
+            0.02
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q56 — effective_leader_style</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.95</span><span class="pill">status: Stronger item / review completeness</span></p><p class="good"><strong>Why this is on the review list:</strong> Leader-style item seems good in concept, but likely under-realizes some secondary signals.</p><p><strong>Question for Sam:</strong> Should this mostly be AES, or also meaningfully contribute to PRO/ENG?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>AES</td><td>categorical</td><td>category</td><td>0.9</td><td>leader_style</td></tr><tr><td>PRO</td><td>continuous</td><td>position</td><td>0.2</td><td>governance_style</td></tr><tr><td>ENG</td><td>continuous</td><td>salience</td><td>0.1</td><td>mobilization_proxy</td></tr><tr><td>AES</td><td>categorical</td><td>salience</td><td>0.85</td><td>checkbox_salience</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>channel_anger</td><td>AES.cat</td><td><code>[0.04, 0.03, 0.04, 0.08, 0.73, 0.08]</code></td></tr><tr><td>paint_vision</td><td>AES.cat</td><td><code>[0.06, 0.08, 0.05, 0.06, 0.08, 0.67]</code></td></tr><tr><td>fight_to_win</td><td>AES.cat</td><td><code>[0.04, 0.03, 0.04, 0.08, 0.73, 0.08]</code></td></tr><tr><td>master_policy_details</td><td>AES.cat</td><td><code>[0.08, 0.74, 0.04, 0.04, 0.03, 0.07]</code></td></tr><tr><td>build_expert_coalitions</td><td>AES.cat</td><td><code>[0.7, 0.1, 0.04, 0.06, 0.04, 0.06]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 56,
+  &quot;stage&quot;: &quot;screen20&quot;,
+  &quot;section&quot;: &quot;V&quot;,
+  &quot;promptShort&quot;: &quot;effective_leader_style&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.95,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;AES&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;category&quot;,
+      &quot;weight&quot;: 0.9,
+      &quot;touchType&quot;: &quot;leader_style&quot;
+    },
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;governance_style&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ENG&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.1,
+      &quot;touchType&quot;: &quot;mobilization_proxy&quot;
+    },
+    {
+      &quot;node&quot;: &quot;AES&quot;,
+      &quot;kind&quot;: &quot;categorical&quot;,
+      &quot;role&quot;: &quot;salience&quot;,
+      &quot;weight&quot;: 0.85,
+      &quot;touchType&quot;: &quot;checkbox_salience&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;channel_anger&quot;: {
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.04,
+            0.03,
+            0.04,
+            0.08,
+            0.73,
+            0.08
+          ]
+        }
+      }
+    },
+    &quot;paint_vision&quot;: {
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.06,
+            0.08,
+            0.05,
+            0.06,
+            0.08,
+            0.67
+          ]
+        }
+      }
+    },
+    &quot;fight_to_win&quot;: {
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.04,
+            0.03,
+            0.04,
+            0.08,
+            0.73,
+            0.08
+          ]
+        }
+      }
+    },
+    &quot;master_policy_details&quot;: {
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.08,
+            0.74,
+            0.04,
+            0.04,
+            0.03,
+            0.07
+          ]
+        }
+      }
+    },
+    &quot;build_expert_coalitions&quot;: {
+      &quot;categorical&quot;: {
+        &quot;AES&quot;: {
+          &quot;cat&quot;: [
+            0.7,
+            0.1,
+            0.04,
+            0.06,
+            0.04,
+            0.06
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q81 — party_vs_cause_loyalty</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.92</span><span class="pill">status: Stronger anchor</span></p><p class="good"><strong>Why this is on the review list:</strong> This seems much closer to your intended PF definition than Q64.</p><p><strong>Question for Sam:</strong> Should this become the main PF anchor?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PF</td><td>continuous</td><td>position</td><td>0.9</td><td>identity_loyalty</td></tr><tr><td>TRB</td><td>continuous</td><td>position</td><td>0.35</td><td>camp_attachment</td></tr><tr><td>ENG</td><td>continuous</td><td>position</td><td>0.2</td><td>activation_proxy</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>say_so_publicly</td><td>PF.pos</td><td><code>[0.55, 0.25, 0.12, 0.05, 0.03]</code></td></tr><tr><td>say_so_publicly</td><td>TRB.pos</td><td><code>[0.4, 0.3, 0.18, 0.08, 0.04]</code></td></tr><tr><td>say_so_publicly</td><td>ENG.pos</td><td><code>[0.05, 0.1, 0.25, 0.35, 0.25]</code></td></tr><tr><td>push_back_internally</td><td>PF.pos</td><td><code>[0.08, 0.15, 0.3, 0.3, 0.17]</code></td></tr><tr><td>push_back_internally</td><td>TRB.pos</td><td><code>[0.12, 0.22, 0.32, 0.22, 0.12]</code></td></tr><tr><td>push_back_internally</td><td>ENG.pos</td><td><code>[0.1, 0.2, 0.35, 0.25, 0.1]</code></td></tr><tr><td>stick_with_side</td><td>PF.pos</td><td><code>[0.03, 0.05, 0.12, 0.25, 0.55]</code></td></tr><tr><td>stick_with_side</td><td>TRB.pos</td><td><code>[0.04, 0.08, 0.18, 0.3, 0.4]</code></td></tr><tr><td>stick_with_side</td><td>ENG.pos</td><td><code>[0.05, 0.1, 0.25, 0.35, 0.25]</code></td></tr><tr><td>cause_over_party</td><td>PF.pos</td><td><code>[0.55, 0.25, 0.12, 0.05, 0.03]</code></td></tr><tr><td>cause_over_party</td><td>TRB.pos</td><td><code>[0.25, 0.3, 0.25, 0.12, 0.08]</code></td></tr><tr><td>cause_over_party</td><td>ENG.pos</td><td><code>[0.03, 0.08, 0.2, 0.35, 0.34]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 81,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;party_vs_cause_loyalty&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.92,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PF&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.9,
+      &quot;touchType&quot;: &quot;identity_loyalty&quot;
+    },
+    {
+      &quot;node&quot;: &quot;TRB&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;camp_attachment&quot;
+    },
+    {
+      &quot;node&quot;: &quot;ENG&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;activation_proxy&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;say_so_publicly&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.55,
+            0.25,
+            0.12,
+            0.05,
+            0.03
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.4,
+            0.3,
+            0.18,
+            0.08,
+            0.04
+          ]
+        },
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.1,
+            0.25,
+            0.35,
+            0.25
+          ]
+        }
+      }
+    },
+    &quot;push_back_internally&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.08,
+            0.15,
+            0.3,
+            0.3,
+            0.17
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.12,
+            0.22,
+            0.32,
+            0.22,
+            0.12
+          ]
+        },
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.2,
+            0.35,
+            0.25,
+            0.1
+          ]
+        }
+      }
+    },
+    &quot;stick_with_side&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.05,
+            0.12,
+            0.25,
+            0.55
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.04,
+            0.08,
+            0.18,
+            0.3,
+            0.4
+          ]
+        },
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.1,
+            0.25,
+            0.35,
+            0.25
+          ]
+        }
+      }
+    },
+    &quot;cause_over_party&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PF&quot;: {
+          &quot;pos&quot;: [
+            0.55,
+            0.25,
+            0.12,
+            0.05,
+            0.03
+          ]
+        },
+        &quot;TRB&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.3,
+            0.25,
+            0.12,
+            0.08
+          ]
+        },
+        &quot;ENG&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.08,
+            0.2,
+            0.35,
+            0.34
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q82 — openness_assimilation_closure</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.91</span><span class="pill">status: Stronger seam question</span></p><p class="good"><strong>Why this is on the review list:</strong> Openness/assimilation/closure looks like one of the cleaner cultural-boundary seam questions.</p><p><strong>Question for Sam:</strong> Any answer options here you think are semantically overloaded?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>CD</td><td>continuous</td><td>position</td><td>0.75</td><td>cultural_direction</td></tr><tr><td>CU</td><td>continuous</td><td>position</td><td>0.85</td><td>cultural_uniformity</td></tr><tr><td>MOR</td><td>continuous</td><td>position</td><td>0.2</td><td>moral_scope</td></tr><tr><td>MAT</td><td>continuous</td><td>position</td><td>0.2</td><td>economics_signal</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>preserve_culture</td><td>CD.pos</td><td><code>[0.02, 0.05, 0.13, 0.3, 0.5]</code></td></tr><tr><td>preserve_culture</td><td>CU.pos</td><td><code>[0.5, 0.28, 0.14, 0.05, 0.03]</code></td></tr><tr><td>preserve_culture</td><td>MOR.pos</td><td><code>[0.05, 0.1, 0.25, 0.35, 0.25]</code></td></tr><tr><td>civic_assimilation</td><td>CD.pos</td><td><code>[0.05, 0.12, 0.28, 0.35, 0.2]</code></td></tr><tr><td>civic_assimilation</td><td>CU.pos</td><td><code>[0.05, 0.12, 0.25, 0.35, 0.23]</code></td></tr><tr><td>civic_assimilation</td><td>MOR.pos</td><td><code>[0.1, 0.2, 0.4, 0.2, 0.1]</code></td></tr><tr><td>open_pluralist</td><td>CD.pos</td><td><code>[0.5, 0.3, 0.13, 0.05, 0.02]</code></td></tr><tr><td>open_pluralist</td><td>CU.pos</td><td><code>[0.03, 0.05, 0.14, 0.28, 0.5]</code></td></tr><tr><td>open_pluralist</td><td>MOR.pos</td><td><code>[0.25, 0.35, 0.25, 0.1, 0.05]</code></td></tr><tr><td>economics_first</td><td>MAT.pos</td><td><code>[0.4, 0.3, 0.18, 0.08, 0.04]</code></td></tr><tr><td>economics_first</td><td>CD.pos</td><td><code>[0.15, 0.25, 0.35, 0.15, 0.1]</code></td></tr><tr><td>economics_first</td><td>CU.pos</td><td><code>[0.15, 0.25, 0.3, 0.2, 0.1]</code></td></tr><tr><td>economics_first</td><td>MOR.pos</td><td><code>[0.15, 0.25, 0.35, 0.15, 0.1]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 82,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;openness_assimilation_closure&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.91,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;CD&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.75,
+      &quot;touchType&quot;: &quot;cultural_direction&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CU&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.85,
+      &quot;touchType&quot;: &quot;cultural_uniformity&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MOR&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;moral_scope&quot;
+    },
+    {
+      &quot;node&quot;: &quot;MAT&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;economics_signal&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;preserve_culture&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.02,
+            0.05,
+            0.13,
+            0.3,
+            0.5
+          ]
+        },
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.5,
+            0.28,
+            0.14,
+            0.05,
+            0.03
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.1,
+            0.25,
+            0.35,
+            0.25
+          ]
+        }
+      }
+    },
+    &quot;civic_assimilation&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.12,
+            0.28,
+            0.35,
+            0.2
+          ]
+        },
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.12,
+            0.25,
+            0.35,
+            0.23
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.1,
+            0.2,
+            0.4,
+            0.2,
+            0.1
+          ]
+        }
+      }
+    },
+    &quot;open_pluralist&quot;: {
+      &quot;continuous&quot;: {
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.5,
+            0.3,
+            0.13,
+            0.05,
+            0.02
+          ]
+        },
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.03,
+            0.05,
+            0.14,
+            0.28,
+            0.5
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.35,
+            0.25,
+            0.1,
+            0.05
+          ]
+        }
+      }
+    },
+    &quot;economics_first&quot;: {
+      &quot;continuous&quot;: {
+        &quot;MAT&quot;: {
+          &quot;pos&quot;: [
+            0.4,
+            0.3,
+            0.18,
+            0.08,
+            0.04
+          ]
+        },
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.25,
+            0.35,
+            0.15,
+            0.1
+          ]
+        },
+        &quot;CU&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.25,
+            0.3,
+            0.2,
+            0.1
+          ]
+        },
+        &quot;MOR&quot;: {
+          &quot;pos&quot;: [
+            0.15,
+            0.25,
+            0.35,
+            0.15,
+            0.1
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div><div class="card"><h2>Q85 — institutional_legitimacy_source</h2><p><span class="pill">uiType: single_choice</span><span class="pill">quality: 0.91</span><span class="pill">status: Stronger anchor</span></p><p class="good"><strong>Why this is on the review list:</strong> Institutional legitimacy source looks close to your intended PRO definition.</p><p><strong>Question for Sam:</strong> Should this be treated as one of the main PRO anchors?</p><h3>Promised touch profile</h3><table><tr><th>Node</th><th>Kind</th><th>Role</th><th>Weight</th><th>Touch type</th></tr><tr><td>PRO</td><td>continuous</td><td>position</td><td>0.8</td><td>procedural_legitimacy</td></tr><tr><td>CD</td><td>continuous</td><td>position</td><td>0.35</td><td>cultural_direction</td></tr><tr><td>COM</td><td>continuous</td><td>position</td><td>0.2</td><td>compromise_signal</td></tr></table><h3>Visible extracted response mapping</h3><table><tr><th>Response bucket / option</th><th>Signal</th><th>Value</th></tr><tr><td>inherited_tradition</td><td>PRO.pos</td><td><code>[0.05, 0.12, 0.25, 0.35, 0.23]</code></td></tr><tr><td>inherited_tradition</td><td>CD.pos</td><td><code>[0.04, 0.08, 0.18, 0.3, 0.4]</code></td></tr><tr><td>inherited_tradition</td><td>EPS.probs</td><td><code>[0.05, 0.1, 0.55, 0.15, 0.1, 0.05]</code></td></tr><tr><td>procedural_rules</td><td>PRO.pos</td><td><code>[0.01, 0.04, 0.12, 0.28, 0.55]</code></td></tr><tr><td>procedural_rules</td><td>COM.pos</td><td><code>[0.05, 0.1, 0.25, 0.35, 0.25]</code></td></tr><tr><td>procedural_rules</td><td>EPS.probs</td><td><code>[0.35, 0.3, 0.1, 0.1, 0.1, 0.05]</code></td></tr><tr><td>order_and_results</td><td>PRO.pos</td><td><code>[0.2, 0.3, 0.28, 0.15, 0.07]</code></td></tr><tr><td>order_and_results</td><td>COM.pos</td><td><code>[0.25, 0.3, 0.25, 0.12, 0.08]</code></td></tr><tr><td>order_and_results</td><td>CD.pos</td><td><code>[0.08, 0.12, 0.25, 0.3, 0.25]</code></td></tr><tr><td>order_and_results</td><td>EPS.probs</td><td><code>[0.15, 0.15, 0.1, 0.1, 0.4, 0.1]</code></td></tr><tr><td>justice_first</td><td>PRO.pos</td><td><code>[0.55, 0.28, 0.12, 0.04, 0.01]</code></td></tr><tr><td>justice_first</td><td>COM.pos</td><td><code>[0.25, 0.3, 0.25, 0.12, 0.08]</code></td></tr><tr><td>justice_first</td><td>EPS.probs</td><td><code>[0.05, 0.05, 0.05, 0.5, 0.15, 0.2]</code></td></tr></table><details><summary>Raw extracted payload</summary><pre>{
+  &quot;id&quot;: 85,
+  &quot;stage&quot;: &quot;stage3&quot;,
+  &quot;section&quot;: &quot;IV&quot;,
+  &quot;promptShort&quot;: &quot;institutional_legitimacy_source&quot;,
+  &quot;uiType&quot;: &quot;single_choice&quot;,
+  &quot;quality&quot;: 0.91,
+  &quot;rewriteNeeded&quot;: false,
+  &quot;touchProfile&quot;: [
+    {
+      &quot;node&quot;: &quot;PRO&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.8,
+      &quot;touchType&quot;: &quot;procedural_legitimacy&quot;
+    },
+    {
+      &quot;node&quot;: &quot;CD&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.35,
+      &quot;touchType&quot;: &quot;cultural_direction&quot;
+    },
+    {
+      &quot;node&quot;: &quot;COM&quot;,
+      &quot;kind&quot;: &quot;continuous&quot;,
+      &quot;role&quot;: &quot;position&quot;,
+      &quot;weight&quot;: 0.2,
+      &quot;touchType&quot;: &quot;compromise_signal&quot;
+    }
+  ],
+  &quot;optionEvidence&quot;: {
+    &quot;inherited_tradition&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.12,
+            0.25,
+            0.35,
+            0.23
+          ]
+        },
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.04,
+            0.08,
+            0.18,
+            0.3,
+            0.4
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;probs&quot;: [
+            0.05,
+            0.1,
+            0.55,
+            0.15,
+            0.1,
+            0.05
+          ]
+        }
+      }
+    },
+    &quot;procedural_rules&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.01,
+            0.04,
+            0.12,
+            0.28,
+            0.55
+          ]
+        },
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.05,
+            0.1,
+            0.25,
+            0.35,
+            0.25
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;probs&quot;: [
+            0.35,
+            0.3,
+            0.1,
+            0.1,
+            0.1,
+            0.05
+          ]
+        }
+      }
+    },
+    &quot;order_and_results&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.2,
+            0.3,
+            0.28,
+            0.15,
+            0.07
+          ]
+        },
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.3,
+            0.25,
+            0.12,
+            0.08
+          ]
+        },
+        &quot;CD&quot;: {
+          &quot;pos&quot;: [
+            0.08,
+            0.12,
+            0.25,
+            0.3,
+            0.25
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;probs&quot;: [
+            0.15,
+            0.15,
+            0.1,
+            0.1,
+            0.4,
+            0.1
+          ]
+        }
+      }
+    },
+    &quot;justice_first&quot;: {
+      &quot;continuous&quot;: {
+        &quot;PRO&quot;: {
+          &quot;pos&quot;: [
+            0.55,
+            0.28,
+            0.12,
+            0.04,
+            0.01
+          ]
+        },
+        &quot;COM&quot;: {
+          &quot;pos&quot;: [
+            0.25,
+            0.3,
+            0.25,
+            0.12,
+            0.08
+          ]
+        }
+      },
+      &quot;categorical&quot;: {
+        &quot;EPS&quot;: {
+          &quot;probs&quot;: [
+            0.05,
+            0.05,
+            0.05,
+            0.5,
+            0.15,
+            0.2
+          ]
+        }
+      }
+    }
+  }
+}</pre></details></div></div></body></html>

@@ -1,0 +1,209 @@
+PRISM Quiz Engine — 40K Massive Diagnostic Report
+============================================================
+Total simulations: 40000
+Archetypes: 115
+Active questions: 75
+Runtime: 261.0s
+
+TARGETED ACCURACY (clean archetype → self)
+----------------------------------------
+Top-1 accuracy: 109/115 = 94.8%
+Top-3 accuracy: 115/115 = 100.0%
+Top-5 accuracy: 115/115 = 100.0%
+
+NOISE DEGRADATION CURVE
+----------------------------------------
+  targeted_clean            109/115 = 94.8%
+  targeted_noise_0.05       112/115 = 97.4%
+  targeted_noise_0.1        102/115 = 88.7%
+  targeted_noise_0.15       104/115 = 90.4%
+  targeted_noise_0.2        106/115 = 92.2%
+  targeted_noise_0.25       83/115 = 72.2%
+  targeted_noise_0.3        93/115 = 80.9%
+  targeted_noise_0.4        74/115 = 64.3%
+  targeted_noise_0.5        55/115 = 47.8%
+  targeted_noise_0.6        34/115 = 29.6%
+
+OVERALL STATISTICS
+----------------------------------------
+Avg posterior entropy at completion: 5.811 bits
+Min entropy: 2.760, Max: 6.442
+Avg questions asked: 54.9
+Avg top-1 posterior: 0.083
+Avg margin (top1 - top2): 0.026
+
+PER-PROFILE STATISTICS
+----------------------------------------
+  adversarial_always_first     n=2712   avgH=5.76 avgQ=55.0 avgM=0.053 avgP=0.115
+  adversarial_always_last      n=2712   avgH=5.62 avgQ=55.0 avgM=0.039 avgP=0.092
+  adversarial_anti_leader      n=2712   avgH=6.07 avgQ=55.0 avgM=0.011 avgP=0.058
+  adversarial_oscillating      n=2714   avgH=5.53 avgQ=55.0 avgM=0.010 avgP=0.078
+  centrist_strong              n=3000   avgH=6.10 avgQ=55.0 avgM=0.018 avgP=0.067
+  centrist_weak                n=3000   avgH=6.05 avgQ=55.0 avgM=0.019 avgP=0.068
+  moderate_conservative        n=3000   avgH=5.70 avgQ=55.0 avgM=0.022 avgP=0.083
+  moderate_liberal             n=3000   avgH=5.77 avgQ=55.0 avgM=0.029 avgP=0.090
+  random_uniform               n=10000  avgH=6.00 avgQ=55.0 avgM=0.019 avgP=0.070
+  strong_conservative          n=3000   avgH=5.48 avgQ=55.0 avgM=0.021 avgP=0.085
+  strong_liberal               n=3000   avgH=5.65 avgQ=54.9 avgM=0.028 avgP=0.097
+  targeted_clean               n=115    avgH=5.16 avgQ=37.3 avgM=0.111 avgP=0.190
+  targeted_noise_0.05          n=115    avgH=4.54 avgQ=50.1 avgM=0.194 avgP=0.283
+  targeted_noise_0.1           n=115    avgH=4.67 avgQ=52.0 avgM=0.172 avgP=0.258
+  targeted_noise_0.15          n=115    avgH=4.71 avgQ=51.8 avgM=0.159 avgP=0.249
+  targeted_noise_0.2           n=115    avgH=4.89 avgQ=53.2 avgM=0.134 avgP=0.219
+  targeted_noise_0.25          n=115    avgH=5.03 avgQ=53.0 avgM=0.103 avgP=0.189
+  targeted_noise_0.3           n=115    avgH=5.16 avgQ=54.2 avgM=0.096 avgP=0.176
+  targeted_noise_0.4           n=115    avgH=5.32 avgQ=54.2 avgM=0.075 avgP=0.151
+  targeted_noise_0.5           n=115    avgH=5.55 avgQ=55.0 avgM=0.046 avgP=0.116
+  targeted_noise_0.6           n=115    avgH=5.71 avgQ=55.0 avgM=0.030 avgP=0.094
+
+UNREACHABLE ARCHETYPES (never won across 40K sims)
+----------------------------------------
+  ⚠ 019 Anarchist Mutualist
+
+ABSORBING ARCHETYPES (win >3x expected rate)
+----------------------------------------
+  Expected per archetype: 348
+  ⚠ 060 Hinge Citizen                       won 4237 times (12.2x expected)
+  ⚠ 109 Alienated Outsider                  won 2843 times (8.2x expected)
+  ⚠ 118 Survival Pragmatist                 won 2709 times (7.8x expected)
+  ⚠ 006 Fairness Pragmatist                 won 2664 times (7.7x expected)
+  ⚠ 090 Hobbesian Guardian                  won 2301 times (6.6x expected)
+  ⚠ 140 Market Green Modernist              won 1884 times (5.4x expected)
+  ⚠ 032 Hamiltonian Technocrat              won 1777 times (5.1x expected)
+  ⚠ 010 Bread-and-Butter Progressive        won 1402 times (4.0x expected)
+  ⚠ 079 National Developmentalist           won 1329 times (3.8x expected)
+  ⚠ 084 Civilizational Conservative         won 1328 times (3.8x expected)
+  ⚠ 091 Security Paternalist                won 1248 times (3.6x expected)
+  ⚠ 097 Authority Pragmatist                won 1214 times (3.5x expected)
+  ⚠ 045 Rooted Social Reformer              won 1105 times (3.2x expected)
+  ⚠ 005 Pluralist Structuralist             won 1099 times (3.2x expected)
+
+TOP 20 WINNING ARCHETYPES
+----------------------------------------
+  060 Hinge Citizen                       4237 wins (10.59%)
+  109 Alienated Outsider                  2843 wins (7.11%)
+  118 Survival Pragmatist                 2709 wins (6.77%)
+  006 Fairness Pragmatist                 2664 wins (6.66%)
+  090 Hobbesian Guardian                  2301 wins (5.75%)
+  140 Market Green Modernist              1884 wins (4.71%)
+  032 Hamiltonian Technocrat              1777 wins (4.44%)
+  010 Bread-and-Butter Progressive        1402 wins (3.50%)
+  079 National Developmentalist           1329 wins (3.32%)
+  084 Civilizational Conservative         1328 wins (3.32%)
+  091 Security Paternalist                1248 wins (3.12%)
+  097 Authority Pragmatist                1214 wins (3.03%)
+  045 Rooted Social Reformer              1105 wins (2.76%)
+  005 Pluralist Structuralist             1099 wins (2.75%)
+  139 Civic Assimilationist               868 wins (2.17%)
+  125 Reluctant Partisan                  835 wins (2.09%)
+  088 Gentle Traditionalist               724 wins (1.81%)
+  132 Negative Partisan                   694 wins (1.74%)
+  036 Institutional Optimizer             586 wins (1.47%)
+  071 Constitutional Conservative         581 wins (1.45%)
+
+BOTTOM 20 WINNING ARCHETYPES (least wins)
+----------------------------------------
+  067 Free-Exchange Modernist             1 wins (0.00%)
+  127 Tribal Loyalist                     5 wins (0.01%)
+  100 Tribal Insurgent                    5 wins (0.01%)
+  024 Ethical Internationalist            6 wins (0.01%)
+  122 Civic Minimalist                    6 wins (0.01%)
+  117 Comfortable Bystander               6 wins (0.01%)
+  025 World-Minded Reformer               7 wins (0.02%)
+  023 Rights Cosmopolitan                 7 wins (0.02%)
+  065 Opportunity Liberal                 7 wins (0.02%)
+  063 Enterprise Pluralist                7 wins (0.02%)
+  029 Liberationist Progressive           7 wins (0.02%)
+  135 Disruptive Cosmopolitan             7 wins (0.02%)
+  105 Combative Populist                  7 wins (0.02%)
+  077 Ordered Libertarian                 8 wins (0.02%)
+  062 Meritocratic Liberal                8 wins (0.02%)
+  033 Systems Modernizer                  8 wins (0.02%)
+  069 Bleeding-Heart Libertarian          9 wins (0.02%)
+  015 Moral Firebrand                     9 wins (0.02%)
+  007 Solidarist Reformer                 10 wins (0.03%)
+  119 Apolitical Striver                  10 wins (0.03%)
+
+QUESTION FREQUENCY (top 20 most asked)
+----------------------------------------
+  Q1    political_content_frequency              asked 40000 times (100.0%)
+  Q2    political_identity_centrality            asked 40000 times (100.0%)
+  Q4    cultural_social_salience                 asked 40000 times (100.0%)
+  Q8    domestic_vs_abroad_lives                 asked 40000 times (100.0%)
+  Q19   human_progress_salience                  asked 40000 times (100.0%)
+  Q22   factual_estimates_and_confidence         asked 40000 times (100.0%)
+  Q38   rules_procedures_matter_salience         asked 40000 times (100.0%)
+  Q40   opponents_matter_to_identity             asked 40000 times (100.0%)
+  Q49   social_progress_salience                 asked 40000 times (100.0%)
+  Q51   immigration_national_identity_salience   asked 40000 times (100.0%)
+  Q64   political_frustration                    asked 40000 times (100.0%)
+  Q20   bad_outcomes_blame_allocation            asked 39999 times (100.0%)
+  Q63   best_worst_battery                       asked 39999 times (100.0%)
+  Q78   speaker_appeal                           asked 39996 times (100.0%)
+  Q3    cultural_social_placement                asked 39995 times (100.0%)
+  Q56   effective_leader_style                   asked 39995 times (100.0%)
+  Q61   political_pitch_resonance                asked 39993 times (100.0%)
+  Q69   common_ground_salience                   asked 39992 times (100.0%)
+  Q76   success_attribution                      asked 39992 times (100.0%)
+  Q60   politically_important_identities         asked 39991 times (100.0%)
+
+NEVER-ASKED QUESTIONS
+----------------------------------------
+  ⚠ Q46 caregiver_emotional_availability (stage: stage3)
+  ⚠ Q6 surveillance_enforcement_due_process_bundle (stage: stage3)
+  ⚠ Q10 climate_energy_bundle (stage: stage3)
+  ⚠ Q16 criminal_justice_bundle (stage: stage3)
+  ⚠ Q34 threats_to_america_external_internal (stage: stage3)
+  ⚠ Q53 parents_politics_growing_up (stage: stage3)
+  ⚠ Q57 parents_political_engagement (stage: stage3)
+
+LEAST-ASKED QUESTIONS (bottom 10)
+----------------------------------------
+  Q58   neighborhood_safety_childhood            asked 1 times
+  Q45   what_changed_minds_through_history       asked 1 times
+  Q32   mainstream_media_accuracy_estimate       asked 1 times
+  Q54   religion_in_upbringing                   asked 2 times
+  Q52   political_membership_criterion_rewrite   asked 2 times
+  Q50   integration_expectations_rewrite         asked 2 times
+  Q26   vacation_new_vs_familiar                 asked 3 times
+  Q44   views_changed_in_10_years                asked 17 times
+  Q81   party_vs_cause_loyalty                   asked 38 times
+  Q84   institutions_harden_into_domination      asked 50 times
+
+TOP 20 CONFUSED PAIRS (most frequent co-top-2)
+----------------------------------------
+  002 Independent Social Democrat  ↔ 006 Fairness Pragmatist          1686 times
+  032 Hamiltonian Technocrat       ↔ 060 Hinge Citizen                1401 times
+  045 Rooted Social Reformer       ↔ 109 Alienated Outsider           1200 times
+  109 Alienated Outsider           ↔ 118 Survival Pragmatist          1178 times
+  084 Civilizational Conservative  ↔ 140 Market Green Modernist       1043 times
+  090 Hobbesian Guardian           ↔ 103 Grievance Mobilizer          1017 times
+  060 Hinge Citizen                ↔ 118 Survival Pragmatist          933 times
+  005 Pluralist Structuralist      ↔ 006 Fairness Pragmatist          806 times
+  005 Pluralist Structuralist      ↔ 140 Market Green Modernist       764 times
+  091 Security Paternalist         ↔ 097 Authority Pragmatist         714 times
+  090 Hobbesian Guardian           ↔ 139 Civic Assimilationist        710 times
+  060 Hinge Citizen                ↔ 091 Security Paternalist         689 times
+  010 Bread-and-Butter Progressive ↔ 109 Alienated Outsider           662 times
+  010 Bread-and-Butter Progressive ↔ 045 Rooted Social Reformer       555 times
+  060 Hinge Citizen                ↔ 088 Gentle Traditionalist        510 times
+  060 Hinge Citizen                ↔ 125 Reluctant Partisan           505 times
+  097 Authority Pragmatist         ↔ 139 Civic Assimilationist        487 times
+  010 Bread-and-Butter Progressive ↔ 139 Civic Assimilationist        474 times
+  010 Bread-and-Butter Progressive ↔ 097 Authority Pragmatist         409 times
+  071 Constitutional Conservative  ↔ 140 Market Green Modernist       356 times
+
+TARGETED MISSES (clean archetype simulations that missed)
+----------------------------------------
+  006 Fairness Pragmatist            → got 140 Market Green Modernist (rank=2)
+  019 Anarchist Mutualist            → got 020 Horizontalist Dissenter (rank=3)
+  021 Kantian Cosmopolitan           → got 001 Rawlsian Reformer (rank=2)
+  023 Rights Cosmopolitan            → got 001 Rawlsian Reformer (rank=3)
+  025 World-Minded Reformer          → got 001 Rawlsian Reformer (rank=2)
+  107 Resentful Localist             → got 098 Anti-Elite Populist (rank=2)
+
+SCORING ANOMALIES
+----------------------------------------
+  Low-margin clean targeted: 1/115
+  High-entropy (>4 bits) clean targeted: 105/115
+  Adversarial with high confidence (>0.5): 0/10850

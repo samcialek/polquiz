@@ -2671,74 +2671,7 @@ export const REPRESENTATIVE_QUESTIONS = [
     // "When you encounter a new political issue you haven't thought about before,
     //  what's the first thing you do?"
     // Behavioral framing reveals which dimension the respondent naturally
-    // activates first — engagement style, epistemological approach, or aesthetic
-    // evaluation. The "skip it" option provides a low-salience anchor for all three.
-    {
-        id: 80,
-        stage: "stage2",
-        section: "I",
-        promptShort: "political_attention_style",
-        uiType: "single_choice",
-        quality: 0.91,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "ENG", kind: "continuous", role: "salience", weight: 0.70, touchType: "attention_behavior" },
-            { node: "EPS", kind: "categorical", role: "salience", weight: 0.65, touchType: "attention_behavior" },
-            { node: "AES", kind: "categorical", role: "salience", weight: 0.55, touchType: "attention_behavior" }
-        ],
-        optionEvidence: {
-            // "I look up the facts and data first"
-            look_up_facts: {
-                continuous: {
-                    ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
-                },
-                categorical: {
-                    EPS: { sal: [0.03, 0.07, 0.25, 0.65] },
-                    AES: { sal: [0.20, 0.30, 0.30, 0.20] }
-                }
-            },
-            // "I pay attention to how leaders are talking about it"
-            watch_leaders: {
-                continuous: {
-                    ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
-                },
-                categorical: {
-                    EPS: { sal: [0.20, 0.30, 0.30, 0.20] },
-                    AES: { sal: [0.03, 0.07, 0.25, 0.65] }
-                }
-            },
-            // "I talk to people I trust about it"
-            ask_trusted_people: {
-                continuous: {
-                    ENG: { sal: [0.08, 0.20, 0.35, 0.37] }
-                },
-                categorical: {
-                    EPS: { sal: [0.12, 0.25, 0.33, 0.30] },
-                    AES: { sal: [0.15, 0.25, 0.30, 0.30] }
-                }
-            },
-            // "I check whether it affects me or my community directly"
-            check_personal_impact: {
-                continuous: {
-                    ENG: { sal: [0.03, 0.10, 0.30, 0.57] }
-                },
-                categorical: {
-                    EPS: { sal: [0.20, 0.28, 0.28, 0.24] },
-                    AES: { sal: [0.20, 0.28, 0.28, 0.24] }
-                }
-            },
-            // "I usually skip it — there's too much to keep up with"
-            skip_it: {
-                continuous: {
-                    ENG: { sal: [0.60, 0.25, 0.10, 0.05] }
-                },
-                categorical: {
-                    EPS: { sal: [0.50, 0.28, 0.15, 0.07] },
-                    AES: { sal: [0.50, 0.28, 0.15, 0.07] }
-                }
-            }
-        }
-    },
+    // Q80 — political_attention_style — DELETED per Sam's request (question didn't match options)
     // ═══════════════════════════════════════════════════════════════════════
     // NEW DISCRIMINATOR QUESTIONS (81-85) — from ChatGPT audit
     // Added 2026-03-28 to address simulation misses and thin node coverage

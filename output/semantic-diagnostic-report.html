@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8"><title>PRISM Semantic Playthrough — Diagnostic Report</title>
+<style>
+  body { font-family: -apple-system, sans-serif; margin: 20px; background: #0d1117; color: #c9d1d9; }
+  h1 { color: #58a6ff; } h2 { color: #8b949e; }
+  .stats { display: flex; gap: 20px; margin: 15px 0; }
+  .stat { background: #161b22; padding: 15px 25px; border-radius: 8px; border: 1px solid #30363d; }
+  .stat-val { font-size: 28px; font-weight: bold; color: #58a6ff; }
+  .stat-label { color: #8b949e; font-size: 13px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; }
+  th { background: #161b22; color: #58a6ff; padding: 8px 5px; text-align: left; position: sticky; top: 0; }
+  td { padding: 6px 5px; border-bottom: 1px solid #21262d; }
+  tr:hover { background: #161b2288; }
+  .legend { margin: 10px 0; font-size: 12px; }
+  .legend span { margin-right: 15px; padding: 2px 8px; border-radius: 3px; }
+</style>
+</head><body>
+<h1>🔬 PRISM Semantic Playthrough — Diagnostic Report</h1>
+<p>Updated: 4/1/2026, 10:58:06 AM | Progress: 128/128</p>
+<div class="stats">
+  <div class="stat"><div class="stat-val">3/128</div><div class="stat-label">Name Matches</div></div>
+  <div class="stat"><div class="stat-val">2.3%</div><div class="stat-label">Match Rate</div></div>
+  <div class="stat"><div class="stat-val">128</div><div class="stat-label">Completed</div></div>
+  <div class="stat"><div class="stat-val">0</div><div class="stat-label">Remaining</div></div>
+</div>
+<div class="legend">
+  Node diff colors: <span style="background:#2d7d3a20;color:#2d7d3a">0 (exact)</span>
+  <span style="background:#5a8f2920;color:#5a8f29">≤0.5</span>
+  <span style="background:#b89e0020;color:#b89e00">≤1.0</span>
+  <span style="background:#c96a0020;color:#c96a00">≤1.5</span>
+  <span style="background:#c4303020;color:#c43030">&gt;1.5</span>
+  | Format: Expected→Actual
+</div>
+<table>
+<tr><th></th><th>Expected Archetype</th><th>Result</th><th>Qs</th><th>Avg Δ</th>
+<th>MAT</th><th>CD</th><th>CU</th><th>MOR</th><th>PRO</th><th>COM</th><th>ZS</th><th>ONT_H</th><th>ONT_S</th><th>PF</th><th>TRB</th><th>ENG</th>
+<th>Top 3</th><th>Issues</th></tr>
+<tr>
+      <td>❌</td>
+      <td><b>[001] Rawlsian Reformer</b></td>
+      <td>Social Stabilizer<br><small>8.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (8.8%)<br>2. Movement Egalitarian (7.9%)<br>3. Independent Social Democrat (5.6%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[002] Independent Social Democrat</b></td>
+      <td>Movement Egalitarian<br><small>5.6%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (5.6%)<br>2. Social Stabilizer (5.4%)<br>3. Public Guardian (5.1%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[003] Welfare Modernizer</b></td>
+      <td>Movement Egalitarian<br><small>12.3%</small></td>
+      <td>43</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (12.3%)<br>2. Social Stabilizer (7.1%)<br>3. Welfare Modernizer (5.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[004] Labor Reformer</b></td>
+      <td>Movement Egalitarian<br><small>11.4%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (11.4%)<br>2. Insurgent Equalizer (7.1%)<br>3. Radical Leveler (6.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[005] Public Guardian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>51</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q51: error - claude --print failed: spawnSync cmd.exe ETIMEDOUT; Q51: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[006] Fairness Pragmatist</b></td>
+      <td>Social Stabilizer<br><small>4.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (4.8%)<br>2. Public Guardian (4.6%)<br>3. Evidence Reformer (4.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[007] Solidarist Reformer</b></td>
+      <td>Public Guardian<br><small>6.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Public Guardian (6.8%)<br>2. Social Stabilizer (4.4%)<br>3. Independent Social Democrat (4.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[008] Municipal Equalizer</b></td>
+      <td>Social Stabilizer<br><small>11.0%</small></td>
+      <td>40</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (11.0%)<br>2. Movement Egalitarian (5.5%)<br>3. Welfare Modernizer (4.4%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[009] Social Stabilizer</b></td>
+      <td>Halifax Moderate<br><small>7.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Halifax Moderate (7.8%)<br>2. Altar-and-Hearth Conservative (7.0%)<br>3. Gentle Traditionalist (5.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[010] Bread-and-Butter Progressive</b></td>
+      <td>Movement Egalitarian<br><small>7.6%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (7.6%)<br>2. Social Stabilizer (7.6%)<br>3. Public Guardian (4.4%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>✅</td>
+      <td><b>[011] Jacobin Egalitarian</b></td>
+      <td>Jacobin Egalitarian<br><small>25.5%</small></td>
+      <td>40</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Jacobin Egalitarian (25.5%)<br>2. Insurgent Equalizer (8.0%)<br>3. Radical Leveler (4.9%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[012] Class-War Leftist</b></td>
+      <td>Insurgent Equalizer<br><small>23.9%</small></td>
+      <td>46</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Insurgent Equalizer (23.9%)<br>2. Radical Leveler (16.4%)<br>3. Jacobin Egalitarian (10.5%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[013] Radical Leveler</b></td>
+      <td>Jacobin Egalitarian<br><small>23.7%</small></td>
+      <td>45</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Jacobin Egalitarian (23.7%)<br>2. Insurgent Equalizer (9.0%)<br>3. Radical Leveler (6.5%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[014] Movement Egalitarian</b></td>
+      <td>Jacobin Egalitarian<br><small>24.6%</small></td>
+      <td>41</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Jacobin Egalitarian (24.6%)<br>2. Insurgent Equalizer (8.4%)<br>3. Radical Leveler (6.5%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[015] Moral Firebrand</b></td>
+      <td>Civilizational Conservative<br><small>10.6%</small></td>
+      <td>35</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Civilizational Conservative (10.6%)<br>2. Insurgent Equalizer (5.5%)<br>3. Resentful Localist (5.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>✅</td>
+      <td><b>[016] Insurgent Equalizer</b></td>
+      <td>Insurgent Equalizer<br><small>29.9%</small></td>
+      <td>40</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Insurgent Equalizer (29.9%)<br>2. Radical Leveler (11.5%)<br>3. Jacobin Egalitarian (8.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[017] Uncompromising Redistributionist</b></td>
+      <td>Jacobin Egalitarian<br><small>17.5%</small></td>
+      <td>39</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Jacobin Egalitarian (17.5%)<br>2. Radical Leveler (6.8%)<br>3. Insurgent Equalizer (6.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[019] Anarchist Mutualist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>35</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q35: error - claude --print failed: spawnSync cmd.exe ETIMEDOUT; Q35: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[020] Horizontalist Dissenter</b></td>
+      <td>Uncompromising Redistributionist<br><small>16.0%</small></td>
+      <td>45</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Uncompromising Redistributionist (16.0%)<br>2. Radical Leveler (10.0%)<br>3. Horizontalist Dissenter (6.4%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[021] Kantian Cosmopolitan</b></td>
+      <td>Independent Social Democrat<br><small>10.2%</small></td>
+      <td>44</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Independent Social Democrat (10.2%)<br>2. World-Minded Reformer (6.0%)<br>3. Rawlsian Reformer (4.9%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[022] Pluralist Universalist</b></td>
+      <td>Rawlsian Reformer<br><small>4.9%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Rawlsian Reformer (4.9%)<br>2. Planetary Steward (4.9%)<br>3. Independent Social Democrat (4.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[023] Rights Cosmopolitan</b></td>
+      <td>Movement Egalitarian<br><small>10.7%</small></td>
+      <td>43</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (10.7%)<br>2. Horizontalist Dissenter (6.1%)<br>3. Insurgent Equalizer (4.1%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[024] Ethical Internationalist</b></td>
+      <td>Rawlsian Reformer<br><small>8.2%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Rawlsian Reformer (8.2%)<br>2. Independent Social Democrat (8.2%)<br>3. Horizontalist Dissenter (5.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[025] World-Minded Reformer</b></td>
+      <td>Movement Egalitarian<br><small>12.0%</small></td>
+      <td>43</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (12.0%)<br>2. Horizontalist Dissenter (4.4%)<br>3. Radical Leveler (4.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[026] Cosmopolitan Pragmatist</b></td>
+      <td>Public Guardian<br><small>4.6%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Public Guardian (4.6%)<br>2. Cultural Pluralist (4.2%)<br>3. Administrative Liberal (4.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[027] Popperian Liberal</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>52</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q52: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q52: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[028] Global Caretaker</b></td>
+      <td>Independent Social Democrat<br><small>9.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Independent Social Democrat (9.7%)<br>2. Social Stabilizer (5.5%)<br>3. World-Minded Reformer (5.4%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[029] Liberationist Progressive</b></td>
+      <td>Uncompromising Redistributionist<br><small>20.1%</small></td>
+      <td>45</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Uncompromising Redistributionist (20.1%)<br>2. Radical Leveler (14.0%)<br>3. Class-War Leftist (13.1%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[030] Cultural Pluralist</b></td>
+      <td>Public Guardian<br><small>5.1%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Public Guardian (5.1%)<br>2. Independent Social Democrat (4.9%)<br>3. Social Stabilizer (4.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[031] Planetary Steward</b></td>
+      <td>Movement Egalitarian<br><small>11.7%</small></td>
+      <td>52</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Movement Egalitarian (11.7%)<br>2. Independent Social Democrat (6.7%)<br>3. Welfare Modernizer (6.6%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[032] Hamiltonian Technocrat</b></td>
+      <td>Hinge Citizen<br><small>5.4%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Hinge Citizen (5.4%)<br>2. Spectator Citizen (3.8%)<br>3. Meritocratic Conservative (3.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[033] Systems Modernizer</b></td>
+      <td>Social Stabilizer<br><small>6.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (6.7%)<br>2. Public Guardian (4.8%)<br>3. Hamiltonian Technocrat (4.4%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[034] Evidence Reformer</b></td>
+      <td>Sporadic Alarm Voter<br><small>6.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Sporadic Alarm Voter (6.7%)<br>2. Survival Pragmatist (5.1%)<br>3. Public Guardian (4.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[035] Administrative Liberal</b></td>
+      <td>Hamiltonian Technocrat<br><small>6.9%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Hamiltonian Technocrat (6.9%)<br>2. Public Guardian (5.5%)<br>3. Social Stabilizer (5.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[036] Institutional Optimizer</b></td>
+      <td>Data-Driven Moderate<br><small>7.6%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Data-Driven Moderate (7.6%)<br>2. Administrative Liberal (5.5%)<br>3. Hamiltonian Technocrat (5.3%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[037] Fabian Modernizer</b></td>
+      <td>Public Guardian<br><small>6.0%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Public Guardian (6.0%)<br>2. Evidence Reformer (5.7%)<br>3. Social Stabilizer (5.5%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[039] Data-Driven Moderate</b></td>
+      <td>Sporadic Alarm Voter<br><small>5.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Sporadic Alarm Voter (5.7%)<br>2. Data-Driven Moderate (3.9%)<br>3. Hamiltonian Technocrat (3.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[040] Reform Engineer</b></td>
+      <td>Sporadic Alarm Voter<br><small>7.1%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Sporadic Alarm Voter (7.1%)<br>2. Hinge Citizen (4.3%)<br>3. Survival Pragmatist (4.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[042] Localist Progressive</b></td>
+      <td>Horizontalist Dissenter<br><small>4.5%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Horizontalist Dissenter (4.5%)<br>2. Movement Egalitarian (4.4%)<br>3. Cultural Pluralist (3.3%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[043] Neighborly Egalitarian</b></td>
+      <td>Independent Social Democrat<br><small>7.9%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Independent Social Democrat (7.9%)<br>2. Public Guardian (5.4%)<br>3. World-Minded Reformer (5.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[045] Rooted Social Reformer</b></td>
+      <td>Ecological Localist<br><small>7.1%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Ecological Localist (7.1%)<br>2. Localist Progressive (4.3%)<br>3. Solidaristic Localist (4.3%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[046] Pastoral Leftist</b></td>
+      <td>Ecological Localist<br><small>12.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Ecological Localist (12.7%)<br>2. Paternal Egalitarian (8.8%)<br>3. Neighborly Egalitarian (7.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[047] Common-Life Reformer</b></td>
+      <td>Social Stabilizer<br><small>6.6%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (6.6%)<br>2. Movement Egalitarian (4.9%)<br>3. Public Guardian (4.8%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[048] Solidaristic Localist</b></td>
+      <td>Survival Pragmatist<br><small>5.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Survival Pragmatist (5.8%)<br>2. Hinge Citizen (5.7%)<br>3. Crisis-Activated Sleeper (4.2%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[049] Paternal Egalitarian</b></td>
+      <td>Social Stabilizer<br><small>8.4%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Social Stabilizer (8.4%)<br>2. Hamiltonian Technocrat (3.8%)<br>3. Public Guardian (3.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[050] Religious Leftist</b></td>
+      <td>Jacobin Egalitarian<br><small>11.0%</small></td>
+      <td>51</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Jacobin Egalitarian (11.0%)<br>2. Ecological Localist (5.1%)<br>3. Moral Firebrand (5.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[051] Ecological Localist</b></td>
+      <td>Survival Pragmatist<br><small>4.1%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Survival Pragmatist (4.1%)<br>2. Civic Assimilationist (3.5%)<br>3. Spectator Citizen (3.0%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[052] Distributist Localist</b></td>
+      <td>Civic Traditionalist<br><small>4.7%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Civic Traditionalist (4.7%)<br>2. Public Guardian (4.4%)<br>3. Bread-and-Butter Progressive (4.1%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>✅</td>
+      <td><b>[053] Consensus Builder</b></td>
+      <td>Consensus Builder<br><small>4.3%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Consensus Builder (4.3%)<br>2. Arbiter Moderate (3.9%)<br>3. Reluctant Partisan (3.7%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[054] Arbiter Moderate</b></td>
+      <td>Hamiltonian Technocrat<br><small>7.8%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Hamiltonian Technocrat (7.8%)<br>2. Data-Driven Moderate (4.8%)<br>3. Administrative Liberal (3.3%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[055] Halifax Moderate</b></td>
+      <td>Hamiltonian Technocrat<br><small>5.2%</small></td>
+      <td>55</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small>1. Hamiltonian Technocrat (5.2%)<br>2. Data-Driven Moderate (4.1%)<br>3. Spectator Citizen (3.5%)</small></td>
+      <td><small>—</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[056] Institutional Centrist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>54</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q54: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q54: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[057] Temperate Pluralist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[059] Public-Minded Moderate</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[060] Hinge Citizen</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[061] Millian Liberal</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[062] Meritocratic Liberal</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[063] Enterprise Pluralist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[064] Market Optimist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[065] Opportunity Liberal</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[067] Free-Exchange Modernist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[069] Bleeding-Heart Libertarian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[070] Burkean Steward</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[071] Constitutional Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[072] Blackstone Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[073] Civic Traditionalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[074] Responsible Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[075] Institutional Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[076] Fiscal Gradualist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[077] Ordered Libertarian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[078] Meritocratic Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[079] National Developmentalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[081] Heritage Guardian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[082] Altar-and-Hearth Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[083] Sacred-Order Defender</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[084] Civilizational Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[085] Customary Localist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[086] Duty Traditionalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[087] Continuity Conservative</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[088] Gentle Traditionalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[089] Integral Traditionalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[090] Hobbesian Guardian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[091] Security Paternalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[092] Disciplined Majoritarian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[093] Stability-First Voter</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[094] Hard-State Manager</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[095] Emergency Orderist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[096] Civic Disciplinarian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[097] Authority Pragmatist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[098] Anti-Elite Populist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[099] Scarcity Populist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[100] Tribal Insurgent</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[101] Embattled Majoritarian</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[102] Folk Tribune</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[103] Grievance Mobilizer</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[104] National Protector</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[105] Combative Populist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[106] Leader-Centered Insurgent</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[107] Resentful Localist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[109] Alienated Outsider</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[110] Principled Abstainer</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[111] Diogenes Independent</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[112] Contrarian Intellectual</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[115] Quietist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[116] Quiet Middle</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[117] Comfortable Bystander</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[118] Survival Pragmatist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[119] Apolitical Striver</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[120] Good Neighbor</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[121] Spectator Citizen</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[122] Civic Minimalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[124] Crisis-Activated Sleeper</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[125] Reluctant Partisan</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[126] Single-Issue Activator</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[127] Tribal Loyalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[128] Loyal Democrat</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[129] Loyal Republican</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[130] Legacy Partisan</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[131] Duty Voter</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[132] Negative Partisan</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[133] Sporadic Alarm Voter</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[134] Progressive Civic Nationalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[135] Disruptive Cosmopolitan</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[136] Aspirational Traditionalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[137] Prophetic Revivalist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[138] Holistic Dissenter</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[139] Civic Assimilationist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr><tr>
+      <td>❌</td>
+      <td><b>[140] Market Green Modernist</b></td>
+      <td>TIMEOUT<br><small>0.0%</small></td>
+      <td>1</td>
+      <td style="font-weight:bold">—</td>
+      <td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td>
+      <td><small></small></td>
+      <td><small>Q1: error - claude --print failed: Command failed: claude --print --model claude-sonnet-4-20250514 < "C:\Users\Sam\Desktop\polmodel-clean\output\_claude_prompt.txt"; Q1: stuck on same question, skipping; Timed out or quiz did not complete</small></td>
+    </tr>
+</table>
+</body></html>

@@ -1,6 +1,10 @@
-// 124 archetypes (down from 132). The following 8 were removed because they
+// 122 archetypes (down from 132). The following 10 were removed because they
 // were chronic confusion sources — their node signatures overlapped too heavily
 // with neighboring archetypes, making them unresolvable within the quiz's
+// 14-node instrument:
+//   080 Chestertonian Traditionalist → merged into 091 Security Paternalist
+//   108 Passive Cynic → merged into 118 Survival Pragmatist
+// Previously removed 8:
 // question budget:
 //
 //   018  Social Avenger           — collapsed into 017 Uncompromising Redistributionist
@@ -12,7 +16,7 @@
 //   114  Political Nihilist       — collapsed into 111 Diogenes Independent
 //   123  Contented Householder    — collapsed into 122 Civic Minimalist
 //
-// Priors updated from 1/132 → 1/124 (uniform) to reflect the new total.
+// Priors uniform at 1/130.
 export const ARCHETYPES = [
     {
         id: "001",
@@ -136,9 +140,9 @@ export const ARCHETYPES = [
             MOR: { kind: "continuous", pos: 3, sal: 1 },
             PRO: { kind: "continuous", pos: 4, sal: 2 },
             COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ZS: { kind: "continuous", pos: 2, sal: 1 },
+            ZS: { kind: "continuous", pos: 2, sal: 2 }, // raised sal 1→2 (discriminator vs Social Stabilizer)
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 3, sal: 2 }, // raised sal 1→2 (discriminator vs Social Stabilizer)
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
@@ -402,7 +406,7 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 }, // raised sal 1→2 (help distinguish from Horizontalist Dissenter)
             PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1598,28 +1602,12 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         }
     },
-    {
-        id: "080",
-        name: "Chestertonian Traditionalist",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            CU: { kind: "continuous", pos: 2, sal: 2 },
-            MOR: { kind: "continuous", pos: 2, sal: 2 },
-            PRO: { kind: "continuous", pos: 4, sal: 2 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-            PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 3, sal: 2 },
-            ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
-    },
+    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Δ≥2 discriminators)
+    // {
+    //   id: "080",
+    //   name: "Chestertonian Traditionalist",
+    //   ...
+    // },
     {
         id: "081",
         name: "Heritage Guardian",
@@ -2214,28 +2202,12 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         }
     },
-    {
-        id: "108",
-        name: "Passive Cynic",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 0 },
-            CD: { kind: "continuous", pos: 3, sal: 0 },
-            CU: { kind: "continuous", pos: 3, sal: 0 },
-            MOR: { kind: "continuous", pos: 3, sal: 0 },
-            PRO: { kind: "continuous", pos: 2, sal: 1 },
-            COM: { kind: "continuous", pos: 3, sal: 0 },
-            ZS: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-            PF: { kind: "continuous", pos: 3, sal: 0 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.03, 0.04, 0.04, 0.05, 0.10, 0.74], sal: 2, antiCats: [0, 1, 2, 3] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
-        }
-    },
+    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Δ≥2 discriminators, profile was mostly sal=0)
+    // {
+    //   id: "108",
+    //   name: "Passive Cynic",
+    //   ...
+    // },
     {
         id: "109",
         name: "Alienated Outsider",
@@ -2330,7 +2302,7 @@ export const ARCHETYPES = [
         tier: "T1",
         prior: 1 / 130,
         nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 0 },
+            MAT: { kind: "continuous", pos: 3, sal: 1 }, // raised sal 0→1 (discriminator vs Ecological Localist)
             CD: { kind: "continuous", pos: 3, sal: 0 },
             CU: { kind: "continuous", pos: 3, sal: 0 },
             MOR: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -2338,7 +2310,7 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+            ONT_S: { kind: "continuous", pos: 3, sal: 1 }, // raised sal 0→1 (discriminator vs Ecological Localist)
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2752,7 +2724,7 @@ export const ARCHETYPES = [
             MAT: { kind: "continuous", pos: 5, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2 },
             CU: { kind: "continuous", pos: 5, sal: 2 },
-            MOR: { kind: "continuous", pos: 1, sal: 2 },
+            MOR: { kind: "continuous", pos: 5, sal: 2 }, // FIX: Cosmopolitan = wide moral circle (was 1)
             PRO: { kind: "continuous", pos: 1, sal: 2 }, // Anti-bureaucratic
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 1, sal: 1 },
@@ -2762,7 +2734,7 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
             EPS: { kind: "categorical", probs: [0.60, 0.05, 0.15, 0.05, 0.10, 0.05], sal: 2 },
-            AES: { kind: "categorical", probs: [0.60, 0.15, 0.05, 0.05, 0.10, 0.05], sal: 2 },
+            AES: { kind: "categorical", probs: [0.05, 0.10, 0.05, 0.05, 0.15, 0.60], sal: 2 }, // FIX: Disruptive = visionary, not statesman
         }
     },
     {
@@ -2772,13 +2744,13 @@ export const ARCHETYPES = [
         prior: 1 / 130,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2 },
-            CD: { kind: "continuous", pos: 2, sal: 2 },
-            CU: { kind: "continuous", pos: 4, sal: 2 },
-            MOR: { kind: "continuous", pos: 5, sal: 3 },
+            CD: { kind: "continuous", pos: 4, sal: 2 }, // FIX: Traditionalist = culturally conservative (was 2)
+            CU: { kind: "continuous", pos: 2, sal: 2 }, // FIX: Traditionalist = assimilationist (was 4)
+            MOR: { kind: "continuous", pos: 2, sal: 2 }, // FIX: Traditionalist = particularist (was 5/sal3)
             PRO: { kind: "continuous", pos: 3, sal: 2 },
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_H: { kind: "continuous", pos: 4, sal: 2 }, // Aspirational = optimistic (was 3/sal1)
             ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
@@ -2805,8 +2777,8 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 3 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.10, 0.05, 0.70], sal: 3 }, // Revelatory
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.60, 0.10, 0.05], sal: 3 }, // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic visionary
         }
     },
     {
@@ -2818,7 +2790,7 @@ export const ARCHETYPES = [
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
             CU: { kind: "continuous", pos: 4, sal: 1 },
-            MOR: { kind: "continuous", pos: 2, sal: 1 },
+            MOR: { kind: "continuous", pos: 4, sal: 2 }, // FIX: Holistic = broad concern (was 2/sal1)
             PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
@@ -2827,7 +2799,7 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 1, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.10, 0.05, 0.70], sal: 3 }, // Revelatory
+            EPS: { kind: "categorical", probs: [0.10, 0.05, 0.05, 0.50, 0.25, 0.05], sal: 3 }, // FIX: Holistic = intuitionist+autonomous, not nihilist
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.60, 0.10, 0.10], sal: 2 }, // Experiential
         }
     },
@@ -2839,7 +2811,7 @@ export const ARCHETYPES = [
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
-            CU: { kind: "continuous", pos: 5, sal: 2 },
+            CU: { kind: "continuous", pos: 1, sal: 3 }, // FIX: Assimilationist = CU=1, not CU=5 (was 5/sal2)
             MOR: { kind: "continuous", pos: 3, sal: 1 },
             PRO: { kind: "continuous", pos: 4, sal: 2 },
             COM: { kind: "continuous", pos: 3, sal: 1 },
@@ -2849,8 +2821,8 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 }, // Traditionalist
-            AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 }, // Systematic
+            EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 },
+            AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 },
         }
     },
     {
@@ -2862,7 +2834,7 @@ export const ARCHETYPES = [
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2 },
             CU: { kind: "continuous", pos: 5, sal: 2 },
-            MOR: { kind: "continuous", pos: 2, sal: 1 },
+            MOR: { kind: "continuous", pos: 4, sal: 2 }, // FIX: Green = wide moral concern (was 2/sal1)
             PRO: { kind: "continuous", pos: 5, sal: 2 },
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 1 },

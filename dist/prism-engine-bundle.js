@@ -161,9 +161,11 @@ var PrismEngine = (() => {
         MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
+        ZS: { kind: "continuous", pos: 2, sal: 2 },
+        // raised sal 1→2 (discriminator vs Social Stabilizer)
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+        // raised sal 1→2 (discriminator vs Social Stabilizer)
         PF: { kind: "continuous", pos: 2, sal: 1 },
         TRB: { kind: "continuous", pos: 2, sal: 1 },
         ENG: { kind: "continuous", pos: 4, sal: 1 },
@@ -427,7 +429,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        // raised sal 1→2 (help distinguish from Horizontalist Dissenter)
         PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
         TRB: { kind: "continuous", pos: 2, sal: 2 },
         ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1625,28 +1628,12 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
     },
-    {
-      id: "080",
-      name: "Chestertonian Traditionalist",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
-        ENG: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
-    },
+    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Δ≥2 discriminators)
+    // {
+    //   id: "080",
+    //   name: "Chestertonian Traditionalist",
+    //   ...
+    // },
     {
       id: "081",
       name: "Heritage Guardian",
@@ -2245,28 +2232,12 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
     },
-    {
-      id: "108",
-      name: "Passive Cynic",
-      tier: "T1",
-      prior: 1 / 130,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.03, 0.04, 0.04, 0.05, 0.1, 0.74], sal: 2, antiCats: [0, 1, 2, 3] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
-      }
-    },
+    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Δ≥2 discriminators, profile was mostly sal=0)
+    // {
+    //   id: "108",
+    //   name: "Passive Cynic",
+    //   ...
+    // },
     {
       id: "109",
       name: "Alienated Outsider",
@@ -2361,7 +2332,8 @@ var PrismEngine = (() => {
       tier: "T1",
       prior: 1 / 130,
       nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        MAT: { kind: "continuous", pos: 3, sal: 1 },
+        // raised sal 0→1 (discriminator vs Ecological Localist)
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
         MOR: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -2369,7 +2341,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        // raised sal 0→1 (discriminator vs Ecological Localist)
         PF: { kind: "continuous", pos: 3, sal: 0 },
         TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
