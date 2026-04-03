@@ -1161,8 +1161,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       },
       internal_division: {
         continuous: {
-          ZS: { pos: [0.05, 0.12, 0.30, 0.33, 0.20] },
-          TRB: { pos: [0.15, 0.22, 0.30, 0.22, 0.11] }
+          ZS: { pos: [0.05, 0.12, 0.30, 0.33, 0.20] }
         }
       },
       both_equally: {
@@ -1266,8 +1265,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     optionEvidence: {
       easier_access: {
         continuous: {
-          PRO: { pos: [0.04, 0.10, 0.22, 0.34, 0.30] },
-          TRB: { pos: [0.15, 0.22, 0.30, 0.22, 0.11] }
+          PRO: { pos: [0.04, 0.10, 0.22, 0.34, 0.30] }
         }
       },
       balanced_approach: {
@@ -2542,7 +2540,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       push_back_internally: {
         continuous: {
           PF:  { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
-          TRB: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
           ENG: { pos: [0.10, 0.20, 0.35, 0.25, 0.10] }
         }
       },
