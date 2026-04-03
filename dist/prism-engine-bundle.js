@@ -2990,26 +2990,27 @@ var PrismEngine = (() => {
       quality: 0.9,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "human_nature_proxy" }
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.35, touchType: "socialization_style" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.1, touchType: "human_nature_proxy" }
       ],
       pairMaps: {
         independence_vs_elders: {
           independence: {
-            continuous: { ONT_H: 0.6 },
+            continuous: { ONT_H: 0.25 },
             categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
           },
           respect_for_elders: {
-            continuous: { ONT_H: -0.6 },
+            continuous: { ONT_H: -0.25 },
             categorical: { EPS: EPS_PROTOTYPES.traditionalist, AES: AES_PROTOTYPES.pastoral }
           }
         },
         obedience_vs_self_reliance: {
           obedience: {
-            continuous: { ONT_H: -0.5 },
+            continuous: { ONT_H: -0.2 },
             categorical: { EPS: EPS_PROTOTYPES.institutionalist, AES: AES_PROTOTYPES.statesman }
           },
           self_reliance: {
-            continuous: { ONT_H: 0.5 },
+            continuous: { ONT_H: 0.2 },
             categorical: { EPS: EPS_PROTOTYPES.empiricist, AES: AES_PROTOTYPES.technocrat }
           }
         }
@@ -3044,10 +3045,10 @@ var PrismEngine = (() => {
       quality: 0.95,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "AES", kind: "categorical", role: "category", weight: 0.9, touchType: "leader_style" },
-        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "governance_style" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.1, touchType: "mobilization_proxy" },
-        { node: "AES", kind: "categorical", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
+        { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "leader_style" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.1, touchType: "governance_style" },
+        { node: "ENG", kind: "continuous", role: "salience", weight: 0.05, touchType: "mobilization_proxy" },
+        { node: "AES", kind: "categorical", role: "salience", weight: 0.88, touchType: "checkbox_salience" }
       ],
       optionEvidence: {
         channel_anger: {
@@ -3076,8 +3077,9 @@ var PrismEngine = (() => {
       quality: 0.96,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.7, touchType: "identity_ranking" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.4, touchType: "identity_ranking" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.78, touchType: "identity_ranking" },
+        { node: "PF", kind: "continuous", role: "position", weight: 0.42, touchType: "identity_ranking" },
+        { node: "PF", kind: "continuous", role: "salience", weight: 0.52, touchType: "identity_ranking" },
         { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
       ],
       rankingMap: {
@@ -3294,15 +3296,14 @@ var PrismEngine = (() => {
       quality: 0.58,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.2, touchType: "updating_proxy" },
-        { node: "PF", kind: "continuous", role: "position", weight: 0.1, touchType: "identity_rigidity_proxy" }
+        { node: "PF", kind: "continuous", role: "position", weight: 0.18, touchType: "identity_rigidity_proxy" }
       ],
       sliderMap: {
-        "0-20": { categorical: { EPS: { cat: EPS_PROTOTYPES.traditionalist } } },
-        "21-40": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-        "41-60": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
-        "61-80": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
-        "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } }
+        "0-20": { continuous: { PF: { pos: [0.03, 0.07, 0.15, 0.3, 0.45] } } },
+        "21-40": { continuous: { PF: { pos: [0.05, 0.1, 0.25, 0.3, 0.3] } } },
+        "41-60": { continuous: { PF: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] } } },
+        "61-80": { continuous: { PF: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] } } },
+        "81-100": { continuous: { PF: { pos: [0.45, 0.3, 0.15, 0.07, 0.03] } } }
       }
     },
     // Q49 — social_progress_salience (slider)
@@ -4583,40 +4584,33 @@ var PrismEngine = (() => {
       quality: 0.95,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "MAT", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-        { node: "CD", kind: "continuous", role: "salience", weight: 0.2, touchType: "best_worst" },
-        { node: "CU", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-        { node: "MOR", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-        { node: "PRO", kind: "continuous", role: "salience", weight: 0.3, touchType: "best_worst" },
-        { node: "EPS", kind: "categorical", role: "salience", weight: 0.35, touchType: "best_worst" },
-        { node: "AES", kind: "categorical", role: "salience", weight: 0.3, touchType: "best_worst" },
-        { node: "COM", kind: "continuous", role: "salience", weight: 0.3, touchType: "best_worst" },
-        { node: "ZS", kind: "continuous", role: "salience", weight: 0.2, touchType: "best_worst" },
-        { node: "ONT_H", kind: "continuous", role: "salience", weight: 0.2, touchType: "best_worst" },
-        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.2, touchType: "best_worst" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.2, touchType: "best_worst" }
+        { node: "MOR", kind: "continuous", role: "salience", weight: 0.38, touchType: "best_worst_asymmetric" },
+        { node: "PRO", kind: "continuous", role: "salience", weight: 0.34, touchType: "best_worst_asymmetric" },
+        { node: "PF", kind: "continuous", role: "salience", weight: 0.3, touchType: "best_worst_asymmetric" },
+        { node: "TRB", kind: "continuous", role: "salience", weight: 0.3, touchType: "best_worst_asymmetric" },
+        { node: "MAT", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+        { node: "CU", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+        { node: "COM", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.18, touchType: "best_worst_asymmetric" }
       ],
       rankingMap: {
         fairness: {
-          continuous: { MAT: -0.5, MOR: 0.4, PRO: 0.3 }
+          continuous: { MAT: -0.5, MOR: 0.5, PRO: 0.25 }
         },
         procedural_integrity: {
-          continuous: { PRO: 0.6, COM: 0.3 }
+          continuous: { PRO: 0.65, COM: 0.25 }
         },
         national_strength: {
-          continuous: { CU: -0.5, TRB: 0.4, ZS: -0.3 }
+          continuous: { CU: -0.45, TRB: 0.45, ZS: -0.25 }
         },
         community_bonds: {
-          continuous: { COM: 0.5, TRB: -0.3, MOR: 0.3 }
+          continuous: { COM: 0.45, TRB: -0.25, MOR: 0.35 }
         },
         individual_freedom: {
-          continuous: { PRO: 0.5, MAT: 0.3 }
+          continuous: { PRO: 0.55, MAT: 0.25 }
         },
         tradition_continuity: {
-          continuous: { CD: -0.5, CU: -0.4 }
+          continuous: { CD: -0.45, CU: -0.35 }
         }
       }
     },
@@ -4898,9 +4892,9 @@ var PrismEngine = (() => {
       quality: 0.92,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "PF", kind: "continuous", role: "position", weight: 0.9, touchType: "identity_loyalty" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.35, touchType: "camp_attachment" },
-        { node: "ENG", kind: "continuous", role: "position", weight: 0.2, touchType: "activation_proxy" }
+        { node: "PF", kind: "continuous", role: "position", weight: 0.92, touchType: "identity_loyalty" },
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.18, touchType: "activation_proxy" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.1, touchType: "camp_attachment" }
       ],
       optionEvidence: {
         // A: Say so publicly, even if it weakens my side
@@ -4948,10 +4942,10 @@ var PrismEngine = (() => {
       quality: 0.91,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "CD", kind: "continuous", role: "position", weight: 0.75, touchType: "cultural_direction" },
-        { node: "CU", kind: "continuous", role: "position", weight: 0.85, touchType: "cultural_uniformity" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "moral_scope" },
-        { node: "MAT", kind: "continuous", role: "position", weight: 0.2, touchType: "economics_signal" }
+        { node: "CD", kind: "continuous", role: "position", weight: 0.78, touchType: "cultural_direction" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.88, touchType: "cultural_uniformity" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "moral_scope" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.08, touchType: "economics_signal" }
       ],
       optionEvidence: {
         // A: Preserve inherited culture, tighter limits on openness
@@ -5117,9 +5111,9 @@ var PrismEngine = (() => {
       quality: 0.91,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "PRO", kind: "continuous", role: "position", weight: 0.8, touchType: "procedural_legitimacy" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.35, touchType: "cultural_direction" },
-        { node: "COM", kind: "continuous", role: "position", weight: 0.2, touchType: "compromise_signal" }
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.88, touchType: "procedural_legitimacy" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.2, touchType: "cultural_direction" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.08, touchType: "compromise_signal" }
       ],
       optionEvidence: {
         // A: It carries inherited ways of life forward
