@@ -930,18 +930,20 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["convict_innocent", "free_guilty"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
-      { node: "PRO", kind: "continuous", role: "salience", weight: 0.60, touchType: "error_asymmetry" },
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.15, touchType: "human_motive_proxy" }
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.70, touchType: "ratio_salience" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.12, touchType: "human_motive_proxy" }
     ],
     optionEvidence: {
       convict_innocent: {
         continuous: {
-          PRO: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
+          PRO: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] },
+          MOR: { pos: [0.08, 0.18, 0.30, 0.26, 0.18] }
         },
       },
       free_guilty: {
         continuous: {
-          PRO: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] }
+          PRO: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] },
+          MOR: { pos: [0.18, 0.26, 0.30, 0.18, 0.08] }
         },
       }
     }
@@ -961,22 +963,24 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     options: ["fp", "fn"],
     touchProfile: [
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "error_asymmetry" },
-      { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "error_asymmetry" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.25, touchType: "error_asymmetry" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "deservingness_proxy" }
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.72, touchType: "error_asymmetry" },
+      { node: "MAT", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.22, touchType: "error_asymmetry" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "deservingness_proxy" }
     ],
     optionEvidence: {
       fp: {
         continuous: {
           MAT: { pos: [0.02, 0.08, 0.22, 0.35, 0.33] },
-          MOR: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] }
+          MOR: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] },
+          PRO: { pos: [0.10, 0.18, 0.32, 0.24, 0.16] }
         }
       },
       fn: {
         continuous: {
           MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
-          MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
+          MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] },
+          PRO: { pos: [0.16, 0.24, 0.32, 0.18, 0.10] }
         }
       }
     }
@@ -1029,21 +1033,23 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     options: ["allow_harmful", "censor_legitimate"],
     touchProfile: [
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.70, touchType: "speech_harm_tradeoff" },
-      { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "speech_harm_tradeoff" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "truth_authority_proxy" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "pluralism_proxy" }
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.72, touchType: "speech_harm_tradeoff" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "truth_authority_proxy" },
+      { node: "COM", kind: "continuous", role: "position", weight: 0.12, touchType: "pluralism_proxy" }
     ],
     optionEvidence: {
       allow_harmful: {
         continuous: {
-          PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] }
+          PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] },
+          COM: { pos: [0.18, 0.24, 0.30, 0.18, 0.10] }
         },
         categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
       },
       censor_legitimate: {
         continuous: {
-          PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] }
+          PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] },
+          COM: { pos: [0.10, 0.18, 0.30, 0.24, 0.18] }
         },
         categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
       }
@@ -1107,22 +1113,24 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     options: ["deport_legal", "let_stay_illegal"],
     touchProfile: [
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "boundary_error_asymmetry" },
-      { node: "CU", kind: "continuous", role: "position", weight: 0.45, touchType: "boundary_error_asymmetry" },
-      { node: "CU", kind: "continuous", role: "salience", weight: 0.50, touchType: "boundary_error_asymmetry" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "moral_scope_boundary" }
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.62, touchType: "boundary_error_asymmetry" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.56, touchType: "ratio_salience" },
+      { node: "CU", kind: "continuous", role: "position", weight: 0.22, touchType: "boundary_error_asymmetry" },
+      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.12, touchType: "boundary_error_asymmetry" }
     ],
     optionEvidence: {
       deport_legal: {
         continuous: {
-          CU: { pos: [0.01, 0.04, 0.12, 0.33, 0.50] },
-          MOR: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
+          PRO: { pos: [0.06, 0.12, 0.26, 0.30, 0.26] },
+          CU: { pos: [0.06, 0.12, 0.24, 0.30, 0.28] },
+          ONT_S: { pos: [0.16, 0.20, 0.30, 0.22, 0.12] }
         }
       },
       let_stay_illegal: {
         continuous: {
-          CU: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
-          MOR: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] }
+          PRO: { pos: [0.26, 0.30, 0.26, 0.12, 0.06] },
+          CU: { pos: [0.28, 0.30, 0.24, 0.12, 0.06] },
+          ONT_S: { pos: [0.12, 0.22, 0.30, 0.20, 0.16] }
         }
       }
     }
