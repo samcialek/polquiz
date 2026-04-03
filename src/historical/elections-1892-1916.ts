@@ -46,7 +46,7 @@ const election1892: Election = {
       COM: 3,   // Mixed - principled and rigid on gold standard, but pragmatic governor
       ZS: 2,    // Positive-sum lean - believed free trade expands prosperity
       ONT_H: 3, // Moderate realism - civic republican, duty-bound, neither optimist nor pessimist
-      ONT_S: 2, // System mostly fine - just needs honest administration, not structural reform
+      ONT_S: 4, // System mostly fine - just needs honest administration, not structural reform
       PF: 4,    // Strong Democrat - Bourbon wing leader, party standard-bearer
       TRB: 2,   // Low tribal - above-the-fray reformer, anti-machine
       ENG: 4,   // Engaged - ran three times, serious about governance
@@ -65,7 +65,7 @@ const election1892: Election = {
       COM: 3,   // Mixed - stiff, formal, poor at building personal alliances ("White House iceberg")
       ZS: 3,    // Mixed - tariff protection implies some zero-sum thinking on trade
       ONT_H: 2, // Skeptical - conservative establishment, human nature is fixed
-      ONT_S: 1, // System fine - business-led growth, government protects industry
+      ONT_S: 5, // System fine - business-led growth, government protects industry
       PF: 5,    // Maximum partisan - grandson of president, GOP establishment through and through
       TRB: 3,   // Moderate tribal - Union veteran identity, but patrician style
       ENG: 3,   // Moderate - stiff campaigner, let surrogates do the work
@@ -84,7 +84,7 @@ const election1892: Election = {
       COM: 1,   // Never compromise - insurgent, rejected both parties as corrupt
       ZS: 4,    // Zero-sum lean - banks and railroads robbing the farmers, class war framing
       ONT_H: 3, // Mixed - believed common people were good but elites were corrupt
-      ONT_S: 5, // Maximum structuralist - entire financial system rigged against farmers
+      ONT_S: 1, // Maximum structuralist - entire financial system rigged against farmers
       PF: 1,    // Maximum independent - founded new party, rejected both old ones
       TRB: 5,   // Maximum tribal - farmer/agrarian class identity, "the people" vs. "the plutocrats"
       ENG: 5,   // Maximum engagement - launched third party, barnstormed the country
@@ -120,7 +120,7 @@ const election1896: Election = {
       COM: 5,   // Maximum compromiser — Hanna coalition-builder
       ZS: 2,    // Positive-sum — prosperity
       ONT_H: 3, // Moderate
-      ONT_S: 1, // System fine — gold standard works
+      ONT_S: 5, // System fine — gold standard works
       PF: 4,    // Strong partisan
       TRB: 2,   // Low tribal — broad appeal
       ENG: 3,   // Moderate — front-porch
@@ -139,7 +139,7 @@ const election1896: Election = {
       COM: 1,   // Never compromise - "shall not crucify mankind," absolutist rhetoric
       ZS: 4,    // Zero-sum - banks stealing from farmers, Eastern money vs. Western producers
       ONT_H: 4, // Optimistic - believed common people would triumph, democratic faith
-      ONT_S: 5, // Maximum structuralist - financial system rigged, gold standard is oppression
+      ONT_S: 1, // Maximum structuralist - financial system rigged, gold standard is oppression
       PF: 3,    // Moderate - fused Democratic and Populist tickets, but also alienated Gold Democrats
       TRB: 5,   // Maximum tribal - agrarian/producer class vs. Eastern financiers, "the people"
       ENG: 5,   // Maximum engagement - 18,000 miles of barnstorming, first modern campaign
@@ -174,7 +174,7 @@ const election1900: Election = {
       COM: 4,   // Compromiser - managed diverse party coalition, pragmatic
       ZS: 2,    // Positive-sum - "full dinner pail," prosperity expanding through empire
       ONT_H: 3, // Moderate - steady stewardship, neither utopian nor pessimistic
-      ONT_S: 1, // System fine - prosperity proves the system works
+      ONT_S: 5, // System fine - prosperity proves the system works
       PF: 5,    // Maximum partisan - dominant GOP machine
       TRB: 3,   // Moderate tribal - patriotic/imperial identity but broad prosperity appeal
       ENG: 4,   // Engaged - wartime president, seeking second term
@@ -193,7 +193,7 @@ const election1900: Election = {
       COM: 1,   // Never compromise - same absolutist populist stance
       ZS: 4,    // Zero-sum - imperialism as exploitation, banks still robbing the people
       ONT_H: 4, // Optimistic - democracy and self-government for all peoples
-      ONT_S: 5, // Maximum structuralist - financial and now imperial system is rigged
+      ONT_S: 1, // Maximum structuralist - financial and now imperial system is rigged
       PF: 4,    // Stronger partisan - more clearly Democratic this time, less Populist fusion
       TRB: 5,   // Maximum tribal - same agrarian class identity
       ENG: 5,   // Maximum engagement - another massive barnstorming campaign
@@ -248,7 +248,7 @@ const election1904: Election = {
       COM: 5,   // Maximum compromiser — bland consensus pick
       ZS: 2,    // Positive-sum
       ONT_H: 2, // Skeptical — feared change
-      ONT_S: 1, // System fine — just enforce existing law
+      ONT_S: 5, // System fine — just enforce existing law
       PF: 5,    // Maximum Democrat — chosen to reclaim party
       TRB: 1,   // Minimal tribal — anti-populist, bland
       ENG: 1,   // Extremely low engagement — one of the worst campaigns in history
@@ -283,7 +283,7 @@ const election1908: Election = {
       COM: 4,   // Compromiser - amiable, sought consensus, collegiate temperament
       ZS: 2,    // Positive-sum - believed in orderly growth through law
       ONT_H: 3, // Moderate - legal realism, cautious temperament
-      ONT_S: 2, // System mostly fine - needs honest administration and careful legal reform
+      ONT_S: 4, // System mostly fine - needs honest administration and careful legal reform
       PF: 4,    // Strong Republican - TR's chosen heir, party establishment
       TRB: 2,   // Low tribal - judicial temperament, didn't play identity politics
       ENG: 3,   // Moderate - reluctant campaigner, would rather have been on the bench
@@ -302,7 +302,7 @@ const election1908: Election = {
       COM: 2,   // Low compromise - ideological progressive, wouldn't water down demands
       ZS: 4,    // Zero-sum - railroads and trusts extracting from the common people
       ONT_H: 4, // Optimistic - believed in democratic self-government, common people's wisdom
-      ONT_S: 4, // Structuralist - system needs major reform, but mellowed from 1896's maximalism
+      ONT_S: 2, // Structuralist - system needs major reform, but mellowed from 1896's maximalism
       PF: 5,    // Maximum partisan - three-time Democratic nominee, party defined by his populism
       TRB: 4,   // High tribal - farmer/worker identity, class politics, but less maximalist
       ENG: 5,   // Maximum engagement - another barnstorming campaign, tireless
@@ -341,7 +341,7 @@ const election1912: Election = {
       COM: 3,   // Mixed - principled, moralistic, wouldn't easily bend, but could legislate
       ZS: 2,    // Positive-sum - "New Freedom" frees competition, everyone benefits
       ONT_H: 4, // Optimistic - progressive faith in democratic improvement
-      ONT_S: 4, // Structuralist - trusts must be broken, system needs reform
+      ONT_S: 2, // Structuralist - trusts must be broken, system needs reform
       PF: 5,    // Maximum partisan - rebuilt Democratic Party as progressive vehicle
       TRB: 3,   // Moderate tribal - intellectual progressive coalition, not class warrior
       ENG: 5,   // Maximum engagement - academic turned passionate campaigner
@@ -360,7 +360,7 @@ const election1912: Election = {
       COM: 2,   // Low compromise - walked out of GOP, launched new party, uncompromising on reform
       ZS: 2,    // Positive-sum - government regulation grows the pie for everyone, "Square Deal" expanded
       ONT_H: 5, // Maximum optimistic - "strenuous life," humans can be perfected through reform
-      ONT_S: 4, // Structuralist - corporations must be regulated, government must be stronger
+      ONT_S: 2, // Structuralist - corporations must be regulated, government must be stronger
       PF: 1,    // Maximum independent - broke from his own party, created Bull Moose
       TRB: 4,   // High tribal - progressive movement identity, us-vs-bosses
       ENG: 5,   // Maximum engagement - shot during campaign, gave speech anyway, boundless energy
@@ -379,7 +379,7 @@ const election1912: Election = {
       COM: 3,   // Mixed - tried to hold party together but failed, rigid on principles
       ZS: 3,    // Mixed - believed in steady legal order, not dynamic reform
       ONT_H: 2, // Skeptical - conservative realism, judicial caution about human improvement
-      ONT_S: 1, // System fine - courts and constitutions work, leave them alone
+      ONT_S: 5, // System fine - courts and constitutions work, leave them alone
       PF: 5,    // Maximum partisan - fought to hold GOP establishment against TR insurgency
       TRB: 2,   // Low tribal - judicial temperament, establishment dignity
       ENG: 3,   // Moderate - defensive campaign, dispirited, knew he'd lose
@@ -435,7 +435,7 @@ const election1916: Election = {
       COM: 3,   // Mixed — couldn't reunite the wings
       ZS: 3,    // Mixed
       ONT_H: 2, // Pessimistic — wanted war preparedness
-      ONT_S: 1, // System fine — just needs Republican management
+      ONT_S: 5, // System fine — just needs Republican management
       PF: 5,    // Maximum Republican partisan
       TRB: 4,   // Tribal — GOP establishment
       ENG: 3,   // Moderate — stiff campaigner

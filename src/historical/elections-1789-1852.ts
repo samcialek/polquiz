@@ -18,7 +18,7 @@ const election1789: Election = {
       COM: 5,   // Maximum compromiser - held factions together
       ZS: 2,    // Positive-sum - new nation optimism
       ONT_H: 4, // Optimistic - republic experiment
-      ONT_S: 2, // System new and working - he's building it
+      ONT_S: 4, // System new and working - he's building it
       PF: 1,    // Maximum independent - warned against factions
       TRB: 1,   // No tribal - national father figure
       ENG: 5,   // Maximum - accepted the call
@@ -37,7 +37,7 @@ const election1792: Election = {
       party: "Independent" as any,
       year: 1792,
       MAT: 3, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 5,
-      ZS: 2, ONT_H: 4, ONT_S: 2, PF: 1, TRB: 1, ENG: 4,
+      ZS: 2, ONT_H: 4, ONT_S: 4, PF: 1, TRB: 1, ENG: 4,
       EPS: 1, AES: 0,
     },
   ],
@@ -61,7 +61,7 @@ const election1796: Election = {
       COM: 3,   // Mixed - principled but stubborn
       ZS: 3,    // Mixed - worried about French threat
       ONT_H: 2, // Pessimistic - distrusted popular passions
-      ONT_S: 2, // System working - defend it from demagogues
+      ONT_S: 4, // System working - defend it from demagogues
       PF: 4,    // Strong Federalist
       TRB: 3,   // Moderate - New England identity
       ENG: 4,   // Engaged
@@ -80,7 +80,7 @@ const election1796: Election = {
       COM: 2,   // Low compromise - partisan opposition
       ZS: 3,    // Mixed
       ONT_H: 4, // Optimistic
-      ONT_S: 4, // System corrupted by Federalists
+      ONT_S: 2, // System corrupted by Federalists
       PF: 5,    // Maximum D-R partisan
       TRB: 4,   // Factional - planter/agrarian identity
       ENG: 4,   // Engaged
@@ -106,7 +106,7 @@ const election1800: Election = {
       COM: 2,   // Low compromise - revolutionary rhetoric
       ZS: 2,    // Positive-sum
       ONT_H: 5, // Maximum optimistic
-      ONT_S: 4, // System needs overhaul - "revolution" against Federalist tyranny
+      ONT_S: 2, // System needs overhaul - "revolution" against Federalist tyranny
       PF: 5,    // Maximum partisan - built party machine
       TRB: 4,   // High tribal - yeoman farmer vs. merchant class
       ENG: 5,   // Maximum engagement
@@ -125,7 +125,7 @@ const election1800: Election = {
       COM: 2,   // Low compromise - stubborn
       ZS: 4,    // Zero-sum - French threat, partisan enemies
       ONT_H: 1, // Maximum pessimistic - distrusted the mob
-      ONT_S: 1, // System working - defend it
+      ONT_S: 5, // System working - defend it
       PF: 5,    // Maximum Federalist
       TRB: 4,   // High tribal - Federalist establishment
       ENG: 4,   // Engaged but aloof
@@ -144,7 +144,7 @@ const election1804: Election = {
       party: "Democratic-Republican" as any,
       year: 1804,
       MAT: 2, CD: 2, CU: 4, MOR: 4, PRO: 3, COM: 3,
-      ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 3, ENG: 5,
+      ZS: 2, ONT_H: 4, ONT_S: 4, PF: 4, TRB: 3, ENG: 5,
       EPS: 0, AES: 5,
     },
     {
@@ -152,7 +152,7 @@ const election1804: Election = {
       party: "Federalist" as any,
       year: 1804,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
-      ZS: 4, ONT_H: 2, ONT_S: 1, PF: 4, TRB: 4, ENG: 3,
+      ZS: 4, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
     },
   ],
@@ -174,7 +174,7 @@ const election1808: Election = {
       COM: 4,   // Compromiser - Great Compromiser at Convention
       ZS: 2,    // Positive-sum
       ONT_H: 4, // Optimistic
-      ONT_S: 2, // System working - he designed it
+      ONT_S: 4, // System working - he designed it
       PF: 4,    // Strong D-R
       TRB: 2,   // Low tribal - intellectual
       ENG: 4,   // Engaged
@@ -186,7 +186,7 @@ const election1808: Election = {
       party: "Federalist" as any,
       year: 1808,
       MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
-      ZS: 4, ONT_H: 2, ONT_S: 1, PF: 4, TRB: 4, ENG: 3,
+      ZS: 4, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
     },
   ],
@@ -209,7 +209,7 @@ const election1812: Election = {
       party: "Federalist" as any,
       year: 1812,
       MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 5, COM: 4,
-      ZS: 3, ONT_H: 3, ONT_S: 2, PF: 3, TRB: 3, ENG: 4,
+      ZS: 3, ONT_H: 3, ONT_S: 4, PF: 3, TRB: 3, ENG: 4,
       EPS: 1, AES: 1,
     },
   ],
@@ -224,7 +224,7 @@ const election1816: Election = {
       party: "Democratic-Republican" as any,
       year: 1816,
       MAT: 2, CD: 2, CU: 4, MOR: 4, PRO: 4, COM: 5,
-      ZS: 1, ONT_H: 5, ONT_S: 1, PF: 3, TRB: 2, ENG: 4,
+      ZS: 1, ONT_H: 5, ONT_S: 5, PF: 3, TRB: 2, ENG: 4,
       EPS: 1, AES: 0,
     },
     {
@@ -232,7 +232,7 @@ const election1816: Election = {
       party: "Federalist" as any,
       year: 1816,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
-      ZS: 4, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 4, ENG: 3,
+      ZS: 4, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
     },
   ],
@@ -247,7 +247,7 @@ const election1820: Election = {
       party: "Democratic-Republican" as any,
       year: 1820,
       MAT: 3, CD: 3, CU: 4, MOR: 4, PRO: 4, COM: 5,
-      ZS: 1, ONT_H: 5, ONT_S: 1, PF: 2, TRB: 1, ENG: 3,
+      ZS: 1, ONT_H: 5, ONT_S: 5, PF: 2, TRB: 1, ENG: 3,
       EPS: 1, AES: 0,
     },
   ],
@@ -271,7 +271,7 @@ const election1824: Election = {
       COM: 4,   // Compromiser - corrupt bargain
       ZS: 2,    // Positive-sum
       ONT_H: 2, // Pessimistic - distrusted popular passions
-      ONT_S: 1, // System working - defend from demagogues
+      ONT_S: 5, // System working - defend from demagogues
       PF: 4,    // Strong establishment
       TRB: 2,   // Low tribal
       ENG: 4,   // Engaged
@@ -290,7 +290,7 @@ const election1824: Election = {
       COM: 2,   // Low compromise but not extreme
       ZS: 3,    // Mixed
       ONT_H: 3, // Moderate
-      ONT_S: 4, // System needs reform - elites rigged it
+      ONT_S: 2, // System needs reform - elites rigged it
       PF: 3,    // Building a new party
       TRB: 4,   // Tribal - common man identity
       ENG: 5,   // Maximum engagement
@@ -302,7 +302,7 @@ const election1824: Election = {
       party: "Democratic-Republican" as any,
       year: 1824,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 4,
-      ZS: 4, ONT_H: 2, ONT_S: 1, PF: 5, TRB: 4, ENG: 3,
+      ZS: 4, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
     },
     {
@@ -317,7 +317,7 @@ const election1824: Election = {
       COM: 5,   // Maximum compromiser
       ZS: 2,    // Positive-sum
       ONT_H: 3, // Moderate
-      ONT_S: 1, // System working
+      ONT_S: 5, // System working
       PF: 4,    // Strong establishment
       TRB: 2,   // Low tribal
       ENG: 5,   // Maximum
@@ -336,7 +336,7 @@ const election1828: Election = {
       party: "Democratic",
       year: 1828,
       MAT: 2, CD: 3, CU: 3, MOR: 3, PRO: 2, COM: 2,
-      ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 4, ENG: 5,
+      ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
       EPS: 3, AES: 4,
     },
     {
@@ -344,7 +344,7 @@ const election1828: Election = {
       party: "National Republican" as any,
       year: 1828,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
-      ZS: 3, ONT_H: 2, ONT_S: 1, PF: 4, TRB: 2, ENG: 3,
+      ZS: 3, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 2, ENG: 3,
       EPS: 1, AES: 1,
     },
   ],
@@ -360,7 +360,7 @@ const election1832: Election = {
       year: 1832,
       MAT: 2,   // Bank War - populist anti-elite economics
       CD: 3, CU: 3, MOR: 3, PRO: 2, COM: 2,
-      ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 4, ENG: 5,
+      ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
       EPS: 3, AES: 4,
     },
     {
@@ -368,7 +368,7 @@ const election1832: Election = {
       party: "National Republican" as any,
       year: 1832,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
-      ZS: 2, ONT_H: 2, ONT_S: 1, PF: 5, TRB: 2, ENG: 5,
+      ZS: 2, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
       EPS: 1, AES: 0,
     },
   ],
@@ -424,7 +424,7 @@ const election1840: Election = {
       COM: 4,   // Compromiser
       ZS: 2,    // Positive-sum - prosperity message
       ONT_H: 3, // Moderate
-      ONT_S: 4, // System needs change - Depression of 1837 blamed on Van Buren
+      ONT_S: 2, // System needs change - Depression of 1837 blamed on Van Buren
       PF: 4,    // Strong Whig
       TRB: 4,   // High tribal - "log cabin and hard cider" populism
       ENG: 5,   // Maximum - massive campaign
@@ -443,7 +443,7 @@ const election1840: Election = {
       COM: 1,   // Never compromise - stubborn incumbent
       ZS: 5,    // Zero-sum - depression scarcity thinking
       ONT_H: 1, // Pessimistic - failed
-      ONT_S: 1, // System working (incumbent defense)
+      ONT_S: 5, // System working (incumbent defense)
       PF: 5, TRB: 5, ENG: 5,
       EPS: 1, AES: 1,
     },
@@ -478,7 +478,7 @@ const election1844: Election = {
       party: "Whig" as any,
       year: 1844,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
-      ZS: 1, ONT_H: 2, ONT_S: 1, PF: 5, TRB: 1, ENG: 5,
+      ZS: 1, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 1, ENG: 5,
       EPS: 1, AES: 0,
     },
   ],
@@ -500,7 +500,7 @@ const election1848: Election = {
       COM: 4,   // Compromiser - "no party" stance
       ZS: 3,    // Mixed
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System fine - just needs steady hand
+      ONT_S: 4, // System fine - just needs steady hand
       PF: 1,    // Maximum independent - "I am a Whig but not an ultra Whig"
       TRB: 3,   // Moderate - military hero identity
       ENG: 3,   // Moderate - reluctant candidate
@@ -512,7 +512,7 @@ const election1848: Election = {
       party: "Democratic",
       year: 1848,
       MAT: 1, CD: 1, CU: 5, MOR: 5, PRO: 1, COM: 2,
-      ZS: 4, ONT_H: 3, ONT_S: 4, PF: 5, TRB: 5, ENG: 4,
+      ZS: 4, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 5, ENG: 4,
       EPS: 3, AES: 0,
     },
     {
@@ -527,7 +527,7 @@ const election1848: Election = {
       COM: 1,   // Never compromise - broke from Democrats over slavery
       ZS: 2,    // Positive-sum - free labor ideology
       ONT_H: 4, // Optimistic
-      ONT_S: 5, // System broken - slavery corrupting republic
+      ONT_S: 1, // System broken - slavery corrupting republic
       PF: 1,    // Independent - third party
       TRB: 3,   // Moderate
       ENG: 5,   // Maximum - came out of retirement
@@ -553,7 +553,7 @@ const election1852: Election = {
       COM: 3,   // Mixed - tried to hold party together
       ZS: 3,    // Mixed
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System working - status quo on slavery
+      ONT_S: 4, // System working - status quo on slavery
       PF: 5,    // Maximum Democrat - party unity above all
       TRB: 4,   // High tribal - Democratic identity
       ENG: 4,   // Engaged
@@ -565,7 +565,7 @@ const election1852: Election = {
       party: "Whig" as any,
       year: 1852,
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
-      ZS: 2, ONT_H: 1, ONT_S: 1, PF: 2, TRB: 1, ENG: 2,
+      ZS: 2, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 1, ENG: 2,
       EPS: 1, AES: 0,
     },
   ],

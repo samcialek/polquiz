@@ -7,7 +7,7 @@ const context1789: ElectionContext = {
   year: 1789,
   zeitgeist: {
     era: "founding",
-    nodeWeights: { PRO: 2.5, ONT_H: 1.8, ONT_S: 1.5, COM: 2.0, ENG: 1.5 },
+    nodeWeights: { PRO: 2.5, ONT_H: 1.8, ONT_S: 5.5, COM: 2.0, ENG: 1.5 },
     intensity: 1.3,
     description: "Birth of the republic; constitutional experiment with no precedent",
   },
@@ -91,7 +91,7 @@ const context1800: ElectionContext = {
   year: 1800,
   zeitgeist: {
     era: "founding",
-    nodeWeights: { PF: 2.0, ONT_S: 2.0, CD: 1.8, MAT: 1.5, TRB: 1.5, CU: 1.5 },
+    nodeWeights: { PF: 2.0, ONT_S: 4.0, CD: 1.8, MAT: 1.5, TRB: 1.5, CU: 1.5 },
     intensity: 1.5,
     description: "Alien & Sedition Acts; partisan warfare; both sides fear the republic will die if they lose",
   },
@@ -104,7 +104,7 @@ const context1800: ElectionContext = {
   candidateActivations: [
     {
       candidateName: "Jefferson",
-      activationNodes: { ONT_S: 1.5, CU: 1.5, ONT_H: 1.3, PF: 1.3 },
+      activationNodes: { ONT_S: 5.5, CU: 1.5, ONT_H: 1.3, PF: 1.3 },
       novelty: 1.5,
       threatActivation: { CD: 1.5, PRO: 1.3 },
     },
@@ -112,7 +112,7 @@ const context1800: ElectionContext = {
       candidateName: "Adams",
       activationNodes: { PRO: 1.3, CD: 1.5, MAT: 1.2 },
       novelty: 1.0,
-      threatActivation: { ONT_S: 1.5, CU: 1.3 },
+      threatActivation: { ONT_S: 5.5, CU: 1.3 },
     },
   ],
 };
@@ -155,7 +155,7 @@ const context1808: ElectionContext = {
   year: 1808,
   zeitgeist: {
     era: "founding",
-    nodeWeights: { MAT: 2.0, ONT_S: 1.5, ZS: 1.5, CU: 1.3 },
+    nodeWeights: { MAT: 2.0, ONT_S: 5.5, ZS: 1.5, CU: 1.3 },
     intensity: 1.1,
     description: "Embargo Act devastating New England commerce; British impressment; war looming",
   },
@@ -187,7 +187,7 @@ const context1812: ElectionContext = {
   year: 1812,
   zeitgeist: {
     era: "founding",
-    nodeWeights: { ZS: 2.5, TRB: 2.0, ONT_S: 1.8, ENG: 1.5, MAT: 1.3 },
+    nodeWeights: { ZS: 2.5, TRB: 2.0, ONT_S: 5.8, ENG: 1.5, MAT: 1.3 },
     intensity: 1.3,
     description: "Nation at war with Britain; security and national survival dominate the election",
   },
@@ -202,7 +202,7 @@ const context1812: ElectionContext = {
       candidateName: "Madison",
       activationNodes: { ZS: 1.5, TRB: 1.3, ENG: 1.3 },
       novelty: 1.0,
-      threatActivation: { ONT_S: 1.3 },
+      threatActivation: { ONT_S: 5.3 },
     },
     {
       candidateName: "Clinton",
@@ -277,7 +277,7 @@ const context1824: ElectionContext = {
   year: 1824,
   zeitgeist: {
     era: "good-feelings",
-    nodeWeights: { PF: 1.8, TRB: 1.5, ONT_S: 1.5, MAT: 1.5, ENG: 1.3 },
+    nodeWeights: { PF: 1.8, TRB: 1.5, ONT_S: 5.5, MAT: 1.5, ENG: 1.3 },
     intensity: 1.2,
     description: "One-party system fracturing; 4-way race driven by personality and regional identity",
   },
@@ -295,7 +295,7 @@ const context1824: ElectionContext = {
     },
     {
       candidateName: "Jackson",
-      activationNodes: { TRB: 1.5, ONT_S: 1.5, ENG: 1.5 },
+      activationNodes: { TRB: 1.5, ONT_S: 5.5, ENG: 1.5 },
       novelty: 1.5,
       threatActivation: { PRO: 1.3, COM: 1.2 },
     },
@@ -319,7 +319,7 @@ const context1828: ElectionContext = {
   year: 1828,
   zeitgeist: {
     era: "jacksonian",
-    nodeWeights: { TRB: 2.0, ONT_S: 2.0, PF: 2.0, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
+    nodeWeights: { TRB: 2.0, ONT_S: 4.0, PF: 2.0, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
     intensity: 1.3,
     description: "Mass democracy arrives; common man vs establishment; 'corrupt bargain' revenge",
   },
@@ -332,7 +332,7 @@ const context1828: ElectionContext = {
   candidateActivations: [
     {
       candidateName: "Jackson",
-      activationNodes: { TRB: 1.8, ONT_S: 1.5, ENG: 1.5, PF: 1.3 },
+      activationNodes: { TRB: 1.8, ONT_S: 5.5, ENG: 1.5, PF: 1.3 },
       novelty: 1.8,
       threatActivation: { PRO: 1.5, COM: 1.3 },
     },
@@ -340,7 +340,7 @@ const context1828: ElectionContext = {
       candidateName: "Adams",
       activationNodes: { PRO: 1.3, MAT: 1.2 },
       novelty: 0.8,
-      threatActivation: { ONT_S: 1.3, TRB: 1.3 },
+      threatActivation: { ONT_S: 5.3, TRB: 1.3 },
     },
   ],
 };
@@ -352,7 +352,7 @@ const context1832: ElectionContext = {
   year: 1832,
   zeitgeist: {
     era: "jacksonian",
-    nodeWeights: { MAT: 2.5, ONT_S: 2.0, TRB: 1.8, PF: 1.8, PRO: 1.5 },
+    nodeWeights: { MAT: 2.5, ONT_S: 4.0, TRB: 1.8, PF: 1.8, PRO: 1.5 },
     intensity: 1.3,
     description: "Bank War dominates; Jackson vetoes BUS; nullification crisis challenges federal authority",
   },
@@ -365,7 +365,7 @@ const context1832: ElectionContext = {
   candidateActivations: [
     {
       candidateName: "Jackson",
-      activationNodes: { MAT: 1.5, ONT_S: 1.5, TRB: 1.3, ENG: 1.3 },
+      activationNodes: { MAT: 1.5, ONT_S: 5.5, TRB: 1.3, ENG: 1.3 },
       novelty: 1.3,
       threatActivation: { PRO: 1.5, COM: 1.3 },
     },
@@ -373,7 +373,7 @@ const context1832: ElectionContext = {
       candidateName: "Clay",
       activationNodes: { MAT: 1.5, PRO: 1.5, COM: 1.3 },
       novelty: 1.0,
-      threatActivation: { ONT_S: 1.3, TRB: 1.2 },
+      threatActivation: { ONT_S: 5.3, TRB: 1.2 },
     },
   ],
 };
@@ -416,7 +416,7 @@ const context1840: ElectionContext = {
   year: 1840,
   zeitgeist: {
     era: "jacksonian",
-    nodeWeights: { MAT: 2.5, ONT_S: 2.5, TRB: 2.0, ENG: 2.0, ZS: 1.5 },
+    nodeWeights: { MAT: 2.5, ONT_S: 4.5, TRB: 2.0, ENG: 2.0, ZS: 1.5 },
     intensity: 1.3,
     description: "Depression of 1837 devastates the country; first mass-spectacle campaign; record turnout",
   },
@@ -429,7 +429,7 @@ const context1840: ElectionContext = {
   candidateActivations: [
     {
       candidateName: "Harrison",
-      activationNodes: { ONT_S: 1.5, TRB: 1.5, ENG: 1.5, MAT: 1.3 },
+      activationNodes: { ONT_S: 5.5, TRB: 1.5, ENG: 1.5, MAT: 1.3 },
       novelty: 1.3,
       threatActivation: { MAT: 1.3 },
     },
@@ -437,7 +437,7 @@ const context1840: ElectionContext = {
       candidateName: "Van Buren",
       activationNodes: { PF: 1.3, COM: 1.2 },
       novelty: 0.8,
-      threatActivation: { ONT_S: 1.5, MAT: 1.3 },
+      threatActivation: { ONT_S: 5.5, MAT: 1.3 },
     },
   ],
 };
@@ -481,7 +481,7 @@ const context1848: ElectionContext = {
   year: 1848,
   zeitgeist: {
     era: "jacksonian",
-    nodeWeights: { MOR: 2.0, TRB: 1.8, CU: 1.5, ONT_S: 1.5, ZS: 1.3 },
+    nodeWeights: { MOR: 2.0, TRB: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.3 },
     intensity: 1.2,
     description: "Mexican War conquered new territory; slavery expansion is now unavoidable; Free Soil revolt",
   },
@@ -504,7 +504,7 @@ const context1848: ElectionContext = {
     },
     {
       candidateName: "Van Buren",
-      activationNodes: { MOR: 1.8, ONT_S: 1.5, ENG: 1.3, CU: 1.3 },
+      activationNodes: { MOR: 1.8, ONT_S: 5.5, ENG: 1.3, CU: 1.3 },
       novelty: 1.3,
       threatActivation: { TRB: 1.3, PF: 1.2 },
     },
@@ -518,7 +518,7 @@ const context1852: ElectionContext = {
   year: 1852,
   zeitgeist: {
     era: "jacksonian",
-    nodeWeights: { MOR: 1.8, COM: 1.5, PF: 1.5, TRB: 1.5, ONT_S: 1.3 },
+    nodeWeights: { MOR: 1.8, COM: 1.5, PF: 1.5, TRB: 1.5, ONT_S: 5.3 },
     intensity: 1.0,
     description: "Compromise of 1850 bought time but satisfied nobody; Fugitive Slave Act enrages North; Whig party fracturing",
   },

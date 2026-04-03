@@ -115,9 +115,9 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     ],
     allocationMap: {
       effort_choices: { continuous: { MAT: 0.8, ONT_S: -0.5, COM: -0.4 } },
-      family_background: { continuous: { MAT: -0.6, ONT_S: 0.7, COM: 0.3 } },
-      discrimination_bias: { continuous: { MAT: -0.8, ONT_S: 0.8, COM: 0.5 } },
-      luck_random: { continuous: { ONT_S: 0.4, COM: 0.2 } }
+      family_background: { continuous: { MAT: -0.6, ONT_S: -0.7, COM: 0.3 } },
+      discrimination_bias: { continuous: { MAT: -0.8, ONT_S: -0.8, COM: 0.5 } },
+      luck_random: { continuous: { ONT_S: -0.4, COM: 0.2 } }
     }
   },
   {
@@ -136,10 +136,10 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
     ],
     allocationMap: {
-      complex_forces: { continuous: { ONT_S: 0.6, COM: 0.4 } },
-      powerful_incompetent: { continuous: { ONT_S: 0.2, COM: -0.3 } },
+      complex_forces: { continuous: { ONT_S: -0.6, COM: 0.4 } },
+      powerful_incompetent: { continuous: { ONT_S: -0.2, COM: -0.3 } },
       powerful_selfish: { continuous: { ZS: 0.9, ONT_H: -0.5, COM: -0.6 } },
-      ordinary_choices: { continuous: { ONT_S: -0.8, COM: -0.4 } }
+      ordinary_choices: { continuous: { ONT_S: 0.8, COM: -0.4 } }
     }
   },
   {
@@ -779,25 +779,25 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       aggressive_transition: {
         continuous: {
           MAT: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] },
-          ONT_S: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
+          ONT_S: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] }
         }
       },
       gradual_transition: {
         continuous: {
           MAT: { pos: [0.10, 0.24, 0.40, 0.18, 0.08] },
-          ONT_S: { pos: [0.08, 0.18, 0.40, 0.24, 0.10] }
+          ONT_S: { pos: [0.10, 0.24, 0.40, 0.18, 0.08] }
         }
       },
       market_led: {
         continuous: {
           MAT: { pos: [0.04, 0.09, 0.22, 0.35, 0.30] },
-          ONT_S: { pos: [0.20, 0.30, 0.30, 0.14, 0.06] }
+          ONT_S: { pos: [0.06, 0.14, 0.30, 0.30, 0.20] }
         }
       },
       no_action_needed: {
         continuous: {
           MAT: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] },
-          ONT_S: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] }
+          ONT_S: { pos: [0.05, 0.10, 0.25, 0.30, 0.30] }
         }
       }
     }
@@ -1144,25 +1144,25 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       net_positive_clear: {
         continuous: {
           ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01] },
-          ONT_S: { pos: [0.03, 0.10, 0.25, 0.38, 0.24] }
+          ONT_S: { pos: [0.24, 0.38, 0.25, 0.10, 0.03] }
         }
       },
       net_positive_but_uneven: {
         continuous: {
           ZS: { pos: [0.15, 0.30, 0.35, 0.15, 0.05] },
-          ONT_S: { pos: [0.05, 0.15, 0.40, 0.28, 0.12] }
+          ONT_S: { pos: [0.12, 0.28, 0.40, 0.15, 0.05] }
         }
       },
       mixed_effects: {
         continuous: {
           ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15] },
-          ONT_S: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] }
+          ONT_S: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] }
         }
       },
       mostly_harmful: {
         continuous: {
           ZS: { pos: [0.03, 0.07, 0.18, 0.30, 0.42] },
-          ONT_S: { pos: [0.25, 0.30, 0.28, 0.12, 0.05] }
+          ONT_S: { pos: [0.05, 0.12, 0.28, 0.30, 0.25] }
         }
       }
     }
@@ -2025,19 +2025,19 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     ],
     rankingMap: {
       global_competition: {
-        continuous: { ONT_S: 0.7, ZS: 0.4 }
+        continuous: { ONT_S: -0.7, ZS: 0.4 }
       },
       automation: {
-        continuous: { ONT_S: 0.6 }
+        continuous: { ONT_S: -0.6 }
       },
       corporate_decisions: {
         continuous: { MAT: -0.7, ZS: 0.6 },
       },
       government_policy: {
-        continuous: { MAT: -0.3, ONT_S: 0.3 },
+        continuous: { MAT: -0.3, ONT_S: -0.3 },
       },
       worker_choices: {
-        continuous: { MAT: 0.6, ONT_S: -0.5 },
+        continuous: { MAT: 0.6, ONT_S: 0.5 },
       }
     }
   },
@@ -2142,44 +2142,50 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.93,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "PF", kind: "continuous", role: "position", weight: 0.90, touchType: "grievance_proxy" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.40, touchType: "frustration_intensity" }
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "grievance_proxy" },
+      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.80, touchType: "grievance_proxy" },
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "grievance_proxy" },
+      { node: "CD", kind: "continuous", role: "position", weight: 0.20, touchType: "grievance_proxy" },
+      { node: "ENG", kind: "continuous", role: "position", weight: 0.25, touchType: "frustration_intensity" }
     ],
     optionEvidence: {
       // "Corporations and the wealthy have too much power, ordinary people are left behind"
       corporate_power_inequality: {
         continuous: {
-          PF: { pos: [0.55, 0.30, 0.10, 0.03, 0.02] }
+          MAT: { pos: [0.18, 0.32, 0.28, 0.15, 0.07] },
+          ONT_S: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] }
         }
       },
       // "Government has grown too large and intrusive, individual freedom is eroding"
       government_overreach: {
         continuous: {
-          PF: { pos: [0.02, 0.05, 0.12, 0.36, 0.45] }
+          ONT_S: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
+          PRO: { pos: [0.18, 0.28, 0.30, 0.16, 0.08] }
         }
       },
       // "Both sides are more interested in fighting than solving real problems"
       both_sides_broken: {
         continuous: {
-          PF: { pos: [0.06, 0.14, 0.58, 0.14, 0.08] }
+          ONT_S: { pos: [0.60, 0.24, 0.10, 0.04, 0.02] }
         }
       },
       // "The system itself is fundamentally unjust and needs radical change"
       system_unjust: {
         continuous: {
-          PF: { pos: [0.60, 0.22, 0.10, 0.05, 0.03] }
+          ONT_S: { pos: [0.72, 0.18, 0.06, 0.03, 0.01] }
         }
       },
       // "Traditional values and social cohesion are being abandoned"
       values_eroding: {
         continuous: {
-          PF: { pos: [0.02, 0.03, 0.08, 0.32, 0.55] }
+          CD: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] },
+          ONT_S: { pos: [0.35, 0.30, 0.20, 0.10, 0.05] }
         }
       },
       // "I don't think much about politics — it doesn't affect my daily life"
       politics_irrelevant: {
         continuous: {
-          PF: { pos: [0.10, 0.15, 0.45, 0.18, 0.12] }
+          ENG: { pos: [0.62, 0.22, 0.10, 0.04, 0.02] }
         }
       }
     }

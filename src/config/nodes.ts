@@ -17,7 +17,7 @@ import type { NodeDef } from "../types.js";
 // REALITY:
 //   ZS:    1 = positive-sum / cooperative,            5 = zero-sum / competitive
 //   ONT_H: 1 = pessimistic about human nature,       5 = optimistic / perfectible
-//   ONT_S: 1 = system working / stable,               5 = system broken / deep structural critique
+//   ONT_S: 1 = system broken / deep structural critique, 5 = system working / stable
 //
 // SELF:
 //   PF:  1 = independent / non-partisan,              5 = strong partisan identity

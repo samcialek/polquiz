@@ -42,7 +42,7 @@ const election1920: Election = {
       COM: 5,   // Maximum compromiser — amiable, consensus
       ZS: 2,    // Positive-sum — prosperity message
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System mostly fine — just needs calm hand
+      ONT_S: 4, // System mostly fine — just needs calm hand
       PF: 3,    // Moderate partisan — broad coalition
       TRB: 2,   // Low tribal — genial "normalcy"
       ENG: 3,   // Moderate — front porch calm
@@ -61,7 +61,7 @@ const election1920: Election = {
       COM: 1,   // Never compromise — League without reservations
       ZS: 1,    // Maximum positive-sum
       ONT_H: 5, // Maximum optimistic
-      ONT_S: 5, // System needs overhaul
+      ONT_S: 1, // System needs overhaul
       PF: 5,    // Maximum partisan
       TRB: 5,   // Maximum tribal — alienating
       ENG: 5,   // Maximum
@@ -98,7 +98,7 @@ const election1924: Election = {
       COM: 4,   // Compromiser — let things run smoothly
       ZS: 2,    // Positive-sum — rising tide, prosperity
       ONT_H: 3, // Moderate
-      ONT_S: 1, // System fine — don't touch what works
+      ONT_S: 5, // System fine — don't touch what works
       PF: 3,    // Moderate partisan
       TRB: 2,   // Low tribal
       ENG: 3,   // Moderate
@@ -117,7 +117,7 @@ const election1924: Election = {
       COM: 4,   // Compromiser
       ZS: 2,    // Positive-sum
       ONT_H: 4, // Optimistic
-      ONT_S: 4, // System needs reform
+      ONT_S: 2, // System needs reform
       PF: 5,    // Maximum partisan
       TRB: 4,   // Tribal — Democratic coalition
       ENG: 3,   // Moderate — lackluster campaign
@@ -136,7 +136,7 @@ const election1924: Election = {
       COM: 1,   // Never compromise - "Fighting Bob," ideological purist, insurgent
       ZS: 3,    // Mixed - saw monopolies as zero-sum extraction but believed reform could fix it
       ONT_H: 4, // Optimistic - believed common people would choose wisely given direct democracy
-      ONT_S: 5, // Maximum structuralist - system rigged by monopolies, needs overhaul
+      ONT_S: 1, // Maximum structuralist - system rigged by monopolies, needs overhaul
       PF: 1,    // Maximum independent - rejected both parties, ran as Progressive
       TRB: 4,   // Tribal - worker/farmer identity, class-based politics
       ENG: 5,   // Maximum engagement - lifelong crusader, launched entire third party
@@ -171,7 +171,7 @@ const election1928: Election = {
       COM: 3,   // Mixed - principled but rigid, not a natural dealmaker
       ZS: 1,    // Maximum positive-sum - peak 1920s prosperity optimism, "abolish poverty"
       ONT_H: 4, // Optimistic - engineering mentality, problems are solvable
-      ONT_S: 2, // System working - voluntary cooperation, "rugged individualism"
+      ONT_S: 4, // System working - voluntary cooperation, "rugged individualism"
       PF: 4,    // Strong Republican - party standard-bearer in prosperity era
       TRB: 2,   // Low tribal - technocratic, above-the-fray, not populist
       ENG: 4,   // Engaged - ambitious, ran on competence and vision
@@ -190,7 +190,7 @@ const election1928: Election = {
       COM: 4,   // Compromiser - machine politician, dealmaker, worked across interests
       ZS: 2,    // Positive-sum - believed in shared prosperity through urban development
       ONT_H: 4, // Optimistic - up-from-poverty narrative, American Dream
-      ONT_S: 4, // Structuralist - government should build infrastructure, help workers
+      ONT_S: 2, // Structuralist - government should build infrastructure, help workers
       PF: 5,    // Maximum partisan - Tammany Democrat, party machine product
       TRB: 4,   // Tribal - Catholic/Irish/urban immigrant identity, ethnic coalition
       ENG: 5,   // Maximum engagement - barnstorming campaigner, passionate
@@ -226,7 +226,7 @@ const election1932: Election = {
       COM: 4,   // Dealmaker - built huge coalition, pragmatic about means
       ZS: 2,    // Positive-sum - "abundance for all," economic expansion through spending
       ONT_H: 5, // Maximum optimistic - "nothing to fear but fear itself," can-do spirit
-      ONT_S: 5, // Maximum structuralist - Depression proves system broken, needs overhaul
+      ONT_S: 1, // Maximum structuralist - Depression proves system broken, needs overhaul
       PF: 5,    // Maximum partisan - built the New Deal Democratic coalition from scratch
       TRB: 3,   // Moderate tribal - broad coalition appeal, not narrowly sectarian
       ENG: 5,   // Maximum engagement - energetic campaigning despite disability
@@ -245,7 +245,7 @@ const election1932: Election = {
       COM: 2,   // Low compromise - stubborn, wouldn't bend on relief philosophy
       ZS: 3,    // Mixed - still claimed prosperity would return but defensive
       ONT_H: 2, // Skeptical - government relief would destroy character, fixed human nature
-      ONT_S: 1, // System fine - Depression is temporary, system will self-correct
+      ONT_S: 5, // System fine - Depression is temporary, system will self-correct
       PF: 4,    // Strong Republican - party standard-bearer
       TRB: 3,   // Moderate tribal - not populist, establishment identity
       ENG: 3,   // Moderate engagement - defensive, beleaguered campaign
@@ -280,7 +280,7 @@ const election1936: Election = {
       COM: 3,   // Less compromising - "I welcome their hatred," confrontational populism
       ZS: 2,    // Positive-sum - government spending creates growth, "priming the pump"
       ONT_H: 5, // Maximum optimistic - New Deal working, recovery underway
-      ONT_S: 5, // Maximum structuralist - total systemic reform, new institutions
+      ONT_S: 1, // Maximum structuralist - total systemic reform, new institutions
       PF: 5,    // Maximum partisan - New Deal coalition at peak, "Roosevelt coalition"
       TRB: 4,   // High tribal - "forgotten man" vs. "economic royalists," class warfare
       ENG: 5,   // Maximum engagement - barnstorming incumbent, massive rallies
@@ -299,7 +299,7 @@ const election1936: Election = {
       COM: 3,   // Mixed
       ZS: 3,    // Mixed
       ONT_H: 1, // Maximum pessimistic — government breeds dependency
-      ONT_S: 1, // System fine — free enterprise works
+      ONT_S: 5, // System fine — free enterprise works
       PF: 5,    // Maximum partisan
       TRB: 2,   // Low tribal
       ENG: 2,   // Low — outmatched by FDR
