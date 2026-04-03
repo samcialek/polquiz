@@ -2904,7 +2904,7 @@ var PrismEngine = (() => {
         { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
         { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
-        { node: "COM", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" },
+        { node: "ZS", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" },
         { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
