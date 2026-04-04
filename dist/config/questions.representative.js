@@ -870,21 +870,14 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MAT: { pos: [0.45, 0.35, 0.15, 0.04, 0.01] }
                 }
             },
-            ratio_50_to_1: {
-                continuous: {
-                    MAT: { pos: [0.17, 0.32, 0.35, 0.12, 0.04] }
-                }
-            },
-            // V1: "100:1"
             ratio_100_to_1: {
                 continuous: {
-                    MAT: { pos: [0.08, 0.20, 0.35, 0.25, 0.12] }
+                    MAT: { pos: [0.10, 0.25, 0.35, 0.20, 0.10] }
                 }
             },
-            // V1: "300:1 (about current average)" — renamed from ratio_200_to_1
-            ratio_300_to_1: {
+            ratio_1000_to_1: {
                 continuous: {
-                    MAT: { pos: [0.05, 0.12, 0.28, 0.35, 0.20] }
+                    MAT: { pos: [0.04, 0.10, 0.25, 0.35, 0.26] }
                 }
             },
             market_decides: {
@@ -934,7 +927,10 @@ export const REPRESENTATIVE_QUESTIONS = [
             }
         }
     },
-    // Q25 — criminal_trial_error_tradeoff
+    // Q25 — criminal_trial_error_tradeoff (error_tradeoff with ratio slider)
+    // "In criminal trials, which type of error is worse?"
+    // A: Convicting an innocent person  B: Letting a guilty person go free
+    // Ratio slider: 1.5:1 → 100+:1 drives salience
     {
         id: 25,
         stage: "screen20",
@@ -943,22 +939,19 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.92,
         rewriteNeeded: false,
+        options: ["convict_innocent", "free_guilty"],
         touchProfile: [
             { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.60, touchType: "error_asymmetry" },
             { node: "ONT_H", kind: "continuous", role: "position", weight: 0.15, touchType: "human_motive_proxy" }
         ],
         optionEvidence: {
-            rather_free_guilty: {
+            convict_innocent: {
                 continuous: {
                     PRO: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
                 },
             },
-            balance_both_errors: {
-                continuous: {
-                    PRO: { pos: [0.10, 0.22, 0.36, 0.22, 0.10] }
-                },
-            },
-            rather_convict_innocent: {
+            free_guilty: {
                 continuous: {
                     PRO: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] }
                 },
@@ -998,7 +991,9 @@ export const REPRESENTATIVE_QUESTIONS = [
             }
         }
     },
-    // Q27 — welfare_error_tradeoff
+    // Q27 — welfare_error_tradeoff (error_tradeoff with ratio slider)
+    // "In welfare programs, which error is worse?"
+    // A: Giving benefits to someone who doesn't qualify  B: Denying benefits to someone who genuinely needs them
     {
         id: 27,
         stage: "stage2",
@@ -1007,28 +1002,24 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.89,
         rewriteNeeded: false,
+        options: ["fp", "fn"],
         touchProfile: [
             { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "error_asymmetry" },
+            { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "error_asymmetry" },
             { node: "PRO", kind: "continuous", role: "position", weight: 0.25, touchType: "error_asymmetry" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "deservingness_proxy" }
         ],
         optionEvidence: {
-            rather_help_undeserving: {
-                continuous: {
-                    MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
-                    MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
-                }
-            },
-            balanced_errors: {
-                continuous: {
-                    MAT: { pos: [0.10, 0.22, 0.36, 0.22, 0.10] },
-                    MOR: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-                }
-            },
-            rather_miss_needy: {
+            fp: {
                 continuous: {
                     MAT: { pos: [0.02, 0.08, 0.22, 0.35, 0.33] },
                     MOR: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] }
+                }
+            },
+            fn: {
+                continuous: {
+                    MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
+                    MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
                 }
             }
         }
@@ -1077,29 +1068,25 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.90,
         rewriteNeeded: false,
+        options: ["allow_harmful", "censor_legitimate"],
         touchProfile: [
             { node: "PRO", kind: "continuous", role: "position", weight: 0.70, touchType: "speech_harm_tradeoff" },
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "speech_harm_tradeoff" },
             { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "truth_authority_proxy" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "pluralism_proxy" }
         ],
         optionEvidence: {
-            remove_immediately: {
-                continuous: {
-                    PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] }
-                },
-                categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
-            },
-            allow_with_labels: {
-                continuous: {
-                    PRO: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] }
-                },
-                categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } }
-            },
-            allow_fully: {
+            allow_harmful: {
                 continuous: {
                     PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] }
                 },
                 categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
+            },
+            censor_legitimate: {
+                continuous: {
+                    PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] }
+                },
+                categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
             }
         }
     },
@@ -1156,31 +1143,21 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.86,
         rewriteNeeded: false,
+        options: ["deport_legal", "let_stay_illegal"],
         touchProfile: [
             { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "boundary_error_asymmetry" },
             { node: "CU", kind: "continuous", role: "position", weight: 0.45, touchType: "boundary_error_asymmetry" },
+            { node: "CU", kind: "continuous", role: "salience", weight: 0.50, touchType: "boundary_error_asymmetry" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "moral_scope_boundary" }
         ],
         optionEvidence: {
-            open_borders: {
+            deport_legal: {
                 continuous: {
                     CU: { pos: [0.01, 0.04, 0.12, 0.33, 0.50] },
                     MOR: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
                 }
             },
-            generous_policy: {
-                continuous: {
-                    CU: { pos: [0.04, 0.12, 0.25, 0.35, 0.24] },
-                    MOR: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
-                }
-            },
-            balanced_approach: {
-                continuous: {
-                    CU: { pos: [0.10, 0.22, 0.38, 0.22, 0.08] },
-                    MOR: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-                }
-            },
-            strict_enforcement: {
+            let_stay_illegal: {
                 continuous: {
                     CU: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
                     MOR: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] }
@@ -2087,8 +2064,6 @@ export const REPRESENTATIVE_QUESTIONS = [
     // NEW QUESTIONS 64-75: Gap-targeted expansion
     // =========================================================================
     // Q64 — Political Frustration (PF position via grievance framing + salience)
-    // "When you think about what's most wrong with the country right now,
-    //  which frustration resonates most?"
     {
         id: 64,
         stage: "stage2",
@@ -2456,60 +2431,61 @@ export const REPRESENTATIVE_QUESTIONS = [
     }
     */ // end Q73-Q75 comment block
     // ── Coverage-gap fillers (Q76-Q79) ──────────────────────────────
-    // Q76 — Success Attribution (ONT_S individualist coverage)
-    // Asking about success (not failure) naturally elicits individualist attribution
-    // without social-desirability bias toward structural explanations.
-    ,
-    {
-        id: 76,
-        stage: "stage2",
-        section: "IV",
-        promptShort: "success_attribution",
-        uiType: "single_choice",
-        quality: 0.91,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "ONT_S", kind: "continuous", role: "position", weight: 0.90, touchType: "causal_attribution" },
-            { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.40, touchType: "causal_attribution" },
-            { node: "ZS", kind: "continuous", role: "position", weight: 0.20, touchType: "distributional_worldview" },
-            { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
-        ],
-        optionEvidence: {
-            hard_work_talent: {
-                continuous: {
-                    ONT_S: { pos: [0.62, 0.22, 0.10, 0.04, 0.02] },
-                    ZS: { pos: [0.35, 0.30, 0.22, 0.09, 0.04] }
-                }
-            },
-            good_choices: {
-                continuous: {
-                    ONT_S: { pos: [0.22, 0.48, 0.20, 0.07, 0.03] },
-                    ZS: { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
-                }
-            },
-            right_connections: {
-                continuous: {
-                    ONT_S: { pos: [0.06, 0.14, 0.48, 0.22, 0.10] },
-                    ZS: { pos: [0.08, 0.18, 0.38, 0.24, 0.12] }
-                }
-            },
-            system_advantages: {
-                continuous: {
-                    ONT_S: { pos: [0.02, 0.06, 0.15, 0.45, 0.32] },
-                    ZS: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
-                }
-            },
-            whole_system: {
-                continuous: {
-                    ONT_S: { pos: [0.01, 0.03, 0.08, 0.28, 0.60] },
-                    ZS: { pos: [0.03, 0.07, 0.18, 0.32, 0.40] }
-                }
-            }
+    // Q76 — Success Attribution (REMOVED — duplicates inequality_causes allocation question)
+    /*
+    ,{
+      id: 76,
+      stage: "stage2",
+      section: "IV",
+      promptShort: "success_attribution",
+      uiType: "single_choice",
+      quality: 0.91,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "ONT_S", kind: "continuous", role: "position",  weight: 0.90, touchType: "causal_attribution" },
+        { node: "ONT_S", kind: "continuous", role: "salience",  weight: 0.40, touchType: "causal_attribution" },
+        { node: "ZS",    kind: "continuous", role: "position",  weight: 0.20, touchType: "distributional_worldview" },
+        { node: "ONT_S", kind: "continuous", role: "salience",  weight: 0.85, touchType: "checkbox_salience" }
+      ],
+      optionEvidence: {
+        hard_work_talent: {
+          continuous: {
+            ONT_S: { pos: [0.62, 0.22, 0.10, 0.04, 0.02] },
+            ZS:    { pos: [0.35, 0.30, 0.22, 0.09, 0.04] }
+          }
+        },
+        good_choices: {
+          continuous: {
+            ONT_S: { pos: [0.22, 0.48, 0.20, 0.07, 0.03] },
+            ZS:    { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
+          }
+        },
+        right_connections: {
+          continuous: {
+            ONT_S: { pos: [0.06, 0.14, 0.48, 0.22, 0.10] },
+            ZS:    { pos: [0.08, 0.18, 0.38, 0.24, 0.12] }
+          }
+        },
+        system_advantages: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.06, 0.15, 0.45, 0.32] },
+            ZS:    { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
+          }
+        },
+        whole_system: {
+          continuous: {
+            ONT_S: { pos: [0.01, 0.03, 0.08, 0.28, 0.60] },
+            ZS:    { pos: [0.03, 0.07, 0.18, 0.32, 0.40] }
+          }
         }
+      }
     },
+  
+    */ // end Q76 comment block
     // Q77 — Decision-Making Style (EPS intuitionist + nihilist coverage)
     // Life-decision framing (not political) avoids priming institutional answers.
     // "gut_feeling" gives intuitionist a dignified path; "cant_predict" normalizes nihilism.
+    ,
     {
         id: 77,
         stage: "stage2",
