@@ -1077,25 +1077,25 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     optionEvidence: {
       net_positive_clear: {
         continuous: {
-          ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01] },
+          ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01], sal: [0.45, 0.30, 0.18, 0.07] },
           ONT_S: { pos: [0.24, 0.38, 0.25, 0.10, 0.03] }
         }
       },
       net_positive_but_uneven: {
         continuous: {
-          ZS: { pos: [0.15, 0.30, 0.35, 0.15, 0.05] },
+          ZS: { pos: [0.15, 0.30, 0.35, 0.15, 0.05], sal: [0.15, 0.35, 0.35, 0.15] },
           ONT_S: { pos: [0.12, 0.28, 0.40, 0.15, 0.05] }
         }
       },
       mixed_effects: {
         continuous: {
-          ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15] },
+          ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15], sal: [0.10, 0.28, 0.40, 0.22] },
           ONT_S: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] }
         }
       },
       mostly_harmful: {
         continuous: {
-          ZS: { pos: [0.03, 0.07, 0.18, 0.30, 0.42] },
+          ZS: { pos: [0.03, 0.07, 0.18, 0.30, 0.42], sal: [0.05, 0.15, 0.35, 0.45] },
           ONT_S: { pos: [0.05, 0.12, 0.28, 0.30, 0.25] }
         }
       }
@@ -2693,7 +2693,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // 1 = strongly disagree (institutions are fine, hierarchy natural)
       "0-20": {
         continuous: {
-          ZS:    { pos: [0.55, 0.25, 0.12, 0.05, 0.03] },
+          ZS:    { pos: [0.55, 0.25, 0.12, 0.05, 0.03], sal: [0.55, 0.30, 0.12, 0.03] },
           ONT_H: { pos: [0.03, 0.05, 0.12, 0.28, 0.52] },
           COM:   { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
           PRO:   { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
@@ -2702,7 +2702,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // 2 = disagree
       "21-40": {
         continuous: {
-          ZS:    { pos: [0.30, 0.35, 0.22, 0.08, 0.05] },
+          ZS:    { pos: [0.30, 0.35, 0.22, 0.08, 0.05], sal: [0.30, 0.40, 0.22, 0.08] },
           ONT_H: { pos: [0.05, 0.10, 0.22, 0.38, 0.25] },
           COM:   { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
           PRO:   { pos: [0.08, 0.12, 0.30, 0.30, 0.20] }
@@ -2711,7 +2711,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // 3 = mixed
       "41-60": {
         continuous: {
-          ZS:    { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
+          ZS:    { pos: [0.10, 0.20, 0.40, 0.20, 0.10], sal: [0.12, 0.28, 0.38, 0.22] },
           ONT_H: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
           COM:   { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
           PRO:   { pos: [0.12, 0.22, 0.32, 0.22, 0.12] }
@@ -2720,7 +2720,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // 4 = agree
       "61-80": {
         continuous: {
-          ZS:    { pos: [0.05, 0.08, 0.22, 0.35, 0.30] },
+          ZS:    { pos: [0.05, 0.08, 0.22, 0.35, 0.30], sal: [0.04, 0.15, 0.40, 0.41] },
           ONT_H: { pos: [0.25, 0.38, 0.22, 0.10, 0.05] },
           COM:   { pos: [0.17, 0.30, 0.30, 0.15, 0.08] },
           PRO:   { pos: [0.20, 0.30, 0.30, 0.12, 0.08] }
@@ -2729,7 +2729,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // 5 = strongly agree (institutions always corrupt, domination inevitable)
       "81-100": {
         continuous: {
-          ZS:    { pos: [0.03, 0.05, 0.12, 0.25, 0.55] },
+          ZS:    { pos: [0.03, 0.05, 0.12, 0.25, 0.55], sal: [0.02, 0.08, 0.30, 0.60] },
           ONT_H: { pos: [0.52, 0.28, 0.12, 0.05, 0.03] },
           COM:   { pos: [0.28, 0.35, 0.22, 0.10, 0.05] },
           PRO:   { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
