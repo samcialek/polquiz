@@ -183,7 +183,7 @@ const NODE_DEFS = {
   COM: { name: 'Compromise', low: 'Uncompromising', high: 'Consensus-Seeking', cluster: 'MEANS' },
   ZS:  { name: 'Zero-Sum', low: 'Positive-Sum', high: 'Zero-Sum', cluster: 'REALITY' },
   ONT_H: { name: 'Human Nature', low: 'Pessimistic', high: 'Optimistic', cluster: 'REALITY' },
-  ONT_S: { name: 'Institutional Trust', low: 'System Stable', high: 'Deep Critique', cluster: 'REALITY' },
+  ONT_S: { name: 'Institutional Trust', low: 'Broken', high: 'Stable', cluster: 'REALITY' },
   PF:  { name: 'Partisan Fusion', low: 'Non-Partisan', high: 'Partisan', cluster: 'SELF' },
   TRB: { name: 'Tribalism', low: 'Independent', high: 'Tribal', cluster: 'SELF' },
   ENG: { name: 'Engagement', low: 'Disengaged', high: 'Highly Engaged', cluster: 'SELF' },
@@ -205,8 +205,11 @@ const CAT_COLORS = ['#e6a23c','#6699ff','#9966cc','#e6726c','#66cc99','#cc6699']
 
 // ── Load data and render ──
 async function init() {
-  // Get results from localStorage
-  const stored = localStorage.getItem('prism-results');
+  // Get results from localStorage (support legacy/current key variants)
+  const stored =
+    localStorage.getItem('prism-results') ||
+    localStorage.getItem('prism_results') ||
+    localStorage.getItem('prismResults');
   if (!stored) {
     document.getElementById('app').innerHTML = '<div class="loading">No quiz results found. <a href="prism-quiz-v2.html" style="color:var(--accent)">Take the quiz</a></div>';
     return;
@@ -315,6 +318,9 @@ function render(prism, archetype, elections, alignments) {
         if (respondentState && respondentState.continuous && respondentState.continuous[id]) {
           pos = respondentState.continuous[id].expectedPos;
           sal = respondentState.continuous[id].salience;
+        } else if (respondentState && respondentState[id]) {
+          pos = respondentState[id].expectedPos ?? respondentState[id].pos;
+          sal = respondentState[id].salience ?? respondentState[id].sal;
         } else if (archetype && archetype.nodes && archetype.nodes[id]) {
           pos = archetype.nodes[id].pos;
           sal = archetype.nodes[id].sal || 1;
@@ -372,6 +378,8 @@ function render(prism, archetype, elections, alignments) {
         let probs;
         if (respondentState && respondentState.categorical && respondentState.categorical[catId]) {
           probs = respondentState.categorical[catId].catDist;
+        } else if (respondentState && respondentState[catId]) {
+          probs = respondentState[catId].catDist || respondentState[catId].probs;
         } else if (archetype && archetype.nodes && archetype.nodes[catId]) {
           probs = archetype.nodes[catId].probs;
         }
