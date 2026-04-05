@@ -237,6 +237,7 @@ function render(prism, archetype, elections, alignments) {
   // Use respondent's actual node state if available, otherwise fall back to archetype centroid
   const respondentState = prism.respondentState;
   const useCentroid = !respondentState;
+  const identityPrimary = prism.identityPrimary || null;
 
   let html = '';
 
@@ -277,6 +278,40 @@ function render(prism, archetype, elections, alignments) {
     html += '</div>';
   }
   html += '</div>';
+
+  // ── Section 1B: Identity & Coalition ──
+  if (identityPrimary && identityPrimary.state && identityPrimary.state !== 'none') {
+    html += '<div class="section">';
+    html += '<h2>Identity & Coalition</h2>';
+
+    if (identityPrimary.label) {
+      html += `<div class="archetype-name" style="font-size:1.8rem;">${identityPrimary.label}</div>`;
+      html += `<div class="archetype-tier">State: ${identityPrimary.state}${identityPrimary.confidence ? ' · Confidence: ' + identityPrimary.confidence : ''}</div>`;
+    } else {
+      html += `<div class="archetype-name" style="font-size:1.4rem;">Unresolved identity-primary fit</div>`;
+      html += `<div class="archetype-tier">State: ${identityPrimary.state}${identityPrimary.confidence ? ' · Confidence: ' + identityPrimary.confidence : ''}</div>`;
+    }
+
+    if (identityPrimary.anchor) {
+      html += `<div class="archetype-desc">Primary anchor detected: <strong>${identityPrimary.anchor}</strong>.</div>`;
+    }
+
+    if (identityPrimary.label === 'Black Voter') {
+      html += '<div class="archetype-desc">Your identity-primary pattern currently resolves to Black Voter: race-centered political attachment with strong group-linked political fusion.</div>';
+    } else if (identityPrimary.label === 'White Grievance Voter') {
+      html += '<div class="archetype-desc">Your identity-primary pattern currently resolves to White Grievance Voter: racialized identity attachment combined with threat / preservation signals.</div>';
+    } else if (identityPrimary.label === 'Evangelical Voter') {
+      html += '<div class="archetype-desc">Your identity-primary pattern currently resolves to Evangelical Voter: religion-centered identity anchoring with politically fused group attachment.</div>';
+    } else {
+      html += '<div class="archetype-desc">Your responses show a strong identity-primary pattern, but the current runtime cannot yet fully resolve which intended identity-primary archetype best fits.</div>';
+    }
+
+    if (identityPrimary.reasonCodes && identityPrimary.reasonCodes.length) {
+      html += `<div style="margin-top:0.8rem;font-size:0.8rem;color:var(--muted);">Reason codes: ${identityPrimary.reasonCodes.join(', ')}</div>`;
+    }
+
+    html += '</div>';
+  }
 
   // ── Section 2: Elections ──
   if (elections.length > 0) {
