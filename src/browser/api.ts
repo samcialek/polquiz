@@ -33,6 +33,8 @@ import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { FIXED_16 } from "../engine/config.js";
+import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
+import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 
 // ---------------------------------------------------------------------------
 // Types exposed to the browser consumer
@@ -93,6 +95,8 @@ export interface QuizResults {
   /** Family/subtype info when top-2 are near-neighbors */
   family?: FamilyResult;
 }
+
+export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
 
 // ---------------------------------------------------------------------------
 // Internal state
@@ -579,8 +583,17 @@ export function getRespondentState(): Record<string, unknown> | null {
   return {
     continuous,
     categorical,
+    trbAnchor: {
+      dist: [..._state.trbAnchor.dist],
+      touches: _state.trbAnchor.touches,
+    },
     ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
   };
+}
+
+export function getIdentityPrimaryResult(demographics?: IdentityPrimaryDemographics | null): IdentityPrimaryResult | null {
+  if (!_state) return null;
+  return resolveIdentityPrimary(_state, demographics ?? null);
 }
 
 export function applyRatioBoost(questionId: number, ratio: number): void {

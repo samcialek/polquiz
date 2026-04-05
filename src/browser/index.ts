@@ -14,6 +14,7 @@ export {
   getQuestionDef,
   getArchetypeCount,
   getRespondentState,
+  getIdentityPrimaryResult,
   canGoBack,
   goBack,
   applyRatioBoost,
@@ -29,4 +30,6 @@ export type {
   QuizProgress,
   ArchetypeResult,
   QuizResults,
+  IdentityPrimaryDemographics,
+  IdentityPrimaryResult,
 } from "./api.js";
