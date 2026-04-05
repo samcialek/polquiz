@@ -5325,6 +5325,7 @@ var PrismEngine = (() => {
     registerTouches(state, q);
     if (!q.allocationMap) return;
     const total = Math.max(1, Object.values(allocation).reduce((a, b) => a + b, 0));
+    const shares = Object.values(allocation).map((weight) => weight / total);
     for (const [bucket, weight] of Object.entries(allocation)) {
       const share = weight / total;
       const map = q.allocationMap[bucket];
@@ -5354,6 +5355,20 @@ var PrismEngine = (() => {
         }
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
+      }
+    }
+    const salienceTouches = q.touchProfile.filter((t) => t.role === "salience");
+    if (!salienceTouches.length) return;
+    const hhi = shares.reduce((sum, s) => sum + s * s, 0);
+    const concentration = Math.max(0, Math.min(1, (hhi - 0.25) / 0.75));
+    const salLikelihood = concentration >= 0.75 ? [0.03, 0.08, 0.24, 0.65] : concentration >= 0.5 ? [0.06, 0.14, 0.32, 0.48] : concentration >= 0.25 ? [0.12, 0.22, 0.34, 0.32] : [0.22, 0.3, 0.28, 0.2];
+    for (const touch of salienceTouches) {
+      if (touch.kind === "continuous") {
+        const node = state.continuous[touch.node];
+        node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+      } else if (touch.kind === "categorical") {
+        const node = state.categorical[touch.node];
+        node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
       }
     }
   }
