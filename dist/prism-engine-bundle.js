@@ -21,6 +21,7 @@ var PrismEngine = (() => {
   // src/browser/index.ts
   var index_exports = {};
   __export(index_exports, {
+    applyRatioBoost: () => applyRatioBoost,
     attachToExistingQuiz: () => attachToExistingQuiz,
     canGoBack: () => canGoBack,
     getArchetypeCount: () => getArchetypeCount,
@@ -6065,6 +6066,29 @@ var PrismEngine = (() => {
   var _archetypes = [];
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();
+  var _ratioBoosts = /* @__PURE__ */ new Map();
+  function ratioToSalienceDist(ratio) {
+    if (ratio >= 4) return [0.02, 0.08, 0.3, 0.6];
+    if (ratio >= 3) return [0.04, 0.12, 0.34, 0.5];
+    if (ratio >= 2) return [0.08, 0.18, 0.34, 0.4];
+    return [0.18, 0.28, 0.3, 0.24];
+  }
+  function applyStoredRatioBoost(q) {
+    if (!_state) return;
+    const ratio = _ratioBoosts.get(q.id);
+    if (!ratio) return;
+    const salLikelihood = ratioToSalienceDist(ratio);
+    for (const touch of q.touchProfile) {
+      if (touch.role !== "salience") continue;
+      if (touch.kind === "continuous" && touch.node in _state.continuous) {
+        const node = _state.continuous[touch.node];
+        node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+      } else if (touch.kind === "categorical" && touch.node in _state.categorical) {
+        const node = _state.categorical[touch.node];
+        node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+      }
+    }
+  }
   var _snapshots = [];
   function deepCopyState(state) {
     const copy = {
@@ -6220,6 +6244,7 @@ var PrismEngine = (() => {
     resetSimilarityCache();
     _state = createInitialState(_archetypes);
     _snapshots.length = 0;
+    _ratioBoosts.clear();
   }
   function getNextQuestion() {
     if (!_state) throw new Error("Call initQuiz() first");
@@ -6244,6 +6269,7 @@ var PrismEngine = (() => {
       case "single_choice":
       case "multi":
         applySingleChoiceAnswer(_state, q, answer);
+        applyStoredRatioBoost(q);
         break;
       case "slider":
         applySliderAnswer(_state, q, answer);
@@ -6362,7 +6388,14 @@ var PrismEngine = (() => {
       const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
       categorical[nodeId] = { catDist: [...node.catDist], salience, touches: node.touches };
     }
-    return { continuous, categorical };
+    return {
+      continuous,
+      categorical,
+      ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
+    };
+  }
+  function applyRatioBoost(questionId, ratio) {
+    _ratioBoosts.set(questionId, ratio);
   }
   function canGoBack() {
     return _snapshots.length > 0;

@@ -27,6 +27,7 @@ import {
   applyRankingAnswer,
   applyPairwiseAnswer,
 } from "../engine/update.js";
+import { multiplyAndNormalize } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
 import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
@@ -101,6 +102,31 @@ let _state: RespondentState | null = null;
 let _archetypes: Archetype[] = [];
 let _questions: QuestionDef[] = [];
 let _questionsById: Map<number, QuestionDef> = new Map();
+const _ratioBoosts: Map<number, number> = new Map();
+
+function ratioToSalienceDist(ratio: number): SalienceDist {
+  if (ratio >= 4) return [0.02, 0.08, 0.30, 0.60];
+  if (ratio >= 3) return [0.04, 0.12, 0.34, 0.50];
+  if (ratio >= 2) return [0.08, 0.18, 0.34, 0.40];
+  return [0.18, 0.28, 0.30, 0.24];
+}
+
+function applyStoredRatioBoost(q: QuestionDef): void {
+  if (!_state) return;
+  const ratio = _ratioBoosts.get(q.id);
+  if (!ratio) return;
+  const salLikelihood = ratioToSalienceDist(ratio);
+  for (const touch of q.touchProfile) {
+    if (touch.role !== "salience") continue;
+    if (touch.kind === "continuous" && touch.node in _state.continuous) {
+      const node = _state.continuous[touch.node as ContinuousNodeId];
+      node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+    } else if (touch.kind === "categorical" && touch.node in _state.categorical) {
+      const node = _state.categorical[touch.node as CategoricalNodeId];
+      node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+    }
+  }
+}
 
 // Snapshot stack for back button (deep copies of state before each answer)
 interface Snapshot {
@@ -309,6 +335,7 @@ export function initQuiz(): void {
   resetSimilarityCache();
   _state = createInitialState(_archetypes);
   _snapshots.length = 0; // Clear snapshot history on fresh quiz
+  _ratioBoosts.clear();
 }
 
 /**
@@ -363,6 +390,7 @@ export function submitAnswer(
     case "single_choice":
     case "multi":
       applySingleChoiceAnswer(_state, q, answer as string);
+      applyStoredRatioBoost(q);
       break;
 
     case "slider":
@@ -548,7 +576,15 @@ export function getRespondentState(): Record<string, unknown> | null {
     categorical[nodeId] = { catDist: [...node.catDist], salience, touches: node.touches };
   }
 
-  return { continuous, categorical };
+  return {
+    continuous,
+    categorical,
+    ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
+  };
+}
+
+export function applyRatioBoost(questionId: number, ratio: number): void {
+  _ratioBoosts.set(questionId, ratio);
 }
 
 /**

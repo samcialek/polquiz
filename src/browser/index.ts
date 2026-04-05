@@ -16,6 +16,7 @@ export {
   getRespondentState,
   canGoBack,
   goBack,
+  applyRatioBoost,
 } from "./api.js";
 
 export {
