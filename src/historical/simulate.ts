@@ -108,14 +108,15 @@ const ACTUAL_RESULTS: Record<number, { winner: string; winnerPct: number; loserP
 const ERA_BONUSES: Record<number, Record<string, number>> = {
   1964: { Johnson: 2.5 },         // Post-JFK sympathy + Goldwater extremism
   1968: { Nixon: 0.8 },           // Law and order resonated, Humphrey tainted by Vietnam
-  1972: { Nixon: 2.0 },           // McGovern perceived as extreme, "peace with honor"
+  1972: { Nixon: 1.5 },           // McGovern perceived as extreme (reduced from 2.0 — was pulling 88%)
   1980: { Reagan: 1.5 },          // Malaise, hostage crisis, Carter perceived as weak
   1984: { Reagan: 2.5 },          // "Morning in America," economic boom, incumbent
   1988: { Bush: 0.5 },            // Reagan coattails, Dukakis tank photo, Willie Horton
   1992: { Clinton: 1.5 },         // "It's the economy, stupid," change election, Bush broken promises
   1996: { Clinton: 1.0 },         // Incumbent, peace and prosperity, Dole lacked energy
-  2004: { Bush: 2.0 },            // Post-9/11 security, wartime incumbent, "Swift Boat"
+  2004: { Bush: 1.0 },            // Post-9/11 security (reduced from 2.0 — 50.7% election, not a landslide)
   2008: { Obama: 1.5 },           // Financial crisis, change wave, historic candidacy
+  2016: { Trump: 1.0 },           // Populist wave, change election, Clinton unpopularity
   2024: { Trump: 1.5 },           // Inflation/economy frustration, "were you better off" framing
 };
 
@@ -174,10 +175,10 @@ function inferArchetypeParty(arch: Archetype): "Democratic" | "Republican" | "no
 function turnoutProbability(engPos: number): number {
   // ENG position determines likelihood of voting at all
   if (engPos >= 5) return 0.95;
-  if (engPos >= 4) return 0.85;
-  if (engPos >= 3) return 0.70;
-  if (engPos >= 2) return 0.45;
-  return 0.15;
+  if (engPos >= 4) return 0.82;
+  if (engPos >= 3) return 0.62;
+  if (engPos >= 2) return 0.38;
+  return 0.12;
 }
 
 /** Deterministic turnout: vote if ENG-based probability >= 0.5 */
@@ -295,10 +296,14 @@ function computeAlignment(arch: Archetype, cand: CandidateProfile, year: number,
     }
   }
 
-  // ── FIX 3: Era-context modifier ───────────────────────────────────────────
+  // ── Era-context modifier ───────────────────────────────────────────────────
+  // Attenuate: full bonus if base alignment is positive (archetype already leans
+  // toward candidate), 30% if negative (prevents era effects from flipping
+  // ideologically opposed archetypes — e.g., Black Voter shouldn't vote Nixon 1972).
   const eraBonus = ERA_BONUSES[year];
   if (eraBonus && eraBonus[cand.name] !== undefined) {
-    total += eraBonus[cand.name];
+    const rawBonus = eraBonus[cand.name];
+    total += total >= 0 ? rawBonus : rawBonus * 0.3;
   }
 
   return total;
@@ -348,16 +353,19 @@ function simulate(): VoteResult[] {
         }
       }
 
-      // Dynamic turnout: use regime alignment if context exists
+      // Blended turnout: alignment-based probability + ENG-based probability
+      // This ensures ENG always matters while alignment still modulates turnout
+      const engProb = turnoutProbability(engPos);
       if (ctx) {
-        const { votes: doesVote } = computeTurnoutFromAlignment(arch, election.candidates, ctx);
-        if (!doesVote) {
+        const { turnoutProbability: alignProb } = computeTurnoutFromAlignment(arch, election.candidates, ctx);
+        const blendedProb = 0.45 * alignProb + 0.55 * engProb;
+        if (blendedProb < 0.47) {
           votes[election.year] = "ABSTAIN";
           continue;
         }
       } else {
         // Fallback to static turnout for elections without context
-        if (!willVote(engPos)) {
+        if (engProb < 0.5) {
           votes[election.year] = "ABSTAIN";
           continue;
         }
