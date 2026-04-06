@@ -960,6 +960,8 @@ const OPT_LABELS = {
     equal_society: "A very equal society with a high floor but lower ceiling",
     essential_power: "Essential—aesthetic power is political power",
     ethnic_racial_identity: "Ethnic / racial identity",
+    gender_identity: "Gender identity",
+    sexual_identity: "Sexual identity / LGBTQ+",
     every_day: "Every day, multiple times a day",
     evidence_and_argument: "Logical arguments and empirical evidence",
     evidence_pitch: "The data shows these three interventions will have the highest impact",
@@ -1632,6 +1634,10 @@ function showDemographics() {
                 ${demoField('Ethnicity/Race', 'demo_ethnicity', [
                     'White','Black or African American','Hispanic or Latino','Asian','Native American','Pacific Islander','Multiracial','Other'
                 ])}
+                ${demoField('Religion', 'demo_religion', [
+                    'Evangelical / Born-again Christian','Mainline Protestant','Catholic','Mormon / LDS','Jewish','Muslim','Hindu','Buddhist','Spiritual but not religious','Atheist / Agnostic','Other','None'
+                ])}
+                ${demoField('LGBTQ+', 'demo_lgbtq', ['Yes','No','Prefer not to say'])}
             </div>
             <div style="display:flex;gap:0.75rem;justify-content:center;margin-top:1.5rem;">
                 <button onclick="submitDemographics()" style="
@@ -1681,9 +1687,31 @@ function showResults() {
     showDemographics();
 }
 
+function normalizeDemo(raw) {
+    // Map form slugs to the values the identity-primary resolver expects
+    const demo = Object.assign({}, raw);
+    // Ethnicity: form slugs "Black or African American" → "black_or_african_american"
+    const ethMap = { black_or_african_american: 'black', white: 'white', hispanic_or_latino: 'hispanic', asian: 'asian', native_american: 'native_american', pacific_islander: 'pacific_islander', multiracial: 'multiracial' };
+    if (demo.demo_ethnicity && ethMap[demo.demo_ethnicity]) demo.demo_ethnicity = ethMap[demo.demo_ethnicity];
+    // Religion: map evangelical slugs → "christian" (resolver key)
+    const christianSlugs = ['evangelical_born_again_christian', 'mainline_protestant', 'catholic', 'mormon_lds'];
+    if (demo.demo_religion && christianSlugs.includes(demo.demo_religion)) demo.demo_religion = 'christian';
+    return demo;
+}
+
 function finalizeResults() {
     const results = PrismEngine.getResults();
     const respondentState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
+
+    // Resolve identity-primary overlay using demographics + engine state
+    let identityPrimary = null;
+    if (PrismEngine.getIdentityPrimaryResult) {
+        try {
+            const rawDemo = JSON.parse(localStorage.getItem('prism-demographics') || '{}');
+            const demo = normalizeDemo(rawDemo);
+            identityPrimary = PrismEngine.getIdentityPrimaryResult(demo);
+        } catch(e) { /* demographics unavailable or skipped — overlay stays null */ }
+    }
 
     // Save everything to localStorage for the results page
     const prismResults = {
@@ -1695,6 +1723,7 @@ function finalizeResults() {
         top5: results.top5,
         family: results.family || null,
         respondentState: respondentState,
+        identityPrimary: identityPrimary,
         timestamp: Date.now()
     };
     localStorage.setItem('prism-results', JSON.stringify(prismResults));

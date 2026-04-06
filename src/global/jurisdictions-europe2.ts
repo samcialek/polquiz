@@ -66,7 +66,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1945,
     description:
       "German occupation brought deportation of Dutch Jews, forced labor, and the catastrophic Hunger Winter of 1944-45, shattering the prewar social order and leaving deep scars on national memory.",
-    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
+    MAT: 3, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -230,8 +230,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1968,
     description:
       "Antonio de Oliveira Salazar built a corporatist Catholic authoritarian state emphasizing austerity, rural values, and imperial unity, maintaining neutrality in WWII while brutally suppressing dissent and clinging to African colonies.",
-    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 1,
-    ZS: 3, ONT_H: 1, ONT_S: 2, PF: 1, TRB: 4, ENG: 2,
+    MAT: 4, CD: 5, CU: 5, MOR: 2, PRO: 2, COM: 1,
+    ZS: 3, ONT_H: 1, ONT_S: 2, PF: 4, TRB: 4, ENG: 2,
     EPS: 2, AES: 2,
   },
   {
@@ -323,7 +323,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1949,
     description:
       "The Metaxas dictatorship gave way to Axis occupation and devastating famine, followed by a brutal civil war between communist and royalist forces that became an early proxy conflict of the Cold War.",
-    MAT: 3, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
+    MAT: 3, CD: 5, CU: 5, MOR: 2, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 4, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -345,7 +345,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1974,
     description:
       "The Colonels' military dictatorship imposed censorship, torture, and exile on political opponents before collapsing after its reckless sponsorship of a coup in Cyprus triggered the Turkish invasion.",
-    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
+    MAT: 4, CD: 5, CU: 5, MOR: 2, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 3, PF: 1, TRB: 5, ENG: 3,
     EPS: 2, AES: 4,
   },
@@ -580,8 +580,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1944,
     description:
       "Carol II's royal dictatorship gave way to Marshal Antonescu's alliance with Nazi Germany, leading Romania into the invasion of the USSR, the Holocaust in Transnistria, and eventual capitulation to the Soviets in August 1944.",
-    MAT: 4, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
-    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 1, TRB: 5, ENG: 5,
+    MAT: 4, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 1, ONT_S: 5, PF: 4, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
   {
@@ -591,8 +591,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1964,
     description:
       "Soviet-backed communists seized power, abolished the monarchy, collectivized agriculture, and industrialized under Gheorghiu-Dej while purging rivals and imprisoning hundreds of thousands in forced labor camps.",
-    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
-    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },
   {
@@ -602,8 +602,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1989,
     description:
       "Nicolae Ceausescu built a nationalist communist personality cult, pursuing an independent foreign policy while imposing devastating austerity to repay foreign debt, banning abortion, and demolishing villages for systematization.",
-    MAT: 1, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
-    ZS: 5, ONT_H: 3, ONT_S: 2, PF: 1, TRB: 5, ENG: 4,
+    MAT: 1, CD: 5, CU: 5, MOR: 2, PRO: 1, COM: 1,
+    ZS: 5, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 5, ENG: 4,
     EPS: 3, AES: 4,
   },
   {
@@ -651,7 +651,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1918,
     description:
       "As co-equal partner in Austria-Hungary, the Magyar elite pursued aggressive Magyarization of minorities while industrializing Budapest into a major European capital, before WWI destroyed the empire.",
-    MAT: 4, CD: 4, CU: 1, MOR: 2, PRO: 3, COM: 3,
+    MAT: 4, CD: 4, CU: 5, MOR: 2, PRO: 3, COM: 3,
     ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 5, ENG: 4,
     EPS: 1, AES: 0,
   },
@@ -662,7 +662,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1944,
     description:
       "Admiral Horthy's regency was defined by irredentist revisionism after the Treaty of Trianon, the White Terror against leftists, and a gradual slide into the Nazi orbit that ended with German occupation and the Holocaust.",
-    MAT: 4, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 2,
+    MAT: 4, CD: 5, CU: 5, MOR: 2, PRO: 2, COM: 2,
     ZS: 5, ONT_H: 1, ONT_S: 4, PF: 3, TRB: 5, ENG: 4,
     EPS: 2, AES: 4,
   },
@@ -673,8 +673,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1956,
     description:
       "Matyas Rakosi's Stalinist regime imposed terror, show trials, and forced industrialization before the 1956 Hungarian Revolution briefly overthrew communist rule, only to be crushed by Soviet tanks.",
-    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
-    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },
   {
@@ -706,7 +706,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 2026,
     description:
       "Viktor Orban's Fidesz built an 'illiberal democracy' with a constitutional supermajority, capturing state institutions, media, and courts while championing Christian nationalism and anti-immigration politics within the EU.",
-    MAT: 3, CD: 5, CU: 1, MOR: 2, PRO: 2, COM: 1,
+    MAT: 3, CD: 5, CU: 4, MOR: 2, PRO: 2, COM: 1,
     ZS: 4, ONT_H: 1, ONT_S: 4, PF: 5, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -755,7 +755,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1945,
     description:
       "The Munich Agreement dismembered Czechoslovakia, and the subsequent Nazi Protectorate of Bohemia and Moravia imposed terror, Germanization, and the destruction of Lidice, while the Sudeten Germans were expelled after liberation.",
-    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
+    MAT: 3, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 1, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -766,8 +766,8 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1967,
     description:
       "The 1948 communist coup imposed Stalinist rule under Gottwald with show trials, collectivization, and heavy industrialization, while Czechoslovakia became one of the most rigidly orthodox Warsaw Pact states.",
-    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
-    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 1, TRB: 4, ENG: 4,
+    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },
   {
@@ -778,7 +778,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "Dubcek's 'socialism with a human face' was crushed by Warsaw Pact invasion in August 1968, ushering in two decades of Husak's normalization that enforced conformity while dissidents like Havel kept civic ideals alive.",
     MAT: 1, CD: 3, CU: 2, MOR: 3, PRO: 2, COM: 2,
-    ZS: 4, ONT_H: 3, ONT_S: 4, PF: 1, TRB: 3, ENG: 3,
+    ZS: 4, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
   },
   {

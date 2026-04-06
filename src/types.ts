@@ -94,10 +94,14 @@ export type TrbAnchor =
   | "religious"
   | "class"
   | "ethnic_racial"
+  | "gender"
+  | "sexual"
   | "global"
   | "mixed_none";
 
 export type TrbAnchorDist = [
+  number,
+  number,
   number,
   number,
   number,

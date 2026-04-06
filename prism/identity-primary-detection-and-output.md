@@ -76,7 +76,7 @@ Q60 asks respondents to rank which identities are most politically important to 
 | Religion / faith community | Evangelical | Yes — denomination matters |
 | Sexual orientation / LGBTQ identity | LGBTQ | Minimal — self-report is sufficient |
 | Gender (as women / feminist) | Feminist | Yes — must be female-identified |
-| Gender (as men / masculine) | Male Identitarian | Yes — must be male-identified |
+| Gender (as men / masculine) | Male Grievance | Yes — must be male-identified |
 | Ethnicity / national origin | None (dropped overlays) | — |
 | Class / economic position | None (not identity-primary) | — |
 | Party / ideology | None (pure partisan) | — |
@@ -100,11 +100,11 @@ The White Grievance overlay has an additional requirement beyond Q60: evidence o
 - Denomination matters: evangelical/born-again Protestant → overlay. Catholic, mainline Protestant, Jewish, Muslim → no overlay (we dropped those)
 - If denomination data unavailable: use EPS = traditionalist as supporting evidence (evangelicals skew hard traditionalist)
 
-**Gender → Feminist vs Male Identitarian:**
+**Gender → Feminist vs Male Grievance:**
 - Q60 gender = top identity
 - Female-identified → Feminist overlay candidate
-- Male-identified → Male Identitarian overlay candidate
-- Additional evidence: Feminist needs low CD (progressive) + wide MOR. Male Identitarian needs high ZS + high CD (traditional). Without these, it's just "gender matters to me" without identity-primary activation.
+- Male-identified → Male Grievance overlay candidate
+- Additional evidence: Feminist needs low CD (progressive) + wide MOR. Male Grievance needs high ZS + high CD (traditional). Without these, it's just "gender matters to me" without identity-primary activation.
 
 ### Assignment confidence levels
 
@@ -125,10 +125,10 @@ One overlay per person, maximum. If someone ranks BOTH race and gender at the to
 **Principle (locked):** No overlay from demographics alone. But some overlays cannot be validly assigned without demographics.
 
 - Being Black does NOT automatically assign Black overlay
-- Being male does NOT automatically assign Male Identitarian
+- Being male does NOT automatically assign Male Grievance
 - Being evangelical does NOT automatically assign Evangelical overlay
 
-Demographics are used ONLY when the gate + thematic evidence already fire, and disambiguation is needed (Black vs White Grievance, Feminist vs Male Identitarian, Evangelical vs generic traditionalist).
+Demographics are used ONLY when the gate + thematic evidence already fire, and disambiguation is needed (Black vs White Grievance, Feminist vs Male Grievance, Evangelical vs generic traditionalist).
 
 ### Three possible output states
 

@@ -112,7 +112,7 @@ function createInitialState(archetypes: Archetype[]): RespondentState {
     continuous,
     categorical,
     trbAnchor: {
-      dist: [1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7] as TrbAnchorDist,
+      dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9] as TrbAnchorDist,
       touches: 0,
     },
     archetypePosterior,

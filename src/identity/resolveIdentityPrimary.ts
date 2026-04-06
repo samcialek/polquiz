@@ -31,6 +31,7 @@ export interface IdentityPrimaryDemographics {
   demo_ethnicity?: string;
   demo_religion?: string;
   demo_gender?: string;
+  demo_lgbtq?: string;
   [key: string]: unknown;
 }
 
@@ -40,11 +41,13 @@ const TRB_ANCHOR_ORDER: TrbAnchor[] = [
   "religious",
   "class",
   "ethnic_racial",
+  "gender",
+  "sexual",
   "global",
   "mixed_none",
 ];
 
-function expectedContinuous(state: RespondentState, nodeId: "TRB" | "PF" | "ENG" | "ZS" | "CD" | "ONT_S"): number {
+function expectedContinuous(state: RespondentState, nodeId: "TRB" | "PF" | "ENG" | "ZS" | "CD" | "ONT_S" | "MOR"): number {
   const node = state.continuous[nodeId];
   if (!node) return 3;
   return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
@@ -70,6 +73,7 @@ export function resolveIdentityPrimary(
   const zs = expectedContinuous(state, "ZS");
   const cd = expectedContinuous(state, "CD");
   const onts = expectedContinuous(state, "ONT_S");
+  const mor = expectedContinuous(state, "MOR");
   const anchor = topAnchor(state);
 
   const passedLatent = trb >= 3 && pf >= 3;
@@ -146,6 +150,78 @@ export function resolveIdentityPrimary(
       confidence: "low",
       anchor,
       reasonCodes: ["religious_anchor", "missing_or_non_evangelical_religion_detail"],
+      gate,
+    };
+  }
+
+  if (anchor === "sexual") {
+    const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+    if (lgbtq === "yes") {
+      return {
+        state: stateLabel,
+        label: "LGBTQ Voter",
+        confidence: passedActive ? "high" : "medium",
+        anchor,
+        reasonCodes: ["sexual_anchor", "lgbtq_demographic_match"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor,
+      reasonCodes: ["sexual_anchor", "missing_or_non_lgbtq_demographic"],
+      gate,
+    };
+  }
+
+  if (anchor === "gender") {
+    const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
+    if (gender === "female") {
+      const feministSignals = Number(cd <= 2.5) + Number(mor >= 3.5) + Number(onts >= 3.5);
+      if (feministSignals >= 2) {
+        return {
+          state: stateLabel,
+          label: "Feminist Voter",
+          confidence: feministSignals === 3 ? "high" : "medium",
+          anchor,
+          reasonCodes: ["gender_anchor", "female_demographic_match", "progressive_gender_pattern"],
+          gate,
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["gender_anchor", "female_demographic_match", "insufficient_feminist_signal"],
+        gate,
+      };
+    }
+    if (gender === "male") {
+      const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+      if (grievanceSignals >= 2) {
+        return {
+          state: stateLabel,
+          label: "Male Grievance Voter",
+          confidence: grievanceSignals === 3 ? "high" : "medium",
+          anchor,
+          reasonCodes: ["gender_anchor", "male_demographic_match", "status_threat_pattern"],
+          gate,
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["gender_anchor", "male_demographic_match", "insufficient_grievance_signal"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor,
+      reasonCodes: ["gender_anchor", "missing_or_nonresolving_gender_demographic"],
       gate,
     };
   }

@@ -48,7 +48,7 @@ Documented overlay set:
 - `The Evangelical Voter`
 - `The LGBTQ Voter`
 - `The Feminist Voter`
-- `The Male Identitarian Voter`
+- `The Male Grievance Voter`
 
 Documented architecture:
 - Overlay/modifier layer on top of base archetypes

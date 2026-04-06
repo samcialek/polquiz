@@ -71,7 +71,7 @@
 
 ---
 
-## 6. The Male Identitarian Voter
+## 6. The Male Grievance Voter
 
 - **Applicability:** 2016–present
 - **N/A zone:** All elections before 2012. Proto 2012
@@ -89,7 +89,7 @@
 |------|---------------|-------------------|
 | **1964** | Civil Rights Act | Black locks D + White Grievance breaks from D |
 | **1980** | Reagan / Moral Majority / ERA failure | Evangelical locks R + Feminist activates D |
-| **2016** | Trump elected | White Grievance fully activated + Male Identitarian emerges + Evangelical passes Trump Test |
+| **2016** | Trump elected | White Grievance fully activated + Male Grievance emerges + Evangelical passes Trump Test |
 | 2022 | Dobbs decision | Feminist — maximum threat activation |
 
 ---

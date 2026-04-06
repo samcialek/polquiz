@@ -1,41 +1,41 @@
 {
-  "timestamp": "2026-03-29T15:15:25.653Z",
+  "timestamp": "2026-04-05T19:06:20.778Z",
   "config": {
     "temperature": 0.35,
     "runsPerArchetype": 100,
     "randomWalkCount": 10000,
     "maxQuestions": 65,
-    "archetypeCount": 130
+    "archetypeCount": 115
   },
   "archetypeSimulation": {
-    "totalRuns": 13000,
-    "top1Accuracy": 0.094,
-    "top3Accuracy": 0.19915384615384615,
-    "top5Accuracy": 0.27584615384615385,
-    "avgQuestions": 60.171615384615386,
-    "avgMargin": 0.028348225867981854,
-    "avgTopPosterior": 0.08116500556229307,
+    "totalRuns": 11500,
+    "top1Accuracy": 0.07695652173913044,
+    "top3Accuracy": 0.1782608695652174,
+    "top5Accuracy": 0.2534782608695652,
+    "avgQuestions": 51.685826086956524,
+    "avgMargin": 0.03128205359647035,
+    "avgTopPosterior": 0.08777943020829404,
     "tierBreakdown": [
       {
         "tier": "T1",
-        "archetypeCount": 130,
-        "runs": 13000,
-        "top1Accuracy": 0.094
+        "archetypeCount": 115,
+        "runs": 11500,
+        "top1Accuracy": 0.07695652173913044
       }
     ]
   },
   "randomWalks": {
     "totalWalks": 10000,
-    "avgQuestions": 60.8608,
-    "avgTopPosterior": 0.07474818677771876,
-    "avgMargin": 0.02553571026335369,
-    "avgEntropy": 6.102818328662358,
-    "uniqueAssigned": 101,
+    "avgQuestions": 51.8592,
+    "avgTopPosterior": 0.0854216541050086,
+    "avgMargin": 0.0310678842406959,
+    "avgEntropy": 5.840349510226932,
+    "uniqueAssigned": 87,
     "topAttractor": {
       "id": "091",
       "name": "Security Paternalist",
-      "count": 2302,
-      "pct": 0.2302
+      "count": 2673,
+      "pct": 0.2673
     }
   }
 }

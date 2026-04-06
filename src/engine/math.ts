@@ -28,6 +28,8 @@ const TRB_ANCHOR_ORDER: TrbAnchor[] = [
   "religious",
   "class",
   "ethnic_racial",
+  "gender",
+  "sexual",
   "global",
   "mixed_none",
 ];

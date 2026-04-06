@@ -480,17 +480,18 @@
     continuousNodes.forEach(code => {
       const arcNode = archetype.nodes[code];
       let pos, sal;
-      if (respondentState && respondentState[code]) {
-        // Respondent's actual values (continuous, already on appropriate scale)
-        pos = respondentState[code].pos;
-        sal = respondentState[code].sal;
+      const respCont = respondentState && respondentState.continuous ? respondentState.continuous[code] : null;
+      if (respCont) {
+        // Respondent's actual measured signature from quiz (expectedPos 1-5, salience 0-3)
+        pos = respCont.expectedPos;
+        sal = respCont.salience / 3; // Normalize 0-3 sal to 0-1 for display
       } else {
-        // Archetype centroid (1-5 scale)
+        // Archetype centroid fallback (1-5 scale)
         pos = arcNode.pos;
         sal = arcNode.sal / 3; // Normalize 0-3 sal to 0-1 for display
       }
-      // Convert 1-5 to 1-10 for display
-      const pos10 = respondentState ? pos : (pos - 1) * 2.25 + 1;
+      // Convert 1-5 to 1-10 for display (both branches use 1-5 scale)
+      const pos10 = (pos - 1) * 2.25 + 1;
       nodeData[code] = { pos10, sal, cluster: nodeLabels[code].cluster };
     });
 
@@ -557,8 +558,9 @@
         catNodes.forEach(cn => {
           const arcNode = archetype.nodes[cn.code];
           if (!arcNode) return;
-          const probs = respondentState && respondentState[cn.code] ? respondentState[cn.code].probs : arcNode.probs;
-          const sal = (respondentState && respondentState[cn.code]) ? respondentState[cn.code].sal : (arcNode.sal / 3);
+          const respCat = respondentState && respondentState.categorical ? respondentState.categorical[cn.code] : null;
+          const probs = respCat ? respCat.catDist : arcNode.probs;
+          const sal = respCat ? (respCat.salience / 3) : (arcNode.sal / 3);
           const cats = cn.categories.map((label, i) => ({ label: label.charAt(0).toUpperCase() + label.slice(1), prob: probs[i] || 0 }));
           const sorted = [...cats].sort((a, b) => b.prob - a.prob);
           const top = sorted[0];

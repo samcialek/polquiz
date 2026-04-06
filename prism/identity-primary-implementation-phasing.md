@@ -40,7 +40,7 @@
 
 **Cannot resolve without demographics:**
 - Black vs White Grievance (both = Q60 "race")
-- Feminist vs Male Identitarian (both = Q60 "gender")
+- Feminist vs Male Grievance (both = Q60 "gender")
 
 **Effort:** Medium. Requires reading Q60 ranking output + mapping logic.
 
@@ -71,7 +71,7 @@
 ### 2B: Full overlay resolution
 **What:** With demographics + gate + Q60, resolve all 6 overlays:
 - Race + Q60 race top → Black or White Grievance (+ ZS/CD/ONT_S check for White Grievance)
-- Gender + Q60 gender top → Feminist or Male Identitarian (+ supporting node check)
+- Gender + Q60 gender top → Feminist or Male Grievance (+ supporting node check)
 - Denomination + Q60 religion top → Evangelical (or not)
 - Q60 sexual orientation top → LGBTQ (no demographic needed)
 

@@ -1064,6 +1064,8 @@ const OPT_LABELS = {
     equal_society: "A very equal society with a high floor but lower ceiling",
     essential_power: "Essential - aesthetic power is political power",
     ethnic_racial_identity: "Ethnic / racial identity",
+    gender_identity: "Gender identity",
+    sexual_identity: "Sexual identity / LGBTQ+",
     every_day: "Every day, multiple times a day",
     evidence_and_argument: "Logical arguments and empirical evidence",
     evidence_pitch: "\"The data shows these three interventions will have the highest impact\"",
@@ -1887,6 +1889,15 @@ function showDemographics() {
                         <option value="buddhist">Buddhist</option>
                         <option value="none">None / Secular</option>
                         <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-family:'Courier Prime',monospace;font-size:0.8rem;color:#333;display:block;margin-bottom:0.3rem;">LGBTQ+</label>
+                    <select name="demo_lgbtq" style="width:100%;padding:0.5rem;font-family:'Courier Prime',monospace;font-size:0.85rem;border:2px solid #ddd;">
+                        <option value="">—</option>
+                        <option value="yes">Yes, I identify as LGBTQ+</option>
+                        <option value="no">No</option>
+                        <option value="prefer_not_to_say">Prefer not to say</option>
                     </select>
                 </div>
             </div>

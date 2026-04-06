@@ -219,9 +219,9 @@ async function init() {
 
   // Fetch data files
   const [archetypesRes, electionsRes, alignmentsRes] = await Promise.all([
-    fetch('data/archetypes.json').then(r => r.json()),
-    fetch('data/elections.json').then(r => r.json()),
-    fetch('data/alignments.json').then(r => r.json()),
+    fetch('output/live-data/archetypes.json').then(r => r.json()),
+    fetch('output/live-data/elections.json').then(r => r.json()),
+    fetch('output/live-data/alignments.json').then(r => r.json()),
   ]);
 
   const archetype = archetypesRes.find(a => a.id === parseInt(archetypeId) || a.id === archetypeId || String(a.id) === archetypeId);
@@ -256,7 +256,6 @@ function render(prism, archetype, elections, alignments) {
     }
   }
   html += '<div class="confidence-bar">';
-  html += `<div class="stat-box"><div class="stat-number">${(prism.confidence * 100).toFixed(1)}%</div><div class="stat-label">Confidence</div></div>`;
   html += `<div class="stat-box"><div class="stat-number">${prism.questionsAnswered}</div><div class="stat-label">Questions</div></div>`;
   html += '</div>';
 
@@ -286,10 +285,10 @@ function render(prism, archetype, elections, alignments) {
 
     if (identityPrimary.label) {
       html += `<div class="archetype-name" style="font-size:1.8rem;">${identityPrimary.label}</div>`;
-      html += `<div class="archetype-tier">State: ${identityPrimary.state}${identityPrimary.confidence ? ' · Confidence: ' + identityPrimary.confidence : ''}</div>`;
+      html += `<div class="archetype-tier">State: ${identityPrimary.state}</div>`;
     } else {
       html += `<div class="archetype-name" style="font-size:1.4rem;">Unresolved identity-primary fit</div>`;
-      html += `<div class="archetype-tier">State: ${identityPrimary.state}${identityPrimary.confidence ? ' · Confidence: ' + identityPrimary.confidence : ''}</div>`;
+      html += `<div class="archetype-tier">State: ${identityPrimary.state}</div>`;
     }
 
     if (identityPrimary.anchor) {

@@ -317,6 +317,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       religious_identity: { trbAnchor: { religious: 1 } },
       class_identity: { trbAnchor: { class: 1 } },
       ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
+      gender_identity: { trbAnchor: { gender: 1 } },
+      sexual_identity: { trbAnchor: { sexual: 1 } },
       global_citizen: { trbAnchor: { global: 1 } }
     }
   },

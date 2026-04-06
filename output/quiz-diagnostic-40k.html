@@ -45,49 +45,49 @@
 </head>
 <body>
 <h1>🔬 PRISM Quiz Diagnostic — 40K Simulations</h1>
-<p class="meta">Generated 2026-04-02T04:55:27.771Z | 40,000 simulations | 261.0s runtime | 115 archetypes | 75 questions</p>
+<p class="meta">Generated 2026-04-05T20:48:01.602Z | 40,000 simulations | 146.1s runtime | 115 archetypes | 67 questions</p>
 
 <div class="stats-grid">
   <div class="stat-card">
     <div class="label">Clean Targeted Accuracy (Top-1)</div>
-    <div class="value" style="color: var(--green)">94.8%</div>
-    <div class="sub">109/115 archetypes correctly identified</div>
+    <div class="value" style="color: var(--green)">85.2%</div>
+    <div class="sub">98/115 archetypes correctly identified</div>
   </div>
   <div class="stat-card">
     <div class="label">Top-3 / Top-5 Accuracy</div>
-    <div class="value">100% / 100%</div>
-    <div class="sub">115 top-3, 115 top-5</div>
+    <div class="value">93% / 96%</div>
+    <div class="sub">107 top-3, 110 top-5</div>
   </div>
   <div class="stat-card">
     <div class="label">Avg Posterior Entropy</div>
-    <div class="value">5.81</div>
-    <div class="sub">bits (min 2.76, max 6.44)</div>
+    <div class="value">5.89</div>
+    <div class="sub">bits (min 3.12, max 6.47)</div>
   </div>
   <div class="stat-card">
     <div class="label">Avg Questions Asked</div>
     <div class="value">54.9</div>
-    <div class="sub">out of 75 available</div>
+    <div class="sub">out of 67 available</div>
   </div>
   <div class="stat-card">
     <div class="label">Unreachable Archetypes</div>
-    <div class="value" style="color: var(--red)">1</div>
+    <div class="value" style="color: var(--red)">4</div>
     <div class="sub">Some never win!</div>
   </div>
   <div class="stat-card">
     <div class="label">Never-Asked Questions</div>
-    <div class="value" style="color: var(--yellow)">7</div>
+    <div class="value" style="color: var(--yellow)">2</div>
     <div class="sub">Dead questions detected</div>
   </div>
 </div>
 
 <div class="alert">
 <strong>⚠ UNREACHABLE ARCHETYPES</strong> — These archetypes never won across 40,000 simulations:
-<ul><li><code>019</code> Anarchist Mutualist</li></ul>
+<ul><li><code>019</code> Anarchist Mutualist</li><li><code>023</code> Rights Cosmopolitan</li><li><code>025</code> World-Minded Reformer</li><li><code>067</code> Free-Exchange Modernist</li></ul>
 </div>
 
 <div class="alert warn">
 <strong>⚠ ABSORBING ARCHETYPES</strong> — These win disproportionately (>3× expected):
-<ul><li><code>060</code> Hinge Citizen — 4237 wins (12.2× expected)</li><li><code>109</code> Alienated Outsider — 2843 wins (8.2× expected)</li><li><code>118</code> Survival Pragmatist — 2709 wins (7.8× expected)</li><li><code>006</code> Fairness Pragmatist — 2664 wins (7.7× expected)</li><li><code>090</code> Hobbesian Guardian — 2301 wins (6.6× expected)</li><li><code>140</code> Market Green Modernist — 1884 wins (5.4× expected)</li><li><code>032</code> Hamiltonian Technocrat — 1777 wins (5.1× expected)</li><li><code>010</code> Bread-and-Butter Progressive — 1402 wins (4.0× expected)</li><li><code>079</code> National Developmentalist — 1329 wins (3.8× expected)</li><li><code>084</code> Civilizational Conservative — 1328 wins (3.8× expected)</li><li><code>091</code> Security Paternalist — 1248 wins (3.6× expected)</li><li><code>097</code> Authority Pragmatist — 1214 wins (3.5× expected)</li><li><code>045</code> Rooted Social Reformer — 1105 wins (3.2× expected)</li><li><code>005</code> Pluralist Structuralist — 1099 wins (3.2× expected)</li></ul>
+<ul><li><code>091</code> Security Paternalist — 5498 wins (15.8× expected)</li><li><code>060</code> Hinge Citizen — 3787 wins (10.9× expected)</li><li><code>109</code> Alienated Outsider — 2823 wins (8.1× expected)</li><li><code>118</code> Survival Pragmatist — 2752 wins (7.9× expected)</li><li><code>005</code> Pluralist Structuralist — 2728 wins (7.8× expected)</li><li><code>071</code> Constitutional Conservative — 2175 wins (6.3× expected)</li><li><code>125</code> Reluctant Partisan — 1749 wins (5.0× expected)</li><li><code>103</code> Grievance Mobilizer — 1647 wins (4.7× expected)</li><li><code>079</code> National Developmentalist — 1313 wins (3.8× expected)</li><li><code>088</code> Gentle Traditionalist — 1047 wins (3.0× expected)</li></ul>
 </div>
 
 <div class="section">
@@ -97,44 +97,44 @@
 <tr><th>Profile</th><th>Accuracy</th><th></th></tr>
 <tr>
 <td><code>clean</code></td>
-<td>94.8%</td>
-<td><div class="bar-container"><div class="bar green" style="width: 284.3478260869565px"></div></div></td>
+<td>85.2%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 255.6521739130435px"></div></div></td>
 </tr><tr>
 <td><code>n=0.05</code></td>
-<td>97.4%</td>
-<td><div class="bar-container"><div class="bar green" style="width: 292.17391304347825px"></div></div></td>
-</tr><tr>
-<td><code>n=0.1</code></td>
 <td>88.7%</td>
 <td><div class="bar-container"><div class="bar green" style="width: 266.0869565217391px"></div></div></td>
 </tr><tr>
+<td><code>n=0.1</code></td>
+<td>83.5%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 250.43478260869566px"></div></div></td>
+</tr><tr>
 <td><code>n=0.15</code></td>
-<td>90.4%</td>
-<td><div class="bar-container"><div class="bar green" style="width: 271.304347826087px"></div></div></td>
+<td>82.6%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 247.82608695652172px"></div></div></td>
 </tr><tr>
 <td><code>n=0.2</code></td>
-<td>92.2%</td>
-<td><div class="bar-container"><div class="bar green" style="width: 276.5217391304348px"></div></div></td>
+<td>79.1%</td>
+<td><div class="bar-container"><div class="bar green" style="width: 237.39130434782606px"></div></div></td>
 </tr><tr>
 <td><code>n=0.25</code></td>
+<td>63.5%</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 190.43478260869566px"></div></div></td>
+</tr><tr>
+<td><code>n=0.3</code></td>
 <td>72.2%</td>
 <td><div class="bar-container"><div class="bar green" style="width: 216.5217391304348px"></div></div></td>
 </tr><tr>
-<td><code>n=0.3</code></td>
-<td>80.9%</td>
-<td><div class="bar-container"><div class="bar green" style="width: 242.60869565217388px"></div></div></td>
-</tr><tr>
 <td><code>n=0.4</code></td>
-<td>64.3%</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 193.04347826086956px"></div></div></td>
+<td>50.4%</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 151.30434782608694px"></div></div></td>
 </tr><tr>
 <td><code>n=0.5</code></td>
-<td>47.8%</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 143.47826086956522px"></div></div></td>
-</tr><tr>
-<td><code>n=0.6</code></td>
 <td>29.6%</td>
 <td><div class="bar-container"><div class="bar red" style="width: 88.69565217391305px"></div></div></td>
+</tr><tr>
+<td><code>n=0.6</code></td>
+<td>20.0%</td>
+<td><div class="bar-container"><div class="bar red" style="width: 60px"></div></div></td>
 </tr>
 </table>
 </div>
@@ -146,150 +146,150 @@
 <tr>
 <td><code>adversarial_always_first</code></td>
 <td>2712</td>
-<td>5.76</td>
+<td>5.75</td>
 <td>55.0</td>
-<td>0.053</td>
-<td>0.115</td>
+<td>0.013</td>
+<td>0.070</td>
 </tr><tr>
 <td><code>adversarial_always_last</code></td>
 <td>2712</td>
-<td>5.62</td>
+<td>5.85</td>
 <td>55.0</td>
-<td>0.039</td>
-<td>0.092</td>
+<td>0.008</td>
+<td>0.063</td>
 </tr><tr>
 <td><code>adversarial_anti_leader</code></td>
 <td>2712</td>
-<td>6.07</td>
+<td>6.00</td>
 <td>55.0</td>
-<td>0.011</td>
+<td>0.010</td>
 <td>0.058</td>
 </tr><tr>
 <td><code>adversarial_oscillating</code></td>
 <td>2714</td>
-<td>5.53</td>
+<td>6.06</td>
 <td>55.0</td>
-<td>0.010</td>
-<td>0.078</td>
+<td>0.017</td>
+<td>0.061</td>
 </tr><tr>
 <td><code>centrist_strong</code></td>
 <td>3000</td>
-<td>6.10</td>
+<td>6.12</td>
 <td>55.0</td>
-<td>0.018</td>
-<td>0.067</td>
+<td>0.011</td>
+<td>0.056</td>
 </tr><tr>
 <td><code>centrist_weak</code></td>
 <td>3000</td>
-<td>6.05</td>
+<td>6.04</td>
 <td>55.0</td>
-<td>0.019</td>
-<td>0.068</td>
+<td>0.017</td>
+<td>0.066</td>
 </tr><tr>
 <td><code>moderate_conservative</code></td>
 <td>3000</td>
-<td>5.70</td>
+<td>5.80</td>
 <td>55.0</td>
-<td>0.022</td>
-<td>0.083</td>
+<td>0.015</td>
+<td>0.068</td>
 </tr><tr>
 <td><code>moderate_liberal</code></td>
 <td>3000</td>
-<td>5.77</td>
+<td>5.83</td>
 <td>55.0</td>
-<td>0.029</td>
-<td>0.090</td>
+<td>0.020</td>
+<td>0.074</td>
 </tr><tr>
 <td><code>random_uniform</code></td>
 <td>10000</td>
-<td>6.00</td>
+<td>5.98</td>
 <td>55.0</td>
-<td>0.019</td>
-<td>0.070</td>
+<td>0.018</td>
+<td>0.068</td>
 </tr><tr>
 <td><code>strong_conservative</code></td>
 <td>3000</td>
-<td>5.48</td>
+<td>5.61</td>
 <td>55.0</td>
-<td>0.021</td>
-<td>0.085</td>
+<td>0.010</td>
+<td>0.065</td>
 </tr><tr>
 <td><code>strong_liberal</code></td>
 <td>3000</td>
-<td>5.65</td>
-<td>54.9</td>
-<td>0.028</td>
-<td>0.097</td>
+<td>5.75</td>
+<td>55.0</td>
+<td>0.019</td>
+<td>0.071</td>
 </tr><tr>
 <td><code>targeted_clean</code></td>
 <td>115</td>
-<td>5.16</td>
-<td>37.3</td>
-<td>0.111</td>
-<td>0.190</td>
+<td>5.24</td>
+<td>38.9</td>
+<td>0.087</td>
+<td>0.166</td>
 </tr><tr>
 <td><code>targeted_noise_0.05</code></td>
 <td>115</td>
-<td>4.54</td>
-<td>50.1</td>
-<td>0.194</td>
-<td>0.283</td>
+<td>4.73</td>
+<td>51.6</td>
+<td>0.162</td>
+<td>0.249</td>
 </tr><tr>
 <td><code>targeted_noise_0.1</code></td>
 <td>115</td>
-<td>4.67</td>
-<td>52.0</td>
-<td>0.172</td>
-<td>0.258</td>
+<td>4.88</td>
+<td>52.8</td>
+<td>0.141</td>
+<td>0.223</td>
 </tr><tr>
 <td><code>targeted_noise_0.15</code></td>
 <td>115</td>
-<td>4.71</td>
-<td>51.8</td>
-<td>0.159</td>
-<td>0.249</td>
+<td>4.92</td>
+<td>53.1</td>
+<td>0.129</td>
+<td>0.213</td>
 </tr><tr>
 <td><code>targeted_noise_0.2</code></td>
 <td>115</td>
-<td>4.89</td>
-<td>53.2</td>
-<td>0.134</td>
-<td>0.219</td>
+<td>5.07</td>
+<td>54.4</td>
+<td>0.105</td>
+<td>0.186</td>
 </tr><tr>
 <td><code>targeted_noise_0.25</code></td>
 <td>115</td>
-<td>5.03</td>
-<td>53.0</td>
-<td>0.103</td>
-<td>0.189</td>
+<td>5.19</td>
+<td>54.1</td>
+<td>0.086</td>
+<td>0.168</td>
 </tr><tr>
 <td><code>targeted_noise_0.3</code></td>
 <td>115</td>
-<td>5.16</td>
+<td>5.27</td>
 <td>54.2</td>
-<td>0.096</td>
-<td>0.176</td>
+<td>0.072</td>
+<td>0.150</td>
 </tr><tr>
 <td><code>targeted_noise_0.4</code></td>
 <td>115</td>
-<td>5.32</td>
-<td>54.2</td>
-<td>0.075</td>
-<td>0.151</td>
+<td>5.44</td>
+<td>54.8</td>
+<td>0.064</td>
+<td>0.133</td>
 </tr><tr>
 <td><code>targeted_noise_0.5</code></td>
 <td>115</td>
-<td>5.55</td>
+<td>5.66</td>
 <td>55.0</td>
-<td>0.046</td>
-<td>0.116</td>
+<td>0.029</td>
+<td>0.097</td>
 </tr><tr>
 <td><code>targeted_noise_0.6</code></td>
 <td>115</td>
-<td>5.71</td>
+<td>5.75</td>
 <td>55.0</td>
-<td>0.030</td>
-<td>0.094</td>
+<td>0.026</td>
+<td>0.089</td>
 </tr>
 </table>
 </div>
@@ -297,125 +297,125 @@
 <div class="section">
 <h2>🏆 Winner Distribution (Top 30)</h2>
 <div class="chart-row">
-<span class="chart-label" title="Hinge Citizen">060 Hinge Citizen</span>
+<span class="chart-label" title="Security Paternalist">091 Security Paternalist</span>
 <div class="chart-bar" style="width: 300px; background: var(--accent)"></div>
-<span class="chart-value">4237 (10.6%)</span>
+<span class="chart-value">5498 (13.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Hinge Citizen">060 Hinge Citizen</span>
+<div class="chart-bar" style="width: 206.63877773735902px; background: var(--accent)"></div>
+<span class="chart-value">3787 (9.5%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Alienated Outsider">109 Alienated Outsider</span>
-<div class="chart-bar" style="width: 201.29808827000235px; background: var(--accent)"></div>
-<span class="chart-value">2843 (7.1%)</span>
+<div class="chart-bar" style="width: 154.03783193888688px; background: var(--accent)"></div>
+<span class="chart-value">2823 (7.1%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Survival Pragmatist">118 Survival Pragmatist</span>
-<div class="chart-bar" style="width: 191.81024309653054px; background: var(--accent)"></div>
-<span class="chart-value">2709 (6.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Fairness Pragmatist">006 Fairness Pragmatist</span>
-<div class="chart-bar" style="width: 188.62402643379752px; background: var(--accent)"></div>
-<span class="chart-value">2664 (6.7%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Hobbesian Guardian">090 Hobbesian Guardian</span>
-<div class="chart-bar" style="width: 162.92187868775076px; background: var(--accent)"></div>
-<span class="chart-value">2301 (5.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Market Green Modernist">140 Market Green Modernist</span>
-<div class="chart-bar" style="width: 133.39627094642432px; background: var(--accent)"></div>
-<span class="chart-value">1884 (4.7%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Hamiltonian Technocrat">032 Hamiltonian Technocrat</span>
-<div class="chart-bar" style="width: 125.8201557705924px; background: var(--accent)"></div>
-<span class="chart-value">1777 (4.4%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Bread-and-Butter Progressive">010 Bread-and-Butter Progressive</span>
-<div class="chart-bar" style="width: 99.26835024781684px; background: var(--accent)"></div>
-<span class="chart-value">1402 (3.5%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="National Developmentalist">079 National Developmentalist</span>
-<div class="chart-bar" style="width: 94.09959877271653px; background: var(--accent)"></div>
-<span class="chart-value">1329 (3.3%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Civilizational Conservative">084 Civilizational Conservative</span>
-<div class="chart-bar" style="width: 94.02879395798912px; background: var(--accent)"></div>
-<span class="chart-value">1328 (3.3%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Security Paternalist">091 Security Paternalist</span>
-<div class="chart-bar" style="width: 88.364408779797px; background: var(--accent)"></div>
-<span class="chart-value">1248 (3.1%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Authority Pragmatist">097 Authority Pragmatist</span>
-<div class="chart-bar" style="width: 85.95704507906535px; background: var(--accent)"></div>
-<span class="chart-value">1214 (3.0%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Rooted Social Reformer">045 Rooted Social Reformer</span>
-<div class="chart-bar" style="width: 78.23932027377862px; background: var(--accent)"></div>
-<span class="chart-value">1105 (2.8%)</span>
+<div class="chart-bar" style="width: 150.16369588941433px; background: var(--accent)"></div>
+<span class="chart-value">2752 (6.9%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Pluralist Structuralist">005 Pluralist Structuralist</span>
-<div class="chart-bar" style="width: 77.81449138541421px; background: var(--accent)"></div>
-<span class="chart-value">1099 (2.7%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Civic Assimilationist">139 Civic Assimilationist</span>
-<div class="chart-bar" style="width: 61.458579183384465px; background: var(--accent)"></div>
-<span class="chart-value">868 (2.2%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Reluctant Partisan">125 Reluctant Partisan</span>
-<div class="chart-bar" style="width: 59.12202029738022px; background: var(--accent)"></div>
-<span class="chart-value">835 (2.1%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Gentle Traditionalist">088 Gentle Traditionalist</span>
-<div class="chart-bar" style="width: 51.262685862638655px; background: var(--accent)"></div>
-<span class="chart-value">724 (1.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Negative Partisan">132 Negative Partisan</span>
-<div class="chart-bar" style="width: 49.138541420816615px; background: var(--accent)"></div>
-<span class="chart-value">694 (1.7%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Institutional Optimizer">036 Institutional Optimizer</span>
-<div class="chart-bar" style="width: 41.491621430257254px; background: var(--accent)"></div>
-<span class="chart-value">586 (1.5%)</span>
+<div class="chart-bar" style="width: 148.85412877409968px; background: var(--accent)"></div>
+<span class="chart-value">2728 (6.8%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Constitutional Conservative">071 Constitutional Conservative</span>
-<div class="chart-bar" style="width: 41.13759735662024px; background: var(--accent)"></div>
-<span class="chart-value">581 (1.5%)</span>
+<div class="chart-bar" style="width: 118.67951982539105px; background: var(--accent)"></div>
+<span class="chart-value">2175 (5.4%)</span>
 </div><div class="chart-row">
-<span class="chart-label" title="Loyal Democrat">128 Loyal Democrat</span>
-<div class="chart-bar" style="width: 34.057115883880094px; background: var(--accent)"></div>
-<span class="chart-value">481 (1.2%)</span>
+<span class="chart-label" title="Reluctant Partisan">125 Reluctant Partisan</span>
+<div class="chart-bar" style="width: 95.43470352855584px; background: var(--accent)"></div>
+<span class="chart-value">1749 (4.4%)</span>
 </div><div class="chart-row">
-<span class="chart-label" title="Quiet Middle">116 Quiet Middle</span>
-<div class="chart-bar" style="width: 31.932971442058054px; background: var(--accent)"></div>
-<span class="chart-value">451 (1.1%)</span>
+<span class="chart-label" title="Grievance Mobilizer">103 Grievance Mobilizer</span>
+<div class="chart-bar" style="width: 89.86904328846855px; background: var(--accent)"></div>
+<span class="chart-value">1647 (4.1%)</span>
 </div><div class="chart-row">
-<span class="chart-label" title="Engaged Cosmopolitan">112 Engaged Cosmopolitan</span>
-<div class="chart-bar" style="width: 27.25985367004956px; background: var(--accent)"></div>
-<span class="chart-value">385 (1.0%)</span>
+<span class="chart-label" title="National Developmentalist">079 National Developmentalist</span>
+<div class="chart-bar" style="width: 71.6442342670062px; background: var(--accent)"></div>
+<span class="chart-value">1313 (3.3%)</span>
 </div><div class="chart-row">
-<span class="chart-label" title="Data-Driven Moderate">039 Data-Driven Moderate</span>
-<div class="chart-bar" style="width: 26.905829596412552px; background: var(--accent)"></div>
-<span class="chart-value">380 (0.9%)</span>
+<span class="chart-label" title="Gentle Traditionalist">088 Gentle Traditionalist</span>
+<div class="chart-bar" style="width: 57.12986540560204px; background: var(--accent)"></div>
+<span class="chart-value">1047 (2.6%)</span>
 </div><div class="chart-row">
-<span class="chart-label" title="Class-War Leftist">012 Class-War Leftist</span>
-<div class="chart-bar" style="width: 25.91456219022893px; background: var(--accent)"></div>
-<span class="chart-value">366 (0.9%)</span>
+<span class="chart-label" title="Negative Partisan">132 Negative Partisan</span>
+<div class="chart-bar" style="width: 55.001818843215716px; background: var(--accent)"></div>
+<span class="chart-value">1008 (2.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Fairness Pragmatist">006 Fairness Pragmatist</span>
+<div class="chart-bar" style="width: 50.96398690432885px; background: var(--accent)"></div>
+<span class="chart-value">934 (2.3%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Hamiltonian Technocrat">032 Hamiltonian Technocrat</span>
+<div class="chart-bar" style="width: 50.20007275372863px; background: var(--accent)"></div>
+<span class="chart-value">920 (2.3%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Closed Traditionalist">083 Closed Traditionalist</span>
+<div class="chart-bar" style="width: 44.52528192069844px; background: var(--accent)"></div>
+<span class="chart-value">816 (2.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Civilizational Conservative">084 Civilizational Conservative</span>
+<div class="chart-bar" style="width: 43.87049836304111px; background: var(--accent)"></div>
+<span class="chart-value">804 (2.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Embattled Majoritarian">101 Embattled Majoritarian</span>
+<div class="chart-bar" style="width: 38.795925791196794px; background: var(--accent)"></div>
+<span class="chart-value">711 (1.8%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Fiscal Gradualist">076 Fiscal Gradualist</span>
-<div class="chart-bar" style="width: 24.002832192589096px; background: var(--accent)"></div>
-<span class="chart-value">339 (0.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Solidaristic Localist">048 Solidaristic Localist</span>
-<div class="chart-bar" style="width: 22.445126268586264px; background: var(--accent)"></div>
-<span class="chart-value">317 (0.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Latent Alarmist">124 Latent Alarmist</span>
-<div class="chart-bar" style="width: 21.737078121312248px; background: var(--accent)"></div>
-<span class="chart-value">307 (0.8%)</span>
-</div><div class="chart-row">
-<span class="chart-label" title="Reform Engineer">040 Reform Engineer</span>
-<div class="chart-bar" style="width: 19.966957753127208px; background: var(--accent)"></div>
-<span class="chart-value">282 (0.7%)</span>
+<div class="chart-bar" style="width: 35.95853037468171px; background: var(--accent)"></div>
+<span class="chart-value">659 (1.6%)</span>
 </div><div class="chart-row">
 <span class="chart-label" title="Systemic Redistributionist">051 Systemic Redistributionist</span>
-<div class="chart-bar" style="width: 17.276374793485957px; background: var(--accent)"></div>
-<span class="chart-value">244 (0.6%)</span>
+<div class="chart-bar" style="width: 33.28483084758094px; background: var(--accent)"></div>
+<span class="chart-value">610 (1.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Quiet Middle">116 Quiet Middle</span>
+<div class="chart-bar" style="width: 23.8450345580211px; background: var(--accent)"></div>
+<span class="chart-value">437 (1.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="National Protector">104 National Protector</span>
+<div class="chart-bar" style="width: 23.135685703892324px; background: var(--accent)"></div>
+<span class="chart-value">424 (1.1%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Loyal Democrat">128 Loyal Democrat</span>
+<div class="chart-bar" style="width: 22.26264096034922px; background: var(--accent)"></div>
+<span class="chart-value">408 (1.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Institutional Optimizer">036 Institutional Optimizer</span>
+<div class="chart-bar" style="width: 21.116769734448887px; background: var(--accent)"></div>
+<span class="chart-value">387 (1.0%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Solidaristic Localist">048 Solidaristic Localist</span>
+<div class="chart-bar" style="width: 19.370680247362678px; background: var(--accent)"></div>
+<span class="chart-value">355 (0.9%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Continuity Conservative">087 Continuity Conservative</span>
+<div class="chart-bar" style="width: 16.860676609676247px; background: var(--accent)"></div>
+<span class="chart-value">309 (0.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Class-War Leftist">012 Class-War Leftist</span>
+<div class="chart-bar" style="width: 16.696980720261916px; background: var(--accent)"></div>
+<span class="chart-value">306 (0.8%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Activist Progressive">014 Activist Progressive</span>
+<div class="chart-bar" style="width: 15.82393597671881px; background: var(--accent)"></div>
+<span class="chart-value">290 (0.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Latent Alarmist">124 Latent Alarmist</span>
+<div class="chart-bar" style="width: 14.186977082575483px; background: var(--accent)"></div>
+<span class="chart-value">260 (0.7%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Anti-Elite Populist">098 Anti-Elite Populist</span>
+<div class="chart-bar" style="width: 12.604583484903602px; background: var(--accent)"></div>
+<span class="chart-value">231 (0.6%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Integral Traditionalist">089 Integral Traditionalist</span>
+<div class="chart-bar" style="width: 11.731538741360495px; background: var(--accent)"></div>
+<span class="chart-value">215 (0.5%)</span>
+</div><div class="chart-row">
+<span class="chart-label" title="Moral Crusader">137 Moral Crusader</span>
+<div class="chart-bar" style="width: 11.67697344488905px; background: var(--accent)"></div>
+<span class="chart-value">214 (0.5%)</span>
 </div>
 </div>
 
@@ -425,53 +425,141 @@
 <table>
 <tr><th>Target</th><th>Target Name</th><th>Got</th><th>Got Name</th><th>Rank</th><th>Top Posterior</th><th>Margin</th></tr>
 <tr>
-<td><code>019</code></td>
-<td>Anarchist Mutualist</td>
-<td><code>020</code></td>
-<td>Horizontalist Dissenter</td>
-<td><span class="badge warn">3</span></td>
-<td>0.161</td>
-<td>0.057</td>
+<td><code>025</code></td>
+<td>World-Minded Reformer</td>
+<td><code>001</code></td>
+<td>Rawlsian Reformer</td>
+<td><span class="badge err">115</span></td>
+<td>0.234</td>
+<td>0.125</td>
 </tr><tr>
 <td><code>023</code></td>
 <td>Rights Cosmopolitan</td>
 <td><code>001</code></td>
 <td>Rawlsian Reformer</td>
-<td><span class="badge warn">3</span></td>
-<td>0.157</td>
-<td>0.049</td>
+<td><span class="badge err">114</span></td>
+<td>0.126</td>
+<td>0.013</td>
+</tr><tr>
+<td><code>019</code></td>
+<td>Anarchist Mutualist</td>
+<td><code>031</code></td>
+<td>Planetary Steward</td>
+<td><span class="badge err">113</span></td>
+<td>0.110</td>
+<td>0.053</td>
+</tr><tr>
+<td><code>033</code></td>
+<td>Systems Modernizer</td>
+<td><code>140</code></td>
+<td>Market Green Modernist</td>
+<td><span class="badge err">17</span></td>
+<td>0.103</td>
+<td>0.046</td>
+</tr><tr>
+<td><code>056</code></td>
+<td>Institutional Centrist</td>
+<td><code>005</code></td>
+<td>Pluralist Structuralist</td>
+<td><span class="badge err">13</span></td>
+<td>0.050</td>
+<td>0.006</td>
 </tr><tr>
 <td><code>006</code></td>
 <td>Fairness Pragmatist</td>
-<td><code>140</code></td>
-<td>Market Green Modernist</td>
-<td><span class="badge warn">2</span></td>
-<td>0.093</td>
-<td>0.006</td>
+<td><code>005</code></td>
+<td>Pluralist Structuralist</td>
+<td><span class="badge err">5</span></td>
+<td>0.117</td>
+<td>0.025</td>
+</tr><tr>
+<td><code>016</code></td>
+<td>Insurgent Equalizer</td>
+<td><code>012</code></td>
+<td>Class-War Leftist</td>
+<td><span class="badge err">4</span></td>
+<td>0.104</td>
+<td>0.044</td>
 </tr><tr>
 <td><code>021</code></td>
-<td>Kantian Cosmopolitan</td>
+<td>Principled Cosmopolitan</td>
 <td><code>001</code></td>
 <td>Rawlsian Reformer</td>
-<td><span class="badge warn">2</span></td>
-<td>0.152</td>
-<td>0.066</td>
+<td><span class="badge err">4</span></td>
+<td>0.155</td>
+<td>0.046</td>
 </tr><tr>
-<td><code>025</code></td>
-<td>World-Minded Reformer</td>
-<td><code>001</code></td>
-<td>Rawlsian Reformer</td>
+<td><code>065</code></td>
+<td>Opportunity Liberal</td>
+<td><code>112</code></td>
+<td>Engaged Cosmopolitan</td>
+<td><span class="badge warn">3</span></td>
+<td>0.085</td>
+<td>0.013</td>
+</tr><tr>
+<td><code>117</code></td>
+<td>Comfortable Bystander</td>
+<td><code>088</code></td>
+<td>Gentle Traditionalist</td>
+<td><span class="badge warn">3</span></td>
+<td>0.105</td>
+<td>0.043</td>
+</tr><tr>
+<td><code>020</code></td>
+<td>Grassroots Autonomist</td>
+<td><code>031</code></td>
+<td>Planetary Steward</td>
 <td><span class="badge warn">2</span></td>
-<td>0.218</td>
-<td>0.036</td>
+<td>0.124</td>
+<td>0.060</td>
+</tr><tr>
+<td><code>050</code></td>
+<td>Traditionalist Moralist</td>
+<td><code>049</code></td>
+<td>Moral Egalitarian</td>
+<td><span class="badge warn">2</span></td>
+<td>0.306</td>
+<td>0.119</td>
+</tr><tr>
+<td><code>067</code></td>
+<td>Free-Exchange Modernist</td>
+<td><code>061</code></td>
+<td>Millian Liberal</td>
+<td><span class="badge warn">2</span></td>
+<td>0.151</td>
+<td>0.089</td>
+</tr><tr>
+<td><code>069</code></td>
+<td>Bleeding-Heart Libertarian</td>
+<td><code>036</code></td>
+<td>Institutional Optimizer</td>
+<td><span class="badge warn">2</span></td>
+<td>0.058</td>
+<td>0.004</td>
+</tr><tr>
+<td><code>089</code></td>
+<td>Integral Traditionalist</td>
+<td><code>090</code></td>
+<td>Hobbesian Guardian</td>
+<td><span class="badge warn">2</span></td>
+<td>0.129</td>
+<td>0.025</td>
 </tr><tr>
 <td><code>107</code></td>
 <td>Resentful Localist</td>
 <td><code>098</code></td>
 <td>Anti-Elite Populist</td>
 <td><span class="badge warn">2</span></td>
-<td>0.224</td>
-<td>0.016</td>
+<td>0.218</td>
+<td>0.037</td>
+</tr><tr>
+<td><code>138</code></td>
+<td>Optimistic Challenger</td>
+<td><code>013</code></td>
+<td>Radical Leveler</td>
+<td><span class="badge warn">2</span></td>
+<td>0.135</td>
+<td>0.057</td>
 </tr>
 </table>
 </div>
@@ -481,130 +569,130 @@
 <table>
 <tr><th>Archetype A</th><th>Archetype B</th><th>Co-occurrences</th><th></th></tr>
 <tr>
-<td><code>002</code> Independent Social Democrat</td>
-<td><code>006</code> Fairness Pragmatist</td>
-<td>1686</td>
+<td><code>005</code> Pluralist Structuralist</td>
+<td><code>125</code> Reluctant Partisan</td>
+<td>1879</td>
 <td><div class="bar-container"><div class="bar yellow" style="width: 200px"></div></div></td>
+</tr><tr>
+<td><code>060</code> Hinge Citizen</td>
+<td><code>091</code> Security Paternalist</td>
+<td>1649</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 175.5188930282065px"></div></div></td>
+</tr><tr>
+<td><code>101</code> Embattled Majoritarian</td>
+<td><code>103</code> Grievance Mobilizer</td>
+<td>1463</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 155.7211282597126px"></div></div></td>
+</tr><tr>
+<td><code>091</code> Security Paternalist</td>
+<td><code>109</code> Alienated Outsider</td>
+<td>1136</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 120.91538052155401px"></div></div></td>
+</tr><tr>
+<td><code>091</code> Security Paternalist</td>
+<td><code>118</code> Survival Pragmatist</td>
+<td>982</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 104.52368281000533px"></div></div></td>
+</tr><tr>
+<td><code>109</code> Alienated Outsider</td>
+<td><code>118</code> Survival Pragmatist</td>
+<td>960</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 102.1820117083555px"></div></div></td>
+</tr><tr>
+<td><code>006</code> Fairness Pragmatist</td>
+<td><code>091</code> Security Paternalist</td>
+<td>924</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 98.35018626929217px"></div></div></td>
 </tr><tr>
 <td><code>032</code> Hamiltonian Technocrat</td>
 <td><code>060</code> Hinge Citizen</td>
-<td>1401</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 166.19217081850536px"></div></div></td>
+<td>816</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 86.85470995210218px"></div></div></td>
 </tr><tr>
-<td><code>045</code> Rooted Social Reformer</td>
-<td><code>109</code> Alienated Outsider</td>
-<td>1200</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 142.34875444839858px"></div></div></td>
-</tr><tr>
-<td><code>109</code> Alienated Outsider</td>
-<td><code>118</code> Survival Pragmatist</td>
-<td>1178</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 139.73902728351126px"></div></div></td>
-</tr><tr>
+<td><code>071</code> Constitutional Conservative</td>
 <td><code>084</code> Civilizational Conservative</td>
-<td><code>140</code> Market Green Modernist</td>
-<td>1043</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 123.72479240806642px"></div></div></td>
-</tr><tr>
-<td><code>090</code> Hobbesian Guardian</td>
-<td><code>103</code> Grievance Mobilizer</td>
-<td>1017</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 120.64056939501779px"></div></div></td>
+<td>701</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 74.61415646620543px"></div></div></td>
 </tr><tr>
 <td><code>060</code> Hinge Citizen</td>
 <td><code>118</code> Survival Pragmatist</td>
-<td>933</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 110.6761565836299px"></div></div></td>
+<td>697</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 74.18839808408728px"></div></div></td>
 </tr><tr>
-<td><code>005</code> Pluralist Structuralist</td>
-<td><code>006</code> Fairness Pragmatist</td>
-<td>806</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 95.61091340450771px"></div></div></td>
-</tr><tr>
-<td><code>005</code> Pluralist Structuralist</td>
-<td><code>140</code> Market Green Modernist</td>
-<td>764</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 90.62870699881375px"></div></div></td>
-</tr><tr>
+<td><code>079</code> National Developmentalist</td>
 <td><code>091</code> Security Paternalist</td>
-<td><code>097</code> Authority Pragmatist</td>
-<td>714</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 84.69750889679716px"></div></div></td>
+<td>676</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 71.953166577967px"></div></div></td>
 </tr><tr>
-<td><code>090</code> Hobbesian Guardian</td>
-<td><code>139</code> Civic Assimilationist</td>
-<td>710</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 84.22301304863582px"></div></div></td>
-</tr><tr>
-<td><code>060</code> Hinge Citizen</td>
-<td><code>091</code> Security Paternalist</td>
-<td>689</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 81.73190984578885px"></div></div></td>
-</tr><tr>
-<td><code>010</code> Bread-and-Butter Progressive</td>
+<td><code>099</code> Scarcity Populist</td>
 <td><code>109</code> Alienated Outsider</td>
-<td>662</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 78.52906287069989px"></div></div></td>
+<td>571</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 60.77700904736562px"></div></div></td>
 </tr><tr>
-<td><code>010</code> Bread-and-Butter Progressive</td>
-<td><code>045</code> Rooted Social Reformer</td>
-<td>555</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 65.83629893238434px"></div></div></td>
+<td><code>091</code> Security Paternalist</td>
+<td><code>132</code> Negative Partisan</td>
+<td>533</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 56.73230441724322px"></div></div></td>
+</tr><tr>
+<td><code>070</code> Burkean Steward</td>
+<td><code>071</code> Constitutional Conservative</td>
+<td>476</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 50.665247472059605px"></div></div></td>
+</tr><tr>
+<td><code>005</code> Pluralist Structuralist</td>
+<td><code>091</code> Security Paternalist</td>
+<td>475</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 50.55880787653007px"></div></div></td>
 </tr><tr>
 <td><code>060</code> Hinge Citizen</td>
 <td><code>088</code> Gentle Traditionalist</td>
-<td>510</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 60.4982206405694px"></div></div></td>
+<td>471</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 50.13304949441192px"></div></div></td>
+</tr><tr>
+<td><code>071</code> Constitutional Conservative</td>
+<td><code>087</code> Continuity Conservative</td>
+<td>451</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 48.00425758382118px"></div></div></td>
+</tr><tr>
+<td><code>083</code> Closed Traditionalist</td>
+<td><code>103</code> Grievance Mobilizer</td>
+<td>415</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 44.17243214475785px"></div></div></td>
+</tr><tr>
+<td><code>005</code> Pluralist Structuralist</td>
+<td><code>032</code> Hamiltonian Technocrat</td>
+<td>371</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 39.489089941458225px"></div></div></td>
 </tr><tr>
 <td><code>060</code> Hinge Citizen</td>
 <td><code>125</code> Reluctant Partisan</td>
-<td>505</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 59.90510083036773px"></div></div></td>
-</tr><tr>
-<td><code>097</code> Authority Pragmatist</td>
-<td><code>139</code> Civic Assimilationist</td>
-<td>487</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 57.76986951364176px"></div></div></td>
-</tr><tr>
-<td><code>010</code> Bread-and-Butter Progressive</td>
-<td><code>139</code> Civic Assimilationist</td>
-<td>474</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 56.22775800711744px"></div></div></td>
-</tr><tr>
-<td><code>010</code> Bread-and-Butter Progressive</td>
-<td><code>097</code> Authority Pragmatist</td>
-<td>409</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 48.517200474495844px"></div></div></td>
+<td>343</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 36.50878126663118px"></div></div></td>
 </tr><tr>
 <td><code>071</code> Constitutional Conservative</td>
-<td><code>140</code> Market Green Modernist</td>
-<td>356</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 42.23013048635824px"></div></div></td>
+<td><code>089</code> Integral Traditionalist</td>
+<td>303</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 32.251197445449705px"></div></div></td>
 </tr><tr>
-<td><code>032</code> Hamiltonian Technocrat</td>
-<td><code>036</code> Institutional Optimizer</td>
-<td>353</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 41.87425860023725px"></div></div></td>
+<td><code>091</code> Security Paternalist</td>
+<td><code>125</code> Reluctant Partisan</td>
+<td>300</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 31.931878658861095px"></div></div></td>
 </tr><tr>
-<td><code>081</code> Heritage Guardian</td>
+<td><code>103</code> Grievance Mobilizer</td>
+<td><code>118</code> Survival Pragmatist</td>
+<td>286</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 30.441724321447577px"></div></div></td>
+</tr><tr>
 <td><code>084</code> Civilizational Conservative</td>
-<td>339</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 40.213523131672595px"></div></div></td>
+<td><code>089</code> Integral Traditionalist</td>
+<td>279</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 29.69664715274082px"></div></div></td>
 </tr><tr>
+<td><code>060</code> Hinge Citizen</td>
 <td><code>079</code> National Developmentalist</td>
-<td><code>132</code> Negative Partisan</td>
-<td>317</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 37.60379596678529px"></div></div></td>
-</tr><tr>
-<td><code>032</code> Hamiltonian Technocrat</td>
-<td><code>039</code> Data-Driven Moderate</td>
-<td>295</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 34.99406880189798px"></div></div></td>
-</tr><tr>
-<td><code>083</code> Closed Traditionalist</td>
-<td><code>090</code> Hobbesian Guardian</td>
-<td>282</td>
-<td><div class="bar-container"><div class="bar yellow" style="width: 33.45195729537366px"></div></div></td>
+<td>274</td>
+<td><div class="bar-container"><div class="bar yellow" style="width: 29.164449175093132px"></div></div></td>
 </tr>
 </table>
 </div>
@@ -631,6 +719,14 @@
 <td>40000</td>
 <td>100.0%</td>
 </tr><tr>
+<td><code>3</code></td>
+<td>cultural_social_placement</td>
+<td>slider</td>
+<td>fixed12</td>
+<td>0.90</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
 <td><code>4</code></td>
 <td>cultural_social_salience</td>
 <td>slider</td>
@@ -647,11 +743,27 @@
 <td>40000</td>
 <td>100.0%</td>
 </tr><tr>
+<td><code>15</code></td>
+<td>inequality_causes_allocation</td>
+<td>allocation</td>
+<td>fixed12</td>
+<td>0.91</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
 <td><code>19</code></td>
 <td>human_progress_salience</td>
 <td>slider</td>
 <td>screen20</td>
 <td>0.93</td>
+<td>40000</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>20</code></td>
+<td>bad_outcomes_blame_allocation</td>
+<td>allocation</td>
+<td>fixed12</td>
+<td>0.90</td>
 <td>40000</td>
 <td>100.0%</td>
 </tr><tr>
@@ -695,28 +807,12 @@
 <td>40000</td>
 <td>100.0%</td>
 </tr><tr>
-<td><code>64</code></td>
-<td>political_frustration</td>
-<td>single_choice</td>
-<td>stage2</td>
-<td>0.93</td>
-<td>40000</td>
-<td>100.0%</td>
-</tr><tr>
-<td><code>20</code></td>
-<td>bad_outcomes_blame_allocation</td>
-<td>allocation</td>
-<td>fixed12</td>
-<td>0.90</td>
-<td>39999</td>
-<td>100.0%</td>
-</tr><tr>
-<td><code>63</code></td>
-<td>best_worst_battery</td>
-<td>best_worst</td>
+<td><code>60</code></td>
+<td>politically_important_identities</td>
+<td>ranking</td>
 <td>screen20</td>
-<td>0.95</td>
-<td>39999</td>
+<td>0.96</td>
+<td>40000</td>
 <td>100.0%</td>
 </tr><tr>
 <td><code>78</code></td>
@@ -724,20 +820,28 @@
 <td>single_choice</td>
 <td>stage2</td>
 <td>0.92</td>
-<td>39996</td>
+<td>40000</td>
 <td>100.0%</td>
 </tr><tr>
-<td><code>3</code></td>
-<td>cultural_social_placement</td>
+<td><code>69</code></td>
+<td>common_ground_salience</td>
 <td>slider</td>
-<td>fixed12</td>
-<td>0.90</td>
-<td>39995</td>
+<td>stage2</td>
+<td>0.91</td>
+<td>39997</td>
 <td>100.0%</td>
 </tr><tr>
 <td><code>56</code></td>
 <td>effective_leader_style</td>
 <td>single_choice</td>
+<td>screen20</td>
+<td>0.95</td>
+<td>39996</td>
+<td>100.0%</td>
+</tr><tr>
+<td><code>63</code></td>
+<td>best_worst_battery</td>
+<td>best_worst</td>
 <td>screen20</td>
 <td>0.95</td>
 <td>39995</td>
@@ -748,31 +852,15 @@
 <td>single_choice</td>
 <td>screen20</td>
 <td>0.94</td>
-<td>39993</td>
-<td>100.0%</td>
-</tr><tr>
-<td><code>69</code></td>
-<td>common_ground_salience</td>
-<td>slider</td>
-<td>stage2</td>
-<td>0.91</td>
 <td>39992</td>
 <td>100.0%</td>
 </tr><tr>
-<td><code>76</code></td>
-<td>success_attribution</td>
+<td><code>62</code></td>
+<td>movement_aesthetics_reaction</td>
 <td>single_choice</td>
-<td>stage2</td>
-<td>0.91</td>
-<td>39992</td>
-<td>100.0%</td>
-</tr><tr>
-<td><code>60</code></td>
-<td>politically_important_identities</td>
-<td>ranking</td>
 <td>screen20</td>
-<td>0.96</td>
-<td>39991</td>
+<td>0.90</td>
+<td>39992</td>
 <td>100.0%</td>
 </tr>
 </table>
@@ -781,39 +869,18 @@
 <table>
 <tr><th>Q#</th><th>Prompt</th><th>Type</th><th>Stage</th><th>Quality</th><th>Times Asked</th></tr>
 <tr>
-<td><code>58</code></td>
-<td>neighborhood_safety_childhood</td>
+<td><code>10</code></td>
+<td>climate_energy_bundle</td>
 <td>single_choice</td>
 <td>stage3</td>
-<td>0.30</td>
+<td>0.42</td>
 <td>1</td>
 </tr><tr>
-<td><code>45</code></td>
-<td>what_changed_minds_through_history</td>
+<td><code>34</code></td>
+<td>threats_to_america_external_internal</td>
 <td>single_choice</td>
 <td>stage3</td>
-<td>0.36</td>
-<td>1</td>
-</tr><tr>
-<td><code>32</code></td>
-<td>mainstream_media_accuracy_estimate</td>
-<td>slider</td>
-<td>stage3</td>
-<td>0.40</td>
-<td>1</td>
-</tr><tr>
-<td><code>54</code></td>
-<td>religion_in_upbringing</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.40</td>
-<td>2</td>
-</tr><tr>
-<td><code>52</code></td>
-<td>political_membership_criterion_rewrite</td>
-<td>single_choice</td>
-<td>stage2</td>
-<td>0.64</td>
+<td>0.38</td>
 <td>2</td>
 </tr><tr>
 <td><code>50</code></td>
@@ -821,70 +888,91 @@
 <td>ranking</td>
 <td>stage2</td>
 <td>0.62</td>
-<td>2</td>
-</tr><tr>
-<td><code>26</code></td>
-<td>vacation_new_vs_familiar</td>
-<td>single_choice</td>
-<td>stage2</td>
-<td>0.52</td>
 <td>3</td>
 </tr><tr>
-<td><code>44</code></td>
-<td>views_changed_in_10_years</td>
-<td>slider</td>
-<td>stage3</td>
-<td>0.58</td>
-<td>17</td>
-</tr><tr>
-<td><code>81</code></td>
-<td>party_vs_cause_loyalty</td>
+<td><code>54</code></td>
+<td>religion_in_upbringing</td>
 <td>single_choice</td>
 <td>stage3</td>
-<td>0.92</td>
-<td>38</td>
-</tr><tr>
-<td><code>84</code></td>
-<td>institutions_harden_into_domination</td>
-<td>slider</td>
-<td>stage3</td>
-<td>0.89</td>
-<td>50</td>
-</tr><tr>
-<td><code>83</code></td>
-<td>broken_politics_diagnosis</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.90</td>
-<td>55</td>
-</tr><tr>
-<td><code>82</code></td>
-<td>openness_assimilation_closure</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.91</td>
-<td>78</td>
+<td>0.40</td>
+<td>4</td>
 </tr><tr>
 <td><code>85</code></td>
 <td>institutional_legitimacy_source</td>
 <td>single_choice</td>
 <td>stage3</td>
 <td>0.91</td>
-<td>95</td>
+<td>44</td>
 </tr><tr>
-<td><code>37</code></td>
-<td>stupid_workplace_rule_response</td>
+<td><code>83</code></td>
+<td>broken_politics_diagnosis</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.90</td>
+<td>49</td>
+</tr><tr>
+<td><code>81</code></td>
+<td>party_vs_cause_loyalty</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.92</td>
+<td>77</td>
+</tr><tr>
+<td><code>44</code></td>
+<td>views_changed_in_10_years</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.58</td>
+<td>81</td>
+</tr><tr>
+<td><code>82</code></td>
+<td>openness_assimilation_closure</td>
+<td>single_choice</td>
+<td>stage3</td>
+<td>0.91</td>
+<td>93</td>
+</tr><tr>
+<td><code>84</code></td>
+<td>institutions_harden_into_domination</td>
+<td>slider</td>
+<td>stage3</td>
+<td>0.89</td>
+<td>114</td>
+</tr><tr>
+<td><code>52</code></td>
+<td>political_membership_criterion_rewrite</td>
 <td>single_choice</td>
 <td>stage2</td>
-<td>0.80</td>
-<td>39635</td>
+<td>0.64</td>
+<td>39767</td>
 </tr><tr>
 <td><code>28</code></td>
 <td>mask_mandate_acceptability</td>
 <td>single_choice</td>
 <td>stage2</td>
 <td>0.76</td>
-<td>39636</td>
+<td>39777</td>
+</tr><tr>
+<td><code>37</code></td>
+<td>stupid_workplace_rule_response</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.80</td>
+<td>39807</td>
+</tr><tr>
+<td><code>12</code></td>
+<td>guess_top_marginal_tax_rate</td>
+<td>slider</td>
+<td>stage2</td>
+<td>0.68</td>
+<td>39809</td>
+</tr><tr>
+<td><code>14</code></td>
+<td>university_admissions_approach</td>
+<td>single_choice</td>
+<td>stage2</td>
+<td>0.83</td>
+<td>39814</td>
 </tr>
 </table>
 
@@ -892,47 +980,17 @@
 <table>
 <tr><th>Q#</th><th>Prompt</th><th>Type</th><th>Stage</th><th>Quality</th></tr>
 <tr>
-<td><code>46</code></td>
-<td>caregiver_emotional_availability</td>
-<td>slider</td>
-<td>stage3</td>
-<td>0.30</td>
-</tr><tr>
 <td><code>6</code></td>
 <td>surveillance_enforcement_due_process_bundle</td>
 <td>single_choice</td>
 <td>stage3</td>
 <td>0.45</td>
 </tr><tr>
-<td><code>10</code></td>
-<td>climate_energy_bundle</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.42</td>
-</tr><tr>
 <td><code>16</code></td>
 <td>criminal_justice_bundle</td>
 <td>single_choice</td>
 <td>stage3</td>
 <td>0.40</td>
-</tr><tr>
-<td><code>34</code></td>
-<td>threats_to_america_external_internal</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.38</td>
-</tr><tr>
-<td><code>53</code></td>
-<td>parents_politics_growing_up</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.34</td>
-</tr><tr>
-<td><code>57</code></td>
-<td>parents_political_engagement</td>
-<td>single_choice</td>
-<td>stage3</td>
-<td>0.30</td>
 </tr>
 </table>
 </div>
@@ -941,25 +999,21 @@
 <h2>📉 Entropy Distribution</h2>
 <p>Posterior entropy at quiz completion (lower = more confident assignment):</p>
 <div class="chart-row">
-<span class="chart-label">2-3 bits</span>
-<div class="chart-bar" style="width: 0.014826895989324636px; background: var(--green)"></div>
-<span class="chart-value">1 (0.0%)</span>
-</div><div class="chart-row">
 <span class="chart-label">3-4 bits</span>
-<div class="chart-bar" style="width: 1.0082289272740752px; background: var(--yellow)"></div>
-<span class="chart-value">68 (0.2%)</span>
+<div class="chart-bar" style="width: 0.6527415143603132px; background: var(--yellow)"></div>
+<span class="chart-value">40 (0.1%)</span>
 </div><div class="chart-row">
 <span class="chart-label">4-5 bits</span>
-<div class="chart-bar" style="width: 7.146563866854475px; background: var(--yellow)"></div>
-<span class="chart-value">482 (1.2%)</span>
+<div class="chart-bar" style="width: 5.7604438642297655px; background: var(--yellow)"></div>
+<span class="chart-value">353 (0.9%)</span>
 </div><div class="chart-row">
 <span class="chart-label">5-6 bits</span>
 <div class="chart-bar" style="width: 400px; background: var(--red)"></div>
-<span class="chart-value">26978 (67.4%)</span>
+<span class="chart-value">24512 (61.3%)</span>
 </div><div class="chart-row">
 <span class="chart-label">6-7 bits</span>
-<div class="chart-bar" style="width: 184.90621988286753px; background: var(--red)"></div>
-<span class="chart-value">12471 (31.2%)</span>
+<div class="chart-bar" style="width: 246.32832898172325px; background: var(--red)"></div>
+<span class="chart-value">15095 (37.7%)</span>
 </div>
 </div>
 
@@ -967,32 +1021,32 @@
 <h2>📊 Questions-per-Quiz Distribution</h2>
 <div class="chart-row">
 <span class="chart-label">25-29 questions</span>
-<div class="chart-bar" style="width: 0.11103260320985162px; background: var(--accent)"></div>
-<span class="chart-value">11</span>
+<div class="chart-bar" style="width: 0.0905341514938135px; background: var(--accent)"></div>
+<span class="chart-value">9</span>
 </div><div class="chart-row">
 <span class="chart-label">30-34 questions</span>
-<div class="chart-bar" style="width: 0.2523468254769355px; background: var(--accent)"></div>
-<span class="chart-value">25</span>
+<div class="chart-bar" style="width: 0.21124635348556484px; background: var(--accent)"></div>
+<span class="chart-value">21</span>
 </div><div class="chart-row">
 <span class="chart-label">35-39 questions</span>
-<div class="chart-bar" style="width: 0.5349752700111032px; background: var(--accent)"></div>
-<span class="chart-value">53</span>
+<div class="chart-bar" style="width: 0.432552057137109px; background: var(--accent)"></div>
+<span class="chart-value">43</span>
 </div><div class="chart-row">
 <span class="chart-label">40-44 questions</span>
-<div class="chart-bar" style="width: 1.322297365499142px; background: var(--accent)"></div>
-<span class="chart-value">131</span>
+<div class="chart-bar" style="width: 0.8047480132783422px; background: var(--accent)"></div>
+<span class="chart-value">80</span>
 </div><div class="chart-row">
 <span class="chart-label">45-49 questions</span>
-<div class="chart-bar" style="width: 0.5551630160492581px; background: var(--accent)"></div>
-<span class="chart-value">55</span>
+<div class="chart-bar" style="width: 0.3923146564731918px; background: var(--accent)"></div>
+<span class="chart-value">39</span>
 </div><div class="chart-row">
 <span class="chart-label">50-54 questions</span>
-<div class="chart-bar" style="width: 0.9791056828505097px; background: var(--accent)"></div>
-<span class="chart-value">97</span>
+<div class="chart-bar" style="width: 0.4426114073030882px; background: var(--accent)"></div>
+<span class="chart-value">44</span>
 </div><div class="chart-row">
 <span class="chart-label">55-59 questions</span>
 <div class="chart-bar" style="width: 400px; background: var(--accent)"></div>
-<span class="chart-value">39628</span>
+<span class="chart-value">39764</span>
 </div>
 </div>
 

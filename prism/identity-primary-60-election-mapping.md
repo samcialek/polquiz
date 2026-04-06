@@ -226,7 +226,7 @@ The feminist overlay has a distinctive double-latency: latent pre-suffrage, brie
 
 ---
 
-## 6. THE MALE IDENTITARIAN VOTER
+## 6. THE MALE GRIEVANCE VOTER
 
 **Key innovation:** Pre-2010 is LATENT, not N/A. Male identity existed — but as the unmarked structural default, it was never THREATENED enough to activate.
 
@@ -246,7 +246,7 @@ The feminist overlay has a distinctive double-latency: latent pre-suffrage, brie
 
 **Path:** Latent (1-57) → Dominant R (58-60)
 
-The Male Identitarian overlay has the LONGEST latency (57 elections) and the FASTEST activation (latent → dominant in one cycle, skipping active entirely). This makes it unique among all overlays. It also makes it the most uncertain — 3 elections of dominance after 57 of latency could be a permanent realignment or a flash.
+The Male Grievance overlay has the LONGEST latency (57 elections) and the FASTEST activation (latent → dominant in one cycle, skipping active entirely). This makes it unique among all overlays. It also makes it the most uncertain — 3 elections of dominance after 57 of latency could be a permanent realignment or a flash.
 
 ---
 
@@ -269,7 +269,7 @@ The Male Identitarian overlay has the LONGEST latency (57 elections) and the FAS
 | 1976 | Carter election | Evangelical | Latent → Active (drift) |
 | **1979-80** | **Moral Majority / Reagan / ERA failure** | **Evangelical** / **Feminist** | **Evangelical: Latent → Dominant R. Feminist: Latent → Dominant D** |
 | 1981-89 | AIDS crisis | LGBTQ | Active → Dominant D |
-| 2014-16 | Gamergate → Trump | Male Identitarian | Latent → Dominant R (skipped active) |
+| 2014-16 | Gamergate → Trump | Male Grievance | Latent → Dominant R (skipped active) |
 | **2016** | **Trump elected** | **White Grievance / Evangelical / Male Ident.** | **All three at maximum activation** |
 | 2022 | Dobbs decision | Feminist | Dominant → maximum activation |
 
@@ -284,7 +284,7 @@ The Male Identitarian overlay has the LONGEST latency (57 elections) and the FAS
 | Evangelical | 10 + 11 (dormancy) = 21 | 17 | 12 | ~50* |
 | LGBTQ | 46 | 3 | 11 | 60 |
 | Feminist | 33 + 12 (post-suffrage) = 45 | 3 | 12 | 60 |
-| Male Identitarian | 57 | 0 (skipped) | 3 | 60 |
+| Male Grievance | 57 | 0 (skipped) | 3 | 60 |
 
 *Evangelical has a unique pattern: active → latent → active → dominant (two latency periods)
 
@@ -301,7 +301,7 @@ The Male Identitarian overlay has the LONGEST latency (57 elections) and the FAS
 ### Lowest confidence
 - White Grievance pre-Civil War: identity-primary vs structural default hard to separate
 - Evangelical pre-Scopes: "evangelical" as category is anachronistic
-- Male Identitarian: 3 elections. Flash or permanent?
+- Male Grievance: 3 elections. Flash or permanent?
 - All overlays in latency: by definition, latent = low confidence about alignment
 - LGBTQ 1972-1980: emerging phase is inherently fuzzy
 
@@ -309,5 +309,5 @@ The Male Identitarian overlay has the LONGEST latency (57 elections) and the FAS
 1. **No more fake N/A** — identity exists even when electorally invisible
 2. **Dormancy is latency, not absence** — Evangelical 1928-1976 is the proof case
 3. **ENG mediates activation** — same identity, different ENG, different electoral behavior
-4. **Male Identitarian skipping "active"** is now visible as a distinct pattern, not just "appeared from nothing"
+4. **Male Grievance skipping "active"** is now visible as a distinct pattern, not just "appeared from nothing"
 5. **Suppression ≠ non-existence** — Black voter 1880-1964 South is latent (forced), not absent

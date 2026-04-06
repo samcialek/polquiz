@@ -223,7 +223,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1910,
     description:
       "Porfirio Diaz's long dictatorship modernized infrastructure and attracted foreign investment while deepening inequality and suppressing dissent.",
-    MAT: 5, CD: 4, CU: 1, MOR: 2,
+    MAT: 5, CD: 4, CU: 4, MOR: 2,
     PRO: 2, COM: 2,
     ZS: 4, ONT_H: 2, ONT_S: 2,
     PF: 1, TRB: 4, ENG: 3,
@@ -383,7 +383,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1984,
     description:
       "Military generals ruled through repression and the economic 'miracle' of high growth, but left a legacy of inequality, debt, and human rights abuses.",
-    MAT: 4, CD: 4, CU: 1, MOR: 2,
+    MAT: 4, CD: 4, CU: 4, MOR: 2,
     PRO: 2, COM: 1,
     ZS: 4, ONT_H: 1, ONT_S: 3,
     PF: 1, TRB: 4, ENG: 3,
@@ -452,7 +452,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1852,
     description:
       "Juan Manuel de Rosas imposed caudillo rule over Buenos Aires with terror and populist federalism, dominating the confederation until his overthrow at Caseros.",
-    MAT: 4, CD: 5, CU: 1, MOR: 2,
+    MAT: 4, CD: 5, CU: 4, MOR: 2,
     PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 3,
     PF: 1, TRB: 5, ENG: 4,
@@ -517,7 +517,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1983,
     description:
       "Peron's chaotic return and death gave way to a military junta that waged a 'dirty war' of disappearances, ending with the Falklands defeat.",
-    MAT: 4, CD: 5, CU: 1, MOR: 1,
+    MAT: 4, CD: 5, CU: 5, MOR: 1,
     PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5,
     PF: 1, TRB: 5, ENG: 4,
@@ -681,7 +681,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1929,
     description:
       "The Regeneration centralized power under a new constitution, the devastating Thousand Days' War killed over 100,000, and Panama seceded with US backing.",
-    MAT: 5, CD: 5, CU: 1, MOR: 2,
+    MAT: 5, CD: 5, CU: 4, MOR: 2,
     PRO: 3, COM: 2,
     ZS: 4, ONT_H: 2, ONT_S: 3,
     PF: 4, TRB: 4, ENG: 3,
@@ -763,7 +763,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1860,
     description:
       "Diego Portales designed a centralized authoritarian constitution that delivered exceptional stability and fueled mining-driven economic growth.",
-    MAT: 5, CD: 5, CU: 1, MOR: 2,
+    MAT: 5, CD: 5, CU: 4, MOR: 2,
     PRO: 4, COM: 2,
     ZS: 3, ONT_H: 2, ONT_S: 1,
     PF: 3, TRB: 4, ENG: 3,
@@ -815,7 +815,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1989,
     description:
       "Augusto Pinochet's military dictatorship crushed the left through systematic repression while Chicago Boys economists imposed radical free-market reforms.",
-    MAT: 5, CD: 5, CU: 1, MOR: 1,
+    MAT: 5, CD: 5, CU: 5, MOR: 1,
     PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 3,
     PF: 1, TRB: 4, ENG: 3,
@@ -858,7 +858,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1897,
     description:
       "Cuba remained Spain's prized sugar colony sustained by African slavery, with periodic independence movements brutally suppressed.",
-    MAT: 5, CD: 5, CU: 1, MOR: 1,
+    MAT: 5, CD: 5, CU: 5, MOR: 1,
     PRO: 2, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 3,
     PF: 2, TRB: 5, ENG: 3,
@@ -910,7 +910,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 2006,
     description:
       "Institutionalized socialism faced catastrophic economic crisis when Soviet support collapsed, forcing limited market experiments during the Special Period.",
-    MAT: 1, CD: 3, CU: 1, MOR: 3,
+    MAT: 1, CD: 3, CU: 4, MOR: 3,
     PRO: 2, COM: 1,
     ZS: 4, ONT_H: 3, ONT_S: 3,
     PF: 1, TRB: 4, ENG: 4,
@@ -940,7 +940,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 1824,
     description:
       "Peru was Spain's most important South American viceroyalty; Tupac Amaru's rebellion and Bolivar's campaigns finally ended colonial rule.",
-    MAT: 5, CD: 5, CU: 1, MOR: 1,
+    MAT: 5, CD: 5, CU: 4, MOR: 1,
     PRO: 2, COM: 1,
     ZS: 5, ONT_H: 2, ONT_S: 4,
     PF: 2, TRB: 5, ENG: 3,
@@ -1113,7 +1113,7 @@ export const AMERICAS: RegimePeriod[] = [
     endYear: 2026,
     description:
       "Nicolas Maduro's regime presided over economic collapse, mass emigration, and authoritarian consolidation amid a devastating humanitarian crisis.",
-    MAT: 1, CD: 4, CU: 1, MOR: 2,
+    MAT: 1, CD: 4, CU: 4, MOR: 2,
     PRO: 1, COM: 1,
     ZS: 5, ONT_H: 2, ONT_S: 4,
     PF: 1, TRB: 5, ENG: 4,
