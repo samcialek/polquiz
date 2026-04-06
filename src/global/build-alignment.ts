@@ -26,7 +26,7 @@ import { join } from "node:path";
 
 // ── Configuration ───────────────────────────────────────────────────────────
 
-const GAUSSIAN_SIGMA = 2.9; // Same σ as regime-alignment.ts
+const GAUSSIAN_SIGMA = 2.0; // Tighter σ for more polarized scores (was 2.9, too neutral)
 
 const CONTINUOUS_NODES = [
   "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS",

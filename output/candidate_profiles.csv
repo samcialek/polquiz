@@ -22,6 +22,7 @@ Year,Name,Party,MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S,PF,TRB,ENG,EPS,AES
 1828,Adams,National Republican,5,5,1,1,5,3,3,2,5,4,2,3,1,1
 1832,Jackson,Democratic,2,3,3,3,2,2,3,3,2,4,4,5,3,4
 1832,Clay,National Republican,5,5,1,1,5,5,2,2,5,5,2,5,1,0
+1832,Wirt,Independent,3,4,2,4,5,3,3,3,2,1,3,4,1,0
 1836,Van Buren,Democratic,2,3,3,3,3,4,3,3,3,4,3,5,1,1
 1836,Harrison,Whig,5,5,1,1,5,4,3,3,3,2,2,3,2,3
 1840,Harrison,Whig,4,4,2,2,4,4,2,3,2,4,4,5,3,3
@@ -61,17 +62,23 @@ Year,Name,Party,MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S,PF,TRB,ENG,EPS,AES
 1896,Bryan,Democratic,1,5,2,3,2,1,4,4,1,3,5,5,3,5
 1900,McKinley,Republican,5,4,3,3,4,4,2,3,5,5,3,4,1,0
 1900,Bryan,Democratic,1,5,3,4,2,1,4,4,1,4,5,5,3,5
+1900,Debs,Independent,1,1,5,5,1,1,5,5,1,1,5,5,0,5
 1904,Roosevelt,Republican,3,3,4,4,3,3,2,4,3,4,3,5,0,3
 1904,Parker,Democratic,1,2,2,2,5,5,2,2,5,5,1,1,1,0
+1904,Debs,Independent,1,1,5,5,1,1,5,5,1,1,5,5,0,5
 1908,Taft,Republican,4,3,3,3,5,4,2,3,4,4,2,3,1,0
 1908,Bryan,Democratic,1,4,3,4,2,2,4,4,2,5,4,5,3,5
+1908,Debs,Independent,1,1,5,5,1,1,5,5,1,1,5,5,0,5
 1912,Wilson,Democratic,2,3,4,4,4,3,2,4,2,5,3,5,0,5
 1912,Roosevelt,Independent,2,2,4,5,2,2,2,5,2,1,4,5,0,4
 1912,Taft,Republican,5,4,2,2,5,3,3,2,5,5,2,3,1,0
+1912,Debs,Independent,1,1,5,5,1,1,5,5,1,1,5,5,0,5
 1916,Wilson,Democratic,1,2,4,4,4,3,2,4,3,5,3,5,0,0
 1916,Hughes,Republican,5,5,1,1,5,3,3,2,5,5,4,3,1,0
+1916,Benson,Independent,1,1,5,5,1,1,5,4,1,1,4,3,0,5
 1920,Harding,Republican,3,3,3,3,4,5,2,3,4,3,2,3,2,2
 1920,Cox,Democratic,1,1,5,5,2,1,1,5,1,5,5,5,1,0
+1920,Debs,Independent,1,1,5,5,1,1,5,5,1,1,5,5,0,5
 1924,Coolidge,Republican,3,3,3,3,5,4,2,3,5,3,2,3,2,0
 1924,Davis,Democratic,1,1,5,5,4,4,2,4,2,5,4,3,1,0
 1924,La Follette,Independent,1,1,4,5,2,1,3,4,1,1,4,5,0,4
@@ -88,6 +95,7 @@ Year,Name,Party,MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S,PF,TRB,ENG,EPS,AES
 1948,Truman,Democratic,1,2,4,4,3,3,2,4,3,5,3,5,1,4
 1948,Dewey,Republican,5,4,2,2,5,4,3,2,1,4,3,3,0,0
 1948,Thurmond,Dixiecrat,3,5,1,1,2,1,5,2,4,3,5,5,2,4
+1948,H. Wallace,Independent,1,1,5,5,2,1,1,5,2,1,3,5,0,5
 1952,Eisenhower,Republican,4,3,3,3,5,4,2,3,2,3,3,5,0,0
 1952,Stevenson,Democratic,1,1,5,5,4,4,2,5,4,5,3,4,0,5
 1956,Eisenhower,Republican,3,3,4,3,5,4,2,3,1,2,2,4,0,0
@@ -115,9 +123,10 @@ Year,Name,Party,MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S,PF,TRB,ENG,EPS,AES
 1992,Perot,Independent,4,3,2,3,3,2,4,3,2,1,2,4,0,1
 1996,Clinton,Democratic,3,2,4,3,3,5,1,4,3,4,3,5,0,0
 1996,Dole,Republican,4,4,3,4,4,4,3,2,2,5,3,5,1,0
+1996,Perot,Independent,4,3,2,3,3,2,4,3,2,1,2,3,0,1
 2000,Gore,Democratic,2,2,4,3,4,4,2,4,3,4,3,5,0,1
 2000,Bush,Republican,4,3,3,4,3,4,2,3,2,4,3,3,3,2
-2000,Nader,Independent,1,1,4,5,1,1,3,3,1,1,2,5,0,3
+2000,Nader,Independent,1,3,5,4,1,1,5,5,1,1,1,5,0,3
 2004,Kerry,Democratic,1,1,5,5,4,4,2,4,3,5,4,5,0,0
 2004,Bush,Republican,5,4,2,2,4,3,4,3,2,5,4,5,3,4
 2008,Obama,Democratic,2,2,4,3,4,4,1,5,3,3,2,5,0,5
@@ -126,7 +135,7 @@ Year,Name,Party,MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S,PF,TRB,ENG,EPS,AES
 2012,Romney,Republican,5,3,3,4,4,3,3,3,1,4,3,4,0,1
 2016,Trump,Republican,3,5,1,3,1,1,5,2,2,3,5,5,3,4
 2016,Clinton,Democratic,2,2,4,2,4,4,2,4,4,5,3,5,0,0
-2016,Johnson,Independent,5,1,3,3,3,3,1,4,2,1,1,3,0,3
+2016,Johnson,Independent,5,1,1,1,1,1,1,5,1,1,1,2,0,3
 2020,Biden,Democratic,2,2,4,4,5,5,2,4,2,4,2,4,1,2
 2020,Trump,Republican,3,5,1,2,1,1,5,2,4,3,5,5,3,4
 2024,Trump,Republican,4,5,1,2,2,2,4,2,4,4,5,5,3,4

@@ -358,6 +358,29 @@ const election1832 = {
             ZS: 2, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
             EPS: 1, AES: 0,
         },
+        {
+            // William Wirt - Anti-Masonic Party (7.8%)
+            // First significant third-party candidate. Former Attorney General.
+            // Anti-Masonic movement opposed secret societies as anti-democratic.
+            // Irony: Wirt himself was a former Mason. Party was really anti-Jackson.
+            name: "Wirt",
+            party: "Independent",
+            year: 1832,
+            MAT: 3, // Centrist economics - not the issue
+            CD: 4, // Culturally conservative - religious moralism, anti-secret-society
+            CU: 2, // Particularist - focused on American civic institutions
+            MOR: 4, // Wide moral circle - democratic transparency for all citizens
+            PRO: 5, // Maximum proceduralist - transparency, rule of law, anti-corruption
+            COM: 3, // Mixed
+            ZS: 3, // Mixed
+            ONT_H: 3, // Moderate
+            ONT_S: 2, // System corrupted by secret societies but reformable
+            PF: 1, // Anti-partisan - new third party against establishment
+            TRB: 3, // Moderate tribal - civic reformers
+            ENG: 4, // Engaged reform movement
+            EPS: 1, // Institutionalist - fix corrupted institutions
+            AES: 0, // Statesman - former Attorney General
+        },
     ],
 };
 // 1836: Van Buren (D) vs Harrison (Whig)

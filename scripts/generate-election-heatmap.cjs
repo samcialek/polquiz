@@ -49,16 +49,25 @@ const HISTORICAL_PARTY = {
   // 1872: Liberal Republican crossover
   "1872:Greeley": "lib-rep",
 
+  // 1832: Anti-Masonic
+  "1832:Wirt": "anti-masonic",
+
   // 1892: Populist Party
   "1892:Weaver": "populist",
+
+  // 1900-1920: Socialist Party
+  "1900:Debs": "socialist", "1904:Debs": "socialist",
+  "1908:Debs": "socialist", "1912:Debs": "socialist",
+  "1916:Benson": "socialist", "1920:Debs": "socialist",
 
   // 1912: Bull Moose
   "1912:Roosevelt": "progressive",
   // 1924: La Follette Progressive
   "1924:La Follette": "progressive",
 
-  // 1948: Dixiecrat
+  // 1948: Dixiecrat + Progressive
   "1948:Thurmond": "dixiecrat",
+  "1948:H. Wallace": "progressive",
 
   // 1968: American Independent
   "1968:Wallace": "am-indep",
@@ -68,6 +77,7 @@ const HISTORICAL_PARTY = {
 
   // 1992/1996: Perot
   "1992:Perot": "reform",
+  "1996:Perot": "reform",
 
   // 2000: Nader Green
   "2000:Nader": "green",
@@ -98,6 +108,8 @@ const PARTY_COLORS = {
   "south-dem":   { bg: "#1f4e79", fg: "#fff", label: "Southern Democrat" },
   "const-union": { bg: "#d4a574", fg: "#000", label: "Constitutional Union" },
   "lib-rep":     { bg: "#e08080", fg: "#000", label: "Liberal Republican" },
+  "anti-masonic": { bg: "#8B6914", fg: "#fff", label: "Anti-Masonic" },
+  "socialist":   { bg: "#DC143C", fg: "#fff", label: "Socialist" },
   "populist":    { bg: "#ff7f00", fg: "#000", label: "Populist" },
   "progressive": { bg: "#33a02c", fg: "#fff", label: "Progressive" },
   "dixiecrat":   { bg: "#4a6a8a", fg: "#fff", label: "Dixiecrat" },

@@ -178,6 +178,29 @@ const election1948 = {
             EPS: 2, // Traditionalist - "way things have always been"
             AES: 4, // Fighter - insurgent, defiant
         },
+        {
+            // Henry A. Wallace - Progressive Party (2.4%)
+            // FDR's VP 1941-45, Secretary of Commerce. Left Democrats over Cold War
+            // hawkishness. Pro-Soviet accommodation, anti-nuclear, pro-civil rights,
+            // pro-labor. "Century of the Common Man." Badly Red-baited.
+            name: "H. Wallace",
+            party: "Independent",
+            year: 1948,
+            MAT: 1, // Maximum redistribution - extend New Deal further, full employment
+            CD: 1, // Maximum cultural openness - pro-civil rights, anti-segregation
+            CU: 5, // Maximum universalist - peace with USSR, international cooperation
+            MOR: 5, // Widest moral circle - all peoples, all nations, anti-nuclear
+            PRO: 2, // Anti-proceduralist - wanted dramatic policy changes, bypass Cold War consensus
+            COM: 1, // Never compromise - wouldn't moderate pro-Soviet stance despite Red-baiting
+            ZS: 1, // Maximum positive-sum - cooperation with everyone including Soviets
+            ONT_H: 5, // Maximum optimistic - believed peace and prosperity for all possible
+            ONT_S: 2, // Structuralist - Cold War militarism is wrong path, system needs redirection
+            PF: 1, // Anti-partisan - left Democratic Party
+            TRB: 3, // Moderate tribal - broad progressive coalition
+            ENG: 5, // Maximum engagement - launched third party, toured extensively
+            EPS: 0, // Empiricist - former Sec. of Agriculture, scientific farmer, data-driven
+            AES: 5, // Visionary - "Century of the Common Man," prophetic rhetoric
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────
@@ -844,6 +867,29 @@ const election1996 = {
             EPS: 1, // Institutionalist - Senate creature
             AES: 0, // Statesman - WWII hero, tried for gravitas
         },
+        {
+            // Ross Perot - Reform Party (8.4%)
+            // Second run. Less novelty, less support (18.9% → 8.4%). Same message:
+            // deficit, NAFTA bad, outsider. Reform Party now formal. Excluded from
+            // debates unlike 1992.
+            name: "Perot",
+            party: "Independent",
+            year: 1996,
+            MAT: 4, // Fiscally conservative - deficit hawk, balanced budget
+            CD: 3, // Moderate - populist center
+            CU: 2, // Particularist - anti-NAFTA, protect American jobs
+            MOR: 3, // Moderate
+            PRO: 3, // Mixed - pragmatic businessman
+            COM: 2, // Low compromise - outsider, won't play the game
+            ZS: 4, // Zero-sum on trade
+            ONT_H: 3, // Moderate
+            ONT_S: 2, // System corrupted by establishment insiders
+            PF: 1, // Maximum independent
+            TRB: 2, // Anti-establishment, low tribal
+            ENG: 3, // Less engaged than 1992 - less novelty, excluded from debates
+            EPS: 0, // Empiricist - charts, data, infomercials
+            AES: 1, // Technocrat - businessman with spreadsheets
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────
@@ -893,6 +939,25 @@ const election2000 = {
             ENG: 3, // Projected citizen-politician - rancher, not career pol
             EPS: 3, // Intuitionist - "gut" decision-maker, faith-based
             AES: 2, // Pastoral - ranch, folksy, "guy you'd have a beer with"
+        },
+        {
+            name: "Nader",
+            party: "Independent",
+            year: 2000,
+            MAT: 1, // Maximum redistribution - corporate power, consumer protection
+            CD: 3, // Culturally moderate - dismissed identity politics as corporate distraction, consumer focus
+            CU: 5, // Maximum universalist - global justice, anti-corporate globalization, one-world
+            MOR: 4, // Wide moral circle - environment, consumers, workers, global poor
+            PRO: 1, // Anti-proceduralist - "two-party duopoly," system is rigged
+            COM: 1, // Never compromise - rejected lesser-evil voting entirely
+            ZS: 5, // Maximum zero-sum - corporations vs people, winner-take-all corporate power
+            ONT_H: 5, // Maximum perfectibility - utopian green idealist, humans can live sustainably
+            ONT_S: 1, // System broken - "two parties, same corporate masters"
+            PF: 1, // Anti-partisan - ran against both parties
+            TRB: 1, // Anti-tribal - pure individual crusader, no group identity politics
+            ENG: 5, // Maximum engagement - decades of tireless activism, consumer crusader
+            EPS: 0, // Empiricist - data on corporate malfeasance, safety research, evidence-driven
+            AES: 3, // Authentic - rumpled, sincere, no polish
         },
     ],
 };
@@ -1093,6 +1158,25 @@ const election2016 = {
             ENG: 5, // Career politician - maximum engagement
             EPS: 0, // Empiricist - policy wonk, detailed plans
             AES: 0, // Statesman - projected competence, gravitas
+        },
+        {
+            name: "Johnson",
+            party: "Independent",
+            year: 2016,
+            MAT: 5, // Maximum free-market - eliminate income tax, slash regulation
+            CD: 1, // Maximum cultural openness - legalize marijuana, gay marriage early
+            CU: 1, // Maximum non-interventionist - pull out of everywhere, isolationist
+            MOR: 1, // Maximum individualist - only individual rights matter, no collective obligations
+            PRO: 1, // Maximum anti-proceduralist - abolish IRS, FDA, EPA, entire departments
+            COM: 1, // Never compromise - libertarian purity, wouldn't moderate positions
+            ZS: 1, // Maximum positive-sum - free trade, voluntary exchange
+            ONT_H: 5, // Maximum optimistic - libertarian utopianism, free markets solve everything
+            ONT_S: 1, // System broken - government is fundamentally the problem, abolish departments
+            PF: 1, // Anti-partisan - explicitly third-party
+            TRB: 1, // Anti-tribal - individualist, anti-identity politics
+            ENG: 2, // Low engagement - "what is Aleppo?", barely campaigned seriously
+            EPS: 0, // Empiricist - pragmatic, evidence-based governor
+            AES: 3, // Authentic - unpolished, mountain climber, casual
         },
     ],
 };

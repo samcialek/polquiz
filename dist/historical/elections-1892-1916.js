@@ -192,6 +192,28 @@ const election1900 = {
             EPS: 3, // Intuitionist - same evangelical moral conviction
             AES: 5, // Visionary - anti-imperialist crusade layered onto populist economics
         },
+        {
+            // Eugene V. Debs - Socialist Party (2.8%)
+            // Labor organizer, founded IWW. Ran on public ownership of railroads,
+            // mines, utilities. First serious socialist candidacy.
+            name: "Debs",
+            party: "Independent",
+            year: 1900,
+            MAT: 1, // Maximum redistribution - public ownership of means of production
+            CD: 1, // Maximum cultural openness - racial equality, women's suffrage
+            CU: 5, // Maximum universalist - international workers' solidarity
+            MOR: 5, // Widest moral circle - all workers, all races, all nations
+            PRO: 1, // Anti-proceduralist - capitalist system is rigged
+            COM: 1, // Never compromise - revolutionary, not reformist
+            ZS: 5, // Maximum zero-sum - class war, capital exploits labor
+            ONT_H: 5, // Maximum perfectibility - socialist utopia achievable
+            ONT_S: 1, // System completely broken - capitalism must be replaced
+            PF: 1, // Anti-partisan - rejected both capitalist parties
+            TRB: 5, // Maximum tribal - working class identity
+            ENG: 5, // Maximum engagement - tireless organizer
+            EPS: 0, // Empiricist - studied labor conditions, data on exploitation
+            AES: 5, // Visionary - prophetic socialist rhetoric
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────
@@ -245,6 +267,28 @@ const election1904 = {
             EPS: 1, // Institutionalist - judge, trusted courts and legal institutions
             AES: 0, // Statesman - judicial dignity, understated (to a fault)
         },
+        {
+            // Eugene V. Debs - Socialist Party (3.0%)
+            // Second run. Growing socialist movement. TR's progressivism stole some
+            // thunder but Debs held the radical flank: public ownership, not regulation.
+            name: "Debs",
+            party: "Independent",
+            year: 1904,
+            MAT: 1, // Maximum redistribution - public ownership
+            CD: 1, // Maximum cultural openness - racial equality, women's suffrage
+            CU: 5, // Maximum universalist - international solidarity
+            MOR: 5, // Widest moral circle
+            PRO: 1, // Anti-proceduralist - system is rigged by capital
+            COM: 1, // Never compromise
+            ZS: 5, // Maximum zero-sum - class war
+            ONT_H: 5, // Maximum perfectibility
+            ONT_S: 1, // System broken - capitalism must go
+            PF: 1, // Anti-partisan
+            TRB: 5, // Maximum tribal - worker class identity
+            ENG: 5, // Maximum engagement
+            EPS: 0, // Empiricist
+            AES: 5, // Visionary
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────
@@ -296,6 +340,28 @@ const election1908 = {
             ENG: 5, // Maximum engagement - another barnstorming campaign, tireless
             EPS: 3, // Intuitionist - evangelical moral conviction, "the people know best"
             AES: 5, // Visionary - "the Great Commoner," prophetic moral rhetoric
+        },
+        {
+            // Eugene V. Debs - Socialist Party (2.8%)
+            // Third run. IWW founded 1905. Socialist movement growing but Bryan
+            // absorbed much of the populist energy with his progressive turn.
+            name: "Debs",
+            party: "Independent",
+            year: 1908,
+            MAT: 1, // Maximum redistribution - public ownership
+            CD: 1, // Maximum cultural openness
+            CU: 5, // Maximum universalist - international solidarity
+            MOR: 5, // Widest moral circle
+            PRO: 1, // Anti-proceduralist
+            COM: 1, // Never compromise
+            ZS: 5, // Maximum zero-sum - class war
+            ONT_H: 5, // Maximum perfectibility
+            ONT_S: 1, // System broken
+            PF: 1, // Anti-partisan
+            TRB: 5, // Maximum tribal - worker identity
+            ENG: 5, // Maximum engagement
+            EPS: 0, // Empiricist
+            AES: 5, // Visionary
         },
     ],
 };
@@ -372,6 +438,28 @@ const election1912 = {
             EPS: 1, // Institutionalist - trusted courts above all else
             AES: 0, // Statesman - judicial dignity, but failed to project leadership
         },
+        {
+            // Eugene V. Debs - Socialist Party (6.0%)
+            // Peak vote share. Four-way race split mainstream vote. Socialist movement
+            // at zenith - over 1,000 elected officials. "Vote for what you want."
+            name: "Debs",
+            party: "Independent",
+            year: 1912,
+            MAT: 1, // Maximum redistribution - public ownership
+            CD: 1, // Maximum cultural openness
+            CU: 5, // Maximum universalist - international solidarity
+            MOR: 5, // Widest moral circle
+            PRO: 1, // Anti-proceduralist
+            COM: 1, // Never compromise
+            ZS: 5, // Maximum zero-sum - class war
+            ONT_H: 5, // Maximum perfectibility
+            ONT_S: 1, // System broken
+            PF: 1, // Anti-partisan - rejected both capitalist parties
+            TRB: 5, // Maximum tribal - worker identity
+            ENG: 5, // Maximum engagement
+            EPS: 0, // Empiricist
+            AES: 5, // Visionary - "while there is a lower class, I am in it"
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────
@@ -425,6 +513,29 @@ const election1916 = {
             ENG: 3, // Moderate — stiff campaigner
             EPS: 1, // Institutionalist - Supreme Court justice, trusted legal institutions
             AES: 0, // Statesman - judicial dignity, presidential bearing, but aloof
+        },
+        {
+            // Allan L. Benson - Socialist Party (3.2%)
+            // Journalist, not organizer like Debs. Won nomination because Debs
+            // declined. Main platform: national referendum before declaring war.
+            // Anti-war was his defining issue as Europe burned.
+            name: "Benson",
+            party: "Independent",
+            year: 1916,
+            MAT: 1, // Maximum redistribution - socialist economics
+            CD: 1, // Maximum cultural openness - progressive
+            CU: 5, // Maximum universalist - anti-war internationalist
+            MOR: 5, // Widest moral circle - war is immoral
+            PRO: 1, // Anti-proceduralist - wanted referendum to bypass Congress on war
+            COM: 1, // Never compromise - absolutist pacifist-socialist
+            ZS: 5, // Maximum zero-sum - class war, war profiteers vs workers
+            ONT_H: 4, // Optimistic - but less charismatic than Debs
+            ONT_S: 1, // System broken - capitalism produces war
+            PF: 1, // Anti-partisan
+            TRB: 4, // High tribal - worker identity, but less personal than Debs
+            ENG: 3, // Moderate - journalist, not mass organizer
+            EPS: 0, // Empiricist - journalist, studied issues
+            AES: 5, // Visionary - anti-war idealism
         },
     ],
 };

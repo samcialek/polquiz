@@ -64,6 +64,29 @@ const election1920 = {
             EPS: 1, // Institutionalist - trusted League, government machinery
             AES: 0, // Statesman - projected Wilsonian gravitas and internationalism
         },
+        {
+            // Eugene V. Debs - Socialist Party (3.4%)
+            // Ran from federal prison (convicted under Espionage Act for anti-war
+            // speech). Convict No. 9653. Maximum martyrdom. "While there is a soul
+            // in prison, I am not free."
+            name: "Debs",
+            party: "Independent",
+            year: 1920,
+            MAT: 1, // Maximum redistribution - public ownership
+            CD: 1, // Maximum cultural openness
+            CU: 5, // Maximum universalist - anti-war, international solidarity
+            MOR: 5, // Widest moral circle
+            PRO: 1, // Anti-proceduralist - imprisoned by the system he fought
+            COM: 1, // Never compromise - went to prison rather than recant
+            ZS: 5, // Maximum zero-sum - class war intensified by WWI profiteering
+            ONT_H: 5, // Maximum perfectibility
+            ONT_S: 1, // System broken - jailed for speech, Red Scare, Palmer Raids
+            PF: 1, // Anti-partisan
+            TRB: 5, // Maximum tribal - worker/prisoner solidarity
+            ENG: 5, // Maximum engagement - ran from prison cell
+            EPS: 0, // Empiricist
+            AES: 5, // Visionary - ultimate martyr-prophet figure
+        },
     ],
 };
 // ─────────────────────────────────────────────────────────────────────────────

@@ -83,6 +83,7 @@ const partyMap = {
   'Weaver': 'third', 'Debs': 'third', 'La Follette': 'third',
   'Wallace': 'third', 'Perot': 'third', 'Nader': 'third',
   'Greeley': 'other', 'Washington': 'other',
+  'Wirt': 'third', 'Debs': 'third', 'Benson': 'third', 'H. Wallace': 'third',
 };
 
 const specialParty = {
@@ -93,6 +94,7 @@ const specialParty = {
   '1940_Roosevelt': 'dem', '1944_Roosevelt': 'dem',
   // Gary Johnson 2016 vs LBJ 1964
   '2016_Johnson': 'third',
+  '1996_Perot': 'third',
 };
 
 const elections = {};
