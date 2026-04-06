@@ -571,89 +571,89 @@ h1,h2,h3,h4,h5,h6,.heading{font-family:'Cormorant Garamond',serif;font-weight:50
 
 <!-- SLIDE 7: NODE & EDGE ATTRIBUTES -->
 <div class="slide" data-slide="10" id="node-edge-attrs">
-<div class="slide-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+<div class="slide-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 24px">
 <div class="heading" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.6vw,48px);color:#f5f0e8;margin-bottom:4px">Nodes, Edges, Attributes</div>
-<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,1.4vw,18px);color:rgba(245,240,232,0.5);max-width:720px;text-align:center;margin-bottom:24px;line-height:1.5">Each node carries attributes that determine what you can do with it.</p>
-<div style="display:flex;gap:clamp(28px,4vw,64px);align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;max-width:1100px">
+<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,1.6vw,20px);color:rgba(245,240,232,0.5);max-width:720px;text-align:center;margin-bottom:20px;line-height:1.5">Each node carries attributes that determine what you can do with it.</p>
+<div style="display:flex;gap:clamp(32px,5vw,72px);align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;max-width:1300px">
 
 <!-- NODE SIDE -->
-<div style="flex:1;min-width:340px;max-width:480px">
-<div style="font-family:Inter,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:#C49A4A;font-weight:600;margin-bottom:14px">Nodes &mdash; the variables</div>
+<div style="flex:1;min-width:380px;max-width:560px">
+<div style="font-family:Inter,sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:0.14em;color:#C49A4A;font-weight:600;margin-bottom:16px">Nodes &mdash; the variables</div>
 
 <!-- Node types -->
-<div style="display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap">
-<div style="display:flex;align-items:center;gap:8px">
-<svg viewBox="0 0 28 28" style="width:22px;height:22px"><polygon points="14,2 26,14 14,26 2,14" fill="none" stroke="#C49A4A" stroke-width="1.5"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:#C49A4A;font-weight:600">Lever</span>
+<div style="display:flex;gap:20px;margin-bottom:22px;flex-wrap:wrap">
+<div style="display:flex;align-items:center;gap:10px">
+<svg viewBox="0 0 28 28" style="width:28px;height:28px"><polygon points="14,2 26,14 14,26 2,14" fill="none" stroke="#C49A4A" stroke-width="1.5"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:#C49A4A;font-weight:600">Lever</span>
 </div>
-<div style="display:flex;align-items:center;gap:8px">
-<svg viewBox="0 0 28 28" style="width:22px;height:22px"><polygon points="14,3 24,8 24,20 14,25 4,20 4,8" fill="none" stroke="#A878E6" stroke-width="1.5"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:#A878E6;font-weight:600">Environment</span>
+<div style="display:flex;align-items:center;gap:10px">
+<svg viewBox="0 0 28 28" style="width:28px;height:28px"><polygon points="14,3 24,8 24,20 14,25 4,20 4,8" fill="none" stroke="#A878E6" stroke-width="1.5"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:#A878E6;font-weight:600">Environment</span>
 </div>
-<div style="display:flex;align-items:center;gap:8px">
-<svg viewBox="0 0 28 28" style="width:22px;height:22px"><circle cx="14" cy="14" r="11" fill="none" stroke="#5BA8D9" stroke-width="1.5"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:#5BA8D9;font-weight:600">Mediator</span>
+<div style="display:flex;align-items:center;gap:10px">
+<svg viewBox="0 0 28 28" style="width:28px;height:28px"><circle cx="14" cy="14" r="11" fill="none" stroke="#5BA8D9" stroke-width="1.5"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:#5BA8D9;font-weight:600">Mediator</span>
 </div>
-<div style="display:flex;align-items:center;gap:8px">
-<svg viewBox="0 0 28 28" style="width:22px;height:22px"><circle cx="14" cy="14" r="9" fill="none" stroke="#8FAE6A" stroke-width="1.5"/><circle cx="14" cy="14" r="13" fill="none" stroke="rgba(143,174,106,0.4)" stroke-width="1"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:#8FAE6A;font-weight:600">Outcome</span>
+<div style="display:flex;align-items:center;gap:10px">
+<svg viewBox="0 0 28 28" style="width:28px;height:28px"><circle cx="14" cy="14" r="9" fill="none" stroke="#8FAE6A" stroke-width="1.5"/><circle cx="14" cy="14" r="13" fill="none" stroke="rgba(143,174,106,0.4)" stroke-width="1"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:#8FAE6A;font-weight:600">Outcome</span>
 </div>
 </div>
 
 <!-- Node attributes list -->
-<div style="display:flex;flex-direction:column;gap:10px">
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Manipulability</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">Can you intervene on this variable? At what cost?</span>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Manipulability</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">Can you intervene on it? At what cost?</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Tractability</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">Does it respond predictably when pushed?</span>
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Tractability</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">Does it respond predictably when pushed?</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Observability</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">Can you measure it, or must you infer it through proxies?</span>
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Observability</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">Can you measure it directly?</span>
 </div>
 </div>
 </div>
 
 <!-- EDGE SIDE -->
-<div style="flex:1;min-width:340px;max-width:480px">
-<div style="font-family:Inter,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:#5BA8D9;font-weight:600;margin-bottom:14px">Edges &mdash; the claims</div>
+<div style="flex:1;min-width:380px;max-width:560px">
+<div style="font-family:Inter,sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:0.14em;color:#5BA8D9;font-weight:600;margin-bottom:16px">Edges &mdash; the claims</div>
 
 <!-- Edge types mini -->
-<div style="display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap">
-<div style="display:flex;align-items:center;gap:6px">
-<svg viewBox="0 0 40 12" style="width:36px;height:12px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(245,240,232,0.6)" stroke-width="1.5"/><polygon points="34,2 40,6 34,10" fill="rgba(245,240,232,0.6)"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:rgba(245,240,232,0.7);font-weight:500">Direct</span>
+<div style="display:flex;gap:20px;margin-bottom:22px;flex-wrap:wrap">
+<div style="display:flex;align-items:center;gap:8px">
+<svg viewBox="0 0 40 12" style="width:42px;height:14px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(245,240,232,0.6)" stroke-width="1.5"/><polygon points="34,2 40,6 34,10" fill="rgba(245,240,232,0.6)"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:rgba(245,240,232,0.7);font-weight:500">Direct</span>
 </div>
-<div style="display:flex;align-items:center;gap:6px">
-<svg viewBox="0 0 40 12" style="width:36px;height:12px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(245,240,232,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/><polygon points="34,2 40,6 34,10" fill="rgba(245,240,232,0.3)"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:rgba(245,240,232,0.7);font-weight:500">Mediated</span>
+<div style="display:flex;align-items:center;gap:8px">
+<svg viewBox="0 0 40 12" style="width:42px;height:14px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(245,240,232,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/><polygon points="34,2 40,6 34,10" fill="rgba(245,240,232,0.3)"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:rgba(245,240,232,0.7);font-weight:500">Mediated</span>
 </div>
-<div style="display:flex;align-items:center;gap:6px">
-<svg viewBox="0 0 40 12" style="width:36px;height:12px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(176,90,63,0.6)" stroke-width="1.5"/><polygon points="34,2 40,6 34,10" fill="rgba(176,90,63,0.6)"/></svg>
-<span style="font-family:Inter,sans-serif;font-size:11px;color:rgba(245,240,232,0.7);font-weight:500">Confounded</span>
+<div style="display:flex;align-items:center;gap:8px">
+<svg viewBox="0 0 40 12" style="width:42px;height:14px"><line x1="2" y1="6" x2="34" y2="6" stroke="rgba(176,90,63,0.6)" stroke-width="1.5"/><polygon points="34,2 40,6 34,10" fill="rgba(176,90,63,0.6)"/></svg>
+<span style="font-family:Inter,sans-serif;font-size:15px;color:rgba(245,240,232,0.7);font-weight:500">Confounded</span>
 </div>
 </div>
 
 <!-- Edge attributes list -->
-<div style="display:flex;flex-direction:column;gap:10px">
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Strength</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">How much does the cause move the effect?</span>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Strength</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">How much does the cause move the effect?</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Nonlinearity</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">Does the relationship change shape at different levels?</span>
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Nonlinearity</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">Does the shape change at different levels?</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Heterogeneity</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">Is the effect the same for everyone, or does it vary by subgroup?</span>
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Heterogeneity</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">Is the effect the same for everyone?</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:10px">
-<span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:rgba(245,240,232,0.85);min-width:110px">Latency</span>
-<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,240,232,0.5);line-height:1.45">How long after the cause does the effect arrive?</span>
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:Inter,sans-serif;font-size:16px;font-weight:600;color:rgba(245,240,232,0.85);min-width:140px">Latency</span>
+<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(245,240,232,0.5);line-height:1.45">How long until the effect arrives?</span>
 </div>
 </div>
 </div>
