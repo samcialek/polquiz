@@ -173,12 +173,14 @@ function inferArchetypeParty(arch: Archetype): "Democratic" | "Republican" | "no
 // ── Turnout model ────────────────────────────────────────────────────────────
 
 function turnoutProbability(engPos: number): number {
-  // ENG position determines likelihood of voting at all
-  if (engPos >= 5) return 0.95;
-  if (engPos >= 4) return 0.82;
-  if (engPos >= 3) return 0.62;
-  if (engPos >= 2) return 0.38;
-  return 0.12;
+  // ENG position determines baseline likelihood of voting.
+  // Deliberately low for ENG 1-3 so that alignment must compensate —
+  // disengaged archetypes only show up when a candidate excites them.
+  if (engPos >= 5) return 0.85;
+  if (engPos >= 4) return 0.42;
+  if (engPos >= 3) return 0.28;
+  if (engPos >= 2) return 0.12;
+  return 0.05;
 }
 
 /** Deterministic turnout: vote if ENG-based probability >= 0.5 */
@@ -353,19 +355,21 @@ function simulate(): VoteResult[] {
         }
       }
 
-      // Blended turnout: alignment-based probability + ENG-based probability
-      // This ensures ENG always matters while alignment still modulates turnout
+      // Blended turnout: ENG-weighted baseline + alignment can pull voters in.
+      // Excitement override: very high alignment (>= 0.92) overrides low ENG,
+      // modeling disengaged voters who show up for polarizing candidates.
       const engProb = turnoutProbability(engPos);
       if (ctx) {
         const { turnoutProbability: alignProb } = computeTurnoutFromAlignment(arch, election.candidates, ctx);
-        const blendedProb = 0.45 * alignProb + 0.55 * engProb;
-        if (blendedProb < 0.47) {
+        const blendedProb = 0.35 * alignProb + 0.65 * engProb;
+        const excitementOverride = alignProb >= 0.92;
+        if (blendedProb < 0.47 && !excitementOverride) {
           votes[election.year] = "ABSTAIN";
           continue;
         }
       } else {
         // Fallback to static turnout for elections without context
-        if (engProb < 0.5) {
+        if (engProb < 0.47) {
           votes[election.year] = "ABSTAIN";
           continue;
         }
