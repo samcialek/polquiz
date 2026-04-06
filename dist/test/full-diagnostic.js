@@ -83,7 +83,7 @@ function createInitialState(archetypes) {
         continuous,
         categorical,
         trbAnchor: {
-            dist: [1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7],
+            dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
             touches: 0,
         },
         archetypePosterior,

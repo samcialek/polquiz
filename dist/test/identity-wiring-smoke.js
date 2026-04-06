@@ -1,0 +1,264 @@
+/**
+ * Smoke test: verify identity-primary gets wired through to localStorage
+ * when demographics are submitted.
+ */
+import { promises as fs } from "node:fs";
+import * as path from "node:path";
+import { createServer } from "node:http";
+import { chromium } from "playwright";
+import { ARCHETYPES } from "../config/archetypes.js";
+function buildPersona(arch) {
+    const persona = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
+    for (const [nid, t] of Object.entries(arch.nodes)) {
+        if (t.kind === "continuous")
+            persona.continuous[nid] = { pos: t.pos, sal: t.sal };
+        else
+            persona.categorical[nid] = { probs: t.probs, sal: t.sal };
+    }
+    return persona;
+}
+const ROOT = path.resolve(process.cwd());
+const PORT = 8726;
+function startServer(rootDir, port) {
+    return new Promise((resolve, reject) => {
+        const server = createServer(async (req, res) => {
+            try {
+                let urlPath = (req.url || "/").split("?")[0] || "/";
+                if (urlPath === "/")
+                    urlPath = "/prism-quiz-v3.html";
+                const safePath = path.normalize(urlPath).replace(/^[/\\]+/, "");
+                const filePath = path.join(rootDir, safePath);
+                if (!filePath.startsWith(rootDir)) {
+                    res.writeHead(403);
+                    res.end("forbidden");
+                    return;
+                }
+                const data = await fs.readFile(filePath);
+                const ext = path.extname(filePath).toLowerCase();
+                const mime = { ".html": "text/html; charset=utf-8", ".js": "application/javascript; charset=utf-8" };
+                res.writeHead(200, { "content-type": mime[ext] || "application/octet-stream" });
+                res.end(data);
+            }
+            catch (e) {
+                res.writeHead(404);
+                res.end(String(e));
+            }
+        });
+        server.listen(port, "127.0.0.1", () => resolve(server));
+        server.on("error", reject);
+    });
+}
+async function main() {
+    const server = await startServer(ROOT, PORT);
+    const browser = await chromium.launch({ headless: true });
+    const ctx = await browser.newContext();
+    await ctx.addInitScript(() => { window.__name = (f) => f; });
+    const page = await ctx.newPage();
+    page.on("pageerror", err => console.log(`  [page error] ${err.message}`));
+    // Use a high-identity archetype with ethnic_racial anchor
+    const arch = ARCHETYPES.find(a => a.id === "100"); // Tribal Insurgent
+    const persona = buildPersona(arch);
+    persona.continuous.TRB = { pos: 5, sal: 3 };
+    persona.continuous.PF = { pos: 5, sal: 3 };
+    persona.continuous.ENG = { pos: 4, sal: 3 };
+    await page.goto(`http://127.0.0.1:${PORT}/prism-quiz-v3.html`, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
+    // Drive quiz to completion via PrismEngine API
+    await page.evaluate((pJson) => {
+        const persona = JSON.parse(pJson);
+        const PE = window.PrismEngine;
+        const scoreOE = (ev) => { if (!ev)
+            return 0; let s = 0, c = 0; if (ev.continuous)
+            for (const [nid, upd] of Object.entries(ev.continuous)) {
+                const t = persona.continuous[nid];
+                if (!t || !upd)
+                    continue;
+                if (upd.pos) {
+                    s += upd.pos[t.pos - 1] ?? 0.2;
+                    c++;
+                }
+                if (upd.sal) {
+                    s += upd.sal[t.sal] ?? 0.25;
+                    c++;
+                }
+            } if (ev.categorical)
+            for (const [nid, upd] of Object.entries(ev.categorical)) {
+                const t = persona.categorical[nid];
+                if (!t || !upd)
+                    continue;
+                if (upd.cat) {
+                    let d = 0;
+                    for (let i = 0; i < 6; i++)
+                        d += (upd.cat[i] ?? 0) * (t.probs[i] ?? 0);
+                    s += d * 6;
+                    c++;
+                }
+                if (upd.sal) {
+                    s += upd.sal[t.sal] ?? 0.25;
+                    c++;
+                }
+            } return c > 0 ? s / c : 0; };
+        const scoreBM = (m) => { if (!m)
+            return 0; let s = 0, c = 0; if (m.continuous)
+            for (const [nid, sig] of Object.entries(m.continuous)) {
+                const t = persona.continuous[nid];
+                if (!t || sig === undefined)
+                    continue;
+                s += sig * ((t.pos - 3) / 2);
+                c++;
+            } if (m.categorical)
+            for (const [nid, cd] of Object.entries(m.categorical)) {
+                const t = persona.categorical[nid];
+                if (!t || !cd)
+                    continue;
+                let d = 0;
+                for (let i = 0; i < 6; i++)
+                    d += (cd[i] ?? 0) * (t.probs[i] ?? 0);
+                s += d * 6;
+                c++;
+            } return c > 0 ? s / c : 0; };
+        const decide = (q, qq) => {
+            switch (q.uiType) {
+                case "single_choice":
+                case "multi": {
+                    const o = Object.keys(q.optionEvidence ?? {});
+                    if (!o.length)
+                        return qq.options?.[0] ?? "unknown";
+                    let b = o[0], bs = -Infinity;
+                    for (const x of o) {
+                        const s = scoreOE(q.optionEvidence[x]);
+                        if (s > bs) {
+                            bs = s;
+                            b = x;
+                        }
+                    }
+                    return b;
+                }
+                case "slider": {
+                    const o = Object.keys(q.sliderMap ?? {});
+                    if (!o.length)
+                        return 50;
+                    let b = o[0], bs = -Infinity;
+                    for (const x of o) {
+                        const s = scoreOE(q.sliderMap[x]);
+                        if (s > bs) {
+                            bs = s;
+                            b = x;
+                        }
+                    }
+                    const p = b.split("-").map(Number);
+                    return Math.floor(((p[0] ?? 0) + (p[1] ?? 100)) / 2);
+                }
+                case "allocation": {
+                    const o = Object.keys(q.allocationMap ?? {});
+                    if (!o.length)
+                        return {};
+                    const sc = o.map(b => ({ b, s: Math.max(0, scoreBM(q.allocationMap[b]) + 0.5) }));
+                    const t = sc.reduce((a, b) => a + b.s, 0);
+                    const a = {};
+                    if (t === 0) {
+                        const sh = Math.floor(100 / o.length);
+                        for (const b of o)
+                            a[b] = sh;
+                    }
+                    else {
+                        for (const { b, s } of sc)
+                            a[b] = Math.round((s / t) * 100);
+                        const sum = Object.values(a).reduce((x, y) => x + y, 0);
+                        if (sum !== 100)
+                            a[o[0]] = (a[o[0]] ?? 0) + (100 - sum);
+                    }
+                    return a;
+                }
+                case "ranking": {
+                    const o = Object.keys(q.rankingMap ?? {});
+                    if (!o.length)
+                        return [];
+                    const sc = o.map(i => ({ i, s: scoreBM(q.rankingMap[i]) }));
+                    sc.sort((x, y) => y.s - x.s);
+                    return sc.map(x => x.i);
+                }
+                case "pairwise": {
+                    const a = {};
+                    for (const [pid, p] of Object.entries(q.pairMaps ?? {})) {
+                        const c = Object.keys(p);
+                        if (!c.length)
+                            continue;
+                        let b = c[0], bs = -Infinity;
+                        for (const x of c) {
+                            const s = scoreBM(p[x]);
+                            if (s > bs) {
+                                bs = s;
+                                b = x;
+                            }
+                        }
+                        a[pid] = b;
+                    }
+                    return a;
+                }
+                case "best_worst": {
+                    const o = Object.keys(q.bestWorstMap ?? {});
+                    if (!o.length)
+                        return { best: "", worst: "" };
+                    const sc = o.map(i => ({ i, s: scoreBM(q.bestWorstMap[i]) }));
+                    sc.sort((x, y) => y.s - x.s);
+                    return { best: sc[0].i, worst: sc[sc.length - 1].i };
+                }
+                default: return qq.options?.[0] ?? "unknown";
+            }
+        };
+        PE.initQuiz();
+        let steps = 0;
+        while (!PE.isComplete() && steps < 120) {
+            steps++;
+            const qq = PE.getNextQuestion();
+            if (!qq)
+                break;
+            const q = PE.getQuestionDef(qq.id);
+            if (!q) {
+                PE.submitAnswer(qq.id, qq.options?.[0] ?? "unknown");
+                continue;
+            }
+            PE.submitAnswer(qq.id, decide(q, qq));
+        }
+    }, JSON.stringify(persona));
+    // Simulate demographics submission: set prism-demographics, then call finalizeResults
+    // But finalizeResults does window.location.href redirect — intercept it
+    await page.route("**/prism-results.html*", route => route.fulfill({ status: 200, body: "<html><body>redirected</body></html>", contentType: "text/html" }));
+    await page.evaluate(() => {
+        // Simulate: user selected "Black or African American" and submitted
+        localStorage.setItem('prism-demographics', JSON.stringify({
+            demo_ethnicity: 'black_or_african_american',
+            demo_gender: 'male',
+            demo_religion: 'evangelical_born_again_christian',
+            demo_lgbtq: 'no',
+        }));
+        window.finalizeResults();
+    });
+    // Wait for redirect to fire
+    await page.waitForTimeout(500);
+    // Read back localStorage
+    const stored = await page.evaluate(() => {
+        const raw = localStorage.getItem('prism_results');
+        return raw ? JSON.parse(raw) : null;
+    });
+    console.log("=== Identity-Primary wiring smoke test ===");
+    console.log(`Archetype matched: ${stored?.archetypeId} ${stored?.archetypeName}`);
+    console.log(`identityPrimary present: ${stored?.identityPrimary != null}`);
+    if (stored?.identityPrimary) {
+        const ip = stored.identityPrimary;
+        console.log(`  state:      ${ip.state}`);
+        console.log(`  label:      ${ip.label ?? "(none)"}`);
+        console.log(`  anchor:     ${ip.anchor ?? "(none)"}`);
+        console.log(`  confidence: ${ip.confidence ?? "(none)"}`);
+        console.log(`  reasons:    ${ip.reasonCodes?.join(", ") ?? "(none)"}`);
+    }
+    const pass = stored?.identityPrimary != null && stored.identityPrimary.state !== "none";
+    console.log(`\nResult: ${pass ? "PASS" : "FAIL"} — identity-primary is${pass ? "" : " NOT"} populated in localStorage`);
+    await browser.close();
+    server.close();
+    if (!pass)
+        process.exit(1);
+}
+main().catch(err => { console.error(err); process.exit(1); });
+//# sourceMappingURL=identity-wiring-smoke.js.map

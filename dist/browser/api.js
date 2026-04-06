@@ -8,11 +8,13 @@ import { ARCHETYPES } from "../config/archetypes.js";
 import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
 import { applySingleChoiceAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, } from "../engine/update.js";
+import { multiplyAndNormalize } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
 import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { FIXED_16 } from "../engine/config.js";
+import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
@@ -20,6 +22,72 @@ let _state = null;
 let _archetypes = [];
 let _questions = [];
 let _questionsById = new Map();
+const _ratioBoosts = new Map();
+function ratioToSalienceDist(ratio) {
+    if (ratio >= 4)
+        return [0.02, 0.08, 0.30, 0.60];
+    if (ratio >= 3)
+        return [0.04, 0.12, 0.34, 0.50];
+    if (ratio >= 2)
+        return [0.08, 0.18, 0.34, 0.40];
+    return [0.18, 0.28, 0.30, 0.24];
+}
+function applyStoredRatioBoost(q) {
+    if (!_state)
+        return;
+    const ratio = _ratioBoosts.get(q.id);
+    if (!ratio)
+        return;
+    const salLikelihood = ratioToSalienceDist(ratio);
+    for (const touch of q.touchProfile) {
+        if (touch.role !== "salience")
+            continue;
+        if (touch.kind === "continuous" && touch.node in _state.continuous) {
+            const node = _state.continuous[touch.node];
+            node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+        }
+        else if (touch.kind === "categorical" && touch.node in _state.categorical) {
+            const node = _state.categorical[touch.node];
+            node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+        }
+    }
+}
+const _snapshots = [];
+function deepCopyState(state) {
+    const copy = {
+        answers: { ...state.answers },
+        continuous: {},
+        categorical: {},
+        trbAnchor: {
+            dist: [...state.trbAnchor.dist],
+            touches: state.trbAnchor.touches,
+        },
+        archetypePosterior: { ...state.archetypePosterior },
+        currentLeader: state.currentLeader,
+        consecutiveLeadCount: state.consecutiveLeadCount,
+    };
+    for (const nodeId of CONTINUOUS_NODES) {
+        const src = state.continuous[nodeId];
+        copy.continuous[nodeId] = {
+            posDist: [...src.posDist],
+            salDist: [...src.salDist],
+            touches: src.touches,
+            touchTypes: new Set(src.touchTypes),
+            status: src.status,
+        };
+    }
+    for (const nodeId of CATEGORICAL_NODES) {
+        const src = state.categorical[nodeId];
+        copy.categorical[nodeId] = {
+            catDist: [...src.catDist],
+            salDist: [...src.salDist],
+            touches: src.touches,
+            touchTypes: new Set(src.touchTypes),
+            status: src.status,
+        };
+    }
+    return copy;
+}
 // ---------------------------------------------------------------------------
 // State initialization (mirrors simulation.ts createInitialState)
 // ---------------------------------------------------------------------------
@@ -53,7 +121,7 @@ function createInitialState(archetypes) {
         continuous,
         categorical,
         trbAnchor: {
-            dist: [1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7],
+            dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
             touches: 0,
         },
         archetypePosterior,
@@ -144,6 +212,10 @@ function toQuizQuestion(q) {
     if (q.bestWorstMap) {
         out.bestWorstItems = Object.keys(q.bestWorstMap);
     }
+    else if (q.uiType === "best_worst" && q.rankingMap) {
+        // Q63 etc. store best_worst items in rankingMap (for applyRankingAnswer)
+        out.bestWorstItems = Object.keys(q.rankingMap);
+    }
     return out;
 }
 // ---------------------------------------------------------------------------
@@ -159,6 +231,8 @@ export function initQuiz() {
     _questionsById = new Map(_questions.map(q => [q.id, q]));
     resetSimilarityCache();
     _state = createInitialState(_archetypes);
+    _snapshots.length = 0; // Clear snapshot history on fresh quiz
+    _ratioBoosts.clear();
 }
 /**
  * Get the next question the engine wants to ask.
@@ -195,6 +269,8 @@ export function getNextQuestion() {
 export function submitAnswer(questionId, answer) {
     if (!_state)
         throw new Error("Call initQuiz() first");
+    // Snapshot current state before applying answer (for back button)
+    _snapshots.push({ state: deepCopyState(_state), questionId });
     const q = _questionsById.get(questionId);
     if (!q)
         throw new Error(`Unknown question ID: ${questionId}`);
@@ -202,6 +278,7 @@ export function submitAnswer(questionId, answer) {
         case "single_choice":
         case "multi":
             applySingleChoiceAnswer(_state, q, answer);
+            applyStoredRatioBoost(q);
             break;
         case "slider":
             applySliderAnswer(_state, q, answer);
@@ -218,9 +295,11 @@ export function submitAnswer(questionId, answer) {
         case "best_worst": {
             // Best-worst is treated as a ranking: [best, ...middle, worst]
             const bw = answer;
-            if (q.bestWorstMap) {
-                const allItems = Object.keys(q.bestWorstMap);
-                const middle = allItems.filter(i => i !== bw.best && i !== bw.worst);
+            const bwItems = q.bestWorstMap ? Object.keys(q.bestWorstMap)
+                : q.rankingMap ? Object.keys(q.rankingMap)
+                    : [];
+            if (bwItems.length > 0) {
+                const middle = bwItems.filter(i => i !== bw.best && i !== bw.worst);
                 applyRankingAnswer(_state, q, [bw.best, ...middle, bw.worst]);
             }
             break;
@@ -370,6 +449,39 @@ export function getRespondentState() {
         const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
         categorical[nodeId] = { catDist: [...node.catDist], salience, touches: node.touches };
     }
-    return { continuous, categorical };
+    return {
+        continuous,
+        categorical,
+        trbAnchor: {
+            dist: [..._state.trbAnchor.dist],
+            touches: _state.trbAnchor.touches,
+        },
+        ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
+    };
+}
+export function getIdentityPrimaryResult(demographics) {
+    if (!_state)
+        return null;
+    return resolveIdentityPrimary(_state, demographics ?? null);
+}
+export function applyRatioBoost(questionId, ratio) {
+    _ratioBoosts.set(questionId, ratio);
+}
+/**
+ * Check if the user can go back to the previous question.
+ */
+export function canGoBack() {
+    return _snapshots.length > 0;
+}
+/**
+ * Go back to the previous question by restoring the snapshot.
+ * Returns the question ID that was undone (so UI can re-render that question).
+ */
+export function goBack() {
+    if (_snapshots.length === 0)
+        return null;
+    const snapshot = _snapshots.pop();
+    _state = snapshot.state;
+    return snapshot.questionId;
 }
 //# sourceMappingURL=api.js.map

@@ -24,6 +24,8 @@ const TRB_ANCHOR_ORDER = [
     "religious",
     "class",
     "ethnic_racial",
+    "gender",
+    "sexual",
     "global",
     "mixed_none",
 ];

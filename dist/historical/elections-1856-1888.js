@@ -49,7 +49,7 @@ const election1856 = {
             COM: 5, // Maximum compromiser - entire platform was compromise to hold Union together
             ZS: 3, // Mixed - believed compromise could produce positive outcomes but defensive
             ONT_H: 2, // Pessimistic - feared social disruption, human nature requires order
-            ONT_S: 1, // System fine - Constitution as-is protects slavery, don't change it
+            ONT_S: 5, // System fine - Constitution as-is protects slavery, don't change it
             PF: 5, // Maximum partisan - Democratic Party machine, Jacksonian tradition
             TRB: 4, // High tribal - southern planter class + northern Catholic immigrants
             ENG: 4, // Engaged - career diplomat/politician, but "Old Buck" was cautious
@@ -68,7 +68,7 @@ const election1856 = {
             COM: 1, // Never compromise - sectional candidate, no deals with slave power
             ZS: 2, // Positive-sum
             ONT_H: 5, // Maximum optimistic - free labor utopia
-            ONT_S: 5, // System broken - slave power conspiracy
+            ONT_S: 1, // System broken - slave power conspiracy
             PF: 5, // Maximum partisan - new party zealot
             TRB: 5, // Maximum tribal - northern identity
             ENG: 5, // Maximum engagement
@@ -146,7 +146,7 @@ const election1860 = {
             COM: 5, // Maximum compromiser - career built on compromise, "Little Giant" dealmaker
             ZS: 3, // Mixed - believed compromise avoided conflict
             ONT_H: 3, // Moderate - pragmatic, not idealistic
-            ONT_S: 2, // System working - popular sovereignty can resolve crisis within existing order
+            ONT_S: 4, // System working - popular sovereignty can resolve crisis within existing order
             PF: 5, // Maximum partisan - Democratic Party man, fought for party unity
             TRB: 3, // Moderate tribal - tried to be national, not sectional
             ENG: 5, // Maximum engagement - campaigned nationally even when cause was lost
@@ -165,7 +165,7 @@ const election1860 = {
             COM: 1, // Never compromise - slavery must be protected everywhere, no concessions
             ZS: 5, // Maximum zero-sum - racial hierarchy, slave labor vs free labor
             ONT_H: 1, // Maximum pessimistic - fixed racial hierarchy, human nature unchangeable
-            ONT_S: 4, // System broken - federal government failing to protect slave property
+            ONT_S: 2, // System broken - federal government failing to protect slave property
             PF: 3, // Moderate partisan - split from main Democratic Party, sectional
             TRB: 5, // Maximum tribal - white southern slaveholder identity
             ENG: 5, // Maximum engagement - existential stakes for slavery, secession looming
@@ -184,7 +184,7 @@ const election1860 = {
             COM: 5, // Maximum compromiser — avoiding the issue
             ZS: 2, // Positive-sum
             ONT_H: 2, // Skeptical
-            ONT_S: 1, // System fine
+            ONT_S: 5, // System fine
             PF: 1, // Independent
             TRB: 2, // Low tribal
             ENG: 2, // Low — ran as calming presence
@@ -221,7 +221,7 @@ const election1864 = {
             COM: 3, // Mixed - "with malice toward none" but uncompromising on Union and abolition
             ZS: 2, // Positive-sum - Union victory benefits all, free labor for all
             ONT_H: 4, // Optimistic - "better angels of our nature," believed in human improvement
-            ONT_S: 4, // System needs reform - 13th Amendment, fundamental constitutional change
+            ONT_S: 2, // System needs reform - 13th Amendment, fundamental constitutional change
             PF: 4, // Strong Republican - ran as "National Union" to broaden coalition
             TRB: 3, // Moderate tribal - national unity rhetoric, "Union" above faction
             ENG: 5, // Maximum engagement - wartime president, existential stakes
@@ -240,7 +240,7 @@ const election1864 = {
             COM: 4, // Compromiser - negotiated peace, restore Union through concession
             ZS: 4, // Zero-sum - war is destroying both sides, stop the bleeding
             ONT_H: 2, // Pessimistic - war is failing, carnage is pointless
-            ONT_S: 2, // System was fine - prewar Union should be restored as-was
+            ONT_S: 4, // System was fine - prewar Union should be restored as-was
             PF: 4, // Strong Democrat - party nominee, but repudiated peace plank
             TRB: 4, // Tribal - northern Democrats, peace movement, anti-Black-equality
             ENG: 4, // Engaged - but ran cautious campaign, let party do the work
@@ -294,7 +294,7 @@ const election1868 = {
             COM: 3, // Mixed - reluctant nominee, tried to moderate but base was extreme
             ZS: 5, // Maximum zero-sum - racial competition, Black rights = white dispossession
             ONT_H: 1, // Maximum pessimistic - fixed racial hierarchy, Reconstruction is tyranny
-            ONT_S: 4, // System broken - Reconstruction is destroying constitutional order
+            ONT_S: 2, // System broken - Reconstruction is destroying constitutional order
             PF: 4, // Strong Democrat - party nominee, but reluctant
             TRB: 5, // Maximum tribal - white racial identity, anti-Reconstruction solidarity
             ENG: 3, // Moderate engagement - reluctant candidate, lackluster campaign
@@ -328,7 +328,7 @@ const election1872 = {
             COM: 3, // Mixed - unyielding on Reconstruction but administration was pragmatic
             ZS: 2, // Positive-sum - national prosperity narrative, stability
             ONT_H: 3, // Moderate - experienced realism, scandals tarnishing idealism
-            ONT_S: 2, // System working - Reconstruction is succeeding, stay the course
+            ONT_S: 4, // System working - Reconstruction is succeeding, stay the course
             PF: 5, // Maximum partisan - incumbent Republican, party-line Reconstruction
             TRB: 3, // Moderate tribal - national unity, but firmly identified with freedmen
             ENG: 4, // Engaged - incumbent seeking reelection
@@ -347,7 +347,7 @@ const election1872 = {
             COM: 5, // Maximum compromiser - entire campaign was reconciliation, amnesty for Confederates
             ZS: 2, // Positive-sum - reconciliation benefits all, end Reconstruction divisions
             ONT_H: 5, // Maximum optimistic - utopian reformer, believed in human perfectibility
-            ONT_S: 4, // System needs reform - Grant's corruption proves system broken
+            ONT_S: 2, // System needs reform - Grant's corruption proves system broken
             PF: 1, // Maximum independent - bolted own party, fusion candidate
             TRB: 2, // Low tribal - explicitly anti-partisan, cross-party appeal
             ENG: 5, // Maximum engagement - crusading editor, tireless campaigner (died from it)
@@ -382,7 +382,7 @@ const election1876 = {
             COM: 4, // Compromiser
             ZS: 3, // Mixed
             ONT_H: 2, // Pessimistic — Reconstruction fatigue
-            ONT_S: 1, // System fine — just needs cleanup
+            ONT_S: 5, // System fine — just needs cleanup
             PF: 5, // Strong Republican machine
             TRB: 4, // Tribal — Republican establishment
             ENG: 3, // Moderate — quiet campaign
@@ -436,7 +436,7 @@ const election1880 = {
             COM: 4, // Compromiser - bridged Stalwart and Half-Breed factions, Chester Arthur as VP
             ZS: 2, // Positive-sum - industrial growth benefits all, national development
             ONT_H: 4, // Optimistic - self-made man, upward mobility, American dream
-            ONT_S: 2, // System working - system just needs honest men in charge (civil service reform)
+            ONT_S: 4, // System working - system just needs honest men in charge (civil service reform)
             PF: 4, // Strong Republican - party nominee, loyal partisan
             TRB: 3, // Moderate tribal - national Republican identity, not sectional
             ENG: 4, // Engaged - skilled campaigner, front-porch campaign
@@ -490,7 +490,7 @@ const election1884 = {
             COM: 3, // Mixed - principled reformer, not a dealmaker
             ZS: 2, // Positive-sum - clean government benefits all citizens
             ONT_H: 3, // Moderate - realistic about human nature, hence need for good government
-            ONT_S: 2, // System fine - just needs honest men, reform not revolution
+            ONT_S: 4, // System fine - just needs honest men, reform not revolution
             PF: 3, // Moderate partisan - Democrats nominated him, but Mugwumps (R defectors) supported him
             TRB: 2, // Low tribal - reform appeal transcended party, anti-machine
             ENG: 4, // Engaged - but projected competence, not passion
@@ -509,7 +509,7 @@ const election1884 = {
             COM: 4, // Compromiser - master politician, coalition builder
             ZS: 3, // Mixed - competitive protectionism but growth-oriented
             ONT_H: 3, // Moderate - politician's optimism tempered by cynicism
-            ONT_S: 2, // System fine - just needs Republican management
+            ONT_S: 4, // System fine - just needs Republican management
             PF: 5, // Maximum partisan - "Plumed Knight" of the party, stalwart Republican
             TRB: 4, // High tribal - Protestant Republican identity, partisan warrior
             ENG: 5, // Maximum engagement - charismatic, tireless campaigner
@@ -543,7 +543,7 @@ const election1888 = {
             COM: 3, // Mixed - principled on tariff but pragmatic party operator
             ZS: 3, // Mixed - protectionism implies competition, but prosperity rhetoric
             ONT_H: 3, // Moderate - conservative temperament
-            ONT_S: 2, // System fine - protect American industry, system works
+            ONT_S: 4, // System fine - protect American industry, system works
             PF: 5, // Maximum partisan - party machine candidate, organization man
             TRB: 3, // Moderate tribal - Republican veteran identity, not populist
             ENG: 3, // Moderate engagement - front-porch campaign, not dynamic
@@ -562,7 +562,7 @@ const election1888 = {
             COM: 2, // Low compromise - stubbornly devoted 1887 message entirely to tariff
             ZS: 2, // Positive-sum - lower tariff benefits consumers and economy overall
             ONT_H: 3, // Moderate - realistic, practical
-            ONT_S: 2, // System fine - just reduce unnecessary taxation
+            ONT_S: 4, // System fine - just reduce unnecessary taxation
             PF: 4, // Strong Democrat - incumbent running for reelection
             TRB: 2, // Low tribal - reform transcended faction, anti-machine
             ENG: 3, // Moderate engagement - honest but boring, not a dynamic campaigner

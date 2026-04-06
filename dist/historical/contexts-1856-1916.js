@@ -16,7 +16,7 @@ const context1856 = {
     year: 1856,
     zeitgeist: {
         era: "sectional",
-        nodeWeights: { MOR: 1.8, TRB: 1.8, CD: 1.5, CU: 1.5, ONT_S: 1.5, COM: 1.3 },
+        nodeWeights: { MOR: 1.8, TRB: 1.8, CD: 1.5, CU: 1.5, ONT_S: 5.5, COM: 1.3 },
         intensity: 1.3,
         description: "Bleeding Kansas; slavery expansion fracturing the party system",
     },
@@ -31,11 +31,11 @@ const context1856 = {
             candidateName: "Buchanan",
             activationNodes: { COM: 1.4, PRO: 1.3, PF: 1.2 },
             novelty: 1.0,
-            threatActivation: { ONT_S: 1.2 },
+            threatActivation: { ONT_S: 5.2 },
         },
         {
             candidateName: "Fremont",
-            activationNodes: { MOR: 1.5, CU: 1.4, ONT_S: 1.3 },
+            activationNodes: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 },
             novelty: 1.5,
             threatActivation: { TRB: 1.5, CD: 1.4 },
         },
@@ -57,7 +57,7 @@ const context1860 = {
     year: 1860,
     zeitgeist: {
         era: "sectional",
-        nodeWeights: { MOR: 2.0, TRB: 2.0, ONT_S: 2.0, CD: 1.8, CU: 1.5, ZS: 1.5 },
+        nodeWeights: { MOR: 2.0, TRB: 2.0, ONT_S: 4.0, CD: 1.8, CU: 1.5, ZS: 1.5 },
         intensity: 1.5,
         description: "Nation fracturing over slavery; secession looming; existential stakes",
     },
@@ -103,7 +103,7 @@ const context1864 = {
     year: 1864,
     zeitgeist: {
         era: "civil-war",
-        nodeWeights: { MOR: 2.5, ZS: 2.0, TRB: 2.0, ONT_S: 2.0, ENG: 1.8, CD: 1.5 },
+        nodeWeights: { MOR: 2.5, ZS: 2.0, TRB: 2.0, ONT_S: 4.0, ENG: 1.8, CD: 1.5 },
         intensity: 1.5,
         description: "Civil War raging; emancipation now a war aim; Union survival at stake",
     },
@@ -116,7 +116,7 @@ const context1864 = {
     candidateActivations: [
         {
             candidateName: "Lincoln",
-            activationNodes: { MOR: 1.8, ENG: 1.5, ONT_S: 1.4, CU: 1.3 },
+            activationNodes: { MOR: 1.8, ENG: 1.5, ONT_S: 5.4, CU: 1.3 },
             novelty: 1.5,
             threatActivation: { ZS: 1.3, TRB: 1.3 },
         },
@@ -124,7 +124,7 @@ const context1864 = {
             candidateName: "McClellan",
             activationNodes: { COM: 1.3, PRO: 1.4, ZS: 1.2 },
             novelty: 1.0,
-            threatActivation: { MOR: 1.5, ONT_S: 1.4 },
+            threatActivation: { MOR: 1.5, ONT_S: 5.4 },
         },
     ],
 };
@@ -139,7 +139,7 @@ const context1868 = {
     year: 1868,
     zeitgeist: {
         era: "civil-war",
-        nodeWeights: { MOR: 2.0, TRB: 2.0, CD: 1.8, CU: 1.5, ONT_S: 1.5, ZS: 1.5 },
+        nodeWeights: { MOR: 2.0, TRB: 2.0, CD: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.5 },
         intensity: 1.3,
         description: "Reconstruction underway; 14th Amendment; KKK violence; freedmen's rights contested",
     },
@@ -160,7 +160,7 @@ const context1868 = {
             candidateName: "Seymour",
             activationNodes: { TRB: 1.6, CD: 1.5, ZS: 1.4 },
             novelty: 0.8,
-            threatActivation: { MOR: 1.5, CU: 1.4, ONT_S: 1.3 },
+            threatActivation: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 },
         },
     ],
 };
@@ -175,7 +175,7 @@ const context1872 = {
     year: 1872,
     zeitgeist: {
         era: "reconstruction",
-        nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 1.3, COM: 1.3, PF: 0.7 },
+        nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 5.3, COM: 1.3, PF: 0.7 },
         intensity: 0.9,
         description: "Reconstruction fatigue; corruption scandals; Liberal Republican revolt",
     },
@@ -193,7 +193,7 @@ const context1872 = {
         },
         {
             candidateName: "Greeley",
-            activationNodes: { COM: 1.5, PRO: 1.4, ONT_H: 1.3, ONT_S: 1.3 },
+            activationNodes: { COM: 1.5, PRO: 1.4, ONT_H: 1.3, ONT_S: 5.3 },
             novelty: 1.3,
             threatActivation: { MOR: 1.2 },
         },
@@ -210,7 +210,7 @@ const context1876 = {
     year: 1876,
     zeitgeist: {
         era: "reconstruction",
-        nodeWeights: { PRO: 1.8, ONT_S: 1.5, MOR: 1.3, COM: 1.3, PF: 1.3 },
+        nodeWeights: { PRO: 1.8, ONT_S: 5.5, MOR: 1.3, COM: 1.3, PF: 1.3 },
         intensity: 1.2,
         description: "Reconstruction winding down; Grant scandals; reform movement ascendant",
     },
@@ -228,7 +228,7 @@ const context1876 = {
         },
         {
             candidateName: "Tilden",
-            activationNodes: { PRO: 1.5, ONT_S: 1.3 },
+            activationNodes: { PRO: 1.5, ONT_S: 5.3 },
             novelty: 1.3,
             threatActivation: { MOR: 1.2 },
         },
@@ -349,7 +349,7 @@ const context1892 = {
     year: 1892,
     zeitgeist: {
         era: "gilded",
-        nodeWeights: { MAT: 1.8, ONT_S: 1.8, ZS: 1.5, TRB: 1.5, ENG: 1.3, MOR: 0.6 },
+        nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, TRB: 1.5, ENG: 1.3, MOR: 0.6 },
         intensity: 1.1,
         description: "Agrarian revolt; Homestead Strike; Populist insurgency; economic anxiety rising",
     },
@@ -372,9 +372,9 @@ const context1892 = {
         },
         {
             candidateName: "Weaver",
-            activationNodes: { ONT_S: 1.6, ZS: 1.5, TRB: 1.5, MAT: 1.4, ENG: 1.4 },
+            activationNodes: { ONT_S: 5.6, ZS: 1.5, TRB: 1.5, MAT: 1.4, ENG: 1.4 },
             novelty: 1.5,
-            threatActivation: { MAT: 1.3, ONT_S: 1.3 },
+            threatActivation: { MAT: 1.3, ONT_S: 5.3 },
         },
     ],
 };
@@ -405,11 +405,11 @@ const context1896 = {
             candidateName: "McKinley",
             activationNodes: { MAT: 1.5, PRO: 1.5, PF: 1.3, COM: 1.3 },
             novelty: 1.2,
-            threatActivation: { ONT_S: 1.3 },
+            threatActivation: { ONT_S: 5.3 },
         },
         {
             candidateName: "Bryan",
-            activationNodes: { ONT_S: 1.3, TRB: 1.2 },
+            activationNodes: { ONT_S: 5.3, TRB: 1.2 },
             novelty: 1.3,
         },
     ],
@@ -461,7 +461,7 @@ const context1904 = {
     year: 1904,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ONT_S: 1.5, MAT: 1.5, MOR: 1.3, ONT_H: 1.3, PRO: 0.7 },
+        nodeWeights: { ONT_S: 5.5, MAT: 1.5, MOR: 1.3, ONT_H: 1.3, PRO: 0.7 },
         intensity: 1.1,
         description: "Progressive era dawning; trust-busting; conservation; Square Deal; prosperity continuing",
     },
@@ -474,7 +474,7 @@ const context1904 = {
     candidateActivations: [
         {
             candidateName: "Roosevelt",
-            activationNodes: { ONT_S: 1.4, MOR: 1.4, ENG: 1.5, ONT_H: 1.3 },
+            activationNodes: { ONT_S: 5.4, MOR: 1.4, ENG: 1.5, ONT_H: 1.3 },
             novelty: 1.5,
         },
         {
@@ -496,7 +496,7 @@ const context1908 = {
     year: 1908,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ONT_S: 1.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, TRB: 0.6 },
+        nodeWeights: { ONT_S: 5.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, TRB: 0.6 },
         intensity: 0.9,
         description: "Progressive reforms mainstreaming; TR's heir vs. the Great Commoner; reform consensus",
     },
@@ -514,7 +514,7 @@ const context1908 = {
         },
         {
             candidateName: "Bryan",
-            activationNodes: { ONT_S: 1.4, MAT: 1.3, MOR: 1.3, ENG: 1.3 },
+            activationNodes: { ONT_S: 5.4, MAT: 1.3, MOR: 1.3, ENG: 1.3 },
             novelty: 1.0,
         },
     ],
@@ -531,7 +531,7 @@ const context1912 = {
     year: 1912,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ONT_S: 2.0, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, PF: 1.5, ENG: 1.5 },
+        nodeWeights: { ONT_S: 4.0, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, PF: 1.5, ENG: 1.5 },
         intensity: 1.3,
         description: "Peak Progressive era; three-way reform debate; party system fracturing; high engagement",
     },
@@ -544,12 +544,12 @@ const context1912 = {
     candidateActivations: [
         {
             candidateName: "Wilson",
-            activationNodes: { ONT_S: 1.4, MAT: 1.3, MOR: 1.3, PRO: 1.2 },
+            activationNodes: { ONT_S: 5.4, MAT: 1.3, MOR: 1.3, PRO: 1.2 },
             novelty: 1.3,
         },
         {
             candidateName: "Roosevelt",
-            activationNodes: { ONT_S: 1.6, MOR: 1.6, ONT_H: 1.5, ENG: 1.5, MAT: 1.3 },
+            activationNodes: { ONT_S: 5.6, MOR: 1.6, ONT_H: 1.5, ENG: 1.5, MAT: 1.3 },
             novelty: 1.5,
             threatActivation: { PRO: 1.3, PF: 1.3 },
         },
@@ -572,7 +572,7 @@ const context1916 = {
     year: 1916,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, TRB: 1.3, ONT_S: 1.3 },
+        nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, TRB: 1.3, ONT_S: 5.3 },
         intensity: 1.2,
         description: "European war looming; neutrality vs. preparedness; Progressive legislation at home",
     },
@@ -585,7 +585,7 @@ const context1916 = {
     candidateActivations: [
         {
             candidateName: "Wilson",
-            activationNodes: { MAT: 1.3, MOR: 1.3, CU: 1.2, ONT_S: 1.2 },
+            activationNodes: { MAT: 1.3, MOR: 1.3, CU: 1.2, ONT_S: 5.2 },
             novelty: 1.0,
             threatActivation: { ZS: 1.3, TRB: 1.2 },
         },

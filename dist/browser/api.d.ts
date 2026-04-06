@@ -5,6 +5,7 @@
  * Bundled as an IIFE and exposed as window.PrismEngine.
  */
 import type { QuestionDef } from "../types.js";
+import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 export interface QuizQuestion {
     id: number;
     promptShort: string;
@@ -63,6 +64,7 @@ export interface QuizResults {
     /** Family/subtype info when top-2 are near-neighbors */
     family?: FamilyResult;
 }
+export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
 /**
  * Initialize a new quiz session.
  * Resets all state and loads archetypes + questions.
@@ -119,3 +121,14 @@ export declare function getArchetypeCount(): number;
  * Returns continuous node expected values and categorical distributions.
  */
 export declare function getRespondentState(): Record<string, unknown> | null;
+export declare function getIdentityPrimaryResult(demographics?: IdentityPrimaryDemographics | null): IdentityPrimaryResult | null;
+export declare function applyRatioBoost(questionId: number, ratio: number): void;
+/**
+ * Check if the user can go back to the previous question.
+ */
+export declare function canGoBack(): boolean;
+/**
+ * Go back to the previous question by restoring the snapshot.
+ * Returns the question ID that was undone (so UI can re-render that question).
+ */
+export declare function goBack(): number | null;

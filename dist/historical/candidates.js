@@ -33,7 +33,7 @@ const election1940 = {
             COM: 4, // Master dealmaker - coalition builder
             ZS: 2, // Positive-sum - "abundance for all," economic expansion
             ONT_H: 4, // Optimistic - "nothing to fear but fear itself"
-            ONT_S: 4, // Structuralist - government as solution to systemic failures
+            ONT_S: 4, // System-trusting - government as solution within a basically workable system
             PF: 5, // Maximum partisan - built the New Deal coalition
             TRB: 3, // Moderate tribal - broad coalition, not in-group focused
             ENG: 5, // Maximum engagement - sought unprecedented third term
@@ -52,7 +52,7 @@ const election1940 = {
             COM: 3, // Mixed - accepted some New Deal but attacked most
             ZS: 3, // Mixed
             ONT_H: 2, // Skeptical - government can't fix everything
-            ONT_S: 1, // System fine - free enterprise works, government is the problem
+            ONT_S: 1, // System-working worldview - free enterprise basically works; government intervention is the problem
             PF: 4, // Ran as strong Republican despite being newcomer
             TRB: 3, // Moderate - business coalition identity
             ENG: 4, // Energetic campaign
@@ -82,7 +82,7 @@ const election1944 = {
             COM: 4, // Dealmaker - Yalta, Allied coordination
             ZS: 2, // Positive-sum - postwar planning, Bretton Woods
             ONT_H: 4, // Optimistic - victory within reach
-            ONT_S: 4, // Structuralist - government as war machine and social safety net
+            ONT_S: 4, // System-trusting - government as effective war machine and safety net
             PF: 5, // Maximum partisan
             TRB: 3, // National unity rhetoric - "our boys"
             ENG: 5, // Maximum - fourth-term bid during world war
@@ -101,7 +101,7 @@ const election1944 = {
             COM: 3, // Mixed
             ZS: 3, // Mixed
             ONT_H: 2, // Skeptical
-            ONT_S: 1, // System fine
+            ONT_S: 1, // Strong system-working confidence
             PF: 5, // Maximum partisan
             TRB: 3, // Moderate
             ENG: 3, // Lower — cautious campaign
@@ -152,7 +152,7 @@ const election1948 = {
             COM: 4, // Compromiser - ran cautious, non-confrontational campaign
             ZS: 3, // Mixed
             ONT_H: 2, // Skeptical - government overreach concern
-            ONT_S: 1, // System fine - stable management, less government
+            ONT_S: 1, // Strong system-working confidence - stable management, less government
             PF: 4, // Strong Republican
             TRB: 3, // Moderate tribal
             ENG: 3, // Lower engagement - overconfident, coasted
@@ -171,7 +171,7 @@ const election1948 = {
             COM: 1, // Never compromise - walked out of convention
             ZS: 5, // Maximum zero-sum - racial competition for resources
             ONT_H: 2, // Pessimistic - feared social change
-            ONT_S: 4, // System broken - federal overreach destroying southern way of life
+            ONT_S: 4, // Deep structural grievance - federal overreach is destroying the southern way of life
             PF: 3, // Regional partisan - not national party man
             TRB: 5, // Maximum tribal - white southern identity
             ENG: 5, // Maximum engagement - launched entire party over civil rights
@@ -202,7 +202,7 @@ const election1952 = {
             COM: 4, // Pragmatic compromiser - "middle way" politics
             ZS: 2, // Positive-sum - postwar prosperity, "peace through strength"
             ONT_H: 3, // Moderate realism - military pragmatist
-            ONT_S: 2, // System working - protect and manage it
+            ONT_S: 2, // System-working / preserve-and-manage orientation
             PF: 3, // Moderate partisan - ran as Republican, attracted independents
             TRB: 3, // Moderate - military patriotic identity, "our boys"
             ENG: 5, // Maximum engagement - running for president is maximum engagement
@@ -221,7 +221,7 @@ const election1952 = {
             COM: 4, // Compromiser - pragmatic liberal
             ZS: 2, // Positive-sum - optimistic liberal
             ONT_H: 5, // Maximum optimistic - believed deeply in human progress
-            ONT_S: 4, // System needs big reform - government as instrument of good
+            ONT_S: 4, // System-trusting reformism - government as instrument of large-scale improvement
             PF: 5, // Maximum Democrat - New Deal heir
             TRB: 3, // Moderate tribal - intellectual elite identity
             ENG: 4, // Engaged but "egghead" aloofness
@@ -252,7 +252,7 @@ const election1956 = {
             COM: 4, // Pragmatic - "middle way"
             ZS: 2, // Positive-sum - peace and prosperity
             ONT_H: 3, // Moderate realism
-            ONT_S: 1, // System working well - prosperity, peace, stability
+            ONT_S: 1, // Strong system-working confidence - prosperity, peace, stability
             PF: 2, // Low partisan - above-party, national figure
             TRB: 2, // Low tribal - father figure to nation
             ENG: 4, // Engaged incumbent
@@ -271,7 +271,7 @@ const election1956 = {
             COM: 3, // Less compromising this time - sharper attacks
             ZS: 2, // Positive-sum
             ONT_H: 5, // Maximum optimistic - progress narrative
-            ONT_S: 4, // System needs big reform - "New America"
+            ONT_S: 4, // System-trusting reformism - "New America" through public action
             PF: 5, // Maximum partisan - stronger party identity second time
             TRB: 4, // Higher tribal - rallying the base, us-vs-them
             ENG: 5, // Maximum engagement - fighting harder second time
@@ -322,7 +322,7 @@ const election1960 = {
             COM: 4, // Pragmatic dealmaker (pre-Watergate Nixon)
             ZS: 3, // Mixed - Cold War competition but domestic optimism
             ONT_H: 3, // Moderate realism about human nature
-            ONT_S: 2, // Individualist-leaning
+            ONT_S: 2, // System-working / individual-responsibility leaning
             PF: 4, // Strong Republican partisan
             TRB: 3, // Middle-class tribal identity
             ENG: 5, // Career politician, deeply engaged
@@ -353,7 +353,7 @@ const election1964 = {
             COM: 4, // Master dealmaker - greatest legislative arm-twister in history
             ZS: 2, // Positive-sum - abundance mentality, Great Society for all
             ONT_H: 4, // Optimistic - believed government could improve society
-            ONT_S: 4, // Structuralist - systemic programs
+            ONT_S: 4, // System-trusting - systemic programs within a workable order
             PF: 5, // Party-is-identity - master Democrat
             TRB: 4, // Strong coalition tribal politics
             ENG: 5, // Politics was his life
@@ -372,7 +372,7 @@ const election1964 = {
             COM: 1, // Never compromise - "extremism in defense of liberty"
             ZS: 3, // Mixed - Cold War zero-sum, domestic freedom
             ONT_H: 2, // Conservative realism - skeptical of social engineering
-            ONT_S: 1, // Maximum individualist - minimal government
+            ONT_S: 1, // Maximum system-working / anti-systemic critique - minimal government
             PF: 3, // Party loyalist but also insurgent within party
             TRB: 3, // Ideological tribe more than ethnic/class
             ENG: 5, // Deeply engaged - movement conservative
@@ -405,7 +405,7 @@ const election1968 = {
             COM: 3, // Dealmaker but hardline rhetoric
             ZS: 3, // Mixed - us vs. them rhetoric, but pragmatic
             ONT_H: 2, // Pessimistic about human nature - realpolitik
-            ONT_S: 2, // Individualist - personal responsibility rhetoric
+            ONT_S: 2, // System-working / personal-responsibility rhetoric
             PF: 4, // Strong Republican
             TRB: 4, // Silent Majority tribal appeal
             ENG: 5, // Career politician
@@ -424,7 +424,7 @@ const election1968 = {
             COM: 5, // Maximum compromiser - "happy warrior," consensus-seeker
             ZS: 2, // Positive-sum - politics of joy
             ONT_H: 4, // Optimistic about human nature
-            ONT_S: 4, // Structuralist - government programs
+            ONT_S: 4, // System-trusting reformism - government programs
             PF: 5, // Strong Democrat partisan
             TRB: 3, // Coalition builder
             ENG: 5, // Lifelong politician
@@ -443,7 +443,7 @@ const election1968 = {
             COM: 1, // Never compromise - defiant
             ZS: 5, // Maximum zero-sum - racial/cultural competition
             ONT_H: 1, // Deeply pessimistic - human nature fixed, hierarchical
-            ONT_S: 2, // Individualist with paternalist streak
+            ONT_S: 2, // System-working with paternalist streak
             PF: 1, // Independent - rejected both parties
             TRB: 5, // Maximum tribal - white southern identity
             ENG: 5, // Deeply politically engaged
@@ -493,7 +493,7 @@ const election1972 = {
             COM: 1, // Uncompromising on principles - anti-war absolutism
             ZS: 1, // Maximum positive-sum - "come home, America"
             ONT_H: 5, // Maximum perfectibility - believed in transformation
-            ONT_S: 5, // Maximum structuralist - systemic change
+            ONT_S: 5, // Maximum system-trusting - large-scale institutional action
             PF: 2, // Challenged party establishment - insurgent
             TRB: 2, // New Left - narrow coalition, alienated traditional Dems
             ENG: 5, // Deeply engaged - movement politics
@@ -543,7 +543,7 @@ const election1976 = {
             COM: 5, // Maximum compromise — "nightmare is over"
             ZS: 2, // Positive-sum
             ONT_H: 3, // Moderate
-            ONT_S: 1, // System fine — pardoned Nixon to "move on," nothing broken
+            ONT_S: 1, // Strong system-working confidence — pardoned Nixon to "move on," nothing fundamentally broken
             PF: 5, // Maximum partisan — lifelong Republican
             TRB: 2, // Low tribal
             ENG: 3, // Lower — uninspiring campaigner
@@ -577,7 +577,7 @@ const election1980 = {
             COM: 4, // Great Communicator - worked across aisle, pragmatic when needed
             ZS: 2, // Positive-sum - "rising tide lifts all boats," optimistic
             ONT_H: 4, // Optimistic about Americans - believed in their potential
-            ONT_S: 2, // Individualist - "government IS the problem" but not extreme
+            ONT_S: 2, // Moderately system-working / anti-government rhetoric, but not deep system-broken critique
             PF: 4, // Strong Republican - transformed the party
             TRB: 4, // Strong tribal - "real Americans" appeal
             ENG: 5, // Deeply engaged - movement leader
@@ -646,7 +646,7 @@ const election1984 = {
             COM: 4, // Great Communicator - master compromiser in practice
             ZS: 1, // Maximum positive-sum - "it's morning in America"
             ONT_H: 4, // Optimistic about Americans - peak "shining city on a hill"
-            ONT_S: 2, // Individualist-leaning - but not extreme
+            ONT_S: 2, // System-working / individual-responsibility leaning - but not extreme
             PF: 5, // Maximum party leader - defined the GOP
             TRB: 3, // Broad appeal - won 49 states by transcending tribes
             ENG: 5, // Maximum engagement - dominant president
@@ -665,7 +665,7 @@ const election1984 = {
             COM: 4, // Compromiser - coalition politician
             ZS: 3, // "We need to raise taxes" - sacrifice framing
             ONT_H: 3, // Less optimistic - "let's be honest" downer messaging
-            ONT_S: 5, // Maximum structuralist - big-government liberal image
+            ONT_S: 5, // Maximum system-trusting institutionalism - big-government liberal image
             PF: 5, // Maximum Democrat - party creature
             TRB: 4, // Labor/union tribal - narrow coalition
             ENG: 5, // Career politician
@@ -696,7 +696,7 @@ const election1988 = {
             COM: 4, // Pragmatic - "kinder, gentler"
             ZS: 2, // Positive-sum - "kinder, gentler nation"
             ONT_H: 3, // Moderate
-            ONT_S: 2, // Individualist-leaning
+            ONT_S: 2, // System-working / individual-responsibility leaning
             PF: 4, // Strong Republican - Reagan's heir
             TRB: 3, // Patrician - less tribal than Reagan
             ENG: 4, // Career public servant
@@ -715,7 +715,7 @@ const election1988 = {
             COM: 4, // Pragmatic compromiser
             ZS: 2, // Positive-sum - economic manager
             ONT_H: 4, // Optimistic - technocratic confidence
-            ONT_S: 4, // Structuralist - government solutions
+            ONT_S: 4, // System-trusting - government solutions
             PF: 4, // Strong Democrat
             TRB: 2, // Low tribal - technocratic appeal
             ENG: 4, // Engaged - governor/manager
@@ -768,7 +768,7 @@ const election1992 = {
             COM: 4, // Pragmatic - broke tax pledge to deal
             ZS: 3, // Mixed
             ONT_H: 3, // Moderate
-            ONT_S: 2, // Individualist-leaning
+            ONT_S: 2, // System-working / individual-responsibility leaning
             PF: 4, // Strong Republican
             TRB: 3, // Patrician, low-tribal
             ENG: 4, // Career public servant
@@ -787,7 +787,7 @@ const election1992 = {
             COM: 2, // Low compromise - outsider, won't play the game
             ZS: 4, // Zero-sum on trade - "they're taking our jobs"
             ONT_H: 3, // Moderate - practical businessman
-            ONT_S: 2, // Individualist - business-oriented
+            ONT_S: 2, // System-working / business-oriented
             PF: 1, // Maximum independent
             TRB: 2, // Anti-establishment, low tribal
             ENG: 4, // Engaged - ran despite no political background
@@ -837,7 +837,7 @@ const election1996 = {
             COM: 4, // Dealmaker - Senate culture
             ZS: 3, // Mixed
             ONT_H: 2, // Conservative realism - WWII generation
-            ONT_S: 2, // Individualist-leaning
+            ONT_S: 2, // System-working / individual-responsibility leaning
             PF: 5, // Maximum partisan - career Republican
             TRB: 3, // Moderate tribal - old-guard, not populist
             ENG: 5, // Career politician
@@ -887,7 +887,7 @@ const election2000 = {
             COM: 4, // "Uniter not a divider" - compromiser signal
             ZS: 2, // Positive-sum - compassionate conservatism
             ONT_H: 3, // Moderate - faith in individual but "soft bigotry of low expectations"
-            ONT_S: 2, // Individualist - "ownership society"
+            ONT_S: 2, // System-working / "ownership society"
             PF: 4, // Strong Republican
             TRB: 3, // Moderate tribal - compassionate conservatism
             ENG: 3, // Projected citizen-politician - rancher, not career pol
@@ -937,7 +937,7 @@ const election2004 = {
             COM: 3, // Mixed - "decider" rhetoric but bipartisan on education, immigration
             ZS: 4, // Zero-sum - "with us or against us"
             ONT_H: 3, // Mixed - "freedom is on the march" but threat-focused
-            ONT_S: 2, // System mostly working - defended institutions (ONT_S low=stable)
+            ONT_S: 2, // Moderately system-working - defended institutions and continuity
             PF: 5, // Maximum partisan - Karl Rove base strategy
             TRB: 4, // Highly tribal - post-9/11 patriotic identity, but not max
             ENG: 5, // War president - maximum engagement
@@ -987,7 +987,7 @@ const election2008 = {
             COM: 4, // Compromiser - "maverick," bipartisan deals
             ZS: 3, // Mixed - competition abroad, cooperation at home
             ONT_H: 3, // Moderate
-            ONT_S: 2, // Individualist-leaning - personal responsibility
+            ONT_S: 2, // System-working / individual-responsibility leaning - personal responsibility
             PF: 3, // Moderate partisan - maverick who bucked party
             TRB: 3, // Mixed - war hero identity + Palin complicated it
             ENG: 5, // Career senator, war hero - deeply engaged
@@ -1037,7 +1037,7 @@ const election2012 = {
             COM: 3, // Mixed - "severely conservative" pivot
             ZS: 3, // Mixed - competitive business worldview
             ONT_H: 3, // Moderate - business pragmatism
-            ONT_S: 1, // Maximum individualist - "47%," self-reliance
+            ONT_S: 1, // Maximum system-working / anti-structural critique - "47%," self-reliance
             PF: 4, // Strong Republican
             TRB: 3, // Moderate tribal - business class
             ENG: 4, // Engaged - but projected competent manager
@@ -1068,7 +1068,7 @@ const election2016 = {
             COM: 1, // Never compromise - "we're going to win so much"
             ZS: 5, // Maximum zero-sum - "they're taking our jobs," immigration
             ONT_H: 2, // Pessimistic - "American carnage"
-            ONT_S: 2, // Individualist - "I alone can fix it"
+            ONT_S: 2, // Moderately system-working posture with personalized grievance rhetoric - "I alone can fix it"
             PF: 3, // Moderate - hijacked the party, not loyal to it
             TRB: 5, // Maximum tribal - MAGA movement
             ENG: 5, // Maximum engagement - rallies, constant media
@@ -1087,7 +1087,7 @@ const election2016 = {
             COM: 4, // Compromiser - pragmatic, deal-oriented
             ZS: 2, // Positive-sum - "stronger together"
             ONT_H: 4, // Optimistic - "when they go low, we go high" (borrowed)
-            ONT_S: 4, // Structuralist - policy proposals, systemic
+            ONT_S: 4, // System-trusting reformism - policy proposals, systemic
             PF: 5, // Maximum partisan - career Democrat
             TRB: 3, // Moderate tribal - broad coalition
             ENG: 5, // Career politician - maximum engagement
@@ -1118,7 +1118,7 @@ const election2020 = {
             COM: 5, // Maximum compromise - "I'll work with anyone"
             ZS: 2, // Positive-sum - unity, "soul of the nation"
             ONT_H: 4, // Optimistic - "America can be defined in one word: possibilities"
-            ONT_S: 2, // System mostly working - defender of institutions (ONT_S low=stable)
+            ONT_S: 2, // Moderately system-working - defender of institutions and continuity
             PF: 4, // Strong Democrat - but bipartisan rhetoric
             TRB: 2, // Low tribal - broad unity appeal, "president for all Americans"
             ENG: 4, // Engaged - but projected calm
@@ -1137,7 +1137,7 @@ const election2020 = {
             COM: 1, // Never compromise - more combative than 2016
             ZS: 5, // Maximum zero-sum
             ONT_H: 2, // Pessimistic - "they're destroying your country"
-            ONT_S: 4, // Deep structural critique - "drain the swamp" (ONT_S high=system broken)
+            ONT_S: 4, // Deep structural grievance - "drain the swamp," system felt rigged/broken
             PF: 3, // Moderate partisan - MAGA over GOP
             TRB: 5, // Maximum tribal - MAGA intensified
             ENG: 5, // Maximum engagement
@@ -1168,7 +1168,7 @@ const election2024 = {
             COM: 2, // Low compromise but deals on infrastructure, budget, criminal justice reform
             ZS: 4, // Zero-sum rhetoric but "economy was great under me" positive framing
             ONT_H: 2, // Pessimistic but "we'll be great again" implies some optimism
-            ONT_S: 4, // Deep structural critique - "system is rigged"
+            ONT_S: 4, // Deep structural grievance - "system is rigged"
             PF: 4, // Party IS now MAGA
             TRB: 5, // Maximum tribal
             ENG: 5, // Maximum engagement
@@ -1187,7 +1187,7 @@ const election2024 = {
             COM: 4, // Compromiser - moderate positioning
             ZS: 2, // Positive-sum - "joyful warrior," optimism
             ONT_H: 4, // Optimistic - "what can be, unburdened by what has been"
-            ONT_S: 3, // Mixed systemic critique
+            ONT_S: 3, // Mixed / ambiguous system diagnosis
             PF: 5, // Maximum partisan - strong Democrat identity signaling
             TRB: 4, // Coalition tribal - identity politics framing
             ENG: 5, // Maximum engagement

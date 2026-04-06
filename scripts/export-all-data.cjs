@@ -71,6 +71,15 @@ const partyMap = {
   'Goldwater': 'rep', 'Ford': 'rep', 'Reagan': 'rep', 'Bush': 'rep',
   'Dole': 'rep', 'McCain': 'rep', 'Romney': 'rep', 'Trump': 'rep',
   'T. Roosevelt': 'rep',
+  // Pre-Civil-War Democrats missing from original map
+  'Crawford': 'dem', 'Cass': 'dem', 'Douglas': 'dem',
+  // Civil War / Reconstruction Democrats
+  'McClellan': 'dem', 'Seymour': 'dem',
+  // Early 20th century Democrats
+  'Parker': 'dem',
+  // Third party / independent
+  'Fillmore': 'third', 'Breckinridge': 'third', 'Bell': 'third',
+  'Thurmond': 'third', 'Anderson': 'third',
   'Weaver': 'third', 'Debs': 'third', 'La Follette': 'third',
   'Wallace': 'third', 'Perot': 'third', 'Nader': 'third',
   'Greeley': 'other', 'Washington': 'other',
@@ -78,6 +87,10 @@ const partyMap = {
 
 const specialParty = {
   '1912_Roosevelt': 'third',
+  // FDR (1932-1944) vs Teddy Roosevelt (1904) disambiguation
+  '1904_Roosevelt': 'rep',
+  '1932_Roosevelt': 'dem', '1936_Roosevelt': 'dem',
+  '1940_Roosevelt': 'dem', '1944_Roosevelt': 'dem',
 };
 
 const elections = {};

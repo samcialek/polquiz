@@ -47,7 +47,7 @@ const context1924 = {
     year: 1924,
     zeitgeist: {
         era: "normalcy",
-        nodeWeights: { MAT: 1.3, ONT_S: 1.4, PF: 0.7 },
+        nodeWeights: { MAT: 1.3, ONT_S: 5.4, PF: 0.7 },
         intensity: 0.8,
         description: "Prosperity + KKK controversy + Progressive insurgency fragmenting politics",
     },
@@ -70,9 +70,9 @@ const context1924 = {
         },
         {
             candidateName: "La Follette",
-            activationNodes: { MAT: 1.5, ONT_S: 1.6, COM: 0.7, PF: 0.7 },
+            activationNodes: { MAT: 1.5, ONT_S: 5.6, COM: 0.7, PF: 0.7 },
             novelty: 1.5,
-            threatActivation: { MAT: 1.3, ONT_S: 1.3 },
+            threatActivation: { MAT: 1.3, ONT_S: 5.3 },
         },
     ],
 };
@@ -114,7 +114,7 @@ const context1932 = {
     year: 1932,
     zeitgeist: {
         era: "new-deal",
-        nodeWeights: { MAT: 2.5, ONT_S: 2.0, ZS: 1.5, ONT_H: 1.5, ENG: 1.3 },
+        nodeWeights: { MAT: 2.5, ONT_S: 4.0, ZS: 1.5, ONT_H: 1.5, ENG: 1.3 },
         intensity: 1.5,
         description: "25% unemployment; Hoovervilles; total economic collapse; realignment election",
     },
@@ -127,7 +127,7 @@ const context1932 = {
     candidateActivations: [
         {
             candidateName: "Roosevelt",
-            activationNodes: { MAT: 1.5, ONT_S: 1.5, ONT_H: 1.5, ENG: 1.4 },
+            activationNodes: { MAT: 1.5, ONT_S: 5.5, ONT_H: 1.5, ENG: 1.4 },
             novelty: 1.8,
             threatActivation: { MAT: 1.2 },
         },
@@ -135,7 +135,7 @@ const context1932 = {
             candidateName: "Hoover",
             activationNodes: { PRO: 1.3, MAT: 1.2 },
             novelty: 0.8,
-            threatActivation: { MAT: 1.5, ONT_S: 1.5 },
+            threatActivation: { MAT: 1.5, ONT_S: 5.5 },
         },
     ],
 };
@@ -146,7 +146,7 @@ const context1936 = {
     year: 1936,
     zeitgeist: {
         era: "new-deal",
-        nodeWeights: { MAT: 2.2, ONT_S: 1.8, TRB: 1.5, PF: 1.5 },
+        nodeWeights: { MAT: 2.2, ONT_S: 5.8, TRB: 1.5, PF: 1.5 },
         intensity: 1.3,
         description: "New Deal as referendum; labor vs. business class warfare; party realignment solidifying",
     },
@@ -159,7 +159,7 @@ const context1936 = {
     candidateActivations: [
         {
             candidateName: "Roosevelt",
-            activationNodes: { MAT: 1.5, ONT_S: 1.4, TRB: 1.4, ENG: 1.3 },
+            activationNodes: { MAT: 1.5, ONT_S: 5.4, TRB: 1.4, ENG: 1.3 },
             novelty: 1.5,
         },
         {
@@ -176,7 +176,7 @@ const context1940 = {
     year: 1940,
     zeitgeist: {
         era: "new-deal",
-        nodeWeights: { CU: 1.8, PRO: 1.5, ZS: 1.4, ONT_S: 1.3 },
+        nodeWeights: { CU: 1.8, PRO: 1.5, ZS: 1.4, ONT_S: 5.3 },
         intensity: 1.2,
         description: "Europe falling to fascism; interventionism debate; unprecedented third term bid",
     },
@@ -189,7 +189,7 @@ const context1940 = {
     candidateActivations: [
         {
             candidateName: "Roosevelt",
-            activationNodes: { CU: 1.4, MOR: 1.3, ONT_S: 1.2 },
+            activationNodes: { CU: 1.4, MOR: 1.3, ONT_S: 5.2 },
             novelty: 1.3,
             threatActivation: { PRO: 1.3 },
         },
@@ -274,7 +274,7 @@ const context1952 = {
     year: 1952,
     zeitgeist: {
         era: "consensus",
-        nodeWeights: { ZS: 1.6, CU: 1.4, TRB: 1.3, ONT_S: 1.2 },
+        nodeWeights: { ZS: 1.6, CU: 1.4, TRB: 1.3, ONT_S: 5.2 },
         intensity: 1.1,
         description: "Korean War stalemate; McCarthyism; Cold War anxiety; desire for steady leadership",
     },
@@ -365,7 +365,7 @@ const context1964 = {
     year: 1964,
     zeitgeist: {
         era: "upheaval",
-        nodeWeights: { CD: 1.8, MOR: 1.6, MAT: 1.5, ONT_S: 1.5, COM: 1.4 },
+        nodeWeights: { CD: 1.8, MOR: 1.6, MAT: 1.5, ONT_S: 5.5, COM: 1.4 },
         intensity: 1.3,
         description: "Civil Rights Act transforms politics; Great Society expansion; Goldwater scares moderates",
     },
@@ -378,14 +378,14 @@ const context1964 = {
     candidateActivations: [
         {
             candidateName: "Johnson",
-            activationNodes: { MAT: 1.4, CD: 1.3, ONT_S: 1.3, COM: 1.3 },
+            activationNodes: { MAT: 1.4, CD: 1.3, ONT_S: 5.3, COM: 1.3 },
             novelty: 1.2,
         },
         {
             candidateName: "Goldwater",
             activationNodes: { MAT: 1.5, COM: 0.6, PRO: 1.3 },
             novelty: 1.5,
-            threatActivation: { ZS: 1.5, CD: 1.4, MOR: 1.4, ONT_S: 1.3 },
+            threatActivation: { ZS: 1.5, CD: 1.4, MOR: 1.4, ONT_S: 5.3 },
         },
     ],
 };
@@ -396,7 +396,7 @@ const context1968 = {
     year: 1968,
     zeitgeist: {
         era: "upheaval",
-        nodeWeights: { CD: 2.0, ONT_S: 2.0, TRB: 1.8, ZS: 1.8 },
+        nodeWeights: { CD: 2.0, ONT_S: 4.0, TRB: 1.8, ZS: 1.8 },
         intensity: 1.4,
         description: "Vietnam, MLK/RFK assassinated, riots, convention chaos; nation coming apart",
     },
@@ -409,9 +409,9 @@ const context1968 = {
     candidateActivations: [
         {
             candidateName: "Nixon",
-            activationNodes: { CD: 1.6, ZS: 1.5, TRB: 1.4, ONT_S: 1.3 },
+            activationNodes: { CD: 1.6, ZS: 1.5, TRB: 1.4, ONT_S: 5.3 },
             novelty: 1.3,
-            threatActivation: { ONT_S: 1.3 },
+            threatActivation: { ONT_S: 5.3 },
         },
         {
             candidateName: "Humphrey",
@@ -450,7 +450,7 @@ const context1972 = {
         },
         {
             candidateName: "McGovern",
-            activationNodes: { CU: 1.5, MOR: 1.4, ONT_S: 1.4, ONT_H: 1.3 },
+            activationNodes: { CU: 1.5, MOR: 1.4, ONT_S: 5.4, ONT_H: 1.3 },
             novelty: 1.3,
             threatActivation: { CD: 1.5, MOR: 1.4, TRB: 1.3 },
         },
@@ -463,7 +463,7 @@ const context1976 = {
     year: 1976,
     zeitgeist: {
         era: "upheaval",
-        nodeWeights: { PRO: 2.0, ONT_S: 1.6, PF: 1.3 },
+        nodeWeights: { PRO: 2.0, ONT_S: 5.6, PF: 1.3 },
         intensity: 1.1,
         description: "Post-Watergate crisis of trust; voters want honesty and procedural integrity",
     },
@@ -476,7 +476,7 @@ const context1976 = {
     candidateActivations: [
         {
             candidateName: "Carter",
-            activationNodes: { PRO: 1.5, ONT_S: 1.3, PF: 0.7 },
+            activationNodes: { PRO: 1.5, ONT_S: 5.3, PF: 0.7 },
             novelty: 1.3,
         },
         {
@@ -494,7 +494,7 @@ const context1980 = {
     year: 1980,
     zeitgeist: {
         era: "reagan",
-        nodeWeights: { MAT: 1.8, ONT_S: 1.8, ZS: 1.5, CU: 1.4, ENG: 1.3 },
+        nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, CU: 1.4, ENG: 1.3 },
         intensity: 1.3,
         description: "Stagflation, Iran hostages, malaise; voters feel system broken; realignment election",
     },
@@ -507,7 +507,7 @@ const context1980 = {
     candidateActivations: [
         {
             candidateName: "Reagan",
-            activationNodes: { MAT: 1.4, ONT_H: 1.5, ONT_S: 1.3, ENG: 1.3 },
+            activationNodes: { MAT: 1.4, ONT_H: 1.5, ONT_S: 5.3, ENG: 1.3 },
             novelty: 1.5,
             threatActivation: { MAT: 1.2 },
         },
@@ -515,7 +515,7 @@ const context1980 = {
             candidateName: "Carter",
             activationNodes: { PRO: 1.2, CU: 1.2 },
             novelty: 0.8,
-            threatActivation: { ONT_S: 1.3, MAT: 1.2 },
+            threatActivation: { ONT_S: 5.3, MAT: 1.2 },
         },
         {
             candidateName: "Anderson",
@@ -549,7 +549,7 @@ const context1984 = {
         },
         {
             candidateName: "Mondale",
-            activationNodes: { MAT: 1.3, ONT_S: 1.3, PRO: 1.2 },
+            activationNodes: { MAT: 1.3, ONT_S: 5.3, PRO: 1.2 },
             novelty: 1.0,
         },
     ],
@@ -592,7 +592,7 @@ const context1992 = {
     year: 1992,
     zeitgeist: {
         era: "reagan",
-        nodeWeights: { MAT: 1.8, ONT_S: 1.5, PF: 0.7, CU: 1.3 },
+        nodeWeights: { MAT: 1.8, ONT_S: 5.5, PF: 0.7, CU: 1.3 },
         intensity: 1.1,
         description: "Recession, end of Cold War identity vacuum, generational change; Perot disruption",
     },
@@ -615,9 +615,9 @@ const context1992 = {
         },
         {
             candidateName: "Perot",
-            activationNodes: { MAT: 1.3, ONT_S: 1.5, PF: 0.6, ZS: 1.4 },
+            activationNodes: { MAT: 1.3, ONT_S: 5.5, PF: 0.6, ZS: 1.4 },
             novelty: 1.5,
-            threatActivation: { ONT_S: 1.2 },
+            threatActivation: { ONT_S: 5.2 },
         },
     ],
 };
@@ -719,7 +719,7 @@ const context2008 = {
     year: 2008,
     zeitgeist: {
         era: "polarization",
-        nodeWeights: { MAT: 2.2, ONT_S: 2.0, ONT_H: 1.5, ENG: 1.5, ZS: 1.3 },
+        nodeWeights: { MAT: 2.2, ONT_S: 4.0, ONT_H: 1.5, ENG: 1.5, ZS: 1.3 },
         intensity: 1.4,
         description: "Financial crisis + Iraq fatigue; historic candidacy; 'hope and change' vs. 'country first'",
     },
@@ -732,7 +732,7 @@ const context2008 = {
     candidateActivations: [
         {
             candidateName: "Obama",
-            activationNodes: { ONT_H: 1.5, MAT: 1.3, ONT_S: 1.4, ENG: 1.5 },
+            activationNodes: { ONT_H: 1.5, MAT: 1.3, ONT_S: 5.4, ENG: 1.5 },
             novelty: 1.8,
         },
         {
@@ -749,7 +749,7 @@ const context2012 = {
     year: 2012,
     zeitgeist: {
         era: "polarization",
-        nodeWeights: { MAT: 1.5, ONT_S: 1.4, PF: 1.3, TRB: 1.3 },
+        nodeWeights: { MAT: 1.5, ONT_S: 5.4, PF: 1.3, TRB: 1.3 },
         intensity: 1.0,
         description: "Slow recovery; ACA as lightning rod; growing polarization; '47%' crystallizes class divide",
     },
@@ -767,9 +767,9 @@ const context2012 = {
         },
         {
             candidateName: "Romney",
-            activationNodes: { MAT: 1.4, ONT_S: 1.2 },
+            activationNodes: { MAT: 1.4, ONT_S: 5.2 },
             novelty: 1.0,
-            threatActivation: { MAT: 1.3, ONT_S: 1.2 },
+            threatActivation: { MAT: 1.3, ONT_S: 5.2 },
         },
     ],
 };
@@ -780,7 +780,7 @@ const context2016 = {
     year: 2016,
     zeitgeist: {
         era: "polarization",
-        nodeWeights: { CD: 2.0, TRB: 2.0, ONT_S: 1.8, ZS: 1.6, PF: 1.4, ENG: 1.4 },
+        nodeWeights: { CD: 2.0, TRB: 2.0, ONT_S: 5.8, ZS: 1.6, PF: 1.4, ENG: 1.4 },
         intensity: 1.4,
         description: "Populist revolt; cultural backlash; institutional distrust; realignment-level disruption",
     },
@@ -793,9 +793,9 @@ const context2016 = {
     candidateActivations: [
         {
             candidateName: "Trump",
-            activationNodes: { CD: 1.6, TRB: 1.6, ONT_S: 1.5, ZS: 1.5, ENG: 1.4 },
+            activationNodes: { CD: 1.6, TRB: 1.6, ONT_S: 5.5, ZS: 1.5, ENG: 1.4 },
             novelty: 1.8,
-            threatActivation: { CD: 1.5, PRO: 1.5, MOR: 1.3, ONT_S: 1.3 },
+            threatActivation: { CD: 1.5, PRO: 1.5, MOR: 1.3, ONT_S: 5.3 },
         },
         {
             candidateName: "Clinton",
@@ -812,7 +812,7 @@ const context2020 = {
     year: 2020,
     zeitgeist: {
         era: "polarization",
-        nodeWeights: { CD: 2.0, ONT_S: 2.0, PRO: 1.8, TRB: 1.8, MOR: 1.5, ENG: 1.5 },
+        nodeWeights: { CD: 2.0, ONT_S: 4.0, PRO: 1.8, TRB: 1.8, MOR: 1.5, ENG: 1.5 },
         intensity: 1.5,
         description: "COVID pandemic + racial justice protests + democratic norms crisis; existential framing on both sides",
     },
@@ -827,13 +827,13 @@ const context2020 = {
             candidateName: "Biden",
             activationNodes: { PRO: 1.5, COM: 1.3, MOR: 1.3 },
             novelty: 1.0,
-            threatActivation: { PRO: 1.4, ONT_S: 1.3 },
+            threatActivation: { PRO: 1.4, ONT_S: 5.3 },
         },
         {
             candidateName: "Trump",
-            activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 1.5, ENG: 1.4 },
+            activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, ENG: 1.4 },
             novelty: 1.2,
-            threatActivation: { PRO: 1.6, MOR: 1.4, CD: 1.5, ONT_S: 1.4 },
+            threatActivation: { PRO: 1.6, MOR: 1.4, CD: 1.5, ONT_S: 5.4 },
         },
     ],
 };
@@ -844,7 +844,7 @@ const context2024 = {
     year: 2024,
     zeitgeist: {
         era: "polarization",
-        nodeWeights: { PRO: 1.8, CD: 1.8, TRB: 1.8, ONT_S: 1.6, MAT: 1.5, ENG: 1.5 },
+        nodeWeights: { PRO: 1.8, CD: 1.8, TRB: 1.8, ONT_S: 5.6, MAT: 1.5, ENG: 1.5 },
         intensity: 1.4,
         description: "Post-January 6 democracy fears + inflation + historic candidates on both sides; existential framing",
     },
@@ -857,9 +857,9 @@ const context2024 = {
     candidateActivations: [
         {
             candidateName: "Trump",
-            activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 1.5, MAT: 1.3, ENG: 1.4 },
+            activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, MAT: 1.3, ENG: 1.4 },
             novelty: 1.3,
-            threatActivation: { PRO: 1.7, MOR: 1.4, CD: 1.4, ONT_S: 1.4 },
+            threatActivation: { PRO: 1.7, MOR: 1.4, CD: 1.4, ONT_S: 5.4 },
         },
         {
             candidateName: "Harris",

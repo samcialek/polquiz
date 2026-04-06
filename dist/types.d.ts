@@ -52,8 +52,10 @@ export interface OptionEvidenceCategorical {
     cat?: CategoricalDist;
     sal?: SalienceDist;
 }
-export type TrbAnchor = "national" | "ideological" | "religious" | "class" | "ethnic_racial" | "global" | "mixed_none";
+export type TrbAnchor = "national" | "ideological" | "religious" | "class" | "ethnic_racial" | "gender" | "sexual" | "global" | "mixed_none";
 export type TrbAnchorDist = [
+    number,
+    number,
     number,
     number,
     number,

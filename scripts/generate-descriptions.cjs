@@ -280,6 +280,18 @@ const descriptions = {
   '139': 'A civic assimilationist who pairs market-friendly economics with cultural traditionalism and pluralist values. Procedural, institutionalist-technocratic, and moderately engaged. Believes in cultural integration through shared civic institutions rather than coerced conformity — assimilation as aspiration, not exclusion.',
 
   '140': 'A market green modernist who combines market-friendly economics with cultural progressivism, deep system-critique, and empiricist conviction. Optimistic about human nature, procedural, and consensus-inclined. Non-partisan and non-tribal, with a technocratic style — believes market mechanisms and scientific evidence can solve the environmental crisis.',
+
+  '141': 'An identity-anchored voter whose politics flow primarily from Black communal experience. Redistributionist on economics but defined less by ideology than by racial-group solidarity and collective memory. High tribal fusion means party loyalty tracks community consensus. Authentic in style, skeptical of systems that promised neutrality but delivered exclusion.',
+
+  '142': 'An identity-anchored voter whose politics are organized around perceived white cultural displacement. High cultural uniformity and zero-sum orientation signal a threat-driven worldview. Tribal fusion is intense and partisan — politics is experienced as defense of an embattled in-group. Fighter aesthetic, low system-trust, and deep suspicion of cosmopolitan elites.',
+
+  '143': 'An identity-anchored voter whose political identity is inseparable from evangelical Christian faith. Traditionalist epistemology and narrow moral circle reflect scripture-based certainty. Tribal fusion is church-community deep, and partisan attachment follows religious leadership cues. Pastoral aesthetic — politics as stewardship of a divinely ordered society.',
+
+  '144': 'An identity-anchored voter whose politics are organized around LGBTQ communal experience and rights. Progressive on culture and moral circle, with autonomous epistemology reflecting hard-won independence from institutional authority. High tribal fusion to queer community, strong partisan attachment. Authentic aesthetic — values visibility and lived experience over procedural abstraction.',
+
+  '145': 'An identity-anchored voter whose politics center on gender equity as a structural critique. Progressive on culture and moral circle, with high system-ontology reflecting belief that patriarchy is systemic. Strong tribal fusion to feminist community, deep partisan attachment. Procedural and engaged — sees institutional reform as the mechanism for dismantling gendered hierarchy.',
+
+  '146': 'An identity-anchored voter whose politics are organized around perceived male status-threat. High zero-sum orientation and cultural traditionalism signal a grievance-driven worldview. Strong tribal fusion to masculinist community, with intense partisan attachment. Fighter aesthetic, low system-trust — experiences gender progress as personal loss rather than collective gain.',
 };
 
 // Validate

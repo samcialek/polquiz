@@ -25,8 +25,11 @@ import { join } from "node:path";
 const GAUSSIAN_SIGMA = 2.9; // Same σ as regime-alignment.ts
 const CONTINUOUS_NODES = [
     "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS",
-    "ONT_H", "ONT_S", "PF", "TRB",
-    // ENG excluded — engagement is emergent, not a trait
+    "ONT_H", "ONT_S",
+    // PF, TRB, ENG excluded — these are structural/meta nodes about identity
+    // intensity, not policy content. High PF/TRB means strong partisan/tribal
+    // attachment, but says nothing about *which* side — an Evangelical and a
+    // Stalinist both have PF=5/TRB=5 for opposite reasons.
 ];
 // ── Load all regime periods ─────────────────────────────────────────────────
 const ALL_REGIMES = [
@@ -46,7 +49,7 @@ function computeAlignment(arch, regime) {
             continue;
         const ct = tmpl;
         const archPos = ct.pos;
-        const archSal = ct.sal; // 0-3
+        const archSal = Math.max(ct.sal, 0.5); // Floor: even low-salience nodes contribute some distance
         const regimePos = regime[node];
         if (regimePos == null)
             continue;

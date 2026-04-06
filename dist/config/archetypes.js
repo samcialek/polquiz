@@ -1,28 +1,36 @@
-// 122 archetypes (down from 132). The following 10 were removed because they
-// were chronic confusion sources — their node signatures overlapped too heavily
-// with neighboring archetypes, making them unresolvable within the quiz's
-// 14-node instrument:
-//   080 Chestertonian Traditionalist → merged into 091 Security Paternalist
-//   108 Passive Cynic → merged into 118 Survival Pragmatist
-// Previously removed 8:
-// question budget:
+// 118 active archetypes (+3 deactivated kept in array for ID stability: 019, 023, 025).
+// Priors are uniform at 1/118 (active archetypes only).
+// IDs 141-146: identity-primary archetypes (Black Voter, White Grievance, Evangelical, LGBTQ, Feminist, Male Grievance).
 //
-//   018  Social Avenger           — collapsed into 017 Uncompromising Redistributionist
-//   038  Abundance Planner        — collapsed into 037 Fabian Modernizer
-//   044  Parish Steward           — collapsed into 045 Rooted Social Reformer
-//   066  Entrepreneurial Reformer — collapsed into 065 Opportunity Liberal
-//   068  Inventive Libertarian    — collapsed into 069 Bleeding-Heart Libertarian
-//   113  Expressive Libertine     — collapsed into 112 Contrarian Intellectual
-//   114  Political Nihilist       — collapsed into 111 Diogenes Independent
-//   123  Contented Householder    — collapsed into 122 Civic Minimalist
+// Lineage: 132 → 124 → 122 → 115. IDs that no longer exist in the array were
+// collapsed because their node signatures overlapped too heavily with neighbors
+// within the quiz's 14-node instrument:
 //
-// Priors uniform at 1/130.
+//   018  Social Avenger              — collapsed into 017 Uncompromising Redistributionist
+//   019  Anarchist Mutualist         — merged into 020 Grassroots Autonomist (DEACTIVATED, prior=0)
+//   023  Rights Cosmopolitan         — merged into 021 Principled Cosmopolitan (DEACTIVATED, prior=0)
+//   025  World-Minded Reformer       — merged into 021 Principled Cosmopolitan (DEACTIVATED, prior=0)
+//   034  Evidence Reformer           — collapsed (commented inline near id 035)
+//   038  Abundance Planner           — collapsed into 037 Fabian Modernizer
+//   044  Parish Steward              — collapsed into 045 Rooted Social Reformer
+//   047  (removed)
+//   064  (removed)
+//   066  Entrepreneurial Reformer    — collapsed into 065 Opportunity Liberal
+//   068  Inventive Libertarian       — collapsed into 069 Bleeding-Heart Libertarian
+//   080  Chestertonian Traditionalist → merged into 091 Security Paternalist
+//   108  Passive Cynic               → merged into 118 Survival Pragmatist
+//   113  Expressive Libertine        — collapsed into 112 Contrarian Intellectual
+//   114  Political Nihilist          — collapsed into 111 Diogenes Independent
+//   123  Contented Householder       — collapsed into 122 Civic Minimalist
+//   130  Habitual Partisan           — merged into 131 Duty Voter (2026-04-01)
+//
+// Numeric-ID gaps in the range 001–140 represent these collapsed archetypes.
 export const ARCHETYPES = [
     {
         id: "001",
         name: "Rawlsian Reformer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -36,15 +44,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         }
     },
     {
         id: "002",
         name: "Independent Social Democrat",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -58,15 +66,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "003",
-        name: "Welfare Modernizer",
+        name: "Consensus Redistributionist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -80,15 +88,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "004",
         name: "Labor Reformer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -102,37 +110,37 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 4, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
     {
         id: "005",
-        name: "Public Guardian",
+        name: "Pluralist Structuralist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
-            CD: { kind: "continuous", pos: 3, sal: 1 },
+            CD: { kind: "continuous", pos: 2, sal: 1 },
             CU: { kind: "continuous", pos: 4, sal: 2 },
             MOR: { kind: "continuous", pos: 4, sal: 2 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            PRO: { kind: "continuous", pos: 5, sal: 2 },
             COM: { kind: "continuous", pos: 4, sal: 1 },
-            ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
-            ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            ENG: { kind: "continuous", pos: 4, sal: 1 },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1 },
         }
     },
     {
         id: "006",
         name: "Fairness Pragmatist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -146,15 +154,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "007",
         name: "Solidarist Reformer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -168,20 +176,20 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "008",
-        name: "Municipal Equalizer",
+        name: "Procedural Redistributionist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
             CU: { kind: "continuous", pos: 4, sal: 1 },
-            MOR: { kind: "continuous", pos: 4, sal: 1 },
+            MOR: { kind: "continuous", pos: 4, sal: 2 },
             PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
@@ -190,37 +198,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
-    },
-    {
-        id: "009",
-        name: "Social Stabilizer",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            CD: { kind: "continuous", pos: 2, sal: 1 },
-            CU: { kind: "continuous", pos: 3, sal: 1 },
-            MOR: { kind: "continuous", pos: 4, sal: 1 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            COM: { kind: "continuous", pos: 4, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 2, sal: 1 },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "010",
         name: "Bread-and-Butter Progressive",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -234,15 +220,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "011",
         name: "Jacobin Egalitarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -252,19 +238,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 3, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
     {
         id: "012",
         name: "Class-War Leftist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -274,19 +260,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 3, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         }
     },
     {
         id: "013",
         name: "Radical Leveler",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -296,19 +282,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         }
     },
     {
         id: "014",
-        name: "Movement Egalitarian",
+        name: "Activist Progressive",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -318,19 +304,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 },
         }
     },
     {
         id: "015",
         name: "Moral Firebrand",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -340,19 +326,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 },
+            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
         }
     },
     {
         id: "016",
         name: "Insurgent Equalizer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -362,11 +348,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         }
     },
@@ -374,7 +360,7 @@ export const ARCHETYPES = [
         id: "017",
         name: "Uncompromising Redistributionist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -384,19 +370,20 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
+    // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
         id: "019",
         name: "Anarchist Mutualist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 0, // DEACTIVATED — merged into 020
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -406,55 +393,59 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 }, // raised sal 1→2 (help distinguish from Horizontalist Dissenter)
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         }
     },
     {
+        // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
+        // "Grassroots Autonomist" — anti-hierarchical, anti-institutional, bottom-up direct action
         id: "020",
-        name: "Horizontalist Dissenter",
+        name: "Grassroots Autonomist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             MOR: { kind: "continuous", pos: 4, sal: 2 },
-            PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            COM: { kind: "continuous", pos: 2, sal: 2 },
-            ZS: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-            PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+            PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // kept 019's stronger anti-proceduralism
+            COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" }, // kept 019's uncompromising stance
+            ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" }, // split the difference (1+3)/2
+            ONT_H: { kind: "continuous", pos: 4, sal: 2 }, // 019's optimism
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" }, // kept 020's stronger anti-partisan
+            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" }, // kept 020's anti-tribal
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.40, 0.38, 0.04, 0.08], sal: 2 }, // blend pastoral+authentic
         }
     },
     {
+        // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
+        // "Principled Cosmopolitan" — universal moral principles, cross-border ethics, anti-tribal
         id: "021",
-        name: "Kantian Cosmopolitan",
+        name: "Principled Cosmopolitan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PRO: { kind: "continuous", pos: 4, sal: 2 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
+            CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" }, // cosmopolitanism is core
+            MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" }, // moral universalism is core
+            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" }, // procedural (from 023/025)
+            COM: { kind: "continuous", pos: 2, sal: 2 }, // leans uncompromising (from 023)
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+            ONT_S: { kind: "continuous", pos: 3, sal: 2 }, // blend of 3/3/4
+            PF: { kind: "continuous", pos: 2, sal: 2 },
+            TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // anti-tribalism is core
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         }
     },
@@ -462,51 +453,52 @@ export const ARCHETYPES = [
         id: "022",
         name: "Pluralist Universalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 2 },
-            CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            CU: { kind: "continuous", pos: 5, sal: 2 },
             MOR: { kind: "continuous", pos: 4, sal: 2 },
-            PRO: { kind: "continuous", pos: 2, sal: 1 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+            PRO: { kind: "continuous", pos: 2, sal: 2 },
+            COM: { kind: "continuous", pos: 3, sal: 2 },
+            ZS: { kind: "continuous", pos: 1, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 4, sal: 2 },
             ONT_S: { kind: "continuous", pos: 3, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
+            TRB: { kind: "continuous", pos: 1, sal: 2 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         }
     },
     {
+        // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
         id: "023",
         name: "Rights Cosmopolitan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 0, // DEACTIVATED
         nodes: {
-            MAT: { kind: "continuous", pos: 2, sal: 2 },
+            MAT: { kind: "continuous", pos: 2, sal: 2, anti: "low" }, // added anti:low — not redistributionist
             CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
             MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
             PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             COM: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 5, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" }, // added anti:low — strongly optimistic
             ONT_S: { kind: "continuous", pos: 3, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 2 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 },
+            TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // raised sal 2→3
+            ENG: { kind: "continuous", pos: 3, sal: 2 }, // raised sal 1→2 — low engagement is distinctive
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }, // raised sal 1→2
         }
     },
     {
         id: "024",
         name: "Ethical Internationalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -520,15 +512,16 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         }
     },
     {
+        // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
         id: "025",
         name: "World-Minded Reformer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 0, // DEACTIVATED
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -538,11 +531,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" }, // raised sal 2→3: system critique is core
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] }, // raised sal 1→2
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         }
     },
@@ -550,7 +543,7 @@ export const ARCHETYPES = [
         id: "026",
         name: "Cosmopolitan Pragmatist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -564,15 +557,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         }
     },
     {
         id: "027",
         name: "Popperian Liberal",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -587,14 +580,14 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "028",
         name: "Global Caretaker",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -608,15 +601,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "029",
         name: "Liberationist Progressive",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -630,29 +623,7 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
-        }
-    },
-    {
-        id: "030",
-        name: "Cultural Pluralist",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 2, sal: 2 },
-            CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-            CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            MOR: { kind: "continuous", pos: 3, sal: 2 },
-            PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-            COM: { kind: "continuous", pos: 3, sal: 2 },
-            ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         }
     },
@@ -660,7 +631,7 @@ export const ARCHETYPES = [
         id: "031",
         name: "Planetary Steward",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -670,11 +641,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 1 },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         }
     },
@@ -682,7 +653,7 @@ export const ARCHETYPES = [
         id: "032",
         name: "Hamiltonian Technocrat",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -704,7 +675,7 @@ export const ARCHETYPES = [
         id: "033",
         name: "Systems Modernizer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -714,41 +685,41 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
             ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 3 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 3 },
             PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
         }
     },
-    {
-        id: "034",
-        name: "Evidence Reformer",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 2, sal: 1 },
-            CD: { kind: "continuous", pos: 2, sal: 1 },
-            CU: { kind: "continuous", pos: 4, sal: 1 },
-            MOR: { kind: "continuous", pos: 4, sal: 1 },
-            PRO: { kind: "continuous", pos: 3, sal: 2 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-            PF: { kind: "continuous", pos: 3, sal: 0 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
-    },
+    // {
+    // id: "034",
+    // name: "Evidence Reformer",
+    // tier: "T1",
+    // prior: 1/112,
+    // nodes: {
+    // MAT: { kind: "continuous", pos: 2, sal: 1 },
+    // CD: { kind: "continuous", pos: 2, sal: 1 },
+    // CU: { kind: "continuous", pos: 4, sal: 1 },
+    // MOR: { kind: "continuous", pos: 4, sal: 1 },
+    // PRO: { kind: "continuous", pos: 3, sal: 2 },
+    // COM: { kind: "continuous", pos: 3, sal: 1 },
+    // ZS: { kind: "continuous", pos: 2, sal: 1 },
+    // ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    // ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+    // PF: { kind: "continuous", pos: 3, sal: 0 },
+    // TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    // ENG: { kind: "continuous", pos: 3, sal: 1 },
+    // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+    // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
+    // }
+    // },
     {
         id: "035",
         name: "Administrative Liberal",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -758,7 +729,7 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 3, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
@@ -770,7 +741,7 @@ export const ARCHETYPES = [
         id: "036",
         name: "Institutional Optimizer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -780,19 +751,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         }
     },
     {
         id: "037",
         name: "Fabian Modernizer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -802,11 +773,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         }
     },
@@ -814,7 +785,7 @@ export const ARCHETYPES = [
         id: "039",
         name: "Data-Driven Moderate",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -824,19 +795,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
         }
     },
     {
         id: "040",
         name: "Reform Engineer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -850,15 +821,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         }
     },
     {
         id: "042",
         name: "Localist Progressive",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -872,15 +843,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "043",
-        name: "Neighborly Egalitarian",
+        name: "Quiet Egalitarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -894,7 +865,7 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 2, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         }
     },
@@ -902,21 +873,21 @@ export const ARCHETYPES = [
         id: "045",
         name: "Rooted Social Reformer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
-            MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+            MAT: { kind: "continuous", pos: 1, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
-            CU: { kind: "continuous", pos: 2, sal: 1 },
-            MOR: { kind: "continuous", pos: 3, sal: 1 },
-            PRO: { kind: "continuous", pos: 4, sal: 1 },
-            COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ZS: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+            CU: { kind: "continuous", pos: 2, sal: 2 },
+            MOR: { kind: "continuous", pos: 3, sal: 2 },
+            PRO: { kind: "continuous", pos: 4, sal: 2 },
+            COM: { kind: "continuous", pos: 5, sal: 2 },
+            ZS: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 3, sal: 2 },
             ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 2, sal: 1 },
+            PF: { kind: "continuous", pos: 2, sal: 2 },
+            TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.10, 0.07, 0.04], sal: 1 },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         }
     },
@@ -924,7 +895,7 @@ export const ARCHETYPES = [
         id: "046",
         name: "Pastoral Leftist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -938,37 +909,37 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 2, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 },
         }
     },
-    {
-        id: "047",
-        name: "Common-Life Reformer",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            CD: { kind: "continuous", pos: 3, sal: 1 },
-            CU: { kind: "continuous", pos: 2, sal: 1 },
-            MOR: { kind: "continuous", pos: 3, sal: 2 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 2, sal: 1 },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
-    },
+    // {
+    // id: "047",
+    // name: "Common-Life Reformer",
+    // tier: "T1",
+    // prior: 1/112,
+    // nodes: {
+    // MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    // CD: { kind: "continuous", pos: 3, sal: 1 },
+    // CU: { kind: "continuous", pos: 2, sal: 1 },
+    // MOR: { kind: "continuous", pos: 3, sal: 2 },
+    // PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    // COM: { kind: "continuous", pos: 3, sal: 1 },
+    // ZS: { kind: "continuous", pos: 2, sal: 1 },
+    // ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+    // ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+    // PF: { kind: "continuous", pos: 2, sal: 1 },
+    // TRB: { kind: "continuous", pos: 2, sal: 1 },
+    // ENG: { kind: "continuous", pos: 4, sal: 1 },
+    // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+    // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
+    // }
+    // },
     {
         id: "048",
         name: "Solidaristic Localist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -982,15 +953,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         }
     },
     {
         id: "049",
-        name: "Paternal Egalitarian",
+        name: "Moral Egalitarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1000,19 +971,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "050",
-        name: "Religious Leftist",
+        name: "Traditionalist Moralist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1026,15 +997,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "051",
-        name: "Ecological Localist",
+        name: "Systemic Redistributionist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1044,41 +1015,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
-    },
-    {
-        id: "052",
-        name: "Distributist Localist",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-            CD: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            CU: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-            MOR: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
-            PRO: { kind: "continuous", pos: 4, sal: 2 },
-            COM: { kind: "continuous", pos: 5, sal: 2 },
-            ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 3, sal: 3 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 3, sal: 2 },
-            TRB: { kind: "continuous", pos: 2, sal: 2 },
-            ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "053",
         name: "Consensus Builder",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1088,19 +1037,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "054",
         name: "Arbiter Moderate",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1110,41 +1059,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 3 }, // Fixed: Moderate = high compromise
             ZS: { kind: "continuous", pos: 1, sal: 2 },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
-        }
-    },
-    {
-        id: "055",
-        name: "Halifax Moderate",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 3, sal: 1 },
-            CU: { kind: "continuous", pos: 2, sal: 1 },
-            MOR: { kind: "continuous", pos: 3, sal: 2 },
-            PRO: { kind: "continuous", pos: 4, sal: 2 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-            PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         }
     },
     {
         id: "056",
         name: "Institutional Centrist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1154,19 +1081,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+            ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "057",
         name: "Temperate Pluralist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1176,19 +1103,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 2, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "059",
         name: "Public-Minded Moderate",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1198,41 +1125,41 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "060",
         name: "Hinge Citizen",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
-            CU: { kind: "continuous", pos: 3, sal: 3 },
-            MOR: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            PRO: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-            ZS: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-            PF: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            CU: { kind: "continuous", pos: 2, sal: 2 },
+            MOR: { kind: "continuous", pos: 3, sal: 2 },
+            PRO: { kind: "continuous", pos: 4, sal: 2 },
+            COM: { kind: "continuous", pos: 3, sal: 2 },
+            ZS: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            PF: { kind: "continuous", pos: 4, sal: 2 },
+            TRB: { kind: "continuous", pos: 1, sal: 2 },
+            ENG: { kind: "continuous", pos: 3, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
+            AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1 },
         }
     },
     {
         id: "061",
         name: "Millian Liberal",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2 },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1242,19 +1169,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 3, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 1, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "062",
         name: "Meritocratic Liberal",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1264,19 +1191,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "063",
         name: "Enterprise Pluralist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1286,41 +1213,42 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         }
     },
-    {
-        id: "064",
-        name: "Market Optimist",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            CD: { kind: "continuous", pos: 2, sal: 2 },
-            CU: { kind: "continuous", pos: 4, sal: 2 },
-            MOR: { kind: "continuous", pos: 2, sal: 2 },
-            PRO: { kind: "continuous", pos: 3, sal: 2 },
-            COM: { kind: "continuous", pos: 4, sal: 2 },
-            ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-            PF: { kind: "continuous", pos: 3, sal: 2 },
-            TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
-        }
-    },
+    // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
+    // {
+    //   id: "064",
+    //   name: "Market Optimist",
+    //   tier: "T1",
+    //   prior: 1/112,
+    //   nodes: {
+    //     MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     CD: { kind: "continuous", pos: 2, sal: 2 },
+    //     CU: { kind: "continuous", pos: 4, sal: 2 },
+    //     MOR: { kind: "continuous", pos: 2, sal: 2 },
+    //     PRO: { kind: "continuous", pos: 3, sal: 2 },
+    //     COM: { kind: "continuous", pos: 4, sal: 2 },
+    //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+    //     PF: { kind: "continuous", pos: 3, sal: 2 },
+    //     TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+    //     ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+    //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
+    //   }
+    // },
     {
         id: "065",
         name: "Opportunity Liberal",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1330,19 +1258,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         }
     },
     {
         id: "067",
         name: "Free-Exchange Modernist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -1352,19 +1280,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 5, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         }
     },
     {
         id: "069",
         name: "Bleeding-Heart Libertarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1374,19 +1302,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 2, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "070",
         name: "Burkean Steward",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1408,29 +1336,29 @@ export const ARCHETYPES = [
         id: "071",
         name: "Constitutional Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
-            MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-            CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 3, sal: 1 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            MAT: { kind: "continuous", pos: 4, sal: 2 },
+            CD: { kind: "continuous", pos: 5, sal: 2 },
+            CU: { kind: "continuous", pos: 1, sal: 2 },
+            MOR: { kind: "continuous", pos: 2, sal: 2 },
+            PRO: { kind: "continuous", pos: 5, sal: 2 },
             COM: { kind: "continuous", pos: 2, sal: 2 },
-            ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
+            ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2 },
         }
     },
     {
         id: "072",
         name: "Blackstone Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1440,19 +1368,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "073",
         name: "Civic Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1466,15 +1394,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "074",
         name: "Responsible Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1488,37 +1416,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
             TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 3, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
-        }
-    },
-    {
-        id: "075",
-        name: "Institutional Conservative",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 4, sal: 2 },
-            CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 2, sal: 2 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-            PF: { kind: "continuous", pos: 4, sal: 2 },
-            TRB: { kind: "continuous", pos: 2, sal: 2 },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "076",
         name: "Fiscal Gradualist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1532,15 +1438,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
             TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "077",
         name: "Ordered Libertarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1554,15 +1460,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "078",
         name: "Meritocratic Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1576,33 +1482,33 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "079",
         name: "National Developmentalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
-            MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+            MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
             CU: { kind: "continuous", pos: 2, sal: 1 },
-            MOR: { kind: "continuous", pos: 2, sal: 1 },
-            PRO: { kind: "continuous", pos: 4, sal: 1 },
+            MOR: { kind: "continuous", pos: 2, sal: 2 },
+            PRO: { kind: "continuous", pos: 4, sal: 2 },
             COM: { kind: "continuous", pos: 4, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ZS: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 3, sal: 1 },
+            TRB: { kind: "continuous", pos: 3, sal: 2 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.09, 0.06, 0.09, 0.06], sal: 1 },
         }
     },
-    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Δ≥2 discriminators)
+    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
     //   id: "080",
     //   name: "Chestertonian Traditionalist",
@@ -1612,7 +1518,7 @@ export const ARCHETYPES = [
         id: "081",
         name: "Heritage Guardian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 1 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1622,19 +1528,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 1 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "082",
         name: "Altar-and-Hearth Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1644,19 +1550,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 2 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "083",
-        name: "Sacred-Order Defender",
+        name: "Closed Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1666,19 +1572,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "084",
         name: "Civilizational Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1688,19 +1594,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
     {
         id: "085",
         name: "Customary Localist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1710,11 +1616,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 2 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
         }
     },
@@ -1722,7 +1628,7 @@ export const ARCHETYPES = [
         id: "086",
         name: "Duty Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1732,19 +1638,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "087",
         name: "Continuity Conservative",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1754,19 +1660,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 0 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "088",
         name: "Gentle Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1776,19 +1682,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 3, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 2, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
         }
     },
     {
         id: "089",
         name: "Integral Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 1 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1798,19 +1704,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "090",
         name: "Hobbesian Guardian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1820,19 +1726,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 2 },
             ZS: { kind: "continuous", pos: 5, sal: 3 }, // Hobbesian: life is zero-sum, strong differentiator
             ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // Hobbesian: humans are NOT perfectible
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "091",
         name: "Security Paternalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1842,19 +1748,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "092",
-        name: "Disciplined Majoritarian",
+        name: "Partisan Tribalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1864,41 +1770,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 1 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
-        }
-    },
-    {
-        id: "093",
-        name: "Stability-First Voter",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            PRO: { kind: "continuous", pos: 3, sal: 1 },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 3, sal: 1 },
-            ENG: { kind: "continuous", pos: 3, sal: 1 }, // Fixed: Voter = some engagement, removed anti
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "094",
         name: "Hard-State Manager",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1908,19 +1792,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "095",
         name: "Emergency Orderist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1930,77 +1814,55 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
-        }
-    },
-    {
-        id: "096",
-        name: "Civic Disciplinarian",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 2, sal: 1 },
-            MOR: { kind: "continuous", pos: 2, sal: 2 },
-            PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            COM: { kind: "continuous", pos: 3, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 3, sal: 2 },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         }
     },
     {
         id: "097",
         name: "Authority Pragmatist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+            CU: { kind: "continuous", pos: 1, sal: 2 },
+            MOR: { kind: "continuous", pos: 1, sal: 2 },
             PRO: { kind: "continuous", pos: 4, sal: 1 },
             COM: { kind: "continuous", pos: 4, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1 },
         }
     },
     {
         id: "098",
         name: "Anti-Elite Populist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            CU: { kind: "continuous", pos: 1, sal: 2 },
+            MOR: { kind: "continuous", pos: 2, sal: 2 },
+            PRO: { kind: "continuous", pos: 1, sal: 2 },
+            COM: { kind: "continuous", pos: 2, sal: 2 },
+            ZS: { kind: "continuous", pos: 5, sal: 2 },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 3, sal: 1 },
-            ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+            TRB: { kind: "continuous", pos: 2, sal: 1 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         }
     },
@@ -2008,7 +1870,7 @@ export const ARCHETYPES = [
         id: "099",
         name: "Scarcity Populist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2018,19 +1880,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 3, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
     {
         id: "100",
         name: "Tribal Insurgent",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2040,11 +1902,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         }
     },
@@ -2052,7 +1914,7 @@ export const ARCHETYPES = [
         id: "101",
         name: "Embattled Majoritarian",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2062,33 +1924,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 3, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
-        }
-    },
-    {
-        id: "102",
-        name: "Folk Tribune",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            MOR: { kind: "continuous", pos: 2, sal: 1 },
-            PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            COM: { kind: "continuous", pos: 2, sal: 1 },
-            ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PF: { kind: "continuous", pos: 2, sal: 1 },
-            TRB: { kind: "continuous", pos: 2, sal: 1 },
-            ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         }
     },
@@ -2096,7 +1936,7 @@ export const ARCHETYPES = [
         id: "103",
         name: "Grievance Mobilizer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2106,11 +1946,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 4, sal: 2 }, // Fixed: Mobilizer = high engagement
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         }
     },
@@ -2118,7 +1958,7 @@ export const ARCHETYPES = [
         id: "104",
         name: "National Protector",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2128,19 +1968,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         }
     },
     {
         id: "105",
         name: "Combative Populist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2150,19 +1990,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 1 },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
         }
     },
     {
         id: "106",
-        name: "Leader-Centered Insurgent",
+        name: "Militant Partisan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2172,19 +2012,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 2 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 4, sal: 1 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
         }
     },
     {
         id: "107",
         name: "Resentful Localist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2194,15 +2034,15 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             TRB: { kind: "continuous", pos: 2, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 1 },
         }
     },
-    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Δ≥2 discriminators, profile was mostly sal=0)
+    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Î”â‰¥2 discriminators, profile was mostly sal=0)
     // {
     //   id: "108",
     //   name: "Passive Cynic",
@@ -2212,7 +2052,7 @@ export const ARCHETYPES = [
         id: "109",
         name: "Alienated Outsider",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2222,19 +2062,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 3, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 2, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "110",
         name: "Principled Abstainer",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2244,19 +2084,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
             PF: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "111",
-        name: "Diogenes Independent",
+        name: "Cosmopolitan Nonconformist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2276,9 +2116,9 @@ export const ARCHETYPES = [
     },
     {
         id: "112",
-        name: "Contrarian Intellectual",
+        name: "Engaged Cosmopolitan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2292,15 +2132,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 3, antiCats: [2, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 3 },
+            EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 1, antiCats: [2, 5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
         }
     },
     {
         id: "115",
         name: "Quietist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 }, // raised sal 0→1 (discriminator vs Ecological Localist)
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2314,15 +2154,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 },
         }
     },
     {
         id: "116",
         name: "Quiet Middle",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2332,19 +2172,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "117",
         name: "Comfortable Bystander",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2354,19 +2194,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 5, sal: 1 },
             ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
             ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 1, sal: 3, anti: "high" }, // Bystander's defining trait: extremely disengaged
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "118",
         name: "Survival Pragmatist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2376,19 +2216,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "119",
         name: "Apolitical Striver",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2398,19 +2238,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 2, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "120",
         name: "Good Neighbor",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -2420,19 +2260,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 2, sal: 2 },
             ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+            ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
             PF: { kind: "continuous", pos: 3, sal: 2 },
             TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ENG: { kind: "continuous", pos: 2, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         }
     },
     {
         id: "121",
         name: "Spectator Citizen",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 2 },
             CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2442,19 +2282,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            ENG: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
+            EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "122",
         name: "Civic Minimalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2464,41 +2304,41 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 2, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "124",
-        name: "Crisis-Activated Sleeper",
+        name: "Latent Alarmist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
-            CD: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
+            CD: { kind: "continuous", pos: 3, sal: 0 },
             CU: { kind: "continuous", pos: 3, sal: 0 },
             MOR: { kind: "continuous", pos: 3, sal: 0 },
             PRO: { kind: "continuous", pos: 2, sal: 1 },
-            COM: { kind: "continuous", pos: 2, sal: 1 },
-            ZS: { kind: "continuous", pos: 4, sal: 1 },
+            COM: { kind: "continuous", pos: 2, sal: 2 },
+            ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 4, sal: 1 },
-            TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-            ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            TRB: { kind: "continuous", pos: 2, sal: 2 },
+            ENG: { kind: "continuous", pos: 3, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "125",
         name: "Reluctant Partisan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2508,19 +2348,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "126",
-        name: "Single-Issue Activator",
+        name: "Uncompromising Activist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2530,19 +2370,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 0 },
             TRB: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "127",
         name: "Tribal Loyalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2552,19 +2392,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ENG: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "128",
         name: "Loyal Democrat",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 2, sal: 1 },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2574,19 +2414,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 4, sal: 2 }, // Fixed: Loyal = high PF
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "129",
         name: "Loyal Republican",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2596,41 +2436,42 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 3, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
-    {
-        id: "130",
-        name: "Legacy Partisan",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 4, sal: 1 },
-            CU: { kind: "continuous", pos: 3, sal: 0 },
-            MOR: { kind: "continuous", pos: 2, sal: 1 },
-            PRO: { kind: "continuous", pos: 3, sal: 0 },
-            COM: { kind: "continuous", pos: 2, sal: 1 },
-            ZS: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-            PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            TRB: { kind: "continuous", pos: 4, sal: 2 },
-            ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
-        }
-    },
+    // MERGED into Duty Voter (ID 131) — 2026-04-01
+    // {
+    //   id: "130",
+    //   name: "Habitual Partisan",
+    //   tier: "T1",
+    //   prior: 1/112,
+    //   nodes: {
+    //     MAT: { kind: "continuous", pos: 3, sal: 1 },
+    //     CD: { kind: "continuous", pos: 4, sal: 1 },
+    //     CU: { kind: "continuous", pos: 3, sal: 0 },
+    //     MOR: { kind: "continuous", pos: 2, sal: 1 },
+    //     PRO: { kind: "continuous", pos: 3, sal: 0 },
+    //     COM: { kind: "continuous", pos: 2, sal: 1 },
+    //     ZS: { kind: "continuous", pos: 3, sal: 1 },
+    //     ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+    //     ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+    //     PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     TRB: { kind: "continuous", pos: 4, sal: 2 },
+    //     ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+    //     EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+    //     AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
+    //   }
+    // },
     {
         id: "131",
         name: "Duty Voter",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2640,19 +2481,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 2 },
             ZS: { kind: "continuous", pos: 3, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 2 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "132",
         name: "Negative Partisan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 0 },
             CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2662,41 +2503,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 2, sal: 1 },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 4, sal: 1 },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
-        }
-    },
-    {
-        id: "133",
-        name: "Sporadic Alarm Voter",
-        tier: "T1",
-        prior: 1 / 130,
-        nodes: {
-            MAT: { kind: "continuous", pos: 3, sal: 1 },
-            CD: { kind: "continuous", pos: 3, sal: 1 },
-            CU: { kind: "continuous", pos: 3, sal: 1 },
-            MOR: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-            PRO: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-            COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-            ZS: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-            TRB: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-            ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         }
     },
     {
         id: "134",
         name: "Progressive Civic Nationalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2710,8 +2529,8 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 2, sal: 2 },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+            AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 },
         }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
@@ -2719,7 +2538,7 @@ export const ARCHETYPES = [
         id: "135",
         name: "Disruptive Cosmopolitan",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -2729,19 +2548,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 1, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 1, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.60, 0.05, 0.15, 0.05, 0.10, 0.05], sal: 2 },
-            AES: { kind: "categorical", probs: [0.05, 0.10, 0.05, 0.05, 0.15, 0.60], sal: 2 }, // FIX: Disruptive = visionary, not statesman
+            EPS: { kind: "categorical", probs: [0.60, 0.05, 0.15, 0.05, 0.10, 0.05], sal: 1 },
+            AES: { kind: "categorical", probs: [0.05, 0.10, 0.05, 0.05, 0.15, 0.60], sal: 1 }, // FIX: Disruptive = visionary, not statesman
         }
     },
     {
         id: "136",
         name: "Aspirational Traditionalist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 }, // FIX: Traditionalist = culturally conservative (was 2)
@@ -2751,19 +2570,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 }, // Aspirational = optimistic (was 3/sal1)
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 2, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 3, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.15, 0.50, 0.10, 0.05, 0.10], sal: 2 },
-            AES: { kind: "categorical", probs: [0.10, 0.10, 0.50, 0.15, 0.05, 0.10], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.15, 0.50, 0.10, 0.05, 0.10], sal: 1 },
+            AES: { kind: "categorical", probs: [0.10, 0.10, 0.50, 0.15, 0.05, 0.10], sal: 1 },
         }
     },
     {
         id: "137",
-        name: "Prophetic Revivalist",
+        name: "Moral Crusader",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 1 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2777,15 +2596,15 @@ export const ARCHETYPES = [
             PF: { kind: "continuous", pos: 4, sal: 2 },
             TRB: { kind: "continuous", pos: 4, sal: 2 },
             ENG: { kind: "continuous", pos: 5, sal: 3 },
-            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.60, 0.10, 0.05], sal: 3 }, // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.60, 0.10, 0.05], sal: 2 }, // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic visionary
         }
     },
     {
         id: "138",
-        name: "Holistic Dissenter",
+        name: "Optimistic Challenger",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 1 },
             CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2795,11 +2614,11 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 4, sal: 2 },
             ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 1, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.05, 0.05, 0.50, 0.25, 0.05], sal: 3 }, // FIX: Holistic = intuitionist+autonomous, not nihilist
+            EPS: { kind: "categorical", probs: [0.10, 0.05, 0.05, 0.50, 0.25, 0.05], sal: 1 }, // FIX: Holistic = intuitionist+autonomous, not nihilist
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.60, 0.10, 0.10], sal: 2 }, // Experiential
         }
     },
@@ -2807,7 +2626,7 @@ export const ARCHETYPES = [
         id: "139",
         name: "Civic Assimilationist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2817,19 +2636,19 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 3, sal: 1 },
             ZS: { kind: "continuous", pos: 2, sal: 1 },
             ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 1 },
             PF: { kind: "continuous", pos: 3, sal: 1 },
             TRB: { kind: "continuous", pos: 2, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 },
-            AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 2 },
+            EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 1 },
+            AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 1 },
         }
     },
     {
         id: "140",
         name: "Market Green Modernist",
         tier: "T1",
-        prior: 1 / 130,
+        prior: 1 / 118,
         nodes: {
             MAT: { kind: "continuous", pos: 4, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -2839,12 +2658,166 @@ export const ARCHETYPES = [
             COM: { kind: "continuous", pos: 4, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 1 },
             ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-            ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 1, sal: 2 },
             PF: { kind: "continuous", pos: 1, sal: 1 },
             TRB: { kind: "continuous", pos: 1, sal: 1 },
             ENG: { kind: "continuous", pos: 4, sal: 2 },
-            EPS: { kind: "categorical", probs: [0.70, 0.05, 0.10, 0.05, 0.05, 0.05], sal: 3 }, // Empiricist
-            AES: { kind: "categorical", probs: [0.10, 0.60, 0.10, 0.05, 0.10, 0.05], sal: 2 }, // Systematic
+            EPS: { kind: "categorical", probs: [0.70, 0.05, 0.10, 0.05, 0.05, 0.05], sal: 1 }, // Empiricist
+            AES: { kind: "categorical", probs: [0.10, 0.60, 0.10, 0.05, 0.10, 0.05], sal: 1 }, // Systematic
+        }
+    },
+    // ═══════════════════════════════════════════════════════════════════════════
+    // Identity-Primary Archetypes (141–146)
+    //
+    // These activate when tribalism and political fusion are the dominant signal
+    // and the respondent's identity anchor + demographics confirm the fit.
+    // Other nodes reflect the group's characteristic political tendencies, but
+    // TRB/PF/ENG are the defining feature — politics is identity-first.
+    // ═══════════════════════════════════════════════════════════════════════════
+    {
+        id: "141",
+        name: "Black Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Strong group-linked Democratic alignment. Redistributionist on economics,
+            // moderate-progressive on culture, high community solidarity.
+            MAT: { kind: "continuous", pos: 2, sal: 2 },
+            CD: { kind: "continuous", pos: 2, sal: 1 },
+            CU: { kind: "continuous", pos: 4, sal: 1 },
+            MOR: { kind: "continuous", pos: 4, sal: 2 },
+            PRO: { kind: "continuous", pos: 3, sal: 1 },
+            COM: { kind: "continuous", pos: 3, sal: 1 },
+            ZS: { kind: "continuous", pos: 3, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.15, 0.30, 0.15, 0.25, 0.10, 0.05], sal: 1 },
+            AES: { kind: "categorical", probs: [0.10, 0.05, 0.20, 0.40, 0.15, 0.10], sal: 1 }, // Authentic
+        }
+    },
+    {
+        id: "142",
+        name: "White Grievance Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Ethno-cultural displacement threat. Cultural uniformity and narrow moral
+            // circle are the anchors — not zero-sum competition per se. Sees society
+            // losing its cultural identity, not losing a competitive game.
+            MAT: { kind: "continuous", pos: 3, sal: 1 },
+            CD: { kind: "continuous", pos: 5, sal: 3 },
+            CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+            MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PRO: { kind: "continuous", pos: 2, sal: 1 },
+            COM: { kind: "continuous", pos: 2, sal: 2 },
+            ZS: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.10, 0.25, 0.40, 0.10, 0.10], sal: 1 }, // Intuitionist
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.30, 0.40, 0.10], sal: 2 }, // Fighter
+        }
+    },
+    {
+        id: "143",
+        name: "Evangelical Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Religion-centered identity. Traditional morality is the defining axis.
+            // Moderate economics, strong cultural conservatism, community-anchored.
+            MAT: { kind: "continuous", pos: 3, sal: 1 },
+            CD: { kind: "continuous", pos: 5, sal: 3 },
+            CU: { kind: "continuous", pos: 4, sal: 2 },
+            MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PRO: { kind: "continuous", pos: 3, sal: 1 },
+            COM: { kind: "continuous", pos: 3, sal: 1 },
+            ZS: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.15, 0.50, 0.20, 0.05, 0.05], sal: 2 }, // Traditionalist
+            AES: { kind: "categorical", probs: [0.10, 0.05, 0.50, 0.15, 0.10, 0.10], sal: 2 }, // Pastoral
+        }
+    },
+    {
+        id: "144",
+        name: "LGBTQ Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Sexual-identity-centered. Strongly progressive on culture, expansive moral
+            // circle, community-driven politics. Strong Democratic alignment.
+            MAT: { kind: "continuous", pos: 2, sal: 1 },
+            CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            CU: { kind: "continuous", pos: 5, sal: 2 },
+            MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+            PRO: { kind: "continuous", pos: 3, sal: 1 },
+            COM: { kind: "continuous", pos: 3, sal: 1 },
+            ZS: { kind: "continuous", pos: 3, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+            ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.20, 0.15, 0.05, 0.15, 0.35, 0.10], sal: 1 }, // Autonomous
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.45, 0.15, 0.20], sal: 1 }, // Authentic
+        }
+    },
+    {
+        id: "145",
+        name: "Feminist Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Gender-equity-centered. Progressive on culture, systemic structural
+            // orientation, expansive moral circle. Strong Democratic alignment.
+            MAT: { kind: "continuous", pos: 2, sal: 1 },
+            CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            CU: { kind: "continuous", pos: 4, sal: 1 },
+            MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+            PRO: { kind: "continuous", pos: 4, sal: 2 },
+            COM: { kind: "continuous", pos: 3, sal: 1 },
+            ZS: { kind: "continuous", pos: 3, sal: 2 },
+            ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+            ONT_S: { kind: "continuous", pos: 5, sal: 3 },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.30, 0.20, 0.05, 0.10, 0.25, 0.10], sal: 1 }, // Empiricist
+            AES: { kind: "categorical", probs: [0.10, 0.05, 0.10, 0.25, 0.30, 0.20], sal: 1 }, // Fighter/Visionary
+        }
+    },
+    {
+        id: "146",
+        name: "Male Grievance Voter",
+        tier: "T2",
+        prior: 1 / 118,
+        nodes: {
+            // Gender-anchored backlash. Hierarchy-driven, anti-procedural, zero-sum.
+            // Less about cultural uniformity than White Grievance — more about
+            // natural-order hierarchy and seeing institutions as rigged against men.
+            MAT: { kind: "continuous", pos: 3, sal: 1 },
+            CD: { kind: "continuous", pos: 5, sal: 3 },
+            CU: { kind: "continuous", pos: 3, sal: 1 },
+            MOR: { kind: "continuous", pos: 2, sal: 2 },
+            PRO: { kind: "continuous", pos: 1, sal: 2 },
+            COM: { kind: "continuous", pos: 1, sal: 2 },
+            ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+            ONT_H: { kind: "continuous", pos: 1, sal: 3 },
+            ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PF: { kind: "continuous", pos: 5, sal: 3 },
+            TRB: { kind: "continuous", pos: 5, sal: 3 },
+            ENG: { kind: "continuous", pos: 4, sal: 2 },
+            EPS: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.25, 0.25, 0.30], sal: 1 }, // Nihilist/Autonomous
+            AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.20, 0.50, 0.15], sal: 2 }, // Fighter
         }
     },
 ];

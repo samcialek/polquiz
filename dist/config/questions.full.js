@@ -192,13 +192,6 @@ export const FULL_QUESTIONS = [
         eligibleIf: ["PRO_live_or_unresolved"],
         goodFollowupsIfUnresolved: [36, 41, 16]
     }),
-    q(26, "stage2", "III", "vacation_new_vs_familiar", "single_choice", 0.52, false, [
-        t("ONT_H", "continuous", "position", 0.25, "novelty_preference"),
-        t("AES", "categorical", "category", 0.10, "taste_proxy")
-    ], {
-        eligibleIf: ["late_low_weight_only"],
-        goodFollowupsIfUnresolved: [18, 48]
-    }),
     q(27, "stage2", "III", "welfare_error_tradeoff", "single_choice", 0.89, false, [
         t("MAT", "continuous", "position", 0.70, "error_asymmetry"),
         t("PRO", "continuous", "position", 0.25, "error_asymmetry")
@@ -232,13 +225,6 @@ export const FULL_QUESTIONS = [
         t("MAT", "continuous", "position", 0.20, "distribution_proxy")
     ], {
         goodFollowupsIfUnresolved: [29, 34, 48]
-    }),
-    q(32, "stage3", "III", "mainstream_media_accuracy_estimate", "slider", 0.62, true, [
-        t("EPS", "categorical", "category", 0.65, "institutional_trust_proxy"),
-        t("TRB", "continuous", "position", 0.15, "trust_hostility_proxy")
-    ], {
-        eligibleIf: ["late_consistency_check_only"],
-        goodFollowupsIfUnresolved: [22, 55]
     }),
     q(33, "stage2", "III", "immigration_enforcement_error_tradeoff", "single_choice", 0.86, false, [
         t("PRO", "continuous", "position", 0.55, "boundary_error_asymmetry"),
@@ -330,18 +316,6 @@ export const FULL_QUESTIONS = [
         eligibleIf: ["late_low_weight_only"],
         goodFollowupsIfUnresolved: [55]
     }),
-    q(45, "stage3", "IV", "what_changed_minds_through_history", "single_choice", 0.60, true, [
-        t("EPS", "categorical", "category", 0.55, "abstract_style"),
-        t("AES", "categorical", "category", 0.25, "abstract_style"),
-        t("MOR", "continuous", "position", 0.10, "abstract_style")
-    ], {
-        eligibleIf: ["late_consistency_check_only"],
-        goodFollowupsIfUnresolved: [55, 56]
-    }),
-    // SAM DECISION 2026-03-28: CUT - not a real question, delete entirely
-    q(46, "stage3", "IV", "caregiver_emotional_availability", "slider", 0.30, false, [], {
-        eligibleIf: ["background_prior_only"]
-    }),
     q(47, "fixed12", "IV", "political_conflict_with_close_others", "single_choice", 0.89, false, [
         t("COM", "continuous", "position", 0.70, "interpersonal_conflict"),
         t("ENG", "continuous", "position", 0.35, "interpersonal_conflict")
@@ -390,13 +364,6 @@ export const FULL_QUESTIONS = [
     // ---------------------------------------------------------------------------
     // SECTION V
     // ---------------------------------------------------------------------------
-    q(53, "stage3", "V", "parents_politics_growing_up", "single_choice", 0.34, false, [
-        t("TRB", "continuous", "position", 0.05, "background_context"),
-        t("MAT", "continuous", "position", 0.05, "background_context"),
-        t("CD", "continuous", "position", 0.05, "background_context")
-    ], {
-        eligibleIf: ["background_prior_only"]
-    }),
     q(54, "stage3", "V", "religion_in_upbringing", "single_choice", 0.40, false, [
         t("MOR", "continuous", "position", 0.10, "background_context"),
         t("CD", "continuous", "position", 0.10, "background_context"),
@@ -419,17 +386,6 @@ export const FULL_QUESTIONS = [
     ], {
         eligibleIf: ["AES_live_or_unresolved"],
         goodFollowupsIfUnresolved: [61, 62, 59]
-    }),
-    q(57, "stage3", "V", "parents_political_engagement", "single_choice", 0.30, false, [
-        t("ENG", "continuous", "position", 0.08, "background_context")
-    ], {
-        eligibleIf: ["background_prior_only"]
-    }),
-    q(58, "stage3", "V", "neighborhood_safety_childhood", "single_choice", 0.30, false, [
-        t("ZS", "continuous", "position", 0.05, "background_context"),
-        t("TRB", "continuous", "position", 0.05, "background_context")
-    ], {
-        eligibleIf: ["background_prior_only"]
     }),
     q(59, "screen20", "V", "what_matters_more_in_leader", "single_choice", 0.91, false, [
         t("PRO", "continuous", "position", 0.35, "leader_evaluation"),

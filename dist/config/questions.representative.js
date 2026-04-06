@@ -66,7 +66,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.86,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.80, touchType: "taste_proxy" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "taste_proxy" },
             { node: "AES", kind: "categorical", role: "category", weight: 0.45, touchType: "style_proxy" },
             { node: "ENG", kind: "continuous", role: "salience", weight: 0.15, touchType: "attention_proxy" }
         ],
@@ -110,9 +110,9 @@ export const REPRESENTATIVE_QUESTIONS = [
         ],
         allocationMap: {
             effort_choices: { continuous: { MAT: 0.8, ONT_S: -0.5, COM: -0.4 } },
-            family_background: { continuous: { MAT: -0.6, ONT_S: 0.7, COM: 0.3 } },
-            discrimination_bias: { continuous: { MAT: -0.8, ONT_S: 0.8, COM: 0.5 } },
-            luck_random: { continuous: { ONT_S: 0.4, COM: 0.2 } }
+            family_background: { continuous: { MAT: -0.6, ONT_S: -0.7, COM: 0.3 } },
+            discrimination_bias: { continuous: { MAT: -0.8, ONT_S: -0.8, COM: 0.5 } },
+            luck_random: { continuous: { ONT_S: -0.4, COM: 0.2 } }
         }
     },
     {
@@ -131,10 +131,10 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
         ],
         allocationMap: {
-            complex_forces: { continuous: { ONT_S: 0.6, COM: 0.4 } },
-            powerful_incompetent: { continuous: { ONT_S: 0.2, COM: -0.3 } },
+            complex_forces: { continuous: { ONT_S: -0.6, COM: 0.4 } },
+            powerful_incompetent: { continuous: { ONT_S: -0.2, COM: -0.3 } },
             powerful_selfish: { continuous: { ZS: 0.9, ONT_H: -0.5, COM: -0.6 } },
-            ordinary_choices: { continuous: { ONT_S: -0.8, COM: -0.4 } }
+            ordinary_choices: { continuous: { ONT_S: 0.8, COM: -0.4 } }
         }
     },
     {
@@ -213,26 +213,27 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.90,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "human_nature_proxy" }
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.35, touchType: "socialization_style" },
+            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.10, touchType: "human_nature_proxy" }
         ],
         pairMaps: {
             independence_vs_elders: {
                 independence: {
-                    continuous: { ONT_H: 0.6 },
+                    continuous: { ONT_H: 0.25 },
                     categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
                 },
                 respect_for_elders: {
-                    continuous: { ONT_H: -0.6 },
+                    continuous: { ONT_H: -0.25 },
                     categorical: { EPS: EPS_PROTOTYPES.traditionalist, AES: AES_PROTOTYPES.pastoral }
                 }
             },
             obedience_vs_self_reliance: {
                 obedience: {
-                    continuous: { ONT_H: -0.5 },
+                    continuous: { ONT_H: -0.20 },
                     categorical: { EPS: EPS_PROTOTYPES.institutionalist, AES: AES_PROTOTYPES.statesman }
                 },
                 self_reliance: {
-                    continuous: { ONT_H: 0.5 },
+                    continuous: { ONT_H: 0.20 },
                     categorical: { EPS: EPS_PROTOTYPES.empiricist, AES: AES_PROTOTYPES.technocrat }
                 }
             }
@@ -267,10 +268,10 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "AES", kind: "categorical", role: "category", weight: 0.90, touchType: "leader_style" },
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "governance_style" },
-            { node: "ENG", kind: "continuous", role: "salience", weight: 0.10, touchType: "mobilization_proxy" },
-            { node: "AES", kind: "categorical", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
+            { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "leader_style" },
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.10, touchType: "governance_style" },
+            { node: "ENG", kind: "continuous", role: "salience", weight: 0.05, touchType: "mobilization_proxy" },
+            { node: "AES", kind: "categorical", role: "salience", weight: 0.88, touchType: "checkbox_salience" }
         ],
         optionEvidence: {
             channel_anger: {
@@ -299,8 +300,10 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.96,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.70, touchType: "identity_ranking" },
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.40, touchType: "identity_ranking" },
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.78, touchType: "identity_ranking" },
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.50, touchType: "identity_ranking" },
+            { node: "PF", kind: "continuous", role: "position", weight: 0.42, touchType: "identity_ranking" },
+            { node: "PF", kind: "continuous", role: "salience", weight: 0.52, touchType: "identity_ranking" },
             { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
         ],
         rankingMap: {
@@ -309,6 +312,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             religious_identity: { trbAnchor: { religious: 1 } },
             class_identity: { trbAnchor: { class: 1 } },
             ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
+            gender_identity: { trbAnchor: { gender: 1 } },
+            sexual_identity: { trbAnchor: { sexual: 1 } },
             global_citizen: { trbAnchor: { global: 1 } }
         }
     },
@@ -444,27 +449,6 @@ export const REPRESENTATIVE_QUESTIONS = [
             "81-100": { continuous: { ONT_H: { sal: [0.02, 0.08, 0.30, 0.60] } } }
         }
     },
-    // Q32 — mainstream_media_accuracy_estimate (slider)
-    {
-        id: 32,
-        stage: "stage3",
-        section: "III",
-        promptShort: "mainstream_media_accuracy_estimate",
-        uiType: "slider",
-        quality: 0.40,
-        rewriteNeeded: true,
-        touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.40, touchType: "institutional_trust_proxy" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.15, touchType: "trust_hostility_proxy" }
-        ],
-        sliderMap: {
-            "0-20": { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } },
-            "21-40": { categorical: { EPS: { cat: EPS_PROTOTYPES.intuitionist } } },
-            "41-60": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-            "61-80": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-            "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } }
-        }
-    },
     // Q35 — percent_groups_want_best_share_values (slider)
     {
         id: 35,
@@ -538,37 +522,15 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.58,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "updating_proxy" },
-            { node: "PF", kind: "continuous", role: "position", weight: 0.10, touchType: "identity_rigidity_proxy" }
+            { node: "PF", kind: "continuous", role: "position", weight: 0.18, touchType: "identity_rigidity_proxy" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.60, touchType: "updating_style_proxy" }
         ],
         sliderMap: {
-            "0-20": { categorical: { EPS: { cat: EPS_PROTOTYPES.traditionalist } } },
-            "21-40": { categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } } },
-            "41-60": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
-            "61-80": { categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } } },
-            "81-100": { categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } } }
-        }
-    },
-    // Q46 — caregiver_emotional_availability (slider, background)
-    {
-        id: 46,
-        stage: "stage3",
-        section: "IV",
-        promptShort: "caregiver_emotional_availability",
-        uiType: "slider",
-        quality: 0.30,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-            { node: "COM", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-        ],
-        sliderMap: {
-            "0-20": { continuous: { COM: { pos: [0.28, 0.27, 0.22, 0.14, 0.09] }, TRB: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] } } },
-            "21-40": { continuous: { COM: { pos: [0.22, 0.28, 0.25, 0.16, 0.09] }, TRB: { pos: [0.14, 0.20, 0.28, 0.22, 0.16] } } },
-            "41-60": { continuous: { COM: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] }, TRB: { pos: [0.17, 0.22, 0.28, 0.20, 0.13] } } },
-            "61-80": { continuous: { COM: { pos: [0.09, 0.16, 0.25, 0.28, 0.22] }, TRB: { pos: [0.18, 0.23, 0.28, 0.18, 0.13] } } },
-            "81-100": { continuous: { COM: { pos: [0.06, 0.12, 0.22, 0.30, 0.30] }, TRB: { pos: [0.20, 0.24, 0.26, 0.18, 0.12] } } }
+            "0-20": { continuous: { PF: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+            "21-40": { continuous: { PF: { pos: [0.05, 0.10, 0.25, 0.30, 0.30] } } },
+            "41-60": { continuous: { PF: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] } } },
+            "61-80": { continuous: { PF: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] } } },
+            "81-100": { continuous: { PF: { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } }
         }
     },
     // Q49 — social_progress_salience (slider)
@@ -754,25 +716,25 @@ export const REPRESENTATIVE_QUESTIONS = [
             aggressive_transition: {
                 continuous: {
                     MAT: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] },
-                    ONT_S: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
+                    ONT_S: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] }
                 }
             },
             gradual_transition: {
                 continuous: {
                     MAT: { pos: [0.10, 0.24, 0.40, 0.18, 0.08] },
-                    ONT_S: { pos: [0.08, 0.18, 0.40, 0.24, 0.10] }
+                    ONT_S: { pos: [0.10, 0.24, 0.40, 0.18, 0.08] }
                 }
             },
             market_led: {
                 continuous: {
                     MAT: { pos: [0.04, 0.09, 0.22, 0.35, 0.30] },
-                    ONT_S: { pos: [0.20, 0.30, 0.30, 0.14, 0.06] }
+                    ONT_S: { pos: [0.06, 0.14, 0.30, 0.30, 0.20] }
                 }
             },
             no_action_needed: {
                 continuous: {
                     MAT: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] },
-                    ONT_S: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] }
+                    ONT_S: { pos: [0.05, 0.10, 0.25, 0.30, 0.30] }
                 }
             }
         }
@@ -942,52 +904,21 @@ export const REPRESENTATIVE_QUESTIONS = [
         options: ["convict_innocent", "free_guilty"],
         touchProfile: [
             { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
-            { node: "PRO", kind: "continuous", role: "salience", weight: 0.60, touchType: "error_asymmetry" },
-            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.15, touchType: "human_motive_proxy" }
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.70, touchType: "ratio_salience" },
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.12, touchType: "human_motive_proxy" }
         ],
         optionEvidence: {
             convict_innocent: {
                 continuous: {
-                    PRO: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
+                    PRO: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] },
+                    MOR: { pos: [0.08, 0.18, 0.30, 0.26, 0.18] }
                 },
             },
             free_guilty: {
                 continuous: {
-                    PRO: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] }
+                    PRO: { pos: [0.35, 0.35, 0.20, 0.08, 0.02] },
+                    MOR: { pos: [0.18, 0.26, 0.30, 0.18, 0.08] }
                 },
-            }
-        }
-    },
-    // Q26 — vacation_new_vs_familiar
-    {
-        id: 26,
-        stage: "stage2",
-        section: "III",
-        promptShort: "vacation_new_vs_familiar",
-        uiType: "single_choice",
-        quality: 0.52,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "novelty_preference" },
-            { node: "AES", kind: "categorical", role: "category", weight: 0.10, touchType: "taste_proxy" }
-        ],
-        optionEvidence: {
-            new_place: {
-                continuous: {
-                    ONT_H: { pos: [0.05, 0.12, 0.28, 0.33, 0.22] }
-                },
-                categorical: { AES: { cat: AES_PROTOTYPES.visionary } }
-            },
-            familiar_place: {
-                continuous: {
-                    ONT_H: { pos: [0.22, 0.33, 0.28, 0.12, 0.05] }
-                },
-                categorical: { AES: { cat: AES_PROTOTYPES.pastoral } }
-            },
-            mix_both: {
-                continuous: {
-                    ONT_H: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-                }
             }
         }
     },
@@ -1004,22 +935,24 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         options: ["fp", "fn"],
         touchProfile: [
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "error_asymmetry" },
-            { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "error_asymmetry" },
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.25, touchType: "error_asymmetry" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "deservingness_proxy" }
+            { node: "MAT", kind: "continuous", role: "position", weight: 0.72, touchType: "error_asymmetry" },
+            { node: "MAT", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.22, touchType: "error_asymmetry" },
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "deservingness_proxy" }
         ],
         optionEvidence: {
             fp: {
                 continuous: {
                     MAT: { pos: [0.02, 0.08, 0.22, 0.35, 0.33] },
-                    MOR: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] }
+                    MOR: { pos: [0.27, 0.35, 0.25, 0.10, 0.03] },
+                    PRO: { pos: [0.10, 0.18, 0.32, 0.24, 0.16] }
                 }
             },
             fn: {
                 continuous: {
                     MAT: { pos: [0.33, 0.35, 0.22, 0.08, 0.02] },
-                    MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] }
+                    MOR: { pos: [0.03, 0.10, 0.25, 0.35, 0.27] },
+                    PRO: { pos: [0.16, 0.24, 0.32, 0.18, 0.10] }
                 }
             }
         }
@@ -1070,21 +1003,23 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         options: ["allow_harmful", "censor_legitimate"],
         touchProfile: [
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.70, touchType: "speech_harm_tradeoff" },
-            { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "speech_harm_tradeoff" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "truth_authority_proxy" },
-            { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "pluralism_proxy" }
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.72, touchType: "speech_harm_tradeoff" },
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "truth_authority_proxy" },
+            { node: "COM", kind: "continuous", role: "position", weight: 0.12, touchType: "pluralism_proxy" }
         ],
         optionEvidence: {
             allow_harmful: {
                 continuous: {
-                    PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] }
+                    PRO: { pos: [0.02, 0.06, 0.15, 0.35, 0.42] },
+                    COM: { pos: [0.18, 0.24, 0.30, 0.18, 0.10] }
                 },
                 categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
             },
             censor_legitimate: {
                 continuous: {
-                    PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] }
+                    PRO: { pos: [0.40, 0.32, 0.18, 0.07, 0.03] },
+                    COM: { pos: [0.10, 0.18, 0.30, 0.24, 0.18] }
                 },
                 categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
             }
@@ -1101,32 +1036,33 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         touchProfile: [
             { node: "ZS", kind: "continuous", role: "position", weight: 0.85, touchType: "macro_sum_view" },
+            { node: "ZS", kind: "continuous", role: "salience", weight: 0.50, touchType: "macro_sum_view" },
             { node: "ONT_S", kind: "continuous", role: "position", weight: 0.45, touchType: "systems_view" },
             { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "distribution_proxy" }
         ],
         optionEvidence: {
             net_positive_clear: {
                 continuous: {
-                    ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01] },
-                    ONT_S: { pos: [0.03, 0.10, 0.25, 0.38, 0.24] }
+                    ZS: { pos: [0.41, 0.38, 0.15, 0.05, 0.01], sal: [0.45, 0.30, 0.18, 0.07] },
+                    ONT_S: { pos: [0.24, 0.38, 0.25, 0.10, 0.03] }
                 }
             },
             net_positive_but_uneven: {
                 continuous: {
-                    ZS: { pos: [0.15, 0.30, 0.35, 0.15, 0.05] },
-                    ONT_S: { pos: [0.05, 0.15, 0.40, 0.28, 0.12] }
+                    ZS: { pos: [0.15, 0.30, 0.35, 0.15, 0.05], sal: [0.15, 0.35, 0.35, 0.15] },
+                    ONT_S: { pos: [0.12, 0.28, 0.40, 0.15, 0.05] }
                 }
             },
             mixed_effects: {
                 continuous: {
-                    ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15] },
-                    ONT_S: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] }
+                    ZS: { pos: [0.07, 0.18, 0.35, 0.25, 0.15], sal: [0.10, 0.28, 0.40, 0.22] },
+                    ONT_S: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] }
                 }
             },
             mostly_harmful: {
                 continuous: {
-                    ZS: { pos: [0.03, 0.07, 0.18, 0.30, 0.42] },
-                    ONT_S: { pos: [0.25, 0.30, 0.28, 0.12, 0.05] }
+                    ZS: { pos: [0.03, 0.07, 0.18, 0.30, 0.42], sal: [0.05, 0.15, 0.35, 0.45] },
+                    ONT_S: { pos: [0.05, 0.12, 0.28, 0.30, 0.25] }
                 }
             }
         }
@@ -1145,22 +1081,24 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         options: ["deport_legal", "let_stay_illegal"],
         touchProfile: [
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "boundary_error_asymmetry" },
-            { node: "CU", kind: "continuous", role: "position", weight: 0.45, touchType: "boundary_error_asymmetry" },
-            { node: "CU", kind: "continuous", role: "salience", weight: 0.50, touchType: "boundary_error_asymmetry" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "moral_scope_boundary" }
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.62, touchType: "boundary_error_asymmetry" },
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.56, touchType: "ratio_salience" },
+            { node: "CU", kind: "continuous", role: "position", weight: 0.22, touchType: "boundary_error_asymmetry" },
+            { node: "ONT_S", kind: "continuous", role: "position", weight: 0.12, touchType: "boundary_error_asymmetry" }
         ],
         optionEvidence: {
             deport_legal: {
                 continuous: {
-                    CU: { pos: [0.01, 0.04, 0.12, 0.33, 0.50] },
-                    MOR: { pos: [0.02, 0.08, 0.20, 0.35, 0.35] }
+                    PRO: { pos: [0.06, 0.12, 0.26, 0.30, 0.26] },
+                    CU: { pos: [0.06, 0.12, 0.24, 0.30, 0.28] },
+                    ONT_S: { pos: [0.16, 0.20, 0.30, 0.22, 0.12] }
                 }
             },
             let_stay_illegal: {
                 continuous: {
-                    CU: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
-                    MOR: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] }
+                    PRO: { pos: [0.26, 0.30, 0.26, 0.12, 0.06] },
+                    CU: { pos: [0.28, 0.30, 0.24, 0.12, 0.06] },
+                    ONT_S: { pos: [0.12, 0.22, 0.30, 0.20, 0.16] }
                 }
             }
         }
@@ -1189,8 +1127,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             },
             internal_division: {
                 continuous: {
-                    ZS: { pos: [0.05, 0.12, 0.30, 0.33, 0.20] },
-                    TRB: { pos: [0.15, 0.22, 0.30, 0.22, 0.11] }
+                    ZS: { pos: [0.05, 0.12, 0.30, 0.33, 0.20] }
                 }
             },
             both_equally: {
@@ -1291,8 +1228,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         optionEvidence: {
             easier_access: {
                 continuous: {
-                    PRO: { pos: [0.04, 0.10, 0.22, 0.34, 0.30] },
-                    TRB: { pos: [0.15, 0.22, 0.30, 0.22, 0.11] }
+                    PRO: { pos: [0.04, 0.10, 0.22, 0.34, 0.30] }
                 }
             },
             balanced_approach: {
@@ -1318,7 +1254,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.88,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.75, touchType: "network_homophily" },
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.90, touchType: "network_homophily" },
             { node: "PF", kind: "continuous", role: "salience", weight: 0.30, touchType: "network_homophily" }
         ],
         optionEvidence: {
@@ -1384,47 +1320,6 @@ export const REPRESENTATIVE_QUESTIONS = [
     // =========================================================================
     // SINGLE_CHOICE EVIDENCE MAPS (batch 4: Q45, Q47, Q48, Q52, Q53, Q54, Q57, Q58)
     // =========================================================================
-    // Q45 — what_changed_minds_through_history
-    {
-        id: 45,
-        stage: "stage3",
-        section: "IV",
-        promptShort: "what_changed_minds_through_history",
-        uiType: "single_choice",
-        quality: 0.36,
-        rewriteNeeded: true,
-        touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.25, touchType: "abstract_style" },
-            { node: "AES", kind: "categorical", role: "category", weight: 0.20, touchType: "abstract_style" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "abstract_style" }
-        ],
-        optionEvidence: {
-            evidence_and_argument: {
-                categorical: {
-                    EPS: { cat: EPS_PROTOTYPES.empiricist },
-                    AES: { cat: AES_PROTOTYPES.technocrat }
-                }
-            },
-            moral_movements: {
-                categorical: {
-                    EPS: { cat: EPS_PROTOTYPES.intuitionist },
-                    AES: { cat: AES_PROTOTYPES.pastoral }
-                }
-            },
-            economic_interests: {
-                categorical: {
-                    EPS: { cat: EPS_PROTOTYPES.institutionalist },
-                    AES: { cat: AES_PROTOTYPES.statesman }
-                }
-            },
-            power_struggles: {
-                categorical: {
-                    EPS: { cat: EPS_PROTOTYPES.autonomous },
-                    AES: { cat: AES_PROTOTYPES.fighter }
-                }
-            }
-        }
-    },
     // Q47 — political_conflict_with_close_others
     {
         id: 47,
@@ -1541,47 +1436,6 @@ export const REPRESENTATIVE_QUESTIONS = [
             }
         }
     },
-    // Q53 — parents_politics_growing_up (background, mild)
-    {
-        id: 53,
-        stage: "stage3",
-        section: "V",
-        promptShort: "parents_politics_growing_up",
-        uiType: "single_choice",
-        quality: 0.34,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-            { node: "CD", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-        ],
-        optionEvidence: {
-            very_conservative: {
-                continuous: {
-                    CD: { pos: [0.28, 0.25, 0.22, 0.15, 0.10] },
-                    MAT: { pos: [0.11, 0.16, 0.22, 0.25, 0.26] }
-                }
-            },
-            moderate_household: {
-                continuous: {
-                    CD: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] },
-                    MAT: { pos: [0.13, 0.20, 0.30, 0.22, 0.15] }
-                }
-            },
-            very_progressive: {
-                continuous: {
-                    CD: { pos: [0.10, 0.15, 0.22, 0.25, 0.28] },
-                    MAT: { pos: [0.26, 0.25, 0.22, 0.16, 0.11] }
-                }
-            },
-            not_political: {
-                continuous: {
-                    CD: { pos: [0.18, 0.22, 0.25, 0.20, 0.15] }
-                }
-            }
-        }
-    },
     // Q54 — religion_in_upbringing (background, mild)
     {
         id: 54,
@@ -1614,73 +1468,6 @@ export const REPRESENTATIVE_QUESTIONS = [
                 continuous: {
                     MOR: { pos: [0.10, 0.15, 0.25, 0.27, 0.23] },
                     CD: { pos: [0.10, 0.15, 0.25, 0.27, 0.23] }
-                }
-            }
-        }
-    },
-    // Q57 — parents_political_engagement (background, mild)
-    {
-        id: 57,
-        stage: "stage3",
-        section: "V",
-        promptShort: "parents_political_engagement",
-        uiType: "single_choice",
-        quality: 0.30,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "ENG", kind: "continuous", role: "position", weight: 0.08, touchType: "background_context" },
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.05, touchType: "background_context" }
-        ],
-        optionEvidence: {
-            very_engaged: {
-                continuous: {
-                    ENG: { pos: [0.10, 0.15, 0.25, 0.28, 0.22] }
-                }
-            },
-            occasionally_discussed: {
-                continuous: {
-                    ENG: { pos: [0.15, 0.22, 0.30, 0.20, 0.13] }
-                }
-            },
-            never_discussed: {
-                continuous: {
-                    ENG: { pos: [0.25, 0.27, 0.24, 0.15, 0.09] }
-                }
-            }
-        }
-    },
-    // Q58 — neighborhood_safety_childhood (background, mild)
-    {
-        id: 58,
-        stage: "stage3",
-        section: "V",
-        promptShort: "neighborhood_safety_childhood",
-        uiType: "single_choice",
-        quality: 0.30,
-        rewriteNeeded: false,
-        touchProfile: [
-            { node: "ZS", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.05, touchType: "background_context" }
-        ],
-        optionEvidence: {
-            very_safe: {
-                continuous: {
-                    ZS: { pos: [0.12, 0.18, 0.28, 0.25, 0.17] }
-                }
-            },
-            mostly_safe: {
-                continuous: {
-                    ZS: { pos: [0.15, 0.22, 0.28, 0.22, 0.13] }
-                }
-            },
-            somewhat_unsafe: {
-                continuous: {
-                    ZS: { pos: [0.20, 0.25, 0.27, 0.18, 0.10] }
-                }
-            },
-            very_unsafe: {
-                continuous: {
-                    ZS: { pos: [0.25, 0.27, 0.25, 0.15, 0.08] }
                 }
             }
         }
@@ -1886,7 +1673,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.94,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.88, touchType: "updating_channel" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "updating_channel" },
             { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "updating_channel" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "updating_channel" }
         ],
@@ -1931,7 +1718,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "factual_calibration" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.98, touchType: "factual_calibration" },
             { node: "EPS", kind: "categorical", role: "salience", weight: 0.45, touchType: "factual_calibration" },
             { node: "ENG", kind: "continuous", role: "position", weight: 0.10, touchType: "issue_attention" }
         ],
@@ -1961,19 +1748,19 @@ export const REPRESENTATIVE_QUESTIONS = [
         ],
         rankingMap: {
             global_competition: {
-                continuous: { ONT_S: 0.7, ZS: 0.4 }
+                continuous: { ONT_S: -0.7, ZS: 0.4 }
             },
             automation: {
-                continuous: { ONT_S: 0.6 }
+                continuous: { ONT_S: -0.6 }
             },
             corporate_decisions: {
                 continuous: { MAT: -0.7, ZS: 0.6 },
             },
             government_policy: {
-                continuous: { MAT: -0.3, ONT_S: 0.3 },
+                continuous: { MAT: -0.3, ONT_S: -0.3 },
             },
             worker_choices: {
-                continuous: { MAT: 0.6, ONT_S: -0.5 },
+                continuous: { MAT: 0.6, ONT_S: 0.5 },
             }
         }
     },
@@ -2023,40 +1810,33 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "MAT", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-            { node: "CD", kind: "continuous", role: "salience", weight: 0.20, touchType: "best_worst" },
-            { node: "CU", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-            { node: "MOR", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-            { node: "PRO", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst" },
-            { node: "EPS", kind: "categorical", role: "salience", weight: 0.35, touchType: "best_worst" },
-            { node: "AES", kind: "categorical", role: "salience", weight: 0.30, touchType: "best_worst" },
-            { node: "COM", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst" },
-            { node: "ZS", kind: "continuous", role: "salience", weight: 0.20, touchType: "best_worst" },
-            { node: "ONT_H", kind: "continuous", role: "salience", weight: 0.20, touchType: "best_worst" },
-            { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.20, touchType: "best_worst" },
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-            { node: "TRB", kind: "continuous", role: "salience", weight: 0.35, touchType: "best_worst" },
-            { node: "ENG", kind: "continuous", role: "salience", weight: 0.25, touchType: "best_worst" },
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.20, touchType: "best_worst" }
+            { node: "MOR", kind: "continuous", role: "salience", weight: 0.38, touchType: "best_worst_asymmetric" },
+            { node: "PRO", kind: "continuous", role: "salience", weight: 0.34, touchType: "best_worst_asymmetric" },
+            { node: "PF", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst_asymmetric" },
+            { node: "TRB", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst_asymmetric" },
+            { node: "MAT", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+            { node: "CU", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+            { node: "COM", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.18, touchType: "best_worst_asymmetric" }
         ],
         rankingMap: {
             fairness: {
-                continuous: { MAT: -0.5, MOR: 0.4, PRO: 0.3 }
+                continuous: { MAT: -0.5, MOR: 0.5, PRO: 0.25 }
             },
             procedural_integrity: {
-                continuous: { PRO: 0.6, COM: 0.3 }
+                continuous: { PRO: 0.65, COM: 0.25 }
             },
             national_strength: {
-                continuous: { CU: -0.5, TRB: 0.4, ZS: -0.3 }
+                continuous: { CU: -0.45, TRB: 0.45, ZS: -0.25 }
             },
             community_bonds: {
-                continuous: { COM: 0.5, TRB: -0.3, MOR: 0.3 }
+                continuous: { COM: 0.45, TRB: -0.25, MOR: 0.35 }
             },
             individual_freedom: {
-                continuous: { PRO: 0.5, MAT: 0.3 }
+                continuous: { PRO: 0.55, MAT: 0.25 }
             },
             tradition_continuity: {
-                continuous: { CD: -0.5, CU: -0.4 }
+                continuous: { CD: -0.45, CU: -0.35 }
             }
         }
     },
@@ -2073,44 +1853,50 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.93,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "PF", kind: "continuous", role: "position", weight: 0.90, touchType: "grievance_proxy" },
-            { node: "PF", kind: "continuous", role: "salience", weight: 0.40, touchType: "frustration_intensity" }
+            { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "grievance_proxy" },
+            { node: "ONT_S", kind: "continuous", role: "position", weight: 0.80, touchType: "grievance_proxy" },
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "grievance_proxy" },
+            { node: "CD", kind: "continuous", role: "position", weight: 0.20, touchType: "grievance_proxy" },
+            { node: "ENG", kind: "continuous", role: "position", weight: 0.25, touchType: "frustration_intensity" }
         ],
         optionEvidence: {
             // "Corporations and the wealthy have too much power, ordinary people are left behind"
             corporate_power_inequality: {
                 continuous: {
-                    PF: { pos: [0.55, 0.30, 0.10, 0.03, 0.02] }
+                    MAT: { pos: [0.18, 0.32, 0.28, 0.15, 0.07] },
+                    ONT_S: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] }
                 }
             },
             // "Government has grown too large and intrusive, individual freedom is eroding"
             government_overreach: {
                 continuous: {
-                    PF: { pos: [0.02, 0.05, 0.12, 0.36, 0.45] }
+                    ONT_S: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
+                    PRO: { pos: [0.18, 0.28, 0.30, 0.16, 0.08] }
                 }
             },
             // "Both sides are more interested in fighting than solving real problems"
             both_sides_broken: {
                 continuous: {
-                    PF: { pos: [0.06, 0.14, 0.58, 0.14, 0.08] }
+                    ONT_S: { pos: [0.60, 0.24, 0.10, 0.04, 0.02] }
                 }
             },
             // "The system itself is fundamentally unjust and needs radical change"
             system_unjust: {
                 continuous: {
-                    PF: { pos: [0.60, 0.22, 0.10, 0.05, 0.03] }
+                    ONT_S: { pos: [0.72, 0.18, 0.06, 0.03, 0.01] }
                 }
             },
             // "Traditional values and social cohesion are being abandoned"
             values_eroding: {
                 continuous: {
-                    PF: { pos: [0.02, 0.03, 0.08, 0.32, 0.55] }
+                    CD: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] },
+                    ONT_S: { pos: [0.35, 0.30, 0.20, 0.10, 0.05] }
                 }
             },
             // "I don't think much about politics — it doesn't affect my daily life"
             politics_irrelevant: {
                 continuous: {
-                    PF: { pos: [0.10, 0.15, 0.45, 0.18, 0.12] }
+                    ENG: { pos: [0.62, 0.22, 0.10, 0.04, 0.02] }
                 }
             }
         }
@@ -2495,7 +2281,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.93,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.85, touchType: "decision_style" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" },
             { node: "EPS", kind: "categorical", role: "salience", weight: 0.35, touchType: "decision_style" },
             { node: "AES", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
         ],
@@ -2601,7 +2387,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.90,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.82, touchType: "epistemic_response" },
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "epistemic_response" },
             { node: "EPS", kind: "categorical", role: "salience", weight: 0.40, touchType: "epistemic_response" },
             { node: "ENG", kind: "continuous", role: "salience", weight: 0.15, touchType: "attention_proxy" }
         ],
@@ -2663,9 +2449,9 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.92,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "PF", kind: "continuous", role: "position", weight: 0.90, touchType: "identity_loyalty" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.35, touchType: "camp_attachment" },
-            { node: "ENG", kind: "continuous", role: "position", weight: 0.20, touchType: "activation_proxy" }
+            { node: "PF", kind: "continuous", role: "position", weight: 0.92, touchType: "identity_loyalty" },
+            { node: "ENG", kind: "continuous", role: "position", weight: 0.18, touchType: "activation_proxy" },
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.10, touchType: "camp_attachment" }
         ],
         optionEvidence: {
             // A: Say so publicly, even if it weakens my side
@@ -2680,7 +2466,6 @@ export const REPRESENTATIVE_QUESTIONS = [
             push_back_internally: {
                 continuous: {
                     PF: { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
-                    TRB: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
                     ENG: { pos: [0.10, 0.20, 0.35, 0.25, 0.10] }
                 }
             },
@@ -2713,10 +2498,10 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.91,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "CD", kind: "continuous", role: "position", weight: 0.75, touchType: "cultural_direction" },
-            { node: "CU", kind: "continuous", role: "position", weight: 0.85, touchType: "cultural_uniformity" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "moral_scope" },
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "economics_signal" }
+            { node: "CD", kind: "continuous", role: "position", weight: 0.90, touchType: "cultural_direction" },
+            { node: "CU", kind: "continuous", role: "position", weight: 0.88, touchType: "cultural_uniformity" },
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "moral_scope" },
+            { node: "MAT", kind: "continuous", role: "position", weight: 0.08, touchType: "economics_signal" }
         ],
         optionEvidence: {
             // A: Preserve inherited culture, tighter limits on openness
@@ -2767,7 +2552,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         touchProfile: [
             { node: "ENG", kind: "continuous", role: "position", weight: 0.55, touchType: "mobilization_style" },
             { node: "TRB", kind: "continuous", role: "position", weight: 0.45, touchType: "camp_attachment" },
-            { node: "CD", kind: "continuous", role: "position", weight: 0.35, touchType: "cultural_direction" },
+            { node: "CD", kind: "continuous", role: "position", weight: 0.60, touchType: "cultural_direction" },
             { node: "CU", kind: "continuous", role: "position", weight: 0.25, touchType: "cultural_uniformity" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "compromise_signal" }
         ],
@@ -2819,6 +2604,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         touchProfile: [
             { node: "ZS", kind: "continuous", role: "position", weight: 0.60, touchType: "zero_sum_institutions" },
+            { node: "ZS", kind: "continuous", role: "salience", weight: 0.60, touchType: "zero_sum_institutions" },
             { node: "ONT_H", kind: "continuous", role: "position", weight: 0.45, touchType: "hierarchy_trust" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "compromise_signal" },
             { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "procedural_trust" }
@@ -2827,7 +2613,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             // 1 = strongly disagree (institutions are fine, hierarchy natural)
             "0-20": {
                 continuous: {
-                    ZS: { pos: [0.55, 0.25, 0.12, 0.05, 0.03] },
+                    ZS: { pos: [0.55, 0.25, 0.12, 0.05, 0.03], sal: [0.55, 0.30, 0.12, 0.03] },
                     ONT_H: { pos: [0.03, 0.05, 0.12, 0.28, 0.52] },
                     COM: { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
                     PRO: { pos: [0.05, 0.10, 0.25, 0.35, 0.25] }
@@ -2836,7 +2622,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             // 2 = disagree
             "21-40": {
                 continuous: {
-                    ZS: { pos: [0.30, 0.35, 0.22, 0.08, 0.05] },
+                    ZS: { pos: [0.30, 0.35, 0.22, 0.08, 0.05], sal: [0.30, 0.40, 0.22, 0.08] },
                     ONT_H: { pos: [0.05, 0.10, 0.22, 0.38, 0.25] },
                     COM: { pos: [0.08, 0.15, 0.30, 0.30, 0.17] },
                     PRO: { pos: [0.08, 0.12, 0.30, 0.30, 0.20] }
@@ -2845,7 +2631,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             // 3 = mixed
             "41-60": {
                 continuous: {
-                    ZS: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
+                    ZS: { pos: [0.10, 0.20, 0.40, 0.20, 0.10], sal: [0.12, 0.28, 0.38, 0.22] },
                     ONT_H: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
                     COM: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
                     PRO: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] }
@@ -2854,7 +2640,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             // 4 = agree
             "61-80": {
                 continuous: {
-                    ZS: { pos: [0.05, 0.08, 0.22, 0.35, 0.30] },
+                    ZS: { pos: [0.05, 0.08, 0.22, 0.35, 0.30], sal: [0.04, 0.15, 0.40, 0.41] },
                     ONT_H: { pos: [0.25, 0.38, 0.22, 0.10, 0.05] },
                     COM: { pos: [0.17, 0.30, 0.30, 0.15, 0.08] },
                     PRO: { pos: [0.20, 0.30, 0.30, 0.12, 0.08] }
@@ -2863,7 +2649,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             // 5 = strongly agree (institutions always corrupt, domination inevitable)
             "81-100": {
                 continuous: {
-                    ZS: { pos: [0.03, 0.05, 0.12, 0.25, 0.55] },
+                    ZS: { pos: [0.03, 0.05, 0.12, 0.25, 0.55], sal: [0.02, 0.08, 0.30, 0.60] },
                     ONT_H: { pos: [0.52, 0.28, 0.12, 0.05, 0.03] },
                     COM: { pos: [0.28, 0.35, 0.22, 0.10, 0.05] },
                     PRO: { pos: [0.25, 0.35, 0.25, 0.10, 0.05] }
@@ -2882,9 +2668,9 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.91,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.80, touchType: "procedural_legitimacy" },
-            { node: "CD", kind: "continuous", role: "position", weight: 0.35, touchType: "cultural_direction" },
-            { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "compromise_signal" }
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.88, touchType: "procedural_legitimacy" },
+            { node: "CD", kind: "continuous", role: "position", weight: 0.20, touchType: "cultural_direction" },
+            { node: "COM", kind: "continuous", role: "position", weight: 0.08, touchType: "compromise_signal" }
         ],
         optionEvidence: {
             // A: It carries inherited ways of life forward

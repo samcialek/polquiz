@@ -25,6 +25,7 @@ var PrismEngine = (() => {
     attachToExistingQuiz: () => attachToExistingQuiz,
     canGoBack: () => canGoBack,
     getArchetypeCount: () => getArchetypeCount,
+    getIdentityPrimaryResult: () => getIdentityPrimaryResult,
     getNextQuestion: () => getNextQuestion,
     getProgress: () => getProgress,
     getQuestionDef: () => getQuestionDef,
@@ -44,7 +45,7 @@ var PrismEngine = (() => {
       id: "001",
       name: "Rawlsian Reformer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -66,7 +67,7 @@ var PrismEngine = (() => {
       id: "002",
       name: "Independent Social Democrat",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -88,7 +89,7 @@ var PrismEngine = (() => {
       id: "003",
       name: "Consensus Redistributionist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -110,7 +111,7 @@ var PrismEngine = (() => {
       id: "004",
       name: "Labor Reformer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -132,7 +133,7 @@ var PrismEngine = (() => {
       id: "005",
       name: "Pluralist Structuralist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -154,7 +155,7 @@ var PrismEngine = (() => {
       id: "006",
       name: "Fairness Pragmatist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -178,7 +179,7 @@ var PrismEngine = (() => {
       id: "007",
       name: "Solidarist Reformer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -200,7 +201,7 @@ var PrismEngine = (() => {
       id: "008",
       name: "Procedural Redistributionist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -222,7 +223,7 @@ var PrismEngine = (() => {
       id: "010",
       name: "Bread-and-Butter Progressive",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -244,7 +245,7 @@ var PrismEngine = (() => {
       id: "011",
       name: "Jacobin Egalitarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -266,7 +267,7 @@ var PrismEngine = (() => {
       id: "012",
       name: "Class-War Leftist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -288,7 +289,7 @@ var PrismEngine = (() => {
       id: "013",
       name: "Radical Leveler",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -310,7 +311,7 @@ var PrismEngine = (() => {
       id: "014",
       name: "Activist Progressive",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -332,7 +333,7 @@ var PrismEngine = (() => {
       id: "015",
       name: "Moral Firebrand",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -354,7 +355,7 @@ var PrismEngine = (() => {
       id: "016",
       name: "Insurgent Equalizer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -376,7 +377,7 @@ var PrismEngine = (() => {
       id: "017",
       name: "Uncompromising Redistributionist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -424,7 +425,7 @@ var PrismEngine = (() => {
       id: "020",
       name: "Grassroots Autonomist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -455,7 +456,7 @@ var PrismEngine = (() => {
       id: "021",
       name: "Principled Cosmopolitan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -483,7 +484,7 @@ var PrismEngine = (() => {
       id: "022",
       name: "Pluralist Universalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -534,7 +535,7 @@ var PrismEngine = (() => {
       id: "024",
       name: "Ethical Internationalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -582,7 +583,7 @@ var PrismEngine = (() => {
       id: "026",
       name: "Cosmopolitan Pragmatist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -604,7 +605,7 @@ var PrismEngine = (() => {
       id: "027",
       name: "Popperian Liberal",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -626,7 +627,7 @@ var PrismEngine = (() => {
       id: "028",
       name: "Global Caretaker",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -648,7 +649,7 @@ var PrismEngine = (() => {
       id: "029",
       name: "Liberationist Progressive",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -670,7 +671,7 @@ var PrismEngine = (() => {
       id: "031",
       name: "Planetary Steward",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -692,7 +693,7 @@ var PrismEngine = (() => {
       id: "032",
       name: "Hamiltonian Technocrat",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -715,7 +716,7 @@ var PrismEngine = (() => {
       id: "033",
       name: "Systems Modernizer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -759,7 +760,7 @@ var PrismEngine = (() => {
       id: "035",
       name: "Administrative Liberal",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -781,7 +782,7 @@ var PrismEngine = (() => {
       id: "036",
       name: "Institutional Optimizer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -803,7 +804,7 @@ var PrismEngine = (() => {
       id: "037",
       name: "Fabian Modernizer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -825,7 +826,7 @@ var PrismEngine = (() => {
       id: "039",
       name: "Data-Driven Moderate",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -847,7 +848,7 @@ var PrismEngine = (() => {
       id: "040",
       name: "Reform Engineer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -869,7 +870,7 @@ var PrismEngine = (() => {
       id: "042",
       name: "Localist Progressive",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -891,7 +892,7 @@ var PrismEngine = (() => {
       id: "043",
       name: "Quiet Egalitarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -913,7 +914,7 @@ var PrismEngine = (() => {
       id: "045",
       name: "Rooted Social Reformer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -935,7 +936,7 @@ var PrismEngine = (() => {
       id: "046",
       name: "Pastoral Leftist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -979,7 +980,7 @@ var PrismEngine = (() => {
       id: "048",
       name: "Solidaristic Localist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1001,7 +1002,7 @@ var PrismEngine = (() => {
       id: "049",
       name: "Moral Egalitarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1023,7 +1024,7 @@ var PrismEngine = (() => {
       id: "050",
       name: "Traditionalist Moralist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1045,7 +1046,7 @@ var PrismEngine = (() => {
       id: "051",
       name: "Systemic Redistributionist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1067,7 +1068,7 @@ var PrismEngine = (() => {
       id: "053",
       name: "Consensus Builder",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1089,7 +1090,7 @@ var PrismEngine = (() => {
       id: "054",
       name: "Arbiter Moderate",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1112,7 +1113,7 @@ var PrismEngine = (() => {
       id: "056",
       name: "Institutional Centrist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1134,7 +1135,7 @@ var PrismEngine = (() => {
       id: "057",
       name: "Temperate Pluralist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1156,7 +1157,7 @@ var PrismEngine = (() => {
       id: "059",
       name: "Public-Minded Moderate",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1178,7 +1179,7 @@ var PrismEngine = (() => {
       id: "060",
       name: "Hinge Citizen",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1200,7 +1201,7 @@ var PrismEngine = (() => {
       id: "061",
       name: "Millian Liberal",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1222,7 +1223,7 @@ var PrismEngine = (() => {
       id: "062",
       name: "Meritocratic Liberal",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1244,7 +1245,7 @@ var PrismEngine = (() => {
       id: "063",
       name: "Enterprise Pluralist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1289,7 +1290,7 @@ var PrismEngine = (() => {
       id: "065",
       name: "Opportunity Liberal",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1311,7 +1312,7 @@ var PrismEngine = (() => {
       id: "067",
       name: "Free-Exchange Modernist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -1333,7 +1334,7 @@ var PrismEngine = (() => {
       id: "069",
       name: "Bleeding-Heart Libertarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1355,7 +1356,7 @@ var PrismEngine = (() => {
       id: "070",
       name: "Burkean Steward",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1377,7 +1378,7 @@ var PrismEngine = (() => {
       id: "071",
       name: "Constitutional Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2 },
@@ -1399,7 +1400,7 @@ var PrismEngine = (() => {
       id: "072",
       name: "Blackstone Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1421,7 +1422,7 @@ var PrismEngine = (() => {
       id: "073",
       name: "Civic Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1443,7 +1444,7 @@ var PrismEngine = (() => {
       id: "074",
       name: "Responsible Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1465,7 +1466,7 @@ var PrismEngine = (() => {
       id: "076",
       name: "Fiscal Gradualist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1487,7 +1488,7 @@ var PrismEngine = (() => {
       id: "077",
       name: "Ordered Libertarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1509,7 +1510,7 @@ var PrismEngine = (() => {
       id: "078",
       name: "Meritocratic Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1531,7 +1532,7 @@ var PrismEngine = (() => {
       id: "079",
       name: "National Developmentalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1559,7 +1560,7 @@ var PrismEngine = (() => {
       id: "081",
       name: "Heritage Guardian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1581,7 +1582,7 @@ var PrismEngine = (() => {
       id: "082",
       name: "Altar-and-Hearth Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1603,7 +1604,7 @@ var PrismEngine = (() => {
       id: "083",
       name: "Closed Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1625,7 +1626,7 @@ var PrismEngine = (() => {
       id: "084",
       name: "Civilizational Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1647,7 +1648,7 @@ var PrismEngine = (() => {
       id: "085",
       name: "Customary Localist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1669,7 +1670,7 @@ var PrismEngine = (() => {
       id: "086",
       name: "Duty Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1691,7 +1692,7 @@ var PrismEngine = (() => {
       id: "087",
       name: "Continuity Conservative",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1713,7 +1714,7 @@ var PrismEngine = (() => {
       id: "088",
       name: "Gentle Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1735,7 +1736,7 @@ var PrismEngine = (() => {
       id: "089",
       name: "Integral Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1757,7 +1758,7 @@ var PrismEngine = (() => {
       id: "090",
       name: "Hobbesian Guardian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1781,7 +1782,7 @@ var PrismEngine = (() => {
       id: "091",
       name: "Security Paternalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1803,7 +1804,7 @@ var PrismEngine = (() => {
       id: "092",
       name: "Partisan Tribalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1825,7 +1826,7 @@ var PrismEngine = (() => {
       id: "094",
       name: "Hard-State Manager",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1847,7 +1848,7 @@ var PrismEngine = (() => {
       id: "095",
       name: "Emergency Orderist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1869,7 +1870,7 @@ var PrismEngine = (() => {
       id: "097",
       name: "Authority Pragmatist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1891,7 +1892,7 @@ var PrismEngine = (() => {
       id: "098",
       name: "Anti-Elite Populist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1913,7 +1914,7 @@ var PrismEngine = (() => {
       id: "099",
       name: "Scarcity Populist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1935,7 +1936,7 @@ var PrismEngine = (() => {
       id: "100",
       name: "Tribal Insurgent",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1957,7 +1958,7 @@ var PrismEngine = (() => {
       id: "101",
       name: "Embattled Majoritarian",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1979,7 +1980,7 @@ var PrismEngine = (() => {
       id: "103",
       name: "Grievance Mobilizer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2002,7 +2003,7 @@ var PrismEngine = (() => {
       id: "104",
       name: "National Protector",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2024,7 +2025,7 @@ var PrismEngine = (() => {
       id: "105",
       name: "Combative Populist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2046,7 +2047,7 @@ var PrismEngine = (() => {
       id: "106",
       name: "Militant Partisan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2068,7 +2069,7 @@ var PrismEngine = (() => {
       id: "107",
       name: "Resentful Localist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2096,7 +2097,7 @@ var PrismEngine = (() => {
       id: "109",
       name: "Alienated Outsider",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2118,7 +2119,7 @@ var PrismEngine = (() => {
       id: "110",
       name: "Principled Abstainer",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2140,7 +2141,7 @@ var PrismEngine = (() => {
       id: "111",
       name: "Cosmopolitan Nonconformist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2162,7 +2163,7 @@ var PrismEngine = (() => {
       id: "112",
       name: "Engaged Cosmopolitan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2184,7 +2185,7 @@ var PrismEngine = (() => {
       id: "115",
       name: "Quietist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         // raised sal 0→1 (discriminator vs Ecological Localist)
@@ -2208,7 +2209,7 @@ var PrismEngine = (() => {
       id: "116",
       name: "Quiet Middle",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2230,7 +2231,7 @@ var PrismEngine = (() => {
       id: "117",
       name: "Comfortable Bystander",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2253,7 +2254,7 @@ var PrismEngine = (() => {
       id: "118",
       name: "Survival Pragmatist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2275,7 +2276,7 @@ var PrismEngine = (() => {
       id: "119",
       name: "Apolitical Striver",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2297,7 +2298,7 @@ var PrismEngine = (() => {
       id: "120",
       name: "Good Neighbor",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -2319,7 +2320,7 @@ var PrismEngine = (() => {
       id: "121",
       name: "Spectator Citizen",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2341,7 +2342,7 @@ var PrismEngine = (() => {
       id: "122",
       name: "Civic Minimalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2363,7 +2364,7 @@ var PrismEngine = (() => {
       id: "124",
       name: "Latent Alarmist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2385,7 +2386,7 @@ var PrismEngine = (() => {
       id: "125",
       name: "Reluctant Partisan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2407,7 +2408,7 @@ var PrismEngine = (() => {
       id: "126",
       name: "Uncompromising Activist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2429,7 +2430,7 @@ var PrismEngine = (() => {
       id: "127",
       name: "Tribal Loyalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2451,7 +2452,7 @@ var PrismEngine = (() => {
       id: "128",
       name: "Loyal Democrat",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2474,7 +2475,7 @@ var PrismEngine = (() => {
       id: "129",
       name: "Loyal Republican",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2519,7 +2520,7 @@ var PrismEngine = (() => {
       id: "131",
       name: "Duty Voter",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2541,7 +2542,7 @@ var PrismEngine = (() => {
       id: "132",
       name: "Negative Partisan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2563,7 +2564,7 @@ var PrismEngine = (() => {
       id: "134",
       name: "Progressive Civic Nationalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2586,7 +2587,7 @@ var PrismEngine = (() => {
       id: "135",
       name: "Disruptive Cosmopolitan",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -2611,7 +2612,7 @@ var PrismEngine = (() => {
       id: "136",
       name: "Aspirational Traditionalist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2637,7 +2638,7 @@ var PrismEngine = (() => {
       id: "137",
       name: "Moral Crusader",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2661,7 +2662,7 @@ var PrismEngine = (() => {
       id: "138",
       name: "Optimistic Challenger",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2686,7 +2687,7 @@ var PrismEngine = (() => {
       id: "139",
       name: "Civic Assimilationist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2709,7 +2710,7 @@ var PrismEngine = (() => {
       id: "140",
       name: "Market Green Modernist",
       tier: "T1",
-      prior: 1 / 112,
+      prior: 1 / 118,
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -2728,6 +2729,171 @@ var PrismEngine = (() => {
         // Empiricist
         AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
         // Systematic
+      }
+    },
+    // ═══════════════════════════════════════════════════════════════════════════
+    // Identity-Primary Archetypes (141–146)
+    //
+    // These activate when tribalism and political fusion are the dominant signal
+    // and the respondent's identity anchor + demographics confirm the fit.
+    // Other nodes reflect the group's characteristic political tendencies, but
+    // TRB/PF/ENG are the defining feature — politics is identity-first.
+    // ═══════════════════════════════════════════════════════════════════════════
+    {
+      id: "141",
+      name: "Black Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Strong group-linked Democratic alignment. Redistributionist on economics,
+        // moderate-progressive on culture, high community solidarity.
+        MAT: { kind: "continuous", pos: 2, sal: 2 },
+        CD: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 4, sal: 1 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
+        PRO: { kind: "continuous", pos: 3, sal: 1 },
+        COM: { kind: "continuous", pos: 3, sal: 1 },
+        ZS: { kind: "continuous", pos: 3, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.15, 0.3, 0.15, 0.25, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.1, 0.05, 0.2, 0.4, 0.15, 0.1], sal: 1 }
+        // Authentic
+      }
+    },
+    {
+      id: "142",
+      name: "White Grievance Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Ethno-cultural displacement threat. Cultural uniformity and narrow moral
+        // circle are the anchors — not zero-sum competition per se. Sees society
+        // losing its cultural identity, not losing a competitive game.
+        MAT: { kind: "continuous", pos: 3, sal: 1 },
+        CD: { kind: "continuous", pos: 5, sal: 3 },
+        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PRO: { kind: "continuous", pos: 2, sal: 1 },
+        COM: { kind: "continuous", pos: 2, sal: 2 },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.1, 0.25, 0.4, 0.1, 0.1], sal: 1 },
+        // Intuitionist
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.3, 0.4, 0.1], sal: 2 }
+        // Fighter
+      }
+    },
+    {
+      id: "143",
+      name: "Evangelical Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Religion-centered identity. Traditional morality is the defining axis.
+        // Moderate economics, strong cultural conservatism, community-anchored.
+        MAT: { kind: "continuous", pos: 3, sal: 1 },
+        CD: { kind: "continuous", pos: 5, sal: 3 },
+        CU: { kind: "continuous", pos: 4, sal: 2 },
+        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PRO: { kind: "continuous", pos: 3, sal: 1 },
+        COM: { kind: "continuous", pos: 3, sal: 1 },
+        ZS: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.15, 0.5, 0.2, 0.05, 0.05], sal: 2 },
+        // Traditionalist
+        AES: { kind: "categorical", probs: [0.1, 0.05, 0.5, 0.15, 0.1, 0.1], sal: 2 }
+        // Pastoral
+      }
+    },
+    {
+      id: "144",
+      name: "LGBTQ Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Sexual-identity-centered. Strongly progressive on culture, expansive moral
+        // circle, community-driven politics. Strong Democratic alignment.
+        MAT: { kind: "continuous", pos: 2, sal: 1 },
+        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        CU: { kind: "continuous", pos: 5, sal: 2 },
+        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        PRO: { kind: "continuous", pos: 3, sal: 1 },
+        COM: { kind: "continuous", pos: 3, sal: 1 },
+        ZS: { kind: "continuous", pos: 3, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.2, 0.15, 0.05, 0.15, 0.35, 0.1], sal: 1 },
+        // Autonomous
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.45, 0.15, 0.2], sal: 1 }
+        // Authentic
+      }
+    },
+    {
+      id: "145",
+      name: "Feminist Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Gender-equity-centered. Progressive on culture, systemic structural
+        // orientation, expansive moral circle. Strong Democratic alignment.
+        MAT: { kind: "continuous", pos: 2, sal: 1 },
+        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        CU: { kind: "continuous", pos: 4, sal: 1 },
+        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        PRO: { kind: "continuous", pos: 4, sal: 2 },
+        COM: { kind: "continuous", pos: 3, sal: 1 },
+        ZS: { kind: "continuous", pos: 3, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 5, sal: 3 },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.3, 0.2, 0.05, 0.1, 0.25, 0.1], sal: 1 },
+        // Empiricist
+        AES: { kind: "categorical", probs: [0.1, 0.05, 0.1, 0.25, 0.3, 0.2], sal: 1 }
+        // Fighter/Visionary
+      }
+    },
+    {
+      id: "146",
+      name: "Male Grievance Voter",
+      tier: "T2",
+      prior: 1 / 118,
+      nodes: {
+        // Gender-anchored backlash. Hierarchy-driven, anti-procedural, zero-sum.
+        // Less about cultural uniformity than White Grievance — more about
+        // natural-order hierarchy and seeing institutions as rigged against men.
+        MAT: { kind: "continuous", pos: 3, sal: 1 },
+        CD: { kind: "continuous", pos: 5, sal: 3 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        PRO: { kind: "continuous", pos: 1, sal: 2 },
+        COM: { kind: "continuous", pos: 1, sal: 2 },
+        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        ONT_H: { kind: "continuous", pos: 1, sal: 3 },
+        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 5, sal: 3 },
+        TRB: { kind: "continuous", pos: 5, sal: 3 },
+        ENG: { kind: "continuous", pos: 4, sal: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.25, 0.25, 0.3], sal: 1 },
+        // Nihilist/Autonomous
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.2, 0.5, 0.15], sal: 2 }
+        // Fighter
       }
     }
   ];
@@ -3090,6 +3256,8 @@ var PrismEngine = (() => {
         religious_identity: { trbAnchor: { religious: 1 } },
         class_identity: { trbAnchor: { class: 1 } },
         ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
+        gender_identity: { trbAnchor: { gender: 1 } },
+        sexual_identity: { trbAnchor: { sexual: 1 } },
         global_citizen: { trbAnchor: { global: 1 } }
       }
     },
@@ -5206,6 +5374,8 @@ var PrismEngine = (() => {
     "religious",
     "class",
     "ethnic_racial",
+    "gender",
+    "sexual",
     "global",
     "mixed_none"
   ];
@@ -6076,6 +6246,188 @@ var PrismEngine = (() => {
     return primaryStop || secondaryStop || ultraConfStop || lateGameStop || hardCapStop;
   }
 
+  // src/identity/resolveIdentityPrimary.ts
+  var TRB_ANCHOR_ORDER2 = [
+    "national",
+    "ideological",
+    "religious",
+    "class",
+    "ethnic_racial",
+    "gender",
+    "sexual",
+    "global",
+    "mixed_none"
+  ];
+  function expectedContinuous(state, nodeId) {
+    const node = state.continuous[nodeId];
+    if (!node) return 3;
+    return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
+  }
+  function topAnchor(state) {
+    const dist = state.trbAnchor?.dist;
+    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) return "mixed_none";
+    let bestIdx = 0;
+    for (let i = 1; i < dist.length; i++) {
+      if (dist[i] > dist[bestIdx]) bestIdx = i;
+    }
+    return TRB_ANCHOR_ORDER2[bestIdx];
+  }
+  function resolveIdentityPrimary(state, demographics) {
+    const trb = expectedContinuous(state, "TRB");
+    const pf = expectedContinuous(state, "PF");
+    const eng = expectedContinuous(state, "ENG");
+    const zs = expectedContinuous(state, "ZS");
+    const cd = expectedContinuous(state, "CD");
+    const onts = expectedContinuous(state, "ONT_S");
+    const mor = expectedContinuous(state, "MOR");
+    const anchor = topAnchor(state);
+    const passedLatent = trb >= 3 && pf >= 3;
+    const passedActive = trb >= 4 && pf >= 4 && eng >= 3;
+    const passedDominant = trb >= 4 && pf >= 4 && eng >= 4;
+    const gate = { trb, pf, eng, passedLatent, passedActive, passedDominant };
+    if (!passedLatent) {
+      return { state: "none", anchor, reasonCodes: ["gate_not_met"], gate };
+    }
+    const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
+    if (anchor === "ethnic_racial") {
+      const race = typeof demographics?.demo_ethnicity === "string" ? demographics.demo_ethnicity : "";
+      if (race === "black") {
+        return {
+          state: stateLabel,
+          label: "Black Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor,
+          reasonCodes: ["racial_anchor", "black_demographic_match"],
+          gate
+        };
+      }
+      if (race === "white") {
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "White Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["racial_anchor", "white_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor,
+          reasonCodes: ["racial_anchor", "white_demographic_match", "insufficient_grievance_signal"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["racial_anchor", "missing_or_nonresolving_race_demographic"],
+        gate
+      };
+    }
+    if (anchor === "religious") {
+      const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
+      if (religion === "christian") {
+        return {
+          state: stateLabel,
+          label: "Evangelical Voter",
+          confidence: passedActive ? "medium" : "low",
+          anchor,
+          reasonCodes: ["religious_anchor", "christian_demographic_match"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["religious_anchor", "missing_or_non_evangelical_religion_detail"],
+        gate
+      };
+    }
+    if (anchor === "sexual") {
+      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+      if (lgbtq === "yes") {
+        return {
+          state: stateLabel,
+          label: "LGBTQ Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor,
+          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["sexual_anchor", "missing_or_non_lgbtq_demographic"],
+        gate
+      };
+    }
+    if (anchor === "gender") {
+      const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
+      if (gender === "female") {
+        const feministSignals = Number(cd <= 2.5) + Number(mor >= 3.5) + Number(onts >= 3.5);
+        if (feministSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Feminist Voter",
+            confidence: feministSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["gender_anchor", "female_demographic_match", "progressive_gender_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor,
+          reasonCodes: ["gender_anchor", "female_demographic_match", "insufficient_feminist_signal"],
+          gate
+        };
+      }
+      if (gender === "male") {
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Male Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["gender_anchor", "male_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor,
+          reasonCodes: ["gender_anchor", "male_demographic_match", "insufficient_grievance_signal"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["gender_anchor", "missing_or_nonresolving_gender_demographic"],
+        gate
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor,
+      reasonCodes: ["identity_pattern_detected_but_anchor_not_yet_resolvable"],
+      gate
+    };
+  }
+
   // src/browser/api.ts
   var _state = null;
   var _archetypes = [];
@@ -6170,7 +6522,7 @@ var PrismEngine = (() => {
       continuous,
       categorical,
       trbAnchor: {
-        dist: [1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7, 1 / 7],
+        dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
         touches: 0
       },
       archetypePosterior,
@@ -6406,8 +6758,16 @@ var PrismEngine = (() => {
     return {
       continuous,
       categorical,
+      trbAnchor: {
+        dist: [..._state.trbAnchor.dist],
+        touches: _state.trbAnchor.touches
+      },
       ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
     };
+  }
+  function getIdentityPrimaryResult(demographics) {
+    if (!_state) return null;
+    return resolveIdentityPrimary(_state, demographics ?? null);
   }
   function applyRatioBoost(questionId, ratio) {
     _ratioBoosts.set(questionId, ratio);
