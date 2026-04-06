@@ -91,6 +91,8 @@ const specialParty = {
   '1904_Roosevelt': 'rep',
   '1932_Roosevelt': 'dem', '1936_Roosevelt': 'dem',
   '1940_Roosevelt': 'dem', '1944_Roosevelt': 'dem',
+  // Gary Johnson 2016 vs LBJ 1964
+  '2016_Johnson': 'third',
 };
 
 const elections = {};

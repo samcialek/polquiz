@@ -68,6 +68,12 @@ const HISTORICAL_PARTY = {
 
   // 1992/1996: Perot
   "1992:Perot": "reform",
+
+  // 2000: Nader Green
+  "2000:Nader": "green",
+
+  // 2016: Gary Johnson Libertarian
+  "2016:Johnson": "libertarian",
 };
 
 function getHistoricalParty(year, candidate, simpleParty) {
@@ -98,6 +104,8 @@ const PARTY_COLORS = {
   "am-indep":    { bg: "#984ea3", fg: "#fff", label: "Am. Independent" },
   "independent": { bg: "#999999", fg: "#fff", label: "Independent" },
   "reform":      { bg: "#ff7f00", fg: "#000", label: "Reform" },
+  "green":       { bg: "#2ca02c", fg: "#fff", label: "Green" },
+  "libertarian": { bg: "#ffd700", fg: "#000", label: "Libertarian" },
   "nonpartisan": { bg: "#c8b87c", fg: "#000", label: "Nonpartisan" },
   "abstain":     { bg: "#1a1a2e", fg: "#444", label: "Abstain" },
   "other":       { bg: "#666666", fg: "#fff", label: "Other" },
