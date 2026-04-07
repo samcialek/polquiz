@@ -433,6 +433,26 @@
         font-weight: 700;
         color: var(--ink-faint);
     }
+    .tradeoff-equal {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        color: var(--ink-faint);
+        text-align: center;
+        padding: 0.6rem 1.2rem;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.15s;
+    }
+    .tradeoff-equal:hover {
+        color: var(--ink);
+        border-color: var(--ink-faint);
+    }
+    .tradeoff-equal.selected {
+        color: var(--ink);
+        border-color: var(--flesh);
+        background: var(--flesh-light);
+    }
     .tradeoff-ratio-section {
         display: none;
         flex-direction: column;
@@ -1740,6 +1760,7 @@ function renderErrorTradeoff(q) {
     html += '<div class="tradeoff-vs">vs</div>';
     html += `<div class="tradeoff-option" id="to-${opts[1]}" onclick="selectTradeoff('${opts[1]}')">${labelB}</div>`;
     html += '</div>';
+    html += `<div class="tradeoff-equal" onclick="selectTradeoffEqual()">Both are equally bad</div>`;
 
     html += '<div class="tradeoff-ratio-section" id="ratio-section">';
     html += '<div class="tradeoff-ratio-prompt">How much worse? Pick a ratio:</div>';
@@ -1756,8 +1777,21 @@ function renderErrorTradeoff(q) {
 function selectTradeoff(optKey) {
     tradeoffChoice = optKey;
     document.querySelectorAll('.tradeoff-option').forEach(el => el.classList.remove('selected'));
+    document.querySelector('.tradeoff-equal')?.classList.remove('selected');
     document.getElementById('to-' + optKey).classList.add('selected');
     document.getElementById('ratio-section').classList.add('visible');
+}
+
+function selectTradeoffEqual() {
+    document.querySelectorAll('.tradeoff-option').forEach(el => el.classList.remove('selected'));
+    document.querySelector('.tradeoff-equal')?.classList.add('selected');
+    setTimeout(() => {
+        // Submit first option with no ratio boost — equal weight means no asymmetry
+        const opts = document.querySelectorAll('.tradeoff-option');
+        const firstKey = opts[0]?.id?.replace('to-', '') || '';
+        PrismEngine.submitAnswer(tradeoffQId, firstKey);
+        showQuestion();
+    }, 350);
 }
 
 function selectRatio(el, ratio) {
@@ -1771,26 +1805,68 @@ function selectRatio(el, ratio) {
     }, 350);
 }
 
-// section
+// Pairwise: show one pair at a time, collect answers, then submit combined result
+let _pairState = null; // { qId, pairIds, answers: {}, currentIdx }
+
 function renderPairwise(q) {
-    const letters = 'AB';
-    const opts = q.options || ['option_a', 'option_b'];
-    const labels = opts.map(opt => getOptLabel(opt, q));
-    const avgWords = labels.length > 0
-        ? labels.reduce((sum, l) => sum + l.split(/\s+/).length, 0) / labels.length
-        : 0;
+    const pairIds = q.pairIds || [];
+    if (pairIds.length === 0) return '<div>No pairs defined</div>';
+
+    _pairState = { qId: q.id, pairIds, answers: {}, currentIdx: 0 };
+    return '<div id="pairwise-area">' + renderCurrentPair() + '</div>';
+}
+
+function renderCurrentPair() {
+    if (!_pairState) return '';
+    const pairId = _pairState.pairIds[_pairState.currentIdx];
+    const sides = pairId.split('_vs_');
+    const optA = sides[0];
+    const optB = sides.slice(1).join('_vs_');
+    const labelA = getOptLabel(optA, {});
+    const labelB = getOptLabel(optB, {});
+    const labels = [labelA, labelB];
+    const avgWords = labels.reduce((sum, l) => sum + l.split(/\s+/).length, 0) / labels.length;
     const longClass = avgWords >= 8 ? ' long-option' : '';
-    let html = '<div class="mc-options">';
-    opts.forEach((opt, i) => {
-        html += `
-            <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
-                <div class="mc-marker">${letters[i]}</div>
-                <div class="mc-text${longClass}">${labels[i]}</div>
-            </div>
-        `;
-    });
+
+    const progress = _pairState.pairIds.length > 1
+        ? `<div style="font-size:0.75rem;color:var(--ink-faint);margin-bottom:0.5rem;">Pair ${_pairState.currentIdx + 1} of ${_pairState.pairIds.length}</div>`
+        : '';
+
+    let html = progress + '<div class="mc-options">';
+    html += `
+        <div class="mc-option" onclick="selectPairOption('${optA}')">
+            <div class="mc-marker">A</div>
+            <div class="mc-text${longClass}">${labelA}</div>
+        </div>
+        <div class="mc-option" onclick="selectPairOption('${optB}')">
+            <div class="mc-marker">B</div>
+            <div class="mc-text${longClass}">${labelB}</div>
+        </div>
+    `;
     html += '</div>';
     return html;
+}
+
+function selectPairOption(chosen) {
+    if (!_pairState) return;
+    const pairId = _pairState.pairIds[_pairState.currentIdx];
+    _pairState.answers[pairId] = chosen;
+
+    // Highlight selection briefly
+    event.target.closest('.mc-option')?.classList.add('selected');
+
+    setTimeout(() => {
+        _pairState.currentIdx++;
+        if (_pairState.currentIdx < _pairState.pairIds.length) {
+            // Show next pair
+            document.getElementById('pairwise-area').innerHTML = renderCurrentPair();
+        } else {
+            // All pairs answered — submit combined result
+            PrismEngine.submitAnswer(_pairState.qId, _pairState.answers);
+            _pairState = null;
+            showQuestion();
+        }
+    }, 350);
 }
 
 // Demographics (post-quiz, pre-results)
@@ -1960,7 +2036,7 @@ function actuallyShowResults() {
     localStorage.setItem('prism_results', JSON.stringify(prismResults));
 
     // Redirect to results page
-    window.location.href = 'prism-results.html?id=' + results.match.id;
+    window.location.href = 'results-live.html?id=' + results.match.id;
 }
 
 // Drag-and-drop for rankingâ"€
