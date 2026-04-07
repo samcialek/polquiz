@@ -1481,15 +1481,18 @@ function getOptLabel(key, q) {
 // Multiple choiceâ"€â"€â"€â"€
 function renderMC(q) {
     const letters = 'ABCDEFGHIJKLMNOP';
+    const opts = q.options || [];
+    const labels = opts.map(opt => getOptLabel(opt, q));
+    const avgWords = labels.length > 0
+        ? labels.reduce((sum, l) => sum + l.split(/\s+/).length, 0) / labels.length
+        : 0;
+    const longClass = avgWords >= 8 ? ' long-option' : '';
     let html = '<div class="mc-options">';
-    (q.options || []).forEach((opt, i) => {
-        const label = getOptLabel(opt, q);
-        const wordCount = label.split(/\s+/).length;
-        const longClass = wordCount > 8 ? ' long-option' : '';
+    opts.forEach((opt, i) => {
         html += `
             <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
                 <div class="mc-marker">${letters[i] || ''}</div>
-                <div class="mc-text${longClass}">${label}</div>
+                <div class="mc-text${longClass}">${labels[i]}</div>
             </div>
         `;
     });
@@ -1771,15 +1774,18 @@ function selectRatio(el, ratio) {
 // section
 function renderPairwise(q) {
     const letters = 'AB';
+    const opts = q.options || ['option_a', 'option_b'];
+    const labels = opts.map(opt => getOptLabel(opt, q));
+    const avgWords = labels.length > 0
+        ? labels.reduce((sum, l) => sum + l.split(/\s+/).length, 0) / labels.length
+        : 0;
+    const longClass = avgWords >= 8 ? ' long-option' : '';
     let html = '<div class="mc-options">';
-    (q.options || ['option_a', 'option_b']).forEach((opt, i) => {
-        const label = getOptLabel(opt, q);
-        const wordCount = label.split(/\s+/).length;
-        const longClass = wordCount > 8 ? ' long-option' : '';
+    opts.forEach((opt, i) => {
         html += `
             <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
                 <div class="mc-marker">${letters[i]}</div>
-                <div class="mc-text${longClass}">${label}</div>
+                <div class="mc-text${longClass}">${labels[i]}</div>
             </div>
         `;
     });

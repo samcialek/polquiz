@@ -139,10 +139,12 @@ const archIds = Object.keys(elections).sort((a, b) => {
   return na - nb;
 });
 
-// Build archetype name lookup
+// Build archetype name + description lookup
 const archNames = {};
+const archDescs = {};
 for (const a of archetypes) {
   archNames[String(a.id)] = a.name;
+  archDescs[String(a.id)] = a.description || '';
 }
 
 // ── Generate HTML ─────────────────────────────────────────────────────────
@@ -195,7 +197,9 @@ function buildHtml() {
       voteMap[v.y] = v;
     }
 
-    let cells = `<td class="row-header sticky-col"><span class="arch-id">${id}</span> ${esc(name)}</td>`;
+    const desc = archDescs[id] || '';
+    const rowTitle = desc ? `${name}\n\n${desc}` : name;
+    let cells = `<td class="row-header sticky-col" title="${esc(rowTitle)}"><span class="arch-id">${id}</span> ${esc(name)}</td>`;
     for (const y of years) {
       const v = voteMap[y];
       if (!v) {
