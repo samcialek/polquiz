@@ -1495,13 +1495,21 @@ If a manager is successful but <em>not</em> a genius, you infer they must be att
 <text x="450" y="188" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="11" font-weight="500">drinking</text>
 <text x="450" y="201" text-anchor="middle" fill="rgba(91,168,217,0.75)" font-family="Inter,sans-serif" font-size="8">Y (latent)</text>
 <line x1="130" y1="190" x2="408" y2="190" stroke="rgba(91,168,217,0.2)" stroke-width="1" marker-end="url(#tc-dag-arr-blue-c)" stroke-dasharray="2,4"/>
-<!-- Layer 2: mediators, faded -->
+<!-- Layer 2a: craving suppression mediator (from Cut 2), faded -->
+<circle cx="270" cy="300" r="34" fill="none" stroke="#B05A3F" stroke-width="1.2" opacity="0.45"/>
+<text x="270" y="296" text-anchor="middle" fill="rgba(245,240,232,0.5)" font-family="Inter,sans-serif" font-size="9" font-weight="500">craving</text>
+<text x="270" y="308" text-anchor="middle" fill="rgba(245,240,232,0.5)" font-family="Inter,sans-serif" font-size="9" font-weight="500">suppression</text>
+<text x="270" y="320" text-anchor="middle" fill="rgba(176,90,63,0.45)" font-family="Inter,sans-serif" font-size="8">M&#x2081;</text>
+<line x1="106" y1="218" x2="242" y2="282" stroke="#B05A3F" stroke-width="1.2" marker-end="url(#tc-dag-arr-orange-c)" opacity="0.4"/>
+<line x1="298" y1="282" x2="420" y2="210" stroke="#B05A3F" stroke-width="1.2" marker-end="url(#tc-dag-arr-orange-c)" opacity="0.4"/>
+<text x="370" y="262" text-anchor="middle" fill="rgba(176,90,63,0.5)" font-family="Inter,sans-serif" font-size="16" font-weight="700" opacity="0.5">&minus;</text>
+<!-- Layer 2b: weight/confidence mediators (from Cut 2), faded -->
 <circle cx="190" cy="80" r="34" fill="none" stroke="#8FAE6A" stroke-width="1.2" opacity="0.55"/>
 <text x="190" y="78" text-anchor="middle" fill="rgba(245,240,232,0.6)" font-family="Inter,sans-serif" font-size="9" font-weight="500">weight loss</text>
-<text x="190" y="90" text-anchor="middle" fill="rgba(143,174,106,0.5)" font-family="Inter,sans-serif" font-size="8">M&#x2081;</text>
+<text x="190" y="90" text-anchor="middle" fill="rgba(143,174,106,0.5)" font-family="Inter,sans-serif" font-size="8">M&#x2082;</text>
 <circle cx="350" cy="80" r="34" fill="none" stroke="#8FAE6A" stroke-width="1.2" opacity="0.55"/>
 <text x="350" y="78" text-anchor="middle" fill="rgba(245,240,232,0.6)" font-family="Inter,sans-serif" font-size="9" font-weight="500">confidence</text>
-<text x="350" y="90" text-anchor="middle" fill="rgba(143,174,106,0.5)" font-family="Inter,sans-serif" font-size="8">M&#x2082;</text>
+<text x="350" y="90" text-anchor="middle" fill="rgba(143,174,106,0.5)" font-family="Inter,sans-serif" font-size="8">M&#x2083;</text>
 <line x1="112" y1="165" x2="166" y2="101" stroke="#8FAE6A" stroke-width="1.2" marker-end="url(#tc-dag-arr-green-c)" opacity="0.5"/>
 <line x1="224" y1="80" x2="316" y2="80" stroke="#8FAE6A" stroke-width="1.2" marker-end="url(#tc-dag-arr-green-c)" opacity="0.5"/>
 <line x1="374" y1="101" x2="428" y2="165" stroke="#8FAE6A" stroke-width="1.2" marker-end="url(#tc-dag-arr-green-c)" opacity="0.5"/>
@@ -1543,8 +1551,9 @@ If a manager is successful but <em>not</em> a genius, you infer they must be att
 <div class="slide-inner" style="display:flex;flex-direction:column;align-items:center">
 <div class="real-dag-title heading" id="real-dag-title">The Real Causal Structure</div>
 <div class="real-dag-wrap">
-<svg viewBox="0 0 1000 500" id="real-dag-svg">
+<svg viewBox="0 0 1000 520" id="real-dag-svg">
 <defs><marker id="dag-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(245,240,232,0.3)"/></marker></defs>
+<!-- Original edges -->
 <line x1="210" y1="250" x2="290" y2="130" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="0" data-to="1"/>
 <line x1="210" y1="250" x2="290" y2="250" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="0" data-to="2"/>
 <line x1="210" y1="260" x2="290" y2="370" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="0" data-to="3"/>
@@ -1555,6 +1564,17 @@ If a manager is successful but <em>not</em> a genius, you infer they must be att
 <line x1="415" y1="250" x2="490" y2="300" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="2" data-to="7"/>
 <line x1="415" y1="380" x2="490" y2="310" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="3" data-to="7"/>
 <line x1="610" y1="310" x2="640" y2="375" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="7" data-to="9"/>
+<!-- NEW: Appetite Suppression → Weight Loss -->
+<line x1="352" y1="225" x2="352" y2="145" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="2" data-to="1"/>
+<!-- NEW: Neurochemical → Confidence -->
+<line x1="415" y1="368" x2="640" y2="98" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="3" data-to="5"/>
+<!-- NEW: Confidence → Solo Drinking DOWN -->
+<line x1="700" y1="105" x2="703" y2="355" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="5" data-to="9"/>
+<!-- NEW: Social Drinking → Overall Consumption -->
+<line x1="920" y1="275" x2="890" y2="435" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="8" data-to="10"/>
+<!-- NEW: Solo Drinking → Overall Consumption -->
+<line x1="770" y1="390" x2="830" y2="445" stroke="rgba(245,240,232,0.18)" stroke-width="1" marker-end="url(#dag-arrowhead)" class="dag-edge" data-from="9" data-to="10"/>
+<!-- Nodes -->
 <g class="dag-node-g" data-idx="0" opacity="0"><rect x="90" y="225" width="120" height="50" rx="8" fill="transparent" stroke="#C49A4A" stroke-width="1"/><text x="150" y="255" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="14" font-weight="600">GLP-1</text></g>
 <g class="dag-node-g" data-idx="1" opacity="0"><rect x="290" y="95" width="125" height="50" rx="8" fill="transparent" stroke="rgba(245,240,232,0.2)" stroke-width="1"/><text x="352" y="125" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="13">Weight Loss</text></g>
 <g class="dag-node-g" data-idx="2" opacity="0"><rect x="290" y="225" width="125" height="50" rx="8" fill="transparent" stroke="rgba(245,240,232,0.2)" stroke-width="1"/><text x="352" y="248" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="11">Appetite</text><text x="352" y="264" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="11">Suppression</text></g>
@@ -1565,6 +1585,8 @@ If a manager is successful but <em>not</em> a genius, you infer they must be att
 <g class="dag-node-g" data-idx="7" opacity="0"><rect x="490" y="280" width="120" height="50" rx="8" fill="transparent" stroke="#B05A3F" stroke-width="1"/><text x="550" y="300" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="11">Reduced</text><text x="550" y="316" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="11">Cravings</text></g>
 <g class="dag-node-g" data-idx="8" opacity="0"><rect x="860" y="225" width="130" height="50" rx="8" fill="transparent" stroke="#8FAE6A" stroke-width="1"/><text x="925" y="248" text-anchor="middle" fill="#8FAE6A" font-family="Inter,sans-serif" font-size="12">Social Drinking ↑</text></g>
 <g class="dag-node-g" data-idx="9" opacity="0"><rect x="640" y="355" width="130" height="50" rx="8" fill="transparent" stroke="#B05A3F" stroke-width="1"/><text x="705" y="385" text-anchor="middle" fill="#B05A3F" font-family="Inter,sans-serif" font-size="12">Solo Drinking ↓</text></g>
+<!-- NEW: Overall Consumption terminal node -->
+<g class="dag-node-g" data-idx="10" opacity="0"><rect x="810" y="420" width="160" height="50" rx="8" fill="transparent" stroke="rgba(245,240,232,0.5)" stroke-width="1.5"/><text x="890" y="443" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="12" font-weight="600">Overall</text><text x="890" y="458" text-anchor="middle" fill="#f5f0e8" font-family="Inter,sans-serif" font-size="12" font-weight="600">Consumption</text></g>
 </svg>
 </div>
 <p class="real-dag-caption" id="real-dag-caption">Seven causal pathways. Three of them increase drinking in certain subgroups.</p>
