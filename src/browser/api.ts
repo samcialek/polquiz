@@ -58,6 +58,8 @@ export interface QuizQuestion {
   rankingItems?: string[];
   /** Pairwise pair IDs if applicable */
   pairIds?: string[];
+  /** Pairwise sub-option keys per pair: { pairId: [optA, optB] } */
+  pairOptions?: Record<string, string[]>;
   /** Best/worst items if applicable */
   bestWorstItems?: string[];
 }
@@ -312,6 +314,10 @@ function toQuizQuestion(q: QuestionDef): QuizQuestion {
 
   if (q.pairMaps) {
     out.pairIds = Object.keys(q.pairMaps);
+    out.pairOptions = {};
+    for (const [pairId, sides] of Object.entries(q.pairMaps)) {
+      out.pairOptions[pairId] = Object.keys(sides as Record<string, unknown>);
+    }
   }
 
   if (q.bestWorstMap) {

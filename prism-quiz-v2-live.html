@@ -1812,16 +1812,16 @@ function renderPairwise(q) {
     const pairIds = q.pairIds || [];
     if (pairIds.length === 0) return '<div>No pairs defined</div>';
 
-    _pairState = { qId: q.id, pairIds, answers: {}, currentIdx: 0 };
+    _pairState = { qId: q.id, pairIds, pairOptions: q.pairOptions || {}, answers: {}, currentIdx: 0 };
     return '<div id="pairwise-area">' + renderCurrentPair() + '</div>';
 }
 
 function renderCurrentPair() {
     if (!_pairState) return '';
     const pairId = _pairState.pairIds[_pairState.currentIdx];
-    const sides = pairId.split('_vs_');
-    const optA = sides[0];
-    const optB = sides.slice(1).join('_vs_');
+    const keys = _pairState.pairOptions[pairId] || [];
+    const optA = keys[0] || 'option_a';
+    const optB = keys[1] || 'option_b';
     const labelA = getOptLabel(optA, {});
     const labelB = getOptLabel(optB, {});
     const labels = [labelA, labelB];
