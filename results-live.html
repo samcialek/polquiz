@@ -19,15 +19,15 @@
     #loading { text-align: center; padding: 4rem; font-size: 1.2rem; }
 
     /* SECTION 1: ARCHETYPE */
-    #archetype-section { padding: 4rem 0 3rem; border-bottom: 2px solid var(--ink); }
-    .tier-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--flesh); color: var(--ink); padding: 0.25rem 0.7rem; margin-bottom: 1rem; }
+    #archetype-section { padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--ink); }
+    .tier-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--flesh); color: var(--ink); padding: 0.25rem 0.7rem; margin-bottom: 0.75rem; }
     .archetype-number { font-size: 0.75rem; color: #888; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .archetype-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+    .archetype-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
     .archetype-desc { font-size: 0.9rem; line-height: 1.7; max-width: 720px; color: #444; }
 
     /* SECTION 2: ELECTIONS */
-    #elections-section { padding: 3rem 0; border-bottom: 2px solid var(--ink); }
-    .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.5rem; }
+    #elections-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
+    .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.25rem; }
     .elections-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; margin-bottom: 1.25rem; }
     .election-cell { padding: 0.2rem 0.15rem; text-align: center; font-size: 0.55rem; line-height: 1.2; border: 1px solid rgba(0,0,0,0.08); transition: transform 0.1s; cursor: default; display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .election-cell:hover { transform: scale(1.15); z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
@@ -44,7 +44,7 @@
     .election-summary .rep-count { color: var(--rep-red); font-weight: 600; }
 
     /* SECTION 3: MAP */
-    #map-section { padding: 3rem 0; border-bottom: 2px solid var(--ink); }
+    #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
     #map-section .container { max-width: 100%; padding: 0 1rem; }
     .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
     #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
@@ -80,18 +80,18 @@
     #map-tooltip .tt-chars { font-size: 0.6rem; color: #777; font-style: italic; margin-top: 0.3rem; }
 
     /* SECTION 4: PROFILE */
-    #profile-section { padding: 3rem 0 4rem; }
-    .nodes-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
-    .node-cluster { background: var(--ink); color: var(--cream); padding: 1.5rem 2rem; }
-    .cluster-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #333; }
-    .node-row { display: grid; grid-template-columns: 130px 1fr 40px; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    #profile-section { padding: 2rem 0 2.5rem; }
+    .nodes-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .node-cluster { background: var(--cream); color: var(--ink); padding: 1.25rem 1.5rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 6px; }
+    .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
+    .node-row { display: grid; grid-template-columns: 130px 1fr 40px; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
     .node-row:last-child { margin-bottom: 0; }
     .node-bar-wrap { width: 100%; }
-    .node-bar { height: 14px; background: #333; position: relative; border: 1px solid #555; display: flex; }
-    .node-bar-segment { height: 100%; transition: width 0.3s; }
-    .node-bar-marker { position: absolute; top: -3px; width: 3px; height: 20px; background: #fff; border: 1px solid var(--ink); transform: translateX(-50%); }
-    .node-labels { display: flex; justify-content: space-between; font-size: 0.55rem; color: #666; margin-top: 0.2rem; }
-    .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; text-align: center; }
+    .node-bar { height: 14px; background: #eee; position: relative; border: 1px solid #ccc; display: flex; border-radius: 2px; }
+    .node-bar-segment { height: 100%; transition: width 0.3s; border-radius: 2px 0 0 2px; }
+    .node-bar-marker { position: absolute; top: -3px; width: 3px; height: 20px; background: var(--ink); border: 1px solid var(--ink); transform: translateX(-50%); border-radius: 1px; }
+    .node-labels { display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.55rem; color: #999; margin-top: 0.2rem; }
+    .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--ink); text-align: center; }
     @media (max-width: 700px) {
       .container { padding: 0 1rem; }
       .elections-grid { gap: 2px; }
@@ -202,7 +202,7 @@
     TRB: { name: 'Tribalism', low1: 'Universalist', high5: 'Civic Tribal', cluster: 'SELF' },
     ENG: { name: 'Engagement', low1: 'Apolitical', high5: 'Fully Engaged', cluster: 'SELF' },
   };
-  const clusterColors = { ENDS: '#D4A84B', MEANS: '#5BA8D9', REALITY: '#B088D0', SELF: '#FA8072' };
+  const clusterColors = { ENDS: '#E8A87C', MEANS: '#7EC8C8', REALITY: '#C5A3CF', SELF: '#F4B9B2' };
   const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', SELF: 'SELF — Who You Are' };
   const epsCategories = ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'];
   const aesCategories = ['statesman','technocrat','pastoral','authentic','fighter','visionary'];
@@ -518,7 +518,7 @@
 
       const block = document.createElement('div');
       block.className = 'node-cluster';
-      block.innerHTML = `<div class="cluster-title" style="border-bottom-color:${clusterColors[clusterName]}44;"><span style="color:${clusterColors[clusterName]};">${clusterLabels[clusterName]}</span></div>`;
+      block.innerHTML = `<div class="cluster-title" style="border-bottom-color:${clusterColors[clusterName]};"><span style="color:var(--ink);">${clusterLabels[clusterName]}</span></div>`;
 
       clusterDims.forEach(d => {
         const pct = ((d.pos - 1) / 9) * 100;
@@ -531,18 +531,18 @@
 
         if (d.sal === 0) {
           row.innerHTML = `
-            <div style="font-size:0.78rem;color:#bbb;">${d.name}</div>
-            <div class="node-bar-wrap"><div style="font-size:0.6rem;color:#555;font-style:italic;">no salience</div></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#999;">${d.name}</div>
+            <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.6rem;color:#aaa;font-style:italic;">no salience</div></div>
             <div class="node-value">${d.pos.toFixed(1)}</div>`;
         } else {
           row.innerHTML = `
-            <div style="font-size:0.78rem;color:#bbb;">${d.name}<span style="font-size:0.55rem;color:#555;margin-left:6px;">${Math.round(d.sal * 100)}%</span></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#555;">${d.name}<span style="font-size:0.55rem;color:#aaa;margin-left:6px;">${Math.round(d.sal * 100)}%</span></div>
             <div class="node-bar-wrap">
               <div class="node-bar" style="height:${barH}px;">
                 <div class="node-bar-segment" style="width:${pct}%;background:${color};height:100%;"></div>
                 <div class="node-bar-marker" style="left:${pct}%;top:-3px;height:${barH+6}px;"></div>
               </div>
-              <div class="node-labels"><span style="${d.pos >= 5 && d.pos <= 6 ? 'font-size:0.7rem;font-weight:600;color:#ccc;' : 'font-size:0.5rem;color:#555;'}">${d.low}</span><span style="font-size:0.7rem;font-weight:600;color:#ccc;">${d.high}</span></div>
+              <div class="node-labels"><span style="${d.pos >= 5 && d.pos <= 6 ? 'font-size:0.7rem;font-weight:600;color:#666;' : 'font-size:0.5rem;color:#aaa;'}">${d.low}</span><span style="font-size:0.7rem;font-weight:600;color:#666;">${d.high}</span></div>
             </div>
             <div class="node-value">${d.pos.toFixed(1)}</div>`;
         }
@@ -568,18 +568,18 @@
           const wrap = document.createElement('div');
           wrap.style.cssText = 'margin-bottom:16px;margin-top:12px;opacity:' + (0.4 + sal * 0.6);
           let html = `<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px;">
-            <span style="font-size:0.85rem;color:#bbb;">${cn.name}</span>
-            <span style="font-size:0.85rem;font-weight:700;color:var(--pool-deep);margin-left:auto;">${top.label} (${Math.round(top.prob*100)}%)</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:#555;">${cn.name}</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:700;color:${clusterColors['MEANS']};margin-left:auto;">${top.label} (${Math.round(top.prob*100)}%)</span>
           </div>`;
           cats.forEach(c => {
             const w = Math.max(c.prob * 100, 2);
             const isTop = c.label === top.label;
             html += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-              <span style="font-size:0.65rem;width:100px;text-align:right;opacity:${isTop?1:0.6};">${c.label}</span>
-              <div style="flex:1;height:${isTop?14:10}px;background:rgba(26,26,26,0.08);border-radius:3px;overflow:hidden;">
-                <div style="width:${w}%;height:100%;background:${isTop?'var(--pool-deep)':'rgba(137,204,240,0.4)'};border-radius:3px;"></div>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;width:100px;text-align:right;color:${isTop?'var(--ink)':'#888'};opacity:${isTop?1:0.6};">${c.label}</span>
+              <div style="flex:1;height:${isTop?14:10}px;background:#eee;border-radius:3px;overflow:hidden;border:1px solid #ddd;">
+                <div style="width:${w}%;height:100%;background:${isTop?clusterColors['MEANS']:'rgba(126,200,200,0.35)'};border-radius:3px;"></div>
               </div>
-              <span style="font-size:0.65rem;width:30px;opacity:${isTop?1:0.5};">${Math.round(c.prob*100)}%</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;width:30px;color:${isTop?'var(--ink)':'#888'};opacity:${isTop?1:0.5};">${Math.round(c.prob*100)}%</span>
             </div>`;
           });
           wrap.innerHTML = html;
