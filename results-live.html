@@ -254,25 +254,31 @@
 
     // ========== SECTION 2: ELECTIONS ==========
     const grid = document.getElementById('elections-grid');
-    let demCount = 0, repCount = 0, thirdCount = 0, otherCount = 0;
+    let demCount = 0, repCount = 0, thirdCount = 0, otherCount = 0, abstainCount = 0;
 
     elections.forEach(e => {
       const cell = document.createElement('div');
       cell.className = `election-cell ${e.p}`;
       const photoKey = photoMap[e.c];
       const photoHtml = photoKey ? `<img class="pres-photo" src="${IMG_BASE}/${photoKey}.jpg" alt="${e.c}" loading="lazy" onerror="this.style.display='none'">` : '';
-      cell.innerHTML = `${photoHtml}<span class="cell-year">${e.y}</span><span class="cell-name">${e.c}</span>`;
+      if (e.p === 'abstain') {
+        cell.innerHTML = `<span style="font-size:1.1rem;font-weight:700;opacity:0.5;">A</span><span class="cell-year">${e.y}</span><span class="cell-name">Abstain</span>`;
+      } else {
+        cell.innerHTML = `${photoHtml}<span class="cell-year">${e.y}</span><span class="cell-name">${e.c}</span>`;
+      }
       grid.appendChild(cell);
       if (e.p === 'dem') demCount++;
       else if (e.p === 'rep') repCount++;
       else if (e.p === 'third') thirdCount++;
-      else if (e.p !== 'abstain') otherCount++;
+      else if (e.p === 'abstain') abstainCount++;
+      else otherCount++;
     });
 
-    const thirdStr = thirdCount > 0 ? `, <span style="color:var(--third-gold);font-weight:600">Third Party ${thirdCount}</span> times` : '';
-    const otherStr = otherCount > 0 ? `, Other ${otherCount} times` : '';
+    const thirdStr = thirdCount > 0 ? `, <span style="color:var(--third-gold);font-weight:600">Third Party ${thirdCount}</span>` : '';
+    const otherStr = otherCount > 0 ? `, Other ${otherCount}` : '';
+    const abstainStr = abstainCount > 0 ? `, <span style="color:#999;">Abstain ${abstainCount}</span>` : '';
     document.getElementById('election-summary').innerHTML =
-      `Voted <span class="dem-count">Democrat ${demCount}</span> times, <span class="rep-count">Republican ${repCount}</span> times${thirdStr}${otherStr}`;
+      `Voted <span class="dem-count">Democrat ${demCount}</span> times, <span class="rep-count">Republican ${repCount}</span> times${thirdStr}${otherStr}${abstainStr}`;
 
     // ========== SECTION 3: WORLD MAP ==========
     const COLORS = { aligned: '#00D4FF', neutral: '#FFE135', opposed: '#FF6B6B', inactive: '#e5e5e5' };
