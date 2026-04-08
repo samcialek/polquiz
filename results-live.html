@@ -244,7 +244,32 @@
     'King':`${WK}/5/59/Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg/100px-Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg`,
     'Clay':`${WK}/6/67/Clay_1848.jpg/100px-Clay_1848.jpg`,
     'Bell':`${WK}/3/3d/John_Bell_%28Restored%29.png/100px-John_Bell_%28Restored%29.png`,
+    'Roosevelt':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/100px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
+    'Johnson':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/100px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
+    'Bush':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/100px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
+    'Ford':`${WK}/3/30/Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg/100px-Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg`,
+    'Perot':`${WK}/e/e3/Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg/100px-Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg`,
+    'Nader':`${WK}/2/25/Ralph_Nader_headshot.jpg/100px-Ralph_Nader_headshot.jpg`,
+    'Anderson':`${WK}/3/38/John_Bayard_Anderson.jpg/100px-John_Bayard_Anderson.jpg`,
+    'Thurmond':`${WK}/8/8f/Strom_Thurmond_%28cropped%29.jpg/100px-Strom_Thurmond_%28cropped%29.jpg`,
+    'Douglas':`${WK}/7/7e/Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg/100px-Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg`,
+    'Fillmore':`${WK}/4/4b/Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg/100px-Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg`,
+    'Wirt':`${WK}/b/be/William_wirt_attorney_general_%28cropped%29.jpg/100px-William_wirt_attorney_general_%28cropped%29.jpg`,
+    'Crawford':`${WK}/3/3d/William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg/100px-William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg`,
+    'H. Wallace':`${WK}/3/3c/Henry-A.-Wallace-Townsend.jpg/100px-Henry-A.-Wallace-Townsend.jpg`,
+    'Benson':`${WK}/5/56/Ezra_Taft_Benson_crop.jpg/100px-Ezra_Taft_Benson_crop.jpg`,
   };
+  // Year-based disambiguation for candidates who share a surname
+  const photoOverrides = {
+    'Roosevelt': { 1904: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/100px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`, 1912: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/100px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg` },
+    'Bush': { 2000: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/100px-George-W-Bush_%28cropped_2%29.jpeg`, 2004: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/100px-George-W-Bush_%28cropped_2%29.jpeg` },
+    'Johnson': { 2016: null },
+  };
+  function getPhoto(name, year) {
+    const ov = photoOverrides[name];
+    if (ov && ov[year] !== undefined) return ov[year];
+    return photoMap[name] || null;
+  }
 
   // Node display config
   const nodeLabels = {
@@ -318,7 +343,7 @@
     elections.forEach(e => {
       const cell = document.createElement('div');
       cell.className = `election-cell ${e.p}`;
-      const photoUrl = photoMap[e.c];
+      const photoUrl = getPhoto(e.c, e.y);
       const photoHtml = photoUrl ? `<img class="pres-photo" src="${photoUrl}" alt="${e.c}" loading="lazy" onerror="this.style.display='none'">` : '';
       if (e.p === 'abstain') {
         cell.innerHTML = `<span style="font-size:1.1rem;font-weight:700;opacity:0.5;">A</span><span class="cell-year">${e.y}</span><span class="cell-name">Abstain</span>`;
