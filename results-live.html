@@ -529,7 +529,6 @@
         .on('mouseleave', hideTooltip);
     }
 
-    drawMap();
     window.addEventListener('resize', drawMap);
     slider.addEventListener('input', function() {
       currentYear = +this.value;
@@ -659,6 +658,9 @@
     document.getElementById('loading').style.display = 'none';
     document.getElementById('results').style.display = 'block';
     document.title = `PRISM Results — ${archetype.name}`;
+
+    // Draw map after results are visible so container has dimensions
+    drawMap();
 
   } catch(err) {
     document.getElementById('loading').innerHTML = `<div style="color:red;">Error loading results: ${err.message}</div>`;
