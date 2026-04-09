@@ -2524,13 +2524,13 @@ The correlation is real in the filtered sample. But you <em style="color:#B05A3F
 <table class="hte-table" id="hte-table">
 <thead><tr style="opacity:0;transform:none" id="hte-thead"><th>Segment</th><th>0–3 mo</th><th>3–6 mo</th><th>6–9 mo</th></tr></thead>
 <tbody>
-<tr id="hte-row-1"><td>Stable wellness, 35+</td><td style="color:#B05A3F">−2%</td><td style="color:#B05A3F">−9%</td><td style="color:#B05A3F" id="hte-pulse-cell">−6%</td></tr>
-<tr id="hte-row-2"><td>Stable wellness, &lt;35</td><td style="color:#B05A3F">−3%</td><td style="color:#B05A3F">−14%</td><td style="color:#8FAE6A;font-weight:700">+3%</td></tr>
-<tr id="hte-row-3"><td>Rising wellness, 35+</td><td style="color:#B05A3F">−5%</td><td style="color:#B05A3F;font-weight:700">−18%</td><td style="color:#B05A3F">−14%</td></tr>
-<tr id="hte-row-4"><td>Rising wellness, &lt;35</td><td style="color:#B05A3F">−6%</td><td style="color:#B05A3F;font-weight:700">−23%</td><td style="color:#B05A3F">−17%</td></tr>
+<tr id="hte-row-1"><td>Stable wellness, 45+ <span style="color:rgba(245,240,232,0.4);font-weight:400">(n=14)</span></td><td style="color:#B05A3F">−2%</td><td style="color:#B05A3F">−9%</td><td style="color:#B05A3F" id="hte-pulse-cell">−6%</td></tr>
+<tr id="hte-row-2"><td>Stable wellness, &lt;45 <span style="color:rgba(245,240,232,0.4);font-weight:400">(n=12)</span></td><td style="color:#B05A3F">−3%</td><td style="color:#B05A3F">−14%</td><td style="color:#8FAE6A;font-weight:700">+3%</td></tr>
+<tr id="hte-row-3"><td>Rising wellness, 45+ <span style="color:rgba(245,240,232,0.4);font-weight:400">(n=8)</span></td><td style="color:#B05A3F">−5%</td><td style="color:#B05A3F;font-weight:700">−18%</td><td style="color:#B05A3F">−14%</td></tr>
+<tr id="hte-row-4"><td>Rising wellness, &lt;45 <span style="color:rgba(245,240,232,0.4);font-weight:400">(n=9)</span></td><td style="color:#B05A3F">−6%</td><td style="color:#B05A3F;font-weight:700">−23%</td><td style="color:#B05A3F">−17%</td></tr>
 </tbody>
 </table>
-<div class="hte-callout" id="hte-callout">Stable wellness, &lt;35: +2% rebound by month 9 &mdash; the GLP-1 effect fades when competing causes are absent</div>
+<div class="hte-callout" id="hte-callout">Stable wellness, &lt;45: +3% rebound by month 9 &mdash; the GLP-1 effect fades when competing causes are absent</div>
 <p class="hte-caption" id="hte-caption">n = 43 switchers. The gradient across rows reveals competing causes stacking on top of GLP-1.</p>
 </div>
 </div>
@@ -2598,7 +2598,7 @@ The correlation is real in the filtered sample. But you <em style="color:#B05A3F
 <div class="slide" data-slide="36" id="morph-panel">
 <div class="slide-inner" style="display:flex;flex-direction:column;align-items:center">
 <div class="dag-slide-title heading">Reading the Node</div>
-<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.5vw,19px);color:rgba(245,240,232,0.6);max-width:840px;text-align:center;margin-bottom:20px;line-height:1.5">Every node encodes four attributes &mdash; shape for reversibility, size for cost, fill for measurability, stroke dash for manipulability. Edges carry four of their own &mdash; width for strength, opacity for tractability. Click any node or edge to read the full profile.</p>
+<p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.5vw,19px);color:rgba(245,240,232,0.6);max-width:840px;text-align:center;margin-bottom:20px;line-height:1.5">Every node shows measurability as fill brightness. Intervention targets add three more &mdash; shape for reversibility, size for cost, stroke dash for manipulability. Edges show strength as width; edges from intervention sources also show tractability as opacity. Click any node or edge to read its profile.</p>
 <div class="mp-wrap">
 <div class="mp-dag">
 <svg viewBox="0 0 660 460" id="mp-svg" style="width:100%;height:auto">
@@ -2626,16 +2626,18 @@ The correlation is real in the filtered sample. But you <em style="color:#B05A3F
 </aside>
 </div>
 <div class="mp-legend-strip">
-<span style="font-weight:600;color:rgba(245,240,232,0.5);margin-right:4px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">Node</span>
+<span style="font-weight:600;color:rgba(245,240,232,0.5);margin-right:4px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">All nodes</span>
+<div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#5BA8D9"></span>Measurability &rarr; fill</div>
+<span style="font-weight:600;color:rgba(245,240,232,0.5);margin:0 4px 0 12px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">Intervention targets only</span>
 <div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#8FAE6A"></span>Reversibility &rarr; shape</div>
 <div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#B05A3F"></span>Cost &rarr; size</div>
-<div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#5BA8D9"></span>Measurability &rarr; fill</div>
 <div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#C49A4A"></span>Manipulability &rarr; stroke</div>
-<span style="font-weight:600;color:rgba(245,240,232,0.5);margin:0 4px 0 12px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">Edge</span>
+<span style="font-weight:600;color:rgba(245,240,232,0.5);margin:0 4px 0 12px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">All edges</span>
 <div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#C49A4A"></span>Strength &rarr; width</div>
+<span style="font-weight:600;color:rgba(245,240,232,0.5);margin:0 4px 0 12px;font-size:9px;text-transform:uppercase;letter-spacing:0.08em">Edges from targets</span>
 <div class="mp-legend-item"><span class="mp-legend-swatch" style="background:#8FAE6A"></span>Tractability &rarr; opacity</div>
 </div>
-<p class="dsep-footer" style="margin-top:14px;max-width:820px">The thickest edges are the strongest effects. The dimmest fills are where you fly blind. Click an edge to see its full attribute profile.</p>
+<p class="dsep-footer" style="margin-top:14px;max-width:820px">The dimmest fills are where you fly blind. Only intervention targets carry shape, size, and stroke encodings. Click any node or edge to see which attributes apply.</p>
 </div>
 </div>
 
@@ -3797,14 +3799,14 @@ const attrEnterFns = {};
                  measurability:0.95, manipulability:0.40, reversibility:0.50, cost:0.50},
     appetite:   {name:'Appetite',      tag:'Physiological mediator',             desc:'Rapid, volatile signal. Cheap to observe via diary but subjective. Reverses quickly off treatment.',
                  measurability:0.50, manipulability:0.35, reversibility:0.90, cost:0.30},
-    neuro:      {name:'Neurochemical', tag:'Biological mechanism · latent',      desc:'Mechanistic layer we can infer but rarely measure directly. Hard to intervene on independently.',
-                 measurability:0.20, manipulability:0.15, reversibility:0.30, cost:0.85},
-    confidence: {name:'Confidence',    tag:'Psychological mediator',             desc:'Fluctuates with context; weakly measured via self-report. Cannot be directly intervened on.',
-                 measurability:0.35, manipulability:0.20, reversibility:0.55, cost:0.25},
-    cravings:   {name:'Cravings',      tag:'Psychological mediator',             desc:'Mid-tier on most attributes. Measurable via EMA; some behavioral interventions exist but indirect.',
-                 measurability:0.50, manipulability:0.25, reversibility:0.65, cost:0.40},
-    drinking:   {name:'Drinking',      tag:'Behavioral outcome · terminal',      desc:'Observable via POS data, countable, cheap to measure at scale. Hard to directly manipulate.',
-                 measurability:0.90, manipulability:0.30, reversibility:0.40, cost:0.20}
+    neuro:      {name:'Neurochemical', tag:'Biological mechanism · latent',      desc:'Mechanistic layer we can infer but rarely measure directly. Not a viable intervention target.',
+                 measurability:0.20, manipulability:null, reversibility:null, cost:null},
+    confidence: {name:'Confidence',    tag:'Psychological mediator',             desc:'Fluctuates with context; weakly measured via self-report. Not a viable intervention target.',
+                 measurability:0.35, manipulability:null, reversibility:null, cost:null},
+    cravings:   {name:'Cravings',      tag:'Psychological mediator',             desc:'Measurable via EMA and behavioral proxies. Not directly manipulable — affected through upstream pathways.',
+                 measurability:0.50, manipulability:null, reversibility:null, cost:null},
+    drinking:   {name:'Drinking',      tag:'Behavioral outcome · terminal',      desc:'Observable via POS data, countable, cheap to measure at scale. This is the outcome — not an intervention point.',
+                 measurability:0.90, manipulability:null, reversibility:null, cost:null}
   };
   const EDGES = [
     {from:'glp1',      to:'weight',     tag:'Pharmacological · direct',             desc:'Well-established dose-response. Slow onset but consistent across populations.',
@@ -3817,12 +3819,12 @@ const attrEnterFns = {};
      strength:0.55, heterogeneity:0.80, latency:0.70, tractability:0.50},
     {from:'appetite',  to:'cravings',  tag:'Physiological to psychological',        desc:'Appetite reduction dampens craving signals. Fast, strong, moderately consistent.',
      strength:0.75, heterogeneity:0.55, latency:0.25, tractability:0.70},
-    {from:'neuro',     to:'cravings',  tag:'Neurochemical to psychological',        desc:'Reward pathway modulation affects craving intensity. Hard to isolate or leverage.',
-     strength:0.50, heterogeneity:0.70, latency:0.35, tractability:0.30},
-    {from:'confidence',to:'drinking',  tag:'Psychological to behavioral',           desc:'Social confidence changes drinking patterns, but direction varies by context and subgroup.',
-     strength:0.45, heterogeneity:0.85, latency:0.50, tractability:0.40},
-    {from:'cravings',  to:'drinking',  tag:'Psychological to behavioral',           desc:'The most direct path. When cravings drop, drinking drops — fast and consistent.',
-     strength:0.80, heterogeneity:0.45, latency:0.15, tractability:0.75}
+    {from:'neuro',     to:'cravings',  tag:'Neurochemical to psychological',        desc:'Reward pathway modulation affects craving intensity. Not directly leverageable — source is not an intervention target.',
+     strength:0.50, heterogeneity:0.70, latency:0.35, tractability:null},
+    {from:'confidence',to:'drinking',  tag:'Psychological to behavioral',           desc:'Social confidence changes drinking patterns, but direction varies by context and subgroup. Source is not an intervention target.',
+     strength:0.45, heterogeneity:0.85, latency:0.50, tractability:null},
+    {from:'cravings',  to:'drinking',  tag:'Psychological to behavioral',           desc:'The most direct path. When cravings drop, drinking drops — but cravings are not directly manipulable.',
+     strength:0.80, heterogeneity:0.45, latency:0.15, tractability:null}
   ];
   const POS = {
     glp1:{x:80,y:230}, weight:{x:230,y:85}, appetite:{x:230,y:225}, neuro:{x:230,y:370},
@@ -3834,10 +3836,10 @@ const attrEnterFns = {};
     if(attrs) for(const k in attrs) e.setAttribute(k, attrs[k]);
     return e;
   };
-  const shapeForRev = r => r >= 0.7 ? 'circle' : r >= 0.45 ? 'rect' : 'triangle';
-  const sizeForCost = c => 17 + c * 21;
+  const shapeForRev = r => r == null ? 'circle' : r >= 0.7 ? 'circle' : r >= 0.45 ? 'rect' : 'triangle';
+  const sizeForCost = c => c == null ? 22 : 17 + c * 21;
   const fillForMeas = m => `rgba(232,160,60,${0.12 + m * 0.6})`;
-  const dashForManip = m => m >= 0.7 ? '1 2' : m >= 0.4 ? '4 2' : 'none';
+  const dashForManip = m => m == null ? 'none' : m >= 0.7 ? '1 2' : m >= 0.4 ? '4 2' : 'none';
   const shapeRadiusAt = (shape, size, angle) => {
     if(shape === 'circle') return size;
     if(shape === 'rect'){ const c=Math.abs(Math.cos(angle)),s=Math.abs(Math.sin(angle)); return Math.min(size/c, size/s); }
@@ -3862,7 +3864,7 @@ const attrEnterFns = {};
     const x1 = p1.x + Math.cos(angle)*r1, y1 = p1.y + Math.sin(angle)*r1;
     const x2 = p2.x - Math.cos(angle)*r2, y2 = p2.y - Math.sin(angle)*r2;
     const w = 1.2 + edge.strength * 5.8;
-    const op = 0.3 + edge.tractability * 0.55;
+    const op = edge.tractability != null ? 0.3 + edge.tractability * 0.55 : 0.55;
     const hit = mk('line', {x1,y1,x2,y2,class:'mp-edge-hitarea','data-edge-idx':i});
     hit.setAttribute('style','stroke:transparent;stroke-width:14px;cursor:pointer;pointer-events:stroke');
     edgesG.appendChild(hit);
@@ -3901,26 +3903,31 @@ const attrEnterFns = {};
   });
 
   function describeNodeEncoding(n){
-    const rev = n.reversibility, cost = n.cost, meas = n.measurability, manip = n.manipulability;
-    const shape = rev >= 0.7 ? 'circle (reversible)' : rev >= 0.45 ? 'square (partial)' : 'triangle (irreversible)';
-    const sizeDesc = cost >= 0.7 ? 'large (high cost)' : cost >= 0.45 ? 'medium (mid cost)' : 'small (low cost)';
-    const fill = meas >= 0.7 ? 'bright fill (well-measured)' : meas >= 0.45 ? 'mid fill (partial)' : 'dim fill (weak signal)';
-    const stroke = manip >= 0.7 ? 'dotted (manipulable)' : manip >= 0.4 ? 'dashed (partial)' : 'solid (not directly)';
-    return [
-      {prop:'shape',val:shape,color:'#8FAE6A'},
-      {prop:'size',val:sizeDesc,color:'#B05A3F'},
-      {prop:'fill',val:fill,color:'#5BA8D9'},
-      {prop:'stroke',val:stroke,color:'#C49A4A'}
-    ];
+    const items = [];
+    const meas = n.measurability;
+    items.push({prop:'fill',val:meas >= 0.7 ? 'bright fill (well-measured)' : meas >= 0.45 ? 'mid fill (partial)' : 'dim fill (weak signal)',color:'#5BA8D9'});
+    if(n.reversibility != null){
+      const rev = n.reversibility;
+      items.push({prop:'shape',val:rev >= 0.7 ? 'circle (reversible)' : rev >= 0.45 ? 'square (partial)' : 'triangle (irreversible)',color:'#8FAE6A'});
+    }
+    if(n.cost != null){
+      const cost = n.cost;
+      items.push({prop:'size',val:cost >= 0.7 ? 'large (high cost)' : cost >= 0.45 ? 'medium (mid cost)' : 'small (low cost)',color:'#B05A3F'});
+    }
+    if(n.manipulability != null){
+      const manip = n.manipulability;
+      items.push({prop:'stroke',val:manip >= 0.7 ? 'dotted (manipulable)' : manip >= 0.4 ? 'dashed (partial)' : 'solid (not directly)',color:'#C49A4A'});
+    }
+    return items;
   }
 
   function describeEdgeEncoding(e){
-    const wDesc = e.strength >= 0.7 ? 'thick (strong)' : e.strength >= 0.45 ? 'medium (moderate)' : 'thin (weak)';
-    const oDesc = e.tractability >= 0.7 ? 'bright (tractable)' : e.tractability >= 0.45 ? 'mid (partial)' : 'dim (hard to use)';
-    return [
-      {prop:'width',val:wDesc,color:'#C49A4A'},
-      {prop:'opacity',val:oDesc,color:'#8FAE6A'}
-    ];
+    const items = [];
+    items.push({prop:'width',val:e.strength >= 0.7 ? 'thick (strong)' : e.strength >= 0.45 ? 'medium (moderate)' : 'thin (weak)',color:'#C49A4A'});
+    if(e.tractability != null){
+      items.push({prop:'opacity',val:e.tractability >= 0.7 ? 'bright (tractable)' : e.tractability >= 0.45 ? 'mid (partial)' : 'dim (hard to use)',color:'#8FAE6A'});
+    }
+    return items;
   }
 
   function renderNodePanel(id){
@@ -3931,7 +3938,7 @@ const attrEnterFns = {};
     document.getElementById('mp-attrs-label').textContent = 'Node attributes';
     document.getElementById('mp-paths-label').textContent = 'Connected paths';
     const bars = document.getElementById('mp-bars');
-    bars.innerHTML = NODE_ATTR_ORDER.map(a => {
+    bars.innerHTML = NODE_ATTR_ORDER.filter(a => n[a] != null).map(a => {
       const pct = Math.round(n[a] * 100);
       return `<div class="mp-attr-row"><div class="mp-attr-label-row"><span class="mp-attr-name">${a}</span><span class="mp-attr-val" style="color:${NODE_ATTR_COLORS[a]}">${pct}</span></div><div class="mp-attr-bar"><div class="mp-attr-bar-fill" style="width:${pct}%;background:${NODE_ATTR_COLORS[a]}"></div></div></div>`;
     }).join('');
@@ -3970,7 +3977,7 @@ const attrEnterFns = {};
     document.getElementById('mp-attrs-label').textContent = 'Edge attributes';
     document.getElementById('mp-paths-label').textContent = 'Connected nodes';
     const bars = document.getElementById('mp-bars');
-    bars.innerHTML = EDGE_ATTR_ORDER.map(a => {
+    bars.innerHTML = EDGE_ATTR_ORDER.filter(a => e[a] != null).map(a => {
       const pct = Math.round(e[a] * 100);
       return `<div class="mp-attr-row"><div class="mp-attr-label-row"><span class="mp-attr-name">${a}</span><span class="mp-attr-val" style="color:${EDGE_ATTR_COLORS[a]}">${pct}</span></div><div class="mp-attr-bar"><div class="mp-attr-bar-fill" style="width:${pct}%;background:${EDGE_ATTR_COLORS[a]}"></div></div></div>`;
     }).join('');
