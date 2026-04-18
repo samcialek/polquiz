@@ -15,8 +15,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "ENG", kind: "continuous", role: "position", weight: 0.85, touchType: "behavior_frequency" },
-      { node: "ENG", kind: "continuous", role: "salience", weight: 0.60, touchType: "behavior_frequency" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.20, touchType: "identity_proxy" }
+      { node: "ENG", kind: "continuous", role: "salience", weight: 0.60, touchType: "behavior_frequency" }
     ],
     optionEvidence: {
       never: {
@@ -51,7 +50,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PF", kind: "continuous", role: "salience", weight: 0.95, touchType: "direct_centrality" },
-      { node: "TRB", kind: "continuous", role: "salience", weight: 0.25, touchType: "identity_proxy" },
       { node: "ENG", kind: "continuous", role: "salience", weight: 0.20, touchType: "identity_proxy" }
     ],
     sliderMap: {
@@ -72,8 +70,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "taste_proxy" },
-      { node: "AES", kind: "categorical", role: "category", weight: 0.45, touchType: "style_proxy" },
-      { node: "ENG", kind: "continuous", role: "salience", weight: 0.15, touchType: "attention_proxy" }
+      { node: "AES", kind: "categorical", role: "category", weight: 0.45, touchType: "style_proxy" }
     ],
     optionEvidence: {
       timeless_principles: {
@@ -152,8 +149,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.80, touchType: "rights_tradeoff" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "civic_balance" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "truth_authority_proxy" }
+      { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "civic_balance" }
     ],
     optionEvidence: {
       cancel: {
@@ -273,10 +269,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.95,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "leader_style" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.10, touchType: "governance_style" },
-      { node: "ENG", kind: "continuous", role: "salience", weight: 0.05, touchType: "mobilization_proxy" },
-      { node: "AES", kind: "categorical", role: "salience", weight: 0.88, touchType: "checkbox_salience" }
+      { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "leader_style" }
     ],
     optionEvidence: {
       channel_anger: {
@@ -305,10 +298,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.96,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.78, touchType: "identity_ranking" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.50, touchType: "identity_ranking" },
-      { node: "PF", kind: "continuous", role: "position", weight: 0.42, touchType: "identity_ranking" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.52, touchType: "identity_ranking" },
       { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
     ],
     rankingMap: {
@@ -337,9 +326,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.90,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "CD", kind: "continuous", role: "position", weight: 0.90, touchType: "direct_placement" },
-      { node: "CU", kind: "continuous", role: "position", weight: 0.30, touchType: "boundary_proxy" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "values_proxy" }
+      { node: "CD", kind: "continuous", role: "position", weight: 0.90, touchType: "direct_placement" }
     ],
     sliderMap: {
       "0-20":   { continuous: { CD: { pos: [0.60, 0.25, 0.10, 0.04, 0.01] } } },
@@ -383,10 +370,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.89,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.90, touchType: "moral_scope_tradeoff" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.25, touchType: "moral_scope_tradeoff" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "moral_scope_tradeoff" },
-      { node: "MOR", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.90, touchType: "moral_scope_tradeoff" }
     ],
     sliderMap: {
       "0-20":   { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
@@ -407,8 +391,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.68,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.35, touchType: "factual_calibration" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.10, touchType: "policy_attention" }
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.35, touchType: "factual_calibration" }
     ],
     sliderMap: {
       "0-20":   { categorical: { EPS: { cat: EPS_PROTOTYPES.intuitionist } } },
@@ -429,8 +412,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.88,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.92, touchType: "policy_preference" },
-      { node: "MAT", kind: "continuous", role: "salience", weight: 0.35, touchType: "policy_preference" }
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.92, touchType: "policy_preference" }
     ],
     sliderMap: {
       "0-20":   { continuous: { MAT: { pos: [0.01, 0.04, 0.10, 0.25, 0.60] } } },
@@ -473,9 +455,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.84,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.80, touchType: "outgroup_trust_estimate" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "outgroup_trust_estimate" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "outgroup_trust_estimate" }
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.80, touchType: "outgroup_trust_estimate" }
     ],
     sliderMap: {
       "0-20":   { continuous: { TRB: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] }, ZS: { } } },
@@ -539,8 +519,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.58,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "PF", kind: "continuous", role: "position", weight: 0.18, touchType: "identity_rigidity_proxy" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.60, touchType: "updating_style_proxy" }
+      { node: "PF", kind: "continuous", role: "position", weight: 0.18, touchType: "identity_rigidity_proxy" }
     ],
     sliderMap: {
       "0-20":   { continuous: { PF: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
@@ -590,11 +569,11 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.25, touchType: "nationality_anchor" }
     ],
     sliderMap: {
-      "0-20":   { continuous: { CU: { sal: [0.55, 0.30, 0.12, 0.03] }, CD: { sal: [0.50, 0.30, 0.15, 0.05] }, TRB: { sal: [0.50, 0.30, 0.15, 0.05] } } },
-      "21-40":  { continuous: { CU: { sal: [0.25, 0.40, 0.25, 0.10] }, CD: { sal: [0.28, 0.38, 0.24, 0.10] }, TRB: { sal: [0.28, 0.38, 0.24, 0.10] } } },
-      "41-60":  { continuous: { CU: { sal: [0.08, 0.28, 0.40, 0.24] }, CD: { sal: [0.12, 0.28, 0.38, 0.22] }, TRB: { sal: [0.12, 0.28, 0.38, 0.22] } } },
-      "61-80":  { continuous: { CU: { sal: [0.03, 0.12, 0.40, 0.45] }, CD: { sal: [0.05, 0.18, 0.40, 0.37] }, TRB: { sal: [0.05, 0.18, 0.40, 0.37] } } },
-      "81-100": { continuous: { CU: { sal: [0.02, 0.08, 0.30, 0.60] }, CD: { sal: [0.03, 0.12, 0.35, 0.50] }, TRB: { sal: [0.03, 0.12, 0.35, 0.50] } } }
+      "0-20":   { continuous: { CU: { sal: [0.55, 0.30, 0.12, 0.03] }, CD: { sal: [0.50, 0.30, 0.15, 0.05] }, TRB: { sal: [0.50, 0.30, 0.15, 0.05] } }, trbAnchor: { global: 0.45, mixed_none: 0.30, ideological: 0.15 } },
+      "21-40":  { continuous: { CU: { sal: [0.25, 0.40, 0.25, 0.10] }, CD: { sal: [0.28, 0.38, 0.24, 0.10] }, TRB: { sal: [0.28, 0.38, 0.24, 0.10] } }, trbAnchor: { mixed_none: 0.30, global: 0.20, ideological: 0.20, national: 0.10 } },
+      "41-60":  { continuous: { CU: { sal: [0.08, 0.28, 0.40, 0.24] }, CD: { sal: [0.12, 0.28, 0.38, 0.22] }, TRB: { sal: [0.12, 0.28, 0.38, 0.22] } }, trbAnchor: { national: 0.30, ideological: 0.20, mixed_none: 0.20 } },
+      "61-80":  { continuous: { CU: { sal: [0.03, 0.12, 0.40, 0.45] }, CD: { sal: [0.05, 0.18, 0.40, 0.37] }, TRB: { sal: [0.05, 0.18, 0.40, 0.37] } }, trbAnchor: { national: 0.55, ideological: 0.10, religious: 0.10, ethnic_racial: 0.10 } },
+      "81-100": { continuous: { CU: { sal: [0.02, 0.08, 0.30, 0.60] }, CD: { sal: [0.03, 0.12, 0.35, 0.50] }, TRB: { sal: [0.03, 0.12, 0.35, 0.50] } }, trbAnchor: { national: 0.65, ethnic_racial: 0.20, religious: 0.10 } }
     }
   },
 
@@ -646,9 +625,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.88,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "COM", kind: "continuous", role: "position", weight: 0.85, touchType: "principle_tradeoff" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.25, touchType: "principle_tradeoff" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "principle_tradeoff" }
+      { node: "COM", kind: "continuous", role: "position", weight: 0.85, touchType: "principle_tradeoff" }
     ],
     optionEvidence: {
       principle_first: {
@@ -680,8 +657,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "ENG", kind: "continuous", role: "position", weight: 0.60, touchType: "social_behavior" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "social_behavior" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.15, touchType: "social_behavior" }
+      { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "social_behavior" }
     ],
     optionEvidence: {
       // V1: "Share your views but try to keep it civil"
@@ -733,9 +709,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: true,
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "policy_bundle" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "policy_bundle" },
-      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.20, touchType: "policy_bundle" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.10, touchType: "policy_bundle" }
+      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.20, touchType: "policy_bundle" }
     ],
     optionEvidence: {
       aggressive_transition: {
@@ -776,8 +750,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.65, touchType: "fairness_design" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "fairness_design" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "allocation_rule" }
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "fairness_design" }
     ],
     optionEvidence: {
       strict_merit: {
@@ -817,8 +790,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: true,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.30, touchType: "policy_bundle" },
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "policy_bundle" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.10, touchType: "policy_bundle" }
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "policy_bundle" }
     ],
     optionEvidence: {
       rehabilitation_focus: {
@@ -851,8 +823,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.87,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.90, touchType: "fairness_threshold" },
-      { node: "MAT", kind: "continuous", role: "salience", weight: 0.85, touchType: "checkbox_salience" }
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.90, touchType: "fairness_threshold" }
     ],
     optionEvidence: {
       ratio_10_to_1: {
@@ -892,9 +863,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.88,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.90, touchType: "ontology_direct" },
-      { node: "ONT_H", kind: "continuous", role: "salience", weight: 0.20, touchType: "ontology_direct" },
-      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.15, touchType: "worldview_proxy" }
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.90, touchType: "ontology_direct" }
     ],
     optionEvidence: {
       steady_improvement: {
@@ -935,7 +904,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["convict_innocent", "free_guilty"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
-      { node: "PRO", kind: "continuous", role: "salience", weight: 0.70, touchType: "ratio_salience" },
       { node: "MOR", kind: "continuous", role: "position", weight: 0.12, touchType: "human_motive_proxy" }
     ],
     optionEvidence: {
@@ -969,7 +937,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["fp", "fn"],
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.72, touchType: "error_asymmetry" },
-      { node: "MAT", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
       { node: "PRO", kind: "continuous", role: "position", weight: 0.22, touchType: "error_asymmetry" },
       { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "deservingness_proxy" }
     ],
@@ -1002,8 +969,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "public_health_authority" },
-      { node: "CU", kind: "continuous", role: "position", weight: 0.25, touchType: "collective_uniformity" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.10, touchType: "collective_action_proxy" }
+      { node: "CU", kind: "continuous", role: "position", weight: 0.25, touchType: "collective_uniformity" }
     ],
     optionEvidence: {
       accept_mandate: {
@@ -1039,7 +1005,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["allow_harmful", "censor_legitimate"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.72, touchType: "speech_harm_tradeoff" },
-      { node: "PRO", kind: "continuous", role: "salience", weight: 0.62, touchType: "ratio_salience" },
       { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "truth_authority_proxy" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.12, touchType: "pluralism_proxy" }
     ],
@@ -1073,8 +1038,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "ZS", kind: "continuous", role: "position", weight: 0.85, touchType: "macro_sum_view" },
       { node: "ZS", kind: "continuous", role: "salience", weight: 0.50, touchType: "macro_sum_view" },
-      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.45, touchType: "systems_view" },
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "distribution_proxy" }
+      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.45, touchType: "systems_view" }
     ],
     optionEvidence: {
       net_positive_clear: {
@@ -1120,7 +1084,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["deport_legal", "let_stay_illegal"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.62, touchType: "boundary_error_asymmetry" },
-      { node: "PRO", kind: "continuous", role: "salience", weight: 0.56, touchType: "ratio_salience" },
       { node: "CU", kind: "continuous", role: "position", weight: 0.22, touchType: "boundary_error_asymmetry" },
       { node: "ONT_S", kind: "continuous", role: "position", weight: 0.12, touchType: "boundary_error_asymmetry" }
     ],
@@ -1153,9 +1116,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: true,
     touchProfile: [
       { node: "ZS", kind: "continuous", role: "position", weight: 0.35, touchType: "threat_bundle" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "threat_bundle" },
-      { node: "CU", kind: "continuous", role: "position", weight: 0.15, touchType: "threat_bundle" },
-      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.15, touchType: "threat_bundle" }
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "threat_bundle" }
     ],
     optionEvidence: {
       external_threats: {
@@ -1188,8 +1149,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.65, touchType: "error_asymmetry" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "expertise_risk_proxy" },
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.10, touchType: "risk_humanity_proxy" }
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "expertise_risk_proxy" }
     ],
     optionEvidence: {
       prioritize_safety: {
@@ -1224,8 +1184,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.60, touchType: "rule_response" },
-      { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "rule_response" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.10, touchType: "conflict_response" }
+      { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "rule_response" }
     ],
     optionEvidence: {
       follow_always: {
@@ -1264,7 +1223,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.70, touchType: "error_asymmetry" },
-      { node: "CU", kind: "continuous", role: "position", weight: 0.20, touchType: "boundary_order_proxy" },
       { node: "TRB", kind: "continuous", role: "position", weight: 0.15, touchType: "partisan_fairness_proxy" }
     ],
     optionEvidence: {
@@ -1297,8 +1255,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.88,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.90, touchType: "network_homophily" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.30, touchType: "network_homophily" }
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.90, touchType: "network_homophily" }
     ],
     optionEvidence: {
       no_big_deal: {
@@ -1334,9 +1291,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.91,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "distributive_choice" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.25, touchType: "fairness_scope" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "distributional_worldview" }
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "distributive_choice" }
     ],
     optionEvidence: {
       equal_society: {
@@ -1377,9 +1332,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.89,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "COM", kind: "continuous", role: "position", weight: 0.70, touchType: "interpersonal_conflict" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.35, touchType: "interpersonal_conflict" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.15, touchType: "interpersonal_conflict" }
+      { node: "COM", kind: "continuous", role: "position", weight: 0.70, touchType: "interpersonal_conflict" }
     ],
     optionEvidence: {
       avoid_if_possible: {
@@ -1415,9 +1368,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.87,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.85, touchType: "progress_worldview" },
-      { node: "ONT_S", kind: "continuous", role: "position", weight: 0.20, touchType: "progress_worldview" },
-      { node: "CD", kind: "continuous", role: "position", weight: 0.10, touchType: "progress_worldview" }
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.85, touchType: "progress_worldview" }
     ],
     optionEvidence: {
       continuous_improvement: {
@@ -1454,8 +1405,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: true,
     touchProfile: [
       { node: "CU", kind: "continuous", role: "position", weight: 0.80, touchType: "membership_boundary" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_boundary" },
-      { node: "PF", kind: "continuous", role: "position", weight: 0.15, touchType: "membership_boundary" },
       { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_boundary" },
       { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.25, touchType: "nationality_anchor" }
     ],
@@ -1463,25 +1412,29 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       civic_participation: {
         continuous: {
           CU: { pos: [0.04, 0.10, 0.28, 0.35, 0.23] }
-        }
+        },
+        trbAnchor: { ideological: 0.30, mixed_none: 0.25, global: 0.20, national: 0.15 }
       },
       shared_values: {
         continuous: {
           CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
           TRB: { pos: [0.08, 0.15, 0.28, 0.30, 0.19] }
-        }
+        },
+        trbAnchor: { ideological: 0.35, religious: 0.20, national: 0.20, mixed_none: 0.10 }
       },
       cultural_heritage: {
         continuous: {
           CU: { pos: [0.30, 0.30, 0.25, 0.10, 0.05] },
           TRB: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] }
-        }
+        },
+        trbAnchor: { national: 0.50, ethnic_racial: 0.20, religious: 0.15 }
       },
       born_here: {
         continuous: {
           CU: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] },
           TRB: { pos: [0.04, 0.10, 0.22, 0.34, 0.30] }
-        }
+        },
+        trbAnchor: { ethnic_racial: 0.45, national: 0.40, religious: 0.05 }
       }
     }
   },
@@ -1498,9 +1451,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" },
-      { node: "CD", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" },
-      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.35, touchType: "religious_anchor" }
+      { node: "CD", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" }
     ],
     optionEvidence: {
       very_religious: {
@@ -1540,10 +1491,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.91,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.35, touchType: "leader_evaluation" },
       { node: "AES", kind: "categorical", role: "category", weight: 0.45, touchType: "leader_evaluation" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "leader_evaluation" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.10, touchType: "leader_evaluation" }
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "leader_evaluation" }
     ],
     optionEvidence: {
       competence_record: {
@@ -1584,11 +1533,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "AES", kind: "categorical", role: "category", weight: 0.82, touchType: "rhetorical_preference" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.30, touchType: "rhetorical_preference" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_preference" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "rhetorical_preference" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "rhetorical_preference" },
-      { node: "AES", kind: "categorical", role: "salience", weight: 0.80, touchType: "checkbox_salience" }
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.30, touchType: "rhetorical_preference" }
     ],
     optionEvidence: {
       evidence_pitch: {
@@ -1628,9 +1573,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.90,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "AES", kind: "categorical", role: "category", weight: 0.88, touchType: "movement_style" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "movement_style" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.15, touchType: "movement_style" }
+      { node: "AES", kind: "categorical", role: "category", weight: 0.88, touchType: "movement_style" }
     ],
     optionEvidence: {
       fiery_rally: {
@@ -1733,9 +1676,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.94,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "updating_channel" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "updating_channel" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "updating_channel" }
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "updating_channel" }
     ],
     optionEvidence: {
       personal_experience: {
@@ -1781,8 +1722,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "EPS", kind: "categorical", role: "category", weight: 0.98, touchType: "factual_calibration" },
-      { node: "EPS", kind: "categorical", role: "salience", weight: 0.45, touchType: "factual_calibration" },
-      { node: "ENG", kind: "continuous", role: "position", weight: 0.10, touchType: "issue_attention" }
+      { node: "EPS", kind: "categorical", role: "salience", weight: 0.45, touchType: "factual_calibration" }
     ],
     allocationMap: {
       expert_consensus: { categorical: { EPS: EPS_PROTOTYPES.institutionalist } },
@@ -1808,7 +1748,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.70, touchType: "economic_attribution" },
       { node: "ONT_S", kind: "continuous", role: "position", weight: 0.65, touchType: "economic_attribution" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.40, touchType: "conflict_attribution" },
+      { node: "ZS", kind: "continuous", role: "position", weight: 0.40, touchType: "conflict_attribution" }
     ],
     rankingMap: {
       global_competition: {
@@ -1840,9 +1780,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: true,
     touchProfile: [
       { node: "CU", kind: "continuous", role: "position", weight: 0.75, touchType: "membership_expectation" },
-      { node: "CD", kind: "continuous", role: "position", weight: 0.25, touchType: "membership_expectation" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_expectation" },
-      { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "boundary_identity" }
+      { node: "CD", kind: "continuous", role: "position", weight: 0.25, touchType: "membership_expectation" }
     ],
     rankingMap: {
       learn_language: {
@@ -1879,7 +1817,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MOR", kind: "continuous", role: "salience", weight: 0.38, touchType: "best_worst_asymmetric" },
       { node: "PRO", kind: "continuous", role: "salience", weight: 0.34, touchType: "best_worst_asymmetric" },
-      { node: "PF", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst_asymmetric" },
       { node: "TRB", kind: "continuous", role: "salience", weight: 0.30, touchType: "best_worst_asymmetric" },
       { node: "MAT", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
       { node: "CU", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
@@ -1888,22 +1825,28 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     ],
     rankingMap: {
       fairness: {
-        continuous: { MAT: -0.5, MOR: 0.5, PRO: 0.25 }
+        continuous: { MAT: -0.5, MOR: 0.5, PRO: 0.25 },
+        trbAnchor: { ideological: 0.40, class: 0.25, mixed_none: 0.15 }
       },
       procedural_integrity: {
-        continuous: { PRO: 0.65, COM: 0.25 }
+        continuous: { PRO: 0.65, COM: 0.25 },
+        trbAnchor: { ideological: 0.45, national: 0.20, mixed_none: 0.15 }
       },
       national_strength: {
-        continuous: { CU: -0.45, TRB: 0.45, ZS: -0.25 }
+        continuous: { CU: -0.45, TRB: 0.45, ZS: -0.25 },
+        trbAnchor: { national: 0.60, ethnic_racial: 0.20 }
       },
       community_bonds: {
-        continuous: { COM: 0.45, TRB: -0.25, MOR: 0.35 }
+        continuous: { COM: 0.45, TRB: -0.25, MOR: 0.35 },
+        trbAnchor: { religious: 0.35, national: 0.25, ethnic_racial: 0.15, mixed_none: 0.10 }
       },
       individual_freedom: {
-        continuous: { PRO: 0.55, MAT: 0.25 }
+        continuous: { PRO: 0.55, MAT: 0.25 },
+        trbAnchor: { ideological: 0.45, mixed_none: 0.25, class: 0.10 }
       },
       tradition_continuity: {
-        continuous: { CD: -0.45, CU: -0.35 }
+        continuous: { CD: -0.45, CU: -0.35 },
+        trbAnchor: { religious: 0.40, national: 0.30, ethnic_racial: 0.10 }
       }
     }
   },
@@ -2132,8 +2075,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.91,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "COM", kind: "continuous", role: "salience", weight: 0.90, touchType: "direct_salience" },
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "governance_proxy" }
+      { node: "COM", kind: "continuous", role: "salience", weight: 0.90, touchType: "direct_salience" }
     ],
     sliderMap: {
       "0-20":   { continuous: { COM: { sal: [0.55, 0.30, 0.12, 0.03] } } },
@@ -2178,8 +2120,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.88,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "AES", kind: "categorical", role: "salience", weight: 0.90, touchType: "direct_salience" },
-      { node: "ENG", kind: "continuous", role: "salience", weight: 0.20, touchType: "attention_proxy" }
+      { node: "AES", kind: "categorical", role: "salience", weight: 0.90, touchType: "direct_salience" }
     ],
     sliderMap: {
       "0-20":   { categorical: { AES: { sal: [0.55, 0.30, 0.12, 0.03] } } },
@@ -2356,7 +2297,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     rewriteNeeded: false,
     touchProfile: [
       { node: "EPS", kind: "categorical", role: "category",  weight: 0.95, touchType: "decision_style" },
-      { node: "EPS", kind: "categorical", role: "salience",  weight: 0.35, touchType: "decision_style" },
       { node: "AES", kind: "categorical", role: "category",  weight: 0.15, touchType: "style_proxy" }
     ],
     optionEvidence: {

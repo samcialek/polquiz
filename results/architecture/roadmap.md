@@ -1,0 +1,12 @@
+# PRISM Architecture Roadmap
+
+Six-stage sequence from the current state to a re-baselined architecture. Each stage is scoped separately before it lands.
+
+| Stage | Work | Status |
+|-------|------|--------|
+| 1 | Finish TRB evidence-map fixes (Q51/Q52/Q63 + Q54 cleanup). Update CLAUDE.md for TRB anchor correction. | Complete |
+| 2 | ~~Implement ADR-001. Euclidean distance, winner-take-all, rework adaptive selectors, replacement family-detection.~~ **Rolled back under ADR-003 on 2026-04-17.** ADR-001's premise (priors load-bearing) rejected by Diagnostic 1. Scoring layer restored to pre-Phase-3 weighted scalar scorer at 86.8% top-1. Selector/stop-rule rework and signature-distance family detection **retained**. Prior/trbAnchorPrior fields stay dead — D1 showed they were always uniform and cancel under softmax. See `ADR-003-rollback-scoring.md`, `results/phase3/regression-post-rollback.md`. | Complete (as rollback) |
+| 3 | Implement ADR-002. Remove ENG from archetype signatures, build ENG module, re-scope ENG-touching questions, rework identity-primary. | Complete |
+| 4 | Attractor sharpening (006 Fairness Pragmatist, 021-cosmopolitan family). Plus Stage-2-carryforward calibration items:<br>• **Stop-rule distance ceilings** in `runtimeConfig.ts` — calibrated for Euclidean scale, vacuous under restored scorer. The remaining `gap_ratio` + `consecutiveCount` + `nodesSettled` gates still do real work, but the distance ceilings should be recalibrated or removed.<br>• **Family-detection firing rate** — `FAMILY_PERCENTILE = 0.10` produced a measured 72% firing rate in deterministic regression (intended target: ~10% of pairs, which should translate to a lower run-level firing rate than this). Signal: the threshold may be calibrated too loose to make the family-pair label informative in the UI — a label that fires on 72% of runs is not a useful "you're close to X" signal. Stage 4 should measure the empirical firing rate against the intended 10-percentile target (`buildArchetypeFamilies` selects the 10th-percentile pairwise signature-distance as threshold), understand why deterministic mode amplifies firings, and tighten if drifted. Accuracy is unaffected (86.8% top-1 post-rollback); this is purely a UX calibration problem.<br>• **Progress-estimator thresholds** in `browser/api.ts` (`dLeader <= 6 / <= 10` hardcoded for Euclidean scale). Display-only, low priority. | Pending |
+| 5 | PF-zeroed elections audit re-run. | Pending |
+| 6 | Full eval re-run (Steps 3, 4, 5 re-baselined against the new architecture). | Pending |

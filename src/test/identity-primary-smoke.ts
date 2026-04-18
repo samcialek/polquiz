@@ -1,5 +1,10 @@
 import type { RespondentState } from "../types.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
+import { computeEngagementLabel } from "../engine/engagementLabel.js";
+
+function resolve(state: RespondentState, demographics: Parameters<typeof resolveIdentityPrimary>[2]) {
+  return resolveIdentityPrimary(state, computeEngagementLabel(state), demographics);
+}
 
 function assert(condition: unknown, message: string): void {
   if (!condition) throw new Error(message);
@@ -38,31 +43,34 @@ function makeState(anchor: "ethnic_racial" | "religious" | "global"): Respondent
       AES: { catDist: [1, 0, 0, 0, 0, 0], salDist: zeroSal(), touches: 0, touchTypes: new Set(), status: "unknown" },
     },
     trbAnchor: {
+      // 9-anchor layout: national, ideological, religious, class, ethnic_racial, gender, sexual, global, mixed_none
       dist: [
-        anchor === "global" ? 0 : 0,
+        0,
         0,
         anchor === "religious" ? 1 : 0,
         0,
         anchor === "ethnic_racial" ? 1 : 0,
+        0,
+        0,
         anchor === "global" ? 1 : 0,
         0,
       ] as any,
       touches: 1,
     },
-    archetypePosterior: {},
+    archetypeDistances: {},
   };
 }
 
-const black = resolveIdentityPrimary(makeState("ethnic_racial"), { demo_ethnicity: "black" });
+const black = resolve(makeState("ethnic_racial"), { demo_ethnicity: "black" });
 assert(black.label === "Black Voter", `expected Black Voter, got ${JSON.stringify(black)}`);
 
-const white = resolveIdentityPrimary(makeState("ethnic_racial"), { demo_ethnicity: "white" });
+const white = resolve(makeState("ethnic_racial"), { demo_ethnicity: "white" });
 assert(white.label === "White Grievance Voter", `expected White Grievance Voter, got ${JSON.stringify(white)}`);
 
-const evangelical = resolveIdentityPrimary(makeState("religious"), { demo_religion: "christian" });
+const evangelical = resolve(makeState("religious"), { demo_religion: "christian" });
 assert(evangelical.label === "Evangelical Voter", `expected Evangelical Voter, got ${JSON.stringify(evangelical)}`);
 
-const unresolved = resolveIdentityPrimary(makeState("global"), {});
+const unresolved = resolve(makeState("global"), {});
 assert(unresolved.state === "unresolved", `expected unresolved, got ${JSON.stringify(unresolved)}`);
 
 console.log("identity-primary smoke: ok");

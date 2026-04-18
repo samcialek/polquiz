@@ -32,9 +32,11 @@ import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.j
 import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
+import { buildArchetypeFamilies, type ArchetypeFamilyIndex } from "../engine/archetypeFamilies.js";
 import { FIXED_16 } from "../engine/config.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
+import { computeEngagementLabel, type EngagementLabel } from "../engine/engagementLabel.js";
 
 // ---------------------------------------------------------------------------
 // Types exposed to the browser consumer
@@ -67,7 +69,8 @@ export interface QuizQuestion {
 export interface QuizProgress {
   questionsAnswered: number;
   estimatedTotal: number;
-  topArchetypes: Array<{ id: string; name: string; posterior: number }>;
+  topArchetypes: Array<{ id: string; name: string; distance: number }>;
+  /** Distance-based confidence proxy: gap_ratio = (d_second - d_leader) / d_leader, clamped [0, 1]. */
   confidence: number;
   phase: "salience" | "discriminate" | "converge";
 }
@@ -76,29 +79,32 @@ export interface ArchetypeResult {
   id: string;
   name: string;
   tier: string;
-  posterior: number;
   distance: number;
 }
 
 export interface FamilyResult {
-  /** True when the top-2 archetypes are near-neighbors (gap < 3%) */
+  /** True when the runner-up is in the leader's pre-computed family set. */
   isFamily: boolean;
-  /** Family label (shared prefix or combined name) */
-  familyLabel?: string;
-  /** The two archetypes that form the family */
-  members?: [ArchetypeResult, ArchetypeResult];
+  /** ID of the runner-up family member. */
+  partnerId?: string;
+  /** Display name of the runner-up family member. */
+  partnerName?: string;
 }
 
 export interface QuizResults {
   match: ArchetypeResult;
-  top5: ArchetypeResult[];
+  top3: ArchetypeResult[];
   questionsAnswered: number;
+  /** Distance-based confidence proxy: gap_ratio between leader and runner-up, clamped [0, 1]. */
   confidence: number;
-  /** Family/subtype info when top-2 are near-neighbors */
+  /** Family/subtype info when the runner-up is in the leader's family set. */
   family?: FamilyResult;
+  /** Engagement label (ADR-002): standalone module derived from ENG state, independent of archetype match. */
+  engagement: EngagementLabel;
 }
 
 export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
+export type { EngagementLabel };
 
 // ---------------------------------------------------------------------------
 // Internal state
@@ -106,6 +112,8 @@ export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
 
 let _state: RespondentState | null = null;
 let _archetypes: Archetype[] = [];
+let _activeArchetypes: Archetype[] = [];
+let _familyIndex: ArchetypeFamilyIndex | null = null;
 let _questions: QuestionDef[] = [];
 let _questionsById: Map<number, QuestionDef> = new Map();
 const _ratioBoosts: Map<number, number> = new Map();
@@ -150,7 +158,7 @@ function deepCopyState(state: RespondentState): RespondentState {
       dist: [...state.trbAnchor.dist] as TrbAnchorDist,
       touches: state.trbAnchor.touches,
     },
-    archetypePosterior: { ...state.archetypePosterior },
+    archetypeDistances: { ...state.archetypeDistances },
     currentLeader: state.currentLeader,
     consecutiveLeadCount: state.consecutiveLeadCount,
   };
@@ -181,7 +189,7 @@ function deepCopyState(state: RespondentState): RespondentState {
 // State initialization (mirrors simulation.ts createInitialState)
 // ---------------------------------------------------------------------------
 
-function createInitialState(archetypes: Archetype[]): RespondentState {
+function createInitialState(): RespondentState {
   const continuous = {} as RespondentState["continuous"];
   for (const nodeId of CONTINUOUS_NODES) {
     continuous[nodeId] = {
@@ -204,11 +212,6 @@ function createInitialState(archetypes: Archetype[]): RespondentState {
     };
   }
 
-  const archetypePosterior: Record<string, number> = {};
-  for (const a of archetypes) {
-    archetypePosterior[a.id] = a.prior;
-  }
-
   return {
     answers: {},
     continuous,
@@ -217,55 +220,32 @@ function createInitialState(archetypes: Archetype[]): RespondentState {
       dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9] as TrbAnchorDist,
       touches: 0,
     },
-    archetypePosterior,
+    archetypeDistances: {},
     currentLeader: undefined,
     consecutiveLeadCount: 0,
   };
 }
 
 // ---------------------------------------------------------------------------
-// Posterior update (mirrors simulation.ts updatePosteriors)
+// Distance update (Phase 3 Euclidean WTA scorer)
 // ---------------------------------------------------------------------------
 
-function updatePosteriors(state: RespondentState, archetypes: Archetype[]): void {
-  const nAnswered = Object.keys(state.answers).length;
-
-  const distances: Record<string, number> = {};
-  let minDist = Infinity;
+function updateDistances(state: RespondentState, archetypes: Archetype[]): void {
+  let leaderId: string | undefined;
+  let leaderDist = Infinity;
   for (const a of archetypes) {
     const dist = archetypeDistance(state, a);
-    distances[a.id] = dist;
-    if (dist < minDist) minDist = dist;
+    state.archetypeDistances[a.id] = dist;
+    if (dist < leaderDist) {
+      leaderDist = dist;
+      leaderId = a.id;
+    }
   }
 
-  // Adaptive temperature: starts warm (0.12), cools to 0.04 by question 40
-  const baseTemp = 0.12;
-  const minTemp = 0.04;
-  const coolRate = Math.min(1.0, nAnswered / 40);
-  const temperature = baseTemp - (baseTemp - minTemp) * coolRate;
-
-  let totalLikelihood = 0;
-  const likelihoods: Record<string, number> = {};
-  for (const a of archetypes) {
-    const likelihood = Math.exp(-(distances[a.id]! - minDist) / temperature);
-    likelihoods[a.id] = likelihood * a.prior;
-    totalLikelihood += likelihoods[a.id]!;
-  }
-
-  for (const a of archetypes) {
-    state.archetypePosterior[a.id] = totalLikelihood > 0
-      ? likelihoods[a.id]! / totalLikelihood
-      : a.prior;
-  }
-
-  // Update leader tracking
-  const entries = Object.entries(state.archetypePosterior)
-    .sort((a, b) => b[1] - a[1]);
-  const newLeader = entries[0]?.[0];
-  if (newLeader === state.currentLeader) {
+  if (leaderId === state.currentLeader) {
     state.consecutiveLeadCount = (state.consecutiveLeadCount ?? 0) + 1;
   } else {
-    state.currentLeader = newLeader;
+    state.currentLeader = leaderId;
     state.consecutiveLeadCount = 1;
   }
 }
@@ -340,10 +320,12 @@ function toQuizQuestion(q: QuestionDef): QuizQuestion {
  */
 export function initQuiz(): void {
   _archetypes = ARCHETYPES;
+  _activeArchetypes = ARCHETYPES.filter(a => a.active !== false);
+  _familyIndex = buildArchetypeFamilies(_archetypes);
   _questions = REPRESENTATIVE_QUESTIONS.filter(q => q.touchProfile.length > 0);
   _questionsById = new Map(_questions.map(q => [q.id, q]));
   resetSimilarityCache();
-  _state = createInitialState(_archetypes);
+  _state = createInitialState();
   _snapshots.length = 0; // Clear snapshot history on fresh quiz
   _ratioBoosts.clear();
 }
@@ -368,7 +350,7 @@ export function getNextQuestion(): QuizQuestion | null {
   const available = _questions.filter(
     q => !(q.id in _state!.answers) && isQuestionEligible(_state!, q)
   );
-  const next = selectNextQuestion(_state, available, _archetypes);
+  const next = selectNextQuestion(_state, available, _activeArchetypes);
   return next ? toQuizQuestion(next) : null;
 }
 
@@ -433,8 +415,8 @@ export function submitAnswer(
     }
   }
 
-  // Update posteriors after each answer
-  updatePosteriors(_state, _archetypes);
+  // Update distances after each answer
+  updateDistances(_state, _activeArchetypes);
 }
 
 /**
@@ -445,29 +427,34 @@ export function getProgress(): QuizProgress {
 
   const nAnswered = Object.keys(_state.answers).length;
 
-  // Estimate total questions based on current phase
-  let estimatedTotal: number;
-  if (nAnswered < 16) {
-    estimatedTotal = 40; // early estimate
-  } else {
-    // Refine based on convergence rate
-    const topPosterior = Math.max(...Object.values(_state.archetypePosterior));
-    if (topPosterior > 0.5) estimatedTotal = Math.max(nAnswered + 3, 30);
-    else if (topPosterior > 0.3) estimatedTotal = Math.max(nAnswered + 8, 35);
-    else estimatedTotal = Math.max(nAnswered + 15, 45);
-  }
-
-  // Top archetypes
-  const sorted = Object.entries(_state.archetypePosterior)
-    .sort((a, b) => b[1] - a[1])
+  const sorted = Object.entries(_state.archetypeDistances)
+    .filter(([, d]) => Number.isFinite(d))
+    .sort((a, b) => a[1] - b[1])
     .slice(0, 5);
 
-  const topArchetypes = sorted.map(([id, posterior]) => {
+  const dLeader = sorted[0]?.[1] ?? Infinity;
+  const dSecond = sorted[1]?.[1] ?? Infinity;
+  const gapRatio = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
+    ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
+    : 0;
+
+  // Estimate total questions based on convergence (distance scale: see plan §4)
+  let estimatedTotal: number;
+  if (nAnswered < 16) {
+    estimatedTotal = 40;
+  } else if (dLeader <= 6) {
+    estimatedTotal = Math.max(nAnswered + 3, 30);
+  } else if (dLeader <= 10) {
+    estimatedTotal = Math.max(nAnswered + 8, 35);
+  } else {
+    estimatedTotal = Math.max(nAnswered + 15, 45);
+  }
+
+  const topArchetypes = sorted.map(([id, distance]) => {
     const arch = _archetypes.find(a => a.id === id);
-    return { id, name: arch?.name ?? "Unknown", posterior };
+    return { id, name: arch?.name ?? "Unknown", distance };
   });
 
-  // Phase
   let phase: QuizProgress["phase"];
   if (nAnswered < 16) phase = "salience";
   else if (nAnswered < 28) phase = "discriminate";
@@ -477,7 +464,7 @@ export function getProgress(): QuizProgress {
     questionsAnswered: nAnswered,
     estimatedTotal,
     topArchetypes,
-    confidence: sorted[0]?.[1] ?? 0,
+    confidence: gapRatio,
     phase,
   };
 }
@@ -489,7 +476,7 @@ export function isComplete(): boolean {
   if (!_state) return false;
   const nAnswered = Object.keys(_state.answers).length;
   if (nAnswered < 20) return false; // absolute minimum
-  return shouldStop(_state, _archetypes);
+  return shouldStop(_state, _activeArchetypes);
 }
 
 /**
@@ -499,47 +486,50 @@ export function isComplete(): boolean {
 export function getResults(): QuizResults {
   if (!_state) throw new Error("Call initQuiz() first");
 
-  const sorted = Object.entries(_state.archetypePosterior)
-    .sort((a, b) => b[1] - a[1]);
+  const sorted = Object.entries(_state.archetypeDistances)
+    .filter(([, d]) => Number.isFinite(d))
+    .sort((a, b) => a[1] - b[1]);
 
-  const top5: ArchetypeResult[] = sorted.slice(0, 5).map(([id, posterior]) => {
+  const top3: ArchetypeResult[] = sorted.slice(0, 3).map(([id, distance]) => {
     const arch = _archetypes.find(a => a.id === id)!;
     return {
       id,
       name: arch.name,
       tier: arch.tier,
-      posterior,
-      distance: archetypeDistance(_state!, arch),
+      distance,
     };
   });
 
-  // Detect family/subtype when top-2 are near-neighbors
+  // Family detection: runner-up ∈ leader's pre-computed family set
   let family: FamilyResult | undefined;
-  if (top5.length >= 2) {
-    const gap = top5[0]!.posterior - top5[1]!.posterior;
-    if (gap < 0.03) {
-      // Find shared words in names to create a family label
-      const words1 = top5[0]!.name.split(/[\s-]+/);
-      const words2 = top5[1]!.name.split(/[\s-]+/);
-      const shared = words1.filter(w => words2.includes(w) && w.length > 2);
-      const familyLabel = shared.length > 0
-        ? shared.join(" ") + " Family"
-        : `${top5[0]!.name} / ${top5[1]!.name}`;
-
+  if (top3.length >= 2 && _familyIndex) {
+    const leaderId = top3[0]!.id;
+    const runnerUpId = top3[1]!.id;
+    const leaderFamily = _familyIndex.familyOf[leaderId];
+    if (leaderFamily && leaderFamily.has(runnerUpId)) {
       family = {
         isFamily: true,
-        familyLabel,
-        members: [top5[0]!, top5[1]!],
+        partnerId: runnerUpId,
+        partnerName: top3[1]!.name,
       };
     }
   }
 
+  const dLeader = top3[0]?.distance ?? Infinity;
+  const dSecond = top3[1]?.distance ?? Infinity;
+  const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
+    ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
+    : 0;
+
+  const engagement = computeEngagementLabel(_state);
+
   return {
-    match: top5[0]!,
-    top5,
+    match: top3[0]!,
+    top3,
     questionsAnswered: Object.keys(_state.answers).length,
-    confidence: top5[0]?.posterior ?? 0,
+    confidence,
     family,
+    engagement,
   };
 }
 
@@ -599,7 +589,8 @@ export function getRespondentState(): Record<string, unknown> | null {
 
 export function getIdentityPrimaryResult(demographics?: IdentityPrimaryDemographics | null): IdentityPrimaryResult | null {
   if (!_state) return null;
-  return resolveIdentityPrimary(_state, demographics ?? null);
+  const engagement = computeEngagementLabel(_state);
+  return resolveIdentityPrimary(_state, engagement, demographics ?? null);
 }
 
 export function applyRatioBoost(questionId: number, ratio: number): void {

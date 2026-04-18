@@ -23,33 +23,33 @@ export interface RuntimeConfig {
   BATCH_SEARCH_DEPTH: number;
   NODE_OVERLAP_PENALTY: number;
 
-  // Stop rule
+  // Stop rule (distance-native; gap_ratio = (d_second - d_leader) / d_leader)
   STOP_MIN_QUESTIONS: number;
-  STOP_POSTERIOR_THRESHOLD: number;
-  STOP_MARGIN_THRESHOLD: number;
+  STOP_DISTANCE_MAX: number;
+  STOP_GAP_RATIO_MIN: number;
   STOP_MIN_CONSECUTIVE_LEADS: number;
   STOP_AGREEMENT_K: number;
 
-  // Secondary stop
-  SECONDARY_MIN_Q: number;
-
-  // High-confidence override
-  HC_POSTERIOR: number;
-  HC_MARGIN: number;
-  HC_CONSECUTIVE: number;
-  HC_COSINE_BLOCK: number;
-
-  // Ultra-confidence stop
+  // Ultra-confidence stop (earlier, tighter distance/gap)
   UC_MIN_Q: number;
-  UC_POSTERIOR: number;
-  UC_MARGIN: number;
+  UC_DISTANCE_MAX: number;
+  UC_GAP_RATIO_MIN: number;
   UC_CONSECUTIVE: number;
 
-  // Late game stop
+  // Secondary stop (later, relaxed)
+  SECONDARY_MIN_Q: number;
+  SECONDARY_DISTANCE_MAX: number;
+  SECONDARY_GAP_RATIO_MIN: number;
+  SECONDARY_CONSECUTIVE: number;
+
+  // Late-game stop
   LATE_GAME_MIN_Q: number;
-  LATE_GAME_POSTERIOR: number;
-  LATE_GAME_MARGIN: number;
+  LATE_GAME_DISTANCE_MAX: number;
+  LATE_GAME_GAP_RATIO_MIN: number;
   LATE_GAME_CONSECUTIVE: number;
+
+  // Hard cap on questions answered
+  HARD_CAP_Q: number;
 }
 
 const DEFAULT_CONFIG: RuntimeConfig = {
@@ -71,33 +71,33 @@ const DEFAULT_CONFIG: RuntimeConfig = {
   BATCH_SEARCH_DEPTH: 10,
   NODE_OVERLAP_PENALTY: 0.5,
 
-  // Stop rule
+  // Stop rule (distance-native). Placeholders — calibrate in Stage 4.
   STOP_MIN_QUESTIONS: 25,
-  STOP_POSTERIOR_THRESHOLD: 0.25,
-  STOP_MARGIN_THRESHOLD: 0.04,
+  STOP_DISTANCE_MAX: 8,
+  STOP_GAP_RATIO_MIN: 0.10,
   STOP_MIN_CONSECUTIVE_LEADS: 3,
   STOP_AGREEMENT_K: 3,
 
-  // Secondary stop
-  SECONDARY_MIN_Q: 35,
-
-  // High-confidence override
-  HC_POSTERIOR: 0.45,
-  HC_MARGIN: 0.15,
-  HC_CONSECUTIVE: 5,
-  HC_COSINE_BLOCK: 0.96,
-
-  // Ultra-confidence stop
+  // Ultra-confidence stop (earlier, tighter)
   UC_MIN_Q: 20,
-  UC_POSTERIOR: 0.90,
-  UC_MARGIN: 0.30,
+  UC_DISTANCE_MAX: 6,
+  UC_GAP_RATIO_MIN: 0.25,
   UC_CONSECUTIVE: 8,
 
-  // Late game stop
+  // Secondary stop (later, relaxed)
+  SECONDARY_MIN_Q: 35,
+  SECONDARY_DISTANCE_MAX: 10,
+  SECONDARY_GAP_RATIO_MIN: 0.05,
+  SECONDARY_CONSECUTIVE: 6,
+
+  // Late-game stop
   LATE_GAME_MIN_Q: 45,
-  LATE_GAME_POSTERIOR: 0.15,
-  LATE_GAME_MARGIN: 0.03,
+  LATE_GAME_DISTANCE_MAX: 12,
+  LATE_GAME_GAP_RATIO_MIN: 0.03,
   LATE_GAME_CONSECUTIVE: 4,
+
+  // Hard cap on questions asked
+  HARD_CAP_Q: 55,
 };
 
 let _config: RuntimeConfig = { ...DEFAULT_CONFIG };

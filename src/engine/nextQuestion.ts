@@ -8,8 +8,7 @@ import type {
 } from "../types.js";
 import { FIXED_16 } from "./config.js";
 import { getConfig } from "../optimize/runtimeConfig.js";
-import { viableArchetypes } from "./archetypeDistance.js";
-import { archetypeDistance } from "./archetypeDistance.js";
+import { viableByDistance, topKDistanceWeights } from "./archetypeDistance.js";
 import { NODE_NORM_FACTORS } from "../config/normalization.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
 
@@ -92,12 +91,13 @@ export function isQuestionEligible(state: RespondentState, q: QuestionDef): bool
 // ---------------------------------------------------------------------------
 
 function topCandidateArchetypes(
-  posterior: Record<string, number>,
+  state: RespondentState,
   archetypes: Archetype[],
   k = 5
 ): Archetype[] {
+  const d = state.archetypeDistances;
   return [...archetypes]
-    .sort((a, b) => (posterior[b.id] ?? 0) - (posterior[a.id] ?? 0))
+    .sort((a, b) => (d[a.id] ?? Infinity) - (d[b.id] ?? Infinity))
     .slice(0, k);
 }
 
@@ -263,13 +263,13 @@ function scorePruneDiscriminatePhase(
   q: QuestionDef,
   archetypes: Archetype[]
 ): number {
-  // Use viable archetypes (already pruned by posterior)
-  const viable = viableArchetypes(state, archetypes, 0.005);
+  // Use viable archetypes (pruned by relative distance to the leader)
+  const viable = viableByDistance(state, archetypes, 1.0);
 
   // Further prune by salience mismatch
   const saliencePruned = pruneByRespondentSalience(state, viable);
   const candidates = topCandidateArchetypes(
-    state.archetypePosterior,
+    state,
     saliencePruned.length > 2 ? saliencePruned : viable,
     6
   );
@@ -307,15 +307,15 @@ function scoreInformationGain(
   q: QuestionDef,
   archetypes: Archetype[]
 ): number {
-  const viable = viableArchetypes(state, archetypes, 0.002);
-  const topK = topCandidateArchetypes(state.archetypePosterior, viable, 8);
-  if (topK.length < 2) return 0;
+  const viable = viableByDistance(state, archetypes, 1.0);
+  const topKWeights = topKDistanceWeights(state, viable, 8);
+  if (topKWeights.length < 2) return 0;
+  const topK = topKWeights.map((r) => r.archetype);
 
-  // Current entropy over top-K posteriors
-  const topPosteriors = topK.map((a) => state.archetypePosterior[a.id] ?? 0);
-  const totalP = topPosteriors.reduce((a, b) => a + b, 0);
-  const normalizedP = totalP > 0 ? topPosteriors.map((p) => p / totalP) : topPosteriors;
-  const currentEntropy = entropy(normalizedP);
+  // Concentration proxy: entropy over distance-derived weights. Lower entropy
+  // (weight concentrated on leader) means we're close to convergence and the
+  // marginal value of more discrimination is lower.
+  const currentEntropy = entropy(topKWeights.map((r) => r.weight));
 
   if (currentEntropy < 0.01) return 0; // already converged
 
@@ -420,10 +420,15 @@ function discriminationScoreExtended(
       const { disagreement, weight } = pairwiseDisagreement(q, a1, a2);
       if (weight === 0) continue;
 
-      // Weight pair by closeness in posterior (closer pairs are more important)
-      const p1 = state.archetypePosterior[a1.id] ?? 0;
-      const p2 = state.archetypePosterior[a2.id] ?? 0;
-      const closeness = Math.min(p1, p2) / Math.max(p1, p2, 0.001);
+      // Weight pair by closeness in distance (equally-matched pairs matter most).
+      // min/max is symmetric for distances and posteriors: in both regimes,
+      // closeness = 1 when the two archetypes are at parity.
+      const d1 = state.archetypeDistances[a1.id] ?? Infinity;
+      const d2 = state.archetypeDistances[a2.id] ?? Infinity;
+      const closeness =
+        Number.isFinite(d1) && Number.isFinite(d2)
+          ? Math.min(d1, d2) / Math.max(d1, d2, 0.001)
+          : 0;
 
       // Bonus for pairs involving the leader (pair [0,j] matters most)
       const leaderBonus = i === 0 ? 1.5 : 1.0;
@@ -484,8 +489,8 @@ function scorePairwiseDiscrimination(
   q: QuestionDef,
   archetypes: Archetype[]
 ): number {
-  const viable = viableArchetypes(state, archetypes, 0.002);
-  const topK = topCandidateArchetypes(state.archetypePosterior, viable, 4);
+  const viable = viableByDistance(state, archetypes, 1.0);
+  const topK = topCandidateArchetypes(state, viable, 4);
   if (topK.length < 2) return 0;
 
   const leader = topK[0]!;
@@ -584,17 +589,20 @@ function scoreQuestion3Phase(
     return salienceScore * (1 - alpha) + discrimScore * alpha;
   }
 
-  // Phase 4 override: Pairwise discrimination when top-2 gap < 0.02
-  // Kicks in after 25+ questions when the leader and runner-up are neck-and-neck
+  // Phase 4 override: Pairwise discrimination when top-2 distance gap_ratio < 0.05
+  // (runner-up within 5% of leader). Kicks in after 25+ questions when leader
+  // and runner-up are neck-and-neck in the distance metric.
   if (nAnswered >= 25) {
-    const viable = viableArchetypes(state, archetypes, 0.002);
-    const top2 = topCandidateArchetypes(state.archetypePosterior, viable, 2);
+    const viable = viableByDistance(state, archetypes, 1.0);
+    const top2 = topCandidateArchetypes(state, viable, 2);
     if (top2.length >= 2) {
-      const p1 = state.archetypePosterior[top2[0]!.id] ?? 0;
-      const p2 = state.archetypePosterior[top2[1]!.id] ?? 0;
-      const gap = p1 - p2;
-      if (gap < 0.02) {
-        return scorePairwiseDiscrimination(state, q, archetypes);
+      const d1 = state.archetypeDistances[top2[0]!.id] ?? Infinity;
+      const d2 = state.archetypeDistances[top2[1]!.id] ?? Infinity;
+      if (Number.isFinite(d1) && Number.isFinite(d2) && d1 > 0) {
+        const gapRatio = (d2 - d1) / d1;
+        if (gapRatio < 0.05) {
+          return scorePairwiseDiscrimination(state, q, archetypes);
+        }
       }
     }
   }
@@ -645,7 +653,7 @@ export function scoreQuestionForExposure(
 
 function computeBatchSize(state: RespondentState, archetypes: Archetype[]): number {
   const cfg = getConfig();
-  const viable = viableArchetypes(state, archetypes);
+  const viable = viableByDistance(state, archetypes, 1.0);
   if (viable.length > 20) return cfg.BATCH_SIZE_MAX;
   if (viable.length > cfg.BATCH_PRUNE_MIN_VIABLE) return cfg.BATCH_SIZE_MIN;
   return 1; // fine discrimination — single question mode

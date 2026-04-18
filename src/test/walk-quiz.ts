@@ -241,5 +241,5 @@ if (bugs.length === 0) {
 
 if (isComplete()) {
   const results = getResults();
-  console.log(`\nTop result: ${results[0]?.name} (${(results[0]?.posterior * 100).toFixed(1)}%)`);
+  console.log(`\nTop result: ${results.match.name} (d=${results.match.distance.toFixed(2)})`);
 }

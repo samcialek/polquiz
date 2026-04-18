@@ -1,4 +1,5 @@
 import type { RespondentState, TrbAnchor } from "../types.js";
+import type { EngagementLabel } from "../engine/engagementLabel.js";
 
 export type IdentityPrimaryLabel =
   | "Black Voter"
@@ -20,7 +21,7 @@ export interface IdentityPrimaryResult {
   gate: {
     trb: number;
     pf: number;
-    eng: number;
+    engagementLevel: EngagementLabel["level"];
     passedLatent: boolean;
     passedActive: boolean;
     passedDominant: boolean;
@@ -47,7 +48,7 @@ const TRB_ANCHOR_ORDER: TrbAnchor[] = [
   "mixed_none",
 ];
 
-function expectedContinuous(state: RespondentState, nodeId: "TRB" | "PF" | "ENG" | "ZS" | "CD" | "ONT_S" | "MOR"): number {
+function expectedContinuous(state: RespondentState, nodeId: "TRB" | "PF" | "ZS" | "CD" | "ONT_S" | "MOR"): number {
   const node = state.continuous[nodeId];
   if (!node) return 3;
   return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
@@ -65,22 +66,36 @@ function topAnchor(state: RespondentState): TrbAnchor {
 
 export function resolveIdentityPrimary(
   state: RespondentState,
+  engagementLabel: EngagementLabel,
   demographics?: IdentityPrimaryDemographics | null,
 ): IdentityPrimaryResult {
   const trb = expectedContinuous(state, "TRB");
   const pf = expectedContinuous(state, "PF");
-  const eng = expectedContinuous(state, "ENG");
   const zs = expectedContinuous(state, "ZS");
   const cd = expectedContinuous(state, "CD");
   const onts = expectedContinuous(state, "ONT_S");
   const mor = expectedContinuous(state, "MOR");
   const anchor = topAnchor(state);
 
-  const passedLatent = trb >= 3 && pf >= 3;
-  const passedActive = trb >= 4 && pf >= 4 && eng >= 3;
-  const passedDominant = trb >= 4 && pf >= 4 && eng >= 4;
+  // ENG leaves archetype signatures under ADR-002; engagement gating runs on
+  // the standalone EngagementLabel the caller computed from state.
+  const engagementActive =
+    engagementLabel.level === "engaged" ||
+    engagementLabel.level === "highly-engaged";
+  const engagementDominant = engagementLabel.level === "highly-engaged";
 
-  const gate = { trb, pf, eng, passedLatent, passedActive, passedDominant };
+  const passedLatent = trb >= 3 && pf >= 3;
+  const passedActive = trb >= 4 && pf >= 4 && engagementActive;
+  const passedDominant = trb >= 4 && pf >= 4 && engagementDominant;
+
+  const gate = {
+    trb,
+    pf,
+    engagementLevel: engagementLabel.level,
+    passedLatent,
+    passedActive,
+    passedDominant,
+  };
 
   if (!passedLatent) {
     return { state: "none", anchor, reasonCodes: ["gate_not_met"], gate };

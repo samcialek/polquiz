@@ -1,3 +1,9 @@
+// @ts-nocheck
+// FROZEN HISTORICAL — pre-Phase-3 diagnostic with its own inline softmax scorer.
+// Uses `archetype.prior` (no longer exists) and `state.archetypePosterior`
+// (renamed to `archetypeDistances`). Not on the CI path. To revive, port the
+// inline scorer to `archetypeDistance` from `src/engine/archetypeDistance.ts`.
+
 /**
  * PRISM Quiz Engine — Full Diagnostic Simulation
  *

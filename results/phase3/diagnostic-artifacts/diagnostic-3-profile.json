@@ -1,0 +1,764 @@
+{
+  "n_total": 121,
+  "wins": 55,
+  "losses": 66,
+  "wta_only_losses": 43,
+  "both_losses": 23,
+  "won_A_lost_B": 0,
+  "wta_confounders_top10": [
+    {
+      "id": "005",
+      "name": "Pluralist Structuralist",
+      "count": 6
+    },
+    {
+      "id": "125",
+      "name": "Reluctant Partisan",
+      "count": 5
+    },
+    {
+      "id": "103",
+      "name": "Grievance Mobilizer",
+      "count": 5
+    },
+    {
+      "id": "112",
+      "name": "Engaged Cosmopolitan",
+      "count": 4
+    },
+    {
+      "id": "086",
+      "name": "Duty Traditionalist",
+      "count": 4
+    },
+    {
+      "id": "091",
+      "name": "Security Paternalist",
+      "count": 3
+    },
+    {
+      "id": "014",
+      "name": "Activist Progressive",
+      "count": 2
+    },
+    {
+      "id": "004",
+      "name": "Labor Reformer",
+      "count": 2
+    },
+    {
+      "id": "002",
+      "name": "Independent Social Democrat",
+      "count": 1
+    },
+    {
+      "id": "043",
+      "name": "Quiet Egalitarian",
+      "count": 1
+    }
+  ],
+  "wta_only_loss_rows": [
+    {
+      "target": "001",
+      "target_name": "Rawlsian Reformer",
+      "rank_wta": 20,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 8,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "013",
+      "target_name": "Radical Leveler",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "014",
+      "wta_confounder_name": "Activist Progressive",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "015",
+      "target_name": "Moral Firebrand",
+      "rank_wta": 34,
+      "rank_old": 1,
+      "wta_confounder": "014",
+      "wta_confounder_name": "Activist Progressive",
+      "target_anti_count": 10,
+      "target_sal_active": 13,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "022",
+      "target_name": "Pluralist Universalist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "112",
+      "wta_confounder_name": "Engaged Cosmopolitan",
+      "target_anti_count": 0,
+      "target_sal_active": 13,
+      "conf_anti_count": 4,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "024",
+      "target_name": "Ethical Internationalist",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 8,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "028",
+      "target_name": "Global Caretaker",
+      "rank_wta": 10,
+      "rank_old": 1,
+      "wta_confounder": "002",
+      "wta_confounder_name": "Independent Social Democrat",
+      "target_anti_count": 7,
+      "target_sal_active": 13,
+      "conf_anti_count": 4,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "029",
+      "target_name": "Liberationist Progressive",
+      "rank_wta": 48,
+      "rank_old": 1,
+      "wta_confounder": "043",
+      "wta_confounder_name": "Quiet Egalitarian",
+      "target_anti_count": 7,
+      "target_sal_active": 13,
+      "conf_anti_count": 2,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "032",
+      "target_name": "Hamiltonian Technocrat",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 9,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "035",
+      "target_name": "Administrative Liberal",
+      "rank_wta": 4,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 5,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "036",
+      "target_name": "Institutional Optimizer",
+      "rank_wta": 14,
+      "rank_old": 1,
+      "wta_confounder": "125",
+      "wta_confounder_name": "Reluctant Partisan",
+      "target_anti_count": 4,
+      "target_sal_active": 13,
+      "conf_anti_count": 9,
+      "conf_sal_active": 8
+    },
+    {
+      "target": "037",
+      "target_name": "Fabian Modernizer",
+      "rank_wta": 9,
+      "rank_old": 1,
+      "wta_confounder": "003",
+      "wta_confounder_name": "Consensus Redistributionist",
+      "target_anti_count": 5,
+      "target_sal_active": 13,
+      "conf_anti_count": 5,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "039",
+      "target_name": "Data-Driven Moderate",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "006",
+      "wta_confounder_name": "Fairness Pragmatist",
+      "target_anti_count": 6,
+      "target_sal_active": 11,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "040",
+      "target_name": "Reform Engineer",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 5,
+      "target_sal_active": 12,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "046",
+      "target_name": "Pastoral Leftist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "049",
+      "wta_confounder_name": "Moral Egalitarian",
+      "target_anti_count": 4,
+      "target_sal_active": 25,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "053",
+      "target_name": "Consensus Builder",
+      "rank_wta": 6,
+      "rank_old": 1,
+      "wta_confounder": "125",
+      "wta_confounder_name": "Reluctant Partisan",
+      "target_anti_count": 5,
+      "target_sal_active": 13,
+      "conf_anti_count": 9,
+      "conf_sal_active": 8
+    },
+    {
+      "target": "054",
+      "target_name": "Arbiter Moderate",
+      "rank_wta": 4,
+      "rank_old": 1,
+      "wta_confounder": "060",
+      "wta_confounder_name": "Hinge Citizen",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "057",
+      "target_name": "Temperate Pluralist",
+      "rank_wta": 7,
+      "rank_old": 1,
+      "wta_confounder": "005",
+      "wta_confounder_name": "Pluralist Structuralist",
+      "target_anti_count": 4,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "061",
+      "target_name": "Millian Liberal",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "112",
+      "wta_confounder_name": "Engaged Cosmopolitan",
+      "target_anti_count": 7,
+      "target_sal_active": 13,
+      "conf_anti_count": 4,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "062",
+      "target_name": "Meritocratic Liberal",
+      "rank_wta": 25,
+      "rank_old": 1,
+      "wta_confounder": "125",
+      "wta_confounder_name": "Reluctant Partisan",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 9,
+      "conf_sal_active": 8
+    },
+    {
+      "target": "063",
+      "target_name": "Enterprise Pluralist",
+      "rank_wta": 6,
+      "rank_old": 1,
+      "wta_confounder": "088",
+      "wta_confounder_name": "Gentle Traditionalist",
+      "target_anti_count": 11,
+      "target_sal_active": 25,
+      "conf_anti_count": 5,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "071",
+      "target_name": "Constitutional Conservative",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "091",
+      "wta_confounder_name": "Security Paternalist",
+      "target_anti_count": 0,
+      "target_sal_active": 13,
+      "conf_anti_count": 5,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "077",
+      "target_name": "Ordered Libertarian",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "086",
+      "wta_confounder_name": "Duty Traditionalist",
+      "target_anti_count": 4,
+      "target_sal_active": 13,
+      "conf_anti_count": 2,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "084",
+      "target_name": "Civilizational Conservative",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "086",
+      "wta_confounder_name": "Duty Traditionalist",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 2,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "087",
+      "target_name": "Continuity Conservative",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "091",
+      "wta_confounder_name": "Security Paternalist",
+      "target_anti_count": 4,
+      "target_sal_active": 12,
+      "conf_anti_count": 5,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "094",
+      "target_name": "Hard-State Manager",
+      "rank_wta": 4,
+      "rank_old": 1,
+      "wta_confounder": "091",
+      "wta_confounder_name": "Security Paternalist",
+      "target_anti_count": 7,
+      "target_sal_active": 13,
+      "conf_anti_count": 5,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "099",
+      "target_name": "Scarcity Populist",
+      "rank_wta": 6,
+      "rank_old": 1,
+      "wta_confounder": "103",
+      "wta_confounder_name": "Grievance Mobilizer",
+      "target_anti_count": 10,
+      "target_sal_active": 13,
+      "conf_anti_count": 7,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "100",
+      "target_name": "Tribal Insurgent",
+      "rank_wta": 7,
+      "rank_old": 1,
+      "wta_confounder": "103",
+      "wta_confounder_name": "Grievance Mobilizer",
+      "target_anti_count": 12,
+      "target_sal_active": 13,
+      "conf_anti_count": 7,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "101",
+      "target_name": "Embattled Majoritarian",
+      "rank_wta": 3,
+      "rank_old": 1,
+      "wta_confounder": "103",
+      "wta_confounder_name": "Grievance Mobilizer",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 7,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "105",
+      "target_name": "Combative Populist",
+      "rank_wta": 5,
+      "rank_old": 1,
+      "wta_confounder": "103",
+      "wta_confounder_name": "Grievance Mobilizer",
+      "target_anti_count": 10,
+      "target_sal_active": 13,
+      "conf_anti_count": 7,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "107",
+      "target_name": "Resentful Localist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "098",
+      "wta_confounder_name": "Anti-Elite Populist",
+      "target_anti_count": 6,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "111",
+      "target_name": "Cosmopolitan Nonconformist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "112",
+      "wta_confounder_name": "Engaged Cosmopolitan",
+      "target_anti_count": 6,
+      "target_sal_active": 7,
+      "conf_anti_count": 4,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "118",
+      "target_name": "Survival Pragmatist",
+      "rank_wta": 10,
+      "rank_old": 1,
+      "wta_confounder": "125",
+      "wta_confounder_name": "Reluctant Partisan",
+      "target_anti_count": 3,
+      "target_sal_active": 13,
+      "conf_anti_count": 9,
+      "conf_sal_active": 8
+    },
+    {
+      "target": "120",
+      "target_name": "Good Neighbor",
+      "rank_wta": 33,
+      "rank_old": 1,
+      "wta_confounder": "074",
+      "wta_confounder_name": "Responsible Conservative",
+      "target_anti_count": 7,
+      "target_sal_active": 13,
+      "conf_anti_count": 8,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "121",
+      "target_name": "Spectator Citizen",
+      "rank_wta": 7,
+      "rank_old": 1,
+      "wta_confounder": "125",
+      "wta_confounder_name": "Reluctant Partisan",
+      "target_anti_count": 2,
+      "target_sal_active": 13,
+      "conf_anti_count": 9,
+      "conf_sal_active": 8
+    },
+    {
+      "target": "122",
+      "target_name": "Civic Minimalist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "131",
+      "wta_confounder_name": "Duty Voter",
+      "target_anti_count": 3,
+      "target_sal_active": 9,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "131",
+      "target_name": "Duty Voter",
+      "rank_wta": 4,
+      "rank_old": 1,
+      "wta_confounder": "086",
+      "wta_confounder_name": "Duty Traditionalist",
+      "target_anti_count": 3,
+      "target_sal_active": 13,
+      "conf_anti_count": 2,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "132",
+      "target_name": "Negative Partisan",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "128",
+      "wta_confounder_name": "Loyal Democrat",
+      "target_anti_count": 4,
+      "target_sal_active": 7,
+      "conf_anti_count": 1,
+      "conf_sal_active": 10
+    },
+    {
+      "target": "134",
+      "target_name": "Progressive Civic Nationalist",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "004",
+      "wta_confounder_name": "Labor Reformer",
+      "target_anti_count": 2,
+      "target_sal_active": 13,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "135",
+      "target_name": "Disruptive Cosmopolitan",
+      "rank_wta": 2,
+      "rank_old": 1,
+      "wta_confounder": "112",
+      "wta_confounder_name": "Engaged Cosmopolitan",
+      "target_anti_count": 0,
+      "target_sal_active": 13,
+      "conf_anti_count": 4,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "143",
+      "target_name": "Evangelical Voter",
+      "rank_wta": 5,
+      "rank_old": 1,
+      "wta_confounder": "086",
+      "wta_confounder_name": "Duty Traditionalist",
+      "target_anti_count": 1,
+      "target_sal_active": 13,
+      "conf_anti_count": 2,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "144",
+      "target_name": "LGBTQ Voter",
+      "rank_wta": 23,
+      "rank_old": 1,
+      "wta_confounder": "004",
+      "wta_confounder_name": "Labor Reformer",
+      "target_anti_count": 2,
+      "target_sal_active": 13,
+      "conf_anti_count": 3,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "145",
+      "target_name": "Feminist Voter",
+      "rank_wta": 4,
+      "rank_old": 1,
+      "wta_confounder": "141",
+      "wta_confounder_name": "Black Voter",
+      "target_anti_count": 2,
+      "target_sal_active": 13,
+      "conf_anti_count": 0,
+      "conf_sal_active": 13
+    },
+    {
+      "target": "146",
+      "target_name": "Male Grievance Voter",
+      "rank_wta": 10,
+      "rank_old": 1,
+      "wta_confounder": "103",
+      "wta_confounder_name": "Grievance Mobilizer",
+      "target_anti_count": 2,
+      "target_sal_active": 13,
+      "conf_anti_count": 7,
+      "conf_sal_active": 13
+    }
+  ],
+  "both_loss_rows": [
+    {
+      "target": "016",
+      "target_name": "Insurgent Equalizer",
+      "rank_wta": 16,
+      "rank_old": 3,
+      "confounder": "012",
+      "confounder_name": "Class-War Leftist"
+    },
+    {
+      "target": "019",
+      "target_name": "Anarchist Mutualist",
+      "rank_wta": 0,
+      "rank_old": 0,
+      "confounder": "043",
+      "confounder_name": "Quiet Egalitarian"
+    },
+    {
+      "target": "020",
+      "target_name": "Grassroots Autonomist",
+      "rank_wta": 65,
+      "rank_old": 8,
+      "confounder": "043",
+      "confounder_name": "Quiet Egalitarian"
+    },
+    {
+      "target": "023",
+      "target_name": "Rights Cosmopolitan",
+      "rank_wta": 0,
+      "rank_old": 0,
+      "confounder": "021",
+      "confounder_name": "Principled Cosmopolitan"
+    },
+    {
+      "target": "025",
+      "target_name": "World-Minded Reformer",
+      "rank_wta": 0,
+      "rank_old": 0,
+      "confounder": "004",
+      "confounder_name": "Labor Reformer"
+    },
+    {
+      "target": "033",
+      "target_name": "Systems Modernizer",
+      "rank_wta": 31,
+      "rank_old": 11,
+      "confounder": "005",
+      "confounder_name": "Pluralist Structuralist"
+    },
+    {
+      "target": "056",
+      "target_name": "Institutional Centrist",
+      "rank_wta": 51,
+      "rank_old": 13,
+      "confounder": "074",
+      "confounder_name": "Responsible Conservative"
+    },
+    {
+      "target": "059",
+      "target_name": "Public-Minded Moderate",
+      "rank_wta": 15,
+      "rank_old": 2,
+      "confounder": "004",
+      "confounder_name": "Labor Reformer"
+    },
+    {
+      "target": "065",
+      "target_name": "Opportunity Liberal",
+      "rank_wta": 99,
+      "rank_old": 18,
+      "confounder": "004",
+      "confounder_name": "Labor Reformer"
+    },
+    {
+      "target": "067",
+      "target_name": "Free-Exchange Modernist",
+      "rank_wta": 99,
+      "rank_old": 50,
+      "confounder": "076",
+      "confounder_name": "Fiscal Gradualist"
+    },
+    {
+      "target": "069",
+      "target_name": "Bleeding-Heart Libertarian",
+      "rank_wta": 41,
+      "rank_old": 4,
+      "confounder": "126",
+      "confounder_name": "Uncompromising Activist"
+    },
+    {
+      "target": "070",
+      "target_name": "Burkean Steward",
+      "rank_wta": 6,
+      "rank_old": 3,
+      "confounder": "091",
+      "confounder_name": "Security Paternalist"
+    },
+    {
+      "target": "079",
+      "target_name": "National Developmentalist",
+      "rank_wta": 2,
+      "rank_old": 2,
+      "confounder": "091",
+      "confounder_name": "Security Paternalist"
+    },
+    {
+      "target": "090",
+      "target_name": "Hobbesian Guardian",
+      "rank_wta": 15,
+      "rank_old": 2,
+      "confounder": "071",
+      "confounder_name": "Constitutional Conservative"
+    },
+    {
+      "target": "092",
+      "target_name": "Partisan Tribalist",
+      "rank_wta": 3,
+      "rank_old": 2,
+      "confounder": "091",
+      "confounder_name": "Security Paternalist"
+    },
+    {
+      "target": "097",
+      "target_name": "Authority Pragmatist",
+      "rank_wta": 3,
+      "rank_old": 2,
+      "confounder": "091",
+      "confounder_name": "Security Paternalist"
+    },
+    {
+      "target": "110",
+      "target_name": "Principled Abstainer",
+      "rank_wta": 44,
+      "rank_old": 2,
+      "confounder": "126",
+      "confounder_name": "Uncompromising Activist"
+    },
+    {
+      "target": "115",
+      "target_name": "Quietist",
+      "rank_wta": 24,
+      "rank_old": 15,
+      "confounder": "042",
+      "confounder_name": "Localist Progressive"
+    },
+    {
+      "target": "116",
+      "target_name": "Quiet Middle",
+      "rank_wta": 17,
+      "rank_old": 2,
+      "confounder": "008",
+      "confounder_name": "Procedural Redistributionist"
+    },
+    {
+      "target": "117",
+      "target_name": "Comfortable Bystander",
+      "rank_wta": 26,
+      "rank_old": 9,
+      "confounder": "010",
+      "confounder_name": "Bread-and-Butter Progressive"
+    },
+    {
+      "target": "119",
+      "target_name": "Apolitical Striver",
+      "rank_wta": 15,
+      "rank_old": 4,
+      "confounder": "126",
+      "confounder_name": "Uncompromising Activist"
+    },
+    {
+      "target": "127",
+      "target_name": "Tribal Loyalist",
+      "rank_wta": 10,
+      "rank_old": 4,
+      "confounder": "126",
+      "confounder_name": "Uncompromising Activist"
+    },
+    {
+      "target": "142",
+      "target_name": "White Grievance Voter",
+      "rank_wta": 60,
+      "rank_old": 16,
+      "confounder": "084",
+      "confounder_name": "Civilizational Conservative"
+    }
+  ]
+}

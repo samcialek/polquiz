@@ -929,12 +929,10 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     false,
     [
       t("MOR", "continuous", "position", 0.10, "background_context"),
-      t("CD", "continuous", "position", 0.10, "background_context"),
-      // SAM DECISION 2026-03-28: TRB dropped - factual background, not tribal position
-      t("TRB_ANCHOR", "derived", "anchor", 0.35, "religious_anchor")
+      t("CD", "continuous", "position", 0.10, "background_context")
     ],
     {
-      eligibleIf: ["background_prior_only_or_TRB_anchor_active"]
+      eligibleIf: ["background_prior_only"]
     }
   ),
 

@@ -1,50 +1,37 @@
 import type { Archetype, ContinuousNodeId, CategoricalNodeId, RespondentState } from "../types.js";
 import { getConfig } from "../optimize/runtimeConfig.js";
 
+/**
+ * Phase 3 distance-native stop rule.
+ *
+ * Scoring is Euclidean winner-take-all on state.archetypeDistances (lower =
+ * better). The stop rule fires when one of four tiers agrees that the leader
+ * is stable and the gap_ratio to the runner-up is wide enough. gap_ratio is
+ * (d_second - d_leader) / d_leader, clamped to [0, +inf). The tiers cover the
+ * question-budget ramp:
+ *
+ *   tier         Q≥   d_leader≤   gap_ratio≥   consecutive_leads≥
+ *   ultraConf    20   6           0.25         8
+ *   primary      25   8           0.10         3
+ *   secondary    35   10          0.05         6
+ *   lateGame     45   12          0.03         4
+ *   hardCap      55   —           —            —
+ *
+ * Thresholds live in runtimeConfig.ts so the optimizer can calibrate them in
+ * Stage 4. Current values are plan-§4 placeholders.
+ *
+ * Node-level convergence gates (anyContinuousBlocking / anyCategoricalBlocking)
+ * are retained from the pre-Phase-3 rule: even if the archetype leader is
+ * clear, the rule waits until the top-K archetypes agree on the unresolved
+ * nodes that the respondent is still shaping. This keeps the adaptive selector
+ * from being cut short while a node is actively being probed.
+ */
+
 const CAT_CONFIDENT_GAP = 0.50;
 
-// Precompute cosine similarities between archetype node vectors once.
-let _pairSimilarityCache: Map<string, number> | null = null;
-
 export function resetSimilarityCache(): void {
-  _pairSimilarityCache = null;
-}
-
-function ensureSimilarityCache(archetypes: Archetype[]): Map<string, number> {
-  if (_pairSimilarityCache) return _pairSimilarityCache;
-  _pairSimilarityCache = new Map();
-
-  function toVector(a: Archetype): number[] {
-    const v: number[] = [];
-    for (const [, t] of Object.entries(a.nodes)) {
-      if (t.kind === "continuous") {
-        v.push(t.pos / 5, t.sal / 3);
-      } else {
-        v.push(...t.probs, t.sal / 3);
-      }
-    }
-    return v;
-  }
-
-  function cosine(a: number[], b: number[]): number {
-    let dot = 0, na = 0, nb = 0;
-    for (let i = 0; i < a.length; i++) {
-      dot += (a[i] ?? 0) * (b[i] ?? 0);
-      na += (a[i] ?? 0) ** 2;
-      nb += (b[i] ?? 0) ** 2;
-    }
-    return na > 0 && nb > 0 ? dot / Math.sqrt(na * nb) : 0;
-  }
-
-  const vecs = archetypes.map(a => ({ id: a.id, vec: toVector(a) }));
-  for (let i = 0; i < vecs.length; i++) {
-    for (let j = i + 1; j < vecs.length; j++) {
-      const sim = cosine(vecs[i]!.vec, vecs[j]!.vec);
-      const key = [vecs[i]!.id, vecs[j]!.id].sort().join("|");
-      _pairSimilarityCache.set(key, sim);
-    }
-  }
-  return _pairSimilarityCache;
+  // Retained as a no-op for API stability; pre-Phase-3 callers imported this.
+  // Phase 3 scoring has no per-stop cosine cache.
 }
 
 export function shouldStop(
@@ -53,37 +40,22 @@ export function shouldStop(
 ): boolean {
   const cfg = getConfig();
   const nAnswered = Object.keys(state.answers).length;
-  if (nAnswered < cfg.STOP_MIN_QUESTIONS) return false;
 
-  const entries = Object.entries(state.archetypePosterior)
-    .sort((a, b) => b[1] - a[1]);
-  const topId = entries[0]?.[0] ?? "";
-  const top = entries[0]?.[1] ?? 0;
-  const secondId = entries[1]?.[0] ?? "";
-  const second = entries[1]?.[1] ?? 0;
-  const margin = top - second;
-
-  const significantCount = entries.filter(([, p]) => p > 0.005).length;
-  const adaptiveThreshold = Math.max(
-    0.10,
-    Math.min(cfg.STOP_POSTERIOR_THRESHOLD, 1.0 / Math.sqrt(significantCount) * 0.55)
-  );
-
-  let effectiveMargin = cfg.STOP_MARGIN_THRESHOLD;
-  let pairSim = 0;
-  if (archetypes) {
-    const cache = ensureSimilarityCache(archetypes);
-    const key = [topId, secondId].sort().join("|");
-    pairSim = cache.get(key) ?? 0;
-    if (pairSim > 0.95) {
-      effectiveMargin = cfg.STOP_MARGIN_THRESHOLD * 4.0;
-    } else if (pairSim > 0.92) {
-      effectiveMargin = cfg.STOP_MARGIN_THRESHOLD * 2.5;
-    }
+  if (nAnswered >= cfg.HARD_CAP_Q) return true;
+  if (nAnswered < cfg.STOP_MIN_QUESTIONS) {
+    if (!(nAnswered >= cfg.UC_MIN_Q)) return false;
   }
 
+  const entries = Object.entries(state.archetypeDistances)
+    .filter(([, d]) => Number.isFinite(d))
+    .sort((a, b) => a[1] - b[1]);
+  if (entries.length < 2) return false;
+
+  const topId = entries[0]![0];
+  const dLeader = entries[0]![1];
+  const dSecond = entries[1]![1];
+  const gapRatio = dLeader > 0 ? (dSecond - dLeader) / dLeader : 0;
   const consecutiveCount = state.consecutiveLeadCount ?? 0;
-  const stableLeader = consecutiveCount >= cfg.STOP_MIN_CONSECUTIVE_LEADS;
 
   const topKIds = entries.slice(0, cfg.STOP_AGREEMENT_K).map(([id]) => id);
   const topKArchetypes = archetypes
@@ -96,7 +68,7 @@ export function shouldStop(
       .map((a) => a.nodes[nodeId as ContinuousNodeId])
       .filter((t) => t && t.kind === "continuous");
     if (templates.length < 2) return true;
-    const positions = templates.map((t) => t!.kind === "continuous" ? (t as any).pos : 0);
+    const positions = templates.map((t) => (t!.kind === "continuous" ? (t as any).pos : 0));
     return positions.every((p: number) => p === positions[0]);
   }
 
@@ -126,61 +98,34 @@ export function shouldStop(
     return !topKAgreeOnCategorical(nodeId);
   });
 
-  const highConfOverride =
-    top >= cfg.HC_POSTERIOR &&
-    margin >= cfg.HC_MARGIN &&
-    consecutiveCount >= cfg.HC_CONSECUTIVE &&
-    pairSim < cfg.HC_COSINE_BLOCK;
-
-  const primaryStop =
-    top >= adaptiveThreshold &&
-    margin >= effectiveMargin &&
-    stableLeader &&
-    (highConfOverride || (!anyContinuousBlocking && !anyCategoricalBlocking));
-
-  const deepStableLeader = consecutiveCount >= 6;
-
-  let secondaryMarginMultiplier = 1.5;
-  if (archetypes) {
-    const cache = ensureSimilarityCache(archetypes);
-    const top3Ids = entries.slice(1, 4).map(([id]) => id);
-    let maxSim = 0;
-    for (const otherId of top3Ids) {
-      const key = [topId, otherId].sort().join("|");
-      maxSim = Math.max(maxSim, cache.get(key) ?? 0);
-    }
-    if (maxSim > 0.95) {
-      secondaryMarginMultiplier = 5.0;
-    } else if (maxSim > 0.92) {
-      secondaryMarginMultiplier = 3.0;
-    } else if (maxSim > 0.88) {
-      secondaryMarginMultiplier = 2.0;
-    }
-  }
-
-  const solidAbsMargin = margin >= effectiveMargin * secondaryMarginMultiplier;
-  const solidRelMargin = second > 0 ? (top / second) >= 1.4 : true;
-  const secondaryStop =
-    nAnswered >= cfg.SECONDARY_MIN_Q &&
-    top >= adaptiveThreshold &&
-    solidAbsMargin &&
-    solidRelMargin &&
-    deepStableLeader;
+  const nodesSettled = !anyContinuousBlocking && !anyCategoricalBlocking;
 
   const ultraConfStop =
     nAnswered >= cfg.UC_MIN_Q &&
-    top >= cfg.UC_POSTERIOR &&
-    margin >= cfg.UC_MARGIN &&
+    dLeader <= cfg.UC_DISTANCE_MAX &&
+    gapRatio >= cfg.UC_GAP_RATIO_MIN &&
     consecutiveCount >= cfg.UC_CONSECUTIVE;
+
+  const primaryStop =
+    nAnswered >= cfg.STOP_MIN_QUESTIONS &&
+    dLeader <= cfg.STOP_DISTANCE_MAX &&
+    gapRatio >= cfg.STOP_GAP_RATIO_MIN &&
+    consecutiveCount >= cfg.STOP_MIN_CONSECUTIVE_LEADS &&
+    nodesSettled;
+
+  const secondaryStop =
+    nAnswered >= cfg.SECONDARY_MIN_Q &&
+    dLeader <= cfg.SECONDARY_DISTANCE_MAX &&
+    gapRatio >= cfg.SECONDARY_GAP_RATIO_MIN &&
+    consecutiveCount >= cfg.SECONDARY_CONSECUTIVE;
 
   const lateGameStop =
     nAnswered >= cfg.LATE_GAME_MIN_Q &&
-    top >= cfg.LATE_GAME_POSTERIOR &&
-    margin >= cfg.LATE_GAME_MARGIN &&
+    dLeader <= cfg.LATE_GAME_DISTANCE_MAX &&
+    gapRatio >= cfg.LATE_GAME_GAP_RATIO_MIN &&
     consecutiveCount >= cfg.LATE_GAME_CONSECUTIVE;
 
-  // Hard cap: always stop at 55 questions regardless of convergence
-  const hardCapStop = nAnswered >= 55;
+  void topId;
 
-  return primaryStop || secondaryStop || ultraConfStop || lateGameStop || hardCapStop;
+  return ultraConfStop || primaryStop || secondaryStop || lateGameStop;
 }

@@ -47,9 +47,9 @@ export interface Archetype {
   id: string;
   name: string;
   tier: ArchetypeTier;
-  prior: number;
+  /** Set to false to exclude from MAP under the new Euclidean WTA scorer (replaces prior=0). */
+  active?: boolean;
   nodes: Partial<Record<NodeId, ArchetypeNodeTemplate>>;
-  trbAnchorPrior?: Partial<Record<TrbAnchor, number>>;
 }
 
 export type QuestionStage = "fixed12" | "screen20" | "stage2" | "stage3";
@@ -190,8 +190,9 @@ export interface RespondentState {
     dist: TrbAnchorDist;
     touches: number;
   };
-  archetypePosterior: Record<string, number>;
-  /** ID of the current leading archetype (highest posterior). */
+  /** Euclidean distance from the respondent state to each active archetype. Lower = better match. */
+  archetypeDistances: Record<string, number>;
+  /** ID of the current leading archetype (lowest distance). */
   currentLeader?: string;
   /** How many consecutive questions the current leader has held the top spot. */
   consecutiveLeadCount?: number;

@@ -566,7 +566,11 @@ function showResults(): void {
   const el = document.createElement("div");
   el.className = "prism-results";
 
-  const maxPosterior = results.top5[0]?.posterior ?? 1;
+  const distances = results.top3.map((r) => r.distance);
+  const dMin = Math.min(...distances);
+  const dMax = Math.max(...distances);
+  const span = dMax - dMin + 1e-6;
+  const matchScore = (d: number) => (dMax - d) / span;
 
   el.innerHTML = `
     <h2>Your Political Archetype</h2>
@@ -576,16 +580,16 @@ function showResults(): void {
       ${results.questionsAnswered} questions answered
     </div>
     <div class="prism-top5">
-      <h3>Top 5 Matches</h3>
-      ${results.top5.map((r, i) => `
+      <h3>Top 3 Matches</h3>
+      ${results.top3.map((r, i) => `
         <div class="prism-top5-item">
           <div>
             <div class="prism-top5-name">${i + 1}. ${r.name}</div>
             <div class="prism-top5-bar">
-              <div class="prism-top5-bar-fill" style="width: ${(r.posterior / maxPosterior * 100).toFixed(1)}%"></div>
+              <div class="prism-top5-bar-fill" style="width: ${(matchScore(r.distance) * 100).toFixed(1)}%"></div>
             </div>
           </div>
-          <div class="prism-top5-score">${(r.posterior * 100).toFixed(1)}%</div>
+          <div class="prism-top5-score">d=${r.distance.toFixed(2)}</div>
         </div>
       `).join("")}
     </div>

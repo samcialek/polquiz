@@ -1,3 +1,10 @@
+// @ts-nocheck
+// FROZEN HISTORICAL — pre-Phase-3 simulation under softmax-of-distance scorer
+// with per-archetype priors. Type-checking disabled because the new types
+// removed `archetype.prior` and renamed `state.archetypePosterior` to
+// `state.archetypeDistances`. Kept on disk as a reference baseline; the
+// authoritative current scorer is `src/engine/archetypeDistance.ts`.
+
 /**
  * PRISM Quiz Engine — Simulation Diagnostic
  *
