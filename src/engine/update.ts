@@ -620,10 +620,19 @@ export function applyDualAxisAnswer(
   const node = state.continuous[map.node as ContinuousNodeId];
   if (!node) return;
 
-  // Position: linear interp between xLow and xHigh, then convex-mix into posDist.
-  const target = map.xLow.map((lo, i) => lo * (1 - x) + (map.xHigh[i] ?? 0) * x);
-  const sum = target.reduce((a, b) => a + b, 0) || 1;
-  const normTarget = target.map(v => v / sum);
+  // Position: Gaussian target peaked at index 4*x (so x=0→pos1, x=0.5→pos3,
+  // x=1→pos5), sigma=1.0 in index units. Replaces the earlier linear interp
+  // between xLow and xHigh, which produced a bathtub at moderate x (x=0.5
+  // returned a flat/valley distribution at pos=3, pulling moderate archetypes
+  // off-position). xLow/xHigh are retained on the type for UI labeling only.
+  const targetIdx = 4 * x;
+  const sigma = 0.8;
+  const raw = [0, 1, 2, 3, 4].map(i => {
+    const d = i - targetIdx;
+    return Math.exp(-0.5 * (d * d) / (sigma * sigma));
+  });
+  const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+  const normTarget = raw.map(v => v / rawSum);
   const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
   node.posDist = normalize(mixed as typeof node.posDist);
 

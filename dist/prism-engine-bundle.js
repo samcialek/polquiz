@@ -5956,9 +5956,14 @@ var PrismEngine = (() => {
     const map = q.dualAxisMap;
     const node = state.continuous[map.node];
     if (!node) return;
-    const target = map.xLow.map((lo, i) => lo * (1 - x) + (map.xHigh[i] ?? 0) * x);
-    const sum = target.reduce((a, b) => a + b, 0) || 1;
-    const normTarget = target.map((v) => v / sum);
+    const targetIdx = 4 * x;
+    const sigma = 0.8;
+    const raw = [0, 1, 2, 3, 4].map((i) => {
+      const d = i - targetIdx;
+      return Math.exp(-0.5 * (d * d) / (sigma * sigma));
+    });
+    const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+    const normTarget = raw.map((v) => v / rawSum);
     const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
     node.posDist = normalize(mixed);
     node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
