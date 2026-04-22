@@ -225,7 +225,16 @@ async function init() {
   ]);
 
   const archetype = archetypesRes.find(a => a.id === parseInt(archetypeId) || a.id === archetypeId || String(a.id) === archetypeId);
-  const elections = electionsRes[archetypeId] || electionsRes[String(parseInt(archetypeId))] || [];
+  // Prefer respondent-signature predictions (ADR-003 post-rollback redesign);
+  // fall back to archetype-keyed lookup for legacy/pre-wired sessions.
+  let elections = [];
+  const storedPreds = localStorage.getItem('prism-elections');
+  if (storedPreds) {
+    try { elections = JSON.parse(storedPreds); } catch { elections = []; }
+  }
+  if (!elections || elections.length === 0) {
+    elections = electionsRes[archetypeId] || electionsRes[String(parseInt(archetypeId))] || [];
+  }
   const alignments = alignmentsRes[archetypeId] || alignmentsRes[String(parseInt(archetypeId))] || {};
 
   render(prism, archetype, elections, alignments);

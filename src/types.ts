@@ -61,6 +61,9 @@ export type QuestionUiType =
   | "ranking"
   | "pairwise"
   | "best_worst"
+  | "priority_sort"
+  | "dual_axis"
+  | "conjoint"
   | "multi";
 
 export type TouchRole = "position" | "salience" | "category" | "anchor";
@@ -124,7 +127,7 @@ export interface AllocationBucketMap {
 }
 
 export interface RankingItemMap {
-  continuous?: Partial<Record<ContinuousNodeId, number>>;
+  continuous?: Partial<Record<ContinuousNodeId, OptionEvidenceContinuous>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
   trbAnchor?: Partial<Record<TrbAnchor, number>>;
 }
@@ -132,6 +135,40 @@ export interface RankingItemMap {
 export interface PairOptionMap {
   continuous?: Partial<Record<ContinuousNodeId, number>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
+}
+
+/**
+ * Dual-axis evidence. A single gesture on a 2D grid gives x (position) and
+ * y (salience) for one node.
+ *
+ *   x in [0,1] → position: linear interpolation between `xLow` and `xHigh`
+ *   target posteriors, then convex-mixed into posDist at DUAL_AXIS_POS_MIX.
+ *   y in [0,1] → salience: mapped to a SalienceDist likelihood ratio (high
+ *   y → higher-salience dist, low y → lower-salience dist). Multiplied into
+ *   salDist.
+ *
+ * One DualAxisMap per question. Exactly one continuous node is touched on
+ * both position and salience by this single gesture.
+ */
+export interface DualAxisMap {
+  node: ContinuousNodeId;
+  xLow: ContinuousPosDist;   // target posterior when x = 0 (axis low pole)
+  xHigh: ContinuousPosDist;  // target posterior when x = 1 (axis high pole)
+}
+
+/**
+ * Strength follow-up — an optional secondary prompt shown immediately after
+ * the primary answer on single_choice / conjoint questions. Captures how
+ * strongly the respondent prefers the picked option. Stored via
+ * applyRatioBoost which then runs a salience update after the primary
+ * evidence applies. The UI renders either a 2-button choice (a_lot / a_little
+ * → ratio 10 vs 1.5) or a ratio slider (1.5 … 100).
+ */
+export interface StrengthFollowUp {
+  kind: "strength" | "ratio";
+  prompt: string;
+  /** For `strength` kind, two labels: strong and weak. For `ratio`, slider endpoints. */
+  labels?: { strong?: string; weak?: string; lowEnd?: string; highEnd?: string };
 }
 
 export interface QuestionDef {
@@ -146,6 +183,9 @@ export interface QuestionDef {
   rewriteNeeded: boolean;
   touchProfile: TouchTarget[];
 
+  /** Optional explicit option-key list (legacy — normally derived from optionEvidence). */
+  options?: string[];
+
   optionEvidence?: Record<string, OptionEvidence>;
 
   sliderMap?: Record<string, OptionEvidence>;
@@ -157,6 +197,23 @@ export interface QuestionDef {
   pairMaps?: Record<string, Record<string, PairOptionMap>>;
 
   bestWorstMap?: Record<string, RankingItemMap>;
+
+  /** Dual-axis gesture: one grid tap gives both position (x) and salience (y). */
+  dualAxisMap?: DualAxisMap;
+
+  /** Optional strength/ratio follow-up prompt after primary answer. */
+  strengthFollowUp?: StrengthFollowUp;
+
+  /** Number of best + number of worst picks the UI collects. Default 1 (legacy). */
+  bwMaxPicks?: number;
+
+  /**
+   * Priority batteries fire before EIG-scored questions. Used for orienting
+   * multi-node pole batteries (Q93-Q96) whose per-touch coverage gets heavily
+   * discounted by the EIG scorer but whose total info yield across K nodes
+   * makes them high-value early-quiz anchors.
+   */
+  priorityBattery?: boolean;
 
   exposeRules?: {
     eligibleIf?: string[];

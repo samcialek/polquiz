@@ -74,6 +74,7 @@ At the **archetype level**, each archetype is defined by its position (pos 1-5) 
 | `src/config/questions.representative.ts` | Representative question subset | **CANONICAL** |
 | `src/identity/resolveIdentityPrimary.ts` | Identity Primary overlay resolver | **CANONICAL** |
 | `src/historical/candidates.ts` | 60 US elections (1789–2024) with candidate node profiles | **CANONICAL** |
+| `src/historical/era-activations.json` | Per-year activation tags for US presidential elections | **CANONICAL — do not regenerate** |
 | `src/global/jurisdictions-*.ts` | 368 regime periods across 47 jurisdictions (1789–2026) | **CANONICAL** |
 | `src/types.ts` | All TypeScript type definitions | **CANONICAL** |
 
@@ -111,6 +112,45 @@ At the **archetype level**, each archetype is defined by its position (pos 1-5) 
 - Q54 cleanup — dropped hollow TRB position + TRB_ANCHOR rows from `touchProfile`; simplified `eligibleIf` to `["background_prior_only"]` (verified standalone predicate in the gate registry).
 
 **Known attractor pair — deferred to Stage 4, not a Phase 2 regression.** `021 Principled Cosmopolitan → 001 Rawlsian Reformer`. Surfaced (not caused) by the Phase 2 TRB evidence-map fix: 021 was the only cosmopolitan archetype that baseline happened to resolve correctly — its cousins 023 Rights Cosmopolitan and 025 World-Minded Reformer were already collapsed into 001 pre-fix (baseline ranks 120 and 121). Post-fix, all three cosmopolitans share the 001 attractor. Mechanical cause identified: 021's and 001's final TRB anchor posteriors both collapse to flat `national`/`ideological` distributions (within 0.02 of each other in both runs) rather than concentrating 021 on `global`. 001-vs-021 posterior margin in 021's run is 0.087 (middle zone — not knife's edge <0.05, not substantive >0.15). Deferred to **Stage 4 attractor sharpening**; do not revert Phase 2.
+
+## Election Alignment
+
+The election-alignment pipeline scores a respondent (or archetype-derived signature) against each candidate in each of the 60 US presidential elections, producing a weighted Euclidean distance per candidate and a vote/abstain decision gated by engagement level. Live path: `src/historical/respondentVoteChoice.ts`. The archetype-side Gaussian variant in `src/historical/regime-alignment.ts` uses the same era mechanism for consistency.
+
+### Era mechanism — activation multipliers
+
+Each node's contribution to the distance compute is:
+
+```
+effectiveSal = sig.sal × getActivationMultiplier(year, node)
+```
+
+`getActivationMultiplier` reads `src/historical/era-activations.json`:
+
+- **3×** if the node is super-activated for that year (rare — the single organizing dimension of the vote).
+- **2×** if the node is activated (voters on opposite sides of the dimension sorted into opposite coalitions).
+- **1×** otherwise (archetype's own salience unmodified).
+
+Missing years (non-US elections, year outside 1789–2024) default to 1× for every node.
+
+### Activation map — canonical data
+
+`src/historical/era-activations.json` is canonical. Produced via four independent LLM passes (two Claude Opus 4.7 instances, ChatGPT, and one additional model) with human resolution of contested calls (Tier C). Tiers A/B/C in the file indicate confidence. Do not regenerate, auto-derive, or edit in response to individual flips — updates are deliberate human edits only.
+
+Summary of the shipped map:
+
+- 60 elections (1789–2024)
+- 32 elections with at least one activation, 28 with no activation
+- 3 super-activation slots: 1860 MOR, 1896 MAT, 1932 MAT
+- **6 nodes never activate at the US-election level: PF, COM, EPS, AES, ONT_H, ZS.** This is a finding from the convergence, not a gap. These nodes still contribute via archetype salience; they just never receive an era-context boost.
+
+### Scope
+
+The activation map applies to **US presidential elections only**. Regime alignment (`src/global/build-alignment.ts` and the 368 regime periods) does not use era multipliers and should not be extended to use this map — regime era context is a separate problem and is out of scope.
+
+### Regression (2026-04-19)
+
+Switched from the legacy dense-vector eraWeight + 60/40 blend to the activation-multiplier scheme. 481/7260 (6.6%) archetype-election pairs changed nearest candidate; distance distribution near-identical to legacy (mean 1.492 vs 1.493, p50 both 1.453). Historical sanity 10/11: 001 → Reagan in 1984 (was Mondale) by a 0.026-unit margin, traceable to the legacy `dormant` multiplier having damped MOR by 50% — load-bearing geometry that the new mechanism does not replicate. Full details in `results/era-activations/regression.md`; legacy approach archived at `results/archive/era-weights-legacy.md`.
 
 ## Architecture Decisions
 

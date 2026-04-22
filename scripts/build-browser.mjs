@@ -25,6 +25,10 @@ const shared = {
   platform: "browser",
   // Tree-shake unused exports from config files
   treeShaking: true,
+  // Replace Node.js process.env references for browser compatibility
+  define: {
+    "process.env.PRISM_NONIDEO": '"1"',
+  },
 };
 
 async function build() {

@@ -26,17 +26,25 @@ import {
   applyAllocationAnswer,
   applyRankingAnswer,
   applyPairwiseAnswer,
+  applyBestWorstSalience,
+  applyPrioritySort,
+  applyDualAxisAnswer,
 } from "../engine/update.js";
 import { multiplyAndNormalize } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
+import { selectNextQuestionEIG, shouldStopEIG } from "../engine/selectorEIG.js";
 import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { buildArchetypeFamilies, type ArchetypeFamilyIndex } from "../engine/archetypeFamilies.js";
-import { FIXED_16 } from "../engine/config.js";
+import { FIXED_OPENER } from "../engine/config.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { computeEngagementLabel, type EngagementLabel } from "../engine/engagementLabel.js";
+import { respondentSignatureFromState } from "../engine/respondentSignature.js";
+import { ELECTIONS } from "../historical/candidates.js";
+import { getContext } from "../historical/contexts.js";
+import { predictVote, type ElectionPrediction } from "../historical/respondentVoteChoice.js";
 
 // ---------------------------------------------------------------------------
 // Types exposed to the browser consumer
@@ -64,6 +72,12 @@ export interface QuizQuestion {
   pairOptions?: Record<string, string[]>;
   /** Best/worst items if applicable */
   bestWorstItems?: string[];
+  /** Best-worst picks per side (top-N / bottom-N). Default 1. */
+  bwMaxPicks?: number;
+  /** Dual-axis map (node + x-axis endpoint posteriors) for `dual_axis` uiType. */
+  dualAxisMap?: { node: string; xLow: number[]; xHigh: number[] };
+  /** Strength/ratio follow-up metadata rendered after the primary answer. */
+  strengthFollowUp?: { kind: "strength" | "ratio"; prompt: string; labels?: Record<string, string> };
 }
 
 export interface QuizProgress {
@@ -105,6 +119,7 @@ export interface QuizResults {
 
 export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
 export type { EngagementLabel };
+export type { ElectionPrediction };
 
 // ---------------------------------------------------------------------------
 // Internal state
@@ -271,6 +286,22 @@ function toQuizQuestion(q: QuestionDef): QuizQuestion {
     out.options = Object.keys(q.optionEvidence);
   }
 
+  if (q.dualAxisMap) {
+    out.dualAxisMap = {
+      node: q.dualAxisMap.node,
+      xLow: [...q.dualAxisMap.xLow],
+      xHigh: [...q.dualAxisMap.xHigh],
+    };
+  }
+
+  if (q.strengthFollowUp) {
+    out.strengthFollowUp = {
+      kind: q.strengthFollowUp.kind,
+      prompt: q.strengthFollowUp.prompt,
+      labels: q.strengthFollowUp.labels ? { ...q.strengthFollowUp.labels } : undefined,
+    };
+  }
+
   if (q.uiType === "slider") {
     out.slider = { min: 0, max: 100 };
     if (q.sliderMap) {
@@ -307,6 +338,10 @@ function toQuizQuestion(q: QuestionDef): QuizQuestion {
     out.bestWorstItems = Object.keys(q.rankingMap);
   }
 
+  if (q.bwMaxPicks != null) {
+    out.bwMaxPicks = q.bwMaxPicks;
+  }
+
   return out;
 }
 
@@ -339,20 +374,24 @@ export function getNextQuestion(): QuizQuestion | null {
 
   const nAnswered = Object.keys(_state.answers).length;
 
-  // Phase 1: ask FIXED_16 in order
-  if (nAnswered < FIXED_16.length) {
-    const nextId = FIXED_16[nAnswered];
+  // Phase 1: ask FIXED_OPENER in order
+  if (nAnswered < FIXED_OPENER.length) {
+    const nextId = FIXED_OPENER[nAnswered];
     const q = _questionsById.get(nextId!);
     if (q) return toQuizQuestion(q);
   }
 
-  // Adaptive selection
+  // Adaptive selection (EIG — archetype-free)
   const available = _questions.filter(
     q => !(q.id in _state!.answers) && isQuestionEligible(_state!, q)
   );
-  const next = selectNextQuestion(_state, available, _activeArchetypes);
+  const next = selectNextQuestionEIG(_state, available, _questionsById);
   return next ? toQuizQuestion(next) : null;
 }
+
+// Retained so the legacy archetype-discrimination selector can still be used
+// by diagnostic scripts that import selectNextQuestion from here.
+void selectNextQuestion;
 
 /**
  * Submit an answer for a question.
@@ -368,7 +407,7 @@ export function getNextQuestion(): QuizQuestion | null {
  */
 export function submitAnswer(
   questionId: number,
-  answer: string | number | string[] | Record<string, number> | Record<string, string> | { best: string; worst: string }
+  answer: string | number | string[] | Record<string, number> | Record<string, string> | { best: string; worst: string } | { x: number; y: number }
 ): void {
   if (!_state) throw new Error("Call initQuiz() first");
 
@@ -381,8 +420,13 @@ export function submitAnswer(
   switch (q.uiType) {
     case "single_choice":
     case "multi":
+    case "conjoint":
       applySingleChoiceAnswer(_state, q, answer as string);
       applyStoredRatioBoost(q);
+      break;
+
+    case "dual_axis":
+      applyDualAxisAnswer(_state, q, answer as { x: number; y: number });
       break;
 
     case "slider":
@@ -402,15 +446,35 @@ export function submitAnswer(
       break;
 
     case "best_worst": {
-      // Best-worst is treated as a ranking: [best, ...middle, worst]
-      const bw = answer as { best: string; worst: string };
+      const bw = answer as { best: string | string[]; worst: string | string[] };
       const bwItems = q.bestWorstMap ? Object.keys(q.bestWorstMap)
                     : q.rankingMap   ? Object.keys(q.rankingMap)
                     : [];
-      if (bwItems.length > 0) {
+      if (bwItems.length === 0) break;
+
+      if (Array.isArray(bw.best) || Array.isArray(bw.worst)) {
+        // Top-N / bottom-N: per-item salience update, scalar deltas ignored.
+        const best = Array.isArray(bw.best) ? bw.best : [bw.best];
+        const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+        applyBestWorstSalience(_state, q, best, worst, bwItems);
+      } else {
+        // Legacy top-1 / bottom-1: flattened ranking [best, ...middle, worst].
         const middle = bwItems.filter(i => i !== bw.best && i !== bw.worst);
         applyRankingAnswer(_state, q, [bw.best, ...middle, bw.worst]);
       }
+      break;
+    }
+
+    case "priority_sort": {
+      const placements = answer as unknown as {
+        supportHigh: string[];
+        supportMid:  string[];
+        neutral:     string[];
+        opposeHigh:  string[];
+      };
+      const items = q.rankingMap ? Object.keys(q.rankingMap) : [];
+      if (items.length === 0) break;
+      applyPrioritySort(_state, q, placements, items);
       break;
     }
   }
@@ -438,16 +502,17 @@ export function getProgress(): QuizProgress {
     ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
     : 0;
 
-  // Estimate total questions based on convergence (distance scale: see plan §4)
+  // Estimate total questions based on empirical convergence (probe-convergence.ts):
+  // 180-run synthetic reachability shows mean=26.9, median=26, p90=39, max=40.
   let estimatedTotal: number;
-  if (nAnswered < 16) {
-    estimatedTotal = 40;
+  if (nAnswered < 20) {
+    estimatedTotal = 27;
   } else if (dLeader <= 6) {
-    estimatedTotal = Math.max(nAnswered + 3, 30);
+    estimatedTotal = Math.max(nAnswered + 2, 25);
   } else if (dLeader <= 10) {
-    estimatedTotal = Math.max(nAnswered + 8, 35);
+    estimatedTotal = Math.max(nAnswered + 4, 28);
   } else {
-    estimatedTotal = Math.max(nAnswered + 15, 45);
+    estimatedTotal = Math.min(40, Math.max(nAnswered + 8, 33));
   }
 
   const topArchetypes = sorted.map(([id, distance]) => {
@@ -474,10 +539,10 @@ export function getProgress(): QuizProgress {
  */
 export function isComplete(): boolean {
   if (!_state) return false;
-  const nAnswered = Object.keys(_state.answers).length;
-  if (nAnswered < 20) return false; // absolute minimum
-  return shouldStop(_state, _activeArchetypes);
+  return shouldStopEIG(_state, _questionsById);
 }
+// Retained so diagnostic scripts can still invoke the legacy archetype-gap stop rule.
+void shouldStop;
 
 /**
  * Get final quiz results.
@@ -595,6 +660,25 @@ export function getIdentityPrimaryResult(demographics?: IdentityPrimaryDemograph
 
 export function applyRatioBoost(questionId: number, ratio: number): void {
   _ratioBoosts.set(questionId, ratio);
+}
+
+/**
+ * Per-election vote prediction from the respondent's signature.
+ * Runs era-weighted Euclidean distance against each election's candidates and
+ * applies an engagement-driven clearing bar to decide vote vs abstain.
+ * Independent of archetype classification — archetype is a label only.
+ */
+export function getElectionPredictions(): ElectionPrediction[] {
+  if (!_state) throw new Error("Call initQuiz() first");
+  const sig = respondentSignatureFromState(_state);
+  const engagement = computeEngagementLabel(_state);
+  const out: ElectionPrediction[] = [];
+  for (const election of ELECTIONS) {
+    const ctx = getContext(election.year);
+    if (!ctx) continue;
+    out.push(predictVote(sig, election.candidates, ctx, engagement.level));
+  }
+  return out;
 }
 
 /**

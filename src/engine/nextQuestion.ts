@@ -6,7 +6,7 @@ import type {
   QuestionDef,
   RespondentState
 } from "../types.js";
-import { FIXED_16 } from "./config.js";
+import { FIXED_OPENER } from "./config.js";
 import { getConfig } from "../optimize/runtimeConfig.js";
 import { viableByDistance, topKDistanceWeights } from "./archetypeDistance.js";
 import { NODE_NORM_FACTORS } from "../config/normalization.js";
@@ -43,9 +43,9 @@ function evaluatePredicate(state: RespondentState, predicate: string): boolean {
   const answered = answeredCount(state);
 
   switch (predicate) {
-    // Eligible once we're past the fixed12 phase
+    // Eligible once we're past the opener
     case "screen20_or_late_screen":
-      return answered >= FIXED_16.length;
+      return answered >= FIXED_OPENER.length;
 
     // Late-stage consistency checks — most of the quiz is done
     case "late_consistency_check_only":

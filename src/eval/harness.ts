@@ -29,6 +29,7 @@ import {
   applyAllocationAnswer,
   applyRankingAnswer,
   applyPairwiseAnswer,
+  applyDualAxisAnswer,
 } from "../engine/update.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
 import { shouldStop, resetSimilarityCache } from "../engine/stopRule.js";
@@ -266,6 +267,19 @@ function generateMulti(a: Archetype, q: QuestionDef, s: RespondentState): Apply 
   return { apply: () => applySingleChoiceAnswer(s, q, scored[0]!.o) };
 }
 
+function generateDualAxis(a: Archetype, q: QuestionDef, s: RespondentState): Apply {
+  if (!q.dualAxisMap) return null;
+  const template = a.nodes[q.dualAxisMap.node];
+  if (!template || template.kind !== "continuous") return null;
+  const x = (template.pos - 1) / 4;
+  const y = template.sal / 3;
+  return { apply: () => applyDualAxisAnswer(s, q, { x, y }) };
+}
+
+function generateConjoint(a: Archetype, q: QuestionDef, s: RespondentState): Apply {
+  return generateSingleChoice(a, q, s);
+}
+
 function generateAnswer(a: Archetype, q: QuestionDef, s: RespondentState): Apply {
   switch (q.uiType) {
     case "single_choice": return generateSingleChoice(a, q, s);
@@ -275,6 +289,8 @@ function generateAnswer(a: Archetype, q: QuestionDef, s: RespondentState): Apply
     case "pairwise": return generatePairwise(a, q, s);
     case "best_worst": return generateBestWorst(a, q, s);
     case "multi": return generateMulti(a, q, s);
+    case "dual_axis": return generateDualAxis(a, q, s);
+    case "conjoint": return generateConjoint(a, q, s);
     default: return null;
   }
 }

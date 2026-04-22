@@ -581,36 +581,66 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // SINGLE_CHOICE EVIDENCE MAPS (batch 1: Q6, Q7, Q9, Q10, Q14, Q16, Q17)
   // =========================================================================
 
-  // Q6 — surveillance_enforcement_due_process_bundle
+  // Q6 — national_priorities_bundle (proper 5-node conjoint, replacing old
+  // 2-touch surveillance bundle). 4 cross-cutting policy packages probe
+  // MAT/CD/MOR/ONT_H/ZS position plus MAT salience in a single high-breadth
+  // question the EIG selector prioritizes when multiple nodes are unconverged.
   {
     id: 6,
-    stage: "stage3",
+    stage: "stage2",
     section: "I",
-    promptShort: "surveillance_enforcement_due_process_bundle",
+    promptShort: "national_priorities_bundle",
     uiType: "single_choice",
-    quality: 0.45,
-    rewriteNeeded: true,
+    quality: 0.90,
+    rewriteNeeded: false,
     touchProfile: [
-      { node: "PRO", kind: "continuous", role: "position", weight: 0.45, touchType: "policy_bundle" },
-      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.15, touchType: "policy_bundle" }
+      { node: "MAT",   kind: "continuous", role: "position", weight: 0.65, touchType: "policy_bundle" },
+      { node: "CD",    kind: "continuous", role: "position", weight: 0.60, touchType: "policy_bundle" },
+      { node: "MOR",   kind: "continuous", role: "position", weight: 0.60, touchType: "policy_bundle" },
+      { node: "ONT_H", kind: "continuous", role: "position", weight: 0.55, touchType: "policy_bundle" },
+      { node: "ZS",    kind: "continuous", role: "position", weight: 0.40, touchType: "policy_bundle" },
+      { node: "MAT",   kind: "continuous", role: "salience", weight: 0.30, touchType: "policy_bundle_salience" }
     ],
     optionEvidence: {
-      due_process_priority: {
+      // A: Traditional Order — secure borders, civics in schools, strong families, back the police
+      priorities_traditional: {
         continuous: {
-          PRO: { pos: [0.02, 0.08, 0.20, 0.38, 0.32] },
-          ONT_H: { pos: [0.05, 0.12, 0.30, 0.33, 0.20] }
-        },
+          MAT:   { pos: [0.04, 0.10, 0.22, 0.34, 0.30] },
+          CD:    { pos: [0.02, 0.05, 0.14, 0.32, 0.47] },
+          MOR:   { pos: [0.48, 0.30, 0.14, 0.06, 0.02] },
+          ONT_H: { pos: [0.38, 0.30, 0.18, 0.10, 0.04] },
+          ZS:    { pos: [0.08, 0.18, 0.28, 0.28, 0.18] }
+        }
       },
-      balanced_security: {
+      // B: Economic Fairness — universal services, tax wealth, raise wages, break up monopolies
+      priorities_fairness: {
         continuous: {
-          PRO: { pos: [0.08, 0.20, 0.44, 0.20, 0.08] }
-        },
+          MAT:   { pos: [0.48, 0.30, 0.14, 0.06, 0.02], sal: [0.05, 0.15, 0.45, 0.35] },
+          CD:    { pos: [0.30, 0.32, 0.22, 0.12, 0.04] },
+          MOR:   { pos: [0.10, 0.20, 0.32, 0.24, 0.14] },
+          ONT_H: { pos: [0.05, 0.10, 0.22, 0.35, 0.28] },
+          ZS:    { pos: [0.10, 0.20, 0.32, 0.24, 0.14] }
+        }
       },
-      security_priority: {
+      // C: National Strength — cut regulation, invest in defense, protect industries, selective immigration
+      priorities_strength: {
         continuous: {
-          PRO: { pos: [0.32, 0.38, 0.20, 0.08, 0.02] },
-          ONT_H: { pos: [0.20, 0.33, 0.30, 0.12, 0.05] }
-        },
+          MAT:   { pos: [0.05, 0.10, 0.20, 0.35, 0.30] },
+          CD:    { pos: [0.05, 0.12, 0.22, 0.35, 0.26] },
+          MOR:   { pos: [0.42, 0.30, 0.16, 0.08, 0.04] },
+          ONT_H: { pos: [0.30, 0.32, 0.22, 0.12, 0.04] },
+          ZS:    { pos: [0.04, 0.10, 0.22, 0.34, 0.30] }
+        }
+      },
+      // D: Planet & Future — climate action, global cooperation, scientific research, generational investment
+      priorities_future: {
+        continuous: {
+          MAT:   { pos: [0.20, 0.28, 0.28, 0.16, 0.08] },
+          CD:    { pos: [0.38, 0.30, 0.18, 0.10, 0.04] },
+          MOR:   { pos: [0.04, 0.10, 0.20, 0.32, 0.34] },
+          ONT_H: { pos: [0.10, 0.20, 0.28, 0.26, 0.16] },
+          ZS:    { pos: [0.30, 0.32, 0.22, 0.12, 0.04] }
+        }
       }
     }
   },
@@ -892,7 +922,10 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q25 — criminal_trial_error_tradeoff (error_tradeoff with ratio slider)
   // "In criminal trials, which type of error is worse?"
   // A: Convicting an innocent person  B: Letting a guilty person go free
-  // Ratio slider: 1.5:1 → 100+:1 drives salience
+  // Ratio slider: 1.5:1 → 100+:1 drives salience via applyStoredRatioBoost
+  // (reads _ratioBoosts map set by applyRatioBoost). The salience role on PRO
+  // is what that function iterates over to apply the ratio-derived
+  // SalienceDist likelihood.
   {
     id: 25,
     stage: "screen20",
@@ -904,8 +937,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["convict_innocent", "free_guilty"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.70, touchType: "error_asymmetry_ratio" },
       { node: "MOR", kind: "continuous", role: "position", weight: 0.12, touchType: "human_motive_proxy" }
     ],
+    strengthFollowUp: {
+      kind: "ratio",
+      prompt: "How many guilty people would you let go free to avoid convicting one innocent person?",
+      labels: { lowEnd: "1.5 to 1", highEnd: "100+ to 1" }
+    },
     optionEvidence: {
       convict_innocent: {
         continuous: {
@@ -937,9 +976,15 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["fp", "fn"],
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.72, touchType: "error_asymmetry" },
+      { node: "MAT", kind: "continuous", role: "salience", weight: 0.65, touchType: "error_asymmetry_ratio" },
       { node: "PRO", kind: "continuous", role: "position", weight: 0.22, touchType: "error_asymmetry" },
       { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "deservingness_proxy" }
     ],
+    strengthFollowUp: {
+      kind: "ratio",
+      prompt: "How many undeserving recipients would you accept to make sure one genuinely needy person gets help?",
+      labels: { lowEnd: "1.5 to 1", highEnd: "100+ to 1" }
+    },
     optionEvidence: {
       fp: {
         continuous: {
@@ -1005,9 +1050,15 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["allow_harmful", "censor_legitimate"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.72, touchType: "speech_harm_tradeoff" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.65, touchType: "speech_harm_ratio" },
       { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "truth_authority_proxy" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.12, touchType: "pluralism_proxy" }
     ],
+    strengthFollowUp: {
+      kind: "ratio",
+      prompt: "How many legitimate speakers would you silence to stop one harmful one?",
+      labels: { lowEnd: "1.5 to 1", highEnd: "100+ to 1" }
+    },
     optionEvidence: {
       allow_harmful: {
         continuous: {
@@ -1084,9 +1135,15 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     options: ["deport_legal", "let_stay_illegal"],
     touchProfile: [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.62, touchType: "boundary_error_asymmetry" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "boundary_error_asymmetry_ratio" },
       { node: "CU", kind: "continuous", role: "position", weight: 0.22, touchType: "boundary_error_asymmetry" },
       { node: "ONT_S", kind: "continuous", role: "position", weight: 0.12, touchType: "boundary_error_asymmetry" }
     ],
+    strengthFollowUp: {
+      kind: "ratio",
+      prompt: "How many undocumented immigrants would you let stay to avoid wrongly deporting one legal resident?",
+      labels: { lowEnd: "1.5 to 1", highEnd: "100+ to 1" }
+    },
     optionEvidence: {
       deport_legal: {
         continuous: {
@@ -2737,6 +2794,412 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           EPS: { probs: [0.05, 0.05, 0.05, 0.50, 0.15, 0.20] }
         }
       }
+    }
+  },
+
+  // Q93-Q96 — Pole-priority batteries (salience + position in one pick),
+  // split strictly by PRISM cluster. Each item is a pole-specific priority:
+  // picking "Redistribution and a strong safety net" as top priority signals
+  // BOTH (a) MAT matters + (b) MAT lean is redistributionist.
+  // applyBestWorstSalience reads `continuous[NODE].pos` for the position
+  // signal; the node key alone drives the salience bucketing.
+  //
+  // LOW_POLE  = [0.45, 0.30, 0.15, 0.07, 0.03]  → peaks at position 1
+  // HIGH_POLE = [0.03, 0.07, 0.15, 0.30, 0.45]  → peaks at position 5
+  //
+  // Note: ENG dropped from SELF battery (low pole "stay out of politics" is
+  // paradoxical as a stated priority; ENG is inferred from participation
+  // signals in other questions and engagementLabel).
+  // Q93: ENDS+MEANS priority sort. Replaces the Q93+Q94 pair of best_worst
+  // batteries (2026-04-21). The user places all 12 pole items (both poles of
+  // MAT/CD/CU/MOR/PRO/COM) into one of three priority buckets: "high" (super
+  // important), "mid" (care but not central), "low" (not central). Handled by
+  // applyPrioritySort — per-node salience aggregation (strongest bucket wins)
+  // plus per-item position mixing scaled by bucket (high=0.40, mid=0.20,
+  // low=skip). Richer than best_worst: every item contributes evidence, not
+  // just the two extremes.
+  {
+    id: 93,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "priority_sort_opener",
+    uiType: "priority_sort",
+    priorityBattery: true,
+    quality: 0.96,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "MAT", kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "MAT", kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" },
+      { node: "CD",  kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "CD",  kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" },
+      { node: "CU",  kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "CU",  kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" },
+      { node: "MOR", kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" },
+      { node: "PRO", kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" },
+      { node: "COM", kind: "continuous", role: "salience", weight: 0.85, touchType: "priority_sort_pole_battery" },
+      { node: "COM", kind: "continuous", role: "position", weight: 0.55, touchType: "priority_sort_pole_battery" }
+    ],
+    rankingMap: {
+      mat_low:  { continuous: { MAT: { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      mat_high: { continuous: { MAT: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+      cd_low:   { continuous: { CD:  { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      cd_high:  { continuous: { CD:  { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+      cu_low:   { continuous: { CU:  { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      cu_high:  { continuous: { CU:  { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+      mor_low:  { continuous: { MOR: { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      mor_high: { continuous: { MOR: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+      pro_low:  { continuous: { PRO: { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      pro_high: { continuous: { PRO: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } },
+      com_low:  { continuous: { COM: { pos: [0.45, 0.30, 0.15, 0.07, 0.03] } } },
+      com_high: { continuous: { COM: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] } } }
+    }
+  },
+
+  // Q97 + Q98 replaced the old Q95/Q96 REALITY+SELF pole batteries (2026-04-21).
+  // Q95/Q96 read "too much like slogans" per user feedback; ZS / ONT_H / ONT_S
+  // coverage now leans on the adaptive selector and existing bank questions
+  // (zero_sum_politics_view, institutions_harden_into_domination, etc.).
+  // Q97 targets PF via thought-frequency scenario; Q98 targets TRB via
+  // group-solidarity scenario. Both use the Q87 single_choice pattern.
+  {
+    id: 97,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "political_thought_frequency",
+    uiType: "single_choice",
+    quality: 0.90,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "PF",  kind: "continuous", role: "position", weight: 0.70, touchType: "thought_frequency_proxy" },
+      { node: "PF",  kind: "continuous", role: "salience", weight: 0.85, touchType: "thought_frequency_proxy" },
+      { node: "ENG", kind: "continuous", role: "salience", weight: 0.25, touchType: "attention_proxy" }
+    ],
+    optionEvidence: {
+      // A: Rarely — only during elections or big news
+      rarely_elections: {
+        continuous: {
+          PF:  { pos: [0.55, 0.28, 0.12, 0.03, 0.02], sal: [0.55, 0.30, 0.12, 0.03] },
+          ENG: { sal: [0.50, 0.30, 0.15, 0.05] }
+        }
+      },
+      // B: Sometimes — when something big happens I'll think about it
+      sometimes_events: {
+        continuous: {
+          PF:  { pos: [0.20, 0.40, 0.25, 0.12, 0.03], sal: [0.20, 0.40, 0.28, 0.12] },
+          ENG: { sal: [0.20, 0.40, 0.28, 0.12] }
+        }
+      },
+      // C: Regularly — part of my daily media and conversations
+      regularly_daily: {
+        continuous: {
+          PF:  { pos: [0.05, 0.15, 0.35, 0.32, 0.13], sal: [0.05, 0.18, 0.42, 0.35] },
+          ENG: { sal: [0.05, 0.18, 0.42, 0.35] }
+        }
+      },
+      // D: Constantly — politics shapes how I see most things
+      constantly_worldview: {
+        continuous: {
+          PF:  { pos: [0.02, 0.05, 0.15, 0.33, 0.45], sal: [0.02, 0.08, 0.25, 0.65] },
+          ENG: { sal: [0.02, 0.08, 0.30, 0.60] }
+        }
+      }
+    }
+  },
+
+  {
+    id: 98,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "group_solidarity_feeling",
+    uiType: "single_choice",
+    quality: 0.90,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.85, touchType: "group_solidarity" },
+      { node: "TRB", kind: "continuous", role: "salience", weight: 0.80, touchType: "group_solidarity" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "in_group_proxy" }
+    ],
+    optionEvidence: {
+      // A: Personal — like it's happening to me
+      personal_feels: {
+        continuous: {
+          TRB: { pos: [0.02, 0.05, 0.15, 0.33, 0.45], sal: [0.02, 0.08, 0.25, 0.65] },
+          MOR: { pos: [0.05, 0.15, 0.30, 0.30, 0.20] }
+        }
+      },
+      // B: Important — I pay attention and care
+      important_care: {
+        continuous: {
+          TRB: { pos: [0.05, 0.18, 0.38, 0.28, 0.11], sal: [0.05, 0.22, 0.42, 0.31] },
+          MOR: { pos: [0.10, 0.25, 0.35, 0.22, 0.08] }
+        }
+      },
+      // C: Aware but it doesn't really touch me
+      aware_distant: {
+        continuous: {
+          TRB: { pos: [0.25, 0.40, 0.22, 0.10, 0.03], sal: [0.25, 0.42, 0.25, 0.08] },
+          MOR: { pos: [0.20, 0.35, 0.28, 0.12, 0.05] }
+        }
+      },
+      // D: Not really — I don't see myself mainly through group identity
+      universalist_self: {
+        continuous: {
+          TRB: { pos: [0.55, 0.28, 0.12, 0.03, 0.02], sal: [0.55, 0.30, 0.12, 0.03] },
+          MOR: { pos: [0.30, 0.30, 0.22, 0.12, 0.06] }
+        }
+      }
+    }
+  },
+
+  // Q89 — Epistemic-style battery (top-1 / bottom-1 over 6 EPS categories).
+  // Updates EPS category (toward best, away from worst) AND EPS salience.
+  // Closes the EPS sal=1,2 reachability gap and gives one-shot category info.
+  // Requires applyBestWorstSalience to honor map.categorical (extended 2026-04-20).
+  {
+    id: 89,
+    stage: "fixed12",
+    section: "II",
+    promptShort: "epistemic_style_battery",
+    uiType: "best_worst",
+    bwMaxPicks: 1,
+    quality: 0.92,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.85, touchType: "epistemic_style_pick" },
+      { node: "EPS", kind: "categorical", role: "salience", weight: 0.55, touchType: "epistemic_style_pick" }
+    ],
+    rankingMap: {
+      eps_empiricist:      { categorical: { EPS: EPS_PROTOTYPES.empiricist } },
+      eps_institutionalist:{ categorical: { EPS: EPS_PROTOTYPES.institutionalist } },
+      eps_traditionalist:  { categorical: { EPS: EPS_PROTOTYPES.traditionalist } },
+      eps_intuitionist:    { categorical: { EPS: EPS_PROTOTYPES.intuitionist } },
+      eps_autonomous:      { categorical: { EPS: EPS_PROTOTYPES.autonomous } },
+      eps_nihilist:        { categorical: { EPS: EPS_PROTOTYPES.nihilist } }
+    }
+  },
+
+  // Q87 — PF position via affective-polarization proxy (close-family cross-partisan marriage).
+  // Added 2026-04-19 to raise PF position coverage from 2 → 3; EIG needs ≥2 agreeing touches to converge.
+  {
+    id: 87,
+    stage: "stage3",
+    section: "IV",
+    promptShort: "family_cross_partisan_marriage",
+    uiType: "single_choice",
+    quality: 0.88,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "PF",  kind: "continuous", role: "position", weight: 0.88, touchType: "identity_fusion_affective" },
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.22, touchType: "camp_attachment" }
+    ],
+    optionEvidence: {
+      // A: Fine — politics is separate from who they are
+      politics_separate: {
+        continuous: {
+          PF:  { pos: [0.50, 0.28, 0.14, 0.05, 0.03] },
+          TRB: { pos: [0.35, 0.30, 0.20, 0.10, 0.05] }
+        }
+      },
+      // B: A bit awkward but doesn't change much
+      slightly_awkward: {
+        continuous: {
+          PF:  { pos: [0.18, 0.32, 0.30, 0.14, 0.06] },
+          TRB: { pos: [0.15, 0.28, 0.30, 0.17, 0.10] }
+        }
+      },
+      // C: Bothered — I'd find it harder to feel close
+      bothered_distance: {
+        continuous: {
+          PF:  { pos: [0.04, 0.10, 0.24, 0.36, 0.26] },
+          TRB: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] }
+        }
+      },
+      // D: A major problem — I'd seriously question the relationship
+      major_problem: {
+        continuous: {
+          PF:  { pos: [0.02, 0.04, 0.10, 0.28, 0.56] },
+          TRB: { pos: [0.03, 0.07, 0.15, 0.30, 0.45] }
+        }
+      }
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Q99 — cross_partisan_priority_sort (priority_sort, 3-bucket)
+  // UI buckets: fine / not_ideal / dealbreaker map to engine buckets:
+  //   fine        → neutral       (no position pull, low salience signal)
+  //   not_ideal   → supportMid    (gentle pull toward item's TRB-high target)
+  //   dealbreaker → supportHigh   (strong pull toward item's TRB-high target)
+  // Item pos distributions encode "given this placement in supportHigh, where
+  // should TRB be?" — neighbor dealbreaker = extreme tribal (pos peaked at 5),
+  // spouse dealbreaker = common/moderate (pos peaked near 3-4). The convex
+  // mix weight is fixed per bucket, so per-item pos asymmetry is what
+  // distinguishes strong vs weak tribalism signals.
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 99,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "cross_partisan_priority_sort",
+    uiType: "priority_sort",
+    priorityBattery: true,
+    quality: 0.90,
+    rewriteNeeded: false,
+    optionLabels: {
+      neighbor:       "Neighbor — lives next door, small talk at the mailbox",
+      coworker:       "Coworker — shares a team or office with you every day",
+      close_friend:   "Close friend — someone you confide in regularly",
+      sibling_inlaw:  "Sibling-in-law — part of your family through marriage",
+      dating_partner: "Your romantic partner — someone you are dating exclusively",
+      spouse:         "Your spouse — lifelong partner and co-parent"
+    },
+    touchProfile: [
+      { node: "TRB", kind: "continuous", role: "position", weight: 0.80, touchType: "cross_partisan_tolerance" },
+      { node: "TRB", kind: "continuous", role: "salience", weight: 0.80, touchType: "cross_partisan_tolerance" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "out_group_proxy" }
+    ],
+    rankingMap: {
+      neighbor:       { continuous: { TRB: { pos: [0.01, 0.03, 0.08, 0.25, 0.63] } } },
+      coworker:       { continuous: { TRB: { pos: [0.02, 0.05, 0.13, 0.30, 0.50] } } },
+      close_friend:   { continuous: { TRB: { pos: [0.04, 0.10, 0.20, 0.33, 0.33] } } },
+      sibling_inlaw:  { continuous: { TRB: { pos: [0.08, 0.15, 0.27, 0.30, 0.20] } } },
+      dating_partner: { continuous: { TRB: { pos: [0.12, 0.20, 0.30, 0.25, 0.13] } } },
+      spouse:         { continuous: { TRB: { pos: [0.15, 0.25, 0.30, 0.18, 0.12] } } }
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Q100 — leader_conjoint (conjoint UI, single_choice engine semantics)
+  // 2 candidate bundles × 4 attributes (Style, Outlook, Affiliation, Priority).
+  // Engine treats as single_choice (two options: "a" and "b"). The strength
+  // follow-up captures salience via applyRatioBoost (a_lot → ratio 10,
+  // a_little → ratio 1.5). The 4 attribute bundles are baked into
+  // optionEvidence — picking A commits to all four of A's attribute positions.
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 100,
+    stage: "fixed12",
+    section: "II",
+    promptShort: "leader_conjoint",
+    uiType: "conjoint",
+    quality: 0.88,
+    rewriteNeeded: false,
+    options: ["a", "b"],
+    touchProfile: [
+      { node: "AES", kind: "categorical", role: "category",  weight: 0.70, touchType: "conjoint_bundle" },
+      { node: "AES", kind: "categorical", role: "salience",  weight: 0.40, touchType: "conjoint_bundle" },
+      { node: "CD",  kind: "continuous",  role: "position",  weight: 0.55, touchType: "conjoint_bundle" },
+      { node: "CD",  kind: "continuous",  role: "salience",  weight: 0.45, touchType: "conjoint_bundle" },
+      { node: "TRB", kind: "continuous",  role: "position",  weight: 0.45, touchType: "conjoint_bundle" },
+      { node: "TRB", kind: "continuous",  role: "salience",  weight: 0.45, touchType: "conjoint_bundle" },
+      { node: "MAT", kind: "continuous",  role: "position",  weight: 0.35, touchType: "conjoint_bundle" },
+      { node: "CU",  kind: "continuous",  role: "position",  weight: 0.35, touchType: "conjoint_bundle" }
+    ],
+    optionEvidence: {
+      // Candidate A: fighter / progressive / party-loyal / economic-justice
+      a: {
+        categorical: {
+          AES: { cat: [0.06, 0.06, 0.06, 0.08, 0.68, 0.06] }
+        },
+        continuous: {
+          CD:  { pos: [0.40, 0.30, 0.18, 0.08, 0.04] },
+          TRB: { pos: [0.05, 0.10, 0.20, 0.30, 0.35] },
+          MAT: { pos: [0.35, 0.32, 0.20, 0.08, 0.05] }
+        }
+      },
+      // Candidate B: statesman / traditional / country-first / cultural-continuity
+      b: {
+        categorical: {
+          AES: { cat: [0.65, 0.12, 0.06, 0.06, 0.06, 0.05] }
+        },
+        continuous: {
+          CD:  { pos: [0.04, 0.08, 0.18, 0.30, 0.40] },
+          TRB: { pos: [0.15, 0.25, 0.30, 0.20, 0.10] },
+          CU:  { pos: [0.40, 0.30, 0.18, 0.08, 0.04] }
+        }
+      }
+    },
+    strengthFollowUp: {
+      kind: "strength",
+      prompt: "How strongly do you prefer this candidate?",
+      labels: { strong: "A lot", weak: "A little" }
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Q101 — cultural_social_dual_axis (dual_axis on CD)
+  // One grid tap gives both position (x, Progressive→Traditional) and
+  // salience (y, doesn't-matter→central). Applied via applyDualAxisAnswer.
+  // xLow = CD=1 (progressive) target posterior; xHigh = CD=5 (traditional).
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 101,
+    stage: "fixed12",
+    section: "II",
+    promptShort: "cultural_social_placement_dual",
+    uiType: "dual_axis",
+    priorityBattery: true,
+    quality: 0.88,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "CD", kind: "continuous", role: "position",  weight: 0.80, touchType: "dual_axis_cd" },
+      { node: "CD", kind: "continuous", role: "salience",  weight: 0.75, touchType: "dual_axis_cd" }
+    ],
+    dualAxisMap: {
+      node: "CD",
+      xLow:  [0.45, 0.30, 0.15, 0.07, 0.03],
+      xHigh: [0.03, 0.07, 0.15, 0.30, 0.45]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Q102 — membership_criteria_priority_sort (priority_sort, 3-bucket)
+  // UI buckets: essential / nice / irrelevant → supportHigh / supportMid / neutral.
+  // Targets CU (1=assimilationist, 5=pluralist). Items vary in how strongly
+  // they predict CU when marked essential:
+  //   born_here, ancestry, religion  → extreme low CU (ethno-religious exclusive)
+  //   cultural, speak_lang           → moderately low CU (assimilationist)
+  //   economic                       → mild low CU (instrumentalist)
+  //   shared_values, civic_part      → center (civic nationalist)
+  // All-essential respondent = demanding assimilationist (CU=1 lock).
+  // Only civic_part+shared_values essential = civic nationalist (CU=3).
+  // All-irrelevant respondent = pluralist (CU unmoved, low salience).
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 102,
+    stage: "fixed12",
+    section: "II",
+    promptShort: "membership_criteria_priority_sort",
+    uiType: "priority_sort",
+    priorityBattery: true,
+    quality: 0.90,
+    rewriteNeeded: false,
+    optionLabels: {
+      born_here:     "Being born in the country — having citizenship by birth",
+      speak_lang:    "Speaking the national language fluently in daily life",
+      shared_values: "Believing in the core civic values (liberty, equality, rule of law)",
+      civic_part:    "Participating in civic life — voting, jury duty, community involvement",
+      cultural:      "Adopting cultural customs, holidays, and traditions",
+      ancestry:      "Having ancestral roots in the country going back generations",
+      religion:      "Sharing the country's religious heritage and traditions",
+      economic:      "Contributing economically — holding a job, paying taxes, not being a burden"
+    },
+    touchProfile: [
+      { node: "CU",  kind: "continuous", role: "position", weight: 0.85, touchType: "membership_criteria" },
+      { node: "CU",  kind: "continuous", role: "salience", weight: 0.80, touchType: "membership_criteria" },
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_scope" }
+    ],
+    rankingMap: {
+      born_here:     { continuous: { CU: { pos: [0.50, 0.30, 0.12, 0.06, 0.02] } } },
+      speak_lang:    { continuous: { CU: { pos: [0.35, 0.35, 0.18, 0.08, 0.04] } } },
+      shared_values: { continuous: { CU: { pos: [0.20, 0.30, 0.30, 0.13, 0.07] } } },
+      civic_part:    { continuous: { CU: { pos: [0.18, 0.30, 0.30, 0.14, 0.08] } } },
+      cultural:      { continuous: { CU: { pos: [0.40, 0.30, 0.15, 0.10, 0.05] } } },
+      ancestry:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
+      religion:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
+      economic:      { continuous: { CU: { pos: [0.25, 0.30, 0.28, 0.12, 0.05] } } }
     }
   }
 ];

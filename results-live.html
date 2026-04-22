@@ -46,6 +46,7 @@
     /* SECTION 3: MAP */
     #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
     #map-section .container { max-width: 100%; padding: 0 1rem; }
+    #map-section #map-container { margin-left: -1rem; margin-right: -1rem; width: 100vw; max-width: none; }
     .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
     #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
     .slider-wrap { flex: 1; display: flex; align-items: center; gap: 0.5rem; }
@@ -81,17 +82,18 @@
 
     /* SECTION 4: PROFILE */
     #profile-section { padding: 2rem 0 2.5rem; }
-    .nodes-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .node-cluster { background: var(--cream); color: var(--ink); padding: 1.25rem 1.5rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 6px; }
-    .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
-    .node-row { display: grid; grid-template-columns: 130px 1fr 40px; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+    #profile-section .container { max-width: 100%; padding: 0 0.5rem; }
+    .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
+    .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
+    .node-row { display: grid; grid-template-columns: 170px 1fr 50px; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem; }
     .node-row:last-child { margin-bottom: 0; }
     .node-bar-wrap { width: 100%; }
-    .node-bar { height: 14px; background: #eee; position: relative; border: 1px solid #ccc; display: flex; border-radius: 2px; }
-    .node-bar-segment { height: 100%; transition: width 0.3s; border-radius: 2px 0 0 2px; }
-    .node-bar-marker { position: absolute; top: -3px; width: 3px; height: 20px; background: var(--ink); border: 1px solid var(--ink); transform: translateX(-50%); border-radius: 1px; }
-    .node-labels { display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.55rem; color: #999; margin-top: 0.2rem; }
-    .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--ink); text-align: center; }
+    .node-bar { height: 20px; background: #eee; position: relative; border: 1px solid #ccc; display: flex; border-radius: 3px; }
+    .node-bar-segment { height: 100%; transition: width 0.3s; border-radius: 3px 0 0 3px; }
+    .node-bar-marker { position: absolute; top: -4px; width: 4px; height: 28px; background: var(--ink); border: 1px solid var(--ink); transform: translateX(-50%); border-radius: 1px; }
+    .node-labels { display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: #999; margin-top: 0.35rem; }
+    .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--ink); text-align: center; }
     @media (max-width: 700px) {
       .container { padding: 0 1rem; }
       .elections-grid { gap: 2px; }
@@ -163,106 +165,106 @@
   // Candidate name → Wikipedia thumbnail URL (public domain portraits)
   const WK = 'https://upload.wikimedia.org/wikipedia/commons/thumb';
   const photoMap = {
-    'Washington':`${WK}/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/100px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg`,
-    'Jefferson':`${WK}/0/07/Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg/100px-Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg`,
-    'Madison':`${WK}/1/1d/James_Madison.jpg/100px-James_Madison.jpg`,
-    'Monroe':`${WK}/5/5e/James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg/100px-James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg`,
-    'J.Q. Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/100px-JQA_Photo_Crop_%28cropped%29.jpg`,
-    'Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/100px-JQA_Photo_Crop_%28cropped%29.jpg`,
-    'Jackson':`${WK}/2/2a/Andrew_jackson_head_%28cropped%29.jpg/100px-Andrew_jackson_head_%28cropped%29.jpg`,
-    'Van Buren':`${WK}/7/72/Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg/100px-Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg`,
-    'Harrison':`${WK}/2/2c/William_Henry_Harrison_crop.jpg/100px-William_Henry_Harrison_crop.jpg`,
-    'Polk':`${WK}/8/87/Polk_crop.jpg/100px-Polk_crop.jpg`,
-    'Taylor':`${WK}/b/b4/Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg/100px-Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg`,
-    'Buchanan':`${WK}/f/fd/James_Buchanan.jpg/100px-James_Buchanan.jpg`,
-    'Pierce':`${WK}/7/74/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg/100px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg`,
-    'Frémont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/100px-John_Charles_Fremont_Oval.png`,
-    'Fremont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/100px-John_Charles_Fremont_Oval.png`,
-    'Lincoln':`${WK}/5/57/Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg/100px-Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg`,
-    'Grant':`${WK}/9/98/Ulysses_S._Grant_1870-1880_%28cropped%29.jpg/100px-Ulysses_S._Grant_1870-1880_%28cropped%29.jpg`,
-    'Tilden':`${WK}/e/e8/Samuel_Tilden._Portrait_of_the_American_politician%2C_who_served_as_the_25th_Governor_of_New_York%2C_Samuel_Jones_Tilden_%281814-1886%29%2C_by_Jos%C3%A9_Mar%C3%ADa_Mora%2C_c._1870.jpg/100px-thumbnail.jpg`,
-    'Hayes':`${WK}/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/100px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg`,
-    'Hancock':`${WK}/5/5b/Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg/100px-Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg`,
-    'Garfield':`${WK}/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/100px-James_Abram_Garfield%2C_photo_portrait_seated.jpg`,
-    'Blaine':`${WK}/2/24/James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg/100px-James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg`,
-    'Cleveland':`${WK}/3/36/StephenGroverCleveland.jpg/100px-StephenGroverCleveland.jpg`,
-    'Bryan':`${WK}/2/20/Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg/100px-Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg`,
-    'McKinley':`${WK}/3/30/McKinley_%28cropped%29.jpg/100px-McKinley_%28cropped%29.jpg`,
-    'T. Roosevelt':`${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/100px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`,
-    'Wilson':`${WK}/9/96/President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg/100px-President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg`,
-    'Taft':`${WK}/2/2c/William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg/100px-William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg`,
-    'Debs':`${WK}/a/a6/Eugene_Debs_portrait.jpeg/100px-Eugene_Debs_portrait.jpeg`,
-    'Harding':`${WK}/4/4e/Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg/100px-Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg`,
-    'La Follette':`${WK}/0/06/LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg/100px-LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg`,
-    'Coolidge':`${WK}/4/49/President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg/100px-President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg`,
-    'Smith':`${WK}/1/1f/SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg/100px-SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg`,
-    'Hoover':`${WK}/5/57/President_Hoover_portrait.jpg/100px-President_Hoover_portrait.jpg`,
-    'Landon':`${WK}/3/37/Unsuccessful_1936.jpg/100px-Unsuccessful_1936.jpg`,
-    'Willkie':`${WK}/b/b5/Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg/100px-Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg`,
-    'FDR':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/100px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
-    'Dewey':`${WK}/5/52/Thomas_Dewey_in_1944.jpg/100px-Thomas_Dewey_in_1944.jpg`,
-    'Truman':`${WK}/0/0b/TRUMAN_58-766-06_%28cropped%29.jpg/100px-TRUMAN_58-766-06_%28cropped%29.jpg`,
-    'Stevenson':`${WK}/c/ce/Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg/100px-Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg`,
-    'Eisenhower':`${WK}/0/02/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg/100px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg`,
-    'Kennedy':`${WK}/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/100px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg`,
-    'LBJ':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/100px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
-    'Goldwater':`${WK}/1/19/Senator_Goldwater_1960.jpg/100px-Senator_Goldwater_1960.jpg`,
-    'Humphrey':`${WK}/2/23/Hubert_Humphrey_vice_presidential_portrait.jpg/100px-Hubert_Humphrey_vice_presidential_portrait.jpg`,
-    'Nixon':`${WK}/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/100px-Richard_Nixon_presidential_portrait_%281%29.jpg`,
-    'Wallace':`${WK}/0/08/George_Wallace_%28D-AL%29_%28cropped%29.jpg/100px-George_Wallace_%28D-AL%29_%28cropped%29.jpg`,
-    'McGovern':`${WK}/6/6f/George_McGovern_%28D-SD%29.jpg/100px-George_McGovern_%28D-SD%29.jpg`,
-    'Carter':`${WK}/6/6a/Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg/100px-Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg`,
-    'Reagan':`${WK}/1/16/Official_Portrait_of_President_Reagan_1981.jpg/100px-Official_Portrait_of_President_Reagan_1981.jpg`,
-    'Mondale':`${WK}/4/41/Walter_Mondale_1977_vice_presidential_portrait.jpg/100px-Walter_Mondale_1977_vice_presidential_portrait.jpg`,
-    'Dukakis':`${WK}/0/0c/Michael_Dukakis_%283x4_cropped%29.jpg/100px-Michael_Dukakis_%283x4_cropped%29.jpg`,
-    'Bush Sr':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/100px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
-    'Clinton':`${WK}/5/50/Bill_Clinton_%28cropped_4%29.jpg/100px-Bill_Clinton_%28cropped_4%29.jpg`,
-    'Dole':`${WK}/a/a9/Ks_1996_dole.jpg/100px-Ks_1996_dole.jpg`,
-    'Gore':`${WK}/c/c5/Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg/100px-Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg`,
-    'Bush Jr':`${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/100px-George-W-Bush_%28cropped_2%29.jpeg`,
-    'Kerry':`${WK}/7/73/John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg/100px-John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg`,
-    'Obama':`${WK}/8/8d/President_Barack_Obama.jpg/100px-President_Barack_Obama.jpg`,
-    'McCain':`${WK}/7/74/John_McCain_official_portrait_2009_%283x4_cropped%29.jpg/100px-John_McCain_official_portrait_2009_%283x4_cropped%29.jpg`,
-    'Romney':`${WK}/7/7f/Mitt_Romney_official_US_Senate_portrait.jpg/100px-Mitt_Romney_official_US_Senate_portrait.jpg`,
-    'H. Clinton':`${WK}/e/ec/Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg/100px-Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg`,
-    'Trump':`${WK}/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/100px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg`,
-    'Biden':`${WK}/6/68/Joe_Biden_presidential_portrait.jpg/100px-Joe_Biden_presidential_portrait.jpg`,
-    'Harris':`${WK}/4/41/Kamala_Harris_Vice_Presidential_Portrait.jpg/100px-Kamala_Harris_Vice_Presidential_Portrait.jpg`,
-    'Weaver':`${WK}/2/20/James_Weaver_-_Brady-Handy_%28cropped%29.jpg/100px-James_Weaver_-_Brady-Handy_%28cropped%29.jpg`,
-    'Scott':`${WK}/5/5f/Winfield_Scott_by_Fredricks%2C_1862_crop.jpg/100px-Winfield_Scott_by_Fredricks%2C_1862_crop.jpg`,
-    'Cass':`${WK}/a/ae/Lewis_Cass_circa_1855.jpg/100px-Lewis_Cass_circa_1855.jpg`,
-    'Breckinridge':`${WK}/6/65/John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg/100px-John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg`,
-    'McClellan':`${WK}/8/86/George_B_McClellan_-_retouched%2C_cropped.jpg/100px-George_B_McClellan_-_retouched%2C_cropped.jpg`,
-    'Seymour':`${WK}/6/6e/Horatio_Seymour_%28cropped%2C_retouched%29.jpg/100px-Horatio_Seymour_%28cropped%2C_retouched%29.jpg`,
-    'Greeley':`${WK}/1/11/Horace_Greeley_restored.jpg/100px-Horace_Greeley_restored.jpg`,
-    'Parker':`${WK}/b/b4/Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg/100px-Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg`,
-    'Hughes':`${WK}/e/ee/Charles_Evans_Hughes_cph.3b15401.jpg/100px-Charles_Evans_Hughes_cph.3b15401.jpg`,
-    'Cox':`${WK}/5/57/James_M._Cox_Portrait_%283x4_cropped_b%29.jpg/100px-James_M._Cox_Portrait_%283x4_cropped_b%29.jpg`,
-    'Davis':`${WK}/c/c5/DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg/100px-DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg`,
-    'Pinckney':`${WK}/4/45/James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg/100px-James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg`,
-    'Clinton (DeWitt)':`${WK}/6/63/DeWitt_Clinton_by_Rembrandt_Peale.jpg/100px-DeWitt_Clinton_by_Rembrandt_Peale.jpg`,
-    'King':`${WK}/5/59/Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg/100px-Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg`,
-    'Clay':`${WK}/6/67/Clay_1848.jpg/100px-Clay_1848.jpg`,
-    'Bell':`${WK}/3/3d/John_Bell_%28Restored%29.png/100px-John_Bell_%28Restored%29.png`,
-    'Roosevelt':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/100px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
-    'Johnson':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/100px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
-    'Bush':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/100px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
-    'Ford':`${WK}/3/30/Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg/100px-Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg`,
-    'Perot':`${WK}/e/e3/Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg/100px-Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg`,
-    'Nader':`${WK}/2/25/Ralph_Nader_headshot.jpg/100px-Ralph_Nader_headshot.jpg`,
-    'Anderson':`${WK}/3/38/John_Bayard_Anderson.jpg/100px-John_Bayard_Anderson.jpg`,
-    'Thurmond':`${WK}/8/8f/Strom_Thurmond_%28cropped%29.jpg/100px-Strom_Thurmond_%28cropped%29.jpg`,
-    'Douglas':`${WK}/7/7e/Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg/100px-Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg`,
-    'Fillmore':`${WK}/4/4b/Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg/100px-Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg`,
-    'Wirt':`${WK}/b/be/William_wirt_attorney_general_%28cropped%29.jpg/100px-William_wirt_attorney_general_%28cropped%29.jpg`,
-    'Crawford':`${WK}/3/3d/William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg/100px-William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg`,
-    'H. Wallace':`${WK}/3/3c/Henry-A.-Wallace-Townsend.jpg/100px-Henry-A.-Wallace-Townsend.jpg`,
-    'Benson':`${WK}/5/56/Ezra_Taft_Benson_crop.jpg/100px-Ezra_Taft_Benson_crop.jpg`,
+    'Washington':`${WK}/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/120px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg`,
+    'Jefferson':`${WK}/0/07/Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg/120px-Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg`,
+    'Madison':`${WK}/1/1d/James_Madison.jpg/120px-James_Madison.jpg`,
+    'Monroe':`${WK}/5/5e/James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg/120px-James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg`,
+    'J.Q. Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/120px-JQA_Photo_Crop_%28cropped%29.jpg`,
+    'Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/120px-JQA_Photo_Crop_%28cropped%29.jpg`,
+    'Jackson':`${WK}/2/2a/Andrew_jackson_head_%28cropped%29.jpg/120px-Andrew_jackson_head_%28cropped%29.jpg`,
+    'Van Buren':`${WK}/7/72/Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg/120px-Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg`,
+    'Harrison':`${WK}/2/2c/William_Henry_Harrison_crop.jpg/120px-William_Henry_Harrison_crop.jpg`,
+    'Polk':`${WK}/8/87/Polk_crop.jpg/120px-Polk_crop.jpg`,
+    'Taylor':`${WK}/b/b4/Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg/120px-Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg`,
+    'Buchanan':`${WK}/f/fd/James_Buchanan.jpg/120px-James_Buchanan.jpg`,
+    'Pierce':`${WK}/7/74/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg/120px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg`,
+    'Frémont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/120px-John_Charles_Fremont_Oval.png`,
+    'Fremont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/120px-John_Charles_Fremont_Oval.png`,
+    'Lincoln':`${WK}/5/57/Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg/120px-Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg`,
+    'Grant':`${WK}/9/98/Ulysses_S._Grant_1870-1880_%28cropped%29.jpg/120px-Ulysses_S._Grant_1870-1880_%28cropped%29.jpg`,
+    'Tilden':`${WK}/e/e8/Samuel_Tilden._Portrait_of_the_American_politician%2C_who_served_as_the_25th_Governor_of_New_York%2C_Samuel_Jones_Tilden_%281814-1886%29%2C_by_Jos%C3%A9_Mar%C3%ADa_Mora%2C_c._1870.jpg/120px-thumbnail.jpg`,
+    'Hayes':`${WK}/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/120px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg`,
+    'Hancock':`${WK}/5/5b/Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg/120px-Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg`,
+    'Garfield':`${WK}/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/120px-James_Abram_Garfield%2C_photo_portrait_seated.jpg`,
+    'Blaine':`${WK}/2/24/James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg/120px-James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg`,
+    'Cleveland':`${WK}/3/36/StephenGroverCleveland.jpg/120px-StephenGroverCleveland.jpg`,
+    'Bryan':`${WK}/2/20/Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg/120px-Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg`,
+    'McKinley':`${WK}/3/30/McKinley_%28cropped%29.jpg/120px-McKinley_%28cropped%29.jpg`,
+    'T. Roosevelt':`${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`,
+    'Wilson':`${WK}/9/96/President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg/120px-President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg`,
+    'Taft':`${WK}/2/2c/William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg/120px-William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg`,
+    'Debs':`${WK}/a/a6/Eugene_Debs_portrait.jpeg/120px-Eugene_Debs_portrait.jpeg`,
+    'Harding':`${WK}/4/4e/Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg/120px-Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg`,
+    'La Follette':`${WK}/0/06/LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg/120px-LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg`,
+    'Coolidge':`${WK}/4/49/President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg/120px-President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg`,
+    'Smith':`${WK}/1/1f/SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg/120px-SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg`,
+    'Hoover':`${WK}/5/57/President_Hoover_portrait.jpg/120px-President_Hoover_portrait.jpg`,
+    'Landon':`${WK}/3/37/Unsuccessful_1936.jpg/120px-Unsuccessful_1936.jpg`,
+    'Willkie':`${WK}/b/b5/Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg/120px-Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg`,
+    'FDR':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/120px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
+    'Dewey':`${WK}/5/52/Thomas_Dewey_in_1944.jpg/120px-Thomas_Dewey_in_1944.jpg`,
+    'Truman':`${WK}/0/0b/TRUMAN_58-766-06_%28cropped%29.jpg/120px-TRUMAN_58-766-06_%28cropped%29.jpg`,
+    'Stevenson':`${WK}/c/ce/Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg/120px-Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg`,
+    'Eisenhower':`${WK}/0/02/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg/120px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg`,
+    'Kennedy':`${WK}/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/120px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg`,
+    'LBJ':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/120px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
+    'Goldwater':`${WK}/1/19/Senator_Goldwater_1960.jpg/120px-Senator_Goldwater_1960.jpg`,
+    'Humphrey':`${WK}/2/23/Hubert_Humphrey_vice_presidential_portrait.jpg/120px-Hubert_Humphrey_vice_presidential_portrait.jpg`,
+    'Nixon':`${WK}/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/120px-Richard_Nixon_presidential_portrait_%281%29.jpg`,
+    'Wallace':`${WK}/0/08/George_Wallace_%28D-AL%29_%28cropped%29.jpg/120px-George_Wallace_%28D-AL%29_%28cropped%29.jpg`,
+    'McGovern':`${WK}/6/6f/George_McGovern_%28D-SD%29.jpg/120px-George_McGovern_%28D-SD%29.jpg`,
+    'Carter':`${WK}/6/6a/Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg/120px-Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg`,
+    'Reagan':`${WK}/1/16/Official_Portrait_of_President_Reagan_1981.jpg/120px-Official_Portrait_of_President_Reagan_1981.jpg`,
+    'Mondale':`${WK}/4/41/Walter_Mondale_1977_vice_presidential_portrait.jpg/120px-Walter_Mondale_1977_vice_presidential_portrait.jpg`,
+    'Dukakis':`${WK}/0/0c/Michael_Dukakis_%283x4_cropped%29.jpg/120px-Michael_Dukakis_%283x4_cropped%29.jpg`,
+    'Bush Sr':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/120px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
+    'Clinton':`${WK}/5/50/Bill_Clinton_%28cropped_4%29.jpg/120px-Bill_Clinton_%28cropped_4%29.jpg`,
+    'Dole':`${WK}/a/a9/Ks_1996_dole.jpg/120px-Ks_1996_dole.jpg`,
+    'Gore':`${WK}/c/c5/Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg/120px-Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg`,
+    'Bush Jr':`${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg`,
+    'Kerry':`${WK}/7/73/John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg/120px-John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg`,
+    'Obama':`${WK}/8/8d/President_Barack_Obama.jpg/120px-President_Barack_Obama.jpg`,
+    'McCain':`${WK}/7/74/John_McCain_official_portrait_2009_%283x4_cropped%29.jpg/120px-John_McCain_official_portrait_2009_%283x4_cropped%29.jpg`,
+    'Romney':`${WK}/7/7f/Mitt_Romney_official_US_Senate_portrait.jpg/120px-Mitt_Romney_official_US_Senate_portrait.jpg`,
+    'H. Clinton':`${WK}/e/ec/Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg/120px-Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg`,
+    'Trump':`${WK}/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/120px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg`,
+    'Biden':`${WK}/6/68/Joe_Biden_presidential_portrait.jpg/120px-Joe_Biden_presidential_portrait.jpg`,
+    'Harris':`${WK}/4/41/Kamala_Harris_Vice_Presidential_Portrait.jpg/120px-Kamala_Harris_Vice_Presidential_Portrait.jpg`,
+    'Weaver':`${WK}/2/20/James_Weaver_-_Brady-Handy_%28cropped%29.jpg/120px-James_Weaver_-_Brady-Handy_%28cropped%29.jpg`,
+    'Scott':`${WK}/5/5f/Winfield_Scott_by_Fredricks%2C_1862_crop.jpg/120px-Winfield_Scott_by_Fredricks%2C_1862_crop.jpg`,
+    'Cass':`${WK}/a/ae/Lewis_Cass_circa_1855.jpg/120px-Lewis_Cass_circa_1855.jpg`,
+    'Breckinridge':`${WK}/6/65/John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg/120px-John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg`,
+    'McClellan':`${WK}/8/86/George_B_McClellan_-_retouched%2C_cropped.jpg/120px-George_B_McClellan_-_retouched%2C_cropped.jpg`,
+    'Seymour':`${WK}/6/6e/Horatio_Seymour_%28cropped%2C_retouched%29.jpg/120px-Horatio_Seymour_%28cropped%2C_retouched%29.jpg`,
+    'Greeley':`${WK}/1/11/Horace_Greeley_restored.jpg/120px-Horace_Greeley_restored.jpg`,
+    'Parker':`${WK}/b/b4/Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg/120px-Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg`,
+    'Hughes':`${WK}/e/ee/Charles_Evans_Hughes_cph.3b15401.jpg/120px-Charles_Evans_Hughes_cph.3b15401.jpg`,
+    'Cox':`${WK}/5/57/James_M._Cox_Portrait_%283x4_cropped_b%29.jpg/120px-James_M._Cox_Portrait_%283x4_cropped_b%29.jpg`,
+    'Davis':`${WK}/c/c5/DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg/120px-DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg`,
+    'Pinckney':`${WK}/4/45/James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg/120px-James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg`,
+    'Clinton (DeWitt)':`${WK}/6/63/DeWitt_Clinton_by_Rembrandt_Peale.jpg/120px-DeWitt_Clinton_by_Rembrandt_Peale.jpg`,
+    'King':`${WK}/5/59/Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg/120px-Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg`,
+    'Clay':`${WK}/6/67/Clay_1848.jpg/120px-Clay_1848.jpg`,
+    'Bell':`${WK}/3/3d/John_Bell_%28Restored%29.png/120px-John_Bell_%28Restored%29.png`,
+    'Roosevelt':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/120px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
+    'Johnson':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/120px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
+    'Bush':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/120px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
+    'Ford':`${WK}/3/30/Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg/120px-Gerald_Ford_presidential_portrait_%28cropped_2%29.jpg`,
+    'Perot':`${WK}/e/e3/Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg/120px-Ross_Perot_in_his_office_Allan_Warren_%28cropped%29.jpg`,
+    'Nader':`${WK}/2/25/Ralph_Nader_headshot.jpg/120px-Ralph_Nader_headshot.jpg`,
+    'Anderson':`${WK}/3/38/John_Bayard_Anderson.jpg/120px-John_Bayard_Anderson.jpg`,
+    'Thurmond':`${WK}/8/8f/Strom_Thurmond_%28cropped%29.jpg/120px-Strom_Thurmond_%28cropped%29.jpg`,
+    'Douglas':`${WK}/7/7e/Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg/120px-Stephen_A_Douglas_-_Brady-Handy-%28cropped%29-2.jpg`,
+    'Fillmore':`${WK}/4/4b/Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg/120px-Millard_Fillmore_%28George_Peter_Alexander_Healy%2C_1857%29_%28cropped%29.jpg`,
+    'Wirt':`${WK}/b/be/William_wirt_attorney_general_%28cropped%29.jpg/120px-William_wirt_attorney_general_%28cropped%29.jpg`,
+    'Crawford':`${WK}/3/3d/William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg/120px-William_H._Crawford_by_John_Wesley_Jarvis%2C_c._1816_%28cropped%29.jpg`,
+    'H. Wallace':`${WK}/3/3c/Henry-A.-Wallace-Townsend.jpg/120px-Henry-A.-Wallace-Townsend.jpg`,
+    'Benson':`${WK}/5/56/Ezra_Taft_Benson_crop.jpg/120px-Ezra_Taft_Benson_crop.jpg`,
   };
   // Year-based disambiguation for candidates who share a surname
   const photoOverrides = {
-    'Roosevelt': { 1904: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/100px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`, 1912: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/100px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg` },
-    'Bush': { 2000: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/100px-George-W-Bush_%28cropped_2%29.jpeg`, 2004: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/100px-George-W-Bush_%28cropped_2%29.jpeg` },
+    'Roosevelt': { 1904: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`, 1912: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg` },
+    'Bush': { 2000: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg`, 2004: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg` },
     'Johnson': { 2016: null },
   };
   function getPhoto(name, year) {
@@ -273,18 +275,18 @@
 
   // Node display config
   const nodeLabels = {
-    MAT: { name: 'Material', low1: 'Redistributionist', high5: 'Free Market', cluster: 'ENDS' },
-    CD: { name: 'Cultural Direction', low1: 'Progressive', high5: 'Traditional', cluster: 'ENDS' },
-    CU: { name: 'Cultural Universalism', low1: 'Assimilationist', high5: 'Pluralist', cluster: 'ENDS' },
-    MOR: { name: 'Moral Circle', low1: 'Particularist', high5: 'Universal', cluster: 'ENDS' },
-    PRO: { name: 'Proceduralism', low1: 'Anti-procedural', high5: 'Procedural', cluster: 'MEANS' },
-    COM: { name: 'Compromise', low1: 'Principled', high5: 'Pragmatic', cluster: 'MEANS' },
-    ZS: { name: 'Zero-Sum', low1: 'Positive-Sum', high5: 'Zero-Sum', cluster: 'REALITY' },
-    ONT_H: { name: 'Human Nature', low1: 'Pessimistic', high5: 'Optimistic', cluster: 'REALITY' },
-    ONT_S: { name: 'Institutional Trust', low1: 'Broken', high5: 'Stable', cluster: 'REALITY' },
-    PF: { name: 'Partisan Fusion', low1: 'Non-Partisan', high5: 'Partisan', cluster: 'SELF' },
-    TRB: { name: 'Tribalism', low1: 'Universalist', high5: 'Civic Tribal', cluster: 'SELF' },
-    ENG: { name: 'Engagement', low1: 'Apolitical', high5: 'Fully Engaged', cluster: 'SELF' },
+    MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
+    CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
+    CU: { name: 'Cultural Universalism', low1: 'One shared culture', high5: 'Many cultures, side by side', cluster: 'ENDS' },
+    MOR: { name: 'Moral Circle', low1: 'Look after your own', high5: 'Everyone counts equally', cluster: 'ENDS' },
+    PRO: { name: 'Proceduralism', low1: 'Get results, bend rules', high5: 'Follow the rules', cluster: 'MEANS' },
+    COM: { name: 'Compromise', low1: 'Stand on principle', high5: 'Cut a deal', cluster: 'MEANS' },
+    ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
+    ONT_H: { name: 'Human Nature', low1: 'People are selfish by nature', high5: 'People are basically good', cluster: 'REALITY' },
+    ONT_S: { name: 'Institutional Trust', low1: 'The system is broken', high5: 'The system mostly works', cluster: 'REALITY' },
+    PF: { name: 'Partisan Fusion', low1: "Politics isn't my team", high5: 'My side matters', cluster: 'SELF' },
+    TRB: { name: 'Tribalism', low1: 'Just a citizen', high5: 'My group comes first', cluster: 'SELF' },
+    ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'SELF' },
   };
   const clusterColors = { ENDS: '#E8A87C', MEANS: '#7EC8C8', REALITY: '#C5A3CF', SELF: '#F4B9B2' };
   const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', SELF: 'SELF — Who You Are' };
@@ -612,67 +614,77 @@
       clusterDims.forEach(d => {
         const pct = ((d.pos - 1) / 9) * 100;
         const color = clusterColors[d.cluster];
-        const barH = Math.round(d.sal * 24);
+        const barH = Math.round(d.sal * 32);
         const row = document.createElement('div');
         row.className = 'node-row';
         row.style.opacity = 0.4 + d.sal * 0.6;
-        row.style.gridTemplateColumns = '130px 1fr 40px';
+        row.style.gridTemplateColumns = '170px 1fr 50px';
 
         if (d.sal === 0) {
           row.innerHTML = `
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#999;">${d.name}</div>
-            <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.6rem;color:#aaa;font-style:italic;">no salience</div></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#999;">${d.name}</div>
+            <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.75rem;color:#aaa;font-style:italic;">no salience</div></div>
             <div class="node-value">${d.pos.toFixed(1)}</div>`;
         } else {
           row.innerHTML = `
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#555;">${d.name}<span style="font-size:0.55rem;color:#aaa;margin-left:6px;">${Math.round(d.sal * 100)}%</span></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#555;">${d.name}<span style="font-size:0.7rem;color:#aaa;margin-left:6px;">${Math.round(d.sal * 100)}%</span></div>
             <div class="node-bar-wrap">
               <div class="node-bar" style="height:${barH}px;">
                 <div class="node-bar-segment" style="width:${pct}%;background:${color};height:100%;"></div>
-                <div class="node-bar-marker" style="left:${pct}%;top:-3px;height:${barH+6}px;"></div>
+                <div class="node-bar-marker" style="left:${pct}%;top:-4px;height:${barH+8}px;"></div>
               </div>
-              <div class="node-labels"><span style="${d.pos >= 5 && d.pos <= 6 ? 'font-size:0.7rem;font-weight:600;color:#666;' : 'font-size:0.5rem;color:#aaa;'}">${d.low}</span><span style="font-size:0.7rem;font-weight:600;color:#666;">${d.high}</span></div>
+              <div class="node-labels"><span style="${d.pos >= 5 && d.pos <= 6 ? 'font-size:0.85rem;font-weight:600;color:#666;' : 'font-size:0.65rem;color:#aaa;'}">${d.low}</span><span style="font-size:0.85rem;font-weight:600;color:#666;">${d.high}</span></div>
             </div>
             <div class="node-value">${d.pos.toFixed(1)}</div>`;
         }
         block.appendChild(row);
       });
 
-      // Add EPS/AES under MEANS
+      // Add EPS/AES under MEANS — single-row stacked-probability layout that
+      // mirrors the grid rhythm of the continuous nodes above. Salience drives
+      // row opacity and bar height; probability drives segment width.
       if (clusterName === 'MEANS') {
         const catNodes = [
           { code: 'EPS', name: 'Epistemics', categories: epsCategories },
           { code: 'AES', name: 'Aesthetics', categories: aesCategories }
         ];
+        const baseColor = clusterColors['MEANS'];
         catNodes.forEach(cn => {
           const arcNode = archetype.nodes[cn.code];
           if (!arcNode) return;
           const respCat = respondentState && respondentState.categorical ? respondentState.categorical[cn.code] : null;
           const probs = respCat ? respCat.catDist : arcNode.probs;
           const sal = respCat ? (respCat.salience / 3) : (arcNode.sal / 3);
-          const cats = cn.categories.map((label, i) => ({ label: label.charAt(0).toUpperCase() + label.slice(1), prob: probs[i] || 0 }));
+          const cats = cn.categories.map((label, i) => ({
+            label: label.charAt(0).toUpperCase() + label.slice(1),
+            prob: probs[i] || 0,
+          }));
           const sorted = [...cats].sort((a, b) => b.prob - a.prob);
           const top = sorted[0];
+          const bottom = sorted[sorted.length - 1];
 
-          const wrap = document.createElement('div');
-          wrap.style.cssText = 'margin-bottom:16px;margin-top:12px;opacity:' + (0.4 + sal * 0.6);
-          let html = `<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:#555;">${cn.name}</span>
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:700;color:${clusterColors['MEANS']};margin-left:auto;">${top.label} (${Math.round(top.prob*100)}%)</span>
-          </div>`;
-          cats.forEach(c => {
-            const w = Math.max(c.prob * 100, 2);
-            const isTop = c.label === top.label;
-            html += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-              <span style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;width:100px;text-align:right;color:${isTop?'var(--ink)':'#888'};opacity:${isTop?1:0.6};">${c.label}</span>
-              <div style="flex:1;height:${isTop?14:10}px;background:#eee;border-radius:3px;overflow:hidden;border:1px solid #ddd;">
-                <div style="width:${w}%;height:100%;background:${isTop?clusterColors['MEANS']:'rgba(126,200,200,0.35)'};border-radius:3px;"></div>
+          const row = document.createElement('div');
+          row.className = 'node-row';
+          row.style.opacity = 0.4 + sal * 0.6;
+          row.style.gridTemplateColumns = '170px 1fr 50px';
+
+          if (sal === 0) {
+            row.innerHTML = `
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#999;">${cn.name}</div>
+              <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.75rem;color:#aaa;font-style:italic;">no salience</div></div>
+              <div class="node-value">—</div>`;
+          } else {
+            row.innerHTML = `
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#555;">
+                ${cn.name}<span style="font-size:0.7rem;color:#aaa;margin-left:6px;">${Math.round(sal*100)}%</span>
               </div>
-              <span style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;width:30px;color:${isTop?'var(--ink)':'#888'};opacity:${isTop?1:0.5};">${Math.round(c.prob*100)}%</span>
-            </div>`;
-          });
-          wrap.innerHTML = html;
-          block.appendChild(wrap);
+              <div class="node-bar-wrap" style="font-family:'Space Grotesk',sans-serif;">
+                <div style="font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:-0.005em;">${top.label}</div>
+                <div style="font-size:0.75rem;color:#aaa;margin-top:4px;">lowest: ${bottom.label} ${Math.round(bottom.prob*100)}%</div>
+              </div>
+              <div class="node-value">${Math.round(top.prob*100)}%</div>`;
+          }
+          block.appendChild(row);
         });
       }
 

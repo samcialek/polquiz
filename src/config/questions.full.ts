@@ -122,20 +122,23 @@ export const FULL_QUESTIONS: QuestionDef[] = [
 
   q(
     6,
-    "stage3",
+    "stage2",
     "I",
-    "surveillance_enforcement_due_process_bundle",
+    "national_priorities_bundle",
     "single_choice",
-    0.68,
-    true,
+    0.90,
+    false,
     [
-      t("PRO", "continuous", "position", 0.70, "policy_bundle"),
-
-      t("ONT_H", "continuous", "position", 0.10, "policy_bundle")
+      t("MAT",   "continuous", "position", 0.65, "policy_bundle"),
+      t("CD",    "continuous", "position", 0.60, "policy_bundle"),
+      t("MOR",   "continuous", "position", 0.60, "policy_bundle"),
+      t("ONT_H", "continuous", "position", 0.55, "policy_bundle"),
+      t("ZS",    "continuous", "position", 0.40, "policy_bundle"),
+      t("MAT",   "continuous", "salience", 0.30, "policy_bundle_salience")
     ],
     {
-      eligibleIf: ["late_consistency_check_only"],
-      goodFollowupsIfUnresolved: [25, 36, 41]
+      eligibleIf: ["background_prior_only"],
+      goodFollowupsIfUnresolved: [7, 3, 8]
     }
   ),
 

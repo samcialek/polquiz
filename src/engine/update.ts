@@ -1,4 +1,5 @@
 import type {
+  CategoricalDist,
   ContinuousNodeId,
   CategoricalNodeId,
   OptionEvidence,
@@ -20,6 +21,113 @@ const RANK_SAL: SalienceDist[] = [
   [0.40, 0.30, 0.20, 0.10],  // rank 5
   [0.50, 0.30, 0.15, 0.05],  // rank 6 (least important)
 ];
+
+// Salience likelihoods for the pure-salience best-worst battery (top-N / bottom-N).
+// Applied per item based on whether it was picked as best, worst, or left in the middle.
+const SAL_IF_BEST:   SalienceDist = [0.05, 0.15, 0.30, 0.50];
+const SAL_IF_WORST:  SalienceDist = [0.50, 0.30, 0.15, 0.05];
+const SAL_IF_MIDDLE: SalienceDist = [0.25, 0.30, 0.25, 0.20];
+
+// Near-flat salience likelihoods for "category-pick" best_worst questions,
+// where every item touches the same node (e.g. Q89 EPS). The user is forced to
+// pick among 6 phrasings of one categorical node; that pick reveals their
+// category strongly but carries essentially no salience information (they had
+// to pick something no matter how much they care). Any salience signal on that
+// node must come from other questions whose likelihood actually depends on the
+// respondent's answer content (e.g. Q22 allocation HHI, Q79 option choice).
+// For node-salience batteries (Q86/Q88) each item maps to a distinct node, so
+// a "best" pick is genuine relative-importance signal — keep the strong form.
+const SAL_IF_BEST_FORCED:  SalienceDist = [0.23, 0.25, 0.27, 0.25];
+const SAL_IF_WORST_FORCED: SalienceDist = [0.27, 0.25, 0.25, 0.23];
+
+// Category-mix weights when a best_worst item carries categorical evidence
+// (e.g. EPS / AES style picks). Best is a stronger signal than worst —
+// people more reliably name what they prefer than what they reject.
+const BW_BEST_CAT_MIX = 0.50;
+const BW_WORST_CAT_MIX = 0.30;
+
+// Continuous-position mix weights for pole-battery best_worst items (Q93-Q96).
+// Lighter than category because priority picks only weakly pin exact position —
+// picking "economic fairness" as top priority doesn't mean position=1 exactly,
+// just a redistributionist lean. Worst pick pulls away from the pole similarly
+// but more gently (people are more certain of what they want than what they don't).
+const BW_BEST_POS_MIX = 0.35;
+const BW_WORST_POS_MIX = 0.22;
+
+// Priority-sort (card-sort) salience likelihoods. Each item gets dropped into
+// one of three buckets: "high" = super-important, "mid" = care but not central,
+// "low" = not central. This is a richer signal than best-worst because many
+// items can land in each bucket — we don't force a forced-choice artifact.
+// Likelihoods are shaped strongly because a deliberate placement is genuine
+// importance signal (cf. SAL_IF_BEST [0.05,0.15,0.30,0.50]).
+const SAL_PRIORITY_HIGH: SalienceDist = [0.03, 0.10, 0.27, 0.60];
+const SAL_PRIORITY_MID:  SalienceDist = [0.20, 0.30, 0.30, 0.20];
+const SAL_PRIORITY_LOW:  SalienceDist = [0.55, 0.30, 0.12, 0.03];
+
+// Priority-sort position mix weights. High-bucket placement pulls the position
+// posterior toward the pole harder than best-worst best (BW_BEST_POS_MIX=0.35)
+// because the user could have placed the item in a weaker bucket — choosing
+// "high" is a stronger signal. Mid bucket pulls gently; low bucket skips
+// position entirely (placing something in "not central" tells us nothing about
+// which pole the user falls on — only that the node is low-salience).
+const PRIORITY_HIGH_POS_MIX = 0.40;
+const PRIORITY_MID_POS_MIX  = 0.20;
+
+// Dual-axis convex mix weight for the position update. Slightly stronger than
+// priority-sort high-bucket (0.40) because the user made a precise placement
+// on a continuous axis rather than a coarse bucket pick.
+const DUAL_AXIS_POS_MIX = 0.45;
+
+// Dual-axis salience likelihoods keyed on y ∈ [0,1] (0 = "doesn't matter",
+// 1 = "central"). Shaped similarly to SAL_PRIORITY_* but on a 5-band split.
+function dualAxisYtoSal(y: number): SalienceDist {
+  if (y >= 0.80) return [0.03, 0.10, 0.27, 0.60];
+  if (y >= 0.60) return [0.10, 0.20, 0.32, 0.38];
+  if (y >= 0.40) return [0.22, 0.30, 0.28, 0.20];
+  if (y >= 0.20) return [0.40, 0.30, 0.20, 0.10];
+  return [0.60, 0.25, 0.12, 0.03];
+}
+
+function invertCatDist(d: CategoricalDist): CategoricalDist {
+  const inv = d.map((p) => 1 - p);
+  const total = inv.reduce((a, b) => a + b, 0);
+  if (total <= 0) return d;
+  return inv.map((p) => p / total) as CategoricalDist;
+}
+
+// Extremity → salience. When a respondent lands at an extreme on a position
+// scale, it's a signal the node is cognitively active for them (you don't
+// hold extreme opinions on things you don't care about). This likelihood is
+// milder than SAL_IF_BEST because the position itself — not an explicit
+// "rank this as most important" — is doing the signaling.
+const EXTREMITY_SAL: SalienceDist = [0.10, 0.20, 0.30, 0.40];
+
+function isExtremePosEvidence(pos: readonly number[] | undefined): boolean {
+  if (!pos || pos.length !== 5) return false;
+  const max = Math.max(...pos);
+  if (max < 0.40) return false;
+  const maxIdx = pos.indexOf(max);
+  return maxIdx === 0 || maxIdx === 4;
+}
+
+function boostExtremitySalience(
+  state: RespondentState,
+  q: QuestionDef,
+  nodesToBoost: Set<string>
+): void {
+  if (nodesToBoost.size === 0) return;
+  for (const touch of q.touchProfile) {
+    if (touch.role !== "position") continue;
+    if (!nodesToBoost.has(touch.node as string)) continue;
+    if (touch.kind === "continuous" && touch.node in state.continuous) {
+      const node = state.continuous[touch.node as ContinuousNodeId];
+      node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
+    } else if (touch.kind === "categorical" && touch.node in state.categorical) {
+      const node = state.categorical[touch.node as CategoricalNodeId];
+      node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
+    }
+  }
+}
 
 function registerTouches(state: RespondentState, q: QuestionDef): void {
   for (const touch of q.touchProfile) {
@@ -71,7 +179,18 @@ export function applySingleChoiceAnswer(
 ): void {
   state.answers[q.id] = optionKey;
   registerTouches(state, q);
-  applyOptionEvidence(state, q.optionEvidence?.[optionKey]);
+  const ev = q.optionEvidence?.[optionKey];
+  applyOptionEvidence(state, ev);
+
+  // Extremity → salience: if the chosen option's pos evidence concentrates
+  // on pos 1 or pos 5 for a node, bump that node's salience.
+  if (ev?.continuous) {
+    const extremeNodes = new Set<string>();
+    for (const [nodeId, upd] of Object.entries(ev.continuous)) {
+      if (isExtremePosEvidence(upd?.pos)) extremeNodes.add(nodeId);
+    }
+    boostExtremitySalience(state, q, extremeNodes);
+  }
 }
 
 export function applySliderAnswer(
@@ -91,6 +210,16 @@ export function applySliderAnswer(
   });
   if (!bucket) return;
   applyOptionEvidence(state, q.sliderMap[bucket]);
+
+  // Extremity → salience: landing at either end of the slider (≤20 or ≥80)
+  // is a behavioral signal that the node is active. Boost salience on every
+  // position-touched node this question declares.
+  if (rawValue <= 20 || rawValue >= 80) {
+    const posNodes = new Set(
+      q.touchProfile.filter((t) => t.role === "position").map((t) => t.node as string)
+    );
+    boostExtremitySalience(state, q, posNodes);
+  }
 }
 
 export function applyAllocationAnswer(
@@ -218,6 +347,288 @@ export function applyRankingAnswer(
       state.trbAnchor.touches += 1;
     }
   });
+}
+
+/**
+ * Apply a top-N / bottom-N best-worst answer as a per-item salience update.
+ *
+ * Unlike applyRankingAnswer, which weights evidence by rank position within a flat
+ * ordering, this routine treats every item independently: items picked as "best"
+ * receive SAL_IF_BEST; items picked as "worst" receive SAL_IF_WORST; everything
+ * else receives SAL_IF_MIDDLE. The rankingMap entry for each item identifies which
+ * nodes that item's salience evidence applies to; the rankingMap's scalar values
+ * are intentionally ignored here (this is a salience-only question).
+ */
+export function applyBestWorstSalience(
+  state: RespondentState,
+  q: QuestionDef,
+  best: string[],
+  worst: string[],
+  allItems: string[]
+): void {
+  state.answers[q.id] = { best: best.slice(), worst: worst.slice() };
+  registerTouches(state, q);
+
+  if (!q.rankingMap) return;
+
+  const bestSet = new Set(best);
+  const worstSet = new Set(worst);
+
+  // Per-question salience aggregation. Apply ONE salience update per node,
+  // not one per item — otherwise a question whose 6 items all reference the
+  // same node (Q89, EPS) would multiply 6 likelihoods into the same posterior
+  // and collapse it. For Q86/Q88 each item maps to a distinct node, so this
+  // collapses to the previous per-item behavior with no change.
+  type Bucket = "best" | "worst" | "middle";
+  const continuousBuckets = new Map<string, Set<Bucket>>();
+  const categoricalBuckets = new Map<string, Set<Bucket>>();
+  const bucketFor = (item: string): Bucket =>
+    bestSet.has(item) ? "best" : worstSet.has(item) ? "worst" : "middle";
+
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map) continue;
+    const b = bucketFor(item);
+    if (map.continuous) {
+      for (const nodeId of Object.keys(map.continuous)) {
+        if (!continuousBuckets.has(nodeId)) continuousBuckets.set(nodeId, new Set());
+        continuousBuckets.get(nodeId)!.add(b);
+      }
+    }
+    if (map.categorical) {
+      for (const nodeId of Object.keys(map.categorical)) {
+        if (!categoricalBuckets.has(nodeId)) categoricalBuckets.set(nodeId, new Set());
+        categoricalBuckets.get(nodeId)!.add(b);
+      }
+    }
+  }
+
+  // Pick the strongest signal observed: best > worst > middle. Engaging with
+  // a node at either pole signals salience; otherwise it gets the mild
+  // "didn't pick this" pull toward low-salience.
+  //
+  // Forced-pick detection: if the same node is also referenced by a "middle"
+  // item, the question is a category-pick battery (Q89 EPS) where every item
+  // touches the same node — the respondent was forced to choose, so the best/
+  // worst signal is weaker evidence of genuine importance. Use milder FORCED
+  // variants. Otherwise it's a node-salience battery (Q86/Q88) where each item
+  // maps to a distinct node — middle items reference different nodes, and the
+  // best/worst signal is real relative importance.
+  function resolveSal(buckets: Set<Bucket>): SalienceDist {
+    const forced = buckets.has("middle");
+    if (buckets.has("best")) return forced ? SAL_IF_BEST_FORCED : SAL_IF_BEST;
+    if (buckets.has("worst")) return forced ? SAL_IF_WORST_FORCED : SAL_IF_WORST;
+    return SAL_IF_MIDDLE;
+  }
+
+  for (const [nodeId, buckets] of continuousBuckets) {
+    const node = state.continuous[nodeId as ContinuousNodeId];
+    if (!node) continue;
+    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+  }
+  for (const [nodeId, buckets] of categoricalBuckets) {
+    const node = state.categorical[nodeId as CategoricalNodeId];
+    if (!node) continue;
+    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+  }
+
+  // Category mixing: separate per-item pass over best/worst items only.
+  // Best pulls the categorical posterior toward the item's prototype; worst
+  // pushes it toward the prototype's inverse. Middle items contribute nothing
+  // to category — only to salience above.
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map?.categorical) continue;
+    const isBest = bestSet.has(item);
+    const isWorst = worstSet.has(item);
+    if (!isBest && !isWorst) continue;
+    for (const [nodeId, catDist] of Object.entries(map.categorical)) {
+      const node = state.categorical[nodeId as CategoricalNodeId];
+      if (!node || !catDist) continue;
+      const w = isBest ? BW_BEST_CAT_MIX : BW_WORST_CAT_MIX;
+      const target = isBest ? catDist : invertCatDist(catDist);
+      const mixed = node.catDist.map((v, i) => v * (1 - w) + target[i]! * w);
+      node.catDist = normalize(mixed as typeof node.catDist);
+    }
+  }
+
+  // Continuous position mixing: for pole-battery questions (Q93-Q96), each
+  // item carries a `pos` distribution that encodes which pole it represents.
+  // Best pulls the position posterior toward the pole; worst pushes it toward
+  // the inverted distribution. Lighter mix than category (position from a
+  // priority pick is informative but noisy).
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map?.continuous) continue;
+    const isBest = bestSet.has(item);
+    const isWorst = worstSet.has(item);
+    if (!isBest && !isWorst) continue;
+    for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+      if (!evidence?.pos) continue;
+      const node = state.continuous[nodeId as ContinuousNodeId];
+      if (!node) continue;
+      const w = isBest ? BW_BEST_POS_MIX : BW_WORST_POS_MIX;
+      const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
+      const target = isBest
+        ? (evidence.pos.map((p) => p / sum) as typeof node.posDist)
+        : (evidence.pos.map((p) => (1 - p / sum)) as typeof node.posDist);
+      const tSum = target.reduce((a, b) => a + b, 0) || 1;
+      const tNorm = target.map((p) => p / tSum) as typeof node.posDist;
+      const mixed = node.posDist.map((v, i) => v * (1 - w) + tNorm[i]! * w);
+      node.posDist = normalize(mixed as typeof node.posDist);
+    }
+  }
+}
+
+/**
+ * Apply a priority-sort (card-sort) answer with four buckets:
+ *   supportHigh — "central to my politics" (care + agree, strong)
+ *   supportMid  — "I support it, but it isn't central"       (care + agree, mild)
+ *   neutral     — "not central to my politics"               (don't care)
+ *   opposeHigh  — "opposing this is central to my politics"  (care + disagree, strong)
+ *
+ * Salience (aggregated per-node across items):
+ *   supportHigh OR opposeHigh present → SAL_PRIORITY_HIGH
+ *   supportMid present                → SAL_PRIORITY_MID
+ *   neutral only                      → SAL_PRIORITY_LOW
+ *
+ * Position (per-item mixing):
+ *   supportHigh → pull toward pole at PRIORITY_HIGH_POS_MIX
+ *   supportMid  → pull toward pole at PRIORITY_MID_POS_MIX
+ *   neutral     → skip
+ *   opposeHigh  → pull toward INVERTED pole distribution at PRIORITY_HIGH_POS_MIX
+ *                 (same inversion pattern as applyBestWorstSalience's worst case)
+ */
+export function applyPrioritySort(
+  state: RespondentState,
+  q: QuestionDef,
+  placements: {
+    supportHigh: string[];
+    supportMid: string[];
+    neutral: string[];
+    opposeHigh: string[];
+  },
+  allItems: string[]
+): void {
+  state.answers[q.id] = {
+    supportHigh: placements.supportHigh.slice(),
+    supportMid:  placements.supportMid.slice(),
+    neutral:     placements.neutral.slice(),
+    opposeHigh:  placements.opposeHigh.slice(),
+  };
+  registerTouches(state, q);
+
+  if (!q.rankingMap) return;
+
+  const supportHighSet = new Set(placements.supportHigh);
+  const supportMidSet  = new Set(placements.supportMid);
+  const opposeHighSet  = new Set(placements.opposeHigh);
+
+  type Bucket = "supportHigh" | "supportMid" | "neutral" | "opposeHigh";
+  const bucketFor = (item: string): Bucket =>
+    supportHighSet.has(item) ? "supportHigh"
+      : opposeHighSet.has(item) ? "opposeHigh"
+      : supportMidSet.has(item) ? "supportMid"
+      : "neutral";
+
+  // Per-node salience aggregation: record which buckets each node appears in,
+  // then apply one salience update per node using the strongest signal.
+  const continuousBuckets = new Map<string, Set<Bucket>>();
+  const categoricalBuckets = new Map<string, Set<Bucket>>();
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map) continue;
+    const b = bucketFor(item);
+    if (map.continuous) {
+      for (const nodeId of Object.keys(map.continuous)) {
+        if (!continuousBuckets.has(nodeId)) continuousBuckets.set(nodeId, new Set());
+        continuousBuckets.get(nodeId)!.add(b);
+      }
+    }
+    if (map.categorical) {
+      for (const nodeId of Object.keys(map.categorical)) {
+        if (!categoricalBuckets.has(nodeId)) categoricalBuckets.set(nodeId, new Set());
+        categoricalBuckets.get(nodeId)!.add(b);
+      }
+    }
+  }
+
+  function resolveSal(buckets: Set<Bucket>): SalienceDist {
+    if (buckets.has("supportHigh") || buckets.has("opposeHigh")) return SAL_PRIORITY_HIGH;
+    if (buckets.has("supportMid")) return SAL_PRIORITY_MID;
+    return SAL_PRIORITY_LOW;
+  }
+
+  for (const [nodeId, buckets] of continuousBuckets) {
+    const node = state.continuous[nodeId as ContinuousNodeId];
+    if (!node) continue;
+    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+  }
+  for (const [nodeId, buckets] of categoricalBuckets) {
+    const node = state.categorical[nodeId as CategoricalNodeId];
+    if (!node) continue;
+    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+  }
+
+  // Per-item continuous position mixing. Support buckets pull toward the pole;
+  // oppose pulls toward the inverted pole (anti-pole); neutral skips.
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map?.continuous) continue;
+    const bucket = bucketFor(item);
+    if (bucket === "neutral") continue;
+    const w = (bucket === "supportMid") ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
+    const invert = (bucket === "opposeHigh");
+    for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+      if (!evidence?.pos) continue;
+      const node = state.continuous[nodeId as ContinuousNodeId];
+      if (!node) continue;
+      const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
+      const raw = invert
+        ? evidence.pos.map((p) => 1 - p / sum)
+        : evidence.pos.map((p) => p / sum);
+      const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+      const target = raw.map((p) => p / rawSum) as typeof node.posDist;
+      const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i]! * w);
+      node.posDist = normalize(mixed as typeof node.posDist);
+    }
+  }
+}
+
+/**
+ * Dual-axis answer. A single grid tap produces (x, y) both in [0, 1]:
+ *   x → position target via linear interp between `xLow` and `xHigh`,
+ *       convex-mixed into posDist at DUAL_AXIS_POS_MIX.
+ *   y → salience likelihood via `dualAxisYtoSal`, multiplied into salDist.
+ *
+ * Applies to the single node declared in q.dualAxisMap.node. Any additional
+ * touchProfile entries are registered but not updated here — the gesture
+ * directly signals only that node.
+ */
+export function applyDualAxisAnswer(
+  state: RespondentState,
+  q: QuestionDef,
+  answer: { x: number; y: number }
+): void {
+  const x = Math.max(0, Math.min(1, answer.x));
+  const y = Math.max(0, Math.min(1, answer.y));
+  state.answers[q.id] = { x, y };
+  registerTouches(state, q);
+
+  if (!q.dualAxisMap) return;
+  const map = q.dualAxisMap;
+  const node = state.continuous[map.node as ContinuousNodeId];
+  if (!node) return;
+
+  // Position: linear interp between xLow and xHigh, then convex-mix into posDist.
+  const target = map.xLow.map((lo, i) => lo * (1 - x) + (map.xHigh[i] ?? 0) * x);
+  const sum = target.reduce((a, b) => a + b, 0) || 1;
+  const normTarget = target.map(v => v / sum);
+  const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
+  node.posDist = normalize(mixed as typeof node.posDist);
+
+  // Salience: y bucket → likelihood ratio, multiply into salDist.
+  node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
 }
 
 export function applyPairwiseAnswer(

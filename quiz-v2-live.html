@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="prism-engine-bundle.min.js?v=20260330i"></script>
+<script src="prism-engine-bundle.min.js?v=20260422a"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -516,6 +516,136 @@
         line-height: 1.4;
     }
 
+    /* Priority batteries (Q93-Q96): shift the label/header TEXT right (buttons stay put)
+       and pull the header text closer to its underline. */
+    .bw-container--priority .bw-label { padding-left: 2rem; }
+    .bw-container--priority .bw-header span:nth-child(2) { padding-left: 2rem; }
+    .bw-container--priority .bw-header { padding-bottom: 0.15rem; }
+
+    /* ── Priority sort (card-sort) ─────────────────────
+       Three buckets (high/mid/low) + a pool of unsorted items. Drag items by
+       clicking and holding; they drop into whichever column you release over.
+       Click-to-place is preserved as a fallback (tap item, then tap column). */
+
+    /* When a priority_sort is active, widen the container so three columns
+       breathe. Applied via body class toggled in showQuestion(). */
+    body.ps-active .container { max-width: 1200px; padding: 1.25rem 1rem; }
+
+    .ps-container { display: flex; flex-direction: column; gap: 1rem; }
+    .ps-pool-label {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-light);
+        margin-bottom: 0.35rem;
+    }
+    .ps-pool {
+        border: 2px dashed var(--ink);
+        background: var(--white);
+        padding: 0.75rem;
+        min-height: 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        transition: background 0.12s;
+    }
+    .ps-pool.ps-dropping { background: var(--cream); }
+    @media (max-width: 800px) {
+        .ps-pool { grid-template-columns: 1fr; }
+    }
+    .ps-buckets {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 0.75rem;
+    }
+    .ps-cols-3 .ps-buckets { grid-template-columns: 1fr 1fr 1fr; }
+    .ps-cols-4 .ps-buckets { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .ps-bucket {
+        border: 2px solid var(--ink);
+        padding: 0.75rem;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: transform 0.12s, box-shadow 0.12s;
+    }
+    #ps-bucket-supportHigh { background: #b8861a; }  /* dark gold — strong support */
+    #ps-bucket-supportMid  { background: #4a8ba8; }  /* darkened pool — mild support */
+    #ps-bucket-neutral     { background: #2d2d2d; }  /* near-black — no stake */
+    #ps-bucket-opposeHigh  { background: #a8322a; }  /* dark crimson — strong opposition */
+    .ps-bucket.ps-dropping {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+    .ps-bucket-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        font-weight: 800;
+        margin-bottom: 0.7rem;
+        line-height: 1.25;
+        text-align: center;
+    }
+    .ps-bucket-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        flex: 1;
+    }
+    .ps-item {
+        border: 2px solid var(--ink);
+        background: var(--white);
+        padding: 0.65rem 0.85rem;
+        line-height: 1.3;
+        cursor: grab;
+        user-select: none;
+        transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .ps-item-head {
+        display: block;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--ink);
+    }
+    .ps-item-sub {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.35;
+        color: var(--ink-light);
+    }
+    .ps-item:hover { box-shadow: 2px 2px 0 var(--ink); transform: translate(-1px, -1px); }
+    .ps-item:active { cursor: grabbing; }
+    .ps-item.ps-item--dragging {
+        opacity: 0.35;
+        box-shadow: none;
+        transform: none;
+    }
+    .ps-item.ps-item--selected {
+        background: var(--flesh);
+        box-shadow: 2px 2px 0 var(--ink);
+        transform: translate(-1px, -1px);
+    }
+    .ps-item.ps-item--selected .ps-item-head,
+    .ps-item.ps-item--selected .ps-item-sub { color: var(--white); }
+    .ps-item--in-bucket { padding: 0.55rem 0.75rem; }
+    .ps-item--in-bucket .ps-item-head { font-size: 1.05rem; }
+    .ps-item--in-bucket .ps-item-sub { display: none; }
+
+    @media (max-width: 1050px) {
+        .ps-buckets { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+        .ps-buckets { grid-template-columns: 1fr; }
+        .ps-bucket { min-height: 90px; }
+    }
+
     /* ── Continue button ───────────────────────────── */
     .back-btn {
         cursor: pointer;
@@ -692,6 +822,238 @@
 
     .question-card { animation: slideIn 0.3s ease; }
 
+    /* ── Priority-sort bucket overrides (per-question color) ─── */
+    /* Q99 cross_partisan_priority_sort */
+    #ps-bucket-fine         { background: #3d7a4e; }
+    #ps-bucket-not_ideal    { background: #a86b1f; }
+    #ps-bucket-dealbreaker  { background: #a8322a; }
+    /* Q102 membership_criteria_priority_sort */
+    #ps-bucket-essential    { background: #b8861a; }
+    #ps-bucket-nice         { background: #8b7355; }
+    #ps-bucket-irrelevant   { background: #2d2d2d; }
+
+    /* ── Strength / ratio follow-up ──────────────────── */
+    .strength-followup {
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 2px solid var(--ink-faint, #d0d0d0);
+        animation: slideIn 0.3s ease;
+    }
+    .strength-prompt {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--ink);
+    }
+    .strength-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    .strength-btn {
+        border: 2px solid var(--ink);
+        background: var(--white);
+        padding: 1rem 1.25rem;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--ink);
+        transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .strength-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+    .ratio-slider-labels {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        color: var(--ink-light);
+        margin: 0.5rem 0.25rem 0.25rem;
+    }
+    .ratio-slider-input {
+        width: 100%;
+        margin: 0.25rem 0 0.5rem;
+    }
+    .ratio-value {
+        text-align: center;
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--flesh);
+        margin-bottom: 1rem;
+    }
+
+    /* ── Dual-axis positioner ────────────────────────── */
+    .da-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 0;
+    }
+    .da-y-label-top, .da-y-label-bottom {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        margin: 0.3rem 0;
+        text-align: center;
+    }
+    .da-grid-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .da-x-label-left, .da-x-label-right {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        width: 110px;
+        text-align: center;
+    }
+    .da-grid {
+        width: 360px;
+        height: 360px;
+        background: var(--pool, #9bbcc9);
+        border: 2px solid var(--pool-shadow, #6b8b98);
+        border-radius: 12px;
+        position: relative;
+        cursor: crosshair;
+        background-image:
+            linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px);
+        background-size: 25% 25%;
+    }
+    .da-grid-h, .da-grid-v {
+        position: absolute;
+        background: rgba(255,255,255,0.7);
+        pointer-events: none;
+    }
+    .da-grid-h { top: 50%; left: 0; width: 100%; height: 2px; }
+    .da-grid-v { left: 50%; top: 0; width: 2px; height: 100%; }
+    .da-marker {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        background: var(--flesh);
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        cursor: grab;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        pointer-events: none;
+    }
+    .da-readout {
+        margin-top: 1rem;
+        max-width: 520px;
+        border: 2px solid var(--ink);
+        padding: 1rem 1.25rem;
+        background: var(--white);
+        box-shadow: 3px 3px 0 var(--ink);
+    }
+    .da-zone-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--flesh);
+        margin-bottom: 0.15rem;
+    }
+    .da-zone-sublabel {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-faint, #a0a0a0);
+        margin-bottom: 0.6rem;
+    }
+    .da-zone-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .da-zone-bullets li {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem;
+        line-height: 1.35;
+        color: var(--ink);
+        padding: 0.25rem 0 0.25rem 1rem;
+        position: relative;
+    }
+    .da-zone-bullets li::before {
+        content: '›';
+        position: absolute;
+        left: 0;
+        color: var(--flesh);
+        font-weight: 700;
+    }
+
+    /* ── Conjoint two-card layout ────────────────────── */
+    .cj-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .cj-card {
+        background: var(--white);
+        border: 2px solid var(--ink);
+        border-radius: 0;
+        padding: 1.5rem 1.25rem;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition: transform 0.12s, box-shadow 0.12s;
+        display: flex;
+        flex-direction: column;
+    }
+    .cj-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--ink);
+    }
+    .cj-card.selected {
+        background: #fff5f3;
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--flesh);
+    }
+    .cj-name {
+        font-family: 'EB Garamond', serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--ink);
+        text-align: center;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--ink);
+    }
+    .cj-attr {
+        padding: 0.75rem 0;
+        border-top: 1px solid #d0d0d0;
+    }
+    .cj-attr:first-of-type { border-top: none; }
+    .cj-attr-label {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+    }
+    .cj-attr-value {
+        font-size: 1.15rem;
+        line-height: 1.4;
+        color: var(--ink);
+    }
+
     /* ── Mobile ─────────────────────────────────────── */
     @media (max-width: 600px) {
         .container { padding: 1rem; }
@@ -700,6 +1062,10 @@
         .header { padding: 0.75rem 1rem; }
         .stats { gap: 1rem; }
         .bw-header, .bw-row { grid-template-columns: 60px 1fr 60px; }
+        .cj-grid { grid-template-columns: 1fr; }
+        .strength-buttons { grid-template-columns: 1fr; }
+        .da-grid { width: 280px; height: 280px; }
+        .da-x-label-left, .da-x-label-right { width: 80px; font-size: 0.7rem; }
     }
 </style>
 </head>
@@ -722,13 +1088,13 @@
         <h1>PRISM</h1>
         <div class="subtitle">political refraction and identity spectrum model</div>
         <div class="description">
-            A comprehensive political disposition assessment that maps you to one of 130
+            A comprehensive political disposition assessment that maps you to one of 118
             political archetypes across 14 latent dimensions. Questions adapt in real time
             based on your responses using Bayesian posterior updating.
         </div>
         <div class="stats">
             <div class="stat-box">
-                <div class="stat-number">130</div>
+                <div class="stat-number">118</div>
                 <div class="stat-label">Archetypes</div>
             </div>
             <div class="stat-box">
@@ -736,7 +1102,7 @@
                 <div class="stat-label">Dimensions</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number">~39</div>
+                <div class="stat-number">~27</div>
                 <div class="stat-label">Questions</div>
             </div>
         </div>
@@ -784,7 +1150,7 @@ const Q_TEXT = {
     views_changed_in_10_years: "How much do you think your political views have changed in the past 10 years?",
     social_progress_salience: "How much do you personally care about the question of whether society is making social progress?",
     immigration_national_identity_salience: "How important is the question of immigration and national identity to you personally?",
-    surveillance_enforcement_due_process_bundle: "Which approach to law enforcement do you prefer?",
+    national_priorities_bundle: "If the next administration could pursue ONE bold agenda, which would you most want it to be?",
     coalition_vs_principle: "Your political party or movement takes a position you disagree with on an important issue. What do you do?",
     politics_at_social_gatherings: "When politics comes up at social gatherings, you typically:",
     climate_energy_bundle: "Which approach to climate and energy policy do you prefer?",
@@ -822,6 +1188,16 @@ const Q_TEXT = {
     factory_closure_causes_ranking: "A major factory in your region announces it's closing, eliminating 2,000 jobs. Rank these causes from most to least responsible:",
     integration_expectations_rewrite: "What should be expected of immigrants who want to become full citizens of your country?",
     best_worst_battery: "Which of these political issues matters MOST and LEAST to you personally?",
+    pole_priorities_ends: "Here are some priorities a society could aim for. Pick the one you'd most (and least) want to see in a presidential candidate.",
+    pole_priorities_ends_b: "Here are a few more along the same lines. Pick the one you'd most (and least) want to see in a presidential candidate.",
+    priority_sort_opener: "Here are some priorities a society could aim for. Place each one into the column that fits best. Tap an item, then tap the column.",
+    cross_partisan_priority_sort: "Imagine each of these people told you they voted for the other party's candidate in the last election. For each relationship, how would that sit with you?",
+    membership_criteria_priority_sort: "When you think about what it takes for someone to belong fully as a member of this country, how important is each of the following?",
+    leader_conjoint: "Two candidates are running for a high office. Based only on the attributes shown, which one would you choose?",
+    cultural_social_placement_dual: "Place yourself on the cultural and social spectrum. The horizontal axis is your position. The vertical axis is how central these issues are to your politics.",
+    political_thought_frequency: "How often does politics come up in your day-to-day thoughts?",
+    group_solidarity_feeling: "When a group you belong to (your race, faith, class, gender, or nation) is treated unfairly, how does it usually feel to you?",
+    epistemic_style_battery: "When you're forming a political view, what do you most trust as a guide? And what do you trust LEAST? Pick one MOST trusted and one LEAST trusted.",
     political_frustration: "What frustrates you most about politics?",
     party_culture_conflict_response: "Your political party takes a position that conflicts with a deeply held cultural or moral value of yours. What do you do?",
     community_fund_allocation: "Your community receives an unexpected windfall of $10 million. How would you allocate it?",
@@ -842,7 +1218,8 @@ const Q_TEXT = {
     openness_assimilation_closure: "Which comes closest to your view?",
     broken_politics_diagnosis: "What feels most broken about politics?",
     institutions_harden_into_domination: "Even organizations built for good reasons usually harden into domination over time. (strongly disagree ← → strongly agree)",
-    institutional_legitimacy_source: "What gives a political institution the strongest claim to obedience?"
+    institutional_legitimacy_source: "What gives a political institution the strongest claim to obedience?",
+    family_cross_partisan_marriage: "Imagine a close family member is marrying someone whose politics are the opposite of yours. How does that sit with you?"
 };
 
 // ── Option label map ───────────────────────────────────────────────────────
@@ -873,7 +1250,6 @@ const OPT_LABELS = {
     balance_both_errors: "Both roughly equally bad",
     balanced_approach: "Balanced approach - both accountability and rehabilitation matter",
     balanced_errors: "Both roughly equally bad",
-    balanced_security: "Balance both - reasonable measures that respect rights",
     balanced_timeline: "Both roughly equally bad",
     big_picture: "Someone who paints the big picture and connects the dots",
     born_here: "Being born and raised in America",
@@ -931,7 +1307,7 @@ const OPT_LABELS = {
     decline: "Progress is mostly an illusion - human nature doesn",
     decline_view: "Mostly illusory-superficial changes hiding deeper problems",
     deep_expertise: "Someone with deep expertise in their field",
-    depends_on_issue: "Depends on the issue - some principles are non-negotiable, others aren",
+    depends_on_issue: "Depends on the issue - some principles are non-negotiable, others aren't",
     deport_legal: "Deporting someone who is legally eligible to stay",
     discrimination_bias: "Discrimination and bias",
     discuss_if_comes_up: "Share your views but try to keep it civil",
@@ -961,7 +1337,7 @@ const OPT_LABELS = {
     ethnic_racial_identity: "Ethnic / racial identity",
     every_day: "Every day, multiple times a day",
     evidence_and_argument: "Logical arguments and empirical evidence",
-    evidence_pitch: "\",
+    evidence_pitch: "A data-driven pitch with charts, studies, and detailed policy analysis",
     expert_coalitions: "Build expert coalitions and institutional support",
     expert_consensus: "Expert consensus and institutional research",
     expert_team: "Surrounding themselves with experts who craft smart policy",
@@ -974,8 +1350,8 @@ const OPT_LABELS = {
     few_days: "A few days a week",
     fiery_rally: "Natural and healthy-movements need identity",
     fight_injustice: "Fight injustice - the system is broken and needs to change",
-    fight_pitch: "\",
-    fight_to_reverse: "Fight to reverse it - elections aren",
+    fight_pitch: "A fighting pitch that calls out the system and demands change",
+    fight_to_reverse: "Fight to reverse it - elections aren't final",
     fight_to_win: "Fight hard and win-results matter more than style",
     fight_win: "Fight hard and win—results matter more than style",
     fighter: "Fighter - takes on powerful interests head-on",
@@ -991,6 +1367,7 @@ const OPT_LABELS = {
     free_market_growth: "Free-market growth lifts all boats",
     free_market_society: "A free market society with minimal redistribution",
     full_support: "Fully support—public health requires collective action",
+    gender_identity: "Gender identity",
     generous_policy: "Deporting someone who is legally eligible to stay",
     gets_results: "A track record of actually getting results",
     global_aid: "Give to global aid that helps more people",
@@ -1116,6 +1493,10 @@ const OPT_LABELS = {
     preserve_culture: "Preserve inherited culture and traditions",
     preserve_culture_vs_embrace_diversity: "Preserve culture vs. Embrace diversity",
     preserve_heritage: "Preserve heritage and character of the area",
+    priorities_traditional: "Traditional Order — secure borders, civics in schools, strong families, back the police",
+    priorities_fairness: "Economic Fairness — universal services, tax wealth, raise wages, break up monopolies",
+    priorities_strength: "National Strength — cut regulation, invest in defense, protect industries, selective immigration",
+    priorities_future: "Planet & Future — climate action, global cooperation, scientific research, generational investment",
     principle_first: "Maintain a clear, principled message, even if it alienates moderate voters.",
     principled_ideologue: "Principled ideologue - stands firm on core values",
     prioritize_safety: "Blocking a treatment that would have helped patients (FDA too slow)",
@@ -1159,6 +1540,7 @@ const OPT_LABELS = {
     self_interest: "Are acting out of self-interest",
     self_reliance: "Self-reliance and thinking for yourself",
     serious_concern: "A serious concern - would create real tension",
+    sexual_identity: "Sexual identity",
     share_views: "Share your views but try to keep it civil",
     shared_values: "Sharing core American values and beliefs (freedom, democracy, opportunity)",
     silence: "Empowering authorities to decide what is true, potentially silencing dissent",
@@ -1199,9 +1581,9 @@ const OPT_LABELS = {
     tune_out: "Tune out - if experts can",
     unified_narrative: "\"Here's my vision for what this country can become and how we get there\"",
     unifying_vision: "Surrounding themselves with experts who craft smart policy",
-    unity_pitch: "\",
+    unity_pitch: "A unifying pitch grounded in shared principles and institutions",
     values_eroding: "Traditional values and social fabric are eroding",
-    values_pitch: "\",
+    values_pitch: "A values-based pitch rooted in tradition and shared heritage",
     values_tradition: "Rely on core values, principles, or traditions",
     varied: "Results varied too much by country to generalize",
     very: "Very engaged—politics was frequently discussed, they voted regularly, may have been activists",
@@ -1221,6 +1603,49 @@ const OPT_LABELS = {
     winner_takes: "Grew wealthier, often at trading partners' expense",
     worker_choices: "Workers and unions priced themselves out of the market",
     worried_but_accept: "Worried but accept - that",
+
+    // Pole-priority battery items — Q93 + Q94 (ENDS+MEANS). Each item encodes
+    // both which node matters (salience) and which pole the respondent leans
+    // toward (position).
+    // Q93 + Q94 — parallel noun-phrase format: [identity label] — [clarifier].
+    mat_low:  "Redistribution — tax the wealthy, expand programs for working families, narrow the gap",
+    mat_high: "Free markets — lower taxes and less regulation so markets grow the pie and people keep what they earn",
+    cd_low:   "Progressive social change — expanding rights, recognition, and inclusion for gender, sexuality, and racial justice",
+    cd_high:  "Traditional values — faith, family, and inherited cultural norms, a way of life tested by time",
+    cu_low:   "One common culture — newcomers assimilate to a shared language, customs, and civic norms",
+    cu_high:  "Cultural pluralism — many cultures and faiths thriving side by side, treated as equal parts of the whole",
+    mor_low:  "Family and country first — take care of our own before we worry about strangers abroad",
+    mor_high: "Global solidarity — every person counts the same, help those in need whether they're close or far",
+    pro_low:  "Strong leadership — a president who cuts through red tape, overrules gridlock, and actually delivers",
+    pro_high: "Rule of law — the Constitution and fair process bind every side, no shortcuts even for your own team",
+    com_low:  "Principled conviction — some things aren't for sale, hold the line even when it costs politically",
+    com_high: "Pragmatic compromise — meet halfway, find common ground across the aisle, accept partial wins",
+
+    // Q97 — political_thought_frequency (PF scenario)
+    rarely_elections:     "Rarely — mostly during election season or big news moments",
+    sometimes_events:     "Sometimes — when something big happens I'll think about it",
+    regularly_daily:      "Regularly — it's part of my daily media and conversations",
+    constantly_worldview: "Constantly — politics shapes how I see most things",
+
+    // Q98 — group_solidarity_feeling (TRB scenario)
+    personal_feels:     "Personal — like it's happening to me",
+    important_care:     "Important — I pay attention and care, even if it's not personal",
+    aware_distant:      "Aware, but it doesn't really touch me day to day",
+    universalist_self:  "Not really — I don't see myself mainly through group identity",
+
+    // Q89 — Epistemic style battery items
+    eps_empiricist:       "Hard evidence — studies, data, and what measurement actually shows",
+    eps_institutionalist: "Established institutions and recognized expert consensus",
+    eps_traditionalist:   "Long-standing traditions, inherited wisdom, and what has endured",
+    eps_intuitionist:     "My moral intuition and gut sense of right and wrong",
+    eps_autonomous:       "Reasoning it through myself — I don't take anyone's word, including experts",
+    eps_nihilist:         "Honestly, I'm not sure any source can really be trusted",
+
+    // Q87 — family_cross_partisan_marriage options
+    politics_separate: "Completely fine — politics is separate from who they are as a person",
+    slightly_awkward: "A bit awkward, but it doesn't change anything important",
+    bothered_distance: "Bothered — I'd find it harder to feel close to them",
+    major_problem: "A major problem — I'd seriously question the relationship"
 };
 
 // ── Slider pole labels ─────────────────────────────────────────────────────
@@ -1273,6 +1698,8 @@ function showQuestion() {
         showResults();
         return;
     }
+    window._currentQ = q;
+    window._pendingStrength = null;
 
     const progress = PrismEngine.getProgress();
     const answered = progress.questionsAnswered;
@@ -1318,8 +1745,17 @@ function showQuestion() {
         case 'best_worst':
             html += renderBW(q);
             break;
+        case 'priority_sort':
+            html += renderPrioritySort(q);
+            break;
         case 'pairwise':
             html += renderPairwise(q);
+            break;
+        case 'dual_axis':
+            html += renderDualAxis(q);
+            break;
+        case 'conjoint':
+            html += renderConjoint(q);
             break;
         default:
             if (q.options && q.options.length > 0) {
@@ -1335,6 +1771,14 @@ function showQuestion() {
     }
     html += '</div>';
     area.innerHTML = html;
+
+    // Priority sort: widen the page container and paint items into columns
+    if (q.uiType === 'priority_sort') {
+        document.body.classList.add('ps-active');
+        psRender();
+    } else {
+        document.body.classList.remove('ps-active');
+    }
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1370,12 +1814,88 @@ function renderMC(q) {
 }
 
 function selectMC(el, qId, answer) {
-    el.parentElement.querySelectorAll('.mc-option').forEach(o => o.classList.remove('selected'));
+    el.parentElement.querySelectorAll('.mc-option, .cj-card').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
+
+    const q = window._currentQ;
+    if (q && q.strengthFollowUp) {
+        window._pendingStrength = { qId, option: answer };
+        setTimeout(() => mountStrengthFollowUp(q), 220);
+        return;
+    }
+
     setTimeout(() => {
         PrismEngine.submitAnswer(qId, answer);
         showQuestion();
     }, 300);
+}
+
+// ── Strength / ratio follow-up ─────────────────────────────────────────────
+// Fires after the primary pick on questions with `strengthFollowUp`. Uses
+// PrismEngine.applyRatioBoost to stash a ratio for this qId; the engine
+// consumes it in the submitAnswer dispatch (applyStoredRatioBoost) and
+// multiplies the derived SalienceDist into every salience-role touch on
+// the question.
+function mountStrengthFollowUp(q) {
+    const card = document.querySelector('.question-card');
+    if (!card) return;
+    const slot = document.createElement('div');
+    slot.className = 'strength-followup';
+    slot.id = 'strength-followup';
+    if (q.strengthFollowUp.kind === 'strength') {
+        const strong = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.strong) || 'A lot';
+        const weak = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.weak) || 'A little';
+        slot.innerHTML = `
+          <div class="strength-prompt">${q.strengthFollowUp.prompt}</div>
+          <div class="strength-buttons">
+            <button class="strength-btn" onclick="submitStrength(10)">${strong}</button>
+            <button class="strength-btn" onclick="submitStrength(1.5)">${weak}</button>
+          </div>
+        `;
+    } else {
+        const lowEnd = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.lowEnd) || '1.5 : 1';
+        const highEnd = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.highEnd) || '100 : 1';
+        slot.innerHTML = `
+          <div class="strength-prompt">${q.strengthFollowUp.prompt}</div>
+          <div class="ratio-slider-labels">
+            <span>${lowEnd}</span>
+            <span>${highEnd}</span>
+          </div>
+          <input class="ratio-slider-input" type="range" min="0" max="100" value="40"
+                 oninput="document.getElementById('ratio-val').textContent = sliderToRatio(this.value).toFixed(1) + ' : 1'" id="ratio-slider"/>
+          <div class="ratio-value" id="ratio-val">10.0 : 1</div>
+          <button class="continue-btn" onclick="submitRatio()">continue →</button>
+        `;
+    }
+    card.appendChild(slot);
+    slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Slider position 0-100 → ratio 1.5 … 100 on a log scale.
+function sliderToRatio(v) {
+    const t = Math.max(0, Math.min(1, Number(v) / 100));
+    const lo = Math.log(1.5), hi = Math.log(100);
+    return Math.exp(lo + (hi - lo) * t);
+}
+
+function submitStrength(ratio) {
+    const p = window._pendingStrength;
+    if (!p) return;
+    if (PrismEngine.applyRatioBoost) PrismEngine.applyRatioBoost(p.qId, ratio);
+    PrismEngine.submitAnswer(p.qId, p.option);
+    window._pendingStrength = null;
+    showQuestion();
+}
+
+function submitRatio() {
+    const p = window._pendingStrength;
+    if (!p) return;
+    const input = document.getElementById('ratio-slider');
+    const ratio = input ? sliderToRatio(input.value) : 10;
+    if (PrismEngine.applyRatioBoost) PrismEngine.applyRatioBoost(p.qId, ratio);
+    PrismEngine.submitAnswer(p.qId, p.option);
+    window._pendingStrength = null;
+    showQuestion();
 }
 
 // ── Slider ─────────────────────────────────────────────────────────────────
@@ -1516,13 +2036,16 @@ function submitRanking(qId) {
 }
 
 // ── Best-Worst ─────────────────────────────────────────────────────────────
-let bwBest = null, bwWorst = null, bwQId = null;
+let bwBest = [], bwWorst = [], bwQId = null, bwMaxPicks = 1;
 
 function renderBW(q) {
-    bwBest = null; bwWorst = null; bwQId = q.id;
+    bwBest = []; bwWorst = []; bwQId = q.id;
+    bwMaxPicks = q.bwMaxPicks || 1;
     const items = q.bestWorstItems || [];
-    let html = '<div class="bw-container">';
-    html += '<div class="bw-header"><span>most</span><span>priority</span><span>least</span></div>';
+    const mostLabel = bwMaxPicks > 1 ? `pick ${bwMaxPicks} most` : 'most';
+    const leastLabel = bwMaxPicks > 1 ? `pick ${bwMaxPicks} least` : 'least';
+    let html = `<div class="bw-container">`;
+    html += `<div class="bw-header"><span>${mostLabel}</span><span>priority</span><span>${leastLabel}</span></div>`;
     items.forEach(item => {
         const label = getOptLabel(item, q);
         html += `
@@ -1538,34 +2061,421 @@ function renderBW(q) {
 }
 
 function selectBW(type, item) {
-    if (type === 'best') {
-        bwBest = item;
-        if (bwWorst === item) bwWorst = null;
+    const list  = (type === 'best') ? bwBest : bwWorst;
+    const other = (type === 'best') ? bwWorst : bwBest;
+    const idx = list.indexOf(item);
+    if (idx >= 0) {
+        list.splice(idx, 1);
     } else {
-        bwWorst = item;
-        if (bwBest === item) bwBest = null;
+        const oidx = other.indexOf(item);
+        if (oidx >= 0) other.splice(oidx, 1);
+        list.push(item);
+        if (list.length > bwMaxPicks) list.shift();
     }
+
     // Update UI
     document.querySelectorAll('.bw-row').forEach(row => {
         row.classList.remove('selected-best', 'selected-worst');
     });
     document.querySelectorAll('.bw-btn').forEach(btn => btn.classList.remove('selected'));
+    bwBest.forEach(i => {
+        document.getElementById('bw-row-' + i).classList.add('selected-best');
+        document.getElementById('bw-row-' + i).querySelector('.best-btn').classList.add('selected');
+    });
+    bwWorst.forEach(i => {
+        document.getElementById('bw-row-' + i).classList.add('selected-worst');
+        document.getElementById('bw-row-' + i).querySelector('.worst-btn').classList.add('selected');
+    });
 
-    if (bwBest) {
-        document.getElementById('bw-row-' + bwBest).classList.add('selected-best');
-        document.getElementById('bw-row-' + bwBest).querySelector('.best-btn').classList.add('selected');
-    }
-    if (bwWorst) {
-        document.getElementById('bw-row-' + bwWorst).classList.add('selected-worst');
-        document.getElementById('bw-row-' + bwWorst).querySelector('.worst-btn').classList.add('selected');
-    }
-
-    if (bwBest && bwWorst) {
+    if (bwBest.length === bwMaxPicks && bwWorst.length === bwMaxPicks) {
         setTimeout(() => {
-            PrismEngine.submitAnswer(bwQId, { best: bwBest, worst: bwWorst });
+            // Always submit arrays so priority batteries route through
+            // applyBestWorstSalience (salience-only, safe) rather than
+            // applyRankingAnswer (NaN on OptionEvidenceContinuous rankingMaps).
+            const payload = { best: bwBest.slice(), worst: bwWorst.slice() };
+            PrismEngine.submitAnswer(bwQId, payload);
             showQuestion();
         }, 400);
     }
+}
+
+// ── Priority sort (card-sort) ──────────────────────────────────────────────
+let psQId = null;
+let psQuestion = null;       // active question object (for optionLabels lookup)
+let psAllItems = [];
+// Placement: item -> "pool" | UI-bucket-key (layout-dependent)
+let psPlacement = {};
+let psSelectedItem = null; // for click-to-place fallback
+let psDraggingItem = null; // live drag reference (survives browsers that don't pass dataTransfer text)
+let psJustDropped = false; // swallow the synthetic click that follows a mouse-drag drop
+let psLayout = null;       // active layout (buckets[] + poolLabel), set per render
+
+// Per-question bucket layouts. Each bucket maps a UI key/title to the engine's
+// fixed 4-bucket schema (supportHigh/supportMid/neutral/opposeHigh). Layouts
+// with fewer than 4 UI buckets simply skip the unused engine keys — the engine
+// handles empty arrays cleanly.
+const PS_LAYOUTS = {
+    cross_partisan_priority_sort: {
+        buckets: [
+            { uiKey: 'fine',        engineKey: 'neutral',     title: "Fine<br>by me" },
+            { uiKey: 'not_ideal',   engineKey: 'supportMid',  title: "Not my<br>first choice" },
+            { uiKey: 'dealbreaker', engineKey: 'supportHigh', title: "Hard<br>no" }
+        ],
+        poolLabel: "Sort each into the column that fits best (drag or tap the item, then the column)."
+    },
+    membership_criteria_priority_sort: {
+        buckets: [
+            { uiKey: 'essential',  engineKey: 'supportHigh', title: "Essential" },
+            { uiKey: 'nice',       engineKey: 'supportMid',  title: "Nice but<br>not important" },
+            { uiKey: 'irrelevant', engineKey: 'neutral',     title: "Irrelevant" }
+        ],
+        poolLabel: "Sort each into the column that fits best (drag or tap the item, then the column)."
+    }
+};
+const PS_DEFAULT_LAYOUT = {
+    buckets: [
+        { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Central to<br>my politics" },
+        { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "I support this,<br>but it's not central" },
+        { uiKey: 'neutral',     engineKey: 'neutral',     title: "Not central<br>to my politics" },
+        { uiKey: 'opposeHigh',  engineKey: 'opposeHigh',  title: "Opposing this is<br>central to me" }
+    ],
+    poolLabel: "Drag each item into a column above (or tap an item, then tap a column)"
+};
+
+function psUiKeys() {
+    return (psLayout ? psLayout.buckets : PS_DEFAULT_LAYOUT.buckets).map(b => b.uiKey);
+}
+
+function renderPrioritySort(q) {
+    psQId = q.id;
+    psQuestion = q;
+    psAllItems = (q.rankingItems || []).slice();
+    psPlacement = {};
+    psAllItems.forEach(item => { psPlacement[item] = 'pool'; });
+    psSelectedItem = null;
+    psLayout = PS_LAYOUTS[q.promptShort] || PS_DEFAULT_LAYOUT;
+
+    const nCols = psLayout.buckets.length;
+    const bucketHtml = psLayout.buckets.map(b => `
+        <div class="ps-bucket" id="ps-bucket-${b.uiKey}" data-ps-zone="${b.uiKey}">
+            <div class="ps-bucket-title">${b.title}</div>
+            <div class="ps-bucket-items"></div>
+        </div>
+    `).join('');
+
+    return `
+        <div class="ps-container ps-cols-${nCols}" id="ps-container">
+            <div class="ps-buckets">${bucketHtml}</div>
+            <div>
+                <div class="ps-pool-label">${psLayout.poolLabel}</div>
+                <div class="ps-pool" id="ps-pool" data-ps-zone="pool"></div>
+            </div>
+            <button class="continue-btn" id="ps-submit" onclick="submitPrioritySort()" disabled style="opacity:0.5;cursor:not-allowed">
+                continue →
+            </button>
+        </div>
+    `;
+}
+
+function psRender() {
+    const pool = document.getElementById('ps-pool');
+    if (!pool) return;
+    const keys = psUiKeys();
+    const buckets = {};
+    keys.forEach(k => {
+        const el = document.querySelector(`#ps-bucket-${k} .ps-bucket-items`);
+        if (el) { buckets[k] = el; el.innerHTML = ''; }
+    });
+    pool.innerHTML = '';
+
+    psAllItems.forEach(item => {
+        const place = psPlacement[item] || 'pool';
+        const label = getOptLabel(item, psQuestion || { optionLabels: null });
+        const parts = label.split(/\s+—\s+/);
+        const head = parts[0] || label;
+        const sub = parts.slice(1).join(' — ');
+        const selClass = (psSelectedItem === item) ? ' ps-item--selected' : '';
+        const inBucketClass = (place === 'pool') ? '' : ' ps-item--in-bucket';
+        const div = document.createElement('div');
+        div.className = `ps-item${inBucketClass}${selClass}`;
+        const headEl = document.createElement('span');
+        headEl.className = 'ps-item-head';
+        headEl.textContent = head;
+        div.appendChild(headEl);
+        if (sub) {
+            const subEl = document.createElement('span');
+            subEl.className = 'ps-item-sub';
+            subEl.textContent = sub;
+            div.appendChild(subEl);
+        }
+        div.setAttribute('draggable', 'true');
+        div.dataset.item = item;
+        (place === 'pool' ? pool : buckets[place] || pool).appendChild(div);
+    });
+
+    // Enable submit only when pool is empty
+    const allPlaced = psAllItems.every(i => psPlacement[i] !== 'pool');
+    const btn = document.getElementById('ps-submit');
+    if (btn) {
+        if (allPlaced) {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        } else {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+        }
+    }
+}
+
+function psPlace(bucket, item) {
+    if (!item) return;
+    psPlacement[item] = bucket;
+    psSelectedItem = null;
+    psRender();
+}
+
+function submitPrioritySort() {
+    const placements = { supportHigh: [], supportMid: [], neutral: [], opposeHigh: [] };
+    const uiToEngine = {};
+    (psLayout ? psLayout.buckets : PS_DEFAULT_LAYOUT.buckets).forEach(b => {
+        uiToEngine[b.uiKey] = b.engineKey;
+    });
+    let placedCount = 0;
+    psAllItems.forEach(item => {
+        const uiKey = psPlacement[item];
+        const engineKey = uiToEngine[uiKey];
+        if (engineKey && placements[engineKey]) {
+            placements[engineKey].push(item);
+            placedCount++;
+        }
+    });
+    if (placedCount !== psAllItems.length) return;
+    PrismEngine.submitAnswer(psQId, placements);
+    showQuestion();
+}
+
+// ── Priority sort drag-and-drop (HTML5) and click-to-place fallback ────────
+document.addEventListener('dragstart', function(e) {
+    const el = e.target.closest && e.target.closest('.ps-item');
+    if (!el || !el.dataset.item) return;
+    psDraggingItem = el.dataset.item;
+    el.classList.add('ps-item--dragging');
+    if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = 'move';
+        try { e.dataTransfer.setData('text/plain', el.dataset.item); } catch (_) {}
+    }
+});
+
+document.addEventListener('dragend', function(e) {
+    const el = e.target.closest && e.target.closest('.ps-item');
+    if (el) el.classList.remove('ps-item--dragging');
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    psDraggingItem = null;
+});
+
+document.addEventListener('dragover', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (!zone) return;
+    e.preventDefault();
+    if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    zone.classList.add('ps-dropping');
+});
+
+document.addEventListener('dragleave', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (zone && !zone.contains(e.relatedTarget)) zone.classList.remove('ps-dropping');
+});
+
+document.addEventListener('drop', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (!zone) return;
+    e.preventDefault();
+    let item = psDraggingItem;
+    if (!item && e.dataTransfer) {
+        try { item = e.dataTransfer.getData('text/plain'); } catch (_) {}
+    }
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    psDraggingItem = null;
+    psJustDropped = true;
+    setTimeout(() => { psJustDropped = false; }, 50);
+    if (!item) return;
+    psPlace(zone.dataset.psZone, item);
+});
+
+// Click-to-place fallback: tap an item, then tap a zone. Ignored right after
+// a drop (browsers synthesize a click at drop-position that would otherwise
+// immediately re-select the item).
+document.addEventListener('click', function(e) {
+    if (psJustDropped) return;
+    const item = e.target.closest && e.target.closest('.ps-item');
+    if (item && item.dataset.item) {
+        psSelectedItem = (psSelectedItem === item.dataset.item) ? null : item.dataset.item;
+        psRender();
+        return;
+    }
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (zone && psSelectedItem) {
+        psPlace(zone.dataset.psZone, psSelectedItem);
+    }
+});
+
+// ── Dual-axis ──────────────────────────────────────────────────────────────
+// 2D grid; one tap produces (x, y) both in [0, 1]. Engine-side applies
+// convex mix on posDist (x) and a SalienceDist likelihood (y) to q.dualAxisMap.node.
+// Zone bullets below the grid update live as x moves. Zones are looked up
+// per question via DUAL_AXIS_ZONES keyed by promptShort.
+const DUAL_AXIS_ZONES = {
+    cultural_social_placement_dual: [
+        { max: 0.20, name: 'Far progressive', bullets: [
+            'Abortion legal until viability',
+            'Allow puberty blockers for minors',
+            'Reparations for historical injustice'
+        ]},
+        { max: 0.40, name: 'Progressive', bullets: [
+            'Legal abortion through second trimester',
+            'Allow gender transition with age-appropriate care',
+            'Allow affirmative action in hiring'
+        ]},
+        { max: 0.60, name: 'Moderate', bullets: [
+            'Legal abortion with some restrictions',
+            'Allow case-by-case transition for minors',
+            'Colorblind equality, incremental reform'
+        ]},
+        { max: 0.80, name: 'Traditional', bullets: [
+            'Abortion restricted after first trimester',
+            'Restrict gender transition to adults',
+            'Strong religious liberty protections'
+        ]},
+        { max: 1.00, name: 'Far traditional', bullets: [
+            'Abortion illegal, narrow exceptions',
+            'Biological sex for sports and restrooms',
+            'Marriage as one man, one woman'
+        ]},
+    ],
+};
+
+function zoneForX(zones, x) {
+    for (const z of zones) if (x <= z.max) return z;
+    return zones[zones.length - 1];
+}
+
+function renderDualAxis(q) {
+    const zones = DUAL_AXIS_ZONES[q.promptShort] || DUAL_AXIS_ZONES.cultural_social_placement_dual;
+    const xAxisLow = 'Progressive';
+    const xAxisHigh = 'Traditional';
+    const yAxisLow = "Doesn't matter to me";
+    const yAxisHigh = 'Central to my politics';
+    const z0 = zoneForX(zones, 0.5);
+    const bulletsHtml = z0.bullets.map(b => `<li>${b}</li>`).join('');
+    return `
+      <div class="da-container" data-qid="${q.id}">
+        <div class="da-y-label-top">${yAxisHigh}</div>
+        <div class="da-grid-wrap">
+          <div class="da-x-label-left">${xAxisLow}</div>
+          <div class="da-grid" id="da-grid" onclick="daClick(event, ${q.id})">
+            <div class="da-grid-h"></div>
+            <div class="da-grid-v"></div>
+            <div class="da-marker" id="da-marker" style="left:50%;top:50%;"></div>
+          </div>
+          <div class="da-x-label-right">${xAxisHigh}</div>
+        </div>
+        <div class="da-y-label-bottom">${yAxisLow}</div>
+        <div class="da-readout">
+          <div class="da-zone-name" id="da-zone-name">${z0.name}</div>
+          <div class="da-zone-sublabel">Sample of beliefs</div>
+          <ul class="da-zone-bullets" id="da-zone-bullets">${bulletsHtml}</ul>
+        </div>
+        <button class="continue-btn" id="da-continue" onclick="submitDualAxis(${q.id})" disabled>drop the marker first</button>
+      </div>
+    `;
+}
+
+let _daPlaced = false;
+
+function daClick(ev, qId) {
+    const grid = document.getElementById('da-grid');
+    const marker = document.getElementById('da-marker');
+    if (!grid || !marker) return;
+    const rect = grid.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
+    // Invert y because screen y grows downward but our axis has "central" at top.
+    const y = Math.max(0, Math.min(1, 1 - (ev.clientY - rect.top) / rect.height));
+    marker.style.left = (x * 100) + '%';
+    marker.style.top = ((1 - y) * 100) + '%';
+    _daPlaced = true;
+
+    const zones = DUAL_AXIS_ZONES[window._currentQ && window._currentQ.promptShort] ||
+                  DUAL_AXIS_ZONES.cultural_social_placement_dual;
+    const z = zoneForX(zones, x);
+    const nameEl = document.getElementById('da-zone-name');
+    const bulletsEl = document.getElementById('da-zone-bullets');
+    if (nameEl) nameEl.textContent = z.name;
+    if (bulletsEl) bulletsEl.innerHTML = z.bullets.map(b => `<li>${b}</li>`).join('');
+
+    const btn = document.getElementById('da-continue');
+    if (btn) { btn.disabled = false; btn.textContent = 'continue →'; }
+    window._daAnswer = { x, y };
+}
+
+function submitDualAxis(qId) {
+    if (!_daPlaced || !window._daAnswer) return;
+    PrismEngine.submitAnswer(qId, window._daAnswer);
+    window._daAnswer = null;
+    _daPlaced = false;
+    showQuestion();
+}
+
+// ── Conjoint ───────────────────────────────────────────────────────────────
+// Two candidate cards side-by-side. Engine treats this as single_choice (2
+// options: "a", "b"). Display content is looked up here by promptShort so the
+// engine layer stays evidence-only. Strength follow-up handles salience
+// via applyRatioBoost.
+const CONJOINT_CANDIDATES = {
+    leader_conjoint: {
+        a: {
+            name: 'Candidate A',
+            attributes: [
+                { label: 'Style',       value: 'Fighter — confronts opposition directly' },
+                { label: 'Outlook',     value: 'Progressive — shape change actively' },
+                { label: 'Affiliation', value: 'Loyal to party and movement' },
+                { label: 'Priority',    value: 'Economic justice and redistribution' }
+            ]
+        },
+        b: {
+            name: 'Candidate B',
+            attributes: [
+                { label: 'Style',       value: 'Statesman — measured, institutional' },
+                { label: 'Outlook',     value: 'Traditional — preserve what works' },
+                { label: 'Affiliation', value: 'Country before party' },
+                { label: 'Priority',    value: 'Cultural continuity and social order' }
+            ]
+        }
+    }
+};
+
+function renderConjoint(q) {
+    const spec = CONJOINT_CANDIDATES[q.promptShort];
+    if (!spec) return renderMC(q);
+    const cards = (q.options || ['a', 'b']).map(key => {
+        const c = spec[key];
+        if (!c) return '';
+        const attrHtml = c.attributes.map(a => `
+          <div class="cj-attr">
+            <div class="cj-attr-label">${a.label}</div>
+            <div class="cj-attr-value">${a.value}</div>
+          </div>
+        `).join('');
+        return `
+          <div class="cj-card" onclick="selectMC(this, ${q.id}, '${key}')">
+            <div class="cj-name">${c.name}</div>
+            ${attrHtml}
+          </div>
+        `;
+    }).join('');
+    return `<div class="cj-grid">${cards}</div>`;
 }
 
 // ── Pairwise ───────────────────────────────────────────────────────────────

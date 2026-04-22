@@ -18,6 +18,7 @@ export {
   canGoBack,
   goBack,
   applyRatioBoost,
+  getElectionPredictions,
 } from "./api.js";
 
 export {
@@ -32,4 +33,5 @@ export type {
   QuizResults,
   IdentityPrimaryDemographics,
   IdentityPrimaryResult,
+  ElectionPrediction,
 } from "./api.js";
