@@ -72,14 +72,18 @@
 //              universalism — disambiguates civic-nationalist universalists
 //              from cosmopolitans where Q103 scope-only conflates them)
 //   211, 212 — Metadata (strategic voting, negative partisanship)
-export const FIXED_OPENER = [
+/**
+ * @deprecated Pre-Salience-Router 32-question opener. Replaced by
+ * `SALIENCE_ROUTER_FIXED` (15 questions) on 2026-04-27. Retained ONLY for
+ * historical diagnostic scripts that import it directly. Live path no
+ * longer references this constant.
+ */
+export const LEGACY_FIXED_OPENER = [
     200, 103, 97, 60, 89, 217, 22, 201, 84, 11, 218, 1,
     93, 99, 101, 15, 27, 30, 33,
     202, 214, 203, 204, 205, 206, 207, 208, 209, 210, 213,
     211, 212,
 ];
-/** @deprecated Kept as alias during EIG selector migration. Use FIXED_OPENER. */
-export const FIXED_16 = FIXED_OPENER;
 // ──────────────────────────────────────────────────────────────────────────────
 // Salience-Router architecture (Phase 1, 2026-04-27)
 // ──────────────────────────────────────────────────────────────────────────────
@@ -151,4 +155,17 @@ export const MAX_POSITION_TOUCHES_NON_TOP_K = 3;
 // POSITION_DRILL_SAL_FLOOR are excluded from top-K regardless of rank.
 export const TOP_K_BASE = 2;
 export const TOP_K_CLOSE_THRESHOLD = 0.3;
+/**
+ * `FIXED_OPENER` is a backward-compatible alias for `SALIENCE_ROUTER_FIXED`.
+ * Several diagnostic / eval scripts import `FIXED_OPENER` directly; the alias
+ * keeps them compiling without forcing a wide refactor. New code should import
+ * `SALIENCE_ROUTER_FIXED` (or one of its components, `CORE_OPENER` /
+ * `UNIVERSAL_SCREENERS`) explicitly.
+ *
+ * The pre-Salience-Router 32-question opener is preserved as
+ * `LEGACY_FIXED_OPENER` for historical reference / diagnostic comparison.
+ */
+export const FIXED_OPENER = SALIENCE_ROUTER_FIXED;
+/** @deprecated Kept as alias during EIG selector migration. Use SALIENCE_ROUTER_FIXED. */
+export const FIXED_16 = SALIENCE_ROUTER_FIXED;
 //# sourceMappingURL=config.js.map

@@ -7897,40 +7897,6 @@ var PrismEngine = (() => {
   }
 
   // src/engine/config.ts
-  var FIXED_OPENER = [
-    200,
-    103,
-    97,
-    60,
-    89,
-    217,
-    22,
-    201,
-    84,
-    11,
-    218,
-    1,
-    93,
-    99,
-    101,
-    15,
-    27,
-    30,
-    33,
-    202,
-    214,
-    203,
-    204,
-    205,
-    206,
-    207,
-    208,
-    209,
-    210,
-    213,
-    211,
-    212
-  ];
   var CORE_OPENER = [
     200,
     // party identification — partyID metadata for election compute
@@ -7977,6 +7943,7 @@ var PrismEngine = (() => {
   var MAX_POSITION_TOUCHES_NON_TOP_K = 3;
   var TOP_K_BASE = 2;
   var TOP_K_CLOSE_THRESHOLD = 0.3;
+  var FIXED_OPENER = SALIENCE_ROUTER_FIXED;
 
   // src/optimize/runtimeConfig.ts
   var DEFAULT_CONFIG = {

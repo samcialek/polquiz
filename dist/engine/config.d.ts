@@ -44,9 +44,13 @@
  * posterior has crossed the active threshold (sal ≥ 2). Nodes that Q103 ruled
  * out (`salDist[0] ≥ 0.5`) are skipped by isQuestionEligible.
  */
-export declare const FIXED_OPENER: readonly number[];
-/** @deprecated Kept as alias during EIG selector migration. Use FIXED_OPENER. */
-export declare const FIXED_16: readonly number[];
+/**
+ * @deprecated Pre-Salience-Router 32-question opener. Replaced by
+ * `SALIENCE_ROUTER_FIXED` (15 questions) on 2026-04-27. Retained ONLY for
+ * historical diagnostic scripts that import it directly. Live path no
+ * longer references this constant.
+ */
+export declare const LEGACY_FIXED_OPENER: readonly number[];
 export declare const CORE_OPENER: readonly number[];
 export declare const UNIVERSAL_SCREENERS: readonly number[];
 export declare const SALIENCE_ROUTER_FIXED: readonly number[];
@@ -57,3 +61,16 @@ export declare const MAX_POSITION_TOUCHES_TOP_K: number;
 export declare const MAX_POSITION_TOUCHES_NON_TOP_K: number;
 export declare const TOP_K_BASE: number;
 export declare const TOP_K_CLOSE_THRESHOLD: number;
+/**
+ * `FIXED_OPENER` is a backward-compatible alias for `SALIENCE_ROUTER_FIXED`.
+ * Several diagnostic / eval scripts import `FIXED_OPENER` directly; the alias
+ * keeps them compiling without forcing a wide refactor. New code should import
+ * `SALIENCE_ROUTER_FIXED` (or one of its components, `CORE_OPENER` /
+ * `UNIVERSAL_SCREENERS`) explicitly.
+ *
+ * The pre-Salience-Router 32-question opener is preserved as
+ * `LEGACY_FIXED_OPENER` for historical reference / diagnostic comparison.
+ */
+export declare const FIXED_OPENER: readonly number[];
+/** @deprecated Kept as alias during EIG selector migration. Use SALIENCE_ROUTER_FIXED. */
+export declare const FIXED_16: readonly number[];
