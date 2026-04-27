@@ -1,8 +1,10 @@
 import type {
   Archetype,
   RespondentState,
+  ContinuousNodeId,
+  CategoricalNodeId,
 } from "../types.js";
-import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
+import { CONTINUOUS_NODES, CATEGORICAL_NODES, isSelfNode } from "../config/nodes.js";
 import { CATEGORY_COST_MATRIX } from "../config/categories.js";
 
 function expectedPos(posDist: ArrayLike<number>): number {
@@ -63,23 +65,9 @@ export function archetypeDistance(
       nodeState.posDist[4] * 5;
 
     const posProb = nodeState.posDist[template.pos - 1] ?? 0.2;
-
-    const expectedSal =
-      nodeState.salDist[0] * 0 +
-      nodeState.salDist[1] * 1 +
-      nodeState.salDist[2] * 2 +
-      nodeState.salDist[3] * 3;
-
-    const salProb = nodeState.salDist[template.sal] ?? 0.25;
-
     const posMeanDiff = Math.abs(expectedPos - template.pos) / 4;
     const posProbDist = 1 - posProb;
-
-    const salMeanDiff = Math.abs(expectedSal - template.sal) / 3;
-    const salProbDist = 1 - salProb;
-
     const positionDist = posMeanDiff * 0.6 + posProbDist * 0.4;
-    const salienceDist = salMeanDiff * 0.6 + salProbDist * 0.4;
 
     let antiPenalty = 0;
     if (template.anti === "high" && expectedPos > 3.8) {
@@ -88,11 +76,37 @@ export function archetypeDistance(
       antiPenalty = 0.8 * (2.2 - expectedPos) / 1.2;
     }
 
-    const archSalWeight = 0.5 + template.sal * 0.5;
-    const respondentSalWeight = 0.5 + expectedSal * 0.25;
+    let nodeDist: number;
+    let nodeWeight: number;
 
-    const nodeWeight = archSalWeight * respondentSalWeight;
-    const nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
+    if (isSelfNode(nodeId)) {
+      // SELF-cluster (PF/TRB/ENG): position IS activation. No separate salience
+      // axis. Weight derived from template.pos (higher pos = more activated
+      // archetype) and expectedPos (more activated respondent), calibrated to
+      // match the sal=0..3 weight range used by non-SELF nodes.
+      // archSalWeight: template.pos 1→0.5, 5→2.0 (matches sal 0→0.5, 3→2.0).
+      const archSalWeight = 0.5 + (template.pos - 1) * 0.375;
+      // respondentSalWeight: expectedPos 1→0.5, 5→1.25 (matches sal 0→0.5, 3→1.25).
+      const respondentSalWeight = 0.5 + (expectedPos - 1) * 0.1875;
+      nodeWeight = archSalWeight * respondentSalWeight;
+      nodeDist = positionDist + antiPenalty;
+    } else {
+      const expectedSal =
+        nodeState.salDist[0] * 0 +
+        nodeState.salDist[1] * 1 +
+        nodeState.salDist[2] * 2 +
+        nodeState.salDist[3] * 3;
+      const templateSal = template.sal ?? 0;
+      const salProb = nodeState.salDist[templateSal] ?? 0.25;
+      const salMeanDiff = Math.abs(expectedSal - templateSal) / 3;
+      const salProbDist = 1 - salProb;
+      const salienceDist = salMeanDiff * 0.6 + salProbDist * 0.4;
+
+      const archSalWeight = 0.5 + templateSal * 0.5;
+      const respondentSalWeight = 0.5 + expectedSal * 0.25;
+      nodeWeight = archSalWeight * respondentSalWeight;
+      nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
+    }
 
     totalDist += nodeDist * nodeWeight;
     totalWeight += nodeWeight;
@@ -134,9 +148,17 @@ export function archetypeDistance(
       nodeState.salDist[1] * 1 +
       nodeState.salDist[2] * 2 +
       nodeState.salDist[3] * 3;
-    const salDiff = Math.abs(expectedSal - template.sal) / 3;
+    const sal = template.sal ?? 0;
+    // ASYMMETRY NOTE 2026-04-26: continuous nodes blend salMeanDiff with a
+    // probability-at-target term (salDist[template.sal]); categorical nodes
+    // omit that term and use only mean-difference. Low impact (35% of node
+    // weight, only 2 categorical nodes) but inconsistent. Equalizing would
+    // require revalidation against regression suite — flagged as PR 5 candidate
+    // per scorer-hygiene investigation; deferred until evidence asymmetry is
+    // unintended.
+    const salDiff = Math.abs(expectedSal - sal) / 3;
 
-    const archSalWeight = 0.5 + template.sal * 0.5;
+    const archSalWeight = 0.5 + sal * 0.5;
     const respondentSalWeight = 0.5 + expectedSal * 0.25;
     const nodeWeight = archSalWeight * respondentSalWeight;
 
@@ -147,7 +169,43 @@ export function archetypeDistance(
     totalWeight += nodeWeight;
   }
 
-  return totalWeight > 0 ? totalDist / totalWeight : 0;
+  let finalDist = totalWeight > 0 ? totalDist / totalWeight : 0;
+
+  // Centrist anti-gate (ADR-008). Archetypes with the centristAnchor flag
+  // (Hinge Citizen, Quiet Middle, Civic Minimalist, Public-Minded Moderate)
+  // are midpoint attractors — they win for any user with mixed signals just
+  // because their flat encoding is "everyone-distance-equidistant". A user
+  // with multiple high-salience policy commitments is by definition NOT a
+  // centrist — they have politics. Penalize the match score so the centrist
+  // archetype only wins when the user's posterior salience is genuinely low.
+  //
+  // Penalty: count user's non-SELF nodes with E[sal] >= 2.0. If 3 or more
+  // such nodes, multiply distance by 1 + 0.10 × (count - 2) capped at 1.5.
+  // So a user with 3 high-sal nodes gets +10%, 5 gets +30%, 7+ gets +50%.
+  if (archetype.centristAnchor) {
+    const nonSelfNodes: ContinuousNodeId[] = [
+      "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S",
+    ];
+    let highSalCount = 0;
+    for (const nid of nonSelfNodes) {
+      const ns = state.continuous[nid];
+      if (!ns) continue;
+      const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+      if (userSal >= 2.0) highSalCount++;
+    }
+    for (const nid of ["EPS", "AES"] as CategoricalNodeId[]) {
+      const ns = state.categorical[nid];
+      if (!ns) continue;
+      const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+      if (userSal >= 2.0) highSalCount++;
+    }
+    if (highSalCount >= 3) {
+      const penaltyMult = Math.min(1.5, 1 + 0.10 * (highSalCount - 2));
+      finalDist *= penaltyMult;
+    }
+  }
+
+  return finalDist;
 }
 
 /**
@@ -165,12 +223,13 @@ export function archetypeDistanceV1(
   for (const nodeId of CONTINUOUS_NODES) {
     const template = archetype.nodes[nodeId];
     if (!template || template.kind !== "continuous") continue;
-    if (template.sal === 0) continue;
+    const sal = template.sal ?? 0;
+    if (sal === 0) continue;
 
     const nodeState = state.continuous[nodeId];
     const posProb = nodeState.posDist[template.pos - 1] ?? 0.2;
-    const salProb = nodeState.salDist[template.sal] ?? 0.25;
-    const salWeight = template.sal;
+    const salProb = nodeState.salDist[sal] ?? 0.25;
+    const salWeight = sal;
 
     logLikelihood += salWeight * Math.log(posProb + 0.001);
     logLikelihood += 0.5 * salWeight * Math.log(salProb + 0.001);
@@ -186,15 +245,16 @@ export function archetypeDistanceV1(
   for (const nodeId of CATEGORICAL_NODES) {
     const template = archetype.nodes[nodeId];
     if (!template || template.kind !== "categorical") continue;
-    if (template.sal === 0) continue;
+    const sal = template.sal ?? 0;
+    if (sal === 0) continue;
 
     const nodeState = state.categorical[nodeId];
     let dot = 0;
     for (let i = 0; i < 6; i++) {
       dot += nodeState.catDist[i] * template.probs[i];
     }
-    const salProb = nodeState.salDist[template.sal] ?? 0.25;
-    const salWeight = template.sal;
+    const salProb = nodeState.salDist[sal] ?? 0.25;
+    const salWeight = sal;
 
     logLikelihood += salWeight * Math.log(dot + 0.001);
     logLikelihood += 0.5 * salWeight * Math.log(salProb + 0.001);
@@ -231,11 +291,12 @@ export function archetypeDistanceV2(
     const pR = expectedPos(nodeState.posDist);
     const posProb = nodeState.posDist[template.pos - 1] ?? 0.2;
     const sR = expectedSal(nodeState.salDist);
-    const salProb = nodeState.salDist[template.sal] ?? 0.25;
+    const sal = template.sal ?? 0;
+    const salProb = nodeState.salDist[sal] ?? 0.25;
 
     const posMeanDiff = Math.abs(pR - template.pos) / 4;
     const posProbDist = 1 - posProb;
-    const salMeanDiff = Math.abs(sR - template.sal) / 3;
+    const salMeanDiff = Math.abs(sR - sal) / 3;
     const salProbDist = 1 - salProb;
 
     const positionDist = posMeanDiff * 0.6 + posProbDist * 0.4;
@@ -248,7 +309,7 @@ export function archetypeDistanceV2(
       antiPenalty = 0.8 * (2.2 - pR) / 1.2;
     }
 
-    const archSalWeight = 0.25 + template.sal * 0.75;
+    const archSalWeight = 0.25 + sal * 0.75;
     const respondentSalWeight = 0.5 + sR * 0.25;
     const touchWeight = Math.log(1 + nodeState.touches);
     const nodeWeight = archSalWeight * respondentSalWeight * touchWeight;
@@ -290,9 +351,10 @@ export function archetypeDistanceV2(
     }
 
     const sR = expectedSal(nodeState.salDist);
-    const salDiff = Math.abs(sR - template.sal) / 3;
+    const sal = template.sal ?? 0;
+    const salDiff = Math.abs(sR - sal) / 3;
 
-    const archSalWeight = 0.25 + template.sal * 0.75;
+    const archSalWeight = 0.25 + sal * 0.75;
     const respondentSalWeight = 0.5 + sR * 0.25;
     const touchWeight = Math.log(1 + nodeState.touches);
     const nodeWeight = archSalWeight * respondentSalWeight * touchWeight;
@@ -317,6 +379,9 @@ export function viableByDistance(
   ratio = 1.0
 ): Archetype[] {
   const distances = state.archetypeDistances;
+  // Guard: distances may be undefined/null on a fresh state before any
+  // question has been answered. Return all archetypes (no information yet).
+  if (distances == null) return archetypes;
   const values = Object.values(distances).filter((v) => Number.isFinite(v));
   if (values.length === 0) return archetypes;
   const dMin = Math.min(...values);
@@ -342,6 +407,9 @@ export function topKDistanceWeights(
   k = 8
 ): { archetype: Archetype; distance: number; weight: number }[] {
   const distances = state.archetypeDistances;
+  // Guard: distances may be undefined/null on a fresh state before any
+  // question has been answered.
+  if (distances == null) return [];
   const ranked = [...archetypes]
     .map((a) => ({ archetype: a, distance: distances[a.id] ?? Infinity }))
     .filter((r) => Number.isFinite(r.distance))
