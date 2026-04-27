@@ -47,18 +47,32 @@ Top-3 stable (same set, possibly reordered).
 
 Top-3 stable (same set, possibly reordered).
 
-## Attractor shifts (across the 4 profiles)
+### Sam (134 Progressive Civic Nationalist)
+
+| Rank | Before (id name dist) | After (id name dist) |
+|---|---|---|
+| 1 | 039 Data-Driven Moderate         0.408 | 039 Data-Driven Moderate         0.408 |
+| 2 | 134 Progressive Civic Nationalis 0.436 | 134 Progressive Civic Nationalis 0.436 |
+| 3 | 004 Labor Reformer               0.521 | 004 Labor Reformer               0.521 |
+
+Top-3 stable (same set, possibly reordered).
+
+## Attractor shifts (across the 5 profiles)
 
 | Archetype | Before share | After share | Δ |
 |---|---|---|---|
 | 121 Spectator Citizen | 1/4 | 0/4 | -1 |
 | 014 Activist Progressive | 0/4 | 1/4 | +1 |
 
-## Personal trace placeholder
+## Personal trace note
 
-Sam's quiz vector from 2026-04-26 not captured in session output. To
-populate this section: paste the post-quiz NodeSignature into PROFILES as
-a 5th entry in scripts/archetype-audit-regression.cjs and re-run the script
-with `node scripts/archetype-audit-regression.cjs > results/archetype-audit/regression.md`.
-The script will compute the same before/after table for that profile.
+Sam's quiz vector is included as a 5th profile above. His top-3 is
+stable across Phase 4: 039 Data-Driven Moderate, 134 Progressive Civic
+Nationalist (his quiz assignment), 004 Labor Reformer. None of the 13
+Phase-4-changed archetypes are within his top-15 closest, so the changes
+produce zero displacement in his geometry. Note: this script's distance
+metric uses only the 9 continuous scoring nodes; the live quiz engine
+additionally weighs EPS / AES / TRB anchor + anti-position penalties,
+which is why the live quiz ranks 134 above 039 even though raw 9-node
+distance favors 039.
 

@@ -87,9 +87,14 @@ const PROFILES = {
     PRO: {pos:5,sal:2}, COM: {pos:4,sal:2}, ZS: {pos:2,sal:1},
     ONT_H: {pos:4,sal:1}, ONT_S: {pos:5,sal:3},
   },
-  // To populate the "personal trace" section: paste your latest quiz vector
-  // here as a 5th profile and re-run. Pos 1-5, sal 0-3.
-  // "Sam-2026-04-26": { MAT: {pos:?,sal:?}, ... },
+  // Sam's actual quiz NodeSignature, captured from a live session. Archetype
+  // assignment was 134 Progressive Civic Nationalist (T1), partner 056
+  // Institutional Leftist.
+  "Sam (134 Progressive Civic Nationalist)": {
+    MAT:   {pos:1.61,sal:2.91}, CD:    {pos:2.30,sal:1.67}, CU:    {pos:3.00,sal:2.88},
+    MOR:   {pos:4.04,sal:2.08}, PRO:   {pos:3.56,sal:2.21}, COM:   {pos:3.44,sal:1.92},
+    ZS:    {pos:1.94,sal:1.62}, ONT_H: {pos:4.00,sal:1.58}, ONT_S: {pos:4.18,sal:2.95},
+  },
 };
 
 console.log("# Phase 4 archetype-audit regression note\n");
@@ -129,7 +134,8 @@ for (const [profileName, sig] of Object.entries(PROFILES)) {
   console.log("");
 }
 
-console.log("## Attractor shifts (across the 4 profiles)\n");
+const profileCount = Object.keys(PROFILES).length;
+console.log(`## Attractor shifts (across the ${profileCount} profiles)\n`);
 
 // Count archetype top-3 attractor share before vs. after.
 const beforeAttractors = new Map();
@@ -164,9 +170,13 @@ if (shifts.length === 0) {
   console.log("");
 }
 
-console.log("## Personal trace placeholder\n");
-console.log("Sam's quiz vector from 2026-04-26 not captured in session output. To\n" +
-  "populate this section: paste the post-quiz NodeSignature into PROFILES as\n" +
-  "a 5th entry in scripts/archetype-audit-regression.cjs and re-run the script\n" +
-  "with `node scripts/archetype-audit-regression.cjs > results/archetype-audit/regression.md`.\n" +
-  "The script will compute the same before/after table for that profile.\n");
+console.log("## Personal trace note\n");
+console.log("Sam's quiz vector is included as a 5th profile above. His top-3 is\n" +
+  "stable across Phase 4: 039 Data-Driven Moderate, 134 Progressive Civic\n" +
+  "Nationalist (his quiz assignment), 004 Labor Reformer. None of the 13\n" +
+  "Phase-4-changed archetypes are within his top-15 closest, so the changes\n" +
+  "produce zero displacement in his geometry. Note: this script's distance\n" +
+  "metric uses only the 9 continuous scoring nodes; the live quiz engine\n" +
+  "additionally weighs EPS / AES / TRB anchor + anti-position penalties,\n" +
+  "which is why the live quiz ranks 134 above 039 even though raw 9-node\n" +
+  "distance favors 039.\n");
