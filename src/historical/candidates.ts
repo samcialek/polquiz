@@ -13,22 +13,29 @@
 
 export interface CandidateProfile {
   name: string;
-  party: "Democratic" | "Republican" | "Independent" | "American Independent";
+  party: "Democratic" | "Republican" | "Independent" | "American Independent" | "Dixiecrat";
   year: number;
 
-  // Continuous nodes (1-5)
-  MAT: number; // 1=redistribution, 5=free-market
-  CD: number;  // 1=culturally open, 5=culturally closed
-  CU: number;  // 1=particularist, 5=universalist
-  MOR: number; // 1=secular/progressive moral, 5=traditional moral
-  PRO: number; // 1=ends-justify-means, 5=strict-proceduralist
-  COM: number; // 1=never compromise, 5=always compromise
-  ZS: number;  // 1=positive-sum, 5=zero-sum
-  ONT_H: number; // 1=human-nature-fixed, 5=perfectible
-  ONT_S: number; // 1=system broken / deep structural critique, 5=system working / stable
-  PF: number;  // 1=independent, 5=party-is-identity
-  TRB: number; // 1=no tribal attachment, 5=strong tribal
-  ENG: number; // 1=disengaged, 5=politics-is-life
+  // Continuous nodes (1-5). Semantics aligned with src/config/nodes.ts canonical
+  // definitions as of 2026-04-26 reframes. AUDIT NOTE: many per-candidate values
+  // in this file (and in elections-*.ts) still reflect OLDER framings of MOR,
+  // CU, ONT_H, ONT_S and need rubric-driven rewrite. See rubric (forthcoming)
+  // before bulk edits. Cass 1848, Madison 1808/1812, Monroe 1816/1820 are
+  // known Pattern B miscalibrations (rhetorical universalism overread).
+  // Bryan, TR 1912, H. Wallace 1948 are known Pattern A miscalibrations
+  // (anti-establishment reformers coded as anti-institutional).
+  MAT: number; // 1=redistribution/egalitarian, 5=free-market/laissez-faire (direction only; state scope lives in ONT_S)
+  CD: number;  // 1=progressive/liberalizing on social issues (reproductive rights, LGBTQ, gender, marriage, religious accommodation), 5=traditional/restorationist
+  CU: number;  // 1=uniformity (one religion/language/worldview/conception of good life), 5=pluralism (different ways of life coexist as equals). Broader scope than narrow culture-only.
+  MOR: number; // 1=narrow moral circle (in-group only), 5=wide moral circle (universalist). SPATIAL SCOPE ONLY — not progressive-vs-traditional moral content.
+  PRO: number; // 1=outcome-focused/anti-procedural, 5=rules-bound/proceduralist
+  COM: number; // 1=uncompromising/principled, 5=compromising/consensus-seeking
+  ZS: number;  // 1=positive-sum/cooperative (growth mindset), 5=zero-sum/competitive (fixed pie). Spans economic/political/cultural domains.
+  ONT_H: number; // 1=humans fixed; cultivation can't reshape, 5=humans malleable via education/institutions/tradition
+  ONT_S: number; // 1=institutional nihilism (libertarian, accelerationist, "rigged forever"), 5=institutional capacity belief
+  PF: number;  // 1=independent/non-partisan, 5=strong partisan identity
+  TRB: number; // 1=universalist/low tribal, 5=tribal/in-group focused
+  ENG: number; // 1=apolitical/disengaged, 5=highly politically engaged
 
   // Categorical nodes (index 0-5)
   EPS: number; // epistemic style
@@ -83,7 +90,7 @@ const election1940: Election = {
       COM: 3,   // Mixed - accepted some New Deal but attacked most
       ZS: 3,    // Mixed
       ONT_H: 2, // Skeptical - government can't fix everything
-      ONT_S: 1, // System-working worldview - free enterprise basically works; government intervention is the problem
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working worldview - free enterprise works
       PF: 4,    // Ran as strong Republican despite being newcomer
       TRB: 3,   // Moderate - business coalition identity
       ENG: 4,   // Energetic campaign
@@ -134,7 +141,7 @@ const election1944: Election = {
       COM: 3,   // Mixed
       ZS: 3,    // Mixed
       ONT_H: 2, // Skeptical
-      ONT_S: 1, // Strong system-working confidence
+      ONT_S: 4, // POLARITY FIX 2026-04-23: Strong system-working confidence
       PF: 5,    // Maximum partisan
       TRB: 3,   // Moderate
       ENG: 3,   // Lower — cautious campaign
@@ -160,7 +167,7 @@ const election1948: Election = {
       name: "Truman",
       party: "Democratic",
       year: 1948,
-      MAT: 1,   // Maximum redistribution - Fair Deal, national healthcare attempt
+      MAT: 2,   // Maximum redistribution - Fair Deal, national healthcare attempt
       CD: 2,    // Culturally open - desegregated military, civil rights plank
       CU: 4,    // Internationalist - Marshall Plan, NATO, containment
       MOR: 4,   // Wide moral circle - civil rights courage, Berlin Airlift
@@ -168,9 +175,9 @@ const election1948: Election = {
       COM: 3,   // Mixed - fighter, not dealmaker ("do-nothing Congress")
       ZS: 2,    // Positive-sum - Marshall Plan, postwar prosperity
       ONT_H: 4, // Optimistic - America can lead the free world
-      ONT_S: 3, // Mixed - system needs reform (Fair Deal) but basically sound
+      ONT_S: 4, // ADR-010 (2026-04-26): high institutional capacity belief - Fair Deal architect, Marshall Plan, NATO, Truman Doctrine. Was 3 under old "mixed" framing. Truman built lasting institutions of postwar liberal order.
       PF: 5,    // Maximum partisan - attacked Republican Congress relentlessly
-      TRB: 3,   // Moderate tribal - working-class identity, "regular guy"
+      TRB: 4,   // Moderate tribal - working-class identity, "regular guy"
       ENG: 5,   // Maximum engagement - whistle-stop tour, never-give-up
       EPS: 1,   // Institutionalist - trusted government, Truman Doctrine
       AES: 4,   // Fighter - "Give 'em hell Harry"
@@ -187,7 +194,7 @@ const election1948: Election = {
       COM: 4,   // Compromiser - ran cautious, non-confrontational campaign
       ZS: 3,    // Mixed
       ONT_H: 2, // Skeptical - government overreach concern
-      ONT_S: 1, // Strong system-working confidence - stable management, less government
+      ONT_S: 4, // POLARITY FIX 2026-04-23: Strong system-working confidence - stable management
       PF: 4,    // Strong Republican
       TRB: 3,   // Moderate tribal
       ENG: 3,   // Lower engagement - overconfident, coasted
@@ -206,7 +213,7 @@ const election1948: Election = {
       COM: 1,   // Never compromise - walked out of convention
       ZS: 5,    // Maximum zero-sum - racial competition for resources
       ONT_H: 2, // Pessimistic - feared social change
-      ONT_S: 4, // Deep structural grievance - federal overreach is destroying the southern way of life
+      ONT_S: 2, // POLARITY FIX 2026-04-23: System broken - Dixiecrat anti-federal, structural grievance
       PF: 3,    // Regional partisan - not national party man
       TRB: 5,   // Maximum tribal - white southern identity
       ENG: 5,   // Maximum engagement - launched entire party over civil rights
@@ -229,7 +236,12 @@ const election1948: Election = {
       COM: 1,   // Never compromise - wouldn't moderate pro-Soviet stance despite Red-baiting
       ZS: 1,    // Maximum positive-sum - cooperation with everyone including Soviets
       ONT_H: 5, // Maximum optimistic - believed peace and prosperity for all possible
-      ONT_S: 2, // Structuralist - Cold War militarism is wrong path, system needs redirection
+      // ONT_S 2→4 (Phase 4, 2026-04-26). H. Wallace was a former VP and
+      // Commerce Secretary running on EXTENDING New Deal institutions, not
+      // dismantling them — institutional reformer using institutions hard.
+      // ONT_S 2 read him as Debs-style anti-systemic socialist; he was the
+      // opposite. Per rubric Pattern A correction.
+      ONT_S: 4, // Institutional capacity belief - extend New Deal via federal institutions
       PF: 1,    // Anti-partisan - left Democratic Party
       TRB: 3,   // Moderate tribal - broad progressive coalition
       ENG: 5,   // Maximum engagement - launched third party, toured extensively
@@ -262,7 +274,7 @@ const election1952: Election = {
       COM: 4,   // Pragmatic compromiser - "middle way" politics
       ZS: 2,    // Positive-sum - postwar prosperity, "peace through strength"
       ONT_H: 3, // Moderate realism - military pragmatist
-      ONT_S: 2, // System-working / preserve-and-manage orientation
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working / preserve-and-manage
       PF: 3,    // Moderate partisan - ran as Republican, attracted independents
       TRB: 3,   // Moderate - military patriotic identity, "our boys"
       ENG: 5,   // Maximum engagement - running for president is maximum engagement
@@ -281,7 +293,7 @@ const election1952: Election = {
       COM: 4,   // Compromiser - pragmatic liberal
       ZS: 2,    // Positive-sum - optimistic liberal
       ONT_H: 5, // Maximum optimistic - believed deeply in human progress
-      ONT_S: 4, // System-trusting reformism - government as instrument of large-scale improvement
+      ONT_S: 5, // ADR-010 (2026-04-26): maximum institutional capacity belief - lawyer-statesman, UN architect, full-throated New Deal heir. Was 4.
       PF: 5,    // Maximum Democrat - New Deal heir
       TRB: 3,   // Moderate tribal - intellectual elite identity
       ENG: 4,   // Engaged but "egghead" aloofness
@@ -306,7 +318,7 @@ const election1956: Election = {
       name: "Eisenhower",
       party: "Republican",
       year: 1956,
-      MAT: 3,   // Same centrist economics - highway act, balanced budgets
+      MAT: 4,   // Same centrist economics - highway act, balanced budgets
       CD: 3,    // Moderate - sent troops to Little Rock (reluctantly)
       CU: 4,    // Internationalist - Suez response, NATO
       MOR: 3,   // Centrist
@@ -314,7 +326,7 @@ const election1956: Election = {
       COM: 4,   // Pragmatic - "middle way"
       ZS: 2,    // Positive-sum - peace and prosperity
       ONT_H: 3, // Moderate realism
-      ONT_S: 1, // Strong system-working confidence - prosperity, peace, stability
+      ONT_S: 4, // POLARITY FIX 2026-04-23: Strong system-working confidence - prosperity, peace, stability
       PF: 2,    // Low partisan - above-party, national figure
       TRB: 2,   // Low tribal - father figure to nation
       ENG: 4,   // Engaged incumbent
@@ -386,7 +398,7 @@ const election1960: Election = {
       COM: 4,   // Pragmatic dealmaker (pre-Watergate Nixon)
       ZS: 3,    // Mixed - Cold War competition but domestic optimism
       ONT_H: 3, // Moderate realism about human nature
-      ONT_S: 2, // System-working / individual-responsibility leaning
+      ONT_S: 3, // POLARITY FIX 2026-04-23: Mixed - system-working rhetoric but tough-on-crime distrust
       PF: 4,    // Strong Republican partisan
       TRB: 3,   // Middle-class tribal identity
       ENG: 5,   // Career politician, deeply engaged
@@ -419,9 +431,9 @@ const election1964: Election = {
       COM: 4,   // Master dealmaker - greatest legislative arm-twister in history
       ZS: 2,    // Positive-sum - abundance mentality, Great Society for all
       ONT_H: 4, // Optimistic - believed government could improve society
-      ONT_S: 4, // System-trusting - systemic programs within a workable order
+      ONT_S: 5, // ADR-010 (2026-04-26): peak institutional capacity belief - Great Society, Medicare/Medicaid, ESEA, Voting Rights Act, HUD. Was 4. Top of the institution-building era.
       PF: 5,    // Party-is-identity - master Democrat
-      TRB: 4,   // Strong coalition tribal politics
+      TRB: 5,   // Strong coalition tribal politics
       ENG: 5,   // Politics was his life
       EPS: 1,   // Institutionalist - trusted government machinery
       AES: 0,   // Statesman (with pastoral southern touches)
@@ -492,7 +504,7 @@ const election1968: Election = {
       COM: 5,   // Maximum compromiser - "happy warrior," consensus-seeker
       ZS: 2,    // Positive-sum - politics of joy
       ONT_H: 4, // Optimistic about human nature
-      ONT_S: 4, // System-trusting reformism - government programs
+      ONT_S: 5, // ADR-010 (2026-04-26): peak institutional capacity belief - Great Society defender, civil rights legislative architect, UN/internationalist institution builder. Was 4.
       PF: 5,    // Strong Democrat partisan
       TRB: 3,   // Coalition builder
       ENG: 5,   // Lifelong politician
@@ -500,13 +512,19 @@ const election1968: Election = {
       AES: 5,   // Visionary - idealistic rhetoric
     },
     {
+      // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
+      // Prior MOR 5 read "traditional moral content" as MOR. But MOR is
+      // SPATIAL SCOPE ONLY (rubric); segregationism is the paradigmatic
+      // narrow practiced moral scope (in-group only, willing to harm out-
+      // group for in-group benefit). Traditional moral content is already
+      // captured by CD 5 / CU 1. MOR 5→1 corrects the sign error.
       name: "Wallace",
       party: "American Independent",
       year: 1968,
       MAT: 2,   // Economic populist - pro-worker, anti-elite
       CD: 5,    // Maximum cultural closure - segregationist
       CU: 1,    // Maximum particularist - white southern identity
-      MOR: 5,   // Maximum traditional morality
+      MOR: 1,   // Narrow practiced scope - segregationist in-group-only morality
       PRO: 1,   // Ends-justify-means - willing to defy courts
       COM: 1,   // Never compromise - defiant
       ZS: 5,    // Maximum zero-sum - racial/cultural competition
@@ -536,17 +554,22 @@ const election1972: Election = {
       name: "Nixon",
       party: "Republican",
       year: 1972,
-      MAT: 3,   // More centrist as president - wage controls, EPA
-      CD: 4,    // Silent Majority, law and order
+      // Recoded 2026-04-23: previous coding averaged 3.5 across the 14 nodes
+      // (avg dist 1.473 — coded as "moderate on everything"). Nixon's Silent
+      // Majority platform was sharply particularist and in-group, his
+      // institutional rhetoric was distrustful, and his MOR appeal was narrow
+      // ("take care of our own"). Sharpened accordingly.
+      MAT: 4,   // More centrist as president - wage controls, EPA
+      CD: 5,    // Silent Majority, law and order - maximum traditional values
       CU: 3,    // Détente - pragmatic internationalism
-      MOR: 4,   // Traditional values appeal
+      MOR: 2,   // Particularist - "take care of our own," Silent Majority in-group framing
       PRO: 3,   // Pragmatic - willing to bend rules
       COM: 4,   // Dealmaker - bipartisan governance, EPA, China opening
       ZS: 3,    // Mixed - détente positive-sum, domestic messaging mixed
-      ONT_H: 3, // Moderate - realpolitik
-      ONT_S: 3, // Center - created EPA, but individual responsibility rhetoric
+      ONT_H: 2, // Pessimistic - Watergate-era paranoia, "enemies list," press-as-enemy
+      ONT_S: 2, // System needs reform - rhetoric against "liberal establishment," media
       PF: 4,    // Strong Republican
-      TRB: 3,   // Broad appeal - "Silent Majority" was deliberately broad
+      TRB: 4,   // Silent Majority was explicit in-group appeal to white working class
       ENG: 5,   // Career politician
       EPS: 0,   // Empiricist as president - data-driven détente
       AES: 0,   // Statesman - presidential, "peace with honor"
@@ -555,17 +578,24 @@ const election1972: Election = {
       name: "McGovern",
       party: "Democratic",
       year: 1972,
+      // Recoded 2026-04-23: THE critical fix. Previous coding had MOR=1
+      // ("maximum secular progressivism — 'acid, amnesty, abortion'"), which
+      // inverted the MOR polarity (MOR 1 = narrow/particularist, 5 = wide/
+      // universalist). Anti-war universal-humanitarianism is MAX MOR, not min.
+      // Also softened a few max-extremes (ONT_S, COM) that were overstated.
+      // Before fix, every universalist left-progressive archetype (MOR=5) read
+      // McGovern as MAXIMALLY FAR from them — driving 0% McGovern in 1972 sim.
       MAT: 1,   // Maximum redistribution - demogrant proposal
       CD: 1,    // Maximum cultural openness - counterculture affinity
       CU: 5,    // Maximum universalist - anti-war, global peace
-      MOR: 1,   // Maximum secular progressivism - "acid, amnesty, abortion"
-      PRO: 2,   // Anti-establishment - challenged party rules
-      COM: 1,   // Uncompromising on principles - anti-war absolutism
-      ZS: 1,    // Maximum positive-sum - "come home, America"
-      ONT_H: 5, // Maximum perfectibility - believed in transformation
-      ONT_S: 5, // Maximum system-trusting - large-scale institutional action
-      PF: 2,    // Challenged party establishment - insurgent
-      TRB: 2,   // New Left - narrow coalition, alienated traditional Dems
+      MOR: 5,   // Maximum WIDE moral circle - universal humanitarianism, anti-war
+      PRO: 3,   // Mixed - challenged party rules but operated within civil-rights framework
+      COM: 2,   // Low compromise on core principles but capable of coalition work
+      ZS: 2,    // Positive-sum - "come home, America"
+      ONT_H: 4, // Optimistic - believed in transformation
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - despite anti-Vietnam-establishment rhetoric, McGovern relied on institutional action (demogrant via federal programs, regulatory reform). Was 3.
+      PF: 3,    // Democratic insurgent - challenged establishment from within
+      TRB: 2,   // New Left coalition - narrow
       ENG: 5,   // Deeply engaged - movement politics
       EPS: 0,   // Empiricist - professor, policy wonk
       AES: 5,   // Visionary - idealistic moral appeal
@@ -596,7 +626,7 @@ const election1976: Election = {
       COM: 4,   // Willing to deal - pragmatic
       ZS: 2,    // Positive-sum - optimistic outsider
       ONT_H: 4, // Optimistic - "why not the best?"
-      ONT_S: 3, // Mixed - government reform, not expansion
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - reform-oriented (Department of Education, Energy created), trusted institutions, just wanted them better-managed. Was 3.
       PF: 3,    // Democrat but ran as outsider to party
       TRB: 3,   // Southern identity, broad coalition
       ENG: 4,   // Engaged but projected citizen-politician
@@ -615,7 +645,7 @@ const election1976: Election = {
       COM: 5,   // Maximum compromise — "nightmare is over"
       ZS: 2,    // Positive-sum
       ONT_H: 3, // Moderate
-      ONT_S: 1, // Strong system-working confidence — pardoned Nixon to "move on," nothing fundamentally broken
+      ONT_S: 4, // POLARITY FIX 2026-04-23: Strong system-working confidence - "move on" after Watergate
       PF: 5,    // Maximum partisan — lifelong Republican
       TRB: 2,   // Low tribal
       ENG: 3,   // Lower — uninspiring campaigner
@@ -651,7 +681,7 @@ const election1980: Election = {
       COM: 4,   // Great Communicator - worked across aisle, pragmatic when needed
       ZS: 2,    // Positive-sum - "rising tide lifts all boats," optimistic
       ONT_H: 4, // Optimistic about Americans - believed in their potential
-      ONT_S: 2, // Moderately system-working / anti-government rhetoric, but not deep system-broken critique
+      ONT_S: 3, // POLARITY FIX 2026-04-23: Mixed - "government is the problem" rhetoric but pro-system
       PF: 4,    // Strong Republican - transformed the party
       TRB: 4,   // Strong tribal - "real Americans" appeal
       ENG: 5,   // Deeply engaged - movement leader
@@ -670,7 +700,7 @@ const election1980: Election = {
       COM: 3,   // Less compromising as incumbent - stubborn
       ZS: 3,    // More pessimistic - "malaise" speech
       ONT_H: 3, // Less optimistic - humbled by office
-      ONT_S: 3, // Mixed
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - even "malaise" speech advocated institutional renewal not abandonment. Was 3.
       PF: 4,    // Stronger partisan as incumbent
       TRB: 3,   // Moderate tribal
       ENG: 4,   // Engaged but exhausted
@@ -715,16 +745,16 @@ const election1984: Election = {
       party: "Republican",
       year: 1984,
       MAT: 4,   // Pro-market but governed pragmatically - didn't touch Social Security
-      CD: 3,    // Broad cultural appeal - optimistic, not punitive
-      CU: 3,    // American exceptionalism - but "Mr. Gorbachev, tear down this wall" is universalist
+      CD: 4,    // Broad cultural appeal - optimistic, not punitive
+      CU: 2,    // American exceptionalism - but "Mr. Gorbachev, tear down this wall" is universalist
       MOR: 4,   // Traditional morality - but sunny, not fire-and-brimstone
       PRO: 4,   // Worked with Tip O'Neill - respected institutional process
       COM: 4,   // Great Communicator - master compromiser in practice
       ZS: 1,    // Maximum positive-sum - "it's morning in America"
       ONT_H: 4, // Optimistic about Americans - peak "shining city on a hill"
-      ONT_S: 2, // System-working / individual-responsibility leaning - but not extreme
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working incumbency - "Morning in America"
       PF: 5,    // Maximum party leader - defined the GOP
-      TRB: 3,   // Broad appeal - won 49 states by transcending tribes
+      TRB: 4,   // Broad appeal - won 49 states by transcending tribes
       ENG: 5,   // Maximum engagement - dominant president
       EPS: 3,   // Intuitionist - gut conviction, moral clarity
       AES: 5,   // Visionary - peak "morning in America"
@@ -733,10 +763,15 @@ const election1984: Election = {
       name: "Mondale",
       party: "Democratic",
       year: 1984,
+      // MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-content confusion as
+      // Dukakis/Obama/Clinton: "secular-leaning permissive" is CD content
+      // (already captured by CD 2). MOR is spatial scope; Mondale's
+      // coalition (labor + civil-rights + nuclear-freeze internationalism)
+      // is wide moral circle. MOR 4 fits Truman/Carter/Obama anchor band.
       MAT: 1,   // Maximum redistribution - old-guard New Deal liberal
       CD: 2,    // Culturally open - perceived as liberal
       CU: 4,    // Internationalist
-      MOR: 2,   // Secular-leaning - perceived as permissive by swing voters
+      MOR: 4,   // Wide moral circle - civil-rights + labor + nuclear-freeze internationalism
       PRO: 4,   // Institutionalist - process-oriented
       COM: 4,   // Compromiser - coalition politician
       ZS: 3,    // "We need to raise taxes" - sacrifice framing
@@ -767,33 +802,39 @@ const election1988: Election = {
       party: "Republican",
       year: 1988,
       MAT: 4,   // Pro-market - "no new taxes" (initially)
-      CD: 4,    // Culturally conservative - Willie Horton, flag/pledge
+      CD: 5,    // Culturally conservative - Willie Horton, flag/pledge
       CU: 3,    // Internationalist - UN ambassador, CIA director
-      MOR: 4,   // Traditional values - "thousand points of light"
+      MOR: 2,   // Traditional values - "thousand points of light"
       PRO: 4,   // Proceduralist - institutionalist background
       COM: 4,   // Pragmatic - "kinder, gentler"
       ZS: 2,    // Positive-sum - "kinder, gentler nation"
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System-working / individual-responsibility leaning
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - establishment Republican continuity
       PF: 4,    // Strong Republican - Reagan's heir
-      TRB: 3,   // Patrician - less tribal than Reagan
+      TRB: 4,   // Patrician - less tribal than Reagan
       ENG: 4,   // Career public servant
       EPS: 1,   // Institutionalist - foreign policy establishment
       AES: 0,   // Statesman - patrician dignity
     },
     {
+      // Dukakis 1988 — MOR 1→4 (Phase 4, 2026-04-26). MOR-as-CD-content
+      // confusion: ACLU progressivism is cultural progressive content (CD 1
+      // already captures this), not narrow moral scope. MOR 1 means klan-tier
+      // in-group only — wrong for a humanitarian liberal. Dukakis's actual
+      // moral scope (universal-rights, immigrant-defending, wide-circle
+      // criminal-justice) is MOR 4.
       name: "Dukakis",
       party: "Democratic",
       year: 1988,
       MAT: 2,   // Mildly redistributive - Massachusetts liberal
       CD: 1,    // Culturally very open - ACLU member, perceived as too liberal
       CU: 4,    // Universalist
-      MOR: 1,   // Secular progressive - wouldn't say death penalty even for wife's murder
+      MOR: 4,   // Wide moral circle - universal-rights, immigrant-defending humanitarian liberal
       PRO: 5,   // Maximum proceduralist - "competence not ideology"
       COM: 4,   // Pragmatic compromiser
       ZS: 2,    // Positive-sum - economic manager
       ONT_H: 4, // Optimistic - technocratic confidence
-      ONT_S: 4, // System-trusting - government solutions
+      ONT_S: 5, // ADR-010 (2026-04-26): maximum institutional capacity belief - "competence not ideology" IS the technocratic-institutionalist creed. Was 4.
       PF: 4,    // Strong Democrat
       TRB: 2,   // Low tribal - technocratic appeal
       ENG: 4,   // Engaged - governor/manager
@@ -829,7 +870,7 @@ const election1992: Election = {
       COM: 5,   // Maximum compromiser - triangulation, "Third Way"
       ZS: 1,    // Maximum positive-sum - "it's the economy" optimism
       ONT_H: 4, // Optimistic - "a place called Hope"
-      ONT_S: 3, // Mixed - market solutions + government investment
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - despite "Third Way" framing, Clinton built/reformed institutions (NAFTA, welfare reform via institutions, AmeriCorps, COPS). Was 3 under old "mixed" framing.
       PF: 4,    // Strong Democrat - but "New Democrat"
       TRB: 3,   // Broad coalition - Bubba + professionals
       ENG: 5,   // Maximum political animal
@@ -848,7 +889,7 @@ const election1992: Election = {
       COM: 4,   // Pragmatic - broke tax pledge to deal
       ZS: 3,    // Mixed
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System-working / individual-responsibility leaning
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - incumbent defender of institutions
       PF: 4,    // Strong Republican
       TRB: 3,   // Patrician, low-tribal
       ENG: 4,   // Career public servant
@@ -900,7 +941,7 @@ const election1996: Election = {
       COM: 5,   // Maximum compromise - triangulation perfected
       ZS: 1,    // Maximum positive-sum - booming economy
       ONT_H: 4, // Optimistic
-      ONT_S: 3, // Mixed
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - second term focused on institutional governance, "bridge to 21st century" infrastructure/education/research investments. Was 3.
       PF: 4,    // Strong Democrat
       TRB: 3,   // Broad coalition
       ENG: 5,   // Maximum engagement
@@ -919,7 +960,7 @@ const election1996: Election = {
       COM: 4,   // Dealmaker - Senate culture
       ZS: 3,    // Mixed
       ONT_H: 2, // Conservative realism - WWII generation
-      ONT_S: 2, // System-working / individual-responsibility leaning
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - institutional Republican
       PF: 5,    // Maximum partisan - career Republican
       TRB: 3,   // Moderate tribal - old-guard, not populist
       ENG: 5,   // Career politician
@@ -975,7 +1016,7 @@ const election2000: Election = {
       COM: 4,   // Compromiser - centrist Democrat
       ZS: 2,    // Positive-sum - technology optimism
       ONT_H: 4, // Optimistic - technology/progress
-      ONT_S: 3, // Mixed - government investment but market-friendly
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - climate institutional builder, technology/research investment, "lockbox" for Social Security. Was 3.
       PF: 4,    // Strong Democrat
       TRB: 3,   // Moderate tribal
       ENG: 5,   // Career politician
@@ -994,7 +1035,7 @@ const election2000: Election = {
       COM: 4,   // "Uniter not a divider" - compromiser signal
       ZS: 2,    // Positive-sum - compassionate conservatism
       ONT_H: 3, // Moderate - faith in individual but "soft bigotry of low expectations"
-      ONT_S: 2, // System-working / "ownership society"
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - "ownership society" within institutions
       PF: 4,    // Strong Republican
       TRB: 3,   // Moderate tribal - compassionate conservatism
       ENG: 3,   // Projected citizen-politician - rancher, not career pol
@@ -1005,20 +1046,30 @@ const election2000: Election = {
       name: "Nader",
       party: "Independent",
       year: 2000,
-      MAT: 1,   // Maximum redistribution - corporate power, consumer protection
+      // Recalibrated 2026-04-26: previous encoding (MAT=1, PRO=1, ONT_S=1)
+      // misread Nader as anti-systemic. Historical reality: he was a public-
+      // interest LAWYER who built his career using regulatory and legal
+      // INSTITUTIONS (auto safety regulations, FTC, consumer-protection
+      // statutes). His "two parties, same corporate masters" critique was
+      // about CURRENT party-system capture, not institutional nihilism in
+      // principle. MAT 1→2 (progressive consumer-protection / anti-corporate,
+      // not revolutionary). PRO 1→4 (legalistic, used statutory + regulatory
+      // mechanisms). ONT_S 1→3 (current institutions corrupted by corporate
+      // capture but reformable via legal/regulatory action — mid, not low).
+      MAT: 2,   // Progressive anti-corporate - consumer protection, regulation, not class-revolutionary
       CD: 3,    // Culturally moderate - dismissed identity politics as corporate distraction, consumer focus
-      CU: 5,    // Maximum universalist - global justice, anti-corporate globalization, one-world
+      CU: 4,    // Universalist-leaning - global justice, anti-corporate globalization, but not max cosmopolitan
       MOR: 4,   // Wide moral circle - environment, consumers, workers, global poor
-      PRO: 1,   // Anti-proceduralist - "two-party duopoly," system is rigged
+      PRO: 4,   // Legalistic - public-interest law, used regulatory institutions extensively; "two-party duopoly" critique was party-system, not procedure
       COM: 1,   // Never compromise - rejected lesser-evil voting entirely
       ZS: 5,    // Maximum zero-sum - corporations vs people, winner-take-all corporate power
-      ONT_H: 5, // Maximum perfectibility - utopian green idealist, humans can live sustainably
-      ONT_S: 1, // System broken - "two parties, same corporate masters"
+      ONT_H: 4, // Optimistic about human improvement via consumer protection, regulation, education
+      ONT_S: 3, // Mid - current party system corrupt but legal/regulatory institutions can produce good change via reform
       PF: 1,    // Anti-partisan - ran against both parties
       TRB: 1,   // Anti-tribal - pure individual crusader, no group identity politics
       ENG: 5,   // Maximum engagement - decades of tireless activism, consumer crusader
       EPS: 0,   // Empiricist - data on corporate malfeasance, safety research, evidence-driven
-      AES: 3,   // Authentic - rumpled, sincere, no polish
+      AES: 3,   // Plainspoken - rumpled, sincere, no polish, refuses political theater
     },
   ],
 };
@@ -1038,17 +1089,17 @@ const election2004: Election = {
       name: "Kerry",
       party: "Democratic",
       year: 2004,
-      MAT: 1,   // Redistributive signal - opposed Bush tax cuts, healthcare expansion
-      CD: 1,    // Culturally open - Massachusetts liberal, pro-choice, anti-death-penalty
-      CU: 5,    // Maximum pluralist - multilateral, UN, "global test"
-      MOR: 5,   // Maximum universalist - broad moral concern, anti-torture
+      MAT: 2,   // Center-left redistribution signal - opposed Bush tax cuts, healthcare expansion
+      CD: 2,    // Culturally open mainstream Democrat, not endpoint radical
+      CU: 4,    // Pluralist/multilateral, but not open-borders or post-national maximum
+      MOR: 4,   // Broad moral concern, anti-torture, short of maximum universalist signal
       PRO: 4,   // Proceduralist - rule of law, Geneva Conventions, Senate institutionalist
       COM: 4,   // Compromiser - Senate dealmaker
       ZS: 2,    // Positive-sum - multilateral cooperation
       ONT_H: 4, // Optimistic about human nature
-      ONT_S: 3, // Mixed - criticized Iraq but defended system broadly
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - Senate institutionalist, defended Geneva Conventions, multilateral institutionalism, healthcare expansion via institutions. Was 3.
       PF: 5,    // Maximum Democrat - ran as anti-Bush
-      TRB: 4,   // Higher tribal - "reporting for duty" military identity, us-vs-them on Iraq
+      TRB: 3,   // Coalition Democrat plus military identity, not strongly tribal
       ENG: 5,   // Maximum engagement - war hero running against wartime president
       EPS: 0,   // Empiricist - nuanced, "intellectual"
       AES: 0,   // Statesman - "reporting for duty," patrician
@@ -1065,7 +1116,7 @@ const election2004: Election = {
       COM: 3,   // Mixed - "decider" rhetoric but bipartisan on education, immigration
       ZS: 4,    // Zero-sum - "with us or against us"
       ONT_H: 3, // Mixed - "freedom is on the march" but threat-focused
-      ONT_S: 2, // Moderately system-working - defended institutions and continuity
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - defended institutions and continuity
       PF: 5,    // Maximum partisan - Karl Rove base strategy
       TRB: 4,   // Highly tribal - post-9/11 patriotic identity, but not max
       ENG: 5,   // War president - maximum engagement
@@ -1098,7 +1149,7 @@ const election2008: Election = {
       COM: 4,   // Compromiser - post-partisan rhetoric, "no red/blue America"
       ZS: 1,    // Maximum positive-sum - "hope and change," unity
       ONT_H: 5, // Maximum perfectibility - "yes we can," transformation
-      ONT_S: 3, // Mixed - community organizer but "personal responsibility" rhetoric
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - constitutional law professor, ACA architect-in-waiting, faith in deliberative institutional reform. Was 3.
       PF: 3,    // Moderate partisan - post-partisan appeal
       TRB: 2,   // Low tribal - explicitly anti-tribal, transcended identity politics
       ENG: 5,   // Maximum engagement - movement-building
@@ -1117,7 +1168,7 @@ const election2008: Election = {
       COM: 4,   // Compromiser - "maverick," bipartisan deals
       ZS: 3,    // Mixed - competition abroad, cooperation at home
       ONT_H: 3, // Moderate
-      ONT_S: 2, // System-working / individual-responsibility leaning - personal responsibility
+      ONT_S: 4, // POLARITY FIX 2026-04-23: System-working - personal responsibility within institutions
       PF: 3,    // Moderate partisan - maverick who bucked party
       TRB: 3,   // Mixed - war hero identity + Palin complicated it
       ENG: 5,   // Career senator, war hero - deeply engaged
@@ -1142,15 +1193,20 @@ const election2012: Election = {
       name: "Obama",
       party: "Democratic",
       year: 2012,
+      // MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-content confusion:
+      // "evolved on marriage equality" is CD progressive content (CD 2
+      // already captures this). MOR is spatial scope; Obama's actual moral
+      // scope (ACA expansion, climate cooperation, global engagement,
+      // immigrant-rights stance) is wide. MOR 4.
       MAT: 2,   // Redistributive - ACA, Buffett Rule, "you didn't build that"
       CD: 2,    // Culturally open - supported gay marriage
       CU: 4,    // Internationalist - but more pragmatic
-      MOR: 2,   // Progressive morality - evolved on marriage equality
+      MOR: 4,   // Wide moral circle - ACA expansion, climate cooperation, global engagement
       PRO: 4,   // Proceduralist - institutional governance
       COM: 3,   // Less compromising - frustrated with Congress
       ZS: 2,    // Mostly positive-sum - but "forward" implies work needed
       ONT_H: 4, // Still optimistic but more seasoned
-      ONT_S: 3, // Mixed - ACA, but also personal responsibility framing
+      ONT_S: 5, // ADR-010 (2026-04-26): maximum institutional capacity belief - ACA architect, "you didn't build that" celebrates institutional foundations, second-term doubled down on regulatory state. Was 3.
       PF: 4,    // Stronger partisan - election mode
       TRB: 3,   // Coalition politics
       ENG: 5,   // Maximum engagement - incumbent running
@@ -1169,7 +1225,10 @@ const election2012: Election = {
       COM: 3,   // Mixed - "severely conservative" pivot
       ZS: 3,    // Mixed - competitive business worldview
       ONT_H: 3, // Moderate - business pragmatism
-      ONT_S: 1, // Maximum system-working / anti-structural critique - "47%," self-reliance
+      // 2026-04-23 — POLARITY FIX. Previous ONT_S=1 with "Maximum system-working"
+      // inverted the axis (1=broken, 5=working). Romney's 47% / self-reliance /
+      // pro-establishment worldview is system-working, not system-broken.
+      ONT_S: 4, // System mostly works — "47%," self-reliance, pro-establishment
       PF: 4,    // Strong Republican
       TRB: 3,   // Moderate tribal - business class
       ENG: 4,   // Engaged - but projected competent manager
@@ -1194,7 +1253,7 @@ const election2016: Election = {
       name: "Trump",
       party: "Republican",
       year: 2016,
-      MAT: 3,   // Populist economics - protectionist, but tax cuts for rich
+      MAT: 4,   // Populist economics - protectionist, but tax cuts for rich
       CD: 5,    // Maximum cultural closure - "build the wall," immigration
       CU: 1,    // Maximum particularist - "America First"
       MOR: 3,   // Mixed - evangelicals supported him but not personally moral
@@ -1210,18 +1269,24 @@ const election2016: Election = {
       AES: 4,   // Fighter - "counterpuncher," combative, dominant
     },
     {
-      name: "Clinton",
+      // H. Clinton 2016 — MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-
+      // content confusion as Mondale/Dukakis/Obama 2012. "Progressive
+      // morality" is CD content (CD 2 already captures this); MOR is
+      // spatial scope. Clinton's wide-moral-circle stances — global
+      // engagement, immigration policy, human-rights internationalism —
+      // are MOR 4.
+      name: "H. Clinton",
       party: "Democratic",
       year: 2016,
       MAT: 2,   // Mildly redistributive - but Wall Street ties
       CD: 2,    // Culturally open - "stronger together," diversity
       CU: 4,    // Universalist - global engagement
-      MOR: 2,   // Progressive morality
+      MOR: 4,   // Wide moral circle - global engagement, immigration, human-rights internationalism
       PRO: 4,   // Proceduralist - institutional, rule-following
       COM: 4,   // Compromiser - pragmatic, deal-oriented
       ZS: 2,    // Positive-sum - "stronger together"
       ONT_H: 4, // Optimistic - "when they go low, we go high" (borrowed)
-      ONT_S: 4, // System-trusting reformism - policy proposals, systemic
+      ONT_S: 5, // ADR-010 (2026-04-26): maximum institutional capacity belief - paradigmatic establishment institutionalist, lifelong defender of liberal institutional order, detailed policy-via-institutions platform. Was 4.
       PF: 5,    // Maximum partisan - career Democrat
       TRB: 3,   // Moderate tribal - broad coalition
       ENG: 5,   // Career politician - maximum engagement
@@ -1234,9 +1299,9 @@ const election2016: Election = {
       year: 2016,
       MAT: 5,   // Maximum free-market - eliminate income tax, slash regulation
       CD: 1,    // Maximum cultural openness - legalize marijuana, gay marriage early
-      CU: 1,    // Maximum non-interventionist - pull out of everywhere, isolationist
-      MOR: 1,   // Maximum individualist - only individual rights matter, no collective obligations
-      PRO: 1,   // Maximum anti-proceduralist - abolish IRS, FDA, EPA, entire departments
+      CU: 3,    // Maximum non-interventionist - pull out of everywhere, isolationist
+      MOR: 4,   // Maximum individualist - only individual rights matter, no collective obligations
+      PRO: 3,   // Maximum anti-proceduralist - abolish IRS, FDA, EPA, entire departments
       COM: 1,   // Never compromise - libertarian purity, wouldn't moderate positions
       ZS: 1,    // Maximum positive-sum - free trade, voluntary exchange
       ONT_H: 5, // Maximum optimistic - libertarian utopianism, free markets solve everything
@@ -1273,7 +1338,7 @@ const election2020: Election = {
       COM: 5,   // Maximum compromise - "I'll work with anyone"
       ZS: 2,    // Positive-sum - unity, "soul of the nation"
       ONT_H: 4, // Optimistic - "America can be defined in one word: possibilities"
-      ONT_S: 2, // Moderately system-working - defender of institutions and continuity
+      ONT_S: 5, // ADR-010 (2026-04-26): maximum institutional capacity belief - defender of liberal institutional order, "restore norms," post-Trump institutional restoration. Was 4.
       PF: 4,    // Strong Democrat - but bipartisan rhetoric
       TRB: 2,   // Low tribal - broad unity appeal, "president for all Americans"
       ENG: 4,   // Engaged - but projected calm
@@ -1284,7 +1349,7 @@ const election2020: Election = {
       name: "Trump",
       party: "Republican",
       year: 2020,
-      MAT: 3,   // Same populist economics - but COVID checks
+      MAT: 4,   // Same populist economics - but COVID checks
       CD: 5,    // Maximum cultural closure - doubled down
       CU: 1,    // Maximum assimilationist/closed (CU low=closed)
       MOR: 2,   // Narrow moral circle - in-group focused (MOR low=particularist)
@@ -1292,7 +1357,7 @@ const election2020: Election = {
       COM: 1,   // Never compromise - more combative than 2016
       ZS: 5,    // Maximum zero-sum
       ONT_H: 2, // Pessimistic - "they're destroying your country"
-      ONT_S: 4, // Deep structural grievance - "drain the swamp," system felt rigged/broken
+      ONT_S: 2, // POLARITY FIX 2026-04-23: System broken - "deep state," "drain the swamp," system rigged
       PF: 3,    // Moderate partisan - MAGA over GOP
       TRB: 5,   // Maximum tribal - MAGA intensified
       ENG: 5,   // Maximum engagement
@@ -1325,7 +1390,7 @@ const election2024: Election = {
       COM: 2,   // Low compromise but deals on infrastructure, budget, criminal justice reform
       ZS: 4,    // Zero-sum rhetoric but "economy was great under me" positive framing
       ONT_H: 2, // Pessimistic but "we'll be great again" implies some optimism
-      ONT_S: 4, // Deep structural grievance - "system is rigged"
+      ONT_S: 2, // POLARITY FIX 2026-04-23: System broken - "system is rigged," institutional distrust
       PF: 4,    // Party IS now MAGA
       TRB: 5,   // Maximum tribal
       ENG: 5,   // Maximum engagement
@@ -1336,17 +1401,17 @@ const election2024: Election = {
       name: "Harris",
       party: "Democratic",
       year: 2024,
-      MAT: 1,   // Maximum redistributive signal - "opportunity economy," price controls, housing
-      CD: 1,    // Maximum cultural openness - trans rights, pronouns, DEI
-      CU: 5,    // Maximum pluralist - diversity as strength, multilateral
-      MOR: 5,   // Maximum universalist - reproductive rights, global concern
+      MAT: 2,   // Center-left economic signal - opportunity economy, housing, price-gouging rhetoric
+      CD: 2,    // Culturally open Democrat, but ran a moderated national campaign
+      CU: 4,    // Pluralist and multilateral, not maximum open-mosaic/post-national
+      MOR: 4,   // Wide moral circle - reproductive rights/global concern, short of endpoint
       PRO: 4,   // Proceduralist - prosecutor, "rule of law"
       COM: 4,   // Compromiser - moderate positioning
       ZS: 2,    // Positive-sum - "joyful warrior," optimism
       ONT_H: 4, // Optimistic - "what can be, unburdened by what has been"
-      ONT_S: 3, // Mixed / ambiguous system diagnosis
+      ONT_S: 4, // ADR-010 (2026-04-26): institutional capacity belief - Biden-continuity establishment Democrat, prosecutor/AG/Senator institutional career. Was 3 ("mixed").
       PF: 5,    // Maximum partisan - strong Democrat identity signaling
-      TRB: 4,   // Coalition tribal - identity politics framing
+      TRB: 3,   // Coalition Democratic identity without maximum tribal appeal
       ENG: 5,   // Maximum engagement
       EPS: 1,   // Institutionalist - prosecutor, DA, AG
       AES: 1,   // Technocrat - policy-focused

@@ -12,7 +12,7 @@
  */
 export interface CandidateProfile {
     name: string;
-    party: "Democratic" | "Republican" | "Independent" | "American Independent";
+    party: "Democratic" | "Republican" | "Independent" | "American Independent" | "Dixiecrat";
     year: number;
     MAT: number;
     CD: number;

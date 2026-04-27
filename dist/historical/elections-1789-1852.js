@@ -68,15 +68,22 @@ const election1796 = {
             name: "Jefferson",
             party: "Democratic-Republican",
             year: 1796,
-            MAT: 2, // Agrarian populist
-            CD: 2, // Culturally open
-            CU: 4, // Internationalist
-            MOR: 4, // Wide moral circle
+            // Recalibrated 2026-04-26: previous encoding (MAT=2, MOR=4, CU=4)
+            // misrepresented Jefferson by reading him through modern progressive
+            // optics. Historical reality: anti-federal-tax, anti-bank, agrarian-
+            // property-protective slaveholder whose universalism was for free white
+            // men only. MAT 2→4 (anti-redistribution, market-favoring of agrarian
+            // property), MOR 4→2 (slavery contradicts wide moral circle), CU 4→2
+            // (assimilationist white-settler expansion, not pluralism).
+            MAT: 4, // Anti-federal-tax, anti-Hamilton's bank, pro-agrarian-property
+            CD: 2, // Enlightenment progressive (religious tolerance) for whites
+            CU: 2, // Assimilationist on white-settler expansion (not universalist)
+            MOR: 2, // Narrow circle: held 600+ slaves, Indian Removal sympathizer
             PRO: 2, // Anti-federal power - states' rights skeptic
             COM: 2, // Low compromise - partisan opposition
             ZS: 3, // Mixed
-            ONT_H: 4, // Optimistic
-            ONT_S: 2, // System corrupted by Federalists
+            ONT_H: 4, // Optimistic about Enlightenment-rational free white men
+            ONT_S: 2, // Anti-Federalist - ideological institutional skeptic
             PF: 5, // Maximum D-R partisan
             TRB: 4, // Factional - planter/agrarian identity
             ENG: 4, // Engaged
@@ -93,15 +100,20 @@ const election1800 = {
             name: "Jefferson",
             party: "Democratic-Republican",
             year: 1800,
-            MAT: 1, // Maximum populist signal - opposition to Hamilton's system
-            CD: 1, // Maximum cultural openness - religious freedom, anti-established church
-            CU: 5, // Maximum universalist - rights of man, French Revolution sympathy
-            MOR: 5, // Maximum universalist moral circle
-            PRO: 2, // Anti-proceduralist - opposed Alien & Sedition Acts, federal overreach
+            // Recalibrated 2026-04-26: previous encoding read MAT=1 (maximum
+            // redistributive) for an anti-Hamilton position that was actually
+            // anti-federal-taxation and pro-agrarian-property. CU=5 and MOR=5
+            // ignored that Jefferson's "rights of man" was rhetorical universalism
+            // while he held hundreds of enslaved people. MAT 1→4, CU 5→2, MOR 5→2.
+            MAT: 4, // Anti-Hamilton ≠ pro-redistribution; pro-agrarian-property
+            CD: 1, // Religious tolerance / Enlightenment-progressive (for whites)
+            CU: 2, // Assimilationist white-settler expansion (Louisiana Purchase)
+            MOR: 2, // Slaveholder; rhetorical universalism, narrow practiced scope
+            PRO: 2, // Anti-proceduralist - opposed Alien & Sedition Acts
             COM: 2, // Low compromise - revolutionary rhetoric
-            ZS: 2, // Positive-sum
-            ONT_H: 5, // Maximum optimistic
-            ONT_S: 2, // System needs overhaul - "revolution" against Federalist tyranny
+            ZS: 2, // Positive-sum yeoman vision
+            ONT_H: 5, // Maximum optimistic about Enlightenment-rational free whites
+            ONT_S: 2, // Anti-Federalist institutional skeptic
             PF: 5, // Maximum partisan - built party machine
             TRB: 4, // High tribal - yeoman farmer vs. merchant class
             ENG: 5, // Maximum engagement
@@ -137,8 +149,16 @@ const election1804 = {
             name: "Jefferson",
             party: "Democratic-Republican",
             year: 1804,
-            MAT: 2, CD: 2, CU: 4, MOR: 4, PRO: 3, COM: 3,
-            ZS: 2, ONT_H: 4, ONT_S: 4, PF: 4, TRB: 3, ENG: 5,
+            // Recalibrated 2026-04-26: previous encoding (MAT=2, MOR=4, CU=4,
+            // ONT_S=4) created a major calibration anomaly — Jefferson 1804 base
+            // distance to a modern progressive (0.495) was lower than FDR's (0.613),
+            // matching slave-owning anti-federal Jefferson closer than New Deal
+            // architect FDR. MAT 2→4, MOR 4→2, CU 4→2, ONT_S 4→2 corrects this.
+            // ONT_S 1804 spike to 4 conflated his presidential actions (Louisiana
+            // Purchase required executive action) with his ideology (states-rights
+            // anti-Federalist). His core belief remained anti-strong-government.
+            MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 3, COM: 3,
+            ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 3, ENG: 5,
             EPS: 0, AES: 5,
         },
         {
@@ -156,13 +176,18 @@ const election1808 = {
     year: 1808,
     candidates: [
         {
+            // Madison 1808 Pattern B + Jeffersonian-agrarian recalibration (2026-04-26
+            // Phase 4). Madison held ~100 enslaved people; the prior MOR 4 / CU 4
+            // overread his rhetorical universalism for practiced moral scope. MAT 2→4
+            // (Jeffersonian agrarian-property, anti-Hamilton, not redistributive),
+            // CU 4→2 (assimilationist white-settler), MOR 4→2 (slaveholder).
             name: "Madison",
             party: "Democratic-Republican",
             year: 1808,
-            MAT: 2, // Moderate - Constitution framer, more institutional than Jefferson
+            MAT: 4, // Anti-Hamilton agrarian-property (per Jeffersonian-agrarian rubric)
             CD: 2, // Culturally open
-            CU: 4, // Internationalist but navigating embargo
-            MOR: 4, // Wide moral circle
+            CU: 2, // Assimilationist white-settler expansion (Pattern B)
+            MOR: 2, // Slaveholder - narrow practiced scope, not rhetorical universalism (Pattern B)
             PRO: 5, // Maximum proceduralist - Father of the Constitution
             COM: 4, // Compromiser - Great Compromiser at Convention
             ZS: 2, // Positive-sum
@@ -189,11 +214,15 @@ const election1812 = {
     year: 1812,
     candidates: [
         {
+            // Madison 1812 — same Pattern B as 1808 (slaveholder; rhetorical
+            // universalism overread). MAT 2→4, CU 4→2, MOR 4→2. Plus Madison-drift
+            // caveat applied: as wartime president (War of 1812) using federal +
+            // military institutions hard, ONT_S drifts up from 3→4.
             name: "Madison",
             party: "Democratic-Republican",
             year: 1812,
-            MAT: 2, CD: 2, CU: 4, MOR: 4, PRO: 4, COM: 3,
-            ZS: 3, ONT_H: 3, ONT_S: 3, PF: 4, TRB: 3, ENG: 5,
+            MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 4, COM: 3,
+            ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 5,
             EPS: 0, AES: 0,
         },
         {
@@ -211,10 +240,15 @@ const election1816 = {
     year: 1816,
     candidates: [
         {
+            // Monroe 1816 — same Pattern B as Madison. Held ~250 enslaved people.
+            // MAT 2→4 (Jeffersonian agrarian-property), CU 4→2 (assimilationist),
+            // MOR 4→2 (slaveholder; rhetorical-universalism overread). ONT_S 5
+            // already correct by Madison/Monroe-drift caveat (Monroe Doctrine,
+            // internal improvements via federal institutions).
             name: "Monroe",
             party: "Democratic-Republican",
             year: 1816,
-            MAT: 2, CD: 2, CU: 4, MOR: 4, PRO: 4, COM: 5,
+            MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 4, COM: 5,
             ZS: 1, ONT_H: 5, ONT_S: 5, PF: 3, TRB: 2, ENG: 4,
             EPS: 1, AES: 0,
         },
@@ -233,10 +267,14 @@ const election1820 = {
     year: 1820,
     candidates: [
         {
+            // Monroe 1820 — same Pattern B. Even Era of Good Feelings Monroe was a
+            // slaveholder. MAT 3→4 (Jeffersonian agrarian), CU 4→2 (assimilationist),
+            // MOR 4→2. ENG 3 retained — defensible for unopposed reluctant-style
+            // election.
             name: "Monroe",
             party: "Democratic-Republican",
             year: 1820,
-            MAT: 3, CD: 3, CU: 4, MOR: 4, PRO: 4, COM: 5,
+            MAT: 4, CD: 3, CU: 2, MOR: 2, PRO: 4, COM: 5,
             ZS: 1, ONT_H: 5, ONT_S: 5, PF: 2, TRB: 1, ENG: 3,
             EPS: 1, AES: 0,
         },
@@ -252,10 +290,10 @@ const election1824 = {
             name: "Adams",
             party: "Democratic-Republican",
             year: 1824,
-            MAT: 5, // Pro-commerce, American System, tariffs - push extreme to differentiate
-            CD: 5, // Culturally conservative elite - Puritan gravitas
-            CU: 1, // Assimilationist - national project, not pluralist
-            MOR: 1, // Narrow moral circle - establishment elite
+            MAT: 4, // Developmentalist - tariffs/internal improvements, not laissez-faire maximalism
+            CD: 3, // Moderate-conservative elite - Puritan gravitas without culture-war closure
+            CU: 3, // National-development project; neither mosaic pluralist nor closed nativist
+            MOR: 4, // Broad civic-national moral language, especially in later anti-slavery career
             PRO: 5, // Maximum proceduralist - institutional
             COM: 4, // Compromiser - corrupt bargain
             ZS: 2, // Positive-sum
@@ -271,14 +309,14 @@ const election1824 = {
             name: "Jackson",
             party: "Democratic-Republican",
             year: 1824,
-            MAT: 2, // Populist - bank opposition, anti-elite economics
-            CD: 3, // Moderate cultural - frontier but broad appeal
-            CU: 3, // Mixed - expansion but national unity
-            MOR: 3, // Moderate - broad "common man" appeal
+            MAT: 4, // Anti-bank populist, but not modern redistributionist; hard-money/agrarian
+            CD: 4, // Traditional frontier values - expansion, slavery-tolerant, anti-establishment
+            CU: 1, // Particularist - Jacksonian democracy was white-male-centric, Indian Removal
+            MOR: 1, // Very narrow moral circle - "common (white) man," Native removal, slavery tolerance
             PRO: 2, // Anti-procedural - military hero, direct action
-            COM: 2, // Low compromise but not extreme
-            ZS: 3, // Mixed
-            ONT_H: 3, // Moderate
+            COM: 1, // Maximum uncompromising - "corrupt bargain" rhetoric, vendetta politics
+            ZS: 4, // Zero-sum "enemies of the people" populist framing
+            ONT_H: 2, // Pessimistic about elite motives, rigged institutions
             ONT_S: 2, // System needs reform - elites rigged it
             PF: 3, // Building a new party
             TRB: 4, // Tribal - common man identity
@@ -290,18 +328,20 @@ const election1824 = {
             name: "Crawford",
             party: "Democratic-Republican",
             year: 1824,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 4,
-            ZS: 4, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 4, ENG: 3,
+            // Recoded 2026-04-23: previous all-1s-and-5s coding (avg dist 2.291) was
+            // over-extreme for a conventional Jeffersonian Democratic-Republican.
+            MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 3,
+            ZS: 3, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 3, ENG: 3,
             EPS: 1, AES: 0,
         },
         {
             name: "Clay",
             party: "Democratic-Republican",
             year: 1824,
-            MAT: 5, // American System - tariffs, pro-commerce, push extreme
-            CD: 4, // Conservative - establishment
-            CU: 1, // Assimilationist - national project
-            MOR: 2, // Narrow-ish
+            MAT: 4, // American System - tariffs and internal improvements, not pure free-market
+            CD: 3, // Establishment conservative but not maximum cultural closure
+            CU: 3, // National-development civic project
+            MOR: 3, // Centrist moral frame; compromise politics, not universalist crusade
             PRO: 5, // Maximum proceduralist
             COM: 5, // Maximum compromiser
             ZS: 2, // Positive-sum
@@ -323,15 +363,19 @@ const election1828 = {
             name: "Jackson",
             party: "Democratic",
             year: 1828,
-            MAT: 2, CD: 3, CU: 3, MOR: 3, PRO: 2, COM: 2,
-            ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
+            // Recoded 2026-04-23: previous coding (CD=3, CU=3, MOR=3, ZS=3, ONT_H=3)
+            // placed Jackson near the archetype centroid, making him universally
+            // "close" to all archetypes. Jacksonian populism was sharply particularist
+            // and zero-sum; recoded to match the actual platform.
+            MAT: 4, CD: 4, CU: 1, MOR: 1, PRO: 2, COM: 1,
+            ZS: 4, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
             EPS: 3, AES: 4,
         },
         {
             name: "Adams",
             party: "National Republican",
             year: 1828,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
+            MAT: 4, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 3,
             ZS: 3, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 2, ENG: 3,
             EPS: 1, AES: 1,
         },
@@ -345,17 +389,24 @@ const election1832 = {
             name: "Jackson",
             party: "Democratic",
             year: 1832,
-            MAT: 2, // Bank War - populist anti-elite economics
-            CD: 3, CU: 3, MOR: 3, PRO: 2, COM: 2,
-            ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
+            MAT: 4, // Bank War anti-elite populism, but not modern redistributionism
+            // Recoded 2026-04-23 — see Jackson 1828 note. Sharper particularism +
+            // zero-sum framing for Bank War re-election.
+            CD: 4, CU: 1, MOR: 1, PRO: 2, COM: 1,
+            ZS: 4, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
             EPS: 3, AES: 4,
         },
         {
             name: "Clay",
             party: "National Republican",
             year: 1832,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
-            ZS: 2, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
+            // ADR-010 (2026-04-26): ONT_H 2 → 4. Clay was an arch-Hamiltonian
+            // institutionalist who believed genteel education, law, and institutions
+            // CULTIVATE human character. Under malleability framing he is high
+            // ONT_H, not low. Old "pessimistic about humans" reading inverted his
+            // actual Burkean-cultivation worldview.
+            MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 5,
+            ZS: 2, ONT_H: 4, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
             EPS: 1, AES: 0,
         },
         {
@@ -391,17 +442,21 @@ const election1836 = {
             name: "Van Buren",
             party: "Democratic",
             year: 1836,
+            // Recoded 2026-04-23: previous coding had VB at near-centroid (avg dist
+            // 1.44, lowest of any candidate in the bank). Sharpened the coalitional
+            // axes to reflect Jacksonian Democratic coalition, not "moderate on
+            // everything."
             MAT: 2, // Redistributive — labor friendly, Jacksonian heir
             CD: 3, // Moderate
-            CU: 3, // Mixed
-            MOR: 3, // Moderate universalist
+            CU: 2, // Assimilationist — Democratic coalition was particularist
+            MOR: 2, // Narrow moral circle — coalition didn't emphasize universal rights
             PRO: 3, // Mixed — machine politician but competent
             COM: 4, // Compromiser — "Little Magician"
             ZS: 3, // Mixed — Jacksonian optimism
             ONT_H: 3, // Moderate
             ONT_S: 3, // Mixed — system working but challenges
-            PF: 4, // Strong partisan
-            TRB: 3, // Moderate — northern coalition builder
+            PF: 5, // Maximum partisan — literally built the Democratic Party
+            TRB: 4, // Strong Northern Democratic partisan identity
             ENG: 5, // Maximum
             EPS: 1, // Institutionalist - party builder
             AES: 1, // Technocrat - operator/fixer
@@ -443,16 +498,20 @@ const election1840 = {
             name: "Van Buren",
             party: "Democratic",
             year: 1840,
-            MAT: 1, // Blamed for depression
-            CD: 1, // Extreme left
-            CU: 5, // Extreme internationalist
-            MOR: 5, // Extreme universalist
-            PRO: 1, // Anti-procedural - failed policies
-            COM: 1, // Never compromise - stubborn incumbent
-            ZS: 5, // Zero-sum - depression scarcity thinking
-            ONT_H: 1, // Pessimistic - failed
-            ONT_S: 5, // System working (incumbent defense)
-            PF: 5, TRB: 5, ENG: 5,
+            // Recoded 2026-04-23: previous coding was deeply miscalibrated —
+            // every axis pushed to extremes with comments like "blamed for depression"
+            // (a non-ideological factor, not a position change). Reset to match his
+            // 1836 profile with minor adjustments reflecting recession-era pressure.
+            MAT: 2, // Same Jacksonian heir position — sub-treasury hard-money
+            CD: 3, // Moderate — unchanged from 1836
+            CU: 2, // Assimilationist — same Democratic coalition
+            MOR: 2, // Narrow moral circle — unchanged
+            PRO: 3, // Mixed
+            COM: 3, // Less compromising under recession pressure, defending sub-treasury
+            ZS: 3, // Mixed
+            ONT_H: 2, // Pessimistic under Panic of 1837 pressure
+            ONT_S: 3, // Defending the system (incumbent)
+            PF: 5, TRB: 4, ENG: 5,
             EPS: 1, AES: 1,
         },
     ],
@@ -465,17 +524,20 @@ const election1844 = {
             name: "Polk",
             party: "Democratic",
             year: 1844,
-            MAT: 3, // Moderate - tariff reform but not radical
-            CD: 3, // Moderate - Southern but broad appeal
-            CU: 2, // Mild assimilationist - expansion
-            MOR: 3, // Moderate
+            // Recoded 2026-04-23: previous coding placed Polk at avg dist 1.445
+            // (near-centroid). Dark-horse Southern expansionist — sharper on MAT
+            // (anti-tariff populist), MOR (particularist expansion), TRB.
+            MAT: 2, // Anti-tariff Jacksonian, Walker Tariff — mild redistributionist
+            CD: 3, // Moderate
+            CU: 2, // Particularist expansionism — Manifest Destiny
+            MOR: 2, // Narrow moral circle — expansion at Mexican/Native expense
             PRO: 3, // Mixed
             COM: 3, // Mixed - pragmatic
-            ZS: 2, // Positive-sum - expansion as opportunity for all
+            ZS: 3, // Zero-sum territorial expansion vs Mexico
             ONT_H: 3, // Moderate
-            ONT_S: 3, // Mixed
+            ONT_S: 2, // Expansion mandate to reshape the map
             PF: 4, // Strong Democrat
-            TRB: 3, // Moderate - broad coalition
+            TRB: 4, // Southern Democratic partisan
             ENG: 5, // Maximum - energized dark horse
             EPS: 3, // Intuitionist
             AES: 4, // Fighter - aggressive expansionist
@@ -484,8 +546,10 @@ const election1844 = {
             name: "Clay",
             party: "Whig",
             year: 1844,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
-            ZS: 1, ONT_H: 2, ONT_S: 5, PF: 5, TRB: 1, ENG: 5,
+            // Recoded 2026-04-23: previous coding was all 1s and 5s (avg dist 2.462).
+            // Clay was a mainstream Whig leader, not maximally extreme. Softened.
+            MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 4,
+            ZS: 2, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 2, ENG: 5,
             EPS: 1, AES: 0,
         },
     ],
@@ -514,12 +578,20 @@ const election1848 = {
             AES: 0, // Statesman - war hero
         },
         {
+            // Cass full-row recalibration (Phase 1 of audit, 2026-04-26).
+            // Prior encoding read him as max-redistributive max-universalist anti-institutional;
+            // that's wrong on every count. Cass was a Jacksonian institutionalist (Pattern A
+            // correction: PRO 1→4, ONT_S 2→3) whose "popular sovereignty" doctrine was a
+            // slavery-accommodating compromise, not a universalist moral stance (Pattern B
+            // correction: CU 5→2, MOR 5→2). MAT 1→3 (hard-money Jacksonian, not redistributive),
+            // CD 1→4 (anti-abolition, culturally traditional), COM 2→4 (popular sovereignty WAS
+            // the compromise position).
             name: "Cass",
             party: "Democratic",
             year: 1848,
-            MAT: 1, CD: 1, CU: 5, MOR: 5, PRO: 1, COM: 2,
-            ZS: 4, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 5, ENG: 4,
-            EPS: 3, AES: 0,
+            MAT: 3, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 4,
+            ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 5, ENG: 4,
+            EPS: 1, AES: 0,
         },
         {
             name: "Van Buren",

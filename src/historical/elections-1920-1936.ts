@@ -34,34 +34,42 @@ const election1920: Election = {
       name: "Harding",
       party: "Republican",
       year: 1920,
-      MAT: 3,   // Moderate — "Return to Normalcy" = centrist, broadly appealing
-      CD: 3,    // Moderate — genial, not culture warrior
+      MAT: 4,   // Moderate — "Return to Normalcy" = centrist, broadly appealing
+      CD: 4,    // Moderate — genial, not culture warrior
       CU: 3,    // Moderate — isolationist but not extreme
-      MOR: 3,   // Moderate moral circle — broad appeal
+      MOR: 2,   // Moderate moral circle — broad appeal
       PRO: 4,   // Proceduralist — institutional normalcy
       COM: 5,   // Maximum compromiser — amiable, consensus
       ZS: 2,    // Positive-sum — prosperity message
       ONT_H: 3, // Moderate
       ONT_S: 4, // System mostly fine — just needs calm hand
-      PF: 3,    // Moderate partisan — broad coalition
+      PF: 4,    // Moderate partisan — broad coalition
       TRB: 2,   // Low tribal — genial "normalcy"
       ENG: 3,   // Moderate — front porch calm
       EPS: 2,   // Traditionalist - "return to normalcy" = traditional ways are best
       AES: 2,   // Pastoral - small-town Ohio, Main Street, folksy newspaper editor
     },
     {
+      // Cox 1920 — "push extreme" loser-coding artifact corrected (Phase 4,
+      // 2026-04-26). Cox was a forgotten Wilsonian-heir progressive newspaper
+      // publisher who lost in a Harding landslide; the prior coding maxed
+      // every axis as if to manufacture distance from Harding. Per user
+      // direction the rubric overrides "push extreme." Softened to mainstream
+      // Wilson-progressive-internationalist: MAT 1→2, CD 1→3, CU 5→4, MOR 5→4,
+      // PRO 2→4 (Wilsonian institutionalist, not anti-procedural), COM 1→3,
+      // ZS 1→2, ONT_H 5→4, ONT_S 1→4 (institutional capacity belief).
       name: "Cox",
       party: "Democratic",
       year: 1920,
-      MAT: 1,   // Extreme left — Wilson's progressive heir
-      CD: 1,    // Extreme — progressive
-      CU: 5,    // Maximum universalist — League zealot
-      MOR: 5,   // Extreme — global moral crusade
-      PRO: 2,   // Anti-procedural — executive power
-      COM: 1,   // Never compromise — League without reservations
-      ZS: 1,    // Maximum positive-sum
-      ONT_H: 5, // Maximum optimistic
-      ONT_S: 1, // System needs overhaul
+      MAT: 2,   // Wilsonian-progressive-redistributive lean, not max
+      CD: 3,    // Mainstream progressive Democrat - not max progressive
+      CU: 4,    // Internationalist (League) but not max-pluralist
+      MOR: 4,   // Liberal-internationalist wide-circle, not maximum
+      PRO: 4,   // Wilsonian institutionalist - worked through political institutions
+      COM: 3,   // Mixed - principled on League but a working politician
+      ZS: 2,    // Positive-sum - League/internationalism as growth-frame
+      ONT_H: 4, // Optimistic but not maximalist
+      ONT_S: 4, // Institutional capacity belief - League and federal institutions can work
       PF: 5,    // Maximum partisan
       TRB: 5,   // Maximum tribal — alienating
       ENG: 5,   // Maximum
@@ -113,7 +121,7 @@ const election1924: Election = {
       name: "Coolidge",
       party: "Republican",
       year: 1924,
-      MAT: 3,   // Moderate — prosperity message, broadly appealing
+      MAT: 4,   // Moderate — prosperity message, broadly appealing
       CD: 3,    // Moderate — quiet, not a culture warrior
       CU: 3,    // Moderate
       MOR: 3,   // Moderate — "Coolidge prosperity" for all
@@ -129,18 +137,27 @@ const election1924: Election = {
       AES: 0,   // Statesman - dignified, austere, presidential reserve
     },
     {
+      // Davis 1924 — "push extreme" loser-coding artifact corrected (Phase 4,
+      // 2026-04-26). Davis was a CONSERVATIVE Wall Street lawyer chosen as a
+      // compromise candidate after a deadlocked 103-ballot convention. The
+      // prior MAT 1 / CD 1 / CU 5 / MOR 5 max-progressive coding was directly
+      // contradicted by his actual signal: Bourbon Democrat, J.P. Morgan
+      // counsel, later head of the anti-New-Deal American Liberty League.
+      // MAT 1→4 (Wall Street conservative, not redistributive), CD 1→3,
+      // CU 5→3, MOR 5→3, ONT_S 2→4 (institutionalist lawyer, not "system
+      // needs reform"). PRO 4 retained (constitutional lawyer).
       name: "Davis",
       party: "Democratic",
       year: 1924,
-      MAT: 1,   // Push extreme — Democratic progressive tradition
-      CD: 1,    // Push extreme — anti-KKK, culturally liberal
-      CU: 5,    // Maximum universalist — Wilsonian internationalism
-      MOR: 5,   // Maximum wide moral circle — anti-KKK crusade
-      PRO: 4,   // Proceduralist — lawyer
-      COM: 4,   // Compromiser
+      MAT: 4,   // Wall Street Bourbon Democrat - free-market lean, J.P. Morgan counsel
+      CD: 3,    // Centrist - anti-KKK plank but otherwise traditional Democrat
+      CU: 3,    // Mixed - civic-Democratic, not max-pluralist
+      MOR: 3,   // Civic-national circle - no max-universalist crusade
+      PRO: 4,   // Proceduralist — constitutional lawyer
+      COM: 4,   // Compromiser - was the literal compromise candidate
       ZS: 2,    // Positive-sum
       ONT_H: 4, // Optimistic
-      ONT_S: 2, // System needs reform
+      ONT_S: 4, // Institutional capacity belief - constitutional lawyer trusted institutions
       PF: 5,    // Maximum partisan
       TRB: 4,   // Tribal — Democratic coalition
       ENG: 3,   // Moderate — lackluster campaign
@@ -151,15 +168,25 @@ const election1924: Election = {
       name: "La Follette",
       party: "Independent", // Progressive Party - typed as Independent per CandidateProfile union
       year: 1924,
-      MAT: 1,   // Maximum redistribution - public ownership of railroads, break up monopolies
+      // Recalibrated 2026-04-26: previous encoding (MAT=1, PRO=2, ONT_S=1)
+      // misread La Follette as a Debs-style anti-systemic radical. Historical
+      // reality: he was a Progressive REPUBLICAN INSTITUTIONAL REFORMER who
+      // pioneered direct democracy (referendum/initiative/recall), used the
+      // regulatory state, founded the Progressive Party as an institutional
+      // reform vehicle. MAT 1→2 (social-democratic with selective public
+      // ownership, not revolutionary class-struggle). PRO 2→4 (procedural
+      // reformer who created NEW procedures rather than rejecting them).
+      // ONT_S 1→4 (believed institutions can produce good change via reform —
+      // his entire career was institutional reformism, not nihilism).
+      MAT: 2,   // Social-democratic redistribution - public ownership of railroads, break up monopolies, but not class-revolutionary
       CD: 1,    // Maximum cultural openness - pro-labor, anti-nativist, civil liberties
       CU: 4,    // Internationalist lean - anti-imperialism, but not League (seen as elite club)
       MOR: 5,   // Maximum universalist - fought for workers, farmers, immigrants, the little guy
-      PRO: 2,   // Anti-proceduralist - direct democracy, referenda, recall of judges
+      PRO: 4,   // Procedural reformer - direct democracy, referenda, recall as INSTITUTIONAL innovations within constitutional frame
       COM: 1,   // Never compromise - "Fighting Bob," ideological purist, insurgent
       ZS: 3,    // Mixed - saw monopolies as zero-sum extraction but believed reform could fix it
       ONT_H: 4, // Optimistic - believed common people would choose wisely given direct democracy
-      ONT_S: 1, // Maximum structuralist - system rigged by monopolies, needs overhaul
+      ONT_S: 4, // Institutional capacity belief - reform via institutions, not abolition; founded Progressive Party AS institutional reform vehicle
       PF: 1,    // Maximum independent - rejected both parties, ran as Progressive
       TRB: 4,   // Tribal - worker/farmer identity, class-based politics
       ENG: 5,   // Maximum engagement - lifelong crusader, launched entire third party
@@ -213,7 +240,7 @@ const election1928: Election = {
       COM: 4,   // Compromiser - machine politician, dealmaker, worked across interests
       ZS: 2,    // Positive-sum - believed in shared prosperity through urban development
       ONT_H: 4, // Optimistic - up-from-poverty narrative, American Dream
-      ONT_S: 2, // Structuralist - government should build infrastructure, help workers
+      ONT_S: 4, // ADR-010 polarity fix 2026-04-26: high institutional capacity belief - government BUILDS infrastructure and helps workers. "Structuralist" advocacy is institutional reform, NOT institutional nihilism. Was 2 under old "system broken" framing.
       PF: 5,    // Maximum partisan - Tammany Democrat, party machine product
       TRB: 4,   // Tribal - Catholic/Irish/urban immigrant identity, ethnic coalition
       ENG: 5,   // Maximum engagement - barnstorming campaigner, passionate
@@ -249,7 +276,7 @@ const election1932: Election = {
       COM: 4,   // Dealmaker - built huge coalition, pragmatic about means
       ZS: 2,    // Positive-sum - "abundance for all," economic expansion through spending
       ONT_H: 5, // Maximum optimistic - "nothing to fear but fear itself," can-do spirit
-      ONT_S: 1, // Maximum structuralist - Depression proves system broken, needs overhaul
+      ONT_S: 4, // ADR-010 polarity fix 2026-04-26: high institutional capacity belief - FDR was the paradigmatic institution-builder (RFC, CCC, SEC, SSA, NLRB). Was 1 under old "system broken" framing — exactly inverted. Structuralism = institutional reform, NOT nihilism.
       PF: 5,    // Maximum partisan - built the New Deal Democratic coalition from scratch
       TRB: 3,   // Moderate tribal - broad coalition appeal, not narrowly sectarian
       ENG: 5,   // Maximum engagement - energetic campaigning despite disability
@@ -303,7 +330,7 @@ const election1936: Election = {
       COM: 3,   // Less compromising - "I welcome their hatred," confrontational populism
       ZS: 2,    // Positive-sum - government spending creates growth, "priming the pump"
       ONT_H: 5, // Maximum optimistic - New Deal working, recovery underway
-      ONT_S: 1, // Maximum structuralist - total systemic reform, new institutions
+      ONT_S: 5, // ADR-010 polarity fix 2026-04-26: maximum institutional capacity belief - "total systemic reform, new institutions" = building institutional capacity at maximum scale. Was 1 under old "system broken" framing.
       PF: 5,    // Maximum partisan - New Deal coalition at peak, "Roosevelt coalition"
       TRB: 4,   // High tribal - "forgotten man" vs. "economic royalists," class warfare
       ENG: 5,   // Maximum engagement - barnstorming incumbent, massive rallies
@@ -314,16 +341,20 @@ const election1936: Election = {
       name: "Landon",
       party: "Republican",
       year: 1936,
-      MAT: 5,   // Maximum free-market — attacked New Deal spending
-      CD: 5,    // Maximum cultural conservative — Kansas values, anti-cosmopolitan
-      CU: 1,    // Maximum particularist — America-first
-      MOR: 1,   // Maximum narrow — business elite, self-reliance
-      PRO: 5,   // Maximum proceduralist — attacked executive overreach
+      // Recoded 2026-04-23: previous coding ran Landon to extremes on every
+      // axis (avg dist 2.304). He was a moderate Kansas Republican — "Kansas
+      // Coolidge" — not an ideological maximalist. Softened to reflect
+      // mainstream Republican positioning of the era.
+      MAT: 4,   // Pro-market but not laissez-faire maximalist
+      CD: 4,    // Culturally conservative but not extreme
+      CU: 2,    // Particularist-leaning America-first
+      MOR: 2,   // Narrow moral circle
+      PRO: 4,   // Proceduralist — attacked executive overreach
       COM: 3,   // Mixed
       ZS: 3,    // Mixed
-      ONT_H: 1, // Maximum pessimistic — government breeds dependency
-      ONT_S: 5, // System fine — free enterprise works
-      PF: 5,    // Maximum partisan
+      ONT_H: 2, // Pessimistic about government dependency
+      ONT_S: 4, // System mostly working — free enterprise
+      PF: 4,    // Strong Republican
       TRB: 2,   // Low tribal
       ENG: 2,   // Low — outmatched by FDR
       EPS: 0,   // Empiricist - businessman, practical, fiscal prudence

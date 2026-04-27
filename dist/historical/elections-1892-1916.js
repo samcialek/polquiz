@@ -76,11 +76,18 @@ const election1892 = {
             CD: 4, // Culturally conservative - agrarian, Protestant, rural values, suspicious of cities
             CU: 2, // Particularist - nativist undertones, suspicious of foreign capital, America for farmers
             MOR: 3, // Mixed - wide circle for "the people" but narrow in practice (white farmers mostly)
-            PRO: 2, // Anti-proceduralist - wanted to break existing rules (direct election, initiative/referendum)
+            // Weaver 1892 Pattern A correction (Phase 4, 2026-04-26). Populist Party
+            // founder used the new-party institutional vehicle and pioneered direct-
+            // democracy *procedures* (initiative, referendum, recall, direct
+            // election of senators, railroad regulation). That is institutional
+            // reform USING institutions hard, not anti-institutional nihilism.
+            // PRO 2→4, ONT_S 1→4 per rubric Pattern A correction (parallels Bryan
+            // and La Follette).
+            PRO: 4, // Institutional reformer - new party, direct-democracy procedures
             COM: 1, // Never compromise - insurgent, rejected both parties as corrupt
             ZS: 4, // Zero-sum lean - banks and railroads robbing the farmers, class war framing
             ONT_H: 3, // Mixed - believed common people were good but elites were corrupt
-            ONT_S: 1, // Maximum structuralist - entire financial system rigged against farmers
+            ONT_S: 4, // Institutional capacity belief - the system can be made to work for farmers via NEW procedures
             PF: 1, // Maximum independent - founded new party, rejected both old ones
             TRB: 5, // Maximum tribal - farmer/agrarian class identity, "the people" vs. "the plutocrats"
             ENG: 5, // Maximum engagement - launched third party, barnstormed the country
@@ -106,7 +113,7 @@ const election1896 = {
             name: "McKinley",
             party: "Republican",
             year: 1896,
-            MAT: 3, // Moderate — "full dinner pail" = prosperity for all, not just business
+            MAT: 4, // Moderate — "full dinner pail" = prosperity for all, not just business
             CD: 3, // Moderate — mainstream, non-threatening
             CU: 3, // Moderate — tariff but not nativist
             MOR: 3, // Moderate — broad appeal
@@ -125,19 +132,27 @@ const election1896 = {
             name: "Bryan",
             party: "Democratic",
             year: 1896,
+            // Bryan 1896 — PATTERN A FLAGSHIP CASE per rubric (Phase 4, 2026-04-26).
+            // Prior PRO 2 / ONT_S 1 read him as anti-institutional, but Bryan used
+            // party machinery hard, fused Democratic-Populist tickets, ran on
+            // constitutional amendments (income tax, direct election of senators),
+            // and pioneered modern barnstorming WITHIN institutional channels.
+            // PRO 2→4, ONT_S 1→4. EPS 3→2 traditionalist per rubric (biblical
+            // "Cross of Gold," providential democracy, agrarian inherited virtue —
+            // not pure intuitionism). AES 5 visionary retained for 1896.
             MAT: 1, // Maximum redistribution - free silver = inflation = debt relief for farmers, anti-bank
             CD: 5, // Maximum cultural closure - evangelical Protestant, rural, anti-urban, anti-immigrant
             CU: 2, // Particularist - nativist, suspicious of foreign gold standard, agrarian nationalism
             MOR: 3, // Mixed - evangelical compassion for "the people" but narrow to white Protestant farmers
-            PRO: 2, // Anti-proceduralist - wanted to break the gold standard, challenge financial establishment
+            PRO: 4, // Institutional reformer - constitutional amendments, party machinery, electoral institutions
             COM: 1, // Never compromise - "shall not crucify mankind," absolutist rhetoric
             ZS: 4, // Zero-sum - banks stealing from farmers, Eastern money vs. Western producers
             ONT_H: 4, // Optimistic - believed common people would triumph, democratic faith
-            ONT_S: 1, // Maximum structuralist - financial system rigged, gold standard is oppression
+            ONT_S: 4, // Institutional capacity belief - the system can be reformed via majoritarian politics, monetary policy, constitutional amendment
             PF: 3, // Moderate - fused Democratic and Populist tickets, but also alienated Gold Democrats
             TRB: 5, // Maximum tribal - agrarian/producer class vs. Eastern financiers, "the people"
             ENG: 5, // Maximum engagement - 18,000 miles of barnstorming, first modern campaign
-            EPS: 3, // Intuitionist - evangelical passion, moral conviction, gut populism
+            EPS: 2, // Traditionalist - biblical, providential democracy, agrarian inherited virtue (per rubric)
             AES: 5, // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory
         },
     ],
@@ -177,19 +192,22 @@ const election1900 = {
             name: "Bryan",
             party: "Democratic",
             year: 1900,
+            // Bryan 1900 — same Pattern A as 1896. PRO 2→4, ONT_S 1→4, EPS 3→2
+            // traditionalist. AES 5 visionary retained per rubric (1896 and 1900
+            // are visionary; 1908 shifts to pastoral).
             MAT: 1, // Maximum redistribution - same populist economics, anti-trust, anti-monopoly
             CD: 5, // Maximum cultural closure - same evangelical/agrarian conservatism
             CU: 3, // Mixed - anti-imperialist (opposed Philippines annexation) but still nativist on immigration
             MOR: 4, // Wider moral circle than 1896 - anti-imperialism added concern for Filipino people
-            PRO: 2, // Anti-proceduralist - still wanted to break financial establishment
+            PRO: 4, // Institutional reformer - constitutional amendments, party machinery
             COM: 1, // Never compromise - same absolutist populist stance
             ZS: 4, // Zero-sum - imperialism as exploitation, banks still robbing the people
             ONT_H: 4, // Optimistic - democracy and self-government for all peoples
-            ONT_S: 1, // Maximum structuralist - financial and now imperial system is rigged
+            ONT_S: 4, // Institutional capacity belief - reform via majoritarian politics, monetary policy
             PF: 4, // Stronger partisan - more clearly Democratic this time, less Populist fusion
             TRB: 5, // Maximum tribal - same agrarian class identity
             ENG: 5, // Maximum engagement - another massive barnstorming campaign
-            EPS: 3, // Intuitionist - same evangelical moral conviction
+            EPS: 2, // Traditionalist - same biblical / providential democracy frame as 1896
             AES: 5, // Visionary - anti-imperialist crusade layered onto populist economics
         },
         {
@@ -234,11 +252,11 @@ const election1904 = {
             party: "Republican",
             year: 1904,
             MAT: 3, // Centrist - trust-busting but pro-business; "Square Deal" = fair play, not redistribution
-            CD: 3, // Culturally moderate - progressive for era, "strenuous life" but not moralist
+            CD: 2, // Culturally moderate - progressive for era, "strenuous life" but not moralist
             CU: 4, // Internationalist - Panama Canal, "big stick" diplomacy, global power projection
-            MOR: 4, // Wide moral circle - conservation, labor arbitration (coal strike), progressive reform
+            MOR: 5, // Wide moral circle - conservation, labor arbitration (coal strike), progressive reform
             PRO: 3, // Mixed - used executive power aggressively (trust-busting, Panama) but within legal bounds
-            COM: 3, // Mixed - "Square Deal" fairness but would break trusts unilaterally, not a dealmaker
+            COM: 2, // Mixed - "Square Deal" fairness but would break trusts unilaterally, not a dealmaker
             ZS: 2, // Positive-sum - believed government could grow the pie through fair regulation
             ONT_H: 4, // Optimistic - "strenuous life," humans can improve through vigor and will
             ONT_S: 3, // Mixed - system needs reform (trusts) but basically sound with strong leadership
@@ -326,20 +344,25 @@ const election1908 = {
             name: "Bryan",
             party: "Democratic",
             year: 1908,
+            // Bryan 1908 — same Pattern A as 1896/1900. PRO 2→4, ONT_S 2→4,
+            // EPS 3→2 traditionalist. AES 5→2 PASTORAL — rubric explicitly tags
+            // 1908 as the year Bryan's aesthetic shifted from visionary to pastoral
+            // ("Great Commoner" salt-of-earth framing). Year-specificity test from
+            // rubric — don't mechanically code all three Bryan rows the same.
             MAT: 1, // Maximum redistribution - income tax, railroad regulation, anti-monopoly, anti-injunction
             CD: 4, // Culturally conservative - same evangelical base, rural Protestant identity
             CU: 3, // Mixed - anti-imperialist, but Progressive-era reforms were domestic-focused
             MOR: 4, // Wide moral circle - "the Great Commoner," workers and farmers deserve justice
-            PRO: 2, // Anti-proceduralist - wanted to restructure financial system, direct democracy
+            PRO: 4, // Institutional reformer - constitutional reform, party machinery, regulatory law
             COM: 2, // Low compromise - ideological progressive, wouldn't water down demands
             ZS: 4, // Zero-sum - railroads and trusts extracting from the common people
             ONT_H: 4, // Optimistic - believed in democratic self-government, common people's wisdom
-            ONT_S: 2, // Structuralist - system needs major reform, but mellowed from 1896's maximalism
+            ONT_S: 4, // Institutional capacity belief - reform via constitutional amendment and majoritarian politics
             PF: 5, // Maximum partisan - three-time Democratic nominee, party defined by his populism
             TRB: 4, // High tribal - farmer/worker identity, class politics, but less maximalist
             ENG: 5, // Maximum engagement - another barnstorming campaign, tireless
-            EPS: 3, // Intuitionist - evangelical moral conviction, "the people know best"
-            AES: 5, // Visionary - "the Great Commoner," prophetic moral rhetoric
+            EPS: 2, // Traditionalist - biblical / providential democracy / agrarian inherited virtue (per rubric)
+            AES: 2, // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity)
         },
         {
             // Eugene V. Debs - Socialist Party (2.8%)
@@ -404,15 +427,21 @@ const election1912 = {
             name: "Roosevelt",
             party: "Independent", // Progressive/Bull Moose - typed as Independent per CandidateProfile union
             year: 1912,
+            // TR 1912 — RUBRIC SPECIAL CASE per Phase 4 (2026-04-26). Prior PRO 2 /
+            // ONT_S 2 was exactly inverted from rubric. New Nationalism is the
+            // paradigmatic "national institutions can solve collective problems"
+            // worldview — ONT_S 5. PRO 3 (not 4): recall of judicial decisions,
+            // executive activism, party rupture, plebiscitary style → mixed-
+            // procedural; not anti-procedural, not clean institutionalist.
             MAT: 2, // Redistributive - "New Nationalism," regulate trusts, worker protections, social insurance
             CD: 2, // Culturally open - women's suffrage, Progressive Era reform, social justice
             CU: 4, // Internationalist - strong foreign policy, global leadership role for America
             MOR: 5, // Maximum universalist - social insurance, child labor laws, worker safety, broad moral vision
-            PRO: 2, // Anti-proceduralist - recall of judicial decisions, executive activism, break party rules
+            PRO: 3, // Mixed-procedural - judicial recall + executive activism + party rupture, but not anti-procedural
             COM: 2, // Low compromise - walked out of GOP, launched new party, uncompromising on reform
             ZS: 2, // Positive-sum - government regulation grows the pie for everyone, "Square Deal" expanded
             ONT_H: 5, // Maximum optimistic - "strenuous life," humans can be perfected through reform
-            ONT_S: 2, // Structuralist - corporations must be regulated, government must be stronger
+            ONT_S: 5, // Maximum institutional capacity belief - New Nationalism: national institutions can solve collective problems
             PF: 1, // Maximum independent - broke from his own party, created Bull Moose
             TRB: 4, // High tribal - progressive movement identity, us-vs-bosses
             ENG: 5, // Maximum engagement - shot during campaign, gave speech anyway, boundless energy
@@ -481,9 +510,9 @@ const election1916 = {
             party: "Democratic",
             year: 1916,
             MAT: 1, // Maximum redistribution - Adamson Act (8-hour day), FTC, Clayton Act, progressive taxation
-            CD: 2, // Culturally open lean - progressive reform, but Southern racial conservatism
+            CD: 3, // Culturally open lean - progressive reform, but Southern racial conservatism
             CU: 4, // Internationalist - but "he kept us out of war" = cautious internationalism
-            MOR: 4, // Wide moral circle - progressive legislation for workers, moral foreign policy rhetoric
+            MOR: 3, // Wide moral circle - progressive legislation for workers, moral foreign policy rhetoric
             PRO: 4, // Proceduralist - worked through Congress (Federal Reserve Act, FTC), institutional reform
             COM: 3, // Mixed - moralistic, wouldn't easily compromise principles, but legislated effectively
             ZS: 2, // Positive-sum - reform benefits everyone, shared prosperity through regulation

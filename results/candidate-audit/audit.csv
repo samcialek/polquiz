@@ -1,0 +1,142 @@
+file,year,name,confidence,pattern_a,pattern_b,current_MAT,current_CD,current_CU,current_MOR,current_PRO,current_COM,current_ZS,current_ONT_H,current_ONT_S,current_PF,current_TRB,current_ENG,current_EPS,current_AES,proposed_MAT,proposed_CD,proposed_CU,proposed_MOR,proposed_PRO,proposed_COM,proposed_ZS,proposed_ONT_H,proposed_ONT_S,proposed_PF,proposed_TRB,proposed_ENG,proposed_EPS,proposed_AES,evidence_note
+elections-1789-1852.ts,1789,Washington,MEDIUM,N,Y,3,3,3,4,5,5,2,4,4,1,1,5,1,0,,,,2,,,,,,,,,,,Pattern B: MOR 4 reads rhetorical universalism; Washington was a slaveholder (held ~317 enslaved at Mount Vernon) — practiced scope was narrow. MOR 2 fits the rubric's slaveholder rule.
+elections-1789-1852.ts,1792,Washington,MEDIUM,N,Y,3,3,3,4,5,5,2,4,4,1,1,4,1,0,,,,2,,,,,,,,,,,Same Pattern B as 1789 — slaveholder MOR should be 2 not 4.
+elections-1789-1852.ts,1796,Adams,LOW,N,N,4,4,3,3,5,3,3,2,4,4,3,4,1,0,,,,,,,,,,,,,,,Reasonable mainstream Federalist coding; nothing materially off.
+elections-1789-1852.ts,1796,Jefferson,ALREADY-FIXED,N,N,4,2,2,2,2,2,3,4,2,5,4,4,0,5,,,,,,,,,,,,,,,Matches 2026-04-26 corrections.
+elections-1789-1852.ts,1800,Jefferson,ALREADY-FIXED,N,N,4,1,2,2,2,2,2,5,2,5,4,5,0,5,,,,,,,,,,,,,,,Matches 2026-04-26 corrections.
+elections-1789-1852.ts,1800,Adams,MEDIUM,N,N,5,5,1,1,5,2,4,1,5,5,4,4,1,0,,,,2,,,,,,,,,,,MOR 1 implies klan-level narrowness; Adams was a New England Puritan elite proceduralist not an ethnic-cleansing-tier moralist. MOR 2 better captures elite-favoring without practiced cruelty.
+elections-1789-1852.ts,1804,Jefferson,ALREADY-FIXED,N,N,4,2,2,2,3,3,2,4,2,4,3,5,0,5,,,,,,,,,,,,,,,Matches 2026-04-26 corrections.
+elections-1789-1852.ts,1804,Pinckney,MEDIUM,N,N,5,5,1,1,5,3,4,2,5,4,4,3,1,0,,,,2,,,,,,,,,,,MOR 1 over-extreme for a generic Federalist standard-bearer — MOR 2 fits elite-narrow rubric anchor.
+elections-1789-1852.ts,1808,Madison,HIGH,N,Y,2,2,4,4,5,4,2,4,4,4,2,4,0,1,4,,2,2,,,,,,,,,,,Pattern B + drift: Madison held ~100 enslaved. MOR 4 / CU 4 read his rhetoric not practice. Per rubric Madison-drift caveat MAT should be 4 (anti-Hamilton agrarian-property) not 2 (redistributive). CU 2 (assimilationist white-settler) MOR 2 (slaveholder).
+elections-1789-1852.ts,1808,Pinckney,LOW,N,N,5,5,1,2,5,3,4,2,5,4,4,3,1,0,,,,,,,,,,,,,,,MOR 2 here is reasonable; CD 5 / CU 1 strong but defensible for a Federalist hard-liner. Leave as is.
+elections-1789-1852.ts,1812,Madison,HIGH,N,Y,2,2,4,4,4,3,3,3,3,4,3,5,0,0,4,,2,2,,,,,4,,,,,,Same Pattern B as 1808. Wartime president (War of 1812) — slaveholder MOR 2. MAT 4 (agrarian-property) CU 2. Madison-drift caveat: as wartime president using federal/military institutions hard ONT_S can drift up to 4.
+elections-1789-1852.ts,1812,Clinton,LOW,N,N,4,4,2,2,5,4,3,3,4,3,3,4,1,1,,,,,,,,,,,,,,,Federalist-leaning fusion candidate; coding is reasonable mid-Federalist.
+elections-1789-1852.ts,1816,Monroe,HIGH,N,Y,2,2,4,4,4,5,1,5,5,3,2,4,1,0,4,,2,2,,,,,,,,,,,Pattern B: Monroe held ~250 enslaved. MOR 4 / CU 4 read rhetorical universalism. MAT 4 (Jeffersonian agrarian) CU 2 (assimilationist) MOR 2 (slaveholder). Per Madison/Monroe drift caveat ONT_S 5 defensible (Monroe Doctrine internal improvements).
+elections-1789-1852.ts,1816,King,MEDIUM,N,N,5,5,1,1,5,3,4,2,4,4,4,3,1,0,,,,2,,,,,,,,,,,MOR 1 too extreme for a Federalist elite — MOR 2 is the rubric's elite-favoring anchor; MOR 1 reserved for klan-tier.
+elections-1789-1852.ts,1820,Monroe,HIGH,N,Y,3,3,4,4,4,5,1,5,5,2,1,3,1,0,4,,2,2,,,,,,,,,,,Same Pattern B. Even Era of Good Feelings Monroe was a slaveholder. MAT 4 CU 2 MOR 2. ENG 3 reasonable for unopposed reluctant-style election.
+elections-1789-1852.ts,1824,Adams,ALREADY-FIXED,N,N,4,3,3,4,5,4,2,2,5,4,2,4,1,1,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+elections-1789-1852.ts,1824,Jackson,ALREADY-FIXED,N,N,4,4,1,1,2,1,4,2,2,3,4,5,3,4,,,,,,,,,,,,,,,Matches recent recalibration; sharp particularist Jacksonian.
+elections-1789-1852.ts,1824,Crawford,LOW,N,N,4,4,2,2,4,3,3,2,4,4,3,3,1,0,,,,,,,,,,,,,,,Already softened from extremes 2026-04-23. Reasonable mainstream Jeffersonian coding.
+elections-1789-1852.ts,1824,Clay,LOW,N,N,4,3,3,3,5,5,2,3,5,4,2,5,1,0,,,,,,,,,,,,,,,American System Whig founder; coding fits the dealmaker-developmentalist profile well.
+elections-1789-1852.ts,1828,Jackson,ALREADY-FIXED,N,N,4,4,1,1,2,1,4,2,2,4,4,5,3,4,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+elections-1789-1852.ts,1828,Adams,LOW,N,N,4,3,3,4,5,3,3,2,5,4,2,3,1,1,,,,,,,,,,,,,,,Reasonable second-time National Republican coding consistent with 1824 Adams.
+elections-1789-1852.ts,1832,Jackson,ALREADY-FIXED,N,N,4,4,1,1,2,1,4,2,2,4,4,5,3,4,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration; Bank War sharpening defensible.
+elections-1789-1852.ts,1832,Clay,ALREADY-FIXED,N,N,4,3,3,3,5,5,2,4,5,5,2,5,1,0,,,,,,,,,,,,,,,Includes ADR-010 ONT_H fix; matches recent recalibration.
+elections-1789-1852.ts,1832,Wirt,LOW,N,N,3,4,2,4,5,3,3,3,2,1,3,4,1,0,,,,,,,,,,,,,,,Anti-Masonic third-party signal coding is reasonable.
+elections-1789-1852.ts,1836,Van Buren,ALREADY-FIXED,N,N,2,3,2,2,3,4,3,3,3,5,4,5,1,1,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+elections-1789-1852.ts,1836,Harrison,MEDIUM,N,N,5,5,1,1,5,4,3,3,3,2,2,3,2,3,4,4,2,2,4,,,,,,,,,,All-extremes coding for a Whig log-cabin populist who was actually a moderate developmentalist. MAT 4 (pro-market not max) CD 4 CU 2 MOR 2 PRO 4 (Whig constitutionalist not max).
+elections-1789-1852.ts,1840,Harrison,LOW,N,N,4,4,2,2,4,4,2,3,2,4,4,5,3,3,,,,,,,,,,,,,,,Reasonable log-cabin populist Whig coding. ONT_S 2 defensible (Panic of 1837 backlash).
+elections-1789-1852.ts,1840,Van Buren,ALREADY-FIXED,N,N,2,3,2,2,3,3,3,2,3,5,4,5,1,1,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+elections-1789-1852.ts,1844,Polk,ALREADY-FIXED,N,N,2,3,2,2,3,3,3,3,2,4,4,5,3,4,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration; expansionist Jacksonian.
+elections-1789-1852.ts,1844,Clay,ALREADY-FIXED,N,N,4,4,2,2,4,4,2,3,4,4,2,5,1,0,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+elections-1789-1852.ts,1848,Taylor,LOW,N,N,4,4,2,2,3,4,3,3,4,1,3,3,3,0,,,,,,,,,,,,,,,Reasonable reluctant-Whig-general coding; ENG 3 for reluctant candidate per rubric MOR 2 for slaveholder.
+elections-1789-1852.ts,1848,Cass,ALREADY-FIXED,N,N,3,4,2,2,4,4,3,3,3,5,5,4,1,0,,,,,,,,,,,,,,,Matches 2026-04-26 recalibration.
+elections-1789-1852.ts,1848,Van Buren,MEDIUM,N,N,1,1,5,5,4,1,2,4,1,1,3,5,0,5,2,2,4,4,,,,,4,,,,,,Free Soil VB. MAT 1 / CD 1 / CU 5 / MOR 5 read 1848 anti-slavery as if it were modern progressivism — Free Soil was about free white labor not racial equality. MOR 4 / CU 4 / MAT 2 / CD 2 / ONT_S 4 fit better.
+elections-1789-1852.ts,1852,Pierce,LOW,N,N,2,4,1,1,2,3,3,3,4,5,4,4,1,3,,,,,,,,,,,,,,,Doughface Democrat coding plausible; CU 1 / MOR 1 max-narrow defensible for Fugitive Slave enforcer.
+elections-1789-1852.ts,1852,Scott,MEDIUM,N,N,5,5,1,1,5,5,2,1,5,2,1,2,1,0,,,,2,,,,,,,,,,,All-extremes coding for a moderate Whig general who was tepidly anti-slavery. MOR 1 too narrow.
+elections-1856-1888.ts,1856,Buchanan,LOW,N,N,4,4,2,1,4,5,3,2,5,5,4,4,1,0,,,,,,,,,,,,,,,Doughface accommodator; MOR 1 for Dred Scott / Lecompton enforcement defensible but borderline.
+elections-1856-1888.ts,1856,Fremont,LOW,N,N,3,2,4,4,3,2,2,4,2,4,4,5,3,5,,,,,,,,,,,,,,,First Republican; coding shows appropriate restraint.
+elections-1856-1888.ts,1856,Fillmore,LOW,N,N,4,5,1,1,4,4,4,2,3,2,5,4,2,0,,,,,,,,,,,,,,,Know-Nothing nativist explicitly Pattern-B-eligible at MOR 1 / CU 1 — coding consistent with rubric Pole 1 anchor.
+elections-1856-1888.ts,1860,Lincoln,LOW,N,N,3,2,4,5,5,3,2,4,3,4,3,5,0,3,,,,,,,,,,,,,,,Reasonable Lincoln 1860 coding — MOR 5 for moral opposition to slavery defensible.
+elections-1856-1888.ts,1860,Douglas,LOW,N,N,3,3,2,2,4,5,3,3,3,5,3,5,1,4,,,,,,,,,,,,,,,Popular sovereignty Democrat; MOR 2 for I-don't-care-if-slavery-voted-up-or-down appropriate.
+elections-1856-1888.ts,1860,Breckinridge,LOW,Y,N,4,5,1,1,2,1,5,1,2,3,5,5,2,0,,,,,,,,,,,,,,,Pattern-B-aligned coding accurate: pro-slavery fire-eater MOR 1 / CU 1 IS practiced narrow scope.
+elections-1856-1888.ts,1860,Bell,LOW,N,N,5,4,2,2,5,5,2,2,5,1,2,2,1,0,,,,,,,,,,,,,,,Constitutional Union compromise figure; coding defensible.
+elections-1856-1888.ts,1864,Lincoln,MEDIUM,N,N,4,1,5,5,4,3,2,4,2,4,3,5,0,5,,,,,,,,,4,,,,,,Wartime Lincoln pushed to abolition — MOR 5 / CU 5 max defensible. ONT_S 2 (system needs reform) inconsistent with Lincoln's institution-preserving Union project. ONT_S 4 fits institutional-reformer-using-institutions-hard pattern.
+elections-1856-1888.ts,1864,McClellan,MEDIUM,N,N,5,5,1,1,5,4,4,2,4,4,4,4,1,0,,,,2,,,,,,,,,,,All-extremes for a moderate Democratic general who repudiated his own party's peace plank. MOR 2 better.
+elections-1856-1888.ts,1868,Grant,LOW,N,N,4,2,4,4,4,3,2,3,3,4,3,4,0,3,,,,,,,,,,,,,,,Reconstruction-defending Grant; coding fits.
+elections-1856-1888.ts,1868,Seymour,LOW,Y,N,4,5,1,1,3,3,5,1,2,4,5,3,2,0,,,,,,,,,,,,,,,Pattern-B-aligned: white man's government platform IS narrow practiced scope.
+elections-1856-1888.ts,1872,Grant,LOW,N,N,4,2,4,4,3,3,2,3,4,5,3,4,0,3,,,,,,,,,,,,,,,Incumbent Grant coding defensible.
+elections-1856-1888.ts,1872,Greeley,LOW,N,N,3,2,4,4,4,5,2,5,2,1,2,5,0,5,,,,,,,,,,,,,,,Eccentric reformer-utopian; coding plausible. ONT_H 5 fits human perfectibility anchor.
+elections-1856-1888.ts,1876,Hayes,LOW,N,N,4,3,3,4,5,5,3,3,4,5,3,3,0,0,,,,,,,,,,,,,,,Reform Republican coding reasonable. MAT 4 push extreme comment but value is moderate.
+elections-1856-1888.ts,1876,Tilden,LOW,N,N,4,4,2,2,5,3,3,2,3,4,4,4,0,1,,,,,,,,,,,,,,,Anti-Tammany reformer who accepted disputed loss; coding fits.
+elections-1856-1888.ts,1880,Garfield,LOW,N,N,4,3,3,3,5,4,2,4,4,4,3,4,0,0,,,,,,,,,,,,,,,Half-Breed Republican coding plausible.
+elections-1856-1888.ts,1880,Hancock,HIGH,N,Y,1,1,5,5,3,4,3,3,3,5,4,3,1,0,4,3,3,3,,,,,,,,,,,All-extremes (push extreme) coding for a Democratic war hero who avoided issues. Hancock had no max-redistributive max-universalist platform. MAT 4 CD 3 CU 3 MOR 3 — middle for a candidate the rubric Pattern B explicitly warns against (Democrats this era should NOT be MOR 5 / CU 5).
+elections-1856-1888.ts,1884,Cleveland,LOW,N,N,4,3,3,3,5,3,2,3,4,3,2,4,0,3,,,,,,,,,,,,,,,Bourbon Democrat reformer; coding fits well.
+elections-1856-1888.ts,1884,Blaine,LOW,N,N,4,3,3,3,2,4,3,3,4,5,4,5,3,4,,,,,,,,,,,,,,,Plumed Knight charismatic-but-corrupt Republican; coding fits.
+elections-1856-1888.ts,1888,Harrison,LOW,N,N,5,3,2,3,4,3,3,3,4,5,3,3,1,0,,,,,,,,,,,,,,,High-tariff Republican; MAT 5 for max protectionism appropriate.
+elections-1856-1888.ts,1888,Cleveland,LOW,N,N,4,3,3,3,5,2,2,3,4,4,2,3,0,1,,,,,,,,,,,,,,,Same coding as 1884 + tariff focus; fits.
+elections-1892-1916.ts,1892,Cleveland,LOW,N,N,2,3,3,3,5,3,2,3,4,4,2,4,1,0,,,,,,,,,,,,,,,MAT 2 for tariff-reformer Bourbon Democrat is mild. Defensible.
+elections-1892-1916.ts,1892,Harrison,LOW,N,N,5,4,2,2,4,3,3,2,5,5,3,3,1,0,,,,,,,,,,,,,,,Incumbent high-tariff Republican coding fits.
+elections-1892-1916.ts,1892,Weaver,HIGH,Y,N,1,4,2,3,2,1,4,3,1,1,5,5,3,4,,,,,4,,,,4,,,,,,Pattern A: Populist Party agrarian REFORMER used new-party institutional vehicle and direct-democracy mechanisms (initiative referendum recall) railroad regulation. Coded PRO 2 + ONT_S 1 (anti-systemic) when he was actually an institutional reformer pioneering NEW procedures (like La Follette).
+elections-1892-1916.ts,1896,McKinley,LOW,N,N,4,3,3,3,5,5,2,3,5,4,2,3,1,0,,,,,,,,,,,,,,,Front-porch Hanna-managed McKinley; coding reasonable.
+elections-1892-1916.ts,1896,Bryan,HIGH,Y,N,1,5,2,3,2,1,4,4,1,3,5,5,3,5,,,,,4,,,,4,,,,2,,PATTERN A FLAGSHIP: Bryan PRO 2 + ONT_S 1 reads him as anti-institutional. Rubric explicitly rejects this — Bryan used party machinery hard fused D-Populist tickets ran on constitutional amendments (income tax direct election senators) pioneered modern barnstorming campaigns within institutions. PRO 4 ONT_S 4 EPS 2 traditionalist (rubric: Bryan is traditionalist not institutionalist).
+elections-1892-1916.ts,1900,McKinley,LOW,N,N,5,4,3,3,4,4,2,3,5,5,3,4,1,0,,,,,,,,,,,,,,,Imperialist incumbent McKinley; coding fits.
+elections-1892-1916.ts,1900,Bryan,HIGH,Y,N,1,5,3,4,2,1,4,4,1,4,5,5,3,5,,,,,4,,,,4,,,,2,,Same Pattern A as 1896. PRO 4 ONT_S 4 EPS 2 traditionalist. AES 5 visionary correct for 1900 (rubric: 1896 and 1900 are visionary).
+elections-1892-1916.ts,1900,Debs,ALREADY-FIXED,N,N,1,1,5,5,1,1,5,5,1,1,5,5,0,5,,,,,,,,,,,,,,,Per session history Debs corrected. Revolutionary socialist anchor.
+elections-1892-1916.ts,1904,Roosevelt,LOW,N,N,3,2,4,5,3,2,2,4,3,4,3,5,0,3,,,,,,,,,,,,,,,TR 1904 coding plausible — Square Deal incumbent ONT_S 3 mid since pre-1912 New Nationalism.
+elections-1892-1916.ts,1904,Parker,MEDIUM,N,N,1,2,2,2,5,5,2,2,5,5,1,1,1,0,4,,,,,,,,,,,,,,MAT 1 for a Bourbon Democrat gold-standard judicial conservative is INVERTED — Parker was anti-redistributive. Should be MAT 4. Comment says Bourbon Democrat gold standard anti-labor which is MAT high not MAT low. Coding bug.
+elections-1892-1916.ts,1904,Debs,ALREADY-FIXED,N,N,1,1,5,5,1,1,5,5,1,1,5,5,0,5,,,,,,,,,,,,,,,Same Debs template; leave.
+elections-1892-1916.ts,1908,Taft,LOW,N,N,4,3,3,3,5,4,2,3,4,4,2,3,1,0,,,,,,,,,,,,,,,Conservative-leaning institutionalist Taft; coding fits.
+elections-1892-1916.ts,1908,Bryan,HIGH,Y,N,1,4,3,4,2,2,4,4,2,5,4,5,3,5,,,,,4,,,,4,,,,2,2,Same Pattern A. PRO 4 ONT_S 4 EPS 2 traditionalist. AES 5 → 2 PASTORAL — rubric explicitly says 1908 has shifted to pastoral. Don't mechanically code all three Bryan rows the same. This is the year-specificity test.
+elections-1892-1916.ts,1908,Debs,ALREADY-FIXED,N,N,1,1,5,5,1,1,5,5,1,1,5,5,0,5,,,,,,,,,,,,,,,Same Debs template; leave.
+elections-1892-1916.ts,1912,Wilson,LOW,N,N,2,3,4,4,4,3,2,4,2,5,3,5,0,5,,,,,,,,,,,,,,,New Freedom Wilson; coding mostly fits.
+elections-1892-1916.ts,1912,Roosevelt,HIGH,N,N,2,2,4,5,2,2,2,5,2,1,4,5,0,4,,,,,3,,,,5,,,,,,TR 1912 SPECIAL CASE per rubric: PRO 3 and ONT_S 5 (New Nationalism — national institutions can solve collective problems). Currently PRO 2 / ONT_S 2 — exactly inverted from rubric. PRO 3 ONT_S 5.
+elections-1892-1916.ts,1912,Taft,LOW,N,N,5,4,2,2,5,3,3,2,5,5,2,3,1,0,,,,,,,,,,,,,,,Old Guard Taft 1912; coding fits.
+elections-1892-1916.ts,1912,Debs,ALREADY-FIXED,N,N,1,1,5,5,1,1,5,5,1,1,5,5,0,5,,,,,,,,,,,,,,,Per session-history corrections; leave.
+elections-1892-1916.ts,1916,Wilson,MEDIUM,N,N,1,3,4,3,4,3,2,4,3,5,3,5,0,0,2,,,,,,,,,,,,,,MAT 1 max-redistribution for Wilson 1916 overstated — Adamson Act / Clayton / FTC progressive but not Bernie-tier. MAT 2 fits Truman/Carter/Obama 2008 anchor.
+elections-1892-1916.ts,1916,Hughes,MEDIUM,N,N,5,5,1,1,5,3,3,2,5,5,4,3,1,0,,,,2,,,,,,,,,,,All-extremes for a moderate progressive Republican Supreme Court justice. MOR 1 max-narrow especially wrong; he was progressive on civil liberties.
+elections-1892-1916.ts,1916,Benson,LOW,N,N,1,1,5,5,1,1,5,4,1,1,4,3,0,5,,,,,,,,,,,,,,,Less-charismatic Debs substitute; coding mirrors Debs template defensible.
+elections-1920-1936.ts,1920,Harding,LOW,N,N,4,4,3,2,4,5,2,3,4,4,2,3,2,2,,,,,,,,,,,,,,,Return to Normalcy Harding; coding fits.
+elections-1920-1936.ts,1920,Cox,HIGH,N,N,1,1,5,5,2,1,1,5,1,5,5,5,1,0,2,3,4,4,4,3,2,4,4,,,,,,All-extreme comments for a forgotten Wilsonian heir who lost in a landslide. Maximum tribal for someone with no tribal coalition is wrong. MAT 2 / CD 3 / CU 4 / MOR 4 / PRO 4 / COM 3 / ZS 2 / ONT_H 4 / ONT_S 4 — all softened toward mainstream Wilson-progressive-internationalist.
+elections-1920-1936.ts,1920,Debs,ALREADY-FIXED,N,N,1,1,5,5,1,1,5,5,1,1,5,5,0,5,,,,,,,,,,,,,,,Per session-history; leave.
+elections-1920-1936.ts,1924,Coolidge,LOW,N,N,4,3,3,3,5,4,2,3,5,3,2,3,2,0,,,,,,,,,,,,,,,Silent Cal laissez-faire prosperity; coding fits.
+elections-1920-1936.ts,1924,Davis,HIGH,N,N,1,1,5,5,4,4,2,4,2,5,4,3,1,0,4,3,3,3,,,,,4,,,,,,All-push-extreme comments for a CONSERVATIVE Wall Street lawyer chosen as compromise candidate. MAT 1 max-redistribution explicitly contradicts rubric (Davis was Bourbon Democrat). CD 1 / CU 5 / MOR 5 max-progressive contradicts that Davis was the most conservative Democrat of the era. ONT_S 2 system-needs-reform wrong for institutionalist lawyer. MAT 4 CD 3 CU 3 MOR 3 ONT_S 4.
+elections-1920-1936.ts,1924,La Follette,ALREADY-FIXED,N,N,2,1,4,5,4,1,3,4,4,1,4,5,0,4,,,,,,,,,,,,,,,Matches 2026-04-26 Pattern A correction.
+elections-1920-1936.ts,1928,Hoover,LOW,N,N,4,3,3,3,5,3,1,4,4,4,2,4,0,1,,,,,,,,,,,,,,,Great Engineer peak-1920s Hoover; coding fits.
+elections-1920-1936.ts,1928,Smith,LOW,N,N,2,1,4,4,3,4,2,4,4,5,4,5,3,3,,,,,,,,,,,,,,,Tammany urban Catholic Smith; coding fits including ADR-010 ONT_S fix.
+elections-1920-1936.ts,1932,Roosevelt,LOW,N,N,1,2,3,4,2,4,2,5,4,5,3,5,1,5,,,,,,,,,,,,,,,FDR 1932 with ADR-010 ONT_S polarity fix; coding fits.
+elections-1920-1936.ts,1932,Hoover,LOW,N,N,5,4,2,2,5,2,3,2,5,4,3,3,0,1,,,,,,,,,,,,,,,Crushed-by-Depression Hoover; coding fits.
+elections-1920-1936.ts,1936,Roosevelt,LOW,N,N,1,2,3,5,2,3,2,5,5,5,4,5,1,4,,,,,,,,,,,,,,,Peak-New-Deal FDR; ADR-010 ONT_S 5 fix included. Coding fits.
+elections-1920-1936.ts,1936,Landon,ALREADY-FIXED,N,N,4,4,2,2,4,3,3,2,4,4,2,2,0,2,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+candidates.ts,1940,Roosevelt,LOW,N,N,1,2,4,4,3,4,2,4,4,5,3,5,1,0,,,,,,,,,,,,,,,FDR third term; coding fits.
+candidates.ts,1940,Willkie,LOW,N,N,5,4,3,2,5,3,3,2,4,4,3,4,0,3,,,,,,,,,,,,,,,Internationalist business Republican; coding fits.
+candidates.ts,1944,Roosevelt,LOW,N,N,1,2,5,4,3,4,2,4,4,5,3,5,1,0,,,,,,,,,,,,,,,Wartime FDR; coding fits.
+candidates.ts,1944,Dewey,MEDIUM,N,N,5,5,1,1,5,3,3,2,4,5,3,3,0,1,,,,2,,,,,,,,,,,All-extremes for a moderate young NY governor / prosecutor running competence campaign. MOR 1 max-narrow wrong — Dewey was a moderate Republican prosecutor not klan-tier. MOR 2.
+candidates.ts,1948,Truman,LOW,N,N,2,2,4,4,3,3,2,4,4,5,4,5,1,4,,,,,,,,,,,,,,,Truman with civil rights Marshall Plan Berlin Airlift; coding fits ADR-010 ONT_S 4.
+candidates.ts,1948,Dewey,MEDIUM,N,N,5,4,2,2,5,4,3,2,4,4,3,3,0,0,,,,,,,,,,,,,,,Slightly less extreme than 1944 Dewey but still leaning. CD 4 / CU 2 / MOR 2 plausible for establishment Republican. LOW-bordering.
+candidates.ts,1948,Thurmond,LOW,Y,N,3,5,1,1,2,1,5,2,2,3,5,5,2,4,,,,,,,,,,,,,,,Dixiecrat segregationist; Pattern B coding accurate (CU 1 / MOR 1 IS practiced narrow scope). ZS 5 fits civil-rights backlash anchor.
+candidates.ts,1948,H. Wallace,MEDIUM,Y,N,1,1,5,5,2,1,1,5,2,1,3,5,0,5,,,,,,,,,4,,,,,,Rubric explicitly anchors H. Wallace 1948 at ONT_S 4 (institutional reformers who use institutions hard). Currently 2 — pushes him toward Debs-style anti-systemic socialism. Pattern A flag.
+candidates.ts,1952,Eisenhower,LOW,N,N,4,3,3,3,5,4,2,3,4,3,3,5,0,0,,,,,,,,,,,,,,,Ike 1952; coding fits.
+candidates.ts,1952,Stevenson,MEDIUM,N,N,1,1,5,5,4,4,2,5,5,5,3,4,0,5,2,,,,,,,,,,,,,,MAT 1 max-redistribution overstated for Stevenson — New Deal liberal but not Bernie-tier. MAT 2 (Truman/Obama anchor).
+candidates.ts,1956,Eisenhower,LOW,N,N,4,3,4,3,5,4,2,3,4,2,2,4,0,0,,,,,,,,,,,,,,,Second-term Ike; coding fits.
+candidates.ts,1956,Stevenson,MEDIUM,N,N,1,1,5,5,4,3,2,5,4,5,4,5,0,5,2,,,,,,,,,,,,,,Same as 1952 — MAT 1 → 2.
+candidates.ts,1960,Kennedy,LOW,N,N,2,2,4,3,4,4,2,4,3,4,3,5,1,0,,,,,,,,,,,,,,,JFK New Frontier; coding fits.
+candidates.ts,1960,Nixon,LOW,N,N,4,3,3,3,4,4,3,3,3,4,3,5,1,0,,,,,,,,,,,,,,,1960 Nixon (pre-Silent-Majority); coding fits the moderate Eisenhower-VP profile.
+candidates.ts,1964,Johnson,LOW,N,N,1,2,4,3,3,4,2,4,5,5,5,5,1,0,,,,,,,,,,,,,,,LBJ Great Society; ADR-010 ONT_S 5 included. Coding fits.
+candidates.ts,1964,Goldwater,LOW,N,N,5,4,2,3,4,1,3,2,1,3,3,5,4,3,,,,,,,,,,,,,,,Goldwater libertarian-conservative; coding fits including ONT_S 1 (extremism in defense of liberty + libertarian streak).
+candidates.ts,1968,Nixon,LOW,N,N,4,4,3,4,3,3,3,2,2,4,4,5,1,0,,,,,,,,,,,,,,,Silent Majority Nixon 1968; coding fits.
+candidates.ts,1968,Humphrey,LOW,N,N,2,2,4,3,4,5,2,4,5,5,3,5,1,5,,,,,,,,,,,,,,,Happy Warrior Humphrey; ADR-010 ONT_S 5. Coding fits.
+candidates.ts,1968,Wallace,MEDIUM,Y,N,2,5,1,5,1,1,5,1,2,1,5,5,3,4,,,,1,,,,,,,,,,,Wallace MOR 5 — but rubric says MOR is SPATIAL SCOPE ONLY; segregationism is narrow PRACTICED scope. MOR 5 is INVERTED — should be 1. CD 5 / CU 1 already capture traditional content side. Single-node-strong-evidence — could be HIGH.
+candidates.ts,1972,Nixon,ALREADY-FIXED,N,N,4,5,3,2,3,4,3,2,2,4,4,5,0,0,,,,,,,,,,,,,,,Matches 2026-04-23 recalibration.
+candidates.ts,1972,McGovern,ALREADY-FIXED,N,N,1,1,5,5,3,2,2,4,4,3,2,5,0,5,,,,,,,,,,,,,,,Matches 2026-04-23 MOR-polarity correction.
+candidates.ts,1976,Carter,LOW,N,N,2,3,4,4,5,4,2,4,4,3,3,4,3,2,,,,,,,,,,,,,,,Carter 1976; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,1976,Ford,LOW,N,N,5,4,3,3,5,5,2,3,4,5,2,3,1,0,,,,,,,,,,,,,,,Healer Ford; coding fits.
+candidates.ts,1980,Reagan,LOW,N,N,4,4,3,4,3,4,2,4,3,4,4,5,3,5,,,,,,,,,,,,,,,Reagan 1980; coding fits including morning in America visionary AES.
+candidates.ts,1980,Carter,LOW,N,N,2,3,4,4,5,3,3,3,4,4,3,4,0,2,,,,,,,,,,,,,,,Incumbent Carter; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,1980,Anderson,LOW,N,N,4,2,4,2,5,4,2,4,3,1,1,4,0,1,,,,,,,,,,,,,,,Liberal Republican third-party; coding fits the anti-tribal independent profile.
+candidates.ts,1984,Reagan,LOW,N,N,4,4,2,4,4,4,1,4,4,5,4,5,3,5,,,,,,,,,,,,,,,Peak Reagan Morning in America; coding fits.
+candidates.ts,1984,Mondale,MEDIUM,N,N,1,2,4,2,4,4,3,3,5,5,4,5,1,0,,,,4,,,,,,,,,,,MOR 2 reads secular-leaning permissive through CD-style content. MOR is spatial scope; Mondale's coalition was wide moral circle. MOR 4 fits Truman/Carter/Obama anchor.
+candidates.ts,1988,Bush,LOW,N,N,4,5,3,2,4,4,2,3,4,4,4,4,1,0,,,,,,,,,,,,,,,CD 5 max-restorationist for HW Bush slightly overdone but defensible. LOW-bordering.
+candidates.ts,1988,Dukakis,MEDIUM,N,N,2,1,4,1,5,4,2,4,5,4,2,4,0,1,,,,4,,,,,,,,,,,Same MOR-as-CD-content confusion. Dukakis ACLU progressivism is CULTURE (CD 1 captured) not narrow moral scope. MOR 1 means klan-tier in-group only — wrong for humanitarian liberal. MOR 4.
+candidates.ts,1992,Clinton,LOW,N,N,3,2,4,3,3,5,1,4,4,4,3,5,0,3,,,,,,,,,,,,,,,Clinton 1992 New Democrat; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,1992,Bush,LOW,N,N,4,3,4,3,4,4,3,3,4,4,3,4,1,0,,,,,,,,,,,,,,,Mostly fine; CU 4 mild internationalism plausible.
+candidates.ts,1992,Perot,LOW,N,N,4,3,2,3,3,2,4,3,2,1,2,4,0,1,,,,,,,,,,,,,,,Outsider Perot 1992; coding fits the businessman-populist profile.
+candidates.ts,1996,Clinton,LOW,N,N,3,2,4,3,3,5,1,4,4,4,3,5,0,0,,,,,,,,,,,,,,,Triangulation Clinton 1996; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,1996,Dole,LOW,N,N,4,4,3,4,4,4,3,2,4,5,3,5,1,0,,,,,,,,,,,,,,,Senate-institutionalist Dole; coding fits.
+candidates.ts,1996,Perot,LOW,N,N,4,3,2,3,3,2,4,3,2,1,2,3,0,1,,,,,,,,,,,,,,,Same as 1992 with lower ENG; coding fits.
+candidates.ts,2000,Gore,LOW,N,N,2,2,4,3,4,4,2,4,4,4,3,5,0,1,,,,,,,,,,,,,,,Gore 2000; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,2000,Bush,LOW,N,N,4,3,3,4,3,4,2,3,4,4,3,3,3,2,,,,,,,,,,,,,,,Compassionate-conservatism Bush; coding fits.
+candidates.ts,2000,Nader,ALREADY-FIXED,N,N,2,3,4,4,4,1,5,4,3,1,1,5,0,3,,,,,,,,,,,,,,,Matches 2026-04-26 Pattern A correction.
+candidates.ts,2004,Kerry,LOW,N,N,2,2,4,4,4,4,2,4,4,5,3,5,0,0,,,,,,,,,,,,,,,Kerry 2004; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,2004,Bush,LOW,N,N,5,4,2,2,4,3,4,3,4,5,4,5,3,4,,,,,,,,,,,,,,,War-president Bush 2004; coding fits the us-vs-them stance.
+candidates.ts,2008,Obama,LOW,N,N,2,2,4,3,4,4,1,5,4,3,2,5,0,5,,,,,,,,,,,,,,,Hope and change Obama; ADR-010 ONT_S 4. Coding fits.
+candidates.ts,2008,McCain,LOW,N,N,4,3,3,3,4,4,3,3,4,3,3,5,1,3,,,,,,,,,,,,,,,Maverick McCain; coding fits.
+candidates.ts,2012,Obama,MEDIUM,N,N,2,2,4,2,4,3,2,4,5,4,3,5,0,0,,,,4,,,,,,,,,,,Same MOR-as-CD issue: MOR 2 reads progressive cultural content (gay marriage) but Obama's actual moral scope (ACA expansion climate global) is wide. MOR 4.
+candidates.ts,2012,Romney,LOW,N,N,5,3,3,4,4,3,3,3,4,4,3,4,0,1,,,,,,,,,,,,,,,Romney 2012; coding fits.
+candidates.ts,2016,Trump,LOW,Y,N,4,5,1,3,1,1,5,2,2,3,5,5,3,4,,,,,,,,,,,,,,,Trump 2016 Pattern-B-aligned: CU 1 / MOR 3 — accurate practiced narrow scope. EPS 3 intuitionist matches rubric anchor.
+candidates.ts,2016,H. Clinton,MEDIUM,N,N,2,2,4,2,4,4,2,4,5,5,3,5,0,0,,,,4,,,,,,,,,,,Same MOR-as-CD pattern. HRC's wide-moral-circle global engagement / immigration / human rights is MOR 4. MOR 2 reads CD content.
+candidates.ts,2016,Johnson,MEDIUM,N,N,5,1,3,4,3,1,1,5,1,1,1,2,0,3,,,,,,,,1,,,,,,,Libertarian Gary Johnson. ONT_H 5 max-perfectibility for a libertarian who believes people are who they are is INVERTED per rubric (Libertarians/objectivists who believe people are who they are = ONT_H low). Should be 1-2.
+candidates.ts,2020,Biden,LOW,N,N,2,2,4,4,5,5,2,4,5,4,2,4,1,2,,,,,,,,,,,,,,,Biden 2020; ADR-010 ONT_S 5. Coding fits.
+candidates.ts,2020,Trump,LOW,Y,N,4,5,1,2,1,1,5,2,2,3,5,5,3,4,,,,,,,,,,,,,,,Trump 2020 Pattern-B-aligned: practiced narrow scope post-election norm-breaking PRO 1.
+candidates.ts,2024,Trump,LOW,Y,N,4,5,1,2,2,2,4,2,2,4,5,5,3,4,,,,,,,,,,,,,,,Trump 2024; coding fits authoritarian-signaling third run.
+candidates.ts,2024,Harris,LOW,N,N,2,2,4,4,4,4,2,4,4,5,3,5,1,1,,,,,,,,,,,,,,,Harris 2024; ADR-010 ONT_S 4. Coding fits.

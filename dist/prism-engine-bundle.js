@@ -56,8 +56,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
@@ -76,8 +76,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -96,8 +96,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
@@ -106,18 +106,20 @@ var PrismEngine = (() => {
       id: "004",
       name: "Labor Reformer",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): civic-nationalist progressive
+      // labor pattern; net mid under broader uniformity-vs-pluralism axis.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
         MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 4, sal: 1 },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -126,6 +128,10 @@ var PrismEngine = (() => {
       id: "005",
       name: "Pluralist Structuralist",
       tier: "T1",
+      // ONT_S 1 → 4 per ADR-010 reframe (2026-04-26): structuralists who want to
+      // reshape institutions to fix power imbalances believe well-designed
+      // institutions CAN work. Old "system broken" reading at ONT_S=1 was wrong;
+      // they're institutional reformers, not nihilists.
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -135,9 +141,9 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
       }
@@ -158,8 +164,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
         // raised sal 1→2 (discriminator vs Social Stabilizer)
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -168,18 +174,20 @@ var PrismEngine = (() => {
       id: "007",
       name: "Solidarist Reformer",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): communal-left wants shared
+      // moral values but pluralism on private lifestyle; net mid.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -188,6 +196,9 @@ var PrismEngine = (() => {
       id: "008",
       name: "Procedural Redistributionist",
       tier: "T1",
+      // ONT_H 2 → 4 per ADR-010 (2026-04-26): proceduralists believe institutions
+      // (when properly designed) reshape incentives and behavior. Under the
+      // malleability framing they are high-malleability-via-state, not skeptics.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -196,10 +207,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -208,6 +219,9 @@ var PrismEngine = (() => {
       id: "010",
       name: "Bread-and-Butter Progressive",
       tier: "T1",
+      // ONT_H 2 → 4 per ADR-010 (2026-04-26): BBP progressives believe state
+      // programs (jobs, welfare, education) improve people's material and moral
+      // condition. High malleability via state.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -216,10 +230,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -238,8 +252,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -258,8 +272,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
@@ -278,8 +292,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
@@ -298,8 +312,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       }
@@ -318,8 +332,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 2, anti: "low" },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
       }
@@ -338,8 +352,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
@@ -358,8 +372,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -381,8 +395,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 2, anti: "low" },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
@@ -407,13 +421,13 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         // 019's optimism
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2, anti: "high" },
         // kept 020's stronger anti-partisan
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         // kept 020's anti-tribal
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.4, 0.38, 0.04, 0.08], sal: 2 }
-        // blend pastoral+authentic
+        // blend pastoral+plainspoken
       }
     },
     {
@@ -437,8 +451,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
         // blend of 3/3/4
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         // anti-tribalism is core
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
@@ -458,8 +472,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
@@ -483,8 +497,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         // added anti:low — strongly optimistic
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         // raised sal 2→3
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
@@ -505,8 +519,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
@@ -529,8 +543,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         // raised sal 2→3: system critique is core
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         // raised sal 1→2
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
@@ -550,8 +564,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
@@ -570,8 +584,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -590,8 +604,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
@@ -610,8 +624,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       }
@@ -630,8 +644,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
@@ -650,9 +664,9 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
+        PF: { kind: "continuous", pos: 3, anti: "high" },
         // Fixed: sal 0→1 (can't have anti on sal=0)
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       }
@@ -671,8 +685,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 3 },
-        PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3, anti: "low" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
       }
@@ -692,9 +706,9 @@ var PrismEngine = (() => {
     // ZS: { kind: "continuous", pos: 2, sal: 1 },
     // ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
     // ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-    // PF: { kind: "continuous", pos: 3, sal: 0 },
-    // TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-    // ENG: { kind: "continuous", pos: 3, sal: 1 },
+    // PF: { kind: "continuous", pos: 3 },
+    // TRB: { kind: "continuous", pos: 2, anti: "high" },
+    // ENG: { kind: "continuous", pos: 3 },
     // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
     // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
     // }
@@ -713,8 +727,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
@@ -733,8 +747,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
@@ -753,8 +767,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
@@ -763,18 +777,20 @@ var PrismEngine = (() => {
       id: "039",
       name: "Data-Driven Moderate",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): technocratic pragmatist; not
+      // uniformity-seeking, just outcome-oriented. Net mid under broader axis.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       }
@@ -793,8 +809,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
@@ -803,18 +819,20 @@ var PrismEngine = (() => {
       id: "042",
       name: "Localist Progressive",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): participatory-progressive,
+      // civic-local not assimilationist.
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
@@ -823,18 +841,20 @@ var PrismEngine = (() => {
       id: "043",
       name: "Quiet Egalitarian",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): communitarian redistributionist
+      // wants shared moral life via solidarity, not uniformity enforcement.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
@@ -843,18 +863,20 @@ var PrismEngine = (() => {
       id: "045",
       name: "Rooted Social Reformer",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): rooted progressive seeking
+      // deep community cohesion, not assimilationism.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
@@ -863,18 +885,20 @@ var PrismEngine = (() => {
       id: "046",
       name: "Pastoral Leftist",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): spiritual-communal, not
+      // uniformity-seeking.
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
       }
@@ -894,9 +918,9 @@ var PrismEngine = (() => {
     // ZS: { kind: "continuous", pos: 2, sal: 1 },
     // ONT_H: { kind: "continuous", pos: 3, sal: 1 },
     // ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-    // PF: { kind: "continuous", pos: 2, sal: 1 },
-    // TRB: { kind: "continuous", pos: 2, sal: 1 },
-    // ENG: { kind: "continuous", pos: 4, sal: 1 },
+    // PF: { kind: "continuous", pos: 2 },
+    // TRB: { kind: "continuous", pos: 2 },
+    // ENG: { kind: "continuous", pos: 4 },
     // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
     // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
     // }
@@ -905,18 +929,20 @@ var PrismEngine = (() => {
       id: "048",
       name: "Solidaristic Localist",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): communitarian localist
+      // preferring shared life to uniformity.
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       }
@@ -925,18 +951,20 @@ var PrismEngine = (() => {
       id: "049",
       name: "Moral Egalitarian",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): equality-through-solidarity,
+      // not uniformity. Old CU=2 was narrow-framed.
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
         MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
@@ -955,8 +983,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
@@ -975,8 +1003,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       }
@@ -995,8 +1023,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1016,28 +1044,37 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       }
     },
     {
       id: "056",
-      name: "Institutional Centrist",
+      name: "Institutional Leftist",
       tier: "T1",
+      // Renamed 2026-04-26 from "Institutional Centrist". The previous name was
+      // misleading — MAT=2 is far-left on the redistribution axis, not centrist.
+      // The archetype represents an economically progressive (MAT=2),
+      // culturally moderate-traditional (CD=4), institutionally trusting
+      // (ONT_S=4), strongly anti-zero-sum, anti-tribal pluralist. The
+      // distinguishing feature vs Pluralist Structuralist (005) is the more
+      // conservative cultural register and the institutional-trust orientation.
+      // CU lowered 2026-04-26 from 5 → 4 under broadened CU framing — still
+      // strongly pluralist on private worldview/lifestyle but not maximally so.
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
         MOR: { kind: "continuous", pos: 4, sal: 3 },
         PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1056,8 +1093,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1066,6 +1103,7 @@ var PrismEngine = (() => {
       id: "059",
       name: "Public-Minded Moderate",
       tier: "T1",
+      centristAnchor: true,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1076,8 +1114,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1086,18 +1124,21 @@ var PrismEngine = (() => {
       id: "060",
       name: "Hinge Citizen",
       tier: "T1",
+      centristAnchor: true,
+      // CU 2→3 (2026-04-26 broadened CU framing): true swing centrist; mid CU
+      // matches mid everything else.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
       }
@@ -1116,8 +1157,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
@@ -1136,8 +1177,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
@@ -1156,8 +1197,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
@@ -1178,9 +1219,9 @@ var PrismEngine = (() => {
     //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
     //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
     //     ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-    //     PF: { kind: "continuous", pos: 3, sal: 2 },
-    //     TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-    //     ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+    //     PF: { kind: "continuous", pos: 3 },
+    //     TRB: { kind: "continuous", pos: 2, anti: "high" },
+    //     ENG: { kind: "continuous", pos: 5, anti: "low" },
     //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
     //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
     //   }
@@ -1199,8 +1240,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
@@ -1219,8 +1260,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       }
@@ -1239,8 +1280,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
       }
@@ -1249,18 +1290,27 @@ var PrismEngine = (() => {
       id: "070",
       name: "Burkean Steward",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): Burkean tradition
+      // explicitly believes humans are cultivated by family/church/custom (high
+      // malleability via cultural mechanism) AND that lawful institutions are
+      // foundational to ordered liberty (high institutional capacity belief).
+      // Old encoding read these as 3/3 under "moderate optimism / mixed system"
+      // — wrong axis under the new framings.
       nodes: {
+        // CU 2→3 (2026-04-26 broadened CU framing): Burkean tradition values
+        // shared civic/cultural cohesion but tolerates private pluralism;
+        // anti="high" retained.
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         MOR: { kind: "continuous", pos: 2, sal: 3 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
@@ -1269,6 +1319,11 @@ var PrismEngine = (() => {
       id: "071",
       name: "Constitutional Conservative",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): constitutional
+      // conservatism centers on lawful institutions and written tradition shaping
+      // behavior — high malleability via constitutional/legal cultivation. Light
+      // institutional capacity belief (constitutional structure works, but state
+      // overreach bad).
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2 },
@@ -1277,10 +1332,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
       }
@@ -1289,6 +1344,8 @@ var PrismEngine = (() => {
       id: "072",
       name: "Blackstone Conservative",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): common-law
+      // traditionalist; institutions (especially law) transmit and shape character.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1297,10 +1354,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1309,6 +1366,9 @@ var PrismEngine = (() => {
       id: "073",
       name: "Civic Traditionalist",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): civic traditionalists
+      // champion civic participation within inherited institutional frameworks —
+      // high cultivation by civic duty + high faith in functioning institutions.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1317,10 +1377,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1339,8 +1399,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+        PF: { kind: "continuous", pos: 4, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1359,8 +1419,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+        PF: { kind: "continuous", pos: 4, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1379,8 +1439,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1399,8 +1459,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1409,18 +1469,20 @@ var PrismEngine = (() => {
       id: "079",
       name: "National Developmentalist",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): nationalist but
+      // development-focused; state-led growth, not cultural uniformity.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
         MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
       }
@@ -1435,6 +1497,10 @@ var PrismEngine = (() => {
       id: "081",
       name: "Heritage Guardian",
       tier: "T1",
+      // ONT_H 2 → 4, ONT_S 1 → 2 per ADR-010 (2026-04-26): heritage preservation
+      // IS belief in cultural transmission (high malleability via tradition).
+      // Anti-state institutionalist preserved (anti:"high" on ONT_S, only raised
+      // to 2 from 1).
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1443,10 +1509,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -1455,6 +1521,9 @@ var PrismEngine = (() => {
       id: "082",
       name: "Altar-and-Hearth Conservative",
       tier: "T1",
+      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): family/religion/
+      // tradition ARE cultivation mechanisms; humans malleable via them. Mid
+      // institutional capacity (church/family yes, state skeptical).
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1463,10 +1532,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -1475,6 +1544,9 @@ var PrismEngine = (() => {
       id: "083",
       name: "Closed Traditionalist",
       tier: "T1",
+      // ONT_H 2 → 4 per ADR-010 (2026-04-26): closed traditionalists believe in
+      // cultivation via tradition/family/religion. ONT_S held at 2 — they reject
+      // modern state institutions while valuing inherited ones.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1483,10 +1555,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -1495,6 +1567,9 @@ var PrismEngine = (() => {
       id: "084",
       name: "Civilizational Conservative",
       tier: "T1",
+      // ONT_H 2 → 3 per ADR-010 (2026-04-26): civilizational conservatives
+      // believe modern humans are degenerating — modest malleability via tradition
+      // but institutional nihilism preserved (ONT_S kept at 1, anti:"high").
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1503,10 +1578,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -1515,6 +1590,9 @@ var PrismEngine = (() => {
       id: "085",
       name: "Customary Localist",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): customary localists
+      // believe local custom shapes and improves people (high malleability via
+      // tradition); local institutions trusted more than state but still real.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1523,10 +1601,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
@@ -1535,18 +1613,23 @@ var PrismEngine = (() => {
       id: "086",
       name: "Duty Traditionalist",
       tier: "T1",
+      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): duty-based traditionalism
+      // explicitly emphasizes character cultivation through obligation and role —
+      // high malleability via tradition + institutional structure.
       nodes: {
+        // CU 2→3 (2026-04-26 broadened CU framing): duty-bound communitarian
+        // but not uniformity-enforcing.
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -1555,6 +1638,9 @@ var PrismEngine = (() => {
       id: "087",
       name: "Continuity Conservative",
       tier: "T1",
+      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): continuity conservatism
+      // prioritizes institutional continuity and cultural transmission as
+      // improvement mechanisms.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1563,10 +1649,10 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -1575,18 +1661,24 @@ var PrismEngine = (() => {
       id: "088",
       name: "Gentle Traditionalist",
       tier: "T1",
+      // ONT_S 2 → 3 per ADR-010 (2026-04-26): already correctly high on ONT_H
+      // (tradition shapes people). Mild upward shift on ONT_S — they trust
+      // inherited institutions even if skeptical of modern state expansion.
+      // anti:"high" preserved.
+      // CU 2→3 (2026-04-26 broadened CU framing): soft conservatism; shared
+      // customs preferred but not enforced uniformity. anti="high" retained.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       }
@@ -1595,18 +1687,23 @@ var PrismEngine = (() => {
       id: "089",
       name: "Integral Traditionalist",
       tier: "T1",
+      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): integral traditionalism
+      // blends institutional and cultural transmission — humans cultivated by
+      // sacred order and inherited institutions.
       nodes: {
+        // CU 2→3 (2026-04-26 broadened CU framing): holistic conservative;
+        // organic community coherence, not assimilationist policy.
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1627,8 +1724,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // Hobbesian: humans are NOT perfectible
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1647,8 +1744,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1667,8 +1764,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1687,8 +1784,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       }
@@ -1707,8 +1804,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       }
@@ -1727,8 +1824,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 1 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
       }
@@ -1747,8 +1844,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
@@ -1767,8 +1864,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -1787,8 +1884,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       }
@@ -1807,8 +1904,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 3, sal: 2 },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
@@ -1827,8 +1924,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       }
@@ -1847,8 +1944,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       }
@@ -1867,8 +1964,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
@@ -1887,8 +1984,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 1 },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       }
@@ -1897,28 +1994,44 @@ var PrismEngine = (() => {
       id: "107",
       name: "Resentful Localist",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): aggrieved localist; resentment
+      // is anti-pluralist impulse but not uniformity-enforcing.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 2, anti: "high" },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
       }
     },
-    // MERGED: 108 Passive Cynic → absorbed into 118 Survival Pragmatist (no Î”â‰¥2 discriminators, profile was mostly sal=0)
-    // {
-    //   id: "108",
-    //   name: "Passive Cynic",
-    //   ...
-    // },
+    {
+      id: "108",
+      name: "Passive Cynic",
+      tier: "T1",
+      nodes: {
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 4, sal: 2 },
+        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 1, anti: "high" },
+        TRB: { kind: "continuous", pos: 1, anti: "high" },
+        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.15, 0.6], sal: 2, antiCats: [1] },
+        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.55, 0.2, 0.05], sal: 1 }
+      }
+    },
     {
       id: "109",
       name: "Alienated Outsider",
@@ -1933,8 +2046,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 3, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -1953,8 +2066,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-        PF: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2, anti: "high" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -1973,8 +2086,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
       }
@@ -1993,10 +2106,52 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+      }
+    },
+    {
+      id: "113",
+      name: "Disaffected Contrarian",
+      tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): populist outsider; oppositional
+      // stance not assimilationist.
+      nodes: {
+        MAT: { kind: "continuous", pos: 3, sal: 1 },
+        CD: { kind: "continuous", pos: 2, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
+        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
+        EPS: { kind: "categorical", probs: [0.05, 0.03, 0.07, 0.18, 0.12, 0.55], sal: 2, antiCats: [0, 1] },
+        AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.1, 0.75, 0.07], sal: 2 }
+      }
+    },
+    {
+      id: "114",
+      name: "Political Nihilist",
+      tier: "T1",
+      nodes: {
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+        ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 1, anti: "high" },
+        TRB: { kind: "continuous", pos: 1, anti: "high" },
+        EPS: { kind: "categorical", probs: [0.03, 0.03, 0.03, 0.08, 0.1, 0.73], sal: 3, antiCats: [0, 1, 2] },
+        AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.7, 0.15], sal: 2 }
       }
     },
     {
@@ -2015,8 +2170,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
         // raised sal 0→1 (discriminator vs Ecological Localist)
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
       }
@@ -2025,6 +2180,7 @@ var PrismEngine = (() => {
       id: "116",
       name: "Quiet Middle",
       tier: "T1",
+      centristAnchor: true,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2035,8 +2191,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3, anti: "low" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2055,8 +2211,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3, anti: "low" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2075,8 +2231,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2095,8 +2251,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2115,8 +2271,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PF: { kind: "continuous", pos: 3, sal: 2 },
-        TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       }
@@ -2135,8 +2291,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2145,6 +2301,7 @@ var PrismEngine = (() => {
       id: "122",
       name: "Civic Minimalist",
       tier: "T1",
+      centristAnchor: true,
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2155,8 +2312,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2175,8 +2332,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2195,8 +2352,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 4, anti: "low" },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2215,8 +2372,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 0 },
-        TRB: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 3, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2235,8 +2392,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2255,9 +2412,9 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
         // Fixed: Loyal = high PF
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2266,18 +2423,20 @@ var PrismEngine = (() => {
       id: "129",
       name: "Loyal Republican",
       tier: "T1",
+      // CU 2→3 (2026-04-26 broadened CU framing): partisan Republican moderate;
+      // civic-bound partisan, not uniformity-minded.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
+        CU: { kind: "continuous", pos: 3, sal: 1 },
         MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2298,9 +2457,9 @@ var PrismEngine = (() => {
     //     ZS: { kind: "continuous", pos: 3, sal: 1 },
     //     ONT_H: { kind: "continuous", pos: 3, sal: 0 },
     //     ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-    //     PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-    //     TRB: { kind: "continuous", pos: 4, sal: 2 },
-    //     ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+    //     PF: { kind: "continuous", pos: 5, anti: "low" },
+    //     TRB: { kind: "continuous", pos: 4 },
+    //     ENG: { kind: "continuous", pos: 3, anti: "high" },
     //     EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
     //     AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
     //   }
@@ -2319,8 +2478,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2339,8 +2498,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 5, anti: "low" },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       }
@@ -2349,20 +2508,41 @@ var PrismEngine = (() => {
       id: "134",
       name: "Progressive Civic Nationalist",
       tier: "T1",
+      // Re-encoded 2026-04-24: this is the FDR/JFK/LBJ/Obama/Biden mainstream
+      // Democratic tradition. Patriotic + economically progressive + civic-
+      // nationalist + institutionally trusting + universalist-leaning + always
+      // votes Democrat. Previous encoding (CU=4 sal=2, PF=2) misclassified this
+      // as cosmopolitan-progressive — duplicating Activist Progressive — and
+      // failed to fire on actual civic-nationalist progressives. PF bumped 2 → 5
+      // because civic nationalists are the partisan-loyalist mainstream of the
+      // Democratic Party.
+      // CU 2 → 3 update 2026-04-26: under the broadened CU framing (worldview,
+      // religion, lifestyle, conception-of-good-life pluralism, not just
+      // narrow culture), civic-nationalist progressive lands at MID, not low.
+      // The civic-nationalist signature is shared civic values (push CU low) +
+      // pluralist on private life/religion/lifestyle (push CU high) → net mid.
+      // Old CU=2 was calibrated under the narrower CU framing where civic-
+      // nationalist read as assimilationist; under the broader framing CU=2 is
+      // reserved for archetypes who actually want more uniformity in private
+      // worldview/lifestyle (communitarian conservative, shared-thick-culture
+      // advocates).
       nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 2 },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
+        // ONT_S 3 → 4 per ADR-010 (2026-04-26): civic-nationalist progressives
+        // (FDR/Biden/Obama tradition) believe state programs effectively deliver
+        // healthcare/education/redistribution. High institutional capacity belief.
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 3 },
+        EPS: { kind: "categorical", probs: [0.3, 0.4, 0.05, 0.1, 0.1, 0.05], sal: 1 },
+        AES: { kind: "categorical", probs: [0.35, 0.2, 0.05, 0.1, 0.2, 0.1], sal: 1 }
       }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
@@ -2382,8 +2562,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 1, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 1 },
+        PF: { kind: "continuous", pos: 1 },
+        TRB: { kind: "continuous", pos: 1 },
         EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
         // FIX: Disruptive = visionary, not statesman
@@ -2407,8 +2587,8 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         // Aspirational = optimistic (was 3/sal1)
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 2, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 2 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
         AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
       }
@@ -2427,8 +2607,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, sal: 2 },
-        TRB: { kind: "continuous", pos: 4, sal: 2 },
+        PF: { kind: "continuous", pos: 4 },
+        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
         // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
@@ -2450,8 +2630,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 1, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 1 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
         // FIX: Holistic = intuitionist+autonomous, not nihilist
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
@@ -2473,8 +2653,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3, sal: 1 },
-        TRB: { kind: "continuous", pos: 2, sal: 1 },
+        PF: { kind: "continuous", pos: 3 },
+        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
       }
@@ -2494,8 +2674,8 @@ var PrismEngine = (() => {
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 1, sal: 1 },
-        TRB: { kind: "continuous", pos: 1, sal: 1 },
+        PF: { kind: "continuous", pos: 1 },
+        TRB: { kind: "continuous", pos: 1 },
         EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
         // Empiricist
         AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
@@ -2511,26 +2691,36 @@ var PrismEngine = (() => {
     // TRB/PF/ENG are the defining feature — politics is identity-first.
     // ═══════════════════════════════════════════════════════════════════════════
     {
+      // ===== Identity-primary archetypes (141-146) =====
+      // Re-encoded 2026-04-24 as policy-flat per ADR-006:
+      //   - All non-SELF nodes: pos=3 sal=0 (no policy posture)
+      //   - EPS/AES: uniform 1/6 distribution sal=0
+      //   - PF=5, TRB=5 (highly fused, highly tribal)
+      //   - No anti flags (no policy positions to anti)
+      // The label of identity is determined by the resolver via:
+      //   anchor + demographic confirmation + ideology-thinness gate
+      // not by encoded policy similarity. A user with strong ideological
+      // commitments (high policy salience) is excluded by the ideology gate
+      // even if anchor + demographic + tribal/fusion conditions otherwise match.
+      // White/Male Grievance are NOT separate ideological postures — per user
+      // (2026-04-24), grievance just labels majority-position identity voting.
       id: "141",
       name: "Black Voter",
       tier: "T2",
       nodes: {
-        // Strong group-linked Democratic alignment. Redistributionist on economics,
-        // moderate-progressive on culture, high community solidarity.
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.15, 0.3, 0.15, 0.25, 0.1, 0.05], sal: 1 },
-        AES: { kind: "categorical", probs: [0.1, 0.05, 0.2, 0.4, 0.15, 0.1], sal: 1 }
-        // Authentic
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     },
     {
@@ -2538,24 +2728,19 @@ var PrismEngine = (() => {
       name: "White Grievance Voter",
       tier: "T2",
       nodes: {
-        // Ethno-cultural displacement threat. Cultural uniformity and narrow moral
-        // circle are the anchors — not zero-sum competition per se. Sees society
-        // losing its cultural identity, not losing a competitive game.
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 3 },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.05, 0.1, 0.25, 0.4, 0.1, 0.1], sal: 1 },
-        // Intuitionist
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.3, 0.4, 0.1], sal: 2 }
-        // Fighter
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     },
     {
@@ -2563,23 +2748,19 @@ var PrismEngine = (() => {
       name: "Evangelical Voter",
       tier: "T2",
       nodes: {
-        // Religion-centered identity. Traditional morality is the defining axis.
-        // Moderate economics, strong cultural conservatism, community-anchored.
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 3 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.05, 0.15, 0.5, 0.2, 0.05, 0.05], sal: 2 },
-        // Traditionalist
-        AES: { kind: "categorical", probs: [0.1, 0.05, 0.5, 0.15, 0.1, 0.1], sal: 2 }
-        // Pastoral
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     },
     {
@@ -2587,23 +2768,19 @@ var PrismEngine = (() => {
       name: "LGBTQ Voter",
       tier: "T2",
       nodes: {
-        // Sexual-identity-centered. Strongly progressive on culture, expansive moral
-        // circle, community-driven politics. Strong Democratic alignment.
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.2, 0.15, 0.05, 0.15, 0.35, 0.1], sal: 1 },
-        // Autonomous
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.45, 0.15, 0.2], sal: 1 }
-        // Authentic
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     },
     {
@@ -2611,23 +2788,19 @@ var PrismEngine = (() => {
       name: "Feminist Voter",
       tier: "T2",
       nodes: {
-        // Gender-equity-centered. Progressive on culture, systemic structural
-        // orientation, expansive moral circle. Strong Democratic alignment.
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 3 },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.3, 0.2, 0.05, 0.1, 0.25, 0.1], sal: 1 },
-        // Empiricist
-        AES: { kind: "categorical", probs: [0.1, 0.05, 0.1, 0.25, 0.3, 0.2], sal: 1 }
-        // Fighter/Visionary
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     },
     {
@@ -2635,24 +2808,19 @@ var PrismEngine = (() => {
       name: "Male Grievance Voter",
       tier: "T2",
       nodes: {
-        // Gender-anchored backlash. Hierarchy-driven, anti-procedural, zero-sum.
-        // Less about cultural uniformity than White Grievance — more about
-        // natural-order hierarchy and seeing institutions as rigged against men.
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 3 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 2 },
-        COM: { kind: "continuous", pos: 1, sal: 2 },
-        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 3 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PF: { kind: "continuous", pos: 5, sal: 3 },
-        TRB: { kind: "continuous", pos: 5, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.25, 0.25, 0.3], sal: 1 },
-        // Nihilist/Autonomous
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.2, 0.5, 0.15], sal: 2 }
-        // Fighter
+        MAT: { kind: "continuous", pos: 3, sal: 0 },
+        CD: { kind: "continuous", pos: 3, sal: 0 },
+        CU: { kind: "continuous", pos: 3, sal: 0 },
+        MOR: { kind: "continuous", pos: 3, sal: 0 },
+        PRO: { kind: "continuous", pos: 3, sal: 0 },
+        COM: { kind: "continuous", pos: 3, sal: 0 },
+        ZS: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+        PF: { kind: "continuous", pos: 5 },
+        TRB: { kind: "continuous", pos: 5 },
+        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       }
     }
   ];
@@ -2696,7 +2864,7 @@ var PrismEngine = (() => {
     statesman: [0.7, 0.1, 0.04, 0.06, 0.04, 0.06],
     technocrat: [0.08, 0.74, 0.04, 0.04, 0.03, 0.07],
     pastoral: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07],
-    authentic: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07],
+    plainspoken: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07],
     fighter: [0.04, 0.03, 0.04, 0.08, 0.73, 0.08],
     visionary: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67]
   };
@@ -2712,28 +2880,27 @@ var PrismEngine = (() => {
       quality: 0.92,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "ENG", kind: "continuous", role: "position", weight: 0.85, touchType: "behavior_frequency" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.6, touchType: "behavior_frequency" }
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.85, touchType: "behavior_frequency" }
       ],
       optionEvidence: {
         never: {
           continuous: {
-            ENG: { pos: [0.7, 0.2, 0.08, 0.02, 0], sal: [0.6, 0.25, 0.1, 0.05] }
+            ENG: { pos: [0.7, 0.2, 0.08, 0.02, 0] }
           }
         },
         few_days: {
           continuous: {
-            ENG: { pos: [0.25, 0.45, 0.2, 0.08, 0.02], sal: [0.25, 0.4, 0.25, 0.1] }
+            ENG: { pos: [0.25, 0.45, 0.2, 0.08, 0.02] }
           }
         },
         most_days: {
           continuous: {
-            ENG: { pos: [0.03, 0.1, 0.25, 0.4, 0.22], sal: [0.05, 0.15, 0.4, 0.4] }
+            ENG: { pos: [0.03, 0.1, 0.25, 0.4, 0.22] }
           }
         },
         every_day: {
           continuous: {
-            ENG: { pos: [0, 0.02, 0.08, 0.25, 0.65], sal: [0.02, 0.08, 0.25, 0.65] }
+            ENG: { pos: [0, 0.02, 0.08, 0.25, 0.65] }
           }
         }
       }
@@ -2747,15 +2914,15 @@ var PrismEngine = (() => {
       quality: 0.94,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.95, touchType: "direct_centrality" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.2, touchType: "identity_proxy" }
+        { node: "PF", kind: "continuous", role: "position", weight: 0.8, touchType: "direct_centrality" },
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.35, touchType: "identity_activation" }
       ],
       sliderMap: {
-        "0-20": { continuous: { PF: { sal: [0.7, 0.22, 0.07, 0.01] }, ENG: { sal: [0.55, 0.28, 0.12, 0.05] } } },
-        "21-40": { continuous: { PF: { sal: [0.25, 0.45, 0.22, 0.08] }, ENG: { sal: [0.25, 0.4, 0.25, 0.1] } } },
-        "41-60": { continuous: { PF: { sal: [0.08, 0.3, 0.4, 0.22] }, ENG: { sal: [0.1, 0.25, 0.38, 0.27] } } },
-        "61-80": { continuous: { PF: { sal: [0.02, 0.1, 0.38, 0.5] }, ENG: { sal: [0.05, 0.12, 0.33, 0.5] } } },
-        "81-100": { continuous: { PF: { sal: [0, 0.03, 0.22, 0.75] }, ENG: { sal: [0.02, 0.05, 0.23, 0.7] } } }
+        "0-20": { continuous: { PF: { pos: [0.7, 0.2, 0.08, 0.02, 0] }, ENG: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
+        "21-40": { continuous: { PF: { pos: [0.35, 0.4, 0.18, 0.06, 0.01] }, ENG: { pos: [0.3, 0.4, 0.2, 0.08, 0.02] } } },
+        "41-60": { continuous: { PF: { pos: [0.1, 0.25, 0.4, 0.2, 0.05] }, ENG: { pos: [0.08, 0.22, 0.42, 0.22, 0.06] } } },
+        "61-80": { continuous: { PF: { pos: [0.03, 0.1, 0.25, 0.4, 0.22] }, ENG: { pos: [0.03, 0.1, 0.28, 0.4, 0.19] } } },
+        "81-100": { continuous: { PF: { pos: [0, 0.03, 0.12, 0.3, 0.55] }, ENG: { pos: [0.01, 0.04, 0.14, 0.31, 0.5] } } }
       }
     },
     {
@@ -2802,17 +2969,23 @@ var PrismEngine = (() => {
       uiType: "allocation",
       quality: 0.91,
       rewriteNeeded: false,
+      // ONT_S removed 2026-04-26: structural attribution of inequality
+      // (discrimination, family background) is not the same as low institutional
+      // trust. A respondent who attributes inequality to structural causes
+      // typically wants stronger institutions to address it, not weaker ones.
+      // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
-        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.55, touchType: "causal_allocation" },
-        { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" },
-        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" }
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "inequality_worldview" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "allocation_shape" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
+        { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
-        effort_choices: { continuous: { MAT: 0.8, ONT_S: -0.5, COM: -0.4 } },
-        family_background: { continuous: { MAT: -0.6, ONT_S: -0.7, COM: 0.3 } },
-        discrimination_bias: { continuous: { MAT: -0.8, ONT_S: -0.8, COM: 0.5 } },
-        luck_random: { continuous: { ONT_S: -0.4, COM: 0.2 } }
+        effort_choices: { continuous: { MAT: 0.8, COM: -0.4 } },
+        family_background: { continuous: { MAT: -0.6, COM: 0.3 } },
+        discrimination_bias: { continuous: { MAT: -0.8, COM: 0.5 } },
+        luck_random: { continuous: { COM: 0.2 } }
       }
     },
     {
@@ -2823,18 +2996,24 @@ var PrismEngine = (() => {
       uiType: "allocation",
       quality: 0.9,
       rewriteNeeded: false,
+      // ONT_S removed 2026-04-26: blaming "complex forces" or "powerful
+      // incompetent people" for bad outcomes is not anti-institutional —
+      // attributing failure to incompetence implicitly assumes institutions
+      // matter and could work better. This is a ZS / ONT_H probe (zero-sum
+      // worldview + view of human nature), not an institutional-trust probe.
+      // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
       touchProfile: [
-        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
         { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
-        { node: "ZS", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" },
-        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
+        { node: "COM", kind: "continuous", role: "position", weight: 0.3, touchType: "allocation_shape" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
+        { node: "ZS", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
-        complex_forces: { continuous: { ONT_S: -0.6, COM: 0.4 } },
-        powerful_incompetent: { continuous: { ONT_S: -0.2, COM: -0.3 } },
+        complex_forces: { continuous: { COM: 0.4 } },
+        powerful_incompetent: { continuous: { COM: -0.3 } },
         powerful_selfish: { continuous: { ZS: 0.9, ONT_H: -0.5, COM: -0.6 } },
-        ordinary_choices: { continuous: { ONT_S: 0.8, COM: -0.4 } }
+        ordinary_choices: { continuous: { COM: -0.4 } }
       }
     },
     {
@@ -2913,13 +3092,14 @@ var PrismEngine = (() => {
       rewriteNeeded: false,
       touchProfile: [
         { node: "EPS", kind: "categorical", role: "category", weight: 0.35, touchType: "socialization_style" },
+        { node: "AES", kind: "categorical", role: "category", weight: 0.3, touchType: "socialization_style" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.1, touchType: "human_nature_proxy" }
       ],
       pairMaps: {
         independence_vs_elders: {
           independence: {
             continuous: { ONT_H: 0.25 },
-            categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
+            categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.plainspoken }
           },
           respect_for_elders: {
             continuous: { ONT_H: -0.25 },
@@ -2946,14 +3126,33 @@ var PrismEngine = (() => {
       uiType: "allocation",
       quality: 0.9,
       rewriteNeeded: false,
+      // ONT_H signal reinterpreted 2026-04-26 under the malleability framing.
+      // Updated again 2026-04-26 (PR1) per cross-LLM critique: misinformed=+0.5
+      // ONT_H was too confident. "They're misinformed" can mean "persuadable"
+      // (malleability) OR "they consumed bad sources" (epistemic-paternalism).
+      // Reduced to +0.25 ONT_H plus a light EPS empiricist/institutionalist
+      // tilt (the "if only they had better data/expert consensus" reading).
+      // - misinformed = mixed signal: light malleability + epistemic paternalism
+      // - self_interest = rational actors, low malleability. Kept at -0.5 ONT_H.
+      // - bad_motives = fixed in bad faith, very low malleability. Kept -0.8.
+      // - legitimate_values = good-faith disagreement. Kept at 0 ONT_H.
       touchProfile: [
         { node: "TRB", kind: "continuous", role: "position", weight: 0.75, touchType: "outgroup_model" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "outgroup_model" },
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.3, touchType: "motive_model" }
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.3, touchType: "malleability_proxy" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.35, touchType: "outgroup_model" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "opponent_moral_scope" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.2, touchType: "allocation_shape_epistemic" }
       ],
       allocationMap: {
         legitimate_values: { continuous: { TRB: -0.9, COM: 0.8 } },
-        misinformed: { continuous: { TRB: 0.1 } },
+        misinformed: {
+          continuous: { TRB: 0.1, ONT_H: 0.25 },
+          // Heavy "misinformed" allocation reads as epistemic paternalism — "if
+          // they had better data / expert consensus they'd reach my view." Light
+          // tilt toward empiricist/institutionalist epistemic deference.
+          categorical: { EPS: [0.3, 0.3, 0.1, 0.1, 0.1, 0.1] }
+        },
         self_interest: { continuous: { ONT_H: -0.5 } },
         bad_motives: { continuous: { TRB: 0.9, ONT_H: -0.8, COM: -0.7 } }
       }
@@ -2992,10 +3191,19 @@ var PrismEngine = (() => {
       stage: "screen20",
       section: "V",
       promptShort: "politically_important_identities",
-      uiType: "ranking",
+      // Converted ranking → priority_sort 2026-04-23 per user feedback: bucketing
+      // into "central / somewhat / doesn't register" extracts signal from
+      // respondents who reject ALL real identity anchors. "No dominant identity"
+      // is inferred from the pattern (all neutral), not offered as a fake anchor.
+      uiType: "priority_sort",
       quality: 0.96,
       rewriteNeeded: false,
       touchProfile: [
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.4, touchType: "identity_pattern" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "identity_pattern" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "identity_pattern" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "identity_pattern" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.1, touchType: "identity_pattern" },
         { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
       ],
       rankingMap: {
@@ -3144,14 +3352,15 @@ var PrismEngine = (() => {
       quality: 0.84,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.8, touchType: "outgroup_trust_estimate" }
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.8, touchType: "outgroup_trust_estimate" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "outgroup_trust_estimate" }
       ],
       sliderMap: {
-        "0-20": { continuous: { TRB: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] }, ZS: {} } },
-        "21-40": { continuous: { TRB: { pos: [0.03, 0.09, 0.2, 0.38, 0.3] }, ZS: {} } },
-        "41-60": { continuous: { TRB: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] }, ZS: {} } },
-        "61-80": { continuous: { TRB: { pos: [0.3, 0.38, 0.2, 0.09, 0.03] }, ZS: {} } },
-        "81-100": { continuous: { TRB: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] }, ZS: {} } }
+        "0-20": { continuous: { TRB: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] }, ZS: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } } },
+        "21-40": { continuous: { TRB: { pos: [0.03, 0.09, 0.2, 0.38, 0.3] }, ZS: { pos: [0.03, 0.09, 0.2, 0.38, 0.3] } } },
+        "41-60": { continuous: { TRB: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] }, ZS: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } } },
+        "61-80": { continuous: { TRB: { pos: [0.3, 0.38, 0.2, 0.09, 0.03] }, ZS: { pos: [0.3, 0.38, 0.2, 0.09, 0.03] } } },
+        "81-100": { continuous: { TRB: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] }, ZS: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } }
       }
     },
     // Q38 — rules_procedures_matter_salience (slider)
@@ -3184,15 +3393,15 @@ var PrismEngine = (() => {
       quality: 0.91,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.7, touchType: "identity_enemy_link" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.45, touchType: "identity_enemy_link" }
+        { node: "PF", kind: "continuous", role: "position", weight: 0.65, touchType: "opponent_identity_activation" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.7, touchType: "opponent_identity_activation" }
       ],
       sliderMap: {
-        "0-20": { continuous: { PF: { sal: [0.5, 0.3, 0.15, 0.05] }, TRB: { sal: [0.55, 0.3, 0.12, 0.03] } } },
-        "21-40": { continuous: { PF: { sal: [0.25, 0.38, 0.27, 0.1] }, TRB: { sal: [0.25, 0.4, 0.25, 0.1] } } },
-        "41-60": { continuous: { PF: { sal: [0.1, 0.25, 0.4, 0.25] }, TRB: { sal: [0.1, 0.28, 0.38, 0.24] } } },
-        "61-80": { continuous: { PF: { sal: [0.04, 0.12, 0.38, 0.46] }, TRB: { sal: [0.04, 0.14, 0.4, 0.42] } } },
-        "81-100": { continuous: { PF: { sal: [0.02, 0.08, 0.3, 0.6] }, TRB: { sal: [0.02, 0.08, 0.35, 0.55] } } }
+        "0-20": { continuous: { PF: { pos: [0.6, 0.25, 0.1, 0.04, 0.01] }, TRB: { pos: [0.65, 0.22, 0.09, 0.03, 0.01] } } },
+        "21-40": { continuous: { PF: { pos: [0.32, 0.38, 0.2, 0.08, 0.02] }, TRB: { pos: [0.35, 0.35, 0.2, 0.07, 0.03] } } },
+        "41-60": { continuous: { PF: { pos: [0.1, 0.22, 0.4, 0.2, 0.08] }, TRB: { pos: [0.12, 0.24, 0.4, 0.18, 0.06] } } },
+        "61-80": { continuous: { PF: { pos: [0.03, 0.08, 0.22, 0.4, 0.27] }, TRB: { pos: [0.04, 0.1, 0.24, 0.38, 0.24] } } },
+        "81-100": { continuous: { PF: { pos: [0.01, 0.03, 0.1, 0.28, 0.58] }, TRB: { pos: [0.02, 0.05, 0.13, 0.3, 0.5] } } }
       }
     },
     // Q44 — views_changed_in_10_years (slider)
@@ -3248,15 +3457,14 @@ var PrismEngine = (() => {
       touchProfile: [
         { node: "CU", kind: "continuous", role: "salience", weight: 0.9, touchType: "direct_salience" },
         { node: "CD", kind: "continuous", role: "salience", weight: 0.25, touchType: "direct_salience" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.2, touchType: "identity_salience" },
         { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.25, touchType: "nationality_anchor" }
       ],
       sliderMap: {
-        "0-20": { continuous: { CU: { sal: [0.55, 0.3, 0.12, 0.03] }, CD: { sal: [0.5, 0.3, 0.15, 0.05] }, TRB: { sal: [0.5, 0.3, 0.15, 0.05] } }, trbAnchor: { global: 0.45, mixed_none: 0.3, ideological: 0.15 } },
-        "21-40": { continuous: { CU: { sal: [0.25, 0.4, 0.25, 0.1] }, CD: { sal: [0.28, 0.38, 0.24, 0.1] }, TRB: { sal: [0.28, 0.38, 0.24, 0.1] } }, trbAnchor: { mixed_none: 0.3, global: 0.2, ideological: 0.2, national: 0.1 } },
-        "41-60": { continuous: { CU: { sal: [0.08, 0.28, 0.4, 0.24] }, CD: { sal: [0.12, 0.28, 0.38, 0.22] }, TRB: { sal: [0.12, 0.28, 0.38, 0.22] } }, trbAnchor: { national: 0.3, ideological: 0.2, mixed_none: 0.2 } },
-        "61-80": { continuous: { CU: { sal: [0.03, 0.12, 0.4, 0.45] }, CD: { sal: [0.05, 0.18, 0.4, 0.37] }, TRB: { sal: [0.05, 0.18, 0.4, 0.37] } }, trbAnchor: { national: 0.55, ideological: 0.1, religious: 0.1, ethnic_racial: 0.1 } },
-        "81-100": { continuous: { CU: { sal: [0.02, 0.08, 0.3, 0.6] }, CD: { sal: [0.03, 0.12, 0.35, 0.5] }, TRB: { sal: [0.03, 0.12, 0.35, 0.5] } }, trbAnchor: { national: 0.65, ethnic_racial: 0.2, religious: 0.1 } }
+        "0-20": { continuous: { CU: { sal: [0.55, 0.3, 0.12, 0.03] }, CD: { sal: [0.5, 0.3, 0.15, 0.05] } }, trbAnchor: { global: 0.45, mixed_none: 0.3, ideological: 0.15 } },
+        "21-40": { continuous: { CU: { sal: [0.25, 0.4, 0.25, 0.1] }, CD: { sal: [0.28, 0.38, 0.24, 0.1] } }, trbAnchor: { mixed_none: 0.3, global: 0.2, ideological: 0.2, national: 0.1 } },
+        "41-60": { continuous: { CU: { sal: [0.08, 0.28, 0.4, 0.24] }, CD: { sal: [0.12, 0.28, 0.38, 0.22] } }, trbAnchor: { national: 0.3, ideological: 0.2, mixed_none: 0.2 } },
+        "61-80": { continuous: { CU: { sal: [0.03, 0.12, 0.4, 0.45] }, CD: { sal: [0.05, 0.18, 0.4, 0.37] } }, trbAnchor: { national: 0.55, ideological: 0.1, religious: 0.1, ethnic_racial: 0.1 } },
+        "81-100": { continuous: { CU: { sal: [0.02, 0.08, 0.3, 0.6] }, CD: { sal: [0.03, 0.12, 0.35, 0.5] } }, trbAnchor: { national: 0.65, ethnic_racial: 0.2, religious: 0.1 } }
       }
     },
     // =========================================================================
@@ -3274,11 +3482,18 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.9,
       rewriteNeeded: false,
+      // ONT_H weight lowered 2026-04-26 from 0.55 → 0.30 per ADR-010 ONT_H
+      // reframe to malleability. Q6's policy-bundle ONT_H likelihoods encode the
+      // older fixed-goodness reading (Traditional Order = pessimistic about
+      // humans). Under the malleability framing the signal is ambiguous —
+      // Traditional Order could be Burkean (high ONT_H, cultivation via
+      // tradition) OR Hobbesian (low ONT_H, fixed bad nature). Reduced weight
+      // until likelihoods are recalibrated for the new concept.
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.65, touchType: "policy_bundle" },
         { node: "CD", kind: "continuous", role: "position", weight: 0.6, touchType: "policy_bundle" },
         { node: "MOR", kind: "continuous", role: "position", weight: 0.6, touchType: "policy_bundle" },
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.55, touchType: "policy_bundle" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.3, touchType: "policy_bundle" },
         { node: "ZS", kind: "continuous", role: "position", weight: 0.4, touchType: "policy_bundle" },
         { node: "MAT", kind: "continuous", role: "salience", weight: 0.3, touchType: "policy_bundle_salience" }
       ],
@@ -3435,7 +3650,7 @@ var PrismEngine = (() => {
         market_led: {
           continuous: {
             MAT: { pos: [0.04, 0.09, 0.22, 0.35, 0.3] },
-            ONT_S: { pos: [0.06, 0.14, 0.3, 0.3, 0.2] }
+            ONT_S: { pos: [0.04, 0.1, 0.2, 0.42, 0.24] }
           }
         },
         no_action_needed: {
@@ -3556,35 +3771,45 @@ var PrismEngine = (() => {
     // =========================================================================
     // SINGLE_CHOICE EVIDENCE MAPS (batch 2: Q18, Q25, Q26, Q27, Q28, Q30, Q31)
     // =========================================================================
-    // Q18 — human_progress_view
+    // Q18 — human_improvement_capacity. Reframed 2026-04-26 from the older
+    // "do you think humans are improving" framing (steady_improvement / decline)
+    // to the malleability-via-cultivation framing per ADR-010. The original
+    // labels conflated metaphysical progress narrative with the politically
+    // load-bearing question: how much CAN humans be improved, regardless of
+    // current trajectory?
     {
       id: 18,
       stage: "screen20",
       section: "II",
-      promptShort: "human_progress_view",
+      promptShort: "human_improvement_capacity",
       uiType: "single_choice",
       quality: 0.88,
       rewriteNeeded: false,
+      options: ["substantial_capacity", "gradual_with_limits", "cyclical_gains_lost", "negligible_capacity"],
       touchProfile: [
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.9, touchType: "ontology_direct" }
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.9, touchType: "malleability_capacity" }
       ],
       optionEvidence: {
-        steady_improvement: {
+        // "Substantially — each generation can be wiser, kinder, and more capable than the last"
+        substantial_capacity: {
           continuous: {
             ONT_H: { pos: [0.01, 0.05, 0.15, 0.38, 0.41] }
           }
         },
-        gradual_progress: {
+        // "Gradually — there's real progress but human nature sets ceilings on how far we can go"
+        gradual_with_limits: {
           continuous: {
             ONT_H: { pos: [0.04, 0.12, 0.3, 0.35, 0.19] }
           }
         },
-        cyclical: {
+        // "Cyclical — gains in one generation are usually lost in the next"
+        cyclical_gains_lost: {
           continuous: {
             ONT_H: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
           }
         },
-        decline: {
+        // "Negligibly — human nature is the main constraint; education and institutions can't really change it"
+        negligible_capacity: {
           continuous: {
             ONT_H: { pos: [0.42, 0.3, 0.18, 0.07, 0.03] }
           }
@@ -3606,7 +3831,7 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.92,
       rewriteNeeded: false,
-      options: ["convict_innocent", "free_guilty"],
+      options: ["convict_innocent", "free_guilty", "equal_errors"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.75, touchType: "error_asymmetry" },
         { node: "PRO", kind: "continuous", role: "salience", weight: 0.7, touchType: "error_asymmetry_ratio" },
@@ -3629,7 +3854,11 @@ var PrismEngine = (() => {
             PRO: { pos: [0.35, 0.35, 0.2, 0.08, 0.02] },
             MOR: { pos: [0.18, 0.26, 0.3, 0.18, 0.08] }
           }
-        }
+        },
+        // "Both errors are equal" — emits no position evidence and bypasses
+        // the ratio follow-up. UI flag: answer === 'equal_errors' suppresses
+        // strengthFollowUp display.
+        equal_errors: {}
       }
     },
     // Q27 — welfare_error_tradeoff (error_tradeoff with ratio slider)
@@ -3643,7 +3872,7 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.89,
       rewriteNeeded: false,
-      options: ["fp", "fn"],
+      options: ["fp", "fn", "equal_errors"],
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.72, touchType: "error_asymmetry" },
         { node: "MAT", kind: "continuous", role: "salience", weight: 0.65, touchType: "error_asymmetry_ratio" },
@@ -3669,7 +3898,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.03, 0.1, 0.25, 0.35, 0.27] },
             PRO: { pos: [0.16, 0.24, 0.32, 0.18, 0.1] }
           }
-        }
+        },
+        equal_errors: {}
       }
     },
     // Q28 — mask_mandate_acceptability
@@ -3715,7 +3945,7 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.9,
       rewriteNeeded: false,
-      options: ["allow_harmful", "censor_legitimate"],
+      options: ["allow_harmful", "censor_legitimate", "equal_errors"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.72, touchType: "speech_harm_tradeoff" },
         { node: "PRO", kind: "continuous", role: "salience", weight: 0.65, touchType: "speech_harm_ratio" },
@@ -3724,7 +3954,7 @@ var PrismEngine = (() => {
       ],
       strengthFollowUp: {
         kind: "ratio",
-        prompt: "How many legitimate speakers would you silence to stop one harmful one?",
+        prompt: "How much true content would you remove to take down one piece of harmful misinformation?",
         labels: { lowEnd: "1.5 to 1", highEnd: "100+ to 1" }
       },
       optionEvidence: {
@@ -3737,11 +3967,19 @@ var PrismEngine = (() => {
         },
         censor_legitimate: {
           continuous: {
-            PRO: { pos: [0.4, 0.32, 0.18, 0.07, 0.03] },
+            // Softened 2026-04-25: previous likelihood [0.40, 0.32, 0.18, 0.07, 0.03]
+            // peaked PRO at pos=1 (anti-procedural). But "censoring legitimate
+            // speakers is worse" can be either an anti-establishment claim
+            // (system abuses speech rights — PRO low) or a civil-libertarian
+            // claim (free speech is the constitutional rule, follow it — PRO
+            // high). New centered distribution leaves room for both readings
+            // without forcing the anti-establishment interpretation.
+            PRO: { pos: [0.18, 0.3, 0.3, 0.15, 0.07] },
             COM: { pos: [0.1, 0.18, 0.3, 0.24, 0.18] }
           },
           categorical: { EPS: { cat: EPS_PROTOTYPES.institutionalist } }
-        }
+        },
+        equal_errors: {}
       }
     },
     // Q31 — trade_liberalization_effects
@@ -3797,7 +4035,7 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.86,
       rewriteNeeded: false,
-      options: ["deport_legal", "let_stay_illegal"],
+      options: ["deport_legal", "let_stay_illegal", "equal_errors"],
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.62, touchType: "boundary_error_asymmetry" },
         { node: "PRO", kind: "continuous", role: "salience", weight: 0.55, touchType: "boundary_error_asymmetry_ratio" },
@@ -3823,7 +4061,8 @@ var PrismEngine = (() => {
             CU: { pos: [0.28, 0.3, 0.24, 0.12, 0.06] },
             ONT_S: { pos: [0.12, 0.22, 0.3, 0.2, 0.16] }
           }
-        }
+        },
+        equal_errors: {}
       }
     },
     // Q34 — threats_to_america_external_internal
@@ -4070,85 +4309,96 @@ var PrismEngine = (() => {
         }
       }
     },
-    // Q48 — social_progress_view
+    // Q48 — improvement_mechanism. Reframed 2026-04-26 from "do you think
+    // society is improving / declining" (parallel-redundant with Q18) to
+    // mechanism-specificity per ADR-010. This is the question that distinguishes
+    // Burkean cultural-malleability (humans cultivated by family/tradition) from
+    // Progressive state-malleability (humans cultivated by state institutions)
+    // from libertarian market-malleability (humans shaped by market discipline)
+    // from fatalist no-malleability ("society doesn't really improve"). All four
+    // pro-mechanism options signal HIGH ONT_H (humans are malleable); they
+    // differ on the *mechanism* and so produce different ONT_S, MAT, CD signals.
     {
       id: 48,
       stage: "screen20",
       section: "IV",
-      promptShort: "social_progress_view",
+      promptShort: "improvement_mechanism",
       uiType: "single_choice",
       quality: 0.87,
       rewriteNeeded: false,
+      options: ["state_institutions", "family_community_tradition", "market_innovation", "cultural_inherited", "doesnt_improve"],
+      // ONT_H weight lowered 2026-04-26 from 0.85 → 0.70 per cross-LLM critique:
+      // Q48 is a worldview bundle (malleability + preferred mechanism + ideology),
+      // not a pure ONT_H probe. Each option does real MAT/ONT_S/CD work too.
+      // Reducing ONT_H reflects what the question actually probes — Q210 remains
+      // the dedicated direct malleability probe at 0.85.
       touchProfile: [
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.85, touchType: "progress_worldview" }
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.7, touchType: "malleability_mechanism" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.55, touchType: "malleability_mechanism" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "malleability_mechanism" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.25, touchType: "malleability_mechanism" }
       ],
       optionEvidence: {
-        continuous_improvement: {
+        // "Strong state institutions — laws, programs, public education, agencies"
+        // Progressive: high malleability via state. High ONT_H, high ONT_S, low MAT
+        // (state-redistributionist), low CD (progressive direction).
+        state_institutions: {
           continuous: {
-            ONT_H: { pos: [0.01, 0.05, 0.15, 0.38, 0.41] }
+            ONT_H: { pos: [0.02, 0.05, 0.18, 0.38, 0.37] },
+            ONT_S: { pos: [0.02, 0.06, 0.18, 0.34, 0.4] },
+            MAT: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] },
+            CD: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
           }
         },
-        gradual_improvement: {
+        // "Family, community, and local relationships — close human bonds"
+        // Communitarian / pastoral. High malleability via local. Mid-low ONT_S
+        // (institutions matter but not state), mid MAT, mid CD.
+        family_community_tradition: {
           continuous: {
-            ONT_H: { pos: [0.04, 0.12, 0.32, 0.34, 0.18] }
+            ONT_H: { pos: [0.04, 0.1, 0.25, 0.35, 0.26] },
+            ONT_S: { pos: [0.18, 0.3, 0.3, 0.15, 0.07] },
+            MAT: { pos: [0.1, 0.2, 0.35, 0.22, 0.13] },
+            CD: { pos: [0.1, 0.2, 0.3, 0.25, 0.15] }
           }
         },
-        stagnation: {
+        // "Markets, trade, and innovation — economic dynamism shapes behavior"
+        // Classical liberal / market liberal. Mid ONT_H (markets discipline
+        // behavior but don't really cultivate virtue), low ONT_S (state
+        // institutions less essential), high MAT (free market).
+        market_innovation: {
           continuous: {
-            ONT_H: { pos: [0.18, 0.28, 0.32, 0.15, 0.07] }
+            ONT_H: { pos: [0.08, 0.18, 0.32, 0.27, 0.15] },
+            ONT_S: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] },
+            MAT: { pos: [0.04, 0.08, 0.18, 0.32, 0.38] },
+            CD: { pos: [0.1, 0.2, 0.32, 0.22, 0.16] }
           }
         },
-        decline: {
+        // "Inherited cultural and religious traditions — accumulated wisdom"
+        // Burkean / traditionalist. High malleability via tradition. Low/mid
+        // ONT_S, mid MAT, high CD (traditional direction).
+        cultural_inherited: {
           continuous: {
-            ONT_H: { pos: [0.42, 0.3, 0.18, 0.07, 0.03] }
+            ONT_H: { pos: [0.04, 0.1, 0.25, 0.35, 0.26] },
+            ONT_S: { pos: [0.2, 0.3, 0.28, 0.15, 0.07] },
+            MAT: { pos: [0.1, 0.18, 0.32, 0.25, 0.15] },
+            CD: { pos: [0.04, 0.08, 0.22, 0.32, 0.34] }
+          }
+        },
+        // "Society doesn't really improve — gains are illusory or temporary"
+        // Fatalist / nihilist. Very low ONT_H (humans not really malleable),
+        // low ONT_S (institutions can't deliver), neutral MAT/CD.
+        doesnt_improve: {
+          continuous: {
+            ONT_H: { pos: [0.42, 0.3, 0.18, 0.07, 0.03] },
+            ONT_S: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            MAT: { pos: [0.2, 0.25, 0.3, 0.15, 0.1] },
+            CD: { pos: [0.18, 0.22, 0.3, 0.18, 0.12] }
           }
         }
       }
     },
-    // Q52 — political_membership_criterion_rewrite
-    {
-      id: 52,
-      stage: "stage2",
-      section: "IV",
-      promptShort: "political_membership_criterion_rewrite",
-      uiType: "single_choice",
-      quality: 0.64,
-      rewriteNeeded: true,
-      touchProfile: [
-        { node: "CU", kind: "continuous", role: "position", weight: 0.8, touchType: "membership_boundary" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_boundary" },
-        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.25, touchType: "nationality_anchor" }
-      ],
-      optionEvidence: {
-        civic_participation: {
-          continuous: {
-            CU: { pos: [0.04, 0.1, 0.28, 0.35, 0.23] }
-          },
-          trbAnchor: { ideological: 0.3, mixed_none: 0.25, global: 0.2, national: 0.15 }
-        },
-        shared_values: {
-          continuous: {
-            CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
-            TRB: { pos: [0.08, 0.15, 0.28, 0.3, 0.19] }
-          },
-          trbAnchor: { ideological: 0.35, religious: 0.2, national: 0.2, mixed_none: 0.1 }
-        },
-        cultural_heritage: {
-          continuous: {
-            CU: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] },
-            TRB: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] }
-          },
-          trbAnchor: { national: 0.5, ethnic_racial: 0.2, religious: 0.15 }
-        },
-        born_here: {
-          continuous: {
-            CU: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] },
-            TRB: { pos: [0.04, 0.1, 0.22, 0.34, 0.3] }
-          },
-          trbAnchor: { ethnic_racial: 0.45, national: 0.4, religious: 0.05 }
-        }
-      }
-    },
+    // Q52 removed 2026-04-24: redundant with Q102 membership_criteria_priority_sort,
+    // which covers the same CU+TRB_ANCHOR signal via a richer priority-sort UI.
     // Q54 — religion_in_upbringing (background, mild)
     {
       id: 54,
@@ -4208,7 +4458,7 @@ var PrismEngine = (() => {
         },
         moral_character: {
           categorical: {
-            AES: { cat: AES_PROTOTYPES.pastoral },
+            AES: { cat: [0.05, 0.05, 0.4, 0.4, 0.05, 0.05] },
             EPS: { cat: EPS_PROTOTYPES.intuitionist }
           }
         },
@@ -4248,7 +4498,7 @@ var PrismEngine = (() => {
         },
         values_pitch: {
           categorical: {
-            AES: { cat: AES_PROTOTYPES.pastoral },
+            AES: { cat: [0.06, 0.05, 0.5, 0.25, 0.05, 0.09] },
             EPS: { cat: EPS_PROTOTYPES.traditionalist }
           }
         },
@@ -4291,7 +4541,7 @@ var PrismEngine = (() => {
         },
         grassroots_community: {
           categorical: {
-            AES: { cat: AES_PROTOTYPES.pastoral }
+            AES: { cat: [0.04, 0.04, 0.45, 0.35, 0.05, 0.07] }
           }
         },
         data_driven_campaign: {
@@ -4314,11 +4564,12 @@ var PrismEngine = (() => {
       quality: 0.86,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.55, touchType: "motive_salience" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.35, touchType: "motive_salience" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.3, touchType: "motive_salience" },
         { node: "PRO", kind: "continuous", role: "salience", weight: 0.2, touchType: "motive_salience" },
         { node: "COM", kind: "continuous", role: "salience", weight: 0.2, touchType: "motive_salience" },
+        { node: "MOR", kind: "continuous", role: "salience", weight: 0.2, touchType: "motive_salience" },
+        { node: "PF", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_activation" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_activation" },
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.3, touchType: "motive_activation" },
         { node: "EPS", kind: "categorical", role: "category", weight: 0.2, touchType: "motive_salience" }
       ],
       optionEvidence: {
@@ -4332,8 +4583,8 @@ var PrismEngine = (() => {
         protect_values: {
           // Protect values → high salience on TRB, PF (tribal/partisan identity matters)
           continuous: {
-            TRB: { sal: [0.05, 0.15, 0.35, 0.45] },
-            PF: { sal: [0.05, 0.15, 0.35, 0.45] }
+            TRB: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] },
+            PF: { pos: [0.04, 0.1, 0.24, 0.35, 0.27] }
           }
         },
         help_community: {
@@ -4346,21 +4597,21 @@ var PrismEngine = (() => {
         fight_injustice: {
           // Fight injustice → high salience on ENG, TRB (engaged, cause-driven)
           continuous: {
-            ENG: { sal: [0.03, 0.1, 0.37, 0.5] },
-            TRB: { sal: [0.05, 0.15, 0.35, 0.45] }
+            ENG: { pos: [0.02, 0.06, 0.2, 0.38, 0.34] },
+            TRB: { pos: [0.08, 0.16, 0.3, 0.28, 0.18] }
           }
         },
         self_interest: {
           // Self-interest → high salience on ENG (engaged for personal stakes)
           continuous: {
-            ENG: { sal: [0.05, 0.15, 0.35, 0.45] }
+            ENG: { pos: [0.08, 0.18, 0.32, 0.27, 0.15] }
           },
           categorical: { EPS: { cat: EPS_PROTOTYPES.autonomous } }
         },
         intellectual_challenge: {
           // Intellectual challenge → salience on ENG, EPS category
           continuous: {
-            ENG: { sal: [0.03, 0.1, 0.37, 0.5] }
+            ENG: { pos: [0.05, 0.15, 0.35, 0.3, 0.15] }
           },
           categorical: { EPS: { cat: EPS_PROTOTYPES.empiricist } }
         }
@@ -4406,27 +4657,51 @@ var PrismEngine = (() => {
         }
       }
     },
-    // =========================================================================
-    // ALLOCATION EVIDENCE MAP (Q22)
-    // =========================================================================
-    // Q22 — factual_estimates_and_confidence (allocation)
+    // Q22 re-added 2026-04-25 per ADR-009 with conflict-framing rewrite. The
+    // original allocation version conflated overlapping sources (expert
+    // consensus and personal research aren't separable). New version asks
+    // about tie-breaking when sources disagree — forces a real choice between
+    // distinct authority claims.
     {
       id: 22,
-      stage: "screen20",
+      stage: "fixed12",
       section: "II",
-      promptShort: "factual_estimates_and_confidence",
-      uiType: "allocation",
-      quality: 0.95,
+      promptShort: "source_trust_conflict",
+      uiType: "single_choice",
+      quality: 0.92,
       rewriteNeeded: false,
-      touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.98, touchType: "factual_calibration" },
-        { node: "EPS", kind: "categorical", role: "salience", weight: 0.45, touchType: "factual_calibration" }
+      options: [
+        "expert_consensus_breaks_tie",
+        "primary_evidence_breaks_tie",
+        "lived_experience_breaks_tie",
+        "tradition_breaks_tie",
+        "follow_money_breaks_tie"
       ],
-      allocationMap: {
-        expert_consensus: { categorical: { EPS: EPS_PROTOTYPES.institutionalist } },
-        personal_research: { categorical: { EPS: EPS_PROTOTYPES.empiricist } },
-        lived_experience: { categorical: { EPS: EPS_PROTOTYPES.intuitionist } },
-        tradition: { categorical: { EPS: EPS_PROTOTYPES.traditionalist } }
+      touchProfile: [
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" },
+        { node: "EPS", kind: "categorical", role: "salience", weight: 0.4, touchType: "tie_breaker_authority" }
+      ],
+      optionEvidence: {
+        // Expert consensus wins when claims conflict → institutionalist
+        expert_consensus_breaks_tie: {
+          categorical: { EPS: { cat: [0.04, 0.66, 0.1, 0.05, 0.1, 0.05] } }
+        },
+        // Direct primary-source evidence wins → empiricist
+        primary_evidence_breaks_tie: {
+          categorical: { EPS: { cat: [0.62, 0.16, 0.04, 0.06, 0.1, 0.02] } }
+        },
+        // Direct lived experience of those affected wins → intuitionist
+        lived_experience_breaks_tie: {
+          categorical: { EPS: { cat: [0.06, 0.08, 0.06, 0.62, 0.14, 0.04] } }
+        },
+        // Long-standing inherited / community wisdom wins → traditionalist
+        tradition_breaks_tie: {
+          categorical: { EPS: { cat: [0.04, 0.06, 0.66, 0.12, 0.08, 0.04] } }
+        },
+        // "Look at who benefits before trusting any source" → nihilist/cynic
+        follow_money_breaks_tie: {
+          categorical: { EPS: { cat: [0.06, 0.04, 0.06, 0.06, 0.18, 0.6] } }
+        }
       }
     },
     // =========================================================================
@@ -4475,7 +4750,8 @@ var PrismEngine = (() => {
       rewriteNeeded: true,
       touchProfile: [
         { node: "CU", kind: "continuous", role: "position", weight: 0.75, touchType: "membership_expectation" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.25, touchType: "membership_expectation" }
+        { node: "CD", kind: "continuous", role: "position", weight: 0.25, touchType: "membership_expectation" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.15, touchType: "economic_membership_expectation" }
       ],
       rankingMap: {
         learn_language: {
@@ -4510,10 +4786,12 @@ var PrismEngine = (() => {
       touchProfile: [
         { node: "MOR", kind: "continuous", role: "salience", weight: 0.38, touchType: "best_worst_asymmetric" },
         { node: "PRO", kind: "continuous", role: "salience", weight: 0.34, touchType: "best_worst_asymmetric" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.3, touchType: "best_worst_asymmetric" },
         { node: "MAT", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
         { node: "CU", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
         { node: "COM", kind: "continuous", role: "salience", weight: 0.18, touchType: "best_worst_asymmetric" },
+        { node: "CD", kind: "continuous", role: "salience", weight: 0.12, touchType: "best_worst_asymmetric" },
+        { node: "ZS", kind: "continuous", role: "salience", weight: 0.12, touchType: "best_worst_asymmetric" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.12, touchType: "best_worst_asymmetric" },
         { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.18, touchType: "best_worst_asymmetric" }
       ],
       rankingMap: {
@@ -4534,7 +4812,7 @@ var PrismEngine = (() => {
           trbAnchor: { religious: 0.35, national: 0.25, ethnic_racial: 0.15, mixed_none: 0.1 }
         },
         individual_freedom: {
-          continuous: { PRO: 0.55, MAT: 0.25 },
+          continuous: { PRO: 0.55 },
           trbAnchor: { ideological: 0.45, mixed_none: 0.25, class: 0.1 }
         },
         tradition_continuity: {
@@ -4563,37 +4841,46 @@ var PrismEngine = (() => {
         { node: "ENG", kind: "continuous", role: "position", weight: 0.25, touchType: "frustration_intensity" }
       ],
       optionEvidence: {
+        // ONT_S likelihoods softened 2026-04-24: original distributions made
+        // "frustrated about a specific issue" read as "system fundamentally
+        // broken" (e.g., corporate_power_inequality peaked ONT_S at 1 with
+        // 0.45 mass — too sharp). Softened so a Democrat frustrated about
+        // corporate power doesn't get classified as system-rejectionist when
+        // they actually trust most institutions. Only system_unjust retains
+        // a sharp ONT_S=1 peak — the only option whose semantic intent IS
+        // "the whole system is broken."
         // "Corporations and the wealthy have too much power, ordinary people are left behind"
         corporate_power_inequality: {
           continuous: {
             MAT: { pos: [0.18, 0.32, 0.28, 0.15, 0.07] },
-            ONT_S: { pos: [0.45, 0.28, 0.17, 0.07, 0.03] }
+            ONT_S: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
           }
         },
         // "Government has grown too large and intrusive, individual freedom is eroding"
         government_overreach: {
           continuous: {
-            ONT_S: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            ONT_S: { pos: [0.2, 0.28, 0.28, 0.16, 0.08] },
             PRO: { pos: [0.18, 0.28, 0.3, 0.16, 0.08] }
           }
         },
         // "Both sides are more interested in fighting than solving real problems"
         both_sides_broken: {
           continuous: {
-            ONT_S: { pos: [0.6, 0.24, 0.1, 0.04, 0.02] }
+            ONT_S: { pos: [0.3, 0.32, 0.22, 0.12, 0.04] }
           }
         },
         // "The system itself is fundamentally unjust and needs radical change"
+        // Kept sharp — this is the option where ONT_S=1 is the actual semantic claim
         system_unjust: {
           continuous: {
-            ONT_S: { pos: [0.72, 0.18, 0.06, 0.03, 0.01] }
+            ONT_S: { pos: [0.55, 0.28, 0.1, 0.05, 0.02] }
           }
         },
         // "Traditional values and social cohesion are being abandoned"
         values_eroding: {
           continuous: {
             CD: { pos: [0.03, 0.07, 0.15, 0.3, 0.45] },
-            ONT_S: { pos: [0.35, 0.3, 0.2, 0.1, 0.05] }
+            ONT_S: { pos: [0.2, 0.28, 0.28, 0.16, 0.08] }
           }
         },
         // "I don't think much about politics — it doesn't affect my daily life"
@@ -4601,6 +4888,50 @@ var PrismEngine = (() => {
           continuous: {
             ENG: { pos: [0.62, 0.22, 0.1, 0.04, 0.02] }
           }
+        },
+        // "I'm not especially frustrated — the system works reasonably well"
+        // Added 2026-04-24 per diagnose-cu-trb-coverage finding: every prior
+        // option peaked ONT_S at pos=1-2, dragging even system-trusting
+        // respondents toward "system broken". This option anchors the high pole.
+        system_works: {
+          continuous: {
+            ONT_S: { pos: [0.03, 0.07, 0.15, 0.3, 0.45] }
+          }
+        }
+      }
+    },
+    {
+      id: 66,
+      stage: "stage2",
+      section: "VI",
+      promptShort: "community_fund_allocation",
+      uiType: "allocation",
+      quality: 0.89,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "CD", kind: "continuous", role: "position", weight: 0.75, touchType: "value_allocation" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.6, touchType: "governance_allocation" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.2, touchType: "economic_proxy" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "governance_allocation" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
+        { node: "AES", kind: "categorical", role: "category", weight: 0.35, touchType: "civic_style_allocation" }
+      ],
+      allocationMap: {
+        preserve_heritage: {
+          continuous: { CD: 0.7, PRO: -0.2 },
+          categorical: { AES: [0.08, 0.05, 0.55, 0.16, 0.04, 0.12] }
+        },
+        modernize_infrastructure: {
+          continuous: { CD: -0.2, PRO: 0.2, MAT: 0.2 },
+          categorical: { AES: [0.1, 0.6, 0.04, 0.06, 0.03, 0.17] }
+        },
+        community_deliberation: {
+          continuous: { PRO: 0.7, COM: 0.5 },
+          categorical: { AES: [0.42, 0.12, 0.12, 0.25, 0.04, 0.05] }
+        },
+        market_based_development: {
+          continuous: { MAT: 0.8, PRO: -0.5 },
+          categorical: { AES: [0.08, 0.42, 0.04, 0.07, 0.04, 0.35] }
         }
       }
     },
@@ -4673,7 +5004,7 @@ var PrismEngine = (() => {
         gut_feeling: {
           categorical: {
             EPS: { cat: EPS_PROTOTYPES.intuitionist },
-            AES: { cat: AES_PROTOTYPES.authentic }
+            AES: { cat: AES_PROTOTYPES.plainspoken }
           }
         },
         own_reasoning: {
@@ -4722,7 +5053,7 @@ var PrismEngine = (() => {
         },
         says_what_they_think: {
           categorical: {
-            AES: { cat: AES_PROTOTYPES.authentic, sal: [0.08, 0.15, 0.32, 0.45] },
+            AES: { cat: AES_PROTOTYPES.plainspoken, sal: [0.08, 0.15, 0.32, 0.45] },
             EPS: { cat: EPS_PROTOTYPES.intuitionist }
           }
         },
@@ -4758,7 +5089,7 @@ var PrismEngine = (() => {
       touchProfile: [
         { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "epistemic_response" },
         { node: "EPS", kind: "categorical", role: "salience", weight: 0.4, touchType: "epistemic_response" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.15, touchType: "attention_proxy" }
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.15, touchType: "epistemic_withdrawal" }
       ],
       optionEvidence: {
         check_evidence: {
@@ -4791,7 +5122,7 @@ var PrismEngine = (() => {
             EPS: { cat: EPS_PROTOTYPES.nihilist, sal: [0.45, 0.3, 0.15, 0.1] }
           },
           continuous: {
-            ENG: { sal: [0.5, 0.3, 0.15, 0.05] }
+            ENG: { pos: [0.7, 0.2, 0.08, 0.02, 0] }
           }
         }
       }
@@ -4874,36 +5205,40 @@ var PrismEngine = (() => {
       ],
       optionEvidence: {
         // A: Preserve inherited culture, tighter limits on openness
+        // MOR pos=1 (narrow): cultural in-group preservation → parochial moral scope.
         preserve_culture: {
           continuous: {
             CD: { pos: [0.02, 0.05, 0.13, 0.3, 0.5] },
             CU: { pos: [0.5, 0.28, 0.14, 0.05, 0.03] },
-            MOR: { pos: [0.05, 0.1, 0.25, 0.35, 0.25] }
+            MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
           }
         },
         // B: Stay open, but newcomers should adopt common civic culture
+        // MOR moderate pos=3: civic shared-culture frame → national/civic scope.
         civic_assimilation: {
           continuous: {
             CD: { pos: [0.05, 0.12, 0.28, 0.35, 0.2] },
             CU: { pos: [0.05, 0.12, 0.25, 0.35, 0.23] },
-            MOR: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
+            MOR: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
           }
         },
         // C: Stay open, don't demand cultural convergence
+        // MOR pos=5 (wide): cosmopolitan non-convergence → universalist moral scope.
         open_pluralist: {
           continuous: {
             CD: { pos: [0.5, 0.3, 0.13, 0.05, 0.02] },
             CU: { pos: [0.03, 0.05, 0.14, 0.28, 0.5] },
-            MOR: { pos: [0.25, 0.35, 0.25, 0.1, 0.05] }
+            MOR: { pos: [0.05, 0.1, 0.2, 0.3, 0.35] }
           }
         },
         // D: Cultural questions matter less than economic fairness
+        // MOR pos=3 (neutral): deflects cultural framing → no MOR signal direction.
         economics_first: {
           continuous: {
             MAT: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
             CD: { pos: [0.15, 0.25, 0.35, 0.15, 0.1] },
             CU: { pos: [0.15, 0.25, 0.3, 0.2, 0.1] },
-            MOR: { pos: [0.15, 0.25, 0.35, 0.15, 0.1] }
+            MOR: { pos: [0.15, 0.22, 0.32, 0.2, 0.11] }
           }
         }
       }
@@ -4971,12 +5306,19 @@ var PrismEngine = (() => {
       uiType: "slider",
       quality: 0.89,
       rewriteNeeded: false,
+      // ONT_H weight lowered 2026-04-26 from 0.45 → 0.20 per ADR-010. Q84 is
+      // primarily a ZS / ONT_S probe ("institutions corrupt over time"); the
+      // ONT_H residual was reading "humans dominate when given hierarchy" as
+      // pessimistic-fixed-nature, but under malleability framing that's an
+      // ambiguous signal (could be either fixed-bad or "humans are malleable
+      // toward domination if given the chance"). Reduced to a light residual.
       touchProfile: [
         { node: "ZS", kind: "continuous", role: "position", weight: 0.6, touchType: "zero_sum_institutions" },
         { node: "ZS", kind: "continuous", role: "salience", weight: 0.6, touchType: "zero_sum_institutions" },
-        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.45, touchType: "hierarchy_trust" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "hierarchy_trust" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "compromise_signal" },
-        { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "procedural_trust" }
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "procedural_trust" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.3, touchType: "institutional_nihilism" }
       ],
       sliderMap: {
         // 1 = strongly disagree (institutions are fine, hierarchy natural)
@@ -4986,6 +5328,9 @@ var PrismEngine = (() => {
             ONT_H: { pos: [0.03, 0.05, 0.12, 0.28, 0.52] },
             COM: { pos: [0.05, 0.1, 0.22, 0.35, 0.28] },
             PRO: { pos: [0.05, 0.1, 0.25, 0.35, 0.25] }
+          },
+          categorical: {
+            EPS: { cat: [0.15, 0.5, 0.15, 0.08, 0.1, 0.02] }
           }
         },
         // 2 = disagree
@@ -4995,6 +5340,9 @@ var PrismEngine = (() => {
             ONT_H: { pos: [0.05, 0.1, 0.22, 0.38, 0.25] },
             COM: { pos: [0.08, 0.15, 0.3, 0.3, 0.17] },
             PRO: { pos: [0.08, 0.12, 0.3, 0.3, 0.2] }
+          },
+          categorical: {
+            EPS: { cat: [0.2, 0.38, 0.14, 0.12, 0.12, 0.04] }
           }
         },
         // 3 = mixed
@@ -5004,15 +5352,21 @@ var PrismEngine = (() => {
             ONT_H: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] },
             COM: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] },
             PRO: { pos: [0.12, 0.22, 0.32, 0.22, 0.12] }
+          },
+          categorical: {
+            EPS: { cat: [0.17, 0.22, 0.17, 0.17, 0.17, 0.1] }
           }
         },
-        // 4 = agree
+        // 4 = agree (institutions tend toward domination)
         "61-80": {
           continuous: {
             ZS: { pos: [0.05, 0.08, 0.22, 0.35, 0.3], sal: [0.04, 0.15, 0.4, 0.41] },
             ONT_H: { pos: [0.25, 0.38, 0.22, 0.1, 0.05] },
             COM: { pos: [0.17, 0.3, 0.3, 0.15, 0.08] },
             PRO: { pos: [0.2, 0.3, 0.3, 0.12, 0.08] }
+          },
+          categorical: {
+            EPS: { cat: [0.08, 0.08, 0.1, 0.17, 0.25, 0.32] }
           }
         },
         // 5 = strongly agree (institutions always corrupt, domination inevitable)
@@ -5022,6 +5376,9 @@ var PrismEngine = (() => {
             ONT_H: { pos: [0.52, 0.28, 0.12, 0.05, 0.03] },
             COM: { pos: [0.28, 0.35, 0.22, 0.1, 0.05] },
             PRO: { pos: [0.25, 0.35, 0.25, 0.1, 0.05] }
+          },
+          categorical: {
+            EPS: { cat: [0.04, 0.04, 0.08, 0.1, 0.14, 0.6] }
           }
         }
       }
@@ -5039,7 +5396,8 @@ var PrismEngine = (() => {
       touchProfile: [
         { node: "PRO", kind: "continuous", role: "position", weight: 0.88, touchType: "procedural_legitimacy" },
         { node: "CD", kind: "continuous", role: "position", weight: 0.2, touchType: "cultural_direction" },
-        { node: "COM", kind: "continuous", role: "position", weight: 0.08, touchType: "compromise_signal" }
+        { node: "COM", kind: "continuous", role: "position", weight: 0.08, touchType: "compromise_signal" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.2, touchType: "legitimacy_authority" }
       ],
       optionEvidence: {
         // A: It carries inherited ways of life forward
@@ -5049,7 +5407,7 @@ var PrismEngine = (() => {
             CD: { pos: [0.04, 0.08, 0.18, 0.3, 0.4] }
           },
           categorical: {
-            EPS: { probs: [0.05, 0.1, 0.55, 0.15, 0.1, 0.05] }
+            EPS: { cat: [0.05, 0.1, 0.55, 0.15, 0.1, 0.05] }
           }
         },
         // B: It follows neutral constitutional rules and procedures
@@ -5059,7 +5417,7 @@ var PrismEngine = (() => {
             COM: { pos: [0.05, 0.1, 0.25, 0.35, 0.25] }
           },
           categorical: {
-            EPS: { probs: [0.35, 0.3, 0.1, 0.1, 0.1, 0.05] }
+            EPS: { cat: [0.35, 0.3, 0.1, 0.1, 0.1, 0.05] }
           }
         },
         // C: It keeps order and gets results when things are unstable
@@ -5070,7 +5428,7 @@ var PrismEngine = (() => {
             CD: { pos: [0.08, 0.12, 0.25, 0.3, 0.25] }
           },
           categorical: {
-            EPS: { probs: [0.15, 0.15, 0.1, 0.1, 0.4, 0.1] }
+            EPS: { cat: [0.1, 0.1, 0.08, 0.08, 0.3, 0.34] }
           }
         },
         // D: It advances justice, even if rules sometimes have to bend
@@ -5080,7 +5438,7 @@ var PrismEngine = (() => {
             COM: { pos: [0.25, 0.3, 0.25, 0.12, 0.08] }
           },
           categorical: {
-            EPS: { probs: [0.05, 0.05, 0.05, 0.5, 0.15, 0.2] }
+            EPS: { cat: [0.05, 0.05, 0.05, 0.45, 0.15, 0.25] }
           }
         }
       }
@@ -5160,36 +5518,35 @@ var PrismEngine = (() => {
       rewriteNeeded: false,
       touchProfile: [
         { node: "PF", kind: "continuous", role: "position", weight: 0.7, touchType: "thought_frequency_proxy" },
-        { node: "PF", kind: "continuous", role: "salience", weight: 0.85, touchType: "thought_frequency_proxy" },
-        { node: "ENG", kind: "continuous", role: "salience", weight: 0.25, touchType: "attention_proxy" }
+        { node: "ENG", kind: "continuous", role: "position", weight: 0.55, touchType: "thought_frequency_proxy" }
       ],
       optionEvidence: {
         // A: Rarely — only during elections or big news
         rarely_elections: {
           continuous: {
-            PF: { pos: [0.55, 0.28, 0.12, 0.03, 0.02], sal: [0.55, 0.3, 0.12, 0.03] },
-            ENG: { sal: [0.5, 0.3, 0.15, 0.05] }
+            PF: { pos: [0.55, 0.28, 0.12, 0.03, 0.02] },
+            ENG: { pos: [0.6, 0.25, 0.1, 0.04, 0.01] }
           }
         },
         // B: Sometimes — when something big happens I'll think about it
         sometimes_events: {
           continuous: {
-            PF: { pos: [0.2, 0.4, 0.25, 0.12, 0.03], sal: [0.2, 0.4, 0.28, 0.12] },
-            ENG: { sal: [0.2, 0.4, 0.28, 0.12] }
+            PF: { pos: [0.2, 0.4, 0.25, 0.12, 0.03] },
+            ENG: { pos: [0.25, 0.4, 0.22, 0.1, 0.03] }
           }
         },
         // C: Regularly — part of my daily media and conversations
         regularly_daily: {
           continuous: {
-            PF: { pos: [0.05, 0.15, 0.35, 0.32, 0.13], sal: [0.05, 0.18, 0.42, 0.35] },
-            ENG: { sal: [0.05, 0.18, 0.42, 0.35] }
+            PF: { pos: [0.05, 0.15, 0.35, 0.32, 0.13] },
+            ENG: { pos: [0.04, 0.12, 0.3, 0.36, 0.18] }
           }
         },
         // D: Constantly — politics shapes how I see most things
         constantly_worldview: {
           continuous: {
-            PF: { pos: [0.02, 0.05, 0.15, 0.33, 0.45], sal: [0.02, 0.08, 0.25, 0.65] },
-            ENG: { sal: [0.02, 0.08, 0.3, 0.6] }
+            PF: { pos: [0.02, 0.05, 0.15, 0.33, 0.45] },
+            ENG: { pos: [0.01, 0.04, 0.12, 0.3, 0.53] }
           }
         }
       }
@@ -5204,36 +5561,39 @@ var PrismEngine = (() => {
       rewriteNeeded: false,
       touchProfile: [
         { node: "TRB", kind: "continuous", role: "position", weight: 0.85, touchType: "group_solidarity" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.8, touchType: "group_solidarity" },
         { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "in_group_proxy" }
       ],
       optionEvidence: {
         // A: Personal — like it's happening to me
+        // MOR pos=1 (narrow): strong in-group identification → parochial moral scope.
         personal_feels: {
           continuous: {
-            TRB: { pos: [0.02, 0.05, 0.15, 0.33, 0.45], sal: [0.02, 0.08, 0.25, 0.65] },
-            MOR: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+            TRB: { pos: [0.02, 0.05, 0.15, 0.33, 0.45] },
+            MOR: { pos: [0.4, 0.32, 0.18, 0.07, 0.03] }
           }
         },
         // B: Important — I pay attention and care
+        // MOR moderate-narrow: in-group matters but not all-consuming.
         important_care: {
           continuous: {
-            TRB: { pos: [0.05, 0.18, 0.38, 0.28, 0.11], sal: [0.05, 0.22, 0.42, 0.31] },
-            MOR: { pos: [0.1, 0.25, 0.35, 0.22, 0.08] }
+            TRB: { pos: [0.05, 0.18, 0.38, 0.28, 0.11] },
+            MOR: { pos: [0.15, 0.3, 0.35, 0.15, 0.05] }
           }
         },
         // C: Aware but it doesn't really touch me
+        // MOR moderate-wide: detached from in-group → scope drifts outward.
         aware_distant: {
           continuous: {
-            TRB: { pos: [0.25, 0.4, 0.22, 0.1, 0.03], sal: [0.25, 0.42, 0.25, 0.08] },
-            MOR: { pos: [0.2, 0.35, 0.28, 0.12, 0.05] }
+            TRB: { pos: [0.25, 0.4, 0.22, 0.1, 0.03] },
+            MOR: { pos: [0.08, 0.17, 0.35, 0.28, 0.12] }
           }
         },
         // D: Not really — I don't see myself mainly through group identity
+        // MOR pos=5 (wide): universalist self-concept → universal moral scope.
         universalist_self: {
           continuous: {
-            TRB: { pos: [0.55, 0.28, 0.12, 0.03, 0.02], sal: [0.55, 0.3, 0.12, 0.03] },
-            MOR: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
+            TRB: { pos: [0.55, 0.28, 0.12, 0.03, 0.02] },
+            MOR: { pos: [0.03, 0.07, 0.2, 0.3, 0.4] }
           }
         }
       }
@@ -5260,8 +5620,11 @@ var PrismEngine = (() => {
         eps_institutionalist: { categorical: { EPS: EPS_PROTOTYPES.institutionalist } },
         eps_traditionalist: { categorical: { EPS: EPS_PROTOTYPES.traditionalist } },
         eps_intuitionist: { categorical: { EPS: EPS_PROTOTYPES.intuitionist } },
-        eps_autonomous: { categorical: { EPS: EPS_PROTOTYPES.autonomous } },
-        eps_nihilist: { categorical: { EPS: EPS_PROTOTYPES.nihilist } }
+        eps_autonomous: { categorical: { EPS: EPS_PROTOTYPES.autonomous } }
+        // eps_nihilist removed 2026-04-24 per user feedback: option reads as
+        // redundant with eps_autonomous ("trust in yourself"). Nihilist category
+        // still exists in the archetype library; coverage shifts to Q79
+        // expert_disagreement_reaction's nihilist-specific branch.
       }
     },
     // Q87 — PF position via affective-polarization proxy (close-family cross-partisan marriage).
@@ -5339,9 +5702,10 @@ var PrismEngine = (() => {
         spouse: "Your spouse \u2014 lifelong partner and co-parent"
       },
       touchProfile: [
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.8, touchType: "cross_partisan_tolerance" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.8, touchType: "cross_partisan_tolerance" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "out_group_proxy" }
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.8, touchType: "cross_partisan_tolerance" }
+        // MOR dropped 2026-04-24 per audit: rankingMap carries no MOR evidence
+        // per item, so the declared touch was inflating coverage counts without
+        // delivering posterior updates. TRB is what Q99 actually measures.
       ],
       rankingMap: {
         neighbor: { continuous: { TRB: { pos: [0.01, 0.03, 0.08, 0.25, 0.63] } } },
@@ -5369,47 +5733,86 @@ var PrismEngine = (() => {
       quality: 0.88,
       rewriteNeeded: false,
       options: ["a", "b"],
-      touchProfile: [
-        { node: "AES", kind: "categorical", role: "category", weight: 0.7, touchType: "conjoint_bundle" },
-        { node: "AES", kind: "categorical", role: "salience", weight: 0.4, touchType: "conjoint_bundle" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.55, touchType: "conjoint_bundle" },
-        { node: "CD", kind: "continuous", role: "salience", weight: 0.45, touchType: "conjoint_bundle" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.45, touchType: "conjoint_bundle" },
-        { node: "TRB", kind: "continuous", role: "salience", weight: 0.45, touchType: "conjoint_bundle" },
-        { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "conjoint_bundle" },
-        { node: "CU", kind: "continuous", role: "position", weight: 0.35, touchType: "conjoint_bundle" }
-      ],
-      optionEvidence: {
-        // Candidate A: fighter / progressive / party-loyal / economic-justice
-        a: {
-          categorical: {
-            AES: { cat: [0.06, 0.06, 0.06, 0.08, 0.68, 0.06] }
-          },
-          continuous: {
-            CD: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
-            TRB: { pos: [0.05, 0.1, 0.2, 0.3, 0.35] },
-            MAT: { pos: [0.35, 0.32, 0.2, 0.08, 0.05] }
-          }
-        },
-        // Candidate B: statesman / traditional / country-first / cultural-continuity
-        b: {
-          categorical: {
-            AES: { cat: [0.65, 0.12, 0.06, 0.06, 0.06, 0.05] }
-          },
-          continuous: {
-            CD: { pos: [0.04, 0.08, 0.18, 0.3, 0.4] },
-            TRB: { pos: [0.15, 0.25, 0.3, 0.2, 0.1] },
-            CU: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
-          }
-        }
-      },
-      strengthFollowUp: {
-        kind: "strength",
-        prompt: "How strongly do you prefer this candidate?",
-        labels: { strong: "A lot", weak: "A little" }
-      }
+      // Deprecated 2026-04-26: the direct AES max-diff probe (Q218) replaces the
+      // fighter-vs-statesman conjoint proxy. Leaving the definition in place
+      // preserves ID stability, but an empty touchProfile keeps it out of the
+      // active quiz.
+      touchProfile: [],
+      optionEvidence: {}
     },
     // ─────────────────────────────────────────────────────────────────────────
+    // Q217 - Direct epistemic category ranking. Added 2026-04-26 because EPS
+    // should not be inferred mostly from proxy situations. This asks the six
+    // canonical epistemic styles directly and rank-weights the full order.
+    {
+      id: 217,
+      stage: "fixed12",
+      section: "II",
+      promptShort: "epistemic_style_ranking",
+      promptFull: "Rank these ways of deciding what is politically true from most like you to least like you.",
+      uiType: "ranking",
+      quality: 0.96,
+      rewriteNeeded: false,
+      optionLabels: {
+        eps_empiricist: "Evidence-first - studies, data, measurement, and observable results",
+        eps_institutionalist: "Institutional confidence - expert consensus, courts, agencies, journals, and professional standards",
+        eps_traditionalist: "Inherited wisdom - long-standing traditions, religious teaching, and practices that have endured",
+        eps_intuitionist: "Moral intuition - conscience, gut sense, and felt right-or-wrong",
+        eps_autonomous: "Independent reasoning - work it out myself; no authority gets automatic deference",
+        eps_nihilist: "Radical skepticism - most sources are compromised, so claims need deep suspicion"
+      },
+      touchProfile: [
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "direct_epistemic_rank" }
+      ],
+      rankingMap: {
+        eps_empiricist: { categorical: { EPS: EPS_PROTOTYPES.empiricist } },
+        eps_institutionalist: { categorical: { EPS: EPS_PROTOTYPES.institutionalist } },
+        eps_traditionalist: { categorical: { EPS: EPS_PROTOTYPES.traditionalist } },
+        eps_intuitionist: { categorical: { EPS: EPS_PROTOTYPES.intuitionist } },
+        eps_autonomous: { categorical: { EPS: EPS_PROTOTYPES.autonomous } },
+        eps_nihilist: { categorical: { EPS: EPS_PROTOTYPES.nihilist } }
+      }
+    },
+    // Q218 - Direct aesthetic category max-diff. Added 2026-04-26 so AES does
+    // not depend on a single bundled leader conjoint. This asks the six canonical
+    // political aesthetics directly and uses most/least appealing picks.
+    {
+      id: 218,
+      stage: "fixed12",
+      section: "V",
+      promptShort: "aesthetic_style_ranking",
+      promptFull: "Pick the political leadership style you find most appealing and the one you find least appealing.",
+      uiType: "best_worst",
+      bwMaxPicks: 1,
+      quality: 0.96,
+      rewriteNeeded: false,
+      optionLabels: {
+        // Style-only descriptions (2026-04-26): previous labels conflated
+        // aesthetic with belief content (e.g., pastoral "tradition-aware" was
+        // really CD content; statesman "constitutional" was ONT_S/PRO content).
+        // AES is presentation/persona/rhetorical mode — what kind of leader
+        // appeals to you stylistically — independent of their beliefs. A
+        // traditionalist can be visionary, a progressive can be statesman, etc.
+        aes_statesman: "Statesman - formal and dignified, measured tone, ceremonial register, presidential bearing",
+        aes_technocrat: "Technocrat - precise and analytical, expert-coded delivery, comfortable with technical detail and jargon",
+        aes_pastoral: "Pastoral - warm hometown register, regional cadence, family-and-community language, evocative and emotional",
+        aes_plainspoken: "Plainspoken - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
+        aes_fighter: "Fighter - combative tone, willing to attack opponents directly, confrontational delivery, doesn't soften",
+        aes_visionary: "Visionary - lyrical and aspirational, evocative-imagistic rhetoric, paints pictures with words"
+      },
+      touchProfile: [
+        { node: "AES", kind: "categorical", role: "category", weight: 0.95, touchType: "direct_aesthetic_maxdiff" },
+        { node: "AES", kind: "categorical", role: "salience", weight: 0.35, touchType: "direct_aesthetic_maxdiff" }
+      ],
+      bestWorstMap: {
+        aes_statesman: { categorical: { AES: AES_PROTOTYPES.statesman } },
+        aes_technocrat: { categorical: { AES: AES_PROTOTYPES.technocrat } },
+        aes_pastoral: { categorical: { AES: AES_PROTOTYPES.pastoral } },
+        aes_plainspoken: { categorical: { AES: AES_PROTOTYPES.plainspoken } },
+        aes_fighter: { categorical: { AES: AES_PROTOTYPES.fighter } },
+        aes_visionary: { categorical: { AES: AES_PROTOTYPES.visionary } }
+      }
+    },
     // Q101 — cultural_social_dual_axis (dual_axis on CD)
     // One grid tap gives both position (x, Progressive→Traditional) and
     // salience (y, doesn't-matter→central). Applied via applyDualAxisAnswer.
@@ -5443,9 +5846,12 @@ var PrismEngine = (() => {
     //   cultural, speak_lang           → moderately low CU (assimilationist)
     //   economic                       → mild low CU (instrumentalist)
     //   shared_values, civic_part      → center (civic nationalist)
-    // All-essential respondent = demanding assimilationist (CU=1 lock).
-    // Only civic_part+shared_values essential = civic nationalist (CU=3).
-    // All-irrelevant respondent = pluralist (CU unmoved, low salience).
+    //   anyone_willing, no_gatekeeping → high CU (pluralist — anti-criterion)
+    // All-essential respondent excluding the pluralist items = demanding
+    // assimilationist (CU=1 lock). Only civic_part+shared_values essential =
+    // civic nationalist (CU=3). Pluralist items essential with everything else
+    // irrelevant = strong CU=5 signal (fixes the 2026-04-24 diagnostic finding
+    // that CU=5 targets were getting recovered as CU=2-3).
     // ─────────────────────────────────────────────────────────────────────────
     {
       id: 102,
@@ -5458,7 +5864,7 @@ var PrismEngine = (() => {
       rewriteNeeded: false,
       optionLabels: {
         born_here: "Being born in the country \u2014 having citizenship by birth",
-        speak_lang: "Speaking the national language fluently in daily life",
+        speak_lang: "Being able to speak the national language",
         shared_values: "Believing in the core civic values (liberty, equality, rule of law)",
         civic_part: "Participating in civic life \u2014 voting, jury duty, community involvement",
         cultural: "Adopting cultural customs, holidays, and traditions",
@@ -5467,19 +5873,1098 @@ var PrismEngine = (() => {
         economic: "Contributing economically \u2014 holding a job, paying taxes, not being a burden"
       },
       touchProfile: [
-        { node: "CU", kind: "continuous", role: "position", weight: 0.85, touchType: "membership_criteria" },
+        // Position weight reduced 2026-04-24 from 0.85 → 0.30 per ADR-008.
+        // Q102 conflates polity-gatekeeping with culture-pluralism: a civic-
+        // nationalist user (shared civic values matter, but pluralism in private
+        // life is fine) gets read as assimilationist because Q102's items push
+        // CU low when marked Essential. Lowering position weight lets Q102
+        // contribute mostly salience evidence without dominating CU position.
+        { node: "CU", kind: "continuous", role: "position", weight: 0.3, touchType: "membership_criteria" },
         { node: "CU", kind: "continuous", role: "salience", weight: 0.8, touchType: "membership_criteria" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_scope" }
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_scope" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_boundary" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "membership_boundary" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.1, touchType: "economic_membership" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.1, touchType: "economic_membership" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "civic_membership" }
       ],
       rankingMap: {
+        // Civic-membership likelihoods recalibrated 2026-04-25 per ADR-009.
+        // Previous design pushed CU low for ALL items including civic ones —
+        // a civic-nationalist progressive (FDR/Obama tradition) who marks
+        // "shared civic values" or "civic participation" as Essential got
+        // read as anti-pluralist. Re-encoded so:
+        //   civic items (shared_values, civic_part) → ~neutral CU (centered
+        //     at 3.0): valuing shared civic values is compatible with
+        //     pluralism in private culture; gives no signal either way
+        //   ethnic/religious gatekeeping (born_here, ancestry, religion) →
+        //     strong CU low (peak ~1.7): these items pick out culture-of-
+        //     origin as a membership criterion; that's the assimilationist
+        //     position by definition
+        //   language (speak_lang) → mild CU low (~2.5): functional civic
+        //     requirement, slightly assimilationist but not strongly
+        //   cultural / economic → mild low (already-existing, kept)
         born_here: { continuous: { CU: { pos: [0.5, 0.3, 0.12, 0.06, 0.02] } } },
-        speak_lang: { continuous: { CU: { pos: [0.35, 0.35, 0.18, 0.08, 0.04] } } },
-        shared_values: { continuous: { CU: { pos: [0.2, 0.3, 0.3, 0.13, 0.07] } } },
-        civic_part: { continuous: { CU: { pos: [0.18, 0.3, 0.3, 0.14, 0.08] } } },
-        cultural: { continuous: { CU: { pos: [0.4, 0.3, 0.15, 0.1, 0.05] } } },
+        speak_lang: { continuous: { CU: { pos: [0.2, 0.32, 0.3, 0.12, 0.06] } } },
+        shared_values: { continuous: { CU: { pos: [0.1, 0.22, 0.4, 0.2, 0.08] } } },
+        civic_part: { continuous: { CU: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] } } },
+        cultural: { continuous: { CU: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] } } },
         ancestry: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } } },
         religion: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } } },
-        economic: { continuous: { CU: { pos: [0.25, 0.3, 0.28, 0.12, 0.05] } } }
+        economic: { continuous: { CU: { pos: [0.2, 0.3, 0.32, 0.12, 0.06] } } }
+      }
+    },
+    // Q103 — Issue Salience Screener (pre-quiz rule-out pass).
+    // Added 2026-04-23 per diagnostic `results/architecture/salience-reach-12.md`
+    // finding that the Bayesian engine never reaches confident `salDist[0] ≥ 0.9`
+    // on target.sal=0 nodes with existing soft salience likelihoods
+    // (SAL_PRIORITY_LOW=[0.55,0.30,0.12,0.03] asymptotes at E[sal]=0.63). This
+    // priority_sort hands the engine 11 per-node salience gestures in a single
+    // question, using a per-question `salienceBuckets` override to ship harder
+    // likelihoods (neutral bucket = [0.90,0.08,0.02,0.00]) that can push the
+    // posterior past the `salDist[0] ≥ 0.5` eligibility gate in one touch.
+    // Pairs with an eligibility check in isQuestionEligible that skips position
+    // questions on ruled-out nodes. Forced to position 1 in FIXED_OPENER.
+    {
+      id: 103,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "issue_salience_screener",
+      promptFull: "Sort each political topic below by how much it matters to how you see politics. Put topics at the top that feel central to your political identity, in the middle if they matter but aren't central, and at the bottom if they don't really register.",
+      uiType: "priority_sort",
+      priorityBattery: true,
+      quality: 0.98,
+      rewriteNeeded: false,
+      optionLabels: {
+        // Labels rewritten 2026-04-25 for tighter alignment with each node's
+        // actual position scale. Previous labels for ZS, ONT_H, and CU
+        // mismatched their underlying nodes:
+        //   ZS    "Partisan identity..."  → wrong node (PF/TRB territory)
+        //   ONT_H "Hierarchy and order..." → mismatch (node scale is human-nature)
+        //   CU    "National identity..."   → leaks into TRB anchor
+        // Each label now matches the node's high5/low1 framing in nodes.ts.
+        mat: "Economic policy \u2014 taxes, redistribution, jobs, markets, and who gets to share in the gains",
+        cd: "Social direction \u2014 reproductive rights, LGBTQ rights, gender identity, marriage, religious accommodation, and whether (and how fast) social conventions should change",
+        cu: "Pluralism \u2014 whether different worldviews, religions, languages, lifestyles, and conceptions of a good life should coexist as equals within the country, or whether the country should have one shared standard",
+        mor: "Moral scope \u2014 whether obligations stop at family and country, or extend to strangers everywhere",
+        pro: "Rule of law and procedures \u2014 whether process binds every side, or results are what matter most",
+        com: "Compromise and dealmaking \u2014 whether half a win is worth taking, or some lines you just don't cross",
+        zs: "Zero-sum vs positive-sum \u2014 whether systems (economic, political, cultural) usually produce gains by cooperation that benefit everyone, or by competition where one side's gain requires another's loss",
+        ont_h: "Human malleability \u2014 whether character and behavior can be substantially reshaped by environment, education, and institutions, or whether human nature is mostly fixed and cultivation can't really change it",
+        ont_s: "Institutions \u2014 the importance of strong, accountable institutions (laws, courts, agencies, international bodies) to human progress and a thriving society",
+        eps: "Truth and evidence \u2014 what counts as a credible source in political debates",
+        aes: "Leadership style \u2014 the kind of leader who appeals (fighter vs. statesman, visionary vs. pragmatist)"
+      },
+      // Hard likelihoods on the "neutral" bucket — the whole point of this
+      // question. [0.90, 0.08, 0.02, 0.00] drives salDist[0] from uniform 0.25 to
+      // ~0.90 in one touch (vs. the default SAL_PRIORITY_LOW's asymptote at 0.63).
+      // supportHigh and opposeHigh mirror the Q93 defaults; supportMid softened
+      // slightly to leave more probability on the middle buckets.
+      salienceBuckets: {
+        supportHigh: [0, 0.02, 0.08, 0.9],
+        supportMid: [0.1, 0.25, 0.4, 0.25],
+        neutral: [0.9, 0.08, 0.02, 0],
+        opposeHigh: [0, 0.02, 0.08, 0.9]
+      },
+      touchProfile: [
+        { node: "MAT", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "CD", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "CU", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "MOR", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "PRO", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "COM", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "ZS", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "ONT_H", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "EPS", kind: "categorical", role: "salience", weight: 0.95, touchType: "salience_screener" },
+        { node: "AES", kind: "categorical", role: "salience", weight: 0.95, touchType: "salience_screener" }
+      ],
+      // Each item maps to exactly one node. Continuous items carry an empty
+      // evidence object — all salience work is done by applyPrioritySort's
+      // per-node bucket aggregation with this question's salienceBuckets override.
+      // No position evidence: this question only rules nodes in or out, it does
+      // not try to localize position on mattering nodes (that's the other 11
+      // fixed-opener questions' job).
+      rankingMap: {
+        mat: { continuous: { MAT: {} } },
+        cd: { continuous: { CD: {} } },
+        cu: { continuous: { CU: {} } },
+        mor: { continuous: { MOR: {} } },
+        pro: { continuous: { PRO: {} } },
+        com: { continuous: { COM: {} } },
+        zs: { continuous: { ZS: {} } },
+        ont_h: { continuous: { ONT_H: {} } },
+        ont_s: { continuous: { ONT_S: {} } },
+        eps: { categorical: { EPS: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6] } },
+        aes: { categorical: { AES: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6] } }
+      }
+    },
+    // Q201 — Patriotism + institutional trust direct probe.
+    // Added 2026-04-24 per ADR-008 to close the "civic-nationalist progressive"
+    // signal gap. Previous opener had no direct probe of country-pride or
+    // institutional-trust-despite-flaws; civic-nationalist users were forced
+    // to express via Q60 (national_identity anchor — fires only if matters)
+    // and Q102 (gatekeeping framing — biased toward assimilationist read).
+    // This question separates "I'm proud + trust institutions despite flaws"
+    // from "I'm critical and don't trust system" cleanly, touching ONT_S
+    // (institutional trust) and TRB (national identification).
+    {
+      id: 201,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "patriotism_institutional_trust",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      // Q201 options expanded 2026-04-25 per ADR-009 to cover the patriotism ×
+      // institutional-trust grid. 5 options span the meaningful cells:
+      //   - high pride, high trust   (proud_and_trust, mainstream patriot)
+      //   - high pride, low trust    (proud_distrustful, right-populist patriot)
+      //   - moderate pride, mixed    (moderate_pride_mixed_trust)
+      //   - low pride, high trust    (internationalist_trusting)
+      //   - low pride, low trust     (critical_low_trust)
+      // The 6th "not country-framed" option was dropped 2026-04-25 per user
+      // feedback: it duplicates Q103's salience rule-out (TRB sal=0 case) and
+      // confuses the question's purpose by inviting respondents who do think in
+      // country/tribe terms to opt out altogether.
+      options: ["proud_and_trust", "proud_distrustful", "moderate_pride_mixed_trust", "internationalist_trusting", "critical_low_trust"],
+      // Current trust in institutions is not the same as ONT_S's normative
+      // institutional essentialism. Keep this as a light contextual cue and let
+      // Q214/Q215/Q216 carry the real "strong institutions are foundational"
+      // signal.
+      touchProfile: [
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.2, touchType: "current_institutional_confidence" },
+        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.15, touchType: "current_institutional_confidence" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.3, touchType: "national_identification" }
+      ],
+      optionEvidence: {
+        // "I'm generally proud of my country and trust most of its core institutions despite their flaws."
+        proud_and_trust: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.06, 0.18, 0.34, 0.4] },
+            TRB: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        },
+        // "I'm proud of my country but distrust most of its current institutions."
+        proud_distrustful: {
+          continuous: {
+            ONT_S: { pos: [0.08, 0.18, 0.36, 0.25, 0.13] },
+            TRB: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        },
+        // "I'm somewhat proud but skeptical of many institutions in their current form."
+        moderate_pride_mixed_trust: {
+          continuous: {
+            ONT_S: { pos: [0.06, 0.16, 0.38, 0.27, 0.13] },
+            TRB: { pos: [0.1, 0.25, 0.35, 0.2, 0.1] }
+          }
+        },
+        // "I don't think in country-pride terms but I trust most major democratic institutions."
+        internationalist_trusting: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.06, 0.18, 0.34, 0.4] },
+            TRB: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
+          }
+        },
+        // "I'm critical of my country and don't trust most institutions."
+        critical_low_trust: {
+          continuous: {
+            ONT_S: { pos: [0.18, 0.27, 0.32, 0.16, 0.07] },
+            TRB: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] }
+          }
+        }
+      }
+    },
+    // Q200 — Party identification (added 2026-04-24 per ADR-007).
+    // Captured separately from the Bayesian node state because party loyalty
+    // is a non-ideological force (Duvergerian / coalitional), not a continuous-
+    // dimensional position. Stored directly on state.partyID via custom hook
+    // in applySingleChoiceAnswer (engine/update.ts). Used in predictVote to
+    // multiply distance to non-matching-party candidates by 1 + 0.4 × (PF/5).
+    // Effect: a high-PF Democrat votes Democratic regardless of small ideological
+    // shifts in candidates — fixing the "staunch Dem voted Trump 2024" artifact.
+    // Touch profile is empty (no node updates) — this is pure metadata.
+    // PF salience nudge added so the question still contributes to PF posterior
+    // confidence (a person who answers a party question is engaged enough that
+    // PF matters).
+    {
+      id: 200,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "party_identification",
+      uiType: "single_choice",
+      quality: 0.99,
+      rewriteNeeded: false,
+      options: ["dem", "rep", "ind", "third", "none"],
+      // Q200 touchProfile cleaned 2026-04-25 (ADR-009 / P3.7): the previous
+      // PF salience touch was no-op (SELF-cluster nodes skip salience writes
+      // per ADR-005). Q200 is metadata-only — partyID is captured by the
+      // applySingleChoiceAnswer hook and consumed by predictVote, not by the
+      // Bayesian node state.
+      touchProfile: [],
+      optionEvidence: {
+        dem: {},
+        rep: {},
+        ind: {},
+        third: {},
+        none: {}
+      }
+    },
+    // Q202 — State scope / state capacity. Added 2026-04-25 per ADR-009.
+    // Distinguishes Progressive Social Democrat (universal services, big-state)
+    // from Third Way Liberal (basic safety net, market-friendly) at the same
+    // MAT-progressive direction. MAT collapsed scope and direction into one
+    // axis; this question separates them via overlay.
+    {
+      id: 202,
+      stage: "fixed12",
+      section: "II",
+      promptShort: "state_scope_preference",
+      uiType: "single_choice",
+      quality: 0.94,
+      rewriteNeeded: false,
+      options: ["universal_strong_state", "basic_safety_net_mixed", "market_enabling_limited", "anti_bureaucratic_localist"],
+      touchProfile: [
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.55, touchType: "state_scope" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.3, touchType: "state_capacity" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.3, touchType: "institutional_importance" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.15, touchType: "pragmatism_proxy" }
+      ],
+      optionEvidence: {
+        // "Universal services and a strong state — public healthcare, public education
+        // through college, robust social insurance, even at higher taxes."
+        universal_strong_state: {
+          continuous: {
+            MAT: { pos: [0.55, 0.3, 0.1, 0.04, 0.01] },
+            PRO: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
+            ONT_S: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
+            COM: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] }
+          }
+        },
+        // "Basic safety net and mixed economy — government provides core protections
+        // and corrects market failures but doesn't run most things."
+        basic_safety_net_mixed: {
+          continuous: {
+            MAT: { pos: [0.2, 0.35, 0.3, 0.1, 0.05] },
+            PRO: { pos: [0.08, 0.2, 0.4, 0.2, 0.12] },
+            ONT_S: { pos: [0.08, 0.2, 0.4, 0.2, 0.12] },
+            COM: { pos: [0.04, 0.12, 0.28, 0.36, 0.2] }
+          }
+        },
+        // "Market-enabling limited state — government should mostly enable
+        // markets, individual choice, and small-business activity."
+        market_enabling_limited: {
+          continuous: {
+            MAT: { pos: [0.05, 0.1, 0.25, 0.35, 0.25] },
+            PRO: { pos: [0.15, 0.25, 0.3, 0.2, 0.1] },
+            ONT_S: { pos: [0.2, 0.25, 0.25, 0.2, 0.1] },
+            COM: { pos: [0.08, 0.18, 0.36, 0.26, 0.12] }
+          }
+        },
+        // "Anti-bureaucratic / localist alternative — federal government does too
+        // much; problems should be solved at community / state / private level."
+        anti_bureaucratic_localist: {
+          continuous: {
+            MAT: { pos: [0.1, 0.2, 0.3, 0.25, 0.15] },
+            PRO: { pos: [0.4, 0.3, 0.18, 0.07, 0.05] },
+            ONT_S: { pos: [0.4, 0.3, 0.18, 0.07, 0.05] },
+            COM: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] }
+          }
+        }
+      }
+    },
+    // Q203-205 — Foreign policy mini-module. Added 2026-04-25 per ADR-009 as
+    // overlay rather than new node. Maps onto existing nodes (MOR for moral
+    // scope, CU for nationalism, MAT for trade, ONT_S for institutions).
+    // Q203 — Hawk-dove / military intervention
+    {
+      id: 203,
+      stage: "fixed12",
+      section: "III",
+      promptShort: "military_intervention",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["robust_intervention", "alliance_diplomacy", "restraint_only", "anti_war"],
+      touchProfile: [
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.3, touchType: "interventionism" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.3, touchType: "interventionism" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "interventionism" }
+      ],
+      optionEvidence: {
+        // "Use military force decisively when American interests / values demand it"
+        robust_intervention: {
+          continuous: {
+            MOR: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] },
+            ZS: { pos: [0.05, 0.1, 0.2, 0.3, 0.35] },
+            ONT_H: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
+          }
+        },
+        // "Lead through alliances and diplomacy; force is a last resort within international institutions"
+        alliance_diplomacy: {
+          continuous: {
+            MOR: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] },
+            ZS: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] },
+            ONT_H: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        },
+        // C and D rewritten 2026-04-25 per user feedback that they overlapped.
+        // Now distinguished on the realist-vs-moral axis:
+        //   C realist_restraint = strategic prudence (would intervene if vital
+        //                         interests were directly threatened — narrow scope)
+        //   D anti_war         = moral pacifism (war itself is the problem,
+        //                         even when interests would justify it)
+        // "Strategic prudence — intervene only to protect vital US security interests; treat foreign policy as cost-benefit, not values projection"
+        restraint_only: {
+          continuous: {
+            MOR: { pos: [0.3, 0.32, 0.22, 0.12, 0.04] },
+            // narrower moral scope (realist-leaning)
+            ZS: { pos: [0.1, 0.22, 0.34, 0.22, 0.12] },
+            // mixed zero-sum (geopolitics is a contest)
+            ONT_H: { pos: [0.22, 0.3, 0.3, 0.13, 0.05] }
+            // somewhat pessimistic about other actors
+          }
+        },
+        // "War is rarely just — pursue diplomacy and disarmament; military force causes more harm than it prevents"
+        anti_war: {
+          continuous: {
+            MOR: { pos: [0.04, 0.1, 0.22, 0.32, 0.32] },
+            // wide moral scope (cosmopolitan pacifism)
+            ZS: { pos: [0.42, 0.3, 0.16, 0.08, 0.04] },
+            // strongly positive-sum (cooperation works)
+            ONT_H: { pos: [0.04, 0.12, 0.26, 0.32, 0.26] }
+            // optimistic about human nature
+          }
+        }
+      }
+    },
+    // Q204 — Internationalist vs isolationist (alliances, institutions, treaties)
+    {
+      id: 204,
+      stage: "fixed12",
+      section: "III",
+      promptShort: "international_engagement",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["deep_engagement", "selective_alliance", "unilateral_strength", "withdraw_focus_home"],
+      touchProfile: [
+        { node: "CU", kind: "continuous", role: "position", weight: 0.35, touchType: "international_orientation" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.25, touchType: "moral_scope_global" },
+        { node: "TRB", kind: "continuous", role: "position", weight: 0.2, touchType: "national_identification" }
+      ],
+      optionEvidence: {
+        // "America should engage deeply in international institutions and treaties"
+        deep_engagement: {
+          continuous: {
+            CU: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
+            MOR: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
+            TRB: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] }
+          }
+        },
+        // "Strong alliances yes, but be selective and protect American sovereignty"
+        selective_alliance: {
+          continuous: {
+            CU: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
+            MOR: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
+            TRB: { pos: [0.1, 0.22, 0.3, 0.25, 0.13] }
+          }
+        },
+        // "America should act unilaterally to defend its interests; don't be constrained by international institutions"
+        unilateral_strength: {
+          continuous: {
+            CU: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            TRB: { pos: [0.04, 0.1, 0.2, 0.32, 0.34] }
+          }
+        },
+        // "Withdraw from foreign entanglements; focus on home"
+        withdraw_focus_home: {
+          continuous: {
+            CU: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] },
+            MOR: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] },
+            TRB: { pos: [0.1, 0.18, 0.3, 0.25, 0.17] }
+          }
+        }
+      }
+    },
+    // Q205 — Trade / economic nationalism
+    {
+      id: 205,
+      stage: "fixed12",
+      section: "III",
+      promptShort: "trade_nationalism",
+      uiType: "single_choice",
+      quality: 0.88,
+      rewriteNeeded: false,
+      options: ["free_trade", "fair_trade_with_protections", "tariffs_protect_jobs", "trade_what_helps_people"],
+      // CU weight lowered 2026-04-26 from 0.25 → 0.10 per CU broadening audit.
+      // Economic nationalism (wanting tariffs to protect jobs) is a weak proxy for
+      // CU under the broadened pluralism framing — a respondent can favor tariffs
+      // for purely economic reasons without holding any uniformity preference.
+      // Kept as a light residual to preserve the protectionist↔globalist
+      // correlation that does exist in the data, but not load-bearing.
+      touchProfile: [
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.35, touchType: "trade_economics" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.1, touchType: "economic_nationalism" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.25, touchType: "trade_zero_sum" }
+      ],
+      optionEvidence: {
+        // "Free trade is mostly good; remove barriers, embrace globalization"
+        free_trade: {
+          continuous: {
+            MAT: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
+            CU: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
+            ZS: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
+          }
+        },
+        // "Fair trade with worker / environmental protections — pro-trade but with rules"
+        fair_trade_with_protections: {
+          continuous: {
+            MAT: { pos: [0.15, 0.3, 0.3, 0.15, 0.1] },
+            CU: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
+            ZS: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        },
+        // "Tariffs and protections to defend American jobs and industry"
+        tariffs_protect_jobs: {
+          continuous: {
+            MAT: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] },
+            CU: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            ZS: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        },
+        // "Whatever trade policy materially helps working people — open or closed"
+        trade_what_helps_people: {
+          continuous: {
+            MAT: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
+            ZS: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        }
+      }
+    },
+    // Q206 — Religion in public life. Maps to CD, CU, MOR, PRO. Added 2026-04-25.
+    {
+      id: 206,
+      stage: "fixed12",
+      section: "IV",
+      promptShort: "religion_in_public_life",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["religion_central", "religion_inform", "religion_neutral", "religion_separate"],
+      touchProfile: [
+        { node: "CD", kind: "continuous", role: "position", weight: 0.4, touchType: "religion_traditionalism" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "religion_morality" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "religion_neutrality" },
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.3, touchType: "religion_epistemic" }
+      ],
+      optionEvidence: {
+        // "Religious values should be central to public policy and law"
+        religion_central: {
+          continuous: {
+            CD: { pos: [0.02, 0.06, 0.18, 0.34, 0.4] },
+            MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            PRO: { pos: [0.2, 0.25, 0.3, 0.15, 0.1] }
+          },
+          categorical: { EPS: { cat: [0.04, 0.06, 0.66, 0.1, 0.1, 0.04] } }
+        },
+        // "Religion can inform public values, but laws should serve everyone equally"
+        religion_inform: {
+          continuous: {
+            CD: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
+            MOR: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
+            PRO: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          },
+          categorical: { EPS: { cat: [0.1, 0.2, 0.3, 0.2, 0.15, 0.05] } }
+        },
+        // "Government should be neutral toward religion — neither favor nor restrict"
+        religion_neutral: {
+          continuous: {
+            CD: { pos: [0.15, 0.25, 0.35, 0.15, 0.1] },
+            MOR: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] },
+            PRO: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] }
+          },
+          categorical: { EPS: { cat: [0.3, 0.35, 0.1, 0.05, 0.15, 0.05] } }
+        },
+        // "Strict separation — religion has no place in public policy"
+        religion_separate: {
+          continuous: {
+            CD: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
+            MOR: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
+            PRO: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          },
+          categorical: { EPS: { cat: [0.4, 0.2, 0.04, 0.05, 0.2, 0.11] } }
+        }
+      }
+    },
+    // Q207 — Emergency powers tolerance. PRO probe with anti-democratic-shortcut framing.
+    {
+      id: 207,
+      stage: "fixed12",
+      section: "II",
+      promptShort: "emergency_powers",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["never_emergency_bypass", "narrow_emergency", "moderate_emergency", "strong_leader_acts"],
+      touchProfile: [
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.65, touchType: "constitutional_restraint" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "trust_concentrated_power" }
+      ],
+      optionEvidence: {
+        // "Constitutional process binds even in emergencies — never bypass"
+        never_emergency_bypass: {
+          continuous: {
+            PRO: { pos: [0.02, 0.06, 0.15, 0.32, 0.45] },
+            ONT_H: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
+          }
+        },
+        // "Narrow, time-limited emergency powers under congressional or judicial check"
+        narrow_emergency: {
+          continuous: {
+            PRO: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
+            ONT_H: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        },
+        // "Government can act decisively when problems demand it, with later review"
+        moderate_emergency: {
+          continuous: {
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] },
+            ONT_H: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
+          }
+        },
+        // "When the system is gridlocked or failing, a strong leader should be able to act and let courts catch up"
+        strong_leader_acts: {
+          continuous: {
+            PRO: { pos: [0.55, 0.3, 0.1, 0.04, 0.01] },
+            ONT_H: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        }
+      }
+    },
+    // Q208 — Courts vs majority will
+    {
+      id: 208,
+      stage: "fixed12",
+      section: "II",
+      promptShort: "courts_vs_majority",
+      uiType: "single_choice",
+      quality: 0.88,
+      rewriteNeeded: false,
+      options: ["courts_protect_rights", "courts_check_with_deference", "majority_should_rule", "elites_blocking_change"],
+      touchProfile: [
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.55, touchType: "judicial_review" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "trust_majority" }
+      ],
+      optionEvidence: {
+        // "Courts protect rights even against majority opinion — that's their job"
+        courts_protect_rights: {
+          continuous: {
+            PRO: { pos: [0.02, 0.06, 0.15, 0.32, 0.45] },
+            ONT_H: { pos: [0.3, 0.32, 0.22, 0.12, 0.04] }
+          }
+        },
+        // "Courts check majorities but should generally defer to democratically-elected branches"
+        courts_check_with_deference: {
+          continuous: {
+            PRO: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] },
+            ONT_H: { pos: [0.12, 0.22, 0.36, 0.22, 0.08] }
+          }
+        },
+        // "The democratic majority should mostly get its way; courts shouldn't override the public"
+        majority_should_rule: {
+          continuous: {
+            PRO: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] },
+            ONT_H: { pos: [0.05, 0.12, 0.24, 0.34, 0.25] }
+          }
+        },
+        // "Unelected elites in courts and bureaucracy are blocking the people's mandate"
+        elites_blocking_change: {
+          continuous: {
+            PRO: { pos: [0.55, 0.28, 0.1, 0.05, 0.02] },
+            ONT_H: { pos: [0.1, 0.18, 0.3, 0.25, 0.17] }
+          }
+        }
+      }
+    },
+    // Q209 — Direct ZS probe. Currently ZS proxied via Q84 institutions slider only.
+    {
+      id: 209,
+      stage: "fixed12",
+      section: "III",
+      promptShort: "zero_sum_economics_view",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["pie_grows_for_all", "growth_with_distribution", "winners_at_others_expense", "rigged_against_most"],
+      touchProfile: [
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.85, touchType: "zero_sum_direct" },
+        { node: "ZS", kind: "continuous", role: "salience", weight: 0.5, touchType: "zero_sum_direct" }
+      ],
+      optionEvidence: {
+        // "When the economy grows, most people can benefit — wealth creation is positive-sum"
+        pie_grows_for_all: {
+          continuous: {
+            ZS: { pos: [0.55, 0.28, 0.1, 0.05, 0.02], sal: [0.05, 0.2, 0.4, 0.35] }
+          }
+        },
+        // "Growth helps when distribution is fair — both creating and sharing matter"
+        growth_with_distribution: {
+          continuous: {
+            ZS: { pos: [0.2, 0.32, 0.3, 0.13, 0.05], sal: [0.1, 0.25, 0.4, 0.25] }
+          }
+        },
+        // "When some win big, others lose — economic gains usually come at someone's expense"
+        winners_at_others_expense: {
+          continuous: {
+            ZS: { pos: [0.04, 0.1, 0.2, 0.32, 0.34], sal: [0.05, 0.15, 0.35, 0.45] }
+          }
+        },
+        // "The whole economy is rigged so most people can't get ahead no matter what"
+        rigged_against_most: {
+          continuous: {
+            ZS: { pos: [0.02, 0.05, 0.15, 0.32, 0.46], sal: [0.02, 0.1, 0.3, 0.58] }
+          }
+        }
+      }
+    },
+    // Q210 — Direct ONT_H malleability probe. Reframed 2026-04-26 from the older
+    // "fixed-goodness" framing (fallen vs cooperative) to malleability framing per
+    // ADR-010 / ONT_H concept reframe. The politically load-bearing question is
+    // not whether humans are inherently good or bad, but whether they can be
+    // reshaped by environment, education, institutions, and modeling. See
+    // src/config/nodes.ts for full canonical comment.
+    {
+      id: 210,
+      stage: "fixed12",
+      section: "III",
+      promptShort: "human_malleability_view",
+      uiType: "single_choice",
+      quality: 0.9,
+      rewriteNeeded: false,
+      options: ["largely_fixed", "modest_shaping", "substantial_shaping", "mostly_made_by_environment"],
+      touchProfile: [
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.85, touchType: "malleability_direct" },
+        { node: "ONT_H", kind: "continuous", role: "salience", weight: 0.4, touchType: "malleability_direct" }
+      ],
+      optionEvidence: {
+        // "Mostly fixed by adulthood — character barely changes after that"
+        largely_fixed: {
+          continuous: {
+            ONT_H: { pos: [0.5, 0.3, 0.13, 0.05, 0.02], sal: [0.05, 0.2, 0.4, 0.35] }
+          }
+        },
+        // "Some shaping is possible, but human nature sets real limits"
+        modest_shaping: {
+          continuous: {
+            ONT_H: { pos: [0.2, 0.32, 0.3, 0.13, 0.05], sal: [0.1, 0.25, 0.4, 0.25] }
+          }
+        },
+        // "Substantially shaped by upbringing, education, and community"
+        substantial_shaping: {
+          continuous: {
+            ONT_H: { pos: [0.05, 0.13, 0.3, 0.32, 0.2], sal: [0.1, 0.25, 0.4, 0.25] }
+          }
+        },
+        // "Mostly made — character and behavior are largely products of how a
+        // person is raised, taught, and surrounded; people can be changed
+        // substantially"
+        // Label softened 2026-04-26: previous "institutions and culture do most
+        // of the work" wording bundled ONT_H with ONT_S/CD by naming
+        // institutional mechanism. Narrowed to pure malleability claim.
+        mostly_made_by_environment: {
+          continuous: {
+            ONT_H: { pos: [0.02, 0.05, 0.15, 0.32, 0.46], sal: [0.05, 0.2, 0.4, 0.35] }
+          }
+        }
+      }
+    },
+    // Q211 — Strategic / lesser-evil voting tendency. Used by predictVote to
+    // route third-party-leaning users to lesser-evil major-party candidates
+    // when their preferred party has no chance.
+    {
+      id: 211,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "strategic_voting",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      options: ["strategic_lesser_evil", "sincere_always", "depends_on_stakes", "not_sure"],
+      // No node touch; this is metadata used by predictVote.
+      touchProfile: [],
+      optionEvidence: {
+        strategic_lesser_evil: {},
+        sincere_always: {},
+        depends_on_stakes: {},
+        not_sure: {}
+      }
+    },
+    // Q212 — Negative partisanship. Asks which parties (if any) the respondent
+    // would never vote for. Captured as a multi-select; UI handler is special-
+    // cased like Q200.
+    {
+      id: 212,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "negative_partisanship",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      options: ["never_dem", "never_rep", "never_dem_or_rep", "no_categorical_no", "consider_all"],
+      touchProfile: [],
+      optionEvidence: {
+        never_dem: {},
+        never_rep: {},
+        never_dem_or_rep: {},
+        no_categorical_no: {},
+        consider_all: {}
+      }
+    },
+    // Q213 — Equal moral standing within the polity. Added 2026-04-25 to address
+    // the MOR-conflation gap surfaced by the user-trace diagnostic: PRISM's
+    // existing MOR axis (Q103 label, Q27 welfare tradeoff, etc.) measures
+    // *scope* of moral concern (family/country → world). It does NOT cleanly
+    // measure *universalism within scope* — i.e., whether everyone inside the
+    // polity has equal full personhood (the position that distinguishes
+    // abolitionists from popular-sovereignty Democrats in 1860, civil-rights
+    // Democrats from segregationist Democrats in 1948-64, modern civic-
+    // nationalist progressives from cosmopolitans).
+    //
+    // A civic nationalist who answers Q103 "country first" but holds strong
+    // within-country universalism currently lands at MOR≈3 (mid). Without this
+    // probe, the model can't distinguish them from someone who's mid on
+    // both axes. Q213 pushes MOR pos *up* toward 5 when respondent affirms
+    // strong within-polity equal standing, regardless of their scope answer
+    // elsewhere. CU also gets a secondary push (pluralism within polity).
+    //
+    // Reads as a sub-question of MOR rather than a new axis: keeps the 14-node
+    // architecture intact while resolving the universalism-vs-scope conflation
+    // for users where the two diverge.
+    {
+      id: 213,
+      stage: "fixed12",
+      section: "IV",
+      promptShort: "equal_standing_within_polity",
+      promptFull: "When citizens, legal residents, minorities, or other groups living under the country's laws are denied equal moral or legal standing, how central is fixing that to your politics?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      options: [
+        "central_universalism",
+        "important_one_of_many",
+        "depends_on_situation",
+        "some_differentiation_acceptable",
+        "natural_hierarchy"
+      ],
+      touchProfile: [
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.85, touchType: "within_polity_universalism" },
+        { node: "MOR", kind: "continuous", role: "salience", weight: 0.5, touchType: "within_polity_universalism" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.3, touchType: "within_polity_pluralism" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "rights_proceduralism" }
+      ],
+      optionEvidence: {
+        // "Central — equal full personhood for everyone within the country is
+        //  foundational; denying it is the political issue I focus on"
+        central_universalism: {
+          continuous: {
+            MOR: { pos: [0.02, 0.05, 0.13, 0.3, 0.5], sal: [0.02, 0.1, 0.3, 0.58] },
+            CU: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
+            PRO: { pos: [0.05, 0.15, 0.25, 0.3, 0.25] }
+          }
+        },
+        // "Important but one issue among many; matters when it's directly happening"
+        important_one_of_many: {
+          continuous: {
+            MOR: { pos: [0.05, 0.13, 0.27, 0.35, 0.2], sal: [0.1, 0.25, 0.4, 0.25] },
+            CU: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] },
+            PRO: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
+          }
+        },
+        // "Important in extreme cases but I focus on broader policy"
+        depends_on_situation: {
+          continuous: {
+            MOR: { pos: [0.1, 0.25, 0.4, 0.18, 0.07], sal: [0.2, 0.35, 0.3, 0.15] },
+            CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
+            PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
+          }
+        },
+        // "Some differentiation is part of stable political order; perfect equality isn't always the goal"
+        some_differentiation_acceptable: {
+          continuous: {
+            MOR: { pos: [0.3, 0.35, 0.22, 0.1, 0.03], sal: [0.2, 0.35, 0.3, 0.15] },
+            CU: { pos: [0.3, 0.35, 0.22, 0.1, 0.03] },
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        },
+        // "Different groups have different roles; that's how polities work"
+        natural_hierarchy: {
+          continuous: {
+            MOR: { pos: [0.55, 0.28, 0.1, 0.05, 0.02], sal: [0.05, 0.2, 0.4, 0.35] },
+            CU: { pos: [0.55, 0.28, 0.1, 0.05, 0.02] },
+            PRO: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
+          }
+        }
+      }
+    },
+    // Q214 — Institutional essentialism (normative ONT_S, decoupled from current
+    // empirical performance). Added 2026-04-25 to address the ONT_S-conflation
+    // gap surfaced by user feedback: existing ONT_S signals (Q15 inequality
+    // causal allocation, Q83 broken-politics diagnosis, Q201 patriotism+trust)
+    // mostly probe how the respondent perceives institutions *as they are right
+    // now*. A respondent who is empirically critical of 2026 US institutions
+    // but normatively believes institutions are foundational to human progress
+    // (a civic-institutionalist progressive) gets pulled to ONT_S=mid by the
+    // empirical signals when their underlying values would land them ONT_S=5.
+    //
+    // Q214 explicitly asks the normative question, decoupled from current
+    // performance: "Setting aside how well institutions function right now…"
+    // It pushes ONT_S pos *up* toward 5 when the respondent affirms
+    // foundational-essentialism, regardless of their answers about specific
+    // failure modes elsewhere. Same architecture as Q213 (within-polity
+    // universalism for MOR).
+    {
+      id: 214,
+      stage: "fixed12",
+      section: "II",
+      promptShort: "institutions_foundational",
+      promptFull: "Setting aside how well institutions function right now, how essential do you think strong institutions \u2014 laws, courts, civic organizations, international bodies \u2014 are to a society's long-term flourishing?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      options: [
+        "foundational_essential",
+        "important_with_caveats",
+        "depends_on_design",
+        "instruments_not_essential",
+        "obstacles_to_progress"
+      ],
+      touchProfile: [
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "institutional_essentialism" },
+        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.5, touchType: "institutional_essentialism" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.25, touchType: "rule_of_law_normative" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.1, touchType: "trust_in_concentrated_authority" }
+      ],
+      optionEvidence: {
+        // "Foundational — necessary infrastructure for any thriving society;
+        //  can't have human progress without them"
+        foundational_essential: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.05, 0.13, 0.3, 0.5], sal: [0.02, 0.1, 0.3, 0.58] },
+            PRO: { pos: [0.05, 0.15, 0.25, 0.3, 0.25] },
+            ONT_H: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
+          }
+        },
+        // "Important, but they need constant maintenance and reform"
+        important_with_caveats: {
+          continuous: {
+            ONT_S: { pos: [0.05, 0.13, 0.27, 0.35, 0.2], sal: [0.1, 0.25, 0.4, 0.25] },
+            PRO: { pos: [0.08, 0.18, 0.34, 0.28, 0.12] },
+            ONT_H: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
+          }
+        },
+        // "Depends on which institutions and how they're structured"
+        depends_on_design: {
+          continuous: {
+            ONT_S: { pos: [0.1, 0.25, 0.4, 0.18, 0.07], sal: [0.2, 0.35, 0.3, 0.15] },
+            PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
+          }
+        },
+        // "They're useful instruments but not foundational; people can flourish
+        //  under many arrangements"
+        instruments_not_essential: {
+          continuous: {
+            ONT_S: { pos: [0.3, 0.35, 0.22, 0.1, 0.03], sal: [0.2, 0.35, 0.3, 0.15] },
+            PRO: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
+          }
+        },
+        // "Often obstacles — entrenched institutions block needed change"
+        obstacles_to_progress: {
+          continuous: {
+            ONT_S: { pos: [0.55, 0.28, 0.1, 0.05, 0.02], sal: [0.05, 0.2, 0.4, 0.35] },
+            PRO: { pos: [0.4, 0.3, 0.18, 0.07, 0.05] },
+            ONT_H: { pos: [0.2, 0.25, 0.3, 0.15, 0.1] }
+          }
+        }
+      }
+    },
+    // Q215 — Theory of change. Forced-choice institutional-essentialism probe
+    // designed to avoid the social-desirability bias of Q214 (where option 1
+    // sounds "thoughtful-civic" and most respondents pick it regardless of
+    // actual politics). Each option here maps to a real American political
+    // constituency:
+    //   institutions_and_laws → mainstream institutionalist (Obama-Biden Dems,
+    //                            Romney Republicans, EU technocrats)
+    //   movements_against_power → progressive-movement-organizing left
+    //   tech_and_economic     → Silicon Valley accelerationist, growth-progressive
+    //   leaders_with_vision   → great-man theorist (Reagan-Trump-Obama coalitional)
+    //   markets_voluntary     → libertarian, classical liberal
+    //
+    // Gated on ONT_S salience: only fires if respondent put ONT_S in
+    // supportHigh/supportMid on Q103 (the salience screener). High quality
+    // (0.96) so adaptive selector prefers it over noisy alternatives when ONT_S
+    // is the open dimension.
+    {
+      id: 215,
+      stage: "stage2",
+      section: "II",
+      promptShort: "theory_of_change_progress",
+      promptFull: "Looking at major political progress in the United States over the last 100 years, where has it MOSTLY come from?",
+      uiType: "single_choice",
+      quality: 0.96,
+      rewriteNeeded: false,
+      options: [
+        "institutions_and_laws",
+        "movements_against_power",
+        "tech_and_economic",
+        "leaders_with_vision",
+        "markets_voluntary"
+      ],
+      touchProfile: [
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "theory_of_change" },
+        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.55, touchType: "theory_of_change" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.3, touchType: "policy_lever" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "process_vs_movement" }
+      ],
+      exposeRules: {
+        eligibleIf: ["ONT_S_live_or_unresolved"]
+      },
+      optionEvidence: {
+        // "From durable institutions and laws — courts, the Federal Reserve,
+        //  the interstate highway system, public-health agencies, NATO,
+        //  Medicare, the Civil Rights Act"
+        // Examples deliberately mixed across ideological coalitions (left
+        // progressive achievements + center-right / Cold War / national-
+        // security institutions) so respondents pick this option for
+        // institutional-essentialism reasons, not because they like a
+        // specific list of progressive policies.
+        institutions_and_laws: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.05, 0.15, 0.32, 0.46], sal: [0.02, 0.1, 0.3, 0.58] },
+            MAT: { pos: [0.2, 0.32, 0.3, 0.13, 0.05] },
+            PRO: { pos: [0.05, 0.13, 0.3, 0.32, 0.2] }
+          }
+        },
+        // "From social movements forcing change against entrenched power —
+        //  labor, civil rights, women's, gay rights, climate"
+        movements_against_power: {
+          continuous: {
+            ONT_S: { pos: [0.2, 0.32, 0.3, 0.13, 0.05], sal: [0.05, 0.2, 0.4, 0.35] },
+            MAT: { pos: [0.3, 0.35, 0.22, 0.1, 0.03] },
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        },
+        // "From technological and economic dynamism — postwar growth,
+        //  Silicon Valley, productivity gains lifting living standards"
+        tech_and_economic: {
+          continuous: {
+            ONT_S: { pos: [0.13, 0.25, 0.34, 0.18, 0.1], sal: [0.2, 0.35, 0.3, 0.15] },
+            MAT: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
+            PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
+          }
+        },
+        // "From leaders with vision who mobilized the country — FDR,
+        //  Reagan, Obama, leaders who reshaped what was politically possible"
+        leaders_with_vision: {
+          continuous: {
+            ONT_S: { pos: [0.1, 0.22, 0.36, 0.22, 0.1], sal: [0.2, 0.35, 0.3, 0.15] },
+            MAT: { pos: [0.1, 0.22, 0.36, 0.22, 0.1] },
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        },
+        // "From markets, voluntary exchange, and individual initiative —
+        //  most progress is bottom-up, not government-led"
+        markets_voluntary: {
+          continuous: {
+            ONT_S: { pos: [0.42, 0.3, 0.18, 0.07, 0.03], sal: [0.1, 0.25, 0.4, 0.25] },
+            MAT: { pos: [0.02, 0.05, 0.18, 0.32, 0.43] },
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        }
+      }
+    },
+    // Q216 — Concrete institutional-strengthening preference. Tests the same
+    // axis as Q215 from a different angle: rather than retrospective theory of
+    // change, asks where the respondent would direct effort *now*. Forces a
+    // choice between five real American constituencies on institutional reform:
+    //   reform_existing       → mainstream institutionalist (Liz Cheney, Obama)
+    //   build_new             → reform progressive (Niskanen Center, Yglesias)
+    //   devolve_power         → federalist conservative (states' rights)
+    //   democratize_rein_in   → populist (MAGA, left-populist Bernie/Sanders coalitional)
+    //   shrink_government     → libertarian / small-government conservative
+    {
+      id: 216,
+      stage: "stage2",
+      section: "II",
+      promptShort: "strengthen_democracy_priority",
+      promptFull: "If you were prioritizing one approach to strengthen American democracy today, which would do MORE?",
+      uiType: "single_choice",
+      quality: 0.96,
+      rewriteNeeded: false,
+      options: [
+        "reform_existing",
+        "build_new",
+        "devolve_power",
+        "democratize_rein_in",
+        "shrink_government"
+      ],
+      touchProfile: [
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.85, touchType: "institutional_strengthening" },
+        { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.5, touchType: "institutional_strengthening" },
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.25, touchType: "state_scope_implication" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.3, touchType: "process_vs_populist" }
+      ],
+      exposeRules: {
+        eligibleIf: ["ONT_S_live_or_unresolved"]
+      },
+      optionEvidence: {
+        // "Repair existing constitutional and public institutions —
+        //  Congress, courts, agencies, professional norms"
+        reform_existing: {
+          continuous: {
+            ONT_S: { pos: [0.02, 0.05, 0.15, 0.32, 0.46], sal: [0.02, 0.1, 0.3, 0.58] },
+            MAT: { pos: [0.15, 0.3, 0.35, 0.15, 0.05] },
+            PRO: { pos: [0.02, 0.08, 0.2, 0.35, 0.35] }
+          }
+        },
+        // "Replace outdated institutions with new ones designed for current
+        //  challenges — many existing ones can't be repaired"
+        build_new: {
+          continuous: {
+            ONT_S: { pos: [0.05, 0.13, 0.27, 0.35, 0.2], sal: [0.05, 0.2, 0.4, 0.35] },
+            MAT: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] },
+            PRO: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
+          }
+        },
+        // "Return power from federal to state and local governments —
+        //  decisions should be closer to the people affected"
+        devolve_power: {
+          continuous: {
+            ONT_S: { pos: [0.2, 0.32, 0.3, 0.13, 0.05], sal: [0.1, 0.25, 0.4, 0.25] },
+            MAT: { pos: [0.05, 0.13, 0.27, 0.35, 0.2] },
+            PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
+          }
+        },
+        // "Reduce the role of unelected experts and elites — reassert
+        //  democratic majorities and ordinary-citizen control"
+        democratize_rein_in: {
+          continuous: {
+            ONT_S: { pos: [0.4, 0.32, 0.18, 0.07, 0.03], sal: [0.05, 0.2, 0.4, 0.35] },
+            MAT: { pos: [0.2, 0.3, 0.3, 0.13, 0.07] },
+            PRO: { pos: [0.4, 0.3, 0.18, 0.07, 0.05] }
+          }
+        },
+        // "Less government overall — more should be left to civil society
+        //  and markets"
+        shrink_government: {
+          continuous: {
+            ONT_S: { pos: [0.42, 0.3, 0.18, 0.07, 0.03], sal: [0.1, 0.25, 0.4, 0.25] },
+            MAT: { pos: [0.02, 0.05, 0.18, 0.32, 0.43] },
+            PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
+          }
+        }
       }
     }
   ];
@@ -5507,11 +6992,20 @@ var PrismEngine = (() => {
   var CATEGORICAL_NODES = NODE_DEFS.filter(
     (n) => n.type === "categorical"
   ).map((n) => n.id);
+  var SELF_NODES = ["PF", "TRB", "ENG"];
+  function isSelfNode(id) {
+    return SELF_NODES.includes(id);
+  }
 
   // src/engine/math.ts
   function multiplyAndNormalize(prior, likelihood) {
     const result = prior.map((p, i) => p * (likelihood[i] ?? 0));
     return normalize(result);
+  }
+  function multiplyAndNormalizeTempered(prior, likelihood, tau) {
+    if (tau === 1) return multiplyAndNormalize(prior, likelihood);
+    const tempered = likelihood.map((v) => Math.pow(Math.max(v, 0), tau));
+    return multiplyAndNormalize(prior, tempered);
   }
   function normalize(arr) {
     const sum = arr.reduce((a, b) => a + b, 0);
@@ -5576,6 +7070,7 @@ var PrismEngine = (() => {
   };
 
   // src/engine/update.ts
+  var CAT_TEMPERING_TAU = 0.7;
   var RANK_SAL = [
     [0.05, 0.15, 0.3, 0.5],
     // rank 1 (most important)
@@ -5619,6 +7114,7 @@ var PrismEngine = (() => {
     return inv.map((p) => p / total);
   }
   var EXTREMITY_SAL = [0.1, 0.2, 0.3, 0.4];
+  var DEFAULT_ENGAGEMENT_SAL = [0.22, 0.28, 0.28, 0.22];
   function isExtremePosEvidence(pos) {
     if (!pos || pos.length !== 5) return false;
     const max = Math.max(...pos);
@@ -5632,6 +7128,7 @@ var PrismEngine = (() => {
       if (touch.role !== "position") continue;
       if (!nodesToBoost.has(touch.node)) continue;
       if (touch.kind === "continuous" && touch.node in state.continuous) {
+        if (isSelfNode(touch.node)) continue;
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
       } else if (touch.kind === "categorical" && touch.node in state.categorical) {
@@ -5660,14 +7157,22 @@ var PrismEngine = (() => {
       for (const [nodeId, upd] of Object.entries(evidence.continuous)) {
         const node = state.continuous[nodeId];
         if (upd?.pos) node.posDist = multiplyAndNormalize(node.posDist, upd.pos);
-        if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+        if (upd?.sal && !isSelfNode(nodeId)) {
+          node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+        } else if (upd?.pos && !isSelfNode(nodeId)) {
+          node.salDist = multiplyAndNormalize(node.salDist, DEFAULT_ENGAGEMENT_SAL);
+        }
       }
     }
     if (evidence.categorical) {
       for (const [nodeId, upd] of Object.entries(evidence.categorical)) {
         const node = state.categorical[nodeId];
-        if (upd?.cat) node.catDist = multiplyAndNormalize(node.catDist, upd.cat);
-        if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+        if (upd?.cat) node.catDist = multiplyAndNormalizeTempered(node.catDist, upd.cat, CAT_TEMPERING_TAU);
+        if (upd?.sal) {
+          node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+        } else if (upd?.cat) {
+          node.salDist = multiplyAndNormalize(node.salDist, DEFAULT_ENGAGEMENT_SAL);
+        }
       }
     }
     if (evidence.trbAnchor) {
@@ -5675,9 +7180,226 @@ var PrismEngine = (() => {
       state.trbAnchor.touches += 1;
     }
   }
+  function applyContinuousSignal(state, nodeId, signal, strength = 1) {
+    const node = state.continuous[nodeId];
+    if (!node || signal === 0 || strength === 0) return;
+    const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
+    const bump = node.posDist.map(
+      (p, i) => p * Math.exp(signal * normFactor * strength * (i + 1 - 3))
+    );
+    node.posDist = normalize(bump);
+  }
+  function mixCategoricalTarget(state, nodeId, target, weight) {
+    const node = state.categorical[nodeId];
+    if (!node) return;
+    const w = Math.max(0, Math.min(1, weight));
+    if (w === 0) return;
+    const mixed = node.catDist.map((v, i) => v * (1 - w) + (target[i] ?? 0) * w);
+    node.catDist = normalize(mixed);
+  }
+  function mixContinuousTarget(state, nodeId, target, weight) {
+    const node = state.continuous[nodeId];
+    if (!node) return;
+    const w = Math.max(0, Math.min(1, weight));
+    if (w === 0) return;
+    const sum = target.reduce((a, b) => a + b, 0) || 1;
+    const normTarget = target.map((v) => v / sum);
+    const mixed = node.posDist.map((v, i) => v * (1 - w) + (normTarget[i] ?? 0) * w);
+    node.posDist = normalize(mixed);
+  }
+  function shareMap(allocation, total) {
+    const out = {};
+    for (const [k, v] of Object.entries(allocation)) out[k] = v / total;
+    return out;
+  }
+  var EPS_HUMBLE_INSTITUTIONAL = [0.42, 0.38, 0.05, 0.05, 0.08, 0.02];
+  var EPS_CERTAINTY_SELF = [0.08, 0.05, 0.06, 0.34, 0.37, 0.1];
+  function applyAllocationShapeSignals(state, q, shares) {
+    const values = Object.values(shares);
+    if (values.length < 2) return;
+    const maxShare = Math.max(...values);
+    const minShare = Math.min(...values);
+    const zeroCount = values.filter((v) => v <= 1e-3).length;
+    const hhi = values.reduce((sum, v) => sum + v * v, 0);
+    if (maxShare >= 0.85 || hhi >= 0.75) {
+      applyContinuousSignal(state, "COM", -0.3, maxShare >= 0.95 ? 1.2 : 1);
+      mixCategoricalTarget(state, "EPS", EPS_CERTAINTY_SELF, maxShare >= 0.95 ? 0.14 : 0.1);
+    } else if (maxShare >= 0.7) {
+      applyContinuousSignal(state, "COM", -0.16);
+      mixCategoricalTarget(state, "EPS", EPS_CERTAINTY_SELF, 0.06);
+    }
+    if (minShare >= 0.2 && maxShare <= 0.3) {
+      applyContinuousSignal(state, "COM", 0.22);
+      mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.08);
+    }
+    if (zeroCount > 0) {
+      applyContinuousSignal(state, "COM", -0.08 * Math.min(zeroCount, 2));
+    }
+    applyAllocationDomainSignals(state, q, shares);
+  }
+  function applyAllocationDomainSignals(state, q, s) {
+    if (q.id === 15) {
+      const structural = (s.family_background ?? 0) + (s.discrimination_bias ?? 0);
+      const effort = s.effort_choices ?? 0;
+      const luck = s.luck_random ?? 0;
+      const bias = s.discrimination_bias ?? 0;
+      if (effort >= 0.7) {
+        applyContinuousSignal(state, "MAT", 0.3);
+        applyContinuousSignal(state, "COM", -0.1);
+      }
+      if (structural >= 0.8 && effort <= 0.1) {
+        applyContinuousSignal(state, "MAT", -0.28);
+        applyContinuousSignal(state, "ZS", 0.18);
+      }
+      if (effort + luck >= 0.85 && bias <= 0.05) {
+        applyContinuousSignal(state, "MAT", 0.25);
+        applyContinuousSignal(state, "ZS", -0.12);
+      }
+      return;
+    }
+    if (q.id === 20) {
+      const complex = s.complex_forces ?? 0;
+      const selfish = s.powerful_selfish ?? 0;
+      const incompetent = s.powerful_incompetent ?? 0;
+      const ordinary = s.ordinary_choices ?? 0;
+      if (complex >= 0.6) {
+        applyContinuousSignal(state, "ZS", -0.32);
+        applyContinuousSignal(state, "COM", 0.18);
+        mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.1);
+      }
+      if (selfish >= 0.6 && ordinary <= 0.05) {
+        applyContinuousSignal(state, "ZS", 0.45);
+        applyContinuousSignal(state, "ONT_H", -0.32);
+        applyContinuousSignal(state, "COM", -0.32);
+      }
+      if (incompetent >= selfish * 2 && incompetent >= 0.3) {
+        applyContinuousSignal(state, "ZS", -0.14);
+        applyContinuousSignal(state, "ONT_H", -0.12);
+      }
+      return;
+    }
+    if (q.id === 39) {
+      const legit = s.legitimate_values ?? 0;
+      const misinformed = s.misinformed ?? 0;
+      const bad = s.bad_motives ?? 0;
+      if (legit >= 0.5) {
+        applyContinuousSignal(state, "COM", 0.45);
+        applyContinuousSignal(state, "TRB", -0.35);
+        applyContinuousSignal(state, "ZS", -0.35);
+        applyContinuousSignal(state, "MOR", 0.25);
+      }
+      if (legit <= 0.02 && bad >= 0.5) {
+        applyContinuousSignal(state, "COM", -0.55);
+        applyContinuousSignal(state, "TRB", 0.55);
+        applyContinuousSignal(state, "ZS", 0.5);
+        applyContinuousSignal(state, "MOR", -0.35);
+      }
+      if (misinformed >= 0.6 && bad <= 0.1) {
+        mixCategoricalTarget(state, "EPS", [0.45, 0.3, 0.04, 0.06, 0.12, 0.03], 0.12);
+        applyContinuousSignal(state, "COM", 0.08);
+      }
+      return;
+    }
+    if (q.id === 66) {
+      const heritage = s.preserve_heritage ?? 0;
+      const modernize = s.modernize_infrastructure ?? 0;
+      const deliberation = s.community_deliberation ?? 0;
+      const market = s.market_based_development ?? 0;
+      if (modernize + market >= 0.8) {
+        applyContinuousSignal(state, "MAT", 0.22);
+        applyContinuousSignal(state, "COM", -0.14);
+        mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.06);
+      }
+      if (heritage + deliberation >= 0.75) {
+        applyContinuousSignal(state, "COM", 0.25);
+        mixCategoricalTarget(state, "EPS", [0.08, 0.18, 0.34, 0.2, 0.12, 0.08], 0.08);
+      }
+      if (deliberation >= 0.6) {
+        applyContinuousSignal(state, "PRO", 0.35);
+        applyContinuousSignal(state, "COM", 0.35);
+      }
+    }
+  }
+  function applyPriorityPatternSignals(state, q, placements) {
+    const high = new Set(placements.supportHigh);
+    const mid = new Set(placements.supportMid);
+    const low = new Set(placements.neutral);
+    const isHigh = (item) => high.has(item);
+    const isNotHigh = (item) => !high.has(item);
+    const isLow = (item) => low.has(item);
+    if (q.id === 60) {
+      const inheritedRight = isHigh("national_identity") && (isHigh("religious_identity") || isHigh("ethnic_racial_identity")) && isLow("global_citizen") && isLow("gender_identity") && isLow("sexual_identity");
+      if (inheritedRight) {
+        applyContinuousSignal(state, "TRB", 0.35);
+        applyContinuousSignal(state, "CU", -0.25);
+        applyContinuousSignal(state, "MOR", -0.2);
+        applyContinuousSignal(state, "CD", 0.25);
+      }
+      const intersectional = (isHigh("gender_identity") || isHigh("sexual_identity")) && isHigh("ethnic_racial_identity") && (isHigh("class_identity") || isHigh("ideological_identity")) && isLow("religious_identity") && isLow("national_identity");
+      if (intersectional) {
+        applyContinuousSignal(state, "CD", -0.28);
+        applyContinuousSignal(state, "CU", 0.24);
+        applyContinuousSignal(state, "MOR", 0.18);
+        applyContinuousSignal(state, "MAT", -0.16);
+        applyContinuousSignal(state, "TRB", 0.18);
+      }
+      const postIdentity = high.size === 0 && mid.size <= 1 || isHigh("ideological_identity") && high.size <= 2 && isNotHigh("national_identity") && isNotHigh("religious_identity") && isNotHigh("ethnic_racial_identity") && isNotHigh("gender_identity") && isNotHigh("sexual_identity");
+      if (postIdentity) {
+        applyContinuousSignal(state, "TRB", -0.45);
+        applyContinuousSignal(state, "CU", 0.1);
+        applyContinuousSignal(state, "MOR", 0.08);
+      }
+      return;
+    }
+    if (q.id === 102) {
+      const essential = high;
+      const irrelevant = low;
+      const civicNationalist = essential.has("shared_values") && essential.has("civic_part") && irrelevant.has("ancestry") && irrelevant.has("religion") && !essential.has("ancestry") && !essential.has("religion");
+      if (civicNationalist) {
+        mixContinuousTarget(state, "CU", [0.05, 0.12, 0.3, 0.35, 0.18], 0.22);
+        mixContinuousTarget(state, "MOR", [0.03, 0.08, 0.2, 0.36, 0.33], 0.24);
+        mixContinuousTarget(state, "PRO", [0.03, 0.08, 0.2, 0.34, 0.35], 0.2);
+        mixContinuousTarget(state, "TRB", [0.38, 0.32, 0.2, 0.07, 0.03], 0.18);
+        applyContinuousSignal(state, "CD", -0.1);
+      }
+      const ethnoTraditionalist = (essential.has("born_here") || essential.has("ancestry")) && (essential.has("religion") || essential.has("cultural")) && !essential.has("shared_values");
+      if (ethnoTraditionalist) {
+        mixContinuousTarget(state, "CU", [0.55, 0.28, 0.12, 0.04, 0.01], 0.28);
+        mixContinuousTarget(state, "CD", [0.02, 0.05, 0.13, 0.3, 0.5], 0.26);
+        mixContinuousTarget(state, "MOR", [0.5, 0.3, 0.14, 0.05, 0.01], 0.24);
+        mixContinuousTarget(state, "TRB", [0.02, 0.06, 0.14, 0.3, 0.48], 0.24);
+      }
+      const contributionPragmatist = essential.has("economic") && (essential.has("shared_values") || essential.has("civic_part")) && irrelevant.has("ancestry") && irrelevant.has("born_here") && irrelevant.has("religion");
+      if (contributionPragmatist) {
+        applyContinuousSignal(state, "MAT", 0.24);
+        applyContinuousSignal(state, "ZS", -0.18);
+        mixContinuousTarget(state, "CU", [0.04, 0.1, 0.24, 0.36, 0.26], 0.2);
+        mixContinuousTarget(state, "TRB", [0.35, 0.32, 0.22, 0.08, 0.03], 0.16);
+      }
+    }
+  }
+  var PARTY_ID_MAP = {
+    dem: "D",
+    rep: "R",
+    ind: "I",
+    third: "T",
+    none: "N"
+  };
   function applySingleChoiceAnswer(state, q, optionKey) {
     state.answers[q.id] = optionKey;
     registerTouches(state, q);
+    if (q.id === 200 && PARTY_ID_MAP[optionKey] !== void 0) {
+      state.partyID = PARTY_ID_MAP[optionKey];
+    }
+    if (q.id === 211) {
+      state.strategicVoting = optionKey === "strategic_lesser_evil" || optionKey === "depends_on_stakes";
+    }
+    if (q.id === 212) {
+      const np = /* @__PURE__ */ new Set();
+      if (optionKey === "never_dem" || optionKey === "never_dem_or_rep") np.add("D");
+      if (optionKey === "never_rep" || optionKey === "never_dem_or_rep") np.add("R");
+      state.negativeParties = np;
+    }
     const ev = q.optionEvidence?.[optionKey];
     applyOptionEvidence(state, ev);
     if (ev?.continuous) {
@@ -5687,6 +7409,22 @@ var PrismEngine = (() => {
       }
       boostExtremitySalience(state, q, extremeNodes);
     }
+  }
+  function applyMultiAnswer(state, q, optionKeys) {
+    const unique = Array.from(new Set(optionKeys.filter(Boolean)));
+    state.answers[q.id] = unique;
+    registerTouches(state, q);
+    const extremeNodes = /* @__PURE__ */ new Set();
+    for (const optionKey of unique) {
+      const ev = q.optionEvidence?.[optionKey];
+      applyOptionEvidence(state, ev);
+      if (ev?.continuous) {
+        for (const [nodeId, upd] of Object.entries(ev.continuous)) {
+          if (isExtremePosEvidence(upd?.pos)) extremeNodes.add(nodeId);
+        }
+      }
+    }
+    boostExtremitySalience(state, q, extremeNodes);
   }
   function applySliderAnswer(state, q, rawValue) {
     state.answers[q.id] = rawValue;
@@ -5713,6 +7451,7 @@ var PrismEngine = (() => {
     if (!q.allocationMap) return;
     const total = Math.max(1, Object.values(allocation).reduce((a, b) => a + b, 0));
     const shares = Object.values(allocation).map((weight) => weight / total);
+    const sharesByKey = shareMap(allocation, total);
     for (const [bucket, weight] of Object.entries(allocation)) {
       const share = weight / total;
       const map = q.allocationMap[bucket];
@@ -5745,12 +7484,16 @@ var PrismEngine = (() => {
       }
     }
     const salienceTouches = q.touchProfile.filter((t) => t.role === "salience");
-    if (!salienceTouches.length) return;
+    if (!salienceTouches.length) {
+      applyAllocationShapeSignals(state, q, sharesByKey);
+      return;
+    }
     const hhi = shares.reduce((sum, s) => sum + s * s, 0);
     const concentration = Math.max(0, Math.min(1, (hhi - 0.25) / 0.75));
     const salLikelihood = concentration >= 0.75 ? [0.03, 0.08, 0.24, 0.65] : concentration >= 0.5 ? [0.06, 0.14, 0.32, 0.48] : concentration >= 0.25 ? [0.12, 0.22, 0.34, 0.32] : [0.22, 0.3, 0.28, 0.2];
     for (const touch of salienceTouches) {
       if (touch.kind === "continuous") {
+        if (isSelfNode(touch.node)) continue;
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
       } else if (touch.kind === "categorical") {
@@ -5758,6 +7501,7 @@ var PrismEngine = (() => {
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
       }
     }
+    applyAllocationShapeSignals(state, q, sharesByKey);
   }
   function applyRankingAnswer(state, q, ranking) {
     state.answers[q.id] = ranking;
@@ -5767,6 +7511,8 @@ var PrismEngine = (() => {
     const hasSalience = q.touchProfile.some((t) => t.role === "salience");
     ranking.forEach((item, idx) => {
       const rankWeight = weights[idx] ?? 0;
+      const bottomAntiWeight = idx === ranking.length - 1 ? -0.3 : idx === ranking.length - 2 && ranking.length >= 5 ? -0.15 : 0;
+      const scalarWeight = rankWeight + bottomAntiWeight;
       const map = q.rankingMap?.[item];
       if (!map) return;
       const salLikelihood = hasSalience && idx < RANK_SAL.length ? RANK_SAL[idx] : null;
@@ -5774,9 +7520,10 @@ var PrismEngine = (() => {
         for (const [nodeId, signal] of Object.entries(map.continuous)) {
           const node = state.continuous[nodeId];
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-          const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * rankWeight * (i + 1 - 3)));
+          const scalar = typeof signal === "number" ? signal : 0;
+          const bump = node.posDist.map((p, i) => p * Math.exp(scalar * normFactor * scalarWeight * (i + 1 - 3)));
           node.posDist = normalize(bump);
-          if (salLikelihood) {
+          if (salLikelihood && !isSelfNode(nodeId)) {
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
           }
         }
@@ -5785,8 +7532,9 @@ var PrismEngine = (() => {
         for (const [nodeId, catDist] of Object.entries(map.categorical)) {
           const node = state.categorical[nodeId];
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-          const mixWeight = 0.4 * rankWeight * normFactor;
-          const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
+          const mixWeight = 0.4 * Math.abs(scalarWeight) * normFactor;
+          const target = scalarWeight < 0 ? invertCatDist(catDist) : catDist;
+          const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (target[i] ?? 0) * mixWeight);
           node.catDist = normalize(mixed);
           if (salLikelihood) {
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -5796,7 +7544,7 @@ var PrismEngine = (() => {
       if (map.trbAnchor) {
         const scaled = {};
         for (const [k, v] of Object.entries(map.trbAnchor)) {
-          scaled[k] = v * rankWeight;
+          scaled[k] = v * scalarWeight;
         }
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
@@ -5806,14 +7554,15 @@ var PrismEngine = (() => {
   function applyBestWorstSalience(state, q, best, worst, allItems) {
     state.answers[q.id] = { best: best.slice(), worst: worst.slice() };
     registerTouches(state, q);
-    if (!q.rankingMap) return;
+    const itemMap = q.bestWorstMap ?? q.rankingMap;
+    if (!itemMap) return;
     const bestSet = new Set(best);
     const worstSet = new Set(worst);
     const continuousBuckets = /* @__PURE__ */ new Map();
     const categoricalBuckets = /* @__PURE__ */ new Map();
     const bucketFor = (item) => bestSet.has(item) ? "best" : worstSet.has(item) ? "worst" : "middle";
     for (const item of allItems) {
-      const map = q.rankingMap[item];
+      const map = itemMap[item];
       if (!map) continue;
       const b = bucketFor(item);
       if (map.continuous) {
@@ -5836,6 +7585,7 @@ var PrismEngine = (() => {
       return SAL_IF_MIDDLE;
     }
     for (const [nodeId, buckets] of continuousBuckets) {
+      if (isSelfNode(nodeId)) continue;
       const node = state.continuous[nodeId];
       if (!node) continue;
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
@@ -5846,7 +7596,7 @@ var PrismEngine = (() => {
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
     }
     for (const item of allItems) {
-      const map = q.rankingMap[item];
+      const map = itemMap[item];
       if (!map?.categorical) continue;
       const isBest = bestSet.has(item);
       const isWorst = worstSet.has(item);
@@ -5861,18 +7611,28 @@ var PrismEngine = (() => {
       }
     }
     for (const item of allItems) {
-      const map = q.rankingMap[item];
+      const map = itemMap[item];
       if (!map?.continuous) continue;
       const isBest = bestSet.has(item);
       const isWorst = worstSet.has(item);
       if (!isBest && !isWorst) continue;
       for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-        if (!evidence?.pos) continue;
+        if (typeof evidence === "number") {
+          applyContinuousSignal(
+            state,
+            nodeId,
+            evidence,
+            isBest ? BW_BEST_POS_MIX : -BW_WORST_POS_MIX
+          );
+          continue;
+        }
+        if (typeof evidence !== "object" || !evidence || !evidence.pos) continue;
+        const pos = evidence.pos;
         const node = state.continuous[nodeId];
         if (!node) continue;
         const w = isBest ? BW_BEST_POS_MIX : BW_WORST_POS_MIX;
-        const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
-        const target = isBest ? evidence.pos.map((p) => p / sum) : evidence.pos.map((p) => 1 - p / sum);
+        const sum = pos.reduce((a, b) => a + b, 0) || 1;
+        const target = isBest ? pos.map((p) => p / sum) : pos.map((p) => 1 - p / sum);
         const tSum = target.reduce((a, b) => a + b, 0) || 1;
         const tNorm = target.map((p) => p / tSum);
         const mixed = node.posDist.map((v, i) => v * (1 - w) + tNorm[i] * w);
@@ -5881,11 +7641,16 @@ var PrismEngine = (() => {
     }
   }
   function applyPrioritySort(state, q, placements, allItems) {
+    const supportHigh = placements.supportHigh ?? [];
+    const supportMid = placements.supportMid ?? [];
+    const neutral = placements.neutral ?? [];
+    const opposeHigh = placements.opposeHigh ?? [];
+    placements = { supportHigh, supportMid, neutral, opposeHigh };
     state.answers[q.id] = {
-      supportHigh: placements.supportHigh.slice(),
-      supportMid: placements.supportMid.slice(),
-      neutral: placements.neutral.slice(),
-      opposeHigh: placements.opposeHigh.slice()
+      supportHigh: supportHigh.slice(),
+      supportMid: supportMid.slice(),
+      neutral: neutral.slice(),
+      opposeHigh: opposeHigh.slice()
     };
     registerTouches(state, q);
     if (!q.rankingMap) return;
@@ -5912,12 +7677,18 @@ var PrismEngine = (() => {
         }
       }
     }
+    const salHigh = q.salienceBuckets?.supportHigh ?? SAL_PRIORITY_HIGH;
+    const salMid = q.salienceBuckets?.supportMid ?? SAL_PRIORITY_MID;
+    const salLow = q.salienceBuckets?.neutral ?? SAL_PRIORITY_LOW;
+    const salOpposeHigh = q.salienceBuckets?.opposeHigh ?? SAL_PRIORITY_HIGH;
     function resolveSal(buckets) {
-      if (buckets.has("supportHigh") || buckets.has("opposeHigh")) return SAL_PRIORITY_HIGH;
-      if (buckets.has("supportMid")) return SAL_PRIORITY_MID;
-      return SAL_PRIORITY_LOW;
+      if (buckets.has("supportHigh")) return salHigh;
+      if (buckets.has("opposeHigh")) return salOpposeHigh;
+      if (buckets.has("supportMid")) return salMid;
+      return salLow;
     }
     for (const [nodeId, buckets] of continuousBuckets) {
+      if (isSelfNode(nodeId)) continue;
       const node = state.continuous[nodeId];
       if (!node) continue;
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
@@ -5935,17 +7706,35 @@ var PrismEngine = (() => {
       const w = bucket === "supportMid" ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
       const invert = bucket === "opposeHigh";
       for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-        if (!evidence?.pos) continue;
+        if (typeof evidence !== "object" || !evidence || !evidence.pos) continue;
+        const pos = evidence.pos;
         const node = state.continuous[nodeId];
         if (!node) continue;
-        const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
-        const raw = invert ? evidence.pos.map((p) => 1 - p / sum) : evidence.pos.map((p) => p / sum);
+        const sum = pos.reduce((a, b) => a + b, 0) || 1;
+        const raw = invert ? pos.map((p) => 1 - p / sum) : pos.map((p) => p / sum);
         const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
         const target = raw.map((p) => p / rawSum);
         const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i] * w);
         node.posDist = normalize(mixed);
       }
     }
+    let anchorTouched = false;
+    for (const item of allItems) {
+      const map = q.rankingMap[item];
+      if (!map?.trbAnchor) continue;
+      const bucket = bucketFor(item);
+      if (bucket === "neutral") continue;
+      const scale = bucket === "supportHigh" ? 1 : bucket === "supportMid" ? 0.4 : bucket === "opposeHigh" ? -1 : 0;
+      if (scale === 0) continue;
+      const scaled = {};
+      for (const [k, v] of Object.entries(map.trbAnchor)) {
+        scaled[k] = (v ?? 0) * scale;
+      }
+      state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
+      anchorTouched = true;
+    }
+    if (anchorTouched) state.trbAnchor.touches += 1;
+    applyPriorityPatternSignals(state, q, { supportHigh, supportMid, neutral, opposeHigh });
   }
   function applyDualAxisAnswer(state, q, answer) {
     const x = Math.max(0, Math.min(1, answer.x));
@@ -5966,7 +7755,9 @@ var PrismEngine = (() => {
     const normTarget = raw.map((v) => v / rawSum);
     const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
     node.posDist = normalize(mixed);
-    node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
+    if (!isSelfNode(map.node)) {
+      node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
+    }
   }
   function applyPairwiseAnswer(state, q, answers) {
     state.answers[q.id] = answers;
@@ -5996,7 +7787,40 @@ var PrismEngine = (() => {
   }
 
   // src/engine/config.ts
-  var FIXED_OPENER = [93, 97, 98, 89, 60, 11, 1, 99, 100, 101, 102];
+  var FIXED_OPENER = [
+    200,
+    103,
+    97,
+    60,
+    89,
+    217,
+    22,
+    201,
+    84,
+    11,
+    218,
+    1,
+    93,
+    99,
+    101,
+    15,
+    27,
+    30,
+    33,
+    202,
+    214,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    213,
+    211,
+    212
+  ];
 
   // src/optimize/runtimeConfig.ts
   var DEFAULT_CONFIG = {
@@ -6052,24 +7876,34 @@ var PrismEngine = (() => {
       const nodeState = state.continuous[nodeId];
       const expectedPos2 = nodeState.posDist[0] * 1 + nodeState.posDist[1] * 2 + nodeState.posDist[2] * 3 + nodeState.posDist[3] * 4 + nodeState.posDist[4] * 5;
       const posProb = nodeState.posDist[template.pos - 1] ?? 0.2;
-      const expectedSal3 = nodeState.salDist[0] * 0 + nodeState.salDist[1] * 1 + nodeState.salDist[2] * 2 + nodeState.salDist[3] * 3;
-      const salProb = nodeState.salDist[template.sal] ?? 0.25;
       const posMeanDiff = Math.abs(expectedPos2 - template.pos) / 4;
       const posProbDist = 1 - posProb;
-      const salMeanDiff = Math.abs(expectedSal3 - template.sal) / 3;
-      const salProbDist = 1 - salProb;
       const positionDist = posMeanDiff * 0.6 + posProbDist * 0.4;
-      const salienceDist = salMeanDiff * 0.6 + salProbDist * 0.4;
       let antiPenalty = 0;
       if (template.anti === "high" && expectedPos2 > 3.8) {
         antiPenalty = 0.8 * (expectedPos2 - 3.8) / 1.2;
       } else if (template.anti === "low" && expectedPos2 < 2.2) {
         antiPenalty = 0.8 * (2.2 - expectedPos2) / 1.2;
       }
-      const archSalWeight = 0.5 + template.sal * 0.5;
-      const respondentSalWeight = 0.5 + expectedSal3 * 0.25;
-      const nodeWeight = archSalWeight * respondentSalWeight;
-      const nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
+      let nodeDist;
+      let nodeWeight;
+      if (isSelfNode(nodeId)) {
+        const archSalWeight = 0.5 + (template.pos - 1) * 0.375;
+        const respondentSalWeight = 0.5 + (expectedPos2 - 1) * 0.1875;
+        nodeWeight = archSalWeight * respondentSalWeight;
+        nodeDist = positionDist + antiPenalty;
+      } else {
+        const expectedSal3 = nodeState.salDist[0] * 0 + nodeState.salDist[1] * 1 + nodeState.salDist[2] * 2 + nodeState.salDist[3] * 3;
+        const templateSal = template.sal ?? 0;
+        const salProb = nodeState.salDist[templateSal] ?? 0.25;
+        const salMeanDiff = Math.abs(expectedSal3 - templateSal) / 3;
+        const salProbDist = 1 - salProb;
+        const salienceDist = salMeanDiff * 0.6 + salProbDist * 0.4;
+        const archSalWeight = 0.5 + templateSal * 0.5;
+        const respondentSalWeight = 0.5 + expectedSal3 * 0.25;
+        nodeWeight = archSalWeight * respondentSalWeight;
+        nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
+      }
       totalDist += nodeDist * nodeWeight;
       totalWeight += nodeWeight;
     }
@@ -6098,8 +7932,9 @@ var PrismEngine = (() => {
         }
       }
       const expectedSal3 = nodeState.salDist[0] * 0 + nodeState.salDist[1] * 1 + nodeState.salDist[2] * 2 + nodeState.salDist[3] * 3;
-      const salDiff = Math.abs(expectedSal3 - template.sal) / 3;
-      const archSalWeight = 0.5 + template.sal * 0.5;
+      const sal = template.sal ?? 0;
+      const salDiff = Math.abs(expectedSal3 - sal) / 3;
+      const archSalWeight = 0.5 + sal * 0.5;
       const respondentSalWeight = 0.5 + expectedSal3 * 0.25;
       const nodeWeight = archSalWeight * respondentSalWeight;
       const catDist = catCostDist * 0.5 + dotDist * 0.5;
@@ -6107,7 +7942,38 @@ var PrismEngine = (() => {
       totalDist += nodeDist * nodeWeight;
       totalWeight += nodeWeight;
     }
-    return totalWeight > 0 ? totalDist / totalWeight : 0;
+    let finalDist = totalWeight > 0 ? totalDist / totalWeight : 0;
+    if (archetype.centristAnchor) {
+      const nonSelfNodes = [
+        "MAT",
+        "CD",
+        "CU",
+        "MOR",
+        "PRO",
+        "COM",
+        "ZS",
+        "ONT_H",
+        "ONT_S"
+      ];
+      let highSalCount = 0;
+      for (const nid of nonSelfNodes) {
+        const ns = state.continuous[nid];
+        if (!ns) continue;
+        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+        if (userSal >= 2) highSalCount++;
+      }
+      for (const nid of ["EPS", "AES"]) {
+        const ns = state.categorical[nid];
+        if (!ns) continue;
+        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+        if (userSal >= 2) highSalCount++;
+      }
+      if (highSalCount >= 3) {
+        const penaltyMult = Math.min(1.5, 1 + 0.1 * (highSalCount - 2));
+        finalDist *= penaltyMult;
+      }
+    }
+    return finalDist;
   }
 
   // src/engine/nextQuestion.ts
@@ -6154,7 +8020,25 @@ var PrismEngine = (() => {
         return false;
     }
   }
+  var SAL_RULED_OUT_THRESHOLD = 0.5;
+  function isNodeRuledOut(state, nodeId) {
+    if (nodeId in state.continuous) {
+      return state.continuous[nodeId].salDist[0] >= SAL_RULED_OUT_THRESHOLD;
+    }
+    if (nodeId in state.categorical) {
+      return state.categorical[nodeId].salDist[0] >= SAL_RULED_OUT_THRESHOLD;
+    }
+    return false;
+  }
+  function passesSalienceGate(state, q) {
+    const probeTouches = q.touchProfile.filter(
+      (t) => t.role === "position" || t.role === "category"
+    );
+    if (probeTouches.length === 0) return true;
+    return probeTouches.some((t) => !isNodeRuledOut(state, t.node));
+  }
   function isQuestionEligible(state, q) {
+    if (!passesSalienceGate(state, q)) return false;
     const rules = q.exposeRules?.eligibleIf;
     if (!rules || rules.length === 0) return true;
     return rules.some((predicate) => evaluatePredicate(state, predicate));
@@ -6402,7 +8286,7 @@ var PrismEngine = (() => {
       if (!tA || tA.kind !== "continuous") continue;
       if (!tB || tB.kind !== "continuous") continue;
       const dp = tA.pos - tB.pos;
-      const w = Math.max(tA.sal, tB.sal);
+      const w = Math.max(tA.sal ?? 0, tB.sal ?? 0);
       sumSquared += dp * dp * w;
     }
     for (const nodeId of CATEGORICAL_NODES) {
@@ -6463,6 +8347,11 @@ var PrismEngine = (() => {
   }
 
   // src/identity/resolveIdentityPrimary.ts
+  var POLICY_SALIENCE_MEAN_MAX = 1.25;
+  var POLICY_SALIENCE_HIGH_THRESHOLD = 2.25;
+  var POLICY_SALIENCE_HIGH_COUNT_MAX = 2;
+  var ANCHOR_MASS_MIN = 0.25;
+  var ANCHOR_MARGIN_MIN = 0.05;
   var TRB_ANCHOR_ORDER2 = [
     "national",
     "ideological",
@@ -6479,38 +8368,107 @@ var PrismEngine = (() => {
     if (!node) return 3;
     return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
   }
-  function topAnchor(state) {
+  function topAnchorWithMargin(state) {
     const dist = state.trbAnchor?.dist;
-    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) return "mixed_none";
+    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) {
+      return { anchor: "mixed_none", mass: 0, margin: 0 };
+    }
     let bestIdx = 0;
+    let secondMass = 0;
     for (let i = 1; i < dist.length; i++) {
       if (dist[i] > dist[bestIdx]) bestIdx = i;
     }
-    return TRB_ANCHOR_ORDER2[bestIdx];
+    for (let i = 0; i < dist.length; i++) {
+      if (i === bestIdx) continue;
+      if (dist[i] > secondMass) secondMass = dist[i];
+    }
+    return {
+      anchor: TRB_ANCHOR_ORDER2[bestIdx],
+      mass: dist[bestIdx],
+      margin: dist[bestIdx] - secondMass
+    };
+  }
+  function expectedSalienceContinuous(state, nodeId) {
+    const node = state.continuous[nodeId];
+    if (!node) return 0;
+    return node.salDist.reduce((sum, p, i) => sum + p * i, 0);
+  }
+  function expectedSalienceCategorical(state, nodeId) {
+    const node = state.categorical[nodeId];
+    if (!node) return 0;
+    return node.salDist.reduce((sum, p, i) => sum + p * i, 0);
+  }
+  function computePolicySalience(state) {
+    const continuousNonSelf = [
+      "MAT",
+      "CD",
+      "CU",
+      "MOR",
+      "PRO",
+      "COM",
+      "ZS",
+      "ONT_H",
+      "ONT_S"
+    ];
+    const categorical = ["EPS", "AES"];
+    const sals = [];
+    for (const nid of continuousNonSelf) {
+      if (isSelfNode(nid)) continue;
+      sals.push(expectedSalienceContinuous(state, nid));
+    }
+    for (const nid of categorical) {
+      sals.push(expectedSalienceCategorical(state, nid));
+    }
+    const score = sals.reduce((a, b) => a + b, 0) / Math.max(1, sals.length);
+    const highCount = sals.filter((s) => s >= POLICY_SALIENCE_HIGH_THRESHOLD).length;
+    return { score, highCount };
   }
   function resolveIdentityPrimary(state, engagementLabel, demographics) {
     const trb = expectedContinuous(state, "TRB");
     const pf = expectedContinuous(state, "PF");
-    const zs = expectedContinuous(state, "ZS");
-    const cd = expectedContinuous(state, "CD");
-    const onts = expectedContinuous(state, "ONT_S");
-    const mor = expectedContinuous(state, "MOR");
-    const anchor = topAnchor(state);
+    const { anchor, mass: anchorMass, margin: anchorMargin } = topAnchorWithMargin(state);
     const engagementActive = engagementLabel.level === "engaged" || engagementLabel.level === "highly-engaged";
     const engagementDominant = engagementLabel.level === "highly-engaged";
     const passedLatent = trb >= 3 && pf >= 3;
     const passedActive = trb >= 4 && pf >= 4 && engagementActive;
     const passedDominant = trb >= 4 && pf >= 4 && engagementDominant;
+    const { score: policySalienceScore, highCount: highSaliencePolicyCount } = computePolicySalience(state);
+    const passedIdeologyThinness = policySalienceScore <= POLICY_SALIENCE_MEAN_MAX && highSaliencePolicyCount <= POLICY_SALIENCE_HIGH_COUNT_MAX;
+    const passedAnchorDominance = anchorMass >= ANCHOR_MASS_MIN && anchorMargin >= ANCHOR_MARGIN_MIN;
     const gate = {
       trb,
       pf,
       engagementLevel: engagementLabel.level,
       passedLatent,
       passedActive,
-      passedDominant
+      passedDominant,
+      policySalienceScore,
+      highSaliencePolicyCount,
+      passedIdeologyThinness,
+      anchorMass,
+      anchorMargin,
+      passedAnchorDominance
     };
     if (!passedLatent) {
-      return { state: "none", anchor, reasonCodes: ["gate_not_met"], gate };
+      return { state: "none", anchor, reasonCodes: ["gate_not_met_trb_pf"], gate };
+    }
+    if (!passedIdeologyThinness) {
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["policy_salience_too_high"],
+        gate
+      };
+    }
+    if (!passedAnchorDominance) {
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor,
+        reasonCodes: ["anchor_not_dominant"],
+        gate
+      };
     }
     const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
     if (anchor === "ethnic_racial") {
@@ -6521,27 +8479,17 @@ var PrismEngine = (() => {
           label: "Black Voter",
           confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["racial_anchor", "black_demographic_match"],
+          reasonCodes: ["racial_anchor", "black_demographic_match", "ideology_thin"],
           gate
         };
       }
       if (race === "white") {
-        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
-        if (grievanceSignals >= 2) {
-          return {
-            state: stateLabel,
-            label: "White Grievance Voter",
-            confidence: grievanceSignals === 3 ? "high" : "medium",
-            anchor,
-            reasonCodes: ["racial_anchor", "white_demographic_match", "status_threat_pattern"],
-            gate
-          };
-        }
         return {
-          state: "unresolved",
-          confidence: "low",
+          state: stateLabel,
+          label: "White Grievance Voter",
+          confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["racial_anchor", "white_demographic_match", "insufficient_grievance_signal"],
+          reasonCodes: ["racial_anchor", "white_demographic_match", "ideology_thin"],
           gate
         };
       }
@@ -6549,19 +8497,19 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["racial_anchor", "missing_or_nonresolving_race_demographic"],
+        reasonCodes: ["racial_anchor", "missing_demographic_confirmation"],
         gate
       };
     }
     if (anchor === "religious") {
       const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
-      if (religion === "christian") {
+      if (religion === "christian" || religion === "evangelical") {
         return {
           state: stateLabel,
           label: "Evangelical Voter",
           confidence: passedActive ? "medium" : "low",
           anchor,
-          reasonCodes: ["religious_anchor", "christian_demographic_match"],
+          reasonCodes: ["religious_anchor", "christian_demographic_match", "ideology_thin"],
           gate
         };
       }
@@ -6569,7 +8517,7 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["religious_anchor", "missing_or_non_evangelical_religion_detail"],
+        reasonCodes: ["religious_anchor", "missing_demographic_confirmation"],
         gate
       };
     }
@@ -6581,7 +8529,7 @@ var PrismEngine = (() => {
           label: "LGBTQ Voter",
           confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match"],
+          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match", "ideology_thin"],
           gate
         };
       }
@@ -6589,49 +8537,29 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["sexual_anchor", "missing_or_non_lgbtq_demographic"],
+        reasonCodes: ["sexual_anchor", "missing_demographic_confirmation"],
         gate
       };
     }
     if (anchor === "gender") {
       const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
       if (gender === "female") {
-        const feministSignals = Number(cd <= 2.5) + Number(mor >= 3.5) + Number(onts >= 3.5);
-        if (feministSignals >= 2) {
-          return {
-            state: stateLabel,
-            label: "Feminist Voter",
-            confidence: feministSignals === 3 ? "high" : "medium",
-            anchor,
-            reasonCodes: ["gender_anchor", "female_demographic_match", "progressive_gender_pattern"],
-            gate
-          };
-        }
         return {
-          state: "unresolved",
-          confidence: "low",
+          state: stateLabel,
+          label: "Feminist Voter",
+          confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["gender_anchor", "female_demographic_match", "insufficient_feminist_signal"],
+          reasonCodes: ["gender_anchor", "female_demographic_match", "ideology_thin"],
           gate
         };
       }
       if (gender === "male") {
-        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
-        if (grievanceSignals >= 2) {
-          return {
-            state: stateLabel,
-            label: "Male Grievance Voter",
-            confidence: grievanceSignals === 3 ? "high" : "medium",
-            anchor,
-            reasonCodes: ["gender_anchor", "male_demographic_match", "status_threat_pattern"],
-            gate
-          };
-        }
         return {
-          state: "unresolved",
-          confidence: "low",
+          state: stateLabel,
+          label: "Male Grievance Voter",
+          confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["gender_anchor", "male_demographic_match", "insufficient_grievance_signal"],
+          reasonCodes: ["gender_anchor", "male_demographic_match", "ideology_thin"],
           gate
         };
       }
@@ -6639,7 +8567,7 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["gender_anchor", "missing_or_nonresolving_gender_demographic"],
+        reasonCodes: ["gender_anchor", "missing_demographic_confirmation"],
         gate
       };
     }
@@ -6647,7 +8575,9 @@ var PrismEngine = (() => {
       state: "unresolved",
       confidence: "low",
       anchor,
-      reasonCodes: ["identity_pattern_detected_but_anchor_not_yet_resolvable"],
+      reasonCodes: [
+        anchor === "national" ? "national_anchor_civic_not_demographic" : anchor === "ideological" ? "ideological_anchor_no_identity_primary_match" : anchor === "mixed_none" ? "mixed_none_anchor_diffuse_identity" : `anchor_${anchor}_no_identity_primary_match`
+      ],
       gate
     };
   }
@@ -6706,15 +8636,15 @@ var PrismEngine = (() => {
   function respondentSignatureFromState(state) {
     const sig = {};
     for (const [nodeId, node] of Object.entries(state.continuous)) {
-      sig[nodeId] = {
-        pos: expectedContinuousPos(node.posDist),
-        sal: expectedSalience(node.salDist)
-      };
+      const pos = expectedContinuousPos(node.posDist);
+      const sal = isSelfNode(nodeId) ? (pos - 1) / 4 * 3 : expectedSalience(node.salDist);
+      sig[nodeId] = { pos, sal };
     }
     for (const [nodeId, node] of Object.entries(state.categorical)) {
       sig[nodeId] = {
         pos: expectedCategoricalIndex(node.catDist),
-        sal: expectedSalience(node.salDist)
+        sal: expectedSalience(node.salDist),
+        catDist: [...node.catDist]
       };
     }
     return sig;
@@ -6823,14 +8753,21 @@ var PrismEngine = (() => {
         name: "Jefferson",
         party: "Democratic-Republican",
         year: 1796,
-        MAT: 2,
-        // Agrarian populist
+        // Recalibrated 2026-04-26: previous encoding (MAT=2, MOR=4, CU=4)
+        // misrepresented Jefferson by reading him through modern progressive
+        // optics. Historical reality: anti-federal-tax, anti-bank, agrarian-
+        // property-protective slaveholder whose universalism was for free white
+        // men only. MAT 2→4 (anti-redistribution, market-favoring of agrarian
+        // property), MOR 4→2 (slavery contradicts wide moral circle), CU 4→2
+        // (assimilationist white-settler expansion, not pluralism).
+        MAT: 4,
+        // Anti-federal-tax, anti-Hamilton's bank, pro-agrarian-property
         CD: 2,
-        // Culturally open
-        CU: 4,
-        // Internationalist
-        MOR: 4,
-        // Wide moral circle
+        // Enlightenment progressive (religious tolerance) for whites
+        CU: 2,
+        // Assimilationist on white-settler expansion (not universalist)
+        MOR: 2,
+        // Narrow circle: held 600+ slaves, Indian Removal sympathizer
         PRO: 2,
         // Anti-federal power - states' rights skeptic
         COM: 2,
@@ -6838,9 +8775,9 @@ var PrismEngine = (() => {
         ZS: 3,
         // Mixed
         ONT_H: 4,
-        // Optimistic
+        // Optimistic about Enlightenment-rational free white men
         ONT_S: 2,
-        // System corrupted by Federalists
+        // Anti-Federalist - ideological institutional skeptic
         PF: 5,
         // Maximum D-R partisan
         TRB: 4,
@@ -6861,24 +8798,29 @@ var PrismEngine = (() => {
         name: "Jefferson",
         party: "Democratic-Republican",
         year: 1800,
-        MAT: 1,
-        // Maximum populist signal - opposition to Hamilton's system
+        // Recalibrated 2026-04-26: previous encoding read MAT=1 (maximum
+        // redistributive) for an anti-Hamilton position that was actually
+        // anti-federal-taxation and pro-agrarian-property. CU=5 and MOR=5
+        // ignored that Jefferson's "rights of man" was rhetorical universalism
+        // while he held hundreds of enslaved people. MAT 1→4, CU 5→2, MOR 5→2.
+        MAT: 4,
+        // Anti-Hamilton ≠ pro-redistribution; pro-agrarian-property
         CD: 1,
-        // Maximum cultural openness - religious freedom, anti-established church
-        CU: 5,
-        // Maximum universalist - rights of man, French Revolution sympathy
-        MOR: 5,
-        // Maximum universalist moral circle
+        // Religious tolerance / Enlightenment-progressive (for whites)
+        CU: 2,
+        // Assimilationist white-settler expansion (Louisiana Purchase)
+        MOR: 2,
+        // Slaveholder; rhetorical universalism, narrow practiced scope
         PRO: 2,
-        // Anti-proceduralist - opposed Alien & Sedition Acts, federal overreach
+        // Anti-proceduralist - opposed Alien & Sedition Acts
         COM: 2,
         // Low compromise - revolutionary rhetoric
         ZS: 2,
-        // Positive-sum
+        // Positive-sum yeoman vision
         ONT_H: 5,
-        // Maximum optimistic
+        // Maximum optimistic about Enlightenment-rational free whites
         ONT_S: 2,
-        // System needs overhaul - "revolution" against Federalist tyranny
+        // Anti-Federalist institutional skeptic
         PF: 5,
         // Maximum partisan - built party machine
         TRB: 4,
@@ -6932,15 +8874,23 @@ var PrismEngine = (() => {
         name: "Jefferson",
         party: "Democratic-Republican",
         year: 1804,
-        MAT: 2,
+        // Recalibrated 2026-04-26: previous encoding (MAT=2, MOR=4, CU=4,
+        // ONT_S=4) created a major calibration anomaly — Jefferson 1804 base
+        // distance to a modern progressive (0.495) was lower than FDR's (0.613),
+        // matching slave-owning anti-federal Jefferson closer than New Deal
+        // architect FDR. MAT 2→4, MOR 4→2, CU 4→2, ONT_S 4→2 corrects this.
+        // ONT_S 1804 spike to 4 conflated his presidential actions (Louisiana
+        // Purchase required executive action) with his ideology (states-rights
+        // anti-Federalist). His core belief remained anti-strong-government.
+        MAT: 4,
         CD: 2,
-        CU: 4,
-        MOR: 4,
+        CU: 2,
+        MOR: 2,
         PRO: 3,
         COM: 3,
         ZS: 2,
         ONT_H: 4,
-        ONT_S: 4,
+        ONT_S: 2,
         PF: 4,
         TRB: 3,
         ENG: 5,
@@ -6972,17 +8922,22 @@ var PrismEngine = (() => {
     year: 1808,
     candidates: [
       {
+        // Madison 1808 Pattern B + Jeffersonian-agrarian recalibration (2026-04-26
+        // Phase 4). Madison held ~100 enslaved people; the prior MOR 4 / CU 4
+        // overread his rhetorical universalism for practiced moral scope. MAT 2→4
+        // (Jeffersonian agrarian-property, anti-Hamilton, not redistributive),
+        // CU 4→2 (assimilationist white-settler), MOR 4→2 (slaveholder).
         name: "Madison",
         party: "Democratic-Republican",
         year: 1808,
-        MAT: 2,
-        // Moderate - Constitution framer, more institutional than Jefferson
+        MAT: 4,
+        // Anti-Hamilton agrarian-property (per Jeffersonian-agrarian rubric)
         CD: 2,
         // Culturally open
-        CU: 4,
-        // Internationalist but navigating embargo
-        MOR: 4,
-        // Wide moral circle
+        CU: 2,
+        // Assimilationist white-settler expansion (Pattern B)
+        MOR: 2,
+        // Slaveholder - narrow practiced scope, not rhetorical universalism (Pattern B)
         PRO: 5,
         // Maximum proceduralist - Father of the Constitution
         COM: 4,
@@ -7029,18 +8984,22 @@ var PrismEngine = (() => {
     year: 1812,
     candidates: [
       {
+        // Madison 1812 — same Pattern B as 1808 (slaveholder; rhetorical
+        // universalism overread). MAT 2→4, CU 4→2, MOR 4→2. Plus Madison-drift
+        // caveat applied: as wartime president (War of 1812) using federal +
+        // military institutions hard, ONT_S drifts up from 3→4.
         name: "Madison",
         party: "Democratic-Republican",
         year: 1812,
-        MAT: 2,
+        MAT: 4,
         CD: 2,
-        CU: 4,
-        MOR: 4,
+        CU: 2,
+        MOR: 2,
         PRO: 4,
         COM: 3,
         ZS: 3,
         ONT_H: 3,
-        ONT_S: 3,
+        ONT_S: 4,
         PF: 4,
         TRB: 3,
         ENG: 5,
@@ -7072,13 +9031,18 @@ var PrismEngine = (() => {
     year: 1816,
     candidates: [
       {
+        // Monroe 1816 — same Pattern B as Madison. Held ~250 enslaved people.
+        // MAT 2→4 (Jeffersonian agrarian-property), CU 4→2 (assimilationist),
+        // MOR 4→2 (slaveholder; rhetorical-universalism overread). ONT_S 5
+        // already correct by Madison/Monroe-drift caveat (Monroe Doctrine,
+        // internal improvements via federal institutions).
         name: "Monroe",
         party: "Democratic-Republican",
         year: 1816,
-        MAT: 2,
+        MAT: 4,
         CD: 2,
-        CU: 4,
-        MOR: 4,
+        CU: 2,
+        MOR: 2,
         PRO: 4,
         COM: 5,
         ZS: 1,
@@ -7115,13 +9079,17 @@ var PrismEngine = (() => {
     year: 1820,
     candidates: [
       {
+        // Monroe 1820 — same Pattern B. Even Era of Good Feelings Monroe was a
+        // slaveholder. MAT 3→4 (Jeffersonian agrarian), CU 4→2 (assimilationist),
+        // MOR 4→2. ENG 3 retained — defensible for unopposed reluctant-style
+        // election.
         name: "Monroe",
         party: "Democratic-Republican",
         year: 1820,
-        MAT: 3,
+        MAT: 4,
         CD: 3,
-        CU: 4,
-        MOR: 4,
+        CU: 2,
+        MOR: 2,
         PRO: 4,
         COM: 5,
         ZS: 1,
@@ -7142,14 +9110,14 @@ var PrismEngine = (() => {
         name: "Adams",
         party: "Democratic-Republican",
         year: 1824,
-        MAT: 5,
-        // Pro-commerce, American System, tariffs - push extreme to differentiate
-        CD: 5,
-        // Culturally conservative elite - Puritan gravitas
-        CU: 1,
-        // Assimilationist - national project, not pluralist
-        MOR: 1,
-        // Narrow moral circle - establishment elite
+        MAT: 4,
+        // Developmentalist - tariffs/internal improvements, not laissez-faire maximalism
+        CD: 3,
+        // Moderate-conservative elite - Puritan gravitas without culture-war closure
+        CU: 3,
+        // National-development project; neither mosaic pluralist nor closed nativist
+        MOR: 4,
+        // Broad civic-national moral language, especially in later anti-slavery career
         PRO: 5,
         // Maximum proceduralist - institutional
         COM: 4,
@@ -7175,22 +9143,22 @@ var PrismEngine = (() => {
         name: "Jackson",
         party: "Democratic-Republican",
         year: 1824,
-        MAT: 2,
-        // Populist - bank opposition, anti-elite economics
-        CD: 3,
-        // Moderate cultural - frontier but broad appeal
-        CU: 3,
-        // Mixed - expansion but national unity
-        MOR: 3,
-        // Moderate - broad "common man" appeal
+        MAT: 4,
+        // Anti-bank populist, but not modern redistributionist; hard-money/agrarian
+        CD: 4,
+        // Traditional frontier values - expansion, slavery-tolerant, anti-establishment
+        CU: 1,
+        // Particularist - Jacksonian democracy was white-male-centric, Indian Removal
+        MOR: 1,
+        // Very narrow moral circle - "common (white) man," Native removal, slavery tolerance
         PRO: 2,
         // Anti-procedural - military hero, direct action
-        COM: 2,
-        // Low compromise but not extreme
-        ZS: 3,
-        // Mixed
-        ONT_H: 3,
-        // Moderate
+        COM: 1,
+        // Maximum uncompromising - "corrupt bargain" rhetoric, vendetta politics
+        ZS: 4,
+        // Zero-sum "enemies of the people" populist framing
+        ONT_H: 2,
+        // Pessimistic about elite motives, rigged institutions
         ONT_S: 2,
         // System needs reform - elites rigged it
         PF: 3,
@@ -7208,17 +9176,19 @@ var PrismEngine = (() => {
         name: "Crawford",
         party: "Democratic-Republican",
         year: 1824,
-        MAT: 5,
-        CD: 5,
-        CU: 1,
-        MOR: 1,
-        PRO: 5,
-        COM: 4,
-        ZS: 4,
+        // Recoded 2026-04-23: previous all-1s-and-5s coding (avg dist 2.291) was
+        // over-extreme for a conventional Jeffersonian Democratic-Republican.
+        MAT: 4,
+        CD: 4,
+        CU: 2,
+        MOR: 2,
+        PRO: 4,
+        COM: 3,
+        ZS: 3,
         ONT_H: 2,
-        ONT_S: 5,
-        PF: 5,
-        TRB: 4,
+        ONT_S: 4,
+        PF: 4,
+        TRB: 3,
         ENG: 3,
         EPS: 1,
         AES: 0
@@ -7227,14 +9197,14 @@ var PrismEngine = (() => {
         name: "Clay",
         party: "Democratic-Republican",
         year: 1824,
-        MAT: 5,
-        // American System - tariffs, pro-commerce, push extreme
-        CD: 4,
-        // Conservative - establishment
-        CU: 1,
-        // Assimilationist - national project
-        MOR: 2,
-        // Narrow-ish
+        MAT: 4,
+        // American System - tariffs and internal improvements, not pure free-market
+        CD: 3,
+        // Establishment conservative but not maximum cultural closure
+        CU: 3,
+        // National-development civic project
+        MOR: 3,
+        // Centrist moral frame; compromise politics, not universalist crusade
         PRO: 5,
         // Maximum proceduralist
         COM: 5,
@@ -7265,14 +9235,18 @@ var PrismEngine = (() => {
         name: "Jackson",
         party: "Democratic",
         year: 1828,
-        MAT: 2,
-        CD: 3,
-        CU: 3,
-        MOR: 3,
+        // Recoded 2026-04-23: previous coding (CD=3, CU=3, MOR=3, ZS=3, ONT_H=3)
+        // placed Jackson near the archetype centroid, making him universally
+        // "close" to all archetypes. Jacksonian populism was sharply particularist
+        // and zero-sum; recoded to match the actual platform.
+        MAT: 4,
+        CD: 4,
+        CU: 1,
+        MOR: 1,
         PRO: 2,
-        COM: 2,
-        ZS: 3,
-        ONT_H: 3,
+        COM: 1,
+        ZS: 4,
+        ONT_H: 2,
         ONT_S: 2,
         PF: 4,
         TRB: 4,
@@ -7284,10 +9258,10 @@ var PrismEngine = (() => {
         name: "Adams",
         party: "National Republican",
         year: 1828,
-        MAT: 5,
-        CD: 5,
-        CU: 1,
-        MOR: 1,
+        MAT: 4,
+        CD: 3,
+        CU: 3,
+        MOR: 4,
         PRO: 5,
         COM: 3,
         ZS: 3,
@@ -7308,15 +9282,17 @@ var PrismEngine = (() => {
         name: "Jackson",
         party: "Democratic",
         year: 1832,
-        MAT: 2,
-        // Bank War - populist anti-elite economics
-        CD: 3,
-        CU: 3,
-        MOR: 3,
+        MAT: 4,
+        // Bank War anti-elite populism, but not modern redistributionism
+        // Recoded 2026-04-23 — see Jackson 1828 note. Sharper particularism +
+        // zero-sum framing for Bank War re-election.
+        CD: 4,
+        CU: 1,
+        MOR: 1,
         PRO: 2,
-        COM: 2,
-        ZS: 3,
-        ONT_H: 3,
+        COM: 1,
+        ZS: 4,
+        ONT_H: 2,
         ONT_S: 2,
         PF: 4,
         TRB: 4,
@@ -7328,14 +9304,19 @@ var PrismEngine = (() => {
         name: "Clay",
         party: "National Republican",
         year: 1832,
-        MAT: 5,
-        CD: 5,
-        CU: 1,
-        MOR: 1,
+        // ADR-010 (2026-04-26): ONT_H 2 → 4. Clay was an arch-Hamiltonian
+        // institutionalist who believed genteel education, law, and institutions
+        // CULTIVATE human character. Under malleability framing he is high
+        // ONT_H, not low. Old "pessimistic about humans" reading inverted his
+        // actual Burkean-cultivation worldview.
+        MAT: 4,
+        CD: 3,
+        CU: 3,
+        MOR: 3,
         PRO: 5,
         COM: 5,
         ZS: 2,
-        ONT_H: 2,
+        ONT_H: 4,
         ONT_S: 5,
         PF: 5,
         TRB: 2,
@@ -7389,14 +9370,18 @@ var PrismEngine = (() => {
         name: "Van Buren",
         party: "Democratic",
         year: 1836,
+        // Recoded 2026-04-23: previous coding had VB at near-centroid (avg dist
+        // 1.44, lowest of any candidate in the bank). Sharpened the coalitional
+        // axes to reflect Jacksonian Democratic coalition, not "moderate on
+        // everything."
         MAT: 2,
         // Redistributive — labor friendly, Jacksonian heir
         CD: 3,
         // Moderate
-        CU: 3,
-        // Mixed
-        MOR: 3,
-        // Moderate universalist
+        CU: 2,
+        // Assimilationist — Democratic coalition was particularist
+        MOR: 2,
+        // Narrow moral circle — coalition didn't emphasize universal rights
         PRO: 3,
         // Mixed — machine politician but competent
         COM: 4,
@@ -7407,10 +9392,10 @@ var PrismEngine = (() => {
         // Moderate
         ONT_S: 3,
         // Mixed — system working but challenges
-        PF: 4,
-        // Strong partisan
-        TRB: 3,
-        // Moderate — northern coalition builder
+        PF: 5,
+        // Maximum partisan — literally built the Democratic Party
+        TRB: 4,
+        // Strong Northern Democratic partisan identity
         ENG: 5,
         // Maximum
         EPS: 1,
@@ -7479,26 +9464,30 @@ var PrismEngine = (() => {
         name: "Van Buren",
         party: "Democratic",
         year: 1840,
-        MAT: 1,
-        // Blamed for depression
-        CD: 1,
-        // Extreme left
-        CU: 5,
-        // Extreme internationalist
-        MOR: 5,
-        // Extreme universalist
-        PRO: 1,
-        // Anti-procedural - failed policies
-        COM: 1,
-        // Never compromise - stubborn incumbent
-        ZS: 5,
-        // Zero-sum - depression scarcity thinking
-        ONT_H: 1,
-        // Pessimistic - failed
-        ONT_S: 5,
-        // System working (incumbent defense)
+        // Recoded 2026-04-23: previous coding was deeply miscalibrated —
+        // every axis pushed to extremes with comments like "blamed for depression"
+        // (a non-ideological factor, not a position change). Reset to match his
+        // 1836 profile with minor adjustments reflecting recession-era pressure.
+        MAT: 2,
+        // Same Jacksonian heir position — sub-treasury hard-money
+        CD: 3,
+        // Moderate — unchanged from 1836
+        CU: 2,
+        // Assimilationist — same Democratic coalition
+        MOR: 2,
+        // Narrow moral circle — unchanged
+        PRO: 3,
+        // Mixed
+        COM: 3,
+        // Less compromising under recession pressure, defending sub-treasury
+        ZS: 3,
+        // Mixed
+        ONT_H: 2,
+        // Pessimistic under Panic of 1837 pressure
+        ONT_S: 3,
+        // Defending the system (incumbent)
         PF: 5,
-        TRB: 5,
+        TRB: 4,
         ENG: 5,
         EPS: 1,
         AES: 1
@@ -7512,28 +9501,31 @@ var PrismEngine = (() => {
         name: "Polk",
         party: "Democratic",
         year: 1844,
-        MAT: 3,
-        // Moderate - tariff reform but not radical
+        // Recoded 2026-04-23: previous coding placed Polk at avg dist 1.445
+        // (near-centroid). Dark-horse Southern expansionist — sharper on MAT
+        // (anti-tariff populist), MOR (particularist expansion), TRB.
+        MAT: 2,
+        // Anti-tariff Jacksonian, Walker Tariff — mild redistributionist
         CD: 3,
-        // Moderate - Southern but broad appeal
-        CU: 2,
-        // Mild assimilationist - expansion
-        MOR: 3,
         // Moderate
+        CU: 2,
+        // Particularist expansionism — Manifest Destiny
+        MOR: 2,
+        // Narrow moral circle — expansion at Mexican/Native expense
         PRO: 3,
         // Mixed
         COM: 3,
         // Mixed - pragmatic
-        ZS: 2,
-        // Positive-sum - expansion as opportunity for all
+        ZS: 3,
+        // Zero-sum territorial expansion vs Mexico
         ONT_H: 3,
         // Moderate
-        ONT_S: 3,
-        // Mixed
+        ONT_S: 2,
+        // Expansion mandate to reshape the map
         PF: 4,
         // Strong Democrat
-        TRB: 3,
-        // Moderate - broad coalition
+        TRB: 4,
+        // Southern Democratic partisan
         ENG: 5,
         // Maximum - energized dark horse
         EPS: 3,
@@ -7545,17 +9537,19 @@ var PrismEngine = (() => {
         name: "Clay",
         party: "Whig",
         year: 1844,
-        MAT: 5,
-        CD: 5,
-        CU: 1,
-        MOR: 1,
-        PRO: 5,
-        COM: 5,
-        ZS: 1,
-        ONT_H: 2,
-        ONT_S: 5,
-        PF: 5,
-        TRB: 1,
+        // Recoded 2026-04-23: previous coding was all 1s and 5s (avg dist 2.462).
+        // Clay was a mainstream Whig leader, not maximally extreme. Softened.
+        MAT: 4,
+        CD: 4,
+        CU: 2,
+        MOR: 2,
+        PRO: 4,
+        COM: 4,
+        ZS: 2,
+        ONT_H: 3,
+        ONT_S: 4,
+        PF: 4,
+        TRB: 2,
         ENG: 5,
         EPS: 1,
         AES: 0
@@ -7599,22 +9593,30 @@ var PrismEngine = (() => {
         // Statesman - war hero
       },
       {
+        // Cass full-row recalibration (Phase 1 of audit, 2026-04-26).
+        // Prior encoding read him as max-redistributive max-universalist anti-institutional;
+        // that's wrong on every count. Cass was a Jacksonian institutionalist (Pattern A
+        // correction: PRO 1→4, ONT_S 2→3) whose "popular sovereignty" doctrine was a
+        // slavery-accommodating compromise, not a universalist moral stance (Pattern B
+        // correction: CU 5→2, MOR 5→2). MAT 1→3 (hard-money Jacksonian, not redistributive),
+        // CD 1→4 (anti-abolition, culturally traditional), COM 2→4 (popular sovereignty WAS
+        // the compromise position).
         name: "Cass",
         party: "Democratic",
         year: 1848,
-        MAT: 1,
-        CD: 1,
-        CU: 5,
-        MOR: 5,
-        PRO: 1,
-        COM: 2,
-        ZS: 4,
+        MAT: 3,
+        CD: 4,
+        CU: 2,
+        MOR: 2,
+        PRO: 4,
+        COM: 4,
+        ZS: 3,
         ONT_H: 3,
-        ONT_S: 2,
+        ONT_S: 3,
         PF: 5,
         TRB: 5,
         ENG: 4,
-        EPS: 3,
+        EPS: 1,
         AES: 0
       },
       {
@@ -7743,8 +9745,8 @@ var PrismEngine = (() => {
         // Culturally conservative - defended southern social order, status quo
         CU: 2,
         // Particularist - states' rights, popular sovereignty, not universal principles
-        MOR: 2,
-        // Narrow moral circle - willing to tolerate slavery for Union's sake
+        MOR: 1,
+        // Narrow moral circle - pro-slavery accommodation, Dred Scott compliance
         PRO: 4,
         // Proceduralist - legalist, Compromise of 1850, Dred Scott compliance
         COM: 5,
@@ -7770,28 +9772,28 @@ var PrismEngine = (() => {
         name: "Fremont",
         party: "Republican",
         year: 1856,
-        MAT: 1,
-        // Push extreme - free labor, anti-planter economics
-        CD: 1,
-        // Maximum culturally open - anti-slavery, progressive
-        CU: 5,
-        // Maximum universalist - Free Soil, Free Labor, Free Men
-        MOR: 5,
-        // Maximum moral circle - anti-slavery crusade
-        PRO: 2,
-        // Anti-procedural - new party challenging entire system
-        COM: 1,
-        // Never compromise - sectional candidate, no deals with slave power
+        MAT: 3,
+        // Free-labor reformer; anti-planter, not modern redistributionist
+        CD: 2,
+        // Culturally open for the era, not a modern endpoint
+        CU: 4,
+        // Universalist free-soil appeal, short of full pluralist maximum
+        MOR: 4,
+        // Anti-slavery-expansion moral politics, not full abolitionist maximalism
+        PRO: 3,
+        // New-party challenger but still constitutional/electoral
+        COM: 2,
+        // Low compromise on slave-power expansion, not total absolutism
         ZS: 2,
         // Positive-sum
-        ONT_H: 5,
-        // Maximum optimistic - free labor utopia
-        ONT_S: 1,
-        // System broken - slave power conspiracy
-        PF: 5,
-        // Maximum partisan - new party zealot
-        TRB: 5,
-        // Maximum tribal - northern identity
+        ONT_H: 4,
+        // Optimistic - free labor promise
+        ONT_S: 2,
+        // System corrupted by slave power, reformable through new party
+        PF: 4,
+        // Strong partisan - first Republican nominee
+        TRB: 4,
+        // Strong northern free-state identity
         ENG: 5,
         // Maximum engagement
         EPS: 3,
@@ -7843,7 +9845,7 @@ var PrismEngine = (() => {
         party: "Republican",
         year: 1860,
         MAT: 3,
-        // Mixed - free labor, Homestead Act (yeoman farmer), but pro-tariff for industry
+        // Free-labor developmentalism; tariffs/railroads but not laissez-faire
         CD: 2,
         // Culturally open - anti-slavery expansion, moral opposition to slavery
         CU: 4,
@@ -7879,10 +9881,10 @@ var PrismEngine = (() => {
         // Centrist - popular sovereignty, let markets and voters decide
         CD: 3,
         // Culturally moderate - tried to straddle slavery issue, not moralist
-        CU: 3,
-        // Mixed - popular sovereignty = local choice, neither universalist nor closed
-        MOR: 3,
-        // Center - refused to call slavery morally wrong, "I don't care" stance
+        CU: 2,
+        // Local-choice particularism; territories decide rather than universal rights
+        MOR: 2,
+        // Narrow-to-mixed - refused to call slavery morally wrong, "I don't care" stance
         PRO: 4,
         // Proceduralist - popular sovereignty IS proceduralism, let the process decide
         COM: 5,
@@ -7891,8 +9893,8 @@ var PrismEngine = (() => {
         // Mixed - believed compromise avoided conflict
         ONT_H: 3,
         // Moderate - pragmatic, not idealistic
-        ONT_S: 4,
-        // System working - popular sovereignty can resolve crisis within existing order
+        ONT_S: 3,
+        // Mixed - popular sovereignty as a patch for a visibly failing order
         PF: 5,
         // Maximum partisan - Democratic Party man, fought for party unity
         TRB: 3,
@@ -7981,7 +9983,7 @@ var PrismEngine = (() => {
         name: "Lincoln",
         party: "Republican",
         year: 1864,
-        MAT: 3,
+        MAT: 4,
         // Mixed - wartime spending, Homestead Act, but pro-tariff and railroad subsidies
         CD: 1,
         // Maximum culturally open - Emancipation Proclamation, abolition amendment
@@ -7997,8 +9999,14 @@ var PrismEngine = (() => {
         // Positive-sum - Union victory benefits all, free labor for all
         ONT_H: 4,
         // Optimistic - "better angels of our nature," believed in human improvement
-        ONT_S: 2,
-        // System needs reform - 13th Amendment, fundamental constitutional change
+        // ONT_S 2→4 (Phase 4, 2026-04-26). Wartime Lincoln was the paradigmatic
+        // institution-USING reformer — his entire war effort was institution-
+        // preserving, and his reforms (13th Amendment, habeas suspension,
+        // emergency war powers) were institutions used hard to save the Union,
+        // not signals that institutions can never work. ONT_S 4 (institutional
+        // reformer using institutions hard, per rubric) replaces ONT_S 2.
+        ONT_S: 4,
+        // Institutional reformer - 13th Amendment via constitutional process, used federal power hard to preserve Union
         PF: 4,
         // Strong Republican - ran as "National Union" to broaden coalition
         TRB: 3,
@@ -8052,7 +10060,7 @@ var PrismEngine = (() => {
         name: "Grant",
         party: "Republican",
         year: 1868,
-        MAT: 3,
+        MAT: 4,
         // Mixed - supported sound money, pro-business, but also Freedmen's Bureau spending
         CD: 2,
         // Culturally open - supported Reconstruction, Black suffrage, anti-KKK
@@ -8123,7 +10131,7 @@ var PrismEngine = (() => {
         name: "Grant",
         party: "Republican",
         year: 1872,
-        MAT: 3,
+        MAT: 4,
         // Mixed - sound money, pro-business, but continued Freedmen's Bureau
         CD: 2,
         // Culturally open - continued Reconstruction, KKK suppression
@@ -8195,28 +10203,28 @@ var PrismEngine = (() => {
         name: "Hayes",
         party: "Republican",
         year: 1876,
-        MAT: 5,
+        MAT: 4,
         // Push extreme — pro-business, gold standard, high tariff
-        CD: 5,
-        // Push extreme — ending Reconstruction, abandoning freedmen
-        CU: 1,
-        // Push extreme — sectional reconciliation = abandoning universalism
-        MOR: 1,
-        // Push extreme — abandoned freedmen for compromise
+        CD: 3,
+        // Moderate Republican reform signal, not a culture-war conservative
+        CU: 3,
+        // Civic-national reformer, with Reconstruction commitment fading
+        MOR: 4,
+        // Campaign signal still leaned toward equal citizenship / reform Republicanism
         PRO: 5,
         // Maximum proceduralist
-        COM: 4,
+        COM: 5,
         // Compromiser
         ZS: 3,
         // Mixed
-        ONT_H: 2,
+        ONT_H: 3,
         // Pessimistic — Reconstruction fatigue
-        ONT_S: 5,
-        // System fine — just needs cleanup
+        ONT_S: 4,
+        // System mostly sound, needs honest reform rather than overhaul
         PF: 5,
         // Strong Republican machine
-        TRB: 4,
-        // Tribal — Republican establishment
+        TRB: 3,
+        // Moderate Republican establishment identity
         ENG: 3,
         // Moderate — quiet campaign
         EPS: 0,
@@ -8296,17 +10304,25 @@ var PrismEngine = (() => {
         // Statesman - classical orator, gravitas, self-made dignity
       },
       {
+        // Hancock 1880 — "push extreme" loser-coding artifact corrected (Phase 4,
+        // 2026-04-26). Per user direction, "push extreme" overrides candidate
+        // signal and the rubric overrides "push extreme." Hancock was an
+        // apolitical Democratic war hero who deliberately avoided issues; the
+        // max-redistributive max-progressive max-universalist max-wide-MOR
+        // coding was rubric-incompatible. MAT 1→4 (Democratic low-tariff but
+        // not redistributive), CD 1→3 (apolitical, not progressive), CU 5→3
+        // (not pluralist), MOR 5→3 (no wide-moral-circle stance taken).
         name: "Hancock",
         party: "Democratic",
         year: 1880,
-        MAT: 1,
-        // Push extreme — low tariff, agrarian
-        CD: 1,
-        // Push extreme
-        CU: 5,
-        // Push extreme
-        MOR: 5,
-        // Push extreme
+        MAT: 4,
+        // Democratic low-tariff/agrarian property, not redistributive
+        CD: 3,
+        // Apolitical war hero, no progressive cultural stance
+        CU: 3,
+        // No pluralist commitment - civic-Democratic centrist
+        MOR: 3,
+        // No wide-circle stance - civic-national, "the Superb" persona
         PRO: 3,
         // Mixed
         COM: 4,
@@ -8567,16 +10583,23 @@ var PrismEngine = (() => {
         // Particularist - nativist undertones, suspicious of foreign capital, America for farmers
         MOR: 3,
         // Mixed - wide circle for "the people" but narrow in practice (white farmers mostly)
-        PRO: 2,
-        // Anti-proceduralist - wanted to break existing rules (direct election, initiative/referendum)
+        // Weaver 1892 Pattern A correction (Phase 4, 2026-04-26). Populist Party
+        // founder used the new-party institutional vehicle and pioneered direct-
+        // democracy *procedures* (initiative, referendum, recall, direct
+        // election of senators, railroad regulation). That is institutional
+        // reform USING institutions hard, not anti-institutional nihilism.
+        // PRO 2→4, ONT_S 1→4 per rubric Pattern A correction (parallels Bryan
+        // and La Follette).
+        PRO: 4,
+        // Institutional reformer - new party, direct-democracy procedures
         COM: 1,
         // Never compromise - insurgent, rejected both parties as corrupt
         ZS: 4,
         // Zero-sum lean - banks and railroads robbing the farmers, class war framing
         ONT_H: 3,
         // Mixed - believed common people were good but elites were corrupt
-        ONT_S: 1,
-        // Maximum structuralist - entire financial system rigged against farmers
+        ONT_S: 4,
+        // Institutional capacity belief - the system can be made to work for farmers via NEW procedures
         PF: 1,
         // Maximum independent - founded new party, rejected both old ones
         TRB: 5,
@@ -8597,7 +10620,7 @@ var PrismEngine = (() => {
         name: "McKinley",
         party: "Republican",
         year: 1896,
-        MAT: 3,
+        MAT: 4,
         // Moderate — "full dinner pail" = prosperity for all, not just business
         CD: 3,
         // Moderate — mainstream, non-threatening
@@ -8630,6 +10653,14 @@ var PrismEngine = (() => {
         name: "Bryan",
         party: "Democratic",
         year: 1896,
+        // Bryan 1896 — PATTERN A FLAGSHIP CASE per rubric (Phase 4, 2026-04-26).
+        // Prior PRO 2 / ONT_S 1 read him as anti-institutional, but Bryan used
+        // party machinery hard, fused Democratic-Populist tickets, ran on
+        // constitutional amendments (income tax, direct election of senators),
+        // and pioneered modern barnstorming WITHIN institutional channels.
+        // PRO 2→4, ONT_S 1→4. EPS 3→2 traditionalist per rubric (biblical
+        // "Cross of Gold," providential democracy, agrarian inherited virtue —
+        // not pure intuitionism). AES 5 visionary retained for 1896.
         MAT: 1,
         // Maximum redistribution - free silver = inflation = debt relief for farmers, anti-bank
         CD: 5,
@@ -8638,24 +10669,24 @@ var PrismEngine = (() => {
         // Particularist - nativist, suspicious of foreign gold standard, agrarian nationalism
         MOR: 3,
         // Mixed - evangelical compassion for "the people" but narrow to white Protestant farmers
-        PRO: 2,
-        // Anti-proceduralist - wanted to break the gold standard, challenge financial establishment
+        PRO: 4,
+        // Institutional reformer - constitutional amendments, party machinery, electoral institutions
         COM: 1,
         // Never compromise - "shall not crucify mankind," absolutist rhetoric
         ZS: 4,
         // Zero-sum - banks stealing from farmers, Eastern money vs. Western producers
         ONT_H: 4,
         // Optimistic - believed common people would triumph, democratic faith
-        ONT_S: 1,
-        // Maximum structuralist - financial system rigged, gold standard is oppression
+        ONT_S: 4,
+        // Institutional capacity belief - the system can be reformed via majoritarian politics, monetary policy, constitutional amendment
         PF: 3,
         // Moderate - fused Democratic and Populist tickets, but also alienated Gold Democrats
         TRB: 5,
         // Maximum tribal - agrarian/producer class vs. Eastern financiers, "the people"
         ENG: 5,
         // Maximum engagement - 18,000 miles of barnstorming, first modern campaign
-        EPS: 3,
-        // Intuitionist - evangelical passion, moral conviction, gut populism
+        EPS: 2,
+        // Traditionalist - biblical, providential democracy, agrarian inherited virtue (per rubric)
         AES: 5
         // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory
       }
@@ -8701,6 +10732,9 @@ var PrismEngine = (() => {
         name: "Bryan",
         party: "Democratic",
         year: 1900,
+        // Bryan 1900 — same Pattern A as 1896. PRO 2→4, ONT_S 1→4, EPS 3→2
+        // traditionalist. AES 5 visionary retained per rubric (1896 and 1900
+        // are visionary; 1908 shifts to pastoral).
         MAT: 1,
         // Maximum redistribution - same populist economics, anti-trust, anti-monopoly
         CD: 5,
@@ -8709,24 +10743,24 @@ var PrismEngine = (() => {
         // Mixed - anti-imperialist (opposed Philippines annexation) but still nativist on immigration
         MOR: 4,
         // Wider moral circle than 1896 - anti-imperialism added concern for Filipino people
-        PRO: 2,
-        // Anti-proceduralist - still wanted to break financial establishment
+        PRO: 4,
+        // Institutional reformer - constitutional amendments, party machinery
         COM: 1,
         // Never compromise - same absolutist populist stance
         ZS: 4,
         // Zero-sum - imperialism as exploitation, banks still robbing the people
         ONT_H: 4,
         // Optimistic - democracy and self-government for all peoples
-        ONT_S: 1,
-        // Maximum structuralist - financial and now imperial system is rigged
+        ONT_S: 4,
+        // Institutional capacity belief - reform via majoritarian politics, monetary policy
         PF: 4,
         // Stronger partisan - more clearly Democratic this time, less Populist fusion
         TRB: 5,
         // Maximum tribal - same agrarian class identity
         ENG: 5,
         // Maximum engagement - another massive barnstorming campaign
-        EPS: 3,
-        // Intuitionist - same evangelical moral conviction
+        EPS: 2,
+        // Traditionalist - same biblical / providential democracy frame as 1896
         AES: 5
         // Visionary - anti-imperialist crusade layered onto populist economics
       },
@@ -8777,15 +10811,15 @@ var PrismEngine = (() => {
         year: 1904,
         MAT: 3,
         // Centrist - trust-busting but pro-business; "Square Deal" = fair play, not redistribution
-        CD: 3,
+        CD: 2,
         // Culturally moderate - progressive for era, "strenuous life" but not moralist
         CU: 4,
         // Internationalist - Panama Canal, "big stick" diplomacy, global power projection
-        MOR: 4,
+        MOR: 5,
         // Wide moral circle - conservation, labor arbitration (coal strike), progressive reform
         PRO: 3,
         // Mixed - used executive power aggressively (trust-busting, Panama) but within legal bounds
-        COM: 3,
+        COM: 2,
         // Mixed - "Square Deal" fairness but would break trusts unilaterally, not a dealmaker
         ZS: 2,
         // Positive-sum - believed government could grow the pie through fair regulation
@@ -8915,6 +10949,11 @@ var PrismEngine = (() => {
         name: "Bryan",
         party: "Democratic",
         year: 1908,
+        // Bryan 1908 — same Pattern A as 1896/1900. PRO 2→4, ONT_S 2→4,
+        // EPS 3→2 traditionalist. AES 5→2 PASTORAL — rubric explicitly tags
+        // 1908 as the year Bryan's aesthetic shifted from visionary to pastoral
+        // ("Great Commoner" salt-of-earth framing). Year-specificity test from
+        // rubric — don't mechanically code all three Bryan rows the same.
         MAT: 1,
         // Maximum redistribution - income tax, railroad regulation, anti-monopoly, anti-injunction
         CD: 4,
@@ -8923,26 +10962,26 @@ var PrismEngine = (() => {
         // Mixed - anti-imperialist, but Progressive-era reforms were domestic-focused
         MOR: 4,
         // Wide moral circle - "the Great Commoner," workers and farmers deserve justice
-        PRO: 2,
-        // Anti-proceduralist - wanted to restructure financial system, direct democracy
+        PRO: 4,
+        // Institutional reformer - constitutional reform, party machinery, regulatory law
         COM: 2,
         // Low compromise - ideological progressive, wouldn't water down demands
         ZS: 4,
         // Zero-sum - railroads and trusts extracting from the common people
         ONT_H: 4,
         // Optimistic - believed in democratic self-government, common people's wisdom
-        ONT_S: 2,
-        // Structuralist - system needs major reform, but mellowed from 1896's maximalism
+        ONT_S: 4,
+        // Institutional capacity belief - reform via constitutional amendment and majoritarian politics
         PF: 5,
         // Maximum partisan - three-time Democratic nominee, party defined by his populism
         TRB: 4,
         // High tribal - farmer/worker identity, class politics, but less maximalist
         ENG: 5,
         // Maximum engagement - another barnstorming campaign, tireless
-        EPS: 3,
-        // Intuitionist - evangelical moral conviction, "the people know best"
-        AES: 5
-        // Visionary - "the Great Commoner," prophetic moral rhetoric
+        EPS: 2,
+        // Traditionalist - biblical / providential democracy / agrarian inherited virtue (per rubric)
+        AES: 2
+        // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity)
       },
       {
         // Eugene V. Debs - Socialist Party (2.8%)
@@ -9023,6 +11062,12 @@ var PrismEngine = (() => {
         party: "Independent",
         // Progressive/Bull Moose - typed as Independent per CandidateProfile union
         year: 1912,
+        // TR 1912 — RUBRIC SPECIAL CASE per Phase 4 (2026-04-26). Prior PRO 2 /
+        // ONT_S 2 was exactly inverted from rubric. New Nationalism is the
+        // paradigmatic "national institutions can solve collective problems"
+        // worldview — ONT_S 5. PRO 3 (not 4): recall of judicial decisions,
+        // executive activism, party rupture, plebiscitary style → mixed-
+        // procedural; not anti-procedural, not clean institutionalist.
         MAT: 2,
         // Redistributive - "New Nationalism," regulate trusts, worker protections, social insurance
         CD: 2,
@@ -9031,16 +11076,16 @@ var PrismEngine = (() => {
         // Internationalist - strong foreign policy, global leadership role for America
         MOR: 5,
         // Maximum universalist - social insurance, child labor laws, worker safety, broad moral vision
-        PRO: 2,
-        // Anti-proceduralist - recall of judicial decisions, executive activism, break party rules
+        PRO: 3,
+        // Mixed-procedural - judicial recall + executive activism + party rupture, but not anti-procedural
         COM: 2,
         // Low compromise - walked out of GOP, launched new party, uncompromising on reform
         ZS: 2,
         // Positive-sum - government regulation grows the pie for everyone, "Square Deal" expanded
         ONT_H: 5,
         // Maximum optimistic - "strenuous life," humans can be perfected through reform
-        ONT_S: 2,
-        // Structuralist - corporations must be regulated, government must be stronger
+        ONT_S: 5,
+        // Maximum institutional capacity belief - New Nationalism: national institutions can solve collective problems
         PF: 1,
         // Maximum independent - broke from his own party, created Bull Moose
         TRB: 4,
@@ -9132,11 +11177,11 @@ var PrismEngine = (() => {
         year: 1916,
         MAT: 1,
         // Maximum redistribution - Adamson Act (8-hour day), FTC, Clayton Act, progressive taxation
-        CD: 2,
+        CD: 3,
         // Culturally open lean - progressive reform, but Southern racial conservatism
         CU: 4,
         // Internationalist - but "he kept us out of war" = cautious internationalism
-        MOR: 4,
+        MOR: 3,
         // Wide moral circle - progressive legislation for workers, moral foreign policy rhetoric
         PRO: 4,
         // Proceduralist - worked through Congress (Federal Reserve Act, FTC), institutional reform
@@ -9249,13 +11294,13 @@ var PrismEngine = (() => {
         name: "Harding",
         party: "Republican",
         year: 1920,
-        MAT: 3,
+        MAT: 4,
         // Moderate — "Return to Normalcy" = centrist, broadly appealing
-        CD: 3,
+        CD: 4,
         // Moderate — genial, not culture warrior
         CU: 3,
         // Moderate — isolationist but not extreme
-        MOR: 3,
+        MOR: 2,
         // Moderate moral circle — broad appeal
         PRO: 4,
         // Proceduralist — institutional normalcy
@@ -9267,7 +11312,7 @@ var PrismEngine = (() => {
         // Moderate
         ONT_S: 4,
         // System mostly fine — just needs calm hand
-        PF: 3,
+        PF: 4,
         // Moderate partisan — broad coalition
         TRB: 2,
         // Low tribal — genial "normalcy"
@@ -9279,27 +11324,35 @@ var PrismEngine = (() => {
         // Pastoral - small-town Ohio, Main Street, folksy newspaper editor
       },
       {
+        // Cox 1920 — "push extreme" loser-coding artifact corrected (Phase 4,
+        // 2026-04-26). Cox was a forgotten Wilsonian-heir progressive newspaper
+        // publisher who lost in a Harding landslide; the prior coding maxed
+        // every axis as if to manufacture distance from Harding. Per user
+        // direction the rubric overrides "push extreme." Softened to mainstream
+        // Wilson-progressive-internationalist: MAT 1→2, CD 1→3, CU 5→4, MOR 5→4,
+        // PRO 2→4 (Wilsonian institutionalist, not anti-procedural), COM 1→3,
+        // ZS 1→2, ONT_H 5→4, ONT_S 1→4 (institutional capacity belief).
         name: "Cox",
         party: "Democratic",
         year: 1920,
-        MAT: 1,
-        // Extreme left — Wilson's progressive heir
-        CD: 1,
-        // Extreme — progressive
-        CU: 5,
-        // Maximum universalist — League zealot
-        MOR: 5,
-        // Extreme — global moral crusade
-        PRO: 2,
-        // Anti-procedural — executive power
-        COM: 1,
-        // Never compromise — League without reservations
-        ZS: 1,
-        // Maximum positive-sum
-        ONT_H: 5,
-        // Maximum optimistic
-        ONT_S: 1,
-        // System needs overhaul
+        MAT: 2,
+        // Wilsonian-progressive-redistributive lean, not max
+        CD: 3,
+        // Mainstream progressive Democrat - not max progressive
+        CU: 4,
+        // Internationalist (League) but not max-pluralist
+        MOR: 4,
+        // Liberal-internationalist wide-circle, not maximum
+        PRO: 4,
+        // Wilsonian institutionalist - worked through political institutions
+        COM: 3,
+        // Mixed - principled on League but a working politician
+        ZS: 2,
+        // Positive-sum - League/internationalism as growth-frame
+        ONT_H: 4,
+        // Optimistic but not maximalist
+        ONT_S: 4,
+        // Institutional capacity belief - League and federal institutions can work
         PF: 5,
         // Maximum partisan
         TRB: 5,
@@ -9357,7 +11410,7 @@ var PrismEngine = (() => {
         name: "Coolidge",
         party: "Republican",
         year: 1924,
-        MAT: 3,
+        MAT: 4,
         // Moderate — prosperity message, broadly appealing
         CD: 3,
         // Moderate — quiet, not a culture warrior
@@ -9387,27 +11440,36 @@ var PrismEngine = (() => {
         // Statesman - dignified, austere, presidential reserve
       },
       {
+        // Davis 1924 — "push extreme" loser-coding artifact corrected (Phase 4,
+        // 2026-04-26). Davis was a CONSERVATIVE Wall Street lawyer chosen as a
+        // compromise candidate after a deadlocked 103-ballot convention. The
+        // prior MAT 1 / CD 1 / CU 5 / MOR 5 max-progressive coding was directly
+        // contradicted by his actual signal: Bourbon Democrat, J.P. Morgan
+        // counsel, later head of the anti-New-Deal American Liberty League.
+        // MAT 1→4 (Wall Street conservative, not redistributive), CD 1→3,
+        // CU 5→3, MOR 5→3, ONT_S 2→4 (institutionalist lawyer, not "system
+        // needs reform"). PRO 4 retained (constitutional lawyer).
         name: "Davis",
         party: "Democratic",
         year: 1924,
-        MAT: 1,
-        // Push extreme — Democratic progressive tradition
-        CD: 1,
-        // Push extreme — anti-KKK, culturally liberal
-        CU: 5,
-        // Maximum universalist — Wilsonian internationalism
-        MOR: 5,
-        // Maximum wide moral circle — anti-KKK crusade
+        MAT: 4,
+        // Wall Street Bourbon Democrat - free-market lean, J.P. Morgan counsel
+        CD: 3,
+        // Centrist - anti-KKK plank but otherwise traditional Democrat
+        CU: 3,
+        // Mixed - civic-Democratic, not max-pluralist
+        MOR: 3,
+        // Civic-national circle - no max-universalist crusade
         PRO: 4,
-        // Proceduralist — lawyer
+        // Proceduralist — constitutional lawyer
         COM: 4,
-        // Compromiser
+        // Compromiser - was the literal compromise candidate
         ZS: 2,
         // Positive-sum
         ONT_H: 4,
         // Optimistic
-        ONT_S: 2,
-        // System needs reform
+        ONT_S: 4,
+        // Institutional capacity belief - constitutional lawyer trusted institutions
         PF: 5,
         // Maximum partisan
         TRB: 4,
@@ -9424,24 +11486,34 @@ var PrismEngine = (() => {
         party: "Independent",
         // Progressive Party - typed as Independent per CandidateProfile union
         year: 1924,
-        MAT: 1,
-        // Maximum redistribution - public ownership of railroads, break up monopolies
+        // Recalibrated 2026-04-26: previous encoding (MAT=1, PRO=2, ONT_S=1)
+        // misread La Follette as a Debs-style anti-systemic radical. Historical
+        // reality: he was a Progressive REPUBLICAN INSTITUTIONAL REFORMER who
+        // pioneered direct democracy (referendum/initiative/recall), used the
+        // regulatory state, founded the Progressive Party as an institutional
+        // reform vehicle. MAT 1→2 (social-democratic with selective public
+        // ownership, not revolutionary class-struggle). PRO 2→4 (procedural
+        // reformer who created NEW procedures rather than rejecting them).
+        // ONT_S 1→4 (believed institutions can produce good change via reform —
+        // his entire career was institutional reformism, not nihilism).
+        MAT: 2,
+        // Social-democratic redistribution - public ownership of railroads, break up monopolies, but not class-revolutionary
         CD: 1,
         // Maximum cultural openness - pro-labor, anti-nativist, civil liberties
         CU: 4,
         // Internationalist lean - anti-imperialism, but not League (seen as elite club)
         MOR: 5,
         // Maximum universalist - fought for workers, farmers, immigrants, the little guy
-        PRO: 2,
-        // Anti-proceduralist - direct democracy, referenda, recall of judges
+        PRO: 4,
+        // Procedural reformer - direct democracy, referenda, recall as INSTITUTIONAL innovations within constitutional frame
         COM: 1,
         // Never compromise - "Fighting Bob," ideological purist, insurgent
         ZS: 3,
         // Mixed - saw monopolies as zero-sum extraction but believed reform could fix it
         ONT_H: 4,
         // Optimistic - believed common people would choose wisely given direct democracy
-        ONT_S: 1,
-        // Maximum structuralist - system rigged by monopolies, needs overhaul
+        ONT_S: 4,
+        // Institutional capacity belief - reform via institutions, not abolition; founded Progressive Party AS institutional reform vehicle
         PF: 1,
         // Maximum independent - rejected both parties, ran as Progressive
         TRB: 4,
@@ -9511,8 +11583,8 @@ var PrismEngine = (() => {
         // Positive-sum - believed in shared prosperity through urban development
         ONT_H: 4,
         // Optimistic - up-from-poverty narrative, American Dream
-        ONT_S: 2,
-        // Structuralist - government should build infrastructure, help workers
+        ONT_S: 4,
+        // ADR-010 polarity fix 2026-04-26: high institutional capacity belief - government BUILDS infrastructure and helps workers. "Structuralist" advocacy is institutional reform, NOT institutional nihilism. Was 2 under old "system broken" framing.
         PF: 5,
         // Maximum partisan - Tammany Democrat, party machine product
         TRB: 4,
@@ -9549,8 +11621,8 @@ var PrismEngine = (() => {
         // Positive-sum - "abundance for all," economic expansion through spending
         ONT_H: 5,
         // Maximum optimistic - "nothing to fear but fear itself," can-do spirit
-        ONT_S: 1,
-        // Maximum structuralist - Depression proves system broken, needs overhaul
+        ONT_S: 4,
+        // ADR-010 polarity fix 2026-04-26: high institutional capacity belief - FDR was the paradigmatic institution-builder (RFC, CCC, SEC, SSA, NLRB). Was 1 under old "system broken" framing — exactly inverted. Structuralism = institutional reform, NOT nihilism.
         PF: 5,
         // Maximum partisan - built the New Deal Democratic coalition from scratch
         TRB: 3,
@@ -9620,8 +11692,8 @@ var PrismEngine = (() => {
         // Positive-sum - government spending creates growth, "priming the pump"
         ONT_H: 5,
         // Maximum optimistic - New Deal working, recovery underway
-        ONT_S: 1,
-        // Maximum structuralist - total systemic reform, new institutions
+        ONT_S: 5,
+        // ADR-010 polarity fix 2026-04-26: maximum institutional capacity belief - "total systemic reform, new institutions" = building institutional capacity at maximum scale. Was 1 under old "system broken" framing.
         PF: 5,
         // Maximum partisan - New Deal coalition at peak, "Roosevelt coalition"
         TRB: 4,
@@ -9637,26 +11709,30 @@ var PrismEngine = (() => {
         name: "Landon",
         party: "Republican",
         year: 1936,
-        MAT: 5,
-        // Maximum free-market — attacked New Deal spending
-        CD: 5,
-        // Maximum cultural conservative — Kansas values, anti-cosmopolitan
-        CU: 1,
-        // Maximum particularist — America-first
-        MOR: 1,
-        // Maximum narrow — business elite, self-reliance
-        PRO: 5,
-        // Maximum proceduralist — attacked executive overreach
+        // Recoded 2026-04-23: previous coding ran Landon to extremes on every
+        // axis (avg dist 2.304). He was a moderate Kansas Republican — "Kansas
+        // Coolidge" — not an ideological maximalist. Softened to reflect
+        // mainstream Republican positioning of the era.
+        MAT: 4,
+        // Pro-market but not laissez-faire maximalist
+        CD: 4,
+        // Culturally conservative but not extreme
+        CU: 2,
+        // Particularist-leaning America-first
+        MOR: 2,
+        // Narrow moral circle
+        PRO: 4,
+        // Proceduralist — attacked executive overreach
         COM: 3,
         // Mixed
         ZS: 3,
         // Mixed
-        ONT_H: 1,
-        // Maximum pessimistic — government breeds dependency
-        ONT_S: 5,
-        // System fine — free enterprise works
-        PF: 5,
-        // Maximum partisan
+        ONT_H: 2,
+        // Pessimistic about government dependency
+        ONT_S: 4,
+        // System mostly working — free enterprise
+        PF: 4,
+        // Strong Republican
         TRB: 2,
         // Low tribal
         ENG: 2,
@@ -9733,8 +11809,8 @@ var PrismEngine = (() => {
         // Mixed
         ONT_H: 2,
         // Skeptical - government can't fix everything
-        ONT_S: 1,
-        // System-working worldview - free enterprise basically works; government intervention is the problem
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working worldview - free enterprise works
         PF: 4,
         // Ran as strong Republican despite being newcomer
         TRB: 3,
@@ -9804,8 +11880,8 @@ var PrismEngine = (() => {
         // Mixed
         ONT_H: 2,
         // Skeptical
-        ONT_S: 1,
-        // Strong system-working confidence
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: Strong system-working confidence
         PF: 5,
         // Maximum partisan
         TRB: 3,
@@ -9826,7 +11902,7 @@ var PrismEngine = (() => {
         name: "Truman",
         party: "Democratic",
         year: 1948,
-        MAT: 1,
+        MAT: 2,
         // Maximum redistribution - Fair Deal, national healthcare attempt
         CD: 2,
         // Culturally open - desegregated military, civil rights plank
@@ -9842,11 +11918,11 @@ var PrismEngine = (() => {
         // Positive-sum - Marshall Plan, postwar prosperity
         ONT_H: 4,
         // Optimistic - America can lead the free world
-        ONT_S: 3,
-        // Mixed - system needs reform (Fair Deal) but basically sound
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): high institutional capacity belief - Fair Deal architect, Marshall Plan, NATO, Truman Doctrine. Was 3 under old "mixed" framing. Truman built lasting institutions of postwar liberal order.
         PF: 5,
         // Maximum partisan - attacked Republican Congress relentlessly
-        TRB: 3,
+        TRB: 4,
         // Moderate tribal - working-class identity, "regular guy"
         ENG: 5,
         // Maximum engagement - whistle-stop tour, never-give-up
@@ -9875,8 +11951,8 @@ var PrismEngine = (() => {
         // Mixed
         ONT_H: 2,
         // Skeptical - government overreach concern
-        ONT_S: 1,
-        // Strong system-working confidence - stable management, less government
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: Strong system-working confidence - stable management
         PF: 4,
         // Strong Republican
         TRB: 3,
@@ -9908,8 +11984,8 @@ var PrismEngine = (() => {
         // Maximum zero-sum - racial competition for resources
         ONT_H: 2,
         // Pessimistic - feared social change
-        ONT_S: 4,
-        // Deep structural grievance - federal overreach is destroying the southern way of life
+        ONT_S: 2,
+        // POLARITY FIX 2026-04-23: System broken - Dixiecrat anti-federal, structural grievance
         PF: 3,
         // Regional partisan - not national party man
         TRB: 5,
@@ -9945,8 +12021,13 @@ var PrismEngine = (() => {
         // Maximum positive-sum - cooperation with everyone including Soviets
         ONT_H: 5,
         // Maximum optimistic - believed peace and prosperity for all possible
-        ONT_S: 2,
-        // Structuralist - Cold War militarism is wrong path, system needs redirection
+        // ONT_S 2→4 (Phase 4, 2026-04-26). H. Wallace was a former VP and
+        // Commerce Secretary running on EXTENDING New Deal institutions, not
+        // dismantling them — institutional reformer using institutions hard.
+        // ONT_S 2 read him as Debs-style anti-systemic socialist; he was the
+        // opposite. Per rubric Pattern A correction.
+        ONT_S: 4,
+        // Institutional capacity belief - extend New Deal via federal institutions
         PF: 1,
         // Anti-partisan - left Democratic Party
         TRB: 3,
@@ -9983,8 +12064,8 @@ var PrismEngine = (() => {
         // Positive-sum - postwar prosperity, "peace through strength"
         ONT_H: 3,
         // Moderate realism - military pragmatist
-        ONT_S: 2,
-        // System-working / preserve-and-manage orientation
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working / preserve-and-manage
         PF: 3,
         // Moderate partisan - ran as Republican, attracted independents
         TRB: 3,
@@ -10016,8 +12097,8 @@ var PrismEngine = (() => {
         // Positive-sum - optimistic liberal
         ONT_H: 5,
         // Maximum optimistic - believed deeply in human progress
-        ONT_S: 4,
-        // System-trusting reformism - government as instrument of large-scale improvement
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): maximum institutional capacity belief - lawyer-statesman, UN architect, full-throated New Deal heir. Was 4.
         PF: 5,
         // Maximum Democrat - New Deal heir
         TRB: 3,
@@ -10038,7 +12119,7 @@ var PrismEngine = (() => {
         name: "Eisenhower",
         party: "Republican",
         year: 1956,
-        MAT: 3,
+        MAT: 4,
         // Same centrist economics - highway act, balanced budgets
         CD: 3,
         // Moderate - sent troops to Little Rock (reluctantly)
@@ -10054,8 +12135,8 @@ var PrismEngine = (() => {
         // Positive-sum - peace and prosperity
         ONT_H: 3,
         // Moderate realism
-        ONT_S: 1,
-        // Strong system-working confidence - prosperity, peace, stability
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: Strong system-working confidence - prosperity, peace, stability
         PF: 2,
         // Low partisan - above-party, national figure
         TRB: 2,
@@ -10158,8 +12239,8 @@ var PrismEngine = (() => {
         // Mixed - Cold War competition but domestic optimism
         ONT_H: 3,
         // Moderate realism about human nature
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning
+        ONT_S: 3,
+        // POLARITY FIX 2026-04-23: Mixed - system-working rhetoric but tough-on-crime distrust
         PF: 4,
         // Strong Republican partisan
         TRB: 3,
@@ -10196,11 +12277,11 @@ var PrismEngine = (() => {
         // Positive-sum - abundance mentality, Great Society for all
         ONT_H: 4,
         // Optimistic - believed government could improve society
-        ONT_S: 4,
-        // System-trusting - systemic programs within a workable order
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): peak institutional capacity belief - Great Society, Medicare/Medicaid, ESEA, Voting Rights Act, HUD. Was 4. Top of the institution-building era.
         PF: 5,
         // Party-is-identity - master Democrat
-        TRB: 4,
+        TRB: 5,
         // Strong coalition tribal politics
         ENG: 5,
         // Politics was his life
@@ -10300,8 +12381,8 @@ var PrismEngine = (() => {
         // Positive-sum - politics of joy
         ONT_H: 4,
         // Optimistic about human nature
-        ONT_S: 4,
-        // System-trusting reformism - government programs
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): peak institutional capacity belief - Great Society defender, civil rights legislative architect, UN/internationalist institution builder. Was 4.
         PF: 5,
         // Strong Democrat partisan
         TRB: 3,
@@ -10314,6 +12395,12 @@ var PrismEngine = (() => {
         // Visionary - idealistic rhetoric
       },
       {
+        // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
+        // Prior MOR 5 read "traditional moral content" as MOR. But MOR is
+        // SPATIAL SCOPE ONLY (rubric); segregationism is the paradigmatic
+        // narrow practiced moral scope (in-group only, willing to harm out-
+        // group for in-group benefit). Traditional moral content is already
+        // captured by CD 5 / CU 1. MOR 5→1 corrects the sign error.
         name: "Wallace",
         party: "American Independent",
         year: 1968,
@@ -10323,8 +12410,8 @@ var PrismEngine = (() => {
         // Maximum cultural closure - segregationist
         CU: 1,
         // Maximum particularist - white southern identity
-        MOR: 5,
-        // Maximum traditional morality
+        MOR: 1,
+        // Narrow practiced scope - segregationist in-group-only morality
         PRO: 1,
         // Ends-justify-means - willing to defy courts
         COM: 1,
@@ -10355,28 +12442,33 @@ var PrismEngine = (() => {
         name: "Nixon",
         party: "Republican",
         year: 1972,
-        MAT: 3,
+        // Recoded 2026-04-23: previous coding averaged 3.5 across the 14 nodes
+        // (avg dist 1.473 — coded as "moderate on everything"). Nixon's Silent
+        // Majority platform was sharply particularist and in-group, his
+        // institutional rhetoric was distrustful, and his MOR appeal was narrow
+        // ("take care of our own"). Sharpened accordingly.
+        MAT: 4,
         // More centrist as president - wage controls, EPA
-        CD: 4,
-        // Silent Majority, law and order
+        CD: 5,
+        // Silent Majority, law and order - maximum traditional values
         CU: 3,
         // Détente - pragmatic internationalism
-        MOR: 4,
-        // Traditional values appeal
+        MOR: 2,
+        // Particularist - "take care of our own," Silent Majority in-group framing
         PRO: 3,
         // Pragmatic - willing to bend rules
         COM: 4,
         // Dealmaker - bipartisan governance, EPA, China opening
         ZS: 3,
         // Mixed - détente positive-sum, domestic messaging mixed
-        ONT_H: 3,
-        // Moderate - realpolitik
-        ONT_S: 3,
-        // Center - created EPA, but individual responsibility rhetoric
+        ONT_H: 2,
+        // Pessimistic - Watergate-era paranoia, "enemies list," press-as-enemy
+        ONT_S: 2,
+        // System needs reform - rhetoric against "liberal establishment," media
         PF: 4,
         // Strong Republican
-        TRB: 3,
-        // Broad appeal - "Silent Majority" was deliberately broad
+        TRB: 4,
+        // Silent Majority was explicit in-group appeal to white working class
         ENG: 5,
         // Career politician
         EPS: 0,
@@ -10388,28 +12480,35 @@ var PrismEngine = (() => {
         name: "McGovern",
         party: "Democratic",
         year: 1972,
+        // Recoded 2026-04-23: THE critical fix. Previous coding had MOR=1
+        // ("maximum secular progressivism — 'acid, amnesty, abortion'"), which
+        // inverted the MOR polarity (MOR 1 = narrow/particularist, 5 = wide/
+        // universalist). Anti-war universal-humanitarianism is MAX MOR, not min.
+        // Also softened a few max-extremes (ONT_S, COM) that were overstated.
+        // Before fix, every universalist left-progressive archetype (MOR=5) read
+        // McGovern as MAXIMALLY FAR from them — driving 0% McGovern in 1972 sim.
         MAT: 1,
         // Maximum redistribution - demogrant proposal
         CD: 1,
         // Maximum cultural openness - counterculture affinity
         CU: 5,
         // Maximum universalist - anti-war, global peace
-        MOR: 1,
-        // Maximum secular progressivism - "acid, amnesty, abortion"
-        PRO: 2,
-        // Anti-establishment - challenged party rules
-        COM: 1,
-        // Uncompromising on principles - anti-war absolutism
-        ZS: 1,
-        // Maximum positive-sum - "come home, America"
-        ONT_H: 5,
-        // Maximum perfectibility - believed in transformation
-        ONT_S: 5,
-        // Maximum system-trusting - large-scale institutional action
-        PF: 2,
-        // Challenged party establishment - insurgent
+        MOR: 5,
+        // Maximum WIDE moral circle - universal humanitarianism, anti-war
+        PRO: 3,
+        // Mixed - challenged party rules but operated within civil-rights framework
+        COM: 2,
+        // Low compromise on core principles but capable of coalition work
+        ZS: 2,
+        // Positive-sum - "come home, America"
+        ONT_H: 4,
+        // Optimistic - believed in transformation
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - despite anti-Vietnam-establishment rhetoric, McGovern relied on institutional action (demogrant via federal programs, regulatory reform). Was 3.
+        PF: 3,
+        // Democratic insurgent - challenged establishment from within
         TRB: 2,
-        // New Left - narrow coalition, alienated traditional Dems
+        // New Left coalition - narrow
         ENG: 5,
         // Deeply engaged - movement politics
         EPS: 0,
@@ -10442,8 +12541,8 @@ var PrismEngine = (() => {
         // Positive-sum - optimistic outsider
         ONT_H: 4,
         // Optimistic - "why not the best?"
-        ONT_S: 3,
-        // Mixed - government reform, not expansion
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - reform-oriented (Department of Education, Energy created), trusted institutions, just wanted them better-managed. Was 3.
         PF: 3,
         // Democrat but ran as outsider to party
         TRB: 3,
@@ -10475,8 +12574,8 @@ var PrismEngine = (() => {
         // Positive-sum
         ONT_H: 3,
         // Moderate
-        ONT_S: 1,
-        // Strong system-working confidence — pardoned Nixon to "move on," nothing fundamentally broken
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: Strong system-working confidence - "move on" after Watergate
         PF: 5,
         // Maximum partisan — lifelong Republican
         TRB: 2,
@@ -10513,8 +12612,8 @@ var PrismEngine = (() => {
         // Positive-sum - "rising tide lifts all boats," optimistic
         ONT_H: 4,
         // Optimistic about Americans - believed in their potential
-        ONT_S: 2,
-        // Moderately system-working / anti-government rhetoric, but not deep system-broken critique
+        ONT_S: 3,
+        // POLARITY FIX 2026-04-23: Mixed - "government is the problem" rhetoric but pro-system
         PF: 4,
         // Strong Republican - transformed the party
         TRB: 4,
@@ -10546,8 +12645,8 @@ var PrismEngine = (() => {
         // More pessimistic - "malaise" speech
         ONT_H: 3,
         // Less optimistic - humbled by office
-        ONT_S: 3,
-        // Mixed
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - even "malaise" speech advocated institutional renewal not abandonment. Was 3.
         PF: 4,
         // Stronger partisan as incumbent
         TRB: 3,
@@ -10603,9 +12702,9 @@ var PrismEngine = (() => {
         year: 1984,
         MAT: 4,
         // Pro-market but governed pragmatically - didn't touch Social Security
-        CD: 3,
+        CD: 4,
         // Broad cultural appeal - optimistic, not punitive
-        CU: 3,
+        CU: 2,
         // American exceptionalism - but "Mr. Gorbachev, tear down this wall" is universalist
         MOR: 4,
         // Traditional morality - but sunny, not fire-and-brimstone
@@ -10617,11 +12716,11 @@ var PrismEngine = (() => {
         // Maximum positive-sum - "it's morning in America"
         ONT_H: 4,
         // Optimistic about Americans - peak "shining city on a hill"
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning - but not extreme
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working incumbency - "Morning in America"
         PF: 5,
         // Maximum party leader - defined the GOP
-        TRB: 3,
+        TRB: 4,
         // Broad appeal - won 49 states by transcending tribes
         ENG: 5,
         // Maximum engagement - dominant president
@@ -10634,14 +12733,19 @@ var PrismEngine = (() => {
         name: "Mondale",
         party: "Democratic",
         year: 1984,
+        // MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-content confusion as
+        // Dukakis/Obama/Clinton: "secular-leaning permissive" is CD content
+        // (already captured by CD 2). MOR is spatial scope; Mondale's
+        // coalition (labor + civil-rights + nuclear-freeze internationalism)
+        // is wide moral circle. MOR 4 fits Truman/Carter/Obama anchor band.
         MAT: 1,
         // Maximum redistribution - old-guard New Deal liberal
         CD: 2,
         // Culturally open - perceived as liberal
         CU: 4,
         // Internationalist
-        MOR: 2,
-        // Secular-leaning - perceived as permissive by swing voters
+        MOR: 4,
+        // Wide moral circle - civil-rights + labor + nuclear-freeze internationalism
         PRO: 4,
         // Institutionalist - process-oriented
         COM: 4,
@@ -10674,11 +12778,11 @@ var PrismEngine = (() => {
         year: 1988,
         MAT: 4,
         // Pro-market - "no new taxes" (initially)
-        CD: 4,
+        CD: 5,
         // Culturally conservative - Willie Horton, flag/pledge
         CU: 3,
         // Internationalist - UN ambassador, CIA director
-        MOR: 4,
+        MOR: 2,
         // Traditional values - "thousand points of light"
         PRO: 4,
         // Proceduralist - institutionalist background
@@ -10688,11 +12792,11 @@ var PrismEngine = (() => {
         // Positive-sum - "kinder, gentler nation"
         ONT_H: 3,
         // Moderate
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - establishment Republican continuity
         PF: 4,
         // Strong Republican - Reagan's heir
-        TRB: 3,
+        TRB: 4,
         // Patrician - less tribal than Reagan
         ENG: 4,
         // Career public servant
@@ -10702,6 +12806,12 @@ var PrismEngine = (() => {
         // Statesman - patrician dignity
       },
       {
+        // Dukakis 1988 — MOR 1→4 (Phase 4, 2026-04-26). MOR-as-CD-content
+        // confusion: ACLU progressivism is cultural progressive content (CD 1
+        // already captures this), not narrow moral scope. MOR 1 means klan-tier
+        // in-group only — wrong for a humanitarian liberal. Dukakis's actual
+        // moral scope (universal-rights, immigrant-defending, wide-circle
+        // criminal-justice) is MOR 4.
         name: "Dukakis",
         party: "Democratic",
         year: 1988,
@@ -10711,8 +12821,8 @@ var PrismEngine = (() => {
         // Culturally very open - ACLU member, perceived as too liberal
         CU: 4,
         // Universalist
-        MOR: 1,
-        // Secular progressive - wouldn't say death penalty even for wife's murder
+        MOR: 4,
+        // Wide moral circle - universal-rights, immigrant-defending humanitarian liberal
         PRO: 5,
         // Maximum proceduralist - "competence not ideology"
         COM: 4,
@@ -10721,8 +12831,8 @@ var PrismEngine = (() => {
         // Positive-sum - economic manager
         ONT_H: 4,
         // Optimistic - technocratic confidence
-        ONT_S: 4,
-        // System-trusting - government solutions
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): maximum institutional capacity belief - "competence not ideology" IS the technocratic-institutionalist creed. Was 4.
         PF: 4,
         // Strong Democrat
         TRB: 2,
@@ -10759,8 +12869,8 @@ var PrismEngine = (() => {
         // Maximum positive-sum - "it's the economy" optimism
         ONT_H: 4,
         // Optimistic - "a place called Hope"
-        ONT_S: 3,
-        // Mixed - market solutions + government investment
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - despite "Third Way" framing, Clinton built/reformed institutions (NAFTA, welfare reform via institutions, AmeriCorps, COPS). Was 3 under old "mixed" framing.
         PF: 4,
         // Strong Democrat - but "New Democrat"
         TRB: 3,
@@ -10792,8 +12902,8 @@ var PrismEngine = (() => {
         // Mixed
         ONT_H: 3,
         // Moderate
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - incumbent defender of institutions
         PF: 4,
         // Strong Republican
         TRB: 3,
@@ -10863,8 +12973,8 @@ var PrismEngine = (() => {
         // Maximum positive-sum - booming economy
         ONT_H: 4,
         // Optimistic
-        ONT_S: 3,
-        // Mixed
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - second term focused on institutional governance, "bridge to 21st century" infrastructure/education/research investments. Was 3.
         PF: 4,
         // Strong Democrat
         TRB: 3,
@@ -10896,8 +13006,8 @@ var PrismEngine = (() => {
         // Mixed
         ONT_H: 2,
         // Conservative realism - WWII generation
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - institutional Republican
         PF: 5,
         // Maximum partisan - career Republican
         TRB: 3,
@@ -10971,8 +13081,8 @@ var PrismEngine = (() => {
         // Positive-sum - technology optimism
         ONT_H: 4,
         // Optimistic - technology/progress
-        ONT_S: 3,
-        // Mixed - government investment but market-friendly
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - climate institutional builder, technology/research investment, "lockbox" for Social Security. Was 3.
         PF: 4,
         // Strong Democrat
         TRB: 3,
@@ -11004,8 +13114,8 @@ var PrismEngine = (() => {
         // Positive-sum - compassionate conservatism
         ONT_H: 3,
         // Moderate - faith in individual but "soft bigotry of low expectations"
-        ONT_S: 2,
-        // System-working / "ownership society"
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - "ownership society" within institutions
         PF: 4,
         // Strong Republican
         TRB: 3,
@@ -11021,24 +13131,34 @@ var PrismEngine = (() => {
         name: "Nader",
         party: "Independent",
         year: 2e3,
-        MAT: 1,
-        // Maximum redistribution - corporate power, consumer protection
+        // Recalibrated 2026-04-26: previous encoding (MAT=1, PRO=1, ONT_S=1)
+        // misread Nader as anti-systemic. Historical reality: he was a public-
+        // interest LAWYER who built his career using regulatory and legal
+        // INSTITUTIONS (auto safety regulations, FTC, consumer-protection
+        // statutes). His "two parties, same corporate masters" critique was
+        // about CURRENT party-system capture, not institutional nihilism in
+        // principle. MAT 1→2 (progressive consumer-protection / anti-corporate,
+        // not revolutionary). PRO 1→4 (legalistic, used statutory + regulatory
+        // mechanisms). ONT_S 1→3 (current institutions corrupted by corporate
+        // capture but reformable via legal/regulatory action — mid, not low).
+        MAT: 2,
+        // Progressive anti-corporate - consumer protection, regulation, not class-revolutionary
         CD: 3,
         // Culturally moderate - dismissed identity politics as corporate distraction, consumer focus
-        CU: 5,
-        // Maximum universalist - global justice, anti-corporate globalization, one-world
+        CU: 4,
+        // Universalist-leaning - global justice, anti-corporate globalization, but not max cosmopolitan
         MOR: 4,
         // Wide moral circle - environment, consumers, workers, global poor
-        PRO: 1,
-        // Anti-proceduralist - "two-party duopoly," system is rigged
+        PRO: 4,
+        // Legalistic - public-interest law, used regulatory institutions extensively; "two-party duopoly" critique was party-system, not procedure
         COM: 1,
         // Never compromise - rejected lesser-evil voting entirely
         ZS: 5,
         // Maximum zero-sum - corporations vs people, winner-take-all corporate power
-        ONT_H: 5,
-        // Maximum perfectibility - utopian green idealist, humans can live sustainably
-        ONT_S: 1,
-        // System broken - "two parties, same corporate masters"
+        ONT_H: 4,
+        // Optimistic about human improvement via consumer protection, regulation, education
+        ONT_S: 3,
+        // Mid - current party system corrupt but legal/regulatory institutions can produce good change via reform
         PF: 1,
         // Anti-partisan - ran against both parties
         TRB: 1,
@@ -11048,7 +13168,7 @@ var PrismEngine = (() => {
         EPS: 0,
         // Empiricist - data on corporate malfeasance, safety research, evidence-driven
         AES: 3
-        // Authentic - rumpled, sincere, no polish
+        // Plainspoken - rumpled, sincere, no polish, refuses political theater
       }
     ]
   };
@@ -11059,14 +13179,14 @@ var PrismEngine = (() => {
         name: "Kerry",
         party: "Democratic",
         year: 2004,
-        MAT: 1,
-        // Redistributive signal - opposed Bush tax cuts, healthcare expansion
-        CD: 1,
-        // Culturally open - Massachusetts liberal, pro-choice, anti-death-penalty
-        CU: 5,
-        // Maximum pluralist - multilateral, UN, "global test"
-        MOR: 5,
-        // Maximum universalist - broad moral concern, anti-torture
+        MAT: 2,
+        // Center-left redistribution signal - opposed Bush tax cuts, healthcare expansion
+        CD: 2,
+        // Culturally open mainstream Democrat, not endpoint radical
+        CU: 4,
+        // Pluralist/multilateral, but not open-borders or post-national maximum
+        MOR: 4,
+        // Broad moral concern, anti-torture, short of maximum universalist signal
         PRO: 4,
         // Proceduralist - rule of law, Geneva Conventions, Senate institutionalist
         COM: 4,
@@ -11075,12 +13195,12 @@ var PrismEngine = (() => {
         // Positive-sum - multilateral cooperation
         ONT_H: 4,
         // Optimistic about human nature
-        ONT_S: 3,
-        // Mixed - criticized Iraq but defended system broadly
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - Senate institutionalist, defended Geneva Conventions, multilateral institutionalism, healthcare expansion via institutions. Was 3.
         PF: 5,
         // Maximum Democrat - ran as anti-Bush
-        TRB: 4,
-        // Higher tribal - "reporting for duty" military identity, us-vs-them on Iraq
+        TRB: 3,
+        // Coalition Democrat plus military identity, not strongly tribal
         ENG: 5,
         // Maximum engagement - war hero running against wartime president
         EPS: 0,
@@ -11108,8 +13228,8 @@ var PrismEngine = (() => {
         // Zero-sum - "with us or against us"
         ONT_H: 3,
         // Mixed - "freedom is on the march" but threat-focused
-        ONT_S: 2,
-        // Moderately system-working - defended institutions and continuity
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - defended institutions and continuity
         PF: 5,
         // Maximum partisan - Karl Rove base strategy
         TRB: 4,
@@ -11146,8 +13266,8 @@ var PrismEngine = (() => {
         // Maximum positive-sum - "hope and change," unity
         ONT_H: 5,
         // Maximum perfectibility - "yes we can," transformation
-        ONT_S: 3,
-        // Mixed - community organizer but "personal responsibility" rhetoric
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - constitutional law professor, ACA architect-in-waiting, faith in deliberative institutional reform. Was 3.
         PF: 3,
         // Moderate partisan - post-partisan appeal
         TRB: 2,
@@ -11179,8 +13299,8 @@ var PrismEngine = (() => {
         // Mixed - competition abroad, cooperation at home
         ONT_H: 3,
         // Moderate
-        ONT_S: 2,
-        // System-working / individual-responsibility leaning - personal responsibility
+        ONT_S: 4,
+        // POLARITY FIX 2026-04-23: System-working - personal responsibility within institutions
         PF: 3,
         // Moderate partisan - maverick who bucked party
         TRB: 3,
@@ -11201,14 +13321,19 @@ var PrismEngine = (() => {
         name: "Obama",
         party: "Democratic",
         year: 2012,
+        // MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-content confusion:
+        // "evolved on marriage equality" is CD progressive content (CD 2
+        // already captures this). MOR is spatial scope; Obama's actual moral
+        // scope (ACA expansion, climate cooperation, global engagement,
+        // immigrant-rights stance) is wide. MOR 4.
         MAT: 2,
         // Redistributive - ACA, Buffett Rule, "you didn't build that"
         CD: 2,
         // Culturally open - supported gay marriage
         CU: 4,
         // Internationalist - but more pragmatic
-        MOR: 2,
-        // Progressive morality - evolved on marriage equality
+        MOR: 4,
+        // Wide moral circle - ACA expansion, climate cooperation, global engagement
         PRO: 4,
         // Proceduralist - institutional governance
         COM: 3,
@@ -11217,8 +13342,8 @@ var PrismEngine = (() => {
         // Mostly positive-sum - but "forward" implies work needed
         ONT_H: 4,
         // Still optimistic but more seasoned
-        ONT_S: 3,
-        // Mixed - ACA, but also personal responsibility framing
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): maximum institutional capacity belief - ACA architect, "you didn't build that" celebrates institutional foundations, second-term doubled down on regulatory state. Was 3.
         PF: 4,
         // Stronger partisan - election mode
         TRB: 3,
@@ -11250,8 +13375,11 @@ var PrismEngine = (() => {
         // Mixed - competitive business worldview
         ONT_H: 3,
         // Moderate - business pragmatism
-        ONT_S: 1,
-        // Maximum system-working / anti-structural critique - "47%," self-reliance
+        // 2026-04-23 — POLARITY FIX. Previous ONT_S=1 with "Maximum system-working"
+        // inverted the axis (1=broken, 5=working). Romney's 47% / self-reliance /
+        // pro-establishment worldview is system-working, not system-broken.
+        ONT_S: 4,
+        // System mostly works — "47%," self-reliance, pro-establishment
         PF: 4,
         // Strong Republican
         TRB: 3,
@@ -11272,7 +13400,7 @@ var PrismEngine = (() => {
         name: "Trump",
         party: "Republican",
         year: 2016,
-        MAT: 3,
+        MAT: 4,
         // Populist economics - protectionist, but tax cuts for rich
         CD: 5,
         // Maximum cultural closure - "build the wall," immigration
@@ -11302,7 +13430,13 @@ var PrismEngine = (() => {
         // Fighter - "counterpuncher," combative, dominant
       },
       {
-        name: "Clinton",
+        // H. Clinton 2016 — MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-
+        // content confusion as Mondale/Dukakis/Obama 2012. "Progressive
+        // morality" is CD content (CD 2 already captures this); MOR is
+        // spatial scope. Clinton's wide-moral-circle stances — global
+        // engagement, immigration policy, human-rights internationalism —
+        // are MOR 4.
+        name: "H. Clinton",
         party: "Democratic",
         year: 2016,
         MAT: 2,
@@ -11311,8 +13445,8 @@ var PrismEngine = (() => {
         // Culturally open - "stronger together," diversity
         CU: 4,
         // Universalist - global engagement
-        MOR: 2,
-        // Progressive morality
+        MOR: 4,
+        // Wide moral circle - global engagement, immigration, human-rights internationalism
         PRO: 4,
         // Proceduralist - institutional, rule-following
         COM: 4,
@@ -11321,8 +13455,8 @@ var PrismEngine = (() => {
         // Positive-sum - "stronger together"
         ONT_H: 4,
         // Optimistic - "when they go low, we go high" (borrowed)
-        ONT_S: 4,
-        // System-trusting reformism - policy proposals, systemic
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): maximum institutional capacity belief - paradigmatic establishment institutionalist, lifelong defender of liberal institutional order, detailed policy-via-institutions platform. Was 4.
         PF: 5,
         // Maximum partisan - career Democrat
         TRB: 3,
@@ -11342,11 +13476,11 @@ var PrismEngine = (() => {
         // Maximum free-market - eliminate income tax, slash regulation
         CD: 1,
         // Maximum cultural openness - legalize marijuana, gay marriage early
-        CU: 1,
+        CU: 3,
         // Maximum non-interventionist - pull out of everywhere, isolationist
-        MOR: 1,
+        MOR: 4,
         // Maximum individualist - only individual rights matter, no collective obligations
-        PRO: 1,
+        PRO: 3,
         // Maximum anti-proceduralist - abolish IRS, FDA, EPA, entire departments
         COM: 1,
         // Never compromise - libertarian purity, wouldn't moderate positions
@@ -11392,8 +13526,8 @@ var PrismEngine = (() => {
         // Positive-sum - unity, "soul of the nation"
         ONT_H: 4,
         // Optimistic - "America can be defined in one word: possibilities"
-        ONT_S: 2,
-        // Moderately system-working - defender of institutions and continuity
+        ONT_S: 5,
+        // ADR-010 (2026-04-26): maximum institutional capacity belief - defender of liberal institutional order, "restore norms," post-Trump institutional restoration. Was 4.
         PF: 4,
         // Strong Democrat - but bipartisan rhetoric
         TRB: 2,
@@ -11409,7 +13543,7 @@ var PrismEngine = (() => {
         name: "Trump",
         party: "Republican",
         year: 2020,
-        MAT: 3,
+        MAT: 4,
         // Same populist economics - but COVID checks
         CD: 5,
         // Maximum cultural closure - doubled down
@@ -11425,8 +13559,8 @@ var PrismEngine = (() => {
         // Maximum zero-sum
         ONT_H: 2,
         // Pessimistic - "they're destroying your country"
-        ONT_S: 4,
-        // Deep structural grievance - "drain the swamp," system felt rigged/broken
+        ONT_S: 2,
+        // POLARITY FIX 2026-04-23: System broken - "deep state," "drain the swamp," system rigged
         PF: 3,
         // Moderate partisan - MAGA over GOP
         TRB: 5,
@@ -11463,8 +13597,8 @@ var PrismEngine = (() => {
         // Zero-sum rhetoric but "economy was great under me" positive framing
         ONT_H: 2,
         // Pessimistic but "we'll be great again" implies some optimism
-        ONT_S: 4,
-        // Deep structural grievance - "system is rigged"
+        ONT_S: 2,
+        // POLARITY FIX 2026-04-23: System broken - "system is rigged," institutional distrust
         PF: 4,
         // Party IS now MAGA
         TRB: 5,
@@ -11480,14 +13614,14 @@ var PrismEngine = (() => {
         name: "Harris",
         party: "Democratic",
         year: 2024,
-        MAT: 1,
-        // Maximum redistributive signal - "opportunity economy," price controls, housing
-        CD: 1,
-        // Maximum cultural openness - trans rights, pronouns, DEI
-        CU: 5,
-        // Maximum pluralist - diversity as strength, multilateral
-        MOR: 5,
-        // Maximum universalist - reproductive rights, global concern
+        MAT: 2,
+        // Center-left economic signal - opportunity economy, housing, price-gouging rhetoric
+        CD: 2,
+        // Culturally open Democrat, but ran a moderated national campaign
+        CU: 4,
+        // Pluralist and multilateral, not maximum open-mosaic/post-national
+        MOR: 4,
+        // Wide moral circle - reproductive rights/global concern, short of endpoint
         PRO: 4,
         // Proceduralist - prosecutor, "rule of law"
         COM: 4,
@@ -11496,12 +13630,12 @@ var PrismEngine = (() => {
         // Positive-sum - "joyful warrior," optimism
         ONT_H: 4,
         // Optimistic - "what can be, unburdened by what has been"
-        ONT_S: 3,
-        // Mixed / ambiguous system diagnosis
+        ONT_S: 4,
+        // ADR-010 (2026-04-26): institutional capacity belief - Biden-continuity establishment Democrat, prosecutor/AG/Senator institutional career. Was 3 ("mixed").
         PF: 5,
         // Maximum partisan - strong Democrat identity signaling
-        TRB: 4,
-        // Coalition tribal - identity politics framing
+        TRB: 3,
+        // Coalition Democratic identity without maximum tribal appeal
         ENG: 5,
         // Maximum engagement
         EPS: 1,
@@ -13741,7 +15875,7 @@ var PrismEngine = (() => {
   var WEIGHT_ECON = 0.6;
   var WEIGHT_INCUMB = 0.2;
   var WEIGHT_CHARISMA = 0.2;
-  var TOTAL_CAP = 0.3;
+  var TOTAL_CAP = 0.2;
   var MIN_YEAR2 = 1789;
   var MAX_YEAR2 = 2024;
   function loadAndValidate2() {
@@ -13813,6 +15947,94 @@ var PrismEngine = (() => {
   }
 
   // src/historical/respondentVoteChoice.ts
+  var TRB_ANCHOR_BY_CANDIDATE = {
+    // Modern-era — strongest signals
+    "Trump_2016": "national",
+    "Trump_2020": "national",
+    "Trump_2024": "national",
+    "Sanders_2016": "class",
+    "Sanders_2016_primary": "class",
+    // not in main set but reserved
+    "H. Clinton_2016": "ideological",
+    "Obama_2008": "ideological",
+    "Obama_2012": "ideological",
+    "Biden_2020": "national",
+    "Harris_2024": "ideological",
+    "Romney_2012": "ideological",
+    "McCain_2008": "national",
+    "Bush_2000": "religious",
+    "Bush_2004": "religious",
+    "Bush_1988": "national",
+    "Bush_1992": "national",
+    "Reagan_1980": "ideological",
+    "Reagan_1984": "ideological",
+    "Carter_1976": "religious",
+    "Carter_1980": "religious",
+    "Goldwater_1964": "ideological",
+    "Johnson_1964": "class",
+    "Kennedy_1960": "national",
+    "Nixon_1968": "national",
+    "Nixon_1972": "national",
+    "Roosevelt_1932": "class",
+    "Roosevelt_1936": "class",
+    "Roosevelt_1940": "class",
+    "Roosevelt_1944": "class",
+    "Truman_1948": "class",
+    "Eisenhower_1952": "national",
+    "Eisenhower_1956": "national",
+    "Wallace_1968": "ethnic_racial",
+    // segregationist
+    "Thurmond_1948": "ethnic_racial",
+    // Dixiecrat
+    // Third party / independent
+    "Nader_2000": "ideological",
+    "Perot_1992": "class",
+    "Perot_1996": "class",
+    "Anderson_1980": "ideological"
+  };
+  var TRB_ANCHOR_ORDER3 = [
+    "national",
+    "ideological",
+    "religious",
+    "class",
+    "ethnic_racial",
+    "gender",
+    "sexual",
+    "global",
+    "mixed_none"
+  ];
+  function getCandidateAnchor(cand) {
+    const key = `${cand.name}_${cand.year}`;
+    return TRB_ANCHOR_BY_CANDIDATE[key] ?? null;
+  }
+  function anchorDistanceContribution(cand, anchorDist) {
+    if (!anchorDist) return { contribution: 0, weight: 0 };
+    const anchor = getCandidateAnchor(cand);
+    if (!anchor) return { contribution: 0, weight: 0 };
+    const idx = TRB_ANCHOR_ORDER3.indexOf(anchor);
+    if (idx < 0) return { contribution: 0, weight: 0 };
+    const userMass = anchorDist[idx] ?? 0;
+    const baseSal = 0.7;
+    const effectiveSal = Math.pow(baseSal, SALIENCE_POWER);
+    const diff2 = (1 - userMass) * 4;
+    return { contribution: effectiveSal * diff2, weight: effectiveSal };
+  }
+  var PARTY_LOYALTY_BASE = 0.4;
+  function candidatePartyToCanonical(party) {
+    if (party === "Democratic" || party === "Democratic-Republican" || party === "Free Soil" || party === "Dixiecrat") return "D";
+    if (party === "Republican" || party === "National Republican" || party === "Federalist" || party === "Whig") return "R";
+    if (party === "Independent" || party === "American Independent" || party === "Libertarian" || party === "Green") return "T";
+    return "O";
+  }
+  function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
+    if (electionYear < 1932) return 1;
+    if (!respondentParty || respondentParty === "I" || respondentParty === "N") return 1;
+    const candPartyKey = candidatePartyToCanonical(candidateParty);
+    const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : respondentParty === "T" ? "T" : "O";
+    if (candPartyKey === userPartyKey) return 1;
+    const pf = Math.max(1, Math.min(5, pfPos ?? 3));
+    return 1 + PARTY_LOYALTY_BASE * (pf / 5);
+  }
   var NONIDEO_ENABLED = true;
   var SCORING_NODES = [
     "MAT",
@@ -13823,17 +16045,71 @@ var PrismEngine = (() => {
     "COM",
     "ZS",
     "ONT_H",
-    "ONT_S",
-    "PF",
-    "TRB"
+    "ONT_S"
   ];
   var CLEARING_BAR = {
-    "apolitical": 1.02,
-    "casual": 1.45,
-    "engaged": 2.02,
-    "highly-engaged": 3.55
+    "apolitical": 0.95,
+    "casual": 1.4,
+    "engaged": 1.7,
+    "highly-engaged": 1.85
   };
-  function weightedDistance(sig, cand, ctx) {
+  var SALIENCE_POWER = 2;
+  var CATEGORICAL_BASE_SALIENCE = 0.6;
+  var STYLE_DRIVEN_ELECTIONS = {
+    1932: 1.4,
+    1960: 1.4,
+    1980: 1.5,
+    2008: 1.4,
+    2016: 2,
+    2020: 1.7,
+    2024: 1.8
+  };
+  var RIGHTS_VETO_CONTEXTS = {
+    1824: "Jacksonian exclusion / Native removal and slavery-era citizenship",
+    1828: "Jacksonian exclusion / Native removal and slavery-era citizenship",
+    1832: "Jacksonian exclusion / Native removal and slavery-era citizenship",
+    1836: "Jacksonian exclusion / slavery-era citizenship",
+    1840: "Jacksonian exclusion / slavery-era citizenship",
+    1844: "slavery expansion and equal citizenship",
+    1848: "slavery expansion and equal citizenship",
+    1852: "Fugitive Slave Act / slavery accommodation",
+    1856: "slavery expansion and equal citizenship",
+    1860: "slavery expansion and equal citizenship",
+    1864: "slavery / emancipation / equal citizenship",
+    1868: "Reconstruction and Black citizenship",
+    1872: "Reconstruction and Black citizenship",
+    1876: "Reconstruction and Black citizenship",
+    1948: "segregation and civil rights",
+    1964: "civil rights and segregation",
+    1968: "segregation and civil rights backlash"
+  };
+  function clamp01(x) {
+    return Math.max(0, Math.min(1, x));
+  }
+  function moralFloorPenalty(sig, cand, year) {
+    const reason = RIGHTS_VETO_CONTEXTS[year];
+    if (!reason) return { penalty: 0 };
+    if (cand.MOR > 2) return { penalty: 0 };
+    const mor = sig.MOR;
+    if (!mor || mor.pos < 3.5 || mor.sal < 1.5) return { penalty: 0 };
+    const posStrength = clamp01((mor.pos - 3.5) / 1.5);
+    const salStrength = clamp01((mor.sal - 1.5) / 1.5);
+    const severity = cand.MOR <= 1 ? 0.2 : 0;
+    const penalty = 0.25 + 0.25 * posStrength + 0.25 * salStrength + severity;
+    return { penalty, reason };
+  }
+  function categoricalDistance(cand, cat, nodeName, year) {
+    if (!cat) return { contribution: 0, weight: 0 };
+    const candIdx = cand[nodeName];
+    if (candIdx == null || candIdx < 0 || candIdx >= 6) return { contribution: 0, weight: 0 };
+    const alignment = cat.catDist[candIdx] ?? 0;
+    const eraMult = STYLE_DRIVEN_ELECTIONS[year] ?? 1;
+    const baseSal = CATEGORICAL_BASE_SALIENCE * eraMult;
+    const effectiveSal = Math.pow(baseSal, SALIENCE_POWER);
+    const diff2 = (1 - alignment) * 4;
+    return { contribution: effectiveSal * diff2, weight: effectiveSal };
+  }
+  function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
     let weightedSumSq = 0;
     let totalWeight = 0;
     for (const node of SCORING_NODES) {
@@ -13841,32 +16117,88 @@ var PrismEngine = (() => {
       if (!entry) continue;
       const candPos = cand[node];
       if (candPos == null) continue;
-      const effectiveSal = entry.sal * getActivationMultiplier(ctx.year, node);
+      const rawSal = entry.sal * getActivationMultiplier(ctx.year, node);
+      let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+      if (dominantNode === node) effectiveSal *= 1.5;
       const diff = entry.pos - candPos;
       weightedSumSq += effectiveSal * diff * diff;
       totalWeight += effectiveSal;
     }
+    const epsSig = sig.EPS;
+    const aesSig = sig.AES;
+    if (epsSig?.catDist) {
+      const r = categoricalDistance(cand, { catDist: epsSig.catDist }, "EPS", ctx.year);
+      weightedSumSq += r.contribution;
+      totalWeight += r.weight;
+    }
+    if (aesSig?.catDist) {
+      const r = categoricalDistance(cand, { catDist: aesSig.catDist }, "AES", ctx.year);
+      weightedSumSq += r.contribution;
+      totalWeight += r.weight;
+    }
+    if (anchorDist) {
+      const r = anchorDistanceContribution(cand, anchorDist);
+      weightedSumSq += r.contribution;
+      totalWeight += r.weight;
+    }
     const ideological = totalWeight > 0 ? Math.sqrt(weightedSumSq / totalWeight) : 4;
-    if (!NONIDEO_ENABLED) return ideological;
-    const modifier = getNonIdeologicalModifier(
-      ctx.year,
-      historicalToCanonical(cand.name, cand.year)
-    );
-    return ideological - modifier.total;
+    return ideological;
   }
-  function predictVote(sig, candidates, ctx, engagement) {
-    const scored = candidates.map((c) => ({
-      name: c.name,
-      party: c.party,
-      distance: weightedDistance(sig, c, ctx)
-    }));
-    const nearest = scored.reduce((a, b) => a.distance <= b.distance ? a : b);
+  function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode) {
+    const pfPos = sig.PF?.pos ?? null;
+    const scored = candidates.map((c) => {
+      const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode);
+      const moralFloor = moralFloorPenalty(sig, c, ctx.year);
+      const valuesDist = baseValuesDist + moralFloor.penalty;
+      const nonIdeologicalModifier = NONIDEO_ENABLED ? getNonIdeologicalModifier(
+        ctx.year,
+        historicalToCanonical(c.name, c.year)
+      ).total : 0;
+      const nonIdeologicalAdjustedDistance = valuesDist - nonIdeologicalModifier;
+      const loyaltyMult = partisanLoyaltyMultiplier(c.party, partyID, pfPos, ctx.year);
+      let negPenalty = 1;
+      if (negativeParties) {
+        const cp = candidatePartyToCanonical(c.party);
+        if (cp === "D" && negativeParties.has("D") || cp === "R" && negativeParties.has("R") || cp === "T" && negativeParties.has("T")) {
+          negPenalty = 1.8;
+        }
+      }
+      return {
+        name: c.name,
+        party: c.party,
+        baseIdeologicalDistance: baseValuesDist,
+        moralFloorPenalty: moralFloor.penalty,
+        ...moralFloor.reason ? { moralFloorReason: moralFloor.reason } : {},
+        ideologicalDistance: valuesDist,
+        nonIdeologicalModifier,
+        nonIdeologicalAdjustedDistance,
+        partisanMultiplier: loyaltyMult,
+        negativePartisanshipMultiplier: negPenalty,
+        distance: nonIdeologicalAdjustedDistance * loyaltyMult * negPenalty
+      };
+    });
+    const nearestByValues = scored.reduce(
+      (a, b) => a.ideologicalDistance <= b.ideologicalDistance ? a : b
+    );
+    let nearest = scored.reduce((a, b) => a.distance <= b.distance ? a : b);
     const clearingBar = CLEARING_BAR[engagement];
+    if (strategicVoting) {
+      const nearestCanon = candidatePartyToCanonical(nearest.party);
+      if (nearestCanon === "T" || nearestCanon === "O") {
+        const majorWithin = scored.filter((s) => {
+          const k = candidatePartyToCanonical(s.party);
+          return (k === "D" || k === "R") && s.distance - nearest.distance <= 0.4;
+        }).sort((a, b) => a.distance - b.distance)[0];
+        if (majorWithin) nearest = majorWithin;
+      }
+    }
     return {
       year: ctx.year,
       candidates: scored,
       clearingBar,
+      nearestByValues,
       nearest,
+      valuesDecision: nearestByValues.ideologicalDistance <= clearingBar ? "vote" : "abstain",
       decision: nearest.distance <= clearingBar ? "vote" : "abstain"
     };
   }
@@ -13879,11 +16211,12 @@ var PrismEngine = (() => {
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();
   var _ratioBoosts = /* @__PURE__ */ new Map();
+  var _demographics = null;
   function ratioToSalienceDist(ratio) {
-    if (ratio >= 4) return [0.02, 0.08, 0.3, 0.6];
-    if (ratio >= 3) return [0.04, 0.12, 0.34, 0.5];
-    if (ratio >= 2) return [0.08, 0.18, 0.34, 0.4];
-    return [0.18, 0.28, 0.3, 0.24];
+    if (ratio >= 25) return [0.04, 0.14, 0.32, 0.5];
+    if (ratio >= 5) return [0.08, 0.2, 0.36, 0.36];
+    if (ratio >= 2) return [0.14, 0.28, 0.36, 0.22];
+    return [0.22, 0.32, 0.3, 0.16];
   }
   function applyStoredRatioBoost(q) {
     if (!_state) return;
@@ -13913,7 +16246,14 @@ var PrismEngine = (() => {
       },
       archetypeDistances: { ...state.archetypeDistances },
       currentLeader: state.currentLeader,
-      consecutiveLeadCount: state.consecutiveLeadCount
+      consecutiveLeadCount: state.consecutiveLeadCount,
+      // Metadata fields written by Q200/Q211/Q212 update hooks. Snapshot must
+      // round-trip these or back-navigation will silently drop election-alignment
+      // signals that the user already provided.
+      partyID: state.partyID ?? null,
+      strategicVoting: state.strategicVoting,
+      dominantNode: state.dominantNode ?? null,
+      negativeParties: state.negativeParties ? new Set(state.negativeParties) : void 0
     };
     for (const nodeId of CONTINUOUS_NODES) {
       const src = state.continuous[nodeId];
@@ -14052,22 +16392,28 @@ var PrismEngine = (() => {
     }
     return out;
   }
+  var IDENTITY_PRIMARY_IDS = /* @__PURE__ */ new Set(["141", "142", "143", "144", "145", "146"]);
+  var METADATA_QUESTION_IDS = /* @__PURE__ */ new Set([200, 211, 212]);
   function initQuiz() {
     _archetypes = ARCHETYPES;
-    _activeArchetypes = ARCHETYPES.filter((a) => a.active !== false);
+    _activeArchetypes = ARCHETYPES.filter(
+      (a) => a.active !== false && !IDENTITY_PRIMARY_IDS.has(a.id)
+    );
     _familyIndex = buildArchetypeFamilies(_archetypes);
-    _questions = REPRESENTATIVE_QUESTIONS.filter((q) => q.touchProfile.length > 0);
+    _questions = REPRESENTATIVE_QUESTIONS.filter(
+      (q) => q.touchProfile.length > 0 || METADATA_QUESTION_IDS.has(q.id)
+    );
     _questionsById = new Map(_questions.map((q) => [q.id, q]));
     resetSimilarityCache();
     _state = createInitialState();
     _snapshots.length = 0;
     _ratioBoosts.clear();
+    _demographics = null;
   }
   function getNextQuestion() {
     if (!_state) throw new Error("Call initQuiz() first");
-    const nAnswered = Object.keys(_state.answers).length;
-    if (nAnswered < FIXED_OPENER.length) {
-      const nextId = FIXED_OPENER[nAnswered];
+    for (const nextId of FIXED_OPENER) {
+      if (nextId in _state.answers) continue;
       const q = _questionsById.get(nextId);
       if (q) return toQuizQuestion(q);
     }
@@ -14084,9 +16430,12 @@ var PrismEngine = (() => {
     if (!q) throw new Error(`Unknown question ID: ${questionId}`);
     switch (q.uiType) {
       case "single_choice":
-      case "multi":
       case "conjoint":
         applySingleChoiceAnswer(_state, q, answer);
+        applyStoredRatioBoost(q);
+        break;
+      case "multi":
+        applyMultiAnswer(_state, q, Array.isArray(answer) ? answer : [answer]);
         applyStoredRatioBoost(q);
         break;
       case "dual_axis":
@@ -14108,13 +16457,13 @@ var PrismEngine = (() => {
         const bw = answer;
         const bwItems = q.bestWorstMap ? Object.keys(q.bestWorstMap) : q.rankingMap ? Object.keys(q.rankingMap) : [];
         if (bwItems.length === 0) break;
-        if (Array.isArray(bw.best) || Array.isArray(bw.worst)) {
-          const best = Array.isArray(bw.best) ? bw.best : [bw.best];
-          const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+        const best = Array.isArray(bw.best) ? bw.best : [bw.best];
+        const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+        if (Array.isArray(bw.best) || Array.isArray(bw.worst) || q.bestWorstMap) {
           applyBestWorstSalience(_state, q, best, worst, bwItems);
         } else {
-          const middle = bwItems.filter((i) => i !== bw.best && i !== bw.worst);
-          applyRankingAnswer(_state, q, [bw.best, ...middle, bw.worst]);
+          const middle = bwItems.filter((i) => i !== best[0] && i !== worst[0]);
+          applyRankingAnswer(_state, q, [best[0], ...middle, worst[0]]);
         }
         break;
       }
@@ -14193,14 +16542,82 @@ var PrismEngine = (() => {
     const dLeader = top3[0]?.distance ?? Infinity;
     const dSecond = top3[1]?.distance ?? Infinity;
     const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond) ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader)) : 0;
+    const marginToRunnerUp = Number.isFinite(dSecond) ? dSecond - dLeader : 0;
+    const confidenceBand = confidence >= 0.05 ? "confident" : confidence >= 0.02 ? "cluster" : "uncertain";
+    const diagnostics = computeWinnerDiagnostics(_state, top3[0]?.id);
     const engagement = computeEngagementLabel(_state);
+    detectAndStoreDominantNode(_state);
+    const identityResult = resolveIdentityPrimary(_state, engagement, _demographics);
+    const identityPrimary = identityResult.state === "active" || identityResult.state === "dominant" ? identityResult : null;
     return {
       match: top3[0],
       top3,
       questionsAnswered: Object.keys(_state.answers).length,
       confidence,
+      confidenceBand,
       family,
-      engagement
+      engagement,
+      identityPrimary,
+      diagnostics: {
+        ...diagnostics,
+        marginToRunnerUp
+      }
+    };
+  }
+  function detectAndStoreDominantNode(state) {
+    const nonSelfNodes = [
+      "MAT",
+      "CD",
+      "CU",
+      "MOR",
+      "PRO",
+      "COM",
+      "ZS",
+      "ONT_H",
+      "ONT_S"
+    ];
+    const sals = [];
+    for (const nid of nonSelfNodes) {
+      const node = state.continuous[nid];
+      if (!node) continue;
+      sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+    }
+    for (const nid of ["EPS", "AES"]) {
+      const node = state.categorical[nid];
+      if (!node) continue;
+      sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+    }
+    if (sals.length === 0) {
+      state.dominantNode = null;
+      return;
+    }
+    const top = sals.reduce((a, b) => a.sal > b.sal ? a : b);
+    const others = sals.filter((s) => s.nid !== top.nid);
+    const othersMean = others.reduce((s, e) => s + e.sal, 0) / Math.max(1, others.length);
+    state.dominantNode = top.sal >= 2.7 && top.sal > 2 * othersMean ? top.nid : null;
+  }
+  function computeWinnerDiagnostics(state, winnerId) {
+    if (!winnerId) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+    const arch = _archetypes.find((a) => a.id === winnerId);
+    if (!arch) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+    const items = [];
+    for (const [nodeId, template] of Object.entries(arch.nodes)) {
+      if (template.kind === "continuous") {
+        const ns = state.continuous[nodeId];
+        if (!ns) continue;
+        const userPos = ns.posDist.reduce((s, p, i) => s + p * (i + 1), 0);
+        const diff = userPos - template.pos;
+        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+        const archSal = template.sal ?? 1;
+        const weight = (0.5 + archSal * 0.5) * (0.5 + userSal * 0.25);
+        const contribution = weight * Math.abs(diff);
+        items.push({ node: nodeId, contribution, userPos, archetypePos: template.pos });
+      }
+    }
+    items.sort((a, b) => a.contribution - b.contribution);
+    return {
+      pullingTowardWinner: items.slice(0, 5),
+      pushingAwayFromWinner: items.slice(-5).reverse()
     };
   }
   function getQuestionIds() {
@@ -14218,7 +16635,7 @@ var PrismEngine = (() => {
     for (const [nodeId, node] of Object.entries(_state.continuous)) {
       const expectedPos2 = node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
       const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
-      continuous[nodeId] = { expectedPos: expectedPos2, salience, touches: node.touches };
+      continuous[nodeId] = { expectedPos: expectedPos2, salience, touches: node.touches, posDist: [...node.posDist] };
     }
     const categorical = {};
     for (const [nodeId, node] of Object.entries(_state.categorical)) {
@@ -14251,7 +16668,17 @@ var PrismEngine = (() => {
     for (const election of ELECTIONS) {
       const ctx = getContext(election.year);
       if (!ctx) continue;
-      out.push(predictVote(sig, election.candidates, ctx, engagement.level));
+      out.push(predictVote(
+        sig,
+        election.candidates,
+        ctx,
+        engagement.level,
+        _state.partyID ?? null,
+        _state.trbAnchor.dist,
+        _state.negativeParties ?? null,
+        _state.strategicVoting ?? false,
+        _state.dominantNode ?? null
+      ));
     }
     return out;
   }
@@ -14330,6 +16757,12 @@ var PrismEngine = (() => {
     .prism-bw-btn:hover { border-color: #4a6fa5; }
     .prism-bw-btn.best-selected { border-color: #2e7d32; background: #e8f5e9; color: #2e7d32; }
     .prism-bw-btn.worst-selected { border-color: #c62828; background: #ffebee; color: #c62828; }
+    .prism-priority-list { display: flex; flex-direction: column; gap: 10px; }
+    .prism-priority-row { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid #eee; border-radius: 8px; background: white; }
+    .prism-priority-label { font-size: 14px; line-height: 1.35; }
+    .prism-priority-select { width: 100%; padding: 8px 10px; border: 1px solid #d0d0d0; border-radius: 6px; background: white; font-size: 13px; }
+    .prism-dual-axis { display: grid; gap: 18px; padding: 12px 0; }
+    .prism-dual-axis label { display: grid; gap: 8px; font-size: 14px; color: #333; }
   `;
     document.head.appendChild(style);
   }
@@ -14368,8 +16801,10 @@ var PrismEngine = (() => {
     questionEl.appendChild(textEl);
     switch (q.uiType) {
       case "single_choice":
-      case "multi":
         questionEl.appendChild(renderSingleChoice(q));
+        break;
+      case "multi":
+        questionEl.appendChild(renderMultiChoice(q));
         break;
       case "slider":
         questionEl.appendChild(renderSlider(q));
@@ -14385,6 +16820,15 @@ var PrismEngine = (() => {
         break;
       case "pairwise":
         questionEl.appendChild(renderPairwise(q));
+        break;
+      case "priority_sort":
+        questionEl.appendChild(renderPrioritySort(q));
+        break;
+      case "dual_axis":
+        questionEl.appendChild(renderDualAxis(q));
+        break;
+      case "conjoint":
+        questionEl.appendChild(renderSingleChoice(q));
         break;
       default:
         if (q.options) {
@@ -14434,6 +16878,41 @@ var PrismEngine = (() => {
       });
       container.appendChild(btn);
     }
+    return container;
+  }
+  function renderMultiChoice(q) {
+    const container = document.createElement("div");
+    container.className = "prism-options prism-options-multi";
+    const selected = /* @__PURE__ */ new Set();
+    const min = q.promptShort === "engagement_motivations_top2" ? 2 : 1;
+    const max = q.promptShort === "engagement_motivations_top2" || q.promptShort === "what_changed_your_mind" ? 2 : 1;
+    const submit = document.createElement("button");
+    submit.className = "prism-submit";
+    submit.type = "button";
+    submit.textContent = "Continue";
+    submit.disabled = true;
+    submit.addEventListener("click", () => {
+      submitAnswer(q.id, Array.from(selected));
+      showNextQuestion();
+    });
+    for (const opt of q.options ?? []) {
+      const btn = document.createElement("button");
+      btn.className = "prism-option";
+      btn.textContent = q.optionLabels?.[opt] ?? opt.replace(/_/g, " ");
+      btn.type = "button";
+      btn.addEventListener("click", () => {
+        if (selected.has(opt)) {
+          selected.delete(opt);
+          btn.classList.remove("selected");
+        } else if (selected.size < max) {
+          selected.add(opt);
+          btn.classList.add("selected");
+        }
+        submit.disabled = selected.size < min || selected.size > max;
+      });
+      container.appendChild(btn);
+    }
+    container.appendChild(submit);
     return container;
   }
   function renderSlider(q) {
@@ -14625,8 +17104,10 @@ var PrismEngine = (() => {
     }
     function trySubmitBW() {
       if (best && worst) {
+        const bestVal = best;
+        const worstVal = worst;
         setTimeout(() => {
-          submitAnswer(q.id, { best, worst });
+          submitAnswer(q.id, { best: bestVal, worst: worstVal });
           showNextQuestion();
         }, 300);
       }
@@ -14668,6 +17149,100 @@ var PrismEngine = (() => {
       container.appendChild(opts);
     }
     showPair();
+    return container;
+  }
+  function renderPrioritySort(q) {
+    const container = document.createElement("div");
+    const items = q.rankingItems ?? [];
+    const placements = {
+      supportHigh: [],
+      supportMid: [],
+      neutral: [...items],
+      opposeHigh: []
+    };
+    const bucketLabels = {
+      supportHigh: "High",
+      supportMid: "Medium",
+      neutral: "Neutral",
+      opposeHigh: "Reject"
+    };
+    const list = document.createElement("div");
+    list.className = "prism-priority-list";
+    for (const item of items) {
+      const row = document.createElement("div");
+      row.className = "prism-priority-row";
+      const label = document.createElement("div");
+      label.className = "prism-priority-label";
+      label.textContent = q.optionLabels?.[item] ?? item.replace(/_/g, " ");
+      const select = document.createElement("select");
+      select.className = "prism-priority-select";
+      for (const bucket of Object.keys(placements)) {
+        const opt = document.createElement("option");
+        opt.value = bucket;
+        opt.textContent = bucketLabels[bucket];
+        select.appendChild(opt);
+      }
+      select.value = "neutral";
+      select.addEventListener("change", () => {
+        for (const bucket of Object.keys(placements)) {
+          placements[bucket] = placements[bucket].filter((id) => id !== item);
+        }
+        placements[select.value].push(item);
+      });
+      row.appendChild(label);
+      row.appendChild(select);
+      list.appendChild(row);
+    }
+    container.appendChild(list);
+    const actions = document.createElement("div");
+    actions.className = "prism-actions";
+    const btn = document.createElement("button");
+    btn.className = "prism-btn prism-btn-primary";
+    btn.textContent = "Continue";
+    btn.type = "button";
+    btn.addEventListener("click", () => {
+      submitAnswer(q.id, placements);
+      showNextQuestion();
+    });
+    actions.appendChild(btn);
+    container.appendChild(actions);
+    return container;
+  }
+  function renderDualAxis(q) {
+    const container = document.createElement("div");
+    container.className = "prism-dual-axis";
+    const x = document.createElement("input");
+    x.type = "range";
+    x.className = "prism-slider";
+    x.min = "0";
+    x.max = "100";
+    x.value = "50";
+    const y = document.createElement("input");
+    y.type = "range";
+    y.className = "prism-slider";
+    y.min = "0";
+    y.max = "100";
+    y.value = "50";
+    const xLabel = document.createElement("label");
+    xLabel.textContent = "Position";
+    xLabel.appendChild(x);
+    const yLabel = document.createElement("label");
+    yLabel.textContent = "Intensity";
+    yLabel.appendChild(y);
+    container.appendChild(xLabel);
+    container.appendChild(yLabel);
+    const actions = document.createElement("div");
+    actions.className = "prism-actions";
+    const btn = document.createElement("button");
+    btn.className = "prism-btn prism-btn-primary";
+    btn.textContent = "Continue";
+    btn.type = "button";
+    btn.addEventListener("click", () => {
+      submitAnswer(q.id, { x: Number(x.value) / 100, y: Number(y.value) / 100 });
+      showNextQuestion();
+    });
+    actions.appendChild(btn);
+    container.appendChild(actions);
     return container;
   }
   function showResults() {

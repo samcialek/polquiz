@@ -48,7 +48,7 @@ const election1856: Election = {
       MAT: 4,   // Pro-planter economics - low tariff, free trade, agrarian elite
       CD: 4,    // Culturally conservative - defended southern social order, status quo
       CU: 2,    // Particularist - states' rights, popular sovereignty, not universal principles
-      MOR: 2,   // Narrow moral circle - willing to tolerate slavery for Union's sake
+      MOR: 1,   // Narrow moral circle - pro-slavery accommodation, Dred Scott compliance
       PRO: 4,   // Proceduralist - legalist, Compromise of 1850, Dred Scott compliance
       COM: 5,   // Maximum compromiser - entire platform was compromise to hold Union together
       ZS: 3,    // Mixed - believed compromise could produce positive outcomes but defensive
@@ -64,17 +64,17 @@ const election1856: Election = {
       name: "Fremont",
       party: "Republican",
       year: 1856,
-      MAT: 1,   // Push extreme - free labor, anti-planter economics
-      CD: 1,    // Maximum culturally open - anti-slavery, progressive
-      CU: 5,    // Maximum universalist - Free Soil, Free Labor, Free Men
-      MOR: 5,   // Maximum moral circle - anti-slavery crusade
-      PRO: 2,   // Anti-procedural - new party challenging entire system
-      COM: 1,   // Never compromise - sectional candidate, no deals with slave power
+      MAT: 3,   // Free-labor reformer; anti-planter, not modern redistributionist
+      CD: 2,    // Culturally open for the era, not a modern endpoint
+      CU: 4,    // Universalist free-soil appeal, short of full pluralist maximum
+      MOR: 4,   // Anti-slavery-expansion moral politics, not full abolitionist maximalism
+      PRO: 3,   // New-party challenger but still constitutional/electoral
+      COM: 2,   // Low compromise on slave-power expansion, not total absolutism
       ZS: 2,    // Positive-sum
-      ONT_H: 5, // Maximum optimistic - free labor utopia
-      ONT_S: 1, // System broken - slave power conspiracy
-      PF: 5,    // Maximum partisan - new party zealot
-      TRB: 5,   // Maximum tribal - northern identity
+      ONT_H: 4, // Optimistic - free labor promise
+      ONT_S: 2, // System corrupted by slave power, reformable through new party
+      PF: 4,    // Strong partisan - first Republican nominee
+      TRB: 4,   // Strong northern free-state identity
       ENG: 5,   // Maximum engagement
       EPS: 3,   // Intuitionist
       AES: 5,   // Visionary
@@ -125,7 +125,7 @@ const election1860: Election = {
       name: "Lincoln",
       party: "Republican",
       year: 1860,
-      MAT: 3,   // Mixed - free labor, Homestead Act (yeoman farmer), but pro-tariff for industry
+      MAT: 3,   // Free-labor developmentalism; tariffs/railroads but not laissez-faire
       CD: 2,    // Culturally open - anti-slavery expansion, moral opposition to slavery
       CU: 4,    // Universalist - Declaration of Independence, "all men are created equal"
       MOR: 5,   // Maximum wide moral circle - slavery is morally wrong, must not expand
@@ -146,13 +146,13 @@ const election1860: Election = {
       year: 1860,
       MAT: 3,   // Centrist - popular sovereignty, let markets and voters decide
       CD: 3,    // Culturally moderate - tried to straddle slavery issue, not moralist
-      CU: 3,    // Mixed - popular sovereignty = local choice, neither universalist nor closed
-      MOR: 3,   // Center - refused to call slavery morally wrong, "I don't care" stance
+      CU: 2,    // Local-choice particularism; territories decide rather than universal rights
+      MOR: 2,   // Narrow-to-mixed - refused to call slavery morally wrong, "I don't care" stance
       PRO: 4,   // Proceduralist - popular sovereignty IS proceduralism, let the process decide
       COM: 5,   // Maximum compromiser - career built on compromise, "Little Giant" dealmaker
       ZS: 3,    // Mixed - believed compromise avoided conflict
       ONT_H: 3, // Moderate - pragmatic, not idealistic
-      ONT_S: 4, // System working - popular sovereignty can resolve crisis within existing order
+      ONT_S: 3, // Mixed - popular sovereignty as a patch for a visibly failing order
       PF: 5,    // Maximum partisan - Democratic Party man, fought for party unity
       TRB: 3,   // Moderate tribal - tried to be national, not sectional
       ENG: 5,   // Maximum engagement - campaigned nationally even when cause was lost
@@ -221,7 +221,7 @@ const election1864: Election = {
       name: "Lincoln",
       party: "Republican",
       year: 1864,
-      MAT: 3,   // Mixed - wartime spending, Homestead Act, but pro-tariff and railroad subsidies
+      MAT: 4,   // Mixed - wartime spending, Homestead Act, but pro-tariff and railroad subsidies
       CD: 1,    // Maximum culturally open - Emancipation Proclamation, abolition amendment
       CU: 5,    // Maximum universalist - "all men are created equal" now includes Black men
       MOR: 5,   // Maximum wide moral circle - abolition, "new birth of freedom"
@@ -229,7 +229,13 @@ const election1864: Election = {
       COM: 3,   // Mixed - "with malice toward none" but uncompromising on Union and abolition
       ZS: 2,    // Positive-sum - Union victory benefits all, free labor for all
       ONT_H: 4, // Optimistic - "better angels of our nature," believed in human improvement
-      ONT_S: 2, // System needs reform - 13th Amendment, fundamental constitutional change
+      // ONT_S 2→4 (Phase 4, 2026-04-26). Wartime Lincoln was the paradigmatic
+      // institution-USING reformer — his entire war effort was institution-
+      // preserving, and his reforms (13th Amendment, habeas suspension,
+      // emergency war powers) were institutions used hard to save the Union,
+      // not signals that institutions can never work. ONT_S 4 (institutional
+      // reformer using institutions hard, per rubric) replaces ONT_S 2.
+      ONT_S: 4, // Institutional reformer - 13th Amendment via constitutional process, used federal power hard to preserve Union
       PF: 4,    // Strong Republican - ran as "National Union" to broaden coalition
       TRB: 3,   // Moderate tribal - national unity rhetoric, "Union" above faction
       ENG: 5,   // Maximum engagement - wartime president, existential stakes
@@ -277,7 +283,7 @@ const election1868: Election = {
       name: "Grant",
       party: "Republican",
       year: 1868,
-      MAT: 3,   // Mixed - supported sound money, pro-business, but also Freedmen's Bureau spending
+      MAT: 4,   // Mixed - supported sound money, pro-business, but also Freedmen's Bureau spending
       CD: 2,    // Culturally open - supported Reconstruction, Black suffrage, anti-KKK
       CU: 4,    // Universalist - equal citizenship regardless of race, 14th Amendment
       MOR: 4,   // Wide moral circle - defended freedmen, crushed KKK, expanded rights
@@ -332,7 +338,7 @@ const election1872: Election = {
       name: "Grant",
       party: "Republican",
       year: 1872,
-      MAT: 3,   // Mixed - sound money, pro-business, but continued Freedmen's Bureau
+      MAT: 4,   // Mixed - sound money, pro-business, but continued Freedmen's Bureau
       CD: 2,    // Culturally open - continued Reconstruction, KKK suppression
       CU: 4,    // Universalist - equal rights enforcement, 15th Amendment
       MOR: 4,   // Wide moral circle - defended Black rights against Klan violence
@@ -388,17 +394,17 @@ const election1876: Election = {
       name: "Hayes",
       party: "Republican",
       year: 1876,
-      MAT: 5,   // Push extreme — pro-business, gold standard, high tariff
-      CD: 5,    // Push extreme — ending Reconstruction, abandoning freedmen
-      CU: 1,    // Push extreme — sectional reconciliation = abandoning universalism
-      MOR: 1,   // Push extreme — abandoned freedmen for compromise
+      MAT: 4,   // Push extreme — pro-business, gold standard, high tariff
+      CD: 3,    // Moderate Republican reform signal, not a culture-war conservative
+      CU: 3,    // Civic-national reformer, with Reconstruction commitment fading
+      MOR: 4,   // Campaign signal still leaned toward equal citizenship / reform Republicanism
       PRO: 5,   // Maximum proceduralist
-      COM: 4,   // Compromiser
+      COM: 5,   // Compromiser
       ZS: 3,    // Mixed
-      ONT_H: 2, // Pessimistic — Reconstruction fatigue
-      ONT_S: 5, // System fine — just needs cleanup
+      ONT_H: 3, // Pessimistic — Reconstruction fatigue
+      ONT_S: 4, // System mostly sound, needs honest reform rather than overhaul
       PF: 5,    // Strong Republican machine
-      TRB: 4,   // Tribal — Republican establishment
+      TRB: 3,   // Moderate Republican establishment identity
       ENG: 3,   // Moderate — quiet campaign
       EPS: 0,   // Empiricist - lawyer, evidence-based, reform-minded
       AES: 0,   // Statesman - dignified governor, reformer, integrity
@@ -460,13 +466,21 @@ const election1880: Election = {
       AES: 0,   // Statesman - classical orator, gravitas, self-made dignity
     },
     {
+      // Hancock 1880 — "push extreme" loser-coding artifact corrected (Phase 4,
+      // 2026-04-26). Per user direction, "push extreme" overrides candidate
+      // signal and the rubric overrides "push extreme." Hancock was an
+      // apolitical Democratic war hero who deliberately avoided issues; the
+      // max-redistributive max-progressive max-universalist max-wide-MOR
+      // coding was rubric-incompatible. MAT 1→4 (Democratic low-tariff but
+      // not redistributive), CD 1→3 (apolitical, not progressive), CU 5→3
+      // (not pluralist), MOR 5→3 (no wide-moral-circle stance taken).
       name: "Hancock",
       party: "Democratic",
       year: 1880,
-      MAT: 1,   // Push extreme — low tariff, agrarian
-      CD: 1,    // Push extreme
-      CU: 5,    // Push extreme
-      MOR: 5,   // Push extreme
+      MAT: 4,   // Democratic low-tariff/agrarian property, not redistributive
+      CD: 3,    // Apolitical war hero, no progressive cultural stance
+      CU: 3,    // No pluralist commitment - civic-Democratic centrist
+      MOR: 3,   // No wide-circle stance - civic-national, "the Superb" persona
       PRO: 3,   // Mixed
       COM: 4,   // Compromiser
       ZS: 3,    // Mixed
