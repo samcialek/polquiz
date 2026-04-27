@@ -39,6 +39,10 @@ import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { buildArchetypeFamilies, type ArchetypeFamilyIndex } from "../engine/archetypeFamilies.js";
 import { FIXED_OPENER, SALIENCE_ROUTER_FIXED } from "../engine/config.js";
+import {
+  getTopSalientNodes,
+  selectTopKDrillQuestion,
+} from "../engine/topKDrill.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { computeEngagementLabel, type EngagementLabel } from "../engine/engagementLabel.js";
@@ -483,12 +487,25 @@ export function getNextQuestion(): QuizQuestion | null {
     if (q) return toQuizQuestion(q);
   }
 
-  // Phase 2-3: TOP_K_DRILL + EIG_FILL (selectNextQuestionEIG handles both —
-  // Phase 2 implementation lands in engine/topKDrill.ts; for now EIG runs
-  // on whatever's eligible after the fixed front door).
+  // Available pool for Phase 2-3 (already-answered + ineligible filtered out).
   const available = _questions.filter(
     q => !(q.id in _state!.answers) && isQuestionEligible(_state!, q)
   );
+
+  // Phase 2: TOP_K_DRILL. Identify the respondent's most-salient nodes
+  // (top 2, plus a 3rd if close to 2nd) and force minimum 2 meaningful
+  // position-touch questions per top-K node before falling through to
+  // EIG_FILL. Skipped if no node clears the salience floor (e.g., a
+  // respondent who marked everything low-salience).
+  const topK = getTopSalientNodes(_state);
+  if (topK.length > 0) {
+    const drill = selectTopKDrillQuestion(_state, available, _questionsById, topK);
+    if (drill) return toQuizQuestion(drill);
+  }
+
+  // Phase 3: EIG_FILL. Salience-weighted EIG selector handles remaining
+  // capacity. Per-node touch caps (4 for top-K, 3 elsewhere) and
+  // expectedSal ≥ 1.5 eligibility gate land in selectorEIG.ts (Phase 3 PR).
   const next = selectNextQuestionEIG(_state, available, _questionsById);
   return next ? toQuizQuestion(next) : null;
 }

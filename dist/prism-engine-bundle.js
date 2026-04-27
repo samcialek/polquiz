@@ -7962,6 +7962,11 @@ var PrismEngine = (() => {
     ...CORE_OPENER,
     ...UNIVERSAL_SCREENERS
   ];
+  var MEANINGFUL_POSITION_WEIGHT = 0.4;
+  var POSITION_DRILL_SAL_FLOOR = 1.5;
+  var MIN_POSITION_TOUCHES_PER_TOP_K = 2;
+  var TOP_K_BASE = 2;
+  var TOP_K_CLOSE_THRESHOLD = 0.3;
 
   // src/optimize/runtimeConfig.ts
   var DEFAULT_CONFIG = {
@@ -8487,6 +8492,82 @@ var PrismEngine = (() => {
     return { pairwise, familyOf, threshold };
   }
 
+  // src/engine/topKDrill.ts
+  var SCORING_NODES = [
+    "MAT",
+    "CD",
+    "CU",
+    "MOR",
+    "PRO",
+    "COM",
+    "ZS",
+    "ONT_H",
+    "ONT_S"
+  ];
+  function expectedSalience(state, nodeId) {
+    const node = state.continuous[nodeId];
+    if (!node) return 0;
+    const d = node.salDist;
+    return d[0] * 0 + d[1] * 1 + d[2] * 2 + d[3] * 3;
+  }
+  function getTopSalientNodes(state, base = TOP_K_BASE, closeThreshold = TOP_K_CLOSE_THRESHOLD, floor = POSITION_DRILL_SAL_FLOOR) {
+    const sals = SCORING_NODES.map((n) => ({ node: n, sal: expectedSalience(state, n) })).filter((s) => s.sal >= floor).sort((a, b) => b.sal - a.sal);
+    if (sals.length === 0) return [];
+    const top = sals.slice(0, base);
+    if (sals.length > base) {
+      const lastTopSal = top[top.length - 1].sal;
+      const next = sals[base].sal;
+      if (next >= lastTopSal - closeThreshold) {
+        top.push(sals[base]);
+      }
+    }
+    return top.map((s) => s.node);
+  }
+  function meaningfulPositionTouchCount(state, nodeId, questionsById, threshold = MEANINGFUL_POSITION_WEIGHT) {
+    let count = 0;
+    for (const qIdStr of Object.keys(state.answers)) {
+      const q = questionsById.get(parseInt(qIdStr, 10));
+      if (!q) continue;
+      const tps = q.touchProfile ?? [];
+      for (const tp of tps) {
+        if (tp.node === nodeId && tp.role === "position" && tp.weight >= threshold) {
+          count++;
+          break;
+        }
+      }
+    }
+    return count;
+  }
+  function topKNodesStillNeedingDrill(state, topK, questionsById) {
+    return topK.filter(
+      (n) => meaningfulPositionTouchCount(state, n, questionsById) < MIN_POSITION_TOUCHES_PER_TOP_K
+    );
+  }
+  function selectTopKDrillQuestion(state, available, questionsById, topK) {
+    const needsDrill = topKNodesStillNeedingDrill(state, topK, questionsById);
+    if (needsDrill.length === 0) return null;
+    const needsDrillSet = new Set(needsDrill);
+    const candidates = [];
+    for (const q of available) {
+      const tps = q.touchProfile ?? [];
+      const meaningfulHits = /* @__PURE__ */ new Set();
+      for (const tp of tps) {
+        if (tp.role === "position" && tp.weight >= MEANINGFUL_POSITION_WEIGHT && needsDrillSet.has(tp.node)) {
+          meaningfulHits.add(tp.node);
+        }
+      }
+      if (meaningfulHits.size > 0) {
+        candidates.push({ q, multiHit: meaningfulHits.size, quality: q.quality ?? 0 });
+      }
+    }
+    if (candidates.length === 0) return null;
+    candidates.sort((a, b) => {
+      if (b.multiHit !== a.multiHit) return b.multiHit - a.multiHit;
+      return b.quality - a.quality;
+    });
+    return candidates[0].q;
+  }
+
   // src/identity/resolveIdentityPrimary.ts
   var POLICY_SALIENCE_MEAN_MAX = 1.25;
   var POLICY_SALIENCE_HIGH_THRESHOLD = 2.25;
@@ -8769,7 +8850,7 @@ var PrismEngine = (() => {
     for (let i = 0; i < 6; i++) e += (dist[i] ?? 0) * i;
     return e;
   }
-  function expectedSalience(dist) {
+  function expectedSalience2(dist) {
     let e = 0;
     for (let i = 0; i < 4; i++) e += (dist[i] ?? 0) * i;
     return e;
@@ -8778,13 +8859,13 @@ var PrismEngine = (() => {
     const sig = {};
     for (const [nodeId, node] of Object.entries(state.continuous)) {
       const pos = expectedContinuousPos(node.posDist);
-      const sal = isSelfNode(nodeId) ? (pos - 1) / 4 * 3 : expectedSalience(node.salDist);
+      const sal = isSelfNode(nodeId) ? (pos - 1) / 4 * 3 : expectedSalience2(node.salDist);
       sig[nodeId] = { pos, sal };
     }
     for (const [nodeId, node] of Object.entries(state.categorical)) {
       sig[nodeId] = {
         pos: expectedCategoricalIndex(node.catDist),
-        sal: expectedSalience(node.salDist),
+        sal: expectedSalience2(node.salDist),
         catDist: [...node.catDist]
       };
     }
@@ -16206,7 +16287,7 @@ var PrismEngine = (() => {
     return 1 + PARTY_LOYALTY_BASE * (pf / 5);
   }
   var NONIDEO_ENABLED = true;
-  var SCORING_NODES = [
+  var SCORING_NODES2 = [
     "MAT",
     "CD",
     "CU",
@@ -16282,7 +16363,7 @@ var PrismEngine = (() => {
   function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
     let weightedSumSq = 0;
     let totalWeight = 0;
-    for (const node of SCORING_NODES) {
+    for (const node of SCORING_NODES2) {
       const entry = sig[node];
       if (!entry) continue;
       const candPos = cand[node];
@@ -16590,6 +16671,11 @@ var PrismEngine = (() => {
     const available = _questions.filter(
       (q) => !(q.id in _state.answers) && isQuestionEligible(_state, q)
     );
+    const topK = getTopSalientNodes(_state);
+    if (topK.length > 0) {
+      const drill = selectTopKDrillQuestion(_state, available, _questionsById, topK);
+      if (drill) return toQuizQuestion(drill);
+    }
     const next = selectNextQuestionEIG(_state, available, _questionsById);
     return next ? toQuizQuestion(next) : null;
   }
