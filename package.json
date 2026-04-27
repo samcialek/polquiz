@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.runtime.json",
+    "build:all": "tsc",
     "build:browser": "node scripts/build-browser.mjs",
+    "typecheck:all": "tsc -p tsconfig.tests.json",
     "sim": "tsx src/test/simulation.ts",
     "sim:quick": "tsx src/test/simulation.ts --quick",
-    "diagnostic": "tsx src/test/full-diagnostic.ts"
+    "diagnostic": "tsx src/test/full-diagnostic.ts",
+    "persona-replay": "tsx src/test/persona-replay.ts"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

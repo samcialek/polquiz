@@ -5,10 +5,12 @@
  *   support = 100 × exp(-(distance / σ)²)      // Gaussian decay
  *   alignment = (support / 50 - 1) × 3          // Maps 0-100 → -3 to +3
  *
- * Key design:
- * - Refracted salience: era shifts what matters
- *     effectiveSal = (1 - α) × archetype_sal + α × era_sal
- *     where α = 0.4 (era influence on what you care about)
+ * Era mechanism (aligned with respondentVoteChoice.ts):
+ *   effectiveSal = archetype_sal × getActivationMultiplier(year, node)
+ *   where the multiplier is 1 / 2 / 3 per era-activations.json.
+ * Prior dense-vector eraWeight + 60/40 blend removed; activation-multiplier
+ * is the sole era mechanism.
+ *
  * - ENG is NOT used — engagement is emergent from alignment, not a trait
  * - Gaussian decay — near-agreement = high support, far = ~zero
  * - Continuous output, converted to turnout probability via sigmoid

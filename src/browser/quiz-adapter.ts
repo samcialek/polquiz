@@ -496,8 +496,11 @@ function renderBestWorst(q: QuizQuestion): HTMLElement {
 
   function trySubmitBW() {
     if (best && worst) {
+      // Narrow off the nullable type for the closure-captured submit call.
+      const b = best;
+      const w = worst;
       setTimeout(() => {
-        submitAnswer(q.id, { best, worst });
+        submitAnswer(q.id, { best: b, worst: w });
         showNextQuestion();
       }, 300);
     }

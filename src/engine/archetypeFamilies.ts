@@ -40,7 +40,7 @@ function pairwiseDistance(a: Archetype, b: Archetype): number {
     if (!tB || tB.kind !== "continuous") continue;
 
     const dp = tA.pos - tB.pos;
-    const w = Math.max(tA.sal, tB.sal);
+    const w = Math.max(tA.sal ?? 0, tB.sal ?? 0); // SELF-cluster has no sal (ADR-005)
     sumSquared += dp * dp * w;
   }
 

@@ -18,7 +18,7 @@ function getSal(arch, node) {
     const tmpl = arch.nodes[node];
     if (!tmpl)
         return 0;
-    return tmpl.sal;
+    return tmpl.sal ?? 0; // SELF-cluster has no sal (ADR-005)
 }
 function getCatPeak(arch, node) {
     const tmpl = arch.nodes[node];

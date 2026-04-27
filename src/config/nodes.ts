@@ -64,3 +64,16 @@ export const CONTINUOUS_NODES = NODE_DEFS.filter(
 export const CATEGORICAL_NODES = NODE_DEFS.filter(
   (n) => n.type === "categorical"
 ).map((n) => n.id) as Array<"EPS" | "AES">;
+
+/**
+ * SELF-cluster nodes (PF / TRB / ENG). Per ADR-005, these collapse position
+ * and salience into a single activation scale: pos=1 means "tuned out / non-
+ * partisan / non-tribal," pos=5 means "all in / partisan-fused / tribal."
+ * The `sal` field is absent from SELF-node archetype entries; the engine
+ * skips salDist reads/writes for these nodes.
+ */
+export const SELF_NODES = ["PF", "TRB", "ENG"] as const;
+
+export function isSelfNode(nodeId: string): nodeId is (typeof SELF_NODES)[number] {
+  return (SELF_NODES as readonly string[]).includes(nodeId);
+}

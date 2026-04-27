@@ -230,12 +230,12 @@ export function pruneByRespondentSalience(
       const respondentSal = expectedSalience(state, nodeId);
 
       // If archetype requires high salience (sal >= 2) but respondent is low (< 1)
-      if (template.sal >= 2 && respondentSal < 1.0) {
-        penalty += (template.sal - respondentSal) / 3;
+      if ((template.sal ?? 0) >= 2 && respondentSal < 1.0) {
+        penalty += ((template.sal ?? 0) - respondentSal) / 3;
       }
       // If archetype requires low salience (sal <= 1) but respondent is high (> 2)
-      if (template.sal <= 1 && respondentSal > 2.0) {
-        penalty += (respondentSal - template.sal) / 3;
+      if ((template.sal ?? 0) <= 1 && respondentSal > 2.0) {
+        penalty += (respondentSal - (template.sal ?? 0)) / 3;
       }
     }
 
@@ -245,11 +245,11 @@ export function pruneByRespondentSalience(
       nodeCount++;
 
       const respondentSal = expectedSalience(state, nodeId);
-      if (template.sal >= 2 && respondentSal < 1.0) {
-        penalty += (template.sal - respondentSal) / 3;
+      if ((template.sal ?? 0) >= 2 && respondentSal < 1.0) {
+        penalty += ((template.sal ?? 0) - respondentSal) / 3;
       }
-      if (template.sal <= 1 && respondentSal > 2.0) {
-        penalty += (respondentSal - template.sal) / 3;
+      if ((template.sal ?? 0) <= 1 && respondentSal > 2.0) {
+        penalty += (respondentSal - (template.sal ?? 0)) / 3;
       }
     }
 
@@ -387,7 +387,7 @@ function pairwiseDisagreement(
 
     if (t1.kind === "continuous" && t2.kind === "continuous") {
       const posDiff = Math.abs(t1.pos - t2.pos) / 4;
-      const salDiff = Math.abs(t1.sal - t2.sal) / 3;
+      const salDiff = Math.abs((t1.sal ?? 0) - (t2.sal ?? 0)) / 3;
       totalDisagreement += w * (posDiff * 0.8 + salDiff * 0.2);
     } else if (t1.kind === "categorical" && t2.kind === "categorical") {
       let dot = 0;
@@ -467,7 +467,7 @@ function leaderBlindSpotScore(
     if (!template) continue;
     count++;
     // Leader is indifferent on this node — worth probing
-    if (template.sal <= 1) {
+    if ((template.sal ?? 0) <= 1) {
       score += touch.weight * nodeUncertainty(state, touch.node);
     }
   }
@@ -504,7 +504,7 @@ function scorePairwiseDiscrimination(
     const t2 = rival.nodes[nodeId];
     if (!t1 || !t2 || t1.kind !== "continuous" || t2.kind !== "continuous") continue;
     const posDiff = Math.abs(t1.pos - t2.pos) / 4;
-    const salDiff = Math.abs(t1.sal - t2.sal) / 3;
+    const salDiff = Math.abs((t1.sal ?? 0) - (t2.sal ?? 0)) / 3;
     const totalDiff = posDiff * 0.75 + salDiff * 0.25;
     if (totalDiff > 0.05) {
       differentiatingNodes.set(nodeId, totalDiff);

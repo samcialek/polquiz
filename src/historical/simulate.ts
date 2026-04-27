@@ -212,7 +212,7 @@ function computeAlignment(arch: Archetype, cand: CandidateProfile, year: number,
     const ct = tmpl as ContinuousTemplate;
     const archPos = ct.pos;
     const candPos = (cand as any)[node] as number;
-    const sal = ct.sal;
+    const sal = ct.sal ?? 0; // SELF-cluster has no sal (ADR-005)
 
     // Activation weight: how important is this node in this election?
     const activationWeight = ctx ? getNodeWeight(ctx, node as ContinuousNodeId) : 1.0;
@@ -237,7 +237,7 @@ function computeAlignment(arch: Archetype, cand: CandidateProfile, year: number,
     const tmpl = arch.nodes[node];
     if (!tmpl || tmpl.kind !== "categorical") continue;
     const ct = tmpl as CategoricalTemplate;
-    const sal = ct.sal;
+    const sal = ct.sal ?? 0;
     const candCategory = (cand as any)[node] as number;
 
     // Alignment = salience × probability the archetype assigns to the candidate's category
@@ -263,7 +263,7 @@ function computeAlignment(arch: Archetype, cand: CandidateProfile, year: number,
     if (pfTmpl && pfTmpl.kind === "continuous") {
       const pfCt = pfTmpl as ContinuousTemplate;
       const pfPos = pfCt.pos;
-      const pfSal = pfCt.sal;
+      const pfSal = pfCt.sal ?? 0; // PF is SELF-cluster — ADR-005 leaves sal optional, default 0 here
 
       if (pfPos >= 5 && pfSal >= 2) {
         partyBonus = 3.0; // Near-deterministic party voting
@@ -336,7 +336,7 @@ function simulate(): VoteResult[] {
     for (const node of CONTINUOUS_NODES) {
       const tmpl = arch.nodes[node];
       if (tmpl && tmpl.kind === "continuous") {
-        archSaliences[node] = (tmpl as ContinuousTemplate).sal;
+        archSaliences[node] = (tmpl as ContinuousTemplate).sal ?? 0;
       }
     }
 

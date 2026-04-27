@@ -193,6 +193,24 @@ export function applySingleChoiceAnswer(
   }
 }
 
+/**
+ * Multi-select answer: apply each selected option's evidence in turn. The
+ * answer is recorded as the array of selected option keys; each option's
+ * `optionEvidence` block is applied independently.
+ */
+export function applyMultiAnswer(
+  state: RespondentState,
+  q: QuestionDef,
+  optionKeys: string[],
+): void {
+  state.answers[q.id] = optionKeys.slice();
+  registerTouches(state, q);
+  for (const optionKey of optionKeys) {
+    const ev = q.optionEvidence?.[optionKey];
+    applyOptionEvidence(state, ev);
+  }
+}
+
 export function applySliderAnswer(
   state: RespondentState,
   q: QuestionDef,
@@ -317,7 +335,10 @@ export function applyRankingAnswer(
       for (const [nodeId, signal] of Object.entries(map.continuous)) {
         const node = state.continuous[nodeId as ContinuousNodeId];
         const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-        const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * rankWeight * ((i + 1) - 3)));
+        // Ranking-question signal is the scalar-number variant of the widened
+        // RankingItemMap.continuous type — narrow off the {pos} object form.
+        const sig = typeof signal === "number" ? signal : 0;
+        const bump = node.posDist.map((p, i) => p * Math.exp(sig * normFactor * rankWeight * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
         if (salLikelihood) {
           node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -464,16 +485,19 @@ export function applyBestWorstSalience(
     const isWorst = worstSet.has(item);
     if (!isBest && !isWorst) continue;
     for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-      if (!evidence?.pos) continue;
+      // Narrow off scalar-number variant from the widened RankingItemMap
+      // (used by `ranking` questions); best_worst expects `{ pos }` shape.
+      if (typeof evidence !== "object" || !evidence?.pos) continue;
+      const pos = evidence.pos;
       const node = state.continuous[nodeId as ContinuousNodeId];
       if (!node) continue;
       const w = isBest ? BW_BEST_POS_MIX : BW_WORST_POS_MIX;
-      const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
+      const sum = pos.reduce((a: number, b: number) => a + b, 0) || 1;
       const target = isBest
-        ? (evidence.pos.map((p) => p / sum) as typeof node.posDist)
-        : (evidence.pos.map((p) => (1 - p / sum)) as typeof node.posDist);
-      const tSum = target.reduce((a, b) => a + b, 0) || 1;
-      const tNorm = target.map((p) => p / tSum) as typeof node.posDist;
+        ? (pos.map((p: number) => p / sum) as typeof node.posDist)
+        : (pos.map((p: number) => (1 - p / sum)) as typeof node.posDist);
+      const tSum = target.reduce((a: number, b: number) => a + b, 0) || 1;
+      const tNorm = target.map((p: number) => p / tSum) as typeof node.posDist;
       const mixed = node.posDist.map((v, i) => v * (1 - w) + tNorm[i]! * w);
       node.posDist = normalize(mixed as typeof node.posDist);
     }
@@ -580,15 +604,19 @@ export function applyPrioritySort(
     const w = (bucket === "supportMid") ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
     const invert = (bucket === "opposeHigh");
     for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-      if (!evidence?.pos) continue;
+      // Narrow off the scalar-number variant introduced in the widened
+      // RankingItemMap type (used by `ranking` questions); priority-sort
+      // expects the `{ pos }` shape.
+      if (typeof evidence !== "object" || !evidence?.pos) continue;
+      const pos = evidence.pos;
       const node = state.continuous[nodeId as ContinuousNodeId];
       if (!node) continue;
-      const sum = evidence.pos.reduce((a, b) => a + b, 0) || 1;
+      const sum = pos.reduce((a: number, b: number) => a + b, 0) || 1;
       const raw = invert
-        ? evidence.pos.map((p) => 1 - p / sum)
-        : evidence.pos.map((p) => p / sum);
-      const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
-      const target = raw.map((p) => p / rawSum) as typeof node.posDist;
+        ? pos.map((p: number) => 1 - p / sum)
+        : pos.map((p: number) => p / sum);
+      const rawSum = raw.reduce((a: number, b: number) => a + b, 0) || 1;
+      const target = raw.map((p: number) => p / rawSum) as typeof node.posDist;
       const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i]! * w);
       node.posDist = normalize(mixed as typeof node.posDist);
     }

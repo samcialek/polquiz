@@ -49,7 +49,7 @@ function computeWeightedDistance(
     const ct = tmpl as ContinuousTemplate;
 
     const archPos = ct.pos;
-    const archSal = ct.sal; // 0-3
+    const archSal = ct.sal ?? 0; // 0-3; undefined for SELF-cluster (ADR-005)
     const candPos = (cand as any)[node] as number;
     if (candPos == null) continue;
 

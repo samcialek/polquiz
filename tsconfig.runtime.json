@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": [
+    "src/types.ts",
+    "src/browser/**/*.ts",
+    "src/config/**/*.ts",
+    "src/engine/**/*.ts",
+    "src/global/**/*.ts",
+    "src/historical/**/*.ts",
+    "src/identity/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/test/**",
+    "src/eval/**",
+    "src/optimize/**",
+    "src/diagnostics/**"
+  ]
+}

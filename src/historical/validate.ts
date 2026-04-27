@@ -21,7 +21,7 @@ function getPos(arch: Archetype, node: string): number {
 function getSal(arch: Archetype, node: string): number {
   const tmpl = arch.nodes[node as keyof typeof arch.nodes];
   if (!tmpl) return 0;
-  return tmpl.sal;
+  return tmpl.sal ?? 0; // SELF-cluster has no sal (ADR-005)
 }
 
 function getCatPeak(arch: Archetype, node: string): number {

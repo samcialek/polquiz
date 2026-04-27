@@ -2966,7 +2966,7 @@ var PrismEngine = (() => {
     statesman: [0.7, 0.1, 0.04, 0.06, 0.04, 0.06],
     technocrat: [0.08, 0.74, 0.04, 0.04, 0.03, 0.07],
     pastoral: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07],
-    plainspoken: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07],
+    authentic: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07],
     fighter: [0.04, 0.03, 0.04, 0.08, 0.73, 0.08],
     visionary: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67]
   };
@@ -7103,19 +7103,14 @@ var PrismEngine = (() => {
     (n) => n.type === "categorical"
   ).map((n) => n.id);
   var SELF_NODES = ["PF", "TRB", "ENG"];
-  function isSelfNode(id) {
-    return SELF_NODES.includes(id);
+  function isSelfNode(nodeId) {
+    return SELF_NODES.includes(nodeId);
   }
 
   // src/engine/math.ts
   function multiplyAndNormalize(prior, likelihood) {
     const result = prior.map((p, i) => p * (likelihood[i] ?? 0));
     return normalize(result);
-  }
-  function multiplyAndNormalizeTempered(prior, likelihood, tau) {
-    if (tau === 1) return multiplyAndNormalize(prior, likelihood);
-    const tempered = likelihood.map((v) => Math.pow(Math.max(v, 0), tau));
-    return multiplyAndNormalize(prior, tempered);
   }
   function normalize(arr) {
     const sum = arr.reduce((a, b) => a + b, 0);
@@ -7180,7 +7175,6 @@ var PrismEngine = (() => {
   };
 
   // src/engine/update.ts
-  var CAT_TEMPERING_TAU = 0.7;
   var RANK_SAL = [
     [0.05, 0.15, 0.3, 0.5],
     // rank 1 (most important)
@@ -7224,7 +7218,6 @@ var PrismEngine = (() => {
     return inv.map((p) => p / total);
   }
   var EXTREMITY_SAL = [0.1, 0.2, 0.3, 0.4];
-  var DEFAULT_ENGAGEMENT_SAL = [0.22, 0.28, 0.28, 0.22];
   function isExtremePosEvidence(pos) {
     if (!pos || pos.length !== 5) return false;
     const max = Math.max(...pos);
@@ -7238,7 +7231,6 @@ var PrismEngine = (() => {
       if (touch.role !== "position") continue;
       if (!nodesToBoost.has(touch.node)) continue;
       if (touch.kind === "continuous" && touch.node in state.continuous) {
-        if (isSelfNode(touch.node)) continue;
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
       } else if (touch.kind === "categorical" && touch.node in state.categorical) {
@@ -7267,22 +7259,14 @@ var PrismEngine = (() => {
       for (const [nodeId, upd] of Object.entries(evidence.continuous)) {
         const node = state.continuous[nodeId];
         if (upd?.pos) node.posDist = multiplyAndNormalize(node.posDist, upd.pos);
-        if (upd?.sal && !isSelfNode(nodeId)) {
-          node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
-        } else if (upd?.pos && !isSelfNode(nodeId)) {
-          node.salDist = multiplyAndNormalize(node.salDist, DEFAULT_ENGAGEMENT_SAL);
-        }
+        if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
       }
     }
     if (evidence.categorical) {
       for (const [nodeId, upd] of Object.entries(evidence.categorical)) {
         const node = state.categorical[nodeId];
-        if (upd?.cat) node.catDist = multiplyAndNormalizeTempered(node.catDist, upd.cat, CAT_TEMPERING_TAU);
-        if (upd?.sal) {
-          node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
-        } else if (upd?.cat) {
-          node.salDist = multiplyAndNormalize(node.salDist, DEFAULT_ENGAGEMENT_SAL);
-        }
+        if (upd?.cat) node.catDist = multiplyAndNormalize(node.catDist, upd.cat);
+        if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
       }
     }
     if (evidence.trbAnchor) {
@@ -7290,226 +7274,9 @@ var PrismEngine = (() => {
       state.trbAnchor.touches += 1;
     }
   }
-  function applyContinuousSignal(state, nodeId, signal, strength = 1) {
-    const node = state.continuous[nodeId];
-    if (!node || signal === 0 || strength === 0) return;
-    const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-    const bump = node.posDist.map(
-      (p, i) => p * Math.exp(signal * normFactor * strength * (i + 1 - 3))
-    );
-    node.posDist = normalize(bump);
-  }
-  function mixCategoricalTarget(state, nodeId, target, weight) {
-    const node = state.categorical[nodeId];
-    if (!node) return;
-    const w = Math.max(0, Math.min(1, weight));
-    if (w === 0) return;
-    const mixed = node.catDist.map((v, i) => v * (1 - w) + (target[i] ?? 0) * w);
-    node.catDist = normalize(mixed);
-  }
-  function mixContinuousTarget(state, nodeId, target, weight) {
-    const node = state.continuous[nodeId];
-    if (!node) return;
-    const w = Math.max(0, Math.min(1, weight));
-    if (w === 0) return;
-    const sum = target.reduce((a, b) => a + b, 0) || 1;
-    const normTarget = target.map((v) => v / sum);
-    const mixed = node.posDist.map((v, i) => v * (1 - w) + (normTarget[i] ?? 0) * w);
-    node.posDist = normalize(mixed);
-  }
-  function shareMap(allocation, total) {
-    const out = {};
-    for (const [k, v] of Object.entries(allocation)) out[k] = v / total;
-    return out;
-  }
-  var EPS_HUMBLE_INSTITUTIONAL = [0.42, 0.38, 0.05, 0.05, 0.08, 0.02];
-  var EPS_CERTAINTY_SELF = [0.08, 0.05, 0.06, 0.34, 0.37, 0.1];
-  function applyAllocationShapeSignals(state, q, shares) {
-    const values = Object.values(shares);
-    if (values.length < 2) return;
-    const maxShare = Math.max(...values);
-    const minShare = Math.min(...values);
-    const zeroCount = values.filter((v) => v <= 1e-3).length;
-    const hhi = values.reduce((sum, v) => sum + v * v, 0);
-    if (maxShare >= 0.85 || hhi >= 0.75) {
-      applyContinuousSignal(state, "COM", -0.3, maxShare >= 0.95 ? 1.2 : 1);
-      mixCategoricalTarget(state, "EPS", EPS_CERTAINTY_SELF, maxShare >= 0.95 ? 0.14 : 0.1);
-    } else if (maxShare >= 0.7) {
-      applyContinuousSignal(state, "COM", -0.16);
-      mixCategoricalTarget(state, "EPS", EPS_CERTAINTY_SELF, 0.06);
-    }
-    if (minShare >= 0.2 && maxShare <= 0.3) {
-      applyContinuousSignal(state, "COM", 0.22);
-      mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.08);
-    }
-    if (zeroCount > 0) {
-      applyContinuousSignal(state, "COM", -0.08 * Math.min(zeroCount, 2));
-    }
-    applyAllocationDomainSignals(state, q, shares);
-  }
-  function applyAllocationDomainSignals(state, q, s) {
-    if (q.id === 15) {
-      const structural = (s.family_background ?? 0) + (s.discrimination_bias ?? 0);
-      const effort = s.effort_choices ?? 0;
-      const luck = s.luck_random ?? 0;
-      const bias = s.discrimination_bias ?? 0;
-      if (effort >= 0.7) {
-        applyContinuousSignal(state, "MAT", 0.3);
-        applyContinuousSignal(state, "COM", -0.1);
-      }
-      if (structural >= 0.8 && effort <= 0.1) {
-        applyContinuousSignal(state, "MAT", -0.28);
-        applyContinuousSignal(state, "ZS", 0.18);
-      }
-      if (effort + luck >= 0.85 && bias <= 0.05) {
-        applyContinuousSignal(state, "MAT", 0.25);
-        applyContinuousSignal(state, "ZS", -0.12);
-      }
-      return;
-    }
-    if (q.id === 20) {
-      const complex = s.complex_forces ?? 0;
-      const selfish = s.powerful_selfish ?? 0;
-      const incompetent = s.powerful_incompetent ?? 0;
-      const ordinary = s.ordinary_choices ?? 0;
-      if (complex >= 0.6) {
-        applyContinuousSignal(state, "ZS", -0.32);
-        applyContinuousSignal(state, "COM", 0.18);
-        mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.1);
-      }
-      if (selfish >= 0.6 && ordinary <= 0.05) {
-        applyContinuousSignal(state, "ZS", 0.45);
-        applyContinuousSignal(state, "ONT_H", -0.32);
-        applyContinuousSignal(state, "COM", -0.32);
-      }
-      if (incompetent >= selfish * 2 && incompetent >= 0.3) {
-        applyContinuousSignal(state, "ZS", -0.14);
-        applyContinuousSignal(state, "ONT_H", -0.12);
-      }
-      return;
-    }
-    if (q.id === 39) {
-      const legit = s.legitimate_values ?? 0;
-      const misinformed = s.misinformed ?? 0;
-      const bad = s.bad_motives ?? 0;
-      if (legit >= 0.5) {
-        applyContinuousSignal(state, "COM", 0.45);
-        applyContinuousSignal(state, "TRB", -0.35);
-        applyContinuousSignal(state, "ZS", -0.35);
-        applyContinuousSignal(state, "MOR", 0.25);
-      }
-      if (legit <= 0.02 && bad >= 0.5) {
-        applyContinuousSignal(state, "COM", -0.55);
-        applyContinuousSignal(state, "TRB", 0.55);
-        applyContinuousSignal(state, "ZS", 0.5);
-        applyContinuousSignal(state, "MOR", -0.35);
-      }
-      if (misinformed >= 0.6 && bad <= 0.1) {
-        mixCategoricalTarget(state, "EPS", [0.45, 0.3, 0.04, 0.06, 0.12, 0.03], 0.12);
-        applyContinuousSignal(state, "COM", 0.08);
-      }
-      return;
-    }
-    if (q.id === 66) {
-      const heritage = s.preserve_heritage ?? 0;
-      const modernize = s.modernize_infrastructure ?? 0;
-      const deliberation = s.community_deliberation ?? 0;
-      const market = s.market_based_development ?? 0;
-      if (modernize + market >= 0.8) {
-        applyContinuousSignal(state, "MAT", 0.22);
-        applyContinuousSignal(state, "COM", -0.14);
-        mixCategoricalTarget(state, "EPS", EPS_HUMBLE_INSTITUTIONAL, 0.06);
-      }
-      if (heritage + deliberation >= 0.75) {
-        applyContinuousSignal(state, "COM", 0.25);
-        mixCategoricalTarget(state, "EPS", [0.08, 0.18, 0.34, 0.2, 0.12, 0.08], 0.08);
-      }
-      if (deliberation >= 0.6) {
-        applyContinuousSignal(state, "PRO", 0.35);
-        applyContinuousSignal(state, "COM", 0.35);
-      }
-    }
-  }
-  function applyPriorityPatternSignals(state, q, placements) {
-    const high = new Set(placements.supportHigh);
-    const mid = new Set(placements.supportMid);
-    const low = new Set(placements.neutral);
-    const isHigh = (item) => high.has(item);
-    const isNotHigh = (item) => !high.has(item);
-    const isLow = (item) => low.has(item);
-    if (q.id === 60) {
-      const inheritedRight = isHigh("national_identity") && (isHigh("religious_identity") || isHigh("ethnic_racial_identity")) && isLow("global_citizen") && isLow("gender_identity") && isLow("sexual_identity");
-      if (inheritedRight) {
-        applyContinuousSignal(state, "TRB", 0.35);
-        applyContinuousSignal(state, "CU", -0.25);
-        applyContinuousSignal(state, "MOR", -0.2);
-        applyContinuousSignal(state, "CD", 0.25);
-      }
-      const intersectional = (isHigh("gender_identity") || isHigh("sexual_identity")) && isHigh("ethnic_racial_identity") && (isHigh("class_identity") || isHigh("ideological_identity")) && isLow("religious_identity") && isLow("national_identity");
-      if (intersectional) {
-        applyContinuousSignal(state, "CD", -0.28);
-        applyContinuousSignal(state, "CU", 0.24);
-        applyContinuousSignal(state, "MOR", 0.18);
-        applyContinuousSignal(state, "MAT", -0.16);
-        applyContinuousSignal(state, "TRB", 0.18);
-      }
-      const postIdentity = high.size === 0 && mid.size <= 1 || isHigh("ideological_identity") && high.size <= 2 && isNotHigh("national_identity") && isNotHigh("religious_identity") && isNotHigh("ethnic_racial_identity") && isNotHigh("gender_identity") && isNotHigh("sexual_identity");
-      if (postIdentity) {
-        applyContinuousSignal(state, "TRB", -0.45);
-        applyContinuousSignal(state, "CU", 0.1);
-        applyContinuousSignal(state, "MOR", 0.08);
-      }
-      return;
-    }
-    if (q.id === 102) {
-      const essential = high;
-      const irrelevant = low;
-      const civicNationalist = essential.has("shared_values") && essential.has("civic_part") && irrelevant.has("ancestry") && irrelevant.has("religion") && !essential.has("ancestry") && !essential.has("religion");
-      if (civicNationalist) {
-        mixContinuousTarget(state, "CU", [0.05, 0.12, 0.3, 0.35, 0.18], 0.22);
-        mixContinuousTarget(state, "MOR", [0.03, 0.08, 0.2, 0.36, 0.33], 0.24);
-        mixContinuousTarget(state, "PRO", [0.03, 0.08, 0.2, 0.34, 0.35], 0.2);
-        mixContinuousTarget(state, "TRB", [0.38, 0.32, 0.2, 0.07, 0.03], 0.18);
-        applyContinuousSignal(state, "CD", -0.1);
-      }
-      const ethnoTraditionalist = (essential.has("born_here") || essential.has("ancestry")) && (essential.has("religion") || essential.has("cultural")) && !essential.has("shared_values");
-      if (ethnoTraditionalist) {
-        mixContinuousTarget(state, "CU", [0.55, 0.28, 0.12, 0.04, 0.01], 0.28);
-        mixContinuousTarget(state, "CD", [0.02, 0.05, 0.13, 0.3, 0.5], 0.26);
-        mixContinuousTarget(state, "MOR", [0.5, 0.3, 0.14, 0.05, 0.01], 0.24);
-        mixContinuousTarget(state, "TRB", [0.02, 0.06, 0.14, 0.3, 0.48], 0.24);
-      }
-      const contributionPragmatist = essential.has("economic") && (essential.has("shared_values") || essential.has("civic_part")) && irrelevant.has("ancestry") && irrelevant.has("born_here") && irrelevant.has("religion");
-      if (contributionPragmatist) {
-        applyContinuousSignal(state, "MAT", 0.24);
-        applyContinuousSignal(state, "ZS", -0.18);
-        mixContinuousTarget(state, "CU", [0.04, 0.1, 0.24, 0.36, 0.26], 0.2);
-        mixContinuousTarget(state, "TRB", [0.35, 0.32, 0.22, 0.08, 0.03], 0.16);
-      }
-    }
-  }
-  var PARTY_ID_MAP = {
-    dem: "D",
-    rep: "R",
-    ind: "I",
-    third: "T",
-    none: "N"
-  };
   function applySingleChoiceAnswer(state, q, optionKey) {
     state.answers[q.id] = optionKey;
     registerTouches(state, q);
-    if (q.id === 200 && PARTY_ID_MAP[optionKey] !== void 0) {
-      state.partyID = PARTY_ID_MAP[optionKey];
-    }
-    if (q.id === 211) {
-      state.strategicVoting = optionKey === "strategic_lesser_evil" || optionKey === "depends_on_stakes";
-    }
-    if (q.id === 212) {
-      const np = /* @__PURE__ */ new Set();
-      if (optionKey === "never_dem" || optionKey === "never_dem_or_rep") np.add("D");
-      if (optionKey === "never_rep" || optionKey === "never_dem_or_rep") np.add("R");
-      state.negativeParties = np;
-    }
     const ev = q.optionEvidence?.[optionKey];
     applyOptionEvidence(state, ev);
     if (ev?.continuous) {
@@ -7521,20 +7288,12 @@ var PrismEngine = (() => {
     }
   }
   function applyMultiAnswer(state, q, optionKeys) {
-    const unique = Array.from(new Set(optionKeys.filter(Boolean)));
-    state.answers[q.id] = unique;
+    state.answers[q.id] = optionKeys.slice();
     registerTouches(state, q);
-    const extremeNodes = /* @__PURE__ */ new Set();
-    for (const optionKey of unique) {
+    for (const optionKey of optionKeys) {
       const ev = q.optionEvidence?.[optionKey];
       applyOptionEvidence(state, ev);
-      if (ev?.continuous) {
-        for (const [nodeId, upd] of Object.entries(ev.continuous)) {
-          if (isExtremePosEvidence(upd?.pos)) extremeNodes.add(nodeId);
-        }
-      }
     }
-    boostExtremitySalience(state, q, extremeNodes);
   }
   function applySliderAnswer(state, q, rawValue) {
     state.answers[q.id] = rawValue;
@@ -7561,7 +7320,6 @@ var PrismEngine = (() => {
     if (!q.allocationMap) return;
     const total = Math.max(1, Object.values(allocation).reduce((a, b) => a + b, 0));
     const shares = Object.values(allocation).map((weight) => weight / total);
-    const sharesByKey = shareMap(allocation, total);
     for (const [bucket, weight] of Object.entries(allocation)) {
       const share = weight / total;
       const map = q.allocationMap[bucket];
@@ -7594,16 +7352,12 @@ var PrismEngine = (() => {
       }
     }
     const salienceTouches = q.touchProfile.filter((t) => t.role === "salience");
-    if (!salienceTouches.length) {
-      applyAllocationShapeSignals(state, q, sharesByKey);
-      return;
-    }
+    if (!salienceTouches.length) return;
     const hhi = shares.reduce((sum, s) => sum + s * s, 0);
     const concentration = Math.max(0, Math.min(1, (hhi - 0.25) / 0.75));
     const salLikelihood = concentration >= 0.75 ? [0.03, 0.08, 0.24, 0.65] : concentration >= 0.5 ? [0.06, 0.14, 0.32, 0.48] : concentration >= 0.25 ? [0.12, 0.22, 0.34, 0.32] : [0.22, 0.3, 0.28, 0.2];
     for (const touch of salienceTouches) {
       if (touch.kind === "continuous") {
-        if (isSelfNode(touch.node)) continue;
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
       } else if (touch.kind === "categorical") {
@@ -7611,7 +7365,6 @@ var PrismEngine = (() => {
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
       }
     }
-    applyAllocationShapeSignals(state, q, sharesByKey);
   }
   function applyRankingAnswer(state, q, ranking) {
     state.answers[q.id] = ranking;
@@ -7621,8 +7374,6 @@ var PrismEngine = (() => {
     const hasSalience = q.touchProfile.some((t) => t.role === "salience");
     ranking.forEach((item, idx) => {
       const rankWeight = weights[idx] ?? 0;
-      const bottomAntiWeight = idx === ranking.length - 1 ? -0.3 : idx === ranking.length - 2 && ranking.length >= 5 ? -0.15 : 0;
-      const scalarWeight = rankWeight + bottomAntiWeight;
       const map = q.rankingMap?.[item];
       if (!map) return;
       const salLikelihood = hasSalience && idx < RANK_SAL.length ? RANK_SAL[idx] : null;
@@ -7630,10 +7381,10 @@ var PrismEngine = (() => {
         for (const [nodeId, signal] of Object.entries(map.continuous)) {
           const node = state.continuous[nodeId];
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-          const scalar = typeof signal === "number" ? signal : 0;
-          const bump = node.posDist.map((p, i) => p * Math.exp(scalar * normFactor * scalarWeight * (i + 1 - 3)));
+          const sig = typeof signal === "number" ? signal : 0;
+          const bump = node.posDist.map((p, i) => p * Math.exp(sig * normFactor * rankWeight * (i + 1 - 3)));
           node.posDist = normalize(bump);
-          if (salLikelihood && !isSelfNode(nodeId)) {
+          if (salLikelihood) {
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
           }
         }
@@ -7642,9 +7393,8 @@ var PrismEngine = (() => {
         for (const [nodeId, catDist] of Object.entries(map.categorical)) {
           const node = state.categorical[nodeId];
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
-          const mixWeight = 0.4 * Math.abs(scalarWeight) * normFactor;
-          const target = scalarWeight < 0 ? invertCatDist(catDist) : catDist;
-          const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (target[i] ?? 0) * mixWeight);
+          const mixWeight = 0.4 * rankWeight * normFactor;
+          const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
           node.catDist = normalize(mixed);
           if (salLikelihood) {
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -7654,7 +7404,7 @@ var PrismEngine = (() => {
       if (map.trbAnchor) {
         const scaled = {};
         for (const [k, v] of Object.entries(map.trbAnchor)) {
-          scaled[k] = v * scalarWeight;
+          scaled[k] = v * rankWeight;
         }
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
@@ -7664,15 +7414,14 @@ var PrismEngine = (() => {
   function applyBestWorstSalience(state, q, best, worst, allItems) {
     state.answers[q.id] = { best: best.slice(), worst: worst.slice() };
     registerTouches(state, q);
-    const itemMap = q.bestWorstMap ?? q.rankingMap;
-    if (!itemMap) return;
+    if (!q.rankingMap) return;
     const bestSet = new Set(best);
     const worstSet = new Set(worst);
     const continuousBuckets = /* @__PURE__ */ new Map();
     const categoricalBuckets = /* @__PURE__ */ new Map();
     const bucketFor = (item) => bestSet.has(item) ? "best" : worstSet.has(item) ? "worst" : "middle";
     for (const item of allItems) {
-      const map = itemMap[item];
+      const map = q.rankingMap[item];
       if (!map) continue;
       const b = bucketFor(item);
       if (map.continuous) {
@@ -7695,7 +7444,6 @@ var PrismEngine = (() => {
       return SAL_IF_MIDDLE;
     }
     for (const [nodeId, buckets] of continuousBuckets) {
-      if (isSelfNode(nodeId)) continue;
       const node = state.continuous[nodeId];
       if (!node) continue;
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
@@ -7706,7 +7454,7 @@ var PrismEngine = (() => {
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
     }
     for (const item of allItems) {
-      const map = itemMap[item];
+      const map = q.rankingMap[item];
       if (!map?.categorical) continue;
       const isBest = bestSet.has(item);
       const isWorst = worstSet.has(item);
@@ -7721,22 +7469,13 @@ var PrismEngine = (() => {
       }
     }
     for (const item of allItems) {
-      const map = itemMap[item];
+      const map = q.rankingMap[item];
       if (!map?.continuous) continue;
       const isBest = bestSet.has(item);
       const isWorst = worstSet.has(item);
       if (!isBest && !isWorst) continue;
       for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-        if (typeof evidence === "number") {
-          applyContinuousSignal(
-            state,
-            nodeId,
-            evidence,
-            isBest ? BW_BEST_POS_MIX : -BW_WORST_POS_MIX
-          );
-          continue;
-        }
-        if (typeof evidence !== "object" || !evidence || !evidence.pos) continue;
+        if (typeof evidence !== "object" || !evidence?.pos) continue;
         const pos = evidence.pos;
         const node = state.continuous[nodeId];
         if (!node) continue;
@@ -7751,16 +7490,11 @@ var PrismEngine = (() => {
     }
   }
   function applyPrioritySort(state, q, placements, allItems) {
-    const supportHigh = placements.supportHigh ?? [];
-    const supportMid = placements.supportMid ?? [];
-    const neutral = placements.neutral ?? [];
-    const opposeHigh = placements.opposeHigh ?? [];
-    placements = { supportHigh, supportMid, neutral, opposeHigh };
     state.answers[q.id] = {
-      supportHigh: supportHigh.slice(),
-      supportMid: supportMid.slice(),
-      neutral: neutral.slice(),
-      opposeHigh: opposeHigh.slice()
+      supportHigh: placements.supportHigh.slice(),
+      supportMid: placements.supportMid.slice(),
+      neutral: placements.neutral.slice(),
+      opposeHigh: placements.opposeHigh.slice()
     };
     registerTouches(state, q);
     if (!q.rankingMap) return;
@@ -7787,18 +7521,12 @@ var PrismEngine = (() => {
         }
       }
     }
-    const salHigh = q.salienceBuckets?.supportHigh ?? SAL_PRIORITY_HIGH;
-    const salMid = q.salienceBuckets?.supportMid ?? SAL_PRIORITY_MID;
-    const salLow = q.salienceBuckets?.neutral ?? SAL_PRIORITY_LOW;
-    const salOpposeHigh = q.salienceBuckets?.opposeHigh ?? SAL_PRIORITY_HIGH;
     function resolveSal(buckets) {
-      if (buckets.has("supportHigh")) return salHigh;
-      if (buckets.has("opposeHigh")) return salOpposeHigh;
-      if (buckets.has("supportMid")) return salMid;
-      return salLow;
+      if (buckets.has("supportHigh") || buckets.has("opposeHigh")) return SAL_PRIORITY_HIGH;
+      if (buckets.has("supportMid")) return SAL_PRIORITY_MID;
+      return SAL_PRIORITY_LOW;
     }
     for (const [nodeId, buckets] of continuousBuckets) {
-      if (isSelfNode(nodeId)) continue;
       const node = state.continuous[nodeId];
       if (!node) continue;
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
@@ -7816,7 +7544,7 @@ var PrismEngine = (() => {
       const w = bucket === "supportMid" ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
       const invert = bucket === "opposeHigh";
       for (const [nodeId, evidence] of Object.entries(map.continuous)) {
-        if (typeof evidence !== "object" || !evidence || !evidence.pos) continue;
+        if (typeof evidence !== "object" || !evidence?.pos) continue;
         const pos = evidence.pos;
         const node = state.continuous[nodeId];
         if (!node) continue;
@@ -7828,23 +7556,6 @@ var PrismEngine = (() => {
         node.posDist = normalize(mixed);
       }
     }
-    let anchorTouched = false;
-    for (const item of allItems) {
-      const map = q.rankingMap[item];
-      if (!map?.trbAnchor) continue;
-      const bucket = bucketFor(item);
-      if (bucket === "neutral") continue;
-      const scale = bucket === "supportHigh" ? 1 : bucket === "supportMid" ? 0.4 : bucket === "opposeHigh" ? -1 : 0;
-      if (scale === 0) continue;
-      const scaled = {};
-      for (const [k, v] of Object.entries(map.trbAnchor)) {
-        scaled[k] = (v ?? 0) * scale;
-      }
-      state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
-      anchorTouched = true;
-    }
-    if (anchorTouched) state.trbAnchor.touches += 1;
-    applyPriorityPatternSignals(state, q, { supportHigh, supportMid, neutral, opposeHigh });
   }
   function applyDualAxisAnswer(state, q, answer) {
     const x = Math.max(0, Math.min(1, answer.x));
@@ -7865,9 +7576,7 @@ var PrismEngine = (() => {
     const normTarget = raw.map((v) => v / rawSum);
     const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
     node.posDist = normalize(mixed);
-    if (!isSelfNode(map.node)) {
-      node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
-    }
+    node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
   }
   function applyPairwiseAnswer(state, q, answers) {
     state.answers[q.id] = answers;
@@ -8143,25 +7852,7 @@ var PrismEngine = (() => {
         return false;
     }
   }
-  var SAL_RULED_OUT_THRESHOLD = 0.5;
-  function isNodeRuledOut(state, nodeId) {
-    if (nodeId in state.continuous) {
-      return state.continuous[nodeId].salDist[0] >= SAL_RULED_OUT_THRESHOLD;
-    }
-    if (nodeId in state.categorical) {
-      return state.categorical[nodeId].salDist[0] >= SAL_RULED_OUT_THRESHOLD;
-    }
-    return false;
-  }
-  function passesSalienceGate(state, q) {
-    const probeTouches = q.touchProfile.filter(
-      (t) => t.role === "position" || t.role === "category"
-    );
-    if (probeTouches.length === 0) return true;
-    return probeTouches.some((t) => !isNodeRuledOut(state, t.node));
-  }
   function isQuestionEligible(state, q) {
-    if (!passesSalienceGate(state, q)) return false;
     const rules = q.exposeRules?.eligibleIf;
     if (!rules || rules.length === 0) return true;
     return rules.some((predicate) => evaluatePredicate(state, predicate));
@@ -8591,11 +8282,6 @@ var PrismEngine = (() => {
   }
 
   // src/identity/resolveIdentityPrimary.ts
-  var POLICY_SALIENCE_MEAN_MAX = 1.25;
-  var POLICY_SALIENCE_HIGH_THRESHOLD = 2.25;
-  var POLICY_SALIENCE_HIGH_COUNT_MAX = 2;
-  var ANCHOR_MASS_MIN = 0.25;
-  var ANCHOR_MARGIN_MIN = 0.05;
   var TRB_ANCHOR_ORDER2 = [
     "national",
     "ideological",
@@ -8612,107 +8298,38 @@ var PrismEngine = (() => {
     if (!node) return 3;
     return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
   }
-  function topAnchorWithMargin(state) {
+  function topAnchor(state) {
     const dist = state.trbAnchor?.dist;
-    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) {
-      return { anchor: "mixed_none", mass: 0, margin: 0 };
-    }
+    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) return "mixed_none";
     let bestIdx = 0;
-    let secondMass = 0;
     for (let i = 1; i < dist.length; i++) {
       if (dist[i] > dist[bestIdx]) bestIdx = i;
     }
-    for (let i = 0; i < dist.length; i++) {
-      if (i === bestIdx) continue;
-      if (dist[i] > secondMass) secondMass = dist[i];
-    }
-    return {
-      anchor: TRB_ANCHOR_ORDER2[bestIdx],
-      mass: dist[bestIdx],
-      margin: dist[bestIdx] - secondMass
-    };
-  }
-  function expectedSalienceContinuous(state, nodeId) {
-    const node = state.continuous[nodeId];
-    if (!node) return 0;
-    return node.salDist.reduce((sum, p, i) => sum + p * i, 0);
-  }
-  function expectedSalienceCategorical(state, nodeId) {
-    const node = state.categorical[nodeId];
-    if (!node) return 0;
-    return node.salDist.reduce((sum, p, i) => sum + p * i, 0);
-  }
-  function computePolicySalience(state) {
-    const continuousNonSelf = [
-      "MAT",
-      "CD",
-      "CU",
-      "MOR",
-      "PRO",
-      "COM",
-      "ZS",
-      "ONT_H",
-      "ONT_S"
-    ];
-    const categorical = ["EPS", "AES"];
-    const sals = [];
-    for (const nid of continuousNonSelf) {
-      if (isSelfNode(nid)) continue;
-      sals.push(expectedSalienceContinuous(state, nid));
-    }
-    for (const nid of categorical) {
-      sals.push(expectedSalienceCategorical(state, nid));
-    }
-    const score = sals.reduce((a, b) => a + b, 0) / Math.max(1, sals.length);
-    const highCount = sals.filter((s) => s >= POLICY_SALIENCE_HIGH_THRESHOLD).length;
-    return { score, highCount };
+    return TRB_ANCHOR_ORDER2[bestIdx];
   }
   function resolveIdentityPrimary(state, engagementLabel, demographics) {
     const trb = expectedContinuous(state, "TRB");
     const pf = expectedContinuous(state, "PF");
-    const { anchor, mass: anchorMass, margin: anchorMargin } = topAnchorWithMargin(state);
+    const zs = expectedContinuous(state, "ZS");
+    const cd = expectedContinuous(state, "CD");
+    const onts = expectedContinuous(state, "ONT_S");
+    const mor = expectedContinuous(state, "MOR");
+    const anchor = topAnchor(state);
     const engagementActive = engagementLabel.level === "engaged" || engagementLabel.level === "highly-engaged";
     const engagementDominant = engagementLabel.level === "highly-engaged";
     const passedLatent = trb >= 3 && pf >= 3;
     const passedActive = trb >= 4 && pf >= 4 && engagementActive;
     const passedDominant = trb >= 4 && pf >= 4 && engagementDominant;
-    const { score: policySalienceScore, highCount: highSaliencePolicyCount } = computePolicySalience(state);
-    const passedIdeologyThinness = policySalienceScore <= POLICY_SALIENCE_MEAN_MAX && highSaliencePolicyCount <= POLICY_SALIENCE_HIGH_COUNT_MAX;
-    const passedAnchorDominance = anchorMass >= ANCHOR_MASS_MIN && anchorMargin >= ANCHOR_MARGIN_MIN;
     const gate = {
       trb,
       pf,
       engagementLevel: engagementLabel.level,
       passedLatent,
       passedActive,
-      passedDominant,
-      policySalienceScore,
-      highSaliencePolicyCount,
-      passedIdeologyThinness,
-      anchorMass,
-      anchorMargin,
-      passedAnchorDominance
+      passedDominant
     };
     if (!passedLatent) {
-      return { state: "none", anchor, reasonCodes: ["gate_not_met_trb_pf"], gate };
-    }
-    if (!passedIdeologyThinness) {
-      return {
-        state: "unresolved",
-        confidence: "low",
-        anchor,
-        reasonCodes: ["policy_salience_too_high"],
-        gate
-      };
-    }
-    if (!passedAnchorDominance) {
-      return {
-        state: "unresolved",
-        confidence: "low",
-        anchor,
-        reasonCodes: ["anchor_not_dominant"],
-        gate
-      };
+      return { state: "none", anchor, reasonCodes: ["gate_not_met"], gate };
     }
     const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
     if (anchor === "ethnic_racial") {
@@ -8723,17 +8340,27 @@ var PrismEngine = (() => {
           label: "Black Voter",
           confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["racial_anchor", "black_demographic_match", "ideology_thin"],
+          reasonCodes: ["racial_anchor", "black_demographic_match"],
           gate
         };
       }
       if (race === "white") {
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "White Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["racial_anchor", "white_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
         return {
-          state: stateLabel,
-          label: "White Grievance Voter",
-          confidence: passedActive ? "high" : "medium",
+          state: "unresolved",
+          confidence: "low",
           anchor,
-          reasonCodes: ["racial_anchor", "white_demographic_match", "ideology_thin"],
+          reasonCodes: ["racial_anchor", "white_demographic_match", "insufficient_grievance_signal"],
           gate
         };
       }
@@ -8741,19 +8368,19 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["racial_anchor", "missing_demographic_confirmation"],
+        reasonCodes: ["racial_anchor", "missing_or_nonresolving_race_demographic"],
         gate
       };
     }
     if (anchor === "religious") {
       const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
-      if (religion === "christian" || religion === "evangelical") {
+      if (religion === "christian") {
         return {
           state: stateLabel,
           label: "Evangelical Voter",
           confidence: passedActive ? "medium" : "low",
           anchor,
-          reasonCodes: ["religious_anchor", "christian_demographic_match", "ideology_thin"],
+          reasonCodes: ["religious_anchor", "christian_demographic_match"],
           gate
         };
       }
@@ -8761,7 +8388,7 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["religious_anchor", "missing_demographic_confirmation"],
+        reasonCodes: ["religious_anchor", "missing_or_non_evangelical_religion_detail"],
         gate
       };
     }
@@ -8773,7 +8400,7 @@ var PrismEngine = (() => {
           label: "LGBTQ Voter",
           confidence: passedActive ? "high" : "medium",
           anchor,
-          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match", "ideology_thin"],
+          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match"],
           gate
         };
       }
@@ -8781,29 +8408,49 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["sexual_anchor", "missing_demographic_confirmation"],
+        reasonCodes: ["sexual_anchor", "missing_or_non_lgbtq_demographic"],
         gate
       };
     }
     if (anchor === "gender") {
       const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
       if (gender === "female") {
+        const feministSignals = Number(cd <= 2.5) + Number(mor >= 3.5) + Number(onts >= 3.5);
+        if (feministSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Feminist Voter",
+            confidence: feministSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["gender_anchor", "female_demographic_match", "progressive_gender_pattern"],
+            gate
+          };
+        }
         return {
-          state: stateLabel,
-          label: "Feminist Voter",
-          confidence: passedActive ? "high" : "medium",
+          state: "unresolved",
+          confidence: "low",
           anchor,
-          reasonCodes: ["gender_anchor", "female_demographic_match", "ideology_thin"],
+          reasonCodes: ["gender_anchor", "female_demographic_match", "insufficient_feminist_signal"],
           gate
         };
       }
       if (gender === "male") {
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Male Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor,
+            reasonCodes: ["gender_anchor", "male_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
         return {
-          state: stateLabel,
-          label: "Male Grievance Voter",
-          confidence: passedActive ? "high" : "medium",
+          state: "unresolved",
+          confidence: "low",
           anchor,
-          reasonCodes: ["gender_anchor", "male_demographic_match", "ideology_thin"],
+          reasonCodes: ["gender_anchor", "male_demographic_match", "insufficient_grievance_signal"],
           gate
         };
       }
@@ -8811,7 +8458,7 @@ var PrismEngine = (() => {
         state: "unresolved",
         confidence: "low",
         anchor,
-        reasonCodes: ["gender_anchor", "missing_demographic_confirmation"],
+        reasonCodes: ["gender_anchor", "missing_or_nonresolving_gender_demographic"],
         gate
       };
     }
@@ -8819,9 +8466,7 @@ var PrismEngine = (() => {
       state: "unresolved",
       confidence: "low",
       anchor,
-      reasonCodes: [
-        anchor === "national" ? "national_anchor_civic_not_demographic" : anchor === "ideological" ? "ideological_anchor_no_identity_primary_match" : anchor === "mixed_none" ? "mixed_none_anchor_diffuse_identity" : `anchor_${anchor}_no_identity_primary_match`
-      ],
+      reasonCodes: ["identity_pattern_detected_but_anchor_not_yet_resolvable"],
       gate
     };
   }
@@ -17035,12 +16680,6 @@ var PrismEngine = (() => {
     .prism-bw-btn:hover { border-color: #4a6fa5; }
     .prism-bw-btn.best-selected { border-color: #2e7d32; background: #e8f5e9; color: #2e7d32; }
     .prism-bw-btn.worst-selected { border-color: #c62828; background: #ffebee; color: #c62828; }
-    .prism-priority-list { display: flex; flex-direction: column; gap: 10px; }
-    .prism-priority-row { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid #eee; border-radius: 8px; background: white; }
-    .prism-priority-label { font-size: 14px; line-height: 1.35; }
-    .prism-priority-select { width: 100%; padding: 8px 10px; border: 1px solid #d0d0d0; border-radius: 6px; background: white; font-size: 13px; }
-    .prism-dual-axis { display: grid; gap: 18px; padding: 12px 0; }
-    .prism-dual-axis label { display: grid; gap: 8px; font-size: 14px; color: #333; }
   `;
     document.head.appendChild(style);
   }
@@ -17079,10 +16718,8 @@ var PrismEngine = (() => {
     questionEl.appendChild(textEl);
     switch (q.uiType) {
       case "single_choice":
-        questionEl.appendChild(renderSingleChoice(q));
-        break;
       case "multi":
-        questionEl.appendChild(renderMultiChoice(q));
+        questionEl.appendChild(renderSingleChoice(q));
         break;
       case "slider":
         questionEl.appendChild(renderSlider(q));
@@ -17098,15 +16735,6 @@ var PrismEngine = (() => {
         break;
       case "pairwise":
         questionEl.appendChild(renderPairwise(q));
-        break;
-      case "priority_sort":
-        questionEl.appendChild(renderPrioritySort(q));
-        break;
-      case "dual_axis":
-        questionEl.appendChild(renderDualAxis(q));
-        break;
-      case "conjoint":
-        questionEl.appendChild(renderSingleChoice(q));
         break;
       default:
         if (q.options) {
@@ -17156,41 +16784,6 @@ var PrismEngine = (() => {
       });
       container.appendChild(btn);
     }
-    return container;
-  }
-  function renderMultiChoice(q) {
-    const container = document.createElement("div");
-    container.className = "prism-options prism-options-multi";
-    const selected = /* @__PURE__ */ new Set();
-    const min = q.promptShort === "engagement_motivations_top2" ? 2 : 1;
-    const max = q.promptShort === "engagement_motivations_top2" || q.promptShort === "what_changed_your_mind" ? 2 : 1;
-    const submit = document.createElement("button");
-    submit.className = "prism-submit";
-    submit.type = "button";
-    submit.textContent = "Continue";
-    submit.disabled = true;
-    submit.addEventListener("click", () => {
-      submitAnswer(q.id, Array.from(selected));
-      showNextQuestion();
-    });
-    for (const opt of q.options ?? []) {
-      const btn = document.createElement("button");
-      btn.className = "prism-option";
-      btn.textContent = q.optionLabels?.[opt] ?? opt.replace(/_/g, " ");
-      btn.type = "button";
-      btn.addEventListener("click", () => {
-        if (selected.has(opt)) {
-          selected.delete(opt);
-          btn.classList.remove("selected");
-        } else if (selected.size < max) {
-          selected.add(opt);
-          btn.classList.add("selected");
-        }
-        submit.disabled = selected.size < min || selected.size > max;
-      });
-      container.appendChild(btn);
-    }
-    container.appendChild(submit);
     return container;
   }
   function renderSlider(q) {
@@ -17382,10 +16975,10 @@ var PrismEngine = (() => {
     }
     function trySubmitBW() {
       if (best && worst) {
-        const bestVal = best;
-        const worstVal = worst;
+        const b = best;
+        const w = worst;
         setTimeout(() => {
-          submitAnswer(q.id, { best: bestVal, worst: worstVal });
+          submitAnswer(q.id, { best: b, worst: w });
           showNextQuestion();
         }, 300);
       }
@@ -17427,100 +17020,6 @@ var PrismEngine = (() => {
       container.appendChild(opts);
     }
     showPair();
-    return container;
-  }
-  function renderPrioritySort(q) {
-    const container = document.createElement("div");
-    const items = q.rankingItems ?? [];
-    const placements = {
-      supportHigh: [],
-      supportMid: [],
-      neutral: [...items],
-      opposeHigh: []
-    };
-    const bucketLabels = {
-      supportHigh: "High",
-      supportMid: "Medium",
-      neutral: "Neutral",
-      opposeHigh: "Reject"
-    };
-    const list = document.createElement("div");
-    list.className = "prism-priority-list";
-    for (const item of items) {
-      const row = document.createElement("div");
-      row.className = "prism-priority-row";
-      const label = document.createElement("div");
-      label.className = "prism-priority-label";
-      label.textContent = q.optionLabels?.[item] ?? item.replace(/_/g, " ");
-      const select = document.createElement("select");
-      select.className = "prism-priority-select";
-      for (const bucket of Object.keys(placements)) {
-        const opt = document.createElement("option");
-        opt.value = bucket;
-        opt.textContent = bucketLabels[bucket];
-        select.appendChild(opt);
-      }
-      select.value = "neutral";
-      select.addEventListener("change", () => {
-        for (const bucket of Object.keys(placements)) {
-          placements[bucket] = placements[bucket].filter((id) => id !== item);
-        }
-        placements[select.value].push(item);
-      });
-      row.appendChild(label);
-      row.appendChild(select);
-      list.appendChild(row);
-    }
-    container.appendChild(list);
-    const actions = document.createElement("div");
-    actions.className = "prism-actions";
-    const btn = document.createElement("button");
-    btn.className = "prism-btn prism-btn-primary";
-    btn.textContent = "Continue";
-    btn.type = "button";
-    btn.addEventListener("click", () => {
-      submitAnswer(q.id, placements);
-      showNextQuestion();
-    });
-    actions.appendChild(btn);
-    container.appendChild(actions);
-    return container;
-  }
-  function renderDualAxis(q) {
-    const container = document.createElement("div");
-    container.className = "prism-dual-axis";
-    const x = document.createElement("input");
-    x.type = "range";
-    x.className = "prism-slider";
-    x.min = "0";
-    x.max = "100";
-    x.value = "50";
-    const y = document.createElement("input");
-    y.type = "range";
-    y.className = "prism-slider";
-    y.min = "0";
-    y.max = "100";
-    y.value = "50";
-    const xLabel = document.createElement("label");
-    xLabel.textContent = "Position";
-    xLabel.appendChild(x);
-    const yLabel = document.createElement("label");
-    yLabel.textContent = "Intensity";
-    yLabel.appendChild(y);
-    container.appendChild(xLabel);
-    container.appendChild(yLabel);
-    const actions = document.createElement("div");
-    actions.className = "prism-actions";
-    const btn = document.createElement("button");
-    btn.className = "prism-btn prism-btn-primary";
-    btn.textContent = "Continue";
-    btn.type = "button";
-    btn.addEventListener("click", () => {
-      submitAnswer(q.id, { x: Number(x.value) / 100, y: Number(y.value) / 100 });
-      showNextQuestion();
-    });
-    actions.appendChild(btn);
-    container.appendChild(actions);
     return container;
   }
   function showResults() {

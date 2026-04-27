@@ -30,7 +30,12 @@ export type ArchetypeTier = "T1" | "T2" | "MEANS" | "GATE" | "REALITY";
 export interface ContinuousTemplate {
   kind: "continuous";
   pos: 1 | 2 | 3 | 4 | 5;
-  sal: 0 | 1 | 2 | 3;
+  /**
+   * Salience 0-3. OPTIONAL because SELF-cluster nodes (PF / TRB / ENG)
+   * use position-IS-activation per ADR-005 and have no separate salience
+   * axis. Non-SELF nodes always set sal explicitly.
+   */
+  sal?: 0 | 1 | 2 | 3;
   anti?: "high" | "low";
 }
 
@@ -49,6 +54,12 @@ export interface Archetype {
   tier: ArchetypeTier;
   /** Set to false to exclude from MAP under the new Euclidean WTA scorer (replaces prior=0). */
   active?: boolean;
+  /**
+   * Marks centrist-anchor archetypes (e.g., 059 Public-Minded Moderate). Used
+   * by the engine's centrist-pull adjustment to avoid over-rotating toward
+   * extreme matches when the respondent is genuinely centrist.
+   */
+  centristAnchor?: boolean;
   nodes: Partial<Record<NodeId, ArchetypeNodeTemplate>>;
 }
 
@@ -114,6 +125,14 @@ export type TrbAnchorDist = [
   number
 ];
 
+/**
+ * Respondent party identification — captured from Q200 metadata. Used for the
+ * partisan-loyalty multiplier in election compute (post-1932 only).
+ *   D = Democratic, R = Republican, I = Independent / no-lean,
+ *   N = nonvoter / unsure, T = third-party affiliated, O = other / refused.
+ */
+export type PartyID = "D" | "R" | "I" | "N" | "T" | "O";
+
 export interface OptionEvidence {
   continuous?: Partial<Record<ContinuousNodeId, OptionEvidenceContinuous>>;
   categorical?: Partial<Record<CategoricalNodeId, OptionEvidenceCategorical>>;
@@ -127,7 +146,16 @@ export interface AllocationBucketMap {
 }
 
 export interface RankingItemMap {
-  continuous?: Partial<Record<ContinuousNodeId, OptionEvidenceContinuous>>;
+  /**
+   * Two accepted shapes per applyRankingAnswer / applyBestWorstSalience:
+   *   - scalar number: log-likelihood delta on posDist (used by `ranking`
+   *     questions that nudge a node positionally without specifying a target
+   *     posterior)
+   *   - OptionEvidenceContinuous (`{ pos?, sal? }`): full target posterior
+   *     (used by best_worst pole-batteries Q93-Q96 and Q218 categorical AES)
+   * Each question type uses one shape consistently across all items.
+   */
+  continuous?: Partial<Record<ContinuousNodeId, number | OptionEvidenceContinuous>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
   trbAnchor?: Partial<Record<TrbAnchor, number>>;
 }
@@ -208,6 +236,23 @@ export interface QuestionDef {
   bwMaxPicks?: number;
 
   /**
+   * Optional UI labels for the best/worst columns. Defaults to "most"/"least".
+   * Override per question when "bothers me most/least" or "matters most/least"
+   * etc. is more natural than the generic default.
+   */
+  bestWorstLabels?: {
+    mostLabel?: string;
+    leastLabel?: string;
+  };
+
+  /**
+   * Per-bucket salience update overrides. Used by Q103 (issue_salience_screener)
+   * and similar priority-sort questions that need stronger per-question salience
+   * concentration than the default rankingMap-derived buckets provide.
+   */
+  salienceBuckets?: Record<string, SalienceDist>;
+
+  /**
    * Priority batteries fire before EIG-scored questions. Used for orienting
    * multi-node pole batteries (Q93-Q96) whose per-touch coverage gets heavily
    * discounted by the EIG scorer but whose total info yield across K nodes
@@ -253,4 +298,18 @@ export interface RespondentState {
   currentLeader?: string;
   /** How many consecutive questions the current leader has held the top spot. */
   consecutiveLeadCount?: number;
+
+  // Election / vote-prediction metadata captured from Q200/Q211/Q212 hooks
+  // in update.ts. All optional; consumed by predictVote in
+  // historical/respondentVoteChoice.ts.
+  /** Self-reported party ID from Q200 metadata. */
+  partyID?: PartyID | null;
+  /** Parties the respondent flagged as never-vote (Q212 negative_partisanship). */
+  negativeParties?: Set<string> | null;
+  /** Whether the respondent identifies as a strategic / lesser-evil voter (Q211). */
+  strategicVoting?: boolean;
+  /** Single most-salient node id (used as a tie-breaker in election compute). */
+  dominantNode?: string | null;
+  /** Per-question ratio-boost multipliers applied via applyRatioBoost. */
+  ratioBoosts?: Record<string, number>;
 }

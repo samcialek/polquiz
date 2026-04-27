@@ -63,7 +63,7 @@ export function archetypeDistanceWTA(
     const pR = expectedPos(nodeState.posDist);
     const pA = template.pos;
     const sR = expectedSal(nodeState.salDist);
-    const sA = template.sal;
+    const sA = template.sal ?? 0; // SELF-cluster archetypes have no sal (ADR-005)
     const w = Math.max(sA, sR);
 
     const dp = pA - pR;
@@ -107,7 +107,7 @@ export function archetypeDistanceWTA(
     }
 
     const sR = expectedSal(nodeState.salDist);
-    const sA = template.sal;
+    const sA = template.sal ?? 0; // SELF-cluster archetypes have no sal (ADR-005)
     const w = Math.max(sA, sR);
 
     sumSquared += (preferredTerm + antiTerm) * w;

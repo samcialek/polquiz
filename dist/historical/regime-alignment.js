@@ -5,21 +5,21 @@
  *   support = 100 × exp(-(distance / σ)²)      // Gaussian decay
  *   alignment = (support / 50 - 1) × 3          // Maps 0-100 → -3 to +3
  *
- * Key design:
- * - Refracted salience: era shifts what matters
- *     effectiveSal = (1 - α) × archetype_sal + α × era_sal
- *     where α = 0.4 (era influence on what you care about)
+ * Era mechanism (aligned with respondentVoteChoice.ts):
+ *   effectiveSal = archetype_sal × getActivationMultiplier(year, node)
+ *   where the multiplier is 1 / 2 / 3 per era-activations.json.
+ * Prior dense-vector eraWeight + 60/40 blend removed; activation-multiplier
+ * is the sole era mechanism.
+ *
  * - ENG is NOT used — engagement is emergent from alignment, not a trait
  * - Gaussian decay — near-agreement = high support, far = ~zero
  * - Continuous output, converted to turnout probability via sigmoid
  */
-import { getNodeWeight } from "./activation.js";
+import { getActivationMultiplier } from "./era-activations.js";
 const CONTINUOUS_NODES = [
     "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS",
     "ONT_H", "ONT_S", "PF", "TRB", "ENG",
 ];
-// Era influence on salience (how much the zeitgeist shifts what you care about)
-const ERA_ALPHA = 0.4;
 // Gaussian σ parameter (controls how sharply distance kills support)
 const GAUSSIAN_SIGMA = 2.9; // σ=2.9 — balanced for winner accuracy
 /**
@@ -37,17 +37,13 @@ function computeWeightedDistance(arch, cand, ctx) {
             continue;
         const ct = tmpl;
         const archPos = ct.pos;
-        const archSal = ct.sal; // 0-3
+        const archSal = ct.sal ?? 0; // 0-3; undefined for SELF-cluster (ADR-005)
         const candPos = cand[node];
         if (candPos == null)
             continue;
-        // Era salience: how activated is this node in the current election?
-        // nodeWeight > 1 = primary/activated, < 1 = dormant
-        const eraWeight = getNodeWeight(ctx, node);
-        // Normalize to 0-3 scale to match archSal
-        const eraSal = Math.min(3, (eraWeight - 0.5) * 2); // 0.5→0, 1.0→1, 1.5→2, 2.0→3
-        // Refracted salience: blend of archetype's own salience and era's activation
-        const effectiveSal = (1 - ERA_ALPHA) * archSal + ERA_ALPHA * Math.max(0, eraSal);
+        // Era activation multiplier: 3 if node super-activated for this year,
+        // 2 if activated, 1 otherwise. See era-activations.ts / .json.
+        const effectiveSal = archSal * getActivationMultiplier(ctx.year, node);
         // Anti-position penalty: if archetype has anti marker and candidate violates it,
         // amplify the distance
         let antiMultiplier = 1.0;

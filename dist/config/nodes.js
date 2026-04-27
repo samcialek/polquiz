@@ -39,4 +39,15 @@ export const NODE_DEFS = [
 ];
 export const CONTINUOUS_NODES = NODE_DEFS.filter((n) => n.type === "continuous").map((n) => n.id);
 export const CATEGORICAL_NODES = NODE_DEFS.filter((n) => n.type === "categorical").map((n) => n.id);
+/**
+ * SELF-cluster nodes (PF / TRB / ENG). Per ADR-005, these collapse position
+ * and salience into a single activation scale: pos=1 means "tuned out / non-
+ * partisan / non-tribal," pos=5 means "all in / partisan-fused / tribal."
+ * The `sal` field is absent from SELF-node archetype entries; the engine
+ * skips salDist reads/writes for these nodes.
+ */
+export const SELF_NODES = ["PF", "TRB", "ENG"];
+export function isSelfNode(nodeId) {
+    return SELF_NODES.includes(nodeId);
+}
 //# sourceMappingURL=nodes.js.map
