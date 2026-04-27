@@ -8285,8 +8285,8 @@ var PrismEngine = (() => {
   var TRB_CONVERGED_MAX_PROB = 0.45;
   var POS_MIN_TOUCHES_TO_LOCK = 2;
   var MAX_POSITION_TOUCHES = 3;
-  var MIN_QUESTIONS = 20;
-  var MAX_QUESTIONS = 40;
+  var MIN_QUESTIONS = 22;
+  var MAX_QUESTIONS = 35;
   function entropy(dist) {
     let h = 0;
     for (const p of dist) if (p > 1e-12) h -= p * Math.log(p);
@@ -8530,6 +8530,12 @@ var PrismEngine = (() => {
     const nAnswered = Object.keys(state.answers).length;
     if (nAnswered >= MAX_QUESTIONS) return true;
     if (nAnswered < MIN_QUESTIONS) return false;
+    const topK = getTopSalientNodes(state);
+    for (const nodeId of topK) {
+      const touches = meaningfulPositionTouchCount(state, nodeId, questionsById);
+      if (touches < /* MIN_POSITION_TOUCHES_PER_TOP_K */
+      2) return false;
+    }
     for (const nodeId of CONTINUOUS_NODES) {
       if (!isActive(state, nodeId)) continue;
       if (!posConverged(state, nodeId, questionsById)) return false;

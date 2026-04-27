@@ -60,8 +60,14 @@ const AES_CAT_CONVERGED_MAX_PROB = 0.40;
 const TRB_CONVERGED_MAX_PROB = 0.45;
 const POS_MIN_TOUCHES_TO_LOCK = 2;
 const MAX_POSITION_TOUCHES = 3;
-const MIN_QUESTIONS = 20;
-const MAX_QUESTIONS = 40;
+// Salience-Router Phase 4 (2026-04-27): with the salience-router architecture
+// (15 fixed front door + top-K drilling + salience-weighted EIG), the typical
+// session is 22-32 questions. Low-complexity respondents (everything low
+// salience) finish around 22; spread-salient respondents may go to 32-35.
+// MAX held at 40 as a hard cap during initial rollout; tighten after replay
+// stabilizes per user direction.
+const MIN_QUESTIONS = 22;
+const MAX_QUESTIONS = 35;
 
 // ─── Primitives ────────────────────────────────────────────────────────────
 function entropy(dist: readonly number[]): number {
@@ -440,6 +446,16 @@ export function shouldStopEIG(
   const nAnswered = Object.keys(state.answers).length;
   if (nAnswered >= MAX_QUESTIONS) return true;
   if (nAnswered < MIN_QUESTIONS) return false;
+
+  // Salience-Router Phase 4: stop only after every top-K salient node has
+  // reached MIN_POSITION_TOUCHES_PER_TOP_K meaningful position touches.
+  // Otherwise we'd stop mid-drill on a high-salience node, defeating the
+  // whole point of top-K depth requirement.
+  const topK = getTopSalientNodes(state);
+  for (const nodeId of topK) {
+    const touches = meaningfulPositionTouchCount(state, nodeId, questionsById);
+    if (touches < /* MIN_POSITION_TOUCHES_PER_TOP_K */ 2) return false;
+  }
 
   for (const nodeId of CONTINUOUS_NODES) {
     if (!isActive(state, nodeId)) continue;
