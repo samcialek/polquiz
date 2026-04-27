@@ -261,16 +261,24 @@ var PrismEngine = (() => {
     {
       id: "012",
       name: "Class-War Leftist",
+      // Archetype-audit Phase 4 (2026-04-26). Two priority-node corrections per
+      // rubric. CU 2→3 (modest move; class-war can pair with internationalism
+      // but ideological-uniformity edge retained — user direction). MOR 3→4
+      // (universalist-class concern; spatial scope is wide). ONT_H 1→4
+      // (ADR-010 reframe: class-warriors believe humans are reshaped by economic
+      // structure → high malleability-via-cultivation; old ONT_H=1 reflected
+      // pre-ADR-010 optimism-vs-pessimism reading). CU 4 jump held back per
+      // user direction.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 2, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
+        CU: { kind: "continuous", pos: 3, sal: 2 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 5, anti: "low" },
@@ -301,6 +309,12 @@ var PrismEngine = (() => {
     {
       id: "014",
       name: "Activist Progressive",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 2→4 per rubric Pattern A
+      // archetype-side: "Activist Progressive" is institutional reform tradition
+      // (Bryan/La Follette/FDR rubric anchor at ONT_S=4), not institutional
+      // nihilism. Old ONT_S=2 reflects pre-ADR-010 "system needs reform"
+      // framing; under capacity-belief framing, progressives believe institutions
+      // CAN be made to work hard.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -311,7 +325,7 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
@@ -435,6 +449,11 @@ var PrismEngine = (() => {
       // "Principled Cosmopolitan" — universal moral principles, cross-border ethics, anti-tribal
       id: "021",
       name: "Principled Cosmopolitan",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+      // ONT_S undercoding fix per audit. Principled cosmopolitans use
+      // international institutions hard (UN, ICC, treaty regimes) → institutional
+      // capacity belief, not mid-skepticism. Old ONT_S=3 reflects pre-ADR-010
+      // "system broken vs working" framing.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
@@ -449,8 +468,8 @@ var PrismEngine = (() => {
         // leans uncompromising (from 023)
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        // blend of 3/3/4
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        // 3→4 audit Phase 4: institutional-internationalist anchor
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 2, anti: "high" },
         // anti-tribalism is core
@@ -508,6 +527,10 @@ var PrismEngine = (() => {
     {
       id: "024",
       name: "Ethical Internationalist",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+      // ONT_S undercoding fix. Ethical internationalism (UN tradition, Marshall
+      // Plan, treaty regime building) is the institutional-internationalist
+      // anchor → ONT_S=4. Old ONT_S=3 reflects pre-ADR-010 framing.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
@@ -518,7 +541,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 5, sal: 3 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        // 3→4 audit Phase 4: institutional-internationalist anchor
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
@@ -573,12 +597,16 @@ var PrismEngine = (() => {
     {
       id: "027",
       name: "Popperian Liberal",
+      // Archetype-audit Phase 4 (2026-04-26). MOR 2→4: open-society liberalism
+      // is moral-universalist (wide spatial scope across humanity), not narrow.
+      // Old MOR=2 conflated Popper's individual-rights-first framing with
+      // narrow practiced scope; rubric requires spatial scope only.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -593,6 +621,10 @@ var PrismEngine = (() => {
     {
       id: "028",
       name: "Global Caretaker",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+      // ONT_S undercoding fix. Global care = WHO / Marshall Plan / aid-
+      // institution-builder tradition → institutional capacity belief, not
+      // mid-skepticism.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
@@ -603,7 +635,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+        // 3→4 audit Phase 4: institutional-internationalist anchor
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
@@ -633,6 +666,13 @@ var PrismEngine = (() => {
     {
       id: "031",
       name: "Planetary Steward",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
+      // user direction). Pattern A archetype-side: "Planetary Steward" implies
+      // institutional climate-care (IPCC, Paris regime, multilateral
+      // stewardship), not eco-anarchism. Old ONT_S=1 anti:high read this as
+      // accelerationist nihilism — opposite of the name. Anti direction also
+      // flipped: anti:high → anti:low (now antagonistic to institutional
+      // nihilism, not to capacity belief).
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -643,7 +683,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        // 1→4 audit Phase 4: institutional climate-care, not eco-anarchism
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
@@ -653,6 +694,12 @@ var PrismEngine = (() => {
     {
       id: "032",
       name: "Hamiltonian Technocrat",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→5 + sal 1→2. Hamilton is
+      // the literal rubric anchor for ONT_S=5 ("Hamilton, FDR New Dealers,
+      // Progressive-era state-builders"). A literal Hamilton-named archetype
+      // mid-coded on the dimension Hamilton anchors is the most direct rubric-
+      // cite miscoding in the corpus. Sal raised 1→2 per user direction —
+      // Hamiltonian institutional capacity is a defining trait, not a side note.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
@@ -663,7 +710,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        // 3→5 sal 1→2 audit Phase 4: Hamilton-anchor for institutional capacity belief
         PF: { kind: "continuous", pos: 3, anti: "high" },
         // Fixed: sal 0→1 (can't have anti on sal=0)
         TRB: { kind: "continuous", pos: 2, anti: "high" },
@@ -1346,11 +1394,17 @@ var PrismEngine = (() => {
       tier: "T1",
       // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): common-law
       // traditionalist; institutions (especially law) transmit and shape character.
+      // MOR 5→3 archetype-audit Phase 4 (2026-04-26): Pattern B inverse —
+      // common-law conservatism is hierarchical / English-tradition-oriented.
+      // Natural-law universalism is rhetorical; practiced moral scope is
+      // narrower (Christian-English-tradition in-group). MOR=5 read traditional
+      // moral content as wide spatial scope; rubric requires spatial scope only.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+        MOR: { kind: "continuous", pos: 3, sal: 2 },
+        // 5→3 audit Phase 4: practiced scope is narrower than rhetorical universalism (also dropped anti:low)
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
@@ -1471,6 +1525,11 @@ var PrismEngine = (() => {
       tier: "T1",
       // CU 2→3 (2026-04-26 broadened CU framing): nationalist but
       // development-focused; state-led growth, not cultural uniformity.
+      // ONT_S 1→5 archetype-audit Phase 4 (2026-04-26, PROMOTED HIGH).
+      // "Developmentalist" means institutional capacity belief — Hamilton, Lee
+      // Kuan Yew, post-war Japan/South Korea state-developmentalism. ONT_S=1
+      // reads developmentalists as institutional nihilists, opposite of the
+      // name. As direct as Hamiltonian Technocrat.
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1480,7 +1539,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+        // 1→5 audit Phase 4: developmentalist = institutional capacity belief
         PF: { kind: "continuous", pos: 4 },
         TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
@@ -1547,11 +1607,16 @@ var PrismEngine = (() => {
       // ONT_H 2 → 4 per ADR-010 (2026-04-26): closed traditionalists believe in
       // cultivation via tradition/family/religion. ONT_S held at 2 — they reject
       // modern state institutions while valuing inherited ones.
+      // MOR 4→2 archetype-audit Phase 4 (2026-04-26): a "Closed Traditionalist"
+      // with high MOR is incoherent — closure implies narrow practiced scope
+      // (in-group focus). Old MOR=4 read traditional moral content as wide
+      // spatial scope; rubric requires spatial scope only.
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
+        MOR: { kind: "continuous", pos: 2, sal: 2 },
+        // 4→2 audit Phase 4: closure = narrow practiced scope
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1773,6 +1838,13 @@ var PrismEngine = (() => {
     {
       id: "094",
       name: "Hard-State Manager",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4. Pattern A archetype-
+      // side: name explicitly asserts state-institutional capacity ("Hard-
+      // State"); old ONT_S=1 anti:high flipped this to institutional nihilism,
+      // contradicting the name. PRO=5 (max-rules-bound) is consistent with
+      // managerial authoritarianism but is incoherent with ONT_S=1. Anti
+      // direction also flipped: anti:high → anti:low (now antagonistic to
+      // institutional nihilism, not capacity belief).
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
@@ -1783,7 +1855,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        // 1→4 audit Phase 4: name says state-institutional, must match
         PF: { kind: "continuous", pos: 4 },
         TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
@@ -2662,6 +2735,11 @@ var PrismEngine = (() => {
     {
       id: "140",
       name: "Market Green Modernist",
+      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
+      // user direction). Pattern A archetype-side: "Market" + "Modernist" both
+      // imply institutional-mechanism faith (pricing carbon, regulating markets,
+      // reforming standards). Old ONT_S=1 read this as accelerationist /
+      // institution-nihilist, opposite of the name.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
@@ -2673,7 +2751,8 @@ var PrismEngine = (() => {
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+        // 1→4 audit Phase 4: market-mechanism reform = institutional capacity belief
         PF: { kind: "continuous", pos: 1 },
         TRB: { kind: "continuous", pos: 1 },
         EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
