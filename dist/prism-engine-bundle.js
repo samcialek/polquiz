@@ -5792,7 +5792,10 @@ var PrismEngine = (() => {
       section: "I",
       promptShort: "cross_partisan_priority_sort",
       uiType: "priority_sort",
-      priorityBattery: true,
+      // priorityBattery removed 2026-04-27 (Salience-Router Phase 3): Q99 is
+      // no longer in the fixed front door, so its priority-battery flag would
+      // auto-fire it for every respondent in EIG_FILL — defeating the
+      // adaptive-divergence goal.
       quality: 0.9,
       rewriteNeeded: false,
       optionLabels: {
@@ -5926,9 +5929,14 @@ var PrismEngine = (() => {
       section: "II",
       promptShort: "cultural_social_placement_dual",
       uiType: "dual_axis",
-      priorityBattery: true,
+      // priorityBattery removed 2026-04-27 (Salience-Router Phase 3): Q101 is
+      // pending rewrite — user flagged that the omnibus "social-direction"
+      // axis incorrectly conflates abortion / LGBT / trans / religion into
+      // one bucket. With priorityBattery removed, it's adaptive-only and
+      // unlikely to fire absent very-high CD salience. Will be replaced by
+      // split conjoint questions in a separate workstream.
       quality: 0.88,
-      rewriteNeeded: false,
+      rewriteNeeded: true,
       touchProfile: [
         { node: "CD", kind: "continuous", role: "position", weight: 0.8, touchType: "dual_axis_cd" },
         { node: "CD", kind: "continuous", role: "salience", weight: 0.75, touchType: "dual_axis_cd" }
@@ -7965,6 +7973,8 @@ var PrismEngine = (() => {
   var MEANINGFUL_POSITION_WEIGHT = 0.4;
   var POSITION_DRILL_SAL_FLOOR = 1.5;
   var MIN_POSITION_TOUCHES_PER_TOP_K = 2;
+  var MAX_POSITION_TOUCHES_TOP_K = 4;
+  var MAX_POSITION_TOUCHES_NON_TOP_K = 3;
   var TOP_K_BASE = 2;
   var TOP_K_CLOSE_THRESHOLD = 0.3;
 
@@ -8190,6 +8200,82 @@ var PrismEngine = (() => {
     return rules.some((predicate) => evaluatePredicate(state, predicate));
   }
 
+  // src/engine/topKDrill.ts
+  var SCORING_NODES = [
+    "MAT",
+    "CD",
+    "CU",
+    "MOR",
+    "PRO",
+    "COM",
+    "ZS",
+    "ONT_H",
+    "ONT_S"
+  ];
+  function expectedSalience(state, nodeId) {
+    const node = state.continuous[nodeId];
+    if (!node) return 0;
+    const d = node.salDist;
+    return d[0] * 0 + d[1] * 1 + d[2] * 2 + d[3] * 3;
+  }
+  function getTopSalientNodes(state, base = TOP_K_BASE, closeThreshold = TOP_K_CLOSE_THRESHOLD, floor = POSITION_DRILL_SAL_FLOOR) {
+    const sals = SCORING_NODES.map((n) => ({ node: n, sal: expectedSalience(state, n) })).filter((s) => s.sal >= floor).sort((a, b) => b.sal - a.sal);
+    if (sals.length === 0) return [];
+    const top = sals.slice(0, base);
+    if (sals.length > base) {
+      const lastTopSal = top[top.length - 1].sal;
+      const next = sals[base].sal;
+      if (next >= lastTopSal - closeThreshold) {
+        top.push(sals[base]);
+      }
+    }
+    return top.map((s) => s.node);
+  }
+  function meaningfulPositionTouchCount(state, nodeId, questionsById, threshold = MEANINGFUL_POSITION_WEIGHT) {
+    let count = 0;
+    for (const qIdStr of Object.keys(state.answers)) {
+      const q = questionsById.get(parseInt(qIdStr, 10));
+      if (!q) continue;
+      const tps = q.touchProfile ?? [];
+      for (const tp of tps) {
+        if (tp.node === nodeId && tp.role === "position" && tp.weight >= threshold) {
+          count++;
+          break;
+        }
+      }
+    }
+    return count;
+  }
+  function topKNodesStillNeedingDrill(state, topK, questionsById) {
+    return topK.filter(
+      (n) => meaningfulPositionTouchCount(state, n, questionsById) < MIN_POSITION_TOUCHES_PER_TOP_K
+    );
+  }
+  function selectTopKDrillQuestion(state, available, questionsById, topK) {
+    const needsDrill = topKNodesStillNeedingDrill(state, topK, questionsById);
+    if (needsDrill.length === 0) return null;
+    const needsDrillSet = new Set(needsDrill);
+    const candidates = [];
+    for (const q of available) {
+      const tps = q.touchProfile ?? [];
+      const meaningfulHits = /* @__PURE__ */ new Set();
+      for (const tp of tps) {
+        if (tp.role === "position" && tp.weight >= MEANINGFUL_POSITION_WEIGHT && needsDrillSet.has(tp.node)) {
+          meaningfulHits.add(tp.node);
+        }
+      }
+      if (meaningfulHits.size > 0) {
+        candidates.push({ q, multiHit: meaningfulHits.size, quality: q.quality ?? 0 });
+      }
+    }
+    if (candidates.length === 0) return null;
+    candidates.sort((a, b) => {
+      if (b.multiHit !== a.multiHit) return b.multiHit - a.multiHit;
+      return b.quality - a.quality;
+    });
+    return candidates[0].q;
+  }
+
   // src/engine/selectorEIG.ts
   var ACTIVE_SAL_THRESHOLD = 2;
   var POS_CONVERGED_MAX_PROB = 0.45;
@@ -8379,13 +8465,52 @@ var PrismEngine = (() => {
     for (const t of q.touchProfile) {
       const coverage = touchCoverage(q, t);
       if (coverage === 0) continue;
-      total += coverage * t.weight * touchInfoGain(state, t, questionsById);
+      let salWeight = 1;
+      if (t.role === "position" && CONTINUOUS_NODES.includes(t.node)) {
+        const sal = expectedSalience(state, t.node);
+        salWeight = 0.3 + sal / 3 * 1.2;
+      }
+      total += coverage * t.weight * salWeight * touchInfoGain(state, t, questionsById);
     }
     return total * q.quality * (q.rewriteNeeded ? 0.7 : 1);
   }
+  function passesTouchCapFilter(state, q, questionsById, topK) {
+    const positionTouches = q.touchProfile.filter(
+      (t) => t.role === "position" && t.weight >= MEANINGFUL_POSITION_WEIGHT
+    );
+    if (positionTouches.length === 0) return true;
+    for (const t of positionTouches) {
+      if (!CONTINUOUS_NODES.includes(t.node)) continue;
+      const cap = topK.has(t.node) ? MAX_POSITION_TOUCHES_TOP_K : MAX_POSITION_TOUCHES_NON_TOP_K;
+      const touches = meaningfulPositionTouchCount(
+        state,
+        t.node,
+        questionsById
+      );
+      if (touches < cap) return true;
+    }
+    return false;
+  }
+  function passesSalienceFloorGate(state, q) {
+    const positionTouches = q.touchProfile.filter(
+      (t) => t.role === "position" && t.weight >= MEANINGFUL_POSITION_WEIGHT
+    );
+    if (positionTouches.length === 0) return true;
+    for (const t of positionTouches) {
+      if (!CONTINUOUS_NODES.includes(t.node)) continue;
+      const sal = expectedSalience(state, t.node);
+      if (sal >= POSITION_DRILL_SAL_FLOOR) return true;
+    }
+    return false;
+  }
   function selectNextQuestionEIG(state, available, questionsById) {
-    const eligible = available.filter(
+    const baseEligible = available.filter(
       (q) => !(q.id in state.answers) && isQuestionEligible(state, q)
+    );
+    if (!baseEligible.length) return null;
+    const topK = new Set(getTopSalientNodes(state));
+    const eligible = baseEligible.filter(
+      (q) => passesSalienceFloorGate(state, q) && passesTouchCapFilter(state, q, questionsById, topK)
     );
     if (!eligible.length) return null;
     const priority = eligible.filter((q) => q.priorityBattery);
@@ -8490,82 +8615,6 @@ var PrismEngine = (() => {
       familyOf[a.id] = neighbours;
     }
     return { pairwise, familyOf, threshold };
-  }
-
-  // src/engine/topKDrill.ts
-  var SCORING_NODES = [
-    "MAT",
-    "CD",
-    "CU",
-    "MOR",
-    "PRO",
-    "COM",
-    "ZS",
-    "ONT_H",
-    "ONT_S"
-  ];
-  function expectedSalience(state, nodeId) {
-    const node = state.continuous[nodeId];
-    if (!node) return 0;
-    const d = node.salDist;
-    return d[0] * 0 + d[1] * 1 + d[2] * 2 + d[3] * 3;
-  }
-  function getTopSalientNodes(state, base = TOP_K_BASE, closeThreshold = TOP_K_CLOSE_THRESHOLD, floor = POSITION_DRILL_SAL_FLOOR) {
-    const sals = SCORING_NODES.map((n) => ({ node: n, sal: expectedSalience(state, n) })).filter((s) => s.sal >= floor).sort((a, b) => b.sal - a.sal);
-    if (sals.length === 0) return [];
-    const top = sals.slice(0, base);
-    if (sals.length > base) {
-      const lastTopSal = top[top.length - 1].sal;
-      const next = sals[base].sal;
-      if (next >= lastTopSal - closeThreshold) {
-        top.push(sals[base]);
-      }
-    }
-    return top.map((s) => s.node);
-  }
-  function meaningfulPositionTouchCount(state, nodeId, questionsById, threshold = MEANINGFUL_POSITION_WEIGHT) {
-    let count = 0;
-    for (const qIdStr of Object.keys(state.answers)) {
-      const q = questionsById.get(parseInt(qIdStr, 10));
-      if (!q) continue;
-      const tps = q.touchProfile ?? [];
-      for (const tp of tps) {
-        if (tp.node === nodeId && tp.role === "position" && tp.weight >= threshold) {
-          count++;
-          break;
-        }
-      }
-    }
-    return count;
-  }
-  function topKNodesStillNeedingDrill(state, topK, questionsById) {
-    return topK.filter(
-      (n) => meaningfulPositionTouchCount(state, n, questionsById) < MIN_POSITION_TOUCHES_PER_TOP_K
-    );
-  }
-  function selectTopKDrillQuestion(state, available, questionsById, topK) {
-    const needsDrill = topKNodesStillNeedingDrill(state, topK, questionsById);
-    if (needsDrill.length === 0) return null;
-    const needsDrillSet = new Set(needsDrill);
-    const candidates = [];
-    for (const q of available) {
-      const tps = q.touchProfile ?? [];
-      const meaningfulHits = /* @__PURE__ */ new Set();
-      for (const tp of tps) {
-        if (tp.role === "position" && tp.weight >= MEANINGFUL_POSITION_WEIGHT && needsDrillSet.has(tp.node)) {
-          meaningfulHits.add(tp.node);
-        }
-      }
-      if (meaningfulHits.size > 0) {
-        candidates.push({ q, multiHit: meaningfulHits.size, quality: q.quality ?? 0 });
-      }
-    }
-    if (candidates.length === 0) return null;
-    candidates.sort((a, b) => {
-      if (b.multiHit !== a.multiHit) return b.multiHit - a.multiHit;
-      return b.quality - a.quality;
-    });
-    return candidates[0].q;
   }
 
   // src/identity/resolveIdentityPrimary.ts
