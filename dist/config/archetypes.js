@@ -361,6 +361,13 @@ export const ARCHETYPES = [
     {
         id: "017",
         name: "Uncompromising Redistributionist",
+        // Archetype-audit Phase 6 ONT_H sweep (2026-04-27). ONT_H 1→4: parallel
+        // fix to 012 Class-War Leftist. Old ONT_H=1 reflects pre-ADR-010
+        // optimism-vs-pessimism reading ("pessimist about humans under
+        // capitalism"). Under malleability-via-cultivation framing, an
+        // uncompromising redistributionist who fights for max-state-redistribution
+        // believes humans are reshaped by economic structure → high malleability.
+        // Anti direction also flipped (high→low: now antagonistic to humans-fixed).
         tier: "T1",
         nodes: {
             MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -370,7 +377,7 @@ export const ARCHETYPES = [
             PRO: { kind: "continuous", pos: 2, sal: 1 },
             COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-            ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+            ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" }, // 1→4 audit Phase 6: humans reshaped by economic structure
             ONT_S: { kind: "continuous", pos: 2, sal: 1 },
             PF: { kind: "continuous", pos: 2 },
             TRB: { kind: "continuous", pos: 3 },
@@ -1235,13 +1242,18 @@ export const ARCHETYPES = [
     {
         id: "065",
         name: "Opportunity Liberal",
+        // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: rubric
+        // distinguishes "outcome-focused / bureaucracy-skeptical" (PRO 3) from
+        // "outright rule-breaking" (PRO 1). Opportunity Liberals work within
+        // institutions to expand opportunity; not anti-procedural in the
+        // Trump-2020 / Lenin sense. Anti direction also dropped (was anti:high).
         tier: "T1",
         nodes: {
             MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
             CD: { kind: "continuous", pos: 2, sal: 2 },
             CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
             MOR: { kind: "continuous", pos: 5, sal: 2 },
-            PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PRO: { kind: "continuous", pos: 3, sal: 3 }, // 1→3 audit Phase 6: outcome-focused, not anti-procedural
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
@@ -1255,13 +1267,17 @@ export const ARCHETYPES = [
     {
         id: "067",
         name: "Free-Exchange Modernist",
+        // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: market-
+        // libertarianism is bureaucracy-skeptical, not anti-procedural; free-
+        // traders work within rule-of-law / WTO / contract-enforcement frames
+        // to liberalize, not break them.
         tier: "T1",
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
             CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
             CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
             MOR: { kind: "continuous", pos: 4, sal: 2 },
-            PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+            PRO: { kind: "continuous", pos: 3, sal: 3 }, // 1→3 audit Phase 6: bureaucracy-skeptical, not anti-procedural
             COM: { kind: "continuous", pos: 3, sal: 2 },
             ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
             ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2571,13 +2587,17 @@ export const ARCHETYPES = [
     {
         id: "135",
         name: "Disruptive Cosmopolitan",
+        // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: tech-
+        // entrepreneurial / startup-cosmopolitan disruption operates within
+        // contract law and property regimes; "anti-bureaucratic" reads as
+        // outcome-focused, not actually rule-breaking.
         tier: "T1",
         nodes: {
             MAT: { kind: "continuous", pos: 5, sal: 2 },
             CD: { kind: "continuous", pos: 1, sal: 2 },
             CU: { kind: "continuous", pos: 5, sal: 2 },
             MOR: { kind: "continuous", pos: 5, sal: 2 }, // FIX: Cosmopolitan = wide moral circle (was 1)
-            PRO: { kind: "continuous", pos: 1, sal: 2 }, // Anti-bureaucratic
+            PRO: { kind: "continuous", pos: 3, sal: 2 }, // 1→3 audit Phase 6: bureaucracy-skeptical, not rule-breaking
             COM: { kind: "continuous", pos: 1, sal: 1 },
             ZS: { kind: "continuous", pos: 1, sal: 1 },
             ONT_H: { kind: "continuous", pos: 4, sal: 2 },

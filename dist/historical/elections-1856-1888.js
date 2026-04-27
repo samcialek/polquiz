@@ -235,14 +235,25 @@ const election1864 = {
             AES: 5, // Visionary - Gettysburg Address, "new birth of freedom," transformative
         },
         {
+            // McClellan 1864 platform-vs-persona correction (Phase 6, 2026-04-27).
+            // Per rubric, "signal" = platform + rhetoric + persona + actions. The
+            // prior coding read McClellan exclusively through the Copperhead party
+            // platform, but McClellan publicly REPUDIATED the peace plank, ran as
+            // a War Democrat, and was a former Union general. His personal signal
+            // was moderate-conservative Democrat, not max-extreme on every axis.
+            // Softened: MAT 5→4 (not max free-market, conservative-moderate),
+            // CD 5→4 (traditional Democrat, not maximum), MOR 1→2 (narrow practiced
+            // scope, not klan-tier), PRO 5→4 (institutional general, not max-rules-
+            // bound; he stretched the platform-vs-persona line). CU=1 retained
+            // (party platform genuinely was states-rights peace).
             name: "McClellan",
             party: "Democratic",
             year: 1864,
-            MAT: 5, // Push extreme - planter/merchant economics, restore old order
-            CD: 5, // Maximum conservative - opposed emancipation, restore old Union
-            CU: 1, // Maximum assimilationist - states' rights, no rights for Black people
-            MOR: 1, // Maximum narrow moral circle - pro-slavery party
-            PRO: 5, // Maximum proceduralist - attacked Lincoln's wartime executive overreach
+            MAT: 4, // Conservative Democrat, not max-laissez-faire
+            CD: 4, // Traditional Democrat opposing emancipation; not max-restorationist
+            CU: 1, // Maximum assimilationist - states' rights peace platform
+            MOR: 2, // Narrow practiced scope - Civil War Democrat, not klan-tier
+            PRO: 4, // Institutional general - mostly procedural but war Democrat tension with platform
             COM: 4, // Compromiser - negotiated peace, restore Union through concession
             ZS: 4, // Zero-sum - war is destroying both sides, stop the bleeding
             ONT_H: 2, // Pessimistic - war is failing, carnage is pointless

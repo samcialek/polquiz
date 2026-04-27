@@ -127,7 +127,10 @@ const election1800 = {
             MAT: 5, // Maximum pro-commerce - Hamilton's system
             CD: 5, // Maximum cultural conservatism - Alien & Sedition Acts
             CU: 1, // Maximum closed - nativist legislation
-            MOR: 1, // Narrow moral circle - elite governance
+            // MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring is narrow
+            // practiced scope but not klan-tier in-group-only. MOR 1 reserved for
+            // explicit dehumanization / ethnic cleansing per rubric anchors.
+            MOR: 2, // Narrow practiced scope - elite governance, not klan-tier
             PRO: 5, // Maximum proceduralist
             COM: 2, // Low compromise - stubborn
             ZS: 4, // Zero-sum - French threat, partisan enemies
@@ -162,10 +165,12 @@ const election1804 = {
             EPS: 0, AES: 5,
         },
         {
+            // Pinckney 1804 MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring
+            // is narrow practiced scope but not klan-tier; rubric reserves MOR 1.
             name: "Pinckney",
             party: "Federalist",
             year: 1804,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
+            MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
             ZS: 4, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 4, ENG: 3,
             EPS: 1, AES: 0,
         },
@@ -253,10 +258,12 @@ const election1816 = {
             EPS: 1, AES: 0,
         },
         {
+            // King 1816 MOR 1→2 (Phase 6, 2026-04-27). Final Federalist nominee;
+            // elite-favoring is narrow practiced scope but not klan-tier.
             name: "King",
             party: "Federalist",
             year: 1816,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 3,
+            MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
             ZS: 4, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 4, ENG: 3,
             EPS: 1, AES: 0,
         },
@@ -638,10 +645,12 @@ const election1852 = {
             AES: 3, // Authentic - "handsome Frank," young, vigorous
         },
         {
+            // Scott 1852 MOR 1→2 (Phase 6, 2026-04-27). Whig elite/Northern-establishment
+            // candidate; narrow practiced scope but not klan-tier per rubric.
             name: "Scott",
             party: "Whig",
             year: 1852,
-            MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 5,
+            MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 5,
             ZS: 2, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 1, ENG: 2,
             EPS: 1, AES: 0,
         },

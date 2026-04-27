@@ -90,13 +90,15 @@ const election1944 = {
             AES: 0, // Statesman - commander-in-chief gravitas
         },
         {
+            // Dewey 1944 MOR 1→2 (Phase 6, 2026-04-27). Establishment-Republican
+            // narrow practiced scope is MOR 2 territory per rubric, not klan-tier.
             name: "Dewey",
             party: "Republican",
             year: 1944,
             MAT: 5, // Pro-market — criticized New Deal spending
             CD: 5, // Maximum conservative — establishment
             CU: 1, // Maximum assimilationist
-            MOR: 1, // Maximum narrow
+            MOR: 2, // Narrow practiced scope - establishment Republican, not klan-tier
             PRO: 5, // Maximum proceduralist
             COM: 3, // Mixed
             ZS: 3, // Mixed
@@ -241,7 +243,12 @@ const election1952 = {
             name: "Stevenson",
             party: "Democratic",
             year: 1952,
-            MAT: 1, // Maximum redistributive - full New Deal expansion
+            // Stevenson 1952 MAT 1→2 (Phase 6, 2026-04-27). MAT 1 anchor in rubric
+            // is reserved for Debs / Norman Thomas / Bernie / FDR 1936 / H. Wallace
+            // 1948 — true max-redistribution. Stevenson is a New Deal liberal in
+            // Truman's mold (MAT 2 anchor: Truman 1948, Carter 1976, Mondale 1984,
+            // Obama 2008). Off-by-one fix.
+            MAT: 2, // New Deal liberal - Truman/Carter/Mondale band, not max-redistribution
             CD: 1, // Culturally open - intellectual, progressive, "egghead"
             CU: 5, // Maximum internationalist - UN, multilateral, cosmopolitan
             MOR: 5, // Maximum universalist - humanitarian concern, broad moral circle
@@ -288,10 +295,12 @@ const election1956 = {
             AES: 0, // Statesman - beloved grandfather-commander
         },
         {
+            // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
+            // 1952; New Deal liberal sits at MAT 2 anchor with Truman/Carter/Mondale.
             name: "Stevenson",
             party: "Democratic",
             year: 1956,
-            MAT: 1, // Maximum redistributive - expanded New Deal vision
+            MAT: 2, // New Deal liberal - Truman/Carter/Mondale band
             CD: 1, // Culturally open - civil rights support, progressive intellectual
             CU: 5, // Maximum internationalist - nuclear test ban, UN
             MOR: 5, // Maximum universalist - humanitarian, nuclear concern

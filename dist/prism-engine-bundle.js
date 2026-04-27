@@ -375,6 +375,13 @@ var PrismEngine = (() => {
     {
       id: "017",
       name: "Uncompromising Redistributionist",
+      // Archetype-audit Phase 6 ONT_H sweep (2026-04-27). ONT_H 1→4: parallel
+      // fix to 012 Class-War Leftist. Old ONT_H=1 reflects pre-ADR-010
+      // optimism-vs-pessimism reading ("pessimist about humans under
+      // capitalism"). Under malleability-via-cultivation framing, an
+      // uncompromising redistributionist who fights for max-state-redistribution
+      // believes humans are reshaped by economic structure → high malleability.
+      // Anti direction also flipped (high→low: now antagonistic to humans-fixed).
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -384,7 +391,8 @@ var PrismEngine = (() => {
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+        // 1→4 audit Phase 6: humans reshaped by economic structure
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
         PF: { kind: "continuous", pos: 2 },
         TRB: { kind: "continuous", pos: 3 },
@@ -1277,13 +1285,19 @@ var PrismEngine = (() => {
     {
       id: "065",
       name: "Opportunity Liberal",
+      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: rubric
+      // distinguishes "outcome-focused / bureaucracy-skeptical" (PRO 3) from
+      // "outright rule-breaking" (PRO 1). Opportunity Liberals work within
+      // institutions to expand opportunity; not anti-procedural in the
+      // Trump-2020 / Lenin sense. Anti direction also dropped (was anti:high).
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         MOR: { kind: "continuous", pos: 5, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PRO: { kind: "continuous", pos: 3, sal: 3 },
+        // 1→3 audit Phase 6: outcome-focused, not anti-procedural
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
@@ -1297,13 +1311,18 @@ var PrismEngine = (() => {
     {
       id: "067",
       name: "Free-Exchange Modernist",
+      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: market-
+      // libertarianism is bureaucracy-skeptical, not anti-procedural; free-
+      // traders work within rule-of-law / WTO / contract-enforcement frames
+      // to liberalize, not break them.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         MOR: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+        PRO: { kind: "continuous", pos: 3, sal: 3 },
+        // 1→3 audit Phase 6: bureaucracy-skeptical, not anti-procedural
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2622,6 +2641,10 @@ var PrismEngine = (() => {
     {
       id: "135",
       name: "Disruptive Cosmopolitan",
+      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: tech-
+      // entrepreneurial / startup-cosmopolitan disruption operates within
+      // contract law and property regimes; "anti-bureaucratic" reads as
+      // outcome-focused, not actually rule-breaking.
       tier: "T1",
       nodes: {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
@@ -2629,8 +2652,8 @@ var PrismEngine = (() => {
         CU: { kind: "continuous", pos: 5, sal: 2 },
         MOR: { kind: "continuous", pos: 5, sal: 2 },
         // FIX: Cosmopolitan = wide moral circle (was 1)
-        PRO: { kind: "continuous", pos: 1, sal: 2 },
-        // Anti-bureaucratic
+        PRO: { kind: "continuous", pos: 3, sal: 2 },
+        // 1→3 audit Phase 6: bureaucracy-skeptical, not rule-breaking
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
@@ -8921,8 +8944,11 @@ var PrismEngine = (() => {
         // Maximum cultural conservatism - Alien & Sedition Acts
         CU: 1,
         // Maximum closed - nativist legislation
-        MOR: 1,
-        // Narrow moral circle - elite governance
+        // MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring is narrow
+        // practiced scope but not klan-tier in-group-only. MOR 1 reserved for
+        // explicit dehumanization / ethnic cleansing per rubric anchors.
+        MOR: 2,
+        // Narrow practiced scope - elite governance, not klan-tier
         PRO: 5,
         // Maximum proceduralist
         COM: 2,
@@ -8977,13 +9003,15 @@ var PrismEngine = (() => {
         AES: 5
       },
       {
+        // Pinckney 1804 MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring
+        // is narrow practiced scope but not klan-tier; rubric reserves MOR 1.
         name: "Pinckney",
         party: "Federalist",
         year: 1804,
         MAT: 5,
         CD: 5,
         CU: 1,
-        MOR: 1,
+        MOR: 2,
         PRO: 5,
         COM: 3,
         ZS: 4,
@@ -9134,13 +9162,15 @@ var PrismEngine = (() => {
         AES: 0
       },
       {
+        // King 1816 MOR 1→2 (Phase 6, 2026-04-27). Final Federalist nominee;
+        // elite-favoring is narrow practiced scope but not klan-tier.
         name: "King",
         party: "Federalist",
         year: 1816,
         MAT: 5,
         CD: 5,
         CU: 1,
-        MOR: 1,
+        MOR: 2,
         PRO: 5,
         COM: 3,
         ZS: 4,
@@ -9770,13 +9800,15 @@ var PrismEngine = (() => {
         // Authentic - "handsome Frank," young, vigorous
       },
       {
+        // Scott 1852 MOR 1→2 (Phase 6, 2026-04-27). Whig elite/Northern-establishment
+        // candidate; narrow practiced scope but not klan-tier per rubric.
         name: "Scott",
         party: "Whig",
         year: 1852,
         MAT: 5,
         CD: 5,
         CU: 1,
-        MOR: 1,
+        MOR: 2,
         PRO: 5,
         COM: 5,
         ZS: 2,
@@ -10098,19 +10130,30 @@ var PrismEngine = (() => {
         // Visionary - Gettysburg Address, "new birth of freedom," transformative
       },
       {
+        // McClellan 1864 platform-vs-persona correction (Phase 6, 2026-04-27).
+        // Per rubric, "signal" = platform + rhetoric + persona + actions. The
+        // prior coding read McClellan exclusively through the Copperhead party
+        // platform, but McClellan publicly REPUDIATED the peace plank, ran as
+        // a War Democrat, and was a former Union general. His personal signal
+        // was moderate-conservative Democrat, not max-extreme on every axis.
+        // Softened: MAT 5→4 (not max free-market, conservative-moderate),
+        // CD 5→4 (traditional Democrat, not maximum), MOR 1→2 (narrow practiced
+        // scope, not klan-tier), PRO 5→4 (institutional general, not max-rules-
+        // bound; he stretched the platform-vs-persona line). CU=1 retained
+        // (party platform genuinely was states-rights peace).
         name: "McClellan",
         party: "Democratic",
         year: 1864,
-        MAT: 5,
-        // Push extreme - planter/merchant economics, restore old order
-        CD: 5,
-        // Maximum conservative - opposed emancipation, restore old Union
+        MAT: 4,
+        // Conservative Democrat, not max-laissez-faire
+        CD: 4,
+        // Traditional Democrat opposing emancipation; not max-restorationist
         CU: 1,
-        // Maximum assimilationist - states' rights, no rights for Black people
-        MOR: 1,
-        // Maximum narrow moral circle - pro-slavery party
-        PRO: 5,
-        // Maximum proceduralist - attacked Lincoln's wartime executive overreach
+        // Maximum assimilationist - states' rights peace platform
+        MOR: 2,
+        // Narrow practiced scope - Civil War Democrat, not klan-tier
+        PRO: 4,
+        // Institutional general - mostly procedural but war Democrat tension with platform
         COM: 4,
         // Compromiser - negotiated peace, restore Union through concession
         ZS: 4,
@@ -11940,6 +11983,8 @@ var PrismEngine = (() => {
         // Statesman - commander-in-chief gravitas
       },
       {
+        // Dewey 1944 MOR 1→2 (Phase 6, 2026-04-27). Establishment-Republican
+        // narrow practiced scope is MOR 2 territory per rubric, not klan-tier.
         name: "Dewey",
         party: "Republican",
         year: 1944,
@@ -11949,8 +11994,8 @@ var PrismEngine = (() => {
         // Maximum conservative — establishment
         CU: 1,
         // Maximum assimilationist
-        MOR: 1,
-        // Maximum narrow
+        MOR: 2,
+        // Narrow practiced scope - establishment Republican, not klan-tier
         PRO: 5,
         // Maximum proceduralist
         COM: 3,
@@ -12160,8 +12205,13 @@ var PrismEngine = (() => {
         name: "Stevenson",
         party: "Democratic",
         year: 1952,
-        MAT: 1,
-        // Maximum redistributive - full New Deal expansion
+        // Stevenson 1952 MAT 1→2 (Phase 6, 2026-04-27). MAT 1 anchor in rubric
+        // is reserved for Debs / Norman Thomas / Bernie / FDR 1936 / H. Wallace
+        // 1948 — true max-redistribution. Stevenson is a New Deal liberal in
+        // Truman's mold (MAT 2 anchor: Truman 1948, Carter 1976, Mondale 1984,
+        // Obama 2008). Off-by-one fix.
+        MAT: 2,
+        // New Deal liberal - Truman/Carter/Mondale band, not max-redistribution
         CD: 1,
         // Culturally open - intellectual, progressive, "egghead"
         CU: 5,
@@ -12228,11 +12278,13 @@ var PrismEngine = (() => {
         // Statesman - beloved grandfather-commander
       },
       {
+        // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
+        // 1952; New Deal liberal sits at MAT 2 anchor with Truman/Carter/Mondale.
         name: "Stevenson",
         party: "Democratic",
         year: 1956,
-        MAT: 1,
-        // Maximum redistributive - expanded New Deal vision
+        MAT: 2,
+        // New Deal liberal - Truman/Carter/Mondale band
         CD: 1,
         // Culturally open - civil rights support, progressive intellectual
         CU: 5,

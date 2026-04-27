@@ -19,6 +19,7 @@ import { EUROPE_PART2 } from "./jurisdictions-europe2.js";
 import { AMERICAS } from "./jurisdictions-americas.js";
 import { ASIA } from "./jurisdictions-asia.js";
 import { MENA_AFRICA } from "./jurisdictions-mena.js";
+import { JURISDICTION_DYSFUNCTION, dysfunctionFactor, } from "./jurisdictions-dysfunction.js";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 // ── Configuration ───────────────────────────────────────────────────────────
@@ -49,7 +50,7 @@ function computeAlignment(arch, regime) {
             continue;
         const ct = tmpl;
         const archPos = ct.pos;
-        const archSal = Math.max(ct.sal, 0.5); // Floor: even low-salience nodes contribute some distance
+        const archSal = Math.max(ct.sal ?? 0, 0.5); // Floor: even low-salience nodes contribute some distance
         const regimePos = regime[node];
         if (regimePos == null)
             continue;
@@ -70,9 +71,14 @@ function computeAlignment(arch, regime) {
     const distance = totalWeight > 0
         ? Math.sqrt(weightedSumSq / totalWeight)
         : 4; // Max distance if no nodes have salience
-    // Gaussian support → alignment
+    // Gaussian support → alignment, then dysfunction multiplier (Phase 6,
+    // 2026-04-27). Symmetric dampening for chaotic / failed / predatory
+    // regimes; see src/global/jurisdictions-dysfunction.ts and
+    // results/dysfunction-coding/.
     const support = 100 * Math.exp(-Math.pow(distance / GAUSSIAN_SIGMA, 2));
-    const alignment = (support / 50 - 1) * 3;
+    const dysKey = `${regime.jurisdiction}|${regime.regime}|${regime.startYear}`;
+    const dysFactor = dysfunctionFactor(JURISDICTION_DYSFUNCTION[dysKey]);
+    const alignment = (support / 50 - 1) * 3 * dysFactor;
     return Math.max(-3, Math.min(3, +alignment.toFixed(3)));
 }
 // ── CSV builders ────────────────────────────────────────────────────────────
