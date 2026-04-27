@@ -7,30 +7,48 @@
 import { ARCHETYPES } from "../config/archetypes.js";
 import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
-import { applySingleChoiceAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, } from "../engine/update.js";
+import { applySingleChoiceAnswer, applyMultiAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, applyBestWorstSalience, applyPrioritySort, applyDualAxisAnswer, } from "../engine/update.js";
 import { multiplyAndNormalize } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
+import { selectNextQuestionEIG, shouldStopEIG } from "../engine/selectorEIG.js";
 import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
-import { FIXED_16 } from "../engine/config.js";
+import { buildArchetypeFamilies } from "../engine/archetypeFamilies.js";
+import { SALIENCE_ROUTER_FIXED } from "../engine/config.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
+import { computeEngagementLabel } from "../engine/engagementLabel.js";
+import { respondentSignatureFromState } from "../engine/respondentSignature.js";
+import { ELECTIONS } from "../historical/candidates.js";
+import { getContext } from "../historical/contexts.js";
+import { predictVote } from "../historical/respondentVoteChoice.js";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
 let _state = null;
 let _archetypes = [];
+let _activeArchetypes = [];
+let _familyIndex = null;
 let _questions = [];
 let _questionsById = new Map();
 const _ratioBoosts = new Map();
+let _demographics = null;
+// Ratio → salience likelihood mapping. Replaced 2026-04-24 per ADR-008
+// with log-scaled buckets and harder cap. Previous version mapped any
+// ratio >= 4 to maximum salience (0.60 on sal=3), which meant a single
+// error-tradeoff with ratio=100 produced the same salience push as ratio=4
+// but the user's *intent* was very different. New mapping uses 4 discrete
+// log-scale buckets: 1.5-2 (mild), 2-5 (moderate), 5-25 (strong), 25+
+// (very strong). Caps the maximum sal-3 mass at 0.50 so a single ratio-
+// follow-up cannot dominate a node's salience profile.
 function ratioToSalienceDist(ratio) {
-    if (ratio >= 4)
-        return [0.02, 0.08, 0.30, 0.60];
-    if (ratio >= 3)
-        return [0.04, 0.12, 0.34, 0.50];
+    if (ratio >= 25)
+        return [0.04, 0.14, 0.32, 0.50]; // very strong (was 0.60)
+    if (ratio >= 5)
+        return [0.08, 0.20, 0.36, 0.36]; // strong
     if (ratio >= 2)
-        return [0.08, 0.18, 0.34, 0.40];
-    return [0.18, 0.28, 0.30, 0.24];
+        return [0.14, 0.28, 0.36, 0.22]; // moderate
+    return [0.22, 0.32, 0.30, 0.16]; // mild
 }
 function applyStoredRatioBoost(q) {
     if (!_state)
@@ -62,9 +80,18 @@ function deepCopyState(state) {
             dist: [...state.trbAnchor.dist],
             touches: state.trbAnchor.touches,
         },
-        archetypePosterior: { ...state.archetypePosterior },
+        archetypeDistances: { ...state.archetypeDistances },
         currentLeader: state.currentLeader,
         consecutiveLeadCount: state.consecutiveLeadCount,
+        // Metadata fields written by Q200/Q211/Q212 update hooks. Snapshot must
+        // round-trip these or back-navigation will silently drop election-alignment
+        // signals that the user already provided.
+        partyID: state.partyID ?? null,
+        strategicVoting: state.strategicVoting,
+        dominantNode: state.dominantNode ?? null,
+        negativeParties: state.negativeParties
+            ? new Set(state.negativeParties)
+            : undefined,
     };
     for (const nodeId of CONTINUOUS_NODES) {
         const src = state.continuous[nodeId];
@@ -91,7 +118,7 @@ function deepCopyState(state) {
 // ---------------------------------------------------------------------------
 // State initialization (mirrors simulation.ts createInitialState)
 // ---------------------------------------------------------------------------
-function createInitialState(archetypes) {
+function createInitialState() {
     const continuous = {};
     for (const nodeId of CONTINUOUS_NODES) {
         continuous[nodeId] = {
@@ -112,10 +139,6 @@ function createInitialState(archetypes) {
             status: "unknown",
         };
     }
-    const archetypePosterior = {};
-    for (const a of archetypes) {
-        archetypePosterior[a.id] = a.prior;
-    }
     return {
         answers: {},
         continuous,
@@ -124,50 +147,30 @@ function createInitialState(archetypes) {
             dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
             touches: 0,
         },
-        archetypePosterior,
+        archetypeDistances: {},
         currentLeader: undefined,
         consecutiveLeadCount: 0,
     };
 }
 // ---------------------------------------------------------------------------
-// Posterior update (mirrors simulation.ts updatePosteriors)
+// Distance update (Phase 3 Euclidean WTA scorer)
 // ---------------------------------------------------------------------------
-function updatePosteriors(state, archetypes) {
-    const nAnswered = Object.keys(state.answers).length;
-    const distances = {};
-    let minDist = Infinity;
+function updateDistances(state, archetypes) {
+    let leaderId;
+    let leaderDist = Infinity;
     for (const a of archetypes) {
         const dist = archetypeDistance(state, a);
-        distances[a.id] = dist;
-        if (dist < minDist)
-            minDist = dist;
+        state.archetypeDistances[a.id] = dist;
+        if (dist < leaderDist) {
+            leaderDist = dist;
+            leaderId = a.id;
+        }
     }
-    // Adaptive temperature: starts warm (0.12), cools to 0.04 by question 40
-    const baseTemp = 0.12;
-    const minTemp = 0.04;
-    const coolRate = Math.min(1.0, nAnswered / 40);
-    const temperature = baseTemp - (baseTemp - minTemp) * coolRate;
-    let totalLikelihood = 0;
-    const likelihoods = {};
-    for (const a of archetypes) {
-        const likelihood = Math.exp(-(distances[a.id] - minDist) / temperature);
-        likelihoods[a.id] = likelihood * a.prior;
-        totalLikelihood += likelihoods[a.id];
-    }
-    for (const a of archetypes) {
-        state.archetypePosterior[a.id] = totalLikelihood > 0
-            ? likelihoods[a.id] / totalLikelihood
-            : a.prior;
-    }
-    // Update leader tracking
-    const entries = Object.entries(state.archetypePosterior)
-        .sort((a, b) => b[1] - a[1]);
-    const newLeader = entries[0]?.[0];
-    if (newLeader === state.currentLeader) {
+    if (leaderId === state.currentLeader) {
         state.consecutiveLeadCount = (state.consecutiveLeadCount ?? 0) + 1;
     }
     else {
-        state.currentLeader = newLeader;
+        state.currentLeader = leaderId;
         state.consecutiveLeadCount = 1;
     }
 }
@@ -187,6 +190,20 @@ function toQuizQuestion(q) {
     }
     if (q.optionEvidence) {
         out.options = Object.keys(q.optionEvidence);
+    }
+    if (q.dualAxisMap) {
+        out.dualAxisMap = {
+            node: q.dualAxisMap.node,
+            xLow: [...q.dualAxisMap.xLow],
+            xHigh: [...q.dualAxisMap.xHigh],
+        };
+    }
+    if (q.strengthFollowUp) {
+        out.strengthFollowUp = {
+            kind: q.strengthFollowUp.kind,
+            prompt: q.strengthFollowUp.prompt,
+            labels: q.strengthFollowUp.labels ? { ...q.strengthFollowUp.labels } : undefined,
+        };
     }
     if (q.uiType === "slider") {
         out.slider = { min: 0, max: 100 };
@@ -208,6 +225,10 @@ function toQuizQuestion(q) {
     }
     if (q.pairMaps) {
         out.pairIds = Object.keys(q.pairMaps);
+        out.pairOptions = {};
+        for (const [pairId, sides] of Object.entries(q.pairMaps)) {
+            out.pairOptions[pairId] = Object.keys(sides);
+        }
     }
     if (q.bestWorstMap) {
         out.bestWorstItems = Object.keys(q.bestWorstMap);
@@ -215,6 +236,9 @@ function toQuizQuestion(q) {
     else if (q.uiType === "best_worst" && q.rankingMap) {
         // Q63 etc. store best_worst items in rankingMap (for applyRankingAnswer)
         out.bestWorstItems = Object.keys(q.rankingMap);
+    }
+    if (q.bwMaxPicks != null) {
+        out.bwMaxPicks = q.bwMaxPicks;
     }
     return out;
 }
@@ -225,14 +249,54 @@ function toQuizQuestion(q) {
  * Initialize a new quiz session.
  * Resets all state and loads archetypes + questions.
  */
+// Identity-primary archetype IDs (Black Voter, White Grievance Voter,
+// Evangelical Voter, LGBTQ Voter, Feminist Voter, Male Grievance Voter).
+// These are excluded from the base distance match pool so the regular
+// archetype scorer cannot return them — they fire only via
+// resolveIdentityPrimary() when anchor + demographic + tribal/fusion +
+// ideology-thinness gates all pass. See resolveIdentityPrimary.ts.
+const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
+// Metadata-only opener questions. Their evidence is stored directly on
+// state.partyID / strategicVoting / negativeParties via update.ts hooks rather
+// than as touchProfile-driven Bayesian touches, so they have empty touchProfile
+// arrays. They must still appear in _questionsById so getNextQuestion() can
+// return them when the fixed-opener index reaches their slot.
+const METADATA_QUESTION_IDS = new Set([200, 211, 212]);
 export function initQuiz() {
     _archetypes = ARCHETYPES;
-    _questions = REPRESENTATIVE_QUESTIONS.filter(q => q.touchProfile.length > 0);
+    _activeArchetypes = ARCHETYPES.filter(a => a.active !== false && !IDENTITY_PRIMARY_IDS.has(a.id));
+    _familyIndex = buildArchetypeFamilies(_archetypes);
+    _questions = REPRESENTATIVE_QUESTIONS.filter(q => q.touchProfile.length > 0 || METADATA_QUESTION_IDS.has(q.id));
     _questionsById = new Map(_questions.map(q => [q.id, q]));
     resetSimilarityCache();
-    _state = createInitialState(_archetypes);
+    _state = createInitialState();
     _snapshots.length = 0; // Clear snapshot history on fresh quiz
     _ratioBoosts.clear();
+    _demographics = null;
+}
+/**
+ * Submit optional demographic answers for the identity-primary resolver.
+ * Called once at end of quiz, only if the resolver has signaled that
+ * demographic confirmation would refine the result.
+ *
+ * Recognized keys: demo_ethnicity, demo_gender, demo_religion, demo_lgbtq.
+ * Other keys are stored but not consumed by the current resolver.
+ */
+export function submitDemographics(demographics) {
+    _demographics = demographics;
+}
+/**
+ * Inspect the identity-primary resolver gate without committing demographics.
+ * Used by the UI to decide whether the demographic mini-block should render.
+ * Returns the resolver result with `state: 'unresolved'` and reason codes
+ * indicating which gates passed/failed. If demographic confirmation is the
+ * only missing piece, the UI prompts; otherwise it skips.
+ */
+export function previewIdentityPrimary() {
+    if (!_state)
+        return null;
+    const engagement = computeEngagementLabel(_state);
+    return resolveIdentityPrimary(_state, engagement, null);
 }
 /**
  * Get the next question the engine wants to ask.
@@ -241,19 +305,29 @@ export function initQuiz() {
 export function getNextQuestion() {
     if (!_state)
         throw new Error("Call initQuiz() first");
-    const nAnswered = Object.keys(_state.answers).length;
-    // Phase 1: ask FIXED_16 in order
-    if (nAnswered < FIXED_16.length) {
-        const nextId = FIXED_16[nAnswered];
+    // Phase 1: Salience-Router fixed front door (CORE_OPENER + UNIVERSAL_SCREENERS).
+    // 15 questions in fixed order. CORE establishes salience for every node
+    // and captures party/strategic-voting metadata. UNIVERSAL_SCREENERS give
+    // every major node ≥ 1 light position read regardless of salience, so
+    // even nodes the respondent doesn't care about have ground truth for
+    // archetype distance. See engine/config.ts:SALIENCE_ROUTER_FIXED.
+    for (const nextId of SALIENCE_ROUTER_FIXED) {
+        if (nextId in _state.answers)
+            continue;
         const q = _questionsById.get(nextId);
         if (q)
             return toQuizQuestion(q);
     }
-    // Adaptive selection
+    // Phase 2-3: TOP_K_DRILL + EIG_FILL (selectNextQuestionEIG handles both —
+    // Phase 2 implementation lands in engine/topKDrill.ts; for now EIG runs
+    // on whatever's eligible after the fixed front door).
     const available = _questions.filter(q => !(q.id in _state.answers) && isQuestionEligible(_state, q));
-    const next = selectNextQuestion(_state, available, _archetypes);
+    const next = selectNextQuestionEIG(_state, available, _questionsById);
     return next ? toQuizQuestion(next) : null;
 }
+// Retained so the legacy archetype-discrimination selector can still be used
+// by diagnostic scripts that import selectNextQuestion from here.
+void selectNextQuestion;
 /**
  * Submit an answer for a question.
  *
@@ -276,9 +350,16 @@ export function submitAnswer(questionId, answer) {
         throw new Error(`Unknown question ID: ${questionId}`);
     switch (q.uiType) {
         case "single_choice":
-        case "multi":
+        case "conjoint":
             applySingleChoiceAnswer(_state, q, answer);
             applyStoredRatioBoost(q);
+            break;
+        case "multi":
+            applyMultiAnswer(_state, q, Array.isArray(answer) ? answer : [answer]);
+            applyStoredRatioBoost(q);
+            break;
+        case "dual_axis":
+            applyDualAxisAnswer(_state, q, answer);
             break;
         case "slider":
             applySliderAnswer(_state, q, answer);
@@ -293,20 +374,38 @@ export function submitAnswer(questionId, answer) {
             applyPairwiseAnswer(_state, q, answer);
             break;
         case "best_worst": {
-            // Best-worst is treated as a ranking: [best, ...middle, worst]
             const bw = answer;
             const bwItems = q.bestWorstMap ? Object.keys(q.bestWorstMap)
                 : q.rankingMap ? Object.keys(q.rankingMap)
                     : [];
-            if (bwItems.length > 0) {
-                const middle = bwItems.filter(i => i !== bw.best && i !== bw.worst);
-                applyRankingAnswer(_state, q, [bw.best, ...middle, bw.worst]);
+            if (bwItems.length === 0)
+                break;
+            const best = Array.isArray(bw.best) ? bw.best : [bw.best];
+            const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+            if (Array.isArray(bw.best) || Array.isArray(bw.worst) || q.bestWorstMap) {
+                // Top-N / bottom-N and explicit max-diff maps: per-item update.
+                // Middle items stay neutral; they should not inherit arbitrary rank
+                // evidence from object-key order.
+                applyBestWorstSalience(_state, q, best, worst, bwItems);
+            }
+            else {
+                // Legacy top-1 / bottom-1: flattened ranking [best, ...middle, worst].
+                const middle = bwItems.filter(i => i !== best[0] && i !== worst[0]);
+                applyRankingAnswer(_state, q, [best[0], ...middle, worst[0]]);
             }
             break;
         }
+        case "priority_sort": {
+            const placements = answer;
+            const items = q.rankingMap ? Object.keys(q.rankingMap) : [];
+            if (items.length === 0)
+                break;
+            applyPrioritySort(_state, q, placements, items);
+            break;
+        }
     }
-    // Update posteriors after each answer
-    updatePosteriors(_state, _archetypes);
+    // Update distances after each answer
+    updateDistances(_state, _activeArchetypes);
 }
 /**
  * Get current quiz progress.
@@ -315,30 +414,34 @@ export function getProgress() {
     if (!_state)
         throw new Error("Call initQuiz() first");
     const nAnswered = Object.keys(_state.answers).length;
-    // Estimate total questions based on current phase
+    const sorted = Object.entries(_state.archetypeDistances)
+        .filter(([, d]) => Number.isFinite(d))
+        .sort((a, b) => a[1] - b[1])
+        .slice(0, 5);
+    const dLeader = sorted[0]?.[1] ?? Infinity;
+    const dSecond = sorted[1]?.[1] ?? Infinity;
+    const gapRatio = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
+        ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
+        : 0;
+    // Estimate total questions based on empirical convergence (probe-convergence.ts):
+    // 180-run synthetic reachability shows mean=26.9, median=26, p90=39, max=40.
     let estimatedTotal;
-    if (nAnswered < 16) {
-        estimatedTotal = 40; // early estimate
+    if (nAnswered < 20) {
+        estimatedTotal = 27;
+    }
+    else if (dLeader <= 6) {
+        estimatedTotal = Math.max(nAnswered + 2, 25);
+    }
+    else if (dLeader <= 10) {
+        estimatedTotal = Math.max(nAnswered + 4, 28);
     }
     else {
-        // Refine based on convergence rate
-        const topPosterior = Math.max(...Object.values(_state.archetypePosterior));
-        if (topPosterior > 0.5)
-            estimatedTotal = Math.max(nAnswered + 3, 30);
-        else if (topPosterior > 0.3)
-            estimatedTotal = Math.max(nAnswered + 8, 35);
-        else
-            estimatedTotal = Math.max(nAnswered + 15, 45);
+        estimatedTotal = Math.min(40, Math.max(nAnswered + 8, 33));
     }
-    // Top archetypes
-    const sorted = Object.entries(_state.archetypePosterior)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
-    const topArchetypes = sorted.map(([id, posterior]) => {
+    const topArchetypes = sorted.map(([id, distance]) => {
         const arch = _archetypes.find(a => a.id === id);
-        return { id, name: arch?.name ?? "Unknown", posterior };
+        return { id, name: arch?.name ?? "Unknown", distance };
     });
-    // Phase
     let phase;
     if (nAnswered < 16)
         phase = "salience";
@@ -350,7 +453,7 @@ export function getProgress() {
         questionsAnswered: nAnswered,
         estimatedTotal,
         topArchetypes,
-        confidence: sorted[0]?.[1] ?? 0,
+        confidence: gapRatio,
         phase,
     };
 }
@@ -360,11 +463,10 @@ export function getProgress() {
 export function isComplete() {
     if (!_state)
         return false;
-    const nAnswered = Object.keys(_state.answers).length;
-    if (nAnswered < 20)
-        return false; // absolute minimum
-    return shouldStop(_state, _archetypes);
+    return shouldStopEIG(_state, _questionsById);
 }
+// Retained so diagnostic scripts can still invoke the legacy archetype-gap stop rule.
+void shouldStop;
 /**
  * Get final quiz results.
  * Can be called at any time, but results are most meaningful after isComplete() returns true.
@@ -372,43 +474,131 @@ export function isComplete() {
 export function getResults() {
     if (!_state)
         throw new Error("Call initQuiz() first");
-    const sorted = Object.entries(_state.archetypePosterior)
-        .sort((a, b) => b[1] - a[1]);
-    const top5 = sorted.slice(0, 5).map(([id, posterior]) => {
+    const sorted = Object.entries(_state.archetypeDistances)
+        .filter(([, d]) => Number.isFinite(d))
+        .sort((a, b) => a[1] - b[1]);
+    const top3 = sorted.slice(0, 3).map(([id, distance]) => {
         const arch = _archetypes.find(a => a.id === id);
         return {
             id,
             name: arch.name,
             tier: arch.tier,
-            posterior,
-            distance: archetypeDistance(_state, arch),
+            distance,
         };
     });
-    // Detect family/subtype when top-2 are near-neighbors
+    // Family detection: runner-up ∈ leader's pre-computed family set
     let family;
-    if (top5.length >= 2) {
-        const gap = top5[0].posterior - top5[1].posterior;
-        if (gap < 0.03) {
-            // Find shared words in names to create a family label
-            const words1 = top5[0].name.split(/[\s-]+/);
-            const words2 = top5[1].name.split(/[\s-]+/);
-            const shared = words1.filter(w => words2.includes(w) && w.length > 2);
-            const familyLabel = shared.length > 0
-                ? shared.join(" ") + " Family"
-                : `${top5[0].name} / ${top5[1].name}`;
+    if (top3.length >= 2 && _familyIndex) {
+        const leaderId = top3[0].id;
+        const runnerUpId = top3[1].id;
+        const leaderFamily = _familyIndex.familyOf[leaderId];
+        if (leaderFamily && leaderFamily.has(runnerUpId)) {
             family = {
                 isFamily: true,
-                familyLabel,
-                members: [top5[0], top5[1]],
+                partnerId: runnerUpId,
+                partnerName: top3[1].name,
             };
         }
     }
+    const dLeader = top3[0]?.distance ?? Infinity;
+    const dSecond = top3[1]?.distance ?? Infinity;
+    const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
+        ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
+        : 0;
+    const marginToRunnerUp = Number.isFinite(dSecond) ? (dSecond - dLeader) : 0;
+    // Confidence band (ADR-008). Refuse to commit when the matcher has barely
+    // separated the leader from the runner-up.
+    const confidenceBand = confidence >= 0.05 ? "confident" :
+        confidence >= 0.02 ? "cluster" : "uncertain";
+    // Why-this-result diagnostics. Compute per-node distance contributions to
+    // the winning archetype so the results page can explain WHICH dimensions
+    // drove the classification.
+    const diagnostics = computeWinnerDiagnostics(_state, top3[0]?.id);
+    const engagement = computeEngagementLabel(_state);
+    // Single-issue dominance detection (P3.6, ADR-009). If any non-SELF node's
+    // E[sal] is both >= 2.7 AND > 2× the mean of others, flag as dominant.
+    // Used by predictVote to amplify that node's contribution 2x — captures
+    // voters whose politics is dominated by one issue.
+    detectAndStoreDominantNode(_state);
+    // Identity-primary overlay (ADR-006). Resolver gates on TRB/PF, ideology-
+    // thinness, anchor dominance, and demographic confirmation. Returns null
+    // unless all four pass. Base `match` is always populated independently.
+    const identityResult = resolveIdentityPrimary(_state, engagement, _demographics);
+    const identityPrimary = identityResult.state === "active" || identityResult.state === "dominant"
+        ? identityResult
+        : null;
     return {
-        match: top5[0],
-        top5,
+        match: top3[0],
+        top3,
         questionsAnswered: Object.keys(_state.answers).length,
-        confidence: top5[0]?.posterior ?? 0,
+        confidence,
+        confidenceBand,
         family,
+        engagement,
+        identityPrimary,
+        diagnostics: {
+            ...diagnostics,
+            marginToRunnerUp,
+        },
+    };
+}
+// Single-issue dominance detector (P3.6, ADR-009). Sets state.dominantNode
+// if one non-SELF node's E[sal] is >= 2.7 AND > 2× the mean of others.
+function detectAndStoreDominantNode(state) {
+    const nonSelfNodes = [
+        "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S",
+    ];
+    const sals = [];
+    for (const nid of nonSelfNodes) {
+        const node = state.continuous[nid];
+        if (!node)
+            continue;
+        sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+    }
+    for (const nid of ["EPS", "AES"]) {
+        const node = state.categorical[nid];
+        if (!node)
+            continue;
+        sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+    }
+    if (sals.length === 0) {
+        state.dominantNode = null;
+        return;
+    }
+    const top = sals.reduce((a, b) => a.sal > b.sal ? a : b);
+    const others = sals.filter(s => s.nid !== top.nid);
+    const othersMean = others.reduce((s, e) => s + e.sal, 0) / Math.max(1, others.length);
+    state.dominantNode = (top.sal >= 2.7 && top.sal > 2 * othersMean) ? top.nid : null;
+}
+// Per-node contribution analyzer for ADR-008 diagnostics. For each node where
+// the winner archetype is encoded, compute how much that node contributed to
+// the (low) distance score. Nodes with low contribution = pulled toward
+// winner. Nodes with high contribution = pushed away (mismatch).
+function computeWinnerDiagnostics(state, winnerId) {
+    if (!winnerId)
+        return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+    const arch = _archetypes.find(a => a.id === winnerId);
+    if (!arch)
+        return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+    const items = [];
+    for (const [nodeId, template] of Object.entries(arch.nodes)) {
+        if (template.kind === "continuous") {
+            const ns = state.continuous[nodeId];
+            if (!ns)
+                continue;
+            const userPos = ns.posDist.reduce((s, p, i) => s + p * (i + 1), 0);
+            const diff = userPos - template.pos;
+            const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+            const archSal = template.sal ?? 1;
+            const weight = (0.5 + archSal * 0.5) * (0.5 + userSal * 0.25);
+            const contribution = weight * Math.abs(diff);
+            items.push({ node: nodeId, contribution, userPos, archetypePos: template.pos });
+        }
+    }
+    items.sort((a, b) => a.contribution - b.contribution);
+    return {
+        pullingTowardWinner: items.slice(0, 5),
+        pushingAwayFromWinner: items.slice(-5).reverse(),
     };
 }
 /**
@@ -438,11 +628,9 @@ export function getRespondentState() {
         return null;
     const continuous = {};
     for (const [nodeId, node] of Object.entries(_state.continuous)) {
-        // Compute expected position (weighted mean of posDist)
         const expectedPos = node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
-        // Compute expected salience
         const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
-        continuous[nodeId] = { expectedPos, salience, touches: node.touches };
+        continuous[nodeId] = { expectedPos, salience, touches: node.touches, posDist: [...node.posDist] };
     }
     const categorical = {};
     for (const [nodeId, node] of Object.entries(_state.categorical)) {
@@ -462,10 +650,31 @@ export function getRespondentState() {
 export function getIdentityPrimaryResult(demographics) {
     if (!_state)
         return null;
-    return resolveIdentityPrimary(_state, demographics ?? null);
+    const engagement = computeEngagementLabel(_state);
+    return resolveIdentityPrimary(_state, engagement, demographics ?? null);
 }
 export function applyRatioBoost(questionId, ratio) {
     _ratioBoosts.set(questionId, ratio);
+}
+/**
+ * Per-election vote prediction from the respondent's signature.
+ * Runs era-weighted Euclidean distance against each election's candidates and
+ * applies an engagement-driven clearing bar to decide vote vs abstain.
+ * Independent of archetype classification — archetype is a label only.
+ */
+export function getElectionPredictions() {
+    if (!_state)
+        throw new Error("Call initQuiz() first");
+    const sig = respondentSignatureFromState(_state);
+    const engagement = computeEngagementLabel(_state);
+    const out = [];
+    for (const election of ELECTIONS) {
+        const ctx = getContext(election.year);
+        if (!ctx)
+            continue;
+        out.push(predictVote(sig, election.candidates, ctx, engagement.level, _state.partyID ?? null, _state.trbAnchor.dist, _state.negativeParties ?? null, _state.strategicVoting ?? false, _state.dominantNode ?? null));
+    }
+    return out;
 }
 /**
  * Check if the user can go back to the previous question.

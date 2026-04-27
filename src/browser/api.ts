@@ -22,6 +22,7 @@ import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js"
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
 import {
   applySingleChoiceAnswer,
+  applyMultiAnswer,
   applySliderAnswer,
   applyAllocationAnswer,
   applyRankingAnswer,
@@ -37,7 +38,7 @@ import { shouldStop } from "../engine/stopRule.js";
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { buildArchetypeFamilies, type ArchetypeFamilyIndex } from "../engine/archetypeFamilies.js";
-import { FIXED_OPENER } from "../engine/config.js";
+import { FIXED_OPENER, SALIENCE_ROUTER_FIXED } from "../engine/config.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { computeEngagementLabel, type EngagementLabel } from "../engine/engagementLabel.js";
@@ -106,15 +107,50 @@ export interface FamilyResult {
 }
 
 export interface QuizResults {
+  /** Base archetype match from policy-based distance scoring (always populated). */
   match: ArchetypeResult;
   top3: ArchetypeResult[];
   questionsAnswered: number;
   /** Distance-based confidence proxy: gap_ratio between leader and runner-up, clamped [0, 1]. */
   confidence: number;
+  /**
+   * Confidence band (added 2026-04-24 per ADR-008). The matcher should not
+   * present a single archetype as definitive when the leader-runner-up margin
+   * is tiny. Three bands:
+   *   "confident"  — confidence >= 0.05 (5%+ margin); single archetype headline
+   *   "cluster"    — 0.02 <= confidence < 0.05; show top-3 as a cluster
+   *   "uncertain"  — confidence < 0.02; refuse single label, suggest more
+   *                  questions or present blended top-3
+   */
+  confidenceBand: "confident" | "cluster" | "uncertain";
   /** Family/subtype info when the runner-up is in the leader's family set. */
   family?: FamilyResult;
   /** Engagement label (ADR-002): standalone module derived from ENG state, independent of archetype match. */
   engagement: EngagementLabel;
+  /**
+   * Identity-primary overlay (ADR-006): null unless the respondent passed all
+   * four gates — TRB/PF, ideology-thinness, anchor dominance, and demographic
+   * confirmation. When non-null, contains the identity-primary label, state,
+   * and reason codes. The base `match` is always retained — UX layer decides
+   * how to combine them.
+   */
+  identityPrimary: IdentityPrimaryResult | null;
+  /**
+   * Why-this-result diagnostics (ADR-008). Per-node contribution to the
+   * winning archetype's distance score: nodes that pulled toward the winner
+   * (negative contributions) vs nodes that pushed away (positive). Plus
+   * margin to runner-up. Surfaced for the results page so the user can see
+   * which dimensions drove the classification.
+   */
+  diagnostics: {
+    /** Top 5 nodes whose contribution to the winner's distance was lowest
+     *  (most-aligned). */
+    pullingTowardWinner: Array<{ node: string; contribution: number; userPos: number; archetypePos: number }>;
+    /** Top 5 nodes whose contribution was highest (most-divergent). */
+    pushingAwayFromWinner: Array<{ node: string; contribution: number; userPos: number; archetypePos: number }>;
+    /** Distance to runner-up minus distance to winner. */
+    marginToRunnerUp: number;
+  };
 }
 
 export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
@@ -132,12 +168,21 @@ let _familyIndex: ArchetypeFamilyIndex | null = null;
 let _questions: QuestionDef[] = [];
 let _questionsById: Map<number, QuestionDef> = new Map();
 const _ratioBoosts: Map<number, number> = new Map();
+let _demographics: IdentityPrimaryDemographics | null = null;
 
+// Ratio → salience likelihood mapping. Replaced 2026-04-24 per ADR-008
+// with log-scaled buckets and harder cap. Previous version mapped any
+// ratio >= 4 to maximum salience (0.60 on sal=3), which meant a single
+// error-tradeoff with ratio=100 produced the same salience push as ratio=4
+// but the user's *intent* was very different. New mapping uses 4 discrete
+// log-scale buckets: 1.5-2 (mild), 2-5 (moderate), 5-25 (strong), 25+
+// (very strong). Caps the maximum sal-3 mass at 0.50 so a single ratio-
+// follow-up cannot dominate a node's salience profile.
 function ratioToSalienceDist(ratio: number): SalienceDist {
-  if (ratio >= 4) return [0.02, 0.08, 0.30, 0.60];
-  if (ratio >= 3) return [0.04, 0.12, 0.34, 0.50];
-  if (ratio >= 2) return [0.08, 0.18, 0.34, 0.40];
-  return [0.18, 0.28, 0.30, 0.24];
+  if (ratio >= 25) return [0.04, 0.14, 0.32, 0.50];   // very strong (was 0.60)
+  if (ratio >= 5)  return [0.08, 0.20, 0.36, 0.36];   // strong
+  if (ratio >= 2)  return [0.14, 0.28, 0.36, 0.22];   // moderate
+  return [0.22, 0.32, 0.30, 0.16];                     // mild
 }
 
 function applyStoredRatioBoost(q: QuestionDef): void {
@@ -176,6 +221,15 @@ function deepCopyState(state: RespondentState): RespondentState {
     archetypeDistances: { ...state.archetypeDistances },
     currentLeader: state.currentLeader,
     consecutiveLeadCount: state.consecutiveLeadCount,
+    // Metadata fields written by Q200/Q211/Q212 update hooks. Snapshot must
+    // round-trip these or back-navigation will silently drop election-alignment
+    // signals that the user already provided.
+    partyID: state.partyID ?? null,
+    strategicVoting: state.strategicVoting,
+    dominantNode: state.dominantNode ?? null,
+    negativeParties: state.negativeParties
+      ? new Set(state.negativeParties)
+      : undefined,
   };
   for (const nodeId of CONTINUOUS_NODES) {
     const src = state.continuous[nodeId];
@@ -353,16 +407,61 @@ function toQuizQuestion(q: QuestionDef): QuizQuestion {
  * Initialize a new quiz session.
  * Resets all state and loads archetypes + questions.
  */
+// Identity-primary archetype IDs (Black Voter, White Grievance Voter,
+// Evangelical Voter, LGBTQ Voter, Feminist Voter, Male Grievance Voter).
+// These are excluded from the base distance match pool so the regular
+// archetype scorer cannot return them — they fire only via
+// resolveIdentityPrimary() when anchor + demographic + tribal/fusion +
+// ideology-thinness gates all pass. See resolveIdentityPrimary.ts.
+const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
+
+// Metadata-only opener questions. Their evidence is stored directly on
+// state.partyID / strategicVoting / negativeParties via update.ts hooks rather
+// than as touchProfile-driven Bayesian touches, so they have empty touchProfile
+// arrays. They must still appear in _questionsById so getNextQuestion() can
+// return them when the fixed-opener index reaches their slot.
+const METADATA_QUESTION_IDS = new Set([200, 211, 212]);
+
 export function initQuiz(): void {
   _archetypes = ARCHETYPES;
-  _activeArchetypes = ARCHETYPES.filter(a => a.active !== false);
+  _activeArchetypes = ARCHETYPES.filter(
+    a => a.active !== false && !IDENTITY_PRIMARY_IDS.has(a.id)
+  );
   _familyIndex = buildArchetypeFamilies(_archetypes);
-  _questions = REPRESENTATIVE_QUESTIONS.filter(q => q.touchProfile.length > 0);
+  _questions = REPRESENTATIVE_QUESTIONS.filter(
+    q => q.touchProfile.length > 0 || METADATA_QUESTION_IDS.has(q.id)
+  );
   _questionsById = new Map(_questions.map(q => [q.id, q]));
   resetSimilarityCache();
   _state = createInitialState();
   _snapshots.length = 0; // Clear snapshot history on fresh quiz
   _ratioBoosts.clear();
+  _demographics = null;
+}
+
+/**
+ * Submit optional demographic answers for the identity-primary resolver.
+ * Called once at end of quiz, only if the resolver has signaled that
+ * demographic confirmation would refine the result.
+ *
+ * Recognized keys: demo_ethnicity, demo_gender, demo_religion, demo_lgbtq.
+ * Other keys are stored but not consumed by the current resolver.
+ */
+export function submitDemographics(demographics: IdentityPrimaryDemographics | null): void {
+  _demographics = demographics;
+}
+
+/**
+ * Inspect the identity-primary resolver gate without committing demographics.
+ * Used by the UI to decide whether the demographic mini-block should render.
+ * Returns the resolver result with `state: 'unresolved'` and reason codes
+ * indicating which gates passed/failed. If demographic confirmation is the
+ * only missing piece, the UI prompts; otherwise it skips.
+ */
+export function previewIdentityPrimary(): IdentityPrimaryResult | null {
+  if (!_state) return null;
+  const engagement = computeEngagementLabel(_state);
+  return resolveIdentityPrimary(_state, engagement, null);
 }
 
 /**
@@ -372,16 +471,21 @@ export function initQuiz(): void {
 export function getNextQuestion(): QuizQuestion | null {
   if (!_state) throw new Error("Call initQuiz() first");
 
-  const nAnswered = Object.keys(_state.answers).length;
-
-  // Phase 1: ask FIXED_OPENER in order
-  if (nAnswered < FIXED_OPENER.length) {
-    const nextId = FIXED_OPENER[nAnswered];
-    const q = _questionsById.get(nextId!);
+  // Phase 1: Salience-Router fixed front door (CORE_OPENER + UNIVERSAL_SCREENERS).
+  // 15 questions in fixed order. CORE establishes salience for every node
+  // and captures party/strategic-voting metadata. UNIVERSAL_SCREENERS give
+  // every major node ≥ 1 light position read regardless of salience, so
+  // even nodes the respondent doesn't care about have ground truth for
+  // archetype distance. See engine/config.ts:SALIENCE_ROUTER_FIXED.
+  for (const nextId of SALIENCE_ROUTER_FIXED) {
+    if (nextId in _state.answers) continue;
+    const q = _questionsById.get(nextId);
     if (q) return toQuizQuestion(q);
   }
 
-  // Adaptive selection (EIG — archetype-free)
+  // Phase 2-3: TOP_K_DRILL + EIG_FILL (selectNextQuestionEIG handles both —
+  // Phase 2 implementation lands in engine/topKDrill.ts; for now EIG runs
+  // on whatever's eligible after the fixed front door).
   const available = _questions.filter(
     q => !(q.id in _state!.answers) && isQuestionEligible(_state!, q)
   );
@@ -407,7 +511,16 @@ void selectNextQuestion;
  */
 export function submitAnswer(
   questionId: number,
-  answer: string | number | string[] | Record<string, number> | Record<string, string> | { best: string; worst: string } | { x: number; y: number }
+  answer:
+    | string
+    | number
+    | string[]
+    | Record<string, number>
+    | Record<string, string>
+    | { best: string; worst: string }
+    | { best: string[]; worst: string[] }
+    | { x: number; y: number }
+    | { supportHigh: string[]; supportMid: string[]; neutral: string[]; opposeHigh: string[] }
 ): void {
   if (!_state) throw new Error("Call initQuiz() first");
 
@@ -419,9 +532,13 @@ export function submitAnswer(
 
   switch (q.uiType) {
     case "single_choice":
-    case "multi":
     case "conjoint":
       applySingleChoiceAnswer(_state, q, answer as string);
+      applyStoredRatioBoost(q);
+      break;
+
+    case "multi":
+      applyMultiAnswer(_state, q, Array.isArray(answer) ? answer : [answer as string]);
       applyStoredRatioBoost(q);
       break;
 
@@ -452,15 +569,17 @@ export function submitAnswer(
                     : [];
       if (bwItems.length === 0) break;
 
-      if (Array.isArray(bw.best) || Array.isArray(bw.worst)) {
-        // Top-N / bottom-N: per-item salience update, scalar deltas ignored.
-        const best = Array.isArray(bw.best) ? bw.best : [bw.best];
-        const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+      const best = Array.isArray(bw.best) ? bw.best : [bw.best];
+      const worst = Array.isArray(bw.worst) ? bw.worst : [bw.worst];
+      if (Array.isArray(bw.best) || Array.isArray(bw.worst) || q.bestWorstMap) {
+        // Top-N / bottom-N and explicit max-diff maps: per-item update.
+        // Middle items stay neutral; they should not inherit arbitrary rank
+        // evidence from object-key order.
         applyBestWorstSalience(_state, q, best, worst, bwItems);
       } else {
         // Legacy top-1 / bottom-1: flattened ranking [best, ...middle, worst].
-        const middle = bwItems.filter(i => i !== bw.best && i !== bw.worst);
-        applyRankingAnswer(_state, q, [bw.best, ...middle, bw.worst]);
+        const middle = bwItems.filter(i => i !== best[0] && i !== worst[0]);
+        applyRankingAnswer(_state, q, [best[0]!, ...middle, worst[0]!]);
       }
       break;
     }
@@ -585,16 +704,105 @@ export function getResults(): QuizResults {
   const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
     ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
     : 0;
+  const marginToRunnerUp = Number.isFinite(dSecond) ? (dSecond - dLeader) : 0;
+
+  // Confidence band (ADR-008). Refuse to commit when the matcher has barely
+  // separated the leader from the runner-up.
+  const confidenceBand: "confident" | "cluster" | "uncertain" =
+    confidence >= 0.05 ? "confident" :
+    confidence >= 0.02 ? "cluster" : "uncertain";
+
+  // Why-this-result diagnostics. Compute per-node distance contributions to
+  // the winning archetype so the results page can explain WHICH dimensions
+  // drove the classification.
+  const diagnostics = computeWinnerDiagnostics(_state, top3[0]?.id);
 
   const engagement = computeEngagementLabel(_state);
+
+  // Single-issue dominance detection (P3.6, ADR-009). If any non-SELF node's
+  // E[sal] is both >= 2.7 AND > 2× the mean of others, flag as dominant.
+  // Used by predictVote to amplify that node's contribution 2x — captures
+  // voters whose politics is dominated by one issue.
+  detectAndStoreDominantNode(_state);
+
+  // Identity-primary overlay (ADR-006). Resolver gates on TRB/PF, ideology-
+  // thinness, anchor dominance, and demographic confirmation. Returns null
+  // unless all four pass. Base `match` is always populated independently.
+  const identityResult = resolveIdentityPrimary(_state, engagement, _demographics);
+  const identityPrimary: IdentityPrimaryResult | null =
+    identityResult.state === "active" || identityResult.state === "dominant"
+      ? identityResult
+      : null;
 
   return {
     match: top3[0]!,
     top3,
     questionsAnswered: Object.keys(_state.answers).length,
     confidence,
+    confidenceBand,
     family,
     engagement,
+    identityPrimary,
+    diagnostics: {
+      ...diagnostics,
+      marginToRunnerUp,
+    },
+  };
+}
+
+// Single-issue dominance detector (P3.6, ADR-009). Sets state.dominantNode
+// if one non-SELF node's E[sal] is >= 2.7 AND > 2× the mean of others.
+function detectAndStoreDominantNode(state: RespondentState): void {
+  const nonSelfNodes: ContinuousNodeId[] = [
+    "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S",
+  ];
+  const sals: Array<{ nid: string; sal: number }> = [];
+  for (const nid of nonSelfNodes) {
+    const node = state.continuous[nid];
+    if (!node) continue;
+    sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+  }
+  for (const nid of ["EPS", "AES"] as CategoricalNodeId[]) {
+    const node = state.categorical[nid];
+    if (!node) continue;
+    sals.push({ nid, sal: node.salDist.reduce((s, p, i) => s + p * i, 0) });
+  }
+  if (sals.length === 0) { state.dominantNode = null; return; }
+  const top = sals.reduce((a, b) => a.sal > b.sal ? a : b);
+  const others = sals.filter(s => s.nid !== top.nid);
+  const othersMean = others.reduce((s, e) => s + e.sal, 0) / Math.max(1, others.length);
+  state.dominantNode = (top.sal >= 2.7 && top.sal > 2 * othersMean) ? top.nid : null;
+}
+
+// Per-node contribution analyzer for ADR-008 diagnostics. For each node where
+// the winner archetype is encoded, compute how much that node contributed to
+// the (low) distance score. Nodes with low contribution = pulled toward
+// winner. Nodes with high contribution = pushed away (mismatch).
+function computeWinnerDiagnostics(state: RespondentState, winnerId: string | undefined): {
+  pullingTowardWinner: Array<{ node: string; contribution: number; userPos: number; archetypePos: number }>;
+  pushingAwayFromWinner: Array<{ node: string; contribution: number; userPos: number; archetypePos: number }>;
+} {
+  if (!winnerId) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+  const arch = _archetypes.find(a => a.id === winnerId);
+  if (!arch) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
+  const items: Array<{ node: string; contribution: number; userPos: number; archetypePos: number }> = [];
+  for (const [nodeId, template] of Object.entries(arch.nodes)) {
+    if (template.kind === "continuous") {
+      const ns = state.continuous[nodeId as keyof typeof state.continuous];
+      if (!ns) continue;
+      const userPos = ns.posDist.reduce((s, p, i) => s + p * (i + 1), 0);
+      const diff = userPos - template.pos;
+      const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
+      const archSal = template.sal ?? 1;
+      const weight = (0.5 + archSal * 0.5) * (0.5 + userSal * 0.25);
+      const contribution = weight * Math.abs(diff);
+      items.push({ node: nodeId, contribution, userPos, archetypePos: template.pos });
+    }
+  }
+  items.sort((a, b) => a.contribution - b.contribution);
+  return {
+    pullingTowardWinner: items.slice(0, 5),
+    pushingAwayFromWinner: items.slice(-5).reverse(),
   };
 }
 
@@ -626,13 +834,11 @@ export function getArchetypeCount(): number {
 export function getRespondentState(): Record<string, unknown> | null {
   if (!_state) return null;
 
-  const continuous: Record<string, { expectedPos: number; salience: number; touches: number }> = {};
+  const continuous: Record<string, { expectedPos: number; salience: number; touches: number; posDist: number[] }> = {};
   for (const [nodeId, node] of Object.entries(_state.continuous)) {
-    // Compute expected position (weighted mean of posDist)
     const expectedPos = node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
-    // Compute expected salience
     const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
-    continuous[nodeId] = { expectedPos, salience, touches: node.touches };
+    continuous[nodeId] = { expectedPos, salience, touches: node.touches, posDist: [...node.posDist] };
   }
 
   const categorical: Record<string, { catDist: number[]; salience: number; touches: number }> = {};
@@ -676,7 +882,17 @@ export function getElectionPredictions(): ElectionPrediction[] {
   for (const election of ELECTIONS) {
     const ctx = getContext(election.year);
     if (!ctx) continue;
-    out.push(predictVote(sig, election.candidates, ctx, engagement.level));
+    out.push(predictVote(
+      sig,
+      election.candidates,
+      ctx,
+      engagement.level,
+      _state.partyID ?? null,
+      _state.trbAnchor.dist,
+      _state.negativeParties ?? null,
+      _state.strategicVoting ?? false,
+      _state.dominantNode ?? null,
+    ));
   }
   return out;
 }

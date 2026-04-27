@@ -7923,6 +7923,45 @@ var PrismEngine = (() => {
     211,
     212
   ];
+  var CORE_OPENER = [
+    200,
+    // party identification — partyID metadata for election compute
+    103,
+    // issue salience screener — global salience router (priorityBattery)
+    97,
+    // political thought frequency — PF / ENG activation
+    1,
+    // political content frequency — ENG activation reinforcement
+    60,
+    // politically important identities — TRB anchor
+    89,
+    // epistemic style battery — EPS category + salience
+    22,
+    // source trust conflict — EPS tie-breaker
+    218,
+    // aesthetic style ranking — AES category + salience
+    211,
+    // strategic voting — vote-prediction metadata
+    212
+    // negative partisanship — vote-prediction metadata
+  ];
+  var UNIVERSAL_SCREENERS = [
+    93,
+    // priority sort opener — broad MAT/CD/CU/MOR/PRO/COM position+salience
+    102,
+    // membership criteria priority sort — civic-nationality screen,
+    //                                     touches CU/MOR/TRB/CD/MAT/ZS/PRO
+    209,
+    // zero-sum economics view — direct ZS position read
+    210,
+    // human malleability view — direct ONT_H position read
+    214
+    // institutions foundational — direct ONT_S position read
+  ];
+  var SALIENCE_ROUTER_FIXED = [
+    ...CORE_OPENER,
+    ...UNIVERSAL_SCREENERS
+  ];
 
   // src/optimize/runtimeConfig.ts
   var DEFAULT_CONFIG = {
@@ -16543,7 +16582,7 @@ var PrismEngine = (() => {
   }
   function getNextQuestion() {
     if (!_state) throw new Error("Call initQuiz() first");
-    for (const nextId of FIXED_OPENER) {
+    for (const nextId of SALIENCE_ROUTER_FIXED) {
       if (nextId in _state.answers) continue;
       const q = _questionsById.get(nextId);
       if (q) return toQuizQuestion(q);

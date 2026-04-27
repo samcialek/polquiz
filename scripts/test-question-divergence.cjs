@@ -107,11 +107,12 @@ function runProfile(name, profile) {
   return seen;
 }
 
+// Uses NEW Salience-Router fixed front door (CORE_OPENER + UNIVERSAL_SCREENERS).
 const FIXED_OPENER = [
-  200, 103, 97, 60, 89, 217, 22, 201, 84, 11, 218, 1,
-  93, 99, 101, 15, 27, 30, 33,
-  202, 214, 203, 204, 205, 206, 207, 208, 209, 210, 213,
-  211, 212,
+  // CORE_OPENER (10) — salience routers + metadata
+  200, 103, 97, 1, 60, 89, 22, 218, 211, 212,
+  // UNIVERSAL_SCREENERS (5) — give every node ≥ 1 light position read
+  93, 102, 209, 210, 214,
 ];
 
 const results = {};
