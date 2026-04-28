@@ -49,7 +49,7 @@ const archetypesMeta = ARCHETYPES.map(a => ({
 
 // --- 2. Elections data ---
 const votesCSV = fs.readFileSync('output/historical_votes.csv', 'utf-8');
-const vLines = votesCSV.trim().split('\n');
+const vLines = votesCSV.trim().split(/\r?\n/);
 const vHeader = vLines[0].split(',');
 const years = vHeader.slice(2).map(Number);
 
@@ -116,7 +116,7 @@ for (let i = 1; i < vLines.length; i++) {
 
 // --- 3. World alignment data ---
 const alignCSV = fs.readFileSync('global/regime-alignment.csv', 'utf-8');
-const aLines = alignCSV.trim().split('\n');
+const aLines = alignCSV.trim().split(/\r?\n/);
 const aHeader = aLines[0].split(',');
 const regimeColumns = aHeader.slice(2);
 
