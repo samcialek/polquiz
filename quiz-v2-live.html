@@ -2839,18 +2839,56 @@ function renderConjoint(q) {
 
 // ── Pairwise ───────────────────────────────────────────────────────────────
 function renderPairwise(q) {
-    const letters = 'AB';
-    let html = '<div class="mc-options">';
-    (q.options || ['option_a', 'option_b']).forEach((opt, i) => {
-        html += `
-            <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
-                <div class="mc-marker">${letters[i]}</div>
-                <div class="mc-text">${getOptLabel(opt, q)}</div>
-            </div>
-        `;
+    // Pairwise questions present N independent A/B pairs; the answer shape is
+    // { pairId1: chosenOptKey, pairId2: chosenOptKey, ... }. The engine sends
+    // q.pairIds (ordered list of pair IDs) and q.pairOptions (pairId → [optA,optB]).
+    const pairIds = Array.isArray(q.pairIds) && q.pairIds.length > 0 ? q.pairIds : [];
+    const pairOptions = q.pairOptions || {};
+    window._pairwiseSelections = {};
+
+    let html = '';
+    pairIds.forEach((pairId, idx) => {
+        const opts = pairOptions[pairId] || [];
+        const pairLabel = getOptLabel(pairId, q);
+        html += `<div class="pair-block" style="margin-bottom:1.5rem;">`;
+        if (pairIds.length > 1) {
+            html += `<div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink);">${idx + 1}. ${pairLabel}</div>`;
+        }
+        html += `<div class="mc-options" data-pair-id="${pairId}">`;
+        opts.forEach((opt, i) => {
+            html += `
+                <div class="mc-option" onclick="selectPair(this, '${q.id}', '${pairId}', '${opt}')">
+                    <div class="mc-marker">${'AB'[i] || ''}</div>
+                    <div class="mc-text">${getOptLabel(opt, q)}</div>
+                </div>
+            `;
+        });
+        html += `</div></div>`;
     });
-    html += '</div>';
     return html;
+}
+
+function selectPair(el, qId, pairId, optKey) {
+    // Highlight just the chosen option within this pair's option group.
+    const group = el.parentElement;
+    group.querySelectorAll('.mc-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+
+    if (!window._pairwiseSelections) window._pairwiseSelections = {};
+    window._pairwiseSelections[pairId] = optKey;
+
+    // Auto-submit once every pair has a selection.
+    const q = window._currentQ;
+    const pairIds = (q && Array.isArray(q.pairIds)) ? q.pairIds : [];
+    const allAnswered = pairIds.length > 0 && pairIds.every(pid => window._pairwiseSelections[pid]);
+    if (allAnswered) {
+        const answer = { ...window._pairwiseSelections };
+        setTimeout(() => {
+            traceSubmit(Number(qId), answer);
+            window._pairwiseSelections = {};
+            showQuestion();
+        }, 300);
+    }
 }
 
 // ── Results ────────────────────────────────────────────────────────────────
