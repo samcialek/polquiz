@@ -502,6 +502,24 @@ export function applyBestWorstSalience(
       node.posDist = normalize(mixed as typeof node.posDist);
     }
   }
+
+  // TRB-anchor side-channel for best_worst maxdiff items (Q63 etc.). Best
+  // items contribute their declared anchor evidence at full weight ("this is
+  // what my tribal anchor looks like"). Worst items are skipped: "the anchor
+  // I least identify with" doesn't cleanly invert into negative evidence
+  // under addToAnchorDist's positive-contribution semantics. Middle items
+  // contribute nothing. Touches increment once per question if ANY best item
+  // carried trbAnchor evidence — matching the per-question philosophy used
+  // for salience aggregation above.
+  let anchorApplied = false;
+  for (const item of allItems) {
+    if (!bestSet.has(item)) continue;
+    const map = q.rankingMap[item];
+    if (!map?.trbAnchor) continue;
+    state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+    anchorApplied = true;
+  }
+  if (anchorApplied) state.trbAnchor.touches += 1;
 }
 
 /**

@@ -7488,6 +7488,15 @@ var PrismEngine = (() => {
         node.posDist = normalize(mixed);
       }
     }
+    let anchorApplied = false;
+    for (const item of allItems) {
+      if (!bestSet.has(item)) continue;
+      const map = q.rankingMap[item];
+      if (!map?.trbAnchor) continue;
+      state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+      anchorApplied = true;
+    }
+    if (anchorApplied) state.trbAnchor.touches += 1;
   }
   function applyPrioritySort(state, q, placements, allItems) {
     state.answers[q.id] = {
