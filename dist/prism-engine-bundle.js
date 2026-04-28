@@ -21,6 +21,7 @@ var PrismEngine = (() => {
   // src/browser/index.ts
   var index_exports = {};
   __export(index_exports, {
+    BUNDLE_VERSION: () => BUNDLE_VERSION,
     applyRatioBoost: () => applyRatioBoost,
     attachToExistingQuiz: () => attachToExistingQuiz,
     canGoBack: () => canGoBack,
@@ -7274,8 +7275,53 @@ var PrismEngine = (() => {
       state.trbAnchor.touches += 1;
     }
   }
+  function partyIdFromAnswer(optionKey) {
+    switch (optionKey) {
+      case "dem":
+        return "D";
+      case "rep":
+        return "R";
+      case "ind":
+        return "I";
+      case "third":
+        return "T";
+      case "none":
+        return "N";
+      default:
+        return null;
+    }
+  }
+  function negativePartiesFromAnswers(optionKeys) {
+    const out = /* @__PURE__ */ new Set();
+    for (const optionKey of optionKeys) {
+      if (optionKey === "never_dem") out.add("D");
+      if (optionKey === "never_rep") out.add("R");
+      if (optionKey === "never_dem_or_rep") {
+        out.add("D");
+        out.add("R");
+      }
+    }
+    return out.size > 0 ? out : null;
+  }
+  function applyMetadataAnswer(state, q, optionKeyOrKeys) {
+    const optionKeys = Array.isArray(optionKeyOrKeys) ? optionKeyOrKeys : [optionKeyOrKeys];
+    switch (q.id) {
+      case 200:
+        state.partyID = typeof optionKeyOrKeys === "string" ? partyIdFromAnswer(optionKeyOrKeys) : null;
+        return;
+      case 211:
+        state.strategicVoting = optionKeys.includes("strategic_lesser_evil");
+        return;
+      case 212:
+        state.negativeParties = negativePartiesFromAnswers(optionKeys);
+        return;
+      default:
+        return;
+    }
+  }
   function applySingleChoiceAnswer(state, q, optionKey) {
     state.answers[q.id] = optionKey;
+    applyMetadataAnswer(state, q, optionKey);
     registerTouches(state, q);
     const ev = q.optionEvidence?.[optionKey];
     applyOptionEvidence(state, ev);
@@ -7289,6 +7335,7 @@ var PrismEngine = (() => {
   }
   function applyMultiAnswer(state, q, optionKeys) {
     state.answers[q.id] = optionKeys.slice();
+    applyMetadataAnswer(state, q, optionKeys);
     registerTouches(state, q);
     for (const optionKey of optionKeys) {
       const ev = q.optionEvidence?.[optionKey];
@@ -16131,6 +16178,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
+  var BUNDLE_VERSION = "20260428-pr1-trace-reliability";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
@@ -16424,8 +16472,9 @@ var PrismEngine = (() => {
     } else if (dLeader <= 10) {
       estimatedTotal = Math.max(nAnswered + 4, 28);
     } else {
-      estimatedTotal = Math.min(40, Math.max(nAnswered + 8, 33));
+      estimatedTotal = Math.min(35, Math.max(nAnswered + 8, 33));
     }
+    estimatedTotal = Math.min(35, estimatedTotal);
     const topArchetypes = sorted.map(([id, distance]) => {
       const arch = _archetypes.find((a) => a.id === id);
       return { id, name: arch?.name ?? "Unknown", distance };
@@ -16583,6 +16632,10 @@ var PrismEngine = (() => {
         dist: [..._state.trbAnchor.dist],
         touches: _state.trbAnchor.touches
       },
+      partyID: _state.partyID ?? null,
+      strategicVoting: _state.strategicVoting ?? false,
+      negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],
+      dominantNode: _state.dominantNode ?? null,
       ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
     };
   }

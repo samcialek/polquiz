@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="prism-engine-bundle.min.js?v=20260428-trbanchor-top5"></script>
+<script src="prism-engine-bundle.min.js?v=20260428-pr1-trace-reliability"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -1884,6 +1884,15 @@ function startQuiz() {
 // silently because esbuild IIFE exports a frozen namespace object — the
 // assignment did nothing.
 function traceSubmit(qId, answer) {
+    // Dedupe guard: if this qId is already recorded in trace, drop. Prevents
+    // back-button + re-answer flows from inflating the trace and from re-applying
+    // evidence to state. Engine state.answers[qId] alone isn't enough — the
+    // engine's submitAnswer overwrites cleanly, but the trace would still record
+    // both. We treat trace as the source of truth for "has this been answered."
+    if (Array.isArray(window._prismTrace) && window._prismTrace.some(e => e.qId === qId)) {
+        console.warn('[PRISM trace] duplicate submit ignored: Q' + qId + ' was already answered');
+        return;
+    }
     let preState = null, postState = null;
     try {
         preState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
@@ -2021,7 +2030,27 @@ function showQuestion() {
 
 function goBack() {
     if (PrismEngine.goBack) {
-        PrismEngine.goBack();
+        const rewoundQId = PrismEngine.goBack();
+        // Keep window._prismTrace consistent with the rolled-back engine state.
+        // Engine.goBack pops its own snapshot; we pop the matching trace entry
+        // so traceSubmit's dedupe-by-qId guard correctly accepts a re-answer
+        // for the rewound question. Pop until the last trace entry's qId
+        // matches the one the engine just rewound (defensive — typically just
+        // pops one entry).
+        if (Array.isArray(window._prismTrace) && window._prismTrace.length > 0) {
+            const last = window._prismTrace[window._prismTrace.length - 1];
+            // Only pop if the last entry corresponds to the rewound question;
+            // if rewoundQId is null, fall back to popping the most recent entry.
+            if (rewoundQId == null || last.qId === rewoundQId) {
+                window._prismTrace.pop();
+                try {
+                    const traceJson = JSON.stringify(window._prismTrace);
+                    localStorage.setItem(window._prismTraceKey || prismRunKey('prism-trace'), traceJson);
+                    localStorage.setItem('prism-trace', traceJson);
+                } catch(e) { /* localStorage write failure is non-fatal */ }
+                console.log('[PRISM trace] back-button popped Q' + last.qId + ' from trace');
+            }
+        }
         showQuestion();
     }
 }
@@ -3059,6 +3088,9 @@ function finishResults() {
     // Save everything to localStorage for the results page
     const prismResults = {
         runId: runId,
+        // Stamp from the engine bundle so dump consumers can flag staleness
+        // when engine fixes ship. PR 1 trace-reliability addition.
+        bundleVersion: (PrismEngine && PrismEngine.BUNDLE_VERSION) || null,
         archetypeId: results.match.id,
         archetypeName: results.match.name,
         archetypeTier: results.match.tier,
@@ -3069,6 +3101,11 @@ function finishResults() {
         top5: results.top5 || null,
         family: results.family || null,
         identityPrimary: results.identityPrimary || null,
+        // Per-node contribution to winner + margin to runner-up. Engine
+        // already computes these via getResults; PR 1 propagates to the dump
+        // so debugging doesn't require reconstructing from pre/post state.
+        diagnostics: results.diagnostics || null,
+        engagement: results.engagement || null,
         respondentState: respondentState,
         timestamp: Date.now()
     };

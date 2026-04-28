@@ -52,6 +52,15 @@ import { getContext } from "../historical/contexts.js";
 import { predictVote, type ElectionPrediction } from "../historical/respondentVoteChoice.js";
 
 // ---------------------------------------------------------------------------
+// Bundle version marker (PR 1 — trace reliability). Stamped onto every dump
+// so older dumps can be flagged stale relative to engine fixes (Q200/Q211/Q212
+// metadata hooks, applyBestWorstSalience trbAnchor, top5 in results, etc.).
+// Bump whenever the engine changes meaningfully — keep in sync with the
+// quiz-v2-live.html cache-buster string.
+// ---------------------------------------------------------------------------
+export const BUNDLE_VERSION = "20260428-pr1-trace-reliability";
+
+// ---------------------------------------------------------------------------
 // Types exposed to the browser consumer
 // ---------------------------------------------------------------------------
 
@@ -645,8 +654,8 @@ export function getProgress(): QuizProgress {
     ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
     : 0;
 
-  // Estimate total questions based on empirical convergence (probe-convergence.ts):
-  // 180-run synthetic reachability shows mean=26.9, median=26, p90=39, max=40.
+  // Estimate total questions for the progress UI. The actual stop rule lives
+  // in selectorEIG.ts and caps the live quiz at 35 questions.
   let estimatedTotal: number;
   if (nAnswered < 20) {
     estimatedTotal = 27;
@@ -655,8 +664,9 @@ export function getProgress(): QuizProgress {
   } else if (dLeader <= 10) {
     estimatedTotal = Math.max(nAnswered + 4, 28);
   } else {
-    estimatedTotal = Math.min(40, Math.max(nAnswered + 8, 33));
+    estimatedTotal = Math.min(35, Math.max(nAnswered + 8, 33));
   }
+  estimatedTotal = Math.min(35, estimatedTotal);
 
   const topArchetypes = sorted.map(([id, distance]) => {
     const arch = _archetypes.find(a => a.id === id);
@@ -880,6 +890,10 @@ export function getRespondentState(): Record<string, unknown> | null {
       dist: [..._state.trbAnchor.dist],
       touches: _state.trbAnchor.touches,
     },
+    partyID: _state.partyID ?? null,
+    strategicVoting: _state.strategicVoting ?? false,
+    negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],
+    dominantNode: _state.dominantNode ?? null,
     ratioBoosts: Object.fromEntries(Array.from(_ratioBoosts.entries()).map(([k, v]) => [String(k), v]))
   };
 }
