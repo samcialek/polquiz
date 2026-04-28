@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="prism-engine-bundle.min.js?v=20260426-lafollette-nader-fix"></script>
+<script src="prism-engine-bundle.min.js?v=20260428-trbanchor-top5"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -1850,11 +1850,28 @@ const SLIDER_LABELS = {
 // ── Quiz state ─────────────────────────────────────────────────────────────
 let quizStarted = false;
 
+function newPrismRunId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+    }
+    return String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+}
+
+function getPrismRunId() {
+    if (!window._prismRunId) window._prismRunId = newPrismRunId();
+    return window._prismRunId;
+}
+
+function prismRunKey(baseKey) {
+    return baseKey + ':' + getPrismRunId();
+}
+
 function startQuiz() {
     PrismEngine.initQuiz();
+    window._prismRunId = newPrismRunId();
+    window._prismTraceKey = 'prism-trace:' + window._prismRunId;
     window._prismTrace = [];
-    localStorage.removeItem('prism-trace');
-    console.log('[PRISM trace] initialized — trace will record every answer');
+    console.log('[PRISM trace] initialized for run ' + window._prismRunId + ' - trace will record every answer');
     quizStarted = true;
     document.getElementById('landing').style.display = 'none';
     document.getElementById('quiz-area').style.display = 'block';
@@ -1891,7 +1908,9 @@ function traceSubmit(qId, answer) {
     };
     window._prismTrace.push(entry);
     try {
-        localStorage.setItem('prism-trace', JSON.stringify(window._prismTrace));
+        const traceJson = JSON.stringify(window._prismTrace);
+        localStorage.setItem(window._prismTraceKey || prismRunKey('prism-trace'), traceJson);
+        localStorage.setItem('prism-trace', traceJson);
         console.log('[PRISM trace] recorded Q' + qId + ' (entry #' + entry.idx + ')');
     } catch(e) {
         console.warn('[PRISM trace] localStorage write failed:', e.message);
@@ -3033,24 +3052,31 @@ function skipDemographicBlock() {
 }
 
 function finishResults() {
+    const runId = getPrismRunId();
     const results = PrismEngine.getResults();
     const respondentState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
 
     // Save everything to localStorage for the results page
     const prismResults = {
+        runId: runId,
         archetypeId: results.match.id,
         archetypeName: results.match.name,
         archetypeTier: results.match.tier,
         confidence: results.confidence,
+        confidenceBand: results.confidenceBand || null,
         questionsAnswered: results.questionsAnswered,
-        top5: results.top5,
+        top3: results.top3 || null,
+        top5: results.top5 || null,
         family: results.family || null,
         identityPrimary: results.identityPrimary || null,
         respondentState: respondentState,
         timestamp: Date.now()
     };
-    localStorage.setItem('prism-results', JSON.stringify(prismResults));
-    localStorage.setItem('prism_results', JSON.stringify(prismResults));
+    const prismResultsJson = JSON.stringify(prismResults);
+    localStorage.setItem(prismRunKey('prism-results'), prismResultsJson);
+    localStorage.setItem(prismRunKey('prism_results'), prismResultsJson);
+    localStorage.setItem('prism-results', prismResultsJson);
+    localStorage.setItem('prism_results', prismResultsJson);
 
     // Respondent-signature election predictions: per-candidate era-activation-
     // adjusted weighted-Euclidean distances plus non-ideological modifier
@@ -3058,9 +3084,12 @@ function finishResults() {
     if (PrismEngine.getElectionPredictions) {
         try {
             const preds = PrismEngine.getElectionPredictions();
-            localStorage.setItem('prism-election-raw', JSON.stringify(preds));
+            const predsJson = JSON.stringify(preds);
+            localStorage.setItem(prismRunKey('prism-election-raw'), predsJson);
+            localStorage.setItem('prism-election-raw', predsJson);
         } catch (err) {
             console.warn('getElectionPredictions failed', err);
+            localStorage.removeItem(prismRunKey('prism-election-raw'));
             localStorage.removeItem('prism-election-raw');
         }
     }
@@ -3068,7 +3097,7 @@ function finishResults() {
     // Redirect to results page. If a friend prediction is staged in
     // localStorage (set by predict.html), append ?compare=1 so results-live.html
     // routes to the friend-vs-user comparison view instead of standard results.
-    let resultsUrl = 'results-live.html?id=' + results.match.id;
+    let resultsUrl = 'results-live.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {

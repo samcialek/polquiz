@@ -78,6 +78,13 @@ export interface QuizResults {
     /** Base archetype match from policy-based distance scoring (always populated). */
     match: ArchetypeResult;
     top3: ArchetypeResult[];
+    /**
+     * Top 5 closest archetypes (superset of top3). Used by the results page's
+     * low-confidence cluster gate (ADR-008): when confidenceBand !== "confident",
+     * the page picks neighbors within +0.05 of the leader's distance, capped at
+     * 5 displayed, floored at the top 3.
+     */
+    top5: ArchetypeResult[];
     questionsAnswered: number;
     /** Distance-based confidence proxy: gap_ratio between leader and runner-up, clamped [0, 1]. */
     confidence: number;

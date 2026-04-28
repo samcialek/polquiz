@@ -114,6 +114,13 @@ export interface QuizResults {
   /** Base archetype match from policy-based distance scoring (always populated). */
   match: ArchetypeResult;
   top3: ArchetypeResult[];
+  /**
+   * Top 5 closest archetypes (superset of top3). Used by the results page's
+   * low-confidence cluster gate (ADR-008): when confidenceBand !== "confident",
+   * the page picks neighbors within +0.05 of the leader's distance, capped at
+   * 5 displayed, floored at the top 3.
+   */
+  top5: ArchetypeResult[];
   questionsAnswered: number;
   /** Distance-based confidence proxy: gap_ratio between leader and runner-up, clamped [0, 1]. */
   confidence: number;
@@ -691,7 +698,7 @@ export function getResults(): QuizResults {
     .filter(([, d]) => Number.isFinite(d))
     .sort((a, b) => a[1] - b[1]);
 
-  const top3: ArchetypeResult[] = sorted.slice(0, 3).map(([id, distance]) => {
+  const top5: ArchetypeResult[] = sorted.slice(0, 5).map(([id, distance]) => {
     const arch = _archetypes.find(a => a.id === id)!;
     return {
       id,
@@ -700,6 +707,7 @@ export function getResults(): QuizResults {
       distance,
     };
   });
+  const top3: ArchetypeResult[] = top5.slice(0, 3);
 
   // Family detection: runner-up ∈ leader's pre-computed family set
   let family: FamilyResult | undefined;
@@ -754,6 +762,7 @@ export function getResults(): QuizResults {
   return {
     match: top3[0]!,
     top3,
+    top5,
     questionsAnswered: Object.keys(_state.answers).length,
     confidence,
     confidenceBand,

@@ -16449,7 +16449,7 @@ var PrismEngine = (() => {
   function getResults() {
     if (!_state) throw new Error("Call initQuiz() first");
     const sorted = Object.entries(_state.archetypeDistances).filter(([, d]) => Number.isFinite(d)).sort((a, b) => a[1] - b[1]);
-    const top3 = sorted.slice(0, 3).map(([id, distance]) => {
+    const top5 = sorted.slice(0, 5).map(([id, distance]) => {
       const arch = _archetypes.find((a) => a.id === id);
       return {
         id,
@@ -16458,6 +16458,7 @@ var PrismEngine = (() => {
         distance
       };
     });
+    const top3 = top5.slice(0, 3);
     let family;
     if (top3.length >= 2 && _familyIndex) {
       const leaderId = top3[0].id;
@@ -16484,6 +16485,7 @@ var PrismEngine = (() => {
     return {
       match: top3[0],
       top3,
+      top5,
       questionsAnswered: Object.keys(_state.answers).length,
       confidence,
       confidenceBand,

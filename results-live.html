@@ -251,6 +251,12 @@
     <div class="archetype-number" id="archetype-number"></div>
     <h1 class="archetype-name" id="archetype-name"></h1>
     <p class="archetype-desc" id="archetype-desc"></p>
+    <div id="confidence-cluster-banner" style="display:none;margin:1.25rem 0 0 0;padding:0.9rem 1.1rem;background:#fff8f0;border-left:3px solid #d97706;font-size:0.88rem;line-height:1.55;max-width:720px;">
+      <div id="confidence-cluster-headline" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.4rem;color:#1a1a1a;"></div>
+      <div id="confidence-cluster-body" style="color:#444;"></div>
+      <div id="confidence-cluster-neighbors" style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;"></div>
+      <div id="confidence-cluster-footnote" style="margin-top:0.6rem;color:#666;font-size:0.78rem;font-style:italic;"></div>
+    </div>
     <button id="export-trace-btn" onclick="exportPrismTrace()" style="margin-top:0.8rem;padding:0.5rem 1rem;font-family:'Space Grotesk',sans-serif;font-size:0.85rem;border:1px solid var(--ink);background:var(--pool);cursor:pointer;">Download diagnostic trace (JSON)</button>
     <button id="share-btn" class="share-btn" onclick="openShareModal()" style="display:none;">Share with a friend</button>
   </div>
@@ -272,16 +278,44 @@
   </div>
 </div>
 <script>
+const PRISM_RUN_ID = new URLSearchParams(window.location.search).get('run') || '';
+
+function prismScopedKey(baseKey) {
+    return PRISM_RUN_ID ? baseKey + ':' + PRISM_RUN_ID : baseKey;
+}
+
+function readPrismStorage(baseKey) {
+    if (PRISM_RUN_ID) {
+        const scoped = localStorage.getItem(prismScopedKey(baseKey));
+        if (scoped !== null) return scoped;
+    }
+    return localStorage.getItem(baseKey);
+}
+
+function readPrismJson(baseKey) {
+    const raw = readPrismStorage(baseKey);
+    if (!raw) return null;
+    try {
+        return JSON.parse(raw);
+    } catch (e) {
+        console.warn('Could not parse ' + prismScopedKey(baseKey), e);
+        return null;
+    }
+}
+
+const prismPageSnapshot = {
+    runId: PRISM_RUN_ID || null,
+    results: readPrismJson('prism-results'),
+    election: readPrismJson('prism-election-raw'),
+    trace: readPrismJson('prism-trace')
+};
+
 function exportPrismTrace() {
-    const dump = {
-        results: JSON.parse(localStorage.getItem('prism-results') || 'null'),
-        election: JSON.parse(localStorage.getItem('prism-election-raw') || 'null'),
-        trace: JSON.parse(localStorage.getItem('prism-trace') || 'null')
-    };
-    const blob = new Blob([JSON.stringify(dump, null, 2)], {type: 'application/json'});
+    const blob = new Blob([JSON.stringify(prismPageSnapshot, null, 2)], {type: 'application/json'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'prism-dump-' + Date.now() + '.json';
+    const runSuffix = PRISM_RUN_ID ? '-' + PRISM_RUN_ID.slice(0, 8) : '';
+    a.download = 'prism-dump' + runSuffix + '-' + Date.now() + '.json';
     a.click();
 }
 
@@ -299,7 +333,7 @@ function dismissComparison() {
 // predict.html. Friend opens it, predicts user's bars, then takes the quiz
 // and sees the comparison. Encoded payload is base64-url, ~700-900 chars.
 function buildShareUrl(displayName) {
-    const stored = JSON.parse(localStorage.getItem('prism-results') || 'null');
+    const stored = readPrismJson('prism-results');
     if (!stored || !stored.respondentState) return null;
     const encoded = window.PrismShareCodec.encode(
         stored.respondentState,
@@ -319,7 +353,7 @@ function refreshShareUrl() {
 }
 
 function openShareModal() {
-    const stored = JSON.parse(localStorage.getItem('prism-results') || 'null');
+    const stored = readPrismJson('prism-results');
     if (!stored || !stored.respondentState) {
         alert('No quiz state to share. Take the quiz first.');
         return;
@@ -360,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === backdrop) closeShareModal();
     });
     try {
-        const stored = JSON.parse(localStorage.getItem('prism-results') || 'null');
+        const stored = readPrismJson('prism-results');
         if (stored && stored.respondentState && window.PrismShareCodec) {
             const btn = document.getElementById('share-btn');
             if (btn) btn.style.display = 'inline-block';
@@ -400,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="elections-section">
   <div class="container">
     <div class="section-label">US Presidential Elections · 1789–2024</div>
+    <div id="closest-match-note" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:-0.4rem 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
     <div class="elections-grid" id="elections-grid"></div>
     <div class="election-summary" id="election-summary"></div>
     <div class="election-legend" id="election-legend"></div>
@@ -410,6 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="map-section">
   <div class="container">
     <div class="section-label">World Alignment Map</div>
+    <div id="closest-match-note-map" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:0 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
     <div class="great-year-banner" id="great-year-banner" style="display:none;"></div>
     <div class="map-controls">
       <div id="year-display">2026</div>
@@ -651,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Try localStorage for respondent's actual node state
   try {
-    const stored = localStorage.getItem('prism_results');
+    const stored = readPrismStorage('prism_results') || readPrismStorage('prism-results');
     if (stored) {
       const parsed = JSON.parse(stored);
       if (!archetypeId) archetypeId = parsed.archetypeId;
@@ -702,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'other';
     }
     let elections;
-    const rawForGridStr = localStorage.getItem('prism-election-raw');
+    const rawForGridStr = readPrismStorage('prism-election-raw');
     if (rawForGridStr) {
       try {
         const rawList = JSON.parse(rawForGridStr);
@@ -734,6 +770,68 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('archetype-number').textContent = `ARCHETYPE #${archetypeId}`;
     document.getElementById('archetype-name').textContent = archetype.name;
     document.getElementById('archetype-desc').textContent = archetype.description || '';
+
+    // ── Low-confidence cluster gate (ADR-008). Two-step gate: prefer the
+    // engine's confidenceBand field; fall back to raw confidence < 0.05 only
+    // when the band wasn't recorded (older runs / dumps from before the field
+    // was added). Both Sam's recorded test cases (0.012, 0.047) gate on.
+    (function renderClusterGate() {
+      let stored = null;
+      try {
+        const raw = readPrismStorage('prism_results') || readPrismStorage('prism-results');
+        if (raw) stored = JSON.parse(raw);
+      } catch (e) {}
+      if (!stored) return;
+
+      const band = stored.confidenceBand;
+      const conf = typeof stored.confidence === 'number' ? stored.confidence : null;
+      const gateFires = band ? (band !== 'confident') : (conf !== null && conf < 0.05);
+      if (!gateFires) return;
+
+      const banner = document.getElementById('confidence-cluster-banner');
+      const headline = document.getElementById('confidence-cluster-headline');
+      const body = document.getElementById('confidence-cluster-body');
+      const neighborsEl = document.getElementById('confidence-cluster-neighbors');
+      const footnoteEl = document.getElementById('confidence-cluster-footnote');
+
+      const isUncertain = band === 'uncertain' || (conf !== null && conf < 0.02);
+      headline.textContent = isUncertain
+        ? 'Closest match — but answers split across several archetypes near the top.'
+        : 'Closest match — clustered with several near neighbors.';
+      const confPct = conf !== null ? (conf * 100).toFixed(1) + '%' : '—';
+      body.innerHTML = isUncertain
+        ? `Your responses didn't separate any single archetype from the field. Leader-vs-runner-up margin is <strong>${confPct}</strong>. Treat the headline match as the closest <em>direction</em>, not a definitive label.`
+        : `Your top match is real but the next-closest archetypes are within striking distance. Leader-vs-runner-up margin is <strong>${confPct}</strong>.`;
+
+      // Pick neighbors: archetypes within +0.05 of leader's distance, capped at
+      // 5 displayed, floored at top 3 when the gate fires (Sam's spec).
+      const top5 = Array.isArray(stored.top5) ? stored.top5 : (Array.isArray(stored.top3) ? stored.top3 : []);
+      let neighbors = [];
+      if (top5.length > 0) {
+        const lead = top5[0].distance;
+        const within = top5.filter(a => (a.distance - lead) <= 0.05);
+        const floor3 = top5.slice(0, Math.min(3, top5.length));
+        const merged = within.length >= floor3.length ? within : floor3;
+        neighbors = merged.slice(0, 5);
+      }
+      neighborsEl.innerHTML = '';
+      neighbors.forEach((n, i) => {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;gap:0.6rem;align-items:baseline;font-size:0.84rem;';
+        const lead = neighbors[0].distance;
+        const margin = i === 0 ? '' : `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.72rem;">+${(n.distance - lead).toFixed(3)}</span>`;
+        row.innerHTML = `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.78rem;">#${i + 1}</span><span style="font-weight:${i === 0 ? '600' : '400'};">${n.id} ${n.name}</span>${margin}`;
+        neighborsEl.appendChild(row);
+      });
+      footnoteEl.textContent = 'Election grid and world-alignment map below render against the closest-match archetype only — read them as directional, not final.';
+
+      banner.style.display = 'block';
+      const note1 = document.getElementById('closest-match-note');
+      const note2 = document.getElementById('closest-match-note-map');
+      if (note1) note1.style.display = 'block';
+      if (note2) note2.style.display = 'block';
+    })();
+
 
     // ========== COMPARISON SECTION (Pass B) ==========
     // Rendered only when ?compare=1 AND a friend prediction exists in
@@ -889,7 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // at quiz-end; absent for legacy sessions — hover degrades to no-op.
     const rawPredsByYear = {};
     try {
-      const rawStr = localStorage.getItem('prism-election-raw');
+      const rawStr = readPrismStorage('prism-election-raw');
       if (rawStr) {
         const rawList = JSON.parse(rawStr);
         if (Array.isArray(rawList)) {

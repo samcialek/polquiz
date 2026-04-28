@@ -490,7 +490,7 @@ export function getResults() {
     const sorted = Object.entries(_state.archetypeDistances)
         .filter(([, d]) => Number.isFinite(d))
         .sort((a, b) => a[1] - b[1]);
-    const top3 = sorted.slice(0, 3).map(([id, distance]) => {
+    const top5 = sorted.slice(0, 5).map(([id, distance]) => {
         const arch = _archetypes.find(a => a.id === id);
         return {
             id,
@@ -499,6 +499,7 @@ export function getResults() {
             distance,
         };
     });
+    const top3 = top5.slice(0, 3);
     // Family detection: runner-up ∈ leader's pre-computed family set
     let family;
     if (top3.length >= 2 && _familyIndex) {
@@ -543,6 +544,7 @@ export function getResults() {
     return {
         match: top3[0],
         top3,
+        top5,
         questionsAnswered: Object.keys(_state.answers).length,
         confidence,
         confidenceBand,
