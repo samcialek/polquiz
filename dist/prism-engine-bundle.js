@@ -4811,6 +4811,22 @@ var PrismEngine = (() => {
     // RANKING EVIDENCE MAPS (Q29, Q50)
     // =========================================================================
     // Q29 — factory_closure_causes_ranking (ranking)
+    // PR 2 rebalance 2026-04-28: strip out unjustified ZS smuggling and most
+    // ONT_S signals. Per the three-dump review:
+    //  - "blame corporations" (corporate_decisions) is a redistributive critique
+    //    (MAT-low) — it does NOT imply zero-sum worldview. A Democrat can think
+    //    corporate power is too concentrated AND think the economy is positive-sum.
+    //  - "blame automation / global competition" are structural-economic causes,
+    //    not signals about institutional capacity. Stripped from ONT_S.
+    //  - "blame govt policy" is the only option where ONT_S-skeptical signal is
+    //    defensible (mild) — kept.
+    //  - "blame worker_choices" is a market-individualist framing → MAT-positive
+    //    only; doesn't say anything about institutional belief.
+    // Phase 0 verification (scripts/compute-q29-contribution.ts): pre-rebalance
+    // Q29 dragged Dump 2's ONT_S by -1.007 and ZS by +1.412 — both confirmed
+    // wrong-direction culprits of the Institutional Leftist miscalibration.
+    // Predicted post-rebalance impact on Dump 2: ZS no longer pushed (was +1.4),
+    // ONT_S only mildly pulled by govt_policy at rank 2 (~-0.17 vs prior -1.0).
     {
       id: 29,
       stage: "stage2",
@@ -4821,24 +4837,36 @@ var PrismEngine = (() => {
       rewriteNeeded: false,
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.7, touchType: "economic_attribution" },
-        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.65, touchType: "economic_attribution" },
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.4, touchType: "conflict_attribution" }
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.3, touchType: "economic_attribution" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "trade_protectionism" }
       ],
       rankingMap: {
+        // Cheaper-labor-abroad framing → mild protectionist (CU low, national).
+        // Stripped: ONT_S (institutional-capacity not implicated) and ZS (trade
+        // can be positive-sum even when one believes outsourcing hurts workers).
         global_competition: {
-          continuous: { ONT_S: -0.7, ZS: 0.4 }
+          continuous: { CU: -0.3 }
         },
+        // Tech-replaces-labor framing → mild redistributive concern. Stripped:
+        // ONT_S (automation doesn't say anything about institutions).
         automation: {
-          continuous: { ONT_S: -0.6 }
+          continuous: { MAT: -0.2 }
         },
+        // Corporate-power critique → strong redistributive signal. Stripped: ZS
+        // (the entire wrong-direction culprit for Dump 2's positive-sum miss).
         corporate_decisions: {
-          continuous: { MAT: -0.7, ZS: 0.6 }
+          continuous: { MAT: -0.6 }
         },
+        // Govt-policy framing → mild ONT_S-skeptical (govt-mismanagement view).
+        // Stripped: MAT (ambiguous direction — could be free-trade-blame OR
+        // regulation-blame, the engine can't tell).
         government_policy: {
-          continuous: { MAT: -0.3, ONT_S: -0.3 }
+          continuous: { ONT_S: -0.3 }
         },
+        // Individual-responsibility framing → market-individualist (MAT high).
+        // Stripped: ONT_S (worker-choices framing isn't pro-institution).
         worker_choices: {
-          continuous: { MAT: 0.6, ONT_S: 0.5 }
+          continuous: { MAT: 0.6 }
         }
       }
     },
@@ -16178,7 +16206,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260428-pr1-trace-reliability";
+  var BUNDLE_VERSION = "20260428-pr2-q29-rebalance";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
