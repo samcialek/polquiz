@@ -721,6 +721,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const archetype = archetypesData.find(a => a.id === archetypeId);
     if (!archetype) throw new Error('Archetype not found: ' + archetypeId);
 
+    // Demo / archetype-fallback path: when there's no respondent run, fetch
+    // the pre-computed archetype-elections-raw file (per-candidate Euclidean
+    // distances under the archetype's centroid signature). Populates the
+    // election hover tooltip and the defining/strategic outline detection
+    // identically to a live respondent run.
+    let archetypeElectionsRaw = null;
+    const hasRespondentRaw = !!readPrismStorage('prism-election-raw');
+    if (!hasRespondentRaw) {
+      try {
+        const r = await fetch(`${DATA_BASE}/archetype-elections-raw/${archetypeId}.json?v=2026-04-29c`);
+        if (r.ok) archetypeElectionsRaw = await r.json();
+      } catch (e) { /* file missing for this archetype — features degrade silently */ }
+    }
+
+    // ADR-002: ENG was migrated out of archetype signatures. Inject a default
+    // mid-engagement ENG node ({pos:3, sal:0}) so the SELF-cluster profile
+    // still shows three rows (PF, TRB, ENG). Real respondent runs override
+    // this through respondentState.continuous.ENG via the existing path.
+    if (archetype.nodes && !archetype.nodes.ENG) {
+      archetype.nodes.ENG = { kind: 'continuous', pos: 3, sal: 0 };
+    }
+
     // ── Election rendering: prefer the user's actual responses over the
     // pre-computed archetype-level votes ────────────────────────────────────
     // The grid below was originally pulling `electionsData[archetypeId]` —
@@ -743,22 +765,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     let elections;
     const rawForGridStr = readPrismStorage('prism-election-raw');
+    let rawListForGrid = null;
     if (rawForGridStr) {
       try {
-        const rawList = JSON.parse(rawForGridStr);
-        if (Array.isArray(rawList) && rawList.length > 0) {
-          elections = rawList.map(p => {
-            if (p.decision === 'abstain' || !p.nearest) {
-              return { y: p.year, c: '—', p: 'abstain' };
-            }
-            return {
-              y: p.year,
-              c: p.nearest.name,
-              p: partyToUiLetter(p.nearest.party),
-            };
-          });
+        const parsed = JSON.parse(rawForGridStr);
+        if (Array.isArray(parsed) && parsed.length > 0) rawListForGrid = parsed;
+      } catch (e) { /* fall through */ }
+    }
+    if (!rawListForGrid && archetypeElectionsRaw) rawListForGrid = archetypeElectionsRaw;
+    if (rawListForGrid) {
+      elections = rawListForGrid.map(p => {
+        if (p.decision === 'abstain' || !p.nearest) {
+          return { y: p.year, c: '—', p: 'abstain' };
         }
-      } catch (e) { /* fall through to archetype-level data */ }
+        return {
+          y: p.year,
+          c: p.nearest.name,
+          p: partyToUiLetter(p.nearest.party),
+        };
+      });
     }
     if (!elections) elections = electionsData[archetypeId] || [];
 
@@ -988,11 +1013,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawPredsByYear = {};
     try {
       const rawStr = readPrismStorage('prism-election-raw');
+      let rawList = null;
       if (rawStr) {
-        const rawList = JSON.parse(rawStr);
-        if (Array.isArray(rawList)) {
-          rawList.forEach(p => { if (p && p.year != null) rawPredsByYear[p.year] = p; });
-        }
+        const parsed = JSON.parse(rawStr);
+        if (Array.isArray(parsed)) rawList = parsed;
+      }
+      // Fall through to archetype-fallback raw data when no respondent run.
+      if (!rawList && archetypeElectionsRaw) rawList = archetypeElectionsRaw;
+      if (rawList) {
+        rawList.forEach(p => { if (p && p.year != null) rawPredsByYear[p.year] = p; });
       }
     } catch(e) { /* hover silently disabled if parse fails */ }
 
