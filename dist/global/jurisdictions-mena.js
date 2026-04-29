@@ -357,7 +357,7 @@ export const MENA_AFRICA = [
         regime: "Saddam Hussein",
         startYear: 1969,
         endYear: 2002,
-        MAT: 2, CD: 5, CU: 5, MOR: 1,
+        MAT: 2, CD: 5, CU: 1, MOR: 1,
         PRO: 1, COM: 1, ZS: 5,
         ONT_H: 1, ONT_S: 3,
         PF: 5, TRB: 5, ENG: 4,

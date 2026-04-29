@@ -87,14 +87,17 @@ function computeAlignment(arch: Archetype, regime: RegimePeriod): number {
     ? Math.sqrt(weightedSumSq / totalWeight)
     : 4; // Max distance if no nodes have salience
 
-  // Gaussian support → alignment, then dysfunction multiplier (Phase 6,
-  // 2026-04-27). Symmetric dampening for chaotic / failed / predatory
-  // regimes; see src/global/jurisdictions-dysfunction.ts and
-  // results/dysfunction-coding/.
+  // Gaussian support → alignment, then *asymmetric* dysfunction multiplier
+  // (PR 5, 2026-04-29). Dysfunction makes "you'd thrive there" harder to
+  // claim, but does not soften "you'd find it repugnant." Compresses positive
+  // alignment only; negative alignment stays at full magnitude. See
+  // src/global/jurisdictions-dysfunction.ts and
+  // results/calibration-exceptions/pr5-diagnostic-baseline.md.
   const support = 100 * Math.exp(-Math.pow(distance / GAUSSIAN_SIGMA, 2));
   const dysKey = `${regime.jurisdiction}|${regime.regime}|${regime.startYear}`;
   const dysFactor = dysfunctionFactor(JURISDICTION_DYSFUNCTION[dysKey]);
-  const alignment = (support / 50 - 1) * 3 * dysFactor;
+  const rawAlignment = (support / 50 - 1) * 3;
+  const alignment = rawAlignment > 0 ? rawAlignment * dysFactor : rawAlignment;
 
   return Math.max(-3, Math.min(3, +alignment.toFixed(3)));
 }

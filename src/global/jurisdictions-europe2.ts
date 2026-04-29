@@ -66,7 +66,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1945,
     description:
       "German occupation brought deportation of Dutch Jews, forced labor, and the catastrophic Hunger Winter of 1944-45, shattering the prewar social order and leaving deep scars on national memory.",
-    MAT: 3, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
+    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -580,7 +580,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1944,
     description:
       "Carol II's royal dictatorship gave way to Marshal Antonescu's alliance with Nazi Germany, leading Romania into the invasion of the USSR, the Holocaust in Transnistria, and eventual capitulation to the Soviets in August 1944.",
-    MAT: 4, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
+    MAT: 4, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 4, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -591,7 +591,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1964,
     description:
       "Soviet-backed communists seized power, abolished the monarchy, collectivized agriculture, and industrialized under Gheorghiu-Dej while purging rivals and imprisoning hundreds of thousands in forced labor camps.",
-    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
     ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },
@@ -602,7 +602,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1989,
     description:
       "Nicolae Ceausescu built a nationalist communist personality cult, pursuing an independent foreign policy while imposing devastating austerity to repay foreign debt, banning abortion, and demolishing villages for systematization.",
-    MAT: 1, CD: 5, CU: 5, MOR: 2, PRO: 1, COM: 1,
+    MAT: 1, CD: 5, CU: 1, MOR: 2, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 5, ENG: 4,
     EPS: 3, AES: 4,
   },
@@ -673,7 +673,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1956,
     description:
       "Matyas Rakosi's Stalinist regime imposed terror, show trials, and forced industrialization before the 1956 Hungarian Revolution briefly overthrew communist rule, only to be crushed by Soviet tanks.",
-    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
     ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },
@@ -706,7 +706,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 2026,
     description:
       "Viktor Orban's Fidesz built an 'illiberal democracy' with a constitutional supermajority, capturing state institutions, media, and courts while championing Christian nationalism and anti-immigration politics within the EU.",
-    MAT: 3, CD: 5, CU: 4, MOR: 2, PRO: 2, COM: 1,
+    MAT: 3, CD: 5, CU: 2, MOR: 1, PRO: 2, COM: 1,
     ZS: 4, ONT_H: 1, ONT_S: 4, PF: 5, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -755,7 +755,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1945,
     description:
       "The Munich Agreement dismembered Czechoslovakia, and the subsequent Nazi Protectorate of Bohemia and Moravia imposed terror, Germanization, and the destruction of Lidice, while the Sudeten Germans were expelled after liberation.",
-    MAT: 3, CD: 5, CU: 5, MOR: 1, PRO: 1, COM: 1,
+    MAT: 3, CD: 5, CU: 1, MOR: 1, PRO: 1, COM: 1,
     ZS: 5, ONT_H: 1, ONT_S: 5, PF: 1, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
   },
@@ -766,7 +766,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     endYear: 1967,
     description:
       "The 1948 communist coup imposed Stalinist rule under Gottwald with show trials, collectivization, and heavy industrialization, while Czechoslovakia became one of the most rigidly orthodox Warsaw Pact states.",
-    MAT: 1, CD: 4, CU: 5, MOR: 3, PRO: 1, COM: 1,
+    MAT: 1, CD: 4, CU: 1, MOR: 3, PRO: 1, COM: 1,
     ZS: 4, ONT_H: 4, ONT_S: 3, PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
   },

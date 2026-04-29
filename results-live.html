@@ -665,7 +665,11 @@ document.addEventListener('DOMContentLoaded', () => {
           ? Math.sqrt(weightedSumSq / totalWeight)
           : 4;
         const support = 100 * Math.exp(-Math.pow(distance / ALIGNMENT_GAUSSIAN_SIGMA, 2));
-        const alignmentRaw = (support / 50 - 1) * 3 * dysfunctionFactor(era.dysfunction);
+        // Asymmetric dysfunction (PR 5): compress positive alignment only.
+        // Mirrors src/global/build-alignment.ts. Dysfunction makes "you'd
+        // thrive there" harder, but does not soften "you'd find it repugnant."
+        const alignmentBase = (support / 50 - 1) * 3;
+        const alignmentRaw = alignmentBase > 0 ? alignmentBase * dysfunctionFactor(era.dysfunction) : alignmentBase;
         const v = Math.max(-3, Math.min(3, +alignmentRaw.toFixed(3)));
         return {
           r: era.regime_name,
@@ -708,10 +712,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/alignments.json`).then(r => r.json()),
-      // Cache-bust 2026-04-27: regimes.json now includes per-era dysfunction
-      // codes (1-5) which buildPersonalAlignments uses to dampen alignment
-      // magnitude for chaotic / failed regimes. Force fresh fetch.
-      fetch(`${DATA_BASE}/regimes.json?v=2026-04-27`).then(r => r.json()).catch(() => ({})),
+      // Cache-bust 2026-04-29: PR 5 ships asymmetric dysfunction (positive
+      // alignment compressed only) plus 18 forced-uniformity regime CU
+      // recodings + Orbán CU/MOR fix + a new merge-regime-nodes.cjs build
+      // step that bakes per-era nodes into regimes.json. Force fresh fetch.
+      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29`).then(r => r.json()).catch(() => ({})),
     ]);
 
     const archetype = archetypesData.find(a => a.id === archetypeId);
@@ -803,17 +808,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `Your responses didn't separate any single archetype from the field. Leader-vs-runner-up margin is <strong>${confPct}</strong>. Treat the headline match as the closest <em>direction</em>, not a definitive label.`
         : `Your top match is real but the next-closest archetypes are within striking distance. Leader-vs-runner-up margin is <strong>${confPct}</strong>.`;
 
-      // Pick neighbors: archetypes within +0.05 of leader's distance, capped at
-      // 5 displayed, floored at top 3 when the gate fires (Sam's spec).
+      // Pick neighbors: leader + the single closest runner-up. PR 5 (2026-04-29)
+      // dropped the prior 5-cap with within-0.05 expansion plus 3-floor — long
+      // neighbor lists made the banner read like the assignment was disputed
+      // when really the gate just signals "treat this as directional." Cap 2
+      // shows the headline match and the closest contender, no more.
       const top5 = Array.isArray(stored.top5) ? stored.top5 : (Array.isArray(stored.top3) ? stored.top3 : []);
-      let neighbors = [];
-      if (top5.length > 0) {
-        const lead = top5[0].distance;
-        const within = top5.filter(a => (a.distance - lead) <= 0.05);
-        const floor3 = top5.slice(0, Math.min(3, top5.length));
-        const merged = within.length >= floor3.length ? within : floor3;
-        neighbors = merged.slice(0, 5);
-      }
+      const neighbors = top5.slice(0, 2);
       neighborsEl.innerHTML = '';
       neighbors.forEach((n, i) => {
         const row = document.createElement('div');
@@ -1018,13 +1019,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return new Set(candidates.slice(0, 3).map(c => c.year));
     }
 
-    // Strategic-vote reroutes — elections where the modeled ballot pick differs
-    // from the values-nearest candidate (third-party closest got rerouted to a
-    // major-party candidate within the strategic-vote threshold).
+    // Vote-choice modifier reroutes — elections where the modeled decision is
+    // an actual vote AND the modeled ballot differs from the values-closest
+    // candidate. Modifiers can include party loyalty, strategic voting, and
+    // non-ideological election factors. Skips abstain years (no meaningful
+    // reroute when the decision is to not vote at all).
     function findStrategicElections(predsByYear) {
       const out = new Set();
       for (const [year, p] of Object.entries(predsByYear)) {
-        if (!p || !p.nearest || !p.nearestByValues) continue;
+        if (!p || p.decision !== 'vote') continue;
+        if (!p.nearest || !p.nearestByValues) continue;
         if (p.nearest.name !== p.nearestByValues.name) out.add(+year);
       }
       return out;
@@ -1096,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.push(`<span class="leg-item" title="largest margin between your first and second choice"><span class="leg-swatch defining"></span>The elections that define you</span>`);
       }
       if (strategicYears.size > 0) {
-        items.push(`<span class="leg-item" title="strategic-vote model rerouted you off your first choice"><span class="leg-swatch strategic"></span>Strategic vote — not your first choice</span>`);
+        items.push(`<span class="leg-item" title="vote-choice modifiers (party loyalty, strategic voting, non-ideological factors) routed your ballot off your closest match by values"><span class="leg-swatch strategic"></span>Ballot differs from values match</span>`);
       }
       legend.innerHTML = items.join('');
     })();
@@ -1107,14 +1111,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const pred = rawPredsByYear[year];
       if (!pred || !pred.candidates || pred.candidates.length === 0) return;
       const ranked = pred.candidates.slice().sort((a, b) => a.distance - b.distance);
-      // Modeled ballot = pred.nearest (after strategic-vote rerouting). Values
-      // match = pred.nearestByValues (raw weighted-Euclidean closest, no party
-      // multiplier or non-ideological modifier). When these differ, the ballot
-      // pick was rerouted from a third-party closest to a major-party within
-      // the strategic-vote threshold (respondentVoteChoice.ts:443).
+      // Modeled ballot = pred.nearest (after vote-choice modifiers: party
+      // loyalty, strategic voting, non-ideological factors). Values match =
+      // pred.nearestByValues (raw weighted-Euclidean closest, no modifiers).
+      // We surface the reroute note only on actual-vote decisions where these
+      // differ — abstain years have no meaningful reroute.
       const ballotName = pred.nearest ? pred.nearest.name : ranked[0].name;
       const valuesName = pred.nearestByValues ? pred.nearestByValues.name : null;
-      const rerouted = valuesName && valuesName !== ballotName;
+      const rerouted = pred.decision === 'vote' && valuesName && valuesName !== ballotName;
       let html = `<div class="et-year">${year}</div>`;
       html += `<div class="et-sub">Weighted Euclidean distance</div>`;
       ranked.forEach(c => {
@@ -1137,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         html += `<div class="et-footer"><span class="et-decision ${dcls}">${verb}</span> · clearing bar ${pred.clearingBar.toFixed(2)}</div>`;
       }
       if (rerouted) {
-        html += `<div class="et-rerouted">Closest by values: <strong>${valuesName}</strong>. Modeled ballot rerouted to <strong>${ballotName}</strong> — strategic-vote threshold for third-party candidates.</div>`;
+        html += `<div class="et-rerouted">Closest by values: <strong>${valuesName}</strong>. Modeled ballot: <strong>${ballotName}</strong> after vote-choice modifiers. Modifiers can include party loyalty, strategic voting, and non-ideological election factors.</div>`;
       }
       eTooltip.innerHTML = html;
       eTooltip.style.display = 'block';

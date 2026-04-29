@@ -6,7 +6,6 @@ var ARCHETYPES = [
     id: "001",
     name: "Rawlsian Reformer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2 },
@@ -17,18 +16,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
     }
   },
   {
     id: "002",
     name: "Independent Social Democrat",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -39,18 +36,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "003",
-    name: "Welfare Modernizer",
+    name: "Consensus Redistributionist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -61,62 +56,62 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "004",
     name: "Labor Reformer",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): civic-nationalist progressive
+    // labor pattern; net mid under broader uniformity-vs-pluralism axis.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
       MOR: { kind: "continuous", pos: 4, sal: 1 },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 4, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
   {
     id: "005",
-    name: "Public Guardian",
+    name: "Pluralist Structuralist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_S 1 → 4 per ADR-010 reframe (2026-04-26): structuralists who want to
+    // reshape institutions to fix power imbalances believe well-designed
+    // institutions CAN work. Old "system broken" reading at ONT_S=1 was wrong;
+    // they're institutional reformers, not nihilists.
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
-      CD: { kind: "continuous", pos: 3, sal: 1 },
+      CD: { kind: "continuous", pos: 2, sal: 1 },
       CU: { kind: "continuous", pos: 4, sal: 2 },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      PRO: { kind: "continuous", pos: 5, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 1 },
-      ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
     }
   },
   {
     id: "006",
     name: "Fairness Pragmatist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -124,87 +119,69 @@ var ARCHETYPES = [
       MOR: { kind: "continuous", pos: 3, sal: 1 },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ZS: { kind: "continuous", pos: 2, sal: 1 },
+      ZS: { kind: "continuous", pos: 2, sal: 2 },
+      // raised sal 1→2 (discriminator vs Social Stabilizer)
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+      // raised sal 1→2 (discriminator vs Social Stabilizer)
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "007",
     name: "Solidarist Reformer",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): communal-left wants shared
+    // moral values but pluralism on private lifestyle; net mid.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "008",
-    name: "Municipal Equalizer",
+    name: "Procedural Redistributionist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4 per ADR-010 (2026-04-26): proceduralists believe institutions
+    // (when properly designed) reshape incentives and behavior. Under the
+    // malleability framing they are high-malleability-via-state, not skeptics.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
       CU: { kind: "continuous", pos: 4, sal: 1 },
-      MOR: { kind: "continuous", pos: 4, sal: 1 },
+      MOR: { kind: "continuous", pos: 4, sal: 2 },
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-    }
-  },
-  {
-    id: "009",
-    name: "Social Stabilizer",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 3, sal: 1 },
-      MOR: { kind: "continuous", pos: 4, sal: 1 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      COM: { kind: "continuous", pos: 4, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "010",
     name: "Bread-and-Butter Progressive",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4 per ADR-010 (2026-04-26): BBP progressives believe state
+    // programs (jobs, welfare, education) improve people's material and moral
+    // condition. High malleability via state.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -213,20 +190,18 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "011",
     name: "Jacobin Egalitarian",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -236,41 +211,45 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 3, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
   {
     id: "012",
     name: "Class-War Leftist",
+    // Archetype-audit Phase 4 (2026-04-26). Two priority-node corrections per
+    // rubric. CU 2→3 (modest move; class-war can pair with internationalism
+    // but ideological-uniformity edge retained — user direction). MOR 3→4
+    // (universalist-class concern; spatial scope is wide). ONT_H 1→4
+    // (ADR-010 reframe: class-warriors believe humans are reshaped by economic
+    // structure → high malleability-via-cultivation; old ONT_H=1 reflected
+    // pre-ADR-010 optimism-vs-pessimism reading). CU 4 jump held back per
+    // user direction.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
-      MOR: { kind: "continuous", pos: 3, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
+      MOR: { kind: "continuous", pos: 4, sal: 2 },
       PRO: { kind: "continuous", pos: 2, sal: 1 },
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 3, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
+      ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
     }
   },
   {
     id: "013",
     name: "Radical Leveler",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -280,19 +259,23 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
       AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
     }
   },
   {
     id: "014",
-    name: "Movement Egalitarian",
+    name: "Activist Progressive",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 2→4 per rubric Pattern A
+    // archetype-side: "Activist Progressive" is institutional reform tradition
+    // (Bryan/La Follette/FDR rubric anchor at ONT_S=4), not institutional
+    // nihilism. Old ONT_S=2 reflects pre-ADR-010 "system needs reform"
+    // framing; under capacity-belief framing, progressives believe institutions
+    // CAN be made to work hard.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -303,18 +286,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
     }
   },
   {
     id: "015",
     name: "Moral Firebrand",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -324,19 +305,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-      PF: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+      PF: { kind: "continuous", pos: 2, anti: "low" },
+      TRB: { kind: "continuous", pos: 4 },
       EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
     }
   },
   {
     id: "016",
     name: "Insurgent Equalizer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -346,19 +325,24 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
       AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
     }
   },
   {
     id: "017",
     name: "Uncompromising Redistributionist",
+    // Archetype-audit Phase 6 ONT_H sweep (2026-04-27). ONT_H 1→4: parallel
+    // fix to 012 Class-War Leftist. Old ONT_H=1 reflects pre-ADR-010
+    // optimism-vs-pessimism reading ("pessimist about humans under
+    // capitalism"). Under malleability-via-cultivation framing, an
+    // uncompromising redistributionist who fights for max-state-redistribution
+    // believes humans are reshaped by economic structure → high malleability.
+    // Anti direction also flipped (high→low: now antagonistic to humans-fixed).
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -367,20 +351,22 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 2, sal: 1 },
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      // 1→4 audit Phase 6: humans reshaped by economic structure
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
+  // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
   {
     id: "019",
     name: "Anarchist Mutualist",
     tier: "T1",
-    prior: 1 / 130,
+    active: false,
+    // DEACTIVATED — merged into 020
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -390,55 +376,72 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 1, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 2, anti: "low" },
+      TRB: { kind: "continuous", pos: 2 },
       EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
     }
   },
   {
+    // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
+    // "Grassroots Autonomist" — anti-hierarchical, anti-institutional, bottom-up direct action
     id: "020",
-    name: "Horizontalist Dissenter",
+    name: "Grassroots Autonomist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
-      PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      COM: { kind: "continuous", pos: 2, sal: 2 },
-      ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      // kept 019's stronger anti-proceduralism
+      COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      // kept 019's uncompromising stance
+      ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      // split the difference (1+3)/2
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+      // 019's optimism
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 2, anti: "high" },
+      // kept 020's stronger anti-partisan
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      // kept 020's anti-tribal
       EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.4, 0.38, 0.04, 0.08], sal: 2 }
+      // blend pastoral+plainspoken
     }
   },
   {
+    // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
+    // "Principled Cosmopolitan" — universal moral principles, cross-border ethics, anti-tribal
     id: "021",
-    name: "Kantian Cosmopolitan",
+    name: "Principled Cosmopolitan",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+    // ONT_S undercoding fix per audit. Principled cosmopolitans use
+    // international institutions hard (UN, ICC, treaty regimes) → institutional
+    // capacity belief, not mid-skepticism. Old ONT_S=3 reflects pre-ADR-010
+    // "system broken vs working" framing.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PRO: { kind: "continuous", pos: 4, sal: 2 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
+      CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+      // cosmopolitanism is core
+      MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+      // moral universalism is core
+      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      // procedural (from 023/025)
+      COM: { kind: "continuous", pos: 2, sal: 2 },
+      // leans uncompromising (from 023)
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      // 3→4 audit Phase 4: institutional-internationalist anchor
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      // anti-tribalism is core
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
     }
   },
@@ -446,51 +449,57 @@ var ARCHETYPES = [
     id: "022",
     name: "Pluralist Universalist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
-      CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      CU: { kind: "continuous", pos: 5, sal: 2 },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
-      PRO: { kind: "continuous", pos: 2, sal: 1 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      PRO: { kind: "continuous", pos: 2, sal: 2 },
+      COM: { kind: "continuous", pos: 3, sal: 2 },
+      ZS: { kind: "continuous", pos: 1, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
     }
   },
   {
+    // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
     id: "023",
     name: "Rights Cosmopolitan",
     tier: "T1",
-    prior: 1 / 130,
+    active: false,
+    // DEACTIVATED
     nodes: {
-      MAT: { kind: "continuous", pos: 2, sal: 2 },
+      MAT: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
+      // added anti:low — not redistributionist
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
       MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 5, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      // added anti:low — strongly optimistic
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 3 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      // raised sal 2→3
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+      // raised sal 1→2
     }
   },
   {
     id: "024",
     name: "Ethical Internationalist",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+    // ONT_S undercoding fix. Ethical internationalism (UN tradition, Marshall
+    // Plan, treaty regime building) is the institutional-internationalist
+    // anchor → ONT_S=4. Old ONT_S=3 reflects pre-ADR-010 framing.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -500,19 +509,21 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 3 },
       ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      // 3→4 audit Phase 4: institutional-internationalist anchor
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
     }
   },
   {
+    // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
     id: "025",
     name: "World-Minded Reformer",
     tier: "T1",
-    prior: 1 / 130,
+    active: false,
+    // DEACTIVATED
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -522,11 +533,12 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
+      // raised sal 2→3: system critique is core
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      // raised sal 1→2
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
   },
@@ -534,7 +546,6 @@ var ARCHETYPES = [
     id: "026",
     name: "Cosmopolitan Pragmatist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -545,40 +556,44 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
     }
   },
   {
     id: "027",
     name: "Popperian Liberal",
+    // Archetype-audit Phase 4 (2026-04-26). MOR 2→4: open-society liberalism
+    // is moral-universalist (wide spatial scope across humanity), not narrow.
+    // Old MOR=2 conflated Popper's individual-rights-first framing with
+    // narrow practiced scope; rubric requires spatial scope only.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
       CU: { kind: "continuous", pos: 3, sal: 2 },
-      MOR: { kind: "continuous", pos: 2, sal: 2 },
+      MOR: { kind: "continuous", pos: 4, sal: 2 },
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 2, anti: "high" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "028",
     name: "Global Caretaker",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
+    // ONT_S undercoding fix. Global care = WHO / Marshall Plan / aid-
+    // institution-builder tradition → institutional capacity belief, not
+    // mid-skepticism.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -588,19 +603,18 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      // 3→4 audit Phase 4: institutional-internationalist anchor
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "029",
     name: "Liberationist Progressive",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -611,40 +625,23 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 3, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-    }
-  },
-  {
-    id: "030",
-    name: "Cultural Pluralist",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 2, sal: 2 },
-      CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      MOR: { kind: "continuous", pos: 3, sal: 2 },
-      PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-      COM: { kind: "continuous", pos: 3, sal: 2 },
-      ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
     }
   },
   {
     id: "031",
     name: "Planetary Steward",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
+    // user direction). Pattern A archetype-side: "Planetary Steward" implies
+    // institutional climate-care (IPCC, Paris regime, multilateral
+    // stewardship), not eco-anarchism. Old ONT_S=1 anti:high read this as
+    // accelerationist nihilism — opposite of the name. Anti direction also
+    // flipped: anti:high → anti:low (now antagonistic to institutional
+    // nihilism, not to capacity belief).
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -654,19 +651,24 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      // 1→4 audit Phase 4: institutional climate-care, not eco-anarchism
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
     }
   },
   {
     id: "032",
     name: "Hamiltonian Technocrat",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→5 + sal 1→2. Hamilton is
+    // the literal rubric anchor for ONT_S=5 ("Hamilton, FDR New Dealers,
+    // Progressive-era state-builders"). A literal Hamilton-named archetype
+    // mid-coded on the dimension Hamilton anchors is the most direct rubric-
+    // cite miscoding in the corpus. Sal raised 1→2 per user direction —
+    // Hamiltonian institutional capacity is a defining trait, not a side note.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -676,11 +678,11 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
+      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      // 3→5 sal 1→2 audit Phase 4: Hamilton-anchor for institutional capacity belief
+      PF: { kind: "continuous", pos: 3, anti: "high" },
       // Fixed: sal 0→1 (can't have anti on sal=0)
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
     }
@@ -689,7 +691,6 @@ var ARCHETYPES = [
     id: "033",
     name: "Systems Modernizer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
@@ -699,41 +700,39 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
       ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 3 },
-      PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+      ONT_S: { kind: "continuous", pos: 4, sal: 3 },
+      PF: { kind: "continuous", pos: 3, anti: "low" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
     }
   },
-  {
-    id: "034",
-    name: "Evidence Reformer",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 2, sal: 1 },
-      CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 4, sal: 1 },
-      MOR: { kind: "continuous", pos: 4, sal: 1 },
-      PRO: { kind: "continuous", pos: 3, sal: 2 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-    }
-  },
+  // {
+  // id: "034",
+  // name: "Evidence Reformer",
+  // tier: "T1",
+  // prior: 1/112,
+  // nodes: {
+  // MAT: { kind: "continuous", pos: 2, sal: 1 },
+  // CD: { kind: "continuous", pos: 2, sal: 1 },
+  // CU: { kind: "continuous", pos: 4, sal: 1 },
+  // MOR: { kind: "continuous", pos: 4, sal: 1 },
+  // PRO: { kind: "continuous", pos: 3, sal: 2 },
+  // COM: { kind: "continuous", pos: 3, sal: 1 },
+  // ZS: { kind: "continuous", pos: 2, sal: 1 },
+  // ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+  // ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+  // PF: { kind: "continuous", pos: 3 },
+  // TRB: { kind: "continuous", pos: 2, anti: "high" },
+  // ENG: { kind: "continuous", pos: 3 },
+  // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+  // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
+  // }
+  // },
   {
     id: "035",
     name: "Administrative Liberal",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -743,10 +742,9 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 3, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
@@ -755,7 +753,6 @@ var ARCHETYPES = [
     id: "036",
     name: "Institutional Optimizer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -765,19 +762,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
   },
   {
     id: "037",
     name: "Fabian Modernizer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -787,11 +782,10 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
   },
@@ -799,29 +793,28 @@ var ARCHETYPES = [
     id: "039",
     name: "Data-Driven Moderate",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): technocratic pragmatist; not
+    // uniformity-seeking, just outcome-oriented. Net mid under broader axis.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       MOR: { kind: "continuous", pos: 3, sal: 1 },
       PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
     }
   },
   {
     id: "040",
     name: "Reform Engineer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -832,54 +825,53 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
   },
   {
     id: "042",
     name: "Localist Progressive",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): participatory-progressive,
+    // civic-local not assimilationist.
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 3, sal: 1 },
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "043",
-    name: "Neighborly Egalitarian",
+    name: "Quiet Egalitarian",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): communitarian redistributionist
+    // wants shared moral life via solidarity, not uniformity enforcement.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
     }
   },
@@ -887,21 +879,21 @@ var ARCHETYPES = [
     id: "045",
     name: "Rooted Social Reformer",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): rooted progressive seeking
+    // deep community cohesion, not assimilationism.
     nodes: {
-      MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      MAT: { kind: "continuous", pos: 1, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
-      MOR: { kind: "continuous", pos: 3, sal: 1 },
-      PRO: { kind: "continuous", pos: 4, sal: 1 },
-      COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
+      MOR: { kind: "continuous", pos: 3, sal: 2 },
+      PRO: { kind: "continuous", pos: 4, sal: 2 },
+      COM: { kind: "continuous", pos: 5, sal: 2 },
+      ZS: { kind: "continuous", pos: 2, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
       AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
     }
   },
@@ -909,95 +901,94 @@ var ARCHETYPES = [
     id: "046",
     name: "Pastoral Leftist",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): spiritual-communal, not
+    // uniformity-seeking.
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
     }
   },
-  {
-    id: "047",
-    name: "Common-Life Reformer",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      CD: { kind: "continuous", pos: 3, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
-      MOR: { kind: "continuous", pos: 3, sal: 2 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-    }
-  },
+  // {
+  // id: "047",
+  // name: "Common-Life Reformer",
+  // tier: "T1",
+  // prior: 1/112,
+  // nodes: {
+  // MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+  // CD: { kind: "continuous", pos: 3, sal: 1 },
+  // CU: { kind: "continuous", pos: 2, sal: 1 },
+  // MOR: { kind: "continuous", pos: 3, sal: 2 },
+  // PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+  // COM: { kind: "continuous", pos: 3, sal: 1 },
+  // ZS: { kind: "continuous", pos: 2, sal: 1 },
+  // ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+  // ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+  // PF: { kind: "continuous", pos: 2 },
+  // TRB: { kind: "continuous", pos: 2 },
+  // ENG: { kind: "continuous", pos: 4 },
+  // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+  // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
+  // }
+  // },
   {
     id: "048",
     name: "Solidaristic Localist",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): communitarian localist
+    // preferring shared life to uniformity.
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 3, sal: 1 },
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
     }
   },
   {
     id: "049",
-    name: "Paternal Egalitarian",
+    name: "Moral Egalitarian",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): equality-through-solidarity,
+    // not uniformity. Old CU=2 was narrow-framed.
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
       MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       PRO: { kind: "continuous", pos: 4, sal: 1 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "050",
-    name: "Religious Leftist",
+    name: "Traditionalist Moralist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1008,18 +999,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "051",
-    name: "Ecological Localist",
+    name: "Systemic Redistributionist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1029,41 +1018,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-    }
-  },
-  {
-    id: "052",
-    name: "Distributist Localist",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      CD: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      CU: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-      MOR: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
-      PRO: { kind: "continuous", pos: 4, sal: 2 },
-      COM: { kind: "continuous", pos: 5, sal: 2 },
-      ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 3, sal: 3 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "053",
     name: "Consensus Builder",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1073,19 +1038,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "054",
     name: "Arbiter Moderate",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -1096,63 +1059,46 @@ var ARCHETYPES = [
       // Fixed: Moderate = high compromise
       ZS: { kind: "continuous", pos: 1, sal: 2 },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-    }
-  },
-  {
-    id: "055",
-    name: "Halifax Moderate",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 3, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
-      MOR: { kind: "continuous", pos: 3, sal: 2 },
-      PRO: { kind: "continuous", pos: 4, sal: 2 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
     }
   },
   {
     id: "056",
-    name: "Institutional Centrist",
+    name: "Institutional Leftist",
     tier: "T1",
-    prior: 1 / 130,
+    // Renamed 2026-04-26 from "Institutional Centrist". The previous name was
+    // misleading — MAT=2 is far-left on the redistribution axis, not centrist.
+    // The archetype represents an economically progressive (MAT=2),
+    // culturally moderate-traditional (CD=4), institutionally trusting
+    // (ONT_S=4), strongly anti-zero-sum, anti-tribal pluralist. The
+    // distinguishing feature vs Pluralist Structuralist (005) is the more
+    // conservative cultural register and the institutional-trust orientation.
+    // CU lowered 2026-04-26 from 5 → 4 under broadened CU framing — still
+    // strongly pluralist on private worldview/lifestyle but not maximally so.
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+      CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
       MOR: { kind: "continuous", pos: 4, sal: 3 },
       PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "057",
     name: "Temperate Pluralist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1162,19 +1108,18 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "059",
     name: "Public-Minded Moderate",
     tier: "T1",
-    prior: 1 / 130,
+    centristAnchor: true,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1184,41 +1129,40 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "060",
     name: "Hinge Citizen",
     tier: "T1",
-    prior: 1 / 130,
+    centristAnchor: true,
+    // CU 2→3 (2026-04-26 broadened CU framing): true swing centrist; mid CU
+    // matches mid everything else.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
-      CU: { kind: "continuous", pos: 3, sal: 3 },
-      MOR: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      PRO: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-      ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      CU: { kind: "continuous", pos: 3, sal: 2 },
+      MOR: { kind: "continuous", pos: 3, sal: 2 },
+      PRO: { kind: "continuous", pos: 4, sal: 2 },
+      COM: { kind: "continuous", pos: 3, sal: 2 },
+      ZS: { kind: "continuous", pos: 2, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
+      AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
     }
   },
   {
     id: "061",
     name: "Millian Liberal",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2 },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1228,19 +1172,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "062",
     name: "Meritocratic Liberal",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -1250,19 +1192,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "063",
     name: "Enterprise Pluralist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -1272,85 +1212,91 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
     }
   },
-  {
-    id: "064",
-    name: "Market Optimist",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CD: { kind: "continuous", pos: 2, sal: 2 },
-      CU: { kind: "continuous", pos: 4, sal: 2 },
-      MOR: { kind: "continuous", pos: 2, sal: 2 },
-      PRO: { kind: "continuous", pos: 3, sal: 2 },
-      COM: { kind: "continuous", pos: 4, sal: 2 },
-      ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-    }
-  },
+  // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
+  // {
+  //   id: "064",
+  //   name: "Market Optimist",
+  //   tier: "T1",
+  //   prior: 1/112,
+  //   nodes: {
+  //     MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+  //     CD: { kind: "continuous", pos: 2, sal: 2 },
+  //     CU: { kind: "continuous", pos: 4, sal: 2 },
+  //     MOR: { kind: "continuous", pos: 2, sal: 2 },
+  //     PRO: { kind: "continuous", pos: 3, sal: 2 },
+  //     COM: { kind: "continuous", pos: 4, sal: 2 },
+  //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+  //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+  //     ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+  //     PF: { kind: "continuous", pos: 3 },
+  //     TRB: { kind: "continuous", pos: 2, anti: "high" },
+  //     ENG: { kind: "continuous", pos: 5, anti: "low" },
+  //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+  //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
+  //   }
+  // },
   {
     id: "065",
     name: "Opportunity Liberal",
+    // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: rubric
+    // distinguishes "outcome-focused / bureaucracy-skeptical" (PRO 3) from
+    // "outright rule-breaking" (PRO 1). Opportunity Liberals work within
+    // institutions to expand opportunity; not anti-procedural in the
+    // Trump-2020 / Lenin sense. Anti direction also dropped (was anti:high).
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
       CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       MOR: { kind: "continuous", pos: 5, sal: 2 },
-      PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      PRO: { kind: "continuous", pos: 3, sal: 3 },
+      // 1→3 audit Phase 6: outcome-focused, not anti-procedural
       COM: { kind: "continuous", pos: 3, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
     }
   },
   {
     id: "067",
     name: "Free-Exchange Modernist",
+    // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: market-
+    // libertarianism is bureaucracy-skeptical, not anti-procedural; free-
+    // traders work within rule-of-law / WTO / contract-enforcement frames
+    // to liberalize, not break them.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
-      PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      PRO: { kind: "continuous", pos: 3, sal: 3 },
+      // 1→3 audit Phase 6: bureaucracy-skeptical, not anti-procedural
       COM: { kind: "continuous", pos: 3, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
+      ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
     }
   },
   {
     id: "069",
     name: "Bleeding-Heart Libertarian",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1360,32 +1306,38 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 2, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "070",
     name: "Burkean Steward",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): Burkean tradition
+    // explicitly believes humans are cultivated by family/church/custom (high
+    // malleability via cultural mechanism) AND that lawful institutions are
+    // foundational to ordered liberty (high institutional capacity belief).
+    // Old encoding read these as 3/3 under "moderate optimism / mixed system"
+    // — wrong axis under the new framings.
     nodes: {
+      // CU 2→3 (2026-04-26 broadened CU framing): Burkean tradition values
+      // shared civic/cultural cohesion but tolerates private pluralism;
+      // anti="high" retained.
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       MOR: { kind: "continuous", pos: 2, sal: 3 },
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
       EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
       AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
     }
@@ -1394,51 +1346,62 @@ var ARCHETYPES = [
     id: "071",
     name: "Constitutional Conservative",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): constitutional
+    // conservatism centers on lawful institutions and written tradition shaping
+    // behavior — high malleability via constitutional/legal cultivation. Light
+    // institutional capacity belief (constitutional structure works, but state
+    // overreach bad).
     nodes: {
-      MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 3, sal: 1 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      MAT: { kind: "continuous", pos: 4, sal: 2 },
+      CD: { kind: "continuous", pos: 5, sal: 2 },
+      CU: { kind: "continuous", pos: 1, sal: 2 },
+      MOR: { kind: "continuous", pos: 2, sal: 2 },
+      PRO: { kind: "continuous", pos: 5, sal: 2 },
       COM: { kind: "continuous", pos: 2, sal: 2 },
-      ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
     }
   },
   {
     id: "072",
     name: "Blackstone Conservative",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): common-law
+    // traditionalist; institutions (especially law) transmit and shape character.
+    // MOR 5→3 archetype-audit Phase 4 (2026-04-26): Pattern B inverse —
+    // common-law conservatism is hierarchical / English-tradition-oriented.
+    // Natural-law universalism is rhetorical; practiced moral scope is
+    // narrower (Christian-English-tradition in-group). MOR=5 read traditional
+    // moral content as wide spatial scope; rubric requires spatial scope only.
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      MOR: { kind: "continuous", pos: 3, sal: 2 },
+      // 5→3 audit Phase 4: practiced scope is narrower than rhetorical universalism (also dropped anti:low)
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2 },
       EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "073",
     name: "Civic Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): civic traditionalists
+    // champion civic participation within inherited institutional frameworks —
+    // high cultivation by civic duty + high faith in functioning institutions.
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1447,20 +1410,18 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "074",
     name: "Responsible Conservative",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -1471,40 +1432,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 2 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
-      TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 3, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
-    }
-  },
-  {
-    id: "075",
-    name: "Institutional Conservative",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 4, sal: 2 },
-      CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 2, sal: 2 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 4, anti: "high" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "076",
     name: "Fiscal Gradualist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 2, sal: 2 },
@@ -1515,18 +1452,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1, anti: "high" },
-      TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 4, anti: "high" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "077",
     name: "Ordered Libertarian",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1537,18 +1472,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "078",
     name: "Meritocratic Conservative",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1559,62 +1492,54 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "079",
     name: "National Developmentalist",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): nationalist but
+    // development-focused; state-led growth, not cultural uniformity.
+    // ONT_S 1→5 archetype-audit Phase 4 (2026-04-26, PROMOTED HIGH).
+    // "Developmentalist" means institutional capacity belief — Hamilton, Lee
+    // Kuan Yew, post-war Japan/South Korea state-developmentalism. ONT_S=1
+    // reads developmentalists as institutional nihilists, opposite of the
+    // name. As direct as Hamiltonian Technocrat.
     nodes: {
-      MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
-      MOR: { kind: "continuous", pos: 2, sal: 1 },
-      PRO: { kind: "continuous", pos: 4, sal: 1 },
-      COM: { kind: "continuous", pos: 4, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-    }
-  },
-  {
-    id: "080",
-    name: "Chestertonian Traditionalist",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
       MOR: { kind: "continuous", pos: 2, sal: 2 },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 3, sal: 1 },
+      COM: { kind: "continuous", pos: 4, sal: 1 },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 5, sal: 2 },
+      // 1→5 audit Phase 4: developmentalist = institutional capacity belief
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
     }
   },
+  // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
+  // {
+  //   id: "080",
+  //   name: "Chestertonian Traditionalist",
+  //   ...
+  // },
   {
     id: "081",
     name: "Heritage Guardian",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4, ONT_S 1 → 2 per ADR-010 (2026-04-26): heritage preservation
+    // IS belief in cultural transmission (high malleability via tradition).
+    // Anti-state institutionalist preserved (anti:"high" on ONT_S, only raised
+    // to 2 from 1).
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1623,20 +1548,21 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "082",
     name: "Altar-and-Hearth Conservative",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): family/religion/
+    // tradition ARE cultivation mechanisms; humans malleable via them. Mid
+    // institutional capacity (church/family yes, state skeptical).
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1645,42 +1571,49 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 2, sal: 2 },
       COM: { kind: "continuous", pos: 2, sal: 2 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "083",
-    name: "Sacred-Order Defender",
+    name: "Closed Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4 per ADR-010 (2026-04-26): closed traditionalists believe in
+    // cultivation via tradition/family/religion. ONT_S held at 2 — they reject
+    // modern state institutions while valuing inherited ones.
+    // MOR 4→2 archetype-audit Phase 4 (2026-04-26): a "Closed Traditionalist"
+    // with high MOR is incoherent — closure implies narrow practiced scope
+    // (in-group focus). Old MOR=4 read traditional moral content as wide
+    // spatial scope; rubric requires spatial scope only.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 4, sal: 2 },
+      MOR: { kind: "continuous", pos: 2, sal: 2 },
+      // 4→2 audit Phase 4: closure = narrow practiced scope
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "084",
     name: "Civilizational Conservative",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 3 per ADR-010 (2026-04-26): civilizational conservatives
+    // believe modern humans are degenerating — modest malleability via tradition
+    // but institutional nihilism preserved (ONT_S kept at 1, anti:"high").
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1689,20 +1622,21 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
   {
     id: "085",
     name: "Customary Localist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): customary localists
+    // believe local custom shapes and improves people (high malleability via
+    // tradition); local institutions trusted more than state but still real.
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1711,12 +1645,11 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 2, sal: 2 },
       COM: { kind: "continuous", pos: 2, sal: 2 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
     }
   },
@@ -1724,29 +1657,34 @@ var ARCHETYPES = [
     id: "086",
     name: "Duty Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): duty-based traditionalism
+    // explicitly emphasizes character cultivation through obligation and role —
+    // high malleability via tradition + institutional structure.
     nodes: {
+      // CU 2→3 (2026-04-26 broadened CU framing): duty-bound communitarian
+      // but not uniformity-enforcing.
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 3, sal: 2 },
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "087",
     name: "Continuity Conservative",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): continuity conservatism
+    // prioritizes institutional continuity and cultural transmission as
+    // improvement mechanisms.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1755,64 +1693,69 @@ var ARCHETYPES = [
       PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 0 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "088",
     name: "Gentle Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_S 2 → 3 per ADR-010 (2026-04-26): already correctly high on ONT_H
+    // (tradition shapes people). Mild upward shift on ONT_S — they trust
+    // inherited institutions even if skeptical of modern state expansion.
+    // anti:"high" preserved.
+    // CU 2→3 (2026-04-26 broadened CU framing): soft conservatism; shared
+    // customs preferred but not enforced uniformity. anti="high" retained.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
       MOR: { kind: "continuous", pos: 2, sal: 2 },
       PRO: { kind: "continuous", pos: 3, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 3, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 2, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 3 }
+      ONT_S: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
     }
   },
   {
     id: "089",
     name: "Integral Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
+    // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): integral traditionalism
+    // blends institutional and cultural transmission — humans cultivated by
+    // sacred order and inherited institutions.
     nodes: {
+      // CU 2→3 (2026-04-26 broadened CU framing): holistic conservative;
+      // organic community coherence, not assimilationist policy.
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       PRO: { kind: "continuous", pos: 3, sal: 1 },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
+      ONT_H: { kind: "continuous", pos: 4, sal: 1 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "090",
     name: "Hobbesian Guardian",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -1824,19 +1767,17 @@ var ARCHETYPES = [
       // Hobbesian: life is zero-sum, strong differentiator
       ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       // Hobbesian: humans are NOT perfectible
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "091",
     name: "Security Paternalist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1846,19 +1787,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "092",
-    name: "Disciplined Majoritarian",
+    name: "Partisan Tribalist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1868,42 +1807,24 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 1 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
-    }
-  },
-  {
-    id: "093",
-    name: "Stability-First Voter",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      PRO: { kind: "continuous", pos: 3, sal: 1 },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      // Fixed: Voter = some engagement, removed anti
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "094",
     name: "Hard-State Manager",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4. Pattern A archetype-
+    // side: name explicitly asserts state-institutional capacity ("Hard-
+    // State"); old ONT_S=1 anti:high flipped this to institutional nihilism,
+    // contradicting the name. PRO=5 (max-rules-bound) is consistent with
+    // managerial authoritarianism but is incoherent with ONT_S=1. Anti
+    // direction also flipped: anti:high → anti:low (now antagonistic to
+    // institutional nihilism, not capacity belief).
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -1913,19 +1834,18 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
+      // 1→4 audit Phase 4: name says state-institutional, must match
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "095",
     name: "Emergency Orderist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -1935,77 +1855,50 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
-    }
-  },
-  {
-    id: "096",
-    name: "Civic Disciplinarian",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
-      MOR: { kind: "continuous", pos: 2, sal: 2 },
-      PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      COM: { kind: "continuous", pos: 3, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
     }
   },
   {
     id: "097",
     name: "Authority Pragmatist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      CU: { kind: "continuous", pos: 1, sal: 2 },
+      MOR: { kind: "continuous", pos: 1, sal: 2 },
       PRO: { kind: "continuous", pos: 4, sal: 1 },
       COM: { kind: "continuous", pos: 4, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 2, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
     }
   },
   {
     id: "098",
     name: "Anti-Elite Populist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
+      CU: { kind: "continuous", pos: 1, sal: 2 },
+      MOR: { kind: "continuous", pos: 2, sal: 2 },
+      PRO: { kind: "continuous", pos: 1, sal: 2 },
+      COM: { kind: "continuous", pos: 2, sal: 2 },
+      ZS: { kind: "continuous", pos: 5, sal: 2 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
     }
   },
@@ -2013,7 +1906,6 @@ var ARCHETYPES = [
     id: "099",
     name: "Scarcity Populist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2023,19 +1915,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 3, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
   {
     id: "100",
     name: "Tribal Insurgent",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
@@ -2045,11 +1935,10 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
     }
   },
@@ -2057,7 +1946,6 @@ var ARCHETYPES = [
     id: "101",
     name: "Embattled Majoritarian",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2067,33 +1955,10 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 3, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-    }
-  },
-  {
-    id: "102",
-    name: "Folk Tribune",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      MOR: { kind: "continuous", pos: 2, sal: 1 },
-      PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      COM: { kind: "continuous", pos: 2, sal: 1 },
-      ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
     }
   },
@@ -2101,7 +1966,6 @@ var ARCHETYPES = [
     id: "103",
     name: "Grievance Mobilizer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2111,12 +1975,10 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      // Fixed: Mobilizer = high engagement
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
     }
   },
@@ -2124,7 +1986,6 @@ var ARCHETYPES = [
     id: "104",
     name: "National Protector",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2134,19 +1995,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
     }
   },
   {
     id: "105",
     name: "Combative Populist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2156,19 +2015,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
     }
   },
   {
     id: "106",
-    name: "Leader-Centered Insurgent",
+    name: "Militant Partisan",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2178,63 +2035,59 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 2 },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 1 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
     }
   },
   {
     id: "107",
     name: "Resentful Localist",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): aggrieved localist; resentment
+    // is anti-pluralist impulse but not uniformity-enforcing.
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 2, sal: 2 },
       PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      TRB: { kind: "continuous", pos: 2, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 2, anti: "high" },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
     }
   },
   {
     id: "108",
     name: "Passive Cynic",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
       CU: { kind: "continuous", pos: 3, sal: 0 },
-      MOR: { kind: "continuous", pos: 3, sal: 0 },
-      PRO: { kind: "continuous", pos: 2, sal: 1 },
+      MOR: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
+      PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       COM: { kind: "continuous", pos: 3, sal: 0 },
-      ZS: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.03, 0.04, 0.04, 0.05, 0.1, 0.74], sal: 2, antiCats: [0, 1, 2, 3] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      PF: { kind: "continuous", pos: 1, anti: "high" },
+      TRB: { kind: "continuous", pos: 1, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.15, 0.6], sal: 2, antiCats: [1] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.55, 0.2, 0.05], sal: 1 }
     }
   },
   {
     id: "109",
     name: "Alienated Outsider",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2244,19 +2097,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 3 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 3, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "110",
     name: "Principled Abstainer",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2266,19 +2117,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      PF: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
+      PF: { kind: "continuous", pos: 2, anti: "high" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "111",
-    name: "Diogenes Independent",
+    name: "Cosmopolitan Nonconformist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -2289,18 +2138,16 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 0 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
       ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
     }
   },
   {
     id: "112",
-    name: "Contrarian Intellectual",
+    name: "Engaged Cosmopolitan",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
@@ -2311,20 +2158,61 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 3, antiCats: [2, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 3 }
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
+    }
+  },
+  {
+    id: "113",
+    name: "Disaffected Contrarian",
+    tier: "T1",
+    // CU 2→3 (2026-04-26 broadened CU framing): populist outsider; oppositional
+    // stance not assimilationist.
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 1 },
+      CD: { kind: "continuous", pos: 2, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
+      MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+      ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.05, 0.03, 0.07, 0.18, 0.12, 0.55], sal: 2, antiCats: [0, 1] },
+      AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.1, 0.75, 0.07], sal: 2 }
+    }
+  },
+  {
+    id: "114",
+    name: "Political Nihilist",
+    tier: "T1",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
+      ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
+      PF: { kind: "continuous", pos: 1, anti: "high" },
+      TRB: { kind: "continuous", pos: 1, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.03, 0.03, 0.03, 0.08, 0.1, 0.73], sal: 3, antiCats: [0, 1, 2] },
+      AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.7, 0.15], sal: 2 }
     }
   },
   {
     id: "115",
     name: "Quietist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      MAT: { kind: "continuous", pos: 3, sal: 1 },
+      // raised sal 0→1 (discriminator vs Ecological Localist)
       CD: { kind: "continuous", pos: 3, sal: 0 },
       CU: { kind: "continuous", pos: 3, sal: 0 },
       MOR: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
@@ -2332,19 +2220,19 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
+      // raised sal 0→1 (discriminator vs Ecological Localist)
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+      AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
     }
   },
   {
     id: "116",
     name: "Quiet Middle",
     tier: "T1",
-    prior: 1 / 130,
+    centristAnchor: true,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2354,19 +2242,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3, anti: "low" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "117",
     name: "Comfortable Bystander",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2376,20 +2262,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 1 },
       ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
       ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      // Bystander's defining trait: extremely disengaged
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3, anti: "low" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
       EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "118",
     name: "Survival Pragmatist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 1 },
@@ -2399,19 +2282,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "119",
     name: "Apolitical Striver",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2421,19 +2302,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "120",
     name: "Good Neighbor",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
@@ -2443,19 +2322,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 2, sal: 2 },
       ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-      PF: { kind: "continuous", pos: 3, sal: 2 },
-      TRB: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 3, antiCats: [4] }
+      ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
     }
   },
   {
     id: "121",
     name: "Spectator Citizen",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 2 },
       CD: { kind: "continuous", pos: 3, sal: 2 },
@@ -2465,19 +2342,18 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 3, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "122",
     name: "Civic Minimalist",
     tier: "T1",
-    prior: 1 / 130,
+    centristAnchor: true,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2487,41 +2363,37 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "124",
-    name: "Crisis-Activated Sleeper",
+    name: "Latent Alarmist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
-      CD: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
       CU: { kind: "continuous", pos: 3, sal: 0 },
       MOR: { kind: "continuous", pos: 3, sal: 0 },
       PRO: { kind: "continuous", pos: 2, sal: 1 },
-      COM: { kind: "continuous", pos: 2, sal: 1 },
-      ZS: { kind: "continuous", pos: 4, sal: 1 },
+      COM: { kind: "continuous", pos: 2, sal: 2 },
+      ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "125",
     name: "Reluctant Partisan",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2531,19 +2403,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
       ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 4, anti: "low" },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "126",
-    name: "Single-Issue Activator",
+    name: "Uncompromising Activist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2553,19 +2423,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 0 },
-      TRB: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 3, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "127",
     name: "Tribal Loyalist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
@@ -2575,19 +2443,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 5, anti: "low" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "128",
     name: "Loyal Democrat",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 2, sal: 1 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2597,64 +2463,63 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 4 },
       // Fixed: Loyal = high PF
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "129",
     name: "Loyal Republican",
     tier: "T1",
-    prior: 1 / 130,
+    // CU 2→3 (2026-04-26 broadened CU framing): partisan Republican moderate;
+    // civic-bound partisan, not uniformity-minded.
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 2, sal: 1 },
+      CU: { kind: "continuous", pos: 3, sal: 1 },
       MOR: { kind: "continuous", pos: 2, sal: 1 },
       PRO: { kind: "continuous", pos: 3, sal: 0 },
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
-  {
-    id: "130",
-    name: "Legacy Partisan",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 4, sal: 1 },
-      CU: { kind: "continuous", pos: 3, sal: 0 },
-      MOR: { kind: "continuous", pos: 2, sal: 1 },
-      PRO: { kind: "continuous", pos: 3, sal: 0 },
-      COM: { kind: "continuous", pos: 2, sal: 1 },
-      ZS: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
-    }
-  },
+  // MERGED into Duty Voter (ID 131) — 2026-04-01
+  // {
+  //   id: "130",
+  //   name: "Habitual Partisan",
+  //   tier: "T1",
+  //   prior: 1/112,
+  //   nodes: {
+  //     MAT: { kind: "continuous", pos: 3, sal: 1 },
+  //     CD: { kind: "continuous", pos: 4, sal: 1 },
+  //     CU: { kind: "continuous", pos: 3, sal: 0 },
+  //     MOR: { kind: "continuous", pos: 2, sal: 1 },
+  //     PRO: { kind: "continuous", pos: 3, sal: 0 },
+  //     COM: { kind: "continuous", pos: 2, sal: 1 },
+  //     ZS: { kind: "continuous", pos: 3, sal: 1 },
+  //     ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+  //     ONT_S: { kind: "continuous", pos: 2, sal: 1 },
+  //     PF: { kind: "continuous", pos: 5, anti: "low" },
+  //     TRB: { kind: "continuous", pos: 4 },
+  //     ENG: { kind: "continuous", pos: 3, anti: "high" },
+  //     EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
+  //     AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
+  //   }
+  // },
   {
     id: "131",
     name: "Duty Voter",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2664,19 +2529,17 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 2 },
       ZS: { kind: "continuous", pos: 3, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 2, sal: 2 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2, anti: "high" },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "132",
     name: "Negative Partisan",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 0 },
       CD: { kind: "continuous", pos: 3, sal: 0 },
@@ -2686,109 +2549,110 @@ var ARCHETYPES = [
       COM: { kind: "continuous", pos: 2, sal: 1 },
       ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
       ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 4, sal: 1 },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
-    }
-  },
-  {
-    id: "133",
-    name: "Sporadic Alarm Voter",
-    tier: "T1",
-    prior: 1 / 130,
-    nodes: {
-      MAT: { kind: "continuous", pos: 3, sal: 1 },
-      CD: { kind: "continuous", pos: 3, sal: 1 },
-      CU: { kind: "continuous", pos: 3, sal: 1 },
-      MOR: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-      PRO: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-      ZS: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      PF: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-      TRB: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-      ENG: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 2, antiCats: [5] },
-      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      PF: { kind: "continuous", pos: 5, anti: "low" },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
+      AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
     }
   },
   {
     id: "134",
     name: "Progressive Civic Nationalist",
     tier: "T1",
-    prior: 1 / 130,
+    // Re-encoded 2026-04-24: this is the FDR/JFK/LBJ/Obama/Biden mainstream
+    // Democratic tradition. Patriotic + economically progressive + civic-
+    // nationalist + institutionally trusting + universalist-leaning + always
+    // votes Democrat. Previous encoding (CU=4 sal=2, PF=2) misclassified this
+    // as cosmopolitan-progressive — duplicating Activist Progressive — and
+    // failed to fire on actual civic-nationalist progressives. PF bumped 2 → 5
+    // because civic nationalists are the partisan-loyalist mainstream of the
+    // Democratic Party.
+    // CU 2 → 3 update 2026-04-26: under the broadened CU framing (worldview,
+    // religion, lifestyle, conception-of-good-life pluralism, not just
+    // narrow culture), civic-nationalist progressive lands at MID, not low.
+    // The civic-nationalist signature is shared civic values (push CU low) +
+    // pluralist on private life/religion/lifestyle (push CU high) → net mid.
+    // Old CU=2 was calibrated under the narrower CU framing where civic-
+    // nationalist read as assimilationist; under the broader framing CU=2 is
+    // reserved for archetypes who actually want more uniformity in private
+    // worldview/lifestyle (communitarian conservative, shared-thick-culture
+    // advocates).
     nodes: {
-      MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
+      MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
       CD: { kind: "continuous", pos: 2, sal: 1 },
-      CU: { kind: "continuous", pos: 4, sal: 2 },
+      CU: { kind: "continuous", pos: 3, sal: 2 },
       MOR: { kind: "continuous", pos: 4, sal: 2 },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 2 },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-      AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
+      // ONT_S 3 → 4 per ADR-010 (2026-04-26): civic-nationalist progressives
+      // (FDR/Biden/Obama tradition) believe state programs effectively deliver
+      // healthcare/education/redistribution. High institutional capacity belief.
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 3 },
+      EPS: { kind: "categorical", probs: [0.3, 0.4, 0.05, 0.1, 0.1, 0.05], sal: 1 },
+      AES: { kind: "categorical", probs: [0.35, 0.2, 0.05, 0.1, 0.2, 0.1], sal: 1 }
     }
   },
   // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
   {
     id: "135",
     name: "Disruptive Cosmopolitan",
+    // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: tech-
+    // entrepreneurial / startup-cosmopolitan disruption operates within
+    // contract law and property regimes; "anti-bureaucratic" reads as
+    // outcome-focused, not actually rule-breaking.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2 },
       CU: { kind: "continuous", pos: 5, sal: 2 },
-      MOR: { kind: "continuous", pos: 1, sal: 2 },
-      PRO: { kind: "continuous", pos: 1, sal: 2 },
-      // Anti-bureaucratic
+      MOR: { kind: "continuous", pos: 5, sal: 2 },
+      // FIX: Cosmopolitan = wide moral circle (was 1)
+      PRO: { kind: "continuous", pos: 3, sal: 2 },
+      // 1→3 audit Phase 6: bureaucracy-skeptical, not rule-breaking
       COM: { kind: "continuous", pos: 1, sal: 1 },
       ZS: { kind: "continuous", pos: 1, sal: 1 },
       ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 1, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 2 },
-      AES: { kind: "categorical", probs: [0.6, 0.15, 0.05, 0.05, 0.1, 0.05], sal: 2 }
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 1 },
+      TRB: { kind: "continuous", pos: 1 },
+      EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
+      AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
+      // FIX: Disruptive = visionary, not statesman
     }
   },
   {
     id: "136",
     name: "Aspirational Traditionalist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 5, sal: 2 },
-      CD: { kind: "continuous", pos: 2, sal: 2 },
-      CU: { kind: "continuous", pos: 4, sal: 2 },
-      MOR: { kind: "continuous", pos: 5, sal: 3 },
+      CD: { kind: "continuous", pos: 4, sal: 2 },
+      // FIX: Traditionalist = culturally conservative (was 2)
+      CU: { kind: "continuous", pos: 2, sal: 2 },
+      // FIX: Traditionalist = assimilationist (was 4)
+      MOR: { kind: "continuous", pos: 2, sal: 2 },
+      // FIX: Traditionalist = particularist (was 5/sal3)
       PRO: { kind: "continuous", pos: 3, sal: 2 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
-      ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 2, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 3, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 2 },
-      AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 2 }
+      ONT_H: { kind: "continuous", pos: 4, sal: 2 },
+      // Aspirational = optimistic (was 3/sal1)
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 2 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
+      AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
     }
   },
   {
     id: "137",
-    name: "Prophetic Revivalist",
+    name: "Moral Crusader",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 1 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
@@ -2799,35 +2663,33 @@ var ARCHETYPES = [
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 2, sal: 1 },
       ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-      PF: { kind: "continuous", pos: 4, sal: 2 },
-      TRB: { kind: "continuous", pos: 4, sal: 2 },
-      ENG: { kind: "continuous", pos: 5, sal: 3 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.05, 0.7], sal: 3 },
-      // Revelatory
+      PF: { kind: "continuous", pos: 4 },
+      TRB: { kind: "continuous", pos: 4 },
+      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
+      // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
-      // Prophetic
+      // Prophetic visionary
     }
   },
   {
     id: "138",
-    name: "Holistic Dissenter",
+    name: "Optimistic Challenger",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 3, sal: 1 },
       CD: { kind: "continuous", pos: 2, sal: 1 },
       CU: { kind: "continuous", pos: 4, sal: 1 },
-      MOR: { kind: "continuous", pos: 2, sal: 1 },
+      MOR: { kind: "continuous", pos: 4, sal: 2 },
+      // FIX: Holistic = broad concern (was 2/sal1)
       PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
       COM: { kind: "continuous", pos: 1, sal: 1 },
       ZS: { kind: "continuous", pos: 4, sal: 2 },
       ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 1, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.05, 0.7], sal: 3 },
-      // Revelatory
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 1 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
+      // FIX: Holistic = intuitionist+autonomous, not nihilist
       AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
       // Experiential
     }
@@ -2836,48 +2698,191 @@ var ARCHETYPES = [
     id: "139",
     name: "Civic Assimilationist",
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 4, sal: 2 },
-      CU: { kind: "continuous", pos: 5, sal: 2 },
+      CU: { kind: "continuous", pos: 1, sal: 3 },
+      // FIX: Assimilationist = CU=1, not CU=5 (was 5/sal2)
       MOR: { kind: "continuous", pos: 3, sal: 1 },
       PRO: { kind: "continuous", pos: 4, sal: 2 },
       COM: { kind: "continuous", pos: 3, sal: 1 },
       ZS: { kind: "continuous", pos: 2, sal: 1 },
       ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-      ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-      PF: { kind: "continuous", pos: 3, sal: 1 },
-      TRB: { kind: "continuous", pos: 2, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 },
-      // Traditionalist
-      AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 2 }
-      // Systematic
+      ONT_S: { kind: "continuous", pos: 4, sal: 1 },
+      PF: { kind: "continuous", pos: 3 },
+      TRB: { kind: "continuous", pos: 2 },
+      EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
+      AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
     }
   },
   {
     id: "140",
     name: "Market Green Modernist",
+    // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
+    // user direction). Pattern A archetype-side: "Market" + "Modernist" both
+    // imply institutional-mechanism faith (pricing carbon, regulating markets,
+    // reforming standards). Old ONT_S=1 read this as accelerationist /
+    // institution-nihilist, opposite of the name.
     tier: "T1",
-    prior: 1 / 130,
     nodes: {
       MAT: { kind: "continuous", pos: 4, sal: 2 },
       CD: { kind: "continuous", pos: 1, sal: 2 },
       CU: { kind: "continuous", pos: 5, sal: 2 },
-      MOR: { kind: "continuous", pos: 2, sal: 1 },
+      MOR: { kind: "continuous", pos: 4, sal: 2 },
+      // FIX: Green = wide moral concern (was 2/sal1)
       PRO: { kind: "continuous", pos: 5, sal: 2 },
       COM: { kind: "continuous", pos: 4, sal: 2 },
       ZS: { kind: "continuous", pos: 1, sal: 1 },
       ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-      ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-      PF: { kind: "continuous", pos: 1, sal: 1 },
-      TRB: { kind: "continuous", pos: 1, sal: 1 },
-      ENG: { kind: "continuous", pos: 4, sal: 2 },
-      EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 3 },
+      ONT_S: { kind: "continuous", pos: 4, sal: 2 },
+      // 1→4 audit Phase 4: market-mechanism reform = institutional capacity belief
+      PF: { kind: "continuous", pos: 1 },
+      TRB: { kind: "continuous", pos: 1 },
+      EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
       // Empiricist
-      AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 2 }
+      AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
       // Systematic
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Identity-Primary Archetypes (141–146)
+  //
+  // These activate when tribalism and political fusion are the dominant signal
+  // and the respondent's identity anchor + demographics confirm the fit.
+  // Other nodes reflect the group's characteristic political tendencies, but
+  // TRB/PF/ENG are the defining feature — politics is identity-first.
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    // ===== Identity-primary archetypes (141-146) =====
+    // Re-encoded 2026-04-24 as policy-flat per ADR-006:
+    //   - All non-SELF nodes: pos=3 sal=0 (no policy posture)
+    //   - EPS/AES: uniform 1/6 distribution sal=0
+    //   - PF=5, TRB=5 (highly fused, highly tribal)
+    //   - No anti flags (no policy positions to anti)
+    // The label of identity is determined by the resolver via:
+    //   anchor + demographic confirmation + ideology-thinness gate
+    // not by encoded policy similarity. A user with strong ideological
+    // commitments (high policy salience) is excluded by the ideology gate
+    // even if anchor + demographic + tribal/fusion conditions otherwise match.
+    // White/Male Grievance are NOT separate ideological postures — per user
+    // (2026-04-24), grievance just labels majority-position identity voting.
+    id: "141",
+    name: "Black Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
+    }
+  },
+  {
+    id: "142",
+    name: "White Grievance Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
+    }
+  },
+  {
+    id: "143",
+    name: "Evangelical Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
+    }
+  },
+  {
+    id: "144",
+    name: "LGBTQ Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
+    }
+  },
+  {
+    id: "145",
+    name: "Feminist Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
+    }
+  },
+  {
+    id: "146",
+    name: "Male Grievance Voter",
+    tier: "T2",
+    nodes: {
+      MAT: { kind: "continuous", pos: 3, sal: 0 },
+      CD: { kind: "continuous", pos: 3, sal: 0 },
+      CU: { kind: "continuous", pos: 3, sal: 0 },
+      MOR: { kind: "continuous", pos: 3, sal: 0 },
+      PRO: { kind: "continuous", pos: 3, sal: 0 },
+      COM: { kind: "continuous", pos: 3, sal: 0 },
+      ZS: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_H: { kind: "continuous", pos: 3, sal: 0 },
+      ONT_S: { kind: "continuous", pos: 3, sal: 0 },
+      PF: { kind: "continuous", pos: 5 },
+      TRB: { kind: "continuous", pos: 5 },
+      EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
+      AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
     }
   }
 ];
@@ -3572,8 +3577,8 @@ var EUROPE_PART1 = [
     COM: 1,
     ZS: 5,
     ONT_H: 1,
-    ONT_S: 5,
-    PF: 1,
+    ONT_S: 2,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 3,
@@ -3636,7 +3641,7 @@ var EUROPE_PART1 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -3797,7 +3802,7 @@ var EUROPE_PART1 = [
     startYear: 1929,
     endYear: 1953,
     MAT: 1,
-    CD: 5,
+    CD: 2,
     CU: 1,
     MOR: 1,
     PRO: 1,
@@ -3805,7 +3810,7 @@ var EUROPE_PART1 = [
     ZS: 5,
     ONT_H: 2,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 1,
@@ -3826,7 +3831,7 @@ var EUROPE_PART1 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 3,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -3840,14 +3845,14 @@ var EUROPE_PART1 = [
     endYear: 1984,
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 3,
     PRO: 2,
     COM: 2,
     ZS: 4,
     ONT_H: 3,
     ONT_S: 2,
-    PF: 1,
+    PF: 3,
     TRB: 4,
     ENG: 3,
     EPS: 1,
@@ -3903,14 +3908,14 @@ var EUROPE_PART1 = [
     endYear: 2026,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 1,
     ZS: 5,
     ONT_H: 1,
     ONT_S: 3,
-    PF: 1,
+    PF: 4,
     TRB: 5,
     ENG: 4,
     EPS: 3,
@@ -4051,14 +4056,14 @@ var EUROPE_PART1 = [
     endYear: 1959,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 1,
     COM: 1,
     ZS: 5,
     ONT_H: 1,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 4,
     EPS: 2,
@@ -4072,14 +4077,14 @@ var EUROPE_PART1 = [
     endYear: 1975,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 2,
     ZS: 3,
     ONT_H: 2,
     ONT_S: 2,
-    PF: 1,
+    PF: 3,
     TRB: 4,
     ENG: 3,
     EPS: 1,
@@ -4248,7 +4253,7 @@ var EUROPE_PART1 = [
     ZS: 5,
     ONT_H: 2,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 3,
@@ -4501,7 +4506,7 @@ var EUROPE_PART1 = [
     ZS: 5,
     ONT_H: 1,
     ONT_S: 5,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 2,
@@ -4621,7 +4626,7 @@ var EUROPE_PART1 = [
     endYear: 1918,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 2,
     COM: 1,
@@ -4642,7 +4647,7 @@ var EUROPE_PART1 = [
     endYear: 1937,
     MAT: 3,
     CD: 3,
-    CU: 1,
+    CU: 5,
     MOR: 3,
     PRO: 3,
     COM: 1,
@@ -4881,7 +4886,7 @@ var EUROPE_PART1 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -4895,14 +4900,14 @@ var EUROPE_PART1 = [
     endYear: 1980,
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 3,
     PRO: 2,
     COM: 2,
     ZS: 4,
     ONT_H: 3,
     ONT_S: 3,
-    PF: 1,
+    PF: 3,
     TRB: 4,
     ENG: 3,
     EPS: 1,
@@ -5350,14 +5355,14 @@ var EUROPE_PART2 = [
     description: "Antonio de Oliveira Salazar built a corporatist Catholic authoritarian state emphasizing austerity, rural values, and imperial unity, maintaining neutrality in WWII while brutally suppressing dissent and clinging to African colonies.",
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
     ZS: 3,
     ONT_H: 1,
     ONT_S: 2,
-    PF: 1,
+    PF: 4,
     TRB: 4,
     ENG: 2,
     EPS: 2,
@@ -5521,7 +5526,7 @@ var EUROPE_PART2 = [
     description: "The Metaxas dictatorship gave way to Axis occupation and devastating famine, followed by a brutal civil war between communist and royalist forces that became an early proxy conflict of the Cold War.",
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -5563,7 +5568,7 @@ var EUROPE_PART2 = [
     description: "The Colonels' military dictatorship imposed censorship, torture, and exile on political opponents before collapsing after its reckless sponsorship of a coup in Cyprus triggered the Turkish invasion.",
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -5999,7 +6004,7 @@ var EUROPE_PART2 = [
     ZS: 5,
     ONT_H: 1,
     ONT_S: 5,
-    PF: 1,
+    PF: 4,
     TRB: 5,
     ENG: 5,
     EPS: 3,
@@ -6020,7 +6025,7 @@ var EUROPE_PART2 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -6041,7 +6046,7 @@ var EUROPE_PART2 = [
     ZS: 5,
     ONT_H: 3,
     ONT_S: 2,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 4,
     EPS: 3,
@@ -6121,7 +6126,7 @@ var EUROPE_PART2 = [
     description: "As co-equal partner in Austria-Hungary, the Magyar elite pursued aggressive Magyarization of minorities while industrializing Budapest into a major European capital, before WWI destroyed the empire.",
     MAT: 4,
     CD: 4,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 3,
     COM: 3,
@@ -6142,7 +6147,7 @@ var EUROPE_PART2 = [
     description: "Admiral Horthy's regency was defined by irredentist revisionism after the Treaty of Trianon, the White Terror against leftists, and a gradual slide into the Nazi orbit that ended with German occupation and the Holocaust.",
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 2,
@@ -6170,7 +6175,7 @@ var EUROPE_PART2 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -6226,8 +6231,8 @@ var EUROPE_PART2 = [
     description: "Viktor Orban's Fidesz built an 'illiberal democracy' with a constitutional supermajority, capturing state institutions, media, and courts while championing Christian nationalism and anti-immigration politics within the EU.",
     MAT: 3,
     CD: 5,
-    CU: 1,
-    MOR: 2,
+    CU: 2,
+    MOR: 1,
     PRO: 2,
     COM: 1,
     ZS: 4,
@@ -6341,7 +6346,7 @@ var EUROPE_PART2 = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 4,
     EPS: 1,
@@ -6362,7 +6367,7 @@ var EUROPE_PART2 = [
     ZS: 4,
     ONT_H: 3,
     ONT_S: 4,
-    PF: 1,
+    PF: 4,
     TRB: 3,
     ENG: 3,
     EPS: 1,
@@ -6743,7 +6748,7 @@ var AMERICAS = [
     description: "Porfirio Diaz's long dictatorship modernized infrastructure and attracted foreign investment while deepening inequality and suppressing dissent.",
     MAT: 5,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 2,
@@ -6998,7 +7003,7 @@ var AMERICAS = [
     description: "Military generals ruled through repression and the economic 'miracle' of high growth, but left a legacy of inequality, debt, and human rights abuses.",
     MAT: 4,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -7106,7 +7111,7 @@ var AMERICAS = [
     description: "Juan Manuel de Rosas imposed caudillo rule over Buenos Aires with terror and populist federalism, dominating the confederation until his overthrow at Caseros.",
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -7211,7 +7216,7 @@ var AMERICAS = [
     description: "Peron's chaotic return and death gave way to a military junta that waged a 'dirty war' of disappearances, ending with the Falklands defeat.",
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 1,
     COM: 1,
@@ -7469,7 +7474,7 @@ var AMERICAS = [
     description: "The Regeneration centralized power under a new constitution, the devastating Thousand Days' War killed over 100,000, and Panama seceded with US backing.",
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 3,
     COM: 2,
@@ -7598,7 +7603,7 @@ var AMERICAS = [
     description: "Diego Portales designed a centralized authoritarian constitution that delivered exceptional stability and fueled mining-driven economic growth.",
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 4,
     COM: 2,
@@ -7682,7 +7687,7 @@ var AMERICAS = [
     description: "Augusto Pinochet's military dictatorship crushed the left through systematic repression while Chicago Boys economists imposed radical free-market reforms.",
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 1,
     COM: 1,
@@ -7748,7 +7753,7 @@ var AMERICAS = [
     description: "Cuba remained Spain's prized sugar colony sustained by African slavery, with periodic independence movements brutally suppressed.",
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 2,
     COM: 1,
@@ -7832,7 +7837,7 @@ var AMERICAS = [
     description: "Institutionalized socialism faced catastrophic economic crisis when Soviet support collapsed, forcing limited market experiments during the Special Period.",
     MAT: 1,
     CD: 3,
-    CU: 1,
+    CU: 4,
     MOR: 3,
     PRO: 2,
     COM: 1,
@@ -7877,7 +7882,7 @@ var AMERICAS = [
     description: "Peru was Spain's most important South American viceroyalty; Tupac Amaru's rebellion and Bolivar's campaigns finally ended colonial rule.",
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 1,
     PRO: 2,
     COM: 1,
@@ -8153,7 +8158,7 @@ var AMERICAS = [
     description: "Nicolas Maduro's regime presided over economic collapse, mass emigration, and authoritarian consolidation amid a devastating humanitarian crisis.",
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -8178,7 +8183,7 @@ var ASIA = [
     endYear: 1839,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 3,
     COM: 2,
@@ -8199,7 +8204,7 @@ var ASIA = [
     endYear: 1864,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -8290,7 +8295,7 @@ var ASIA = [
     ZS: 5,
     ONT_H: 5,
     ONT_S: 5,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 5,
     EPS: 4,
@@ -8311,7 +8316,7 @@ var ASIA = [
     ZS: 5,
     ONT_H: 5,
     ONT_S: 5,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 3,
@@ -8332,7 +8337,7 @@ var ASIA = [
     ZS: 3,
     ONT_H: 3,
     ONT_S: 3,
-    PF: 1,
+    PF: 2,
     TRB: 3,
     ENG: 3,
     EPS: 0,
@@ -8353,7 +8358,7 @@ var ASIA = [
     ZS: 3,
     ONT_H: 3,
     ONT_S: 2,
-    PF: 1,
+    PF: 3,
     TRB: 3,
     ENG: 3,
     EPS: 0,
@@ -8367,14 +8372,14 @@ var ASIA = [
     endYear: 2026,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
     ZS: 4,
     ONT_H: 2,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 4,
     EPS: 1,
@@ -8389,7 +8394,7 @@ var ASIA = [
     endYear: 1853,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 4,
     COM: 3,
@@ -8431,7 +8436,7 @@ var ASIA = [
     endYear: 1912,
     MAT: 4,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 3,
     PRO: 4,
     COM: 3,
@@ -8473,14 +8478,14 @@ var ASIA = [
     endYear: 1945,
     MAT: 2,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 1,
     COM: 1,
     ZS: 5,
     ONT_H: 2,
     ONT_S: 4,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 3,
@@ -8726,7 +8731,7 @@ var ASIA = [
     endYear: 2026,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -8748,7 +8753,7 @@ var ASIA = [
     endYear: 1875,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 4,
     COM: 2,
@@ -8769,7 +8774,7 @@ var ASIA = [
     endYear: 1945,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 2,
     COM: 1,
@@ -8811,14 +8816,14 @@ var ASIA = [
     endYear: 1979,
     MAT: 4,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 2,
     COM: 1,
     ZS: 4,
     ONT_H: 2,
     ONT_S: 3,
-    PF: 1,
+    PF: 4,
     TRB: 4,
     ENG: 4,
     EPS: 0,
@@ -9023,7 +9028,7 @@ var ASIA = [
     endYear: 1898,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -9086,14 +9091,14 @@ var ASIA = [
     endYear: 1985,
     MAT: 5,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 1,
     COM: 1,
     ZS: 5,
     ONT_H: 1,
     ONT_S: 3,
-    PF: 1,
+    PF: 4,
     TRB: 4,
     ENG: 3,
     EPS: 1,
@@ -9298,7 +9303,7 @@ var ASIA = [
     endYear: 1858,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 3,
     COM: 2,
@@ -9319,7 +9324,7 @@ var ASIA = [
     endYear: 1945,
     MAT: 5,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 1,
     PRO: 3,
     COM: 1,
@@ -9361,7 +9366,7 @@ var ASIA = [
     endYear: 1975,
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 5,
     MOR: 3,
     PRO: 1,
     COM: 1,
@@ -9382,7 +9387,7 @@ var ASIA = [
     endYear: 1985,
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 5,
     MOR: 3,
     PRO: 1,
     COM: 1,
@@ -9467,7 +9472,7 @@ var ASIA = [
     endYear: 1952,
     MAT: 4,
     CD: 3,
-    CU: 1,
+    CU: 5,
     MOR: 3,
     PRO: 2,
     COM: 1,
@@ -9530,14 +9535,14 @@ var ASIA = [
     endYear: 1988,
     MAT: 2,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
     ZS: 5,
     ONT_H: 3,
     ONT_S: 5,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 5,
     EPS: 2,
@@ -9551,7 +9556,7 @@ var ASIA = [
     endYear: 2026,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 2,
@@ -9615,7 +9620,7 @@ var ASIA = [
     endYear: 1988,
     MAT: 3,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -9753,7 +9758,7 @@ var MENA_AFRICA = [
     ZS: 4,
     ONT_H: 4,
     ONT_S: 4,
-    PF: 1,
+    PF: 5,
     TRB: 4,
     ENG: 5,
     EPS: 3,
@@ -9795,7 +9800,7 @@ var MENA_AFRICA = [
     ZS: 4,
     ONT_H: 1,
     ONT_S: 2,
-    PF: 1,
+    PF: 2,
     TRB: 4,
     ENG: 2,
     EPS: 1,
@@ -9830,14 +9835,14 @@ var MENA_AFRICA = [
     endYear: 2026,
     MAT: 4,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 1,
     COM: 1,
     ZS: 4,
     ONT_H: 1,
     ONT_S: 3,
-    PF: 1,
+    PF: 3,
     TRB: 4,
     ENG: 3,
     EPS: 1,
@@ -9852,7 +9857,7 @@ var MENA_AFRICA = [
     endYear: 1869,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 1,
     PRO: 3,
     COM: 2,
@@ -9873,7 +9878,7 @@ var MENA_AFRICA = [
     endYear: 1913,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 4,
     MOR: 1,
     PRO: 3,
     COM: 2,
@@ -9894,7 +9899,7 @@ var MENA_AFRICA = [
     endYear: 1947,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 3,
     COM: 2,
@@ -9915,7 +9920,7 @@ var MENA_AFRICA = [
     endYear: 1989,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 2,
     COM: 1,
@@ -10127,7 +10132,7 @@ var MENA_AFRICA = [
     endYear: 1818,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -10148,7 +10153,7 @@ var MENA_AFRICA = [
     endYear: 1901,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 2,
@@ -10169,7 +10174,7 @@ var MENA_AFRICA = [
     endYear: 1952,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 1,
@@ -10190,7 +10195,7 @@ var MENA_AFRICA = [
     endYear: 2014,
     MAT: 4,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 2,
     PRO: 2,
     COM: 2,
@@ -10303,7 +10308,7 @@ var MENA_AFRICA = [
     ZS: 5,
     ONT_H: 1,
     ONT_S: 3,
-    PF: 1,
+    PF: 5,
     TRB: 5,
     ENG: 4,
     EPS: 3,
@@ -10508,7 +10513,7 @@ var MENA_AFRICA = [
     endYear: 1953,
     MAT: 5,
     CD: 5,
-    CU: 1,
+    CU: 5,
     MOR: 1,
     PRO: 3,
     COM: 1,
@@ -10656,7 +10661,7 @@ var MENA_AFRICA = [
     endYear: 1991,
     MAT: 1,
     CD: 4,
-    CU: 1,
+    CU: 4,
     MOR: 2,
     PRO: 1,
     COM: 1,
@@ -10714,10 +10719,562 @@ var MENA_AFRICA = [
   }
 ];
 
+// src/global/jurisdictions-dysfunction.ts
+var JURISDICTION_DYSFUNCTION = {
+  "USA|Federalist Era|1789": 2,
+  "USA|Jeffersonian|1801": 2,
+  "USA|Jacksonian Democracy|1824": 2,
+  "USA|Sectional Crisis|1850": 3,
+  "USA|Civil War/Reconstruction|1861": 4,
+  "USA|Gilded Age|1877": 2,
+  "USA|Progressive Era|1896": 2,
+  "USA|Roaring Twenties/Normalcy|1920": 2,
+  "USA|New Deal/WWII|1933": 2,
+  "USA|Cold War Consensus|1953": 2,
+  "USA|Crisis/Realignment|1969": 2,
+  "USA|Reagan-Clinton|1981": 2,
+  "USA|Polarization Era|2008": 3,
+  "Mexico|Late Colonial/Independence|1789": 2,
+  "Mexico|First Empire/Early Republic|1822": 4,
+  "Mexico|La Reforma|1855": 3,
+  "Mexico|Porfiriato|1877": 2,
+  "Mexico|Revolution|1911": 5,
+  "Mexico|Revolutionary State|1921": 2,
+  "Mexico|PRI Hegemony/Miracle|1941": 2,
+  "Mexico|PRI Crisis|1969": 2,
+  "Mexico|Democratization|1989": 3,
+  "Mexico|AMLO/Morena|2013": 3,
+  "Brazil|Colonial/Portuguese Court|1789": 2,
+  "Brazil|Empire|1822": 2,
+  "Brazil|Old Republic|1889": 2,
+  "Brazil|Vargas Era|1930": 2,
+  "Brazil|Democratic Experiment|1946": 2,
+  "Brazil|Military Dictatorship|1964": 3,
+  "Brazil|Redemocratization|1985": 3,
+  "Brazil|Lula/PT Era|2003": 2,
+  "Brazil|Bolsonaro/Crisis|2016": 3,
+  "Argentina|Independence/Rivadavia|1810": 2,
+  "Argentina|Rosas|1830": 2,
+  "Argentina|Liberal Republic|1853": 1,
+  "Argentina|Radical/Conservative|1916": 3,
+  "Argentina|Peronist Era|1943": 2,
+  "Argentina|Instability/Coups|1956": 3,
+  "Argentina|Dirty War|1973": 4,
+  "Argentina|Democratic Restoration|1984": 3,
+  "Argentina|Kirchner Era Argentina|2002": 2,
+  "Argentina|Macri-Fern\xE1ndez Oscillation|2015": 3,
+  "Argentina|Milei Libertarian Argentina|2023": 3,
+  "Canada|British North America|1789": 2,
+  "Canada|Confederation/Macdonald|1867": 2,
+  "Canada|Laurier/Early 20th|1896": 1,
+  "Canada|Depression/War/Postwar|1930": 2,
+  "Canada|Quiet Revolution/Trudeau Sr.|1957": 1,
+  "Canada|Mulroney/Chretien|1984": 1,
+  "Canada|Harper Conservative Canada|2006": 1,
+  "Canada|Trudeau-Carney Liberal Canada|2015": 2,
+  "Colombia|Gran Colombia/Independence|1810": 2,
+  "Colombia|Conservative Hegemony|1831": 3,
+  "Colombia|Regeneration/Thousand Days|1886": 3,
+  "Colombia|Liberal Republic/La Violencia|1930": 4,
+  "Colombia|National Front|1958": 2,
+  "Colombia|Drug War/Constitution|1974": 3,
+  "Colombia|Uribe Security Era|2003": 3,
+  "Colombia|Santos Peace Process|2010": 3,
+  "Colombia|Duque-Petro Polarization|2018": 3,
+  "Chile|Independence/O'Higgins|1810": 2,
+  "Chile|Conservative Republic|1831": 1,
+  "Chile|Liberal Republic|1861": 2,
+  "Chile|Social Question|1925": 2,
+  "Chile|Christian Democracy/Left|1959": 3,
+  "Chile|Pinochet|1973": 3,
+  "Chile|Concertacion|1990": 1,
+  "Chile|Estallido/Boric|2010": 3,
+  "Chile|Kast Conservative Turn|2026": 2,
+  "Cuba|Spanish Colony|1789": 2,
+  "Cuba|US Intervention/Platt|1898": 2,
+  "Cuba|Batista/Republic|1933": 3,
+  "Cuba|Revolutionary Cuba|1959": 2,
+  "Cuba|Late Castro/Special Period|1976": 3,
+  "Cuba|Post-Castro|2007": 3,
+  "Peru|Colonial/Independence|1789": 3,
+  "Peru|Caudillo Era|1825": 3,
+  "Peru|Aristocratic Republic|1879": 2,
+  "Peru|Leguia/APRA|1920": 3,
+  "Peru|Velasco/Military|1968": 2,
+  "Peru|Democracy/Fujimori|1980": 4,
+  "Peru|Post-Fujimori|2001": 3,
+  "Venezuela|Independence/Gran Colombia|1810": 2,
+  "Venezuela|Caudillo Era|1831": 4,
+  "Venezuela|Gomez/Oil State|1909": 2,
+  "Venezuela|Punto Fijo Democracy|1958": 1,
+  "Venezuela|Crisis/Caracazo|1989": 3,
+  "Venezuela|Chavez|1999": 3,
+  "Venezuela|Maduro|2013": 5,
+  "Argentina|Rio de la Plata Colonial|1789": 2,
+  "Chile|Captaincy of Chile|1789": 2,
+  "Colombia|New Granada Colonial|1789": 2,
+  "Venezuela|Captaincy General of Venezuela|1789": 2,
+  "China|Late Qing/Pre-Opium|1789": 2,
+  "China|Opium Wars/Taiping|1840": 5,
+  "China|Self-Strengthening/Reform|1865": 3,
+  "China|Republic/Warlords|1912": 5,
+  "China|Nanjing Decade/War|1928": 4,
+  "China|Mao Early|1949": 2,
+  "China|Mao Radical|1958": 5,
+  "China|Deng Reform|1977": 2,
+  "China|Jiang/Hu Technocratic|1990": 2,
+  "China|Xi Jinping|2013": 2,
+  "Taiwan|Dutch-Zheng Frontier|1624": 3,
+  "Taiwan|Qing Frontier Taiwan|1684": 2,
+  "Taiwan|Japanese Suppression|1895": 3,
+  "Taiwan|Japanese Assimilation|1916": 2,
+  "Taiwan|Wartime Kominka|1937": 2,
+  "Taiwan|ROC Retrocession/228|1945": 3,
+  "Taiwan|KMT Martial Law State|1949": 2,
+  "Taiwan|Taiwanization/Liberalizing KMT|1975": 2,
+  "Taiwan|Democratic Transition|1987": 1,
+  "Taiwan|Party Alternation/Cross-Strait Opening|2000": 1,
+  "Taiwan|Sovereignty Democracy|2016": 1,
+  "Japan|Late Tokugawa|1789": 2,
+  "Japan|Bakumatsu/Restoration|1854": 2,
+  "Japan|Meiji|1878": 1,
+  "Japan|Taish\u014D Democracy|1913": 2,
+  "Japan|Militarist Japan|1931": 4,
+  "Japan|Occupation/Recovery|1946": 2,
+  "Japan|High Growth|1960": 1,
+  "Japan|Lost Decades|1990": 1,
+  "Japan|Abe/Modern Japan|2012": 1,
+  "India|Late Mughal/EIC|1789": 3,
+  "India|British Raj|1858": 2,
+  "India|Nationalist Movement|1920": 3,
+  "India|Nehruvian India|1947": 2,
+  "India|Congress Dominance|1965": 2,
+  "India|Coalition Era|1977": 2,
+  "India|Vajpayee-Singh Liberalization Era|1999": 2,
+  "India|Modi Era|2014": 3,
+  "Afghanistan|Durrani/Barakzai Emirate|1789": 3,
+  "Afghanistan|Iron Amir/Protectorate|1880": 2,
+  "Afghanistan|Reform/Neutral Monarchy|1919": 2,
+  "Afghanistan|Republic/Saur/Soviet War|1973": 5,
+  "Afghanistan|Mujahideen/Taliban Emirate|1992": 5,
+  "Afghanistan|Islamic Republic/NATO|2002": 4,
+  "Afghanistan|Taliban Restoration|2021": 4,
+  "Korea|Joseon Late|1789": 2,
+  "Korea|Opening/Colonial|1876": 2,
+  "South Korea|Korean War/Division|1946": 4,
+  "South Korea|Park/Military|1961": 2,
+  "South Korea|Transition|1980": 2,
+  "South Korea|Democratic Consolidation|1993": 1,
+  "South Korea|Polarized Democracy|2008": 2,
+  "North Korea|Late Joseon/Korean Empire|1789": 2,
+  "North Korea|Japanese Korea|1911": 2,
+  "North Korea|Soviet North/War Foundation|1946": 3,
+  "North Korea|Kim Il Sung Juche State|1954": 2,
+  "North Korea|Kim Jong Il Songun|1994": 5,
+  "North Korea|Kim Jong Un Nuclear Dynasty|2012": 3,
+  "Indonesia|Dutch East Indies|1789": 2,
+  "Indonesia|Japanese Occupation/Revolution|1942": 3,
+  "Indonesia|Guided Democracy/Sukarno|1950": 3,
+  "Indonesia|New Order/Suharto|1966": 3,
+  "Indonesia|Reformasi|1999": 2,
+  "Indonesia|Jokowi/Modern|2014": 2,
+  "Philippines|Spanish Philippines|1789": 2,
+  "Philippines|American Period|1899": 3,
+  "Philippines|Independence/Democratic|1946": 2,
+  "Philippines|Marcos|1972": 4,
+  "Philippines|Aquino-Ramos Restoration|1986": 2,
+  "Philippines|Arroyo-Aquino III Era|2001": 3,
+  "Philippines|Duterte Populism|2016": 3,
+  "Philippines|Marcos Jr./UniTeam|2022": 2,
+  "Thailand|Late Ayutthaya/Early Chakri|1789": 2,
+  "Thailand|Chulalongkorn/Reform|1851": 2,
+  "Thailand|Constitutional Revolution|1932": 3,
+  "Thailand|Military/Development|1958": 2,
+  "Thailand|Democracy Oscillation|1973": 3,
+  "Thailand|Thaksin/Yellow-Red|1992": 3,
+  "Thailand|Junta/Modern|2014": 3,
+  "Vietnam|Late L\xEA/Nguy\u1EC5n|1789": 2,
+  "Vietnam|French Indochina|1859": 2,
+  "Vietnam|Independence War|1946": 3,
+  "Vietnam|Vietnam War|1955": 4,
+  "Vietnam|Socialist Republic|1976": 3,
+  "Vietnam|\u0110\u1ED5i M\u1EDBi|1986": 2,
+  "Iran|Qajar Early|1789": 3,
+  "Iran|Qajar Late/Constitutional|1849": 3,
+  "Iran|Pahlavi Early|1925": 2,
+  "Iran|Mossadegh/Shah|1953": 2,
+  "Iran|Pahlavi Peak|1964": 2,
+  "Iran|Islamic Revolution|1979": 4,
+  "Iran|Rafsanjani-Khatami Reform|1989": 2,
+  "Iran|Ahmadinejad Hardliner|2005": 3,
+  "Iran|Rouhani Pragmatist|2013": 3,
+  "Iran|Raisi-era Hardliner Restoration|2021": 3,
+  "Pakistan|Independence/Early|1947": 4,
+  "Pakistan|Ayub/Military|1959": 2,
+  "Pakistan|Bhutto/Zia|1972": 4,
+  "Pakistan|Democratic Oscillation|1989": 3,
+  "Pakistan|Modern Pakistan|2008": 3,
+  "Pakistan|Northwest Raj/Frontier|1789": 2,
+  "South Korea|Late Joseon/Korean Empire|1789": 2,
+  "South Korea|Japanese Korea|1911": 2,
+  "Australia|First Nations/Colonial Frontier|1789": 2,
+  "Australia|Responsible Government/Federation|1851": 2,
+  "Australia|White Australia/Wartime State|1914": 2,
+  "Australia|Postwar Multicultural Turn|1946": 1,
+  "Australia|Howard Coalition Australia|1996": 1,
+  "Australia|Rudd-Gillard Labor|2007": 1,
+  "Australia|Coalition Restoration Australia|2013": 1,
+  "Australia|Albanese Labor Australia|2022": 1,
+  "New Zealand|Maori Polities/Contact|1789": 2,
+  "New Zealand|Treaty/Settler Colony|1840": 2,
+  "New Zealand|Dominion Welfare Democracy|1907": 1,
+  "New Zealand|Rogernomics Reform Era|1984": 1,
+  "New Zealand|Mature Liberal Welfare NZ|1999": 1,
+  "New Zealand|Ardern-era New Zealand|2017": 1,
+  "Bangladesh|Bengal Colonial/East Pakistan|1789": 2,
+  "Bangladesh|Liberation/Mujib State|1971": 5,
+  "Bangladesh|Zia-Ershad Military Bangladesh|1976": 3,
+  "Bangladesh|BNP-AL Multiparty Bangladesh|1990": 2,
+  "Bangladesh|Awami League Dominance|2009": 3,
+  "Myanmar|Konbaung Burma|1789": 2,
+  "Myanmar|British Burma/Independence|1886": 3,
+  "Myanmar|Ne Win/Burmese Socialism|1962": 4,
+  "Myanmar|SLORC/SPDC Junta|1989": 4,
+  "Myanmar|Opening/Coup Civil War|2011": 5,
+  "Malaysia|Malay Sultanates/British Malaya|1789": 2,
+  "Malaysia|Tunku/Razak Alliance|1957": 2,
+  "Malaysia|Mahathir Era Malaysia|1981": 2,
+  "Malaysia|Late BN/Najib Era|2003": 3,
+  "Malaysia|Competitive Coalition Era|2018": 2,
+  "Sri Lanka|Kandyan/British Ceylon|1789": 2,
+  "Sri Lanka|Independent Ceylon/Sinhala Nationalism|1948": 2,
+  "Sri Lanka|Civil War Sri Lanka|1983": 4,
+  "Sri Lanka|Postwar Crisis Sri Lanka|2010": 3,
+  "United Kingdom|Georgian Britain|1789": 2,
+  "United Kingdom|Reform Era|1820": 2,
+  "United Kingdom|Victorian Peak|1849": 1,
+  "United Kingdom|Late Victorian/Edwardian|1875": 1,
+  "United Kingdom|WWI & Lloyd George|1914": 2,
+  "United Kingdom|Interwar|1923": 2,
+  "United Kingdom|WWII Britain|1939": 2,
+  "United Kingdom|Attlee/Consensus|1946": 1,
+  "United Kingdom|Wilson/Heath|1965": 2,
+  "United Kingdom|Thatcher Era|1979": 2,
+  "United Kingdom|New Labour/Blair|1991": 1,
+  "United Kingdom|Coalition Austerity UK|2010": 2,
+  "United Kingdom|Brexit-era UK|2016": 3,
+  "United Kingdom|Starmer Restoration UK|2024": 2,
+  "France|Ancien Regime remnant|1789": 3,
+  "France|French Revolution|1792": 5,
+  "France|Napoleonic Empire|1800": 2,
+  "France|Restoration|1815": 2,
+  "France|July Monarchy|1830": 2,
+  "France|Second Republic|1848": 3,
+  "France|Second Empire|1852": 2,
+  "France|Third Republic Early|1871": 2,
+  "France|Third Republic Late|1900": 2,
+  "France|Vichy France|1940": 4,
+  "France|Fourth Republic|1946": 3,
+  "France|Fifth Republic Gaullist|1958": 1,
+  "France|Mitterrand Era|1981": 1,
+  "France|Chirac-Sarkozy Right|1995": 2,
+  "France|Hollande Socialist France|2012": 2,
+  "France|Macron Centrist Disruption|2017": 3,
+  "Germany/Prussia|Prussian Reform Era|1789": 2,
+  "Germany/Prussia|German Confederation|1815": 2,
+  "Germany/Prussia|1848 Revolution|1848": 3,
+  "Germany/Prussia|Bismarck Era|1850": 1,
+  "Germany/Prussia|Wilhelmine|1891": 2,
+  "Germany/Prussia|WWI Germany|1914": 3,
+  "Germany/Prussia|Weimar Republic|1919": 4,
+  "Germany/Prussia|Nazi Germany|1933": 5,
+  "Germany/Prussia|Occupied Germany|1945": 2,
+  "Germany/Prussia|West Germany/Bonn Republic|1949": 1,
+  "Germany/Prussia|East Germany/DDR|1949": 2,
+  "Germany/Prussia|Kohl-Schr\xF6der Reunification|1990": 1,
+  "Germany/Prussia|Merkel-era Germany|2005": 1,
+  "Germany/Prussia|Post-Merkel Coalition Germany|2021": 2,
+  "Russia/USSR|Tsarist Russia Late Catherine/Alexander I|1789": 2,
+  "Russia/USSR|Nicholas I|1826": 2,
+  "Russia/USSR|Great Reforms|1856": 2,
+  "Russia/USSR|Reaction/Late Tsarist|1882": 2,
+  "Russia/USSR|Revolution Era|1905": 4,
+  "Russia/USSR|Soviet Early/Lenin|1918": 4,
+  "Russia/USSR|Stalin|1929": 4,
+  "Russia/USSR|Khrushchev Thaw|1954": 2,
+  "Russia/USSR|Brezhnev Stagnation|1965": 2,
+  "Russia/USSR|Gorbachev/Collapse|1985": 4,
+  "Russia/USSR|Yeltsin|1992": 5,
+  "Russia/USSR|Putin Stabilization|2000": 2,
+  "Russia/USSR|Tandem/Reset Era|2008": 2,
+  "Russia/USSR|Conservative-Authoritarian Turn|2012": 3,
+  "Russia/USSR|Wartime Russia|2022": 4,
+  "Spain|Bourbon Spain/Napoleonic|1789": 3,
+  "Spain|Liberal-Absolutist struggle|1814": 3,
+  "Spain|Isabella/Moderate Monarchy|1834": 3,
+  "Spain|Sexenio/Restoration|1869": 2,
+  "Spain|Crisis/Primo|1898": 3,
+  "Spain|Second Republic|1931": 3,
+  "Spain|Civil War/Franco|1936": 4,
+  "Spain|Late Franco|1960": 2,
+  "Spain|Transition|1976": 2,
+  "Spain|PSOE/PP Democracy|1983": 1,
+  "Spain|Crisis Spain|2008": 2,
+  "Italy|Italian States/Napoleonic|1789": 2,
+  "Italy|Restoration/Risorgimento|1815": 2,
+  "Italy|Liberal Italy|1861": 2,
+  "Italy|WWI Italy/Crisis|1914": 3,
+  "Italy|Fascist Italy|1922": 4,
+  "Italy|Post-war Republic|1946": 2,
+  "Italy|Years of Lead|1969": 3,
+  "Italy|Craxi/First Republic End|1984": 2,
+  "Italy|Second Republic|1994": 2,
+  "Italy|Populist Italy|2013": 2,
+  "Austria/Austria-Hungary|Habsburg Enlightened Absolutism|1789": 2,
+  "Austria/Austria-Hungary|Metternich System|1815": 2,
+  "Austria/Austria-Hungary|1848/Neo-Absolutism|1848": 2,
+  "Austria/Austria-Hungary|Austria-Hungary Dual Monarchy|1867": 2,
+  "Austria/Austria-Hungary|WWI/Collapse|1914": 4,
+  "Austria/Austria-Hungary|First Republic|1919": 3,
+  "Austria/Austria-Hungary|Austrofascism/Anschluss|1934": 4,
+  "Austria/Austria-Hungary|Second Republic Consensus|1945": 1,
+  "Austria/Austria-Hungary|Grand Coalition Austria|1987": 1,
+  "Austria/Austria-Hungary|FP\xD6 Coalition Era|2000": 2,
+  "Austria/Austria-Hungary|Kurz/\xD6VP-Green Austria|2017": 2,
+  "Ottoman Empire/Turkey|Late Ottoman|1789": 3,
+  "Ottoman Empire/Turkey|Tanzimat|1808": 2,
+  "Ottoman Empire/Turkey|Hamidian Era|1877": 3,
+  "Ottoman Empire/Turkey|Young Turks/WWI|1908": 4,
+  "Ottoman Empire/Turkey|Kemalist Republic|1919": 2,
+  "Ottoman Empire/Turkey|Multi-party Turkey|1938": 2,
+  "Ottoman Empire/Turkey|Coup/Instability Era|1960": 3,
+  "Ottoman Empire/Turkey|Ozal/Secular Republic|1980": 3,
+  "Ottoman Empire/Turkey|AKP Reformist Period|2002": 2,
+  "Ottoman Empire/Turkey|Authoritarian Consolidation|2013": 3,
+  "Poland|Partition Era|1789": 3,
+  "Poland|November/January Uprisings|1831": 3,
+  "Poland|Organic Work/Positivism|1864": 2,
+  "Poland|Second Republic|1918": 3,
+  "Poland|Sanacja/Pilsudski|1926": 3,
+  "Poland|WWII/Occupation|1939": 5,
+  "Poland|Stalinist Poland|1945": 3,
+  "Poland|Gomulka/Gierek|1957": 2,
+  "Poland|Solidarity/Transition|1981": 2,
+  "Poland|EU Accession Poland|1998": 2,
+  "Poland|Tusk-era Civic Liberalism|2005": 1,
+  "Poland|PiS Illiberal Consolidation|2015": 3,
+  "Poland|Post-PiS Tusk Coalition|2023": 2,
+  "Ukraine|Imperial Borderlands|1789": 2,
+  "Ukraine|Revolution/Soviet Incorporation|1917": 5,
+  "Ukraine|War/Late Soviet Ukraine|1939": 3,
+  "Ukraine|Oligarchic Independence|1991": 3,
+  "Ukraine|Maidan/War Democracy|2014": 2,
+  "Netherlands|Batavian/French Period|1789": 2,
+  "Netherlands|United Kingdom of Netherlands|1814": 2,
+  "Netherlands|Liberal Era|1831": 1,
+  "Netherlands|Pillarization|1888": 1,
+  "Netherlands|WWII Occupation|1940": 4,
+  "Netherlands|Reconstruction/Consensus|1946": 1,
+  "Netherlands|Cultural Revolution/Progressive|1966": 1,
+  "Netherlands|Populist Turn|2002": 2,
+  "Sweden|Gustavian/Bernadotte Early|1789": 2,
+  "Sweden|Liberal Reform Era|1866": 1,
+  "Sweden|Social Democratic Rise|1914": 1,
+  "Sweden|Folkhem Peak|1946": 1,
+  "Sweden|Neoliberal Turn|1976": 1,
+  "Sweden|Immigration Debate|2006": 2,
+  "Portugal|Late Monarchy|1789": 2,
+  "Portugal|Brazilian Exile/Liberalism|1808": 4,
+  "Portugal|Constitutional Monarchy|1834": 2,
+  "Portugal|First Republic|1910": 4,
+  "Portugal|Estado Novo/Salazar|1926": 2,
+  "Portugal|Caetano/Revolution|1969": 2,
+  "Portugal|Post-Revolution Consolidation Portugal|1977": 3,
+  "Portugal|EU-Era Modernization Portugal|1986": 1,
+  "Portugal|Austerity Portugal|2008": 2,
+  "Greece|Ottoman Rule/Independence|1789": 3,
+  "Greece|Othonian/Early Kingdom|1833": 3,
+  "Greece|Trikoupis/Deliyannis|1863": 2,
+  "Greece|Venizelos/National Schism|1910": 4,
+  "Greece|Metaxas/WWII/Civil War|1936": 5,
+  "Greece|Cold War Greece|1950": 2,
+  "Greece|Junta|1967": 3,
+  "Greece|Metapolitefsi|1975": 2,
+  "Greece|Crisis Greece|2009": 3,
+  "Belgium|Revolution/Independence|1830": 2,
+  "Belgium|Liberal/Catholic Rivalry|1848": 2,
+  "Belgium|WWI/Interwar|1914": 3,
+  "Belgium|WWII/Reconstruction|1940": 3,
+  "Belgium|Linguistic Federalization|1958": 2,
+  "Belgium|Federal Belgium|1993": 2,
+  "Belgium|Modern Belgium|2011": 2,
+  "Switzerland|Helvetic/Mediation|1789": 2,
+  "Switzerland|Federal State|1848": 1,
+  "Switzerland|Interwar/WWII|1914": 1,
+  "Switzerland|Magic Formula Era|1946": 1,
+  "Switzerland|SVP Rise|1991": 1,
+  "Switzerland|Modern Switzerland|2011": 1,
+  "Romania|Phanariot/Early Principalities|1789": 2,
+  "Romania|Organic Statutes/Union|1830": 2,
+  "Romania|Romanian Kingdom|1867": 2,
+  "Romania|Greater Romania|1914": 3,
+  "Romania|Royal Dictatorship/WWII|1938": 4,
+  "Romania|Communist Romania|1945": 3,
+  "Romania|Ceausescu|1965": 4,
+  "Romania|Iliescu Transition|1990": 2,
+  "Romania|EU Accession Romania|2004": 2,
+  "Romania|Iohannis-era Romania|2014": 2,
+  "Hungary|Habsburg Hungary|1789": 2,
+  "Hungary|1848/Compromise|1848": 2,
+  "Hungary|Dual Monarchy|1868": 2,
+  "Hungary|Horthy Era|1920": 3,
+  "Hungary|Stalinist Hungary|1945": 4,
+  "Hungary|Kadar Era|1957": 2,
+  "Hungary|Post-Communist/Liberal|1990": 2,
+  "Hungary|Orban's Hungary|2010": 3,
+  "Czech/Czechoslovakia|Habsburg Bohemia|1789": 2,
+  "Czech/Czechoslovakia|Austria-Hungary/Czech Politics|1868": 2,
+  "Czech/Czechoslovakia|First Republic|1918": 1,
+  "Czech/Czechoslovakia|Munich/Protectorate|1938": 4,
+  "Czech/Czechoslovakia|Communist Czechoslovakia|1948": 2,
+  "Czech/Czechoslovakia|Prague Spring/Normalization|1968": 2,
+  "Czech/Czechoslovakia|Klaus Reform Era|1993": 2,
+  "Czech/Czechoslovakia|EU Accession Czech Republic|2004": 1,
+  "Czech/Czechoslovakia|Babi\u0161-era Czech Republic|2017": 2,
+  "Belgium|Austrian/French/Dutch Netherlands|1789": 3,
+  "Denmark|Absolutist Denmark-Norway|1789": 2,
+  "Denmark|Constitutional Denmark|1815": 2,
+  "Denmark|Postwar Welfare Buildout Denmark|1945": 1,
+  "Denmark|Late Welfare State Denmark|1973": 1,
+  "Denmark|Contemporary Denmark|2001": 1,
+  "Finland|Swedish/Russian Grand Duchy|1789": 2,
+  "Finland|Independence/War Finland|1917": 3,
+  "Finland|Finlandization/Welfare State|1946": 1,
+  "Finland|EU-Era Neutral Finland|1995": 1,
+  "Finland|NATO Finland|2022": 1,
+  "Ireland|Union Ireland|1789": 3,
+  "Ireland|Revolution/Free State|1916": 2,
+  "Ireland|De Valera Republic|1938": 2,
+  "Ireland|EEC Modernization Ireland|1973": 2,
+  "Ireland|Celtic Tiger Ireland|1990": 1,
+  "Ireland|Post-Crisis Liberal Ireland|2009": 2,
+  "Norway|Danish/Swedish Union Norway|1789": 2,
+  "Norway|Independent Norway|1905": 2,
+  "Norway|Labor/Oil Welfare State|1945": 1,
+  "Norway|Contemporary Norway|1990": 1,
+  "Bulgaria|Ottoman Bulgaria|1789": 2,
+  "Bulgaria|Principality/Kingdom|1878": 3,
+  "Bulgaria|Communist Bulgaria|1944": 2,
+  "Bulgaria|Post-Communist Transition Bulgaria|1990": 3,
+  "Bulgaria|EU-Era Bulgaria|2007": 3,
+  "Slovakia|Habsburg Upper Hungary|1789": 2,
+  "Slovakia|Czechoslovak Slovakia|1918": 2,
+  "Slovakia|Wartime Slovak State|1939": 4,
+  "Slovakia|Communist/Federal Slovakia|1946": 2,
+  "Slovakia|Me\u010Diar Illiberal Slovakia|1993": 3,
+  "Slovakia|EU/NATO Slovakia|2004": 2,
+  "Slovakia|Fico-era Polarization|2018": 3,
+  "Egypt|Muhammad Ali Dynasty|1789": 2,
+  "Egypt|Khedivate/British|1849": 2,
+  "Egypt|Liberal/Monarchy|1914": 2,
+  "Egypt|Nasser|1952": 2,
+  "Egypt|Sadat|1971": 2,
+  "Egypt|Mubarak|1982": 2,
+  "Egypt|Arab Spring/Morsi|2011": 3,
+  "Egypt|Sisi|2014": 2,
+  "South Africa|Cape Colony/Early|1789": 2,
+  "South Africa|Mineral Revolution/Union|1870": 2,
+  "South Africa|Segregation Era|1914": 2,
+  "South Africa|Apartheid|1948": 3,
+  "South Africa|Transition|1990": 2,
+  "South Africa|Mandela/Mbeki|1995": 2,
+  "South Africa|Zuma/Crisis|2008": 3,
+  "Nigeria|Colonial Nigeria|1789": 2,
+  "Nigeria|British Colony|1914": 2,
+  "Nigeria|First Republic/Biafra|1960": 4,
+  "Nigeria|Military Era|1970": 3,
+  "Nigeria|Fourth Republic|1999": 3,
+  "Nigeria|Buhari/Modern|2015": 3,
+  "Saudi Arabia|Pre-Saudi/First State|1789": 2,
+  "Saudi Arabia|Second Saudi State/Interregnum|1819": 3,
+  "Saudi Arabia|Ibn Saud/Unification|1902": 2,
+  "Saudi Arabia|Faisal/Khalid Oil Boom|1953": 1,
+  "Saudi Arabia|Post-Mecca Wahhabi Saudi Arabia|1979": 1,
+  "Saudi Arabia|Post-9/11 Saudi Arabia|2001": 1,
+  "Saudi Arabia|MBS/Vision 2030|2015": 2,
+  "Iraq|Ottoman Iraq|1789": 2,
+  "Iraq|British Mandate/Monarchy|1918": 3,
+  "Iraq|Revolution/Baath|1958": 4,
+  "Iraq|Saddam Hussein|1969": 4,
+  "Iraq|US Occupation|2003": 5,
+  "Iraq|Maliki/ISIS|2011": 5,
+  "Iraq|Post-ISIS Iraq|2018": 3,
+  "Israel|Yishuv/Mandate|1920": 2,
+  "Israel|Labor Zionism|1948": 2,
+  "Israel|Likud/Begin|1978": 2,
+  "Israel|Oslo/Peace Process|1993": 2,
+  "Israel|Second Intifada Era|2001": 2,
+  "Israel|Netanyahu Hegemony|2009": 2,
+  "Israel|Crisis Israel|2022": 3,
+  "Algeria|Ottoman/French Conquest|1789": 3,
+  "Algeria|French Algeria|1848": 2,
+  "Algeria|War of Independence|1954": 5,
+  "Algeria|FLN State|1963": 2,
+  "Algeria|Black Decade Algeria|1989": 5,
+  "Algeria|Bouteflika Reconciliation|2002": 2,
+  "Algeria|Post-Hirak Algeria|2019": 2,
+  "Ethiopia|Zemene Mesafint/Tewodros|1789": 3,
+  "Ethiopia|Menelik/Imperial|1869": 2,
+  "Ethiopia|Italian Occupation/Haile Selassie|1936": 3,
+  "Ethiopia|Derg|1974": 5,
+  "Ethiopia|EPRDF|1991": 2,
+  "Ethiopia|Abiy Ahmed|2018": 5,
+  "Israel|Ottoman Palestine|1789": 2,
+  "Morocco|Alawi Sultanate|1789": 2,
+  "Morocco|French/Spanish Protectorate|1912": 2,
+  "Morocco|Hassan II Monarchy|1956": 2,
+  "Morocco|Mohammed VI Monarchy|1999": 2,
+  "Libya|Ottoman/Sanusi Libya|1789": 2,
+  "Libya|Italian Libya/Allied Administration|1911": 3,
+  "Libya|Idris Monarchy|1951": 2,
+  "Libya|Qaddafi Jamahiriya|1969": 2,
+  "Libya|Post-Qaddafi Fragmentation|2011": 5,
+  "Tunisia|Husainid Beylicate|1789": 2,
+  "Tunisia|French Protectorate|1881": 2,
+  "Tunisia|Bourguiba Modernization|1956": 2,
+  "Tunisia|Ben Ali Police State|1987": 2,
+  "Tunisia|Revolution/Constitutional Crisis|2011": 3,
+  "Angola|Kongo/Portuguese Angola|1789": 2,
+  "Angola|Liberation/Civil War|1961": 5,
+  "Angola|MPLA Oil State|2002": 2,
+  "Ghana|Asante/Gold Coast|1789": 2,
+  "Ghana|Nkrumah/One-Party State|1957": 3,
+  "Ghana|Coups/Rawlings Transition|1966": 3,
+  "Ghana|Fourth Republic Ghana|1992": 2,
+  "Kenya|Swahili/Interior Polities|1789": 2,
+  "Kenya|British Kenya/Mau Mau|1895": 3,
+  "Kenya|Kenyatta KANU Kenya|1963": 2,
+  "Kenya|Moi Patronage Kenya|1978": 3,
+  "Kenya|Multiparty Kenya|2002": 3,
+  "Dem. Rep. Congo|Kongo/Luba/Lunda Polities|1789": 2,
+  "Dem. Rep. Congo|Congo Free State/Belgian Congo|1885": 5,
+  "Dem. Rep. Congo|Independence Crisis/Mobutu Zaire|1960": 4,
+  "Dem. Rep. Congo|Congo Wars|1997": 5,
+  "Dem. Rep. Congo|Kabila Stabilization|2003": 4,
+  "Dem. Rep. Congo|Tshisekedi DRC|2018": 3
+};
+function dysfunctionFactor(d) {
+  if (d == null || d <= 1) return 1;
+  if (d <= 2) return 0.92;
+  if (d <= 3) return 0.8;
+  if (d <= 4) return 0.6;
+  return 0.35;
+}
+
 // src/global/build-alignment.ts
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
-var GAUSSIAN_SIGMA = 2.9;
+var GAUSSIAN_SIGMA = 2;
 var CONTINUOUS_NODES = [
   "MAT",
   "CD",
@@ -10727,10 +11284,11 @@ var CONTINUOUS_NODES = [
   "COM",
   "ZS",
   "ONT_H",
-  "ONT_S",
-  "PF",
-  "TRB"
-  // ENG excluded — engagement is emergent, not a trait
+  "ONT_S"
+  // PF, TRB, ENG excluded — these are structural/meta nodes about identity
+  // intensity, not policy content. High PF/TRB means strong partisan/tribal
+  // attachment, but says nothing about *which* side — an Evangelical and a
+  // Stalinist both have PF=5/TRB=5 for opposite reasons.
 ];
 var ALL_REGIMES = [
   ...EUROPE_PART1,
@@ -10747,7 +11305,7 @@ function computeAlignment(arch, regime) {
     if (!tmpl || tmpl.kind !== "continuous") continue;
     const ct = tmpl;
     const archPos = ct.pos;
-    const archSal = ct.sal;
+    const archSal = Math.max(ct.sal ?? 0, 0.5);
     const regimePos = regime[node];
     if (regimePos == null) continue;
     let antiMultiplier = 1;
@@ -10762,7 +11320,10 @@ function computeAlignment(arch, regime) {
   }
   const distance = totalWeight > 0 ? Math.sqrt(weightedSumSq / totalWeight) : 4;
   const support = 100 * Math.exp(-Math.pow(distance / GAUSSIAN_SIGMA, 2));
-  const alignment = (support / 50 - 1) * 3;
+  const dysKey = `${regime.jurisdiction}|${regime.regime}|${regime.startYear}`;
+  const dysFactor = dysfunctionFactor(JURISDICTION_DYSFUNCTION[dysKey]);
+  const rawAlignment = (support / 50 - 1) * 3;
+  const alignment = rawAlignment > 0 ? rawAlignment * dysFactor : rawAlignment;
   return Math.max(-3, Math.min(3, +alignment.toFixed(3)));
 }
 function buildRegimeProfilesCsv() {
