@@ -1578,7 +1578,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q52 removed 2026-04-24: redundant with Q102 membership_criteria_priority_sort,
   // which covers the same CU+TRB_ANCHOR signal via a richer priority-sort UI.
 
-  // Q54 — religion_in_upbringing (background, mild)
+  // Q54 — religion_in_upbringing — DEPRECATED 2026-04-28 (PR 2 priority 4).
+  // Religion-of-upbringing is demographic background, not political-position
+  // evidence. Pre-deprecation evidence map equated "raised religious" with
+  // MOR-low (parochial) + CD-high (traditional) — sociologically common
+  // correlation but factually weak: a person raised religious can be
+  // politically MOR-universalist + CD-progressive, and vice versa. Empty
+  // touchProfile causes the question-pool filter (api.ts:442) to exclude
+  // this from active rotation. Definition kept for documentation.
   {
     id: 54,
     stage: "stage3",
@@ -1587,30 +1594,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     uiType: "single_choice",
     quality: 0.40,
     rewriteNeeded: false,
-    touchProfile: [
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" },
-      { node: "CD", kind: "continuous", role: "position", weight: 0.10, touchType: "background_context" }
-    ],
-    optionEvidence: {
-      very_religious: {
-        continuous: {
-          MOR: { pos: [0.25, 0.27, 0.23, 0.15, 0.10] },
-          CD: { pos: [0.25, 0.27, 0.23, 0.15, 0.10] }
-        }
-      },
-      somewhat_religious: {
-        continuous: {
-          MOR: { pos: [0.18, 0.24, 0.28, 0.18, 0.12] },
-          CD: { pos: [0.18, 0.24, 0.28, 0.18, 0.12] }
-        }
-      },
-      not_religious: {
-        continuous: {
-          MOR: { pos: [0.10, 0.15, 0.25, 0.27, 0.23] },
-          CD: { pos: [0.10, 0.15, 0.25, 0.27, 0.23] }
-        }
-      }
-    }
+    touchProfile: [],
   },
 
 

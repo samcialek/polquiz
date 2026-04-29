@@ -8,7 +8,7 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260428-pr2-q93-poles";
+export declare const BUNDLE_VERSION = "20260428-pr2-q102-escalation";
 export interface QuizQuestion {
     id: number;
     promptShort: string;
