@@ -1509,9 +1509,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     continuousNodes.forEach(code => {
       const arcNode = archetype.nodes[code];
+      const respCont = respondentState && respondentState.continuous ? respondentState.continuous[code] : null;
+      // ADR-002: ENG was migrated out of archetype signatures (lives in
+      // engagementLabel module instead). For demo / archetype-fallback runs
+      // without respondent state, skip nodes the archetype doesn't carry.
+      if (!arcNode && !respCont) return;
       const isSelf = SELF_CODES.includes(code);
       let pos, sal;
-      const respCont = respondentState && respondentState.continuous ? respondentState.continuous[code] : null;
       if (respCont) {
         pos = respCont.expectedPos;
         // SELF nodes: derive sal from pos directly (they're the same axis).
@@ -1538,6 +1542,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // a political-direction polarity.
     const displayNodes = continuousNodes.map(code => {
       const nd = nodeData[code];
+      if (!nd) return null;
       const nl = nodeLabels[code];
       let pos = nd.pos10;
       let ci = nd.ci10;
@@ -1549,7 +1554,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tmp = low; low = high; high = tmp;
       }
       return { code, name: nl.name, pos, sal: nd.sal, low, high, cluster: nl.cluster, isSelf: nd.isSelf, ci };
-    });
+    }).filter(Boolean);
 
     const nodesGrid = document.getElementById('nodes-grid');
     const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'SELF'];
