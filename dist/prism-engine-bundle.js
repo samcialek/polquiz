@@ -5329,11 +5329,19 @@ var PrismEngine = (() => {
           }
         },
         // B: Stay open, but newcomers should adopt common civic culture
-        // MOR moderate pos=3: civic shared-culture frame → national/civic scope.
+        // PR 2 priority 5 rebalance 2026-04-28 — pre-fix likelihoods were
+        // internally inconsistent: CD peaked pos=4 (traditional) and CU peaked
+        // pos=4 (pluralist) for an option labeled "civic assimilation." Civic-
+        // nationalism is centrist on CD and assimilationist-lean on CU — not
+        // traditional, not pluralist. Surfaced by Dump 2 (Sam picked this option;
+        // engine pushed CD +0.62 toward traditional and CU +0.50 toward pluralist
+        // — both wrong-direction for his progressive intent).
+        // Refit: CD centrist peak (pos=3), CU assimilationist-lean peak (pos=2),
+        // MOR unchanged (centrist civic-frame doesn't bias scope).
         civic_assimilation: {
           continuous: {
-            CD: { pos: [0.05, 0.12, 0.28, 0.35, 0.2] },
-            CU: { pos: [0.05, 0.12, 0.25, 0.35, 0.23] },
+            CD: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] },
+            CU: { pos: [0.08, 0.18, 0.32, 0.27, 0.15] },
             MOR: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
           }
         },
@@ -16240,7 +16248,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260428-pr2-q54-deprecate";
+  var BUNDLE_VERSION = "20260428-pr2-q82-civic";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
