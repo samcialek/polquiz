@@ -7655,6 +7655,20 @@ var PrismEngine = (() => {
       for (const p of targetNorm) if (p > 0) entropy2 -= p * Math.log(p);
       if (entropy2 >= UNIFORM_THRESHOLD_PSORT) skipPositionForNode.add(nodeId);
     }
+    if (q.id === 102) {
+      const allInHigh = placements.supportHigh.length === allItems.length && allItems.length > 0;
+      const allInOppose = placements.opposeHigh.length === allItems.length && allItems.length > 0;
+      if (allInHigh || allInOppose) {
+        const node = state.continuous["CU"];
+        if (node) {
+          const target = allInHigh ? [0.9, 0.05, 0.03, 0.01, 0.01] : [0.01, 0.01, 0.03, 0.05, 0.9];
+          const w = 0.85;
+          const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i] * w);
+          node.posDist = normalize(mixed);
+        }
+        skipPositionForNode.add("CU");
+      }
+    }
     for (const item of allItems) {
       const map = q.rankingMap[item];
       if (!map?.continuous) continue;
@@ -16242,7 +16256,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260428-pr2-q93-poles";
+  var BUNDLE_VERSION = "20260428-pr2-q102-escalation";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];

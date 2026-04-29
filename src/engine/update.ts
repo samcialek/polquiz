@@ -717,6 +717,41 @@ export function applyPrioritySort(
     if (entropy >= UNIFORM_THRESHOLD_PSORT) skipPositionForNode.add(nodeId);
   }
 
+  // Q102 conditional escalation per PR 2 design D1.
+  // The membership-criteria question (Q102) has its per-item evidence
+  // distributions deliberately softened (per ADR-008) to avoid civic-
+  // nationalist collapse when users mark a few criteria essential. But the
+  // softening also suppresses the genuine MAX-extreme case where the user
+  // marks ALL membership criteria as essential (= maximum-assimilationist
+  // demand) or NONE (= maximum-pluralist anti-criterion). Override per-item
+  // CU updates with a single concentrated pull when this extreme is detected.
+  //
+  // Surfaced by Dump 1 where Sam (fascist play) marked all 8 items in
+  // supportHigh but engine landed CU=2.35 instead of Sam's target ≈1.4.
+  // Predicted post-fix Dump 1 CU: from CU=2.636 going into Q102 → ≈1.40.
+  if (q.id === 102) {
+    const allInHigh = placements.supportHigh.length === allItems.length && allItems.length > 0;
+    const allInOppose = placements.opposeHigh.length === allItems.length && allItems.length > 0;
+    if (allInHigh || allInOppose) {
+      const node = state.continuous["CU" as ContinuousNodeId];
+      if (node) {
+        // Max-extreme target: peaked sharply at pos=1 (assimilationist) for
+        // all-supportHigh, peaked at pos=5 (pluralist) for all-opposeHigh.
+        // Mix weight 0.85 — aggressive but justified for detected extreme.
+        const target = (allInHigh
+          ? [0.90, 0.05, 0.03, 0.01, 0.01]
+          : [0.01, 0.01, 0.03, 0.05, 0.90]) as typeof node.posDist;
+        const w = 0.85;
+        const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i]! * w);
+        node.posDist = normalize(mixed as typeof node.posDist);
+      }
+      // Suppress the per-item CU position update — override has already fired.
+      // Other nodes touched by Q102 (MOR, TRB, CD, MAT, ZS, PRO) get their
+      // per-item updates as normal — those signals are item-specific.
+      skipPositionForNode.add("CU");
+    }
+  }
+
   // Per-item continuous position mixing. Support buckets pull toward the pole;
   // oppose pulls toward the inverted pole (anti-pole); neutral skips. Nodes
   // flagged as contradictory (above) are skipped entirely — salience captured
