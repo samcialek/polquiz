@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM Archetype Examples</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pool: #d1f6ff; --pool-deep: #89ccf0; --flesh: #fa8072;
+      --cream: #FFFEF8; --ink: #1a1a1a;
+      --dem-blue: #3333FF; --rep-red: #E9141D;
+    }
+    html, body { background: var(--cream); font-family: 'IBM Plex Mono', monospace; color: var(--ink); line-height: 1.5; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    header.page-head { padding: 3rem 0 2rem; border-bottom: 2px solid var(--ink); }
+    .eyebrow { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #888; margin-bottom: 0.6rem; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+    .lede { font-size: 0.95rem; line-height: 1.65; max-width: 720px; color: #444; }
+    .lede a { color: var(--ink); text-decoration: underline; }
+
+    section.examples { padding: 2rem 0 4rem; }
+    .examples-intro { font-size: 0.78rem; color: #666; margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; }
+    .card { background: #fff; border: 1.5px solid var(--ink); padding: 1.5rem 1.5rem 1.25rem; display: flex; flex-direction: column; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; text-decoration: none; color: inherit; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .card-tier { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--flesh); color: var(--ink); padding: 0.25rem 0.7rem; align-self: flex-start; margin-bottom: 0.85rem; }
+    .card-num { font-size: 0.7rem; color: #888; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .card-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.55rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.7rem; }
+    .card-desc { font-size: 0.82rem; line-height: 1.6; color: #444; flex-grow: 1; margin-bottom: 1.1rem; }
+    .card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .meta-tag { font-size: 0.65rem; padding: 3px 8px; border: 1px solid #ccc; background: #f5f5f0; color: #555; letter-spacing: 0.05em; }
+    .card-cta { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--ink); border-top: 1px solid #e0e0e0; padding-top: 0.85rem; display: flex; align-items: center; justify-content: space-between; }
+    .card-cta::after { content: '→'; font-size: 1.1rem; transition: transform 0.15s; }
+    .card:hover .card-cta::after { transform: translateX(4px); }
+
+    .footnote { padding: 1.5rem 0 2rem; font-size: 0.75rem; color: #777; border-top: 1px solid #ddd; margin-top: 2.5rem; }
+    .footnote code { background: #f0f0eb; padding: 1px 5px; font-size: 0.8rem; }
+
+    .accent-l { border-left: 6px solid var(--dem-blue); }
+    .accent-l-radical { border-left: 6px solid #b8002b; }
+    .accent-c { border-left: 6px solid #6A0DAD; }
+    .accent-r { border-left: 6px solid #CC7722; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header class="page-head">
+  <div class="eyebrow">PRISM · Political Refraction and Identity Spectrum Model</div>
+  <h1>Archetype Examples</h1>
+  <p class="lede">
+    Four representative archetypes from the PRISM model's 118-archetype set, each with its full live results page — election grid, world alignment map (1776–2026), and 14-node profile. Hover over any cell, country, or node bar for tooltip details.
+  </p>
+</header>
+
+<section class="examples">
+  <div class="examples-intro">Selected examples · Tier 1 archetypes</div>
+
+  <div class="card-grid">
+
+    <a class="card accent-l" href="../results-live.html?id=001">
+      <span class="card-tier">Tier 1</span>
+      <div class="card-num">ARCHETYPE #001</div>
+      <div class="card-name">Rawlsian Reformer</div>
+      <p class="card-desc">A principled egalitarian who insists on fair procedures and universal moral standards. Deeply pluralist and institutionalist in style, they reject zero-sum thinking and tribal politics. Approaches reform through rules-based statecraft, never compromising on the idea that justice requires both redistribution and procedural integrity.</p>
+      <div class="card-meta">
+        <span class="meta-tag">center-left</span>
+        <span class="meta-tag">institutionalist</span>
+        <span class="meta-tag">universalist</span>
+      </div>
+      <div class="card-cta">Open live results page</div>
+    </a>
+
+    <a class="card accent-l-radical" href="../results-live.html?id=011">
+      <span class="card-tier">Tier 1</span>
+      <div class="card-num">ARCHETYPE #011</div>
+      <div class="card-name">Jacobin Egalitarian</div>
+      <p class="card-desc">A fiery egalitarian who sees politics as zero-sum class struggle. Uncompromising, outcome-focused, and deeply culturally progressive. Relies on intuitionist epistemology and the fighter aesthetic, rejecting statesmanship and technocracy as complicit moderation. Highly engaged, with a revolutionary sense of urgency.</p>
+      <div class="card-meta">
+        <span class="meta-tag">radical left</span>
+        <span class="meta-tag">intuitionist</span>
+        <span class="meta-tag">zero-sum</span>
+      </div>
+      <div class="card-cta">Open live results page</div>
+    </a>
+
+    <a class="card accent-c" href="../results-live.html?id=056">
+      <span class="card-tier">Tier 1</span>
+      <div class="card-num">ARCHETYPE #056</div>
+      <div class="card-name">Institutional Leftist</div>
+      <p class="card-desc">An institutional centrist who combines traditional cultural leanings with deep pluralism and fierce anti-zero-sum conviction. System-trusting, anti-tribal, and engaged. Institutionalist in epistemology and statesman in style — believes existing institutions, properly maintained, can accommodate diversity without sacrificing stability.</p>
+      <div class="card-meta">
+        <span class="meta-tag">institutional center</span>
+        <span class="meta-tag">anti-tribal</span>
+        <span class="meta-tag">positive-sum</span>
+      </div>
+      <div class="card-cta">Open live results page</div>
+    </a>
+
+    <a class="card accent-r" href="../results-live.html?id=088">
+      <span class="card-tier">Tier 1</span>
+      <div class="card-num">ARCHETYPE #088</div>
+      <div class="card-name">Gentle Traditionalist</div>
+      <p class="card-desc">A gentle traditionalist who combines cultural conservatism with genuine openness to compromise and pastoral warmth. Assimilationist but not combative, traditionalist-pastoral in epistemology and aesthetics, system-critical yet temperamentally moderate. Values continuity and community feeling over ideological confrontation or political engagement.</p>
+      <div class="card-meta">
+        <span class="meta-tag">soft traditionalist</span>
+        <span class="meta-tag">pastoral</span>
+        <span class="meta-tag">low engagement</span>
+      </div>
+      <div class="card-cta">Open live results page</div>
+    </a>
+
+  </div>
+
+  <div class="footnote">
+    Each card opens the live results page using the existing URL pattern <code>results-live.html?id=NNN</code>. Without a respondent run ID, the page renders archetype-level alignments and elections rather than personalized ones, but every interaction (election cell hover, country tooltip, year slider, profile bar hover) works identically. Year slider now spans <strong>1776–2026</strong> following this session's 1776 backfill.
+  </div>
+</section>
+
+</div>
+</body>
+</html>
