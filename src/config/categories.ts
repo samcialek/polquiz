@@ -18,12 +18,18 @@ export const AES_CATEGORIES = [
   "visionary"
 ] as const;
 
+// Order MUST match TRB_ANCHOR_ORDER in src/engine/math.ts and the TrbAnchor
+// union in src/types.ts (9 anchors). Drift was previously 7 here, causing
+// TRB_ANCHOR distribution work to silently misalign with the canonical 9-wide
+// TrbAnchorDist type. Canonicalized 2026-04-29.
 export const TRB_ANCHORS = [
   "national",
   "ideological",
   "religious",
   "class",
   "ethnic_racial",
+  "gender",
+  "sexual",
   "global",
   "mixed_none"
 ] as const;

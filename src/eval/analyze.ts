@@ -596,9 +596,9 @@ function computeDriftFlags(): Array<{ id: string; description: string; severity:
     severity: "info",
   });
   flags.push({
-    id: "trb-anchor-9v7",
-    description: "types.ts TRB anchor enum has 9 values (adds 'gender' and 'sexual'); categories.ts TRB_ANCHORS lists 7. State initialises dist as length-9 uniform. Downstream logic that reads TRB_ANCHORS may miss the added anchors.",
-    severity: "medium",
+    id: "trb-anchor-9v7-resolved",
+    description: "Resolved 2026-04-29: categories.ts TRB_ANCHORS now exports the canonical 9 anchors (added 'gender', 'sexual'); inline 7-anchor types in update.ts replaced with TrbAnchor from types.ts. types.ts, math.ts TRB_ANCHOR_ORDER, and TrbAnchorDist were already 9-wide.",
+    severity: "info",
   });
   flags.push({
     id: "node-norm-factors-unused",

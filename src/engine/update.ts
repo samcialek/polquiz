@@ -7,7 +7,8 @@ import type {
   QuestionDef,
   PartyID,
   RespondentState,
-  SalienceDist
+  SalienceDist,
+  TrbAnchor
 } from "../types.js";
 import { multiplyAndNormalize, normalize, addToAnchorDist } from "./math.js";
 import { NODE_NORM_FACTORS } from "../config/normalization.js";
@@ -334,9 +335,9 @@ export function applyAllocationAnswer(
     }
 
     if (map.trbAnchor) {
-      const scaled: Partial<Record<"national" | "ideological" | "religious" | "class" | "ethnic_racial" | "global" | "mixed_none", number>> = {};
+      const scaled: Partial<Record<TrbAnchor, number>> = {};
       for (const [k, v] of Object.entries(map.trbAnchor)) {
-        scaled[k as keyof typeof scaled] = v * share;
+        scaled[k as TrbAnchor] = v * share;
       }
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
       state.trbAnchor.touches += 1;
@@ -416,9 +417,9 @@ export function applyRankingAnswer(
     }
 
     if (map.trbAnchor) {
-      const scaled: Partial<Record<"national" | "ideological" | "religious" | "class" | "ethnic_racial" | "global" | "mixed_none", number>> = {};
+      const scaled: Partial<Record<TrbAnchor, number>> = {};
       for (const [k, v] of Object.entries(map.trbAnchor)) {
-        scaled[k as keyof typeof scaled] = v * rankWeight;
+        scaled[k as TrbAnchor] = v * rankWeight;
       }
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
       state.trbAnchor.touches += 1;
