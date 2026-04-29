@@ -43,8 +43,8 @@ const MAX_POSITION_TOUCHES = 3;
 // (15 fixed front door + top-K drilling + salience-weighted EIG), the typical
 // session is 22-32 questions. Low-complexity respondents (everything low
 // salience) finish around 22; spread-salient respondents may go to 32-35.
-// MAX held at 40 as a hard cap during initial rollout; tighten after replay
-// stabilizes per user direction.
+// MAX tightened to 35 after initial rollout. Earlier 40-cap comments in
+// diagnostics are historical, not the live browser behavior.
 const MIN_QUESTIONS = 22;
 const MAX_QUESTIONS = 35;
 // ─── Primitives ────────────────────────────────────────────────────────────
@@ -353,6 +353,32 @@ export function selectNextQuestionEIG(state, available, questionsById) {
         passesTouchCapFilter(state, q, questionsById, topK));
     if (!eligible.length)
         return null;
+    // PR 3.A pilot (2026-04-29) — Q7 forced-coverage for COM. Per locked design
+    // D8: pilot the forced-coverage rule for COM only first, evaluate over
+    // persona-replay before extending to other nodes. Surfaced by Dump 1 + Dump 3
+    // where only Q93 (front-door priority sort) hit COM position; the EIG scorer
+    // never picks Q7 because its zero-other-touches structure caps its info-gain
+    // score below broader multi-node questions. Result: COM stays at 2.5-2.6 when
+    // both users intended principled (~1.0). Q7 is the dedicated direct probe
+    // (single_choice, COM pos weight 0.85, zero other touches — purest COM probe).
+    // Gate: Q7 eligible AND fewer than 2 strong COM-position probes have already
+    // fired. Q93 always counts as 1 (front-door priority sort). Q7 fires at most
+    // once per quiz; this rule has no effect if Q7 has been asked.
+    const q7 = eligible.find(q => q.id === 7);
+    if (q7) {
+        let strongComProbesAsked = 0;
+        for (const qid of Object.keys(state.answers)) {
+            const q = questionsById.get(Number(qid));
+            if (!q)
+                continue;
+            if (q.touchProfile.some(t => t.node === 'COM' && t.role === 'position' && t.weight >= 0.5)) {
+                strongComProbesAsked++;
+            }
+        }
+        if (strongComProbesAsked < 2) {
+            return q7;
+        }
+    }
     // Priority batteries (Q93/Q102/Q103 anchor the front door — these were
     // already served as part of the fixed front door before EIG runs, so
     // typically nothing reaches this branch. Q99/Q101 had this flag pre-

@@ -8297,6 +8297,20 @@ var PrismEngine = (() => {
       (q) => passesSalienceFloorGate(state, q) && passesTouchCapFilter(state, q, questionsById, topK)
     );
     if (!eligible.length) return null;
+    const q7 = eligible.find((q) => q.id === 7);
+    if (q7) {
+      let strongComProbesAsked = 0;
+      for (const qid of Object.keys(state.answers)) {
+        const q = questionsById.get(Number(qid));
+        if (!q) continue;
+        if (q.touchProfile.some((t) => t.node === "COM" && t.role === "position" && t.weight >= 0.5)) {
+          strongComProbesAsked++;
+        }
+      }
+      if (strongComProbesAsked < 2) {
+        return q7;
+      }
+    }
     const priority = eligible.filter((q) => q.priorityBattery);
     if (priority.length) {
       const scoredPriority = priority.map((q) => ({ q, score: scoreQuestionEIG(state, q, questionsById) })).sort((a, b) => b.score - a.score);
@@ -16248,7 +16262,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260428-pr2-q82-civic";
+  var BUNDLE_VERSION = "20260429-pr3a-q7-coverage";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
