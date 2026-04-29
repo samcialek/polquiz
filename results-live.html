@@ -450,8 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="map-controls">
       <div id="year-display">2026</div>
       <div class="slider-wrap">
-        <span>1789</span>
-        <input type="range" id="year-slider" min="1789" max="2026" value="2026">
+        <span>1776</span>
+        <input type="range" id="year-slider" min="1776" max="2026" value="2026">
         <span>2026</span>
       </div>
     </div>
@@ -711,12 +711,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const [archetypesData, electionsData, alignmentsData, regimesData] = await Promise.all([
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
-      fetch(`${DATA_BASE}/alignments.json`).then(r => r.json()),
-      // Cache-bust 2026-04-29: PR 5 ships asymmetric dysfunction (positive
-      // alignment compressed only) plus 18 forced-uniformity regime CU
-      // recodings + Orbán CU/MOR fix + a new merge-regime-nodes.cjs build
-      // step that bakes per-era nodes into regimes.json. Force fresh fetch.
-      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29`).then(r => r.json()).catch(() => ({})),
+      fetch(`${DATA_BASE}/alignments.json?v=2026-04-29b`).then(r => r.json()),
+      // Cache-bust bumped to 2026-04-29b: source now carries 33 new rows
+      // (7 Subset A timeline fixes + 26 HIGH 1776 backfill rows). Both
+      // alignments.json and regimes.json were rebuilt from the updated source.
+      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29b`).then(r => r.json()).catch(() => ({})),
     ]);
 
     const archetype = archetypesData.find(a => a.id === archetypeId);
@@ -1285,6 +1284,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getClosestMapYear(year) {
       if (year >= 2026) return 'modern';
+      // 1776–1782 special case: dataset's earliest map is 1715, which predates
+      // the First Polish Partition (1772) and US independence. Use the 1783
+      // basemap (post–Treaty of Paris) for this slice instead.
+      if (year >= 1776 && year < 1783) return 1783;
       let closest = availableMapYears[0];
       for (const my of availableMapYears) {
         if (my <= year) closest = my;

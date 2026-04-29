@@ -4,6 +4,18 @@ export const MENA_AFRICA: RegimePeriod[] = [
   // ===== EGYPT =====
   {
     jurisdiction: "Egypt",
+    regime: "Mamluk Beys under Ottoman Suzerainty",
+    startYear: 1776,
+    endYear: 1788,
+    MAT: 3, CD: 5, CU: 3, MOR: 2,
+    PRO: 2, COM: 2, ZS: 5,
+    ONT_H: 3, ONT_S: 2,
+    PF: 3, TRB: 5, ENG: 3,
+    EPS: 2, AES: 4,
+    description: "Egypt was nominally an Ottoman eyalet but practically governed by Mamluk beys, with Ibrahim Bey and Murad Bey contesting power against the Ottoman valis. The Egyptian fellaheen population suffered tax-farm extraction, recurrent plague, and irrigation decline."
+  },
+  {
+    jurisdiction: "Egypt",
     regime: "Muhammad Ali Dynasty",
     startYear: 1789,
     endYear: 1848,
@@ -260,6 +272,18 @@ export const MENA_AFRICA: RegimePeriod[] = [
   },
 
   // ===== SAUDI ARABIA =====
+  {
+    jurisdiction: "Saudi Arabia",
+    regime: "First Saudi State / Diriyah Emirate",
+    startYear: 1776,
+    endYear: 1788,
+    MAT: 4, CD: 5, CU: 1, MOR: 1,
+    PRO: 2, COM: 1, ZS: 5,
+    ONT_H: 1, ONT_S: 2,
+    PF: 5, TRB: 5, ENG: 5,
+    EPS: 2, AES: 4,
+    description: "The First Saudi State (Diriyah Emirate, 1727–1818) under Abdul-Aziz bin Muhammad ibn Saud (1765–1803) was expanding the Wahhabi-Saudi alliance across the Najd and toward the Hejaz. The combined Saudi political authority and Wahhabi religious revival movement created a tightly fused theocratic-tribal state."
+  },
   {
     jurisdiction: "Saudi Arabia",
     regime: "Pre-Saudi/First State",

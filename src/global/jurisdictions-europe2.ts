@@ -17,6 +17,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
 
   {
     jurisdiction: "Netherlands",
+    regime: "Dutch Republic in Crisis",
+    startYear: 1776,
+    endYear: 1788,
+    description:
+      "The United Provinces under Stadholder William V faced the Patriot Revolution, defeat in the Fourth Anglo-Dutch War (1780–84), and Prussian intervention in 1787 to restore the Orangist regime. The historic confederal-republican-commercial order strained against centralizing Patriot demands and democratic agitation.",
+    MAT: 5, CD: 4, CU: 3, MOR: 3, PRO: 5, COM: 4,
+    ZS: 3, ONT_H: 4, ONT_S: 4, PF: 3, TRB: 2, ENG: 3,
+    EPS: 0, AES: 0,
+  },
+  {
+    jurisdiction: "Netherlands",
     regime: "Batavian/French Period",
     startYear: 1789,
     endYear: 1813,
@@ -78,7 +89,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "Postwar reconstruction fueled by Marshall Plan aid built a comprehensive welfare state, while decolonization of Indonesia and Suriname transformed the Netherlands from colonial empire to European middle power.",
     MAT: 2, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 5,
-    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 3, ENG: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 4, PF: 4, TRB: 3, ENG: 4,
     EPS: 1, AES: 0,
   },
   {
@@ -108,6 +119,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
   // 11. SWEDEN
   // ─────────────────────────────────────────────────────────────
 
+  {
+    jurisdiction: "Sweden",
+    regime: "Gustavian Sweden",
+    startYear: 1776,
+    endYear: 1788,
+    description:
+      "Gustav III ruled as enlightened-absolutist monarch after his 1772 royal coup restored crown power; he sponsored arts and law reform, ended judicial torture (1772), passed religious toleration for foreigners (1781) and a Jewish ordinance (1782), and prepared the unsuccessful 1788 Russian war.",
+    MAT: 4, CD: 3, CU: 2, MOR: 3, PRO: 3, COM: 2,
+    ZS: 3, ONT_H: 4, ONT_S: 4, PF: 3, TRB: 3, ENG: 3,
+    EPS: 1, AES: 0,
+  },
   {
     jurisdiction: "Sweden",
     regime: "Gustavian/Bernadotte Early",
@@ -149,7 +171,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "The 'People's Home' vision reached its zenith with the world's most comprehensive welfare state, combining high taxes, universal services, and active labor market policy under unbroken Social Democratic rule and strict Cold War neutrality.",
     MAT: 1, CD: 2, CU: 4, MOR: 5, PRO: 5, COM: 5,
-    ZS: 1, ONT_H: 5, ONT_S: 1, PF: 4, TRB: 1, ENG: 4,
+    ZS: 1, ONT_H: 5, ONT_S: 5, PF: 4, TRB: 1, ENG: 4,
     EPS: 0, AES: 1,
   },
   {
@@ -160,7 +182,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "The 1990s financial crisis triggered deregulation, pension reform, and EU accession, as the Swedish Model adapted to globalization while preserving its core welfare commitments under alternating center-left and center-right governments.",
     MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 5, COM: 5,
-    ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 2, ENG: 4,
+    ZS: 2, ONT_H: 4, ONT_S: 4, PF: 4, TRB: 2, ENG: 4,
     EPS: 0, AES: 1,
   },
   {
@@ -179,6 +201,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
   // 12. PORTUGAL
   // ─────────────────────────────────────────────────────────────
 
+  {
+    jurisdiction: "Portugal",
+    regime: "Late Pombaline / Maria I Portugal",
+    startYear: 1776,
+    endYear: 1788,
+    description:
+      "The Marquês de Pombal was dismissed 1777 with Maria I's accession, partially reversing his anti-Jesuit, mercantile-modernizing reforms while retaining Bourbon-style centralization. Portuguese state and colonial system depended on Brazilian gold and slave-based plantation extraction.",
+    MAT: 4, CD: 4, CU: 1, MOR: 2, PRO: 3, COM: 2,
+    ZS: 4, ONT_H: 3, ONT_S: 3, PF: 2, TRB: 3, ENG: 2,
+    EPS: 1, AES: 0,
+  },
   {
     jurisdiction: "Portugal",
     regime: "Late Monarchy",
@@ -439,7 +472,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "Fully federalized Belgium hosted EU institutions in Brussels and navigated linguistic compromise through elaborate power-sharing, while Flemish separatism grew as the economic balance shifted northward.",
     MAT: 3, CD: 2, CU: 4, MOR: 4, PRO: 5, COM: 5,
-    ZS: 2, ONT_H: 3, ONT_S: 2, PF: 5, TRB: 3, ENG: 3,
+    ZS: 2, ONT_H: 3, ONT_S: 4, PF: 5, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
   },
   {
@@ -458,6 +491,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
   // 15. SWITZERLAND
   // ─────────────────────────────────────────────────────────────
 
+  {
+    jurisdiction: "Switzerland",
+    regime: "Old Swiss Confederacy",
+    startYear: 1776,
+    endYear: 1788,
+    description:
+      "The Old Confederacy of XIII Cantons plus allies and subject territories operated under cantonal patrician oligarchies (Bern, Zurich, Basel) and rural-democratic mountain cantons. Cantonal religion was either Catholic or Reformed by the historical settlement; the Diet (Tagsatzung) coordinated rather than ruled. Mercenary remittances were a major fiscal pillar.",
+    MAT: 4, CD: 4, CU: 4, MOR: 3, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 3, ONT_S: 3, PF: 2, TRB: 3, ENG: 3,
+    EPS: 0, AES: 0,
+  },
   {
     jurisdiction: "Switzerland",
     regime: "Helvetic/Mediation",
@@ -499,7 +543,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "The 'Magic Formula' allocated Federal Council seats among four major parties in fixed proportion, producing exceptional stability, banking secrecy, Cold War neutrality, and quiet prosperity.",
     MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 5,
-    ZS: 2, ONT_H: 3, ONT_S: 1, PF: 3, TRB: 3, ENG: 3,
+    ZS: 2, ONT_H: 3, ONT_S: 5, PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
   },
   {
@@ -521,7 +565,7 @@ export const EUROPE_PART2: RegimePeriod[] = [
     description:
       "Referendums on minarets, mass immigration, and corporate responsibility reflected tensions between Switzerland's direct-democratic traditions and globalization pressures, while banking secrecy eroded under international pressure.",
     MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 4,
-    ZS: 3, ONT_H: 3, ONT_S: 2, PF: 4, TRB: 3, ENG: 4,
+    ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
   },
 
@@ -622,6 +666,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
   // 17. HUNGARY
   // ─────────────────────────────────────────────────────────────
 
+  {
+    jurisdiction: "Hungary",
+    regime: "Habsburg Hungary under Joseph II",
+    startYear: 1776,
+    endYear: 1788,
+    description:
+      "Hungary remained nominally a kingdom in personal union with the Habsburgs, but Joseph II refused coronation and imposed German as administrative language, alienating the Magyar nobility. The Diet did not meet during Joseph's reign and noble resistance to centralization was the central political fact.",
+    MAT: 3, CD: 4, CU: 3, MOR: 2, PRO: 3, COM: 2,
+    ZS: 4, ONT_H: 4, ONT_S: 3, PF: 3, TRB: 4, ENG: 3,
+    EPS: 1, AES: 0,
+  },
   {
     jurisdiction: "Hungary",
     regime: "Habsburg Hungary",
@@ -780,6 +835,17 @@ export const EUROPE_PART2: RegimePeriod[] = [
     MAT: 1, CD: 3, CU: 2, MOR: 3, PRO: 2, COM: 2,
     ZS: 4, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
+  },
+  {
+    jurisdiction: "Czech/Czechoslovakia",
+    regime: "Velvet Transition / Federal Republic",
+    startYear: 1990,
+    endYear: 1992,
+    description:
+      "Post-1989 Civic Forum / VPN-led federal republic transitioning to market economy; ends with Velvet Divorce Jan 1993.",
+    MAT: 4, CD: 2, CU: 3, MOR: 4, PRO: 4, COM: 4,
+    ZS: 2, ONT_H: 5, ONT_S: 4, PF: 2, TRB: 3, ENG: 4,
+    EPS: 0, AES: 0,
   },
   {
     jurisdiction: "Czech/Czechoslovakia",

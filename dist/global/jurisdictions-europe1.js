@@ -2,6 +2,30 @@ export const EUROPE_PART1 = [
     // ===== UNITED KINGDOM =====
     {
         jurisdiction: "United Kingdom",
+        regime: "Stuart / Civil War / Commonwealth",
+        startYear: 1603,
+        endYear: 1688,
+        MAT: 4, CD: 4, CU: 2, MOR: 2,
+        PRO: 2, COM: 1, ZS: 5,
+        ONT_H: 3, ONT_S: 3,
+        PF: 4, TRB: 4, ENG: 5,
+        EPS: 4, AES: 4,
+        description: "James I unites English/Scottish crowns; Charles I civil wars; Commonwealth/Protectorate 1649–60; Restoration 1660; James II's Catholic-leaning policies cause Glorious Revolution."
+    },
+    {
+        jurisdiction: "United Kingdom",
+        regime: "Hanoverian / Glorious Revolution Settlement",
+        startYear: 1688,
+        endYear: 1788,
+        MAT: 4, CD: 3, CU: 3, MOR: 3,
+        PRO: 5, COM: 4, ZS: 4,
+        ONT_H: 3, ONT_S: 5,
+        PF: 4, TRB: 3, ENG: 4,
+        EPS: 0, AES: 0,
+        description: "William and Mary's Glorious Revolution settlement; Bill of Rights 1689; constitutional monarchy with Parliament supremacy; Hanoverian succession 1714; Whig oligarchy under Walpole and Pitts; Seven Years War."
+    },
+    {
+        jurisdiction: "United Kingdom",
         regime: "Georgian Britain",
         startYear: 1789,
         endYear: 1819,
@@ -127,7 +151,7 @@ export const EUROPE_PART1 = [
         endYear: 2009,
         MAT: 3, CD: 2, CU: 4, MOR: 4,
         PRO: 4, COM: 5, ZS: 2,
-        ONT_H: 4, ONT_S: 2,
+        ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 3,
         EPS: 0, AES: 0,
         description: "Blair's Third Way blended market economics with social investment, devolved power to Scotland and Wales, and pursued liberal interventionism abroad including the Iraq War. A period of relative optimism and consensus-seeking."
@@ -145,6 +169,18 @@ export const EUROPE_PART1 = [
         description: "Austerity economics under the Coalition gave way to the Brexit earthquake, fracturing both major parties along cultural lines. Culture wars, populist rhetoric, and institutional distrust defined an era of political volatility."
     },
     // ===== FRANCE =====
+    {
+        jurisdiction: "France",
+        regime: "Ancien Régime",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 4, CD: 5, CU: 1, MOR: 2,
+        PRO: 3, COM: 2, ZS: 4,
+        ONT_H: 3, ONT_S: 4,
+        PF: 3, TRB: 3, ENG: 3,
+        EPS: 1, AES: 0,
+        description: "Bourbon absolutism under Louis XVI presided over a centralized fiscal-administrative state with deep noble and clerical privilege, a confessional-Catholic public order, and growing fiscal crisis from Seven Years' War debt and American war subsidies. Necker's reform attempts were blocked by the parlements and the king vacillated between reform and reaction."
+    },
     {
         jurisdiction: "France",
         regime: "Ancien Regime remnant",
@@ -267,6 +303,18 @@ export const EUROPE_PART1 = [
     },
     {
         jurisdiction: "France",
+        regime: "Provisional Government / Liberation",
+        startYear: 1945,
+        endYear: 1945,
+        MAT: 2, CD: 2, CU: 3, MOR: 4,
+        PRO: 4, COM: 4, ZS: 3,
+        ONT_H: 4, ONT_S: 5,
+        PF: 3, TRB: 3, ENG: 5,
+        EPS: 1, AES: 0,
+        description: "De Gaulle's GPRF transitioning from Vichy collapse to Fourth Republic; broad resistance coalition including PCF."
+    },
+    {
+        jurisdiction: "France",
         regime: "Fourth Republic",
         startYear: 1946,
         endYear: 1957,
@@ -302,6 +350,18 @@ export const EUROPE_PART1 = [
         description: "From Mitterrand's socialist experiment through Chirac, Sarkozy, Hollande, and Macron, France deepened EU integration while grappling with deindustrialization, immigration, and the gilets jaunes movement. The traditional left-right divide fragmented."
     },
     // ===== GERMANY/PRUSSIA =====
+    {
+        jurisdiction: "Germany/Prussia",
+        regime: "Frederickian Prussia",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 4, CD: 4, CU: 2, MOR: 2,
+        PRO: 4, COM: 2, ZS: 4,
+        ONT_H: 4, ONT_S: 4,
+        PF: 2, TRB: 3, ENG: 3,
+        EPS: 1, AES: 4,
+        description: "Frederick II's late reign and the brief reign of Frederick William II governed a militarized, bureaucratic Hohenzollern state with the Allgemeines Landrecht codification underway, religious toleration unusual for the time, and a strong-army identity. The Holy Roman Empire's diet still framed the broader German legal context."
+    },
     {
         jurisdiction: "Germany/Prussia",
         regime: "Prussian Reform Era",
@@ -417,7 +477,7 @@ export const EUROPE_PART1 = [
         endYear: 1989,
         MAT: 3, CD: 3, CU: 3, MOR: 4,
         PRO: 5, COM: 5, ZS: 2,
-        ONT_H: 3, ONT_S: 2,
+        ONT_H: 3, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 1, AES: 0,
         description: "The social market economy produced the Wirtschaftswunder while the Basic Law enshrined strong constitutional protections and consensus-based governance. Brandt's Ostpolitik normalized relations with the East, and West Germany became the anchor of European integration."
@@ -441,7 +501,7 @@ export const EUROPE_PART1 = [
         endYear: 2026,
         MAT: 3, CD: 2, CU: 4, MOR: 4,
         PRO: 5, COM: 5, ZS: 2,
-        ONT_H: 4, ONT_S: 2,
+        ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
         description: "The Berlin Republic anchored European integration, navigated reunification's social costs, and opened its doors during the 2015 refugee crisis. Strong proceduralism and consensus politics persisted even as the AfD challenged the post-war settlement."
@@ -594,6 +654,18 @@ export const EUROPE_PART1 = [
     // ===== SPAIN =====
     {
         jurisdiction: "Spain",
+        regime: "Bourbon Reform Spain (Carlos III)",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 4, CD: 4, CU: 1, MOR: 2,
+        PRO: 4, COM: 2, ZS: 4,
+        ONT_H: 3, ONT_S: 4,
+        PF: 2, TRB: 3, ENG: 3,
+        EPS: 1, AES: 0,
+        description: "Carlos III's Bourbon reform monarchy pursued administrative centralization, intendancy system, free trade within the empire, and clerical reform (Jesuit expulsion 1767), while maintaining strict Catholic confessional state and an extractive colonial system. Charles III's death in 1788 ended the most coherent reform phase."
+    },
+    {
+        jurisdiction: "Spain",
         regime: "Bourbon Spain/Napoleonic",
         startYear: 1789,
         endYear: 1813,
@@ -707,7 +779,7 @@ export const EUROPE_PART1 = [
         endYear: 2007,
         MAT: 3, CD: 2, CU: 4, MOR: 4,
         PRO: 4, COM: 4, ZS: 2,
-        ONT_H: 4, ONT_S: 2,
+        ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
         description: "Gonzalez modernized Spain and joined the EU, Aznar pursued economic liberalization and atlanticism, and both oversaw rapid growth and social transformation. Spain became a confident European democracy with a booming economy."
@@ -848,6 +920,18 @@ export const EUROPE_PART1 = [
     // ===== AUSTRIA/AUSTRIA-HUNGARY =====
     {
         jurisdiction: "Austria/Austria-Hungary",
+        regime: "Josephine Habsburg Monarchy",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 3, CD: 3, CU: 3, MOR: 3,
+        PRO: 4, COM: 2, ZS: 4,
+        ONT_H: 5, ONT_S: 4,
+        PF: 2, TRB: 3, ENG: 3,
+        EPS: 1, AES: 0,
+        description: "Joseph II's enlightened-absolutist reform program reorganized the Habsburg monarchy with serfdom abolition (1781), Edict of Toleration (1781), Jewish emancipation patents, monastery dissolutions, and centralized administrative reform. Reforms imposed top-down without consultation generated provincial backlash, especially in the Austrian Netherlands and Hungary."
+    },
+    {
+        jurisdiction: "Austria/Austria-Hungary",
         regime: "Habsburg Enlightened Absolutism",
         startYear: 1789,
         endYear: 1814,
@@ -937,7 +1021,7 @@ export const EUROPE_PART1 = [
         endYear: 1986,
         MAT: 3, CD: 3, CU: 3, MOR: 4,
         PRO: 5, COM: 5, ZS: 2,
-        ONT_H: 4, ONT_S: 2,
+        ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 3,
         EPS: 1, AES: 0,
         description: "The grand coalition and Sozialpartnerschaft (social partnership) between labor and business created one of Europe's most consensual and prosperous democracies. Neutrality, the Proporz system, and institutional cooperation defined a deliberately depoliticized society."
@@ -955,6 +1039,18 @@ export const EUROPE_PART1 = [
         description: "Haider's FPO breakthrough shattered the cozy consensus, and EU accession in 1995 integrated Austria into European structures. Immigration debates, the FPO's recurring strength, and coalition experimentation marked a more contested political landscape."
     },
     // ===== OTTOMAN EMPIRE/TURKEY =====
+    {
+        jurisdiction: "Ottoman Empire/Turkey",
+        regime: "Post-Küçük Kaynarca Ottoman Empire",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 3, CD: 5, CU: 5, MOR: 2,
+        PRO: 3, COM: 2, ZS: 4,
+        ONT_H: 3, ONT_S: 3,
+        PF: 3, TRB: 4, ENG: 2,
+        EPS: 2, AES: 0,
+        description: "The Ottoman Empire under Abdul Hamid I (1774–1789) was reeling from the Treaty of Küçük Kaynarca (1774), which transferred Crimea sovereignty to Russia and granted Russia broad protectorate rights over Orthodox Christians. The millet system continued to govern non-Muslim communities; the timar system was eroding; central authority over the Balkans and Egypt was largely formal."
+    },
     {
         jurisdiction: "Ottoman Empire/Turkey",
         regime: "Late Ottoman",
@@ -1064,6 +1160,18 @@ export const EUROPE_PART1 = [
         description: "The AKP initially pursued EU-oriented democratization but shifted toward authoritarian Islamist nationalism after the 2013 Gezi protests and 2016 coup attempt. Erdogan concentrated power in a presidential system, purged opponents, and reasserted Turkish influence regionally."
     },
     // ===== POLAND =====
+    {
+        jurisdiction: "Poland",
+        regime: "Late Polish-Lithuanian Commonwealth",
+        startYear: 1776,
+        endYear: 1788,
+        MAT: 4, CD: 4, CU: 4, MOR: 3,
+        PRO: 5, COM: 5, ZS: 3,
+        ONT_H: 3, ONT_S: 1,
+        PF: 3, TRB: 3, ENG: 3,
+        EPS: 1, AES: 0,
+        description: "The Polish-Lithuanian Commonwealth under Stanisław August Poniatowski navigated the post-First-Partition (1772) crisis: the Permanent Council attempted weak modernization within a constitutional system paralyzed by liberum veto and noble freedoms. Russian, Prussian, and Austrian guarantees rendered the state nominally sovereign but practically subject."
+    },
     {
         jurisdiction: "Poland",
         regime: "Partition Era",

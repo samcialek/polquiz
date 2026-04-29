@@ -118,7 +118,7 @@ export const AMERICAS = [
         description: "Bipartisan containment policy under Eisenhower and JFK gave way to LBJ's Great Society and deepening Vietnam involvement.",
         MAT: 3, CD: 3, CU: 3, MOR: 4,
         PRO: 4, COM: 4,
-        ZS: 3, ONT_H: 4, ONT_S: 2,
+        ZS: 3, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
     },
@@ -161,6 +161,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     // 2. MEXICO
     // ──────────────────────────────────────────────
+    {
+        jurisdiction: "Mexico",
+        regime: "Bourbon Viceroyalty of New Spain",
+        startYear: 1776,
+        endYear: 1788,
+        description: "The Viceroyalty of New Spain under Bourbon Reforms (intendancy system from 1786, freer intra-imperial trade from 1778, expulsion of Jesuits 1767) generated significant silver revenue while maintaining the sistema de castas racial-legal hierarchy and Catholic confessional state.",
+        MAT: 4, CD: 5, CU: 2, MOR: 1,
+        PRO: 3, COM: 2,
+        ZS: 4, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 4, ENG: 2,
+        EPS: 1, AES: 0,
+    },
     {
         jurisdiction: "Mexico",
         regime: "Late Colonial/Independence",
@@ -286,6 +298,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     {
         jurisdiction: "Brazil",
+        regime: "Late Pombaline Brazil",
+        startYear: 1776,
+        endYear: 1788,
+        description: "Portuguese Brazil after the dismissal of Pombal (1777) saw the slave-based plantation and gold-mining economy continue, with the Inconfidência Mineira (1789) brewing among Minas Gerais elites resentful of Portuguese taxation. Capital remained at Rio de Janeiro (moved from Salvador 1763).",
+        MAT: 4, CD: 5, CU: 2, MOR: 1,
+        PRO: 3, COM: 2,
+        ZS: 4, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 4, ENG: 2,
+        EPS: 1, AES: 0,
+    },
+    {
+        jurisdiction: "Brazil",
         regime: "Colonial/Portuguese Court",
         startYear: 1789,
         endYear: 1821,
@@ -395,6 +419,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     // 4. ARGENTINA
     // ──────────────────────────────────────────────
+    {
+        jurisdiction: "Argentina",
+        regime: "Viceroyalty of Río de la Plata",
+        startYear: 1776,
+        endYear: 1788,
+        description: "The Viceroyalty of Río de la Plata was created in 1776 with Buenos Aires as the new capital, splitting Upper Peru (silver) from the Peruvian viceroyalty and giving the southern Atlantic its own administrative center. Free intra-imperial trade (1778) and intendancy reform (1782) restructured commerce.",
+        MAT: 4, CD: 4, CU: 3, MOR: 2,
+        PRO: 3, COM: 2,
+        ZS: 3, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 3, ENG: 2,
+        EPS: 1, AES: 0,
+    },
     {
         jurisdiction: "Argentina",
         regime: "Independence/Rivadavia",
@@ -508,6 +544,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     {
         jurisdiction: "Canada",
+        regime: "British North America (Quebec Act era)",
+        startYear: 1776,
+        endYear: 1788,
+        description: "British North America was reorganized by the Quebec Act (1774) and the loss of the Thirteen Colonies; Loyalist refugees from the United States resettled Nova Scotia, New Brunswick (created 1784), and Upper Canada. French Catholic civil law was preserved in Quebec while British common law and Protestant officialdom dominated elsewhere.",
+        MAT: 4, CD: 4, CU: 2, MOR: 2,
+        PRO: 4, COM: 3,
+        ZS: 3, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 3, ENG: 2,
+        EPS: 1, AES: 0,
+    },
+    {
+        jurisdiction: "Canada",
         regime: "British North America",
         startYear: 1789,
         endYear: 1866,
@@ -562,7 +610,7 @@ export const AMERICAS = [
         description: "Quebec's Quiet Revolution modernized French Canada, and Pierre Trudeau entrenched bilingualism, multiculturalism, and the Charter of Rights and Freedoms.",
         MAT: 2, CD: 2, CU: 5, MOR: 5,
         PRO: 5, COM: 4,
-        ZS: 2, ONT_H: 4, ONT_S: 2,
+        ZS: 2, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
     },
@@ -574,7 +622,7 @@ export const AMERICAS = [
         description: "Mulroney pursued free trade and constitutional reform, Chretien eliminated the deficit, and two Quebec sovereignty referendums tested national unity.",
         MAT: 4, CD: 2, CU: 4, MOR: 4,
         PRO: 5, COM: 4,
-        ZS: 2, ONT_H: 3, ONT_S: 2,
+        ZS: 2, ONT_H: 3, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 3,
         EPS: 0, AES: 0,
     },
@@ -593,6 +641,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     // 6. COLOMBIA
     // ──────────────────────────────────────────────
+    {
+        jurisdiction: "Colombia",
+        regime: "Viceroyalty of New Granada",
+        startYear: 1776,
+        endYear: 1788,
+        description: "The Viceroyalty of New Granada (re-established 1739) governed Colombia, Venezuela, Ecuador, and Panama; the Comuneros Revolt (1781) at Socorro was contained through negotiation under Archbishop-Viceroy Caballero y Góngora. Bourbon administrative reforms and trade liberalization defined the period.",
+        MAT: 4, CD: 5, CU: 3, MOR: 1,
+        PRO: 3, COM: 2,
+        ZS: 4, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 4, ENG: 3,
+        EPS: 1, AES: 0,
+    },
     {
         jurisdiction: "Colombia",
         regime: "Gran Colombia/Independence",
@@ -856,6 +916,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     {
         jurisdiction: "Peru",
+        regime: "Viceroyalty of Peru after Túpac Amaru II",
+        startYear: 1776,
+        endYear: 1788,
+        description: "The Viceroyalty of Peru lost the Río de la Plata territories (transferred to a new viceroyalty in 1776) and faced the massive Túpac Amaru II indigenous-mestizo rebellion (1780–83), the largest anti-colonial uprising in Spanish America before independence. Bourbon reforms (intendancies 1784) imposed extractive reorganization.",
+        MAT: 4, CD: 5, CU: 2, MOR: 1,
+        PRO: 3, COM: 2,
+        ZS: 5, ONT_H: 3, ONT_S: 3,
+        PF: 3, TRB: 4, ENG: 3,
+        EPS: 1, AES: 0,
+    },
+    {
+        jurisdiction: "Peru",
         regime: "Colonial/Independence",
         startYear: 1789,
         endYear: 1824,
@@ -941,6 +1013,18 @@ export const AMERICAS = [
     // ──────────────────────────────────────────────
     // 10. VENEZUELA
     // ──────────────────────────────────────────────
+    {
+        jurisdiction: "Venezuela",
+        regime: "Captaincy General of Venezuela",
+        startYear: 1776,
+        endYear: 1788,
+        description: "The Captaincy General of Venezuela was created in 1777 as a separate jurisdiction (under New Granada nominally) governed from Caracas, with cacao plantation slavery and intra-elite mantuano (white creole) politics defining the social order. Real Audiencia of Caracas established 1786.",
+        MAT: 4, CD: 5, CU: 2, MOR: 1,
+        PRO: 3, COM: 2,
+        ZS: 4, ONT_H: 3, ONT_S: 3,
+        PF: 2, TRB: 4, ENG: 2,
+        EPS: 1, AES: 0,
+    },
     {
         jurisdiction: "Venezuela",
         regime: "Independence/Gran Colombia",
