@@ -8297,18 +8297,27 @@ var PrismEngine = (() => {
       (q) => passesSalienceFloorGate(state, q) && passesTouchCapFilter(state, q, questionsById, topK)
     );
     if (!eligible.length) return null;
-    const q7 = eligible.find((q) => q.id === 7);
-    if (q7) {
-      let strongComProbesAsked = 0;
-      for (const qid of Object.keys(state.answers)) {
-        const q = questionsById.get(Number(qid));
+    const FORCED_COVERAGE_PROBES = [
+      { qid: 7, node: "COM" },
+      // Surfaced by Dumps 1 + 3 COM under-shoot
+      { qid: 213, node: "MOR" },
+      // Surfaced by Dump 2 MOR wrong-direction
+      { qid: 18, node: "ONT_H" }
+      // Surfaced by Dump 1 ONT_H sharpness gap
+    ];
+    for (const { qid, node } of FORCED_COVERAGE_PROBES) {
+      const probe = eligible.find((q) => q.id === qid);
+      if (!probe) continue;
+      let strongProbesAsked = 0;
+      for (const askedId of Object.keys(state.answers)) {
+        const q = questionsById.get(Number(askedId));
         if (!q) continue;
-        if (q.touchProfile.some((t) => t.node === "COM" && t.role === "position" && t.weight >= 0.5)) {
-          strongComProbesAsked++;
+        if (q.touchProfile.some((t) => t.node === node && t.role === "position" && t.weight >= 0.5)) {
+          strongProbesAsked++;
         }
       }
-      if (strongComProbesAsked < 2) {
-        return q7;
+      if (strongProbesAsked < 2) {
+        return probe;
       }
     }
     const priority = eligible.filter((q) => q.priorityBattery);
@@ -16262,7 +16271,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260429-pr3a-q7-coverage";
+  var BUNDLE_VERSION = "20260429-pr3-forced-coverage";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];

@@ -413,29 +413,34 @@ export function selectNextQuestionEIG(
   );
   if (!eligible.length) return null;
 
-  // PR 3.A pilot (2026-04-29) — Q7 forced-coverage for COM. Per locked design
-  // D8: pilot the forced-coverage rule for COM only first, evaluate over
-  // persona-replay before extending to other nodes. Surfaced by Dump 1 + Dump 3
-  // where only Q93 (front-door priority sort) hit COM position; the EIG scorer
-  // never picks Q7 because its zero-other-touches structure caps its info-gain
-  // score below broader multi-node questions. Result: COM stays at 2.5-2.6 when
-  // both users intended principled (~1.0). Q7 is the dedicated direct probe
-  // (single_choice, COM pos weight 0.85, zero other touches — purest COM probe).
-  // Gate: Q7 eligible AND fewer than 2 strong COM-position probes have already
-  // fired. Q93 always counts as 1 (front-door priority sort). Q7 fires at most
-  // once per quiz; this rule has no effect if Q7 has been asked.
-  const q7 = eligible.find(q => q.id === 7);
-  if (q7) {
-    let strongComProbesAsked = 0;
-    for (const qid of Object.keys(state.answers)) {
-      const q = questionsById.get(Number(qid));
+  // PR 3 forced-coverage rules (Q7 pilot 2026-04-29 commit ddcca84 evaluated
+  // cleanly — Top-1 recovered to baseline 57.9%, Top-3 within tolerance).
+  // Same gate pattern extends to Q213 (MOR) and Q18 (ONT_H direct probes).
+  // Each is its node's purest direct probe: high single-node position weight,
+  // few or zero other touches → EIG scorer under-prioritizes them in favor of
+  // broader multi-node questions, leaving the target node under-resolved.
+  // Gate: probe is eligible AND fewer than 2 strong position-probes for the
+  // target node have already fired. Each probe fires at most once per quiz;
+  // rule has no effect after the probe has been asked.
+  // Order: COM → MOR → ONT_H (one per adaptive turn until all fire).
+  const FORCED_COVERAGE_PROBES: Array<{ qid: number; node: ContinuousNodeId }> = [
+    { qid: 7, node: "COM" },     // Surfaced by Dumps 1 + 3 COM under-shoot
+    { qid: 213, node: "MOR" },   // Surfaced by Dump 2 MOR wrong-direction
+    { qid: 18, node: "ONT_H" },  // Surfaced by Dump 1 ONT_H sharpness gap
+  ];
+  for (const { qid, node } of FORCED_COVERAGE_PROBES) {
+    const probe = eligible.find(q => q.id === qid);
+    if (!probe) continue;
+    let strongProbesAsked = 0;
+    for (const askedId of Object.keys(state.answers)) {
+      const q = questionsById.get(Number(askedId));
       if (!q) continue;
-      if (q.touchProfile.some(t => t.node === 'COM' && t.role === 'position' && t.weight >= 0.5)) {
-        strongComProbesAsked++;
+      if (q.touchProfile.some(t => t.node === node && t.role === "position" && t.weight >= 0.5)) {
+        strongProbesAsked++;
       }
     }
-    if (strongComProbesAsked < 2) {
-      return q7;
+    if (strongProbesAsked < 2) {
+      return probe;
     }
   }
 
