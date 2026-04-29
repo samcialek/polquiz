@@ -58,7 +58,7 @@ import { predictVote, type ElectionPrediction } from "../historical/respondentVo
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260428-pr2-q29-rebalance";
+export const BUNDLE_VERSION = "20260428-pr2-q93-poles";
 
 // ---------------------------------------------------------------------------
 // Types exposed to the browser consumer

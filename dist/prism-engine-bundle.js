@@ -7620,6 +7620,41 @@ var PrismEngine = (() => {
       if (!node) continue;
       node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
     }
+    const UNIFORM_THRESHOLD_PSORT = 0.95 * Math.log(5);
+    const perNodeTargetSum = /* @__PURE__ */ new Map();
+    const perNodeWeightSum = /* @__PURE__ */ new Map();
+    for (const item of allItems) {
+      const map = q.rankingMap[item];
+      if (!map?.continuous) continue;
+      const bucket = bucketFor(item);
+      if (bucket === "neutral") continue;
+      const itemWeight = bucket === "supportMid" ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
+      const invert = bucket === "opposeHigh";
+      for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+        if (typeof evidence !== "object" || !evidence?.pos) continue;
+        const pos = evidence.pos;
+        const sum = pos.reduce((a, b) => a + b, 0) || 1;
+        const raw = invert ? pos.map((p) => 1 - p / sum) : pos.map((p) => p / sum);
+        const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+        const itemTarget = raw.map((p) => p / rawSum);
+        if (!perNodeTargetSum.has(nodeId)) {
+          perNodeTargetSum.set(nodeId, [0, 0, 0, 0, 0]);
+          perNodeWeightSum.set(nodeId, 0);
+        }
+        const acc = perNodeTargetSum.get(nodeId);
+        for (let i = 0; i < 5; i++) acc[i] += itemTarget[i] * itemWeight;
+        perNodeWeightSum.set(nodeId, (perNodeWeightSum.get(nodeId) ?? 0) + itemWeight);
+      }
+    }
+    const skipPositionForNode = /* @__PURE__ */ new Set();
+    for (const [nodeId, sumArr] of perNodeTargetSum) {
+      const totalW = perNodeWeightSum.get(nodeId) ?? 0;
+      if (totalW <= 0) continue;
+      const targetNorm = sumArr.map((v) => v / totalW);
+      let entropy2 = 0;
+      for (const p of targetNorm) if (p > 0) entropy2 -= p * Math.log(p);
+      if (entropy2 >= UNIFORM_THRESHOLD_PSORT) skipPositionForNode.add(nodeId);
+    }
     for (const item of allItems) {
       const map = q.rankingMap[item];
       if (!map?.continuous) continue;
@@ -7628,6 +7663,7 @@ var PrismEngine = (() => {
       const w = bucket === "supportMid" ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
       const invert = bucket === "opposeHigh";
       for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+        if (skipPositionForNode.has(nodeId)) continue;
         if (typeof evidence !== "object" || !evidence?.pos) continue;
         const pos = evidence.pos;
         const node = state.continuous[nodeId];
@@ -16206,7 +16242,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260428-pr2-q29-rebalance";
+  var BUNDLE_VERSION = "20260428-pr2-q93-poles";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];

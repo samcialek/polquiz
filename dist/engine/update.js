@@ -157,8 +157,57 @@ function applyOptionEvidence(state, evidence) {
         state.trbAnchor.touches += 1;
     }
 }
+function partyIdFromAnswer(optionKey) {
+    switch (optionKey) {
+        case "dem":
+            return "D";
+        case "rep":
+            return "R";
+        case "ind":
+            return "I";
+        case "third":
+            return "T";
+        case "none":
+            return "N";
+        default:
+            return null;
+    }
+}
+function negativePartiesFromAnswers(optionKeys) {
+    const out = new Set();
+    for (const optionKey of optionKeys) {
+        if (optionKey === "never_dem")
+            out.add("D");
+        if (optionKey === "never_rep")
+            out.add("R");
+        if (optionKey === "never_dem_or_rep") {
+            out.add("D");
+            out.add("R");
+        }
+    }
+    return out.size > 0 ? out : null;
+}
+function applyMetadataAnswer(state, q, optionKeyOrKeys) {
+    const optionKeys = Array.isArray(optionKeyOrKeys) ? optionKeyOrKeys : [optionKeyOrKeys];
+    switch (q.id) {
+        case 200:
+            state.partyID = typeof optionKeyOrKeys === "string"
+                ? partyIdFromAnswer(optionKeyOrKeys)
+                : null;
+            return;
+        case 211:
+            state.strategicVoting = optionKeys.includes("strategic_lesser_evil");
+            return;
+        case 212:
+            state.negativeParties = negativePartiesFromAnswers(optionKeys);
+            return;
+        default:
+            return;
+    }
+}
 export function applySingleChoiceAnswer(state, q, optionKey) {
     state.answers[q.id] = optionKey;
+    applyMetadataAnswer(state, q, optionKey);
     registerTouches(state, q);
     const ev = q.optionEvidence?.[optionKey];
     applyOptionEvidence(state, ev);
@@ -180,6 +229,7 @@ export function applySingleChoiceAnswer(state, q, optionKey) {
  */
 export function applyMultiAnswer(state, q, optionKeys) {
     state.answers[q.id] = optionKeys.slice();
+    applyMetadataAnswer(state, q, optionKeys);
     registerTouches(state, q);
     for (const optionKey of optionKeys) {
         const ev = q.optionEvidence?.[optionKey];
@@ -544,8 +594,66 @@ export function applyPrioritySort(state, q, placements, allItems) {
             continue;
         node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
     }
+    // Pre-pass: detect contradictory-pole cases per node. PR 2 design D7 — if a
+    // user places contradictory items (e.g., both `pro_low` and `pro_high` in
+    // supportHigh) on the same node, the combined target distribution is near-
+    // uniform. Treat as "high salience + uncertain position" rather than the
+    // current order-dependent average. Salience update has already fired above;
+    // here we just mark the node to skip position updates entirely.
+    // Threshold: 95% of max entropy (log(5) ≈ 1.609) → 1.529. Below this the
+    // combined target is concentrated enough to apply a meaningful pull.
+    // Surfaced by Dump 1's Q93 where pro_low+pro_high in supportHigh produced
+    // PRO=3.17 (near-neutral with order-bias toward pos=5) when Sam intended
+    // PRO=low (rule-bender for fascist play).
+    const UNIFORM_THRESHOLD_PSORT = 0.95 * Math.log(5);
+    const perNodeTargetSum = new Map();
+    const perNodeWeightSum = new Map();
+    for (const item of allItems) {
+        const map = q.rankingMap[item];
+        if (!map?.continuous)
+            continue;
+        const bucket = bucketFor(item);
+        if (bucket === "neutral")
+            continue;
+        const itemWeight = bucket === "supportMid" ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
+        const invert = bucket === "opposeHigh";
+        for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+            if (typeof evidence !== "object" || !evidence?.pos)
+                continue;
+            const pos = evidence.pos;
+            const sum = pos.reduce((a, b) => a + b, 0) || 1;
+            const raw = invert
+                ? pos.map((p) => 1 - p / sum)
+                : pos.map((p) => p / sum);
+            const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+            const itemTarget = raw.map((p) => p / rawSum);
+            if (!perNodeTargetSum.has(nodeId)) {
+                perNodeTargetSum.set(nodeId, [0, 0, 0, 0, 0]);
+                perNodeWeightSum.set(nodeId, 0);
+            }
+            const acc = perNodeTargetSum.get(nodeId);
+            for (let i = 0; i < 5; i++)
+                acc[i] += itemTarget[i] * itemWeight;
+            perNodeWeightSum.set(nodeId, (perNodeWeightSum.get(nodeId) ?? 0) + itemWeight);
+        }
+    }
+    const skipPositionForNode = new Set();
+    for (const [nodeId, sumArr] of perNodeTargetSum) {
+        const totalW = perNodeWeightSum.get(nodeId) ?? 0;
+        if (totalW <= 0)
+            continue;
+        const targetNorm = sumArr.map(v => v / totalW);
+        let entropy = 0;
+        for (const p of targetNorm)
+            if (p > 0)
+                entropy -= p * Math.log(p);
+        if (entropy >= UNIFORM_THRESHOLD_PSORT)
+            skipPositionForNode.add(nodeId);
+    }
     // Per-item continuous position mixing. Support buckets pull toward the pole;
-    // oppose pulls toward the inverted pole (anti-pole); neutral skips.
+    // oppose pulls toward the inverted pole (anti-pole); neutral skips. Nodes
+    // flagged as contradictory (above) are skipped entirely — salience captured
+    // their high-importance signal without committing to a position.
     for (const item of allItems) {
         const map = q.rankingMap[item];
         if (!map?.continuous)
@@ -556,6 +664,8 @@ export function applyPrioritySort(state, q, placements, allItems) {
         const w = (bucket === "supportMid") ? PRIORITY_MID_POS_MIX : PRIORITY_HIGH_POS_MIX;
         const invert = (bucket === "opposeHigh");
         for (const [nodeId, evidence] of Object.entries(map.continuous)) {
+            if (skipPositionForNode.has(nodeId))
+                continue;
             // Narrow off the scalar-number variant introduced in the widened
             // RankingItemMap type (used by `ranking` questions); priority-sort
             // expects the `{ pos }` shape.
