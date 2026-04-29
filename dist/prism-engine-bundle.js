@@ -8302,8 +8302,17 @@ var PrismEngine = (() => {
       // Surfaced by Dumps 1 + 3 COM under-shoot
       { qid: 213, node: "MOR" },
       // Surfaced by Dump 2 MOR wrong-direction
-      { qid: 18, node: "ONT_H" }
+      { qid: 18, node: "ONT_H" },
       // Surfaced by Dump 1 ONT_H sharpness gap
+      // PR 3.D (added 2026-04-29 per Sam's PR 3 correction). Q207 emergency_powers
+      // chosen over Q85/Q25/Q30/Q41 after candidate eval (scripts/evaluate-pro-
+      // probes.ts): Q207's "strong_leader_acts" option pulls PRO mean to 1.66
+      // (sharpest among candidates) AND is semantically unambiguous — explicit
+      // authoritarian-exception-making rather than generic anti-proceduralism.
+      // Sam: "rule-bender authoritarianism is not the same as generic anti-
+      // proceduralism. Q207 emergency powers may be more diagnostic than Q85."
+      { qid: 207, node: "PRO" }
+      // Surfaced by Dump 1 PRO under-extremity
     ];
     for (const { qid, node } of FORCED_COVERAGE_PROBES) {
       const probe = eligible.find((q) => q.id === qid);
@@ -16271,7 +16280,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260429-pr3-forced-coverage";
+  var BUNDLE_VERSION = "20260429-pr3d-q207-pro";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];

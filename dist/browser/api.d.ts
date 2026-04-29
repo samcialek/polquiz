@@ -8,7 +8,7 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260429-pr3a-q7-coverage";
+export declare const BUNDLE_VERSION = "20260429-pr3-forced-coverage";
 export interface QuizQuestion {
     id: number;
     promptShort: string;

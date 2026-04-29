@@ -99,3 +99,55 @@ civic-nationalist semantic. Hitting 3.32 exactly would require either
 
 The 0.37-point gap is below the noise floor of likelihood sharpness.
 Acceptable per the cumulative PR 2 floor-bend.
+
+## Coupling note — why the Q82 CD fix also moved CU (Sam's PR 3 follow-up)
+
+**Sam asked: is the CU side-effect a coupling, or two independent corrections?**
+
+Two **independent** corrections in the same option, not a coupling. Pre-fix
+`civic_assimilation` had two distinct broken signals:
+1. **CD likelihood peaked at pos=4 (traditional)** — wrong; civic-nationalism is
+   centrist on CD
+2. **CU likelihood peaked at pos=4 (pluralist)** — wrong AND directly contradicted
+   the option's own semantic; civic-nationalism is centrist (slightly assim-lean)
+
+Both were corrected together because they're both in the `civic_assimilation`
+option's `optionEvidence.continuous` block. The engine applies all evidence
+for a chosen option in one step (`applyOptionEvidence` iterates through every
+`(node, signal)` pair). Fixing CD without touching CU would have left the
+option still internally-inconsistent.
+
+**Why both corrections moved Sam's Dump 2 in the same direction:**
+- Pre-fix: CD pulled +0.62 toward traditional (bad — Sam wanted progressive)
+  AND CU pulled +0.50 toward pluralist (good — Sam wanted slight pluralist)
+- Post-fix: CD pulled to centrist (good — closer to Sam's progressive intent)
+  AND CU pulled to centrist (slightly bad — moved Sam's CU from pluralist-lean
+  to slight-assim-lean)
+
+The CD correction happened to align with Sam's intent. The CU correction
+happened to move *away* from Sam's intent. **Sam's intent on CU was right,
+but for the wrong reason** — the broken CU likelihood happened to push his
+posterior toward where he philosophically lives.
+
+**Is this acceptable?** Yes, per the calibration-exception precedent. Fixing
+internally-inconsistent option semantics is more important than preserving
+accidental alignment with one user's intent. The 0.37-point CU regression
+on Dump 2 is real but small; Sam's verdict was directional ("pluralism is
+good") not numeric, and CU=2.95 is essentially centrist.
+
+**Alternative we did NOT take:** Could have fixed CD only and left the CU
+likelihood broken. Would preserve Sam's pluralist-lean reading but leave a
+hidden bug for any future user who picks `civic_assimilation` with different
+prior CU. Rejected as papering over a known internal inconsistency.
+
+**Subsequent fix path:** A pluralist-leaning user who picks civic_assimilation
+will now register slight-assimilationist instead of slight-pluralist. If
+multiple Sam-like calibration runs flag this as a real miss, options:
+- Add a second, separate CU-direct probe later in the quiz that pulls back
+  toward pluralist for users with strong pluralist intent (PR 3 selector
+  forced-coverage already adds Q213 for MOR; could add similar for CU later)
+- Reconsider the civic_assimilation CU likelihood — Sam's "civic-nationalism
+  is centrist" might be too strict; civic-nationalism with "Stay open" prefix
+  may genuinely permit slight pluralist bias above the current [0.08, 0.18,
+  0.32, 0.27, 0.15] (mean 3.23). Could test civic_assim CU at [0.05, 0.15,
+  0.30, 0.30, 0.20] (mean 3.45)

@@ -30,7 +30,7 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260429-pr3a-q7-coverage";
+export const BUNDLE_VERSION = "20260429-pr3-forced-coverage";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
