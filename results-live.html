@@ -86,14 +86,16 @@
     /* SECTION 3: MAP */
     #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
     #map-section .container { max-width: 100%; padding: 0 1rem; }
-    #map-section #map-container { margin-left: -1rem; margin-right: -1rem; width: 100vw; max-width: none; }
+    /* Map breaks out to full viewport width — calc compensates for vertical
+       scrollbar so 100vw doesn't introduce horizontal scroll. */
+    #map-section #map-container { margin-left: calc(50% - 50vw); width: 100vw; max-width: none; }
     .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
     #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
     .slider-wrap { flex: 1; display: flex; align-items: center; gap: 0.5rem; }
     .slider-wrap span { font-size: 0.65rem; color: #888; }
     #year-slider { flex: 1; height: 4px; -webkit-appearance: none; appearance: none; background: var(--ink); outline: none; cursor: pointer; }
     #year-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--pool-deep); border: 2px solid var(--ink); cursor: pointer; }
-    #map-container { position: relative; width: 100%; aspect-ratio: 1.8 / 1; min-height: 500px; }
+    #map-container { position: relative; width: 100%; aspect-ratio: 2.1 / 1; min-height: 580px; }
     #map-container svg { width: 100%; height: 100%; }
     .country { stroke: var(--ink); stroke-width: 0.3px; transition: fill 0.3s; }
     .country.inactive { fill: #e5e5e5 !important; }
@@ -1312,11 +1314,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let mapData = null;
 
     function getClosestMapYear(year) {
-      if (year >= 2026) return 'modern';
       // 1776–1782 special case: dataset's earliest map is 1715, which predates
       // the First Polish Partition (1772) and US independence. Use the 1783
       // basemap (post–Treaty of Paris) for this slice instead.
       if (year >= 1776 && year < 1783) return 1783;
+      // 2010 (latest historical-basemaps geojson) for everything 2010+.
+      // The world-atlas 'modern' basemap was rejected: omits the Great Lakes
+      // and shows Crimea inside Russia. Stick with the 2010 boundaries for
+      // 2010–2026 (and beyond) so the map style is consistent across the
+      // recent slider range.
       let closest = availableMapYears[0];
       for (const my of availableMapYears) {
         if (my <= year) closest = my;
