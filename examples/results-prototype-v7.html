@@ -15,7 +15,7 @@
       --cream: #FFFEF8; --ink: #1a1a1a;
       --dem-blue: #3333FF; --rep-red: #E9141D; --third-gold: #DAA520; --whig-orange: #CC7722; --fed-purple: #6A0DAD; --demrep-green: #2E8B57;
     }
-    html, body { background: var(--cream); font-family: 'IBM Plex Mono', monospace; color: var(--ink); line-height: 1.5; }
+    html, body { background: var(--cream); font-family: 'IBM Plex Mono', monospace; color: var(--ink); line-height: 1.5; overflow-x: hidden; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     #loading { text-align: center; padding: 4rem; font-size: 1.2rem; }
 
@@ -86,9 +86,9 @@
     /* SECTION 3: MAP */
     #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
     #map-section .container { max-width: 100%; padding: 0 1rem; }
-    /* Map breaks out to full viewport width — calc compensates for vertical
-       scrollbar so 100vw doesn't introduce horizontal scroll. */
-    #map-section #map-container { margin-left: calc(50% - 50vw); width: 100vw; max-width: none; }
+    /* Oversized map: 115vw wide, centered so it bleeds 7.5vw past each edge.
+       body { overflow-x: hidden } prevents horizontal scrollbars. */
+    #map-section #map-container { margin-left: calc(50% - 57.5vw); width: 115vw; max-width: none; }
     .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
     #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
     .slider-wrap { flex: 1; display: flex; align-items: center; gap: 0.5rem; }
