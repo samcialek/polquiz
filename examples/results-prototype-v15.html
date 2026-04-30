@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM Results · Prototype v15 (civil-war pair tooltips, blended color)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script src="../share-codec.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pool: #d1f6ff; --pool-deep: #89ccf0; --flesh: #fa8072;
+      --cream: #FFFEF8; --ink: #1a1a1a;
+      --dem-blue: #3333FF; --rep-red: #E9141D; --third-gold: #DAA520; --whig-orange: #CC7722; --fed-purple: #6A0DAD; --demrep-green: #2E8B57;
+    }
+    html, body { background: var(--cream); font-family: 'IBM Plex Mono', monospace; color: var(--ink); line-height: 1.5; overflow-x: hidden; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    #loading { text-align: center; padding: 4rem; font-size: 1.2rem; }
+
+    /* SECTION 1: ARCHETYPE */
+    #archetype-section { padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--ink); }
+    .tier-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--flesh); color: var(--ink); padding: 0.25rem 0.7rem; margin-bottom: 0.75rem; }
+    .archetype-number { font-size: 0.75rem; color: #888; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .archetype-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .archetype-desc { font-size: 0.9rem; line-height: 1.7; max-width: 720px; color: #444; }
+
+    /* SECTION 2: ELECTIONS */
+    #elections-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
+    #elections-section .container { max-width: 100%; padding: 0 1rem; }
+    .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.25rem; }
+    .elections-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+    .election-cell { padding: 4px 6px 4px 68px; line-height: 1.15; border: 1px solid rgba(0,0,0,0.08); transition: transform 0.1s; cursor: default; display: flex; align-items: center; min-height: 79px; overflow: hidden; position: relative; }
+    .election-cell:hover { transform: scale(1.08); z-index: 2; box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
+    .election-cell.dem { background: var(--dem-blue); color: #fff; border-color: rgba(51,51,255,0.3); }
+    .election-cell.rep { background: var(--rep-red); color: #fff; border-color: rgba(233,20,29,0.3); }
+    .election-cell.other { background: #888; color: #fff; }
+    .election-cell.third { background: var(--third-gold); color: #fff; border-color: rgba(218,165,32,0.3); }
+    .election-cell.abstain { background: #ddd; color: #666; padding: 4px 8px; justify-content: center; }
+    .election-cell.abstain .cell-text { align-items: center; text-align: center; }
+    .election-cell.abstain .cell-name { font-size: 1.25rem; }
+    /* Oversized photo circle: larger than the cell, positioned off the left edge
+       so its top/left/bottom extend past the cell boundary and are clipped by
+       the cell's overflow: hidden. What's visible inside the cell is the
+       right-facing arc of the circle. */
+    .election-cell .pres-photo { position: absolute; width: 94px; height: 94px; left: -30px; top: 50%; transform: translateY(-50%); border-radius: 50%; overflow: hidden; background: rgba(0,0,0,0.2); border: 1.5px solid rgba(255,255,255,0.55); }
+    .election-cell .pres-photo img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
+    .election-cell .pres-photo .initial { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.7rem; color: rgba(255,255,255,0.92); letter-spacing: -0.03em; z-index: 0; padding-left: 38px; }
+    .election-cell.abstain .pres-photo { background: rgba(0,0,0,0.1); }
+    .election-cell.abstain .pres-photo .initial { color: #888; }
+    .cell-text { display: flex; flex-direction: column; justify-content: center; gap: 1px; min-width: 0; flex: 1 1 auto; }
+    .cell-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cell-year { font-size: 0.7rem; opacity: 0.85; font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .election-summary { font-size: 0.8rem; color: #666; }
+    .election-summary .dem-count { color: var(--dem-blue); font-weight: 600; }
+    .election-summary .rep-count { color: var(--rep-red); font-weight: 600; }
+
+    /* Outline overlays for "elections that define you" (black) and strategic-vote
+       reroutes (gold). White inner sliver guarantees contrast on any cell color;
+       outer ring is 4px so it reads at glance distance. They stack via multiple
+       box-shadows when a cell qualifies for both. */
+    .election-cell.defining { box-shadow: 0 0 0 2px #fff, 0 0 0 6px var(--ink); }
+    .election-cell.strategic { box-shadow: 0 0 0 2px #fff, 0 0 0 6px #f5b700; }
+    .election-cell.defining.strategic { box-shadow: 0 0 0 2px #fff, 0 0 0 6px #f5b700, 0 0 0 10px var(--ink); }
+    .election-cell.defining:hover { box-shadow: 0 0 0 2px #fff, 0 0 0 6px var(--ink), 0 4px 12px rgba(0,0,0,0.3); }
+    .election-cell.strategic:hover { box-shadow: 0 0 0 2px #fff, 0 0 0 6px #f5b700, 0 4px 12px rgba(0,0,0,0.3); }
+    .election-cell.defining.strategic:hover { box-shadow: 0 0 0 2px #fff, 0 0 0 6px #f5b700, 0 0 0 10px var(--ink), 0 4px 12px rgba(0,0,0,0.3); }
+    /* v13 election emphasis animations.
+       Box-shadow transition lets the gold (strategic) ring fade in smoothly
+       when the class is added in the cinematic phase. */
+    .election-cell { transition: transform 0.1s, box-shadow 0.45s cubic-bezier(0.2, 0.85, 0.25, 1); }
+    /* Defining cells pulse-grow and shrink back when their black ring lights up. */
+    @keyframes defining-pulse {
+      0%   { transform: scale(1); }
+      45%  { transform: scale(1.22); }
+      100% { transform: scale(1); }
+    }
+    .election-cell.defining-emphasizing {
+      animation: defining-pulse 0.65s cubic-bezier(0.25, 1.0, 0.4, 1.0) both;
+      z-index: 5;
+    }
+    /* Election legend hidden until the emphasis sequence kicks off. */
+    .election-legend { transition: opacity 0.5s cubic-bezier(0.2, 0.85, 0.25, 1); }
+    .election-legend.cine-pending { opacity: 0; pointer-events: none; }
+
+    /* "Your Year America Was Great" callout — banner above the elections grid. */
+    .great-year-banner { display: flex; align-items: center; gap: 1.25rem; padding: 0.85rem 1rem; margin-bottom: 1rem; background: rgba(0,0,0,0.04); border-left: 3px solid var(--ink); }
+    .great-year-banner .gy-photo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: rgba(0,0,0,0.15); border: 1.5px solid rgba(0,0,0,0.25); position: relative; }
+    .great-year-banner .gy-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .great-year-banner .gy-photo .gy-initial { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; color: rgba(0,0,0,0.65); }
+    .great-year-banner .gy-text { flex: 1 1 auto; }
+    .great-year-banner .gy-headline { font-family: 'Space Grotesk', sans-serif; font-style: italic; font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+    .great-year-banner .gy-detail { font-size: 0.78rem; color: #555; margin-top: 0.15rem; }
+
+    /* Legend below the elections grid: explains the outline meanings. */
+    .election-legend { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.6rem; font-size: 0.75rem; color: #555; align-items: center; }
+    .election-legend .leg-item { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .election-legend .leg-swatch { width: 14px; height: 14px; border-radius: 2px; background: #eee; box-sizing: border-box; flex-shrink: 0; }
+    .election-legend .leg-swatch.defining { box-shadow: 0 0 0 2px var(--ink); }
+    .election-legend .leg-swatch.strategic { box-shadow: 0 0 0 2px #d4a017; }
+
+    /* SECTION 3: MAP */
+    #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
+    #map-section .container { max-width: 100%; padding: 0 1rem; }
+    /* Oversized map: 115vw wide, centered so it bleeds 7.5vw past each edge.
+       body { overflow-x: hidden } prevents horizontal scrollbars. */
+    #map-section #map-container { margin-left: calc(50% - 57.5vw); width: 115vw; max-width: none; }
+    .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
+    #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
+    .slider-wrap { flex: 1; display: flex; align-items: center; gap: 0.5rem; }
+    .slider-wrap span { font-size: 0.65rem; color: #888; }
+    #year-slider { flex: 1; height: 4px; -webkit-appearance: none; appearance: none; background: var(--ink); outline: none; cursor: pointer; }
+    #year-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--pool-deep); border: 2px solid var(--ink); cursor: pointer; }
+    #map-container { position: relative; width: 100%; aspect-ratio: 2.1 / 1; min-height: 580px; }
+    #map-container svg { width: 100%; height: 100%; }
+    .country { stroke: var(--ink); stroke-width: 0.3px; transition: fill 0.3s; }
+    .country.inactive { fill: #e5e5e5 !important; }
+    .country.active:hover { stroke-width: 1.5px; filter: brightness(1.1); }
+    .map-legend { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; font-size: 0.65rem; color: #888; }
+    .map-legend canvas { border: 1px solid var(--ink); }
+
+    /* Rich map tooltip */
+    #map-tooltip {
+      display: none; position: fixed; z-index: 1000; pointer-events: none;
+      background: #1a1a1a; color: #e0e0e0; border: 1px solid #444;
+      padding: 0.75rem 1rem; max-width: 320px; min-width: 200px;
+      font-size: 0.72rem; line-height: 1.5; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #map-tooltip .tt-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+    #map-tooltip .tt-flag { font-size: 1.3rem; }
+    #map-tooltip .tt-country { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; }
+    #map-tooltip .tt-regime { font-size: 0.68rem; color: var(--pool-deep); font-weight: 600; margin-bottom: 0.25rem; }
+    #map-tooltip .tt-dates { font-size: 0.6rem; color: #888; margin-bottom: 0.4rem; }
+    #map-tooltip .tt-desc { font-size: 0.65rem; color: #bbb; margin-bottom: 0.5rem; line-height: 1.4; }
+    #map-tooltip .tt-score { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+    #map-tooltip .tt-score-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid #555; flex-shrink: 0; }
+    #map-tooltip .tt-score-label { font-weight: 600; }
+    #map-tooltip .tt-figures { font-size: 0.6rem; color: #999; }
+    #map-tooltip .tt-chars { font-size: 0.6rem; color: #777; font-style: italic; margin-top: 0.3rem; }
+    /* v15 civil-war pair tooltip — two regime panels side by side. */
+    #map-tooltip .tt-cw-badge { display: inline-block; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 1px 6px; border: 1px solid var(--flesh); color: var(--flesh); border-radius: 2px; margin-left: auto; }
+    #map-tooltip .tt-cw-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; padding: 0.5rem 0; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-bottom: 0.4rem; }
+    #map-tooltip .tt-cw-side { padding: 0; }
+    #map-tooltip .tt-cw-side-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    #map-tooltip .tt-cw-side.union .tt-cw-side-label { color: #6fa6ff; }
+    #map-tooltip .tt-cw-side.partner .tt-cw-side-label { color: var(--flesh); }
+    #map-tooltip .tt-cw-side .tt-regime { font-size: 0.65rem; color: #fff; font-weight: 600; margin-bottom: 0.15rem; }
+    #map-tooltip .tt-cw-side .tt-dates { font-size: 0.55rem; color: #888; margin-bottom: 0.25rem; }
+    #map-tooltip .tt-cw-side .tt-cw-score { display: flex; align-items: center; gap: 0.3rem; font-size: 0.62rem; font-weight: 600; }
+    #map-tooltip .tt-cw-side .tt-cw-score-dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid #555; flex-shrink: 0; }
+    #map-tooltip .tt-cw-blend { font-size: 0.58rem; color: #aaa; font-style: italic; padding-top: 0.2rem; }
+    #map-tooltip .tt-cw-blend strong { color: #fff; font-style: normal; font-weight: 600; }
+
+    /* Election hover tooltip — per-candidate weighted Euclidean distances. */
+    #election-tooltip {
+      display: none; position: fixed; z-index: 1000; pointer-events: none;
+      background: #1a1a1a; color: #e0e0e0; border: 1px solid #444;
+      padding: 0.65rem 0.85rem; min-width: 220px; max-width: 320px;
+      font-size: 0.72rem; line-height: 1.45; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #election-tooltip .et-year { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; margin-bottom: 0.1rem; }
+    #election-tooltip .et-sub { font-size: 0.6rem; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    #election-tooltip .et-row { display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 0.5rem; padding: 0.2rem 0; }
+    #election-tooltip .et-row.chosen .et-name { color: #fff; font-weight: 700; }
+    #election-tooltip .et-row.ballot .et-name { color: #fff; font-weight: 700; }
+    #election-tooltip .et-row.values .et-name { color: #ffd86b; font-weight: 600; }
+    #election-tooltip .et-dot { width: 8px; height: 8px; border-radius: 50%; }
+    #election-tooltip .et-dot.dem { background: var(--dem-blue); }
+    #election-tooltip .et-dot.rep { background: var(--rep-red); }
+    #election-tooltip .et-dot.third { background: var(--third-gold); }
+    #election-tooltip .et-dot.other { background: #888; }
+    #election-tooltip .et-name { font-size: 0.75rem; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #election-tooltip .et-dist { font-family: 'Courier Prime', monospace; font-size: 0.72rem; color: #aaa; font-variant-numeric: tabular-nums; }
+    #election-tooltip .et-row.chosen .et-dist { color: #fff; }
+    #election-tooltip .et-row.ballot .et-dist { color: #fff; }
+    #election-tooltip .et-row.values .et-dist { color: #ffd86b; }
+    #election-tooltip .et-badge { font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.3rem; margin-left: 0.4rem; border-radius: 2px; vertical-align: 1px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+    #election-tooltip .et-badge.ballot-badge { background: rgba(255,255,255,0.16); color: #fff; }
+    #election-tooltip .et-badge.values-badge { background: rgba(255,216,107,0.18); color: #ffd86b; }
+    #election-tooltip .et-footer { margin-top: 0.5rem; padding-top: 0.45rem; border-top: 1px solid #333; font-size: 0.65rem; color: #999; }
+    #election-tooltip .et-footer .et-decision { font-weight: 600; }
+    #election-tooltip .et-footer .et-decision.vote { color: #8fd38f; }
+    #election-tooltip .et-footer .et-decision.abstain { color: #d38f8f; }
+    #election-tooltip .et-rerouted { margin-top: 0.4rem; font-size: 0.62rem; color: #aaa; line-height: 1.45; }
+    #election-tooltip .et-rerouted strong { color: #ddd; font-weight: 600; }
+
+    /* SECTION 4: PROFILE */
+    #profile-section { padding: 2rem 0 2.5rem; }
+    #profile-section .container { max-width: 100%; padding: 0 0.5rem; }
+    .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
+    .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.12em; color: #333; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
+    .profile-explain { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: #333; margin: 0.25rem 0 1.5rem; line-height: 1.55; max-width: 1100px; }
+    .node-row { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 1.25rem; margin-bottom: 1.4rem; cursor: help; }
+    .node-row:last-child { margin-bottom: 0; }
+    .node-bar-wrap { width: 100%; }
+    .node-bar { height: 20px; background: #eee; position: relative; border: 1px solid #999; display: flex; border-radius: 3px; }
+    .node-bar-segment { height: 100%; transition: width 0.3s; border-radius: 3px 0 0 3px; }
+    .node-bar-ci { position: absolute; top: 0; height: 100%; opacity: 0.32; pointer-events: none; transition: left 0.3s, width 0.3s; }
+    /* PROTOTYPE: 50% interquartile band as black polka dots scattered across
+       the band width — replaces the prior translucent color overlay. */
+    .node-bar-ci-dots { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+    .node-bar-ci-dots .ci-dot { position: absolute; top: 50%; width: 5px; height: 5px; background: var(--ink); border-radius: 50%; transform: translate(-50%, -50%); }
+    .node-bar-marker { position: absolute; top: -4px; width: 4px; height: 28px; background: var(--ink); border: 1px solid var(--ink); transform: translateX(-50%); border-radius: 1px; z-index: 2; }
+    /* Moral Circle 7-category sunburst — uses the live page's font stack
+       (Space Grotesk / IBM Plex Mono) so it matches the rest of the profile. */
+    .moral-circle-section { margin-top: 1.25rem; padding-top: 1rem; border-top: 1.5px solid rgba(0,0,0,0.08); }
+    .moral-circle-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 0.35rem; }
+    .moral-circle-tagline { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #555; margin-bottom: 0.9rem; line-height: 1.55; }
+    .moral-circle-svg-wrap { display: flex; justify-content: center; padding: 0.4rem 0 0.6rem; }
+    .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
+    .moral-circle-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; color: #444; padding-top: 0.6rem; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 0.4rem; }
+    .moral-circle-legend .leg { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .moral-circle-legend .swatch { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .moral-circle-legend .leg-pos { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; }
+    /* v3 categorical (EPS/AES) horizontal stacked probability stripe. */
+    .cat-stripe-row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 1.25rem; margin-bottom: 1.6rem; cursor: help; }
+    .cat-stripe-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; color: var(--ink); font-weight: 600; }
+    .cat-stripe-info { display: flex; flex-direction: column; gap: 0.45rem; }
+    .cat-stripe-bar { display: flex; height: 22px; width: 100%; border: 1px solid #999; border-radius: 3px; overflow: hidden; }
+    .cat-stripe-segment { height: 100%; transition: width 0.3s; min-width: 0; }
+    .cat-stripe-list { display: flex; gap: 0.5rem 0.9rem; flex-wrap: wrap; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: #555; }
+    .cat-stripe-list .item { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .cat-stripe-list .swatch { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+    .cat-stripe-list .pct { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .cat-stripe-list .item.top { color: var(--ink); font-weight: 600; }
+    /* v3 engagement badge — rides next to the tier badge in the archetype card. */
+    .badge-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem; }
+    .badge-row .tier-badge { margin-bottom: 0; }
+    .engagement-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--ink); color: var(--cream); padding: 0.25rem 0.7rem; }
+    .engagement-badge.tuned-out { background: #aaa; color: #fff; }
+    .engagement-badge.casual { background: #888; color: #fff; }
+    .engagement-badge.engaged { background: var(--ink); color: var(--cream); }
+    .engagement-badge.all-in { background: var(--flesh); color: var(--ink); }
+    /* v4 cluster radar (ENDS / MEANS collapsed into a 3-axis polygon). */
+    .cluster-radar-section { display: flex; flex-direction: column; align-items: center; padding: 0.5rem 0; }
+    .cluster-radar-svg-wrap { display: flex; justify-content: center; padding: 0.4rem 0 0.6rem; }
+    .cluster-radar-svg { max-width: 100%; height: auto; }
+    .cluster-radar-axis-label { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12px; fill: #1a1a1a; }
+    .cluster-radar-pole-label { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; fill: #777; }
+    .cluster-radar-aes-tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: #555; margin-top: 0.4rem; text-align: center; }
+    .cluster-radar-aes-tag .aes-name { color: var(--ink); font-weight: 700; text-transform: capitalize; }
+    /* v6 emphasis-weighted 2x2 layout: cells flex by emphasis within their row,
+       so a cluster you weight more heavily occupies more horizontal space. */
+    .emphasis-grid { display: flex; flex-direction: column; gap: 1rem; }
+    .emphasis-row { display: flex; gap: 1rem; align-items: stretch; }
+    .emphasis-cell { background: var(--cream); border: 1.5px solid rgba(0,0,0,0.2); padding: 1.5rem 1.75rem; min-width: 0; transition: flex-grow 0.3s; }
+    .emphasis-cell-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); margin-bottom: 1rem; }
+    .emphasis-cell-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #333; }
+    .emphasis-cell-pct { font-family: 'IBM Plex Mono', monospace; font-size: 0.95rem; color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .emphasis-meter { height: 4px; background: rgba(0,0,0,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 1.25rem; }
+    .emphasis-meter-fill { height: 100%; transition: width 0.3s; }
+    .emphasis-cell .node-cluster { background: transparent; padding: 0; border: none; margin: 0; }
+    .emphasis-cell .cluster-title { display: none; } /* duplicate of cell-head — hide */
+    @media (max-width: 760px) { .emphasis-row { flex-direction: column; } }
+    /* v7 scroll-reveal: items fade + translate up as they enter the viewport. */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Reveal-stagger: children animate in sequence after the parent enters view.
+       JS sets a --i index on each child to drive transition-delay. */
+    .reveal-stagger > * { opacity: 0; transform: translateY(14px); transition: opacity 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1); transition-delay: calc(var(--i, 0) * 28ms); }
+    .reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+    /* Elections grid: rows fall down from above, 500ms between rows.
+       --i is set to the row index (0..5) so all 10 cells in a row share
+       the same transition-delay, and each row trails the previous by 500ms. */
+    #elections-grid.reveal-stagger > * { transform: translateY(-26px); transition: opacity 0.55s cubic-bezier(0.25, 0.85, 0.3, 1), transform 0.55s cubic-bezier(0.25, 0.85, 0.3, 1); transition-delay: calc(var(--i, 0) * 500ms); }
+    #elections-grid.reveal-stagger.visible > * { transform: translateY(0); }
+    /* SVG inner-stagger — for sunburst wedges, donut wedges, bar segments,
+       categorical stripe segments. They scale-in from a small radius / shrink
+       inwards rather than translating, since they live in a fixed coordinate frame. */
+    .svg-stagger > * { opacity: 0; transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); transition-delay: calc(var(--i, 0) * 32ms); }
+    .svg-stagger.visible > * { opacity: 1; }
+    /* Respect users with reduced-motion preferences. */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.visible, .reveal-stagger > *, .reveal-stagger.visible > *, .svg-stagger > *, .svg-stagger.visible > * {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
+    }
+    /* v12: 2-column profile layout — donut on left, selected cluster on right. */
+    .profile-flex { display: flex; gap: 2.25rem; align-items: flex-start; padding: 1rem 0 0.5rem; }
+    .profile-donut-col { flex: 0 0 auto; position: sticky; top: 1rem; }
+    .profile-drill-col { flex: 1 1 auto; min-width: 0; }
+    .cluster-overview { display: flex; justify-content: center; }
+    .cluster-overview svg { max-width: 100%; height: auto; display: block; }
+    .cluster-overview .donut-wedge { transition: opacity 0.18s, stroke-width 0.18s; cursor: pointer; }
+    .cluster-overview .donut-wedge.dim { opacity: 0.45; }
+    .cluster-overview .donut-wedge:hover { opacity: 1 !important; }
+    .cluster-overview .donut-wedge.active { stroke: var(--ink); stroke-width: 3; }
+    .cluster-drill-tagline { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: #555; text-align: left; margin: 0 0 1.25rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); font-style: italic; }
+    .cluster-drill { padding: 0; }
+    .cluster-panel { display: none; }
+    .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .cluster-panel .node-cluster { background: var(--cream); padding: 0; border: none; margin: 0; }
+    @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 920px) {
+      .profile-flex { flex-direction: column; align-items: center; gap: 1.5rem; }
+      .profile-donut-col { position: static; }
+      .cluster-drill-tagline { text-align: center; }
+    }
+
+    /* v11 cinematic intro.
+       Archetype-section keeps its natural layout space (so the election
+       rows fall into their permanent position, not the top of the page) —
+       only its opacity transitions, fading in once the rows have landed.
+       Map, profile, and footer sections collapse to height 0 (max-height +
+       padding + border + opacity zeroed) so the page is genuinely blank
+       below the rows during the intro. */
+    #archetype-section { transition: opacity 0.7s cubic-bezier(0.2, 0.85, 0.25, 1); }
+    #archetype-section.cine-fade-pending { opacity: 0; }
+    #map-section, #profile-section, #footer-section {
+      transition: max-height 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  padding-top 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  padding-bottom 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  border-top-width 0.95s, border-bottom-width 0.95s,
+                  opacity 0.7s cubic-bezier(0.2, 0.85, 0.25, 1);
+      overflow: hidden;
+    }
+    #map-section { max-height: 1500px; }
+    #profile-section { max-height: 4500px; }
+    #footer-section { max-height: 400px; }
+    #map-section.cine-collapsed,
+    #profile-section.cine-collapsed,
+    #footer-section.cine-collapsed {
+      max-height: 0; padding-top: 0; padding-bottom: 0;
+      border-top-width: 0; border-bottom-width: 0; opacity: 0;
+    }
+    /* Footer with thick line + type/project info. */
+    #footer-section { padding: 3rem 0 4rem; }
+    .footer-line { height: 4px; background: var(--ink); width: 100%; margin-bottom: 2rem; }
+    .footer-content { text-align: center; }
+    .footer-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 0.6rem; }
+    .footer-meta { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: #777; display: flex; justify-content: center; gap: 0.7rem 1rem; flex-wrap: wrap; letter-spacing: 0.04em; }
+    .footer-meta .dot { color: #bbb; }
+    /* Within the archetype card, stage the inner reveal: badges + name first
+       (when expansion is mostly done), description word-by-word after.
+       Inner pieces start at opacity 0 and fade in one by one. */
+    #archetype-section.cine-collapsed .badge-row,
+    #archetype-section.cine-collapsed .archetype-number,
+    #archetype-section.cine-collapsed .archetype-name { opacity: 0; transform: translateY(10px); }
+    .archetype-section-piece { transition: opacity 0.55s cubic-bezier(0.2, 0.85, 0.25, 1), transform 0.55s cubic-bezier(0.2, 0.85, 0.25, 1); }
+    .archetype-section-piece.shown { opacity: 1 !important; transform: none !important; }
+    /* Description word-by-word — each word wrapped in a span with a --w index. */
+    .desc-word { display: inline-block; opacity: 0; transform: translateY(8px); transition: opacity 0.45s cubic-bezier(0.2, 0.85, 0.25, 1), transform 0.45s cubic-bezier(0.2, 0.85, 0.25, 1); transition-delay: calc(var(--w, 0) * 22ms); white-space: pre; }
+    .desc-word.shown { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      #archetype-section, #archetype-section.cine-fade-pending,
+      #map-section, #map-section.cine-collapsed,
+      #profile-section, #profile-section.cine-collapsed,
+      #footer-section, #footer-section.cine-collapsed,
+      .archetype-section-piece, .desc-word {
+        max-height: none !important; opacity: 1 !important; transform: none !important; transition: none !important;
+      }
+    }
+    .node-labels { display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #333; margin-top: 0.4rem; font-weight: 500; }
+    .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); text-align: center; }
+    @media (max-width: 700px) {
+      .container { padding: 0 1rem; }
+      .elections-grid { gap: 2px; }
+      .election-cell { padding: 0.2rem 0.1rem; font-size: 0.45rem; }
+      .cell-name { display: none; }
+      .node-row { grid-template-columns: 100px 1fr 35px; gap: 0.5rem; }
+    }
+
+    /* Pass B — comparison section (rendered when ?compare=1). Three markers
+       per bar: gold = friend's prediction of user, white-outlined = user's
+       actual, cluster-color = friend's own. Hidden by default. */
+    #comparison-section { background: rgba(245, 183, 0, 0.06); padding: 2rem 0 2.5rem; border-bottom: 2px solid var(--ink); display: none; }
+    #comparison-section .container { max-width: 1100px; }
+    .cmp-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.4rem, 4vw, 2.2rem); margin: 0 0 0.4rem; letter-spacing: -0.02em; font-weight: 700; }
+    .cmp-header p { color: #555; font-size: 0.95rem; margin: 0 0 1.25rem; max-width: 720px; line-height: 1.5; }
+    .cmp-scores { display: flex; gap: 1.5rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .cmp-score { background: #fff; border: 1.5px solid var(--ink); padding: 1rem 1.25rem; flex: 0 1 240px; min-width: 180px; }
+    .cmp-score-num { font-family: 'Space Grotesk', sans-serif; font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .cmp-score-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin-top: 0.45rem; line-height: 1.3; }
+    .cmp-legend { display: flex; gap: 1.5rem; font-size: 0.78rem; color: #555; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #ddd; }
+    .cmp-legend .lg { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .cmp-legend .lg-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+    .cmp-legend .lg-dot.predicted { background: #f5b700; border: 1.5px solid var(--ink); }
+    .cmp-legend .lg-dot.actual { background: #fff; border: 2.5px solid var(--ink); }
+    .cmp-legend .lg-dot.own { background: #888; }
+    .cmp-cluster { margin-bottom: 1.4rem; }
+    .cmp-cluster-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; padding-bottom: 0.4rem; border-bottom: 2px solid; margin-bottom: 0.85rem; }
+    .cmp-row { display: grid; grid-template-columns: 170px 1fr; gap: 1rem; align-items: center; margin-bottom: 0.85rem; }
+    .cmp-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.98rem; }
+    .cmp-bar-wrap { position: relative; }
+    .cmp-bar-track { position: relative; height: 30px; }
+    .cmp-bar-track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); height: 4px; background: #ddd; border-radius: 2px; }
+    .cmp-bar-marker { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%; }
+    .cmp-bar-marker.own { z-index: 0; opacity: 0.85; }
+    .cmp-bar-marker.predicted { background: #f5b700; border: 1.5px solid var(--ink); z-index: 1; }
+    .cmp-bar-marker.predicted.skipped { background: transparent; border: 1.5px dashed #999; }
+    .cmp-bar-marker.actual { background: #fff; border: 2.5px solid var(--ink); z-index: 2; }
+    .cmp-poles { display: flex; justify-content: space-between; font-size: 0.7rem; color: #888; margin-top: 0.15rem; }
+    .cmp-cat-row { display: grid; grid-template-columns: 170px 1fr; gap: 1rem; align-items: center; margin-bottom: 0.7rem; }
+    .cmp-cat-tags { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .cmp-cat-tag { padding: 0.25rem 0.6rem; border: 1.5px solid; border-radius: 2px; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .cmp-cat-tag .cmp-cat-prefix { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.7; font-weight: 600; }
+    .cmp-cat-tag.predicted { border-color: #f5b700; color: #8a6500; background: rgba(245,183,0,0.1); }
+    .cmp-cat-tag.predicted.skipped { border-color: #aaa; border-style: dashed; color: #888; background: transparent; }
+    .cmp-cat-tag.actual { border-color: var(--ink); color: var(--ink); background: #fff; font-weight: 700; }
+    .cmp-cat-tag.own { background: #eee; border-color: #999; color: #555; }
+    .cmp-hide-btn { margin-top: 1rem; padding: 0.4rem 0.85rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; background: transparent; border: 1px solid #888; color: #555; cursor: pointer; }
+    .cmp-hide-btn:hover { background: #fff; }
+
+    /* Pass B — share button + modal */
+    .share-btn { margin-top: 0.8rem; margin-left: 0.5rem; padding: 0.5rem 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; font-weight: 600; }
+    .share-btn:hover { background: #333; }
+    .share-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+    .share-modal-backdrop.open { display: flex; }
+    .share-modal { background: #fff; max-width: 560px; width: 100%; padding: 1.5rem; border: 2px solid var(--ink); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .share-modal h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin: 0 0 0.5rem; }
+    .share-modal p { font-size: 0.85rem; color: #555; margin: 0 0 1rem; line-height: 1.5; }
+    .share-modal label { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin-bottom: 0.4rem; }
+    .share-modal input[type="text"] { width: 100%; padding: 0.6rem; font-size: 1rem; border: 1.5px solid var(--ink); font-family: 'Space Grotesk', sans-serif; margin-bottom: 1rem; box-sizing: border-box; }
+    .share-modal textarea { width: 100%; height: 90px; padding: 0.5rem; font-family: 'Courier Prime', monospace; font-size: 0.7rem; border: 1.5px solid #aaa; resize: vertical; box-sizing: border-box; word-break: break-all; }
+    .share-modal-actions { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+    .share-modal-actions button { padding: 0.55rem 1.1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; border: 1.5px solid var(--ink); cursor: pointer; font-weight: 600; }
+    .share-modal-actions button.primary { background: var(--ink); color: #fff; }
+    .share-modal-actions button.secondary { background: transparent; color: var(--ink); }
+    .share-copy-status { font-size: 0.78rem; color: #2a7a2a; margin-left: 0.5rem; align-self: center; opacity: 0; transition: opacity 0.2s; }
+    .share-copy-status.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="map-tooltip"></div>
+<div id="election-tooltip"></div>
+<div id="loading">Loading your results...</div>
+
+<div id="results" style="display:none;">
+<!-- SECTION 1 -->
+<section id="archetype-section" class="cine-fade-pending">
+  <div class="container">
+    <div class="badge-row">
+      <span class="tier-badge" id="tier-badge"></span>
+      <span class="engagement-badge" id="engagement-badge"></span>
+    </div>
+    <div class="archetype-number" id="archetype-number"></div>
+    <h1 class="archetype-name" id="archetype-name"></h1>
+    <p class="archetype-desc" id="archetype-desc"></p>
+    <div id="confidence-cluster-banner" style="display:none;margin:1.25rem 0 0 0;padding:0.9rem 1.1rem;background:#fff8f0;border-left:3px solid #d97706;font-size:0.88rem;line-height:1.55;max-width:720px;">
+      <div id="confidence-cluster-headline" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.4rem;color:#1a1a1a;"></div>
+      <div id="confidence-cluster-body" style="color:#444;"></div>
+      <div id="confidence-cluster-neighbors" style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;"></div>
+      <div id="confidence-cluster-footnote" style="margin-top:0.6rem;color:#666;font-size:0.78rem;font-style:italic;"></div>
+    </div>
+    <button id="export-trace-btn" onclick="exportPrismTrace()" style="margin-top:0.8rem;padding:0.5rem 1rem;font-family:'Space Grotesk',sans-serif;font-size:0.85rem;border:1px solid var(--ink);background:var(--pool);cursor:pointer;">Download diagnostic trace (JSON)</button>
+    <button id="share-btn" class="share-btn" onclick="openShareModal()" style="display:none;">Share with a friend</button>
+  </div>
+</section>
+
+<div class="share-modal-backdrop" id="share-modal-backdrop">
+  <div class="share-modal">
+    <h3>Share with a friend</h3>
+    <p>Send your friend this link. They'll predict where you fell on each dimension, then take the quiz themselves and see how well they knew you.</p>
+    <label for="share-display-name">Your name (optional — they'll see this)</label>
+    <input type="text" id="share-display-name" maxlength="40" placeholder="Your friend">
+    <label for="share-url-output">Shareable link</label>
+    <textarea id="share-url-output" readonly onclick="this.select()"></textarea>
+    <div class="share-modal-actions">
+      <button class="primary" onclick="copyShareUrl()">Copy link</button>
+      <button class="secondary" onclick="closeShareModal()">Done</button>
+      <span class="share-copy-status" id="share-copy-status">Copied to clipboard</span>
+    </div>
+  </div>
+</div>
+<script>
+const PRISM_RUN_ID = new URLSearchParams(window.location.search).get('run') || '';
+
+function prismScopedKey(baseKey) {
+    return PRISM_RUN_ID ? baseKey + ':' + PRISM_RUN_ID : baseKey;
+}
+
+function readPrismStorage(baseKey) {
+    if (PRISM_RUN_ID) {
+        const scoped = localStorage.getItem(prismScopedKey(baseKey));
+        if (scoped !== null) return scoped;
+    }
+    return localStorage.getItem(baseKey);
+}
+
+function readPrismJson(baseKey) {
+    const raw = readPrismStorage(baseKey);
+    if (!raw) return null;
+    try {
+        return JSON.parse(raw);
+    } catch (e) {
+        console.warn('Could not parse ' + prismScopedKey(baseKey), e);
+        return null;
+    }
+}
+
+const prismPageSnapshot = {
+    runId: PRISM_RUN_ID || null,
+    results: readPrismJson('prism-results'),
+    election: readPrismJson('prism-election-raw'),
+    trace: readPrismJson('prism-trace')
+};
+
+function exportPrismTrace() {
+    const blob = new Blob([JSON.stringify(prismPageSnapshot, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    const runSuffix = PRISM_RUN_ID ? '-' + PRISM_RUN_ID.slice(0, 8) : '';
+    a.download = 'prism-dump' + runSuffix + '-' + Date.now() + '.json';
+    a.click();
+}
+
+// Pass B — dismiss button on the comparison section. Clears the staged
+// friend prediction from localStorage and reloads without ?compare=1, so the
+// page shows just the friend's own standard results.
+function dismissComparison() {
+    try { localStorage.removeItem('prism-friend-prediction'); } catch (e) {}
+    const url = new URL(window.location.href);
+    url.searchParams.delete('compare');
+    window.location.href = url.toString();
+}
+
+// Share button — encode current respondent state into a URL fragment for
+// predict.html. Friend opens it, predicts user's bars, then takes the quiz
+// and sees the comparison. Encoded payload is base64-url, ~700-900 chars.
+function buildShareUrl(displayName) {
+    const stored = readPrismJson('prism-results');
+    if (!stored || !stored.respondentState) return null;
+    const encoded = window.PrismShareCodec.encode(
+        stored.respondentState,
+        stored.archetypeId,
+        displayName || ''
+    );
+    // Build URL relative to whatever directory results-live.html is hosted in.
+    const dir = window.location.pathname.replace(/[^/]*$/, '');
+    return window.location.origin + dir + 'predict.html#u=' + encoded;
+}
+
+function refreshShareUrl() {
+    const nameInput = document.getElementById('share-display-name');
+    const out = document.getElementById('share-url-output');
+    const url = buildShareUrl(nameInput.value.trim());
+    out.value = url || '';
+}
+
+function openShareModal() {
+    const stored = readPrismJson('prism-results');
+    if (!stored || !stored.respondentState) {
+        alert('No quiz state to share. Take the quiz first.');
+        return;
+    }
+    document.getElementById('share-modal-backdrop').classList.add('open');
+    refreshShareUrl();
+    document.getElementById('share-display-name').focus();
+}
+
+function closeShareModal() {
+    document.getElementById('share-modal-backdrop').classList.remove('open');
+    const status = document.getElementById('share-copy-status');
+    if (status) status.classList.remove('show');
+}
+
+async function copyShareUrl() {
+    const out = document.getElementById('share-url-output');
+    out.select();
+    try {
+        await navigator.clipboard.writeText(out.value);
+    } catch (e) {
+        try { document.execCommand('copy'); } catch (_) {}
+    }
+    const status = document.getElementById('share-copy-status');
+    if (status) {
+        status.classList.add('show');
+        setTimeout(() => status.classList.remove('show'), 1800);
+    }
+}
+
+// Live-update URL when display name changes; reveal Share button only when
+// quiz state is present (not legacy archetype-link sessions).
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('share-display-name');
+    if (nameInput) nameInput.addEventListener('input', refreshShareUrl);
+    const backdrop = document.getElementById('share-modal-backdrop');
+    if (backdrop) backdrop.addEventListener('click', e => {
+        if (e.target === backdrop) closeShareModal();
+    });
+    try {
+        const stored = readPrismJson('prism-results');
+        if (stored && stored.respondentState && window.PrismShareCodec) {
+            const btn = document.getElementById('share-btn');
+            if (btn) btn.style.display = 'inline-block';
+        }
+    } catch (e) { /* button stays hidden */ }
+});
+</script>
+
+<!-- COMPARISON (Pass B, only when ?compare=1 with valid friend prediction) -->
+<section id="comparison-section">
+  <div class="container">
+    <div class="cmp-header">
+      <h2 id="cmp-headline">You predicted them.</h2>
+      <p>Here's how close your prediction was, and how similar your politics are to theirs.</p>
+    </div>
+    <div class="cmp-scores">
+      <div class="cmp-score">
+        <div class="cmp-score-num" id="cmp-accuracy">—</div>
+        <div class="cmp-score-label">How well you knew them</div>
+      </div>
+      <div class="cmp-score">
+        <div class="cmp-score-num" id="cmp-similarity">—</div>
+        <div class="cmp-score-label">How similar you are to them</div>
+      </div>
+    </div>
+    <div class="cmp-legend">
+      <span class="lg"><span class="lg-dot predicted"></span>Your prediction</span>
+      <span class="lg"><span class="lg-dot actual"></span>Their actual</span>
+      <span class="lg"><span class="lg-dot own"></span>You</span>
+    </div>
+    <div id="cmp-bars"></div>
+    <button class="cmp-hide-btn" onclick="dismissComparison()">Hide this comparison</button>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section id="elections-section" class="reveal">
+  <div class="container">
+    <div class="section-label">US Presidential Elections · 1789–2024</div>
+    <div id="closest-match-note" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:-0.4rem 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
+    <div class="elections-grid reveal-stagger" id="elections-grid"></div>
+    <div class="election-summary" id="election-summary"></div>
+    <div class="election-legend cine-pending" id="election-legend"></div>
+  </div>
+</section>
+
+<!-- SECTION 3 (v10: profile moved above map) -->
+<section id="profile-section" class="cine-collapsed">
+  <div class="container">
+    <div class="section-label">Your Profile · By Cluster Emphasis</div>
+    <div class="profile-explain">Each wedge of the donut is one of the four PRISM clusters. Wedge size is your <strong>relative emphasis</strong> across all four — they sum to 100%. Click a wedge to drill into the components of that cluster.</div>
+    <div class="profile-flex">
+      <div class="profile-donut-col">
+        <div class="cluster-overview"><svg id="cluster-donut" viewBox="-180 -180 360 360" width="460" height="460"></svg></div>
+      </div>
+      <div class="profile-drill-col">
+        <div class="cluster-drill-tagline" id="cluster-drill-tagline"></div>
+        <div class="cluster-drill" id="cluster-drill"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 (v10: map moved to bottom) -->
+<section id="map-section" class="cine-collapsed">
+  <div class="container">
+    <div class="section-label">World Alignment Map</div>
+    <div id="closest-match-note-map" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:0 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
+    <div class="great-year-banner" id="great-year-banner" style="display:none;"></div>
+    <div class="map-controls">
+      <div id="year-display">2026</div>
+      <div class="slider-wrap">
+        <span>1776</span>
+        <input type="range" id="year-slider" min="1776" max="2026" value="2026">
+        <span>2026</span>
+      </div>
+    </div>
+    <div id="map-container"><svg id="map"></svg></div>
+    <div class="map-legend">
+      <span>Opposed (−3)</span>
+      <canvas id="legend-gradient" width="120" height="10"></canvas>
+      <span>Aligned (+3)</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 (v11: footer below the map) -->
+<section id="footer-section" class="cine-collapsed">
+  <div class="container">
+    <div class="footer-line"></div>
+    <div class="footer-content">
+      <div class="footer-tagline">PRISM · Political Refraction and Identity Spectrum Model</div>
+      <div class="footer-meta">
+        <span>Set in Space Grotesk and IBM Plex Mono</span>
+        <span class="dot">·</span>
+        <span>118 archetypes</span>
+        <span class="dot">·</span>
+        <span>14 nodes across 4 clusters</span>
+        <span class="dot">·</span>
+        <span>60 US elections (1789–2024)</span>
+        <span class="dot">·</span>
+        <span>404 regime periods · 47 jurisdictions (1776–2026)</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+(async function() {
+  // ========== CONFIG ==========
+  const DATA_BASE = '../output/live-data';
+  // Candidate name → Wikipedia thumbnail URL (public domain portraits)
+  const WK = 'https://upload.wikimedia.org/wikipedia/commons/thumb';
+  const photoMap = {
+    'Washington':`${WK}/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/120px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg`,
+    'Jefferson':`${WK}/0/07/Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg/120px-Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg`,
+    'Madison':`${WK}/1/1d/James_Madison.jpg/120px-James_Madison.jpg`,
+    'Monroe':`${WK}/5/5e/James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg/120px-James_Monroe_White_House_portrait_1819_%28cropped%29%282%29.jpg`,
+    'J.Q. Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/120px-JQA_Photo_Crop_%28cropped%29.jpg`,
+    'Adams':`${WK}/3/3a/JQA_Photo_Crop_%28cropped%29.jpg/120px-JQA_Photo_Crop_%28cropped%29.jpg`,
+    'Jackson':`${WK}/2/2a/Andrew_jackson_head_%28cropped%29.jpg/120px-Andrew_jackson_head_%28cropped%29.jpg`,
+    'Van Buren':`${WK}/7/72/Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg/120px-Martin_Van_Buren_by_Mathew_Brady_c1855-58-%284%29.jpg`,
+    'Harrison':`${WK}/2/2c/William_Henry_Harrison_crop.jpg/120px-William_Henry_Harrison_crop.jpg`,
+    'Polk':`${WK}/8/87/Polk_crop.jpg/120px-Polk_crop.jpg`,
+    'Taylor':`${WK}/b/b4/Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg/120px-Zachary_Taylor_restored_and_cropped_%283.5x4.5_cropped%29.jpg`,
+    'Buchanan':`${WK}/f/fd/James_Buchanan.jpg/120px-James_Buchanan.jpg`,
+    'Pierce':`${WK}/7/74/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg/120px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29%282%29.jpg`,
+    'Frémont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/120px-John_Charles_Fremont_Oval.png`,
+    'Fremont':`${WK}/b/b3/John_Charles_Fremont_Oval.png/120px-John_Charles_Fremont_Oval.png`,
+    'Lincoln':`${WK}/5/57/Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg/120px-Abraham_Lincoln_1863_Portrait_%283x4_cropped%29.jpg`,
+    'Grant':`${WK}/9/98/Ulysses_S._Grant_1870-1880_%28cropped%29.jpg/120px-Ulysses_S._Grant_1870-1880_%28cropped%29.jpg`,
+    'Tilden':`${WK}/e/e8/Samuel_Tilden._Portrait_of_the_American_politician%2C_who_served_as_the_25th_Governor_of_New_York%2C_Samuel_Jones_Tilden_%281814-1886%29%2C_by_Jos%C3%A9_Mar%C3%ADa_Mora%2C_c._1870.jpg/120px-thumbnail.jpg`,
+    'Hayes':`${WK}/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/120px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg`,
+    'Hancock':`${WK}/5/5b/Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg/120px-Gen._Winfield_S._Hancock_-_NARA_-_529369_%28cropped%2C_retouched%29.jpg`,
+    'Garfield':`${WK}/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/120px-James_Abram_Garfield%2C_photo_portrait_seated.jpg`,
+    'Blaine':`${WK}/2/24/James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg/120px-James_G._Blaine_-_Brady-Handy_%28cropped%29.jpg`,
+    'Cleveland':`${WK}/3/36/StephenGroverCleveland.jpg/120px-StephenGroverCleveland.jpg`,
+    'Bryan':`${WK}/2/20/Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg/120px-Portrait_of_Secretary_William_Jennings_Bryan_of_Nebraska%2C_1913.jpeg`,
+    'McKinley':`${WK}/3/30/McKinley_%28cropped%29.jpg/120px-McKinley_%28cropped%29.jpg`,
+    'T. Roosevelt':`${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`,
+    'Wilson':`${WK}/9/96/President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg/120px-President_Woodrow_Wilson_Harris_%26_Ewing_%283x4_cropped_b%29.jpg`,
+    'Taft':`${WK}/2/2c/William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg/120px-William_Howard_Taft_by_Pach_Brothers_%283x4_ropped%29.jpg`,
+    'Debs':`${WK}/a/a6/Eugene_Debs_portrait.jpeg/120px-Eugene_Debs_portrait.jpeg`,
+    'Harding':`${WK}/4/4e/Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg/120px-Warren_G._Harding_1920s_portrait_%283x4_cropped%29.jpg`,
+    'La Follette':`${WK}/0/06/LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg/120px-LaFOLLETTE%2C_ROBERT._SENATOR_LOC_hec.14955_%28cropped%29.jpg`,
+    'Coolidge':`${WK}/4/49/President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg/120px-President_Calvin_Coolidge%2C_1924_portrait_photograph_%283x4_cropped%29.jpeg`,
+    'Smith':`${WK}/1/1f/SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg/120px-SMITH%2C_ALFRED._HONORABLE_LCCN2016862532_Trim.jpg`,
+    'Hoover':`${WK}/5/57/President_Hoover_portrait.jpg/120px-President_Hoover_portrait.jpg`,
+    'Landon':`${WK}/3/37/Unsuccessful_1936.jpg/120px-Unsuccessful_1936.jpg`,
+    'Willkie':`${WK}/b/b5/Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg/120px-Portrait_of_Wendell_Lewis_Willkie_Sitting_by_Wall_%28cropped%29.jpg`,
+    'FDR':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/120px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
+    'Dewey':`${WK}/5/52/Thomas_Dewey_in_1944.jpg/120px-Thomas_Dewey_in_1944.jpg`,
+    'Truman':`${WK}/0/0b/TRUMAN_58-766-06_%28cropped%29.jpg/120px-TRUMAN_58-766-06_%28cropped%29.jpg`,
+    'Stevenson':`${WK}/c/ce/Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg/120px-Portrait_of_Ambassador_Adlai_E._Stevenson_II_%28cropped%29.jpg`,
+    'Eisenhower':`${WK}/0/02/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg/120px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959_%28cropped%29%283%29.jpg`,
+    'Kennedy':`${WK}/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/120px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg`,
+    'LBJ':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/120px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
+    'Goldwater':`${WK}/1/19/Senator_Goldwater_1960.jpg/120px-Senator_Goldwater_1960.jpg`,
+    'Humphrey':`${WK}/2/23/Hubert_Humphrey_vice_presidential_portrait.jpg/120px-Hubert_Humphrey_vice_presidential_portrait.jpg`,
+    'Nixon':`${WK}/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/120px-Richard_Nixon_presidential_portrait_%281%29.jpg`,
+    'Wallace':`${WK}/0/08/George_Wallace_%28D-AL%29_%28cropped%29.jpg/120px-George_Wallace_%28D-AL%29_%28cropped%29.jpg`,
+    'McGovern':`${WK}/6/6f/George_McGovern_%28D-SD%29.jpg/120px-George_McGovern_%28D-SD%29.jpg`,
+    'Carter':`${WK}/6/6a/Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg/120px-Jimmy_Carter_Official_Portrait2_%283x4_cropped%29.jpg`,
+    'Reagan':`${WK}/1/16/Official_Portrait_of_President_Reagan_1981.jpg/120px-Official_Portrait_of_President_Reagan_1981.jpg`,
+    'Mondale':`${WK}/4/41/Walter_Mondale_1977_vice_presidential_portrait.jpg/120px-Walter_Mondale_1977_vice_presidential_portrait.jpg`,
+    'Dukakis':`${WK}/0/0c/Michael_Dukakis_%283x4_cropped%29.jpg/120px-Michael_Dukakis_%283x4_cropped%29.jpg`,
+    'Bush Sr':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/120px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
+    'Clinton':`${WK}/5/50/Bill_Clinton_%28cropped_4%29.jpg/120px-Bill_Clinton_%28cropped_4%29.jpg`,
+    'Dole':`${WK}/a/a9/Ks_1996_dole.jpg/120px-Ks_1996_dole.jpg`,
+    'Gore':`${WK}/c/c5/Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg/120px-Al_Gore%2C_Vice_President_of_the_United_States%2C_official_portrait_1994.jpg`,
+    'Bush Jr':`${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg`,
+    'Kerry':`${WK}/7/73/John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg/120px-John_Kerry_portrait_of_Climate_Envoy_%28cropped%29.jpg`,
+    'Obama':`${WK}/8/8d/President_Barack_Obama.jpg/120px-President_Barack_Obama.jpg`,
+    'McCain':`${WK}/7/74/John_McCain_official_portrait_2009_%283x4_cropped%29.jpg/120px-John_McCain_official_portrait_2009_%283x4_cropped%29.jpg`,
+    'Romney':`${WK}/7/7f/Mitt_Romney_official_US_Senate_portrait.jpg/120px-Mitt_Romney_official_US_Senate_portrait.jpg`,
+    'H. Clinton':`${WK}/e/ec/Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg/120px-Hillary_Clinton_by_Gage_Skidmore_4_%28cropped%29.jpg`,
+    'Trump':`${WK}/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/120px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg`,
+    'Biden':`${WK}/6/68/Joe_Biden_presidential_portrait.jpg/120px-Joe_Biden_presidential_portrait.jpg`,
+    'Harris':`${WK}/4/41/Kamala_Harris_Vice_Presidential_Portrait.jpg/120px-Kamala_Harris_Vice_Presidential_Portrait.jpg`,
+    'Weaver':`${WK}/2/20/James_Weaver_-_Brady-Handy_%28cropped%29.jpg/120px-James_Weaver_-_Brady-Handy_%28cropped%29.jpg`,
+    'Scott':`${WK}/5/5f/Winfield_Scott_by_Fredricks%2C_1862_crop.jpg/120px-Winfield_Scott_by_Fredricks%2C_1862_crop.jpg`,
+    'Cass':`${WK}/a/ae/Lewis_Cass_circa_1855.jpg/120px-Lewis_Cass_circa_1855.jpg`,
+    'Breckinridge':`${WK}/6/65/John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg/120px-John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg`,
+    'McClellan':`${WK}/8/86/George_B_McClellan_-_retouched%2C_cropped.jpg/120px-George_B_McClellan_-_retouched%2C_cropped.jpg`,
+    'Seymour':`${WK}/6/6e/Horatio_Seymour_%28cropped%2C_retouched%29.jpg/120px-Horatio_Seymour_%28cropped%2C_retouched%29.jpg`,
+    'Greeley':`${WK}/1/11/Horace_Greeley_restored.jpg/120px-Horace_Greeley_restored.jpg`,
+    'Parker':`${WK}/b/b4/Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg/120px-Alton_Brooks_Parker_Portrait_%283x4_cropped%29.jpg`,
+    'Hughes':`${WK}/e/ee/Charles_Evans_Hughes_cph.3b15401.jpg/120px-Charles_Evans_Hughes_cph.3b15401.jpg`,
+    'Cox':`${WK}/5/57/James_M._Cox_Portrait_%283x4_cropped_b%29.jpg/120px-James_M._Cox_Portrait_%283x4_cropped_b%29.jpg`,
+    'Davis':`${WK}/c/c5/DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg/120px-DAVIS%2C_JOHN_W._HONORABLE_LCCN2016862563_%28cropped%29.jpg`,
+    'Pinckney':`${WK}/4/45/James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg/120px-James_Earl_-_General_Charles_Cotesworth_Pinckney_-_Google_Art_Project.jpg`,
+    'Clinton (DeWitt)':`${WK}/6/63/DeWitt_Clinton_by_Rembrandt_Peale.jpg/120px-DeWitt_Clinton_by_Rembrandt_Peale.jpg`,
+    'King':`${WK}/5/59/Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg/120px-Gilbert_Stuart_-_Portrait_of_Rufus_King_%281819-1820%29_-_Google_Art_Project.jpg`,
+    'Clay':`${WK}/6/67/Clay_1848.jpg/120px-Clay_1848.jpg`,
+    'Bell':`${WK}/3/3d/John_Bell_%28Restored%29.png/120px-John_Bell_%28Restored%29.png`,
+    'Roosevelt':`${WK}/f/fd/FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg/120px-FDR-1944-Campaign-Portrait_%283x4_retouched%2C_cropped%29.jpg`,
+    'Johnson':`${WK}/a/a2/Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg/120px-Lyndon_B._Johnson_-_Official_White_House_Portrait_%28cropped%29.jpg`,
+    'Bush':`${WK}/2/2d/George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg/120px-George_H._W._Bush_presidential_portrait_%28cropped_5%29.jpg`,
+    'Ford':`${WK}/3/36/Gerald_Ford_presidential_portrait_%28cropped%29.jpg/250px-Gerald_Ford_presidential_portrait_%28cropped%29.jpg`,
+    'Perot':`${WK}/f/fd/RossPerotColor.jpg/250px-RossPerotColor.jpg`,
+    'Nader':`${WK}/b/b2/Naderspeak.JPG/250px-Naderspeak.JPG`,
+    'Anderson':`${WK}/f/f1/John_B._Anderson_in_New_Jersey_%283x4_cropped%29.jpg/250px-John_B._Anderson_in_New_Jersey_%283x4_cropped%29.jpg`,
+    'Thurmond':`${WK}/2/22/Strom_Thurmond%2C_c_1961_%283x4_cropped%29_%282%29.jpg/250px-Strom_Thurmond%2C_c_1961_%283x4_cropped%29_%282%29.jpg`,
+    'Douglas':`${WK}/6/67/Senator_Stephen_A._Douglas_%28edited%29.png/250px-Senator_Stephen_A._Douglas_%28edited%29.png`,
+    'Fillmore':`${WK}/4/43/Millard_Fillmore_Better_Crop.jpg/250px-Millard_Fillmore_Better_Crop.jpg`,
+    'Wirt':`${WK}/2/2a/William_Wirt_by_Henry_Inman_%28frameless%29.jpg/250px-William_Wirt_by_Henry_Inman_%28frameless%29.jpg`,
+    'Crawford':`${WK}/7/78/William_Harris_Crawford_by_John_Wesley_Jarvis_%28PAFA%29.jpg/250px-William_Harris_Crawford_by_John_Wesley_Jarvis_%28PAFA%29.jpg`,
+    'H. Wallace':`${WK}/4/43/Henry-A.-Wallace-Townsend_%28cropped%29.jpeg/250px-Henry-A.-Wallace-Townsend_%28cropped%29.jpeg`,
+    'Benson':`${WK}/3/38/Ezra_Taft_Benson.jpg/250px-Ezra_Taft_Benson.jpg`,
+  };
+  // Year-based disambiguation for candidates who share a surname
+  const photoOverrides = {
+    'Roosevelt': { 1904: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg`, 1912: `${WK}/7/7d/Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg/120px-Theodore_Roosevelt_by_the_Pach_Bros_%284x5_cropped%29.jpg` },
+    'Bush': { 2000: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg`, 2004: `${WK}/8/84/George-W-Bush_%28cropped_2%29.jpeg/120px-George-W-Bush_%28cropped_2%29.jpeg` },
+    'Johnson': { 2016: null },
+    'Clinton': { 1812: photoMap['Clinton (DeWitt)'] },
+  };
+  function getPhoto(name, year) {
+    const ov = photoOverrides[name];
+    if (ov && ov[year] !== undefined) return ov[year];
+    return photoMap[name] || null;
+  }
+
+  // Node display config — PROTOTYPE cluster reorg.
+  //   ENDS:    MAT, CD, CU                    (MOR moved to SELF)
+  //   MEANS:   PRO, COM, ONT_S + AES          (ONT_S in from REALITY)
+  //   REALITY: ZS, ONT_H + EPS                (EPS in from MEANS)
+  //   SELF:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
+  const nodeLabels = {
+    MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
+    CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
+    CU: { name: 'Assimilation', low1: 'One shared way of life', high5: 'Different ways of life, side by side', cluster: 'ENDS' },
+    PRO: { name: 'Procedure', low1: 'Get results, bend rules', high5: 'Follow the rules', cluster: 'MEANS' },
+    COM: { name: 'Compromise', low1: 'Stand on principle', high5: 'Cut a deal', cluster: 'MEANS' },
+    ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'MEANS' },
+    ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
+    ONT_H: { name: 'Human Malleability', low1: 'Character is fixed', high5: 'Character is shaped by environment', cluster: 'REALITY' },
+    ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'SELF' },
+  };
+  const clusterColors = { ENDS: '#E8A87C', MEANS: '#7EC8C8', REALITY: '#C5A3CF', SELF: '#F4B9B2' };
+  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', SELF: 'SELF — Who You Are' };
+  const epsCategories = ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'];
+  const aesCategories = ['statesman','technocrat','pastoral','plainspoken','fighter','visionary'];
+
+  // ── Personalized world alignment (added 2026-04-26) ─────────────────────────
+  // Computes country/era alignment scores from the respondent's actual node
+  // signature instead of looking up the matched archetype's precomputed
+  // alignment. Mirrors src/global/build-alignment.ts:computeAlignment but
+  // uses respondent (expectedPos, salience) instead of archetype (pos, sal).
+  // Replaces the archetype-bucket whiplash where users matched to e.g. an
+  // "Institutional Centrist" got that archetype's alignment instead of
+  // their own.
+  const ALIGNMENT_NODES = ['MAT','CD','CU','MOR','PRO','COM','ZS','ONT_H','ONT_S'];
+  const ALIGNMENT_GAUSSIAN_SIGMA = 2.0;
+  const ALIGNMENT_SAL_FLOOR = 0.5;
+
+  // Dysfunction multiplier (added 2026-04-27). Dampens alignment magnitude
+  // for regimes whose state capacity / governance is severely compromised,
+  // on the principle that ideological match with a chaotic / failed regime
+  // is a noisy signal in either direction. Scale 1-5 in regimes.json:
+  //   1 = stable + effective    → factor 1.00 (no dampening)
+  //   2 = mostly stable         → 0.92
+  //   3 = mid-functional        → 0.80
+  //   4 = significant dysfunction → 0.60
+  //   5 = chaotic / predatory / failed → 0.35
+  // Symmetric: dampens both positive AND negative alignment toward 0.
+  // Default 1 if the field is absent (fail-open).
+  function dysfunctionFactor(d) {
+    if (d == null || d <= 1) return 1.00;
+    if (d <= 2) return 0.92;
+    if (d <= 3) return 0.80;
+    if (d <= 4) return 0.60;
+    return 0.35;
+  }
+
+  function buildPersonalAlignments(respondentState, regimesData) {
+    if (!respondentState || !respondentState.continuous) return null;
+    const result = {};
+    for (const [country, countryData] of Object.entries(regimesData || {})) {
+      if (!countryData || !Array.isArray(countryData.eras)) continue;
+      result[country] = countryData.eras.map(era => {
+        const eraNodes = era.nodes || {};
+        let weightedSumSq = 0;
+        let totalWeight = 0;
+        for (const node of ALIGNMENT_NODES) {
+          const respCont = respondentState.continuous[node];
+          if (!respCont) continue;
+          const respPos = respCont.expectedPos;
+          const respSal = Math.max(respCont.salience ?? 0, ALIGNMENT_SAL_FLOOR);
+          const regimePos = eraNodes[node];
+          if (respPos == null || regimePos == null) continue;
+          const posDiff = Math.abs(respPos - regimePos);
+          weightedSumSq += respSal * posDiff * posDiff;
+          totalWeight += respSal;
+        }
+        const distance = totalWeight > 0
+          ? Math.sqrt(weightedSumSq / totalWeight)
+          : 4;
+        const support = 100 * Math.exp(-Math.pow(distance / ALIGNMENT_GAUSSIAN_SIGMA, 2));
+        // Asymmetric dysfunction (PR 5): compress positive alignment only.
+        // Mirrors src/global/build-alignment.ts. Dysfunction makes "you'd
+        // thrive there" harder, but does not soften "you'd find it repugnant."
+        const alignmentBase = (support / 50 - 1) * 3;
+        const alignmentRaw = alignmentBase > 0 ? alignmentBase * dysfunctionFactor(era.dysfunction) : alignmentBase;
+        const v = Math.max(-3, Math.min(3, +alignmentRaw.toFixed(3)));
+        return {
+          r: era.regime_name,
+          s: era.start,
+          e: era.end,
+          v: v,
+          d: era.dysfunction ?? null,
+        };
+      });
+    }
+    return result;
+  }
+
+  // ========== LOAD DATA ==========
+  // Get archetype ID from URL or localStorage
+  const params = new URLSearchParams(window.location.search);
+  let archetypeId = params.get('id');
+  let respondentState = null;
+
+  // Try localStorage for respondent's actual node state
+  try {
+    const stored = readPrismStorage('prism_results') || readPrismStorage('prism-results');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (!archetypeId) archetypeId = parsed.archetypeId;
+      respondentState = parsed.respondentState || null;
+    }
+  } catch(e) {}
+
+  if (!archetypeId) {
+    // Demo mode — use archetype 134
+    archetypeId = '134';
+  }
+
+  // Pad ID to 3 digits
+  archetypeId = String(archetypeId).padStart(3, '0');
+
+  try {
+    const [archetypesData, electionsData, alignmentsData, regimesData] = await Promise.all([
+      fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
+      fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
+      fetch(`${DATA_BASE}/alignments.json?v=2026-04-29b`).then(r => r.json()),
+      // Cache-bust bumped to 2026-04-29b: source now carries 33 new rows
+      // (7 Subset A timeline fixes + 26 HIGH 1776 backfill rows). Both
+      // alignments.json and regimes.json were rebuilt from the updated source.
+      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29b`).then(r => r.json()).catch(() => ({})),
+    ]);
+
+    const archetype = archetypesData.find(a => a.id === archetypeId);
+    if (!archetype) throw new Error('Archetype not found: ' + archetypeId);
+
+    // Demo / archetype-fallback path: when there's no respondent run, fetch
+    // the pre-computed archetype-elections-raw file (per-candidate Euclidean
+    // distances under the archetype's centroid signature). Populates the
+    // election hover tooltip and the defining/strategic outline detection
+    // identically to a live respondent run.
+    let archetypeElectionsRaw = null;
+    const hasRespondentRaw = !!readPrismStorage('prism-election-raw');
+    if (!hasRespondentRaw) {
+      try {
+        const r = await fetch(`${DATA_BASE}/archetype-elections-raw/${archetypeId}.json?v=2026-04-29c`);
+        if (r.ok) archetypeElectionsRaw = await r.json();
+      } catch (e) { /* file missing for this archetype — features degrade silently */ }
+    }
+
+    // ADR-002: ENG was migrated out of archetype signatures. Inject a default
+    // mid-engagement ENG node ({pos:3, sal:0}) so the SELF-cluster profile
+    // still shows three rows (PF, TRB, ENG). Real respondent runs override
+    // this through respondentState.continuous.ENG via the existing path.
+    if (archetype.nodes && !archetype.nodes.ENG) {
+      archetype.nodes.ENG = { kind: 'continuous', pos: 3, sal: 0 };
+    }
+
+    // ── Election rendering: prefer the user's actual responses over the
+    // pre-computed archetype-level votes ────────────────────────────────────
+    // The grid below was originally pulling `electionsData[archetypeId]` —
+    // a flat list of votes the archetype's centroid would cast as scored by
+    // the archetype-side Gaussian path in src/historical/regime-alignment.ts
+    // (no partisan-loyalty multiplier, no EPS/AES weights, no TRB anchor).
+    // That's wrong for the personal results page: post-1932 Democratic users
+    // saw "Reagan / Bush" cells in 1980-88 because the archetype centroid
+    // doesn't carry the user's partisan signal even when their answers do.
+    // Bug fix 2026-04-25: use prism-election-raw (the per-respondent votes
+    // produced by predictVote in respondentVoteChoice.ts — same path the
+    // hover tooltip already uses) when present; fall back to the archetype-
+    // level data only for legacy sessions / shared archetype links without
+    // a respondent state.
+    function partyToUiLetter(party) {
+      if (party === 'Democratic') return 'dem';
+      if (party === 'Republican') return 'rep';
+      if (party === 'Independent' || party === 'American Independent') return 'third';
+      return 'other';
+    }
+    let elections;
+    const rawForGridStr = readPrismStorage('prism-election-raw');
+    let rawListForGrid = null;
+    if (rawForGridStr) {
+      try {
+        const parsed = JSON.parse(rawForGridStr);
+        if (Array.isArray(parsed) && parsed.length > 0) rawListForGrid = parsed;
+      } catch (e) { /* fall through */ }
+    }
+    if (!rawListForGrid && archetypeElectionsRaw) rawListForGrid = archetypeElectionsRaw;
+    if (rawListForGrid) {
+      elections = rawListForGrid.map(p => {
+        if (p.decision === 'abstain' || !p.nearest) {
+          return { y: p.year, c: '—', p: 'abstain' };
+        }
+        return {
+          y: p.year,
+          c: p.nearest.name,
+          p: partyToUiLetter(p.nearest.party),
+        };
+      });
+    }
+    if (!elections) elections = electionsData[archetypeId] || [];
+
+    // Prefer personalized alignment computed from the respondent's actual
+    // node signature; fall back to archetype-bucket alignment for legacy
+    // sessions / shared archetype links without respondent state.
+    const personalAlignments = buildPersonalAlignments(respondentState, regimesData);
+    const alignments = personalAlignments || alignmentsData[archetypeId] || {};
+
+    // v14: Confederate States of America synthesized alignment.
+    // CSA isn't (yet) in the source pipeline, so we compute its alignment
+    // value here at runtime from the proposed Tier-1 signature in
+    // results/calibration-exceptions/csa-proposal.md, against the
+    // respondent's state when present, otherwise the archetype centroid.
+    // Same Gaussian-distance / activation-multiplier shape as
+    // buildPersonalAlignments above, so the resulting v ∈ [-3, 3].
+    const CSA_REGIME = {
+      MAT: 5, CD: 5, CU: 1, MOR: 1,
+      PRO: 4, COM: 1, ZS: 5,
+      ONT_H: 1, ONT_S: 4,
+    };
+    function csaAlignment() {
+      // Reuse alignment math constants from existing personalized path.
+      const sig = (() => {
+        if (respondentState && respondentState.continuous) {
+          const s = {};
+          for (const code of ALIGNMENT_NODES) {
+            const r = respondentState.continuous[code];
+            if (r) s[code] = { pos: r.expectedPos, sal: r.salience };
+          }
+          return s;
+        }
+        const s = {};
+        for (const code of ALIGNMENT_NODES) {
+          const a = archetype.nodes && archetype.nodes[code];
+          if (a) s[code] = { pos: a.pos, sal: a.sal || 0 };
+        }
+        return s;
+      })();
+      // Same scoring as computeAlignment in src/global/build-alignment.ts
+      // (Gaussian on |posDiff| with sigma 2.0; weight = max(sal, 0.5);
+      // intensity / dysfunction not applied for the prototype overlay).
+      let weighted = 0, weightSum = 0;
+      for (const code of ALIGNMENT_NODES) {
+        const a = sig[code];
+        const r = CSA_REGIME[code];
+        if (a == null || r == null) continue;
+        const sal = Math.max(a.sal || 0, ALIGNMENT_SAL_FLOOR);
+        const diff = Math.abs(a.pos - r);
+        const score = Math.exp(-(diff * diff) / (2 * ALIGNMENT_GAUSSIAN_SIGMA * ALIGNMENT_GAUSSIAN_SIGMA));
+        weighted += sal * (2 * score - 1); // map [0,1] -> [-1,1]
+        weightSum += sal;
+      }
+      const norm = weightSum > 0 ? weighted / weightSum : 0;
+      return Math.max(-3, Math.min(3, norm * 3));
+    }
+    const CSA_V = csaAlignment();
+    alignments['Confederate States of America'] = [{
+      r: 'Confederate States',
+      s: 1861,
+      e: 1865,
+      v: CSA_V,
+    }];
+    // (matchCountry's nameMap is built downstream from Object.keys(alignments),
+    // so adding CSA here is enough — the new key lowercases into the table.)
+
+    // ========== SECTION 1: ARCHETYPE IDENTITY ==========
+    const tierMap = { T1: 'Tier 1', T2: 'Tier 2', T3: 'Tier 3' };
+    document.getElementById('tier-badge').textContent = tierMap[archetype.tier] || archetype.tier;
+    document.getElementById('archetype-number').textContent = `ARCHETYPE #${archetypeId}`;
+    document.getElementById('archetype-name').textContent = archetype.name;
+    document.getElementById('archetype-desc').textContent = archetype.description || '';
+
+    // v3: engagement rendered as a tier-style badge in the archetype card,
+    // decoupled from the moral-circle visual. Sample data hardcoded here so
+    // it's available before the MOR sunburst block declares its own samples.
+    const ENGAGEMENT_BY_ARCHETYPE = { '056': 4, '011': 5, '088': 2, '001': 4 };
+    (function renderEngagementBadge() {
+      const engPos = ENGAGEMENT_BY_ARCHETYPE[archetypeId] != null ? ENGAGEMENT_BY_ARCHETYPE[archetypeId] : 3;
+      const labels = ['', 'tuned out', 'casual', 'engaged', 'engaged', 'all in'];
+      const classes = ['', 'tuned-out', 'casual', 'engaged', 'engaged', 'all-in'];
+      const idx = Math.max(1, Math.min(5, Math.round(engPos)));
+      const el = document.getElementById('engagement-badge');
+      el.textContent = labels[idx];
+      el.className = 'engagement-badge ' + classes[idx];
+      el.title = `Engagement level ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
+    })();
+
+    // ── Low-confidence cluster gate (ADR-008). Two-step gate: prefer the
+    // engine's confidenceBand field; fall back to raw confidence < 0.05 only
+    // when the band wasn't recorded (older runs / dumps from before the field
+    // was added). Both Sam's recorded test cases (0.012, 0.047) gate on.
+    (function renderClusterGate() {
+      let stored = null;
+      try {
+        const raw = readPrismStorage('prism_results') || readPrismStorage('prism-results');
+        if (raw) stored = JSON.parse(raw);
+      } catch (e) {}
+      if (!stored) return;
+
+      const band = stored.confidenceBand;
+      const conf = typeof stored.confidence === 'number' ? stored.confidence : null;
+      const gateFires = band ? (band !== 'confident') : (conf !== null && conf < 0.05);
+      if (!gateFires) return;
+
+      const banner = document.getElementById('confidence-cluster-banner');
+      const headline = document.getElementById('confidence-cluster-headline');
+      const body = document.getElementById('confidence-cluster-body');
+      const neighborsEl = document.getElementById('confidence-cluster-neighbors');
+      const footnoteEl = document.getElementById('confidence-cluster-footnote');
+
+      const isUncertain = band === 'uncertain' || (conf !== null && conf < 0.02);
+      headline.textContent = isUncertain
+        ? 'Closest match — but answers split across several archetypes near the top.'
+        : 'Closest match — clustered with several near neighbors.';
+      const confPct = conf !== null ? (conf * 100).toFixed(1) + '%' : '—';
+      body.innerHTML = isUncertain
+        ? `Your responses didn't separate any single archetype from the field. Leader-vs-runner-up margin is <strong>${confPct}</strong>. Treat the headline match as the closest <em>direction</em>, not a definitive label.`
+        : `Your top match is real but the next-closest archetypes are within striking distance. Leader-vs-runner-up margin is <strong>${confPct}</strong>.`;
+
+      // Pick neighbors: leader + the single closest runner-up. PR 5 (2026-04-29)
+      // dropped the prior 5-cap with within-0.05 expansion plus 3-floor — long
+      // neighbor lists made the banner read like the assignment was disputed
+      // when really the gate just signals "treat this as directional." Cap 2
+      // shows the headline match and the closest contender, no more.
+      const top5 = Array.isArray(stored.top5) ? stored.top5 : (Array.isArray(stored.top3) ? stored.top3 : []);
+      const neighbors = top5.slice(0, 2);
+      neighborsEl.innerHTML = '';
+      neighbors.forEach((n, i) => {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;gap:0.6rem;align-items:baseline;font-size:0.84rem;';
+        const lead = neighbors[0].distance;
+        const margin = i === 0 ? '' : `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.72rem;">+${(n.distance - lead).toFixed(3)}</span>`;
+        row.innerHTML = `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.78rem;">#${i + 1}</span><span style="font-weight:${i === 0 ? '600' : '400'};">${n.id} ${n.name}</span>${margin}`;
+        neighborsEl.appendChild(row);
+      });
+      footnoteEl.textContent = 'Election grid and world-alignment map below render against the closest-match archetype only — read them as directional, not final.';
+
+      banner.style.display = 'block';
+      const note1 = document.getElementById('closest-match-note');
+      const note2 = document.getElementById('closest-match-note-map');
+      if (note1) note1.style.display = 'block';
+      if (note2) note2.style.display = 'block';
+    })();
+
+
+    // ========== COMPARISON SECTION (Pass B) ==========
+    // Rendered only when ?compare=1 AND a friend prediction exists in
+    // localStorage (set by predict.html). Sits between SECTION 1 and SECTION 2.
+    (function renderComparisonIfApplicable() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('compare') !== '1') return;
+      let prediction;
+      try {
+        const stored = localStorage.getItem('prism-friend-prediction');
+        if (!stored) return;
+        prediction = JSON.parse(stored);
+      } catch (e) { return; }
+      if (!prediction || !prediction.encodedUserState || !window.PrismShareCodec) return;
+      const userData = window.PrismShareCodec.decode(prediction.encodedUserState);
+      if (!userData || !userData.respondentState) return;
+      if (!respondentState || !respondentState.continuous) return;
+
+      const userState = userData.respondentState;
+      const friendState = respondentState;
+      const preds = prediction.predictions || {};
+      const skipped = new Set(prediction.skipped || []);
+
+      const CONT = ['MAT','CD','CU','MOR','PRO','COM','ZS','ONT_H','ONT_S','PF','TRB','ENG'];
+      const CAT = ['EPS','AES'];
+      const CAT_LABELS = {
+        EPS: ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'],
+        AES: ['statesman','technocrat','pastoral','plainspoken','fighter','visionary'],
+      };
+
+      function topCatName(node, code) {
+        if (!node || !Array.isArray(node.catDist)) return null;
+        let max = -Infinity, idx = 0;
+        for (let i = 0; i < node.catDist.length; i++) {
+          if (node.catDist[i] > max) { max = node.catDist[i]; idx = i; }
+        }
+        return CAT_LABELS[code][idx];
+      }
+
+      // Score: how well friend predicted user (continuous: 1 - |err|/4 per
+      // node, scaled 0-100; categorical: 1 if top-cat match, else 0).
+      let accSum = 0, accN = 0, simSum = 0, simN = 0;
+      CONT.forEach(n => {
+        const u = userState.continuous[n];
+        const f = friendState.continuous[n];
+        if (!u) return;
+        if (preds[n] != null && !skipped.has(n)) {
+          accSum += Math.max(0, 1 - Math.abs(preds[n] - u.expectedPos) / 4);
+          accN++;
+        }
+        if (f) {
+          simSum += Math.max(0, 1 - Math.abs(f.expectedPos - u.expectedPos) / 4);
+          simN++;
+        }
+      });
+      CAT.forEach(n => {
+        const u = userState.categorical[n];
+        const f = friendState.categorical[n];
+        if (!u) return;
+        const userTop = topCatName(u, n);
+        if (preds[n] && !skipped.has(n)) {
+          accSum += (preds[n] === userTop) ? 1 : 0;
+          accN++;
+        }
+        if (f) {
+          const friendTop = topCatName(f, n);
+          simSum += (friendTop === userTop) ? 1 : 0;
+          simN++;
+        }
+      });
+      const accPct = accN > 0 ? Math.round(100 * accSum / accN) : 0;
+      const simPct = simN > 0 ? Math.round(100 * simSum / simN) : 0;
+
+      const dispName = prediction.userDisplayName || 'them';
+      document.getElementById('cmp-headline').textContent = `You predicted ${dispName}.`;
+      document.getElementById('cmp-accuracy').textContent = accPct + '%';
+      document.getElementById('cmp-similarity').textContent = simPct + '%';
+
+      // Render per-node bars, grouped by cluster. Uses the same nodeLabels
+      // and clusterColors / clusterLabels defined above for consistency.
+      const barsContainer = document.getElementById('cmp-bars');
+      const clusterOrder = ['ENDS','MEANS','REALITY','SELF'];
+      clusterOrder.forEach(cluster => {
+        const block = document.createElement('div');
+        block.className = 'cmp-cluster';
+        block.innerHTML = `<div class="cmp-cluster-title" style="border-bottom-color:${clusterColors[cluster]};">${clusterLabels[cluster]}</div>`;
+
+        // Continuous nodes in this cluster
+        CONT.filter(n => nodeLabels[n] && nodeLabels[n].cluster === cluster).forEach(n => {
+          const lab = nodeLabels[n];
+          const u = userState.continuous[n];
+          const f = friendState.continuous[n];
+          if (!u) return;
+          const toPct = pos => ((Math.max(1, Math.min(5, pos)) - 1) / 4) * 100;
+          const userPct = toPct(u.expectedPos);
+          const friendPct = f ? toPct(f.expectedPos) : null;
+          const predIsSkipped = skipped.has(n) || preds[n] == null;
+          const predPct = !predIsSkipped ? toPct(preds[n]) : null;
+
+          const ownColor = clusterColors[cluster] || '#888';
+          const markers = [];
+          if (friendPct != null) markers.push(`<div class="cmp-bar-marker own" style="left:${friendPct}%;background:${ownColor};"></div>`);
+          if (predPct != null) markers.push(`<div class="cmp-bar-marker predicted" style="left:${predPct}%;"></div>`);
+          else markers.push(`<div class="cmp-bar-marker predicted skipped" style="left:50%;" title="Skipped"></div>`);
+          markers.push(`<div class="cmp-bar-marker actual" style="left:${userPct}%;"></div>`);
+
+          const row = document.createElement('div');
+          row.className = 'cmp-row';
+          row.innerHTML = `
+            <div class="cmp-name">${lab.name}</div>
+            <div class="cmp-bar-wrap">
+              <div class="cmp-bar-track">${markers.join('')}</div>
+              <div class="cmp-poles"><span>${lab.low1}</span><span>${lab.high5}</span></div>
+            </div>`;
+          block.appendChild(row);
+        });
+
+        // Categorical nodes in this cluster (currently only EPS/AES, both MEANS)
+        CAT.filter(n => nodeLabels[n] && nodeLabels[n].cluster === cluster).forEach(n => {
+          const u = userState.categorical[n];
+          const f = friendState.categorical[n];
+          if (!u) return;
+          const userTop = topCatName(u, n);
+          const friendTop = f ? topCatName(f, n) : null;
+          const predIsSkipped = skipped.has(n) || !preds[n];
+          const predTop = !predIsSkipped ? preds[n] : null;
+          const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '—';
+          const tags = [];
+          if (predTop) tags.push(`<span class="cmp-cat-tag predicted"><span class="cmp-cat-prefix">Predicted</span>${cap(predTop)}</span>`);
+          else tags.push(`<span class="cmp-cat-tag predicted skipped"><span class="cmp-cat-prefix">Predicted</span>Skipped</span>`);
+          tags.push(`<span class="cmp-cat-tag actual"><span class="cmp-cat-prefix">Actual</span>${cap(userTop)}</span>`);
+          if (friendTop) tags.push(`<span class="cmp-cat-tag own"><span class="cmp-cat-prefix">You</span>${cap(friendTop)}</span>`);
+          const row = document.createElement('div');
+          row.className = 'cmp-cat-row';
+          row.innerHTML = `
+            <div class="cmp-name">${nodeLabels[n].name || n}</div>
+            <div class="cmp-cat-tags">${tags.join('')}</div>`;
+          block.appendChild(row);
+        });
+
+        barsContainer.appendChild(block);
+      });
+
+      document.getElementById('comparison-section').style.display = 'block';
+    })();
+
+    // ========== SECTION 2: ELECTIONS ==========
+    const grid = document.getElementById('elections-grid');
+    let demCount = 0, repCount = 0, thirdCount = 0, otherCount = 0, abstainCount = 0;
+
+    // Per-election raw predictions (respondent-signature weighted Euclidean +
+    // era activation + non-ideological modifier). Populated by quiz-v2-live.html
+    // at quiz-end; absent for legacy sessions — hover degrades to no-op.
+    const rawPredsByYear = {};
+    try {
+      const rawStr = readPrismStorage('prism-election-raw');
+      let rawList = null;
+      if (rawStr) {
+        const parsed = JSON.parse(rawStr);
+        if (Array.isArray(parsed)) rawList = parsed;
+      }
+      // Fall through to archetype-fallback raw data when no respondent run.
+      if (!rawList && archetypeElectionsRaw) rawList = archetypeElectionsRaw;
+      if (rawList) {
+        rawList.forEach(p => { if (p && p.year != null) rawPredsByYear[p.year] = p; });
+      }
+    } catch(e) { /* hover silently disabled if parse fails */ }
+
+    function partyToUi(party) {
+      if (party === 'Democratic') return 'dem';
+      if (party === 'Republican') return 'rep';
+      if (party === 'Independent' || party === 'American Independent') return 'third';
+      return 'other';
+    }
+
+    // Top-3 elections by margin between first and second choice candidates.
+    // These are your most decisive votes — gold-outlined as "elections that
+    // define you." Single-candidate elections (1820 Monroe unopposed) excluded
+    // because margin is undefined.
+    function findDefiningElections(predsByYear) {
+      const candidates = [];
+      for (const [year, p] of Object.entries(predsByYear)) {
+        if (!p || !Array.isArray(p.candidates) || p.candidates.length < 2) continue;
+        const sorted = p.candidates.slice().sort((a, b) => a.distance - b.distance);
+        candidates.push({ year: +year, margin: sorted[1].distance - sorted[0].distance });
+      }
+      candidates.sort((a, b) => b.margin - a.margin);
+      return new Set(candidates.slice(0, 3).map(c => c.year));
+    }
+
+    // Vote-choice modifier reroutes — elections where the modeled decision is
+    // an actual vote AND the modeled ballot differs from the values-closest
+    // candidate. Modifiers can include party loyalty, strategic voting, and
+    // non-ideological election factors. Skips abstain years (no meaningful
+    // reroute when the decision is to not vote at all).
+    function findStrategicElections(predsByYear) {
+      const out = new Set();
+      for (const [year, p] of Object.entries(predsByYear)) {
+        if (!p || p.decision !== 'vote') continue;
+        if (!p.nearest || !p.nearestByValues) continue;
+        if (p.nearest.name !== p.nearestByValues.name) out.add(+year);
+      }
+      return out;
+    }
+
+    // US regime era you were most aligned with — uses the same personalized
+    // world-map alignment scores (v in [-3, 3], higher = closer fit) the map
+    // itself uses. Replaces the prior election-candidate-distance framing.
+    function findBestAlignedUsEra(alignmentsByCountry) {
+      const usEras = alignmentsByCountry && alignmentsByCountry['USA'];
+      if (!Array.isArray(usEras) || usEras.length === 0) return null;
+      let best = null;
+      for (const era of usEras) {
+        if (era == null || typeof era.v !== 'number') continue;
+        if (!best || era.v > best.v) best = era;
+      }
+      return best;
+    }
+
+    const definingYears = findDefiningElections(rawPredsByYear);
+    const strategicYears = findStrategicElections(rawPredsByYear);
+    const greatEra = findBestAlignedUsEra(alignments);
+
+    // v13: collect cell refs for the post-cascade emphasis pass; don't apply
+    // defining / strategic classes during initial render — they animate in
+    // after the row cascade completes.
+    const v13DefiningCells = [];
+    const v13StrategicCells = [];
+    elections.forEach(e => {
+      const cell = document.createElement('div');
+      cell.className = `election-cell ${e.p}`;
+      cell.dataset.year = e.y;
+      const photoUrl = getPhoto(e.c, e.y);
+      // Derive initial from last-name char: strip leading "X. " then uppercase first letter.
+      const initial = (e.c || '?').replace(/^[A-Z]\.\s*/, '').charAt(0).toUpperCase() || '?';
+      const photoInner = photoUrl
+        ? `<img src="${photoUrl}" alt="${e.c}" loading="lazy" onerror="this.style.display='none'"><span class="initial">${initial}</span>`
+        : `<span class="initial">${initial}</span>`;
+      if (e.p === 'abstain') {
+        cell.innerHTML = `<div class="cell-text"><span class="cell-name">Abstain</span><span class="cell-year">${e.y}</span></div>`;
+      } else {
+        cell.innerHTML = `<div class="pres-photo">${photoInner}</div><div class="cell-text"><span class="cell-name">${e.c}</span><span class="cell-year">${e.y}</span></div>`;
+      }
+      grid.appendChild(cell);
+      if (definingYears.has(e.y)) v13DefiningCells.push(cell);
+      if (strategicYears.has(e.y)) v13StrategicCells.push(cell);
+      if (e.p === 'dem') demCount++;
+      else if (e.p === 'rep') repCount++;
+      else if (e.p === 'third') thirdCount++;
+      else if (e.p === 'abstain') abstainCount++;
+      else otherCount++;
+    });
+
+    // Map-era alignment banner — surfaces the US regime era the respondent
+    // best fits, using the same v-score the world map renders. Hidden when no
+    // US era data is available (legacy session without respondent state +
+    // archetype-bucket alignments missing 'USA').
+    if (greatEra) {
+      const banner = document.getElementById('great-year-banner');
+      banner.innerHTML =
+        `<div class="gy-text">` +
+        `<div class="gy-headline">You are most aligned with the United States during <strong>${greatEra.r}</strong> (${greatEra.s}–${greatEra.e}).</div>` +
+        `</div>`;
+      banner.style.display = 'flex';
+    }
+
+    // Legend block under the elections grid — only render swatches for outline
+    // categories that actually have flagged elections.
+    (function renderElectionLegend() {
+      const legend = document.getElementById('election-legend');
+      const items = [];
+      if (definingYears.size > 0) {
+        items.push(`<span class="leg-item" title="largest margin between your first and second choice"><span class="leg-swatch defining"></span>The elections that define you</span>`);
+      }
+      if (strategicYears.size > 0) {
+        items.push(`<span class="leg-item" title="vote-choice modifiers (party loyalty, strategic voting, non-ideological factors) routed your ballot off your closest match by values"><span class="leg-swatch strategic"></span>Ballot differs from values match</span>`);
+      }
+      legend.innerHTML = items.join('');
+    })();
+
+    // Election hover tooltip — ranked candidate distances.
+    const eTooltip = document.getElementById('election-tooltip');
+    function showElectionTooltip(evt, year) {
+      const pred = rawPredsByYear[year];
+      if (!pred || !pred.candidates || pred.candidates.length === 0) return;
+      const ranked = pred.candidates.slice().sort((a, b) => a.distance - b.distance);
+      // Modeled ballot = pred.nearest (after vote-choice modifiers: party
+      // loyalty, strategic voting, non-ideological factors). Values match =
+      // pred.nearestByValues (raw weighted-Euclidean closest, no modifiers).
+      // We surface the reroute note only on actual-vote decisions where these
+      // differ — abstain years have no meaningful reroute.
+      const ballotName = pred.nearest ? pred.nearest.name : ranked[0].name;
+      const valuesName = pred.nearestByValues ? pred.nearestByValues.name : null;
+      const rerouted = pred.decision === 'vote' && valuesName && valuesName !== ballotName;
+      let html = `<div class="et-year">${year}</div>`;
+      html += `<div class="et-sub">Weighted Euclidean distance</div>`;
+      ranked.forEach(c => {
+        let cls = 'et-row';
+        let badge = '';
+        if (c.name === ballotName && c.name === valuesName) {
+          cls += ' chosen';
+        } else if (c.name === ballotName) {
+          cls += ' ballot';
+          badge = '<span class="et-badge ballot-badge">ballot</span>';
+        } else if (c.name === valuesName) {
+          cls += ' values';
+          badge = '<span class="et-badge values-badge">values</span>';
+        }
+        html += `<div class="${cls}"><span class="et-dot ${partyToUi(c.party)}"></span><span class="et-name">${c.name}${badge}</span><span class="et-dist">${c.distance.toFixed(2)}</span></div>`;
+      });
+      if (pred.clearingBar != null && pred.decision) {
+        const dcls = pred.decision === 'vote' ? 'vote' : 'abstain';
+        const verb = pred.decision === 'vote' ? 'Voted' : 'Abstained';
+        html += `<div class="et-footer"><span class="et-decision ${dcls}">${verb}</span> · clearing bar ${pred.clearingBar.toFixed(2)}</div>`;
+      }
+      if (rerouted) {
+        html += `<div class="et-rerouted">Closest by values: <strong>${valuesName}</strong>. Modeled ballot: <strong>${ballotName}</strong> after vote-choice modifiers. Modifiers can include party loyalty, strategic voting, and non-ideological election factors.</div>`;
+      }
+      eTooltip.innerHTML = html;
+      eTooltip.style.display = 'block';
+      positionElectionTooltip(evt);
+    }
+    function positionElectionTooltip(evt) {
+      const pad = 12;
+      const rect = eTooltip.getBoundingClientRect();
+      let x = evt.clientX + pad;
+      let y = evt.clientY + pad;
+      if (x + rect.width > window.innerWidth - pad) x = evt.clientX - rect.width - pad;
+      if (y + rect.height > window.innerHeight - pad) y = evt.clientY - rect.height - pad;
+      if (x < pad) x = pad;
+      if (y < pad) y = pad;
+      eTooltip.style.left = x + 'px';
+      eTooltip.style.top = y + 'px';
+    }
+    function hideElectionTooltip() { eTooltip.style.display = 'none'; }
+    grid.addEventListener('mousemove', ev => {
+      const cell = ev.target.closest('.election-cell');
+      if (!cell || !cell.dataset.year) { hideElectionTooltip(); return; }
+      showElectionTooltip(ev, +cell.dataset.year);
+    });
+    grid.addEventListener('mouseleave', hideElectionTooltip);
+
+    const thirdStr = thirdCount > 0 ? `, <span style="color:var(--third-gold);font-weight:600">Third Party ${thirdCount}</span>` : '';
+    const otherStr = otherCount > 0 ? `, Other ${otherCount}` : '';
+    const abstainStr = abstainCount > 0 ? `, <span style="color:#999;">Abstain ${abstainCount}</span>` : '';
+    document.getElementById('election-summary').innerHTML =
+      `Voted <span class="dem-count">Democrat ${demCount}</span> times, <span class="rep-count">Republican ${repCount}</span> times${thirdStr}${otherStr}${abstainStr}`;
+
+    // ========== SECTION 3: WORLD MAP ==========
+    const COLORS = { aligned: '#00D4FF', neutral: '#FFE135', opposed: '#FF6B6B', inactive: '#e5e5e5' };
+
+    // Legend
+    const lc = document.getElementById('legend-gradient').getContext('2d');
+    const lg = lc.createLinearGradient(0, 0, 120, 0);
+    lg.addColorStop(0, COLORS.opposed);
+    lg.addColorStop(0.5, COLORS.neutral);
+    lg.addColorStop(1, COLORS.aligned);
+    lc.fillStyle = lg;
+    lc.fillRect(0, 0, 120, 10);
+
+    const alignmentScale = d3.scaleLinear().domain([-3, 0, 3]).range([COLORS.opposed, COLORS.neutral, COLORS.aligned]).interpolate(d3.interpolateRgb);
+
+    // Build name-matching map from alignments data
+    const countryNames = Object.keys(alignments);
+    const nameMap = {};
+    countryNames.forEach(n => { nameMap[n.toLowerCase()] = n; });
+    // Common aliases
+    const aliases = {
+      'united states of america': 'United States', 'usa': 'United States',
+      'russian federation': 'Russia', 'great britain': 'United Kingdom',
+      'republic of korea': 'South Korea', 'korea, republic of': 'South Korea',
+      "democratic people's republic of korea": 'North Korea', 'korea, democratic people\'s republic of': 'North Korea',
+      'dprk': 'North Korea',
+      'iran, islamic republic of': 'Iran', 'turkiye': 'Turkey',
+      'taiwan, province of china': 'Taiwan', 'viet nam': 'Vietnam',
+      'm?ori': 'New Zealand', 'maori': 'New Zealand', 'māori': 'New Zealand',
+      'malaya': 'Malaysia', 'federated malay states': 'Malaysia',
+      'algiers': 'Algeria', 'tunis': 'Tunisia',
+      'tripolitania': 'Libya', 'cyrenaica': 'Libya', 'fezzan': 'Libya',
+      'asante': 'Ghana', 'gold coast': 'Ghana',
+      'hausa states': 'Nigeria', 'oyo': 'Nigeria', 'bornu-kanem': 'Nigeria',
+      'kongo': 'Dem. Rep. Congo', 'congo': 'Dem. Rep. Congo', 'luba': 'Dem. Rep. Congo', 'lunda': 'Dem. Rep. Congo',
+      'cochin china': 'Vietnam', 'đại việt': 'Vietnam', 'dai viet': 'Vietnam', 'annam': 'Vietnam',
+      'arakan': 'Myanmar', 'kandy': 'Sri Lanka', 'ceylon': 'Sri Lanka',
+      'mysore': 'India', 'carnatic': 'India', 'madras': 'India', 'british east india company': 'India',
+      'indian princely states': 'India', 'hyderabad': 'India', 'maratha': 'India', 'maratha confederacy': 'India',
+      'awadh': 'India', 'sikh empire': 'Pakistan', 'punjab': 'Pakistan',
+      'xhosa': 'South Africa', 'zulu': 'South Africa', 'sotho': 'South Africa',
+      'kingdom of the two sicilies': 'Italy', 'papal states': 'Italy', 'tuscany': 'Italy',
+      'venetia': 'Italy', 'parma': 'Italy', 'modena': 'Italy', 'lucca': 'Italy',
+      'massa': 'Italy', 'pontremoli': 'Italy', 'fivizzano': 'Italy',
+      'kingdom of sardinia': 'Italy', 'kingdom of italy': 'Italy',
+      'kingfom of italy': 'Italy', // typo in 1914 historical-basemaps geojson
+      'hanover': 'Germany', 'brunswick': 'Germany', 'oldenburg': 'Germany', 'hamburg': 'Germany',
+      'bremen': 'Germany', 'lübeck': 'Germany', 'lubeck': 'Germany', 'holstein': 'Germany',
+      'waldeck': 'Germany', 'lippe-detmold': 'Germany', 'schaumburg-lippe': 'Germany',
+      'hohenzollern': 'Germany', 'anhalt': 'Germany',
+      // Pre-unification / old-name aliases surfaced by the map-alias audit
+      // (results/calibration-exceptions/map-alias-audit-1776.md).
+      'prussia': 'Germany', 'kingdom of prussia': 'Germany', 'east prussia': 'Germany',
+      'east germany': 'Germany', 'west germany': 'Germany',
+      'qing empire': 'China', 'manchu empire': 'China', 'chinese empire': 'China',
+      'manchuria': 'China',
+      'russian empire': 'Russia', 'ussr': 'Russia', 'soviet union': 'Russia',
+      'ottoman empire': 'Turkey',
+      'austrian empire': 'Austria', 'austria-hungary': 'Austria',
+      'austro-hungarian empire': 'Austria',
+      'swiss confederation': 'Switzerland',
+      'empire of japan': 'Japan',
+      'french indo-china': 'Vietnam',
+      'united kingdom of great britain and ireland': 'United Kingdom',
+      'great britain and ireland': 'United Kingdom',
+      // v14: Confederate States of America (overlay during 1861-1865 only).
+      'confederate states': 'Confederate States of America',
+      'confederate states of america': 'Confederate States of America',
+      'csa': 'Confederate States of America',
+    };
+    Object.entries(aliases).forEach(([k, v]) => { if (alignments[v]) nameMap[k] = v; });
+    // Map alignment data names (with slashes) to TopoJSON names
+    const dataAliases = {
+      'Germany/Prussia': 'Germany', 'Russia/USSR': 'Russia',
+      'Austria/Austria-Hungary': 'Austria', 'Ottoman Empire/Turkey': 'Turkey',
+      'Czech/Czechoslovakia': 'Czech Republic', 'USA': 'United States',
+      'Korea': 'South Korea', 'Vietnam': 'Vietnam',
+    };
+    Object.entries(dataAliases).forEach(([dataName, mapName]) => {
+      if (alignments[dataName] && !alignments[mapName]) {
+        alignments[mapName] = alignments[dataName];
+        nameMap[mapName.toLowerCase()] = mapName;
+      }
+    });
+    Object.entries(aliases).forEach(([k, v]) => { if (alignments[v]) nameMap[k] = v; });
+
+    function matchCountry(name) {
+      if (!name) return null;
+      const lower = name.toLowerCase().trim();
+      const stripped = lower.replace(/\s*\([^)]*\)\s*/g, '').trim();
+      return nameMap[lower] || nameMap[stripped] || null;
+    }
+
+    // v15: civil-war pair definitions. When a slider year falls inside a
+    // pair's period, the country's map color is the blend of the two
+    // regimes' alignments and the tooltip shows both side-by-side.
+    // Generalizable — add more pairs (Russian Civil War, Spanish Civil
+    // War, etc.) as their partner regimes are wired into the data.
+    const CIVIL_WAR_PAIRS = [
+      {
+        primary: 'United States',           // jurisdiction shown on the map
+        partner: 'Confederate States of America',
+        primaryLabel: 'Union',
+        partnerLabel: 'Confederacy',
+        period: [1861, 1865],
+        badge: 'Civil War 1861–1865',
+      },
+      // Stub for future expansion (signatures need to be wired):
+      // {
+      //   primary: 'Russia', partner: 'White Russia (Civil War)',
+      //   primaryLabel: 'Bolshevik / Reds', partnerLabel: 'White Movement',
+      //   period: [1917, 1922], badge: 'Russian Civil War 1917–1922',
+      // },
+      // {
+      //   primary: 'Spain', partner: 'Nationalist Spain',
+      //   primaryLabel: 'Republic', partnerLabel: 'Nationalists',
+      //   period: [1936, 1939], badge: 'Spanish Civil War 1936–1939',
+      // },
+    ];
+    function getCivilWarPair(country, year) {
+      for (const p of CIVIL_WAR_PAIRS) {
+        if (p.primary === country && year >= p.period[0] && year <= p.period[1]) return p;
+      }
+      return null;
+    }
+
+    function getAlignmentRaw(country, year) {
+      const eras = alignments[country];
+      if (!eras) return null;
+      for (const era of eras) {
+        if (year >= era.s && year <= era.e) return era.v;
+      }
+      const last = eras[eras.length - 1];
+      if (last && year >= last.s && year <= (last.e || 2030)) return last.v;
+      return null;
+    }
+    function getAlignment(country, year) {
+      // v15: during a civil-war pair window, blend the two regimes' alignments.
+      const pair = getCivilWarPair(country, year);
+      if (pair) {
+        const v1 = getAlignmentRaw(country, year);
+        const v2 = getAlignmentRaw(pair.partner, year);
+        if (v1 !== null && v2 !== null) return (v1 + v2) / 2;
+      }
+      return getAlignmentRaw(country, year);
+    }
+
+    // Country ID → name (for TopoJSON)
+    const countryIdMap = {
+      4:'Afghanistan',36:'Australia',40:'Austria',56:'Belgium',76:'Brazil',124:'Canada',152:'Chile',156:'China',
+      158:'Taiwan',170:'Colombia',208:'Denmark',246:'Finland',250:'France',276:'Germany',300:'Greece',
+      356:'India',360:'Indonesia',364:'Iran',368:'Iraq',372:'Ireland',376:'Israel',380:'Italy',
+      392:'Japan',408:'North Korea',410:'South Korea',484:'Mexico',528:'Netherlands',554:'New Zealand',578:'Norway',
+      586:'Pakistan',604:'Peru',608:'Philippines',616:'Poland',620:'Portugal',643:'Russia',
+      682:'Saudi Arabia',710:'South Africa',724:'Spain',752:'Sweden',756:'Switzerland',764:'Thailand',
+      792:'Turkey',804:'Ukraine',826:'United Kingdom',840:'United States',862:'Venezuela',
+      32:'Argentina',818:'Egypt',566:'Nigeria',404:'Kenya',288:'Ghana',
+      100:'Bulgaria',642:'Romania',203:'Czech Republic',348:'Hungary',703:'Slovakia',
+      348:'Hungary',
+    };
+
+    let currentYear = 2026;
+    const svg = d3.select('#map');
+    const slider = document.getElementById('year-slider');
+    const yearDisp = document.getElementById('year-display');
+
+    // Historical basemap configuration — boundaries change with year slider
+    const availableMapYears = [1715, 1783, 1800, 1815, 1880, 1900, 1914, 1920, 1930, 1938, 1945, 1960, 1994, 2000, 2010];
+    const mapBaseUrl = 'https://raw.githubusercontent.com/aourednik/historical-basemaps/master/geojson/';
+    const modernMapUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+    const mapCache = {};
+    let currentMapYear = null;
+    let mapData = null;
+
+    function getClosestMapYear(year) {
+      // 1776–1782 special case: dataset's earliest map is 1715, which predates
+      // the First Polish Partition (1772) and US independence. Use the 1783
+      // basemap (post–Treaty of Paris) for this slice instead.
+      if (year >= 1776 && year < 1783) return 1783;
+      // 2010 (latest historical-basemaps geojson) for everything 2010+.
+      // The world-atlas 'modern' basemap was rejected: omits the Great Lakes
+      // and shows Crimea inside Russia. Stick with the 2010 boundaries for
+      // 2010–2026 (and beyond) so the map style is consistent across the
+      // recent slider range.
+      let closest = availableMapYears[0];
+      for (const my of availableMapYears) {
+        if (my <= year) closest = my;
+        else break;
+      }
+      return closest;
+    }
+
+    async function loadMapData(mapYear) {
+      if (mapCache[mapYear]) return mapCache[mapYear];
+      if (mapYear === 'modern') {
+        try {
+          const response = await fetch(modernMapUrl);
+          if (!response.ok) throw new Error('Failed to load modern map');
+          const topoData = await response.json();
+          const features = topojson.feature(topoData, topoData.objects.countries);
+          features.features.forEach(f => {
+            if (!f.properties) f.properties = {};
+            f.properties.NAME = countryIdMap[f.id] || f.properties.name || f.properties.NAME || '';
+          });
+          // world-atlas 110m includes overlapping Ukraine/Russia claims around Crimea.
+          // Draw Ukraine after Russia so internationally recognized Ukrainian Crimea wins visually.
+          features.features.sort((a, b) => modernFeatureDrawOrder(a) - modernFeatureDrawOrder(b));
+          mapCache[mapYear] = features;
+          return features;
+        } catch (err) {
+          console.error('Error loading modern map:', err);
+          return null;
+        }
+      }
+      try {
+        const url = `${mapBaseUrl}world_${mapYear}.geojson`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to load map for ${mapYear}`);
+        const data = await response.json();
+        mapCache[mapYear] = data;
+        return data;
+      } catch (err) {
+        console.error(`Error loading map for ${mapYear}:`, err);
+        const idx = availableMapYears.indexOf(mapYear);
+        if (idx > 0) return loadMapData(availableMapYears[idx - 1]);
+        return loadMapData('modern');
+      }
+    }
+
+    function getFeatureName(props) {
+      return props.NAME || props.name || props.ADMIN || '';
+    }
+
+    function getFeatureNameForYear(props, year) {
+      const name = getFeatureName(props);
+      const normalized = name.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').trim();
+      // historical-basemaps keeps Tibet separate in 1960; from the 1951 agreement onward
+      // the alignment map should resolve the polygon through China.
+      if (normalized === 'tibet' && year >= 1951) return 'China';
+      return name;
+    }
+
+    function modernFeatureDrawOrder(feature) {
+      const id = String(feature.id || '');
+      if (id === '643') return 10; // Russia
+      if (id === '804') return 20; // Ukraine, above Russia for Crimea overlap
+      return 0;
+    }
+
+    // Build regime lookup: regimesData has {country: {flag, eras: [{regime_name, start, end, description, key_figures, characteristics}]}}
+    const regimeLookup = {};
+    Object.entries(regimesData).forEach(([country, data]) => {
+      regimeLookup[country] = data;
+    });
+    // Add reverse aliases so "Germany" finds "Germany/Prussia" regimes etc.
+    Object.entries(dataAliases).forEach(([dataName, mapName]) => {
+      if (regimeLookup[dataName] && !regimeLookup[mapName]) regimeLookup[mapName] = regimeLookup[dataName];
+      if (regimeLookup[mapName] && !regimeLookup[dataName]) regimeLookup[dataName] = regimeLookup[mapName];
+    });
+    // v14: CSA metadata for the tooltip (CSA isn't in source regimes.json yet).
+    regimeLookup['Confederate States of America'] = {
+      flag: '',
+      eras: [{
+        regime_name: 'Confederate States',
+        start: 1861, end: 1865,
+        description: 'The 11 seceded states (AL, AR, FL, GA, LA, MS, NC, SC, TN, TX, VA) declared a separate constitutional union and waged total war from 1861–1865 to preserve race-based slave-economy capitalism. Defeated at Appomattox (April 1865); slavery abolished by the 13th Amendment (December 1865).',
+        key_figures: ['Jefferson Davis', 'Robert E. Lee', 'Alexander Stephens'],
+        characteristics: 'Slave-economy planter capitalism · states-rights legalism · total mobilization',
+      }],
+    };
+
+    function getEraInfo(country, year) {
+      // Get alignment era info
+      const eras = alignments[country];
+      if (!eras) return null;
+      let alignEra = null;
+      for (const era of eras) {
+        if (year >= era.s && year <= era.e) { alignEra = era; break; }
+      }
+      if (!alignEra) {
+        const last = eras[eras.length - 1];
+        if (last && year >= last.s && year <= (last.e || 2030)) alignEra = last;
+      }
+      if (!alignEra) return null;
+
+      // Find matching regime metadata from regimes.json
+      const countryData = regimeLookup[country] || {};
+      const regimeEras = countryData.eras || [];
+      const flag = countryData.flag || '';
+      const regime = regimeEras.find(r => r.regime_name === alignEra.r) || null;
+      // Attach flag to regime for tooltip
+      if (regime) regime.flag_emoji = flag;
+      return { era: alignEra, regime: regime || { regime_name: alignEra.r, flag_emoji: flag } };
+    }
+
+    const tooltip = document.getElementById('map-tooltip');
+
+    function scoreWordFor(s) {
+      return s > 1.5 ? 'Strongly Aligned' : s > 0.5 ? 'Aligned' : s > -0.5 ? 'Neutral' : s > -1.5 ? 'Opposed' : 'Strongly Opposed';
+    }
+
+    function showTooltip(evt, country, year) {
+      const pair = getCivilWarPair(country, year);
+      if (pair) {
+        // v15: dual-regime panel for civil-war years.
+        const primaryInfo = getEraInfo(country, year);
+        const partnerInfo = getEraInfo(pair.partner, year);
+        if (!primaryInfo) return;
+        const v1 = primaryInfo.era.v;
+        const v2 = partnerInfo ? partnerInfo.era.v : null;
+        const blendV = v2 !== null ? (v1 + v2) / 2 : v1;
+        const blendColor = alignmentScale(blendV);
+        const c1 = alignmentScale(v1);
+        const c2 = v2 !== null ? alignmentScale(v2) : '#888';
+
+        let html = `<div class="tt-header">`;
+        if (primaryInfo.regime && primaryInfo.regime.flag_emoji) html += `<span class="tt-flag">${primaryInfo.regime.flag_emoji}</span>`;
+        html += `<span class="tt-country">${country}</span><span class="tt-cw-badge">${pair.badge}</span></div>`;
+        html += `<div class="tt-cw-pair">`;
+        html += `<div class="tt-cw-side union"><div class="tt-cw-side-label">${pair.primaryLabel}</div>`;
+        html += `<div class="tt-regime">${primaryInfo.regime?.regime_name || primaryInfo.era.r}</div>`;
+        html += `<div class="tt-dates">${primaryInfo.era.s}–${primaryInfo.era.e}</div>`;
+        html += `<div class="tt-cw-score"><span class="tt-cw-score-dot" style="background:${c1};"></span><span style="color:${c1};">${v1 > 0 ? '+' : ''}${v1.toFixed(1)}</span> <span>${scoreWordFor(v1)}</span></div>`;
+        html += `</div>`;
+        html += `<div class="tt-cw-side partner"><div class="tt-cw-side-label">${pair.partnerLabel}</div>`;
+        if (partnerInfo) {
+          html += `<div class="tt-regime">${partnerInfo.regime?.regime_name || partnerInfo.era.r}</div>`;
+          html += `<div class="tt-dates">${partnerInfo.era.s}–${partnerInfo.era.e}</div>`;
+          html += `<div class="tt-cw-score"><span class="tt-cw-score-dot" style="background:${c2};"></span><span style="color:${c2};">${v2 > 0 ? '+' : ''}${v2.toFixed(1)}</span> <span>${scoreWordFor(v2)}</span></div>`;
+        } else {
+          html += `<div class="tt-regime" style="color:#888;">— no partner data —</div>`;
+        }
+        html += `</div></div>`;
+        html += `<div class="tt-cw-blend">Map color blends both: <strong style="color:${blendColor};">${blendV > 0 ? '+' : ''}${blendV.toFixed(1)}</strong> ${scoreWordFor(blendV)}</div>`;
+        if (primaryInfo.regime && primaryInfo.regime.description) html += `<div class="tt-desc" style="margin-top:0.4rem;"><strong>${pair.primaryLabel}:</strong> ${primaryInfo.regime.description}</div>`;
+        if (partnerInfo && partnerInfo.regime && partnerInfo.regime.description) html += `<div class="tt-desc"><strong>${pair.partnerLabel}:</strong> ${partnerInfo.regime.description}</div>`;
+
+        tooltip.innerHTML = html;
+        tooltip.style.display = 'block';
+        positionTooltip(evt);
+        return;
+      }
+
+      const info = getEraInfo(country, year);
+      if (!info) return;
+      const { era, regime } = info;
+      const score = era.v;
+      const scoreColor = alignmentScale(score);
+      const scoreWord = scoreWordFor(score);
+
+      let html = `<div class="tt-header">`;
+      if (regime && regime.flag_emoji) html += `<span class="tt-flag">${regime.flag_emoji}</span>`;
+      html += `<span class="tt-country">${country}</span></div>`;
+      html += `<div class="tt-regime">${regime?.regime_name || era.r}</div>`;
+      html += `<div class="tt-dates">${era.s}–${era.e}</div>`;
+      if (regime && regime.description) html += `<div class="tt-desc">${regime.description}</div>`;
+      html += `<div class="tt-score"><span class="tt-score-dot" style="background:${scoreColor};"></span><span class="tt-score-label" style="color:${scoreColor};">${score > 0 ? '+' : ''}${score.toFixed(1)}</span> <span>${scoreWord}</span></div>`;
+      if (regime && regime.key_figures && regime.key_figures.length) html += `<div class="tt-figures">Key figures: ${regime.key_figures.join(', ')}</div>`;
+      if (regime && regime.characteristics) html += `<div class="tt-chars">${regime.characteristics}</div>`;
+
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      positionTooltip(evt);
+    }
+
+    function positionTooltip(evt) {
+      const tt = tooltip;
+      const pad = 12;
+      let x = evt.clientX + pad;
+      let y = evt.clientY + pad;
+      // Clamp to viewport
+      const rect = tt.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      if (x + rect.width > vw - pad) x = evt.clientX - rect.width - pad;
+      if (y + rect.height > vh - pad) y = evt.clientY - rect.height - pad;
+      if (x < pad) x = pad;
+      if (y < pad) y = pad;
+      tt.style.left = x + 'px';
+      tt.style.top = y + 'px';
+    }
+
+    function hideTooltip() { tooltip.style.display = 'none'; }
+
+    async function drawMap() {
+      const neededMapYear = getClosestMapYear(currentYear);
+      if (neededMapYear !== currentMapYear || !mapData) {
+        currentMapYear = neededMapYear;
+        mapData = await loadMapData(neededMapYear);
+      }
+      if (!mapData) return;
+
+      const container = document.getElementById('map-container');
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      svg.attr('viewBox', `0 0 ${w} ${h}`);
+      const proj = d3.geoNaturalEarth1().scale(w / 6).translate([w / 2, h / 2]);
+      const path = d3.geoPath().projection(proj);
+      svg.selectAll('path').remove();
+      svg.selectAll('path')
+        .data(mapData.features)
+        .enter().append('path')
+        .attr('class', d => {
+          const m = matchCountry(getFeatureNameForYear(d.properties, currentYear));
+          return 'country ' + (m ? 'active' : 'inactive');
+        })
+        .attr('d', path)
+        .attr('fill', d => {
+          const m = matchCountry(getFeatureNameForYear(d.properties, currentYear));
+          if (!m) return COLORS.inactive;
+          const a = getAlignment(m, currentYear);
+          return a !== null ? alignmentScale(a) : COLORS.inactive;
+        })
+        .on('mousemove', function(evt, d) {
+          const m = matchCountry(getFeatureNameForYear(d.properties, currentYear));
+          if (m) showTooltip(evt, m, currentYear);
+        })
+        .on('mouseleave', hideTooltip);
+    }
+
+    window.addEventListener('resize', drawMap);
+    slider.addEventListener('input', function() {
+      currentYear = +this.value;
+      yearDisp.textContent = currentYear;
+      drawMap();
+    });
+
+    // ========== MORAL CIRCLE SUNBURST (PROTOTYPE) ==========
+    // 7 categories. Each carries (position 0–100, salience 0–3). 50% ring is
+    // the in-group/out-group boundary; wedges past it are "in", within are "out".
+    // Saturation = salience.
+    const MORAL_CIRCLE_CATEGORIES = [
+      { key: 'national',        label: 'National',        color: '#cc7722' },
+      { key: 'ethnic_racial',   label: 'Ethnic / Racial', color: '#b8002b' },
+      { key: 'religious',       label: 'Religious',       color: '#daa520' },
+      { key: 'class',           label: 'Class',           color: '#2e8b57' },
+      { key: 'ideological',     label: 'Ideological',     color: '#3d8b8b' },
+      { key: 'gender',          label: 'Gender',          color: '#fa8072' },
+      { key: 'political_tribe', label: 'Political Tribe', color: '#6A0DAD' },
+    ];
+    // 'universal' is a separate dimension from the 7 segments — the baseline
+    // moral concern for human beings as such, regardless of in-group category.
+    // Wedges extending past this ring represent in-group preference / bias
+    // for that specific segment beyond the universal baseline.
+    const MORAL_CIRCLE_SAMPLES = {
+      '056': { universal:70, engagement:4, national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.4}, gender:{position:85,salience:1.8}, political_tribe:{position:30,salience:2.6} },
+      '011': { universal:60, engagement:5, national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:20,salience:3.0}, gender:{position:90,salience:2.4}, political_tribe:{position:80,salience:2.8} },
+      '088': { universal:45, engagement:2, national:{position:80,salience:2.4}, ethnic_racial:{position:55,salience:1.4}, religious:{position:75,salience:2.0}, class:{position:50,salience:0.8}, ideological:{position:50,salience:0.4}, gender:{position:45,salience:0.6}, political_tribe:{position:50,salience:0.6} },
+      '001': { universal:80, engagement:4, national:{position:55,salience:0.6}, ethnic_racial:{position:85,salience:1.6}, religious:{position:60,salience:0.4}, class:{position:70,salience:1.0}, ideological:{position:40,salience:1.8}, gender:{position:90,salience:1.4}, political_tribe:{position:35,salience:2.0} },
+    };
+    const MORAL_CIRCLE_DEFAULT = { universal:55, engagement:3, national:{position:50,salience:1.0}, ethnic_racial:{position:65,salience:1.2}, religious:{position:50,salience:0.8}, class:{position:55,salience:1.0}, ideological:{position:45,salience:1.4}, gender:{position:70,salience:1.0}, political_tribe:{position:40,salience:1.5} };
+
+    // v4: 3-axis cluster radar — collapses MAT/CD/CU (ENDS) or PRO/COM/ONT_S
+    // (MEANS) into a single triangular polygon. Position on each axis is
+    // (pos-1)/4 * radius. Salience drives axis-marker size. Optional fillColor
+    // overrides the polygon color (used by MEANS to show AES top category).
+    const AES_PALETTE = {
+      0: '#2c3e50', // statesman
+      1: '#5a7d99', // technocrat
+      2: '#8a9870', // pastoral
+      3: '#8a6d3b', // plainspoken
+      4: '#b8002b', // fighter
+      5: '#6A0DAD', // visionary
+    };
+    function getNodePosSal(code) {
+      const arcNode = archetype.nodes ? archetype.nodes[code] : null;
+      const respCont = respondentState && respondentState.continuous ? respondentState.continuous[code] : null;
+      if (respCont) return { pos: respCont.expectedPos, sal: respCont.salience };
+      if (arcNode) return { pos: arcNode.pos, sal: arcNode.sal || 0 };
+      return null;
+    }
+    function renderClusterRadar(axes, options) {
+      // axes: [{code, label, low, high}]
+      // options: { color, fillColor, size }
+      const { color = '#1a1a1a', fillColor, size = 360 } = options || {};
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('class', 'cluster-radar-svg');
+      const half = size / 2;
+      const PAD = 70; // room for axis labels
+      svg.setAttribute('viewBox', `${-half - PAD} ${-half - PAD} ${size + PAD * 2} ${size + PAD * 2}`);
+      svg.setAttribute('width', size + PAD * 2);
+      svg.setAttribute('height', size + PAD * 2);
+
+      const N = axes.length;
+      const TWO_PI = Math.PI * 2;
+      const STEP = TWO_PI / N;
+      const maxR = half - 8;
+      const angleAt = i => -Math.PI / 2 + i * STEP;
+      const polar = (r, a) => ({ x: r * Math.cos(a), y: r * Math.sin(a) });
+
+      // Reference rings at 25/50/75/100% of axis range.
+      [0.25, 0.5, 0.75, 1.0].forEach(p => {
+        // Build a polygon at fraction p of the radius — looks cleaner than circles
+        // for small N.
+        const points = [];
+        for (let i = 0; i < N; i++) {
+          const pp = polar(maxR * p, angleAt(i));
+          points.push(`${pp.x.toFixed(2)},${pp.y.toFixed(2)}`);
+        }
+        const poly = document.createElementNS(ns, 'polygon');
+        poly.setAttribute('points', points.join(' '));
+        poly.setAttribute('fill', 'none');
+        poly.setAttribute('stroke', '#1a1a1a');
+        poly.setAttribute('stroke-width', p === 0.5 ? 1 : 0.5);
+        poly.setAttribute('stroke-dasharray', p === 0.5 ? '3 3' : '');
+        poly.setAttribute('opacity', p === 0.5 ? 0.5 : 0.16);
+        svg.appendChild(poly);
+      });
+
+      // Axis spokes from center to outer.
+      for (let i = 0; i < N; i++) {
+        const tip = polar(maxR, angleAt(i));
+        const line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+        line.setAttribute('x2', tip.x.toFixed(2)); line.setAttribute('y2', tip.y.toFixed(2));
+        line.setAttribute('stroke', '#1a1a1a');
+        line.setAttribute('stroke-width', 0.5);
+        line.setAttribute('opacity', 0.3);
+        svg.appendChild(line);
+      }
+
+      // Polygon connecting position values.
+      const vertexPoints = [];
+      const vertexData = [];
+      axes.forEach((ax, i) => {
+        const data = getNodePosSal(ax.code) || { pos: 3, sal: 0 };
+        const t = (data.pos - 1) / 4; // 0..1
+        const r = maxR * t;
+        const p = polar(r, angleAt(i));
+        vertexPoints.push(`${p.x.toFixed(2)},${p.y.toFixed(2)}`);
+        vertexData.push({ ax, t, r, p, sal: data.sal, pos: data.pos });
+      });
+      const poly = document.createElementNS(ns, 'polygon');
+      poly.setAttribute('points', vertexPoints.join(' '));
+      poly.setAttribute('fill', fillColor || color);
+      poly.setAttribute('fill-opacity', 0.28);
+      poly.setAttribute('stroke', fillColor || color);
+      poly.setAttribute('stroke-width', 1.6);
+      poly.setAttribute('stroke-opacity', 0.9);
+      svg.appendChild(poly);
+
+      // Vertex dots — size by salience.
+      vertexData.forEach(v => {
+        const dotR = 3 + Math.min(3, v.sal) * 2.2;
+        const dot = document.createElementNS(ns, 'circle');
+        dot.setAttribute('cx', v.p.x.toFixed(2));
+        dot.setAttribute('cy', v.p.y.toFixed(2));
+        dot.setAttribute('r', dotR.toFixed(2));
+        dot.setAttribute('fill', fillColor || color);
+        dot.setAttribute('stroke', '#fff');
+        dot.setAttribute('stroke-width', 1.2);
+        const dotTitle = document.createElementNS(ns, 'title');
+        dotTitle.textContent = `${v.ax.label}: ${v.pos.toFixed(1)} / 5 · salience ${v.sal.toFixed(2)} / 3`;
+        dot.appendChild(dotTitle);
+        svg.appendChild(dot);
+      });
+
+      // Axis label + pole hints.
+      vertexData.forEach((v, i) => {
+        const ang = angleAt(i);
+        const labelP = polar(maxR + 22, ang);
+        let anchor = 'middle';
+        if (labelP.x > 30) anchor = 'start';
+        else if (labelP.x < -30) anchor = 'end';
+        const dy = Math.sin(ang) > 0.4 ? 12 : Math.sin(ang) < -0.4 ? -2 : 4;
+
+        const labelEl = document.createElementNS(ns, 'text');
+        labelEl.setAttribute('x', labelP.x.toFixed(2));
+        labelEl.setAttribute('y', labelP.y.toFixed(2));
+        labelEl.setAttribute('class', 'cluster-radar-axis-label');
+        labelEl.setAttribute('text-anchor', anchor);
+        labelEl.setAttribute('dy', dy);
+        labelEl.textContent = v.ax.label;
+        svg.appendChild(labelEl);
+
+        const poleEl = document.createElementNS(ns, 'text');
+        poleEl.setAttribute('x', labelP.x.toFixed(2));
+        poleEl.setAttribute('y', labelP.y.toFixed(2));
+        poleEl.setAttribute('class', 'cluster-radar-pole-label');
+        poleEl.setAttribute('text-anchor', anchor);
+        poleEl.setAttribute('dy', dy + 12);
+        // Show the closer pole's hint based on which side of the axis the
+        // respondent sits (>0.5 toward high pole, <0.5 toward low).
+        poleEl.textContent = v.t >= 0.5 ? `→ ${v.ax.high}` : `→ ${v.ax.low}`;
+        svg.appendChild(poleEl);
+      });
+
+      return svg;
+    }
+
+    // v3: Horizontal stacked probability stripe for categorical nodes (EPS/AES).
+    // Each of the 6 categories is a colored segment whose width = probability;
+    // saturation gradient lets the modal category read as the dominant color.
+    // Visually distinct from the MOR sunburst grammar.
+    const CAT_PALETTE = ['#cc7722', '#b8002b', '#daa520', '#2e8b57', '#3d8b8b', '#6A0DAD'];
+    function renderCatStripe(probs, sortedTopIdx) {
+      const wrap = document.createElement('div');
+      wrap.className = 'cat-stripe-bar';
+      probs.forEach((p, i) => {
+        if (p <= 0) return;
+        const seg = document.createElement('div');
+        seg.className = 'cat-stripe-segment';
+        seg.style.width = `${(p * 100).toFixed(2)}%`;
+        seg.style.background = CAT_PALETTE[i % CAT_PALETTE.length];
+        seg.style.opacity = (i === sortedTopIdx ? 1 : 0.65).toFixed(2);
+        seg.title = `${(p * 100).toFixed(1)}%`;
+        wrap.appendChild(seg);
+      });
+      return wrap;
+    }
+
+    function renderMoralCircleSunburst(archId) {
+      const data = MORAL_CIRCLE_SAMPLES[archId] || MORAL_CIRCLE_DEFAULT;
+      const wrap = document.createElement('div');
+      wrap.className = 'moral-circle-section';
+
+      const title = document.createElement('div');
+      title.className = 'moral-circle-title';
+      title.textContent = 'Moral Circle';
+      wrap.appendChild(title);
+
+      const universalPct = (data.universal != null ? data.universal : MORAL_CIRCLE_DEFAULT.universal);
+      const tagline = document.createElement('div');
+      tagline.className = 'moral-circle-tagline';
+      tagline.innerHTML = `In-group inclusion across seven boundaries. The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${universalPct}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
+      wrap.appendChild(tagline);
+
+      const svgWrap = document.createElement('div');
+      svgWrap.className = 'moral-circle-svg-wrap';
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('viewBox', '-260 -240 520 480');
+      svg.setAttribute('width', '480');
+      svg.setAttribute('height', '440');
+      svg.setAttribute('xmlns', ns);
+
+      const N = MORAL_CIRCLE_CATEGORIES.length;
+      const TWO_PI = Math.PI * 2;
+      const ANGLE_STEP = TWO_PI / N;
+      const R50 = 105;
+      const OUTER = 210;
+      function angleForIndex(i) { return -Math.PI / 2 + i * ANGLE_STEP; }
+      function polar(r, theta) { return { x: r * Math.cos(theta), y: r * Math.sin(theta) }; }
+      function salToOpacity(sal) { return 0.18 + (Math.min(3, Math.max(0, sal)) / 3) * 0.77; }
+
+      [0.25, 0.5, 0.75, 1.0].forEach(p => {
+        const r = R50 * (p / 0.5);
+        const c = document.createElementNS(ns, 'circle');
+        c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+        c.setAttribute('fill', 'none');
+        if (p === 0.5) {
+          c.setAttribute('stroke', '#1a1a1a');
+          c.setAttribute('stroke-width', 1);
+          c.setAttribute('stroke-dasharray', '3 3');
+          c.setAttribute('opacity', 0.5);
+        } else {
+          c.setAttribute('stroke', '#1a1a1a');
+          c.setAttribute('stroke-width', 0.5);
+          c.setAttribute('opacity', 0.16);
+        }
+        svg.appendChild(c);
+      });
+
+      for (let i = 0; i < N; i++) {
+        const a = angleForIndex(i) - ANGLE_STEP / 2;
+        const p = polar(OUTER * 0.97, a);
+        const line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+        line.setAttribute('x2', p.x.toFixed(2)); line.setAttribute('y2', p.y.toFixed(2));
+        line.setAttribute('stroke', '#1a1a1a'); line.setAttribute('stroke-width', 0.5); line.setAttribute('opacity', 0.25);
+        svg.appendChild(line);
+      }
+
+      MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
+        const d = data[cat.key];
+        const angCenter = angleForIndex(i);
+        const angStart = angCenter - ANGLE_STEP / 2;
+        const angEnd = angCenter + ANGLE_STEP / 2;
+        const r = (d.position / 50) * R50;
+        const p1 = polar(r, angStart);
+        const p2 = polar(r, angEnd);
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d',
+          `M 0 0 L ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} ` +
+          `A ${r.toFixed(2)} ${r.toFixed(2)} 0 0 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)} Z`);
+        path.setAttribute('fill', cat.color);
+        path.setAttribute('fill-opacity', salToOpacity(d.salience));
+        path.setAttribute('stroke', cat.color);
+        path.setAttribute('stroke-width', 1);
+        path.setAttribute('stroke-opacity', 0.85);
+        svg.appendChild(path);
+      });
+
+      const ring = document.createElementNS(ns, 'circle');
+      ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
+      ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#1a1a1a');
+      ring.setAttribute('stroke-width', 1); ring.setAttribute('stroke-dasharray', '3 3'); ring.setAttribute('opacity', 0.55);
+      svg.appendChild(ring);
+
+      // Universal love ring — solid outline at the universal-baseline radius.
+      // Wedges sticking past it = in-group preference / bias for that segment.
+      const universalR = (universalPct / 50) * R50;
+      const uRing = document.createElementNS(ns, 'circle');
+      uRing.setAttribute('cx', 0); uRing.setAttribute('cy', 0); uRing.setAttribute('r', universalR.toFixed(2));
+      uRing.setAttribute('fill', 'none');
+      uRing.setAttribute('stroke', '#1a1a1a');
+      uRing.setAttribute('stroke-width', 2);
+      uRing.setAttribute('opacity', 0.85);
+      svg.appendChild(uRing);
+
+      // Small "universal · NN%" label on the universal ring,
+      // positioned just above the top of the ring so it sits on the outline.
+      const uLabel = document.createElementNS(ns, 'text');
+      uLabel.setAttribute('x', 0);
+      uLabel.setAttribute('y', (-universalR + 2).toFixed(2));
+      uLabel.setAttribute('font-family', "'Space Grotesk', sans-serif");
+      uLabel.setAttribute('font-size', '10');
+      uLabel.setAttribute('font-weight', '600');
+      uLabel.setAttribute('fill', '#1a1a1a');
+      uLabel.setAttribute('text-anchor', 'middle');
+      // Background rect for legibility — drawn first.
+      const uLabelBg = document.createElementNS(ns, 'rect');
+      const labelText = `universal · ${universalPct}%`;
+      const approxW = labelText.length * 5.6;
+      uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
+      uLabelBg.setAttribute('y', (-universalR - 8).toFixed(2));
+      uLabelBg.setAttribute('width', (approxW + 8).toFixed(2));
+      uLabelBg.setAttribute('height', '12');
+      uLabelBg.setAttribute('fill', 'var(--cream, #FFFEF8)');
+      uLabelBg.setAttribute('opacity', '0.95');
+      svg.appendChild(uLabelBg);
+      uLabel.textContent = labelText;
+      svg.appendChild(uLabel);
+
+      // Labels — Space Grotesk to match the live profile section.
+      MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
+        const d = data[cat.key];
+        const ang = angleForIndex(i);
+        const labelR = OUTER + 18;
+        const lp = polar(labelR, ang);
+        let anchor = 'middle';
+        if (lp.x > 30) anchor = 'start';
+        else if (lp.x < -30) anchor = 'end';
+        const dy = Math.sin(ang) > 0.4 ? 12 : Math.sin(ang) < -0.4 ? -2 : 4;
+
+        const t = document.createElementNS(ns, 'text');
+        t.setAttribute('x', lp.x.toFixed(2));
+        t.setAttribute('y', lp.y.toFixed(2));
+        t.setAttribute('font-family', "'Space Grotesk', sans-serif");
+        t.setAttribute('font-size', '12');
+        t.setAttribute('font-weight', '600');
+        t.setAttribute('fill', '#1a1a1a');
+        t.setAttribute('text-anchor', anchor);
+        t.setAttribute('dy', dy);
+        t.textContent = cat.label;
+        svg.appendChild(t);
+
+        const pct = document.createElementNS(ns, 'text');
+        pct.setAttribute('x', lp.x.toFixed(2));
+        pct.setAttribute('y', lp.y.toFixed(2));
+        pct.setAttribute('font-family', "'IBM Plex Mono', monospace");
+        pct.setAttribute('font-size', '10');
+        pct.setAttribute('font-weight', '600');
+        pct.setAttribute('fill', cat.color);
+        pct.setAttribute('text-anchor', anchor);
+        pct.setAttribute('dy', dy + 13);
+        pct.textContent = d.position + '%';
+        svg.appendChild(pct);
+      });
+
+      svgWrap.appendChild(svg);
+      wrap.appendChild(svgWrap);
+
+      // (Legend below — built in caller.)
+      const legend = document.createElement('div');
+      legend.className = 'moral-circle-legend';
+      MORAL_CIRCLE_CATEGORIES.forEach(cat => {
+        const d = data[cat.key];
+        const span = document.createElement('span');
+        span.className = 'leg';
+        span.title = `Salience ${d.salience.toFixed(1)} / 3 · Position ${d.position}%`;
+        span.innerHTML = `<span class="swatch" style="background:${cat.color};opacity:${salToOpacity(d.salience).toFixed(2)};"></span>${cat.label}<span class="leg-pos">${d.position}%</span>`;
+        legend.appendChild(span);
+      });
+      wrap.appendChild(legend);
+
+      return wrap;
+    }
+
+    // ========== SECTION 4: NODE PROFILE ==========
+    // PROTOTYPE: cluster reorg — MOR moved to SELF as 7-category sunburst,
+    // PF/TRB collapsed into MOR.salience, ONT_S to MEANS, EPS to REALITY.
+    const nodeData = {};
+    // v4: ENDS (MAT, CD, CU) and MEANS (PRO, COM, ONT_S) are collapsed into
+    // 3-axis cluster radars instead of bar rows. REALITY (ZS, ONT_H) keeps
+    // its bars. ENG lives in the page-header badge per v3.
+    const continuousNodes = ['ZS','ONT_H'];
+    const SELF_CODES = [];
+    // 50% interquartile bands now appear on every continuous node.
+    const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','SELF']);
+
+    // 50% credible interval (interquartile, 25%–75%) from a 5-bucket pmf.
+    function posDistQuantiles(posDist) {
+      const anchors = [{ x: 0.5, F: 0 }];
+      let cum = 0;
+      for (let i = 0; i < 5; i++) {
+        cum += posDist[i] || 0;
+        anchors.push({ x: i + 1.5, F: cum });
+      }
+      const quant = q => {
+        for (let i = 0; i < anchors.length - 1; i++) {
+          if (anchors[i + 1].F >= q) {
+            const dF = anchors[i + 1].F - anchors[i].F;
+            if (dF === 0) return anchors[i].x;
+            return anchors[i].x + (q - anchors[i].F) / dF;
+          }
+        }
+        return anchors[anchors.length - 1].x;
+      };
+      return [Math.max(1, quant(0.25)), Math.min(5, quant(0.75))];
+    }
+
+    continuousNodes.forEach(code => {
+      const arcNode = archetype.nodes[code];
+      const respCont = respondentState && respondentState.continuous ? respondentState.continuous[code] : null;
+      // ADR-002: ENG was migrated out of archetype signatures (lives in
+      // engagementLabel module instead). For demo / archetype-fallback runs
+      // without respondent state, skip nodes the archetype doesn't carry.
+      if (!arcNode && !respCont) return;
+      const isSelf = SELF_CODES.includes(code);
+      let pos, sal;
+      if (respCont) {
+        pos = respCont.expectedPos;
+        // SELF nodes: derive sal from pos directly (they're the same axis).
+        // Non-SELF: use tracked salience.
+        sal = isSelf ? (pos - 1) / 4 : respCont.salience / 3;
+      } else {
+        pos = arcNode.pos;
+        sal = isSelf ? (pos - 1) / 4 : (arcNode.sal || 0) / 3;
+      }
+      const pos10 = (pos - 1) * 2.25 + 1;
+      // 50% interquartile band on the 1–10 display scale. For respondent runs
+      // we have a real posDist; for archetype-centroid demos, synthesize a
+      // narrow Gaussian-like pmf around the centroid pos so the polka-dot band
+      // still appears (illustrative, not statistically meaningful).
+      let posDist = null;
+      if (respCont && Array.isArray(respCont.posDist) && respCont.posDist.length === 5) {
+        posDist = respCont.posDist;
+      } else {
+        const center = Math.max(1, Math.min(5, pos));
+        const width = 0.6 - 0.25 * Math.min(1, sal);
+        posDist = [0,0,0,0,0];
+        for (let i = 0; i < 5; i++) {
+          posDist[i] = Math.exp(-Math.pow((i + 1) - center, 2) / (2 * width * width));
+        }
+        const total = posDist.reduce((s, v) => s + v, 0);
+        posDist = posDist.map(v => v / total);
+      }
+      const [lo5, hi5] = posDistQuantiles(posDist);
+      const ci10 = [(lo5 - 1) * 2.25 + 1, (hi5 - 1) * 2.25 + 1];
+      nodeData[code] = { pos10, sal, cluster: nodeLabels[code].cluster, isSelf, ci10 };
+    });
+
+    // Flip: dominant side always on right — but skip flipping for SELF nodes,
+    // where the scale is activation level (low = tuned out, high = all in), not
+    // a political-direction polarity.
+    const displayNodes = continuousNodes.map(code => {
+      const nd = nodeData[code];
+      if (!nd) return null;
+      const nl = nodeLabels[code];
+      let pos = nd.pos10;
+      let ci = nd.ci10;
+      let low = nl.low1;
+      let high = nl.high5;
+      if (!nd.isSelf && pos < 5.5) {
+        pos = 11 - pos;
+        if (ci) ci = [11 - ci[1], 11 - ci[0]];
+        const tmp = low; low = high; high = tmp;
+      }
+      return { code, name: nl.name, pos, sal: nd.sal, low, high, cluster: nl.cluster, isSelf: nd.isSelf, ci };
+    }).filter(Boolean);
+
+    // v10: each cluster's content lives in its own .cluster-panel; the donut
+    // overview at the top of the profile section toggles which panel is visible.
+    const clusterDrill = document.getElementById('cluster-drill');
+    const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'SELF'];
+    const clusterPanels = {};
+
+    clusterOrder.forEach(clusterName => {
+      const clusterDims = displayNodes.filter(d => d.cluster === clusterName).sort((a, b) => b.sal - a.sal);
+      // v4: ENDS, MEANS, SELF render via custom paths (cluster radar, cluster
+      // radar with AES color, MOR sunburst respectively) — allow them through
+      // even when they have no continuous-bar rows.
+      const NEVER_SKIP = new Set(['ENDS','MEANS','SELF']);
+      if (clusterDims.length === 0 && !NEVER_SKIP.has(clusterName)) return;
+
+      const block = document.createElement('div');
+      block.className = 'node-cluster';
+      block.innerHTML = `<div class="cluster-title" style="border-bottom-color:${clusterColors[clusterName]};"><span style="color:var(--ink);">${clusterLabels[clusterName]}</span></div>`;
+
+      clusterDims.forEach(d => {
+        const pct = ((d.pos - 1) / 9) * 100;
+        const color = clusterColors[d.cluster];
+        // SELF nodes (PF/TRB/ENG) are one-dimensional per ADR-005 — position IS
+        // activation. Use a fixed bar height so height doesn't redundantly encode
+        // the same signal that width already encodes; keep row opacity at full.
+        // Non-SELF: height scales with salience, opacity fades with low salience.
+        const isSelf = d.isSelf;
+        const barH = isSelf ? 18 : Math.round(d.sal * 32);
+        const row = document.createElement('div');
+        row.className = 'node-row';
+        row.style.opacity = isSelf ? 1 : (0.65 + d.sal * 0.35);
+        row.style.gridTemplateColumns = '170px 1fr 50px';
+
+        // Tooltip shown on hover: engine-scale salience (0-3) and a word label.
+        // SELF nodes are activation-only per ADR-005 — they don't have a
+        // separate salience axis.
+        const salScale = (d.sal * 3);
+        const salLabel = isSelf
+          ? `Activation-only node — the position value (${d.pos.toFixed(1)}) indicates activation level directly. No separate salience dimension.`
+          : d.sal === 0
+            ? `Salience: 0.0 / 3 (ruled out — this dimension does not register in your politics)`
+            : `Salience: ${salScale.toFixed(2)} / 3 (${salScale >= 2.25 ? 'high — central to your politics' : salScale >= 1.5 ? 'moderate — matters to you' : salScale >= 0.75 ? 'low — somewhat registers' : 'very low — barely registers'})`;
+        row.title = salLabel;
+
+        if (!isSelf && d.sal === 0) {
+          row.innerHTML = `
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:#333;font-weight:600;">${d.name}</div>
+            <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#555;font-style:italic;">no salience</div></div>
+            <div class="node-value">${d.pos.toFixed(1)}</div>`;
+        } else {
+          // Emphasize the pole closer to the respondent's position: bold black
+          // on the "your side" pole, dimmer gray on the opposite pole. SELF
+          // nodes treat pos>3 as high-pole ("my side matters"/"all in"/etc.),
+          // pos<3 as low-pole. Non-SELF nodes use the pos directly.
+          const lowActive = d.pos < 2.8;
+          const highActive = d.pos > 3.2;
+          const lowStyle = lowActive
+            ? 'font-weight:700;color:var(--ink);font-size:1.05rem;'
+            : 'font-weight:500;color:#999;font-size:0.9rem;';
+          const highStyle = highActive
+            ? 'font-weight:700;color:var(--ink);font-size:1.05rem;'
+            : 'font-weight:500;color:#999;font-size:0.9rem;';
+          // Neutral positions (2.8-3.2): both poles medium-weight, no emphasis.
+          const neutralStyle = 'font-weight:600;color:#555;font-size:0.95rem;';
+          const finalLowStyle = (lowActive || highActive) ? lowStyle : neutralStyle;
+          const finalHighStyle = (lowActive || highActive) ? highStyle : neutralStyle;
+          // PROTOTYPE: 50% interquartile band rendered as 5 black polka dots
+          // scattered across the band width.
+          let ciHtml = '';
+          if (d.ci && CI_CLUSTERS.has(d.cluster)) {
+            const ciLoPct = ((d.ci[0] - 1) / 9) * 100;
+            const ciHiPct = ((d.ci[1] - 1) / 9) * 100;
+            const ciTitle = `50% credible interval: ${d.ci[0].toFixed(1)}–${d.ci[1].toFixed(1)} (mean ${d.pos.toFixed(1)})`;
+            const dotCount = 5;
+            const dots = [];
+            for (let i = 0; i < dotCount; i++) {
+              const t = (i + 0.5) / dotCount;
+              const xPct = ciLoPct + t * Math.max(0, ciHiPct - ciLoPct);
+              dots.push(`<span class="ci-dot" style="left:${xPct}%;"></span>`);
+            }
+            ciHtml = `<div class="node-bar-ci-dots" title="${ciTitle}">${dots.join('')}</div>`;
+          }
+          row.innerHTML = `
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--ink);font-weight:600;">${d.name}</div>
+            <div class="node-bar-wrap">
+              <div class="node-bar" style="height:${barH}px;">
+                <div class="node-bar-segment" style="width:${pct}%;background:${color};height:100%;"></div>
+                ${ciHtml}
+                <div class="node-bar-marker" style="left:${pct}%;top:-4px;height:${barH+8}px;"></div>
+              </div>
+              <div class="node-labels"><span style="${finalLowStyle}">${d.low}</span><span style="${finalHighStyle}">${d.high}</span></div>
+            </div>
+            <div class="node-value">${d.pos.toFixed(1)}</div>`;
+        }
+        block.appendChild(row);
+      });
+
+      // v4: AES is encoded as the MEANS radar polygon color (not as its own
+      // row). EPS stays in REALITY as a cat-stripe row.
+      const catNodesForCluster = clusterName === 'REALITY'
+        ? [{ code: 'EPS', name: 'Epistemics', categories: epsCategories }]
+        : [];
+      if (catNodesForCluster.length > 0) {
+        const catNodes = catNodesForCluster;
+        const baseColor = clusterColors[clusterName];
+        catNodes.forEach(cn => {
+          const arcNode = archetype.nodes[cn.code];
+          if (!arcNode) return;
+          const respCat = respondentState && respondentState.categorical ? respondentState.categorical[cn.code] : null;
+          const probs = respCat ? respCat.catDist : arcNode.probs;
+          const sal = respCat ? (respCat.salience / 3) : (arcNode.sal / 3);
+          const cats = cn.categories.map((label, i) => ({
+            label: label.charAt(0).toUpperCase() + label.slice(1),
+            prob: probs[i] || 0,
+            idx: i,
+          }));
+          const sorted = [...cats].sort((a, b) => b.prob - a.prob);
+          const top = sorted[0];
+
+          const row = document.createElement('div');
+          row.className = 'cat-stripe-row';
+          row.style.opacity = sal === 0 ? 0.55 : (0.65 + sal * 0.35);
+          const salScale = sal * 3;
+          row.title = sal === 0
+            ? `${cn.name}: no salience (this dimension does not register).`
+            : `${cn.name} · salience ${salScale.toFixed(2)} / 3 · top category: ${top.label} (${(top.prob * 100).toFixed(0)}%)`;
+
+          const nameDiv = document.createElement('div');
+          nameDiv.className = 'cat-stripe-name';
+          nameDiv.textContent = cn.name;
+          row.appendChild(nameDiv);
+
+          if (sal === 0) {
+            const placeholder = document.createElement('div');
+            placeholder.style.cssText = "font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:#555;font-style:italic;";
+            placeholder.textContent = 'no salience';
+            row.appendChild(placeholder);
+          } else {
+            const info = document.createElement('div');
+            info.className = 'cat-stripe-info';
+            // Stripe.
+            info.appendChild(renderCatStripe(probs, top.idx));
+            // Per-category percentages with swatch.
+            const list = document.createElement('div');
+            list.className = 'cat-stripe-list';
+            cats.forEach(c => {
+              const item = document.createElement('span');
+              item.className = 'item' + (c.idx === top.idx ? ' top' : '');
+              item.innerHTML = `<span class="swatch" style="background:${CAT_PALETTE[c.idx % CAT_PALETTE.length]};"></span>${c.label.toLowerCase()} <span class="pct">${(c.prob * 100).toFixed(0)}%</span>`;
+              list.appendChild(item);
+            });
+            info.appendChild(list);
+            row.appendChild(info);
+          }
+
+          block.appendChild(row);
+        });
+      }
+
+      // PROTOTYPE: render MOR 7-category sunburst inside the SELF cluster.
+      if (clusterName === 'SELF') {
+        block.appendChild(renderMoralCircleSunburst(archetypeId));
+      }
+
+      // v4: ENDS / MEANS render as 3-axis cluster radars.
+      if (clusterName === 'ENDS') {
+        const wrap = document.createElement('div');
+        wrap.className = 'cluster-radar-section';
+        wrap.appendChild(renderClusterRadar([
+          { code: 'MAT', label: 'Material', low: 'share the wealth', high: 'let markets work' },
+          { code: 'CD',  label: 'Cultural Direction', low: 'change with the times', high: 'preserve what works' },
+          { code: 'CU',  label: 'Assimilation', low: 'one shared way', high: 'many ways side by side' },
+        ], { color: clusterColors['ENDS'], size: 320 }));
+        block.appendChild(wrap);
+      }
+      if (clusterName === 'MEANS') {
+        // Pick AES top category index for polygon color.
+        const aesNode = archetype.nodes && archetype.nodes.AES;
+        let aesTopIdx = 0;
+        if (aesNode && Array.isArray(aesNode.probs)) {
+          aesNode.probs.forEach((p, i) => { if (p > aesNode.probs[aesTopIdx]) aesTopIdx = i; });
+        }
+        const aesLabel = aesCategories[aesTopIdx] || 'statesman';
+        const aesColor = AES_PALETTE[aesTopIdx] || clusterColors['MEANS'];
+        const wrap = document.createElement('div');
+        wrap.className = 'cluster-radar-section';
+        wrap.appendChild(renderClusterRadar([
+          { code: 'PRO',   label: 'Procedure', low: 'bend rules', high: 'follow rules' },
+          { code: 'COM',   label: 'Compromise', low: 'stand on principle', high: 'cut a deal' },
+          { code: 'ONT_S', label: 'Institutions', low: 'wrong tool', high: 'good tool' },
+        ], { color: aesColor, fillColor: aesColor, size: 320 }));
+        const aesTag = document.createElement('div');
+        aesTag.className = 'cluster-radar-aes-tag';
+        aesTag.innerHTML = `Aesthetic style: <span class="aes-name">${aesLabel}</span> · polygon color`;
+        wrap.appendChild(aesTag);
+        block.appendChild(wrap);
+      }
+
+      // v10: wrap the block in a cluster-panel; only one shown at a time.
+      const panel = document.createElement('div');
+      panel.className = 'cluster-panel';
+      panel.dataset.cluster = clusterName;
+      panel.appendChild(block);
+      clusterDrill.appendChild(panel);
+      clusterPanels[clusterName] = panel;
+    });
+
+    // v10: cluster-emphasis donut, normalized to 100%.
+    (function buildClusterDonut() {
+      const CLUSTER_EMPHASIS_SAMPLES = {
+        '056': { ENDS: 0.55, MEANS: 0.78, REALITY: 0.58, SELF: 0.62 },
+        '011': { ENDS: 0.78, MEANS: 0.42, REALITY: 0.65, SELF: 0.88 },
+        '088': { ENDS: 0.62, MEANS: 0.38, REALITY: 0.40, SELF: 0.55 },
+        '001': { ENDS: 0.70, MEANS: 0.80, REALITY: 0.55, SELF: 0.45 },
+      };
+      const CLUSTER_EMPHASIS_DEFAULT = { ENDS: 0.55, MEANS: 0.55, REALITY: 0.5, SELF: 0.5 };
+      const emphasisRaw = CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT;
+      // Normalize so the four wedges sum to 100%.
+      const totalRaw = clusterOrder.reduce((s, k) => s + (emphasisRaw[k] || 0), 0);
+      const emphasis = {};
+      clusterOrder.forEach(k => {
+        emphasis[k] = totalRaw > 0 ? (emphasisRaw[k] || 0) / totalRaw : 0.25;
+      });
+
+      const clusterDescriptions = {
+        ENDS: 'What you want — material, cultural direction, assimilation.',
+        MEANS: 'How you pursue it — procedure, compromise, institutions, aesthetic style.',
+        REALITY: 'How you see the world — zero-sum, human malleability, epistemics.',
+        SELF: 'Who you are politically — moral circle and engagement.',
+      };
+
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.getElementById('cluster-donut');
+      svg.innerHTML = '';
+      const R_OUT = 150, R_IN = 60;
+
+      let cum = -Math.PI / 2;
+      const wedgeEls = {};
+      clusterOrder.forEach(cn => {
+        const e = emphasis[cn] || 0;
+        const sweep = e * Math.PI * 2;
+        const a1 = cum;
+        const a2 = cum + sweep;
+        cum = a2;
+        const x1o = R_OUT * Math.cos(a1), y1o = R_OUT * Math.sin(a1);
+        const x2o = R_OUT * Math.cos(a2), y2o = R_OUT * Math.sin(a2);
+        const x1i = R_IN * Math.cos(a1), y1i = R_IN * Math.sin(a1);
+        const x2i = R_IN * Math.cos(a2), y2i = R_IN * Math.sin(a2);
+        const largeArc = sweep > Math.PI ? 1 : 0;
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d',
+          `M ${x1o.toFixed(2)} ${y1o.toFixed(2)} ` +
+          `A ${R_OUT} ${R_OUT} 0 ${largeArc} 1 ${x2o.toFixed(2)} ${y2o.toFixed(2)} ` +
+          `L ${x2i.toFixed(2)} ${y2i.toFixed(2)} ` +
+          `A ${R_IN} ${R_IN} 0 ${largeArc} 0 ${x1i.toFixed(2)} ${y1i.toFixed(2)} Z`);
+        path.setAttribute('fill', clusterColors[cn]);
+        path.setAttribute('stroke', '#fff');
+        path.setAttribute('stroke-width', 2);
+        path.setAttribute('class', 'donut-wedge');
+        path.dataset.cluster = cn;
+        const titleEl = document.createElementNS(ns, 'title');
+        titleEl.textContent = `${cn} — ${(e * 100).toFixed(0)}% of your total emphasis`;
+        path.appendChild(titleEl);
+        svg.appendChild(path);
+        wedgeEls[cn] = path;
+
+        // Wedge label centered along the arc midline.
+        const aMid = (a1 + a2) / 2;
+        const rMid = (R_OUT + R_IN) / 2;
+        const lx = rMid * Math.cos(aMid);
+        const ly = rMid * Math.sin(aMid);
+        const labelEl = document.createElementNS(ns, 'text');
+        labelEl.setAttribute('x', lx.toFixed(2));
+        labelEl.setAttribute('y', ly.toFixed(2));
+        labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
+        labelEl.setAttribute('font-weight', '700');
+        labelEl.setAttribute('font-size', '14');
+        labelEl.setAttribute('fill', '#1a1a1a');
+        labelEl.setAttribute('text-anchor', 'middle');
+        labelEl.setAttribute('dominant-baseline', 'middle');
+        labelEl.style.pointerEvents = 'none';
+        labelEl.textContent = cn;
+        svg.appendChild(labelEl);
+
+        const pctEl = document.createElementNS(ns, 'text');
+        pctEl.setAttribute('x', lx.toFixed(2));
+        pctEl.setAttribute('y', (ly + 14).toFixed(2));
+        pctEl.setAttribute('font-family', "'IBM Plex Mono', monospace");
+        pctEl.setAttribute('font-size', '10');
+        pctEl.setAttribute('font-weight', '600');
+        pctEl.setAttribute('fill', '#1a1a1a');
+        pctEl.setAttribute('text-anchor', 'middle');
+        pctEl.style.pointerEvents = 'none';
+        pctEl.textContent = `${(e * 100).toFixed(0)}%`;
+        svg.appendChild(pctEl);
+      });
+
+      // Center hint text.
+      const center = document.createElementNS(ns, 'text');
+      center.setAttribute('x', 0); center.setAttribute('y', 0);
+      center.setAttribute('font-family', "'Space Grotesk', sans-serif");
+      center.setAttribute('font-size', '11');
+      center.setAttribute('fill', '#888');
+      center.setAttribute('text-anchor', 'middle');
+      center.setAttribute('dominant-baseline', 'middle');
+      center.style.pointerEvents = 'none';
+      center.textContent = 'click a wedge';
+      svg.appendChild(center);
+
+      // Initial active cluster = the one with the highest (normalized) emphasis.
+      let activeCluster = clusterOrder.reduce((a, b) => (emphasis[b] > emphasis[a] ? b : a), clusterOrder[0]);
+      function setActive(cn) {
+        activeCluster = cn;
+        for (const k of clusterOrder) {
+          if (wedgeEls[k]) {
+            wedgeEls[k].classList.toggle('active', k === cn);
+            wedgeEls[k].classList.toggle('dim', k !== cn);
+          }
+          if (clusterPanels[k]) clusterPanels[k].classList.toggle('active', k === cn);
+        }
+        document.getElementById('cluster-drill-tagline').textContent = clusterDescriptions[cn] || '';
+      }
+      clusterOrder.forEach(cn => {
+        if (wedgeEls[cn]) wedgeEls[cn].addEventListener('click', () => setActive(cn));
+      });
+      setActive(activeCluster);
+    })();
+
+    // Show results, hide loading
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.title = `PRISM Results — ${archetype.name}`;
+
+    // Draw map after results are visible so container has dimensions
+    drawMap();
+
+    // v9 cinematic intro:
+    //   0.0s  page is blank (archetype card collapsed to 0 height; map and
+    //         profile sections sit below their reveal threshold).
+    //   0.05s row cascade kicks off — election grid sits at the top of the
+    //         viewport because there's no archetype card above it. Rows 1-6
+    //         fall in 500ms apart.
+    //   ~3.1s last row lands. Archetype card expands (max-height transition,
+    //         pushing the elections grid down to its permanent place).
+    //   ~3.6s archetype card pieces (badge row, number, name) fade up.
+    //   ~4.2s description rolls out word-by-word.
+    //   --    map & profile sections still revealed by IntersectionObserver
+    //         on scroll.
+    (function v9CinematicIntro() {
+      document.querySelectorAll('.reveal-stagger').forEach(parent => {
+        Array.from(parent.children).forEach((child, i) => {
+          child.style.setProperty('--i', i);
+        });
+      });
+      const electionsGrid = document.getElementById('elections-grid');
+      if (electionsGrid && electionsGrid.classList.contains('reveal-stagger')) {
+        Array.from(electionsGrid.children).forEach((child, i) => {
+          child.style.setProperty('--i', Math.floor(i / 10));
+        });
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+      // Map and profile use IO. Elections-grid is triggered manually right after
+      // the archetype card collapses (so the rows land at the page top, not
+      // 250px down where elections naturally lives).
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+        if (el.id === 'elections-grid') return;
+        observer.observe(el);
+      });
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('visible'));
+      }
+
+      const archCard = document.getElementById('archetype-section');
+      const desc = document.getElementById('archetype-desc');
+
+      // Mark the archetype card's inner pieces so they can stage in.
+      if (archCard) {
+        archCard.querySelectorAll('.badge-row, .archetype-number, .archetype-name').forEach(el => {
+          el.classList.add('archetype-section-piece');
+        });
+      }
+
+      // Pre-process description into word spans (so we can fade them in word-by-word).
+      if (desc) {
+        const text = desc.textContent;
+        const tokens = text.split(/(\s+)/);
+        desc.textContent = '';
+        let wIdx = 0;
+        tokens.forEach(tok => {
+          if (tok.length === 0) return;
+          const span = document.createElement('span');
+          span.className = 'desc-word';
+          span.style.setProperty('--w', wIdx);
+          span.textContent = tok;
+          desc.appendChild(span);
+          if (tok.trim().length > 0) wIdx++;
+        });
+      }
+
+      // Phase 1: kick off the row cascade as soon as layout settles.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          electionsGrid.classList.add('visible');
+        });
+      });
+
+      // v13 phase 2a: at t=3.1s, reveal the election legend and add the
+      // 'strategic' class to all gold-bordered cells simultaneously (their
+      // gold ring fades in via the CSS box-shadow transition).
+      setTimeout(() => {
+        const legend = document.getElementById('election-legend');
+        if (legend) legend.classList.remove('cine-pending');
+        if (typeof v13StrategicCells !== 'undefined') {
+          v13StrategicCells.forEach(cell => cell.classList.add('strategic'));
+        }
+      }, 3100);
+
+      // v13 phase 2b: starting at t=3.6s, defining cells animate in one at a
+      // time (500ms apart). Each adds the 'defining' class (black ring) and a
+      // brief pulse animation (scale 1 → 1.22 → 1 over 0.65s).
+      if (typeof v13DefiningCells !== 'undefined') {
+        v13DefiningCells.forEach((cell, i) => {
+          setTimeout(() => {
+            cell.classList.add('defining');
+            cell.classList.add('defining-emphasizing');
+            // Drop the emphasizing class once the pulse completes so the
+            // cell sits flat (just the ring) afterward.
+            setTimeout(() => cell.classList.remove('defining-emphasizing'), 700);
+          }, 3600 + i * 500);
+        });
+      }
+
+      // v13 phase 3: at t=3.7s, archetype card fades in (parallel with the
+      // defining cells emphasis sequence — different parts of the page).
+      setTimeout(() => {
+        if (archCard) archCard.classList.remove('cine-fade-pending');
+      }, 3700);
+
+      // Phase 4: at t=4.1s (mid-fade), stage the badge row, number, and name.
+      setTimeout(() => {
+        if (!archCard) return;
+        const pieces = archCard.querySelectorAll('.archetype-section-piece');
+        pieces.forEach((p, i) => setTimeout(() => p.classList.add('shown'), i * 180));
+      }, 4100);
+
+      // Phase 5: at t=4.9s, description rolls out word-by-word.
+      // (Pushed back from 4.4s to make room for the election emphasis sequence.)
+      setTimeout(() => {
+        if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
+      }, 4900);
+
+      // Phase 6: at t=6.65s, profile-section expands.
+      const profileSection = document.getElementById('profile-section');
+      setTimeout(() => {
+        if (profileSection) profileSection.classList.remove('cine-collapsed');
+      }, 6650);
+
+      // Phase 7: map expands at t=7.75s (redraws 1s after).
+      const mapSection = document.getElementById('map-section');
+      setTimeout(() => {
+        if (mapSection) mapSection.classList.remove('cine-collapsed');
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 1000);
+      }, 7750);
+
+      // Phase 8: footer expands at t=8.9s.
+      const footerSection = document.getElementById('footer-section');
+      setTimeout(() => {
+        if (footerSection) footerSection.classList.remove('cine-collapsed');
+      }, 8900);
+
+      // Reduced-motion fast path: skip stages, just show everything.
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (archCard) archCard.classList.remove('cine-fade-pending');
+        if (mapSection) mapSection.classList.remove('cine-collapsed');
+        if (profileSection) profileSection.classList.remove('cine-collapsed');
+        if (footerSection) footerSection.classList.remove('cine-collapsed');
+        electionsGrid.classList.add('visible');
+        if (archCard) archCard.querySelectorAll('.archetype-section-piece').forEach(p => p.classList.add('shown'));
+        if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
+        const legend = document.getElementById('election-legend');
+        if (legend) legend.classList.remove('cine-pending');
+        if (typeof v13StrategicCells !== 'undefined') {
+          v13StrategicCells.forEach(cell => cell.classList.add('strategic'));
+        }
+        if (typeof v13DefiningCells !== 'undefined') {
+          v13DefiningCells.forEach(cell => cell.classList.add('defining'));
+        }
+      }
+    })();
+
+  } catch(err) {
+    document.getElementById('loading').innerHTML = `<div style="color:red;">Error loading results: ${err.message}</div>`;
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>
