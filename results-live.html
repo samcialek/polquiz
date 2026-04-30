@@ -1246,10 +1246,27 @@ document.addEventListener('DOMContentLoaded', () => {
       'kingdom of the two sicilies': 'Italy', 'papal states': 'Italy', 'tuscany': 'Italy',
       'venetia': 'Italy', 'parma': 'Italy', 'modena': 'Italy', 'lucca': 'Italy',
       'massa': 'Italy', 'pontremoli': 'Italy', 'fivizzano': 'Italy',
+      'kingdom of sardinia': 'Italy', 'kingdom of italy': 'Italy',
+      'kingfom of italy': 'Italy', // typo in 1914 historical-basemaps geojson
       'hanover': 'Germany', 'brunswick': 'Germany', 'oldenburg': 'Germany', 'hamburg': 'Germany',
       'bremen': 'Germany', 'lübeck': 'Germany', 'lubeck': 'Germany', 'holstein': 'Germany',
       'waldeck': 'Germany', 'lippe-detmold': 'Germany', 'schaumburg-lippe': 'Germany',
       'hohenzollern': 'Germany', 'anhalt': 'Germany',
+      // Pre-unification / old-name aliases surfaced by the map-alias audit
+      // (results/calibration-exceptions/map-alias-audit-1776.md).
+      'prussia': 'Germany', 'kingdom of prussia': 'Germany', 'east prussia': 'Germany',
+      'east germany': 'Germany', 'west germany': 'Germany',
+      'qing empire': 'China', 'manchu empire': 'China', 'chinese empire': 'China',
+      'manchuria': 'China',
+      'russian empire': 'Russia', 'ussr': 'Russia', 'soviet union': 'Russia',
+      'ottoman empire': 'Turkey',
+      'austrian empire': 'Austria', 'austria-hungary': 'Austria',
+      'austro-hungarian empire': 'Austria',
+      'swiss confederation': 'Switzerland',
+      'empire of japan': 'Japan',
+      'french indo-china': 'Vietnam',
+      'united kingdom of great britain and ireland': 'United Kingdom',
+      'great britain and ireland': 'United Kingdom',
     };
     Object.entries(aliases).forEach(([k, v]) => { if (alignments[v]) nameMap[k] = v; });
     // Map alignment data names (with slashes) to TopoJSON names
