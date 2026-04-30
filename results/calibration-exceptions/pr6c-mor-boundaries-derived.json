@@ -1,0 +1,1490 @@
+{
+  "100": {
+    "boundaries": {
+      "national": 1,
+      "ethnic_racial": 1,
+      "religious": 0.53,
+      "class": 0.72,
+      "ideological": 0.76,
+      "gender": 0.19,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "101": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.26,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.07,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "103": {
+    "boundaries": {
+      "national": 0.76,
+      "ethnic_racial": 0.37,
+      "religious": 0.41,
+      "class": 0.41,
+      "ideological": 0.48,
+      "gender": 0.09,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "104": {
+    "boundaries": {
+      "national": 0.73,
+      "ethnic_racial": 0.26,
+      "religious": 0.41,
+      "class": 0.05,
+      "ideological": 0.48,
+      "gender": 0.09,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "105": {
+    "boundaries": {
+      "national": 1,
+      "ethnic_racial": 0.76,
+      "religious": 0.53,
+      "class": 0.05,
+      "ideological": 0.62,
+      "gender": 0.1,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "106": {
+    "boundaries": {
+      "national": 0.76,
+      "ethnic_racial": 0.58,
+      "religious": 0.41,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.09,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "107": {
+    "boundaries": {
+      "national": 0.22,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "108": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.05,
+      "gender": 0.05,
+      "political_tribe": 0
+    },
+    "intensity": 1
+  },
+  "109": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.19,
+      "gender": 0.07,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "110": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "111": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "112": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "113": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.12,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "114": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.05,
+      "gender": 0.05,
+      "political_tribe": 0
+    },
+    "intensity": 3
+  },
+  "115": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.15,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "116": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "117": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.12,
+      "religious": 0.15,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "118": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "119": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "120": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 3
+  },
+  "121": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 3
+  },
+  "122": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "124": {
+    "boundaries": {
+      "national": 0.11,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "125": {
+    "boundaries": {
+      "national": 0.11,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "126": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.19,
+      "gender": 0.07,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "127": {
+    "boundaries": {
+      "national": 0.95,
+      "ethnic_racial": 0.05,
+      "religious": 0.34,
+      "class": 0.05,
+      "ideological": 0.62,
+      "gender": 0.1,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "128": {
+    "boundaries": {
+      "national": 0.16,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.41,
+      "ideological": 0.34,
+      "gender": 0.09,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "129": {
+    "boundaries": {
+      "national": 0.73,
+      "ethnic_racial": 0.05,
+      "religious": 0.26,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.09,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "131": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "132": {
+    "boundaries": {
+      "national": 0.23,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.09,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "134": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.34,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "135": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.05,
+      "gender": 0.05,
+      "political_tribe": 0
+    },
+    "intensity": 2
+  },
+  "136": {
+    "boundaries": {
+      "national": 0.29,
+      "ethnic_racial": 0.09,
+      "religious": 0.26,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "137": {
+    "boundaries": {
+      "national": 0.66,
+      "ethnic_racial": 0.05,
+      "religious": 0.41,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.09,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "138": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0
+    },
+    "intensity": 2
+  },
+  "139": {
+    "boundaries": {
+      "national": 0.22,
+      "ethnic_racial": 0.12,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "140": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.05,
+      "gender": 0.05,
+      "political_tribe": 0
+    },
+    "intensity": 2
+  },
+  "141": {
+    "boundaries": {
+      "national": 0.35,
+      "ethnic_racial": 0.9,
+      "religious": 0.3,
+      "class": 0.4,
+      "ideological": 0.3,
+      "gender": 0.15,
+      "political_tribe": 0.65
+    },
+    "intensity": 3
+  },
+  "142": {
+    "boundaries": {
+      "national": 0.65,
+      "ethnic_racial": 0.9,
+      "religious": 0.35,
+      "class": 0.3,
+      "ideological": 0.4,
+      "gender": 0.3,
+      "political_tribe": 0.7
+    },
+    "intensity": 3
+  },
+  "143": {
+    "boundaries": {
+      "national": 0.55,
+      "ethnic_racial": 0.3,
+      "religious": 0.85,
+      "class": 0.15,
+      "ideological": 0.4,
+      "gender": 0.3,
+      "political_tribe": 0.6
+    },
+    "intensity": 3
+  },
+  "144": {
+    "boundaries": {
+      "national": 0.2,
+      "ethnic_racial": 0.2,
+      "religious": 0.1,
+      "class": 0.2,
+      "ideological": 0.45,
+      "gender": 0.9,
+      "political_tribe": 0.55
+    },
+    "intensity": 3
+  },
+  "145": {
+    "boundaries": {
+      "national": 0.25,
+      "ethnic_racial": 0.25,
+      "religious": 0.1,
+      "class": 0.3,
+      "ideological": 0.5,
+      "gender": 0.85,
+      "political_tribe": 0.55
+    },
+    "intensity": 3
+  },
+  "146": {
+    "boundaries": {
+      "national": 0.45,
+      "ethnic_racial": 0.4,
+      "religious": 0.25,
+      "class": 0.25,
+      "ideological": 0.45,
+      "gender": 0.85,
+      "political_tribe": 0.55
+    },
+    "intensity": 3
+  },
+  "001": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "002": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "003": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 1
+  },
+  "004": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.48,
+      "ideological": 0.12,
+      "gender": 0.09,
+      "political_tribe": 0.5
+    },
+    "intensity": 2.25
+  },
+  "005": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "006": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 1
+  },
+  "007": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.22,
+      "class": 0.17,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "008": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "010": {
+    "boundaries": {
+      "national": 0.19,
+      "ethnic_racial": 0.12,
+      "religious": 0.1,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 1
+  },
+  "011": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.43,
+      "ideological": 0.26,
+      "gender": 0.07,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "012": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.81,
+      "ideological": 0.48,
+      "gender": 0.1,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "013": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.34,
+      "ideological": 0.1,
+      "gender": 0.07,
+      "political_tribe": 0.25
+    },
+    "intensity": 1.5
+  },
+  "014": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.43,
+      "ideological": 0.1,
+      "gender": 0.07,
+      "political_tribe": 0.25
+    },
+    "intensity": 1.5
+  },
+  "015": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.62,
+      "ideological": 0.26,
+      "gender": 0.09,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "016": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.81,
+      "ideological": 0.34,
+      "gender": 0.1,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "017": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.43,
+      "ideological": 0.26,
+      "gender": 0.07,
+      "political_tribe": 0.25
+    },
+    "intensity": 1.5
+  },
+  "019": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.16,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "020": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.16,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "021": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "022": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "023": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "024": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "025": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "026": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "027": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "028": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "029": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 3
+  },
+  "031": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "032": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "033": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "035": {
+    "boundaries": {
+      "national": 0.09,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.17,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "036": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "037": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "039": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "040": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "042": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.15,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 1
+  },
+  "043": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.15,
+      "class": 0.19,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "045": {
+    "boundaries": {
+      "national": 0.15,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "046": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.22,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "048": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.34,
+      "class": 0.48,
+      "ideological": 0.12,
+      "gender": 0.09,
+      "political_tribe": 0.25
+    },
+    "intensity": 2.25
+  },
+  "049": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.22,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "050": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.22,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "051": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.15,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "053": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "054": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 3
+  },
+  "056": {
+    "boundaries": {
+      "national": 0.12,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.17,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 3
+  },
+  "057": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "059": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "060": {
+    "boundaries": {
+      "national": 0.11,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "061": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "062": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "063": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 1.5
+  },
+  "065": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "067": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.11,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "069": {
+    "boundaries": {
+      "national": 0.05,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.12,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "070": {
+    "boundaries": {
+      "national": 0.28,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "071": {
+    "boundaries": {
+      "national": 0.29,
+      "ethnic_racial": 0.24,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "072": {
+    "boundaries": {
+      "national": 0.22,
+      "ethnic_racial": 0.2,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  },
+  "073": {
+    "boundaries": {
+      "national": 0.25,
+      "ethnic_racial": 0.11,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "074": {
+    "boundaries": {
+      "national": 0.25,
+      "ethnic_racial": 0.05,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "076": {
+    "boundaries": {
+      "national": 0.18,
+      "ethnic_racial": 0.05,
+      "religious": 0.05,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "077": {
+    "boundaries": {
+      "national": 0.28,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.19,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "078": {
+    "boundaries": {
+      "national": 0.28,
+      "ethnic_racial": 0.05,
+      "religious": 0.12,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "079": {
+    "boundaries": {
+      "national": 0.5,
+      "ethnic_racial": 0.05,
+      "religious": 0.19,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "081": {
+    "boundaries": {
+      "national": 1,
+      "ethnic_racial": 0.81,
+      "religious": 0.91,
+      "class": 0.05,
+      "ideological": 0.43,
+      "gender": 0.1,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "082": {
+    "boundaries": {
+      "national": 0.5,
+      "ethnic_racial": 0.36,
+      "religious": 0.48,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "083": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.43,
+      "religious": 0.48,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "084": {
+    "boundaries": {
+      "national": 0.95,
+      "ethnic_racial": 0.67,
+      "religious": 0.91,
+      "class": 0.05,
+      "ideological": 0.43,
+      "gender": 0.1,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "085": {
+    "boundaries": {
+      "national": 0.29,
+      "ethnic_racial": 0.24,
+      "religious": 0.26,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "086": {
+    "boundaries": {
+      "national": 0.36,
+      "ethnic_racial": 0.05,
+      "religious": 0.38,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "087": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.43,
+      "religious": 0.48,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "088": {
+    "boundaries": {
+      "national": 0.28,
+      "ethnic_racial": 0.05,
+      "religious": 0.22,
+      "class": 0.05,
+      "ideological": 0.15,
+      "gender": 0.06,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "089": {
+    "boundaries": {
+      "national": 0.5,
+      "ethnic_racial": 0.36,
+      "religious": 0.38,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.12,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "090": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.53,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.12,
+      "political_tribe": 0.75
+    },
+    "intensity": 3
+  },
+  "091": {
+    "boundaries": {
+      "national": 0.5,
+      "ethnic_racial": 0.19,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "092": {
+    "boundaries": {
+      "national": 1,
+      "ethnic_racial": 0.48,
+      "religious": 0.53,
+      "class": 0.05,
+      "ideological": 0.43,
+      "gender": 0.1,
+      "political_tribe": 1
+    },
+    "intensity": 3
+  },
+  "094": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.41,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "095": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.41,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.34,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "097": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.41,
+      "religious": 0.29,
+      "class": 0.05,
+      "ideological": 0.24,
+      "gender": 0.07,
+      "political_tribe": 0.75
+    },
+    "intensity": 2.25
+  },
+  "098": {
+    "boundaries": {
+      "national": 0.29,
+      "ethnic_racial": 0.16,
+      "religious": 0.17,
+      "class": 0.05,
+      "ideological": 0.07,
+      "gender": 0.06,
+      "political_tribe": 0.25
+    },
+    "intensity": 2
+  },
+  "099": {
+    "boundaries": {
+      "national": 0.53,
+      "ethnic_racial": 0.41,
+      "religious": 0.29,
+      "class": 0.38,
+      "ideological": 0.19,
+      "gender": 0.07,
+      "political_tribe": 0.5
+    },
+    "intensity": 2
+  }
+}

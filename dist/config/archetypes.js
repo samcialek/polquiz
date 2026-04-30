@@ -48,7 +48,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "002",
@@ -68,7 +69,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "003",
@@ -88,7 +90,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
     },
     {
         id: "004",
@@ -110,7 +113,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         id: "005",
@@ -134,7 +138,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "006",
@@ -154,7 +159,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
     },
     {
         id: "007",
@@ -176,7 +182,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "008",
@@ -199,7 +206,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "010",
@@ -222,7 +230,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.12, religious: 0.1, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
     },
     {
         id: "011",
@@ -242,7 +251,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "012",
@@ -270,7 +280,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "013",
@@ -290,7 +301,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         id: "014",
@@ -316,7 +328,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         id: "015",
@@ -336,7 +349,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "016",
@@ -356,7 +370,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.34, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "017",
@@ -383,7 +398,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
@@ -405,7 +421,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
@@ -427,7 +444,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" }, // kept 020's anti-tribal
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.40, 0.38, 0.04, 0.08], sal: 2 }, // blend pastoral+plainspoken
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
@@ -454,7 +472,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" }, // anti-tribalism is core
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "022",
@@ -474,7 +493,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
@@ -496,7 +516,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" }, // raised sal 2→3
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }, // raised sal 1→2
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "024",
@@ -520,7 +541,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
@@ -542,7 +564,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] }, // raised sal 1→2
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "026",
@@ -562,7 +585,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "027",
@@ -586,7 +610,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "028",
@@ -610,7 +635,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "029",
@@ -630,7 +656,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "031",
@@ -657,7 +684,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "032",
@@ -683,7 +711,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "033",
@@ -703,7 +732,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     // {
     // id: "034",
@@ -745,7 +775,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "036",
@@ -765,7 +796,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "037",
@@ -785,7 +817,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "039",
@@ -807,7 +840,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "040",
@@ -827,7 +861,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "042",
@@ -849,7 +884,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
     },
     {
         id: "043",
@@ -871,7 +907,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "045",
@@ -893,7 +930,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.10, 0.07, 0.04], sal: 1 },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.15, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "046",
@@ -915,7 +953,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     // {
     // id: "047",
@@ -959,7 +998,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.34, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         id: "049",
@@ -981,7 +1021,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "050",
@@ -1001,7 +1042,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "051",
@@ -1021,7 +1063,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "053",
@@ -1041,7 +1084,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "054",
@@ -1061,7 +1105,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         id: "056",
@@ -1090,7 +1135,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         id: "057",
@@ -1110,7 +1156,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "059",
@@ -1131,7 +1178,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "060",
@@ -1154,7 +1202,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "061",
@@ -1174,7 +1223,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "062",
@@ -1194,7 +1244,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "063",
@@ -1214,7 +1265,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
     // {
@@ -1262,7 +1314,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "067",
@@ -1286,7 +1339,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "069",
@@ -1306,7 +1360,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "070",
@@ -1335,7 +1390,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "071",
@@ -1360,7 +1416,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "072",
@@ -1387,7 +1444,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.2, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "073",
@@ -1410,7 +1468,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.11, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "074",
@@ -1430,7 +1489,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "076",
@@ -1450,7 +1510,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.18, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "077",
@@ -1470,7 +1531,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.19, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "078",
@@ -1490,7 +1552,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "079",
@@ -1517,7 +1580,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.09, 0.06, 0.09, 0.06], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
@@ -1547,7 +1611,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "082",
@@ -1570,7 +1635,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "083",
@@ -1597,7 +1663,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "084",
@@ -1620,7 +1687,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "085",
@@ -1643,7 +1711,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.26, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "086",
@@ -1668,7 +1737,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "087",
@@ -1691,7 +1761,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "088",
@@ -1717,7 +1788,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "089",
@@ -1742,7 +1814,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "090",
@@ -1762,7 +1835,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.53, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "091",
@@ -1782,7 +1856,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.19, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "092",
@@ -1802,7 +1877,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "094",
@@ -1829,7 +1905,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "095",
@@ -1849,7 +1926,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "097",
@@ -1869,7 +1947,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "098",
@@ -1889,7 +1968,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.16, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "099",
@@ -1909,7 +1989,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.38, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "100",
@@ -1929,7 +2010,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.72, ideological: 0.76, gender: 0.19, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "101",
@@ -1949,7 +2031,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "103",
@@ -1969,7 +2052,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "104",
@@ -1989,7 +2073,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "105",
@@ -2009,7 +2094,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.76, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "106",
@@ -2029,7 +2115,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "107",
@@ -2051,7 +2138,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "108",
@@ -2071,7 +2159,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1, anti: "high" },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.10, 0.15, 0.60], sal: 2, antiCats: [1] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.55, 0.20, 0.05], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1 },
     },
     {
         id: "109",
@@ -2091,7 +2180,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 2, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "110",
@@ -2111,7 +2201,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.20, 0.50, 0.06], sal: 2, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         id: "111",
@@ -2131,7 +2222,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 2, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "112",
@@ -2151,7 +2243,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.10, 0.60, 0.06], sal: 1, antiCats: [2, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "113",
@@ -2173,7 +2266,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.05, 0.03, 0.07, 0.18, 0.12, 0.55], sal: 2, antiCats: [0, 1] },
             AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.10, 0.75, 0.07], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "114",
@@ -2193,7 +2287,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1, anti: "high" },
             EPS: { kind: "categorical", probs: [0.03, 0.03, 0.03, 0.08, 0.10, 0.73], sal: 3, antiCats: [0, 1, 2] },
             AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.70, 0.15], sal: 2 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 3 },
     },
     {
         id: "115",
@@ -2213,7 +2308,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "116",
@@ -2234,7 +2330,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "117",
@@ -2254,7 +2351,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "118",
@@ -2274,7 +2372,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "119",
@@ -2294,7 +2393,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "120",
@@ -2314,7 +2414,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         id: "121",
@@ -2334,7 +2435,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         id: "122",
@@ -2355,7 +2457,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "124",
@@ -2375,7 +2478,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "125",
@@ -2395,7 +2499,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "126",
@@ -2415,7 +2520,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3, anti: "low" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "127",
@@ -2435,7 +2541,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5, anti: "low" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "128",
@@ -2455,7 +2562,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         id: "129",
@@ -2477,7 +2585,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     // MERGED into Duty Voter (ID 131) — 2026-04-01
     // {
@@ -2520,7 +2629,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2, anti: "high" },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
     },
     {
         id: "132",
@@ -2540,7 +2650,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.10, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         id: "134",
@@ -2581,7 +2692,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 3 },
             EPS: { kind: "categorical", probs: [0.30, 0.40, 0.05, 0.10, 0.10, 0.05], sal: 1 },
             AES: { kind: "categorical", probs: [0.35, 0.20, 0.05, 0.10, 0.20, 0.10], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
     {
@@ -2606,7 +2718,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1 },
             EPS: { kind: "categorical", probs: [0.60, 0.05, 0.15, 0.05, 0.10, 0.05], sal: 1 },
             AES: { kind: "categorical", probs: [0.05, 0.10, 0.05, 0.05, 0.15, 0.60], sal: 1 }, // FIX: Disruptive = visionary, not statesman
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
     },
     {
         id: "136",
@@ -2626,7 +2739,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.15, 0.50, 0.10, 0.05, 0.10], sal: 1 },
             AES: { kind: "categorical", probs: [0.10, 0.10, 0.50, 0.15, 0.05, 0.10], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.26, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
     },
     {
         id: "137",
@@ -2646,7 +2760,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 4 },
             EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.60, 0.10, 0.05], sal: 2 }, // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic visionary
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         id: "138",
@@ -2666,7 +2781,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.05, 0.05, 0.50, 0.25, 0.05], sal: 1 }, // FIX: Holistic = intuitionist+autonomous, not nihilist
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.60, 0.10, 0.10], sal: 2 }, // Experiential
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0 }, intensity: 2 },
     },
     {
         id: "139",
@@ -2686,7 +2802,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 2 },
             EPS: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 1 },
             AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 1 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.12, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         id: "140",
@@ -2711,7 +2828,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 1 },
             EPS: { kind: "categorical", probs: [0.70, 0.05, 0.10, 0.05, 0.05, 0.05], sal: 1 }, // Empiricist
             AES: { kind: "categorical", probs: [0.10, 0.60, 0.10, 0.05, 0.10, 0.05], sal: 1 }, // Systematic
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
     },
     // ═══════════════════════════════════════════════════════════════════════════
     // Identity-Primary Archetypes (141–146)
@@ -2752,7 +2870,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.35, ethnic_racial: 0.9, religious: 0.3, class: 0.4, ideological: 0.3, gender: 0.15, political_tribe: 0.65 }, intensity: 3 },
     },
     {
         id: "142",
@@ -2772,7 +2891,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.65, ethnic_racial: 0.9, religious: 0.35, class: 0.3, ideological: 0.4, gender: 0.3, political_tribe: 0.7 }, intensity: 3 },
     },
     {
         id: "143",
@@ -2792,7 +2912,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.85, class: 0.15, ideological: 0.4, gender: 0.3, political_tribe: 0.6 }, intensity: 3 },
     },
     {
         id: "144",
@@ -2812,7 +2933,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.2, religious: 0.1, class: 0.2, ideological: 0.45, gender: 0.9, political_tribe: 0.55 }, intensity: 3 },
     },
     {
         id: "145",
@@ -2832,7 +2954,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.25, religious: 0.1, class: 0.3, ideological: 0.5, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
     },
     {
         id: "146",
@@ -2852,7 +2975,8 @@ export const ARCHETYPES = [
             TRB: { kind: "continuous", pos: 5 },
             EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        }
+        },
+        morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.4, religious: 0.25, class: 0.25, ideological: 0.45, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
     },
 ];
 //# sourceMappingURL=archetypes.js.map

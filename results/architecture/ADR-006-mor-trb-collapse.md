@@ -39,18 +39,24 @@ This is structurally richer than the pre-collapse four fields combined. **Visibl
 ### Module shape
 
 ```
+// Compound module — boundaries and intensity nested inside one field.
+// (See src/types.ts MorBoundariesNodeState / ArchetypeMorBoundaries.)
 respondentState.morBoundaries = {
-  national:        0..1,    // independent boundedness scores
-  ethnic_racial:   0..1,
-  religious:       0..1,
-  class:           0..1,
-  ideological:     0..1,
-  gender:          0..1,    // folds gender + sexual_orientation politics
-  political_tribe: 0..1,    // party / camp / movement / candidate-faction loyalty
+  boundaries: {
+    national:        0..1,    // independent boundedness scores
+    ethnic_racial:   0..1,
+    religious:       0..1,
+    class:           0..1,
+    ideological:     0..1,
+    gender:          0..1,    // folds gender + sexual_orientation politics
+    political_tribe: 0..1,    // party / camp / movement / candidate-faction loyalty
+  },
+  intensity: 0..3,            // how activated moral-circle concern is in
+                              // political judgment (real-valued, not integer)
+  touches: { ... },
+  touchTypes: Set<string>,
+  status: NodeStatus,
 }
-
-respondentState.morIntensity = 0..3   // how activated moral-circle concern is
-                                       // in political judgment
 
 respondentState.morMembership = {       // optional self-reported group membership
   ethnic_racial?: string,               // null/decline-to-state allowed on each
@@ -60,6 +66,11 @@ respondentState.morMembership = {       // optional self-reported group membersh
   political_tribe?: "D" | "R" | "independent" | "third" | "none" | string,
 }
 ```
+
+Throughout this ADR, formula shorthand like `morIntensity` and `boundaries[C]`
+refers to `morBoundaries.intensity` and `morBoundaries.boundaries[C]`
+respectively. Same for archetype-side: `arch.morBoundaries.intensity` and
+`arch.morBoundaries.boundaries[i]`.
 
 Boundaries do **not** sum to 1.0. Each score independently asks "how much does this category structure your moral and political loyalties?" — answered without forced trade-off against the others.
 
