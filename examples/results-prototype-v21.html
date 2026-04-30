@@ -281,12 +281,13 @@
     .cat-hrow-score.anti { color: var(--ink); }
     /* v21: MEANS / REALITY 2-column grid — continuous bars on the left,
        compact categorical vbar (AES / EPS) on the right.
-       v21.1: vbar column halved (0.85fr → 0.4fr), chart doubled in height
-       (140px → 280px), bars thicker and touching, fonts larger. */
+       v21.2: left column shrunk, right column grown so vbar gets ~45% of
+       the panel; only top-positive and top-negative columns get visible
+       labels + scores, rest hover-only. */
     .cluster-panel[data-cluster="MEANS"] .node-cluster,
     .cluster-panel[data-cluster="REALITY"] .node-cluster {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(140px, 0.5fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(220px, 1fr);
       gap: 1.5rem 1.75rem;
       align-items: start;
     }
@@ -324,10 +325,23 @@
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 100%; left: 0; transform: none; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar { left: 1px; right: 1px; border-radius: 0; }
+    /* v21.2: hide collabel + score by default; only the top-positive and
+       top-negative columns get the .show class (added in JS). Visible
+       labels are bigger and allowed to overflow their column horizontally. */
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-collabel,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-collabel { font-size: 0.72rem; bottom: -1.85rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-collabel {
+      visibility: hidden; font-size: 0.72rem; bottom: -1.85rem;
+      left: 50%; right: auto; width: max-content; max-width: 14ch;
+      transform: translateX(-50%); white-space: nowrap;
+    }
+    .cluster-panel[data-cluster="MEANS"] .cat-vbar-collabel.show,
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-collabel.show {
+      visibility: visible; font-size: 1rem; font-weight: 600; color: var(--ink);
+    }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-score,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-score { font-size: 0.7rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-score { visibility: hidden; font-size: 0.7rem; }
+    .cluster-panel[data-cluster="MEANS"] .cat-vbar-score.show,
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-score.show { visibility: visible; font-size: 0.9rem; font-weight: 700; }
     @media (max-width: 920px) {
       .cluster-panel[data-cluster="MEANS"] .node-cluster,
       .cluster-panel[data-cluster="REALITY"] .node-cluster { grid-template-columns: 1fr; }
@@ -2236,10 +2250,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       wrap.appendChild(grid);
 
-      // 6 columns.
-      const cols = document.createElement('div');
-      cols.className = 'cat-vbar-cols';
+      // First pass: compute scores so we can decide which two columns get
+      // visible labels (top-positive + top-negative). Everything else is
+      // hover-only via the column's title attribute.
       const antiSet = new Set(antiCats || []);
+      const scoreData = [];
       for (let i = 0; i < 6; i++) {
         const prob = probs[i] || 0;
         const isAnti = antiSet.has(i);
@@ -2250,6 +2265,18 @@ document.addEventListener('DOMContentLoaded', () => {
           score = (prob - 1 / 6) * 6;
           score = Math.max(-3, Math.min(3, score));
         }
+        scoreData.push({ idx: i, prob, isAnti, score });
+      }
+      const sortedDesc = [...scoreData].sort((a, b) => b.score - a.score);
+      const sortedAsc = [...scoreData].sort((a, b) => a.score - b.score);
+      const topPosIdx = sortedDesc[0].score > 0.05 ? sortedDesc[0].idx : -1;
+      const topNegIdx = sortedAsc[0].score < -0.05 ? sortedAsc[0].idx : -1;
+
+      // 6 columns.
+      const cols = document.createElement('div');
+      cols.className = 'cat-vbar-cols';
+      for (const sd of scoreData) {
+        const { idx: i, prob, isAnti, score } = sd;
         const col = document.createElement('div');
         col.className = 'cat-vbar-col';
         col.title = `${categoryLabels[i]}: ${(prob * 100).toFixed(0)}% probability · score ${score > 0 ? '+' : ''}${score.toFixed(1)}${isAnti ? ' (anti-category)' : ''}`;
@@ -2263,8 +2290,9 @@ document.addEventListener('DOMContentLoaded', () => {
         bar.style.height = heightPct + '%';
         track.appendChild(bar);
 
+        const showLabel = (i === topPosIdx || i === topNegIdx);
         const scoreEl = document.createElement('div');
-        scoreEl.className = 'cat-vbar-score ' + (isAnti ? 'anti' : score >= 0 ? 'positive' : 'negative');
+        scoreEl.className = 'cat-vbar-score ' + (isAnti ? 'anti' : score >= 0 ? 'positive' : 'negative') + (showLabel ? ' show' : '');
         scoreEl.textContent = (score > 0 ? '+' : '') + score.toFixed(1);
         if (score >= 0) {
           scoreEl.style.bottom = `calc(50% + ${heightPct}% + 2px)`;
@@ -2276,7 +2304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         col.appendChild(track);
 
         const label = document.createElement('div');
-        label.className = 'cat-vbar-collabel';
+        label.className = 'cat-vbar-collabel' + (showLabel ? ' show' : '');
         label.textContent = categoryLabels[i];
         col.appendChild(label);
 
