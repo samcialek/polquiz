@@ -1,4 +1,24 @@
-import type { QuestionDef, RespondentState } from "../types.js";
+import type { QuestionDef, RespondentState, TrbAnchor } from "../types.js";
+/**
+ * Mirror a MOR salience update into morBoundaries.intensity. Salience evidence
+ * directly signals "how cognitively active is the moral-circle dimension for
+ * this respondent" — exactly what intensity captures. `salDist` should be a
+ * 4-band salience likelihood ([P(sal=0..3)] from the per-question likelihood
+ * tables); we convert to expected sal on the 0..3 scale and bump intensity
+ * toward it.
+ *
+ * Exported so `api.ts applyStoredRatioBoost` (which mutates salDist outside
+ * update.ts) can call this directly. Removed in 6.E.4 cleanup along with the
+ * rest of the bridge.
+ */
+export declare function mirrorMorSalToIntensity(state: RespondentState, salDist: readonly number[] | undefined, weight?: number): void;
+/**
+ * Mirror trbAnchor evidence into morBoundaries. Each positive anchor signal
+ * lifts the corresponding named boundary AND bumps intensity (except
+ * universalist anchors, which lift nothing). `weight` scales mix to match
+ * the legacy write's strength.
+ */
+export declare function mirrorAnchorToBoundaries(state: RespondentState, signals: Partial<Record<TrbAnchor, number>> | undefined, weight?: number): void;
 export declare function applySingleChoiceAnswer(state: RespondentState, q: QuestionDef, optionKey: string): void;
 /**
  * Multi-select answer: apply each selected option's evidence in turn. The

@@ -1,14 +1,20 @@
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
+import { computeEngagementLabel } from "../engine/engagementLabel.js";
 // Delta at position p (1..5) → ContinuousPosDist
 function posAt(p) {
     const d = [0, 0, 0, 0, 0];
     d[p - 1] = 1;
     return d;
 }
-function makeContinuous(p) {
+function makeContinuous(p, salTier = 3) {
+    // salTier: 0 = sal-0 dominant (policy-thin), 3 = sal-3 dominant (policy-loud).
+    // Identity-primary cases need salTier ≤ 1 on most nodes for the
+    // policy-thinness gate to pass.
+    const salDist = [0, 0, 0, 0];
+    salDist[salTier] = 1;
     return {
         posDist: posAt(p),
-        salDist: [0, 0, 0, 1],
+        salDist,
         touches: 1,
         touchTypes: new Set(),
         status: "live_resolved",
@@ -29,13 +35,80 @@ function anchorDist(topIdx) {
     d[topIdx] = 0.6;
     return d;
 }
-// Build a state with specified continuous node positions; others default to 3
-function buildState(positions, topAnchorIdx) {
-    const continuousIds = ["MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S", "PF", "TRB", "ENG"];
+// 6.E.2b: Anchor index → MOR boundary key. Mirrors anchorToBoundary() in
+// update.ts and matches the resolver's "sexual collapses into gender" rule.
+const ANCHOR_IDX_TO_BOUNDARY = [
+    "national", // 0
+    "ideological", // 1
+    "religious", // 2
+    "class", // 3
+    "ethnic_racial", // 4
+    "gender", // 5
+    "gender", // 6 sexual → gender (collapsed per resolver design)
+    null, // 7 global → no boundary
+    null, // 8 mixed_none → no boundary
+];
+/**
+ * Build a morBoundaries node state mirroring the test's TRB/PF/anchor inputs.
+ * Replaces what the bridge in update.ts would have produced over a quiz walk;
+ * here we synthesize directly so unit tests can target specific resolver
+ * states (latent / active / dominant / none).
+ */
+function makeMorBoundaries(trbPos, pfPos, topAnchorIdx) {
+    // Intensity: linear in max(TRB, PF) — 1→0, 5→3. High enough to clear the
+    // active gate (≥ 2.25) when both TRB and PF are at 5.
+    const intensity = Math.max(0, Math.min(3, ((Math.max(trbPos, pfPos) - 1) / 4) * 3));
+    // Default boundaries low so load is driven by the named anchor only.
+    const boundaries = {
+        national: 0.2, ethnic_racial: 0.2, religious: 0.2, class: 0.2,
+        ideological: 0.2, gender: 0.2, political_tribe: 0.2,
+    };
+    const boundaryKey = ANCHOR_IDX_TO_BOUNDARY[topAnchorIdx] ?? null;
+    if (boundaryKey)
+        boundaries[boundaryKey] = 0.85; // clears the active load gate (≥ 0.65)
+    // PF lifts political_tribe boundary as per the bridge mapping.
+    if (pfPos >= 4)
+        boundaries.political_tribe = Math.max(boundaries.political_tribe, 0.6);
+    return {
+        boundaries,
+        intensity,
+        touches: { TRB_PROXY: 1 },
+        touchTypes: new Set(["test"]),
+        status: "live",
+    };
+}
+// Policy-loud nodes (high salience) vs policy-thin (low salience). The
+// identity-primary policy-thinness gate (ADR-009 P3.5) requires most non-SELF
+// nodes to be policy-thin; only TRB/PF/ENG and the touched signaling nodes
+// should be policy-loud.
+const POLICY_NODES_NON_SELF = ["MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S"];
+const SELF_NODES = ["PF", "TRB", "ENG"];
+function buildState(positions, topAnchorIdx, opts = {}) {
+    const continuousIds = [...POLICY_NODES_NON_SELF, ...SELF_NODES];
     const continuous = {};
     for (const id of continuousIds) {
-        continuous[id] = makeContinuous(positions[id] ?? 3);
+        const pos = positions[id] ?? 3;
+        // Policy-thin: non-SELF nodes mentioned in `positions` (the "loud" signals)
+        // get sal-3, all other non-SELF nodes get sal-0. SELF nodes always sal-3.
+        let salTier;
+        if (SELF_NODES.includes(id)) {
+            salTier = 3;
+        }
+        else if (opts.policyThin) {
+            // Identity-primary requires policy salience to be uniformly low; even
+            // policy nodes that carry the "signaling" position evidence stay sal-0
+            // because the gate caps highSaliencePolicyCount at 2. Position info
+            // alone (without salience) is what makes a Feminist Voter distinct
+            // from a Progressive Activist — same MOR position, different MOR salience.
+            salTier = 0;
+        }
+        else {
+            salTier = 3;
+        }
+        continuous[id] = makeContinuous(pos, salTier);
     }
+    const trbPos = positions["TRB"] ?? 3;
+    const pfPos = positions["PF"] ?? 3;
     return {
         answers: {},
         continuous: continuous,
@@ -44,13 +117,14 @@ function buildState(positions, topAnchorIdx) {
             AES: makeCategorical(),
         },
         trbAnchor: { dist: anchorDist(topAnchorIdx), touches: 1 },
-        archetypePosterior: {},
+        morBoundaries: makeMorBoundaries(trbPos, pfPos, topAnchorIdx),
+        archetypeDistances: {},
     };
 }
 const cases = [
     {
         name: "LGBTQ Voter — sexual anchor + demo_lgbtq=yes + high TRB/PF/ENG",
-        state: buildState({ TRB: 5, PF: 5, ENG: 4 }, 6), // sexual = idx 6
+        state: buildState({ TRB: 5, PF: 5, ENG: 4 }, 6, { policyThin: true }), // sexual = idx 6
         demographics: { demo_lgbtq: "yes" },
         expectLabel: "LGBTQ Voter",
         expectState: "dominant",
@@ -64,7 +138,7 @@ const cases = [
     },
     {
         name: "Feminist Voter — gender anchor + female + progressive signals",
-        state: buildState({ TRB: 5, PF: 5, ENG: 4, CD: 1, MOR: 5, ONT_S: 5 }, 5), // gender = idx 5
+        state: buildState({ TRB: 5, PF: 5, ENG: 4, CD: 1, MOR: 5, ONT_S: 5 }, 5, { policyThin: true }),
         demographics: { demo_gender: "female" },
         expectLabel: "Feminist Voter",
         expectState: "dominant",
@@ -78,7 +152,7 @@ const cases = [
     },
     {
         name: "Male Grievance Voter — gender anchor + male + grievance signals",
-        state: buildState({ TRB: 5, PF: 5, ENG: 4, ZS: 5, CD: 5, ONT_S: 1 }, 5),
+        state: buildState({ TRB: 5, PF: 5, ENG: 4, ZS: 5, CD: 5, ONT_S: 1 }, 5, { policyThin: true }),
         demographics: { demo_gender: "male" },
         expectLabel: "Male Grievance Voter",
         expectState: "dominant",
@@ -92,7 +166,7 @@ const cases = [
     },
     {
         name: "Black Voter (regression) — racial anchor + black",
-        state: buildState({ TRB: 5, PF: 5, ENG: 4 }, 4), // ethnic_racial = idx 4
+        state: buildState({ TRB: 5, PF: 5, ENG: 4 }, 4, { policyThin: true }), // ethnic_racial = idx 4
         demographics: { demo_ethnicity: "black" },
         expectLabel: "Black Voter",
         expectState: "dominant",
@@ -108,7 +182,7 @@ const cases = [
 let pass = 0;
 let fail = 0;
 for (const c of cases) {
-    const result = resolveIdentityPrimary(c.state, c.demographics);
+    const result = resolveIdentityPrimary(c.state, computeEngagementLabel(c.state), c.demographics);
     const ok = result.label === c.expectLabel && result.state === c.expectState;
     if (ok) {
         pass++;
@@ -127,4 +201,3 @@ console.log();
 console.log(`${pass} passed, ${fail} failed (${cases.length} total)`);
 if (fail > 0)
     process.exit(1);
-//# sourceMappingURL=resolver-smoke.js.map

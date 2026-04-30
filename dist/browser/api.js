@@ -7,8 +7,8 @@
 import { ARCHETYPES } from "../config/archetypes.js";
 import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
-import { applySingleChoiceAnswer, applyMultiAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, applyBestWorstSalience, applyPrioritySort, applyDualAxisAnswer, } from "../engine/update.js";
-import { multiplyAndNormalize } from "../engine/math.js";
+import { applySingleChoiceAnswer, applyMultiAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, applyBestWorstSalience, applyPrioritySort, applyDualAxisAnswer, mirrorMorSalToIntensity, } from "../engine/update.js";
+import { multiplyAndNormalize, mkInitialMorBoundaries, MOR_BOUNDARY_ORDER } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
 import { selectNextQuestionEIG, shouldStopEIG } from "../engine/selectorEIG.js";
 import { shouldStop } from "../engine/stopRule.js";
@@ -30,7 +30,7 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260429-pr3-forced-coverage";
+export const BUNDLE_VERSION = "20260429-pr3d-q207-pro";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
@@ -72,6 +72,11 @@ function applyStoredRatioBoost(q) {
         if (touch.kind === "continuous" && touch.node in _state.continuous) {
             const node = _state.continuous[touch.node];
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+            // 6.E.2b bridge: ratio-boost MOR salience → intensity. This sits
+            // outside update.ts (browser-only post-answer hook) so it imports
+            // the bridge helper directly to keep the mirror coverage uniform.
+            if (touch.node === "MOR")
+                mirrorMorSalToIntensity(_state, salLikelihood, 1.0);
         }
         else if (touch.kind === "categorical" && touch.node in _state.categorical) {
             const node = _state.categorical[touch.node];
@@ -122,6 +127,18 @@ function deepCopyState(state) {
             status: src.status,
         };
     }
+    // 6.E.2b: deep-copy morBoundaries (Set + nested objects). Snapshot must
+    // round-trip the module so back-navigation restores the moral-circle
+    // contribution to archetypeDistance correctly.
+    if (state.morBoundaries) {
+        copy.morBoundaries = {
+            boundaries: { ...state.morBoundaries.boundaries },
+            intensity: state.morBoundaries.intensity,
+            touches: { ...state.morBoundaries.touches },
+            touchTypes: new Set(state.morBoundaries.touchTypes),
+            status: state.morBoundaries.status,
+        };
+    }
     return copy;
 }
 // ---------------------------------------------------------------------------
@@ -156,6 +173,13 @@ function createInitialState() {
             dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
             touches: 0,
         },
+        // 6.E.2b: initialize the compound moral-circle module per ADR-006.
+        // Triggers archetypeDistance.ts's per-archetype gate to switch to the
+        // morModule branch — the bridge in update.ts (committed in this same PR)
+        // mirrors every legacy MOR/TRB/PF/trbAnchor write into this field so the
+        // module ends the quiz meaningfully shifted from {boundaries: 0.5,
+        // intensity: 0} rather than near-neutral.
+        morBoundaries: mkInitialMorBoundaries(),
         archetypeDistances: {},
         currentLeader: undefined,
         consecutiveLeadCount: 0,
@@ -661,6 +685,29 @@ export function getRespondentState() {
         const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
         categorical[nodeId] = { catDist: [...node.catDist], salience, touches: node.touches };
     }
+    // 6.E.2b: expose morBoundaries in the debug view (compound moral-circle
+    // module per ADR-006). Includes derived measures so dumps + smokes can
+    // verify the bridge actually moved the module away from its init.
+    const mb = _state.morBoundaries;
+    let boundaryLoad = 0;
+    if (mb) {
+        for (const k of MOR_BOUNDARY_ORDER) {
+            if (mb.boundaries[k] > boundaryLoad)
+                boundaryLoad = mb.boundaries[k];
+        }
+    }
+    const morBoundaries = mb
+        ? {
+            boundaries: { ...mb.boundaries },
+            intensity: mb.intensity,
+            boundaryLoad,
+            universalismScore: mb.intensity * (1 - boundaryLoad),
+            boundednessScore: mb.intensity * boundaryLoad,
+            touches: { ...mb.touches },
+            touchTypeCount: mb.touchTypes.size,
+            status: mb.status,
+        }
+        : null;
     return {
         continuous,
         categorical,
@@ -668,6 +715,7 @@ export function getRespondentState() {
             dist: [..._state.trbAnchor.dist],
             touches: _state.trbAnchor.touches,
         },
+        morBoundaries,
         partyID: _state.partyID ?? null,
         strategicVoting: _state.strategicVoting ?? false,
         negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],

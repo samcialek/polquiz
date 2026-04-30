@@ -2,6 +2,7 @@ import type {
   CategoricalDist,
   ContinuousNodeId,
   CategoricalNodeId,
+  MorBoundaryId,
   OptionEvidence,
   PairOptionMap,
   QuestionDef,
@@ -10,8 +11,229 @@ import type {
   SalienceDist,
   TrbAnchor
 } from "../types.js";
-import { multiplyAndNormalize, normalize, addToAnchorDist } from "./math.js";
+import {
+  multiplyAndNormalize,
+  normalize,
+  addToAnchorDist,
+  addToMorBoundary,
+  bumpMorIntensity,
+  MOR_BOUNDARY_ORDER,
+} from "./math.js";
 import { NODE_NORM_FACTORS } from "../config/normalization.js";
+
+// ────────────────────────────────────────────────────────────────────────────
+// MOR_BOUNDARIES bridge (ADR-006 PR 6.E.2b — temporary)
+//
+// While question evidence still targets the legacy MOR / TRB / PF / trbAnchor
+// fields (rewired natively in 6.F), the bridge mirrors every legacy write into
+// `state.morBoundaries`. This keeps the per-archetype gate in
+// archetypeDistance.ts coherent: as soon as api.ts initializes morBoundaries,
+// the scorer flips to the new module branch for every (state, archetype) pair,
+// and these mirrors guarantee the module ends the quiz meaningfully shifted
+// from `{boundaries: 0.5, intensity: 0}` rather than near-neutral.
+//
+// All helpers no-op when state.morBoundaries is undefined, so the bridge is
+// inert until the api.ts initializer (committed in this same PR) populates
+// the field. After 6.F lands native morBoundaries question evidence, this
+// entire block + every call site can be deleted in 6.E.4.
+//
+// Mappings:
+//   MOR pos → uniform pull on all 7 boundaries (high MOR pos = inclusive
+//             moral circle = boundaries pulled DOWN; low MOR pos = bounded =
+//             boundaries pulled UP). MOR carries no anchor signal on its own.
+//   TRB pos → intensity. High TRB pos = strong tribal activation.
+//   PF  pos → political_tribe boundary up + intensity up.
+//   trbAnchor signal → push the corresponding named boundary up + bump
+//             intensity (except `global`/`mixed_none`, which signal
+//             universalism / no anchor and don't lift any boundary).
+//             `sexual` collapses into `gender` per the 6.E.2b resolver
+//             design (resolver routes via demo_lgbtq before gender split).
+// ────────────────────────────────────────────────────────────────────────────
+
+const BRIDGE_MOR_MIX        = 0.06;
+const BRIDGE_TRB_MIX        = 0.10;
+const BRIDGE_PF_MIX_BD      = 0.10;
+const BRIDGE_PF_MIX_INT     = 0.06;
+const BRIDGE_MOR_SAL_MIX    = 0.10;
+const BRIDGE_GLOBAL_BD_MIX  = 0.10; // universalist: pull boundaries DOWN
+const BRIDGE_GLOBAL_BD_TARGET = 0.15;
+const BRIDGE_INT_TARGET     = 2.5;
+const BRIDGE_BD_TARGET      = 0.8;
+
+function anchorToBoundary(anchor: string): MorBoundaryId | null {
+  switch (anchor) {
+    case "national":      return "national";
+    case "ethnic_racial": return "ethnic_racial";
+    case "religious":     return "religious";
+    case "class":         return "class";
+    case "ideological":   return "ideological";
+    case "gender":        return "gender";
+    case "sexual":        return "gender"; // collapsed per resolver design
+    case "global":        return null;
+    case "mixed_none":    return null;
+    default:              return null;
+  }
+}
+
+/**
+ * Mirror a MOR/TRB/PF position update into morBoundaries. `posDist` is the
+ * evidence's likelihood ratio or target distribution over positions 1..5
+ * (need not sum to 1 — we normalize internally). `weight` scales the base
+ * bridge mix to match the legacy write's strength (e.g., share for
+ * allocation, rankWeight for ranking).
+ */
+function mirrorMorPosToBoundaries(
+  state: RespondentState,
+  nodeId: "MOR" | "TRB" | "PF",
+  posDist: readonly number[] | undefined,
+  weight: number = 1.0,
+): void {
+  if (!state.morBoundaries || !posDist || posDist.length !== 5) return;
+  const sum = posDist.reduce((a, b) => a + b, 0);
+  if (sum <= 0) return;
+  const meanPos =
+    (posDist[0] / sum) * 1 +
+    (posDist[1] / sum) * 2 +
+    (posDist[2] / sum) * 3 +
+    (posDist[3] / sum) * 4 +
+    (posDist[4] / sum) * 5;
+  const w = Math.max(0, Math.min(1, weight));
+
+  if (nodeId === "MOR") {
+    // pos 1 → boundaries up to 1.0; pos 5 → down to 0.0
+    const target = Math.max(0, Math.min(1, 1 - (meanPos - 1) / 4));
+    const mix = BRIDGE_MOR_MIX * w;
+    for (const k of MOR_BOUNDARY_ORDER) {
+      state.morBoundaries.boundaries[k] = addToMorBoundary(
+        state.morBoundaries.boundaries[k], target, mix,
+      );
+    }
+  } else if (nodeId === "TRB") {
+    // pos 1 → intensity 0; pos 5 → intensity 3
+    const target = ((meanPos - 1) / 4) * 3;
+    state.morBoundaries.intensity = bumpMorIntensity(
+      state.morBoundaries.intensity, target, BRIDGE_TRB_MIX * w,
+    );
+  } else {
+    // PF: lifts political_tribe boundary AND intensity
+    const targetBd  = Math.max(0, Math.min(1, (meanPos - 1) / 4));
+    const targetInt = ((meanPos - 1) / 4) * 3;
+    state.morBoundaries.boundaries.political_tribe = addToMorBoundary(
+      state.morBoundaries.boundaries.political_tribe, targetBd, BRIDGE_PF_MIX_BD * w,
+    );
+    state.morBoundaries.intensity = bumpMorIntensity(
+      state.morBoundaries.intensity, targetInt, BRIDGE_PF_MIX_INT * w,
+    );
+  }
+}
+
+/**
+ * Mirror a MOR salience update into morBoundaries.intensity. Salience evidence
+ * directly signals "how cognitively active is the moral-circle dimension for
+ * this respondent" — exactly what intensity captures. `salDist` should be a
+ * 4-band salience likelihood ([P(sal=0..3)] from the per-question likelihood
+ * tables); we convert to expected sal on the 0..3 scale and bump intensity
+ * toward it.
+ *
+ * Exported so `api.ts applyStoredRatioBoost` (which mutates salDist outside
+ * update.ts) can call this directly. Removed in 6.E.4 cleanup along with the
+ * rest of the bridge.
+ */
+export function mirrorMorSalToIntensity(
+  state: RespondentState,
+  salDist: readonly number[] | undefined,
+  weight: number = 1.0,
+): void {
+  if (!state.morBoundaries || !salDist || salDist.length !== 4) return;
+  const sum = salDist.reduce((a, b) => a + b, 0);
+  if (sum <= 0) return;
+  const expectedSal =
+    (salDist[0] / sum) * 0 +
+    (salDist[1] / sum) * 1 +
+    (salDist[2] / sum) * 2 +
+    (salDist[3] / sum) * 3;
+  const w = Math.max(0, Math.min(1, weight));
+  state.morBoundaries.intensity = bumpMorIntensity(
+    state.morBoundaries.intensity, expectedSal, BRIDGE_MOR_SAL_MIX * w,
+  );
+}
+
+/**
+ * Convenience for sites where the legacy write is a scalar signal (allocation,
+ * ranking, pairwise) instead of a distribution. Translates `signal` into a
+ * peaked posDist around pos = 3 + signal·2 (clamped to [1,5]) and feeds the
+ * standard mirror.
+ */
+function mirrorMorSignalToBoundaries(
+  state: RespondentState,
+  nodeId: "MOR" | "TRB" | "PF",
+  signal: number,
+  weight: number = 1.0,
+): void {
+  if (!state.morBoundaries || !Number.isFinite(signal)) return;
+  // Signal in roughly [-1, +1]; positive = high-pos lean.
+  const peak = Math.max(1, Math.min(5, 3 + signal * 2));
+  const sigma = 0.8;
+  const raw = [1, 2, 3, 4, 5].map(i =>
+    Math.exp(-0.5 * ((i - peak) / sigma) ** 2),
+  );
+  mirrorMorPosToBoundaries(state, nodeId, raw, weight);
+}
+
+/**
+ * Mirror trbAnchor evidence into morBoundaries. Each positive anchor signal
+ * lifts the corresponding named boundary AND bumps intensity (except
+ * universalist anchors, which lift nothing). `weight` scales mix to match
+ * the legacy write's strength.
+ */
+export function mirrorAnchorToBoundaries(
+  state: RespondentState,
+  signals: Partial<Record<TrbAnchor, number>> | undefined,
+  weight: number = 1.0,
+): void {
+  if (!state.morBoundaries || !signals) return;
+  const w = Math.max(0, Math.min(1, weight));
+  for (const [anchor, raw] of Object.entries(signals)) {
+    if (raw === undefined || raw <= 0) continue;
+    const mag = Math.abs(raw);
+
+    // `global` = universalist anchor per ADR-006. Encodes as LOW boundaries
+    // + HIGH intensity (universalism = activated AND boundary-free moral
+    // circle). Pull all 7 boundaries DOWN toward 0.15 and bump intensity
+    // toward the activation target. Without this, "global moral circle"
+    // signals could not produce universalist activation through the bridge.
+    if (anchor === "global") {
+      const bdMix = Math.min(0.30, (0.05 + mag * 0.10) * w) * (BRIDGE_GLOBAL_BD_MIX / 0.10);
+      for (const k of MOR_BOUNDARY_ORDER) {
+        state.morBoundaries.boundaries[k] = addToMorBoundary(
+          state.morBoundaries.boundaries[k], BRIDGE_GLOBAL_BD_TARGET, bdMix,
+        );
+      }
+      const intMix = Math.min(0.20, (0.04 + mag * 0.06) * w);
+      state.morBoundaries.intensity = bumpMorIntensity(
+        state.morBoundaries.intensity, BRIDGE_INT_TARGET, intMix,
+      );
+      continue;
+    }
+
+    // `mixed_none` = "no clear anchor" — genuinely ambiguous; lift nothing
+    // and don't bump intensity. Anything else routes through anchorToBoundary
+    // (sexual collapses into gender per the resolver design).
+    if (anchor === "mixed_none") continue;
+
+    const key = anchorToBoundary(anchor);
+    if (key) {
+      const mix = Math.min(0.30, (0.05 + mag * 0.10) * w);
+      state.morBoundaries.boundaries[key] = addToMorBoundary(
+        state.morBoundaries.boundaries[key], BRIDGE_BD_TARGET, mix,
+      );
+    }
+    const intMix = Math.min(0.20, (0.04 + mag * 0.06) * w);
+    state.morBoundaries.intensity = bumpMorIntensity(
+      state.morBoundaries.intensity, BRIDGE_INT_TARGET, intMix,
+    );
+  }
+}
 
 // Salience likelihood ratios keyed by rank position (6-item ranking).
 // Rank 1 = most important → high salience; Rank 6 = least → low salience.
@@ -124,6 +346,10 @@ function boostExtremitySalience(
     if (touch.kind === "continuous" && touch.node in state.continuous) {
       const node = state.continuous[touch.node as ContinuousNodeId];
       node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
+      // 6.E.2b bridge: extremity-driven MOR salience bump → intensity.
+      if (touch.node === "MOR") {
+        mirrorMorSalToIntensity(state, EXTREMITY_SAL, 1.0);
+      }
     } else if (touch.kind === "categorical" && touch.node in state.categorical) {
       const node = state.categorical[touch.node as CategoricalNodeId];
       node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
@@ -157,6 +383,14 @@ function applyOptionEvidence(state: RespondentState, evidence: OptionEvidence | 
       const node = state.continuous[nodeId as ContinuousNodeId];
       if (upd?.pos) node.posDist = multiplyAndNormalize(node.posDist, upd.pos);
       if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+      // 6.E.2b bridge: mirror MOR/TRB/PF pos evidence into morBoundaries.
+      if (upd?.pos && (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF")) {
+        mirrorMorPosToBoundaries(state, nodeId, upd.pos, 1.0);
+      }
+      // 6.E.2b bridge: mirror MOR salience evidence into intensity.
+      if (upd?.sal && nodeId === "MOR") {
+        mirrorMorSalToIntensity(state, upd.sal, 1.0);
+      }
     }
   }
 
@@ -171,6 +405,8 @@ function applyOptionEvidence(state: RespondentState, evidence: OptionEvidence | 
   if (evidence.trbAnchor) {
     state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, evidence.trbAnchor);
     state.trbAnchor.touches += 1;
+    // 6.E.2b bridge: mirror anchor signals into morBoundaries.
+    mirrorAnchorToBoundaries(state, evidence.trbAnchor, 1.0);
   }
 }
 
@@ -321,6 +557,10 @@ export function applyAllocationAnswer(
         const current = node.posDist;
         const bump = current.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * share * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
+        // 6.E.2b bridge: mirror MOR/TRB/PF allocation signal into morBoundaries.
+        if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+          mirrorMorSignalToBoundaries(state, nodeId, (signal ?? 0) * normFactor, share);
+        }
       }
     }
 
@@ -341,6 +581,8 @@ export function applyAllocationAnswer(
       }
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
       state.trbAnchor.touches += 1;
+      // 6.E.2b bridge: mirror anchor signals into morBoundaries (already share-scaled).
+      mirrorAnchorToBoundaries(state, scaled, 1.0);
     }
   }
 
@@ -359,6 +601,8 @@ export function applyAllocationAnswer(
     if (touch.kind === "continuous") {
       const node = state.continuous[touch.node as ContinuousNodeId];
       node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+      // 6.E.2b bridge: allocation MOR salience-touch → intensity.
+      if (touch.node === "MOR") mirrorMorSalToIntensity(state, salLikelihood, 1.0);
     } else if (touch.kind === "categorical") {
       const node = state.categorical[touch.node as CategoricalNodeId];
       node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -400,6 +644,14 @@ export function applyRankingAnswer(
         if (salLikelihood) {
           node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
         }
+        // 6.E.2b bridge: mirror MOR/TRB/PF ranking signal into morBoundaries.
+        if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+          mirrorMorSignalToBoundaries(state, nodeId, sig * normFactor, rankWeight);
+        }
+        // 6.E.2b bridge: ranking MOR salience-likelihood → intensity.
+        if (nodeId === "MOR" && salLikelihood) {
+          mirrorMorSalToIntensity(state, salLikelihood, rankWeight);
+        }
       }
     }
 
@@ -423,6 +675,8 @@ export function applyRankingAnswer(
       }
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
       state.trbAnchor.touches += 1;
+      // 6.E.2b bridge: mirror anchor signals into morBoundaries (already rank-scaled).
+      mirrorAnchorToBoundaries(state, scaled, 1.0);
     }
   });
 }
@@ -502,7 +756,10 @@ export function applyBestWorstSalience(
   for (const [nodeId, buckets] of continuousBuckets) {
     const node = state.continuous[nodeId as ContinuousNodeId];
     if (!node) continue;
-    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+    const sal = resolveSal(buckets);
+    node.salDist = multiplyAndNormalize(node.salDist, sal);
+    // 6.E.2b bridge: best_worst MOR salience aggregation → intensity.
+    if (nodeId === "MOR") mirrorMorSalToIntensity(state, sal, 1.0);
   }
   for (const [nodeId, buckets] of categoricalBuckets) {
     const node = state.categorical[nodeId as CategoricalNodeId];
@@ -557,6 +814,11 @@ export function applyBestWorstSalience(
       const tNorm = target.map((p: number) => p / tSum) as typeof node.posDist;
       const mixed = node.posDist.map((v, i) => v * (1 - w) + tNorm[i]! * w);
       node.posDist = normalize(mixed as typeof node.posDist);
+      // 6.E.2b bridge: mirror MOR/TRB/PF best_worst pos into morBoundaries.
+      // `tNorm` already encodes the invert-for-worst geometry.
+      if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+        mirrorMorPosToBoundaries(state, nodeId, tNorm, w);
+      }
     }
   }
 
@@ -574,6 +836,8 @@ export function applyBestWorstSalience(
     const map = q.rankingMap[item];
     if (!map?.trbAnchor) continue;
     state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+    // 6.E.2b bridge: mirror best-item anchor signals into morBoundaries.
+    mirrorAnchorToBoundaries(state, map.trbAnchor, 1.0);
     anchorApplied = true;
   }
   if (anchorApplied) state.trbAnchor.touches += 1;
@@ -661,7 +925,10 @@ export function applyPrioritySort(
   for (const [nodeId, buckets] of continuousBuckets) {
     const node = state.continuous[nodeId as ContinuousNodeId];
     if (!node) continue;
-    node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+    const sal = resolveSal(buckets);
+    node.salDist = multiplyAndNormalize(node.salDist, sal);
+    // 6.E.2b bridge: priority-sort MOR salience aggregation → intensity.
+    if (nodeId === "MOR") mirrorMorSalToIntensity(state, sal, 1.0);
   }
   for (const [nodeId, buckets] of categoricalBuckets) {
     const node = state.categorical[nodeId as CategoricalNodeId];
@@ -781,6 +1048,11 @@ export function applyPrioritySort(
       const target = raw.map((p: number) => p / rawSum) as typeof node.posDist;
       const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i]! * w);
       node.posDist = normalize(mixed as typeof node.posDist);
+      // 6.E.2b bridge: mirror MOR/TRB/PF priority-sort pos into morBoundaries.
+      // `target` already encodes the oppose-high invert.
+      if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+        mirrorMorPosToBoundaries(state, nodeId, target, w);
+      }
     }
   }
 }
@@ -827,7 +1099,17 @@ export function applyDualAxisAnswer(
   node.posDist = normalize(mixed as typeof node.posDist);
 
   // Salience: y bucket → likelihood ratio, multiply into salDist.
-  node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
+  const dualSal = dualAxisYtoSal(y);
+  node.salDist = multiplyAndNormalize(node.salDist, dualSal);
+
+  // 6.E.2b bridge: mirror MOR/TRB/PF dual-axis pos into morBoundaries.
+  if (map.node === "MOR" || map.node === "TRB" || map.node === "PF") {
+    mirrorMorPosToBoundaries(state, map.node, normTarget, DUAL_AXIS_POS_MIX);
+  }
+  // 6.E.2b bridge: dual-axis MOR salience → intensity.
+  if (map.node === "MOR") {
+    mirrorMorSalToIntensity(state, dualSal, 1.0);
+  }
 }
 
 export function applyPairwiseAnswer(
@@ -849,6 +1131,10 @@ export function applyPairwiseAnswer(
         const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
         const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * ((i + 1) - 3)));
         node.posDist = normalize(bump as typeof node.posDist);
+        // 6.E.2b bridge: mirror MOR/TRB/PF pairwise signal into morBoundaries.
+        if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+          mirrorMorSignalToBoundaries(state, nodeId, (signal ?? 0) * normFactor, 1.0);
+        }
       }
     }
 
