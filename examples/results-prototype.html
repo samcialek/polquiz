@@ -1539,13 +1539,17 @@ document.addEventListener('DOMContentLoaded', () => {
       { key: 'gender',          label: 'Gender',          color: '#fa8072' },
       { key: 'political_tribe', label: 'Political Tribe', color: '#6A0DAD' },
     ];
+    // 'universal' is a separate dimension from the 7 segments — the baseline
+    // moral concern for human beings as such, regardless of in-group category.
+    // Wedges extending past this ring represent in-group preference / bias
+    // for that specific segment beyond the universal baseline.
     const MORAL_CIRCLE_SAMPLES = {
-      '056': { national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.4}, gender:{position:85,salience:1.8}, political_tribe:{position:30,salience:2.6} },
-      '011': { national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:20,salience:3.0}, gender:{position:90,salience:2.4}, political_tribe:{position:80,salience:2.8} },
-      '088': { national:{position:80,salience:2.4}, ethnic_racial:{position:55,salience:1.4}, religious:{position:75,salience:2.0}, class:{position:50,salience:0.8}, ideological:{position:50,salience:0.4}, gender:{position:45,salience:0.6}, political_tribe:{position:50,salience:0.6} },
-      '001': { national:{position:55,salience:0.6}, ethnic_racial:{position:85,salience:1.6}, religious:{position:60,salience:0.4}, class:{position:70,salience:1.0}, ideological:{position:40,salience:1.8}, gender:{position:90,salience:1.4}, political_tribe:{position:35,salience:2.0} },
+      '056': { universal:70, national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.4}, gender:{position:85,salience:1.8}, political_tribe:{position:30,salience:2.6} },
+      '011': { universal:60, national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:20,salience:3.0}, gender:{position:90,salience:2.4}, political_tribe:{position:80,salience:2.8} },
+      '088': { universal:45, national:{position:80,salience:2.4}, ethnic_racial:{position:55,salience:1.4}, religious:{position:75,salience:2.0}, class:{position:50,salience:0.8}, ideological:{position:50,salience:0.4}, gender:{position:45,salience:0.6}, political_tribe:{position:50,salience:0.6} },
+      '001': { universal:80, national:{position:55,salience:0.6}, ethnic_racial:{position:85,salience:1.6}, religious:{position:60,salience:0.4}, class:{position:70,salience:1.0}, ideological:{position:40,salience:1.8}, gender:{position:90,salience:1.4}, political_tribe:{position:35,salience:2.0} },
     };
-    const MORAL_CIRCLE_DEFAULT = { national:{position:50,salience:1.0}, ethnic_racial:{position:65,salience:1.2}, religious:{position:50,salience:0.8}, class:{position:55,salience:1.0}, ideological:{position:45,salience:1.4}, gender:{position:70,salience:1.0}, political_tribe:{position:40,salience:1.5} };
+    const MORAL_CIRCLE_DEFAULT = { universal:55, national:{position:50,salience:1.0}, ethnic_racial:{position:65,salience:1.2}, religious:{position:50,salience:0.8}, class:{position:55,salience:1.0}, ideological:{position:45,salience:1.4}, gender:{position:70,salience:1.0}, political_tribe:{position:40,salience:1.5} };
 
     function renderMoralCircleSunburst(archId) {
       const data = MORAL_CIRCLE_SAMPLES[archId] || MORAL_CIRCLE_DEFAULT;
@@ -1557,9 +1561,10 @@ document.addEventListener('DOMContentLoaded', () => {
       title.textContent = 'Moral Circle';
       wrap.appendChild(title);
 
+      const universalPct = (data.universal != null ? data.universal : MORAL_CIRCLE_DEFAULT.universal);
       const tagline = document.createElement('div');
       tagline.className = 'moral-circle-tagline';
-      tagline.textContent = 'In-group inclusion across seven boundaries. The dotted ring marks 50% — wedges past it are inside the moral circle; wedges within are outside it. Saturation reads as salience.';
+      tagline.innerHTML = `In-group inclusion across seven boundaries. The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal love</strong> baseline (${universalPct}%) — concern for human beings regardless of category. Wedges sticking past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
       const svgWrap = document.createElement('div');
@@ -1633,6 +1638,41 @@ document.addEventListener('DOMContentLoaded', () => {
       ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#1a1a1a');
       ring.setAttribute('stroke-width', 1); ring.setAttribute('stroke-dasharray', '3 3'); ring.setAttribute('opacity', 0.55);
       svg.appendChild(ring);
+
+      // Universal love ring — solid outline at the universal-baseline radius.
+      // Wedges sticking past it = in-group preference / bias for that segment.
+      const universalR = (universalPct / 50) * R50;
+      const uRing = document.createElementNS(ns, 'circle');
+      uRing.setAttribute('cx', 0); uRing.setAttribute('cy', 0); uRing.setAttribute('r', universalR.toFixed(2));
+      uRing.setAttribute('fill', 'none');
+      uRing.setAttribute('stroke', '#1a1a1a');
+      uRing.setAttribute('stroke-width', 2);
+      uRing.setAttribute('opacity', 0.85);
+      svg.appendChild(uRing);
+
+      // Small "universal love · NN%" label on the universal-love ring,
+      // positioned just above the top of the ring so it sits on the outline.
+      const uLabel = document.createElementNS(ns, 'text');
+      uLabel.setAttribute('x', 0);
+      uLabel.setAttribute('y', (-universalR + 2).toFixed(2));
+      uLabel.setAttribute('font-family', "'Space Grotesk', sans-serif");
+      uLabel.setAttribute('font-size', '10');
+      uLabel.setAttribute('font-weight', '600');
+      uLabel.setAttribute('fill', '#1a1a1a');
+      uLabel.setAttribute('text-anchor', 'middle');
+      // Background rect for legibility — drawn first.
+      const uLabelBg = document.createElementNS(ns, 'rect');
+      const labelText = `universal love · ${universalPct}%`;
+      const approxW = labelText.length * 5.6;
+      uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
+      uLabelBg.setAttribute('y', (-universalR - 8).toFixed(2));
+      uLabelBg.setAttribute('width', (approxW + 8).toFixed(2));
+      uLabelBg.setAttribute('height', '12');
+      uLabelBg.setAttribute('fill', 'var(--cream, #FFFEF8)');
+      uLabelBg.setAttribute('opacity', '0.95');
+      svg.appendChild(uLabelBg);
+      uLabel.textContent = labelText;
+      svg.appendChild(uLabel);
 
       // Labels — Space Grotesk to match the live profile section.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
