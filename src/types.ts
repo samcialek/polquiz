@@ -12,6 +12,16 @@ export type ContinuousNodeId =
   | "TRB"
   | "ENG";
 
+/**
+ * Continuous nodes scheduled for removal per ADR-006: MOR, TRB, PF collapse
+ * into the compound moral-circle module (`Archetype.morBoundaries`,
+ * `RespondentState.morBoundaries`). They remain in `ContinuousNodeId`
+ * during the additive transition (PRs 6.B–6.D); the engine cutover in PR
+ * 6.E removes them. New code should not depend on these as live continuous
+ * nodes.
+ */
+export type DeprecatedMoralCircleNodeId = "MOR" | "TRB" | "PF";
+
 export type CategoricalNodeId = "EPS" | "AES";
 
 export type NodeId = ContinuousNodeId | CategoricalNodeId;
@@ -61,6 +71,15 @@ export interface Archetype {
    */
   centristAnchor?: boolean;
   nodes: Partial<Record<NodeId, ArchetypeNodeTemplate>>;
+  /**
+   * Compound moral-circle module per ADR-006 (added in PR 6.B as additive).
+   * Replaces the MOR / TRB / PF entries currently in `nodes`. Optional during
+   * the additive transition (PRs 6.B–6.D); becomes required and the legacy
+   * MOR/TRB/PF entries are removed in PR 6.E (engine cutover).
+   *
+   * Currently unused by the engine — runtime cutover lands in PR 6.E.
+   */
+  morBoundaries?: ArchetypeMorBoundaries;
 }
 
 export type QuestionStage = "fixed12" | "screen20" | "stage2" | "stage3";
@@ -102,6 +121,12 @@ export interface OptionEvidenceCategorical {
   sal?: SalienceDist;
 }
 
+/**
+ * @deprecated since ADR-006 (PR 6.B). Replaced by `MorBoundaryId` (7
+ * categories instead of 9: gender + sexual fold to gender, global → implicit
+ * universalism via low boundaries, mixed_none → all-low signal). Removal
+ * scheduled for PR 6.E (engine cutover).
+ */
 export type TrbAnchor =
   | "national"
   | "ideological"
@@ -113,6 +138,10 @@ export type TrbAnchor =
   | "global"
   | "mixed_none";
 
+/**
+ * @deprecated since ADR-006 (PR 6.B). Replaced by `MorBoundaryVector` (7-tuple
+ * of independent 0..1 boundedness scores). Removal scheduled for PR 6.E.
+ */
 export type TrbAnchorDist = [
   number,
   number,
@@ -124,6 +153,124 @@ export type TrbAnchorDist = [
   number,
   number
 ];
+
+// ────────────────────────────────────────────────────────────────────────────
+// MOR_BOUNDARIES — compound moral-circle module (ADR-006, PR 6.B additive)
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The 7 independent identity-political boundaries that structure a
+ * respondent's moral circle. Per ADR-006, each is a 0..1 boundedness score —
+ * scores do NOT sum to 1.
+ *
+ *   national        — co-citizens (US implicit; activation still varies)
+ *   ethnic_racial   — co-ethnics
+ *   religious       — co-religionists
+ *   class           — co-class
+ *   ideological     — people who share my ideas/values
+ *   gender          — co-gender or co-LGBTQ-cohort (folds gender + sexual_orientation politics)
+ *   political_tribe — party / camp / movement / candidate-faction loyalty
+ *
+ * The order matches `MOR_BOUNDARIES` in `src/config/categories.ts`.
+ */
+export type MorBoundaryId =
+  | "national"
+  | "ethnic_racial"
+  | "religious"
+  | "class"
+  | "ideological"
+  | "gender"
+  | "political_tribe";
+
+/**
+ * 7-tuple of independent boundedness scores in [0, 1]. Order matches
+ * `MorBoundaryId` definition order. Scores do NOT sum to 1.
+ */
+export type MorBoundaryVector = [
+  number,  // national
+  number,  // ethnic_racial
+  number,  // religious
+  number,  // class
+  number,  // ideological
+  number,  // gender
+  number,  // political_tribe
+];
+
+/**
+ * Object form of the 7 boundary scores. Used in archetype data and
+ * respondent state where named field access is more readable than
+ * positional access. Values 0..1 each, independent.
+ */
+export interface MorBoundaries {
+  national: number;
+  ethnic_racial: number;
+  religious: number;
+  class: number;
+  ideological: number;
+  gender: number;
+  political_tribe: number;
+}
+
+/**
+ * Optional self-reported group membership for the four directly-asked
+ * categories plus political_tribe (sourced from existing Q200 party-ID
+ * metadata, not a new demographic question).
+ *
+ *   - National membership is implicit (US).
+ *   - Ideological "membership" is derived from the rest of the quiz.
+ *   - The four explicit demographic asks (ethnic_racial, religious, class,
+ *     gender) are end-of-quiz with `null` / decline-to-state allowed on each.
+ *
+ * Important: `political_tribe` membership labels ("D" / "R" / "independent" /
+ * "third" / "none") are party-ID *labels*, not activation strength. The
+ * activation strength lives in `MorBoundaries.political_tribe` and is
+ * sourced from PF / Q97 / Q211 / Q212 evidence. A respondent can be
+ * `morMembership.political_tribe = "independent"` AND have
+ * `morBoundaries.political_tribe ≈ 0.9` (an independent who fiercely
+ * identifies with the third-party / anti-establishment camp); these fields
+ * are independent.
+ */
+export interface MorMembership {
+  ethnic_racial?: string | null;
+  religious?: string | null;
+  class?: string | null;
+  gender?: string | null;
+  political_tribe?: "D" | "R" | "independent" | "third" | "none" | string | null;
+}
+
+/**
+ * Respondent posterior over the moral-circle module. Mirrors `MorBoundaries`
+ * for boundary scores plus an intensity scalar and per-boundary touch counts.
+ *
+ * `intensity` is real-valued in [0, 3], matching how EPS/AES salience is
+ * computed at runtime as `expectedSal` (continuous expectation, not integer-
+ * stepped).
+ */
+export interface MorBoundariesNodeState {
+  boundaries: MorBoundaries;
+  /** 0..3, real-valued. How activated moral-circle concern is in political judgment. */
+  intensity: number;
+  touches: Partial<Record<MorBoundaryId, number>>;
+  /** Optional touch type tracking, matching the per-node pattern elsewhere. */
+  touchTypes: Set<string>;
+  status: NodeStatus;
+}
+
+/**
+ * Archetype-side encoding of the moral-circle module. Same boundary +
+ * intensity shape as the respondent posterior; archetype templates may set
+ * integer intensity values (0 | 1 | 2 | 3) for clarity but the runtime type
+ * is real-valued.
+ *
+ * No demographic membership on archetypes — they are abstract political
+ * shapes. Demographic match only enters at the candidate-matching layer
+ * (Layer 2 lock-and-key in `respondentVoteChoice.ts`, scheduled for PR 6.E).
+ */
+export interface ArchetypeMorBoundaries {
+  boundaries: MorBoundaries;
+  /** 0..3, real-valued. Templates commonly use integers 0|1|2|3. */
+  intensity: number;
+}
 
 /**
  * Respondent party identification — captured from Q200 metadata. Used for the
@@ -288,10 +435,38 @@ export interface RespondentState {
   answers: Record<number, unknown>;
   continuous: Record<ContinuousNodeId, ContinuousNodeState>;
   categorical: Record<CategoricalNodeId, CategoricalNodeState>;
+  /**
+   * @deprecated since ADR-006 (PR 6.B). Replaced by `morBoundaries` (the
+   * compound moral-circle module). Removal scheduled for PR 6.E (engine
+   * cutover). Old code paths still write to this during the additive
+   * transition; new code should read from `morBoundaries` once 6.E lands.
+   */
   trbAnchor: {
     dist: TrbAnchorDist;
     touches: number;
   };
+
+  /**
+   * Compound moral-circle module per ADR-006 (added in PR 6.B as additive).
+   * Replaces continuous MOR + continuous TRB + continuous PF +
+   * categorical TRB_ANCHOR. Optional during the additive transition
+   * (PRs 6.B–6.D); becomes required and the legacy fields are removed in
+   * PR 6.E (engine cutover). Currently unused by the engine.
+   */
+  morBoundaries?: MorBoundariesNodeState;
+
+  /**
+   * Optional self-reported group membership per ADR-006 (added in PR 6.B
+   * as additive). Populated by the 4 new demographic questions (PR 6.F)
+   * and by Q200 party-ID metadata for `political_tribe`.
+   * Currently unused by the engine — consumed by the candidate-matching
+   * layer in PR 6.E (Layer 2 lock-and-key) for the 4 demographic categories;
+   * `political_tribe` is read by Layer 1 vector distance only in v1
+   * (existing partisan multiplier retained — see ADR-006 §"Warning: do not
+   * double-count partisanship").
+   */
+  morMembership?: MorMembership;
+
   /** Euclidean distance from the respondent state to each active archetype. Lower = better match. */
   archetypeDistances: Record<string, number>;
   /** ID of the current leading archetype (lowest distance). */
