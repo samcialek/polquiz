@@ -281,12 +281,12 @@
     .cat-hrow-score.anti { color: var(--ink); }
     /* v21: MEANS / REALITY 2-column grid — continuous bars on the left,
        compact categorical vbar (AES / EPS) on the right.
-       Left column widened from 1.4fr → 1.7fr so the continuous rows breathe
-       and the vbar tucks tight against the right edge. */
+       v21.1: vbar column halved (0.85fr → 0.4fr), chart doubled in height
+       (140px → 280px), bars thicker and touching, fonts larger. */
     .cluster-panel[data-cluster="MEANS"] .node-cluster,
     .cluster-panel[data-cluster="REALITY"] .node-cluster {
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(200px, 0.85fr);
+      grid-template-columns: minmax(0, 2fr) minmax(140px, 0.5fr);
       gap: 1.5rem 1.75rem;
       align-items: start;
     }
@@ -304,28 +304,30 @@
       grid-row: 2 / span 100;
       align-self: start;
     }
-    /* Compact vbar — applies inside the MEANS / REALITY 2-col grid only. */
+    /* Tall, narrow vbar — applies inside the MEANS / REALITY 2-col grid only. */
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-row,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-row { display: block; margin: 0; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-name,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-name {
-      font-size: 0.85rem; margin-bottom: 0.5rem; display: block;
+      font-size: 0.95rem; margin-bottom: 0.5rem; display: block;
       letter-spacing: 0.04em; text-transform: uppercase; color: #555;
     }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-chart,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart { height: 140px; padding: 0.3rem 0 1.4rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart { height: 280px; padding: 0.3rem 0 2rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-grid,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.3rem 0 1.4rem 26px; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.3rem 0 2rem 26px; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-yaxis,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 22px; top: 0.3rem; bottom: 1.4rem; font-size: 0.55rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 22px; top: 0.3rem; bottom: 2rem; font-size: 0.7rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-cols,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 26px; top: 0.3rem; bottom: 1.4rem; gap: 0.25rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 26px; top: 0.3rem; bottom: 2rem; gap: 0; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar-track,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 18px; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 100%; left: 0; transform: none; }
+    .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar,
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar { left: 1px; right: 1px; border-radius: 0; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-collabel,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-collabel { font-size: 0.58rem; bottom: -1.3rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-collabel { font-size: 0.72rem; bottom: -1.85rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-score,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-score { font-size: 0.55rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-score { font-size: 0.7rem; }
     @media (max-width: 920px) {
       .cluster-panel[data-cluster="MEANS"] .node-cluster,
       .cluster-panel[data-cluster="REALITY"] .node-cluster { grid-template-columns: 1fr; }
