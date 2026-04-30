@@ -6,6 +6,22 @@ import type {
 } from "../types.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES, isSelfNode } from "../config/nodes.js";
 import { CATEGORY_COST_MATRIX } from "../config/categories.js";
+import { morModuleDistance } from "./math.js";
+
+/**
+ * Continuous nodes superseded by the compound MOR_BOUNDARIES module per
+ * ADR-006 PR 6.E.2a. When BOTH respondent state and the archetype carry
+ * `morBoundaries`, archetypeDistance drops these per-node terms and folds
+ * their geometry into a single morModule contribution computed below.
+ *
+ * When either side lacks `morBoundaries` (e.g., live quiz state today —
+ * `api.ts` initializer + `update.ts` writer don't populate it until
+ * 6.E.2b/6.F), the scorer falls back to the legacy per-node reads so the
+ * MOR/TRB/PF contribution is not silently dropped. The skip is therefore
+ * per-archetype, not unconditional. The legacy data fields stay until
+ * 6.E.4 cleanup.
+ */
+const MOR_MODULE_LEGACY: ContinuousNodeId[] = ["MOR", "TRB", "PF"];
 
 function expectedPos(posDist: ArrayLike<number>): number {
   return (
@@ -52,7 +68,16 @@ export function archetypeDistance(
   let totalDist = 0;
   let totalWeight = 0;
 
+  // Per-archetype gate: only fold MOR/TRB/PF into the compound module when
+  // BOTH sides have the new data. If either side lacks it (live quiz today
+  // — see api.ts/update.ts), we keep reading the legacy per-node fields so
+  // the moral-circle contribution is not silently dropped during the
+  // multi-PR cutover. This collapses to "always use module" once 6.E.2b
+  // wires morBoundaries into respondent state and 6.E.4 strips legacy.
+  const useMorModule = !!state.morBoundaries && !!archetype.morBoundaries;
+
   for (const nodeId of CONTINUOUS_NODES) {
+    if (useMorModule && (MOR_MODULE_LEGACY as string[]).includes(nodeId)) continue;
     const template = archetype.nodes[nodeId];
     if (!template || template.kind !== "continuous") continue;
     const nodeState = state.continuous[nodeId];
@@ -108,6 +133,25 @@ export function archetypeDistance(
       nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
     }
 
+    totalDist += nodeDist * nodeWeight;
+    totalWeight += nodeWeight;
+  }
+
+  // ── MOR_BOUNDARIES module contribution (ADR-006 PR 6.E.2a cutover) ────
+  // One contribution replacing the four legacy fields (MOR continuous +
+  // TRB continuous + PF continuous + TRB_ANCHOR distribution). Weight uses
+  // the standard salience-weighted multiplier pattern, derived from
+  // intensity directly — NOT double-counting intensity inside the boundary
+  // sum (per ADR-006 §"Engine math, archetype matching distance").
+  if (useMorModule) {
+    const archIntensity = archetype.morBoundaries!.intensity;
+    const respIntensity = state.morBoundaries!.intensity;
+    // archSalWeight: intensity 0→0.5, 3→2.0  (mirrors sal 0..3 → 0.5..2.0)
+    const archSalWeight = 0.5 + archIntensity * 0.5;
+    // respondentSalWeight: intensity 0→0.5, 3→1.25  (mirrors sal 0..3 → 0.5..1.25)
+    const respondentSalWeight = 0.5 + respIntensity * 0.25;
+    const nodeWeight = archSalWeight * respondentSalWeight;
+    const nodeDist = morModuleDistance(state.morBoundaries!, archetype.morBoundaries!);
     totalDist += nodeDist * nodeWeight;
     totalWeight += nodeWeight;
   }
@@ -183,9 +227,14 @@ export function archetypeDistance(
   // such nodes, multiply distance by 1 + 0.10 × (count - 2) capped at 1.5.
   // So a user with 3 high-sal nodes gets +10%, 5 gets +30%, 7+ gets +50%.
   if (archetype.centristAnchor) {
-    const nonSelfNodes: ContinuousNodeId[] = [
-      "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S",
-    ];
+    // Per-respondent gate (ADR-006 PR 6.E.2a): if the respondent carries the
+    // morBoundaries module, drop MOR from the per-node sal sweep and use
+    // intensity ≥ 2.0 instead. Otherwise (live quiz today) keep reading the
+    // legacy MOR salience so this anti-attractor penalty is not weakened
+    // mid-cutover.
+    const nonSelfNodes: ContinuousNodeId[] = state.morBoundaries
+      ? ["MAT", "CD", "CU", "PRO", "COM", "ZS", "ONT_H", "ONT_S"]
+      : ["MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S"];
     let highSalCount = 0;
     for (const nid of nonSelfNodes) {
       const ns = state.continuous[nid];
@@ -198,6 +247,13 @@ export function archetypeDistance(
       if (!ns) continue;
       const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
       if (userSal >= 2.0) highSalCount++;
+    }
+    // Compound moral-circle module high-activation check (ADR-006 PR 6.E.2a).
+    // Substitutes for MOR's salience entry above when state.morBoundaries is
+    // present. Intensity scale is 0..3, same as `userSal`, so threshold ≥ 2.0
+    // transfers directly.
+    if (state.morBoundaries && state.morBoundaries.intensity >= 2.0) {
+      highSalCount++;
     }
     if (highSalCount >= 3) {
       const penaltyMult = Math.min(1.5, 1 + 0.10 * (highSalCount - 2));
