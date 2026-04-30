@@ -23,7 +23,8 @@ const election1789: Election = {
       TRB: 1,   // No tribal - national father figure
       ENG: 5,   // Maximum - accepted the call
       EPS: 1,   // Institutionalist - building institutions
-      AES: 0,   // Statesman - Cincinnatus
+      AES: 0,   // Statesman - Cincinnatus,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
     },
   ],
 };
@@ -39,6 +40,7 @@ const election1792: Election = {
       MAT: 3, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 5,
       ZS: 2, ONT_H: 4, ONT_S: 4, PF: 1, TRB: 1, ENG: 4,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 },
     },
   ],
 };
@@ -66,7 +68,8 @@ const election1796: Election = {
       TRB: 3,   // Moderate - New England identity
       ENG: 4,   // Engaged
       EPS: 1,   // Institutionalist - government as stabilizer
-      AES: 0,   // Statesman - gravitas, learning
+      AES: 0,   // Statesman - gravitas, learning,
+      morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Jefferson",
@@ -92,7 +95,8 @@ const election1796: Election = {
       TRB: 4,   // Factional - planter/agrarian identity
       ENG: 4,   // Engaged
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary
+      AES: 5,   // Visionary,
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
   ],
 };
@@ -123,7 +127,8 @@ const election1800: Election = {
       TRB: 4,   // High tribal - yeoman farmer vs. merchant class
       ENG: 5,   // Maximum engagement
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary
+      AES: 5,   // Visionary,
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Adams",
@@ -145,7 +150,8 @@ const election1800: Election = {
       TRB: 4,   // High tribal - Federalist establishment
       ENG: 4,   // Engaged but aloof
       EPS: 1,   // Institutionalist
-      AES: 0,   // Statesman
+      AES: 0,   // Statesman,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
   ],
 };
@@ -169,6 +175,7 @@ const election1804: Election = {
       MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 3, COM: 3,
       ZS: 2, ONT_H: 4, ONT_S: 2, PF: 4, TRB: 3, ENG: 5,
       EPS: 0, AES: 5,
+      morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       // Pinckney 1804 MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring
@@ -179,6 +186,7 @@ const election1804: Election = {
       MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
       ZS: 4, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -209,7 +217,8 @@ const election1808: Election = {
       TRB: 2,   // Low tribal - intellectual
       ENG: 4,   // Engaged
       EPS: 0,   // Empiricist - political theorist
-      AES: 1,   // Technocrat - policy wonk of his era
+      AES: 1,   // Technocrat - policy wonk of his era,
+      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Pinckney",
@@ -218,6 +227,7 @@ const election1808: Election = {
       MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
       ZS: 4, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -237,6 +247,7 @@ const election1812: Election = {
       MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 4, COM: 3,
       ZS: 3, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 3, ENG: 5,
       EPS: 0, AES: 0,
+      morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Clinton",
@@ -245,6 +256,7 @@ const election1812: Election = {
       MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 5, COM: 4,
       ZS: 3, ONT_H: 3, ONT_S: 4, PF: 3, TRB: 3, ENG: 4,
       EPS: 1, AES: 1,
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
   ],
 };
@@ -265,6 +277,7 @@ const election1816: Election = {
       MAT: 4, CD: 2, CU: 2, MOR: 2, PRO: 4, COM: 5,
       ZS: 1, ONT_H: 5, ONT_S: 5, PF: 3, TRB: 2, ENG: 4,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
       // King 1816 MOR 1→2 (Phase 6, 2026-04-27). Final Federalist nominee;
@@ -275,6 +288,7 @@ const election1816: Election = {
       MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 3,
       ZS: 4, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 4, ENG: 3,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -294,6 +308,7 @@ const election1820: Election = {
       MAT: 4, CD: 3, CU: 2, MOR: 2, PRO: 4, COM: 5,
       ZS: 1, ONT_H: 5, ONT_S: 5, PF: 2, TRB: 1, ENG: 3,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0.25 }, intensity: 1 },
     },
   ],
 };
@@ -321,7 +336,8 @@ const election1824: Election = {
       TRB: 2,   // Low tribal
       ENG: 4,   // Engaged
       EPS: 1,   // Institutionalist
-      AES: 1,   // Technocrat
+      AES: 1,   // Technocrat,
+      morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Jackson",
@@ -340,7 +356,8 @@ const election1824: Election = {
       TRB: 4,   // Tribal - common man identity
       ENG: 5,   // Maximum engagement
       EPS: 3,   // Intuitionist - gut instinct
-      AES: 4,   // Fighter - Old Hickory
+      AES: 4,   // Fighter - Old Hickory,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
       name: "Crawford",
@@ -351,6 +368,7 @@ const election1824: Election = {
       MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 3,
       ZS: 3, ONT_H: 2, ONT_S: 4, PF: 4, TRB: 3, ENG: 3,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Clay",
@@ -369,7 +387,8 @@ const election1824: Election = {
       TRB: 2,   // Low tribal
       ENG: 5,   // Maximum
       EPS: 1,   // Institutionalist
-      AES: 0,   // Statesman
+      AES: 0,   // Statesman,
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -389,6 +408,7 @@ const election1828: Election = {
       MAT: 4, CD: 4, CU: 1, MOR: 1, PRO: 2, COM: 1,
       ZS: 4, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
       EPS: 3, AES: 4,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Adams",
@@ -397,6 +417,7 @@ const election1828: Election = {
       MAT: 4, CD: 3, CU: 3, MOR: 4, PRO: 5, COM: 3,
       ZS: 3, ONT_H: 2, ONT_S: 5, PF: 4, TRB: 2, ENG: 3,
       EPS: 1, AES: 1,
+      morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -415,6 +436,7 @@ const election1832: Election = {
       CD: 4, CU: 1, MOR: 1, PRO: 2, COM: 1,
       ZS: 4, ONT_H: 2, ONT_S: 2, PF: 4, TRB: 4, ENG: 5,
       EPS: 3, AES: 4,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Clay",
@@ -428,6 +450,7 @@ const election1832: Election = {
       MAT: 4, CD: 3, CU: 3, MOR: 3, PRO: 5, COM: 5,
       ZS: 2, ONT_H: 4, ONT_S: 5, PF: 5, TRB: 2, ENG: 5,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
     },
     {
       // William Wirt - Anti-Masonic Party (7.8%)
@@ -450,7 +473,8 @@ const election1832: Election = {
       TRB: 3,   // Moderate tribal - civic reformers
       ENG: 4,   // Engaged reform movement
       EPS: 1,   // Institutionalist - fix corrupted institutions
-      AES: 0,   // Statesman - former Attorney General
+      AES: 0,   // Statesman - former Attorney General,
+      morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
     },
   ],
 };
@@ -480,7 +504,8 @@ const election1836: Election = {
       TRB: 4,   // Strong Northern Democratic partisan identity
       ENG: 5,   // Maximum
       EPS: 1,   // Institutionalist - party builder
-      AES: 1,   // Technocrat - operator/fixer
+      AES: 1,   // Technocrat - operator/fixer,
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Harrison",
@@ -489,6 +514,7 @@ const election1836: Election = {
       MAT: 5, CD: 5, CU: 1, MOR: 1, PRO: 5, COM: 4,
       ZS: 3, ONT_H: 3, ONT_S: 3, PF: 2, TRB: 2, ENG: 3,
       EPS: 2, AES: 3,
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.29, religious: 0.26, class: 0.05, ideological: 0.11, gender: 0.09, political_tribe: 0.25 }, intensity: 1 },
     },
   ],
 };
@@ -514,7 +540,8 @@ const election1840: Election = {
       TRB: 4,   // High tribal - "log cabin and hard cider" populism
       ENG: 5,   // Maximum - massive campaign
       EPS: 3,   // Intuitionist - ran on image not policy
-      AES: 3,   // Authentic - "log cabin" common man image
+      AES: 3,   // Authentic - "log cabin" common man image,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Van Buren",
@@ -535,6 +562,7 @@ const election1840: Election = {
       ONT_S: 3, // Defending the system (incumbent)
       PF: 5, TRB: 4, ENG: 5,
       EPS: 1, AES: 1,
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
   ],
 };
@@ -563,7 +591,8 @@ const election1844: Election = {
       TRB: 4,   // Southern Democratic partisan
       ENG: 5,   // Maximum - energized dark horse
       EPS: 3,   // Intuitionist
-      AES: 4,   // Fighter - aggressive expansionist
+      AES: 4,   // Fighter - aggressive expansionist,
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Clay",
@@ -574,6 +603,7 @@ const election1844: Election = {
       MAT: 4, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 4,
       ZS: 2, ONT_H: 3, ONT_S: 4, PF: 4, TRB: 2, ENG: 5,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
   ],
 };
@@ -599,7 +629,8 @@ const election1848: Election = {
       TRB: 3,   // Moderate - military hero identity
       ENG: 3,   // Moderate - reluctant candidate
       EPS: 3,   // Intuitionist - military man
-      AES: 0,   // Statesman - war hero
+      AES: 0,   // Statesman - war hero,
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
     },
     {
       // Cass full-row recalibration (Phase 1 of audit, 2026-04-26).
@@ -616,6 +647,7 @@ const election1848: Election = {
       MAT: 3, CD: 4, CU: 2, MOR: 2, PRO: 4, COM: 4,
       ZS: 3, ONT_H: 3, ONT_S: 3, PF: 5, TRB: 5, ENG: 4,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Van Buren",
@@ -634,7 +666,8 @@ const election1848: Election = {
       TRB: 3,   // Moderate
       ENG: 5,   // Maximum - came out of retirement
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary - moral crusade
+      AES: 5,   // Visionary - moral crusade,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 },
     },
   ],
 };
@@ -660,7 +693,8 @@ const election1852: Election = {
       TRB: 4,   // High tribal - Democratic identity
       ENG: 4,   // Engaged
       EPS: 1,   // Institutionalist
-      AES: 3,   // Authentic - "handsome Frank," young, vigorous
+      AES: 3,   // Authentic - "handsome Frank," young, vigorous,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
       // Scott 1852 MOR 1→2 (Phase 6, 2026-04-27). Whig elite/Northern-establishment
@@ -671,6 +705,7 @@ const election1852: Election = {
       MAT: 5, CD: 5, CU: 1, MOR: 2, PRO: 5, COM: 5,
       ZS: 2, ONT_H: 1, ONT_S: 5, PF: 2, TRB: 1, ENG: 2,
       EPS: 1, AES: 0,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0.25 }, intensity: 0.75 },
     },
   ],
 };

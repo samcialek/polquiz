@@ -43,7 +43,8 @@ const election1920 = {
             TRB: 2, // Low tribal — genial "normalcy"
             ENG: 3, // Moderate — front porch calm
             EPS: 2, // Traditionalist - "return to normalcy" = traditional ways are best
-            AES: 2, // Pastoral - small-town Ohio, Main Street, folksy newspaper editor
+            AES: 2, // Pastoral - small-town Ohio, Main Street, folksy newspaper editor,
+            morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             // Cox 1920 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -70,7 +71,8 @@ const election1920 = {
             TRB: 5, // Maximum tribal — alienating
             ENG: 5, // Maximum
             EPS: 1, // Institutionalist - trusted League, government machinery
-            AES: 0, // Statesman - projected Wilsonian gravitas and internationalism
+            AES: 0, // Statesman - projected Wilsonian gravitas and internationalism,
+            morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.05, class: 0.53, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
         },
         {
             // Eugene V. Debs - Socialist Party (3.4%)
@@ -93,7 +95,8 @@ const election1920 = {
             TRB: 5, // Maximum tribal - worker/prisoner solidarity
             ENG: 5, // Maximum engagement - ran from prison cell
             EPS: 0, // Empiricist
-            AES: 5, // Visionary - ultimate martyr-prophet figure
+            AES: 5, // Visionary - ultimate martyr-prophet figure,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
         },
     ],
 };
@@ -128,7 +131,8 @@ const election1924 = {
             TRB: 2, // Low tribal
             ENG: 3, // Moderate
             EPS: 2, // Traditionalist - inherited wisdom, Puritan tradition, established ways
-            AES: 0, // Statesman - dignified, austere, presidential reserve
+            AES: 0, // Statesman - dignified, austere, presidential reserve,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
         },
         {
             // Davis 1924 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -156,7 +160,8 @@ const election1924 = {
             TRB: 4, // Tribal — Democratic coalition
             ENG: 3, // Moderate — lackluster campaign
             EPS: 1, // Institutionalist - trusted courts, legal process, institutions
-            AES: 0, // Statesman - dignified lawyer, understated
+            AES: 0, // Statesman - dignified lawyer, understated,
+            morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "La Follette",
@@ -185,7 +190,8 @@ const election1924 = {
             TRB: 4, // Tribal - worker/farmer identity, class-based politics
             ENG: 5, // Maximum engagement - lifelong crusader, launched entire third party
             EPS: 0, // Empiricist - investigated corporate corruption, data-driven muckraker
-            AES: 4, // Fighter - "Fighting Bob," combative, insurgent champion of the people
+            AES: 4, // Fighter - "Fighting Bob," combative, insurgent champion of the people,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
         },
     ],
 };
@@ -218,7 +224,8 @@ const election1928 = {
             TRB: 2, // Low tribal - technocratic, above-the-fray, not populist
             ENG: 4, // Engaged - ambitious, ran on competence and vision
             EPS: 0, // Empiricist - engineer, data-driven, technocratic problem-solver
-            AES: 1, // Technocrat - "The Great Engineer," efficiency and expertise
+            AES: 1, // Technocrat - "The Great Engineer," efficiency and expertise,
+            morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Smith",
@@ -237,7 +244,8 @@ const election1928 = {
             TRB: 4, // Tribal - Catholic/Irish/urban immigrant identity, ethnic coalition
             ENG: 5, // Maximum engagement - barnstorming campaigner, passionate
             EPS: 3, // Intuitionist - street-smart, gut-level populist, not academic
-            AES: 3, // Authentic - Lower East Side accent, brown derby, "the real article"
+            AES: 3, // Authentic - Lower East Side accent, brown derby, "the real article",
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -271,7 +279,9 @@ const election1932 = {
             TRB: 3, // Moderate tribal - broad coalition appeal, not narrowly sectarian
             ENG: 5, // Maximum engagement - energetic campaigning despite disability
             EPS: 1, // Institutionalist - brain trust, government expertise, bold institutions
-            AES: 5, // Visionary - "New Deal," transformative rhetoric, "happy days are here again"
+            AES: 5, // Visionary - "New Deal," transformative rhetoric, "happy days are here again",
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
             name: "Hoover",
@@ -290,7 +300,8 @@ const election1932 = {
             TRB: 3, // Moderate tribal - not populist, establishment identity
             ENG: 3, // Moderate engagement - defensive, beleaguered campaign
             EPS: 0, // Empiricist - engineer, but data contradicted his optimism
-            AES: 1, // Technocrat - still projected managerial competence, but hollow
+            AES: 1, // Technocrat - still projected managerial competence, but hollow,
+            morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -323,7 +334,9 @@ const election1936 = {
             TRB: 4, // High tribal - "forgotten man" vs. "economic royalists," class warfare
             ENG: 5, // Maximum engagement - barnstorming incumbent, massive rallies
             EPS: 1, // Institutionalist - brain trust, government agencies, new institutions
-            AES: 4, // Fighter - "I welcome their hatred," combative populist champion
+            AES: 4, // Fighter - "I welcome their hatred," combative populist champion,
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
             name: "Landon",
@@ -346,7 +359,8 @@ const election1936 = {
             TRB: 2, // Low tribal
             ENG: 2, // Low — outmatched by FDR
             EPS: 0, // Empiricist - businessman, practical, fiscal prudence
-            AES: 2, // Pastoral - "the Kansas Coolidge," folksy midwestern governor
+            AES: 2, // Pastoral - "the Kansas Coolidge," folksy midwestern governor,
+            morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };

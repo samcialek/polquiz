@@ -13,6 +13,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "USA",
@@ -25,6 +26,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 4, ONT_S: 2,
         PF: 3, TRB: 3, ENG: 3,
         EPS: 0, AES: 2,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "USA",
@@ -37,6 +39,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 3, AES: 3,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -49,6 +52,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 2, ONT_S: 4,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "USA",
@@ -61,6 +65,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 3, ONT_S: 5,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "USA",
@@ -73,6 +78,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 2,
         PF: 4, TRB: 4, ENG: 3,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -85,6 +91,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -97,6 +104,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 3, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "USA",
@@ -109,6 +117,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -121,6 +130,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -133,6 +143,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 3,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -145,6 +156,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "USA",
@@ -157,6 +169,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 4,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     // ──────────────────────────────────────────────
     // 2. MEXICO
@@ -172,6 +185,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.16, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -184,6 +198,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 5,
         PF: 3, TRB: 4, ENG: 4,
         EPS: 2, AES: 4,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -196,6 +211,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 4,
         PF: 3, TRB: 4, ENG: 4,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -208,6 +224,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 4, ONT_S: 5,
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -220,6 +237,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 2,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -232,6 +250,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 4, ONT_S: 5,
         PF: 4, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.55, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -244,6 +263,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 4,
         EPS: 3, AES: 5,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -256,6 +276,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -268,6 +289,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 4,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -280,6 +302,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Mexico",
@@ -292,6 +315,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 4,
         PF: 4, TRB: 4, ENG: 5,
         EPS: 3, AES: 3,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 3. BRAZIL
@@ -307,6 +331,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.16, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -319,6 +344,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 2,
         PF: 1, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.41, religious: 0.69, class: 0.05, ideological: 0.23, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -331,6 +357,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -343,6 +370,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 2,
         PF: 3, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -355,6 +383,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 4,
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.41, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -367,6 +396,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -379,6 +409,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 1, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 1,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -391,6 +422,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -403,6 +435,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 3,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Brazil",
@@ -415,6 +448,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 1, ONT_S: 4,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     // ──────────────────────────────────────────────
     // 4. ARGENTINA
@@ -430,6 +464,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 3, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Argentina",
@@ -442,6 +477,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 4, ONT_S: 4,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Argentina",
@@ -454,6 +490,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 1, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 4,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.34, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Argentina",
@@ -466,6 +503,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 4, ONT_S: 2,
         PF: 3, TRB: 2, ENG: 3,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Argentina",
@@ -478,6 +516,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Argentina",
@@ -490,6 +529,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.53, class: 0.53, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Argentina",
@@ -502,6 +542,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 1, ONT_S: 4,
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Argentina",
@@ -514,6 +555,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 1, ONT_S: 5,
         PF: 1, TRB: 5, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Argentina",
@@ -526,6 +568,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Argentina",
@@ -538,6 +581,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 4,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     // ──────────────────────────────────────────────
     // 5. CANADA
@@ -553,6 +597,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 3, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Canada",
@@ -565,6 +610,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 3, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.24, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Canada",
@@ -577,6 +623,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 4, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Canada",
@@ -589,6 +636,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 4, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Canada",
@@ -601,6 +649,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Canada",
@@ -613,6 +662,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 4, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Canada",
@@ -625,6 +675,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 3, ONT_S: 4,
         PF: 4, TRB: 2, ENG: 3,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Canada",
@@ -637,6 +688,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 6. COLOMBIA
@@ -652,6 +704,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.51, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.16, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Colombia",
@@ -664,6 +717,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 4, ONT_S: 4,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Colombia",
@@ -676,6 +730,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 2, AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.41, religious: 0.69, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Colombia",
@@ -688,6 +743,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 4, TRB: 4, ENG: 3,
         EPS: 2, AES: 0,
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Colombia",
@@ -700,6 +756,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 2, ONT_S: 5,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Colombia",
@@ -712,6 +769,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 5, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Colombia",
@@ -724,6 +782,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Colombia",
@@ -736,6 +795,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 7. CHILE
@@ -751,6 +811,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 4,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Chile",
@@ -763,6 +824,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 2, ONT_S: 1,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.23, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Chile",
@@ -775,6 +837,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 2,
         PF: 4, TRB: 3, ENG: 3,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Chile",
@@ -787,6 +850,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Chile",
@@ -799,6 +863,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 5, ONT_S: 4,
         PF: 5, TRB: 3, ENG: 5,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Chile",
@@ -811,6 +876,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 1, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 0, AES: 4,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.51, religious: 0.26, class: 0.05, ideological: 0.37, gender: 0.16, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Chile",
@@ -823,6 +889,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 4, ONT_S: 2,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Chile",
@@ -835,6 +902,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 8. CUBA
@@ -850,6 +918,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 1, ONT_S: 3,
         PF: 2, TRB: 5, ENG: 3,
         EPS: 2, AES: 0,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.72, class: 0.05, ideological: 0.48, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         jurisdiction: "Cuba",
@@ -862,6 +931,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 3, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Cuba",
@@ -874,6 +944,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 2, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Cuba",
@@ -886,6 +957,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 5, ONT_S: 5,
         PF: 1, TRB: 4, ENG: 5,
         EPS: 4, AES: 5,
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.19, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Cuba",
@@ -898,6 +970,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.55, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Cuba",
@@ -910,6 +983,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.26, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 9. PERU
@@ -925,6 +999,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 3, ONT_S: 3,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.16, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -937,6 +1012,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 2, ONT_S: 4,
         PF: 2, TRB: 5, ENG: 3,
         EPS: 2, AES: 0,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.72, class: 0.05, ideological: 0.48, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         jurisdiction: "Peru",
@@ -949,6 +1025,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 3,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -961,6 +1038,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 2, ONT_S: 2,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -973,6 +1051,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 3,
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -985,6 +1064,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 3, ONT_S: 4,
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -997,6 +1077,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 1, ONT_S: 4,
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.26, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Peru",
@@ -1009,6 +1090,7 @@ export const AMERICAS = [
         ZS: 3, ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 3, AES: 3,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ──────────────────────────────────────────────
     // 10. VENEZUELA
@@ -1024,6 +1106,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.16, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1036,6 +1119,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 4, ONT_S: 4,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 0, AES: 5,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1048,6 +1132,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 2, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 3,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1060,6 +1145,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 2,
         PF: 1, TRB: 4, ENG: 2,
         EPS: 1, AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1072,6 +1158,7 @@ export const AMERICAS = [
         ZS: 2, ONT_H: 3, ONT_S: 2,
         PF: 5, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1084,6 +1171,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 2, ONT_S: 5,
         PF: 3, TRB: 3, ENG: 4,
         EPS: 1, AES: 3,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1096,6 +1184,7 @@ export const AMERICAS = [
         ZS: 4, ONT_H: 4, ONT_S: 5,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.72, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Venezuela",
@@ -1108,6 +1197,7 @@ export const AMERICAS = [
         ZS: 5, ONT_H: 2, ONT_S: 4,
         PF: 1, TRB: 5, ENG: 4,
         EPS: 5, AES: 4,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.34, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
 ];
 //# sourceMappingURL=jurisdictions-americas.js.map

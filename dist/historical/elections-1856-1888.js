@@ -54,7 +54,8 @@ const election1856 = {
             TRB: 4, // High tribal - southern planter class + northern Catholic immigrants
             ENG: 4, // Engaged - career diplomat/politician, but "Old Buck" was cautious
             EPS: 1, // Institutionalist - trusted constitutional framework, legal precedent
-            AES: 0, // Statesman - elder diplomat, gravitas, experienced hand
+            AES: 0, // Statesman - elder diplomat, gravitas, experienced hand,
+            morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Fremont",
@@ -73,7 +74,8 @@ const election1856 = {
             TRB: 4, // Strong northern free-state identity
             ENG: 5, // Maximum engagement
             EPS: 3, // Intuitionist
-            AES: 5, // Visionary
+            AES: 5, // Visionary,
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Fillmore",
@@ -92,7 +94,8 @@ const election1856 = {
             TRB: 5, // Maximum tribal - "native-born Americans" as identity, Protestant nativism
             ENG: 4, // Engaged - ex-president running again on nativist platform
             EPS: 2, // Traditionalist - "the way things were" before immigrant wave
-            AES: 0, // Statesman - ex-president, tried to project elder authority
+            AES: 0, // Statesman - ex-president, tried to project elder authority,
+            morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.15, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
         },
     ],
 };
@@ -132,7 +135,9 @@ const election1860 = {
             TRB: 3, // Moderate tribal - northern free-state identity but universal rhetoric
             ENG: 5, // Maximum engagement - historic stakes, tireless campaigner (through surrogates)
             EPS: 0, // Empiricist - lawyer, logical reasoning, Lincoln-Douglas debates
-            AES: 3, // Authentic - "Rail-Splitter," log cabin, self-made man
+            AES: 3, // Authentic - "Rail-Splitter," log cabin, self-made man,
+            morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.55, religious: 0.4, class: 0.2, ideological: 0.5, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "R" },
         },
         {
             name: "Douglas",
@@ -151,7 +156,8 @@ const election1860 = {
             TRB: 3, // Moderate tribal - tried to be national, not sectional
             ENG: 5, // Maximum engagement - campaigned nationally even when cause was lost
             EPS: 1, // Institutionalist - trusted democratic process, popular sovereignty
-            AES: 4, // Fighter - "Little Giant," combative debater, tireless campaigner
+            AES: 4, // Fighter - "Little Giant," combative debater, tireless campaigner,
+            morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Breckinridge",
@@ -170,7 +176,8 @@ const election1860 = {
             TRB: 5, // Maximum tribal - white southern slaveholder identity
             ENG: 5, // Maximum engagement - existential stakes for slavery, secession looming
             EPS: 2, // Traditionalist - "peculiar institution" as tradition, ancestral ways
-            AES: 0, // Statesman - Vice President, senior Southern dignitary
+            AES: 0, // Statesman - Vice President, senior Southern dignitary,
+            morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
         },
         {
             name: "Bell",
@@ -189,7 +196,8 @@ const election1860 = {
             TRB: 2, // Low tribal
             ENG: 2, // Low — ran as calming presence
             EPS: 1, // Institutionalist - trusted constitutional framework above all
-            AES: 0, // Statesman - elder Whig, dignified, above-the-fray
+            AES: 0, // Statesman - elder Whig, dignified, above-the-fray,
+            morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 0.75 },
         },
     ],
 };
@@ -232,7 +240,9 @@ const election1864 = {
             TRB: 3, // Moderate tribal - national unity rhetoric, "Union" above faction
             ENG: 5, // Maximum engagement - wartime president, existential stakes
             EPS: 0, // Empiricist - lawyer, logical, adapted strategy to evidence
-            AES: 5, // Visionary - Gettysburg Address, "new birth of freedom," transformative
+            AES: 5, // Visionary - Gettysburg Address, "new birth of freedom," transformative,
+            morBoundaries: { boundaries: { national: 0.9, ethnic_racial: 0.6, religious: 0.4, class: 0.2, ideological: 0.55, gender: 0.1, political_tribe: 0.55 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "R" },
         },
         {
             // McClellan 1864 platform-vs-persona correction (Phase 6, 2026-04-27).
@@ -262,7 +272,8 @@ const election1864 = {
             TRB: 4, // Tribal - northern Democrats, peace movement, anti-Black-equality
             ENG: 4, // Engaged - but ran cautious campaign, let party do the work
             EPS: 1, // Institutionalist - military man, trusted hierarchy and order
-            AES: 0, // Statesman - "Young Napoleon," military prestige, gravitas
+            AES: 0, // Statesman - "Young Napoleon," military prestige, gravitas,
+            morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -297,7 +308,8 @@ const election1868 = {
             TRB: 3, // Moderate tribal - national unity appeal, but firmly Republican
             ENG: 4, // Engaged - but quiet, let reputation speak, not a campaigner
             EPS: 0, // Empiricist - military pragmatist, evidence and results over theory
-            AES: 3, // Authentic - plain-spoken, simple, honest soldier
+            AES: 3, // Authentic - plain-spoken, simple, honest soldier,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Seymour",
@@ -316,7 +328,8 @@ const election1868 = {
             TRB: 5, // Maximum tribal - white racial identity, anti-Reconstruction solidarity
             ENG: 3, // Moderate engagement - reluctant candidate, lackluster campaign
             EPS: 2, // Traditionalist - antebellum order was correct, restore it
-            AES: 0, // Statesman - governor, tried for dignified image
+            AES: 0, // Statesman - governor, tried for dignified image,
+            morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.19, political_tribe: 0.75 }, intensity: 3 },
         },
     ],
 };
@@ -350,7 +363,8 @@ const election1872 = {
             TRB: 3, // Moderate tribal - national unity, but firmly identified with freedmen
             ENG: 4, // Engaged - incumbent seeking reelection
             EPS: 0, // Empiricist - military results-oriented pragmatist
-            AES: 3, // Authentic - plain soldier, unpretentious, honest reputation (despite scandals)
+            AES: 3, // Authentic - plain soldier, unpretentious, honest reputation (despite scandals),
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Greeley",
@@ -369,7 +383,8 @@ const election1872 = {
             TRB: 2, // Low tribal - explicitly anti-partisan, cross-party appeal
             ENG: 5, // Maximum engagement - crusading editor, tireless campaigner (died from it)
             EPS: 0, // Empiricist - journalist, investigative editor, reform through information
-            AES: 5, // Visionary - utopian reformer, reconciliation crusade, eccentric idealist
+            AES: 5, // Visionary - utopian reformer, reconciliation crusade, eccentric idealist,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 2 },
         },
     ],
 };
@@ -404,7 +419,8 @@ const election1876 = {
             TRB: 3, // Moderate Republican establishment identity
             ENG: 3, // Moderate — quiet campaign
             EPS: 0, // Empiricist - lawyer, evidence-based, reform-minded
-            AES: 0, // Statesman - dignified governor, reformer, integrity
+            AES: 0, // Statesman - dignified governor, reformer, integrity,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Tilden",
@@ -423,7 +439,8 @@ const election1876 = {
             TRB: 4, // Tribal - white Democratic coalition, anti-Reconstruction solidarity
             ENG: 4, // Engaged - but accepted stolen election gracefully
             EPS: 0, // Empiricist - lawyer, prosecutor, evidence-based reform
-            AES: 1, // Technocrat - reform manager, prosecutorial efficiency
+            AES: 1, // Technocrat - reform manager, prosecutorial efficiency,
+            morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -458,7 +475,8 @@ const election1880 = {
             TRB: 3, // Moderate tribal - national Republican identity, not sectional
             ENG: 4, // Engaged - skilled campaigner, front-porch campaign
             EPS: 0, // Empiricist - scholar, intellectual, evidence-based
-            AES: 0, // Statesman - classical orator, gravitas, self-made dignity
+            AES: 0, // Statesman - classical orator, gravitas, self-made dignity,
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             // Hancock 1880 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -485,7 +503,8 @@ const election1880 = {
             TRB: 4, // Tribal
             ENG: 3, // Moderate
             EPS: 1, // Institutionalist - military hierarchy, institutional framework
-            AES: 0, // Statesman - "Hancock the Superb," military prestige
+            AES: 0, // Statesman - "Hancock the Superb," military prestige,
+            morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -520,7 +539,8 @@ const election1884 = {
             TRB: 2, // Low tribal - reform appeal transcended party, anti-machine
             ENG: 4, // Engaged - but projected competence, not passion
             EPS: 0, // Empiricist - lawyer, evidence-based, practical reform
-            AES: 3, // Authentic - owned scandal, "tell the truth," plain-spoken integrity
+            AES: 3, // Authentic - owned scandal, "tell the truth," plain-spoken integrity,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
         },
         {
             name: "Blaine",
@@ -539,7 +559,8 @@ const election1884 = {
             TRB: 4, // High tribal - Protestant Republican identity, partisan warrior
             ENG: 5, // Maximum engagement - charismatic, tireless campaigner
             EPS: 3, // Intuitionist - gut politician, instinctive, charismatic appeal
-            AES: 4, // Fighter - "Plumed Knight," combative, charismatic warrior
+            AES: 4, // Fighter - "Plumed Knight," combative, charismatic warrior,
+            morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -573,7 +594,8 @@ const election1888 = {
             TRB: 3, // Moderate tribal - Republican veteran identity, not populist
             ENG: 3, // Moderate engagement - front-porch campaign, not dynamic
             EPS: 1, // Institutionalist - lawyer, senator, institutional man
-            AES: 0, // Statesman - dignified, reserved, presidential grandson
+            AES: 0, // Statesman - dignified, reserved, presidential grandson,
+            morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Cleveland",
@@ -592,7 +614,8 @@ const election1888 = {
             TRB: 2, // Low tribal - reform transcended faction, anti-machine
             ENG: 3, // Moderate engagement - honest but boring, not a dynamic campaigner
             EPS: 0, // Empiricist - evidence-based tariff argument, economist's logic
-            AES: 1, // Technocrat - devoted State of Union to policy substance, wonkish
+            AES: 1, // Technocrat - devoted State of Union to policy substance, wonkish,
+            morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };

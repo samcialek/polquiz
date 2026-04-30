@@ -1,0 +1,7355 @@
+{
+  "candidates": {
+    "Washington|1789": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Washington|1792": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Adams|1796": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jefferson|1796": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jefferson|1800": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Adams|1800": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jefferson|1804": {
+      "boundaries": {
+        "national": 0.45,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Pinckney|1804": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Madison|1808": {
+      "boundaries": {
+        "national": 0.25,
+        "ethnic_racial": 0.05,
+        "religious": 0.1,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Pinckney|1808": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Madison|1812": {
+      "boundaries": {
+        "national": 0.45,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clinton|1812": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Monroe|1816": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.1,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "King|1816": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Monroe|1820": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0.25
+      },
+      "intensity": 1,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Adams|1824": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jackson|1824": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.58,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Crawford|1824": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clay|1824": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jackson|1828": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.58,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Adams|1828": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Jackson|1832": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.58,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clay|1832": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Wirt|1832": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Van Buren|1836": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Harrison|1836": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.29,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.11,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 1,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Harrison|1840": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Van Buren|1840": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Polk|1844": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clay|1844": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.09,
+        "religious": 0.17,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Taylor|1848": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Cass|1848": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Van Buren|1848": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.26,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Pierce|1852": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.58,
+        "religious": 0.41,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Scott|1852": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0.25
+      },
+      "intensity": 0.75,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Buchanan|1856": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.37,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Fremont|1856": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Fillmore|1856": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Lincoln|1860": {
+      "boundaries": {
+        "national": 0.85,
+        "ethnic_racial": 0.55,
+        "religious": 0.4,
+        "class": 0.2,
+        "ideological": 0.5,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "working",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Douglas|1860": {
+      "boundaries": {
+        "national": 0.45,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Breckinridge|1860": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bell|1860": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.09,
+        "religious": 0.17,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0
+      },
+      "intensity": 0.75,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Lincoln|1864": {
+      "boundaries": {
+        "national": 0.9,
+        "ethnic_racial": 0.6,
+        "religious": 0.4,
+        "class": 0.2,
+        "ideological": 0.55,
+        "gender": 0.1,
+        "political_tribe": 0.55
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "working",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "McClellan|1864": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.37,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Grant|1868": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Seymour|1868": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Grant|1872": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Greeley|1872": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Hayes|1876": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Tilden|1876": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Garfield|1880": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Hancock|1880": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Cleveland|1884": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Blaine|1884": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Harrison|1888": {
+      "boundaries": {
+        "national": 0.31,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Cleveland|1888": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Cleveland|1892": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.17,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Harrison|1892": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Weaver|1892": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.72,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "McKinley|1896": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bryan|1896": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.91,
+        "class": 0.72,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "McKinley|1900": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bryan|1900": {
+      "boundaries": {
+        "national": 0.57,
+        "ethnic_racial": 0.05,
+        "religious": 0.72,
+        "class": 0.72,
+        "ideological": 0.76,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Debs|1900": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.81,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1904": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Parker|1904": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Debs|1904": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.81,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Taft|1908": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bryan|1908": {
+      "boundaries": {
+        "national": 0.44,
+        "ethnic_racial": 0.05,
+        "religious": 0.55,
+        "class": 0.55,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Debs|1908": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.81,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Wilson|1912": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1912": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Taft|1912": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.09,
+        "religious": 0.17,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Debs|1912": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.81,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Wilson|1916": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Hughes|1916": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.76,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.16,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Benson|1916": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.62,
+        "ideological": 0.37,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Harding|1920": {
+      "boundaries": {
+        "national": 0.28,
+        "ethnic_racial": 0.05,
+        "religious": 0.22,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Cox|1920": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.53,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Debs|1920": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.81,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Coolidge|1924": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Davis|1924": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "La Follette|1924": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Hoover|1928": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Smith|1928": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1932": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Hoover|1932": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1936": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Landon|1936": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.09,
+        "religious": 0.17,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1940": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Willkie|1940": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Roosevelt|1944": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Dewey|1944": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.43,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.31,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Truman|1948": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Dewey|1948": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Thurmond|1948": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "H. Wallace|1948": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.26,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Eisenhower|1952": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Stevenson|1952": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Eisenhower|1956": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Stevenson|1956": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Kennedy|1960": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.2,
+        "religious": 0.5,
+        "class": 0.25,
+        "ideological": 0.35,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Catholic",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Nixon|1960": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Johnson|1964": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.62,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Goldwater|1964": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.19,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Nixon|1968": {
+      "boundaries": {
+        "national": 0.44,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Humphrey|1968": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Wallace|1968": {
+      "boundaries": {
+        "national": 0.6,
+        "ethnic_racial": 0.85,
+        "religious": 0.3,
+        "class": 0.2,
+        "ideological": 0.3,
+        "gender": 0.1,
+        "political_tribe": 0.7
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "third"
+      }
+    },
+    "Nixon|1972": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.3,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "McGovern|1972": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.11,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Carter|1976": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Ford|1976": {
+      "boundaries": {
+        "national": 0.2,
+        "ethnic_racial": 0.05,
+        "religious": 0.12,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Reagan|1980": {
+      "boundaries": {
+        "national": 0.7,
+        "ethnic_racial": 0.3,
+        "religious": 0.5,
+        "class": 0.2,
+        "ideological": 0.5,
+        "gender": 0.15,
+        "political_tribe": 0.6
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Carter|1980": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Anderson|1980": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Reagan|1984": {
+      "boundaries": {
+        "national": 0.7,
+        "ethnic_racial": 0.3,
+        "religious": 0.5,
+        "class": 0.15,
+        "ideological": 0.5,
+        "gender": 0.15,
+        "political_tribe": 0.65
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Mondale|1984": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bush|1988": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.3,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Dukakis|1988": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clinton|1992": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "working",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Bush|1992": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Perot|1992": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.1,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Clinton|1996": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "working",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Dole|1996": {
+      "boundaries": {
+        "national": 0.31,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Perot|1996": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.1,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0
+      },
+      "intensity": 1,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Gore|2000": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bush|2000": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Nader|2000": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Kerry|2004": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Bush|2004": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Obama|2008": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.2,
+        "religious": 0.15,
+        "class": 0.2,
+        "ideological": 0.4,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "Black",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "McCain|2008": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Obama|2012": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.25,
+        "religious": 0.15,
+        "class": 0.3,
+        "ideological": 0.45,
+        "gender": 0.15,
+        "political_tribe": 0.55
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "Black",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Romney|2012": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Mormon",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Trump|2016": {
+      "boundaries": {
+        "national": 0.85,
+        "ethnic_racial": 0.6,
+        "religious": 0.2,
+        "class": 0.15,
+        "ideological": 0.4,
+        "gender": 0.2,
+        "political_tribe": 0.85
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "H. Clinton|2016": {
+      "boundaries": {
+        "national": 0.4,
+        "ethnic_racial": 0.3,
+        "religious": 0.1,
+        "class": 0.3,
+        "ideological": 0.45,
+        "gender": 0.5,
+        "political_tribe": 0.7
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "female",
+        "political_tribe": "D"
+      }
+    },
+    "Johnson|2016": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0
+      },
+      "intensity": 0.5,
+      "_source": "heuristic",
+      "membership": null
+    },
+    "Biden|2020": {
+      "boundaries": {
+        "national": 0.45,
+        "ethnic_racial": 0.2,
+        "religious": 0.2,
+        "class": 0.3,
+        "ideological": 0.4,
+        "gender": 0.15,
+        "political_tribe": 0.65
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Catholic",
+        "class": "middle",
+        "gender": "male",
+        "political_tribe": "D"
+      }
+    },
+    "Trump|2020": {
+      "boundaries": {
+        "national": 0.85,
+        "ethnic_racial": 0.6,
+        "religious": 0.25,
+        "class": 0.15,
+        "ideological": 0.45,
+        "gender": 0.2,
+        "political_tribe": 0.95
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Trump|2024": {
+      "boundaries": {
+        "national": 0.85,
+        "ethnic_racial": 0.6,
+        "religious": 0.3,
+        "class": 0.2,
+        "ideological": 0.5,
+        "gender": 0.2,
+        "political_tribe": 0.95
+      },
+      "intensity": 3,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "white",
+        "religious": "Protestant",
+        "class": "upper",
+        "gender": "male",
+        "political_tribe": "R"
+      }
+    },
+    "Harris|2024": {
+      "boundaries": {
+        "national": 0.4,
+        "ethnic_racial": 0.4,
+        "religious": 0.1,
+        "class": 0.3,
+        "ideological": 0.45,
+        "gender": 0.45,
+        "political_tribe": 0.65
+      },
+      "intensity": 2.5,
+      "_source": "override",
+      "membership": {
+        "ethnic_racial": "Black",
+        "religious": "Protestant",
+        "class": "middle",
+        "gender": "female",
+        "political_tribe": "D"
+      }
+    }
+  },
+  "regimes": {
+    "United Kingdom|Stuart / Civil War / Commonwealth|1603": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Hanoverian / Glorious Revolution Settlement|1688": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Georgian Britain|1789": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Reform Era|1820": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Victorian Peak|1849": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Late Victorian/Edwardian|1875": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|WWI & Lloyd George|1914": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Interwar|1923": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|WWII Britain|1939": {
+      "boundaries": {
+        "national": 0.62,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.53,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Attlee/Consensus|1946": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.17,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Wilson/Heath|1965": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Thatcher Era|1979": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "United Kingdom|New Labour/Blair|1991": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "United Kingdom|Austerity/Brexit|2010": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Ancien Régime|1776": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.43,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "France|Ancien Regime remnant|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|French Revolution|1792": {
+      "boundaries": {
+        "national": 0.37,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.62,
+        "ideological": 0.58,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Napoleonic Empire|1800": {
+      "boundaries": {
+        "national": 0.26,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|Restoration|1815": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.23,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|July Monarchy|1830": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "France|Second Republic|1848": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|Second Empire|1852": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|Third Republic Early|1871": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Third Republic Late|1900": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Vichy France|1940": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Provisional Government / Liberation|1945": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic"
+    },
+    "France|Fourth Republic|1946": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "France|Fifth Republic Gaullist|1958": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "France|Fifth Republic Modern|1981": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Frederickian Prussia|1776": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Prussian Reform Era|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|German Confederation|1815": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|1848 Revolution|1848": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Bismarck Era|1850": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Wilhelmine|1891": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|WWI Germany|1914": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.53,
+        "class": 0.53,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Weimar Republic|1919": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Nazi Germany|1933": {
+      "boundaries": {
+        "national": 0.9,
+        "ethnic_racial": 0.95,
+        "religious": 0.3,
+        "class": 0.2,
+        "ideological": 0.6,
+        "gender": 0.2,
+        "political_tribe": 0.95
+      },
+      "intensity": 3,
+      "_source": "override"
+    },
+    "Germany/Prussia|Occupied Germany|1945": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0.25
+      },
+      "intensity": 1,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|West Germany/Bonn Republic|1949": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|East Germany/DDR|1949": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.26,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Germany/Prussia|Reunified Germany|1990": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Tsarist Russia Late Catherine/Alexander I|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.37,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Nicholas I|1826": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Great Reforms|1856": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Reaction/Late Tsarist|1882": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Revolution Era|1905": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Soviet Early/Lenin|1918": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.62,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Stalin|1929": {
+      "boundaries": {
+        "national": 0.86,
+        "ethnic_racial": 0.62,
+        "religious": 0.24,
+        "class": 0.81,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Khrushchev Thaw|1954": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Brezhnev Stagnation|1965": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.55,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Gorbachev/Collapse|1985": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 2,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Yeltsin|1992": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Russia/USSR|Putin Era|2000": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Spain|Bourbon Reform Spain (Carlos III)|1776": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.26,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Spain|Bourbon Spain/Napoleonic|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Liberal-Absolutist struggle|1814": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Isabella/Moderate Monarchy|1834": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Spain|Sexenio/Restoration|1869": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Crisis/Primo|1898": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Second Republic|1931": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Spain|Civil War/Franco|1936": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Spain|Late Franco|1960": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.23,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Transition|1976": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|PSOE/PP Democracy|1983": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Spain|Crisis Spain|2008": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Italy|Italian States/Napoleonic|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Italy|Restoration/Risorgimento|1815": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Italy|Liberal Italy|1861": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Italy|WWI Italy/Crisis|1914": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Italy|Fascist Italy|1922": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Italy|Post-war Republic|1946": {
+      "boundaries": {
+        "national": 0.5,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Italy|Years of Lead|1969": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Italy|Craxi/First Republic End|1984": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Italy|Second Republic|1994": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Italy|Populist Italy|2013": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Josephine Habsburg Monarchy|1776": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Habsburg Enlightened Absolutism|1789": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Metternich System|1815": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|1848/Neo-Absolutism|1848": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Austria-Hungary Dual Monarchy|1867": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|WWI/Collapse|1914": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|First Republic|1919": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Austrofascism/Anschluss|1934": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Second Republic Consensus|1945": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Austria/Austria-Hungary|Modern Austria|1987": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Post-Küçük Kaynarca Ottoman Empire|1776": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Late Ottoman|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Tanzimat|1808": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Hamidian Era|1877": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Young Turks/WWI|1908": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Kemalist Republic|1919": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Multi-party Turkey|1938": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Coup/Instability Era|1960": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Ozal/Secular Republic|1980": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Ottoman Empire/Turkey|Erdogan Era|2002": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|Late Polish-Lithuanian Commonwealth|1776": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Poland|Partition Era|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|November/January Uprisings|1831": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|Organic Work/Positivism|1864": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Poland|Second Republic|1918": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|Sanacja/Pilsudski|1926": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Poland|WWII/Occupation|1939": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|Stalinist Poland|1945": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.26,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Poland|Gomulka/Gierek|1957": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.55,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Poland|Solidarity/Transition|1981": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Poland|PiS Poland|1998": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Netherlands|Dutch Republic in Crisis|1776": {
+      "boundaries": {
+        "national": 0.15,
+        "ethnic_racial": 0.05,
+        "religious": 0.12,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Netherlands|Batavian/French Period|1789": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Netherlands|United Kingdom of Netherlands|1814": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Netherlands|Liberal Era|1831": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Netherlands|Pillarization|1888": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Netherlands|WWII Occupation|1940": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Netherlands|Reconstruction/Consensus|1946": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Netherlands|Cultural Revolution/Progressive|1966": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.05,
+        "gender": 0.05,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Netherlands|Populist Turn|2002": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Sweden|Gustavian Sweden|1776": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Sweden|Gustavian/Bernadotte Early|1789": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Sweden|Liberal Reform Era|1866": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Sweden|Social Democratic Rise|1914": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.17,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Sweden|Folkhem Peak|1946": {
+      "boundaries": {
+        "national": 0.4,
+        "ethnic_racial": 0.1,
+        "religious": 0.05,
+        "class": 0.6,
+        "ideological": 0.4,
+        "gender": 0.15,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.5,
+      "_source": "override"
+    },
+    "Sweden|Neoliberal Turn|1976": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Sweden|Immigration Debate|2006": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Portugal|Late Pombaline / Maria I Portugal|1776": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.26,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Portugal|Late Monarchy|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.41,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Portugal|Brazilian Exile/Liberalism|1808": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Portugal|Constitutional Monarchy|1834": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Portugal|First Republic|1910": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Portugal|Estado Novo/Salazar|1926": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Portugal|Caetano/Revolution|1969": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.18,
+        "gender": 0.06,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Portugal|Democratic Consolidation|1977": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Portugal|Austerity Portugal|2008": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Greece|Ottoman Rule/Independence|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Greece|Othonian/Early Kingdom|1833": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Greece|Trikoupis/Deliyannis|1863": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Greece|Venizelos/National Schism|1910": {
+      "boundaries": {
+        "national": 0.44,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Greece|Metaxas/WWII/Civil War|1936": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Greece|Cold War Greece|1950": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Greece|Junta|1967": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Greece|Metapolitefsi|1975": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Greece|Crisis Greece|2009": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Belgium|Revolution/Independence|1830": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Belgium|Liberal/Catholic Rivalry|1848": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Belgium|WWI/Interwar|1914": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Belgium|WWII/Reconstruction|1940": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Belgium|Linguistic Federalization|1958": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Belgium|Federal Belgium|1993": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Belgium|Modern Belgium|2011": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Switzerland|Old Swiss Confederacy|1776": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Switzerland|Helvetic/Mediation|1789": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Switzerland|Federal State|1848": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Switzerland|Interwar/WWII|1914": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Switzerland|Magic Formula Era|1946": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Switzerland|SVP Rise|1991": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Switzerland|Modern Switzerland|2011": {
+      "boundaries": {
+        "national": 0.4,
+        "ethnic_racial": 0.15,
+        "religious": 0.1,
+        "class": 0.2,
+        "ideological": 0.2,
+        "gender": 0.1,
+        "political_tribe": 0.15
+      },
+      "intensity": 1.5,
+      "_source": "override"
+    },
+    "Romania|Phanariot/Early Principalities|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.23,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Romania|Organic Statutes/Union|1830": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Romania|Romanian Kingdom|1867": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Romania|Greater Romania|1914": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Romania|Royal Dictatorship/WWII|1938": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Romania|Communist Romania|1945": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.26,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Romania|Ceausescu|1965": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.53,
+        "class": 0.72,
+        "ideological": 0.76,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Romania|Post-Communist Romania|1990": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Hungary|Habsburg Hungary under Joseph II|1776": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Hungary|Habsburg Hungary|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Hungary|1848/Compromise|1848": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Hungary|Dual Monarchy|1868": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Hungary|Horthy Era|1920": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Hungary|Stalinist Hungary|1945": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.26,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Hungary|Kadar Era|1957": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.29,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Hungary|Post-Communist/Liberal|1990": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Hungary|Orban's Hungary|2010": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.81,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Habsburg Bohemia|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Austria-Hungary/Czech Politics|1868": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|First Republic|1918": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Munich/Protectorate|1938": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Communist Czechoslovakia|1948": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.26,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Prague Spring/Normalization|1968": {
+      "boundaries": {
+        "national": 0.31,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.38,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Velvet Transition / Federal Republic|1990": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Czech/Czechoslovakia|Czech Republic|1993": {
+      "boundaries": {
+        "national": 0.11,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Federalist Era|1789": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "USA|Jeffersonian|1801": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "USA|Jacksonian Democracy|1824": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Sectional Crisis|1850": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "USA|Civil War/Reconstruction|1861": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "USA|Gilded Age|1877": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Progressive Era|1896": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Roaring Twenties/Normalcy|1920": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "USA|New Deal/WWII|1933": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Cold War Consensus|1953": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Crisis/Realignment|1969": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Reagan-Clinton|1981": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "USA|Polarization Era|2008": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Mexico|Bourbon Viceroyalty of New Spain|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.16,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|Late Colonial/Independence|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|First Empire/Early Republic|1822": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|La Reforma|1855": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|Porfiriato|1877": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|Revolution|1911": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|Revolutionary State|1921": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|PRI Hegemony/Miracle|1941": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|PRI Crisis|1969": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|Democratization|1989": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Mexico|AMLO/Morena|2013": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Late Pombaline Brazil|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.16,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Colonial/Portuguese Court|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.41,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.23,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Empire|1822": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Old Republic|1889": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Vargas Era|1930": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.41,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Democratic Experiment|1946": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Military Dictatorship|1964": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Redemocratization|1985": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Lula/PT Era|2003": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Brazil|Bolsonaro/Crisis|2016": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Argentina|Viceroyalty of Río de la Plata|1776": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Argentina|Independence/Rivadavia|1810": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Argentina|Rosas|1830": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Argentina|Liberal Republic|1853": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Argentina|Radical/Conservative|1916": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Argentina|Peronist Era|1943": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.53,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Argentina|Instability/Coups|1956": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Argentina|Dirty War|1973": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Argentina|Democratic Restoration|1984": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Argentina|Kirchnerismo/Crisis|2002": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Canada|British North America (Quebec Act era)|1776": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Canada|British North America|1789": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Canada|Confederation/Macdonald|1867": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Canada|Laurier/Early 20th|1896": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Canada|Depression/War/Postwar|1930": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Canada|Quiet Revolution/Trudeau Sr.|1957": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Canada|Mulroney/Chretien|1984": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Canada|Modern Canada|2006": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Colombia|Viceroyalty of New Granada|1776": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.51,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.16,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Colombia|Gran Colombia/Independence|1810": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Colombia|Conservative Hegemony|1831": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.41,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Colombia|Regeneration/Thousand Days|1886": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.44,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Colombia|Liberal Republic/La Violencia|1930": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Colombia|National Front|1958": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Colombia|Drug War/Constitution|1974": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Colombia|Uribe/Santos/Peace|2003": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Independence/O'Higgins|1810": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Chile|Conservative Republic|1831": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.23,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Liberal Republic|1861": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Social Question|1925": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Christian Democracy/Left|1959": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Chile|Pinochet|1973": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.51,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.37,
+        "gender": 0.16,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Concertacion|1990": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Chile|Estallido/Boric|2010": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.34,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Cuba|Spanish Colony|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Cuba|US Intervention/Platt|1898": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Cuba|Batista/Republic|1933": {
+      "boundaries": {
+        "national": 0.53,
+        "ethnic_racial": 0.12,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Cuba|Revolutionary Cuba|1959": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.62,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Cuba|Late Castro/Special Period|1976": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.55,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Cuba|Post-Castro|2007": {
+      "boundaries": {
+        "national": 0.26,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.41,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Viceroyalty of Peru after Túpac Amaru II|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.16,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Colonial/Independence|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Peru|Caudillo Era|1825": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Aristocratic Republic|1879": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Leguia/APRA|1920": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Velasco/Military|1968": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Democracy/Fujimori|1980": {
+      "boundaries": {
+        "national": 0.26,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Peru|Post-Fujimori|2001": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Venezuela|Captaincy General of Venezuela|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.16,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Venezuela|Independence/Gran Colombia|1810": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Venezuela|Caudillo Era|1831": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Venezuela|Gomez/Oil State|1909": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Venezuela|Punto Fijo Democracy|1958": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Venezuela|Crisis/Caracazo|1989": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Venezuela|Chavez|1999": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.72,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Venezuela|Maduro|2013": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.72,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "China|Late Qing/Pre-Opium|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "China|Opium Wars/Taiping|1840": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "China|Self-Strengthening/Reform|1865": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "China|Republic/Warlords|1912": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "China|Nanjing Decade/War|1928": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "China|Mao Early|1949": {
+      "boundaries": {
+        "national": 0.66,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "China|Mao Radical|1958": {
+      "boundaries": {
+        "national": 0.3,
+        "ethnic_racial": 0.2,
+        "religious": 0.05,
+        "class": 0.85,
+        "ideological": 0.95,
+        "gender": 0.2,
+        "political_tribe": 0.95
+      },
+      "intensity": 3,
+      "_source": "override"
+    },
+    "China|Deng Reform|1977": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.25
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "China|Jiang/Hu Technocratic|1990": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "China|Xi Jinping|2013": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Early Tokugawa / Sakoku Consolidation|1603": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Mid-Tokugawa / Kyoho Reforms|1716": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Late Tokugawa Shogunate (Tanuma–Kansei)|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Japan|Late Tokugawa|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Bakumatsu/Restoration|1854": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Meiji|1878": {
+      "boundaries": {
+        "national": 0.43,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Taishō Democracy|1913": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Japan|Militarist Japan|1931": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.53,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Japan|Occupation/Recovery|1946": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.07,
+        "gender": 0.06,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Japan|High Growth|1960": {
+      "boundaries": {
+        "national": 0.31,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Japan|Lost Decades|1990": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Japan|Abe/Modern Japan|2012": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|Aurangzeb / Orthodox Turn|1658": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.16,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|Late Mughal / Early Company India|1776": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.19,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "India|Late Mughal/EIC|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "India|British Raj|1858": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|Nationalist Movement|1920": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "India|Nehruvian India|1947": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.19,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|Congress Dominance|1965": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.29,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "India|Coalition Era|1977": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|BJP/Shining India|1999": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "India|Modi Era|2014": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Korea|Joseon under King Jeongjo|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.37,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Korea|Joseon Late|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Korea|Opening/Colonial|1876": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.19,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "South Korea|Korean War/Division|1946": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Korea|Park/Military|1961": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Korea|Transition|1980": {
+      "boundaries": {
+        "national": 0.31,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Korea|Democratic Consolidation|1993": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Korea|Polarized Democracy|2008": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Indonesia|Dutch East Indies|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.37,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Indonesia|Japanese Occupation/Revolution|1942": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Indonesia|Guided Democracy/Sukarno|1950": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.41,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Indonesia|New Order/Suharto|1966": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Indonesia|Reformasi|1999": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Indonesia|Jokowi/Modern|2014": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Philippines|Spanish Philippines|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.37,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Philippines|American Period|1899": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Philippines|Independence/Democratic|1946": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Philippines|Marcos|1972": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Philippines|People Power/Democracy|1986": {
+      "boundaries": {
+        "national": 0.17,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Philippines|Duterte/Modern|2016": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Thonburi Kingdom of Taksin / Early Chakri|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Late Ayutthaya/Early Chakri|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.41,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Chulalongkorn/Reform|1851": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Constitutional Revolution|1932": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Military/Development|1958": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Thailand|Democracy Oscillation|1973": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0.5
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Thailand|Thaksin/Yellow-Red|1992": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Thailand|Junta/Modern|2014": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Vietnam|Late Lê / Trịnh-Nguyễn Division / Tây Sơn|1776": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.62,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Vietnam|Late Lê/Nguyễn|1789": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.3,
+        "religious": 0.55,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Vietnam|French Indochina|1859": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.26,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Vietnam|Independence War|1946": {
+      "boundaries": {
+        "national": 0.24,
+        "ethnic_racial": 0.05,
+        "religious": 0.24,
+        "class": 0.72,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Vietnam|Vietnam War|1955": {
+      "boundaries": {
+        "national": 0.43,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.72,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Vietnam|Socialist Republic|1976": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.55,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Vietnam|Đổi Mới|1986": {
+      "boundaries": {
+        "national": 0.38,
+        "ethnic_racial": 0.05,
+        "religious": 0.29,
+        "class": 0.05,
+        "ideological": 0.1,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Iran|Late Zand Dynasty|1776": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iran|Qajar Early|1789": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iran|Qajar Late/Constitutional|1849": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iran|Pahlavi Early|1925": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iran|Mossadegh/Shah|1953": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.19,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Iran|Pahlavi Peak|1964": {
+      "boundaries": {
+        "national": 0.19,
+        "ethnic_racial": 0.05,
+        "religious": 0.15,
+        "class": 0.05,
+        "ideological": 0.19,
+        "gender": 0.07,
+        "political_tribe": 0
+      },
+      "intensity": 1.5,
+      "_source": "heuristic"
+    },
+    "Iran|Islamic Revolution|1979": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.53,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iran|Islamic Republic|1989": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Pakistan|Independence/Early|1947": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Pakistan|Ayub/Military|1959": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Pakistan|Bhutto/Zia|1972": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Pakistan|Democratic Oscillation|1989": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Pakistan|Modern Pakistan|2008": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Mamluk Beys under Ottoman Suzerainty|1776": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Egypt|Muhammad Ali Dynasty|1789": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Khedivate/British|1849": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Liberal/Monarchy|1914": {
+      "boundaries": {
+        "national": 0.36,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Nasser|1952": {
+      "boundaries": {
+        "national": 0.73,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.55,
+        "ideological": 0.48,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Egypt|Sadat|1971": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Mubarak|1982": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Egypt|Arab Spring/Morsi|2011": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Egypt|Sisi|2014": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Africa|Cape Colony/Early|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.29,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "South Africa|Mineral Revolution/Union|1870": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.29,
+        "gender": 0.19,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "South Africa|Segregation Era|1914": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.57,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "South Africa|Apartheid|1948": {
+      "boundaries": {
+        "national": 0.95,
+        "ethnic_racial": 0.67,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "South Africa|Transition|1990": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Africa|Mandela/Mbeki|1995": {
+      "boundaries": {
+        "national": 0.09,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.06,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "South Africa|Zuma/Crisis|2008": {
+      "boundaries": {
+        "national": 0.23,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Nigeria|Colonial Nigeria|1789": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.48,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Nigeria|British Colony|1914": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Nigeria|First Republic/Biafra|1960": {
+      "boundaries": {
+        "national": 0.67,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Nigeria|Military Era|1970": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Nigeria|Fourth Republic|1999": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Nigeria|Buhari/Modern|2015": {
+      "boundaries": {
+        "national": 0.67,
+        "ethnic_racial": 0.05,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|First Saudi State / Diriyah Emirate|1776": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|Pre-Saudi/First State|1789": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|Second Saudi State/Interregnum|1819": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|Ibn Saud/Unification|1902": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|Oil Kingdom|1953": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.38,
+        "religious": 0.72,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Saudi Arabia|MBS/Vision 2030|2015": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.16,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iraq|Ottoman Iraq|1789": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iraq|British Mandate/Monarchy|1918": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iraq|Revolution/Baath|1958": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.41,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0.5
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Iraq|Saddam Hussein|1969": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 1,
+        "religious": 0.53,
+        "class": 0.53,
+        "ideological": 0.62,
+        "gender": 0.19,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iraq|US Occupation|2003": {
+      "boundaries": {
+        "national": 0.29,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iraq|Maliki/ISIS|2011": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 0.75
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Iraq|Post-ISIS Iraq|2018": {
+      "boundaries": {
+        "national": 0.51,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Israel|Yishuv/Mandate|1920": {
+      "boundaries": {
+        "national": 0.16,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.48,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Israel|Labor Zionism|1948": {
+      "boundaries": {
+        "national": 0.44,
+        "ethnic_racial": 0.05,
+        "religious": 0.19,
+        "class": 0.41,
+        "ideological": 0.34,
+        "gender": 0.09,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Israel|Likud/Begin|1978": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.43,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Israel|Oslo/Peace Process|1993": {
+      "boundaries": {
+        "national": 0.12,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.05,
+        "ideological": 0.24,
+        "gender": 0.07,
+        "political_tribe": 0.75
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Israel|Netanyahu/Right Turn|2001": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.19,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.62,
+        "gender": 0.1,
+        "political_tribe": 1
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Algeria|Ottoman/French Conquest|1789": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Algeria|French Algeria|1848": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.67,
+        "religious": 0.34,
+        "class": 0.05,
+        "ideological": 0.48,
+        "gender": 0.19,
+        "political_tribe": 0.25
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Algeria|War of Independence|1954": {
+      "boundaries": {
+        "national": 0.05,
+        "ethnic_racial": 0.05,
+        "religious": 0.05,
+        "class": 0.72,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Algeria|FLN State|1963": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.41,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Algeria|Civil War/Bouteflika|1989": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.41,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0.25
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ethiopia|Zemene Mesafint/Tewodros|1789": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.34,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Ethiopia|Menelik/Imperial|1869": {
+      "boundaries": {
+        "national": 1,
+        "ethnic_racial": 0.53,
+        "religious": 0.91,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    },
+    "Ethiopia|Italian Occupation/Haile Selassie|1936": {
+      "boundaries": {
+        "national": 0.76,
+        "ethnic_racial": 0.41,
+        "religious": 0.69,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ethiopia|Derg|1974": {
+      "boundaries": {
+        "national": 0.55,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.55,
+        "ideological": 0.26,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ethiopia|EPRDF|1991": {
+      "boundaries": {
+        "national": 0.34,
+        "ethnic_racial": 0.05,
+        "religious": 0.26,
+        "class": 0.05,
+        "ideological": 0.12,
+        "gender": 0.09,
+        "political_tribe": 0
+      },
+      "intensity": 2.25,
+      "_source": "heuristic"
+    },
+    "Ethiopia|Abiy Ahmed|2018": {
+      "boundaries": {
+        "national": 0.72,
+        "ethnic_racial": 0.05,
+        "religious": 0.53,
+        "class": 0.05,
+        "ideological": 0.15,
+        "gender": 0.1,
+        "political_tribe": 0.5
+      },
+      "intensity": 3,
+      "_source": "heuristic"
+    }
+  }
+}

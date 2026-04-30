@@ -11,6 +11,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
         description: "Late Qing dynasty under Confucian bureaucratic order. The Qianlong Emperor's long reign gave way to gradual decline, with the Canton system tightly controlling foreign trade. The imperial examination system and Confucian orthodoxy remained unchallenged, but corruption and population pressure were building beneath a veneer of stability.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "China",
@@ -23,6 +24,7 @@ export const ASIA = [
         PF: 2, TRB: 4, ENG: 4,
         EPS: 2, AES: 4,
         description: "The Century of Humiliation began with British victory in the First Opium War and the Treaty of Nanjing. The Taiping Rebellion devastated southern China with tens of millions killed. Unequal treaties forced open ports and extraterritoriality, shattering the Sinocentric world order and creating a deep sense of civilizational crisis.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "China",
@@ -35,6 +37,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 5,
         description: "The Tongzhi Restoration and Self-Strengthening Movement attempted to graft Western technology onto Confucian foundations. The Hundred Days Reform failed, the Boxer Rebellion brought further humiliation, and the abolition of the examination system removed a key pillar of imperial legitimacy. The Xinhai Revolution of 1911 finally toppled the dynasty.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "China",
@@ -47,6 +50,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 5,
         EPS: 0, AES: 5,
         description: "Sun Yat-sen's republic quickly gave way to Yuan Shikai's autocracy and then warlord fragmentation. The May Fourth Movement introduced radical new ideologies. Competing visions of modernity clashed as Nationalists and Communists both organized, briefly cooperating in the First United Front before Chiang Kai-shek's Northern Expedition.",
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "China",
@@ -59,6 +63,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 5,
         EPS: 1, AES: 4,
         description: "The KMT under Chiang Kai-shek attempted state-building while fighting Communists and then Japan. The Nanjing Decade saw partial modernization but failed land reform. Japanese invasion from 1937 devastated the country, and the subsequent civil war between Nationalists and Communists consumed the nation in total mobilization.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "China",
@@ -71,6 +76,7 @@ export const ASIA = [
         PF: 5, TRB: 4, ENG: 5,
         EPS: 4, AES: 5,
         description: "The People's Republic launched sweeping land reform, collectivization, and the Korean War. The new regime combined Marxist universalism with Chinese nationalism in a revolutionary synthesis. The Hundred Flowers Campaign briefly invited criticism before the Anti-Rightist crackdown revealed the limits of permitted discourse.",
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.55, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "China",
@@ -83,6 +89,7 @@ export const ASIA = [
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
         description: "The Great Leap Forward caused catastrophic famine killing tens of millions. The Cultural Revolution unleashed ideological purism, destroying institutions, persecuting intellectuals, and pitting citizens against each other in loyalty campaigns. Mao's cult of personality reached its zenith while the country endured radical social engineering.",
+        morBoundaries: { boundaries: { national: 0.3, ethnic_racial: 0.2, religious: 0.05, class: 0.85, ideological: 0.95, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
     },
     {
         jurisdiction: "China",
@@ -95,6 +102,7 @@ export const ASIA = [
         PF: 2, TRB: 3, ENG: 3,
         EPS: 0, AES: 1,
         description: "Deng Xiaoping's pragmatic reforms introduced Special Economic Zones, household responsibility, and opening to the West. 'Reform and opening up' prioritized economic growth over ideological purity. The era ended with the Tiananmen Square protests and crackdown of 1989, which defined the limits of political reform.",
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
     },
     {
         jurisdiction: "China",
@@ -107,6 +115,7 @@ export const ASIA = [
         PF: 3, TRB: 3, ENG: 3,
         EPS: 0, AES: 1,
         description: "Technocratic governance under Jiang Zemin and Hu Jintao delivered extraordinary economic growth, WTO accession, and rising global integration. The 'harmonious society' doctrine smoothed over growing inequality. Collective leadership, term limits, and consensus decision-making became institutional norms within one-party rule.",
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "China",
@@ -119,6 +128,7 @@ export const ASIA = [
         PF: 5, TRB: 5, ENG: 4,
         EPS: 1, AES: 4,
         description: "Xi Jinping consolidated personal power, abolished term limits, and launched anti-corruption campaigns that doubled as political purges. The Belt and Road Initiative projected global ambition while wolf warrior diplomacy signaled assertiveness. Common prosperity rhetoric accompanied crackdowns on tech firms and a return to ideological discipline.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.38, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     // ===== JAPAN =====
     {
@@ -132,6 +142,7 @@ export const ASIA = [
         PF: 4, TRB: 5, ENG: 2,
         EPS: 2, AES: 0,
         description: "Tokugawa Ieyasu founds bakufu 1603; sakoku closure policies; Christian persecution; sankin-kotai system; rural agricultural-extractive economy; Genroku cultural flowering late period.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.19, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -144,6 +155,7 @@ export const ASIA = [
         PF: 4, TRB: 5, ENG: 2,
         EPS: 0, AES: 0,
         description: "Yoshimune's Kyoho reforms 1716–45 attempt fiscal/agricultural rationalization; gradual relaxation of cultural restrictions (Western books permitted post-1720); Tanuma Okitsugu mercantilism 1760s–80s. (End year truncated to 1775 to bridge cleanly into 1776–88 backfill.)",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.19, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -156,6 +168,7 @@ export const ASIA = [
         PF: 2, TRB: 4, ENG: 2,
         EPS: 2, AES: 2,
         description: "The Tokugawa Bakufu under Shōgun Tokugawa Ieharu (d. 1786) governed through Tanuma Okitsugu's commercially-experimental policies before Matsudaira Sadanobu's restorationist Kansei Reforms (begun 1787). Sakoku closed-country policy was intact; samurai-commoner status order was rigid; han domain autonomy under bakufu suzerainty.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Japan",
@@ -168,6 +181,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 2,
         EPS: 2, AES: 0,
         description: "The sakoku policy of near-total isolation continued under the Tokugawa shogunate, with tightly regulated trade through Nagasaki. Internal reforms under various domains addressed economic stress, but the rigid status system remained. A flourishing urban culture masked underlying fiscal and social pressures that would soon erupt.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -180,6 +194,7 @@ export const ASIA = [
         PF: 3, TRB: 5, ENG: 5,
         EPS: 0, AES: 5,
         description: "Perry's Black Ships forced Japan open, triggering the collapse of the Tokugawa order. The sonnō jōi movement, Boshin War, and Meiji Restoration transformed Japan from feudal shogunate to centralized modern state. Samurai rebels and modernizers clashed over the nation's direction in a period of extraordinary upheaval.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -192,6 +207,7 @@ export const ASIA = [
         PF: 3, TRB: 5, ENG: 4,
         EPS: 0, AES: 0,
         description: "Japan's rapid modernization combined Western institutions with Japanese traditions under the slogan 'rich country, strong army.' The Meiji Constitution established Asia's first parliamentary system while preserving imperial sovereignty. Victories over China and Russia announced Japan as a great power and imperial competitor.",
+        morBoundaries: { boundaries: { national: 0.43, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -204,6 +220,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
         description: "Party government, universal male suffrage, and liberal cosmopolitanism flourished during the Taishō era. Urbanization and mass culture transformed society while labor movements and women's organizations gained ground. Japan participated in international institutions and the Washington Treaty system, embracing cooperative diplomacy.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Japan",
@@ -216,6 +233,7 @@ export const ASIA = [
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
         description: "The Manchurian Incident began Japan's slide into ultranationalist militarism. The Greater East Asia Co-Prosperity Sphere cloaked imperial conquest in pan-Asian rhetoric. Total war mobilization, state Shinto ideology, and the suppression of all dissent culminated in catastrophic defeat and atomic devastation.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.34, class: 0.53, ideological: 0.62, gender: 0.19, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Japan",
@@ -228,6 +246,7 @@ export const ASIA = [
         PF: 3, TRB: 2, ENG: 4,
         EPS: 0, AES: 0,
         description: "The American occupation under MacArthur imposed a pacifist constitution, land reform, zaibatsu dissolution, and women's suffrage. Japan embraced democratic norms and economic reconstruction with remarkable speed. The reverse course during the Korean War shifted emphasis toward anti-communism and economic recovery.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Japan",
@@ -240,6 +259,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 3,
         EPS: 1, AES: 1,
         description: "The LDP's continuous rule oversaw the economic miracle that made Japan the world's second-largest economy. Consensus politics, lifetime employment, MITI-guided industrial policy, and export-led growth defined the model. The system prioritized stability and incremental improvement, with low inequality and strong social cohesion.",
+        morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Japan",
@@ -252,6 +272,7 @@ export const ASIA = [
         PF: 3, TRB: 3, ENG: 2,
         EPS: 1, AES: 0,
         description: "The bubble economy's collapse ushered in prolonged stagnation, deflation, and institutional sclerosis. The brief DPJ experiment in opposition government disappointed, and political disengagement grew. Aging demographics and rigid labor markets resisted reform while the Fukushima disaster exposed governance failures.",
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Japan",
@@ -264,6 +285,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
         description: "Shinzo Abe's long premiership pursued Abenomics, constitutional reinterpretation for collective self-defense, and a more assertive foreign policy vis-a-vis China. Demographic crisis intensified with the world's oldest population. Historical revisionism and conservative nationalism coexisted with continued pacifist sentiment.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ===== INDIA =====
     {
@@ -277,6 +299,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 2, AES: 4,
         description: "Aurangzeb's expansion to maximum territorial extent paired with orthodox Islamic policy reversal: jizya re-imposed 1679, temple destruction, sharia enforcement; Maratha and Sikh resistance.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.48, gender: 0.16, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "India",
@@ -289,6 +312,7 @@ export const ASIA = [
         PF: 3, TRB: 5, ENG: 3,
         EPS: 1, AES: 4,
         description: "The post-Plassey Indian subcontinent was a patchwork: a residual Mughal court at Delhi, the Maratha Confederacy, autonomous nawabs (Awadh, Bengal under EIC), Mysore under Hyder Ali / Tipu Sultan, the Sikh misls in Punjab, and the East India Company exercising direct rule in Bengal under Warren Hastings (1772–1785) and Cornwallis (from 1786). Bengal famine of 1770 had killed an estimated 7–10 million people.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.15, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "India",
@@ -301,6 +325,7 @@ export const ASIA = [
         PF: 2, TRB: 5, ENG: 3,
         EPS: 2, AES: 0,
         description: "The Mughal Empire had fragmented into regional successor states while the East India Company expanded through diplomacy and conquest. The subsidiary alliance system absorbed princely states. A patchwork of Hindu, Muslim, and Sikh polities coexisted under increasingly dominant British commercial and military power.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         jurisdiction: "India",
@@ -313,6 +338,7 @@ export const ASIA = [
         PF: 2, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
         description: "Following the 1857 Rebellion, the British Crown assumed direct rule with a bureaucratic apparatus of railways, law courts, and civil service. The Indian National Congress formed in 1885 as a loyalist body. Extractive economic policies drained wealth while modernizing infrastructure served imperial, not Indian, interests.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "India",
@@ -325,6 +351,7 @@ export const ASIA = [
         PF: 5, TRB: 3, ENG: 5,
         EPS: 3, AES: 5,
         description: "Gandhi transformed the independence movement into a mass movement through nonviolent civil disobedience, satyagraha, and the Quit India campaign. The movement aspired to universal moral principles while navigating Hindu-Muslim tensions. Nehru, Ambedkar, Bose, and Jinnah offered competing visions of India's future.",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "India",
@@ -337,6 +364,7 @@ export const ASIA = [
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 5,
         description: "Jawaharlal Nehru built a secular, socialist-leaning democracy with Five-Year Plans, non-alignment, and pan-Asian solidarity. The constitution enshrined universal rights while accommodating religious personal law. Industrialization through import substitution and the IITs laid foundations for future growth, though agricultural neglect persisted.",
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "India",
@@ -349,6 +377,7 @@ export const ASIA = [
         PF: 5, TRB: 3, ENG: 4,
         EPS: 1, AES: 4,
         description: "Indira Gandhi centralized power, nationalized banks, abolished privy purses, and won the 1971 war creating Bangladesh. The Green Revolution transformed agriculture. Her declaration of Emergency in 1975 suspended civil liberties and democratic norms, revealing authoritarian tendencies within the Congress system.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "India",
@@ -361,6 +390,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 0,
         description: "The post-Emergency period saw coalition politics, caste-based mobilization through the Mandal Commission, and the rise of Hindu nationalism with the Babri Masjid demolition. The 1991 economic liberalization under Manmohan Singh opened India to global markets, transforming the economy while intensifying social and religious fault lines.",
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "India",
@@ -373,6 +403,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 1,
         description: "The NDA government under Vajpayee conducted nuclear tests, pursued economic liberalization, and promoted 'India Shining.' The IT boom and call center revolution created a new middle class. UPA under Manmohan Singh expanded social welfare with NREGA while maintaining economic reform, though corruption scandals proliferated.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "India",
@@ -385,6 +416,7 @@ export const ASIA = [
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
         description: "Narendra Modi's BJP pursued Hindu nationalist consolidation, development-oriented governance, and centralized decision-making. Demonetization, GST, CAA/NRC, and abrogation of Article 370 marked bold policy moves. Digital infrastructure expanded dramatically while opposition space, press freedom, and minority protections contracted.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.38, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     // ===== KOREA/SOUTH KOREA =====
     {
@@ -398,6 +430,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
         description: "King Jeongjo (r. 1776–1800) led an enlightened reformist Joseon monarchy that rebalanced the noron-soron factional system, expanded Silhak Practical Learning intellectual currents, and promoted commercial-agricultural development. Confucian yangban hierarchy and the slave-nobi class system remained intact.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Korea",
@@ -410,6 +443,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
         description: "The late Joseon dynasty maintained strict Neo-Confucian orthodoxy and isolationist policies as the Hermit Kingdom. Factional politics among yangban scholars dominated court life. Western and Japanese pressure mounted at the borders while internal Catholic persecution and peasant unrest signaled growing instability.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Korea",
@@ -422,6 +456,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 4,
         EPS: 1, AES: 4,
         description: "The Treaty of Ganghwa opened Korea to Japanese influence, leading to annexation in 1910. Thirty-five years of colonial rule brought forced modernization, cultural suppression, comfort women, and forced labor. Korean identity was preserved through underground movements, the March 1st Movement, and exile governments.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "South Korea",
@@ -434,6 +469,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 5,
         EPS: 1, AES: 4,
         description: "Liberation from Japan was immediately followed by division at the 38th parallel and devastating civil war. The Korean War killed millions and hardened the peninsula's division. Syngman Rhee's autocratic First Republic relied on anti-communism and American support while the country remained desperately poor.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Korea",
@@ -446,6 +482,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 0, AES: 1,
         description: "Park Chung-hee's military coup initiated the Miracle on the Han River through state-directed industrialization, chaebol formation, and export-led growth. The Yushin Constitution consolidated authoritarian rule. Rapid development came at the cost of labor rights, political freedom, and rural dislocation before Park's assassination in 1979.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Korea",
@@ -458,6 +495,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 5,
         description: "The Gwangju Uprising of 1980 became the defining event of the democratization struggle. Student movements, labor protests, and middle-class activism culminated in the June Democracy Movement of 1987. The transition to democracy was negotiated rather than revolutionary, producing a new constitutional order and direct presidential elections.",
+        morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Korea",
@@ -470,6 +508,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 4,
         EPS: 0, AES: 0,
         description: "Civilian rule consolidated with Kim Young-sam and Kim Dae-jung, who won the Nobel Peace Prize for the Sunshine Policy toward North Korea. The 1997 IMF crisis forced painful restructuring but strengthened institutional resilience. South Korea emerged as a vibrant democracy with a dynamic civil society and cultural soft power.",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Korea",
@@ -482,6 +521,7 @@ export const ASIA = [
         PF: 5, TRB: 3, ENG: 5,
         EPS: 0, AES: 3,
         description: "Deepening partisan polarization between progressives and conservatives defined Korean politics. The Candlelight Revolution impeached President Park Geun-hye through massive peaceful protests. Generational divides over North Korea, gender, and economic opportunity intensified while K-pop and Korean culture achieved global dominance.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     // ===== INDONESIA =====
     {
@@ -495,6 +535,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
         description: "The Dutch colonial system exploited the archipelago through the Cultivation System and later the Ethical Policy. Plantation agriculture and resource extraction enriched the Netherlands while impoverishing Indonesians. Nascent nationalist movements emerged among educated elites, Islamic organizations, and communist groups in the early twentieth century.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Indonesia",
@@ -507,6 +548,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 5,
         EPS: 3, AES: 5,
         description: "Japanese occupation shattered Dutch colonial prestige and mobilized Indonesian nationalism. Sukarno and Hatta proclaimed independence on August 17, 1945, triggering a four-year revolution against Dutch attempts at reconquest. The struggle forged national identity from extraordinary ethnic and religious diversity across thousands of islands.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Indonesia",
@@ -519,6 +561,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 5,
         EPS: 3, AES: 5,
         description: "Sukarno's charismatic leadership balanced nationalism, religion, and communism (NASAKOM) while pursuing anti-imperialist confrontation with Malaysia. Guided Democracy replaced parliamentary government with presidential authority. Non-alignment and Afro-Asian solidarity defined foreign policy until the 1965 crisis and alleged communist coup attempt.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Indonesia",
@@ -531,6 +574,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 1,
         description: "Suharto's New Order emerged from the anti-communist massacres of 1965-66 that killed hundreds of thousands. Development-oriented authoritarianism delivered growth through oil revenues, foreign investment, and technocratic management. Pancasila ideology enforced unity while corruption, military repression, and East Timor occupation marked the era.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Indonesia",
@@ -543,6 +587,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
         description: "The Asian Financial Crisis toppled Suharto, unleashing democratic reforms, decentralization, and press freedom. Direct elections, regional autonomy, and civilian control of the military transformed governance. East Timor's independence, Aceh peace, and communal conflicts in Sulawesi and Maluku tested the new democracy's resilience.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Indonesia",
@@ -555,6 +600,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 1,
         description: "Joko Widodo's pragmatic presidency prioritized infrastructure, investment, and economic development. Identity politics intensified around the Jakarta governor election and Islamic conservatism. The capital relocation to Nusantara symbolized ambition while democratic backsliding concerns grew alongside rising religious populism.",
+        morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     // ===== PHILIPPINES =====
     {
@@ -568,6 +614,7 @@ export const ASIA = [
         PF: 2, TRB: 4, ENG: 3,
         EPS: 2, AES: 0,
         description: "Spanish colonial rule centered on the Catholic Church, friar land estates, and Manila-Acapulco galleon trade. The ilustrado movement produced Rizal and the Propaganda Movement, while the Katipunan organized armed revolution. Three centuries of Spanish rule created a deeply Catholic, hierarchical society with stark inequality.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.37, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Philippines",
@@ -580,6 +627,7 @@ export const ASIA = [
         PF: 3, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
         description: "American colonization followed a brutal pacification campaign, then introduced public education, English, and democratic institutions under 'benevolent assimilation.' The Commonwealth period prepared for independence while landlord elites captured democratic structures. Japanese occupation during World War II devastated Manila and the countryside.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Philippines",
@@ -592,6 +640,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
         description: "Post-independence democracy functioned through an oligarchic two-party system modeled on American institutions. Land reform remained unfulfilled as sugar barons and political dynasties dominated. The Huk Rebellion, Cold War alignment with the US, and growing inequality created pressures that would eventually justify martial law.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Philippines",
@@ -604,6 +653,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
         description: "Ferdinand Marcos declared martial law, dismantling democracy and establishing conjugal dictatorship with Imelda. Crony capitalism enriched loyalists while debt ballooned. The Aquino assassination in 1983 galvanized opposition. Military repression, media control, and the destruction of independent institutions marked the era.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Philippines",
@@ -616,6 +666,7 @@ export const ASIA = [
         PF: 4, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
         description: "The EDSA People Power Revolution restored democracy under Corazon Aquino. Subsequent presidents struggled with coups, poverty, corruption, and natural disasters. The OFW economy became a lifeline with millions working abroad. Democracy persisted but remained shallow, with political dynasties and patronage networks intact.",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Philippines",
@@ -628,6 +679,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
         description: "Rodrigo Duterte's drug war killed thousands extrajudicially while his populist strongman style won massive support. The pivot toward China and away from the US marked a foreign policy shift. The Marcos family's return to power through Bongbong Marcos revealed the enduring weakness of institutional memory.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ===== THAILAND/SIAM =====
     {
@@ -641,6 +693,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 3,
         EPS: 2, AES: 4,
         description: "King Taksin (1767–1782) had reunified the post-Ayutthaya Siamese realm from his Thonburi capital, then was deposed and executed 1782; Rama I founded the Chakri dynasty and moved the capital to Bangkok. The 1776–1788 period spans the late Taksin coup and early Chakri consolidation.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Thailand",
@@ -653,6 +706,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
         description: "The early Chakri dynasty consolidated power after the destruction of Ayutthaya, establishing Bangkok as the new capital. The Theravada Buddhist monarchy operated within a tributary system with China. Absolute royal authority was tempered by Buddhist legitimacy and a hierarchical sakdina social system.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.41, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Thailand",
@@ -665,6 +719,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
         description: "Kings Mongkut and Chulalongkorn modernized Siam through careful diplomacy that preserved independence while all neighbors were colonized. Slavery was abolished, administration centralized, and infrastructure built. Siam ceded territories to France and Britain but maintained sovereignty through strategic flexibility and selective modernization.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Thailand",
@@ -677,6 +732,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
         description: "The 1932 revolution ended absolute monarchy, but the constitutional era was marked by rivalry between Pridi Banomyong's democrats and Phibun Songkhram's militarists. Thailand allied with Japan during World War II, then pivoted to the US. Multiple coups established the pattern of military intervention in politics.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Thailand",
@@ -689,6 +745,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
         description: "Field Marshal Sarit Thanarat's authoritarian developmentalism promoted economic growth through American alliance and investment. The monarchy was elevated as a unifying symbol. Thailand served as a staging ground for the Vietnam War while communist insurgency grew in the countryside and the northeast.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Thailand",
@@ -701,6 +758,7 @@ export const ASIA = [
         PF: 3, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
         description: "The 1973 student uprising overthrew military rule, but the 1976 Thammasat massacre restored authoritarianism. A cycle of democratic openings and military coups became Thailand's recurring pattern. Economic growth during the 1980s boom and the emergence of a middle class created new democratic constituencies.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Thailand",
@@ -713,6 +771,7 @@ export const ASIA = [
         PF: 5, TRB: 4, ENG: 5,
         EPS: 3, AES: 3,
         description: "Thaksin Shinawatra's populism mobilized rural voters with universal healthcare and village funds, creating deep polarization between Yellow Shirt royalists and Red Shirt populists. The 2006 coup against Thaksin intensified rather than resolved the divide. Street protests, judicial interventions, and palace politics intertwined.",
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Thailand",
@@ -725,6 +784,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
         description: "The 2014 military coup installed General Prayuth Chan-ocha, who managed a transition to controlled democracy with a military-drafted constitution. A new generation of youth protesters challenged both the military establishment and the monarchy. The royal transition to Rama X added uncertainty to Thailand's political trajectory.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     // ===== VIETNAM =====
     {
@@ -738,6 +798,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 2, AES: 4,
         description: "The nominal Lê dynasty was reduced to ceremony while Vietnam was practically split between the Trịnh lords (Tonkin/north) and Nguyễn lords (Cochinchina/south); the Tây Sơn Rebellion erupted from central Vietnam in 1771 and overthrew both regimes by 1788, founding a short-lived Tây Sơn dynasty.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Vietnam",
@@ -750,6 +811,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 2,
         EPS: 2, AES: 0,
         description: "The Tây Sơn revolt gave way to the Nguyễn dynasty's reunification of Vietnam. Emperor Gia Long and his successors pursued Confucian orthodoxy, Chinese-style bureaucracy, and isolation from the West. Catholic persecution provided a pretext for French intervention while the mandarin system governed village life.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Vietnam",
@@ -762,6 +824,7 @@ export const ASIA = [
         PF: 2, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
         description: "French colonial rule transformed Vietnam through plantation agriculture, rubber and rice extraction, and the mission civilisatrice. Resistance movements ranged from Confucian scholars to communists. Ho Chi Minh's founding of the Viet Minh during Japanese occupation set the stage for the independence struggle.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.26, religious: 0.26, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Vietnam",
@@ -774,6 +837,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 5,
         EPS: 4, AES: 4,
         description: "Ho Chi Minh's declaration of independence launched the First Indochina War against France. The Viet Minh combined communist ideology with Vietnamese nationalism in a revolutionary synthesis. Land reform and mass mobilization built popular support. The decisive victory at Dien Bien Phu in 1954 ended French colonialism in Indochina.",
+        morBoundaries: { boundaries: { national: 0.24, ethnic_racial: 0.05, religious: 0.24, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Vietnam",
@@ -786,6 +850,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
         description: "The partition of Vietnam led to American escalation in the South and sustained guerrilla and conventional warfare by the North. The Tet Offensive, massive bombing campaigns, and the fall of Saigon defined the conflict. Millions died in a war that reshaped global politics and American self-understanding.",
+        morBoundaries: { boundaries: { national: 0.43, ethnic_racial: 0.05, religious: 0.34, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Vietnam",
@@ -798,6 +863,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 1,
         description: "Reunification brought forced collectivization of the South, re-education camps, and economic crisis. The intervention in Cambodia to remove the Khmer Rouge led to Chinese border war and international isolation. Boat people fled in desperate numbers while the command economy stagnated.",
+        morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.55, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Vietnam",
@@ -810,6 +876,7 @@ export const ASIA = [
         PF: 1, TRB: 3, ENG: 3,
         EPS: 0, AES: 1,
         description: "Đổi Mới market reforms under continued Communist Party rule produced remarkable economic growth and poverty reduction. Vietnam joined ASEAN and the WTO, becoming a manufacturing hub and diplomatic bridge. One-party capitalism delivered development while maintaining political control, with South China Sea tensions as the primary foreign policy challenge.",
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
     },
     // ===== IRAN/PERSIA =====
     {
@@ -823,6 +890,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 3,
         EPS: 2, AES: 0,
         description: "Karim Khan Zand (1751–1779) ruled as Vakil ('regent' rather than shah) from Shiraz over a relatively benevolent reconstruction-era polity covering most of Iran except Khorasan. After his death (1779) the realm collapsed into a decade-long succession war among Zand pretenders and the rising Qajar leader Agha Mohammad Khan, who founded the Qajar dynasty (1789).",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Iran",
@@ -835,6 +903,7 @@ export const ASIA = [
         PF: 1, TRB: 5, ENG: 2,
         EPS: 2, AES: 0,
         description: "The Qajar dynasty ruled a weakened Persia that suffered devastating territorial losses to Russia in the treaties of Gulistan and Turkmenchay. The central government's authority barely extended beyond the capital while tribal, clerical, and mercantile elites competed for influence. A sense of decline pervaded.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Iran",
@@ -847,6 +916,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 5,
         description: "The Tobacco Protest of 1891 demonstrated clerical-bazaar opposition to foreign concessions. The Constitutional Revolution of 1905-11 created a parliament but was undermined by Russian intervention and internal conflict. British oil discovery in 1908 added a new dimension of great power interest in Iran's fate.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Iran",
@@ -859,6 +929,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 3,
         EPS: 0, AES: 4,
         description: "Reza Shah seized power and forced modernization modeled on Atatürk: secularism, centralization, railways, unveiling of women, and suppression of tribal autonomy. Allied invasion in 1941 forced his abdication in favor of young Mohammad Reza Shah. Oil nationalization under Mossadegh challenged British interests.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Iran",
@@ -871,6 +942,7 @@ export const ASIA = [
         PF: 1, TRB: 3, ENG: 3,
         EPS: 1, AES: 0,
         description: "The CIA-MI6 coup against Mossadegh in 1953 restored Shah Mohammad Reza Pahlavi to full power. The White Revolution from above introduced land reform, women's suffrage, and literacy corps. Khomeini's exile began after protesting these reforms, planting seeds of the Islamic Revolution.",
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Iran",
@@ -883,6 +955,7 @@ export const ASIA = [
         PF: 1, TRB: 3, ENG: 3,
         EPS: 0, AES: 1,
         description: "Oil wealth funded rapid modernization, a powerful military, and the Shah's grandiose ambitions including the Persepolis celebrations. SAVAK secret police ruthlessly suppressed opposition. Westernization alienated the clergy and traditional classes while corruption and inequality festered beneath the surface of petrochemical prosperity.",
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
     },
     {
         jurisdiction: "Iran",
@@ -895,6 +968,7 @@ export const ASIA = [
         PF: 5, TRB: 5, ENG: 5,
         EPS: 2, AES: 5,
         description: "Khomeini's Islamic Revolution overthrew the Shah and established a theocratic republic fusing Shia jurisprudence with revolutionary politics. The hostage crisis, Cultural Revolution, and mass executions consolidated clerical power. The Iran-Iraq War killed hundreds of thousands and defined the revolutionary generation's identity.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.38, religious: 0.72, class: 0.53, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Iran",
@@ -907,6 +981,7 @@ export const ASIA = [
         PF: 3, TRB: 5, ENG: 4,
         EPS: 2, AES: 4,
         description: "Post-Khomeini Iran oscillated between reformist and hardliner factions within theocratic constraints. Rafsanjani's reconstruction, Khatami's reform, Ahmadinejad's populism, and the Green Movement of 2009 revealed deep societal tensions. Nuclear program disputes, sanctions, and the Mahsa Amini protests showed the regime's resilience and the population's discontent.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     // ===== PAKISTAN =====
     {
@@ -920,6 +995,7 @@ export const ASIA = [
         PF: 3, TRB: 4, ENG: 4,
         EPS: 1, AES: 5,
         description: "Pakistan was born from Partition's bloodshed with millions displaced and hundreds of thousands killed. Jinnah's early death left the new state without its founding visionary. Constitutional crises, the question of Islam's role, and tension between East and West Pakistan defined a turbulent first decade.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Pakistan",
@@ -932,6 +1008,7 @@ export const ASIA = [
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
         description: "Ayub Khan's military modernization brought the 'Decade of Development' with economic growth but concentrated wealth. Basic Democracies offered controlled participation. Neglect and repression of East Pakistan culminated in the 1971 war, Indian intervention, and the secession of Bangladesh -- Pakistan's greatest national trauma.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Pakistan",
@@ -944,6 +1021,7 @@ export const ASIA = [
         PF: 3, TRB: 5, ENG: 4,
         EPS: 2, AES: 4,
         description: "Zulfikar Ali Bhutto's populist socialism nationalized industries and gave Pakistan its first civilian constitution, before Zia ul-Haq's coup and execution of Bhutto. Zia's Islamization transformed law, education, and society while the Afghan jihad brought arms, drugs, and radicalization. The period defined Pakistan's identity crisis between secular and Islamic visions.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "Pakistan",
@@ -956,6 +1034,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
         description: "Benazir Bhutto and Nawaz Sharif alternated in power, each dismissed by the military-presidential establishment. Musharraf's 1999 coup brought another military interlude coinciding with 9/11 and Pakistan's fraught role in the War on Terror. Nuclear tests in 1998 cemented Pakistan's strategic importance and regional rivalry with India.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Pakistan",
@@ -968,6 +1047,7 @@ export const ASIA = [
         PF: 4, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
         description: "The post-Musharraf era saw democratic restoration alongside continued military dominance behind the scenes. Imran Khan's PTI channeled middle-class and diaspora frustration before his ouster and imprisonment. Terrorism, economic crisis, IMF dependency, and civil-military tensions defined a period of persistent instability and political mobilization.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
 ];
 //# sourceMappingURL=jurisdictions-asia.js.map

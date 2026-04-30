@@ -51,7 +51,8 @@ const election1892: Election = {
       TRB: 2,   // Low tribal - above-the-fray reformer, anti-machine
       ENG: 4,   // Engaged - ran three times, serious about governance
       EPS: 1,   // Institutionalist - trusted existing institutions, just wanted them honest
-      AES: 0,   // Statesman - dignified, serious, "public office is a public trust"
+      AES: 0,   // Statesman - dignified, serious, "public office is a public trust",
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Harrison",
@@ -70,7 +71,8 @@ const election1892: Election = {
       TRB: 3,   // Moderate tribal - Union veteran identity, but patrician style
       ENG: 3,   // Moderate - stiff campaigner, let surrogates do the work
       EPS: 1,   // Institutionalist - formal legalist, trusted party machinery
-      AES: 0,   // Statesman - dignified, formal, presidential bearing (if cold)
+      AES: 0,   // Statesman - dignified, formal, presidential bearing (if cold),
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Weaver",
@@ -96,7 +98,8 @@ const election1892: Election = {
       TRB: 5,   // Maximum tribal - farmer/agrarian class identity, "the people" vs. "the plutocrats"
       ENG: 5,   // Maximum engagement - launched third party, barnstormed the country
       EPS: 3,   // Intuitionist - populist gut-level politics, "the people know"
-      AES: 4,   // Fighter - insurgent crusader, combative populist
+      AES: 4,   // Fighter - insurgent crusader, combative populist,
+      morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
   ],
 };
@@ -132,7 +135,8 @@ const election1896: Election = {
       TRB: 2,   // Low tribal — broad appeal
       ENG: 3,   // Moderate — front-porch
       EPS: 1,   // Institutionalist - trusted established financial institutions, gold standard
-      AES: 0,   // Statesman - dignified front-porch campaign, presidential calm
+      AES: 0,   // Statesman - dignified front-porch campaign, presidential calm,
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Bryan",
@@ -159,7 +163,8 @@ const election1896: Election = {
       TRB: 5,   // Maximum tribal - agrarian/producer class vs. Eastern financiers, "the people"
       ENG: 5,   // Maximum engagement - 18,000 miles of barnstorming, first modern campaign
       EPS: 2,   // Traditionalist - biblical, providential democracy, agrarian inherited virtue (per rubric)
-      AES: 5,   // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory
+      AES: 5,   // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory,
+      morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.91, class: 0.72, ideological: 0.48, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
   ],
 };
@@ -194,7 +199,8 @@ const election1900: Election = {
       TRB: 3,   // Moderate tribal - patriotic/imperial identity but broad prosperity appeal
       ENG: 4,   // Engaged - wartime president, seeking second term
       EPS: 1,   // Institutionalist - established order, gold standard, institutional governance
-      AES: 0,   // Statesman - incumbent president, wartime gravitas
+      AES: 0,   // Statesman - incumbent president, wartime gravitas,
+      morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Bryan",
@@ -216,7 +222,8 @@ const election1900: Election = {
       TRB: 5,   // Maximum tribal - same agrarian class identity
       ENG: 5,   // Maximum engagement - another massive barnstorming campaign
       EPS: 2,   // Traditionalist - same biblical / providential democracy frame as 1896
-      AES: 5,   // Visionary - anti-imperialist crusade layered onto populist economics
+      AES: 5,   // Visionary - anti-imperialist crusade layered onto populist economics,
+      morBoundaries: { boundaries: { national: 0.57, ethnic_racial: 0.05, religious: 0.72, class: 0.72, ideological: 0.76, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
       // Eugene V. Debs - Socialist Party (2.8%)
@@ -238,7 +245,8 @@ const election1900: Election = {
       TRB: 5,   // Maximum tribal - working class identity
       ENG: 5,   // Maximum engagement - tireless organizer
       EPS: 0,   // Empiricist - studied labor conditions, data on exploitation
-      AES: 5,   // Visionary - prophetic socialist rhetoric
+      AES: 5,   // Visionary - prophetic socialist rhetoric,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
   ],
 };
@@ -274,7 +282,8 @@ const election1904: Election = {
       TRB: 3,   // Moderate tribal - "100% Americanism" patriotism, but broad coalition
       ENG: 5,   // Maximum engagement - boundless energy, "bully pulpit," transformed presidency
       EPS: 0,   // Empiricist - naturalist, historian, read voraciously, evidence-based reform
-      AES: 3,   // Authentic - cowboy, Rough Rider, utterly genuine, force of personality
+      AES: 3,   // Authentic - cowboy, Rough Rider, utterly genuine, force of personality,
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Parker",
@@ -293,7 +302,8 @@ const election1904: Election = {
       TRB: 1,   // Minimal tribal — anti-populist, bland
       ENG: 1,   // Extremely low engagement — one of the worst campaigns in history
       EPS: 1,   // Institutionalist - judge, trusted courts and legal institutions
-      AES: 0,   // Statesman - judicial dignity, understated (to a fault)
+      AES: 0,   // Statesman - judicial dignity, understated (to a fault),
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 1 }, intensity: 3 },
     },
     {
       // Eugene V. Debs - Socialist Party (3.0%)
@@ -315,7 +325,8 @@ const election1904: Election = {
       TRB: 5,   // Maximum tribal - worker class identity
       ENG: 5,   // Maximum engagement
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary
+      AES: 5,   // Visionary,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
   ],
 };
@@ -350,7 +361,8 @@ const election1908: Election = {
       TRB: 2,   // Low tribal - judicial temperament, didn't play identity politics
       ENG: 3,   // Moderate - reluctant campaigner, would rather have been on the bench
       EPS: 1,   // Institutionalist - trusted courts, legal process, established institutions
-      AES: 0,   // Statesman - dignified, judicial bearing, presidential gravitas
+      AES: 0,   // Statesman - dignified, judicial bearing, presidential gravitas,
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
       name: "Bryan",
@@ -374,7 +386,8 @@ const election1908: Election = {
       TRB: 4,   // High tribal - farmer/worker identity, class politics, but less maximalist
       ENG: 5,   // Maximum engagement - another barnstorming campaign, tireless
       EPS: 2,   // Traditionalist - biblical / providential democracy / agrarian inherited virtue (per rubric)
-      AES: 2,   // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity)
+      AES: 2,   // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity),
+      morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.55, class: 0.55, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
       // Eugene V. Debs - Socialist Party (2.8%)
@@ -396,7 +409,8 @@ const election1908: Election = {
       TRB: 5,   // Maximum tribal - worker identity
       ENG: 5,   // Maximum engagement
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary
+      AES: 5,   // Visionary,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
   ],
 };
@@ -435,7 +449,8 @@ const election1912: Election = {
       TRB: 3,   // Moderate tribal - intellectual progressive coalition, not class warrior
       ENG: 5,   // Maximum engagement - academic turned passionate campaigner
       EPS: 0,   // Empiricist - political scientist, professor, studied government systematically
-      AES: 5,   // Visionary - "New Freedom," moral crusade rhetoric, professor-prophet
+      AES: 5,   // Visionary - "New Freedom," moral crusade rhetoric, professor-prophet,
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Roosevelt",
@@ -460,7 +475,8 @@ const election1912: Election = {
       TRB: 4,   // High tribal - progressive movement identity, us-vs-bosses
       ENG: 5,   // Maximum engagement - shot during campaign, gave speech anyway, boundless energy
       EPS: 0,   // Empiricist - naturalist, historian, evidence-driven reform agenda
-      AES: 4,   // Fighter - "Bull Moose," shot and kept speaking, combative reformer
+      AES: 4,   // Fighter - "Bull Moose," shot and kept speaking, combative reformer,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
       name: "Taft",
@@ -479,7 +495,8 @@ const election1912: Election = {
       TRB: 2,   // Low tribal - judicial temperament, establishment dignity
       ENG: 3,   // Moderate - defensive campaign, dispirited, knew he'd lose
       EPS: 1,   // Institutionalist - trusted courts above all else
-      AES: 0,   // Statesman - judicial dignity, but failed to project leadership
+      AES: 0,   // Statesman - judicial dignity, but failed to project leadership,
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
     },
     {
       // Eugene V. Debs - Socialist Party (6.0%)
@@ -501,7 +518,8 @@ const election1912: Election = {
       TRB: 5,   // Maximum tribal - worker identity
       ENG: 5,   // Maximum engagement
       EPS: 0,   // Empiricist
-      AES: 5,   // Visionary - "while there is a lower class, I am in it"
+      AES: 5,   // Visionary - "while there is a lower class, I am in it",
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
   ],
 };
@@ -538,7 +556,8 @@ const election1916: Election = {
       TRB: 3,   // Moderate tribal - progressive coalition, not class-warfare rhetoric
       ENG: 5,   // Maximum engagement - aggressive legislative agenda, seeking reelection
       EPS: 0,   // Empiricist - political scientist, studied government, evidence-based reform
-      AES: 0,   // Statesman - incumbent president, "above politics" neutrality posture
+      AES: 0,   // Statesman - incumbent president, "above politics" neutrality posture,
+      morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
     },
     {
       name: "Hughes",
@@ -557,7 +576,8 @@ const election1916: Election = {
       TRB: 4,   // Tribal — GOP establishment
       ENG: 3,   // Moderate — stiff campaigner
       EPS: 1,   // Institutionalist - Supreme Court justice, trusted legal institutions
-      AES: 0,   // Statesman - judicial dignity, presidential bearing, but aloof
+      AES: 0,   // Statesman - judicial dignity, presidential bearing, but aloof,
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.76, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.16, political_tribe: 1 }, intensity: 3 },
     },
     {
       // Allan L. Benson - Socialist Party (3.2%)
@@ -580,7 +600,8 @@ const election1916: Election = {
       TRB: 4,   // High tribal - worker identity, but less personal than Debs
       ENG: 3,   // Moderate - journalist, not mass organizer
       EPS: 0,   // Empiricist - journalist, studied issues
-      AES: 5,   // Visionary - anti-war idealism
+      AES: 5,   // Visionary - anti-war idealism,
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.37, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
   ],
 };

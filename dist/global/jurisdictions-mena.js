@@ -10,7 +10,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 2,
         PF: 3, TRB: 5, ENG: 3,
         EPS: 2, AES: 4,
-        description: "Egypt was nominally an Ottoman eyalet but practically governed by Mamluk beys, with Ibrahim Bey and Murad Bey contesting power against the Ottoman valis. The Egyptian fellaheen population suffered tax-farm extraction, recurrent plague, and irrigation decline."
+        description: "Egypt was nominally an Ottoman eyalet but practically governed by Mamluk beys, with Ibrahim Bey and Murad Bey contesting power against the Ottoman valis. The Egyptian fellaheen population suffered tax-farm extraction, recurrent plague, and irrigation decline.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "Egypt",
@@ -22,7 +23,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
-        description: "Muhammad Ali modernized Egypt through military reform, industrialization, and cotton monoculture while ruling as an autonomous Ottoman viceroy. A top-down modernizer who crushed the Mamluks and built a conscript army, his regime combined European-style state-building with traditional autocracy."
+        description: "Muhammad Ali modernized Egypt through military reform, industrialization, and cotton monoculture while ruling as an autonomous Ottoman viceroy. A top-down modernizer who crushed the Mamluks and built a conscript army, his regime combined European-style state-building with traditional autocracy.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Egypt",
@@ -34,7 +36,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
-        description: "The Suez Canal era brought massive foreign debt, leading to British occupation in 1882. Lord Cromer governed Egypt as a de facto colony, extracting cotton for Lancashire mills while maintaining the fiction of khedival sovereignty and blocking Egyptian industrialization."
+        description: "The Suez Canal era brought massive foreign debt, leading to British occupation in 1882. Lord Cromer governed Egypt as a de facto colony, extracting cotton for Lancashire mills while maintaining the fiction of khedival sovereignty and blocking Egyptian industrialization.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Egypt",
@@ -46,7 +49,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 4,
         EPS: 1, AES: 0,
-        description: "The 1919 revolution led by the Wafd Party won nominal independence, creating a constitutional monarchy with competitive elections. However, the triangle of power between palace, British residency, and Wafd produced endemic instability, corruption, and growing disillusionment with liberal parliamentarism."
+        description: "The 1919 revolution led by the Wafd Party won nominal independence, creating a constitutional monarchy with competitive elections. However, the triangle of power between palace, British residency, and Wafd produced endemic instability, corruption, and growing disillusionment with liberal parliamentarism.",
+        morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Egypt",
@@ -58,7 +62,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 4,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 3, AES: 5,
-        description: "Gamal Abdel Nasser's Free Officers overthrew the monarchy and built an Arab socialist state through nationalization of the Suez Canal, land reform, and pan-Arab leadership. A charismatic visionary who inspired the Third World, his regime was deeply zero-sum in its Cold War maneuvering and intolerant of domestic dissent."
+        description: "Gamal Abdel Nasser's Free Officers overthrew the monarchy and built an Arab socialist state through nationalization of the Suez Canal, land reform, and pan-Arab leadership. A charismatic visionary who inspired the Third World, his regime was deeply zero-sum in its Cold War maneuvering and intolerant of domestic dissent.",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.55, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Egypt",
@@ -70,7 +75,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 2, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
-        description: "Anwar Sadat reversed Nasser's socialism with the Infitah (economic opening), realigned Egypt toward the West, and made peace with Israel at Camp David. His pragmatic statesmanship earned a Nobel Prize but alienated Islamists and pan-Arabists, leading to his assassination in 1981."
+        description: "Anwar Sadat reversed Nasser's socialism with the Infitah (economic opening), realigned Egypt toward the West, and made peace with Israel at Camp David. His pragmatic statesmanship earned a Nobel Prize but alienated Islamists and pan-Arabists, leading to his assassination in 1981.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Egypt",
@@ -82,7 +88,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 2, TRB: 4, ENG: 2,
         EPS: 1, AES: 0,
-        description: "Three decades of Hosni Mubarak's rule prioritized stability above all else, producing a police state undergirded by crony capitalism and American aid. Political life atrophied under emergency law while a small elite captured privatized industries, breeding deep cynicism and disengagement among ordinary Egyptians."
+        description: "Three decades of Hosni Mubarak's rule prioritized stability above all else, producing a police state undergirded by crony capitalism and American aid. Political life atrophied under emergency law while a small elite captured privatized industries, breeding deep cynicism and disengagement among ordinary Egyptians.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Egypt",
@@ -94,7 +101,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 5,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 3, AES: 5,
-        description: "The 2011 Tahrir Square revolution toppled Mubarak in 18 days, unleashing a brief democratic opening with Egypt's first free presidential election. Mohamed Morsi's Muslim Brotherhood government polarized the country between Islamist and secular visions, ending in military intervention after massive street protests."
+        description: "The 2011 Tahrir Square revolution toppled Mubarak in 18 days, unleashing a brief democratic opening with Egypt's first free presidential election. Mohamed Morsi's Muslim Brotherhood government polarized the country between Islamist and secular visions, ending in military intervention after massive street protests.",
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Egypt",
@@ -106,7 +114,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 3,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
-        description: "Abdel Fattah el-Sisi restored military rule with a vengeance, crushing the Brotherhood and all opposition while launching pharaonic mega-projects like the New Administrative Capital. A securitized state with record political prisoners, massive foreign debt, and a personality-driven leadership style that brooks no dissent."
+        description: "Abdel Fattah el-Sisi restored military rule with a vengeance, crushing the Brotherhood and all opposition while launching pharaonic mega-projects like the New Administrative Capital. A securitized state with record political prisoners, massive foreign debt, and a personality-driven leadership style that brooks no dissent.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     // ===== SOUTH AFRICA =====
     {
@@ -119,7 +128,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 2, TRB: 5, ENG: 3,
         EPS: 1, AES: 0,
-        description: "Dutch and then British colonial rule at the Cape, marked by Boer frontier expansion, Xhosa Wars, and the beginnings of racial hierarchy. The settler economy relied on dispossession and forced labor, with governance split between British imperial institutions at the Cape and Boer pastoral republicanism in the interior."
+        description: "Dutch and then British colonial rule at the Cape, marked by Boer frontier expansion, Xhosa Wars, and the beginnings of racial hierarchy. The settler economy relied on dispossession and forced labor, with governance split between British imperial institutions at the Cape and Boer pastoral republicanism in the interior.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.29, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         jurisdiction: "South Africa",
@@ -131,7 +141,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 3, TRB: 5, ENG: 4,
         EPS: 0, AES: 4,
-        description: "Discovery of diamonds at Kimberley and gold on the Witwatersrand transformed South Africa into a mining powerhouse, triggering the Anglo-Boer War and culminating in the Union of 1910. Cecil Rhodes and the Randlords created a racially stratified industrial economy where African labor was coerced through pass laws and compounds."
+        description: "Discovery of diamonds at Kimberley and gold on the Witwatersrand transformed South Africa into a mining powerhouse, triggering the Anglo-Boer War and culminating in the Union of 1910. Cecil Rhodes and the Randlords created a racially stratified industrial economy where African labor was coerced through pass laws and compounds.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.29, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "South Africa",
@@ -143,7 +154,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 4, TRB: 5, ENG: 3,
         EPS: 1, AES: 0,
-        description: "The 1913 Natives Land Act confined Africans to 7% of the land, while the color bar reserved skilled work for whites. Hertzog's Pact government formalized segregation as state policy, creating the institutional foundations that apartheid would later systematize and entrench."
+        description: "The 1913 Natives Land Act confined Africans to 7% of the land, while the color bar reserved skilled work for whites. Hertzog's Pact government formalized segregation as state policy, creating the institutional foundations that apartheid would later systematize and entrench.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.57, gender: 0.19, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "South Africa",
@@ -155,7 +167,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 4, TRB: 5, ENG: 4,
         EPS: 2, AES: 4,
-        description: "The National Party imposed systematic racial oppression through Bantustans, Group Areas, and pass laws, justifying white supremacy through Calvinist theology and Afrikaner nationalism. International sanctions, township uprisings, and the ANC's armed struggle gradually undermined the regime from within and without."
+        description: "The National Party imposed systematic racial oppression through Bantustans, Group Areas, and pass laws, justifying white supremacy through Calvinist theology and Afrikaner nationalism. International sanctions, township uprisings, and the ANC's armed struggle gradually undermined the regime from within and without.",
+        morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.72, class: 0.05, ideological: 0.62, gender: 0.19, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "South Africa",
@@ -167,7 +180,8 @@ export const MENA_AFRICA = [
         ONT_H: 5, ONT_S: 4,
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 5,
-        description: "Nelson Mandela's release in 1990 opened negotiations between the ANC and the National Party, producing the CODESA talks and an interim constitution. A remarkable period of compromise and moral universalism, powered by the vision of a non-racial democracy, despite ongoing political violence in KwaZulu-Natal and the townships."
+        description: "Nelson Mandela's release in 1990 opened negotiations between the ANC and the National Party, producing the CODESA talks and an interim constitution. A remarkable period of compromise and moral universalism, powered by the vision of a non-racial democracy, despite ongoing political violence in KwaZulu-Natal and the townships.",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Africa",
@@ -179,7 +193,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 2, ENG: 4,
         EPS: 0, AES: 5,
-        description: "The Rainbow Nation era under Mandela and Mbeki built one of the world's most progressive constitutions while pursuing GEAR macro-economic orthodoxy. The Truth and Reconciliation Commission embodied moral universalism, but Mbeki's AIDS denialism and persistent inequality revealed the limits of reconciliation without redistribution."
+        description: "The Rainbow Nation era under Mandela and Mbeki built one of the world's most progressive constitutions while pursuing GEAR macro-economic orthodoxy. The Truth and Reconciliation Commission embodied moral universalism, but Mbeki's AIDS denialism and persistent inequality revealed the limits of reconciliation without redistribution.",
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "South Africa",
@@ -191,7 +206,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 3, AES: 3,
-        description: "Jacob Zuma's presidency unleashed state capture and institutional decay, while the EFF emerged demanding radical economic transformation. Load shedding, unemployment above 30%, and the ANC's electoral decline after 2024 mark a crisis of the post-apartheid settlement, with rising populism and tribal politics eroding the Rainbow Nation consensus."
+        description: "Jacob Zuma's presidency unleashed state capture and institutional decay, while the EFF emerged demanding radical economic transformation. Load shedding, unemployment above 30%, and the ANC's electoral decline after 2024 mark a crisis of the post-apartheid settlement, with rising populism and tribal politics eroding the Rainbow Nation consensus.",
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ===== NIGERIA =====
     {
@@ -204,7 +220,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 1, TRB: 5, ENG: 2,
         EPS: 1, AES: 0,
-        description: "The Royal Niger Company and British imperial expansion gradually amalgamated hundreds of diverse polities into a single colonial entity. From the Sokoto Caliphate to the Benin Kingdom, pre-colonial Nigeria was a mosaic of sophisticated but mutually distinct political systems that colonial borders would forcibly unite."
+        description: "The Royal Niger Company and British imperial expansion gradually amalgamated hundreds of diverse polities into a single colonial entity. From the Sokoto Caliphate to the Benin Kingdom, pre-colonial Nigeria was a mosaic of sophisticated but mutually distinct political systems that colonial borders would forcibly unite.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Nigeria",
@@ -216,7 +233,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 3, TRB: 5, ENG: 3,
         EPS: 1, AES: 0,
-        description: "Lord Lugard's amalgamation of 1914 created Nigeria, governed through indirect rule that empowered traditional authorities, especially in the North. Regional identities hardened into Hausa-Fulani, Yoruba, and Igbo political blocs as independence approached, with each region developing distinct political cultures and parties."
+        description: "Lord Lugard's amalgamation of 1914 created Nigeria, governed through indirect rule that empowered traditional authorities, especially in the North. Regional identities hardened into Hausa-Fulani, Yoruba, and Igbo political blocs as independence approached, with each region developing distinct political cultures and parties.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
     {
         jurisdiction: "Nigeria",
@@ -228,7 +246,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 5,
         PF: 4, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
-        description: "Independence in 1960 gave way to ethnic competition, census fraud, and electoral violence, culminating in military coups and the Biafran Civil War. The attempted Igbo secession and its brutal suppression killed over a million people and established the military as the ultimate arbiter of Nigerian politics."
+        description: "Independence in 1960 gave way to ethnic competition, census fraud, and electoral violence, culminating in military coups and the Biafran Civil War. The attempted Igbo secession and its brutal suppression killed over a million people and established the military as the ultimate arbiter of Nigerian politics.",
+        morBoundaries: { boundaries: { national: 0.67, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "Nigeria",
@@ -240,7 +259,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 1, AES: 4,
-        description: "Three decades of mostly military rule coincided with the oil boom, creating a petrostate where political power meant access to oil rents. From Gowon through Abacha, successive juntas promised transition to democracy while enriching themselves, with Abacha's regime representing the nadir of kleptocracy and repression."
+        description: "Three decades of mostly military rule coincided with the oil boom, creating a petrostate where political power meant access to oil rents. From Gowon through Abacha, successive juntas promised transition to democracy while enriching themselves, with Abacha's regime representing the nadir of kleptocracy and repression.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Nigeria",
@@ -252,7 +272,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 0,
-        description: "Obasanjo's return as civilian president inaugurated the Fourth Republic, bringing flawed but functional democracy and oil-fueled growth. Zoning arrangements between North and South provided a framework for elite power-sharing, though corruption remained systemic and the Niger Delta insurgency highlighted distributional grievances."
+        description: "Obasanjo's return as civilian president inaugurated the Fourth Republic, bringing flawed but functional democracy and oil-fueled growth. Zoning arrangements between North and South provided a framework for elite power-sharing, though corruption remained systemic and the Niger Delta insurgency highlighted distributional grievances.",
+        morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Nigeria",
@@ -264,7 +285,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 5, ENG: 4,
         EPS: 1, AES: 0,
-        description: "Buhari's election marked the first democratic transfer of power, but his presidency struggled with Boko Haram, economic recession, and herder-farmer conflicts. Tinubu's succession in 2023 brought fuel subsidy removal and naira devaluation, while Biafran separatism and banditry signaled deepening centrifugal pressures."
+        description: "Buhari's election marked the first democratic transfer of power, but his presidency struggled with Boko Haram, economic recession, and herder-farmer conflicts. Tinubu's succession in 2023 brought fuel subsidy removal and naira devaluation, while Biafran separatism and banditry signaled deepening centrifugal pressures.",
+        morBoundaries: { boundaries: { national: 0.67, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     // ===== SAUDI ARABIA =====
     {
@@ -277,7 +299,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 2, AES: 4,
-        description: "The First Saudi State (Diriyah Emirate, 1727–1818) under Abdul-Aziz bin Muhammad ibn Saud (1765–1803) was expanding the Wahhabi-Saudi alliance across the Najd and toward the Hejaz. The combined Saudi political authority and Wahhabi religious revival movement created a tightly fused theocratic-tribal state."
+        description: "The First Saudi State (Diriyah Emirate, 1727–1818) under Abdul-Aziz bin Muhammad ibn Saud (1765–1803) was expanding the Wahhabi-Saudi alliance across the Najd and toward the Hejaz. The combined Saudi political authority and Wahhabi religious revival movement created a tightly fused theocratic-tribal state.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.62, gender: 0.19, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Saudi Arabia",
@@ -289,7 +312,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 1, TRB: 5, ENG: 4,
         EPS: 2, AES: 4,
-        description: "The first Saudi-Wahhabi alliance fused Ibn Saud's political ambition with Muhammad ibn Abd al-Wahhab's puritanical religious revival, conquering much of the Arabian Peninsula. The movement's uncompromising iconoclasm, including the sacking of Karbala, provoked an Ottoman-Egyptian military response that destroyed the first Saudi state."
+        description: "The first Saudi-Wahhabi alliance fused Ibn Saud's political ambition with Muhammad ibn Abd al-Wahhab's puritanical religious revival, conquering much of the Arabian Peninsula. The movement's uncompromising iconoclasm, including the sacking of Karbala, provoked an Ottoman-Egyptian military response that destroyed the first Saudi state.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Saudi Arabia",
@@ -301,7 +325,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 2, AES: 0,
-        description: "The second Saudi state rebuilt from Riyadh but was eventually eclipsed by the Rashidi dynasty backed by the Ottomans. A century of tribal politics in central Arabia, with the Wahhabi religious establishment maintaining influence while political power fragmented among competing Arabian dynasties."
+        description: "The second Saudi state rebuilt from Riyadh but was eventually eclipsed by the Rashidi dynasty backed by the Ottomans. A century of tribal politics in central Arabia, with the Wahhabi religious establishment maintaining influence while political power fragmented among competing Arabian dynasties.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Saudi Arabia",
@@ -313,7 +338,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 2, AES: 4,
-        description: "Abdulaziz ibn Saud reconquered Riyadh and unified the peninsula through tribal warfare, Ikhwan warriors, and British alliance, founding the Kingdom of Saudi Arabia in 1932. The discovery of oil in 1938 and the Aramco concession began transforming a pastoral-tribal society into a petrostate, though the Ikhwan revolt revealed tensions between religious zealotry and state-building."
+        description: "Abdulaziz ibn Saud reconquered Riyadh and unified the peninsula through tribal warfare, Ikhwan warriors, and British alliance, founding the Kingdom of Saudi Arabia in 1932. The discovery of oil in 1938 and the Aramco concession began transforming a pastoral-tribal society into a petrostate, though the Ikhwan revolt revealed tensions between religious zealotry and state-building.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Saudi Arabia",
@@ -325,7 +351,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 2,
         PF: 1, TRB: 5, ENG: 2,
         EPS: 2, AES: 0,
-        description: "The mature Saudi petro-monarchy balanced Wahhabi religious authority with royal family governance and American security guarantees. King Faisal's oil embargo, the 1979 Grand Mosque seizure, the Afghan jihad, and the post-9/11 reckoning defined a kingdom caught between ultraconservative religious legitimacy and global oil-market integration."
+        description: "The mature Saudi petro-monarchy balanced Wahhabi religious authority with royal family governance and American security guarantees. King Faisal's oil embargo, the 1979 Grand Mosque seizure, the Afghan jihad, and the post-9/11 reckoning defined a kingdom caught between ultraconservative religious legitimacy and global oil-market integration.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Saudi Arabia",
@@ -337,7 +364,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 5,
-        description: "Crown Prince Mohammed bin Salman launched a revolutionary modernization program allowing entertainment, women's driving, and economic diversification through NEOM and tourism mega-projects. Simultaneously, MBS consolidated absolute power through the Ritz-Carlton purge, silenced all dissent including the Khashoggi murder, and waged war in Yemen, combining visionary ambition with ruthless autocracy."
+        description: "Crown Prince Mohammed bin Salman launched a revolutionary modernization program allowing entertainment, women's driving, and economic diversification through NEOM and tourism mega-projects. Simultaneously, MBS consolidated absolute power through the Ritz-Carlton purge, silenced all dissent including the Khashoggi murder, and waged war in Yemen, combining visionary ambition with ruthless autocracy.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     // ===== IRAQ =====
     {
@@ -350,7 +378,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 2,
         EPS: 2, AES: 0,
-        description: "Ottoman Iraq comprised three distinct vilayets -- Mosul, Baghdad, and Basra -- each with different ethnic and sectarian compositions. Tanzimat reforms modernized administration unevenly while tribal authority persisted in the countryside, creating the fragmented political geography that would haunt the modern Iraqi state."
+        description: "Ottoman Iraq comprised three distinct vilayets -- Mosul, Baghdad, and Basra -- each with different ethnic and sectarian compositions. Tanzimat reforms modernized administration unevenly while tribal authority persisted in the countryside, creating the fragmented political geography that would haunt the modern Iraqi state.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Iraq",
@@ -362,7 +391,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 3, TRB: 4, ENG: 3,
         EPS: 1, AES: 0,
-        description: "Britain installed Faisal I as king of a newly created Iraq, governing through a thin Sunni Arab elite over a Shia majority and Kurdish north. Oil revenues from Kirkuk enriched the monarchy and its British patrons while land reform stalled and communist and pan-Arab movements grew among the urban poor and military officers."
+        description: "Britain installed Faisal I as king of a newly created Iraq, governing through a thin Sunni Arab elite over a Shia majority and Kurdish north. Oil revenues from Kirkuk enriched the monarchy and its British patrons while land reform stalled and communist and pan-Arab movements grew among the urban poor and military officers.",
+        morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Iraq",
@@ -374,7 +404,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 5,
         PF: 3, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
-        description: "Abd al-Karim Qasim's 1958 revolution overthrew the monarchy in a bloody coup, inaugurating a decade of instability as Baathists, communists, and Nasserists competed for power. Land reform, withdrawal from the Baghdad Pact, and the Kurdish question defined a revolutionary period that ended with the Baath Party's definitive seizure of power."
+        description: "Abd al-Karim Qasim's 1958 revolution overthrew the monarchy in a bloody coup, inaugurating a decade of instability as Baathists, communists, and Nasserists competed for power. Land reform, withdrawal from the Baghdad Pact, and the Kurdish question defined a revolutionary period that ended with the Baath Party's definitive seizure of power.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.41, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Iraq",
@@ -386,7 +417,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 3,
         PF: 5, TRB: 5, ENG: 4,
         EPS: 3, AES: 4,
-        description: "Saddam Hussein built a totalitarian Baathist state fueled by oil wealth, personality cult, and pervasive security services. The Iran-Iraq War, invasion of Kuwait, Anfal genocide against the Kurds, and a decade of sanctions produced one of the modern Middle East's most destructive regimes, combining Arab nationalist rhetoric with tribal Tikriti clan rule."
+        description: "Saddam Hussein built a totalitarian Baathist state fueled by oil wealth, personality cult, and pervasive security services. The Iran-Iraq War, invasion of Kuwait, Anfal genocide against the Kurds, and a decade of sanctions produced one of the modern Middle East's most destructive regimes, combining Arab nationalist rhetoric with tribal Tikriti clan rule.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.53, ideological: 0.62, gender: 0.19, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Iraq",
@@ -398,7 +430,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 5,
         PF: 4, TRB: 5, ENG: 5,
         EPS: 1, AES: 4,
-        description: "The US invasion toppled Saddam but unleashed sectarian civil war, de-Baathification, and a Sunni insurgency that killed hundreds of thousands. Paul Bremer's Coalition Provisional Authority imposed market reforms and a sectarian quota system that institutionalized communal divisions while Abu Ghraib and Fallujah became symbols of occupation's failures."
+        description: "The US invasion toppled Saddam but unleashed sectarian civil war, de-Baathification, and a Sunni insurgency that killed hundreds of thousands. Paul Bremer's Coalition Provisional Authority imposed market reforms and a sectarian quota system that institutionalized communal divisions while Abu Ghraib and Fallujah became symbols of occupation's failures.",
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "Iraq",
@@ -410,7 +443,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 5,
         PF: 4, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
-        description: "Nouri al-Maliki's sectarian governance alienated Sunnis and enabled ISIS to conquer a third of Iraq, declaring a caliphate in Mosul. The subsequent war to reclaim territory mobilized Iranian-backed Shia militias alongside the Iraqi army and Kurdish Peshmerga, reshaping the country's power balance and deepening Iran's influence."
+        description: "Nouri al-Maliki's sectarian governance alienated Sunnis and enabled ISIS to conquer a third of Iraq, declaring a caliphate in Mosul. The subsequent war to reclaim territory mobilized Iranian-backed Shia militias alongside the Iraqi army and Kurdish Peshmerga, reshaping the country's power balance and deepening Iran's influence.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
     },
     {
         jurisdiction: "Iraq",
@@ -422,7 +456,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 4, TRB: 4, ENG: 4,
         EPS: 1, AES: 0,
-        description: "Post-ISIS Iraq faces reconstruction challenges, Iranian political influence through militia networks, and a youth-driven protest movement demanding sovereignty and services. The 2019 Tishreen protests revealed a new generation rejecting sectarian politics, though entrenched militia-party networks and oil dependence constrain meaningful reform."
+        description: "Post-ISIS Iraq faces reconstruction challenges, Iranian political influence through militia networks, and a youth-driven protest movement demanding sovereignty and services. The 2019 Tishreen protests revealed a new generation rejecting sectarian politics, though entrenched militia-party networks and oil dependence constrain meaningful reform.",
+        morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     // ===== ISRAEL =====
     {
@@ -435,7 +470,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 5,
         PF: 5, TRB: 4, ENG: 5,
         EPS: 0, AES: 5,
-        description: "The Jewish community in British Palestine built proto-state institutions including the Histadrut labor federation, Haganah militia, and kibbutz movement. Driven by Zionist idealism and the urgency of European persecution, the Yishuv combined socialist economics with intense nationalist mobilization, competing with Palestinian Arabs for control of the land."
+        description: "The Jewish community in British Palestine built proto-state institutions including the Histadrut labor federation, Haganah militia, and kibbutz movement. Driven by Zionist idealism and the urgency of European persecution, the Yishuv combined socialist economics with intense nationalist mobilization, competing with Palestinian Arabs for control of the land.",
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Israel",
@@ -447,7 +483,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 4, ENG: 5,
         EPS: 0, AES: 5,
-        description: "David Ben-Gurion's Mapai party dominated Israel's first three decades, building a socialist-tinged state through kibbutzim, state corporations, and mass immigration absorption. The 1967 Six-Day War transformed the country, bringing occupation of the West Bank and Gaza while unleashing messianic settler movements that would reshape Israeli politics."
+        description: "David Ben-Gurion's Mapai party dominated Israel's first three decades, building a socialist-tinged state through kibbutzim, state corporations, and mass immigration absorption. The 1967 Six-Day War transformed the country, bringing occupation of the West Bank and Gaza while unleashing messianic settler movements that would reshape Israeli politics.",
+        morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Israel",
@@ -459,7 +496,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 3,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 2, AES: 4,
-        description: "Menachem Begin's Likud revolution brought Mizrahi Jews and religious nationalists to power, making peace with Egypt while expanding settlements and invading Lebanon. The first intifada challenged Israeli control of the occupied territories while economic liberalization dismantled the old Labor corporatist model."
+        description: "Menachem Begin's Likud revolution brought Mizrahi Jews and religious nationalists to power, making peace with Egypt while expanding settlements and invading Lebanon. The first intifada challenged Israeli control of the occupied territories while economic liberalization dismantled the old Labor corporatist model.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     {
         jurisdiction: "Israel",
@@ -471,7 +509,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 3,
         PF: 4, TRB: 3, ENG: 5,
         EPS: 0, AES: 0,
-        description: "The Oslo Accords between Rabin and Arafat offered a framework for two-state peace, producing the Palestinian Authority and mutual recognition. Rabin's assassination in 1995 by a Jewish extremist and the collapse of Camp David II in 2000 revealed the fragility of the peace process and the depth of opposition on both sides."
+        description: "The Oslo Accords between Rabin and Arafat offered a framework for two-state peace, producing the Palestinian Authority and mutual recognition. Rabin's assassination in 1995 by a Jewish extremist and the collapse of Camp David II in 2000 revealed the fragility of the peace process and the depth of opposition on both sides.",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Israel",
@@ -483,7 +522,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 3,
         PF: 5, TRB: 5, ENG: 5,
         EPS: 3, AES: 4,
-        description: "The second intifada, separation barrier, and repeated Gaza wars entrenched a rightward shift dominated by Benjamin Netanyahu. Settlement expansion, the Nation-State Law, judicial overhaul crisis, and the October 7th attack and subsequent Gaza war mark a period of deepening occupation, intense partisanship, and zero-sum security politics."
+        description: "The second intifada, separation barrier, and repeated Gaza wars entrenched a rightward shift dominated by Benjamin Netanyahu. Settlement expansion, the Nation-State Law, judicial overhaul crisis, and the October 7th attack and subsequent Gaza war mark a period of deepening occupation, intense partisanship, and zero-sum security politics.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
     },
     // ===== ALGERIA =====
     {
@@ -496,7 +536,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 2, AES: 4,
-        description: "The Ottoman Dey's rule over Algiers ended with France's 1830 invasion, launching a brutal conquest that faced fierce resistance from Abd el-Kader until 1847. The transition from Ottoman corsair state to French colonial territory destroyed existing political structures and began the dispossession of Algerian land and society."
+        description: "The Ottoman Dey's rule over Algiers ended with France's 1830 invasion, launching a brutal conquest that faced fierce resistance from Abd el-Kader until 1847. The transition from Ottoman corsair state to French colonial territory destroyed existing political structures and began the dispossession of Algerian land and society.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Algeria",
@@ -508,7 +549,8 @@ export const MENA_AFRICA = [
         ONT_H: 1, ONT_S: 2,
         PF: 2, TRB: 5, ENG: 3,
         EPS: 1, AES: 0,
-        description: "Algeria was declared integral French territory, with a million European settlers (pieds-noirs) dominating a subjugated Muslim majority under the Code de l'Indigenat. A century of settler colonialism created one of the most extreme systems of racial and economic stratification in the colonial world, with Algerians denied citizenship in their own land."
+        description: "Algeria was declared integral French territory, with a million European settlers (pieds-noirs) dominating a subjugated Muslim majority under the Code de l'Indigenat. A century of settler colonialism created one of the most extreme systems of racial and economic stratification in the colonial world, with Algerians denied citizenship in their own land.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.48, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
     },
     {
         jurisdiction: "Algeria",
@@ -520,7 +562,8 @@ export const MENA_AFRICA = [
         ONT_H: 4, ONT_S: 5,
         PF: 1, TRB: 5, ENG: 5,
         EPS: 4, AES: 4,
-        description: "The FLN launched one of the 20th century's most intense decolonization struggles, with the Battle of Algiers becoming an iconic guerrilla campaign. France deployed torture, regroupment camps, and half a million troops, but the war's moral cost brought down the Fourth Republic and led de Gaulle to negotiate independence, with nearly a million pieds-noirs fleeing."
+        description: "The FLN launched one of the 20th century's most intense decolonization struggles, with the Battle of Algiers becoming an iconic guerrilla campaign. France deployed torture, regroupment camps, and half a million troops, but the war's moral cost brought down the Fourth Republic and led de Gaulle to negotiate independence, with nearly a million pieds-noirs fleeing.",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Algeria",
@@ -532,7 +575,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 1, AES: 4,
-        description: "Houari Boumediene built a single-party socialist state through nationalized hydrocarbons, heavy industrialization, and agrarian reform, positioning Algeria as a leader of the Non-Aligned Movement. Revolutionary legitimacy papered over ethnic tensions between Arabs and Berbers, while oil and gas revenues funded an expansive welfare state and military establishment."
+        description: "Houari Boumediene built a single-party socialist state through nationalized hydrocarbons, heavy industrialization, and agrarian reform, positioning Algeria as a leader of the Non-Aligned Movement. Revolutionary legitimacy papered over ethnic tensions between Arabs and Berbers, while oil and gas revenues funded an expansive welfare state and military establishment.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.41, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Algeria",
@@ -544,7 +588,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 2, TRB: 4, ENG: 4,
         EPS: 1, AES: 4,
-        description: "The FIS's electoral victory in 1991 was annulled by the military, triggering a civil war (the Black Decade) that killed up to 200,000. Bouteflika's national reconciliation bought stability through amnesty and oil wealth, but the 2019 Hirak protest movement revealed deep frustration with le pouvoir -- the opaque military-intelligence establishment ruling behind civilian facades."
+        description: "The FIS's electoral victory in 1991 was annulled by the military, triggering a civil war (the Black Decade) that killed up to 200,000. Bouteflika's national reconciliation bought stability through amnesty and oil wealth, but the 2019 Hirak protest movement revealed deep frustration with le pouvoir -- the opaque military-intelligence establishment ruling behind civilian facades.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
     },
     // ===== ETHIOPIA =====
     {
@@ -557,7 +602,8 @@ export const MENA_AFRICA = [
         ONT_H: 2, ONT_S: 4,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 2, AES: 4,
-        description: "The Era of the Princes saw Ethiopia fragmented among competing regional warlords until Emperor Tewodros II attempted forcible reunification through military conquest and modernization. His vision of a centralized Christian empire challenged the feudal aristocracy but ended in his suicide at Magdala when confronted by a British punitive expedition."
+        description: "The Era of the Princes saw Ethiopia fragmented among competing regional warlords until Emperor Tewodros II attempted forcible reunification through military conquest and modernization. His vision of a centralized Christian empire challenged the feudal aristocracy but ended in his suicide at Magdala when confronted by a British punitive expedition.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Ethiopia",
@@ -569,7 +615,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 1, TRB: 5, ENG: 3,
         EPS: 2, AES: 4,
-        description: "Menelik II's decisive victory at the Battle of Adwa in 1896 preserved Ethiopian independence during the Scramble for Africa, making it a symbol of African resistance. His expansionist campaigns southward doubled the empire's territory while establishing Addis Ababa as the capital of a multiethnic empire with an Amhara-dominated feudal hierarchy."
+        description: "Menelik II's decisive victory at the Battle of Adwa in 1896 preserved Ethiopian independence during the Scramble for Africa, making it a symbol of African resistance. His expansionist campaigns southward doubled the empire's territory while establishing Addis Ababa as the capital of a multiethnic empire with an Amhara-dominated feudal hierarchy.",
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0 }, intensity: 3 },
     },
     {
         jurisdiction: "Ethiopia",
@@ -581,7 +628,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 2,
         PF: 1, TRB: 4, ENG: 3,
         EPS: 2, AES: 0,
-        description: "After liberation from Italian occupation with British help, Haile Selassie modernized Ethiopia through the 1955 constitution, university system, and OAU founding while maintaining feudal absolutism. The emperor's cautious reformism preserved the Solomonic dynasty's mystique but failed to address land hunger, ethnic inequality, and the Eritrean question."
+        description: "After liberation from Italian occupation with British help, Haile Selassie modernized Ethiopia through the 1955 constitution, university system, and OAU founding while maintaining feudal absolutism. The emperor's cautious reformism preserved the Solomonic dynasty's mystique but failed to address land hunger, ethnic inequality, and the Eritrean question.",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.41, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Ethiopia",
@@ -593,7 +641,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 5,
         PF: 1, TRB: 4, ENG: 5,
         EPS: 3, AES: 4,
-        description: "The Derg military junta under Mengistu Haile Mariam overthrew Haile Selassie, imposing Marxist-Leninist revolution through land nationalization, the Red Terror campaign, and forced villagization. The 1984 famine exposed the regime's catastrophic failures while civil wars in Eritrea and Tigray, combined with Soviet collapse, ultimately brought the Derg down."
+        description: "The Derg military junta under Mengistu Haile Mariam overthrew Haile Selassie, imposing Marxist-Leninist revolution through land nationalization, the Red Terror campaign, and forced villagization. The 1984 famine exposed the regime's catastrophic failures while civil wars in Eritrea and Tigray, combined with Soviet collapse, ultimately brought the Derg down.",
+        morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.26, class: 0.55, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Ethiopia",
@@ -605,7 +654,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 3,
         PF: 1, TRB: 4, ENG: 4,
         EPS: 1, AES: 1,
-        description: "The TPLF-led EPRDF coalition introduced ethnic federalism, creating regional states along linguistic lines while maintaining tight one-party control. Meles Zenawi's developmental state model achieved double-digit growth and poverty reduction but suppressed dissent, manipulated elections, and entrenched Tigrayan dominance in a coalition theoretically representing all nationalities."
+        description: "The TPLF-led EPRDF coalition introduced ethnic federalism, creating regional states along linguistic lines while maintaining tight one-party control. Meles Zenawi's developmental state model achieved double-digit growth and poverty reduction but suppressed dissent, manipulated elections, and entrenched Tigrayan dominance in a coalition theoretically representing all nationalities.",
+        morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
     },
     {
         jurisdiction: "Ethiopia",
@@ -617,7 +667,8 @@ export const MENA_AFRICA = [
         ONT_H: 3, ONT_S: 4,
         PF: 3, TRB: 5, ENG: 5,
         EPS: 3, AES: 5,
-        description: "Abiy Ahmed's initial reforms and Eritrea peace deal won him a Nobel Peace Prize, but his centralizing Prosperity Party and the devastating Tigray War revealed authoritarian tendencies. Ethnic violence has intensified across multiple regions while Abiy's visionary rhetoric about Ethiopian unity clashes with the reality of a deeply fractured multinational state."
+        description: "Abiy Ahmed's initial reforms and Eritrea peace deal won him a Nobel Peace Prize, but his centralizing Prosperity Party and the devastating Tigray War revealed authoritarian tendencies. Ethnic violence has intensified across multiple regions while Abiy's visionary rhetoric about Ethiopian unity clashes with the reality of a deeply fractured multinational state.",
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
     },
 ];
 //# sourceMappingURL=jurisdictions-mena.js.map

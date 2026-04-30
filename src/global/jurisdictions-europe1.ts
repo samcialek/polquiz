@@ -9,6 +9,26 @@ export interface RegimePeriod {
   PF: number; TRB: number; ENG: number;
   EPS: number; AES: number;
   description: string;
+  /**
+   * Compound moral-circle module per ADR-006 (added in PR 6.D as additive).
+   * The boundary vector encodes the regime's identity-political organization
+   * — which boundaries the regime drew its in-group around. Regimes do NOT
+   * get demographic membership fields (per ADR-006 Layer 2 scope).
+   * Optional during the additive transition; the engine cutover in PR 6.E
+   * will read this. Currently unused.
+   */
+  morBoundaries?: {
+    boundaries: {
+      national: number;
+      ethnic_racial: number;
+      religious: number;
+      class: number;
+      ideological: number;
+      gender: number;
+      political_tribe: number;
+    };
+    intensity: number; // 0..3, real-valued
+  };
 }
 
 export const EUROPE_PART1: RegimePeriod[] = [
@@ -23,7 +43,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 4, AES: 4,
-    description: "James I unites English/Scottish crowns; Charles I civil wars; Commonwealth/Protectorate 1649–60; Restoration 1660; James II's Catholic-leaning policies cause Glorious Revolution."
+    description: "James I unites English/Scottish crowns; Charles I civil wars; Commonwealth/Protectorate 1649–60; Restoration 1660; James II's Catholic-leaning policies cause Glorious Revolution.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -35,7 +56,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 4, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
-    description: "William and Mary's Glorious Revolution settlement; Bill of Rights 1689; constitutional monarchy with Parliament supremacy; Hanoverian succession 1714; Whig oligarchy under Walpole and Pitts; Seven Years War."
+    description: "William and Mary's Glorious Revolution settlement; Bill of Rights 1689; constitutional monarchy with Parliament supremacy; Hanoverian succession 1714; Whig oligarchy under Walpole and Pitts; Seven Years War.",
+    morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -47,7 +69,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Tory oligarchy presiding over early industrialization and reacting to the French Revolution with repressive measures like the Six Acts. A landed aristocratic order defending property and tradition against radical agitation."
+    description: "Tory oligarchy presiding over early industrialization and reacting to the French Revolution with repressive measures like the Six Acts. A landed aristocratic order defending property and tradition against radical agitation.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -59,7 +82,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The Great Reform Act of 1832 expanded the franchise modestly, while Chartism pushed for deeper democracy. Repeal of the Corn Laws in 1846 marked the triumph of free-trade liberalism over landed protectionism."
+    description: "The Great Reform Act of 1832 expanded the franchise modestly, while Chartism pushed for deeper democracy. Repeal of the Corn Laws in 1846 marked the triumph of free-trade liberalism over landed protectionism.",
+    morBoundaries: { boundaries: { national: 0.24, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -71,7 +95,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 1,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 0, AES: 0,
-    description: "The zenith of British imperial and industrial confidence under Gladstone and Disraeli, characterized by laissez-faire economics and positive-sum optimism. Britain saw itself as the workshop of the world with a stable constitutional order."
+    description: "The zenith of British imperial and industrial confidence under Gladstone and Disraeli, characterized by laissez-faire economics and positive-sum optimism. Britain saw itself as the workshop of the world with a stable constitutional order.",
+    morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -83,7 +108,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 0, AES: 0,
-    description: "New Liberalism introduced social reform with Lloyd George's People's Budget while imperial competition intensified with Germany. The Labour movement emerged as a political force alongside growing demands for Irish Home Rule and women's suffrage."
+    description: "New Liberalism introduced social reform with Lloyd George's People's Budget while imperial competition intensified with Germany. The Labour movement emerged as a political force alongside growing demands for Irish Home Rule and women's suffrage.",
+    morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -95,7 +121,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 1, AES: 4,
-    description: "Total war mobilized British society on an unprecedented scale, shattering Victorian certainties. Irish independence, suffrage expansion, and the decline of the Liberal Party reshaped the political landscape."
+    description: "Total war mobilized British society on an unprecedented scale, shattering Victorian certainties. Irish independence, suffrage expansion, and the decline of the Liberal Party reshaped the political landscape.",
+    morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -107,7 +134,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The Baldwin-MacDonald era saw cautious conservatism, the General Strike of 1926, and the policy of appeasement toward fascist powers. Mass unemployment and the Jarrow March highlighted deep economic inequality."
+    description: "The Baldwin-MacDonald era saw cautious conservatism, the General Strike of 1926, and the policy of appeasement toward fascist powers. Mass unemployment and the Jarrow March highlighted deep economic inequality.",
+    morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -119,7 +147,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 3, TRB: 5, ENG: 5,
     EPS: 0, AES: 4,
-    description: "Churchill's wartime leadership united the nation in total mobilization against Nazi Germany. The Beveridge Report laid the intellectual foundations for the post-war welfare state amid a sense that the old order could not return."
+    description: "Churchill's wartime leadership united the nation in total mobilization against Nazi Germany. The Beveridge Report laid the intellectual foundations for the post-war welfare state amid a sense that the old order could not return.",
+    morBoundaries: { boundaries: { national: 0.62, ethnic_racial: 0.05, religious: 0.53, class: 0.53, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -131,7 +160,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 4, TRB: 2, ENG: 4,
     EPS: 0, AES: 0,
-    description: "The Attlee government created the NHS, nationalized key industries, and built the welfare state. Both parties broadly accepted the post-war settlement of mixed economy and decolonization through the Butskellite consensus."
+    description: "The Attlee government created the NHS, nationalized key industries, and built the welfare state. Both parties broadly accepted the post-war settlement of mixed economy and decolonization through the Butskellite consensus.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -143,7 +173,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
-    description: "The permissive society liberalized social norms while Britain joined the EEC and faced mounting union militancy. The Winter of Discontent and stagflation signaled the exhaustion of the post-war consensus."
+    description: "The permissive society liberalized social norms while Britain joined the EEC and faced mounting union militancy. The Winter of Discontent and stagflation signaled the exhaustion of the post-war consensus.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -155,7 +186,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 0, AES: 4,
-    description: "Thatcher's monetarist revolution privatized state industries, broke union power, and reasserted British sovereignty in the Falklands. Her uncompromising style polarized the country but fundamentally reshaped its political economy."
+    description: "Thatcher's monetarist revolution privatized state industries, broke union power, and reasserted British sovereignty in the Falklands. Her uncompromising style polarized the country but fundamentally reshaped its political economy.",
+    morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -167,7 +199,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 2, ENG: 3,
     EPS: 0, AES: 0,
-    description: "Blair's Third Way blended market economics with social investment, devolved power to Scotland and Wales, and pursued liberal interventionism abroad including the Iraq War. A period of relative optimism and consensus-seeking."
+    description: "Blair's Third Way blended market economics with social investment, devolved power to Scotland and Wales, and pursued liberal interventionism abroad including the Iraq War. A period of relative optimism and consensus-seeking.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "United Kingdom",
@@ -179,7 +212,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 3, AES: 4,
-    description: "Austerity economics under the Coalition gave way to the Brexit earthquake, fracturing both major parties along cultural lines. Culture wars, populist rhetoric, and institutional distrust defined an era of political volatility."
+    description: "Austerity economics under the Coalition gave way to the Brexit earthquake, fracturing both major parties along cultural lines. Culture wars, populist rhetoric, and institutional distrust defined an era of political volatility.",
+    morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
 
   // ===== FRANCE =====
@@ -193,7 +227,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Bourbon absolutism under Louis XVI presided over a centralized fiscal-administrative state with deep noble and clerical privilege, a confessional-Catholic public order, and growing fiscal crisis from Seven Years' War debt and American war subsidies. Necker's reform attempts were blocked by the parlements and the king vacillated between reform and reaction."
+    description: "Bourbon absolutism under Louis XVI presided over a centralized fiscal-administrative state with deep noble and clerical privilege, a confessional-Catholic public order, and growing fiscal crisis from Seven Years' War debt and American war subsidies. Necker's reform attempts were blocked by the parlements and the king vacillated between reform and reaction.",
+    morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "France",
@@ -205,7 +240,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 2, TRB: 4, ENG: 5,
     EPS: 2, AES: 0,
-    description: "The convening of the Estates-General and fall of the Bastille ended centuries of absolute monarchy, but the constitutional monarchy experiment proved unstable. Aristocratic privilege collapsed amid fiscal crisis and revolutionary ferment."
+    description: "The convening of the Estates-General and fall of the Bastille ended centuries of absolute monarchy, but the constitutional monarchy experiment proved unstable. Aristocratic privilege collapsed amid fiscal crisis and revolutionary ferment.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -217,7 +253,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 5, ONT_S: 5,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 4, AES: 5,
-    description: "The radical republic unleashed the Terror, abolished feudalism, and proclaimed universal rights while executing thousands. The Directory's instability paved the way for Napoleon, but the Revolution permanently transformed European politics."
+    description: "The radical republic unleashed the Terror, abolished feudalism, and proclaimed universal rights while executing thousands. The Directory's instability paved the way for Napoleon, but the Revolution permanently transformed European politics.",
+    morBoundaries: { boundaries: { national: 0.37, ethnic_racial: 0.05, religious: 0.19, class: 0.62, ideological: 0.58, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "France",
@@ -229,7 +266,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 1, TRB: 4, ENG: 5,
     EPS: 0, AES: 4,
-    description: "Napoleon centralized the French state, codified law in the Code Napoleon, and conquered much of Europe before his defeat. A meritocratic authoritarian who consolidated revolutionary gains while suppressing political liberty."
+    description: "Napoleon centralized the French state, codified law in the Code Napoleon, and conquered much of Europe before his defeat. A meritocratic authoritarian who consolidated revolutionary gains while suppressing political liberty.",
+    morBoundaries: { boundaries: { national: 0.26, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -241,7 +279,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 3, TRB: 4, ENG: 3,
     EPS: 2, AES: 0,
-    description: "The Bourbon monarchs returned under a limited constitutional charter, but Ultra-royalists pushed to restore pre-revolutionary aristocratic and clerical privilege. Tension between legitimism and liberalism defined the period."
+    description: "The Bourbon monarchs returned under a limited constitutional charter, but Ultra-royalists pushed to restore pre-revolutionary aristocratic and clerical privilege. Tension between legitimism and liberalism defined the period.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.23, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -253,7 +292,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 0, AES: 0,
-    description: "Louis-Philippe's bourgeois monarchy championed business interests and cautious liberalism after the July Revolution. Industrialization accelerated but the narrow franchise excluded workers, breeding republican and socialist opposition."
+    description: "Louis-Philippe's bourgeois monarchy championed business interests and cautious liberalism after the July Revolution. Industrialization accelerated but the narrow franchise excluded workers, breeding republican and socialist opposition.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "France",
@@ -265,7 +305,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 3, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Universal male suffrage and national workshops represented radical democratic ambitions, but the June Days uprising revealed deep class conflict. Louis-Napoleon's election as president foreshadowed the republic's demise."
+    description: "Universal male suffrage and national workshops represented radical democratic ambitions, but the June Days uprising revealed deep class conflict. Louis-Napoleon's election as president foreshadowed the republic's demise.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -277,7 +318,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 2, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Napoleon III modernized Paris, built railways, and pursued an active foreign policy while maintaining authoritarian control that gradually liberalized. Defeat in the Franco-Prussian War brought the regime's sudden collapse."
+    description: "Napoleon III modernized Paris, built railways, and pursued an active foreign policy while maintaining authoritarian control that gradually liberalized. Defeat in the Franco-Prussian War brought the regime's sudden collapse.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -289,7 +331,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 5, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
-    description: "Born from the Paris Commune's ashes, the Third Republic consolidated secular, republican governance through the Dreyfus Affair and laicite laws. Intense partisan conflict between clericals, monarchists, and republicans defined political life."
+    description: "Born from the Paris Commune's ashes, the Third Republic consolidated secular, republican governance through the Dreyfus Affair and laicite laws. Intense partisan conflict between clericals, monarchists, and republicans defined political life.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "France",
@@ -301,7 +344,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 5, TRB: 3, ENG: 4,
     EPS: 1, AES: 0,
-    description: "The Radical Republic championed secularism and colonial expansion while interwar instability saw rapid government turnover and the Popular Front experiment. Rising fascist leagues and pacifism left France ill-prepared for war."
+    description: "The Radical Republic championed secularism and colonial expansion while interwar instability saw rapid government turnover and the Popular Front experiment. Rising fascist leagues and pacifism left France ill-prepared for war.",
+    morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "France",
@@ -313,7 +357,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 5,
     PF: 1, TRB: 5, ENG: 4,
     EPS: 2, AES: 2,
-    description: "Petain's collaborationist regime embraced authoritarian traditionalism under the motto 'Travail, Famille, Patrie,' actively participating in the deportation of Jews. It represented a reactionary rejection of republican values."
+    description: "Petain's collaborationist regime embraced authoritarian traditionalism under the motto 'Travail, Famille, Patrie,' actively participating in the deportation of Jews. It represented a reactionary rejection of republican values.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0 }, intensity: 3 },
   },
   {
     jurisdiction: "France",
@@ -325,7 +370,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 5,
     PF: 3, TRB: 3, ENG: 5,
     EPS: 1, AES: 0,
-    description: "De Gaulle's GPRF transitioning from Vichy collapse to Fourth Republic; broad resistance coalition including PCF."
+    description: "De Gaulle's GPRF transitioning from Vichy collapse to Fourth Republic; broad resistance coalition including PCF.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
   },
   {
     jurisdiction: "France",
@@ -337,7 +383,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 5, TRB: 2, ENG: 4,
     EPS: 1, AES: 0,
-    description: "Post-war reconstruction and European integration proceeded amid chronic governmental instability with 21 prime ministers in 12 years. The Algerian crisis ultimately destroyed the regime and recalled de Gaulle to power."
+    description: "Post-war reconstruction and European integration proceeded amid chronic governmental instability with 21 prime ministers in 12 years. The Algerian crisis ultimately destroyed the regime and recalled de Gaulle to power.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "France",
@@ -349,7 +396,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 4, TRB: 4, ENG: 4,
     EPS: 1, AES: 0,
-    description: "De Gaulle's strong presidential republic pursued national grandeur, an independent nuclear deterrent, and dirigiste economic planning. May 1968 challenged the regime's cultural conservatism but Gaullism survived in modified form."
+    description: "De Gaulle's strong presidential republic pursued national grandeur, an independent nuclear deterrent, and dirigiste economic planning. May 1968 challenged the regime's cultural conservatism but Gaullism survived in modified form.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "France",
@@ -361,7 +409,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
-    description: "From Mitterrand's socialist experiment through Chirac, Sarkozy, Hollande, and Macron, France deepened EU integration while grappling with deindustrialization, immigration, and the gilets jaunes movement. The traditional left-right divide fragmented."
+    description: "From Mitterrand's socialist experiment through Chirac, Sarkozy, Hollande, and Macron, France deepened EU integration while grappling with deindustrialization, immigration, and the gilets jaunes movement. The traditional left-right divide fragmented.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
 
   // ===== GERMANY/PRUSSIA =====
@@ -375,7 +424,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 2, TRB: 3, ENG: 3,
     EPS: 1, AES: 4,
-    description: "Frederick II's late reign and the brief reign of Frederick William II governed a militarized, bureaucratic Hohenzollern state with the Allgemeines Landrecht codification underway, religious toleration unusual for the time, and a strong-army identity. The Holy Roman Empire's diet still framed the broader German legal context."
+    description: "Frederick II's late reign and the brief reign of Frederick William II governed a militarized, bureaucratic Hohenzollern state with the Allgemeines Landrecht codification underway, religious toleration unusual for the time, and a strong-army identity. The Holy Roman Empire's diet still framed the broader German legal context.",
+    morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -387,7 +437,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 2, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "After Prussia's devastating defeat at Jena in 1806, the Stein-Hardenberg reforms modernized the state by abolishing serfdom and reforming the military and education. Reform was driven by crisis rather than ideology, aiming to strengthen the state against Napoleonic France."
+    description: "After Prussia's devastating defeat at Jena in 1806, the Stein-Hardenberg reforms modernized the state by abolishing serfdom and reforming the military and education. Reform was driven by crisis rather than ideology, aiming to strengthen the state against Napoleonic France.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -399,7 +450,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 2, TRB: 4, ENG: 2,
     EPS: 2, AES: 0,
-    description: "Metternich's conservative order suppressed liberal and nationalist movements through the Carlsbad Decrees and pervasive censorship. The Biedermeier period saw political quietism as Germans retreated into private life under authoritarian surveillance."
+    description: "Metternich's conservative order suppressed liberal and nationalist movements through the Carlsbad Decrees and pervasive censorship. The Biedermeier period saw political quietism as Germans retreated into private life under authoritarian surveillance.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -411,7 +463,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 5,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 0, AES: 5,
-    description: "The Frankfurt Parliament attempted to create a unified, liberal German nation-state through democratic deliberation, but failed when Frederick William IV refused the crown. The revolution's defeat entrenched the power of the Prussian military-aristocratic elite."
+    description: "The Frankfurt Parliament attempted to create a unified, liberal German nation-state through democratic deliberation, but failed when Frederick William IV refused the crown. The revolution's defeat entrenched the power of the Prussian military-aristocratic elite.",
+    morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -423,7 +476,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 4, TRB: 4, ENG: 4,
     EPS: 0, AES: 0,
-    description: "Bismarck unified Germany through 'blood and iron' while introducing pioneering social insurance to co-opt the working class. His Realpolitik combined authoritarian governance with pragmatic welfare-state building and Kulturkampf against Catholic influence."
+    description: "Bismarck unified Germany through 'blood and iron' while introducing pioneering social insurance to co-opt the working class. His Realpolitik combined authoritarian governance with pragmatic welfare-state building and Kulturkampf against Catholic influence.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -435,7 +489,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 4, TRB: 4, ENG: 4,
     EPS: 1, AES: 4,
-    description: "Kaiser Wilhelm II pursued Weltpolitik and a naval arms race with Britain while the SPD became Europe's largest socialist party. An aggressive, militaristic national mood combined with rapid industrialization and growing social tensions."
+    description: "Kaiser Wilhelm II pursued Weltpolitik and a naval arms race with Britain while the SPD became Europe's largest socialist party. An aggressive, militaristic national mood combined with rapid industrialization and growing social tensions.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -447,7 +502,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 3, TRB: 5, ENG: 5,
     EPS: 1, AES: 4,
-    description: "The Hindenburg-Ludendorff military dictatorship directed total war while the home front suffered severe deprivation and the Burgfrieden political truce frayed. Defeat, revolution, and the Kaiser's abdication shattered the imperial order."
+    description: "The Hindenburg-Ludendorff military dictatorship directed total war while the home front suffered severe deprivation and the Burgfrieden political truce frayed. Defeat, revolution, and the Kaiser's abdication shattered the imperial order.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.53, class: 0.53, ideological: 0.34, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -459,7 +515,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 5, TRB: 3, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Germany's first democracy produced remarkable cultural flowering and a progressive constitution, but was destabilized by hyperinflation, the Versailles burden, and extremist violence from both left and right. Intense partisan fragmentation made governance nearly impossible."
+    description: "Germany's first democracy produced remarkable cultural flowering and a progressive constitution, but was destabilized by hyperinflation, the Versailles burden, and extremist violence from both left and right. Intense partisan fragmentation made governance nearly impossible.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -471,7 +528,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 2,
     PF: 5, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
-    description: "The totalitarian racial state under Hitler pursued genocidal antisemitism, aggressive expansionism, and the complete destruction of democratic institutions. The Holocaust and World War II represented the catastrophic nadir of European civilization."
+    description: "The totalitarian racial state under Hitler pursued genocidal antisemitism, aggressive expansionism, and the complete destruction of democratic institutions. The Holocaust and World War II represented the catastrophic nadir of European civilization.",
+    morBoundaries: { boundaries: { national: 0.9, ethnic_racial: 0.95, religious: 0.3, class: 0.2, ideological: 0.6, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -483,7 +541,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 2, TRB: 1, ENG: 3,
     EPS: 0, AES: 0,
-    description: "Allied occupation imposed denazification, dismantled military industry, and laid the groundwork for democratic reconstruction. The emerging Cold War split Germany into eastern and western zones with fundamentally different political trajectories."
+    description: "Allied occupation imposed denazification, dismantled military industry, and laid the groundwork for democratic reconstruction. The emerging Cold War split Germany into eastern and western zones with fundamentally different political trajectories.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0.25 }, intensity: 1 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -495,7 +554,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 4, TRB: 2, ENG: 4,
     EPS: 1, AES: 0,
-    description: "The social market economy produced the Wirtschaftswunder while the Basic Law enshrined strong constitutional protections and consensus-based governance. Brandt's Ostpolitik normalized relations with the East, and West Germany became the anchor of European integration."
+    description: "The social market economy produced the Wirtschaftswunder while the Basic Law enshrined strong constitutional protections and consensus-based governance. Brandt's Ostpolitik normalized relations with the East, and West Germany became the anchor of European integration.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -507,7 +567,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
-    description: "The Soviet-backed socialist state maintained rigid ideological conformity through the Stasi surveillance apparatus. Despite rhetoric of worker emancipation, the DDR was culturally conservative, authoritarian, and economically stagnant."
+    description: "The Soviet-backed socialist state maintained rigid ideological conformity through the Stasi surveillance apparatus. Despite rhetoric of worker emancipation, the DDR was culturally conservative, authoritarian, and economically stagnant.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.55, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Germany/Prussia",
@@ -519,7 +580,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 2, ENG: 4,
     EPS: 0, AES: 0,
-    description: "The Berlin Republic anchored European integration, navigated reunification's social costs, and opened its doors during the 2015 refugee crisis. Strong proceduralism and consensus politics persisted even as the AfD challenged the post-war settlement."
+    description: "The Berlin Republic anchored European integration, navigated reunification's social costs, and opened its doors during the 2015 refugee crisis. Strong proceduralism and consensus politics persisted even as the AfD challenged the post-war settlement.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
 
   // ===== RUSSIA/USSR =====
@@ -533,7 +595,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 1, TRB: 4, ENG: 2,
     EPS: 2, AES: 0,
-    description: "Catherine the Great's Enlightenment pretensions gave way to reaction after the French Revolution, and Alexander I oscillated between liberal reform and mystical conservatism. Serfdom remained the bedrock of an autocratic social order."
+    description: "Catherine the Great's Enlightenment pretensions gave way to reaction after the French Revolution, and Alexander I oscillated between liberal reform and mystical conservatism. Serfdom remained the bedrock of an autocratic social order.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.37, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -545,7 +608,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 2,
     PF: 1, TRB: 5, ENG: 2,
     EPS: 2, AES: 0,
-    description: "The 'Gendarme of Europe' crushed the Decembrist revolt and enforced Official Nationality (Orthodoxy, Autocracy, Nationality) as state doctrine. Serfdom, censorship, and military repression defined a regime deeply hostile to change."
+    description: "The 'Gendarme of Europe' crushed the Decembrist revolt and enforced Official Nationality (Orthodoxy, Autocracy, Nationality) as state doctrine. Serfdom, censorship, and military repression defined a regime deeply hostile to change.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -557,7 +621,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 2, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Alexander II emancipated the serfs in 1861, established elected zemstva councils, and reformed the judiciary and military. These reforms from above opened Russian society but were cut short by his assassination by revolutionary terrorists."
+    description: "Alexander II emancipated the serfs in 1861, established elected zemstva councils, and reformed the judiciary and military. These reforms from above opened Russian society but were cut short by his assassination by revolutionary terrorists.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -569,7 +634,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 3,
     PF: 1, TRB: 5, ENG: 3,
     EPS: 2, AES: 0,
-    description: "Alexander III and Nicholas II reversed reforms, intensified Russification, and oversaw pogroms against Jewish communities. Rapid industrialization under Witte created a volatile urban proletariat while the autocracy remained unreconstructed."
+    description: "Alexander III and Nicholas II reversed reforms, intensified Russification, and oversaw pogroms against Jewish communities. Rapid industrialization under Witte created a volatile urban proletariat while the autocracy remained unreconstructed.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -581,7 +647,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 3, AES: 4,
-    description: "The 1905 Revolution forced the creation of the Duma, but Nicholas II's intransigence and WWI's catastrophic toll brought the regime to collapse. Competing visions from liberals, socialists, and monarchists made this an era of radical uncertainty."
+    description: "The 1905 Revolution forced the creation of the Duma, but Nicholas II's intransigence and WWI's catastrophic toll brought the regime to collapse. Competing visions from liberals, socialists, and monarchists made this an era of radical uncertainty.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -593,7 +660,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 5, ONT_S: 5,
     PF: 1, TRB: 4, ENG: 5,
     EPS: 4, AES: 5,
-    description: "War communism, civil war, and the New Economic Policy defined the revolutionary state's turbulent first decade. Lenin's Bolsheviks pursued utopian transformation of society while ruthlessly crushing all opposition."
+    description: "War communism, civil war, and the New Economic Policy defined the revolutionary state's turbulent first decade. Lenin's Bolsheviks pursued utopian transformation of society while ruthlessly crushing all opposition.",
+    morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.19, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -605,7 +673,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 5, TRB: 5, ENG: 5,
     EPS: 1, AES: 4,
-    description: "Forced collectivization, breakneck industrialization, the Great Purges, and victory in WWII were achieved through totalitarian terror and mass death. Stalin built a cult of personality atop a system of labor camps, deportations, and paranoid state violence."
+    description: "Forced collectivization, breakneck industrialization, the Great Purges, and victory in WWII were achieved through totalitarian terror and mass death. Stalin built a cult of personality atop a system of labor camps, deportations, and paranoid state violence.",
+    morBoundaries: { boundaries: { national: 0.86, ethnic_racial: 0.62, religious: 0.24, class: 0.81, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -617,7 +686,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 3, TRB: 4, ENG: 4,
     EPS: 1, AES: 5,
-    description: "Khrushchev's Secret Speech denounced Stalin's crimes and inaugurated a partial cultural and political thaw. The space race showcased Soviet ambition, but the Hungarian intervention and Cuban Missile Crisis revealed the system's aggressive instincts."
+    description: "Khrushchev's Secret Speech denounced Stalin's crimes and inaugurated a partial cultural and political thaw. The space race showcased Soviet ambition, but the Hungarian intervention and Cuban Missile Crisis revealed the system's aggressive instincts.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.55, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -629,7 +699,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 3, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The Brezhnev era prioritized stability and detente while economic growth slowed and the dissident movement emerged. The invasion of Afghanistan and suppression of Prague Spring demonstrated continued imperial ambitions despite internal decay."
+    description: "The Brezhnev era prioritized stability and detente while economic growth slowed and the dissident movement emerged. The invasion of Afghanistan and suppression of Prague Spring demonstrated continued imperial ambitions despite internal decay.",
+    morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.55, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -641,7 +712,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 5,
     PF: 3, TRB: 3, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Glasnost and perestroika attempted to reform the Soviet system but unleashed forces that dissolved it entirely. Gorbachev's vision of democratic socialism proved incompatible with the accumulated contradictions of the Soviet empire."
+    description: "Glasnost and perestroika attempted to reform the Soviet system but unleashed forces that dissolved it entirely. Gorbachev's vision of democratic socialism proved incompatible with the accumulated contradictions of the Soviet empire.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -653,7 +725,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 4, AES: 3,
-    description: "Shock therapy privatization created oligarchs while impoverishing millions, the 1993 constitutional crisis saw tanks shell parliament, and the Chechen wars ravaged the Caucasus. Democratic institutions remained fragile amid economic chaos and state decay."
+    description: "Shock therapy privatization created oligarchs while impoverishing millions, the 1993 constitutional crisis saw tanks shell parliament, and the Chechen wars ravaged the Caucasus. Democratic institutions remained fragile amid economic chaos and state decay.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Russia/USSR",
@@ -665,7 +738,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 3,
     PF: 4, TRB: 5, ENG: 4,
     EPS: 3, AES: 4,
-    description: "Putin consolidated power through managed democracy, resource nationalism, and aggressive foreign policy culminating in the invasion of Ukraine. Traditional values, Orthodox nationalism, and geopolitical confrontation with the West defined an increasingly authoritarian state."
+    description: "Putin consolidated power through managed democracy, resource nationalism, and aggressive foreign policy culminating in the invasion of Ukraine. Traditional values, Orthodox nationalism, and geopolitical confrontation with the West defined an increasingly authoritarian state.",
+    morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.38, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
   },
 
   // ===== SPAIN =====
@@ -679,7 +753,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 2, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Carlos III's Bourbon reform monarchy pursued administrative centralization, intendancy system, free trade within the empire, and clerical reform (Jesuit expulsion 1767), while maintaining strict Catholic confessional state and an extractive colonial system. Charles III's death in 1788 ended the most coherent reform phase."
+    description: "Carlos III's Bourbon reform monarchy pursued administrative centralization, intendancy system, free trade within the empire, and clerical reform (Jesuit expulsion 1767), while maintaining strict Catholic confessional state and an extractive colonial system. Charles III's death in 1788 ended the most coherent reform phase.",
+    morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Spain",
@@ -691,7 +766,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 2, TRB: 4, ENG: 4,
     EPS: 2, AES: 4,
-    description: "Napoleon's invasion provoked fierce guerrilla resistance and the liberal Cadiz Constitution of 1812, while the old Bourbon order collapsed. Spain became a battleground between Enlightenment reform and traditionalist Catholic reaction."
+    description: "Napoleon's invasion provoked fierce guerrilla resistance and the liberal Cadiz Constitution of 1812, while the old Bourbon order collapsed. Spain became a battleground between Enlightenment reform and traditionalist Catholic reaction.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -703,7 +779,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 3, TRB: 4, ENG: 4,
     EPS: 2, AES: 4,
-    description: "Ferdinand VII abolished the liberal constitution and restored absolute monarchy, provoking the Riego revolt and the Carlist succession crisis. Spain oscillated violently between liberalism and absolutism with no stable settlement."
+    description: "Ferdinand VII abolished the liberal constitution and restored absolute monarchy, provoking the Riego revolt and the Carlist succession crisis. Spain oscillated violently between liberalism and absolutism with no stable settlement.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -715,7 +792,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Isabella II's reign saw moderate liberals consolidate power through the desamortizacion (church land sales) and slow modernization. Military pronunciamientos remained the primary mechanism of political change in a still largely agrarian society."
+    description: "Isabella II's reign saw moderate liberals consolidate power through the desamortizacion (church land sales) and slow modernization. Military pronunciamientos remained the primary mechanism of political change in a still largely agrarian society.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Spain",
@@ -727,7 +805,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "After a brief First Republic, Canovas designed the Restoration system with its turno pacifico alternation between Liberal and Conservative parties. Managed elections provided stability but excluded workers, regionalists, and republicans from power."
+    description: "After a brief First Republic, Canovas designed the Restoration system with its turno pacifico alternation between Liberal and Conservative parties. Managed elections provided stability but excluded workers, regionalists, and republicans from power.",
+    morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -739,7 +818,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 3, TRB: 4, ENG: 4,
     EPS: 1, AES: 4,
-    description: "The 1898 colonial disaster triggered a national identity crisis, and Primo de Rivera's dictatorship attempted authoritarian modernization. The Restoration system's legitimacy collapsed amid labor unrest, regional nationalism, and military interventionism."
+    description: "The 1898 colonial disaster triggered a national identity crisis, and Primo de Rivera's dictatorship attempted authoritarian modernization. The Restoration system's legitimacy collapsed amid labor unrest, regional nationalism, and military interventionism.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -751,7 +831,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 5, TRB: 3, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Radical democratic reform tackled land redistribution, church-state separation, regional autonomy, and military reform simultaneously. Intense polarization between left and right, anticlericals and Catholics, centralists and regionalists made compromise impossible."
+    description: "Radical democratic reform tackled land redistribution, church-state separation, regional autonomy, and military reform simultaneously. Intense polarization between left and right, anticlericals and Catholics, centralists and regionalists made compromise impossible.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Spain",
@@ -763,7 +844,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 3,
     PF: 5, TRB: 5, ENG: 4,
     EPS: 2, AES: 4,
-    description: "Franco's National-Catholic regime, born from civil war, imposed autarky, crushed regional identities, and enforced a reactionary social order. Mass repression, international isolation, and economic hardship characterized the early Franco decades."
+    description: "Franco's National-Catholic regime, born from civil war, imposed autarky, crushed regional identities, and enforced a reactionary social order. Mass repression, international isolation, and economic hardship characterized the early Franco decades.",
+    morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.38, religious: 0.72, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Spain",
@@ -775,7 +857,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 2,
     PF: 3, TRB: 4, ENG: 3,
     EPS: 1, AES: 1,
-    description: "Opus Dei technocrats drove an economic miracle while the regime cautiously opened to tourism and foreign investment. Political repression continued but social transformation and growing opposition signaled the regime's approaching end."
+    description: "Opus Dei technocrats drove an economic miracle while the regime cautiously opened to tourism and foreign investment. Political repression continued but social transformation and growing opposition signaled the regime's approaching end.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.23, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -787,7 +870,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 4, TRB: 2, ENG: 5,
     EPS: 1, AES: 0,
-    description: "Suarez and King Juan Carlos navigated democratization through consensus, producing the 1978 Constitution and the Estado de las Autonomias. The transition's spirit of consenso became a founding myth of Spanish democracy despite the 1981 coup attempt."
+    description: "Suarez and King Juan Carlos navigated democratization through consensus, producing the 1978 Constitution and the Estado de las Autonomias. The transition's spirit of consenso became a founding myth of Spanish democracy despite the 1981 coup attempt.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -799,7 +883,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 2, ENG: 4,
     EPS: 0, AES: 0,
-    description: "Gonzalez modernized Spain and joined the EU, Aznar pursued economic liberalization and atlanticism, and both oversaw rapid growth and social transformation. Spain became a confident European democracy with a booming economy."
+    description: "Gonzalez modernized Spain and joined the EU, Aznar pursued economic liberalization and atlanticism, and both oversaw rapid growth and social transformation. Spain became a confident European democracy with a booming economy.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Spain",
@@ -811,7 +896,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 5, TRB: 3, ENG: 5,
     EPS: 0, AES: 3,
-    description: "The financial crisis, Indignados movement, Catalan independence crisis, and rise of Podemos and Vox shattered the two-party system. Spain grappled with austerity, territorial tensions, and a new generation's disillusionment with the transition settlement."
+    description: "The financial crisis, Indignados movement, Catalan independence crisis, and rise of Podemos and Vox shattered the two-party system. Spain grappled with austerity, territorial tensions, and a new generation's disillusionment with the transition settlement.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
 
   // ===== ITALY =====
@@ -825,7 +911,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 2, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Napoleon's invasion swept away the old Italian states and introduced revolutionary legal codes, administrative centralization, and the idea of national unity. Jacobin republics briefly flourished before giving way to satellite kingdoms."
+    description: "Napoleon's invasion swept away the old Italian states and introduced revolutionary legal codes, administrative centralization, and the idea of national unity. Jacobin republics briefly flourished before giving way to satellite kingdoms.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Italy",
@@ -837,7 +924,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Mazzini's republican idealism and Cavour's pragmatic diplomacy drove the Risorgimento, culminating in Garibaldi's expedition and Italian unification. A romantic nationalist project that united a peninsula divided by foreign powers, local identities, and the papacy."
+    description: "Mazzini's republican idealism and Cavour's pragmatic diplomacy drove the Risorgimento, culminating in Garibaldi's expedition and Italian unification. A romantic nationalist project that united a peninsula divided by foreign powers, local identities, and the papacy.",
+    morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Italy",
@@ -849,7 +937,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "United Italy faced the Southern Question, mass emigration, and transformismo politics where shifting parliamentary coalitions blurred ideological lines. Giolitti's era brought limited democratization and industrialization, concentrated overwhelmingly in the north."
+    description: "United Italy faced the Southern Question, mass emigration, and transformismo politics where shifting parliamentary coalitions blurred ideological lines. Giolitti's era brought limited democratization and industrialization, concentrated overwhelmingly in the north.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Italy",
@@ -861,7 +950,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 3, AES: 4,
-    description: "Italy's entry into WWI divided the nation; the 'mutilated victory' fueled nationalist resentment and the biennio rosso saw factory occupations and rural unrest. The liberal state proved incapable of managing the post-war crisis, opening the door to fascism."
+    description: "Italy's entry into WWI divided the nation; the 'mutilated victory' fueled nationalist resentment and the biennio rosso saw factory occupations and rural unrest. The liberal state proved incapable of managing the post-war crisis, opening the door to fascism.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Italy",
@@ -873,7 +963,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 5, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
-    description: "Mussolini's fascist regime pioneered totalitarian mass politics, corporatist economics, and imperial aggression in Ethiopia and Albania. The alliance with Nazi Germany and disastrous military performance led to invasion, civil war, and the regime's collapse."
+    description: "Mussolini's fascist regime pioneered totalitarian mass politics, corporatist economics, and imperial aggression in Ethiopia and Albania. The alliance with Nazi Germany and disastrous military performance led to invasion, civil war, and the regime's collapse.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Italy",
@@ -885,7 +976,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 5, TRB: 3, ENG: 4,
     EPS: 1, AES: 0,
-    description: "Christian Democracy dominated post-war Italy through coalition-building and Cold War anticommunism while the economic miracle transformed a peasant society. The PCI remained Western Europe's largest communist party but was permanently excluded from national government."
+    description: "Christian Democracy dominated post-war Italy through coalition-building and Cold War anticommunism while the economic miracle transformed a peasant society. The PCI remained Western Europe's largest communist party but was permanently excluded from national government.",
+    morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Italy",
@@ -897,7 +989,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 5, TRB: 3, ENG: 5,
     EPS: 1, AES: 4,
-    description: "Left-wing and right-wing terrorism, the Aldo Moro kidnapping, and the strategy of tension destabilized Italian democracy. Berlinguer's compromesso storico sought to bridge the DC-PCI divide amid a climate of political violence and social upheaval."
+    description: "Left-wing and right-wing terrorism, the Aldo Moro kidnapping, and the strategy of tension destabilized Italian democracy. Berlinguer's compromesso storico sought to bridge the DC-PCI divide amid a climate of political violence and social upheaval.",
+    morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Italy",
@@ -909,7 +1002,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 1, AES: 3,
-    description: "Craxi's Socialist-led coalitions modernized Italy's image but systemic corruption was exposed by the Tangentopoli investigations. The Mani Pulite judicial revolution destroyed the entire post-war party system in a matter of months."
+    description: "Craxi's Socialist-led coalitions modernized Italy's image but systemic corruption was exposed by the Tangentopoli investigations. The Mani Pulite judicial revolution destroyed the entire post-war party system in a matter of months.",
+    morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Italy",
@@ -921,7 +1015,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 3,
     EPS: 3, AES: 3,
-    description: "Berlusconi's media empire and personal politics dominated the Second Republic, alternating with center-left coalitions. Italy joined the eurozone but struggled with low growth, high debt, and institutional reform that never quite materialized."
+    description: "Berlusconi's media empire and personal politics dominated the Second Republic, alternating with center-left coalitions. Italy joined the eurozone but struggled with low growth, high debt, and institutional reform that never quite materialized.",
+    morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Italy",
@@ -933,7 +1028,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 3, AES: 3,
-    description: "The Five Star Movement, Salvini's League, and Meloni's Brothers of Italy disrupted traditional politics with anti-establishment populism. Migration, Euroscepticism, and economic stagnation fueled a rightward turn and growing distrust of institutions."
+    description: "The Five Star Movement, Salvini's League, and Meloni's Brothers of Italy disrupted traditional politics with anti-establishment populism. Migration, Euroscepticism, and economic stagnation fueled a rightward turn and growing distrust of institutions.",
+    morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
 
   // ===== AUSTRIA/AUSTRIA-HUNGARY =====
@@ -947,7 +1043,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 5, ONT_S: 4,
     PF: 2, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Joseph II's enlightened-absolutist reform program reorganized the Habsburg monarchy with serfdom abolition (1781), Edict of Toleration (1781), Jewish emancipation patents, monastery dissolutions, and centralized administrative reform. Reforms imposed top-down without consultation generated provincial backlash, especially in the Austrian Netherlands and Hungary."
+    description: "Joseph II's enlightened-absolutist reform program reorganized the Habsburg monarchy with serfdom abolition (1781), Edict of Toleration (1781), Jewish emancipation patents, monastery dissolutions, and centralized administrative reform. Reforms imposed top-down without consultation generated provincial backlash, especially in the Austrian Netherlands and Hungary.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -959,7 +1056,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 2,
     PF: 1, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The legacy of Joseph II's top-down reforms persisted as Austria fought the Revolutionary and Napoleonic Wars under Francis I. Enlightened absolutism gave way to wartime mobilization and conservative retrenchment against French revolutionary ideas."
+    description: "The legacy of Joseph II's top-down reforms persisted as Austria fought the Revolutionary and Napoleonic Wars under Francis I. Enlightened absolutism gave way to wartime mobilization and conservative retrenchment against French revolutionary ideas.",
+    morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -971,7 +1069,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 1,
     PF: 1, TRB: 4, ENG: 2,
     EPS: 2, AES: 0,
-    description: "Metternich constructed a European conservative order based on legitimacy, balance of power, and suppression of nationalism and liberalism. Domestically, censorship and secret police maintained the multinational empire's fragile cohesion."
+    description: "Metternich constructed a European conservative order based on legitimacy, balance of power, and suppression of nationalism and liberalism. Domestically, censorship and secret police maintained the multinational empire's fragile cohesion.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.69, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -983,7 +1082,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 2, TRB: 4, ENG: 4,
     EPS: 1, AES: 0,
-    description: "The 1848 revolution was crushed by military force, and the Bach system reimposed centralized absolutism. Defeat at Koniggratz in 1866 ended Austrian influence in Germany and forced the empire to renegotiate its internal structure."
+    description: "The 1848 revolution was crushed by military force, and the Bach system reimposed centralized absolutism. Defeat at Koniggratz in 1866 ended Austrian influence in Germany and forced the empire to renegotiate its internal structure.",
+    morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -995,7 +1095,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 4, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The 1867 Ausgleich created the Dual Monarchy, granting Hungary autonomy while leaving other nationalities dissatisfied. A constitutional framework managed competing national, religious, and class interests with increasing difficulty as Pan-Slavism and other movements grew."
+    description: "The 1867 Ausgleich created the Dual Monarchy, granting Hungary autonomy while leaving other nationalities dissatisfied. A constitutional framework managed competing national, religious, and class interests with increasing difficulty as Pan-Slavism and other movements grew.",
+    morBoundaries: { boundaries: { national: 0.51, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -1007,7 +1108,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 3, TRB: 5, ENG: 5,
     EPS: 1, AES: 4,
-    description: "The assassination of Franz Ferdinand triggered a war that ultimately dissolved the Habsburg Empire into successor nation-states. Military defeat, ethnic fragmentation, and revolutionary upheaval ended six centuries of Habsburg rule."
+    description: "The assassination of Franz Ferdinand triggered a war that ultimately dissolved the Habsburg Empire into successor nation-states. Military defeat, ethnic fragmentation, and revolutionary upheaval ended six centuries of Habsburg rule.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -1019,7 +1121,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Red Vienna's municipal socialism confronted rural Christian Social conservatism in an increasingly polarized republic. Paramilitary organizations on both sides made political violence endemic, undermining democratic institutions."
+    description: "Red Vienna's municipal socialism confronted rural Christian Social conservatism in an increasingly polarized republic. Paramilitary organizations on both sides made political violence endemic, undermining democratic institutions.",
+    morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -1031,7 +1134,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 5,
     PF: 5, TRB: 5, ENG: 5,
     EPS: 2, AES: 4,
-    description: "Dollfuss's authoritarian Catholic corporatist state suppressed both socialists and Nazis before Hitler's 1938 Anschluss absorbed Austria into the Third Reich. Austrians participated extensively in Nazi crimes while later claiming victim status."
+    description: "Dollfuss's authoritarian Catholic corporatist state suppressed both socialists and Nazis before Hitler's 1938 Anschluss absorbed Austria into the Third Reich. Austrians participated extensively in Nazi crimes while later claiming victim status.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.62, gender: 0.19, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -1043,7 +1147,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 4, TRB: 2, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The grand coalition and Sozialpartnerschaft (social partnership) between labor and business created one of Europe's most consensual and prosperous democracies. Neutrality, the Proporz system, and institutional cooperation defined a deliberately depoliticized society."
+    description: "The grand coalition and Sozialpartnerschaft (social partnership) between labor and business created one of Europe's most consensual and prosperous democracies. Neutrality, the Proporz system, and institutional cooperation defined a deliberately depoliticized society.",
+    morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Austria/Austria-Hungary",
@@ -1055,7 +1160,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 4, TRB: 3, ENG: 4,
     EPS: 0, AES: 0,
-    description: "Haider's FPO breakthrough shattered the cozy consensus, and EU accession in 1995 integrated Austria into European structures. Immigration debates, the FPO's recurring strength, and coalition experimentation marked a more contested political landscape."
+    description: "Haider's FPO breakthrough shattered the cozy consensus, and EU accession in 1995 integrated Austria into European structures. Immigration debates, the FPO's recurring strength, and coalition experimentation marked a more contested political landscape.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
 
   // ===== OTTOMAN EMPIRE/TURKEY =====
@@ -1069,7 +1175,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 4, ENG: 2,
     EPS: 2, AES: 0,
-    description: "The Ottoman Empire under Abdul Hamid I (1774–1789) was reeling from the Treaty of Küçük Kaynarca (1774), which transferred Crimea sovereignty to Russia and granted Russia broad protectorate rights over Orthodox Christians. The millet system continued to govern non-Muslim communities; the timar system was eroding; central authority over the Balkans and Egypt was largely formal."
+    description: "The Ottoman Empire under Abdul Hamid I (1774–1789) was reeling from the Treaty of Küçük Kaynarca (1774), which transferred Crimea sovereignty to Russia and granted Russia broad protectorate rights over Orthodox Christians. The millet system continued to govern non-Muslim communities; the timar system was eroding; central authority over the Balkans and Egypt was largely formal.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1081,7 +1188,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 1, TRB: 4, ENG: 2,
     EPS: 2, AES: 0,
-    description: "Sultan Selim III attempted to modernize the military along European lines, but Janissary resistance to reform culminated in his deposition. The empire faced mounting pressure from Russian expansion and internal centrifugal forces."
+    description: "Sultan Selim III attempted to modernize the military along European lines, but Janissary resistance to reform culminated in his deposition. The empire faced mounting pressure from Russian expansion and internal centrifugal forces.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.55, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1093,7 +1201,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 4,
     PF: 2, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The Tanzimat reforms modernized Ottoman law, administration, and education, proclaiming equality for all subjects regardless of religion. These top-down reforms aimed to save the empire by creating a common Ottoman citizenship, but satisfied neither conservatives nor nationalists."
+    description: "The Tanzimat reforms modernized Ottoman law, administration, and education, proclaiming equality for all subjects regardless of religion. These top-down reforms aimed to save the empire by creating a common Ottoman citizenship, but satisfied neither conservatives nor nationalists.",
+    morBoundaries: { boundaries: { national: 0.24, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1105,7 +1214,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 1, TRB: 5, ENG: 3,
     EPS: 2, AES: 0,
-    description: "Abdul Hamid II suspended the constitution, ruled autocratically, and promoted pan-Islamism as imperial ideology while modernizing infrastructure. The Hamidian massacres of Armenians foreshadowed the genocide to come."
+    description: "Abdul Hamid II suspended the constitution, ruled autocratically, and promoted pan-Islamism as imperial ideology while modernizing infrastructure. The Hamidian massacres of Armenians foreshadowed the genocide to come.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1117,7 +1227,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 5,
     PF: 1, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
-    description: "The Committee of Union and Progress restored the constitution then descended into authoritarian Turkish nationalism, entering WWI on Germany's side. The Armenian Genocide of 1915 was carried out amid military defeat and the empire's dissolution."
+    description: "The Committee of Union and Progress restored the constitution then descended into authoritarian Turkish nationalism, entering WWI on Germany's side. The Armenian Genocide of 1915 was carried out amid military defeat and the empire's dissolution.",
+    morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.67, religious: 0.34, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0 }, intensity: 3 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1129,7 +1240,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 4,
     PF: 1, TRB: 4, ENG: 5,
     EPS: 0, AES: 5,
-    description: "Ataturk's revolutionary republic abolished the caliphate, adopted the Latin alphabet, and pursued radical westernization and secularization. A single-party authoritarian modernizer who forcibly transformed Turkish society from the top down."
+    description: "Ataturk's revolutionary republic abolished the caliphate, adopted the Latin alphabet, and pursued radical westernization and secularization. A single-party authoritarian modernizer who forcibly transformed Turkish society from the top down.",
+    morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1141,7 +1253,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Turkey transitioned to multi-party democracy with Inonu's CHP yielding power to Menderes's Democrat Party in 1950. Rural conservatism challenged Kemalist secularism as democratization allowed suppressed religious and traditional sentiments to resurface."
+    description: "Turkey transitioned to multi-party democracy with Inonu's CHP yielding power to Menderes's Democrat Party in 1950. Rural conservatism challenged Kemalist secularism as democratization allowed suppressed religious and traditional sentiments to resurface.",
+    morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1153,7 +1266,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 4,
     PF: 4, TRB: 4, ENG: 5,
     EPS: 1, AES: 4,
-    description: "Three military coups in 1960, 1971, and 1980 punctuated civilian politics as left-right political violence claimed thousands of lives. The military saw itself as guardian of the Kemalist secular republic against both Islamism and communism."
+    description: "Three military coups in 1960, 1971, and 1980 punctuated civilian politics as left-right political violence claimed thousands of lives. The military saw itself as guardian of the Kemalist secular republic against both Islamism and communism.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1165,7 +1279,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 3, ENG: 4,
     EPS: 1, AES: 0,
-    description: "Ozal's economic liberalization opened Turkey to global markets while the military maintained tutelage over politics and the Kurdish conflict intensified. Secular-Islamist tensions simmered as Welfare Party governments were repeatedly forced from power."
+    description: "Ozal's economic liberalization opened Turkey to global markets while the military maintained tutelage over politics and the Kurdish conflict intensified. Secular-Islamist tensions simmered as Welfare Party governments were repeatedly forced from power.",
+    morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Ottoman Empire/Turkey",
@@ -1177,7 +1292,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 5, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
-    description: "The AKP initially pursued EU-oriented democratization but shifted toward authoritarian Islamist nationalism after the 2013 Gezi protests and 2016 coup attempt. Erdogan concentrated power in a presidential system, purged opponents, and reasserted Turkish influence regionally."
+    description: "The AKP initially pursued EU-oriented democratization but shifted toward authoritarian Islamist nationalism after the 2013 Gezi protests and 2016 coup attempt. Erdogan concentrated power in a presidential system, purged opponents, and reasserted Turkish influence regionally.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.53, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
   },
 
   // ===== POLAND =====
@@ -1191,7 +1307,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 1,
     PF: 3, TRB: 3, ENG: 3,
     EPS: 1, AES: 0,
-    description: "The Polish-Lithuanian Commonwealth under Stanisław August Poniatowski navigated the post-First-Partition (1772) crisis: the Permanent Council attempted weak modernization within a constitutional system paralyzed by liberum veto and noble freedoms. Russian, Prussian, and Austrian guarantees rendered the state nominally sovereign but practically subject."
+    description: "The Polish-Lithuanian Commonwealth under Stanisław August Poniatowski navigated the post-First-Partition (1772) crisis: the Permanent Council attempted weak modernization within a constitutional system paralyzed by liberum veto and noble freedoms. Russian, Prussian, and Austrian guarantees rendered the state nominally sovereign but practically subject.",
+    morBoundaries: { boundaries: { national: 0.24, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
   },
   {
     jurisdiction: "Poland",
@@ -1203,7 +1320,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 3, TRB: 5, ENG: 4,
     EPS: 1, AES: 5,
-    description: "Poland disappeared from the map through the Third Partition, briefly revived as Napoleon's Duchy of Warsaw, then was reconstituted as Congress Poland under Russian control. The May 3rd Constitution's promise of reform was extinguished by partition."
+    description: "Poland disappeared from the map through the Third Partition, briefly revived as Napoleon's Duchy of Warsaw, then was reconstituted as Congress Poland under Russian control. The May 3rd Constitution's promise of reform was extinguished by partition.",
+    morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.15, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
   },
   {
     jurisdiction: "Poland",
@@ -1215,7 +1333,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 5,
     PF: 3, TRB: 5, ENG: 5,
     EPS: 3, AES: 5,
-    description: "Two major national uprisings against Russian rule were crushed with severe repression, driving Polish nationalism into exile and romantic martyrdom. The messianic idea of Poland as 'Christ of Nations' sustained the independence cause through decades of defeat."
+    description: "Two major national uprisings against Russian rule were crushed with severe repression, driving Polish nationalism into exile and romantic martyrdom. The messianic idea of Poland as 'Christ of Nations' sustained the independence cause through decades of defeat.",
+    morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
   },
   {
     jurisdiction: "Poland",
@@ -1227,7 +1346,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 4, ENG: 3,
     EPS: 0, AES: 2,
-    description: "After the failed January Uprising, Polish intellectuals pursued 'organic work' — economic development, education, and cultural preservation rather than armed revolt. Positivism replaced romanticism as the dominant intellectual framework for national survival."
+    description: "After the failed January Uprising, Polish intellectuals pursued 'organic work' — economic development, education, and cultural preservation rather than armed revolt. Positivism replaced romanticism as the dominant intellectual framework for national survival.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Poland",
@@ -1239,7 +1359,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 1, AES: 5,
-    description: "Reborn Poland faced the challenge of integrating three partition zones, large national minorities, and a war with Soviet Russia. Intense democratic competition and the visionary energy of independence coexisted with ethnic tensions and economic difficulties."
+    description: "Reborn Poland faced the challenge of integrating three partition zones, large national minorities, and a war with Soviet Russia. Intense democratic competition and the visionary energy of independence coexisted with ethnic tensions and economic difficulties.",
+    morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Poland",
@@ -1251,7 +1372,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 2, ONT_S: 3,
     PF: 2, TRB: 4, ENG: 4,
     EPS: 1, AES: 4,
-    description: "Pilsudski's May 1926 coup established authoritarian 'sanation' rule that hollowed out democratic institutions while maintaining a parliamentary facade. The regime grew more repressive after Pilsudski's death as Poland faced existential threats from both Germany and the Soviet Union."
+    description: "Pilsudski's May 1926 coup established authoritarian 'sanation' rule that hollowed out democratic institutions while maintaining a parliamentary facade. The regime grew more repressive after Pilsudski's death as Poland faced existential threats from both Germany and the Soviet Union.",
+    morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Poland",
@@ -1263,7 +1385,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 1, ONT_S: 5,
     PF: 2, TRB: 5, ENG: 5,
     EPS: 3, AES: 4,
-    description: "Nazi occupation destroyed Polish statehood, exterminated nearly all Polish Jews in the Holocaust, and killed millions of ethnic Poles through terror, slave labor, and deliberate cultural destruction. The resistance maintained a functioning underground state and army."
+    description: "Nazi occupation destroyed Polish statehood, exterminated nearly all Polish Jews in the Holocaust, and killed millions of ethnic Poles through terror, slave labor, and deliberate cultural destruction. The resistance maintained a functioning underground state and army.",
+    morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.25 }, intensity: 3 },
   },
   {
     jurisdiction: "Poland",
@@ -1275,7 +1398,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 3,
     PF: 5, TRB: 4, ENG: 4,
     EPS: 1, AES: 1,
-    description: "Soviet-imposed communism nationalized industry, collectivized agriculture, and suppressed the Catholic Church and all opposition. The Stalinist period saw show trials, censorship, and the forced adoption of socialist realism in culture."
+    description: "Soviet-imposed communism nationalized industry, collectivized agriculture, and suppressed the Catholic Church and all opposition. The Stalinist period saw show trials, censorship, and the forced adoption of socialist realism in culture.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.55, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
   {
     jurisdiction: "Poland",
@@ -1287,7 +1411,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 3, TRB: 4, ENG: 3,
     EPS: 1, AES: 0,
-    description: "Gomulka's 'Polish road to socialism' allowed slightly more cultural freedom, but the antisemitic 1968 campaign and 1970 worker massacres revealed the regime's brutality. Gierek borrowed heavily from the West, creating temporary prosperity followed by economic crisis."
+    description: "Gomulka's 'Polish road to socialism' allowed slightly more cultural freedom, but the antisemitic 1968 campaign and 1970 worker massacres revealed the regime's brutality. Gierek borrowed heavily from the West, creating temporary prosperity followed by economic crisis.",
+    morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.26, class: 0.55, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Poland",
@@ -1299,7 +1424,8 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 4, ONT_S: 5,
     PF: 4, TRB: 3, ENG: 5,
     EPS: 0, AES: 5,
-    description: "The Solidarity movement, martial law, the Round Table negotiations, and Balcerowicz's shock therapy transformed Poland from communist dictatorship to market democracy. A remarkable negotiated revolution driven by worker solidarity, Catholic moral authority, and democratic aspiration."
+    description: "The Solidarity movement, martial law, the Round Table negotiations, and Balcerowicz's shock therapy transformed Poland from communist dictatorship to market democracy. A remarkable negotiated revolution driven by worker solidarity, Catholic moral authority, and democratic aspiration.",
+    morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
   },
   {
     jurisdiction: "Poland",
@@ -1311,6 +1437,7 @@ export const EUROPE_PART1: RegimePeriod[] = [
     ONT_H: 3, ONT_S: 3,
     PF: 5, TRB: 4, ENG: 5,
     EPS: 2, AES: 4,
-    description: "EU accession brought rapid economic growth, but PiS's illiberal turn challenged judicial independence and media freedom while championing Catholic social values. Poland became a key battleground between liberal European norms and national-conservative sovereignty claims."
+    description: "EU accession brought rapid economic growth, but PiS's illiberal turn challenged judicial independence and media freedom while championing Catholic social values. Poland became a key battleground between liberal European norms and national-conservative sovereignty claims.",
+    morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.69, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
   },
 ];

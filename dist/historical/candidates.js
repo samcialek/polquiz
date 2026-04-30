@@ -38,7 +38,9 @@ const election1940 = {
             TRB: 3, // Moderate tribal - broad coalition, not in-group focused
             ENG: 5, // Maximum engagement - sought unprecedented third term
             EPS: 1, // Institutionalist - trusted government machinery
-            AES: 0, // Statesman - patrician, fireside chats, gravitas
+            AES: 0, // Statesman - patrician, fireside chats, gravitas,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
             name: "Willkie",
@@ -57,7 +59,8 @@ const election1940 = {
             TRB: 3, // Moderate - business coalition identity
             ENG: 4, // Energetic campaign
             EPS: 0, // Empiricist - business pragmatist
-            AES: 3, // Authentic - outsider, plain-spoken
+            AES: 3, // Authentic - outsider, plain-spoken,
+            morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -87,7 +90,9 @@ const election1944 = {
             TRB: 3, // National unity rhetoric - "our boys"
             ENG: 5, // Maximum - fourth-term bid during world war
             EPS: 1, // Institutionalist
-            AES: 0, // Statesman - commander-in-chief gravitas
+            AES: 0, // Statesman - commander-in-chief gravitas,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
             // Dewey 1944 MOR 1→2 (Phase 6, 2026-04-27). Establishment-Republican
@@ -108,7 +113,8 @@ const election1944 = {
             TRB: 3, // Moderate
             ENG: 3, // Lower — cautious campaign
             EPS: 0, // Empiricist - prosecutor, facts-based
-            AES: 1, // Technocrat - efficient manager image
+            AES: 1, // Technocrat - efficient manager image,
+            morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.29, class: 0.05, ideological: 0.31, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -140,7 +146,8 @@ const election1948 = {
             TRB: 4, // Moderate tribal - working-class identity, "regular guy"
             ENG: 5, // Maximum engagement - whistle-stop tour, never-give-up
             EPS: 1, // Institutionalist - trusted government, Truman Doctrine
-            AES: 4, // Fighter - "Give 'em hell Harry"
+            AES: 4, // Fighter - "Give 'em hell Harry",
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Dewey",
@@ -159,7 +166,8 @@ const election1948 = {
             TRB: 3, // Moderate tribal
             ENG: 3, // Lower engagement - overconfident, coasted
             EPS: 0, // Empiricist - technocratic
-            AES: 0, // Statesman - dignified, above-the-fray
+            AES: 0, // Statesman - dignified, above-the-fray,
+            morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Thurmond",
@@ -178,7 +186,8 @@ const election1948 = {
             TRB: 5, // Maximum tribal - white southern identity
             ENG: 5, // Maximum engagement - launched entire party over civil rights
             EPS: 2, // Traditionalist - "way things have always been"
-            AES: 4, // Fighter - insurgent, defiant
+            AES: 4, // Fighter - insurgent, defiant,
+            morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
         },
         {
             // Henry A. Wallace - Progressive Party (2.4%)
@@ -206,7 +215,8 @@ const election1948 = {
             TRB: 3, // Moderate tribal - broad progressive coalition
             ENG: 5, // Maximum engagement - launched third party, toured extensively
             EPS: 0, // Empiricist - former Sec. of Agriculture, scientific farmer, data-driven
-            AES: 5, // Visionary - "Century of the Common Man," prophetic rhetoric
+            AES: 5, // Visionary - "Century of the Common Man," prophetic rhetoric,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 },
         },
     ],
 };
@@ -237,7 +247,8 @@ const election1952 = {
             TRB: 3, // Moderate - military patriotic identity, "our boys"
             ENG: 5, // Maximum engagement - running for president is maximum engagement
             EPS: 0, // Empiricist - military planning, evidence-based
-            AES: 0, // Statesman - supreme commander, gravitas
+            AES: 0, // Statesman - supreme commander, gravitas,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
         },
         {
             name: "Stevenson",
@@ -261,7 +272,8 @@ const election1952 = {
             TRB: 3, // Moderate tribal - intellectual elite identity
             ENG: 4, // Engaged but "egghead" aloofness
             EPS: 0, // Empiricist - "the thinking man's candidate"
-            AES: 5, // Visionary - eloquent idealist
+            AES: 5, // Visionary - eloquent idealist,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -292,7 +304,8 @@ const election1956 = {
             TRB: 2, // Low tribal - father figure to nation
             ENG: 4, // Engaged incumbent
             EPS: 0, // Empiricist - military planning background
-            AES: 0, // Statesman - beloved grandfather-commander
+            AES: 0, // Statesman - beloved grandfather-commander,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1.5 },
         },
         {
             // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
@@ -313,7 +326,8 @@ const election1956 = {
             TRB: 4, // Higher tribal - rallying the base, us-vs-them
             ENG: 5, // Maximum engagement - fighting harder second time
             EPS: 0, // Empiricist
-            AES: 5, // Visionary - nuclear test ban, "New America"
+            AES: 5, // Visionary - nuclear test ban, "New America",
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -345,7 +359,9 @@ const election1960 = {
             TRB: 3, // Moderate tribal - Catholic identity, but broadening coalition
             ENG: 5, // Politics as calling - "ask what you can do for your country"
             EPS: 1, // Institutionalist - trusted expertise and government
-            AES: 0, // Statesman - projected elegance and gravitas
+            AES: 0, // Statesman - projected elegance and gravitas,
+            morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.5, class: 0.25, ideological: 0.35, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "white", religious: "Catholic", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
             name: "Nixon",
@@ -364,7 +380,8 @@ const election1960 = {
             TRB: 3, // Middle-class tribal identity
             ENG: 5, // Career politician, deeply engaged
             EPS: 1, // Institutionalist - government experience
-            AES: 0, // Statesman - tried to project gravitas (less successfully)
+            AES: 0, // Statesman - tried to project gravitas (less successfully),
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -395,7 +412,8 @@ const election1964 = {
             TRB: 5, // Strong coalition tribal politics
             ENG: 5, // Politics was his life
             EPS: 1, // Institutionalist - trusted government machinery
-            AES: 0, // Statesman (with pastoral southern touches)
+            AES: 0, // Statesman (with pastoral southern touches),
+            morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Goldwater",
@@ -414,7 +432,8 @@ const election1964 = {
             TRB: 3, // Ideological tribe more than ethnic/class
             ENG: 5, // Deeply engaged - movement conservative
             EPS: 4, // Autonomous - principled first-principles reasoning
-            AES: 3, // Authentic - spoke his mind regardless of consequences
+            AES: 3, // Authentic - spoke his mind regardless of consequences,
+            morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
         },
     ],
 };
@@ -447,7 +466,8 @@ const election1968 = {
             TRB: 4, // Silent Majority tribal appeal
             ENG: 5, // Career politician
             EPS: 1, // Institutionalist - worked the system
-            AES: 0, // Statesman - projected authority
+            AES: 0, // Statesman - projected authority,
+            morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Humphrey",
@@ -466,7 +486,8 @@ const election1968 = {
             TRB: 3, // Coalition builder
             ENG: 5, // Lifelong politician
             EPS: 1, // Institutionalist
-            AES: 5, // Visionary - idealistic rhetoric
+            AES: 5, // Visionary - idealistic rhetoric,
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
@@ -491,7 +512,9 @@ const election1968 = {
             TRB: 5, // Maximum tribal - white southern identity
             ENG: 5, // Deeply politically engaged
             EPS: 3, // Intuitionist - gut-level politics
-            AES: 4, // Fighter - combative, defiant
+            AES: 4, // Fighter - combative, defiant,
+            morBoundaries: { boundaries: { national: 0.6, ethnic_racial: 0.85, religious: 0.3, class: 0.2, ideological: 0.3, gender: 0.1, political_tribe: 0.7 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "third" },
         },
     ],
 };
@@ -527,7 +550,8 @@ const election1972 = {
             TRB: 4, // Silent Majority was explicit in-group appeal to white working class
             ENG: 5, // Career politician
             EPS: 0, // Empiricist as president - data-driven détente
-            AES: 0, // Statesman - presidential, "peace with honor"
+            AES: 0, // Statesman - presidential, "peace with honor",
+            morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "McGovern",
@@ -553,7 +577,8 @@ const election1972 = {
             TRB: 2, // New Left coalition - narrow
             ENG: 5, // Deeply engaged - movement politics
             EPS: 0, // Empiricist - professor, policy wonk
-            AES: 5, // Visionary - idealistic moral appeal
+            AES: 5, // Visionary - idealistic moral appeal,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
         },
     ],
 };
@@ -584,7 +609,9 @@ const election1976 = {
             TRB: 3, // Southern identity, broad coalition
             ENG: 4, // Engaged but projected citizen-politician
             EPS: 3, // Intuitionist - moral/faith-based reasoning
-            AES: 2, // Pastoral - peanut farmer, small-town authenticity
+            AES: 2, // Pastoral - peanut farmer, small-town authenticity,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
             name: "Ford",
@@ -603,7 +630,8 @@ const election1976 = {
             TRB: 2, // Low tribal
             ENG: 3, // Lower — uninspiring campaigner
             EPS: 1, // Institutionalist - congressional creature
-            AES: 0, // Statesman - steady, presidential
+            AES: 0, // Statesman - steady, presidential,
+            morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -637,7 +665,9 @@ const election1980 = {
             TRB: 4, // Strong tribal - "real Americans" appeal
             ENG: 5, // Deeply engaged - movement leader
             EPS: 3, // Intuitionist - gut conviction, moral clarity
-            AES: 5, // Visionary - "morning in America," transformative optimism
+            AES: 5, // Visionary - "morning in America," transformative optimism,
+            morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.2, ideological: 0.5, gender: 0.15, political_tribe: 0.6 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" },
         },
         {
             name: "Carter",
@@ -656,7 +686,9 @@ const election1980 = {
             TRB: 3, // Moderate tribal
             ENG: 4, // Engaged but exhausted
             EPS: 0, // Empiricist - engineer's mindset, detail-oriented
-            AES: 2, // Pastoral - but less effective
+            AES: 2, // Pastoral - but less effective,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
             name: "Anderson",
@@ -675,7 +707,8 @@ const election1980 = {
             TRB: 1, // Low tribal - explicitly anti-tribal
             ENG: 4, // Engaged - ran despite impossible odds
             EPS: 0, // Empiricist - policy wonk
-            AES: 1, // Technocrat - intellectual, professorial
+            AES: 1, // Technocrat - intellectual, professorial,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 },
         },
     ],
 };
@@ -706,7 +739,9 @@ const election1984 = {
             TRB: 4, // Broad appeal - won 49 states by transcending tribes
             ENG: 5, // Maximum engagement - dominant president
             EPS: 3, // Intuitionist - gut conviction, moral clarity
-            AES: 5, // Visionary - peak "morning in America"
+            AES: 5, // Visionary - peak "morning in America",
+            morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.15, ideological: 0.5, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" },
         },
         {
             name: "Mondale",
@@ -730,7 +765,8 @@ const election1984 = {
             TRB: 4, // Labor/union tribal - narrow coalition
             ENG: 5, // Career politician
             EPS: 1, // Institutionalist - establishment
-            AES: 0, // Statesman - tried to project gravitas but lacked charisma
+            AES: 0, // Statesman - tried to project gravitas but lacked charisma,
+            morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
         },
     ],
 };
@@ -761,7 +797,9 @@ const election1988 = {
             TRB: 4, // Patrician - less tribal than Reagan
             ENG: 4, // Career public servant
             EPS: 1, // Institutionalist - foreign policy establishment
-            AES: 0, // Statesman - patrician dignity
+            AES: 0, // Statesman - patrician dignity,
+            morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
             // Dukakis 1988 — MOR 1→4 (Phase 4, 2026-04-26). MOR-as-CD-content
@@ -786,7 +824,8 @@ const election1988 = {
             TRB: 2, // Low tribal - technocratic appeal
             ENG: 4, // Engaged - governor/manager
             EPS: 0, // Empiricist - data-driven, technocratic
-            AES: 1, // Technocrat - "competence not ideology"
+            AES: 1, // Technocrat - "competence not ideology",
+            morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
         },
     ],
 };
@@ -820,7 +859,9 @@ const election1992 = {
             TRB: 3, // Broad coalition - Bubba + professionals
             ENG: 5, // Maximum political animal
             EPS: 0, // Empiricist - policy wonk, "putting people first"
-            AES: 3, // Authentic - "I feel your pain," personal connection
+            AES: 3, // Authentic - "I feel your pain," personal connection,
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" },
         },
         {
             name: "Bush",
@@ -839,7 +880,9 @@ const election1992 = {
             TRB: 3, // Patrician, low-tribal
             ENG: 4, // Career public servant
             EPS: 1, // Institutionalist
-            AES: 0, // Statesman - "résumé candidate"
+            AES: 0, // Statesman - "résumé candidate",
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
             name: "Perot",
@@ -858,7 +901,8 @@ const election1992 = {
             TRB: 2, // Anti-establishment, low tribal
             ENG: 4, // Engaged - ran despite no political background
             EPS: 0, // Empiricist - charts and graphs, data-driven
-            AES: 1, // Technocrat - businessman with spreadsheets
+            AES: 1, // Technocrat - businessman with spreadsheets,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1.5 },
         },
     ],
 };
@@ -889,7 +933,9 @@ const election1996 = {
             TRB: 3, // Broad coalition
             ENG: 5, // Maximum engagement
             EPS: 0, // Empiricist - "what works"
-            AES: 0, // Statesman - presidential incumbent
+            AES: 0, // Statesman - presidential incumbent,
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" },
         },
         {
             name: "Dole",
@@ -908,7 +954,8 @@ const election1996 = {
             TRB: 3, // Moderate tribal - old-guard, not populist
             ENG: 5, // Career politician
             EPS: 1, // Institutionalist - Senate creature
-            AES: 0, // Statesman - WWII hero, tried for gravitas
+            AES: 0, // Statesman - WWII hero, tried for gravitas,
+            morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             // Ross Perot - Reform Party (8.4%)
@@ -931,7 +978,8 @@ const election1996 = {
             TRB: 2, // Anti-establishment, low tribal
             ENG: 3, // Less engaged than 1992 - less novelty, excluded from debates
             EPS: 0, // Empiricist - charts, data, infomercials
-            AES: 1, // Technocrat - businessman with spreadsheets
+            AES: 1, // Technocrat - businessman with spreadsheets,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1 },
         },
     ],
 };
@@ -962,7 +1010,8 @@ const election2000 = {
             TRB: 3, // Moderate tribal
             ENG: 5, // Career politician
             EPS: 0, // Empiricist - data, science, climate expertise
-            AES: 1, // Technocrat - wonkish, "lockbox"
+            AES: 1, // Technocrat - wonkish, "lockbox",
+            morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
         },
         {
             name: "Bush",
@@ -981,7 +1030,9 @@ const election2000 = {
             TRB: 3, // Moderate tribal - compassionate conservatism
             ENG: 3, // Projected citizen-politician - rancher, not career pol
             EPS: 3, // Intuitionist - "gut" decision-maker, faith-based
-            AES: 2, // Pastoral - ranch, folksy, "guy you'd have a beer with"
+            AES: 2, // Pastoral - ranch, folksy, "guy you'd have a beer with",
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
             name: "Nader",
@@ -1010,7 +1061,8 @@ const election2000 = {
             TRB: 1, // Anti-tribal - pure individual crusader, no group identity politics
             ENG: 5, // Maximum engagement - decades of tireless activism, consumer crusader
             EPS: 0, // Empiricist - data on corporate malfeasance, safety research, evidence-driven
-            AES: 3, // Plainspoken - rumpled, sincere, no polish, refuses political theater
+            AES: 3, // Plainspoken - rumpled, sincere, no polish, refuses political theater,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
         },
     ],
 };
@@ -1041,7 +1093,8 @@ const election2004 = {
             TRB: 3, // Coalition Democrat plus military identity, not strongly tribal
             ENG: 5, // Maximum engagement - war hero running against wartime president
             EPS: 0, // Empiricist - nuanced, "intellectual"
-            AES: 0, // Statesman - "reporting for duty," patrician
+            AES: 0, // Statesman - "reporting for duty," patrician,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
         },
         {
             name: "Bush",
@@ -1060,7 +1113,9 @@ const election2004 = {
             TRB: 4, // Highly tribal - post-9/11 patriotic identity, but not max
             ENG: 5, // War president - maximum engagement
             EPS: 3, // Intuitionist - gut decisions, faith-based
-            AES: 4, // Fighter - war president, "bring 'em on"
+            AES: 4, // Fighter - war president, "bring 'em on",
+            morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
 };
@@ -1091,7 +1146,9 @@ const election2008 = {
             TRB: 2, // Low tribal - explicitly anti-tribal, transcended identity politics
             ENG: 5, // Maximum engagement - movement-building
             EPS: 0, // Empiricist - "what works," pragmatic progressive
-            AES: 5, // Visionary - "yes we can," transformative rhetoric
+            AES: 5, // Visionary - "yes we can," transformative rhetoric,
+            morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.15, class: 0.2, ideological: 0.4, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
             name: "McCain",
@@ -1110,7 +1167,8 @@ const election2008 = {
             TRB: 3, // Mixed - war hero identity + Palin complicated it
             ENG: 5, // Career senator, war hero - deeply engaged
             EPS: 1, // Institutionalist - Senate creature
-            AES: 3, // Authentic - straight talk, personal honor
+            AES: 3, // Authentic - straight talk, personal honor,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
         },
     ],
 };
@@ -1146,7 +1204,9 @@ const election2012 = {
             TRB: 3, // Coalition politics
             ENG: 5, // Maximum engagement - incumbent running
             EPS: 0, // Empiricist - data-driven governance
-            AES: 0, // Statesman - presidential, above the fray
+            AES: 0, // Statesman - presidential, above the fray,
+            morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.25, religious: 0.15, class: 0.3, ideological: 0.45, gender: 0.15, political_tribe: 0.55 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
             name: "Romney",
@@ -1168,7 +1228,9 @@ const election2012 = {
             TRB: 3, // Moderate tribal - business class
             ENG: 4, // Engaged - but projected competent manager
             EPS: 0, // Empiricist - consulting/business background
-            AES: 1, // Technocrat - business turnaround specialist
+            AES: 1, // Technocrat - business turnaround specialist,
+            morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            morMembership: { ethnic_racial: "white", religious: "Mormon", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
 };
@@ -1199,7 +1261,9 @@ const election2016 = {
             TRB: 5, // Maximum tribal - MAGA movement
             ENG: 5, // Maximum engagement - rallies, constant media
             EPS: 3, // Intuitionist - gut instinct, "I have a feeling"
-            AES: 4, // Fighter - "counterpuncher," combative, dominant
+            AES: 4, // Fighter - "counterpuncher," combative, dominant,
+            morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.2, class: 0.15, ideological: 0.4, gender: 0.2, political_tribe: 0.85 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
             // H. Clinton 2016 — MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-
@@ -1224,7 +1288,9 @@ const election2016 = {
             TRB: 3, // Moderate tribal - broad coalition
             ENG: 5, // Career politician - maximum engagement
             EPS: 0, // Empiricist - policy wonk, detailed plans
-            AES: 0, // Statesman - projected competence, gravitas
+            AES: 0, // Statesman - projected competence, gravitas,
+            morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.3, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.5, political_tribe: 0.7 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" },
         },
         {
             name: "Johnson",
@@ -1243,7 +1309,8 @@ const election2016 = {
             TRB: 1, // Anti-tribal - individualist, anti-identity politics
             ENG: 2, // Low engagement - "what is Aleppo?", barely campaigned seriously
             EPS: 0, // Empiricist - pragmatic, evidence-based governor
-            AES: 3, // Authentic - unpolished, mountain climber, casual
+            AES: 3, // Authentic - unpolished, mountain climber, casual,
+            morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 0.5 },
         },
     ],
 };
@@ -1274,7 +1341,9 @@ const election2020 = {
             TRB: 2, // Low tribal - broad unity appeal, "president for all Americans"
             ENG: 4, // Engaged - but projected calm
             EPS: 1, // Institutionalist - "trust the institutions"
-            AES: 2, // Pastoral - "Scranton Joe," empathy, personal loss
+            AES: 2, // Pastoral - "Scranton Joe," empathy, personal loss,
+            morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.2, religious: 0.2, class: 0.3, ideological: 0.4, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "white", religious: "Catholic", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
             name: "Trump",
@@ -1293,7 +1362,9 @@ const election2020 = {
             TRB: 5, // Maximum tribal - MAGA intensified
             ENG: 5, // Maximum engagement
             EPS: 3, // Intuitionist - gut politics
-            AES: 4, // Fighter - "counterpuncher," grievance
+            AES: 4, // Fighter - "counterpuncher," grievance,
+            morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.25, class: 0.15, ideological: 0.45, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
 };
@@ -1324,7 +1395,9 @@ const election2024 = {
             TRB: 5, // Maximum tribal
             ENG: 5, // Maximum engagement
             EPS: 3, // Intuitionist
-            AES: 4, // Fighter - "I am your retribution"
+            AES: 4, // Fighter - "I am your retribution",
+            morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.3, class: 0.2, ideological: 0.5, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+            morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
             name: "Harris",
@@ -1343,7 +1416,9 @@ const election2024 = {
             TRB: 3, // Coalition Democratic identity without maximum tribal appeal
             ENG: 5, // Maximum engagement
             EPS: 1, // Institutionalist - prosecutor, DA, AG
-            AES: 1, // Technocrat - policy-focused
+            AES: 1, // Technocrat - policy-focused,
+            morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.4, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.45, political_tribe: 0.65 }, intensity: 2.5 },
+            morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" },
         },
     ],
 };

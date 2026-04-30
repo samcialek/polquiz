@@ -28,6 +28,38 @@ export interface CandidateProfile {
     ENG: number;
     EPS: number;
     AES: number;
+    /**
+     * Compound moral-circle module per ADR-006 (added in PR 6.D as additive).
+     * The boundary vector encodes the candidate's POLITICAL-COALITION appeal
+     * (which identity-political boundaries their campaign organized around),
+     * not their personal demographic. Optional during the additive transition;
+     * the engine cutover in PR 6.E will read this. Currently unused.
+     */
+    morBoundaries?: {
+        boundaries: {
+            national: number;
+            ethnic_racial: number;
+            religious: number;
+            class: number;
+            ideological: number;
+            gender: number;
+            political_tribe: number;
+        };
+        intensity: number;
+    };
+    /**
+     * Optional self-reported group membership per ADR-006. For candidates,
+     * this captures the candidate's demographic identity (used by Layer 2
+     * lock-and-key in respondentVoteChoice.ts after PR 6.E cutover).
+     * `null` indicates ambiguous / not coded.
+     */
+    morMembership?: {
+        ethnic_racial?: string | null;
+        religious?: string | null;
+        class?: string | null;
+        gender?: string | null;
+        political_tribe?: string | null;
+    };
 }
 export interface Election {
     year: number;
