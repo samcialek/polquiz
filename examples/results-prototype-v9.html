@@ -247,12 +247,27 @@
         opacity: 1 !important; transform: none !important; transition: none !important;
       }
     }
-    /* v9 cinematic intro: archetype card collapses to zero height during the
-       election grid reveal, then expands once all rows have landed. The grid
-       sits at the top of the viewport during the cascade because there's no
-       archetype card above it taking layout space. */
-    #archetype-section { transition: max-height 0.95s cubic-bezier(0.2, 0.85, 0.25, 1), padding-top 0.95s cubic-bezier(0.2, 0.85, 0.25, 1), padding-bottom 0.95s cubic-bezier(0.2, 0.85, 0.25, 1), border-top-width 0.95s, border-bottom-width 0.95s, opacity 0.7s 0.2s cubic-bezier(0.2, 0.85, 0.25, 1); max-height: 700px; overflow: hidden; }
-    #archetype-section.cine-collapsed { max-height: 0; padding-top: 0; padding-bottom: 0; border-top-width: 0; border-bottom-width: 0; opacity: 0; }
+    /* v9 cinematic intro. Archetype, map, and profile sections all start
+       collapsed (max-height 0, padding/border/opacity zeroed). The election
+       grid is the only thing visible during the row cascade — page below
+       it is genuinely blank. Sections expand in sequence afterward. */
+    #archetype-section, #map-section, #profile-section {
+      transition: max-height 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  padding-top 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  padding-bottom 0.95s cubic-bezier(0.2, 0.85, 0.25, 1),
+                  border-top-width 0.95s, border-bottom-width 0.95s,
+                  opacity 0.7s cubic-bezier(0.2, 0.85, 0.25, 1);
+      overflow: hidden;
+    }
+    #archetype-section { max-height: 800px; }
+    #map-section { max-height: 1500px; }
+    #profile-section { max-height: 4500px; }
+    #archetype-section.cine-collapsed,
+    #map-section.cine-collapsed,
+    #profile-section.cine-collapsed {
+      max-height: 0; padding-top: 0; padding-bottom: 0;
+      border-top-width: 0; border-bottom-width: 0; opacity: 0;
+    }
     /* Within the archetype card, stage the inner reveal: badges + name first
        (when expansion is mostly done), description word-by-word after.
        Inner pieces start at opacity 0 and fade in one by one. */
@@ -266,6 +281,8 @@
     .desc-word.shown { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       #archetype-section, #archetype-section.cine-collapsed,
+      #map-section, #map-section.cine-collapsed,
+      #profile-section, #profile-section.cine-collapsed,
       .archetype-section-piece, .desc-word {
         max-height: none !important; opacity: 1 !important; transform: none !important; transition: none !important;
       }
@@ -548,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 
 <!-- SECTION 3 -->
-<section id="map-section" class="reveal">
+<section id="map-section" class="cine-collapsed">
   <div class="container">
     <div class="section-label">World Alignment Map</div>
     <div id="closest-match-note-map" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:0 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
@@ -571,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 
 <!-- SECTION 4 -->
-<section id="profile-section" class="reveal">
+<section id="profile-section" class="cine-collapsed">
   <div class="container">
     <div class="section-label">Your Profile · By Cluster Emphasis</div>
     <div class="profile-explain">Each of the four cells is one PRISM cluster. <strong>Cell width</strong> within its row is proportional to how much you emphasize that cluster — a cluster you weight heavily occupies more horizontal space than one you barely register.</div>
@@ -2434,9 +2451,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
       }, 4400);
 
+      // Phase 5: after the description finishes, map-section expands.
+      // Description: ~50 words × 22ms = 1100ms + 450ms transition = ~1550ms.
+      // Add a 200ms breath. So map starts at ~4400 + 1550 + 200 = 6150ms.
+      const mapSection = document.getElementById('map-section');
+      setTimeout(() => {
+        if (mapSection) mapSection.classList.remove('cine-collapsed');
+        // The d3 map was first rendered while map-section was collapsed (0 height),
+        // so the projection used wrong dimensions. Trigger a resize to redraw
+        // with the proper container size after expansion completes.
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 1000);
+      }, 6150);
+
+      // Phase 6: after map expands (~0.95s) plus a small breath, profile expands.
+      const profileSection = document.getElementById('profile-section');
+      setTimeout(() => {
+        if (profileSection) profileSection.classList.remove('cine-collapsed');
+      }, 7250);
+
       // Reduced-motion fast path: skip stages, just show everything.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         if (archCard) archCard.classList.remove('cine-collapsed');
+        if (mapSection) mapSection.classList.remove('cine-collapsed');
+        if (profileSection) profileSection.classList.remove('cine-collapsed');
         electionsGrid.classList.add('visible');
         if (archCard) archCard.querySelectorAll('.archetype-section-piece').forEach(p => p.classList.add('shown'));
         if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
