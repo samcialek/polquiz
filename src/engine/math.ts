@@ -107,8 +107,10 @@ export function morBoundariesFromVector(v: ArrayLike<number>): MorBoundaries {
  * updates from question evidence move boundaries toward their true value
  * over the course of the quiz.
  *
- * Intensity starts at 0 (no activation evidence yet) and only ratchets
- * upward via `bumpMorIntensity` calls.
+ * Intensity starts at 0 (no activation evidence yet) and is updated by
+ * `bumpMorIntensity` via the same convex-mix rule as boundaries — it can
+ * move both up (toward high-activation targets like 2.5..3) and down
+ * (toward low-activation targets like 0..1) as evidence accumulates.
  */
 export function mkInitialMorBoundaries(): MorBoundariesNodeState {
   return {

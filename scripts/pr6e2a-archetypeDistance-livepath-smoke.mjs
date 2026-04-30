@@ -2,13 +2,13 @@
 //
 // The synthetic smoke (pr6e2a-archetypeDistance-smoke.mjs) builds a
 // respondent state that already carries `morBoundaries`, so it only
-// exercises the new module branch. This smoke uses the live browser/API
-// initialization shape (mirrors `src/browser/api.ts createInitialState`,
-// which does NOT populate morBoundaries today — that wiring lands in
-// 6.E.2b/6.F). It proves the per-archetype gate falls back to the legacy
-// MOR/TRB/PF reads when state.morBoundaries is absent, so the
-// moral-circle/TRB/PF contribution is not silently dropped during the
-// multi-PR cutover.
+// exercises the new module branch. This smoke deliberately constructs a
+// state that OMITS `morBoundaries` to keep enforcing the per-archetype
+// gate's legacy fallback — even after 6.E.2b made `api.ts` initialize
+// the field, any caller that builds RespondentState by hand (legacy
+// dumps, external integrations, future codepaths) must still produce
+// finite, well-spread distances rather than silently dropping the
+// moral-circle/TRB/PF contribution.
 //
 // Verifies:
 //   1. Distances compute over all 121 active archetypes without throwing
@@ -65,7 +65,10 @@ function createLiveInitialState() {
       touches: 0,
     },
     archetypeDistances: {},
-    // morBoundaries deliberately omitted — matches live api.ts today.
+    // morBoundaries deliberately omitted to exercise the per-archetype
+    // gate's legacy-fallback branch (see file header). Live api.ts has
+    // initialized morBoundaries since 6.E.2b — this smoke covers callers
+    // that don't.
   };
 }
 
@@ -75,7 +78,7 @@ const active = ARCHETYPES.filter(a => a.active !== false);
 console.log("=== Test 1: live-init state (no morBoundaries) → legacy fallback ===");
 const liveState = createLiveInitialState();
 console.log(`  state.morBoundaries === undefined: ${liveState.morBoundaries === undefined}`);
-assert("live state has no morBoundaries (matches api.ts today)", liveState.morBoundaries === undefined);
+assert("synthetic state has no morBoundaries (forces legacy-fallback branch)", liveState.morBoundaries === undefined);
 
 let nan = 0, neg = 0, exc = 0;
 const liveDistances = [];
