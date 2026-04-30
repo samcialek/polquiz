@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISM Results · Prototype (Cluster Reorg + MOR Sunburst)</title>
+  <title>PRISM Results · Prototype</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script src="../share-codec.js"></script>
@@ -19,24 +19,17 @@
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     #loading { text-align: center; padding: 4rem; font-size: 1.2rem; }
 
-    /* PROTOTYPE: 1947 UN-textbook overlay — serif headings, hairline rules,
-       small caps with wide letterspacing, Roman-numeral plate labels. */
-    body { background: #fbf7ec; }
-    :root { --cream: #fbf7ec; }
-
     /* SECTION 1: ARCHETYPE */
-    #archetype-section { padding: 2.5rem 0 2rem; border-top: 4px double var(--ink); border-bottom: 1px solid var(--ink); }
-    .tier-badge { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; background: transparent; color: var(--ink); border: 1px solid var(--ink); padding: 0.25rem 0.7rem; margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
-    .archetype-number { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: #555; letter-spacing: 0.18em; margin-bottom: 0.5rem; }
-    .archetype-name { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.01em; }
-    .archetype-desc { font-size: 0.92rem; line-height: 1.75; max-width: 720px; color: #2a2a2a; font-family: 'IBM Plex Mono', monospace; }
-    .archetype-desc::first-letter { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2.6rem; float: left; line-height: 0.9; padding-right: 0.45rem; padding-top: 0.3rem; }
+    #archetype-section { padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--ink); }
+    .tier-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--flesh); color: var(--ink); padding: 0.25rem 0.7rem; margin-bottom: 0.75rem; }
+    .archetype-number { font-size: 0.75rem; color: #888; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .archetype-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .archetype-desc { font-size: 0.9rem; line-height: 1.7; max-width: 720px; color: #444; }
 
     /* SECTION 2: ELECTIONS */
-    #elections-section { padding: 2rem 0; border-bottom: 1px solid var(--ink); }
+    #elections-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
     #elections-section .container { max-width: 100%; padding: 0 1rem; }
-    .section-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: #2a2a2a; margin-bottom: 1.25rem; }
-    .section-label::before { content: ''; display: inline-block; width: 18px; height: 1px; background: #2a2a2a; margin-right: 0.6rem; vertical-align: middle; }
+    .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.25rem; }
     .elections-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; margin-bottom: 1.25rem; }
     .election-cell { padding: 4px 6px 4px 68px; line-height: 1.15; border: 1px solid rgba(0,0,0,0.08); transition: transform 0.1s; cursor: default; display: flex; align-items: center; min-height: 79px; overflow: hidden; position: relative; }
     .election-cell:hover { transform: scale(1.08); z-index: 2; box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
@@ -166,30 +159,31 @@
     #profile-section { padding: 2rem 0 2.5rem; }
     #profile-section .container { max-width: 100%; padding: 0 0.5rem; }
     .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.55); border-radius: 0; margin: -0.75px; }
-    /* UN-textbook overlay: serif headers, small caps, hairline rules. */
-    .cluster-title { font-family: 'Playfair Display', 'Times New Roman', serif; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.22em; color: #2a2a2a; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.55); font-style: italic; }
-    .cluster-title::before { content: ''; display: inline-block; width: 14px; height: 1px; background: #2a2a2a; margin-right: 0.6rem; vertical-align: middle; }
+    .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
+    .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.12em; color: #333; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
     .profile-explain { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: #333; margin: 0.25rem 0 1.5rem; line-height: 1.55; max-width: 1100px; }
     .node-row { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 1.25rem; margin-bottom: 1.4rem; cursor: help; }
     .node-row:last-child { margin-bottom: 0; }
     .node-bar-wrap { width: 100%; }
     .node-bar { height: 20px; background: #eee; position: relative; border: 1px solid #999; display: flex; border-radius: 3px; }
     .node-bar-segment { height: 100%; transition: width 0.3s; border-radius: 3px 0 0 3px; }
-    /* 50% interquartile band as black polka dots scattered across the band. */
+    .node-bar-ci { position: absolute; top: 0; height: 100%; opacity: 0.32; pointer-events: none; transition: left 0.3s, width 0.3s; }
+    /* PROTOTYPE: 50% interquartile band as black polka dots scattered across
+       the band width — replaces the prior translucent color overlay. */
     .node-bar-ci-dots { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
     .node-bar-ci-dots .ci-dot { position: absolute; top: 50%; width: 5px; height: 5px; background: var(--ink); border-radius: 50%; transform: translate(-50%, -50%); }
     .node-bar-marker { position: absolute; top: -4px; width: 4px; height: 28px; background: var(--ink); border: 1px solid var(--ink); transform: translateX(-50%); border-radius: 1px; z-index: 2; }
-    /* Moral Circle sunburst container. */
-    .moral-circle-section { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.4); }
-    .moral-circle-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: #2a2a2a; margin-bottom: 0.4rem; }
-    .moral-circle-tagline { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: #555; margin-bottom: 1rem; }
-    .moral-circle-svg-wrap { display: flex; justify-content: center; padding: 0.5rem 0 1rem; }
+    /* Moral Circle 7-category sunburst — uses the live page's font stack
+       (Space Grotesk / IBM Plex Mono) so it matches the rest of the profile. */
+    .moral-circle-section { margin-top: 1.25rem; padding-top: 1rem; border-top: 1.5px solid rgba(0,0,0,0.08); }
+    .moral-circle-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 0.35rem; }
+    .moral-circle-tagline { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #555; margin-bottom: 0.9rem; line-height: 1.55; }
+    .moral-circle-svg-wrap { display: flex; justify-content: center; padding: 0.4rem 0 0.6rem; }
     .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
-    .moral-circle-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; font-size: 0.74rem; color: #444; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.15); margin-top: 0.5rem; }
-    .moral-circle-legend .leg { display: inline-flex; align-items: center; gap: 0.4rem; }
-    .moral-circle-legend .swatch { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .moral-circle-legend .leg-pos { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+    .moral-circle-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; color: #444; padding-top: 0.6rem; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 0.4rem; }
+    .moral-circle-legend .leg { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .moral-circle-legend .swatch { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .moral-circle-legend .leg-pos { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; }
     .node-labels { display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #333; margin-top: 0.4rem; font-weight: 500; }
     .node-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); text-align: center; }
     @media (max-width: 700px) {
@@ -613,11 +607,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return photoMap[name] || null;
   }
 
-  // Node display config — PROTOTYPE cluster reorganization:
+  // Node display config — PROTOTYPE cluster reorg.
   //   ENDS:    MAT, CD, CU                    (MOR moved to SELF)
-  //   MEANS:   PRO, COM, ONT_S                (ONT_S moved here from REALITY; AES sits with the categorical EPS/AES below)
-  //   REALITY: ZS, ONT_H                      (EPS moved here from MEANS; rendered with categorical EPS/AES below)
-  //   SELF:    MOR (7-category sunburst), ENG (PF + TRB collapsed into MOR.salience per category)
+  //   MEANS:   PRO, COM, ONT_S + AES          (ONT_S in from REALITY)
+  //   REALITY: ZS, ONT_H + EPS                (EPS in from MEANS)
+  //   SELF:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
   const nodeLabels = {
     MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
     CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
@@ -627,8 +621,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ONT_S: { name: 'Institutional Effectiveness', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'MEANS' },
     ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
     ONT_H: { name: 'Human Malleability', low1: 'Character is fixed', high5: 'Character is shaped by environment', cluster: 'REALITY' },
-    // MOR is rendered as a 7-category sunburst, not a 1-D bar — see SELF section.
-    // PF and TRB are collapsed into MOR.salience per category.
     ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'SELF' },
   };
   const clusterColors = { ENDS: '#E8A87C', MEANS: '#7EC8C8', REALITY: '#C5A3CF', SELF: '#F4B9B2' };
@@ -1535,10 +1527,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ========== MORAL CIRCLE SUNBURST (PROTOTYPE) ==========
-    // 7-category radial chart for the new MOR node. Each category has its own
-    // (position, salience): position = % in-group inclusion, salience = how
-    // tribally that boundary is held. 50% ring is the in-group boundary —
-    // wedges spike past it for >50%, stay within for <50%. Saturation = salience.
+    // 7 categories. Each carries (position 0–100, salience 0–3). 50% ring is
+    // the in-group/out-group boundary; wedges past it are "in", within are "out".
+    // Saturation = salience.
     const MORAL_CIRCLE_CATEGORIES = [
       { key: 'national',        label: 'National',        color: '#cc7722' },
       { key: 'ethnic_racial',   label: 'Ethnic / Racial', color: '#b8002b' },
@@ -1548,9 +1539,6 @@ document.addEventListener('DOMContentLoaded', () => {
       { key: 'gender',          label: 'Gender',          color: '#fa8072' },
       { key: 'political_tribe', label: 'Political Tribe', color: '#6A0DAD' },
     ];
-
-    // Hardcoded sample data — would come from per-respondent state in a real run.
-    // Default applies to any archetype not explicitly sampled.
     const MORAL_CIRCLE_SAMPLES = {
       '056': { national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.4}, gender:{position:85,salience:1.8}, political_tribe:{position:30,salience:2.6} },
       '011': { national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:20,salience:3.0}, gender:{position:90,salience:2.4}, political_tribe:{position:80,salience:2.8} },
@@ -1566,7 +1554,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const title = document.createElement('div');
       title.className = 'moral-circle-title';
-      title.textContent = '— Moral Circle ·  Plate I';
+      title.textContent = 'Moral Circle';
       wrap.appendChild(title);
 
       const tagline = document.createElement('div');
@@ -1578,7 +1566,6 @@ document.addEventListener('DOMContentLoaded', () => {
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(ns, 'svg');
-      // ViewBox padded so labels never clip.
       svg.setAttribute('viewBox', '-260 -240 520 480');
       svg.setAttribute('width', '480');
       svg.setAttribute('height', '440');
@@ -1587,13 +1574,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const N = MORAL_CIRCLE_CATEGORIES.length;
       const TWO_PI = Math.PI * 2;
       const ANGLE_STEP = TWO_PI / N;
-      const R50 = 105;   // 50% ring radius
-      const OUTER = 210; // hard ceiling for position=100 spike
+      const R50 = 105;
+      const OUTER = 210;
       function angleForIndex(i) { return -Math.PI / 2 + i * ANGLE_STEP; }
       function polar(r, theta) { return { x: r * Math.cos(theta), y: r * Math.sin(theta) }; }
       function salToOpacity(sal) { return 0.18 + (Math.min(3, Math.max(0, sal)) / 3) * 0.77; }
 
-      // Reference rings — 25 / 50 / 75 / 100 with 50 emphasized (dashed).
       [0.25, 0.5, 0.75, 1.0].forEach(p => {
         const r = R50 * (p / 0.5);
         const c = document.createElementNS(ns, 'circle');
@@ -1612,7 +1598,6 @@ document.addEventListener('DOMContentLoaded', () => {
         svg.appendChild(c);
       });
 
-      // Wedge separators between sections.
       for (let i = 0; i < N; i++) {
         const a = angleForIndex(i) - ANGLE_STEP / 2;
         const p = polar(OUTER * 0.97, a);
@@ -1623,7 +1608,6 @@ document.addEventListener('DOMContentLoaded', () => {
         svg.appendChild(line);
       }
 
-      // 7 wedges.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
         const angCenter = angleForIndex(i);
@@ -1644,20 +1628,18 @@ document.addEventListener('DOMContentLoaded', () => {
         svg.appendChild(path);
       });
 
-      // 50% ring on top.
       const ring = document.createElementNS(ns, 'circle');
       ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
       ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#1a1a1a');
       ring.setAttribute('stroke-width', 1); ring.setAttribute('stroke-dasharray', '3 3'); ring.setAttribute('opacity', 0.55);
       svg.appendChild(ring);
 
-      // Labels — placed past OUTER with quadrant-aware text-anchor + dy.
+      // Labels — Space Grotesk to match the live profile section.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
         const ang = angleForIndex(i);
         const labelR = OUTER + 18;
         const lp = polar(labelR, ang);
-        // Choose text-anchor by horizontal position relative to center.
         let anchor = 'middle';
         if (lp.x > 30) anchor = 'start';
         else if (lp.x < -30) anchor = 'end';
@@ -1666,10 +1648,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const t = document.createElementNS(ns, 'text');
         t.setAttribute('x', lp.x.toFixed(2));
         t.setAttribute('y', lp.y.toFixed(2));
-        t.setAttribute('font-family', "'Playfair Display', serif");
-        t.setAttribute('font-style', 'italic');
+        t.setAttribute('font-family', "'Space Grotesk', sans-serif");
         t.setAttribute('font-size', '12');
-        t.setAttribute('fill', '#2a2a2a');
+        t.setAttribute('font-weight', '600');
+        t.setAttribute('fill', '#1a1a1a');
         t.setAttribute('text-anchor', anchor);
         t.setAttribute('dy', dy);
         t.textContent = cat.label;
@@ -1691,7 +1673,6 @@ document.addEventListener('DOMContentLoaded', () => {
       svgWrap.appendChild(svg);
       wrap.appendChild(svgWrap);
 
-      // Legend underneath.
       const legend = document.createElement('div');
       legend.className = 'moral-circle-legend';
       MORAL_CIRCLE_CATEGORIES.forEach(cat => {
@@ -1713,12 +1694,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const nodeData = {};
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
     const SELF_CODES = ['ENG'];
-    // 50% interquartile bands now appear on every continuous node, not just ENDS.
+    // 50% interquartile bands now appear on every continuous node.
     const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','SELF']);
 
     // 50% credible interval (interquartile, 25%–75%) from a 5-bucket pmf.
-    // Each bucket is unit-width, centered on integer positions 1..5; CDF is
-    // linearly interpolated on the half-integers, returns bounds clamped to [1, 5].
     function posDistQuantiles(posDist) {
       const anchors = [{ x: 0.5, F: 0 }];
       let cum = 0;
@@ -1758,31 +1737,25 @@ document.addEventListener('DOMContentLoaded', () => {
         sal = isSelf ? (pos - 1) / 4 : (arcNode.sal || 0) / 3;
       }
       const pos10 = (pos - 1) * 2.25 + 1;
-      // Posterior 90% CI on the position axis, mapped to the 1-10 display scale.
-      // 50% interquartile band on the 1-10 display scale. For respondent runs
-      // we have a real posDist; for archetype-centroid demos we synthesize a
-      // narrow Gaussian-like pmf around the centroid pos so the band still
-      // appears (uncertainty is illustrative, not statistically meaningful).
-      let ci10 = null;
+      // 50% interquartile band on the 1–10 display scale. For respondent runs
+      // we have a real posDist; for archetype-centroid demos, synthesize a
+      // narrow Gaussian-like pmf around the centroid pos so the polka-dot band
+      // still appears (illustrative, not statistically meaningful).
       let posDist = null;
       if (respCont && Array.isArray(respCont.posDist) && respCont.posDist.length === 5) {
         posDist = respCont.posDist;
       } else {
-        // Synthetic pmf: peak at floor/ceil of pos, mass leaking ±1 buckets.
-        // Width scales loosely inverse to salience so high-sal nodes look more
-        // pinned, low-sal nodes look fuzzier.
         const center = Math.max(1, Math.min(5, pos));
         const width = 0.6 - 0.25 * Math.min(1, sal);
         posDist = [0,0,0,0,0];
         for (let i = 0; i < 5; i++) {
-          const x = i + 1;
-          posDist[i] = Math.exp(-Math.pow(x - center, 2) / (2 * width * width));
+          posDist[i] = Math.exp(-Math.pow((i + 1) - center, 2) / (2 * width * width));
         }
         const total = posDist.reduce((s, v) => s + v, 0);
         posDist = posDist.map(v => v / total);
       }
       const [lo5, hi5] = posDistQuantiles(posDist);
-      ci10 = [(lo5 - 1) * 2.25 + 1, (hi5 - 1) * 2.25 + 1];
+      const ci10 = [(lo5 - 1) * 2.25 + 1, (hi5 - 1) * 2.25 + 1];
       nodeData[code] = { pos10, sal, cluster: nodeLabels[code].cluster, isSelf, ci10 };
     });
 
@@ -1863,9 +1836,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const neutralStyle = 'font-weight:600;color:#555;font-size:0.95rem;';
           const finalLowStyle = (lowActive || highActive) ? lowStyle : neutralStyle;
           const finalHighStyle = (lowActive || highActive) ? highStyle : neutralStyle;
-          // 50% interquartile band rendered as 5 black polka dots scattered
-          // across the band width. Replaces the prior translucent overlay
-          // bar so the uncertainty signal is decoupled from the cluster color.
+          // PROTOTYPE: 50% interquartile band rendered as 5 black polka dots
+          // scattered across the band width.
           let ciHtml = '';
           if (d.ci && CI_CLUSTERS.has(d.cluster)) {
             const ciLoPct = ((d.ci[0] - 1) / 9) * 100;
@@ -1895,9 +1867,7 @@ document.addEventListener('DOMContentLoaded', () => {
         block.appendChild(row);
       });
 
-      // PROTOTYPE: AES stays in MEANS, EPS moved to REALITY.
-      // MOR rendered as 7-category sunburst under SELF (separate render path
-      // below — not in this categorical-node loop).
+      // PROTOTYPE: AES stays in MEANS, EPS moves to REALITY.
       const catNodesForCluster = clusterName === 'MEANS'
         ? [{ code: 'AES', name: 'Aesthetics', categories: aesCategories }]
         : clusterName === 'REALITY'
