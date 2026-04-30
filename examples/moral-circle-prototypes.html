@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moral Circle Radial — 4 Prototypes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pool: #d1f6ff; --pool-deep: #89ccf0; --flesh: #fa8072;
+      --cream: #FFFEF8; --ink: #1a1a1a;
+      --self-purple: #6A0DAD; --self-purple-soft: #c8a2e0;
+      --ends-color: #d1f6ff; --means-color: #89ccf0; --reality-color: #fa8072; --self-color: #c8a2e0;
+    }
+    html, body { background: var(--cream); font-family: 'IBM Plex Mono', monospace; color: var(--ink); line-height: 1.5; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+
+    header.page-head { padding: 3rem 0 1.5rem; border-bottom: 2px solid var(--ink); }
+    .eyebrow { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #888; margin-bottom: 0.6rem; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+    .lede { font-size: 0.92rem; line-height: 1.65; max-width: 780px; color: #444; }
+    .lede strong { color: var(--ink); }
+
+    /* Cluster diagram */
+    section.cluster-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
+    .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.25rem; }
+    .clusters-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .cluster-card { padding: 1.25rem 1rem; border: 1.5px solid var(--ink); }
+    .cluster-card.ends { background: var(--ends-color); }
+    .cluster-card.means { background: var(--means-color); }
+    .cluster-card.reality { background: var(--reality-color); }
+    .cluster-card.self { background: var(--self-color); }
+    .cluster-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+    .cluster-nodes { font-size: 0.78rem; line-height: 1.7; color: #1a1a1a; }
+    .cluster-nodes .node-changed { font-weight: 700; }
+    .cluster-nodes .node-new { background: rgba(255,255,255,0.55); padding: 0 4px; font-weight: 700; }
+    .cluster-arrows { font-size: 0.72rem; color: #555; margin-top: 1rem; line-height: 1.7; }
+
+    /* Prototype grid */
+    section.prototypes { padding: 2.5rem 0 4rem; }
+    .proto-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .proto { background: #fff; border: 1.5px solid var(--ink); padding: 1.5rem 1.5rem 1.25rem; }
+    .proto-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; background: var(--self-purple); color: #fff; padding: 0.2rem 0.6rem; margin-bottom: 0.7rem; }
+    .proto-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+    .proto-tagline { font-size: 0.78rem; color: #666; margin-bottom: 1rem; }
+    .svg-wrap { display: flex; justify-content: center; padding: 1rem 0; }
+    .svg-wrap svg { max-width: 100%; height: auto; }
+    .proto-notes { font-size: 0.78rem; color: #444; line-height: 1.65; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+    .proto-notes strong { color: var(--ink); }
+
+    /* SVG common styling */
+    .ring-50 { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.45; }
+    .ring-grid { fill: none; stroke: var(--ink); stroke-width: 0.5; opacity: 0.18; }
+    .axis-line { stroke: var(--ink); stroke-width: 0.5; opacity: 0.25; }
+    .label-text { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
+    .label-text-small { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #555; text-anchor: middle; }
+    .pos-pct { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; }
+
+    .legend-row { display: flex; flex-wrap: wrap; gap: 1.25rem; padding: 1rem 0 0; font-size: 0.74rem; color: #555; }
+    .legend-row .leg { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .legend-row .swatch { width: 11px; height: 11px; border-radius: 50%; }
+
+    /* Sample selector */
+    .sample-row { display: flex; gap: 0.5rem; flex-wrap: wrap; padding: 0.5rem 0 1.5rem; align-items: center; }
+    .sample-row > span { font-size: 0.72rem; color: #666; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 0.4rem; }
+    .sample-btn { font-family: inherit; font-size: 0.78rem; padding: 0.35rem 0.85rem; border: 1.5px solid var(--ink); background: #fff; cursor: pointer; transition: background 0.15s; }
+    .sample-btn:hover { background: #f0f0eb; }
+    .sample-btn.active { background: var(--self-purple); color: #fff; }
+
+    @media (max-width: 760px) {
+      .proto-grid { grid-template-columns: 1fr; }
+      .clusters-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header class="page-head">
+  <div class="eyebrow">PRISM · prototype · moral circle radial</div>
+  <h1>Moral Circle as a 7-Section Radial</h1>
+  <p class="lede">
+    <strong>Premise.</strong> Collapse <em>Partisan Fusion</em> and <em>Tribalism</em> into a single richer <strong>Moral Circle</strong> node with seven sub-categories. Each sub-category has its own <strong>position</strong> (how much you treat that group as your in-group, 0–100%) and <strong>salience</strong> (how tribally you hold it, 0–3). The 7 categories: <em>national, ethnic / racial, religious, class, ideological, gender, political tribe</em>.
+  </p>
+  <p class="lede" style="margin-top: 0.8rem;">
+    <strong>Visual rule.</strong> The 50% ring is the boundary between in-group and out-group. Sections at &gt;50% spike out beyond the ring; sections at &lt;50% stay within. Salience controls visual weight (saturation, thickness, or vertex size depending on the prototype).
+  </p>
+</header>
+
+<section class="cluster-section">
+  <div class="section-label">Proposed cluster reorganization (with this change)</div>
+  <div class="clusters-row">
+    <div class="cluster-card ends">
+      <div class="cluster-name">ENDS · what you want</div>
+      <div class="cluster-nodes">
+        MAT · Material<br>
+        CD · Cultural Direction<br>
+        CU · Cultural Uniformity<br>
+        <span style="color:#777;text-decoration:line-through;">MOR · Moral Circle</span> <span style="font-size:0.7rem;color:#555;">→ moves to SELF</span>
+      </div>
+    </div>
+    <div class="cluster-card means">
+      <div class="cluster-name">MEANS · how you pursue</div>
+      <div class="cluster-nodes">
+        PRO · Proceduralism<br>
+        AES · Aesthetic Style<br>
+        COM · Compromise Tolerance<br>
+        <span class="node-new">ONT_S · Institutional Effectiveness</span> <span style="font-size:0.7rem;color:#555;">← from REALITY</span>
+      </div>
+    </div>
+    <div class="cluster-card reality">
+      <div class="cluster-name">REALITY · how you see</div>
+      <div class="cluster-nodes">
+        ZS · Zero-Sum<br>
+        ONT_H · Human Malleability<br>
+        <span class="node-new">EPS · Epistemic Style</span> <span style="font-size:0.7rem;color:#555;">← from MEANS</span>
+      </div>
+    </div>
+    <div class="cluster-card self">
+      <div class="cluster-name">SELF · your identity</div>
+      <div class="cluster-nodes">
+        <span class="node-new">MOR · Moral Circle (7 sub-categories)</span> <span style="font-size:0.7rem;color:#555;">← from ENDS, absorbs PF + TRB</span><br>
+        ENG · Engagement<br>
+        <span style="color:#777;text-decoration:line-through;">PF · Political Fusion</span> <span style="font-size:0.7rem;color:#555;">→ collapsed into MOR.salience</span><br>
+        <span style="color:#777;text-decoration:line-through;">TRB · Tribe</span> <span style="font-size:0.7rem;color:#555;">→ collapsed into MOR.salience (per-category)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prototypes">
+  <div class="section-label">Four visualization prototypes · same data, different shape</div>
+
+  <div class="sample-row">
+    <span>Sample respondent:</span>
+    <button class="sample-btn active" data-sample="institutional-leftist">Institutional Leftist (056)</button>
+    <button class="sample-btn" data-sample="jacobin-egalitarian">Jacobin Egalitarian (011)</button>
+    <button class="sample-btn" data-sample="gentle-traditionalist">Gentle Traditionalist (088)</button>
+  </div>
+
+  <div class="proto-grid">
+    <div class="proto">
+      <span class="proto-tag">Prototype A</span>
+      <div class="proto-name">Sunburst Spike</div>
+      <div class="proto-tagline">Pie wedges that erupt past the 50% ring</div>
+      <div class="svg-wrap"><svg id="proto-a" width="420" height="420" viewBox="-220 -220 440 440"></svg></div>
+      <p class="proto-notes">
+        Each of 7 wedges fills its angular slice from center to its position. The dashed ring is 50%. Wedges with position &gt;50% extend past the ring; wedges &lt;50% stay inside. <strong>Salience drives saturation</strong> — high-salience wedges read as bold, low-salience as washed out. Compact and structural; reads at glance as "shape of who they include."
+      </p>
+    </div>
+
+    <div class="proto">
+      <span class="proto-tag">Prototype B</span>
+      <div class="proto-name">Radial Bars</div>
+      <div class="proto-tagline">Thin spokes whose thickness encodes salience</div>
+      <div class="svg-wrap"><svg id="proto-b" width="420" height="420" viewBox="-220 -220 440 440"></svg></div>
+      <p class="proto-notes">
+        Seven bars radiate from center. <strong>Length = position</strong>, <strong>thickness = salience</strong> (a thin wisp at sal=0, a chunky bar at sal=3). One color per category. Cleaner separation between adjacent categories than the wedge prototype; easier to read individual bars but loses the "filled territory" gestalt.
+      </p>
+    </div>
+
+    <div class="proto">
+      <span class="proto-tag">Prototype C</span>
+      <div class="proto-name">Spider Polygon</div>
+      <div class="proto-tagline">Connected vertices over a 50% reference ring</div>
+      <div class="svg-wrap"><svg id="proto-c" width="420" height="420" viewBox="-220 -220 440 440"></svg></div>
+      <p class="proto-notes">
+        Classic radar chart. Seven axes with 25/50/75% grid rings. Vertices placed at each category's position; the polygon connecting them is filled translucent. <strong>Vertex dot size = salience</strong>. Familiar to most readers (radar charts are widespread); shows the overall "shape" of someone's moral circle as a single connected form.
+      </p>
+    </div>
+
+    <div class="proto">
+      <span class="proto-tag">Prototype D</span>
+      <div class="proto-name">Petal Bloom</div>
+      <div class="proto-tagline">Teardrop petals; organic, less data-viz feel</div>
+      <div class="svg-wrap"><svg id="proto-d" width="420" height="420" viewBox="-220 -220 440 440"></svg></div>
+      <p class="proto-notes">
+        Each category is a teardrop petal. <strong>Length = position</strong>, <strong>base width = salience</strong>. Most aesthetic; reads as an organic bloom rather than an analytic chart. Trade-off: harder to compare individual values precisely, easier to remember as a visual signature.
+      </p>
+    </div>
+  </div>
+
+  <div class="legend-row" id="category-legend"></div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  // ──────────────────────────────────────────────
+  // Sample data — synthesized for three sample archetypes.
+  // position: 0–100 (% in-group inclusion). salience: 0–3 (tribal weight).
+  // ──────────────────────────────────────────────
+  const CATEGORIES = [
+    { key: 'national',        label: 'National',        color: '#cc7722' },
+    { key: 'ethnic_racial',   label: 'Ethnic / Racial', color: '#b8002b' },
+    { key: 'religious',       label: 'Religious',       color: '#daa520' },
+    { key: 'class',           label: 'Class',           color: '#2e8b57' },
+    { key: 'ideological',     label: 'Ideological',     color: '#3d8b8b' },
+    { key: 'gender',          label: 'Gender',          color: '#fa8072' },
+    { key: 'political_tribe', label: 'Political Tribe', color: '#6A0DAD' },
+  ];
+
+  const SAMPLES = {
+    'institutional-leftist': {
+      // 056 — anti-tribal, system-trusting, pluralist; ideological/political_tribe
+      // are recognized as salient axes but the position is low (out-group of
+      // ideologues/partisans is not collapsed into the in-group).
+      national:        { position: 60, salience: 0.8 },
+      ethnic_racial:   { position: 80, salience: 1.4 },
+      religious:       { position: 55, salience: 0.4 },
+      class:           { position: 65, salience: 1.2 },
+      ideological:     { position: 35, salience: 2.4 },
+      gender:          { position: 85, salience: 1.8 },
+      political_tribe: { position: 30, salience: 2.6 },
+    },
+    'jacobin-egalitarian': {
+      // 011 — radical egalitarian, zero-sum class struggle. Class circle wide
+      // open, ideological circle wide CLOSED (high salience, low position),
+      // political_tribe high both ways.
+      national:        { position: 35, salience: 1.6 },
+      ethnic_racial:   { position: 90, salience: 2.2 },
+      religious:       { position: 25, salience: 0.6 },
+      class:           { position: 95, salience: 3.0 },
+      ideological:     { position: 20, salience: 3.0 },
+      gender:          { position: 90, salience: 2.4 },
+      political_tribe: { position: 80, salience: 2.8 },
+    },
+    'gentle-traditionalist': {
+      // 088 — culturally conservative, low engagement; in-group is bounded by
+      // national / religious / ethnic; ideological and political_tribe low
+      // salience (he doesn't think in those terms).
+      national:        { position: 80, salience: 2.4 },
+      ethnic_racial:   { position: 55, salience: 1.4 },
+      religious:       { position: 75, salience: 2.0 },
+      class:           { position: 50, salience: 0.8 },
+      ideological:     { position: 50, salience: 0.4 },
+      gender:          { position: 45, salience: 0.6 },
+      political_tribe: { position: 50, salience: 0.6 },
+    },
+  };
+
+  const N = CATEGORIES.length; // 7
+  const TWO_PI = Math.PI * 2;
+  const ANGLE_STEP = TWO_PI / N;
+  // Geometry: render area is viewBox -220..220 (440x440). Outer extent
+  // includes spike past 50% ring. We size r50 = 110 (half) so position=100
+  // hits r=220 = the viewBox edge.
+  const R50 = 110;
+  const OUTER = 220;
+
+  // angle for category index i — start at -π/2 (12 o'clock) so 'national' is up
+  function angleForIndex(i) {
+    return -Math.PI / 2 + i * ANGLE_STEP;
+  }
+
+  function polar(r, theta) {
+    return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
+  }
+
+  // Map salience [0..3] → opacity [0.18..0.95] for fills.
+  function salToOpacity(sal) {
+    return 0.18 + (Math.min(3, Math.max(0, sal)) / 3) * 0.77;
+  }
+
+  // ──────────────────────────────────────────────
+  // PROTOTYPE A — Sunburst spike (pie wedges)
+  // ──────────────────────────────────────────────
+  function renderProtoA(svg, data) {
+    svg.innerHTML = '';
+    const ns = 'http://www.w3.org/2000/svg';
+
+    // Background grid: 25 / 50 / 75 / 100 reference rings.
+    [0.25, 0.5, 0.75, 1.0].forEach(p => {
+      const r = R50 * (p / 0.5);
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+      c.setAttribute('class', p === 0.5 ? 'ring-50' : 'ring-grid');
+      svg.appendChild(c);
+    });
+
+    // Axis spokes between sections.
+    for (let i = 0; i < N; i++) {
+      const a = angleForIndex(i) - ANGLE_STEP / 2;
+      const p = polar(OUTER * 0.97, a);
+      const line = document.createElementNS(ns, 'line');
+      line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+      line.setAttribute('x2', p.x); line.setAttribute('y2', p.y);
+      line.setAttribute('class', 'axis-line');
+      svg.appendChild(line);
+    }
+
+    // 7 wedges.
+    CATEGORIES.forEach((cat, i) => {
+      const d = data[cat.key];
+      const angCenter = angleForIndex(i);
+      const angStart = angCenter - ANGLE_STEP / 2;
+      const angEnd = angCenter + ANGLE_STEP / 2;
+      const r = (d.position / 50) * R50; // pos 50 → r = R50
+
+      const p1 = polar(r, angStart);
+      const p2 = polar(r, angEnd);
+      const path = document.createElementNS(ns, 'path');
+      const largeArc = ANGLE_STEP > Math.PI ? 1 : 0;
+      path.setAttribute('d',
+        `M 0 0 L ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} ` +
+        `A ${r.toFixed(2)} ${r.toFixed(2)} 0 ${largeArc} 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)} Z`);
+      path.setAttribute('fill', cat.color);
+      path.setAttribute('fill-opacity', salToOpacity(d.salience));
+      path.setAttribute('stroke', cat.color);
+      path.setAttribute('stroke-width', 1);
+      path.setAttribute('stroke-opacity', 0.85);
+      svg.appendChild(path);
+    });
+
+    // 50% ring on top so it's always visible.
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
+    ring.setAttribute('class', 'ring-50');
+    svg.appendChild(ring);
+
+    // Labels around outside.
+    addLabels(svg, data);
+  }
+
+  // ──────────────────────────────────────────────
+  // PROTOTYPE B — Radial bars
+  // ──────────────────────────────────────────────
+  function renderProtoB(svg, data) {
+    svg.innerHTML = '';
+    const ns = 'http://www.w3.org/2000/svg';
+
+    [0.25, 0.5, 0.75, 1.0].forEach(p => {
+      const r = R50 * (p / 0.5);
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+      c.setAttribute('class', p === 0.5 ? 'ring-50' : 'ring-grid');
+      svg.appendChild(c);
+    });
+
+    CATEGORIES.forEach((cat, i) => {
+      const d = data[cat.key];
+      const ang = angleForIndex(i);
+      const r = (d.position / 50) * R50;
+      // Bar thickness = 4..28 px based on salience.
+      const thickness = 4 + (Math.min(3, d.salience) / 3) * 24;
+
+      // Bar = rotated rectangle from center to (r, 0).
+      const g = document.createElementNS(ns, 'g');
+      g.setAttribute('transform', `rotate(${(ang * 180 / Math.PI).toFixed(2)})`);
+      const rect = document.createElementNS(ns, 'rect');
+      rect.setAttribute('x', 0);
+      rect.setAttribute('y', -thickness / 2);
+      rect.setAttribute('width', r);
+      rect.setAttribute('height', thickness);
+      rect.setAttribute('rx', thickness / 2);
+      rect.setAttribute('fill', cat.color);
+      rect.setAttribute('fill-opacity', 0.85);
+      g.appendChild(rect);
+      svg.appendChild(g);
+
+      // Tip dot at exact position.
+      const tip = polar(r, ang);
+      const dot = document.createElementNS(ns, 'circle');
+      dot.setAttribute('cx', tip.x);
+      dot.setAttribute('cy', tip.y);
+      dot.setAttribute('r', 3);
+      dot.setAttribute('fill', cat.color);
+      svg.appendChild(dot);
+    });
+
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
+    ring.setAttribute('class', 'ring-50');
+    svg.appendChild(ring);
+
+    addLabels(svg, data);
+  }
+
+  // ──────────────────────────────────────────────
+  // PROTOTYPE C — Spider polygon
+  // ──────────────────────────────────────────────
+  function renderProtoC(svg, data) {
+    svg.innerHTML = '';
+    const ns = 'http://www.w3.org/2000/svg';
+
+    [0.25, 0.5, 0.75, 1.0].forEach(p => {
+      const r = R50 * (p / 0.5);
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+      c.setAttribute('class', p === 0.5 ? 'ring-50' : 'ring-grid');
+      svg.appendChild(c);
+    });
+
+    // 7 axes from center outward.
+    for (let i = 0; i < N; i++) {
+      const ang = angleForIndex(i);
+      const p = polar(OUTER * 0.95, ang);
+      const line = document.createElementNS(ns, 'line');
+      line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+      line.setAttribute('x2', p.x); line.setAttribute('y2', p.y);
+      line.setAttribute('class', 'axis-line');
+      svg.appendChild(line);
+    }
+
+    // Filled polygon connecting all vertices.
+    const points = CATEGORIES.map((cat, i) => {
+      const d = data[cat.key];
+      const r = (d.position / 50) * R50;
+      const p = polar(r, angleForIndex(i));
+      return `${p.x.toFixed(2)},${p.y.toFixed(2)}`;
+    }).join(' ');
+    const poly = document.createElementNS(ns, 'polygon');
+    poly.setAttribute('points', points);
+    poly.setAttribute('fill', 'var(--self-purple)');
+    poly.setAttribute('fill-opacity', 0.22);
+    poly.setAttribute('stroke', 'var(--self-purple)');
+    poly.setAttribute('stroke-width', 1.4);
+    poly.setAttribute('stroke-opacity', 0.85);
+    svg.appendChild(poly);
+
+    // Vertex dots — size = salience.
+    CATEGORIES.forEach((cat, i) => {
+      const d = data[cat.key];
+      const r = (d.position / 50) * R50;
+      const p = polar(r, angleForIndex(i));
+      const dotR = 3 + (Math.min(3, d.salience) / 3) * 8;
+      const dot = document.createElementNS(ns, 'circle');
+      dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); dot.setAttribute('r', dotR);
+      dot.setAttribute('fill', cat.color);
+      dot.setAttribute('stroke', '#fff');
+      dot.setAttribute('stroke-width', 1.2);
+      svg.appendChild(dot);
+    });
+
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
+    ring.setAttribute('class', 'ring-50');
+    svg.appendChild(ring);
+
+    addLabels(svg, data);
+  }
+
+  // ──────────────────────────────────────────────
+  // PROTOTYPE D — Petal bloom
+  // ──────────────────────────────────────────────
+  function renderProtoD(svg, data) {
+    svg.innerHTML = '';
+    const ns = 'http://www.w3.org/2000/svg';
+
+    [0.5, 1.0].forEach(p => {
+      const r = R50 * (p / 0.5);
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+      c.setAttribute('class', p === 0.5 ? 'ring-50' : 'ring-grid');
+      svg.appendChild(c);
+    });
+
+    CATEGORIES.forEach((cat, i) => {
+      const d = data[cat.key];
+      const ang = angleForIndex(i);
+      const r = (d.position / 50) * R50;
+      // Petal width at base = 8..40 px based on salience.
+      const halfWidth = 4 + (Math.min(3, d.salience) / 3) * 18;
+
+      // Cubic bezier teardrop. Points (in unrotated frame, x along axis):
+      //   start (0,0) -> control (r*0.3, +halfWidth) -> control (r*0.7, +halfWidth*0.7) -> tip (r,0)
+      //   back via (r*0.7, -halfWidth*0.7) -> (r*0.3, -halfWidth) -> (0,0)
+      const path = document.createElementNS(ns, 'path');
+      const dStr =
+        `M 0 0 ` +
+        `C ${(r * 0.25).toFixed(2)} ${halfWidth.toFixed(2)}, ${(r * 0.75).toFixed(2)} ${(halfWidth * 0.65).toFixed(2)}, ${r.toFixed(2)} 0 ` +
+        `C ${(r * 0.75).toFixed(2)} ${(-halfWidth * 0.65).toFixed(2)}, ${(r * 0.25).toFixed(2)} ${(-halfWidth).toFixed(2)}, 0 0 Z`;
+      path.setAttribute('d', dStr);
+      path.setAttribute('fill', cat.color);
+      path.setAttribute('fill-opacity', 0.7);
+      path.setAttribute('stroke', cat.color);
+      path.setAttribute('stroke-width', 0.8);
+      path.setAttribute('stroke-opacity', 0.95);
+      path.setAttribute('transform', `rotate(${(ang * 180 / Math.PI).toFixed(2)})`);
+      svg.appendChild(path);
+    });
+
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', R50);
+    ring.setAttribute('class', 'ring-50');
+    svg.appendChild(ring);
+
+    addLabels(svg, data);
+  }
+
+  // ──────────────────────────────────────────────
+  // Common — label placement around outside
+  // ──────────────────────────────────────────────
+  function addLabels(svg, data) {
+    const ns = 'http://www.w3.org/2000/svg';
+    CATEGORIES.forEach((cat, i) => {
+      const d = data[cat.key];
+      const ang = angleForIndex(i);
+      const lp = polar(OUTER * 0.98, ang);
+      // Label.
+      const t = document.createElementNS(ns, 'text');
+      t.setAttribute('x', lp.x.toFixed(2));
+      t.setAttribute('y', lp.y.toFixed(2));
+      t.setAttribute('class', 'label-text');
+      // Bias dy by quadrant so labels don't crash into SVG.
+      const dy = Math.sin(ang) > 0.4 ? 12 : Math.sin(ang) < -0.4 ? -4 : 4;
+      t.setAttribute('dy', dy);
+      t.textContent = cat.label;
+      svg.appendChild(t);
+
+      // Position % under label.
+      const pct = document.createElementNS(ns, 'text');
+      pct.setAttribute('x', lp.x.toFixed(2));
+      pct.setAttribute('y', lp.y.toFixed(2));
+      pct.setAttribute('class', 'pos-pct');
+      pct.setAttribute('dy', dy + 12);
+      pct.setAttribute('fill', cat.color);
+      pct.setAttribute('text-anchor', 'middle');
+      pct.textContent = d.position + '%';
+      svg.appendChild(pct);
+    });
+  }
+
+  // ──────────────────────────────────────────────
+  // Render & wire sample selector.
+  // ──────────────────────────────────────────────
+  function renderAll(sampleKey) {
+    const data = SAMPLES[sampleKey];
+    if (!data) return;
+    renderProtoA(document.getElementById('proto-a'), data);
+    renderProtoB(document.getElementById('proto-b'), data);
+    renderProtoC(document.getElementById('proto-c'), data);
+    renderProtoD(document.getElementById('proto-d'), data);
+  }
+
+  // Build legend.
+  const legend = document.getElementById('category-legend');
+  CATEGORIES.forEach(cat => {
+    const span = document.createElement('span');
+    span.className = 'leg';
+    span.innerHTML = `<span class="swatch" style="background:${cat.color};"></span>${cat.label}`;
+    legend.appendChild(span);
+  });
+
+  // Sample selector.
+  document.querySelectorAll('.sample-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sample-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAll(btn.dataset.sample);
+    });
+  });
+
+  // Initial render.
+  renderAll('institutional-leftist');
+})();
+</script>
+
+</body>
+</html>
