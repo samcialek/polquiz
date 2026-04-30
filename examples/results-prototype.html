@@ -1564,7 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const universalPct = (data.universal != null ? data.universal : MORAL_CIRCLE_DEFAULT.universal);
       const tagline = document.createElement('div');
       tagline.className = 'moral-circle-tagline';
-      tagline.innerHTML = `In-group inclusion across seven boundaries. The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal love</strong> baseline (${universalPct}%) — concern for human beings regardless of category. Wedges sticking past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
+      tagline.innerHTML = `In-group inclusion across seven boundaries. The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${universalPct}%) — concern for human beings regardless of category. Wedges sticking past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
       const svgWrap = document.createElement('div');
@@ -1650,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', () => {
       uRing.setAttribute('opacity', 0.85);
       svg.appendChild(uRing);
 
-      // Small "universal love · NN%" label on the universal-love ring,
+      // Small "universal · NN%" label on the universal ring,
       // positioned just above the top of the ring so it sits on the outline.
       const uLabel = document.createElementNS(ns, 'text');
       uLabel.setAttribute('x', 0);
@@ -1662,7 +1662,7 @@ document.addEventListener('DOMContentLoaded', () => {
       uLabel.setAttribute('text-anchor', 'middle');
       // Background rect for legibility — drawn first.
       const uLabelBg = document.createElementNS(ns, 'rect');
-      const labelText = `universal love · ${universalPct}%`;
+      const labelText = `universal · ${universalPct}%`;
       const approxW = labelText.length * 5.6;
       uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
       uLabelBg.setAttribute('y', (-universalR - 8).toFixed(2));
