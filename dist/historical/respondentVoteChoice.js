@@ -16,6 +16,7 @@
  */
 import { getActivationMultiplier } from "./era-activations.js";
 import { getNonIdeologicalModifier, historicalToCanonical } from "./non-ideological-modifiers.js";
+import { morTargetVectorDistance, boundaryLoad } from "../engine/math.js";
 // Candidate-side TRB anchor encoding (P3.2, ADR-009). Each anchor predicts
 // different identity-driven appeal:
 //   national      — appeals to nationalist identity voters
@@ -130,6 +131,20 @@ function candidatePartyToCanonical(party) {
         return "T";
     return "O";
 }
+/**
+ * Derive a 1..5 PF-equivalent from morBoundaries. Mirrors the bridge
+ * direction (PF pos → political_tribe boundary up + intensity up): a strongly
+ * partisan-fused respondent has high political_tribe boundary AND high
+ * intensity. Returns null if morBoundaries is absent (caller falls back to
+ * legacy pfPos read).
+ */
+function pfEquivalentFromMorBoundaries(state) {
+    if (!state)
+        return null;
+    const pt = state.boundaries.political_tribe;
+    const intensityFactor = state.intensity / 3; // ∈ [0, 1]
+    return 1 + 4 * pt * intensityFactor; // ∈ [1, 5]
+}
 function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
     // Era-limit (P3.4): modern Democrat/Republican loyalty doesn't map cleanly
     // backward onto Whigs, Federalists, Free Soilers, Dixiecrats, etc. Pre-1932
@@ -161,6 +176,13 @@ const SCORING_NODES = [
     "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS",
     "ONT_H", "ONT_S",
 ];
+// 6.E.3a cutover (ADR-006). Continuous nodes whose contribution is folded
+// into the compound morBoundaries Layer 1 vector + intensity term when both
+// sides carry the new module. Mirrors archetypeDistance's MOR_MODULE_LEGACY
+// (PR 6.E.2a) — we use a per-call gate instead of removing them outright,
+// so legacy callers (states/candidates without morBoundaries) keep their
+// current geometry.
+const MOR_MODULE_LEGACY_NODES = ["MOR"];
 // Engagement → clearing-bar thresholds in weighted-RMS distance units (0-4 range).
 // Originally anchored to the pre-recoding distance distribution (Stage A,
 // 2026-04-19). The 2026-04-23 Pass-1 candidate recodings shrank nearest-
@@ -229,10 +251,31 @@ const RIGHTS_VETO_CONTEXTS = {
 function clamp01(x) {
     return Math.max(0, Math.min(1, x));
 }
-function moralFloorPenalty(sig, cand, year) {
+function moralFloorPenalty(sig, cand, year, morBoundariesState) {
     const reason = RIGHTS_VETO_CONTEXTS[year];
     if (!reason)
         return { penalty: 0 };
+    // 6.E.3a per-call gate: when both sides have morBoundaries, derive the
+    // veto from the new module geometry. Universalist user (low load) +
+    // activated (high intensity) penalizes exclusionary candidate (high load).
+    if (morBoundariesState && cand.morBoundaries) {
+        const userLoad = boundaryLoad(morBoundariesState.boundaries);
+        const userIntensity = morBoundariesState.intensity;
+        const candLoad = boundaryLoad(cand.morBoundaries.boundaries);
+        // Gate analogs to the legacy thresholds (cand.MOR <= 2, sigMOR.pos >= 3.5,
+        // sigMOR.sal >= 1.5):
+        //   candLoad >= 0.6        → exclusionary candidate (in-group bias)
+        //   userLoad <= 0.4        → universalist user (broad moral circle)
+        //   userIntensity >= 1.5   → activated user (cares enough to veto)
+        if (candLoad < 0.6 || userLoad > 0.4 || userIntensity < 1.5)
+            return { penalty: 0 };
+        const universalismStrength = clamp01((0.4 - userLoad) / 0.4); // 0 at 0.4, 1 at 0
+        const intensityStrength = clamp01((userIntensity - 1.5) / 1.5); // 0 at 1.5, 1 at 3
+        const severity = candLoad >= 0.85 ? 0.20 : 0;
+        const penalty = 0.25 + 0.25 * universalismStrength + 0.25 * intensityStrength + severity;
+        return { penalty, reason };
+    }
+    // Legacy fallback: use MOR pos/sal directly.
     if (cand.MOR > 2)
         return { penalty: 0 };
     const mor = sig.MOR;
@@ -260,10 +303,19 @@ function categoricalDistance(cand, cat, nodeName, year) {
     const diff2 = (1 - alignment) * 4; // alignment=1 → diff²=0 ; alignment=0 → diff²=4
     return { contribution: effectiveSal * diff2, weight: effectiveSal };
 }
-function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
+function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState) {
     let weightedSumSq = 0;
     let totalWeight = 0;
+    // 6.E.3a per-call gate: when both respondent and candidate carry
+    // morBoundaries, drop legacy MOR + skip the trbAnchor side-channel and
+    // fold both into one morModule contribution computed below. Otherwise
+    // (legacy state or candidate without the field) the old per-node MOR +
+    // trbAnchor contributions still fire — protects callers that build
+    // signatures by hand and don't initialize morBoundaries.
+    const useMorModule = !!morBoundariesState && !!cand.morBoundaries;
     for (const node of SCORING_NODES) {
+        if (useMorModule && MOR_MODULE_LEGACY_NODES.includes(node))
+            continue;
         const entry = sig[node];
         if (!entry)
             continue;
@@ -294,10 +346,48 @@ function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
         weightedSumSq += r.contribution;
         totalWeight += r.weight;
     }
-    // TRB anchor alignment (P3.2, ADR-009). User's anchor distribution vs
-    // candidate's encoded anchor identity. Only fires for candidates with
-    // an entry in TRB_ANCHOR_BY_CANDIDATE.
-    if (anchorDist) {
+    // ── Compound moral-circle Layer 1 contribution (ADR-006 PR 6.E.3a) ────
+    // One boundary-vector term + one intensity-derived weight, replacing the
+    // legacy MOR per-node contribution AND the trbAnchor side-channel. The
+    // morTargetVectorDistance returns ∈ [0,1] over 7 boundaries; we scale to
+    // the same 0..4 diff² range used by per-node terms. Salience-equivalent
+    // is intensity × era-multiplier (using "MOR" as the closest era proxy
+    // because morBoundaries replaces what era-activations.json calls "MOR").
+    //
+    // Layer 2 (membership lock-and-key) is intentionally NOT implemented in
+    // 6.E.3a. Real Layer 2 per ADR-006 requires comparing respondent
+    // `morMembership` to candidate `morMembership`, with a mismatch penalty
+    // as well as a match credit. Layer 2 v1 applies only to `ethnic_racial`,
+    // `religious`, `class`, and `gender`. `political_tribe` remains Layer 1
+    // only until/unless the existing partisan multiplier is migrated into
+    // Layer 2. `national` and `ideological` are explicitly excluded.
+    //
+    // The respondent side has no morMembership field threaded yet (lands
+    // with the membership question in 6.F or later). Until then we ship
+    // Layer 1 only — a same-boundary credit without the membership check
+    // would produce false-positive "matches" (e.g., any nationalist
+    // respondent appearing to "match" any national-anchored candidate
+    // regardless of membership), which is exactly the failure mode caught
+    // on 6.E.3a review (Sam, 2026-04-30).
+    if (useMorModule) {
+        const respBd = morBoundariesState.boundaries;
+        const candBd = cand.morBoundaries.boundaries;
+        const vd = morTargetVectorDistance(respBd, candBd);
+        const diff = vd * 4; // map [0,1] vector distance into pos² 0..16 scale
+        const intensity = morBoundariesState.intensity;
+        const eraMult = getActivationMultiplier(ctx.year, "MOR");
+        const rawSal = intensity * eraMult;
+        let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+        if (dominantNode === "MOR" || dominantNode === "TRB" || dominantNode === "PF") {
+            effectiveSal *= 1.5;
+        }
+        weightedSumSq += effectiveSal * diff * diff;
+        totalWeight += effectiveSal;
+    }
+    else if (anchorDist) {
+        // Legacy fallback: TRB anchor alignment (P3.2, ADR-009). User's anchor
+        // distribution vs candidate's encoded anchor identity. Only fires for
+        // candidates with an entry in TRB_ANCHOR_BY_CANDIDATE.
         const r = anchorDistanceContribution(cand, anchorDist);
         weightedSumSq += r.contribution;
         totalWeight += r.weight;
@@ -305,11 +395,15 @@ function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
     const ideological = totalWeight > 0 ? Math.sqrt(weightedSumSq / totalWeight) : 4;
     return ideological;
 }
-export function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode) {
-    const pfPos = sig.PF?.pos ?? null;
+export function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode, morBoundariesState) {
+    // 6.E.3a: prefer PF-equivalent derived from morBoundaries when present;
+    // fall back to legacy sig.PF.pos for callers that haven't wired the
+    // module through. Same per-call gating pattern as the scorer.
+    const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
+    const pfPos = pfFromMor ?? sig.PF?.pos ?? null;
     const scored = candidates.map(c => {
-        const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode);
-        const moralFloor = moralFloorPenalty(sig, c, ctx.year);
+        const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
+        const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
         const valuesDist = baseValuesDist + moralFloor.penalty;
         const nonIdeologicalModifier = NONIDEO_ENABLED
             ? getNonIdeologicalModifier(ctx.year, historicalToCanonical(c.name, c.year)).total

@@ -980,6 +980,7 @@ export function getElectionPredictions(): ElectionPrediction[] {
       _state.negativeParties ?? null,
       _state.strategicVoting ?? false,
       _state.dominantNode ?? null,
+      _state.morBoundaries ?? null,
     ));
   }
   return out;

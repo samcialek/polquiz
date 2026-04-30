@@ -748,7 +748,7 @@ export function getElectionPredictions() {
         const ctx = getContext(election.year);
         if (!ctx)
             continue;
-        out.push(predictVote(sig, election.candidates, ctx, engagement.level, _state.partyID ?? null, _state.trbAnchor.dist, _state.negativeParties ?? null, _state.strategicVoting ?? false, _state.dominantNode ?? null));
+        out.push(predictVote(sig, election.candidates, ctx, engagement.level, _state.partyID ?? null, _state.trbAnchor.dist, _state.negativeParties ?? null, _state.strategicVoting ?? false, _state.dominantNode ?? null, _state.morBoundaries ?? null));
     }
     return out;
 }
