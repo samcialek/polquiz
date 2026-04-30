@@ -1826,7 +1826,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadCsaOverlay() {
       if (csaOverlayData) return csaOverlayData;
       try {
-        const r = await fetch(`${DATA_BASE}/custom-overlays/csa-1861-1865.geojson?v=485f1af`);
+        const r = await fetch(`${DATA_BASE}/custom-overlays/csa-1861-1865.geojson?v=cb1565c-ccw`);
         if (!r.ok) return null;
         csaOverlayData = await r.json();
         return csaOverlayData;
