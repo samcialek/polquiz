@@ -13,4 +13,6 @@
  *   global/regime-profiles.csv   — flat list of all regime periods with node values
  *   global/regime-alignment.csv  — archetype × regime alignment scores
  */
-export {};
+import type { Archetype } from "../types.js";
+import { type RegimePeriod } from "./jurisdictions-europe1.js";
+export declare function computeAlignment(arch: Archetype, regime: RegimePeriod): number;

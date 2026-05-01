@@ -20,8 +20,10 @@ import { AMERICAS } from "./jurisdictions-americas.js";
 import { ASIA } from "./jurisdictions-asia.js";
 import { MENA_AFRICA } from "./jurisdictions-mena.js";
 import { JURISDICTION_DYSFUNCTION, dysfunctionFactor, } from "./jurisdictions-dysfunction.js";
+import { morTargetVectorDistance } from "../engine/math.js";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 // ── Configuration ───────────────────────────────────────────────────────────
 const GAUSSIAN_SIGMA = 2.0; // Tighter σ for more polarized scores (was 2.9, too neutral)
 const CONTINUOUS_NODES = [
@@ -32,6 +34,18 @@ const CONTINUOUS_NODES = [
     // attachment, but says nothing about *which* side — an Evangelical and a
     // Stalinist both have PF=5/TRB=5 for opposite reasons.
 ];
+// 6.E.3b cutover (ADR-006). Continuous nodes whose contribution is folded
+// into the compound morBoundaries Layer 1 vector when both sides carry
+// the new module. Mirrors archetypeDistance/respondentVoteChoice — we use
+// a per-archetype gate instead of removing the node outright, so legacy
+// regimes/archetypes without morBoundaries keep their current geometry.
+//
+// Layer 2 (membership lock-and-key) is intentionally NOT implemented for
+// world-map alignment. Per ADR-006, regimes never get Layer 2 — the
+// archetype-vs-regime question is structural ("how would this archetype
+// fit this society"), not a membership match question. Only candidate
+// alignment uses Layer 2.
+const MOR_MODULE_LEGACY_NODES = new Set(["MOR"]);
 // ── Load all regime periods ─────────────────────────────────────────────────
 const ALL_REGIMES = [
     ...EUROPE_PART1,
@@ -41,10 +55,17 @@ const ALL_REGIMES = [
     ...MENA_AFRICA,
 ];
 // ── Alignment computation ───────────────────────────────────────────────────
-function computeAlignment(arch, regime) {
+export function computeAlignment(arch, regime) {
     let weightedSumSq = 0;
     let totalWeight = 0;
+    // Per-archetype gate: when both sides carry morBoundaries, fold MOR
+    // into a single Layer 1 boundary-vector contribution computed below.
+    // Otherwise (legacy archetype/regime) the per-node MOR contribution
+    // still fires.
+    const useMorModule = !!arch.morBoundaries && !!regime.morBoundaries;
     for (const node of CONTINUOUS_NODES) {
+        if (useMorModule && MOR_MODULE_LEGACY_NODES.has(node))
+            continue;
         const tmpl = arch.nodes[node];
         if (!tmpl || tmpl.kind !== "continuous")
             continue;
@@ -64,6 +85,40 @@ function computeAlignment(arch, regime) {
                 antiMultiplier = 1.1;
         }
         const posDiff = Math.abs(archPos - regimePos) * antiMultiplier;
+        weightedSumSq += archSal * posDiff * posDiff;
+        totalWeight += archSal;
+    }
+    // ── Compound moral-circle Layer 1 contribution (ADR-006 PR 6.E.3b) ────
+    // One boundary-vector term replacing the legacy MOR per-node contribution.
+    // morTargetVectorDistance returns ∈ [0,1] over 7 boundaries; we scale to
+    // the same 0..4 |posDiff| range used by per-node terms (so the squared
+    // contribution matches the 0..16 sumSq range elsewhere in this loop).
+    // Salience-equivalent uses the archetype's morBoundaries.intensity (with
+    // the same 0.5 floor as per-node archSal) — the analog of "how much does
+    // this dimension matter for this archetype." Regime intensity is NOT
+    // mixed into the weight: the question is "how relevant is this dimension
+    // for this archetype," not "how relevant for the regime."
+    //
+    // No Layer 2 (membership lock-and-key) for regimes — see top-of-file.
+    //
+    // Known calibration regression for 6.H to address: bare 7-dim vector
+    // averaging produces a ~3× weaker contribution than the legacy single-
+    // dimension MOR per-node for cases where one boundary differs strongly
+    // (e.g., 001 Rawlsian vs Nazi: legacy MOR contributes ~81 sumSq via
+    // diff² + the per-node anti:"low" 1.3× amplifier; bare Layer 1 ~16). For
+    // the Rawlsian/National-Protector test pairings the per-node geometry
+    // still drives the right direction, but extreme universalist vs
+    // exclusionary cases lose magnitude. An anti-mismatch amplifier was
+    // drafted in 6.E.3b but pulled (Sam, 2026-05-01) as scope creep — it's
+    // a calibration design decision with broad world-map effects (50k pairs)
+    // and belongs in its own consciously-reviewed commit, not bundled into a
+    // wiring cutover. Defer to 6.H along with the rest of the alignment
+    // calibration sweep.
+    if (useMorModule) {
+        const vd = morTargetVectorDistance(arch.morBoundaries.boundaries, regime.morBoundaries.boundaries);
+        const archIntensity = arch.morBoundaries.intensity;
+        const archSal = Math.max(archIntensity, 0.5);
+        const posDiff = vd * 4; // map [0,1] vector distance into the 0..4 |posDiff| scale
         weightedSumSq += archSal * posDiff * posDiff;
         totalWeight += archSal;
     }
@@ -197,5 +252,19 @@ function main() {
     console.log(`  Negative (<-0.5): ${totalNegative} (${(100 * totalNegative / allScores.length).toFixed(1)}%)`);
     console.log(`\nDone.`);
 }
-main();
+// ESM main guard (PR 6.E.3b): only run the regime-CSV regeneration when
+// invoked directly (`node dist/global/build-alignment.js`), NOT when this
+// module is imported by tests/smokes that just want the pure helpers.
+// Without this guard, `import { computeAlignment } from "..."` triggered
+// a 50k-line CSV rewrite as a side effect of module load.
+const _isMainEntrypoint = (() => {
+    try {
+        return process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+    }
+    catch {
+        return false;
+    }
+})();
+if (_isMainEntrypoint)
+    main();
 //# sourceMappingURL=build-alignment.js.map
