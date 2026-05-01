@@ -16,20 +16,20 @@ const context1856 = {
     year: 1856,
     zeitgeist: {
         era: "sectional",
-        nodeWeights: { MOR: 1.8, TRB: 1.8, CD: 1.5, CU: 1.5, ONT_S: 5.5, COM: 1.3 },
+        nodeWeights: { MOR: 1.8, CD: 1.5, CU: 1.5, ONT_S: 5.5, COM: 1.3 },
         intensity: 1.3,
         description: "Bleeding Kansas; slavery expansion fracturing the party system",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "TRB", "CD"],
+        primaryAxis: ["MOR", "CD"],
         secondaryAxis: ["CU", "ONT_S", "COM", "PRO", "ZS"],
-        dormant: ["MAT", "ONT_H", "PF", "ENG"],
+        dormant: ["MAT", "ONT_H", "ENG"],
         description: "Slavery in territories dominates; nativism a secondary current; economics irrelevant",
     },
     candidateActivations: [
         {
             candidateName: "Buchanan",
-            activationNodes: { COM: 1.4, PRO: 1.3, PF: 1.2 },
+            activationNodes: { COM: 1.4, PRO: 1.3, MOR: 1.2 },
             novelty: 1.0,
             threatActivation: { ONT_S: 5.2 },
         },
@@ -37,11 +37,11 @@ const context1856 = {
             candidateName: "Fremont",
             activationNodes: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 },
             novelty: 1.5,
-            threatActivation: { TRB: 1.5, CD: 1.4 },
+            threatActivation: { MOR: 1.5, CD: 1.4 },
         },
         {
             candidateName: "Fillmore",
-            activationNodes: { CD: 1.5, TRB: 1.5, ZS: 1.3 },
+            activationNodes: { CD: 1.5, MOR: 1.5, ZS: 1.3 },
             novelty: 0.8,
             threatActivation: { CU: 1.3 },
         },
@@ -57,14 +57,14 @@ const context1860 = {
     year: 1860,
     zeitgeist: {
         era: "sectional",
-        nodeWeights: { MOR: 2.0, TRB: 2.0, ONT_S: 4.0, CD: 1.8, CU: 1.5, ZS: 1.5 },
+        nodeWeights: { MOR: 2.0, ONT_S: 4.0, CD: 1.8, CU: 1.5, ZS: 1.5 },
         intensity: 1.5,
         description: "Nation fracturing over slavery; secession looming; existential stakes",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "TRB", "ONT_S"],
+        primaryAxis: ["MOR", "ONT_S"],
         secondaryAxis: ["CD", "CU", "PRO", "ZS"],
-        dormant: ["MAT", "COM", "ONT_H", "PF", "ENG"],
+        dormant: ["MAT", "COM", "ONT_H", "ENG"],
         description: "Slavery expansion is THE issue; economic policy irrelevant; party system shattering",
     },
     candidateActivations: [
@@ -72,7 +72,7 @@ const context1860 = {
             candidateName: "Lincoln",
             activationNodes: { MOR: 1.5, CU: 1.3, PRO: 1.2 },
             novelty: 1.8,
-            threatActivation: { TRB: 1.5, CD: 1.3 },
+            threatActivation: { MOR: 1.5, CD: 1.3 },
         },
         {
             candidateName: "Douglas",
@@ -81,7 +81,7 @@ const context1860 = {
         },
         {
             candidateName: "Breckinridge",
-            activationNodes: { TRB: 1.8, CD: 1.5, ZS: 1.3 },
+            activationNodes: { MOR: 1.8, CD: 1.5, ZS: 1.3 },
             novelty: 1.2,
             threatActivation: { MOR: 1.4, CU: 1.3 },
         },
@@ -103,14 +103,14 @@ const context1864 = {
     year: 1864,
     zeitgeist: {
         era: "civil-war",
-        nodeWeights: { MOR: 2.5, ZS: 2.0, TRB: 2.0, ONT_S: 4.0, ENG: 1.8, CD: 1.5 },
+        nodeWeights: { MOR: 2.5, ZS: 2.0, ONT_S: 4.0, ENG: 1.8, CD: 1.5 },
         intensity: 1.5,
         description: "Civil War raging; emancipation now a war aim; Union survival at stake",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "ZS", "TRB"],
+        primaryAxis: ["MOR", "ZS"],
         secondaryAxis: ["ONT_S", "CD", "ENG", "PRO"],
-        dormant: ["MAT", "CU", "COM", "ONT_H", "PF"],
+        dormant: ["MAT", "CU", "COM", "ONT_H"],
         description: "War vs. peace; emancipation vs. restoration; total commitment vs. negotiation",
     },
     candidateActivations: [
@@ -118,7 +118,7 @@ const context1864 = {
             candidateName: "Lincoln",
             activationNodes: { MOR: 1.8, ENG: 1.5, ONT_S: 5.4, CU: 1.3 },
             novelty: 1.5,
-            threatActivation: { ZS: 1.3, TRB: 1.3 },
+            threatActivation: { ZS: 1.3, MOR: 1.3 },
         },
         {
             candidateName: "McClellan",
@@ -139,14 +139,14 @@ const context1868 = {
     year: 1868,
     zeitgeist: {
         era: "civil-war",
-        nodeWeights: { MOR: 2.0, TRB: 2.0, CD: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.5 },
+        nodeWeights: { MOR: 2.0, CD: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.5 },
         intensity: 1.3,
         description: "Reconstruction underway; 14th Amendment; KKK violence; freedmen's rights contested",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "TRB", "CD"],
+        primaryAxis: ["MOR", "CD"],
         secondaryAxis: ["CU", "ONT_S", "ZS", "PRO"],
-        dormant: ["MAT", "COM", "ONT_H", "PF", "ENG"],
+        dormant: ["MAT", "COM", "ONT_H", "ENG"],
         description: "Reconstruction and Black rights dominate; racial hierarchy vs. equal citizenship",
     },
     candidateActivations: [
@@ -154,11 +154,11 @@ const context1868 = {
             candidateName: "Grant",
             activationNodes: { MOR: 1.4, PRO: 1.3, CU: 1.3 },
             novelty: 1.5,
-            threatActivation: { TRB: 1.2 },
+            threatActivation: { MOR: 1.2 },
         },
         {
             candidateName: "Seymour",
-            activationNodes: { TRB: 1.6, CD: 1.5, ZS: 1.4 },
+            activationNodes: { MOR: 1.6, CD: 1.5, ZS: 1.4 },
             novelty: 0.8,
             threatActivation: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 },
         },
@@ -175,20 +175,20 @@ const context1872 = {
     year: 1872,
     zeitgeist: {
         era: "reconstruction",
-        nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 5.3, COM: 1.3, PF: 0.7 },
+        nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 5.3, COM: 1.3 },
         intensity: 0.9,
         description: "Reconstruction fatigue; corruption scandals; Liberal Republican revolt",
     },
     issueLandscape: {
         primaryAxis: ["PRO", "COM", "ONT_S"],
-        secondaryAxis: ["MOR", "CD", "CU", "PF"],
-        dormant: ["MAT", "ZS", "ONT_H", "TRB", "ENG"],
+        secondaryAxis: ["MOR", "CD", "CU"],
+        dormant: ["MAT", "ZS", "ONT_H", "ENG"],
         description: "Corruption vs. clean government; reconciliation vs. continued Reconstruction",
     },
     candidateActivations: [
         {
             candidateName: "Grant",
-            activationNodes: { MOR: 1.3, TRB: 1.2, PF: 1.3 },
+            activationNodes: { MOR: 1.3 },
             novelty: 1.0,
         },
         {
@@ -210,20 +210,20 @@ const context1876 = {
     year: 1876,
     zeitgeist: {
         era: "reconstruction",
-        nodeWeights: { PRO: 1.8, ONT_S: 5.5, MOR: 1.3, COM: 1.3, PF: 1.3 },
+        nodeWeights: { PRO: 1.8, ONT_S: 5.5, MOR: 1.3, COM: 1.3 },
         intensity: 1.2,
         description: "Reconstruction winding down; Grant scandals; reform movement ascendant",
     },
     issueLandscape: {
         primaryAxis: ["PRO", "ONT_S", "MOR"],
-        secondaryAxis: ["COM", "CD", "PF", "TRB"],
+        secondaryAxis: ["COM", "CD"],
         dormant: ["MAT", "CU", "ZS", "ONT_H", "ENG"],
         description: "Clean government vs. corruption; Reconstruction's fate decided behind closed doors",
     },
     candidateActivations: [
         {
             candidateName: "Hayes",
-            activationNodes: { PRO: 1.4, PF: 1.3, COM: 1.2 },
+            activationNodes: { PRO: 1.4, MOR: 1.3, COM: 1.2 },
             novelty: 1.0,
         },
         {
@@ -245,14 +245,14 @@ const context1880 = {
     year: 1880,
     zeitgeist: {
         era: "gilded",
-        nodeWeights: { PRO: 2.0, MAT: 1.5, PF: 1.5, MOR: 0.3, CD: 0.3, CU: 0.3 },
+        nodeWeights: { PRO: 2.0, MAT: 1.5, MOR: 1.5, CD: 0.3, CU: 0.3 },
         intensity: 0.8,
         description: "Post-Reconstruction calm; patronage politics; tariff debate; low-stakes",
     },
     issueLandscape: {
-        primaryAxis: ["PRO", "MAT", "PF"],
-        secondaryAxis: ["COM", "TRB", "ONT_S"],
-        dormant: ["CD", "CU", "MOR", "ZS", "ONT_H", "ENG"],
+        primaryAxis: ["PRO", "MAT", "MOR"],
+        secondaryAxis: ["COM", "ONT_S"],
+        dormant: ["CD", "CU", "ZS", "ONT_H", "ENG"],
         description: "Civil service reform and tariff; moral questions of Reconstruction era fading",
     },
     candidateActivations: [
@@ -263,7 +263,7 @@ const context1880 = {
         },
         {
             candidateName: "Hancock",
-            activationNodes: { COM: 1.2, PF: 1.1 },
+            activationNodes: { COM: 1.2, MOR: 1.1 },
             novelty: 1.0,
         },
     ],
@@ -280,14 +280,14 @@ const context1884 = {
     year: 1884,
     zeitgeist: {
         era: "gilded",
-        nodeWeights: { PRO: 1.8, PF: 1.3, MAT: 1.2, MOR: 0.6, CD: 0.6 },
+        nodeWeights: { PRO: 1.8, MOR: 1.3, MAT: 1.2, CD: 0.6 },
         intensity: 1.0,
         description: "Corruption vs. reform; Mugwump revolt; character matters more than policy",
     },
     issueLandscape: {
-        primaryAxis: ["PRO", "PF", "COM"],
-        secondaryAxis: ["MAT", "TRB", "CD"],
-        dormant: ["CU", "MOR", "ZS", "ONT_H", "ONT_S", "ENG"],
+        primaryAxis: ["PRO", "MOR", "COM"],
+        secondaryAxis: ["MAT", "CD"],
+        dormant: ["CU", "ZS", "ONT_H", "ONT_S", "ENG"],
         description: "Personal integrity and clean government dominate; tariff secondary; moral questions dormant",
     },
     candidateActivations: [
@@ -298,7 +298,7 @@ const context1884 = {
         },
         {
             candidateName: "Blaine",
-            activationNodes: { PF: 1.4, TRB: 1.3, ENG: 1.3 },
+            activationNodes: { MOR: 1.4, ENG: 1.3 },
             novelty: 1.0,
             threatActivation: { PRO: 1.4 },
         },
@@ -315,20 +315,20 @@ const context1888 = {
     year: 1888,
     zeitgeist: {
         era: "gilded",
-        nodeWeights: { MAT: 1.5, PRO: 1.3, PF: 1.3, MOR: 0.5, CD: 0.5 },
+        nodeWeights: { MAT: 1.5, PRO: 1.3, MOR: 1.3, CD: 0.5 },
         intensity: 0.8,
         description: "Tariff is THE issue; patronage politics; honest but boring",
     },
     issueLandscape: {
-        primaryAxis: ["MAT", "PRO", "PF"],
-        secondaryAxis: ["COM", "CU", "TRB"],
-        dormant: ["CD", "MOR", "ZS", "ONT_H", "ONT_S", "ENG"],
+        primaryAxis: ["MAT", "PRO", "MOR"],
+        secondaryAxis: ["COM", "CU"],
+        dormant: ["CD", "ZS", "ONT_H", "ONT_S", "ENG"],
         description: "Tariff reduction vs. protection; party organization and patronage; low moral stakes",
     },
     candidateActivations: [
         {
             candidateName: "Harrison",
-            activationNodes: { MAT: 1.3, PF: 1.3, TRB: 1.2 },
+            activationNodes: { MAT: 1.3, MOR: 1.3 },
             novelty: 1.0,
         },
         {
@@ -349,14 +349,14 @@ const context1892 = {
     year: 1892,
     zeitgeist: {
         era: "gilded",
-        nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, TRB: 1.5, ENG: 1.3, MOR: 0.6 },
+        nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, MOR: 1.5, ENG: 1.3 },
         intensity: 1.1,
         description: "Agrarian revolt; Homestead Strike; Populist insurgency; economic anxiety rising",
     },
     issueLandscape: {
         primaryAxis: ["MAT", "ONT_S", "ZS"],
-        secondaryAxis: ["TRB", "ENG", "PF", "COM"],
-        dormant: ["CD", "CU", "MOR", "PRO", "ONT_H"],
+        secondaryAxis: ["MOR", "ENG", "COM"],
+        dormant: ["CD", "CU", "PRO", "ONT_H"],
         description: "Economic class conflict erupting; gold vs. silver nascent; Populist third force",
     },
     candidateActivations: [
@@ -367,12 +367,12 @@ const context1892 = {
         },
         {
             candidateName: "Harrison",
-            activationNodes: { MAT: 1.2, PF: 1.3 },
+            activationNodes: { MAT: 1.2, MOR: 1.3 },
             novelty: 0.8,
         },
         {
             candidateName: "Weaver",
-            activationNodes: { ONT_S: 5.6, ZS: 1.5, TRB: 1.5, MAT: 1.4, ENG: 1.4 },
+            activationNodes: { ONT_S: 5.6, ZS: 1.5, MOR: 1.5, MAT: 1.4, ENG: 1.4 },
             novelty: 1.5,
             threatActivation: { MAT: 1.3, ONT_S: 5.3 },
         },
@@ -390,26 +390,26 @@ const context1896 = {
     year: 1896,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { MAT: 2.0, PRO: 1.5, PF: 1.5 },
+        nodeWeights: { MAT: 2.0, PRO: 1.5, MOR: 1.5 },
         intensity: 1.2,
         description: "Realignment: gold vs. silver; industrial capitalism vs. agrarian populism; Panic of 1893 aftermath",
     },
     issueLandscape: {
-        primaryAxis: ["MAT", "PRO", "PF"],
+        primaryAxis: ["MAT", "PRO", "MOR"],
         secondaryAxis: ["ONT_S", "CD", "COM"],
-        dormant: ["CU", "MOR", "ZS", "TRB", "ONT_H", "ENG"],
+        dormant: ["CU", "ZS", "ONT_H", "ENG"],
         description: "Economic policy dominates; McKinley's 'full dinner pail' vs Bryan's silver populism",
     },
     candidateActivations: [
         {
             candidateName: "McKinley",
-            activationNodes: { MAT: 1.5, PRO: 1.5, PF: 1.3, COM: 1.3 },
+            activationNodes: { MAT: 1.5, PRO: 1.5, MOR: 1.3, COM: 1.3 },
             novelty: 1.2,
             threatActivation: { ONT_S: 5.3 },
         },
         {
             candidateName: "Bryan",
-            activationNodes: { ONT_S: 5.3, TRB: 1.2 },
+            activationNodes: { ONT_S: 5.3, MOR: 1.2 },
             novelty: 1.3,
         },
     ],
@@ -431,19 +431,19 @@ const context1900 = {
     },
     issueLandscape: {
         primaryAxis: ["MAT", "CU", "MOR"],
-        secondaryAxis: ["ZS", "TRB", "CD", "ENG"],
-        dormant: ["PRO", "COM", "ONT_H", "ONT_S", "PF"],
+        secondaryAxis: ["ZS", "CD", "ENG"],
+        dormant: ["PRO", "COM", "ONT_H", "ONT_S"],
         description: "Imperialism (Philippines) joins economic debate; prosperity vs. populism rematch",
     },
     candidateActivations: [
         {
             candidateName: "McKinley",
-            activationNodes: { MAT: 1.3, CU: 1.2, PF: 1.2 },
+            activationNodes: { MAT: 1.3, CU: 1.2, MOR: 1.2 },
             novelty: 1.0,
         },
         {
             candidateName: "Bryan",
-            activationNodes: { MOR: 1.4, CU: 1.3, ZS: 1.3, TRB: 1.3, ENG: 1.3 },
+            activationNodes: { MOR: 1.4, CU: 1.3, ZS: 1.3, ENG: 1.3 },
             novelty: 1.0,
             threatActivation: { MAT: 1.3 },
         },
@@ -468,7 +468,7 @@ const context1904 = {
     issueLandscape: {
         primaryAxis: ["ONT_S", "MAT", "MOR"],
         secondaryAxis: ["ONT_H", "CU", "ENG", "ZS"],
-        dormant: ["CD", "PRO", "COM", "PF", "TRB"],
+        dormant: ["CD", "PRO", "COM"],
         description: "Trust regulation and corporate power; role of government in economy; cultural issues quiet",
     },
     candidateActivations: [
@@ -496,14 +496,14 @@ const context1908 = {
     year: 1908,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ONT_S: 5.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, TRB: 0.6 },
+        nodeWeights: { ONT_S: 5.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, MOR: 0.6 },
         intensity: 0.9,
         description: "Progressive reforms mainstreaming; TR's heir vs. the Great Commoner; reform consensus",
     },
     issueLandscape: {
         primaryAxis: ["ONT_S", "MAT", "PRO"],
         secondaryAxis: ["ONT_H", "MOR", "COM", "ENG"],
-        dormant: ["CD", "CU", "ZS", "PF", "TRB"],
+        dormant: ["CD", "CU", "ZS"],
         description: "Degree of Progressive reform; railroad regulation; income tax; direct democracy",
     },
     candidateActivations: [
@@ -531,14 +531,14 @@ const context1912 = {
     year: 1912,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ONT_S: 4.0, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, PF: 1.5, ENG: 1.5 },
+        nodeWeights: { ONT_S: 4.0, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, ENG: 1.5 },
         intensity: 1.3,
         description: "Peak Progressive era; three-way reform debate; party system fracturing; high engagement",
     },
     issueLandscape: {
         primaryAxis: ["ONT_S", "MAT", "ONT_H"],
-        secondaryAxis: ["MOR", "PF", "ENG", "PRO"],
-        dormant: ["CD", "CU", "ZS", "COM", "TRB"],
+        secondaryAxis: ["MOR", "ENG", "PRO"],
+        dormant: ["CD", "CU", "ZS", "COM"],
         description: "How to reform capitalism: break trusts, regulate trusts, or leave courts in charge",
     },
     candidateActivations: [
@@ -551,11 +551,11 @@ const context1912 = {
             candidateName: "Roosevelt",
             activationNodes: { ONT_S: 5.6, MOR: 1.6, ONT_H: 1.5, ENG: 1.5, MAT: 1.3 },
             novelty: 1.5,
-            threatActivation: { PRO: 1.3, PF: 1.3 },
+            threatActivation: { PRO: 1.3, MOR: 1.3 },
         },
         {
             candidateName: "Taft",
-            activationNodes: { PRO: 1.4, PF: 1.3 },
+            activationNodes: { PRO: 1.4, MOR: 1.3 },
             novelty: 0.8,
         },
     ],
@@ -572,14 +572,14 @@ const context1916 = {
     year: 1916,
     zeitgeist: {
         era: "progressive",
-        nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, TRB: 1.3, ONT_S: 5.3 },
+        nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, MOR: 1.3, ONT_S: 5.3 },
         intensity: 1.2,
         description: "European war looming; neutrality vs. preparedness; Progressive legislation at home",
     },
     issueLandscape: {
         primaryAxis: ["ZS", "CU", "MAT"],
-        secondaryAxis: ["TRB", "ONT_S", "PRO", "MOR"],
-        dormant: ["CD", "COM", "ONT_H", "PF", "ENG"],
+        secondaryAxis: ["MOR", "ONT_S", "PRO"],
+        dormant: ["CD", "COM", "ONT_H", "ENG"],
         description: "War and peace dominate; Progressive reforms continue; party reunification for GOP",
     },
     candidateActivations: [
@@ -587,11 +587,11 @@ const context1916 = {
             candidateName: "Wilson",
             activationNodes: { MAT: 1.3, MOR: 1.3, CU: 1.2, ONT_S: 5.2 },
             novelty: 1.0,
-            threatActivation: { ZS: 1.3, TRB: 1.2 },
+            threatActivation: { ZS: 1.3, MOR: 1.2 },
         },
         {
             candidateName: "Hughes",
-            activationNodes: { PRO: 1.3, ZS: 1.2, PF: 1.3 },
+            activationNodes: { PRO: 1.3, ZS: 1.2, MOR: 1.3 },
             novelty: 1.0,
             threatActivation: { CU: 1.2 },
         },

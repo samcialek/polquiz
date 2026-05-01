@@ -27,7 +27,7 @@ const context1920: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["COM", "PRO", "MAT"],
     secondaryAxis: ["CD", "ONT_S"],
-    dormant: ["CU", "MOR", "ZS", "ONT_H", "PF", "TRB", "ENG"],
+    dormant: ["CU", "MOR", "ZS", "ONT_H", "ENG"],
     description: "Normalcy vs reform; voters exhausted; compromise and stability win",
   },
   candidateActivations: [
@@ -51,14 +51,14 @@ const context1924: ElectionContext = {
   year: 1924,
   zeitgeist: {
     era: "normalcy",
-    nodeWeights: { MAT: 1.3, ONT_S: 5.4, PF: 0.7 },
+    nodeWeights: { MAT: 1.3, ONT_S: 5.4, MOR: 0.7 },
     intensity: 0.8,
     description: "Prosperity + KKK controversy + Progressive insurgency fragmenting politics",
   },
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_S", "CD"],
     secondaryAxis: ["MOR", "PRO", "COM", "CU"],
-    dormant: ["ZS", "ONT_H", "PF", "TRB", "ENG"],
+    dormant: ["ZS", "ONT_H", "ENG"],
     description: "Business prosperity vs. anti-monopoly reform; KKK and cultural identity simmer",
   },
   candidateActivations: [
@@ -74,7 +74,7 @@ const context1924: ElectionContext = {
     },
     {
       candidateName: "La Follette",
-      activationNodes: { MAT: 1.5, ONT_S: 5.6, COM: 0.7, PF: 0.7 },
+      activationNodes: { MAT: 1.5, ONT_S: 5.6, COM: 0.7, MOR: 0.7 },
       novelty: 1.5,
       threatActivation: { MAT: 1.3, ONT_S: 5.3 },
     },
@@ -88,14 +88,14 @@ const context1928: ElectionContext = {
   year: 1928,
   zeitgeist: {
     era: "normalcy",
-    nodeWeights: { CD: 1.8, TRB: 1.5, MOR: 1.4 },
+    nodeWeights: { CD: 1.8, MOR: 1.5 },
     intensity: 0.9,
     description: "Peak 1920s prosperity but deep urban-rural cultural divide over religion and prohibition",
   },
   issueLandscape: {
-    primaryAxis: ["CD", "TRB", "MOR"],
+    primaryAxis: ["CD", "MOR"],
     secondaryAxis: ["MAT", "CU", "PRO", "ONT_H"],
-    dormant: ["COM", "ZS", "ONT_S", "PF", "ENG"],
+    dormant: ["COM", "ZS", "ONT_S", "ENG"],
     description: "Catholic candidate triggers cultural identity war; economy is background consensus",
   },
   candidateActivations: [
@@ -106,9 +106,9 @@ const context1928: ElectionContext = {
     },
     {
       candidateName: "Smith",
-      activationNodes: { CD: 1.4, TRB: 1.5, CU: 1.3 },
+      activationNodes: { CD: 1.4, MOR: 1.5, CU: 1.3 },
       novelty: 1.4,
-      threatActivation: { CD: 1.5, TRB: 1.4, MOR: 1.3 },
+      threatActivation: { CD: 1.5, MOR: 1.4 },
     },
   ],
 };
@@ -127,7 +127,7 @@ const context1932: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_S", "ONT_H"],
     secondaryAxis: ["ZS", "PRO", "COM", "ENG"],
-    dormant: ["CD", "CU", "MOR", "PF", "TRB"],
+    dormant: ["CD", "CU", "MOR"],
     description: "Depression is THE issue; economic philosophy and systemic failure dominate everything",
   },
   candidateActivations: [
@@ -153,20 +153,20 @@ const context1936: ElectionContext = {
   year: 1936,
   zeitgeist: {
     era: "new-deal",
-    nodeWeights: { MAT: 2.2, ONT_S: 5.8, TRB: 1.5, PF: 1.5 },
+    nodeWeights: { MAT: 2.2, ONT_S: 5.8, MOR: 1.5 },
     intensity: 1.3,
     description: "New Deal as referendum; labor vs. business class warfare; party realignment solidifying",
   },
   issueLandscape: {
-    primaryAxis: ["MAT", "ONT_S", "TRB"],
-    secondaryAxis: ["PF", "ZS", "ONT_H", "PRO"],
-    dormant: ["CD", "CU", "MOR", "COM", "ENG"],
+    primaryAxis: ["MAT", "ONT_S", "MOR"],
+    secondaryAxis: ["ZS", "ONT_H", "PRO"],
+    dormant: ["CD", "CU", "COM", "ENG"],
     description: "Pure economics and class: New Deal populism vs. free enterprise; labor vs. business",
   },
   candidateActivations: [
     {
       candidateName: "Roosevelt",
-      activationNodes: { MAT: 1.5, ONT_S: 5.4, TRB: 1.4, ENG: 1.3 },
+      activationNodes: { MAT: 1.5, ONT_S: 5.4, MOR: 1.4, ENG: 1.3 },
       novelty: 1.5,
     },
     {
@@ -191,7 +191,7 @@ const context1940: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["CU", "PRO", "ZS"],
     secondaryAxis: ["MAT", "ONT_S", "MOR", "COM"],
-    dormant: ["CD", "ONT_H", "PF", "TRB", "ENG"],
+    dormant: ["CD", "ONT_H", "ENG"],
     description: "Interventionism vs. isolation + third-term norm-breaking; New Deal fading as issue",
   },
   candidateActivations: [
@@ -217,20 +217,20 @@ const context1944: ElectionContext = {
   year: 1944,
   zeitgeist: {
     era: "new-deal",
-    nodeWeights: { CU: 2.0, ZS: 1.5, TRB: 1.5, ENG: 1.3 },
+    nodeWeights: { CU: 2.0, ZS: 1.5, MOR: 1.5, ENG: 1.3 },
     intensity: 1.3,
     description: "World War raging; D-Day; national unity but war fatigue setting in",
   },
   issueLandscape: {
-    primaryAxis: ["CU", "ZS", "TRB"],
-    secondaryAxis: ["MAT", "PRO", "MOR", "ENG"],
-    dormant: ["CD", "COM", "ONT_H", "ONT_S", "PF"],
+    primaryAxis: ["CU", "ZS", "MOR"],
+    secondaryAxis: ["MAT", "PRO", "ENG"],
+    dormant: ["CD", "COM", "ONT_H", "ONT_S"],
     description: "War leadership dominates; 'don't change horses midstream' vs. four-term fatigue",
   },
   candidateActivations: [
     {
       candidateName: "Roosevelt",
-      activationNodes: { CU: 1.4, TRB: 1.3, ENG: 1.2 },
+      activationNodes: { CU: 1.4, MOR: 1.3, ENG: 1.2 },
       novelty: 1.0,
     },
     {
@@ -248,13 +248,13 @@ const context1948: ElectionContext = {
   year: 1948,
   zeitgeist: {
     era: "new-deal",
-    nodeWeights: { CD: 1.6, MOR: 1.5, TRB: 1.8, CU: 1.4, PF: 1.4 },
+    nodeWeights: { CD: 1.6, MOR: 1.8, CU: 1.4 },
     intensity: 1.2,
     description: "Cold War begins; civil rights emerging; Dixiecrat revolt fractures New Deal coalition",
   },
   issueLandscape: {
-    primaryAxis: ["CD", "TRB", "MOR"],
-    secondaryAxis: ["CU", "MAT", "PF", "ZS"],
+    primaryAxis: ["CD", "MOR"],
+    secondaryAxis: ["CU", "MAT", "ZS"],
     dormant: ["PRO", "COM", "ONT_H", "ONT_S", "ENG"],
     description: "Civil rights vs. segregation fractures the Democratic Party; Cold War as backdrop",
   },
@@ -271,9 +271,9 @@ const context1948: ElectionContext = {
     },
     {
       candidateName: "Thurmond",
-      activationNodes: { CD: 1.6, TRB: 1.8, MOR: 1.4 },
+      activationNodes: { CD: 1.6, MOR: 1.8 },
       novelty: 1.3,
-      threatActivation: { CD: 1.5, MOR: 1.5, TRB: 1.3 },
+      threatActivation: { CD: 1.5, MOR: 1.5 },
     },
   ],
 };
@@ -285,14 +285,14 @@ const context1952: ElectionContext = {
   year: 1952,
   zeitgeist: {
     era: "consensus",
-    nodeWeights: { ZS: 1.6, CU: 1.4, TRB: 1.3, ONT_S: 5.2 },
+    nodeWeights: { ZS: 1.6, CU: 1.4, MOR: 1.3, ONT_S: 5.2 },
     intensity: 1.1,
     description: "Korean War stalemate; McCarthyism; Cold War anxiety; desire for steady leadership",
   },
   issueLandscape: {
-    primaryAxis: ["ZS", "CU", "TRB"],
+    primaryAxis: ["ZS", "CU", "MOR"],
     secondaryAxis: ["MAT", "PRO", "ONT_S", "CD"],
-    dormant: ["MOR", "COM", "ONT_H", "PF", "ENG"],
+    dormant: ["COM", "ONT_H", "ENG"],
     description: "Cold War security + Korea dominate; communism fear; first TV campaign era",
   },
   candidateActivations: [
@@ -323,7 +323,7 @@ const context1956: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["CU", "ZS", "PRO"],
     secondaryAxis: ["MAT", "CD", "ONT_H"],
-    dormant: ["MOR", "COM", "ONT_S", "PF", "TRB", "ENG"],
+    dormant: ["MOR", "COM", "ONT_S", "ENG"],
     description: "Foreign crises reinforce Ike's commander image; domestic consensus; boring election",
   },
   candidateActivations: [
@@ -347,14 +347,14 @@ const context1960: ElectionContext = {
   year: 1960,
   zeitgeist: {
     era: "consensus",
-    nodeWeights: { CU: 1.5, ZS: 1.4, CD: 1.3, TRB: 1.3 },
+    nodeWeights: { CU: 1.5, ZS: 1.4, CD: 1.3, MOR: 1.3 },
     intensity: 1.1,
     description: "Cold War missile gap; TV debates transform politics; Catholic question resurfaces",
   },
   issueLandscape: {
     primaryAxis: ["CU", "ZS", "CD"],
-    secondaryAxis: ["TRB", "MAT", "ONT_H", "ENG"],
-    dormant: ["MOR", "PRO", "COM", "ONT_S", "PF"],
+    secondaryAxis: ["MOR", "MAT", "ONT_H", "ENG"],
+    dormant: ["PRO", "COM", "ONT_S"],
     description: "Cold War competition + generational change; Catholic identity as cultural flashpoint",
   },
   candidateActivations: [
@@ -362,7 +362,7 @@ const context1960: ElectionContext = {
       candidateName: "Kennedy",
       activationNodes: { CU: 1.3, ONT_H: 1.4, ENG: 1.4, CD: 1.2 },
       novelty: 1.5,
-      threatActivation: { CD: 1.3, TRB: 1.2 },
+      threatActivation: { CD: 1.3, MOR: 1.2 },
     },
     {
       candidateName: "Nixon",
@@ -386,7 +386,7 @@ const context1964: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["CD", "MOR", "MAT"],
     secondaryAxis: ["ONT_S", "COM", "PRO", "ZS"],
-    dormant: ["CU", "ONT_H", "PF", "TRB", "ENG"],
+    dormant: ["CU", "ONT_H", "ENG"],
     description: "Civil rights + Great Society vs. anti-government conservatism; first modern ideological election",
   },
   candidateActivations: [
@@ -411,20 +411,20 @@ const context1968: ElectionContext = {
   year: 1968,
   zeitgeist: {
     era: "upheaval",
-    nodeWeights: { CD: 2.0, ONT_S: 4.0, TRB: 1.8, ZS: 1.8 },
+    nodeWeights: { CD: 2.0, ONT_S: 4.0, MOR: 1.8, ZS: 1.8 },
     intensity: 1.4,
     description: "Vietnam, MLK/RFK assassinated, riots, convention chaos; nation coming apart",
   },
   issueLandscape: {
     primaryAxis: ["CD", "ONT_S", "ZS"],
-    secondaryAxis: ["TRB", "ENG", "PF"],
-    dormant: ["MAT", "CU", "MOR", "PRO", "COM", "ONT_H"],
+    secondaryAxis: ["MOR", "ENG"],
+    dormant: ["MAT", "CU", "PRO", "COM", "ONT_H"],
     description: "Law and order vs chaos; cultural backlash dominates; progressive idealism suppressed",
   },
   candidateActivations: [
     {
       candidateName: "Nixon",
-      activationNodes: { CD: 1.6, ZS: 1.5, TRB: 1.4, ONT_S: 5.3 },
+      activationNodes: { CD: 1.6, ZS: 1.5, MOR: 1.4, ONT_S: 5.3 },
       novelty: 1.3,
       threatActivation: { ONT_S: 5.3 },
     },
@@ -435,7 +435,7 @@ const context1968: ElectionContext = {
     },
     {
       candidateName: "Wallace",
-      activationNodes: { CD: 1.5, TRB: 1.5 },
+      activationNodes: { CD: 1.5, MOR: 1.5 },
       novelty: 1.3,
     },
   ],
@@ -448,27 +448,27 @@ const context1972: ElectionContext = {
   year: 1972,
   zeitgeist: {
     era: "upheaval",
-    nodeWeights: { CD: 1.8, CU: 1.5, MOR: 1.5, TRB: 1.4 },
+    nodeWeights: { CD: 1.8, CU: 1.5, MOR: 1.5 },
     intensity: 1.1,
     description: "Vietnam winding down but cultural revolution deepens; New Left vs. Silent Majority",
   },
   issueLandscape: {
     primaryAxis: ["CD", "CU", "MOR"],
-    secondaryAxis: ["TRB", "MAT", "ONT_S", "ZS"],
-    dormant: ["PRO", "COM", "ONT_H", "PF", "ENG"],
+    secondaryAxis: ["MAT", "ONT_S", "ZS"],
+    dormant: ["PRO", "COM", "ONT_H", "ENG"],
     description: "Cultural identity war: counterculture vs. traditional America; Vietnam as cultural proxy",
   },
   candidateActivations: [
     {
       candidateName: "Nixon",
-      activationNodes: { CD: 1.3, TRB: 1.3, COM: 1.2 },
+      activationNodes: { CD: 1.3, MOR: 1.3, COM: 1.2 },
       novelty: 1.0,
     },
     {
       candidateName: "McGovern",
       activationNodes: { CU: 1.5, MOR: 1.4, ONT_S: 5.4, ONT_H: 1.3 },
       novelty: 1.3,
-      threatActivation: { CD: 1.5, MOR: 1.4, TRB: 1.3 },
+      threatActivation: { CD: 1.5, MOR: 1.4 },
     },
   ],
 };
@@ -480,20 +480,20 @@ const context1976: ElectionContext = {
   year: 1976,
   zeitgeist: {
     era: "upheaval",
-    nodeWeights: { PRO: 2.0, ONT_S: 5.6, PF: 1.3 },
+    nodeWeights: { PRO: 2.0, ONT_S: 5.6, MOR: 1.3 },
     intensity: 1.1,
     description: "Post-Watergate crisis of trust; voters want honesty and procedural integrity",
   },
   issueLandscape: {
-    primaryAxis: ["PRO", "ONT_S", "PF"],
+    primaryAxis: ["PRO", "ONT_S", "MOR"],
     secondaryAxis: ["MAT", "COM", "CD", "ENG"],
-    dormant: ["CU", "MOR", "ZS", "ONT_H", "TRB"],
+    dormant: ["CU", "ZS", "ONT_H"],
     description: "Integrity and institutional trust dominate; process and character over policy",
   },
   candidateActivations: [
     {
       candidateName: "Carter",
-      activationNodes: { PRO: 1.5, ONT_S: 5.3, PF: 0.7 },
+      activationNodes: { PRO: 1.5, ONT_S: 5.3, MOR: 0.7 },
       novelty: 1.3,
     },
     {
@@ -519,7 +519,7 @@ const context1980: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_S", "ZS"],
     secondaryAxis: ["CU", "CD", "ENG", "ONT_H"],
-    dormant: ["MOR", "PRO", "COM", "PF", "TRB"],
+    dormant: ["MOR", "PRO", "COM"],
     description: "Economic crisis + global humiliation; 'are you better off?' frames everything",
   },
   candidateActivations: [
@@ -537,7 +537,7 @@ const context1980: ElectionContext = {
     },
     {
       candidateName: "Anderson",
-      activationNodes: { PF: 0.7, PRO: 1.3, COM: 1.2 },
+      activationNodes: { MOR: 0.7, PRO: 1.3, COM: 1.2 },
       novelty: 1.1,
     },
   ],
@@ -557,7 +557,7 @@ const context1984: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_H", "ZS"],
     secondaryAxis: ["CU", "CD", "ONT_S"],
-    dormant: ["MOR", "PRO", "COM", "PF", "TRB", "ENG"],
+    dormant: ["MOR", "PRO", "COM", "ENG"],
     description: "Economic optimism vs. sacrifice; Cold War strength; prosperity election",
   },
   candidateActivations: [
@@ -588,7 +588,7 @@ const context1988: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["CD", "MAT", "MOR"],
     secondaryAxis: ["CU", "PRO", "ZS"],
-    dormant: ["COM", "ONT_H", "ONT_S", "PF", "TRB", "ENG"],
+    dormant: ["COM", "ONT_H", "ONT_S", "ENG"],
     description: "Willie Horton and culture wedges; 'L-word' liberalism vs. Reagan continuity",
   },
   candidateActivations: [
@@ -613,14 +613,14 @@ const context1992: ElectionContext = {
   year: 1992,
   zeitgeist: {
     era: "reagan",
-    nodeWeights: { MAT: 1.8, ONT_S: 5.5, PF: 0.7, CU: 1.3 },
+    nodeWeights: { MAT: 1.8, ONT_S: 5.5, MOR: 0.7, CU: 1.3 },
     intensity: 1.1,
     description: "Recession, end of Cold War identity vacuum, generational change; Perot disruption",
   },
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_S", "CU"],
     secondaryAxis: ["CD", "COM", "ZS", "ENG"],
-    dormant: ["MOR", "PRO", "ONT_H", "PF", "TRB"],
+    dormant: ["MOR", "PRO", "ONT_H"],
     description: "'It's the economy, stupid' + trade/globalization + generational change; Cold War over",
   },
   candidateActivations: [
@@ -636,7 +636,7 @@ const context1992: ElectionContext = {
     },
     {
       candidateName: "Perot",
-      activationNodes: { MAT: 1.3, ONT_S: 5.5, PF: 0.6, ZS: 1.4 },
+      activationNodes: { MAT: 1.3, ONT_S: 5.5, MOR: 0.6, ZS: 1.4 },
       novelty: 1.5,
       threatActivation: { ONT_S: 5.2 },
     },
@@ -657,7 +657,7 @@ const context1996: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "CD", "COM"],
     secondaryAxis: ["CU", "PRO", "ONT_H"],
-    dormant: ["MOR", "ZS", "ONT_S", "PF", "TRB", "ENG"],
+    dormant: ["MOR", "ZS", "ONT_S", "ENG"],
     description: "Prosperity and centrism; Dole struggles for traction; 'bridge to 21st century'",
   },
   candidateActivations: [
@@ -688,7 +688,7 @@ const context2000: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "CD", "MOR"],
     secondaryAxis: ["PRO", "COM", "CU", "ONT_H"],
-    dormant: ["ZS", "ONT_S", "PF", "TRB", "ENG"],
+    dormant: ["ZS", "ONT_S", "ENG"],
     description: "Dueling centrisms; emerging culture war on values; policy wonk vs. likability",
   },
   candidateActivations: [
@@ -712,14 +712,14 @@ const context2004: ElectionContext = {
   year: 2004,
   zeitgeist: {
     era: "third-way",
-    nodeWeights: { ZS: 2.0, TRB: 1.8, CD: 1.5, CU: 1.4, ENG: 1.3 },
+    nodeWeights: { ZS: 2.0, MOR: 1.8, CD: 1.5, CU: 1.4, ENG: 1.3 },
     intensity: 1.3,
     description: "Post-9/11 security election; Iraq War divides; 'with us or against us' framing",
   },
   issueLandscape: {
-    primaryAxis: ["ZS", "TRB", "CU"],
-    secondaryAxis: ["CD", "PRO", "MOR", "ENG"],
-    dormant: ["MAT", "COM", "ONT_H", "ONT_S", "PF"],
+    primaryAxis: ["ZS", "MOR", "CU"],
+    secondaryAxis: ["CD", "PRO", "ENG"],
+    dormant: ["MAT", "COM", "ONT_H", "ONT_S"],
     description: "Security dominates: Iraq, terrorism, patriotism; gay marriage as wedge; faith vs. nuance",
   },
   candidateActivations: [
@@ -730,7 +730,7 @@ const context2004: ElectionContext = {
     },
     {
       candidateName: "Bush",
-      activationNodes: { ZS: 1.5, TRB: 1.4, CD: 1.3, ENG: 1.3 },
+      activationNodes: { ZS: 1.5, MOR: 1.4, CD: 1.3, ENG: 1.3 },
       novelty: 1.0,
       threatActivation: { CU: 1.3, PRO: 1.2 },
     },
@@ -751,7 +751,7 @@ const context2008: ElectionContext = {
   issueLandscape: {
     primaryAxis: ["MAT", "ONT_S", "ONT_H"],
     secondaryAxis: ["ENG", "CU", "ZS", "CD"],
-    dormant: ["MOR", "PRO", "COM", "PF", "TRB"],
+    dormant: ["MOR", "PRO", "COM"],
     description: "Economic collapse is THE issue; systemic failure; generational/racial transformation",
   },
   candidateActivations: [
@@ -775,20 +775,20 @@ const context2012: ElectionContext = {
   year: 2012,
   zeitgeist: {
     era: "polarization",
-    nodeWeights: { MAT: 1.5, ONT_S: 5.4, PF: 1.3, TRB: 1.3 },
+    nodeWeights: { MAT: 1.5, ONT_S: 5.4, MOR: 1.3 },
     intensity: 1.0,
     description: "Slow recovery; ACA as lightning rod; growing polarization; '47%' crystallizes class divide",
   },
   issueLandscape: {
-    primaryAxis: ["MAT", "ONT_S", "PF"],
-    secondaryAxis: ["CD", "TRB", "MOR", "COM"],
+    primaryAxis: ["MAT", "ONT_S", "MOR"],
+    secondaryAxis: ["CD", "COM"],
     dormant: ["CU", "PRO", "ZS", "ONT_H", "ENG"],
     description: "Role of government in recovery; class divide; partisan identity sharpens",
   },
   candidateActivations: [
     {
       candidateName: "Obama",
-      activationNodes: { MAT: 1.3, CD: 1.2, PF: 1.3, TRB: 1.2 },
+      activationNodes: { MAT: 1.3, CD: 1.2, MOR: 1.3 },
       novelty: 1.1,
     },
     {
@@ -807,20 +807,20 @@ const context2016: ElectionContext = {
   year: 2016,
   zeitgeist: {
     era: "polarization",
-    nodeWeights: { CD: 2.0, TRB: 2.0, ONT_S: 5.8, ZS: 1.6, PF: 1.4, ENG: 1.4 },
+    nodeWeights: { CD: 2.0, MOR: 2.0, ONT_S: 5.8, ZS: 1.6, ENG: 1.4 },
     intensity: 1.4,
     description: "Populist revolt; cultural backlash; institutional distrust; realignment-level disruption",
   },
   issueLandscape: {
-    primaryAxis: ["CD", "TRB", "ONT_S"],
-    secondaryAxis: ["ZS", "MAT", "PF", "ENG"],
-    dormant: ["CU", "MOR", "PRO", "COM", "ONT_H"],
+    primaryAxis: ["CD", "MOR", "ONT_S"],
+    secondaryAxis: ["ZS", "MAT", "ENG"],
+    dormant: ["CU", "PRO", "COM", "ONT_H"],
     description: "Cultural identity and system legitimacy; populism vs. establishment; 'drain the swamp'",
   },
   candidateActivations: [
     {
       candidateName: "Trump",
-      activationNodes: { CD: 1.6, TRB: 1.6, ONT_S: 5.5, ZS: 1.5, ENG: 1.4 },
+      activationNodes: { CD: 1.6, MOR: 1.6, ONT_S: 5.5, ZS: 1.5, ENG: 1.4 },
       novelty: 1.8,
       threatActivation: { CD: 1.5, PRO: 1.5, MOR: 1.3, ONT_S: 5.3 },
     },
@@ -828,7 +828,7 @@ const context2016: ElectionContext = {
       candidateName: "Clinton",
       activationNodes: { PRO: 1.3, CU: 1.2, MAT: 1.2 },
       novelty: 1.2,
-      threatActivation: { CD: 1.3, TRB: 1.2 },
+      threatActivation: { CD: 1.3, MOR: 1.2 },
     },
   ],
 };
@@ -840,14 +840,14 @@ const context2020: ElectionContext = {
   year: 2020,
   zeitgeist: {
     era: "polarization",
-    nodeWeights: { CD: 2.0, ONT_S: 4.0, PRO: 1.8, TRB: 1.8, MOR: 1.5, ENG: 1.5 },
+    nodeWeights: { CD: 2.0, ONT_S: 4.0, PRO: 1.8, MOR: 1.8, ENG: 1.5 },
     intensity: 1.5,
     description: "COVID pandemic + racial justice protests + democratic norms crisis; existential framing on both sides",
   },
   issueLandscape: {
     primaryAxis: ["PRO", "ONT_S", "CD"],
-    secondaryAxis: ["TRB", "MOR", "MAT", "ENG"],
-    dormant: ["CU", "ZS", "COM", "ONT_H", "PF"],
+    secondaryAxis: ["MOR", "MAT", "ENG"],
+    dormant: ["CU", "ZS", "COM", "ONT_H"],
     description: "Democracy and norms vs. system overhaul; pandemic response; racial justice; unprecedented mobilization",
   },
   candidateActivations: [
@@ -859,7 +859,7 @@ const context2020: ElectionContext = {
     },
     {
       candidateName: "Trump",
-      activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, ENG: 1.4 },
+      activationNodes: { CD: 1.5, MOR: 1.6, ONT_S: 5.5, ENG: 1.4 },
       novelty: 1.2,
       threatActivation: { PRO: 1.6, MOR: 1.4, CD: 1.5, ONT_S: 5.4 },
     },
@@ -873,20 +873,20 @@ const context2024: ElectionContext = {
   year: 2024,
   zeitgeist: {
     era: "polarization",
-    nodeWeights: { PRO: 1.8, CD: 1.8, TRB: 1.8, ONT_S: 5.6, MAT: 1.5, ENG: 1.5 },
+    nodeWeights: { PRO: 1.8, CD: 1.8, MOR: 1.8, ONT_S: 5.6, MAT: 1.5, ENG: 1.5 },
     intensity: 1.4,
     description: "Post-January 6 democracy fears + inflation + historic candidates on both sides; existential framing",
   },
   issueLandscape: {
     primaryAxis: ["PRO", "CD", "MAT"],
-    secondaryAxis: ["TRB", "ONT_S", "MOR", "ENG"],
-    dormant: ["CU", "ZS", "COM", "ONT_H", "PF"],
+    secondaryAxis: ["MOR", "ONT_S", "ENG"],
+    dormant: ["CU", "ZS", "COM", "ONT_H"],
     description: "Democracy vs. authoritarianism framing + economy/inflation + cultural identity war",
   },
   candidateActivations: [
     {
       candidateName: "Trump",
-      activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, MAT: 1.3, ENG: 1.4 },
+      activationNodes: { CD: 1.5, MOR: 1.6, ONT_S: 5.5, MAT: 1.3, ENG: 1.4 },
       novelty: 1.3,
       threatActivation: { PRO: 1.7, MOR: 1.4, CD: 1.4, ONT_S: 5.4 },
     },
@@ -894,7 +894,7 @@ const context2024: ElectionContext = {
       candidateName: "Harris",
       activationNodes: { PRO: 1.4, MOR: 1.3, CD: 1.3, ENG: 1.3 },
       novelty: 1.4,
-      threatActivation: { CD: 1.4, TRB: 1.3 },
+      threatActivation: { CD: 1.4, MOR: 1.3 },
     },
   ],
 };

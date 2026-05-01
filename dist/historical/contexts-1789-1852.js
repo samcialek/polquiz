@@ -12,7 +12,7 @@ const context1789 = {
     issueLandscape: {
         primaryAxis: ["PRO", "ONT_H", "COM"],
         secondaryAxis: ["MAT", "ONT_S", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+        dormant: ["CD", "CU", "MOR", "ZS"],
         description: "Can a republic work? Procedural legitimacy and institutional design are everything",
     },
     candidateActivations: [
@@ -30,14 +30,14 @@ const context1792 = {
     year: 1792,
     zeitgeist: {
         era: "founding",
-        nodeWeights: { PRO: 2.0, MAT: 1.5, PF: 1.3, COM: 1.5 },
+        nodeWeights: { PRO: 2.0, MAT: 1.5, MOR: 1.3, COM: 1.5 },
         intensity: 0.9,
         description: "Washington reelected; Hamilton vs Jefferson factions crystallizing beneath the surface",
     },
     issueLandscape: {
         primaryAxis: ["PRO", "MAT", "COM"],
-        secondaryAxis: ["ONT_H", "ONT_S", "PF", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "TRB"],
+        secondaryAxis: ["ONT_H", "ONT_S", "MOR", "ENG"],
+        dormant: ["CD", "CU", "ZS"],
         description: "Hamilton's financial program divides elites; tariffs and the national bank are contested",
     },
     candidateActivations: [
@@ -55,14 +55,14 @@ const context1796 = {
     year: 1796,
     zeitgeist: {
         era: "founding",
-        nodeWeights: { PRO: 1.8, MAT: 1.5, CD: 1.3, PF: 1.2 },
+        nodeWeights: { PRO: 1.8, MAT: 1.5, CD: 1.3, MOR: 1.2 },
         intensity: 1.0,
         description: "First contested election; Jay Treaty anger; institutional stability matters most",
     },
     issueLandscape: {
         primaryAxis: ["PRO", "MAT", "CD"],
-        secondaryAxis: ["PF", "COM", "ENG"],
-        dormant: ["MOR", "CU", "ZS", "ONT_S", "TRB", "ONT_H"],
+        secondaryAxis: ["MOR", "COM", "ENG"],
+        dormant: ["CU", "ZS", "ONT_S", "ONT_H"],
         description: "Can the republic hold? Proceduralism and commerce vs agrarian populism",
     },
     candidateActivations: [
@@ -86,20 +86,20 @@ const context1800 = {
     year: 1800,
     zeitgeist: {
         era: "founding",
-        nodeWeights: { PF: 2.0, ONT_S: 4.0, CD: 1.8, MAT: 1.5, TRB: 1.5, CU: 1.5 },
+        nodeWeights: { MOR: 2.0, ONT_S: 4.0, CD: 1.8, MAT: 1.5, CU: 1.5 },
         intensity: 1.5,
         description: "Alien & Sedition Acts; partisan warfare; both sides fear the republic will die if they lose",
     },
     issueLandscape: {
-        primaryAxis: ["PF", "ONT_S", "CD"],
-        secondaryAxis: ["MAT", "CU", "TRB", "ONT_H"],
-        dormant: ["MOR", "PRO", "COM", "ZS", "ENG"],
+        primaryAxis: ["MOR", "ONT_S", "CD"],
+        secondaryAxis: ["MAT", "CU", "ONT_H"],
+        dormant: ["PRO", "COM", "ZS", "ENG"],
         description: "Liberty vs order; Sedition Acts make free speech THE issue; existential partisan conflict",
     },
     candidateActivations: [
         {
             candidateName: "Jefferson",
-            activationNodes: { ONT_S: 5.5, CU: 1.5, ONT_H: 1.3, PF: 1.3 },
+            activationNodes: { ONT_S: 5.5, CU: 1.5, ONT_H: 1.3, MOR: 1.3 },
             novelty: 1.5,
             threatActivation: { CD: 1.5, PRO: 1.3 },
         },
@@ -118,14 +118,14 @@ const context1804 = {
     year: 1804,
     zeitgeist: {
         era: "founding",
-        nodeWeights: { ONT_H: 1.5, MAT: 1.3, PF: 0.7 },
+        nodeWeights: { ONT_H: 1.5, MAT: 1.3, MOR: 0.7 },
         intensity: 0.8,
         description: "Louisiana Purchase vindicates Jefferson; national optimism; Federalists crumbling",
     },
     issueLandscape: {
         primaryAxis: ["ONT_H", "MAT", "CU"],
         secondaryAxis: ["CD", "PRO", "ONT_S", "ENG"],
-        dormant: ["MOR", "COM", "ZS", "PF", "TRB"],
+        dormant: ["MOR", "COM", "ZS"],
         description: "Expansion and prosperity dominate; opposition party has no compelling counter-narrative",
     },
     candidateActivations: [
@@ -155,7 +155,7 @@ const context1808 = {
     issueLandscape: {
         primaryAxis: ["MAT", "ZS", "ONT_S"],
         secondaryAxis: ["CU", "PRO", "CD", "ENG"],
-        dormant: ["MOR", "COM", "ONT_H", "PF", "TRB"],
+        dormant: ["MOR", "COM", "ONT_H"],
         description: "Trade embargo splits the country; economic pain vs national honor against Britain",
     },
     candidateActivations: [
@@ -179,20 +179,20 @@ const context1812 = {
     year: 1812,
     zeitgeist: {
         era: "founding",
-        nodeWeights: { ZS: 2.5, TRB: 2.0, ONT_S: 5.8, ENG: 1.5, MAT: 1.3 },
+        nodeWeights: { ZS: 2.5, MOR: 2.0, ONT_S: 5.8, ENG: 1.5, MAT: 1.3 },
         intensity: 1.3,
         description: "Nation at war with Britain; security and national survival dominate the election",
     },
     issueLandscape: {
-        primaryAxis: ["ZS", "TRB", "ONT_S"],
-        secondaryAxis: ["MAT", "ENG", "PRO", "PF"],
-        dormant: ["CD", "CU", "MOR", "COM", "ONT_H"],
+        primaryAxis: ["ZS", "MOR", "ONT_S"],
+        secondaryAxis: ["MAT", "ENG", "PRO"],
+        dormant: ["CD", "CU", "COM", "ONT_H"],
         description: "War hawks vs peace faction; national honor and security override all other concerns",
     },
     candidateActivations: [
         {
             candidateName: "Madison",
-            activationNodes: { ZS: 1.5, TRB: 1.3, ENG: 1.3 },
+            activationNodes: { ZS: 1.5, MOR: 1.3, ENG: 1.3 },
             novelty: 1.0,
             threatActivation: { ONT_S: 5.3 },
         },
@@ -211,14 +211,14 @@ const context1816 = {
     year: 1816,
     zeitgeist: {
         era: "good-feelings",
-        nodeWeights: { COM: 1.5, ONT_H: 1.5, PF: 0.5, TRB: 0.5 },
+        nodeWeights: { COM: 1.5, ONT_H: 1.5, MOR: 0.5 },
         intensity: 0.7,
         description: "Post-war nationalism; Federalists irrelevant; one-party era beginning",
     },
     issueLandscape: {
         primaryAxis: ["COM", "ONT_H", "MAT"],
         secondaryAxis: ["PRO", "ONT_S", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+        dormant: ["CD", "CU", "MOR", "ZS"],
         description: "National unity and internal improvements; partisan conflict dormant",
     },
     candidateActivations: [
@@ -241,14 +241,14 @@ const context1820 = {
     year: 1820,
     zeitgeist: {
         era: "good-feelings",
-        nodeWeights: { COM: 1.8, ONT_H: 1.5, PF: 0.5, TRB: 0.5, ZS: 0.5 },
+        nodeWeights: { COM: 1.8, ONT_H: 1.5, MOR: 0.5, ZS: 0.5 },
         intensity: 0.7,
         description: "Peak national unity; Monroe Doctrine era; Missouri Compromise foreshadows trouble",
     },
     issueLandscape: {
         primaryAxis: ["COM", "ONT_H", "PRO"],
         secondaryAxis: ["MAT", "ONT_S", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+        dormant: ["CD", "CU", "MOR", "ZS"],
         description: "Virtually no contest; national consensus on internal improvements and expansion",
     },
     candidateActivations: [
@@ -266,14 +266,14 @@ const context1824 = {
     year: 1824,
     zeitgeist: {
         era: "good-feelings",
-        nodeWeights: { PF: 1.8, TRB: 1.5, ONT_S: 5.5, MAT: 1.5, ENG: 1.3 },
+        nodeWeights: { MOR: 1.8, ONT_S: 5.5, MAT: 1.5, ENG: 1.3 },
         intensity: 1.2,
         description: "One-party system fracturing; 4-way race driven by personality and regional identity",
     },
     issueLandscape: {
-        primaryAxis: ["MAT", "TRB", "ONT_S"],
-        secondaryAxis: ["PRO", "PF", "COM", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "ONT_H"],
+        primaryAxis: ["MAT", "MOR", "ONT_S"],
+        secondaryAxis: ["PRO", "COM", "ENG"],
+        dormant: ["CD", "CU", "ZS", "ONT_H"],
         description: "American System vs agrarian populism; regional blocs and personal factions replace parties",
     },
     candidateActivations: [
@@ -284,13 +284,13 @@ const context1824 = {
         },
         {
             candidateName: "Jackson",
-            activationNodes: { TRB: 1.5, ONT_S: 5.5, ENG: 1.5 },
+            activationNodes: { MOR: 1.5, ONT_S: 5.5, ENG: 1.5 },
             novelty: 1.5,
             threatActivation: { PRO: 1.3, COM: 1.2 },
         },
         {
             candidateName: "Crawford",
-            activationNodes: { PF: 1.3, PRO: 1.2 },
+            activationNodes: { MOR: 1.3, PRO: 1.2 },
             novelty: 0.8,
         },
         {
@@ -307,20 +307,20 @@ const context1828 = {
     year: 1828,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { TRB: 2.0, ONT_S: 4.0, PF: 2.0, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
+        nodeWeights: { MOR: 2.0, ONT_S: 4.0, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
         intensity: 1.3,
         description: "Mass democracy arrives; common man vs establishment; 'corrupt bargain' revenge",
     },
     issueLandscape: {
-        primaryAxis: ["TRB", "ONT_S", "PF"],
+        primaryAxis: ["MOR", "ONT_S"],
         secondaryAxis: ["MAT", "ENG", "ONT_H", "PRO"],
-        dormant: ["CD", "CU", "MOR", "ZS", "COM"],
+        dormant: ["CD", "CU", "ZS", "COM"],
         description: "Populism vs elitism; Jackson channels rage of the common man against Adams aristocracy",
     },
     candidateActivations: [
         {
             candidateName: "Jackson",
-            activationNodes: { TRB: 1.8, ONT_S: 5.5, ENG: 1.5, PF: 1.3 },
+            activationNodes: { MOR: 1.8, ONT_S: 5.5, ENG: 1.5 },
             novelty: 1.8,
             threatActivation: { PRO: 1.5, COM: 1.3 },
         },
@@ -328,7 +328,7 @@ const context1828 = {
             candidateName: "Adams",
             activationNodes: { PRO: 1.3, MAT: 1.2 },
             novelty: 0.8,
-            threatActivation: { ONT_S: 5.3, TRB: 1.3 },
+            threatActivation: { ONT_S: 5.3, MOR: 1.3 },
         },
     ],
 };
@@ -339,20 +339,20 @@ const context1832 = {
     year: 1832,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { MAT: 2.5, ONT_S: 4.0, TRB: 1.8, PF: 1.8, PRO: 1.5 },
+        nodeWeights: { MAT: 2.5, ONT_S: 4.0, MOR: 1.8, PRO: 1.5 },
         intensity: 1.3,
         description: "Bank War dominates; Jackson vetoes BUS; nullification crisis challenges federal authority",
     },
     issueLandscape: {
         primaryAxis: ["MAT", "ONT_S", "PRO"],
-        secondaryAxis: ["TRB", "PF", "ENG", "COM"],
-        dormant: ["CD", "CU", "MOR", "ZS", "ONT_H"],
+        secondaryAxis: ["MOR", "ENG", "COM"],
+        dormant: ["CD", "CU", "ZS", "ONT_H"],
         description: "National Bank is THE issue; executive power vs congressional prerogative; state vs federal",
     },
     candidateActivations: [
         {
             candidateName: "Jackson",
-            activationNodes: { MAT: 1.5, ONT_S: 5.5, TRB: 1.3, ENG: 1.3 },
+            activationNodes: { MAT: 1.5, ONT_S: 5.5, MOR: 1.3, ENG: 1.3 },
             novelty: 1.3,
             threatActivation: { PRO: 1.5, COM: 1.3 },
         },
@@ -360,7 +360,7 @@ const context1832 = {
             candidateName: "Clay",
             activationNodes: { MAT: 1.5, PRO: 1.5, COM: 1.3 },
             novelty: 1.0,
-            threatActivation: { ONT_S: 5.3, TRB: 1.2 },
+            threatActivation: { ONT_S: 5.3, MOR: 1.2 },
         },
     ],
 };
@@ -371,20 +371,20 @@ const context1836 = {
     year: 1836,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { PF: 2.0, TRB: 1.8, COM: 1.3 },
+        nodeWeights: { MOR: 2.0, COM: 1.3 },
         intensity: 1.0,
         description: "Jacksonian succession; party machine vs scattered Whig opposition",
     },
     issueLandscape: {
-        primaryAxis: ["PF", "TRB", "COM"],
+        primaryAxis: ["MOR", "COM"],
         secondaryAxis: ["MAT", "PRO", "ENG"],
-        dormant: ["CD", "CU", "MOR", "ZS", "ONT_H", "ONT_S"],
+        dormant: ["CD", "CU", "ZS", "ONT_H", "ONT_S"],
         description: "Party loyalty and coalition management dominate; VB inherits Jackson's machine",
     },
     candidateActivations: [
         {
             candidateName: "Van Buren",
-            activationNodes: { PF: 1.8, TRB: 1.5, COM: 1.3 },
+            activationNodes: { MOR: 1.8, COM: 1.3 },
             novelty: 1.2,
         },
         {
@@ -401,26 +401,26 @@ const context1840 = {
     year: 1840,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { MAT: 2.5, ONT_S: 4.5, TRB: 2.0, ENG: 2.0, ZS: 1.5 },
+        nodeWeights: { MAT: 2.5, ONT_S: 4.5, MOR: 2.0, ENG: 2.0, ZS: 1.5 },
         intensity: 1.3,
         description: "Depression of 1837 devastates the country; first mass-spectacle campaign; record turnout",
     },
     issueLandscape: {
         primaryAxis: ["MAT", "ONT_S", "ENG"],
-        secondaryAxis: ["TRB", "ZS", "COM"],
-        dormant: ["CD", "CU", "MOR", "PRO", "ONT_H", "PF"],
+        secondaryAxis: ["MOR", "ZS", "COM"],
+        dormant: ["CD", "CU", "PRO", "ONT_H"],
         description: "Economic catastrophe drives everything; 'log cabin and hard cider' populism vs incumbent blame",
     },
     candidateActivations: [
         {
             candidateName: "Harrison",
-            activationNodes: { ONT_S: 5.5, TRB: 1.5, ENG: 1.5, MAT: 1.3 },
+            activationNodes: { ONT_S: 5.5, MOR: 1.5, ENG: 1.5, MAT: 1.3 },
             novelty: 1.3,
             threatActivation: { MAT: 1.3 },
         },
         {
             candidateName: "Van Buren",
-            activationNodes: { PF: 1.3, COM: 1.2 },
+            activationNodes: { MOR: 1.3, COM: 1.2 },
             novelty: 0.8,
             threatActivation: { ONT_S: 5.5, MAT: 1.3 },
         },
@@ -433,20 +433,20 @@ const context1844 = {
     year: 1844,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { TRB: 2.5, ZS: 2.0, ENG: 1.5 },
+        nodeWeights: { MOR: 2.5, ZS: 2.0, ENG: 1.5 },
         intensity: 1.2,
         description: "Manifest Destiny fever; Texas annexation; expansionist energy vs cautious establishment",
     },
     issueLandscape: {
-        primaryAxis: ["TRB", "ZS", "ENG"],
-        secondaryAxis: ["MAT", "PF", "ONT_S"],
-        dormant: ["CD", "CU", "MOR", "PRO", "COM", "ONT_H"],
+        primaryAxis: ["MOR", "ZS", "ENG"],
+        secondaryAxis: ["MAT", "ONT_S"],
+        dormant: ["CD", "CU", "PRO", "COM", "ONT_H"],
         description: "Expansion and national destiny dominate; Texas and Oregon questions split along sectional lines",
     },
     candidateActivations: [
         {
             candidateName: "Polk",
-            activationNodes: { TRB: 1.8, ZS: 1.5, ENG: 1.5 },
+            activationNodes: { MOR: 1.8, ZS: 1.5, ENG: 1.5 },
             novelty: 1.5,
         },
         {
@@ -464,32 +464,32 @@ const context1848 = {
     year: 1848,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { MOR: 2.0, TRB: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.3 },
+        nodeWeights: { MOR: 2.0, CU: 1.5, ONT_S: 5.5, ZS: 1.3 },
         intensity: 1.2,
         description: "Mexican War conquered new territory; slavery expansion is now unavoidable; Free Soil revolt",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "TRB", "ONT_S"],
-        secondaryAxis: ["CU", "ZS", "PF", "ENG"],
+        primaryAxis: ["MOR", "ONT_S"],
+        secondaryAxis: ["CU", "ZS", "ENG"],
         dormant: ["MAT", "CD", "PRO", "COM", "ONT_H"],
         description: "Wilmot Proviso and slavery in the territories; Free Soil movement fractures both parties",
     },
     candidateActivations: [
         {
             candidateName: "Taylor",
-            activationNodes: { COM: 1.3, TRB: 1.2 },
+            activationNodes: { COM: 1.3, MOR: 1.2 },
             novelty: 1.0,
         },
         {
             candidateName: "Cass",
-            activationNodes: { PF: 1.3, TRB: 1.3 },
+            activationNodes: { MOR: 1.3 },
             novelty: 0.8,
         },
         {
             candidateName: "Van Buren",
             activationNodes: { MOR: 1.8, ONT_S: 5.5, ENG: 1.3, CU: 1.3 },
             novelty: 1.3,
-            threatActivation: { TRB: 1.3, PF: 1.2 },
+            threatActivation: { MOR: 1.3 },
         },
     ],
 };
@@ -500,20 +500,20 @@ const context1852 = {
     year: 1852,
     zeitgeist: {
         era: "jacksonian",
-        nodeWeights: { MOR: 1.8, COM: 1.5, PF: 1.5, TRB: 1.5, ONT_S: 5.3 },
+        nodeWeights: { MOR: 1.8, COM: 1.5, ONT_S: 5.3 },
         intensity: 1.0,
         description: "Compromise of 1850 bought time but satisfied nobody; Fugitive Slave Act enrages North; Whig party fracturing",
     },
     issueLandscape: {
-        primaryAxis: ["MOR", "COM", "PF"],
-        secondaryAxis: ["TRB", "ONT_S", "CD", "ENG"],
+        primaryAxis: ["MOR", "COM"],
+        secondaryAxis: ["ONT_S", "CD", "ENG"],
         dormant: ["MAT", "CU", "PRO", "ZS", "ONT_H"],
         description: "Slavery and the Compromise dominate; both parties claim to be unionist; Whigs have no clear identity",
     },
     candidateActivations: [
         {
             candidateName: "Pierce",
-            activationNodes: { PF: 1.3, COM: 1.3, TRB: 1.2 },
+            activationNodes: { MOR: 1.3, COM: 1.3 },
             novelty: 1.0,
         },
         {
