@@ -59,10 +59,20 @@ At the **archetype level**, each archetype is defined by its position (pos 1-5) 
 - **118 active archetypes** (+3 deactivated with prior=0 kept in array for ID stability: 019, 023, 025). 112 base archetypes + 6 identity-primary archetypes (IDs 141-146). Priors are uniform at 1/118. History: 132 → 124 → 122 → 115 → 118 (added identity-primary archetypes).
 - **14 nodes** (12 continuous + 2 categorical)
 - **4 clusters** (ENDS, MEANS, REALITY, SELF)
-- **~74 representative questions** (71 in full bank); engine adaptively selects ~55–65 per respondent, hard cap 55 in current stop rule
+- **~74 representative questions** (71 in full bank); the live browser quiz adaptively selects ~22–35 per respondent (`shouldStopEIG`, `selectorEIG.ts`). Eval / test / diagnostic harnesses use a separate stop rule (`shouldStop`, `stopRule.ts`, HARD_CAP=55). See *Selector / EIG Testing Split* below.
 - **6 EPS categories**, **6 AES categories**
 - **6 identity-primary archetypes** (IDs 141-146: Black Voter, White Grievance, Evangelical, LGBTQ, Feminist, Male Grievance)
 - **9 TRB anchor categories** (national, ideological, religious, class, ethnic_racial, gender, sexual, global, mixed_none) — see TRB Anchor section below. Earlier "7 anchor" references in this repo are drift from an older version.
+
+## Selector / EIG Testing Split
+
+The live browser quiz and the eval harness do **not** use the same stopping behavior. Live adaptive selection flows through `src/engine/selectorEIG.ts` / `shouldStopEIG` and typically asks ~22–35 questions. Eval, diagnostic, and replay harnesses use the older distance-native `src/engine/stopRule.ts` / `shouldStop` path with HARD_CAP=55. Older docs claiming "~55–65 questions, hard cap 55" describe the eval path, not the live quiz.
+
+For selector/EIG changes — especially salience floors or question-value weighting — run both sides:
+- live-style dump/persona replay against the known ground-truth dumps: question count, whether wrong-direction nodes receive more probes, whether correct nodes regress;
+- broader eval harness regression (`src/eval/harness.ts`) for top-1/top-3 movement.
+
+A change can improve eval top-1 while worsening live adaptive behavior, or sharpen live probing while leaving eval nearly unchanged. Report both before shipping selector/EIG changes.
 
 ## Canonical Files
 | File | What It Contains | Authority |
