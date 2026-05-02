@@ -345,6 +345,10 @@
     .ed-node-act.x3 { background: rgba(255,107,107,0.25); color: #ff8080; }
     /* Position bar — bigger and more legible than v21.6. */
     .ed-pos-bar { position: relative; height: 28px; background: rgba(255,255,255,0.025); border-radius: 2px; }
+    /* Red connector line between you-dot and candidate-dot — visualizes the
+       gap that drives the squared-distance impact term. Hidden when dots
+       overlap (zero-width). */
+    .ed-pos-line { position: absolute; top: 50%; height: 2.5px; background: #d04545; transform: translateY(-50%); border-radius: 2px; z-index: 1; box-shadow: 0 0 4px rgba(208,69,69,0.45); }
     .ed-pos-axis { position: absolute; left: 6%; right: 6%; top: 50%; height: 2px; background: #2e2e2e; border-radius: 1px; }
     .ed-pos-tick { position: absolute; top: 50%; width: 2px; height: 8px; background: #3a3a3a; transform: translate(-50%, -50%); border-radius: 1px; }
     .ed-pos-dot {
@@ -2331,8 +2335,16 @@ document.addEventListener('DOMContentLoaded', () => {
             bdBody += `    <div class="ed-pos-bar">`;
             bdBody += `      <div class="ed-pos-axis"></div>`;
             for (let i = 0; i < 5; i++) bdBody += `<div class="ed-pos-tick" style="left:${6 + i * 22}%"></div>`;
-            bdBody += `      <div class="ed-pos-dot cand" style="left:${6 + (candLeft * 0.88)}%" title="${focusScore.name}: ${r.candPos}"></div>`;
-            bdBody += `      <div class="ed-pos-dot you" style="left:${6 + (yourLeft * 0.88)}%" title="You: ${r.yourPos.toFixed(1)}"></div>`;
+            // Red connector showing the position gap that drives impact.
+            const youX = 6 + (yourLeft * 0.88);
+            const candX = 6 + (candLeft * 0.88);
+            const lineLeft = Math.min(youX, candX);
+            const lineWidth = Math.abs(youX - candX);
+            if (lineWidth > 0.2) {
+              bdBody += `      <div class="ed-pos-line" style="left:${lineLeft}%;width:${lineWidth}%" title="Position gap: ${r.diff.toFixed(2)} (drives impact via salience × gap²)"></div>`;
+            }
+            bdBody += `      <div class="ed-pos-dot cand" style="left:${candX}%" title="${focusScore.name}: ${r.candPos}"></div>`;
+            bdBody += `      <div class="ed-pos-dot you" style="left:${youX}%" title="You: ${r.yourPos.toFixed(1)}"></div>`;
             bdBody += `    </div>`;
             bdBody += `    <div class="ed-pos-poles"><span>${meta.low}</span><span>${meta.high}</span></div>`;
             bdBody += `  </div>`;
