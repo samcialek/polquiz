@@ -1,0 +1,398 @@
+{
+  "generatedAt": "2026-05-02T23:40:42.303Z",
+  "schemaVersion": 1,
+  "pipeline": [
+    {
+      "id": "C0",
+      "description": "Vote-model smoke: archetypes-as-strawman-population baseline.",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/voteModelSmoke.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/smoke/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/voteModelSmoke.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/smoke/summary.md"
+      ],
+      "notes": []
+    },
+    {
+      "id": "C1",
+      "description": "Weighted-agent simulator scaffold with synthetic agents.",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/types.ts",
+        "src/electorate/electorateSimulator.ts",
+        "src/electorate/syntheticAgents.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/scaffold/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/types.ts",
+        "src/electorate/electorateSimulator.ts",
+        "src/electorate/syntheticAgents.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/scaffold/summary.md"
+      ],
+      "smoke": {
+        "passed": 1,
+        "total": 1,
+        "rawOverall": "**Overall: ✓ ALL PASS**"
+      },
+      "notes": []
+    },
+    {
+      "id": "C2",
+      "description": "Coalition decomposition over an electorate simulation result.",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/coalitionDecomposition.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/coalition/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/coalitionDecomposition.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/coalition/summary.md"
+      ],
+      "smoke": {
+        "passed": 13,
+        "total": 13,
+        "rawOverall": "**Overall: ✓ ALL PASS** (13/13)"
+      },
+      "notes": []
+    },
+    {
+      "id": "C3",
+      "description": "Coalition gate: pass/fail vs benchmark targets, per-subgroup tolerance.",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/coalitionGate.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/gate/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/coalitionGate.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/gate/summary.md"
+      ],
+      "smoke": {
+        "passed": 10,
+        "total": 10,
+        "rawOverall": "**Overall: ✓ ALL PASS** (10/10)"
+      },
+      "notes": []
+    },
+    {
+      "id": "C4",
+      "description": "Closed-loop error reporter: ranked diagnoses + recommendations.",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/errorReporter.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/feedback/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/errorReporter.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/feedback/summary.md"
+      ],
+      "smoke": {
+        "passed": 14,
+        "total": 14,
+        "rawOverall": "**Overall: ✓ ALL PASS** (14/14)"
+      },
+      "notes": []
+    },
+    {
+      "id": "C5",
+      "description": "Diagnostics dashboard (this artifact).",
+      "status": "complete",
+      "sourceFiles": [
+        "src/electorate/diagnosticsDashboard.ts"
+      ],
+      "artifactFiles": [
+        "results/electorate/dashboard/summary.md"
+      ],
+      "presentSourceFiles": [
+        "src/electorate/diagnosticsDashboard.ts"
+      ],
+      "presentArtifactFiles": [
+        "results/electorate/dashboard/summary.md"
+      ],
+      "smoke": {
+        "passed": 10,
+        "total": 10,
+        "rawOverall": "**Overall: ✓ ALL PASS** (10/10)"
+      },
+      "notes": []
+    },
+    {
+      "id": "A1",
+      "description": "CES + ANES codebook intake — Terminal Two.",
+      "status": "complete",
+      "sourceFiles": [],
+      "artifactFiles": [
+        "results/electorate/intake/ces-anes-codebook-intake.md",
+        "results/electorate/intake/variable-catalog-v0.json"
+      ],
+      "presentSourceFiles": [],
+      "presentArtifactFiles": [
+        "results/electorate/intake/ces-anes-codebook-intake.md",
+        "results/electorate/intake/variable-catalog-v0.json"
+      ],
+      "notes": []
+    },
+    {
+      "id": "A2",
+      "description": "Survey-to-PRISM mapping spec v0 — Terminal Two.",
+      "status": "complete",
+      "sourceFiles": [],
+      "artifactFiles": [
+        "results/electorate/mapping/survey-to-prism-v0.json",
+        "results/electorate/mapping/survey-to-prism-v0.md"
+      ],
+      "presentSourceFiles": [],
+      "presentArtifactFiles": [
+        "results/electorate/mapping/survey-to-prism-v0.json",
+        "results/electorate/mapping/survey-to-prism-v0.md"
+      ],
+      "notes": []
+    },
+    {
+      "id": "A3",
+      "description": "Coverage gap report — Terminal Two (or this terminal as documentation).",
+      "status": "missing",
+      "sourceFiles": [],
+      "artifactFiles": [
+        "results/electorate/mapping/coverage-gap-report-v0.md",
+        "results/electorate/mapping/coverage-gap-report-v0.json"
+      ],
+      "presentSourceFiles": [],
+      "presentArtifactFiles": [],
+      "notes": [
+        "Missing artifact: results/electorate/mapping/coverage-gap-report-v0.md, results/electorate/mapping/coverage-gap-report-v0.json"
+      ]
+    },
+    {
+      "id": "D1",
+      "description": "2024 candidate + activation audit (no edits).",
+      "status": "complete",
+      "sourceFiles": [],
+      "artifactFiles": [
+        "results/electorate/audit/2024-candidate-and-activation-review.md"
+      ],
+      "presentSourceFiles": [],
+      "presentArtifactFiles": [
+        "results/electorate/audit/2024-candidate-and-activation-review.md"
+      ],
+      "notes": []
+    },
+    {
+      "id": "D2",
+      "description": "2020 candidate + era-context audit (no edits).",
+      "status": "complete",
+      "sourceFiles": [],
+      "artifactFiles": [
+        "results/electorate/audit/2020-candidate-and-era-context-review.md"
+      ],
+      "presentSourceFiles": [],
+      "presentArtifactFiles": [
+        "results/electorate/audit/2020-candidate-and-era-context-review.md"
+      ],
+      "notes": []
+    }
+  ],
+  "testHealth": {
+    "totalChecks": 48,
+    "passing": 48,
+    "failing": 0,
+    "bySource": {
+      "C1": {
+        "passed": 1,
+        "total": 1,
+        "rawOverall": "**Overall: ✓ ALL PASS**"
+      },
+      "C2": {
+        "passed": 13,
+        "total": 13,
+        "rawOverall": "**Overall: ✓ ALL PASS** (13/13)"
+      },
+      "C3": {
+        "passed": 10,
+        "total": 10,
+        "rawOverall": "**Overall: ✓ ALL PASS** (10/10)"
+      },
+      "C4": {
+        "passed": 14,
+        "total": 14,
+        "rawOverall": "**Overall: ✓ ALL PASS** (14/14)"
+      },
+      "C5": {
+        "passed": 10,
+        "total": 10,
+        "rawOverall": "**Overall: ✓ ALL PASS** (10/10)"
+      }
+    }
+  },
+  "architectureNote": "Pipeline order is individual-profile-first.\n  1. Survey respondent → PRISM signature posterior (per-agent, with uncertainty).\n  2. Per-agent vote/abstain via respondentVoteChoice.\n  3. Aggregate (decomposition) into subgroup views — purely descriptive of per-agent answers.\n  4. External diagnostic checks: coalition gate against benchmarks, error report when gate fails.\n\nSubgroup decompositions and the coalition gate are EXTERNAL DIAGNOSTICS over the\nper-agent simulation. They do not modify per-agent inference and they are not\ncalibration targets. Tuning the per-agent layer to match a coalition cell directly\nis overfitting.",
+  "coalitionGateWarning": "Coalition gates and the closed-loop error reporter are diagnostics, not calibration\ntargets. Their job is to surface the most likely failure layer (mapper / candidate\nsignature / vote formula / turnout model / coverage) so a human can decide what to\nrevise. Do not auto-tune the mapper to make a coalition cell pass; that path leads\nto overfit subgroup totals atop incorrect individual-level reasoning.",
+  "dataSources": [
+    {
+      "source": "CES / ANES",
+      "role": "Individual political measurement. Survey items map into per-respondent PRISM signature posteriors with explicit uncertainty.",
+      "required": true
+    },
+    {
+      "source": "ACS (Census)",
+      "role": "Poststratification and geography priors only. Demographic weights, not political content.",
+      "required": false
+    },
+    {
+      "source": "Esri Tapestry",
+      "role": "Optional geographic enrichment. Not an individual political mapper. Does not replace survey-derived signatures.",
+      "required": false
+    },
+    {
+      "source": "Edison / NEP exit polls",
+      "role": "Subgroup benchmark targets for the coalition gate (diagnostic only, not a fitting target).",
+      "required": false
+    }
+  ],
+  "measurementRisks": [
+    {
+      "topic": "AES (aesthetic style) coverage",
+      "severity": "high",
+      "description": "Survey items rarely measure aesthetic-style preferences directly. AES inference is weakest among the 14 nodes; AES is era-elevated for style-driven elections (e.g., 2016/2020/2024) so weak coverage hurts more than it would otherwise."
+    },
+    {
+      "topic": "COM (compromise tolerance) coverage",
+      "severity": "medium",
+      "description": "Standard political surveys ask about issues, not about willingness to compromise. COM may need imputation from related items."
+    },
+    {
+      "topic": "ONT_H (human malleability)",
+      "severity": "medium",
+      "description": "Worldview about whether character is fixed vs. shaped by environment is rarely surveyed directly. Likely inferred from culturally-coded items."
+    },
+    {
+      "topic": "Moral-boundary salience / loading",
+      "severity": "high",
+      "description": "Highest-risk derived inference. The 7-boundary moral-circle module is sensitive to coalition-axis miscalibration; a single mis-loaded boundary can shift the racial / religious / class dimensions of an entire coalition."
+    },
+    {
+      "topic": "Engagement dimension separation",
+      "severity": "medium",
+      "description": "Engagement is one-dimensional and separate from policy alignment. Surveys conflate engagement with partisanship; the mapper must keep them disjoint."
+    },
+    {
+      "topic": "2020 / 2024 candidate + era-context audit findings",
+      "severity": "medium",
+      "description": "Open audit flags include 2020 ONT_S not era-activated, 2020 Biden moral-boundary.ethnic_racial likely too low, 2024 inflation absent from era + economy term, 2024 Trump moral-boundary.class likely too low. See results/electorate/audit/."
+    }
+  ],
+  "nextActions": [
+    {
+      "id": "A3",
+      "description": "Author or import the mapper coverage-gap report — per-PRISM-target coverage rating, gap descriptions, do-not-overfit guidance.",
+      "owner": "Terminal Two (or this terminal as documentation if Terminal Two is blocked)."
+    },
+    {
+      "id": "C5-followup",
+      "description": "Iterate the diagnostics dashboard with richer per-stage summaries (e.g. inline mapper coverage table, per-cluster smoke roll-ups).",
+      "owner": "This terminal."
+    },
+    {
+      "id": "C6-prep",
+      "description": "Prepare for the first real CES 2020 backtest: define the demographic-tag mapping from CES variables to AgentDemographics, agree on benchmark sources for the coalition gate (Edison / Catalist / Pew validated vote), and set Phase-2 entry conditions.",
+      "owner": "Both terminals + human acceptance criteria."
+    },
+    {
+      "id": "audit-decisions",
+      "description": "Resolve human-coding-decision flags from the 2020 + 2024 audits before they back-pollute candidate signatures during a backtest revision cycle.",
+      "owner": "Human + measurement track."
+    }
+  ],
+  "inputFiles": [
+    {
+      "path": "results/electorate/00-PLAN.md",
+      "category": "plan",
+      "present": true
+    },
+    {
+      "path": "results/electorate/scaffold/summary.md",
+      "category": "smoke-summary",
+      "present": true
+    },
+    {
+      "path": "results/electorate/coalition/summary.md",
+      "category": "smoke-summary",
+      "present": true
+    },
+    {
+      "path": "results/electorate/gate/summary.md",
+      "category": "smoke-summary",
+      "present": true
+    },
+    {
+      "path": "results/electorate/feedback/summary.md",
+      "category": "smoke-summary",
+      "present": true
+    },
+    {
+      "path": "results/electorate/audit/2024-candidate-and-activation-review.md",
+      "category": "audit",
+      "present": true
+    },
+    {
+      "path": "results/electorate/audit/2020-candidate-and-era-context-review.md",
+      "category": "audit",
+      "present": true
+    },
+    {
+      "path": "results/electorate/intake/ces-anes-codebook-intake.md",
+      "category": "intake",
+      "present": true
+    },
+    {
+      "path": "results/electorate/intake/acs-esri-geography-intake.md",
+      "category": "intake",
+      "present": true
+    },
+    {
+      "path": "results/electorate/intake/variable-catalog-v0.json",
+      "category": "intake",
+      "present": true
+    },
+    {
+      "path": "results/electorate/mapping/survey-to-prism-v0.md",
+      "category": "mapping",
+      "present": true
+    },
+    {
+      "path": "results/electorate/mapping/survey-to-prism-v0.json",
+      "category": "mapping",
+      "present": true
+    }
+  ],
+  "meta": {
+    "repoRoot": "C:\\Users\\Sam\\Desktop\\polmodel-clean",
+    "notes": [
+      "Read-only diagnostic. Does not modify any source, candidate, era-context, mapper, or output file.",
+      "Engagement is a one-dimensional scalar separate from policy alignment.\nIt is never referred to as activation. It governs the per-agent\nclearing-bar in respondentVoteChoice and lives in its own module\n(src/engine/engagementLabel.ts).",
+      "Identity-driven appeal is read through moral-boundary salience and moral-boundary loading. Legacy PF / TRB fields visible in source are inert and not active model concepts."
+    ]
+  }
+}
