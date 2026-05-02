@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISM Results · Prototype v21 (vertical EPS/AES, on-brand cluster colors)</title>
+  <title>PRISM Results · Prototype v21.4 (2x2 cluster grid + donut on left)</title>
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script src="../share-codec.js"></script>
@@ -446,10 +449,8 @@
     .cluster-drill .node-row > div:first-child { font-size: 0.85rem !important; }
     .cluster-drill .node-value { font-size: 0.85rem; }
     .cluster-drill .node-bar { height: 16px; }
-    @media (max-width: 1100px) {
+    @media (max-width: 820px) {
       .cluster-drill { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 920px) {
       .profile-flex { flex-direction: column; align-items: stretch; gap: 1.5rem; }
       .profile-donut-col { position: static; }
       .cluster-drill-tagline { text-align: center; }
