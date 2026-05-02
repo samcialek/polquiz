@@ -1007,11 +1007,7 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     0.96,
     false,
     [
-      t("TRB", "continuous", "position", 0.70, "identity_ranking"),
-      t("PF", "continuous", "salience", 0.40, "identity_ranking"),
-      t("TRB_ANCHOR", "derived", "anchor", 0.95, "identity_ranking"),
-      t("CU", "continuous", "position", 0.15, "identity_ranking"),
-      t("MOR", "continuous", "position", 0.15, "identity_ranking")
+      t("TRB_ANCHOR", "derived", "anchor", 0.95, "identity_ranking")
     ],
     {
       eligibleIf: ["TRB_live_or_unresolved", "PF_live_or_unresolved"],

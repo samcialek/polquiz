@@ -328,11 +328,9 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.96,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.40, touchType: "identity_pattern" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "identity_pattern" },
-            { node: "CU", kind: "continuous", role: "position", weight: 0.20, touchType: "identity_pattern" },
-            { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "identity_pattern" },
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.10, touchType: "identity_pattern" },
+            // Continuous position touches removed 2026-05-02: rankingMap carries
+            // TRB_ANCHOR evidence only, so the old TRB/MOR/CU/CD/MAT rows inflated
+            // coverage counters without moving posteriors.
             { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
         ],
         rankingMap: {
@@ -2716,7 +2714,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             civic_assimilation: {
                 continuous: {
                     CD: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] },
-                    CU: { pos: [0.20, 0.35, 0.25, 0.15, 0.05] },
+                    CU: { pos: [0.08, 0.18, 0.32, 0.27, 0.15] },
                     MOR: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
                 }
             },
@@ -3389,12 +3387,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             // contribute mostly salience evidence without dominating CU position.
             { node: "CU", kind: "continuous", role: "position", weight: 0.30, touchType: "membership_criteria" },
             { node: "CU", kind: "continuous", role: "salience", weight: 0.80, touchType: "membership_criteria" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_scope" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "membership_boundary" },
-            { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "membership_boundary" },
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.10, touchType: "economic_membership" },
-            { node: "ZS", kind: "continuous", role: "position", weight: 0.10, touchType: "economic_membership" },
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "civic_membership" }
+            // Other continuous position touches removed 2026-05-02: rankingMap only
+            // carries CU evidence, so MOR/TRB/CD/MAT/ZS/PRO rows were hollow.
         ],
         rankingMap: {
             // Civic-membership likelihoods recalibrated 2026-04-25 per ADR-009.

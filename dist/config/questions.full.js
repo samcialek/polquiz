@@ -45,12 +45,16 @@ export const FULL_QUESTIONS = [
         eligibleIf: ["ENG_live_or_unresolved", "PF_live_or_unresolved", "TRB_live_or_unresolved"],
         goodFollowupsIfUnresolved: [9, 39, 60]
     }),
-    q(6, "stage3", "I", "surveillance_enforcement_due_process_bundle", "single_choice", 0.68, true, [
-        t("PRO", "continuous", "position", 0.70, "policy_bundle"),
-        t("ONT_H", "continuous", "position", 0.10, "policy_bundle")
+    q(6, "stage2", "I", "national_priorities_bundle", "single_choice", 0.90, false, [
+        t("MAT", "continuous", "position", 0.65, "policy_bundle"),
+        t("CD", "continuous", "position", 0.60, "policy_bundle"),
+        t("MOR", "continuous", "position", 0.60, "policy_bundle"),
+        t("ONT_H", "continuous", "position", 0.55, "policy_bundle"),
+        t("ZS", "continuous", "position", 0.40, "policy_bundle"),
+        t("MAT", "continuous", "salience", 0.30, "policy_bundle_salience")
     ], {
-        eligibleIf: ["late_consistency_check_only"],
-        goodFollowupsIfUnresolved: [25, 36, 41]
+        eligibleIf: ["background_prior_only"],
+        goodFollowupsIfUnresolved: [7, 3, 8]
     }),
     q(7, "screen20", "I", "coalition_vs_principle", "single_choice", 0.88, false, [
         t("COM", "continuous", "position", 0.85, "principle_tradeoff"),
@@ -366,11 +370,9 @@ export const FULL_QUESTIONS = [
     // ---------------------------------------------------------------------------
     q(54, "stage3", "V", "religion_in_upbringing", "single_choice", 0.40, false, [
         t("MOR", "continuous", "position", 0.10, "background_context"),
-        t("CD", "continuous", "position", 0.10, "background_context"),
-        // SAM DECISION 2026-03-28: TRB dropped - factual background, not tribal position
-        t("TRB_ANCHOR", "derived", "anchor", 0.35, "religious_anchor")
+        t("CD", "continuous", "position", 0.10, "background_context")
     ], {
-        eligibleIf: ["background_prior_only_or_TRB_anchor_active"]
+        eligibleIf: ["background_prior_only"]
     }),
     q(55, "screen20", "V", "what_changed_your_mind", "multi", 0.94, false, [
         t("EPS", "categorical", "category", 0.88, "updating_channel"),
@@ -397,11 +399,7 @@ export const FULL_QUESTIONS = [
         goodFollowupsIfUnresolved: [56, 61, 25]
     }),
     q(60, "screen20", "V", "politically_important_identities", "ranking", 0.96, false, [
-        t("TRB", "continuous", "position", 0.70, "identity_ranking"),
-        t("PF", "continuous", "salience", 0.40, "identity_ranking"),
-        t("TRB_ANCHOR", "derived", "anchor", 0.95, "identity_ranking"),
-        t("CU", "continuous", "position", 0.15, "identity_ranking"),
-        t("MOR", "continuous", "position", 0.15, "identity_ranking")
+        t("TRB_ANCHOR", "derived", "anchor", 0.95, "identity_ranking")
     ], {
         eligibleIf: ["TRB_live_or_unresolved", "PF_live_or_unresolved"],
         goodFollowupsIfUnresolved: [39, 42, 51]
