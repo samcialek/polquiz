@@ -12,16 +12,6 @@ export type ContinuousNodeId =
   | "TRB"
   | "ENG";
 
-/**
- * Continuous nodes scheduled for removal per ADR-006: MOR, TRB, PF collapse
- * into the compound moral-circle module (`Archetype.morBoundaries`,
- * `RespondentState.morBoundaries`). They remain in `ContinuousNodeId`
- * during the additive transition (PRs 6.B–6.D); the engine cutover in PR
- * 6.E removes them. New code should not depend on these as live continuous
- * nodes.
- */
-export type DeprecatedMoralCircleNodeId = "MOR" | "TRB" | "PF";
-
 export type CategoricalNodeId = "EPS" | "AES";
 
 export type NodeId = ContinuousNodeId | CategoricalNodeId;

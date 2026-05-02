@@ -19,29 +19,6 @@ export const AES_CATEGORIES = [
 ] as const;
 
 /**
- * Order MUST match TRB_ANCHOR_ORDER in src/engine/math.ts and the TrbAnchor
- * union in src/types.ts (9 anchors). Drift was previously 7 here, causing
- * TRB_ANCHOR distribution work to silently misalign with the canonical
- * 9-wide TrbAnchorDist type. Canonicalized 2026-04-29.
- *
- * @deprecated since ADR-006 (PR 6.B). Replaced by `MOR_BOUNDARIES` below
- * (7 categories: gender + sexual fold to gender; global → implicit
- * universalism via low boundaries; mixed_none → all-low signal). Removal
- * scheduled for PR 6.E (engine cutover).
- */
-export const TRB_ANCHORS = [
-  "national",
-  "ideological",
-  "religious",
-  "class",
-  "ethnic_racial",
-  "gender",
-  "sexual",
-  "global",
-  "mixed_none"
-] as const;
-
-/**
  * Canonical ordered list of the 7 moral-circle boundaries per ADR-006
  * (PR 6.B additive). Order MUST match `MorBoundaryId` in `src/types.ts`
  * and any `MOR_BOUNDARY_ORDER` constants added downstream (e.g., a runtime
