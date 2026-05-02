@@ -19,7 +19,7 @@ This document inventories what those 15 slots actually buy, separates the redund
 | **Vote-prediction metadata** | `state.partyID`, `state.strategicVoting`, `state.negativeParties` | Yes — `respondentVoteChoice.predictVote` reads these; missing partyID silently degrades partisan multiplier to 1.0 (the bug Sam fixed Apr 28) |
 | **Salience routing** | Per-node `salDist` | Yes — downstream `isQuestionEligible` rule-out gate (`salDist[0] ≥ 0.5`) needs salience signal before dynamic phase |
 | **Categorical anchors** | EPS / AES `catDist`; TRB anchor distribution | Yes (anchors hard to derive elsewhere); identity-primary resolver gates on TRB anchor |
-| **Engagement / partisan-fusion floor** | PF / ENG `posDist` | Useful — engagement-label gate + identity-primary `engagementActive` flag depend on it |
+| **Engagement floor** | ENG `posDist` (plus the legacy `PF` node, which in current code carries a political-tribe-boundary salience signal under its old identifier) | Useful — engagement-label gate + the identity-primary resolver's `engagementActive` flag depend on the ENG read |
 | **Universal position floor** | ≥1 light position touch on every position node (MAT/CD/CU/MOR/PRO/COM/ZS/ONT_H/ONT_S) | **Convention, not strict requirement** — dynamic phase can adapt without it; current design treats it as "be conservative against Q103 mis-routing salience" |
 | **Forced coverage** | Specific anti-attractor probes (none currently in fixed; Q207/Q213 etc. fire post-fixed via `FORCED_COVERAGE_PROBES`) | Conditional |
 
@@ -33,7 +33,7 @@ This document inventories what those 15 slots actually buy, separates the redund
 |---|---|---|---|---|---|
 | 1 | Q200 | metadata | single_choice | (none — writes `state.partyID`) | **Yes** (election compute) |
 | 2 | Q103 | salience routing | priority_sort | salience@0.95 on all 11 topic-facing nodes (MAT/CD/CU/MOR/PRO/COM/ZS/ONT_H/ONT_S/EPS/AES) | **Yes** (sets eligibility for everything downstream) |
-| 3 | Q97 | engagement/PF floor | single_choice | **PF/position@0.70**, **ENG/position@0.55** | Strong yes (no other PF probe in opener) |
+| 3 | Q97 | engagement floor + political-tribe-boundary signal (legacy `PF` node) | single_choice | **PF/position@0.70**, **ENG/position@0.55** | Strong yes (no other probe in opener for either signal) |
 | 4 | Q1 | engagement reinforcement | single_choice | **ENG/position@0.85** | **Soft** — Q97 already gives ENG@0.55 (meaningful); Q1 is reinforcement, not unique signal |
 | 5 | Q60 | TRB anchor | priority_sort | TRB_ANCHOR/anchor@0.95 | **Yes** (only anchor source) |
 | 6 | Q89 | EPS categorical | best_worst | EPS/category@0.85, EPS/salience@0.55 | **Yes** (primary EPS source) |
@@ -121,7 +121,7 @@ These are surgical: each touches one routing rule and can be tested in isolation
 
 **Why this is the lowest priority of the four:** Q97's ENG@0.55 is meaningful but light. Q1's ENG@0.85 carries most of the ENG signal. Removing it could degrade engagement-label assignment, which in turn degrades the `engagementActive` flag in the identity-primary resolver and the abstain/vote clearing-bar in `respondentVoteChoice`.
 
-**Risk surface:** ENG is structurally important (gates voting decisions, identity-primary activation). Don't touch this until 2.1–2.3 are validated.
+**Risk surface:** ENG is structurally important (gates voting decisions and the identity-primary resolver's `engagementActive` / `engagementDominant` flags). Don't touch this until 2.1–2.3 are validated.
 
 **Expected savings:** 0–1 question depending on conditional vs full-remove.
 
@@ -212,7 +212,7 @@ Strict order. Each step gates on the previous step's validation passing.
 | **A** | Q3 routed CD probe | Low-risk routing | Most direct fix to the actual surfaced calibration problem (CD under-extremity in D1/D3, CD-direction confusion in D2 pre-PR2). Doesn't touch Q82. Doesn't change fixed sequence. Smallest reviewable patch. |
 | **B** | Q22 conditional EPS tie-breaker | Low-risk routing | Saves 1 question for sharp-EPS respondents. EPS calibration not currently flagged as broken in any dump verdict. Independent of CD work. Can run in parallel with A in principle but easier to review one at a time. |
 | **C** | Q8 routed MOR probe | Low-risk routing | Mirrors A for MOR. Wait until A is shipped to confirm the forced-coverage pattern works as expected on a real bottleneck. |
-| **D** | Q1 conditional / removal test | Low-risk but structurally sensitive | Touches engagement signal. ENG gates voting decisions and identity-primary activation. Run only after A/B/C show the routing infrastructure is sound and we have replay confidence. |
+| **D** | Q1 conditional / removal test | Low-risk but structurally sensitive | Touches engagement signal. ENG gates voting decisions and the identity-primary resolver's `engagementActive` / `engagementDominant` flags. Run only after A/B/C show the routing infrastructure is sound and we have replay confidence. |
 | **E** | Fixed-12 / contract-opener prototype | Medium-risk redesign | Bundles 3.1 + 3.2 + (compressed version of) 3.3. Only ship after A–D have validated each surgical move and we know which compressions are safe. |
 
 Don't bundle. The temptation is to ship Fixed-12 as one patch (5 slots saved + 3 added). The dump-verdict signal doesn't justify that risk yet — each surgical move can be validated independently and reverted in isolation if it regresses.
