@@ -196,14 +196,49 @@ assert("validator catches out-of-range boundary",
 // ─── Test 3: real data corpus is fully populated ──────────────────────
 console.log("\n=== Test 3: data corpus passes the validator ===");
 
+// Cardinality assertions (PR 6.E.4c, Sam 2026-05-02): canonical counts
+// are 124 archetypes total / 121 active, 141 candidates, 401 regimes.
+// Drift here means an unintended add/remove and should fail the smoke.
+const activeArchetypes = ARCHETYPES.filter(a => a.active !== false);
+console.log(`  archetypes: ${ARCHETYPES.length} total / ${activeArchetypes.length} active (cardinality check)`);
+assert("ARCHETYPES.length === 124 (no entries added/removed)",
+  ARCHETYPES.length === 124);
+assert("active archetype count === 121 (3 deactivated kept for ID stability)",
+  activeArchetypes.length === 121);
+
 const archResults = validateMorBoundariesPopulated(ARCHETYPES, "archetype");
-console.log(`  archetypes: ${ARCHETYPES.length} entries, ${archResults.length} failures`);
+console.log(`  archetype morBoundaries failures: ${archResults.length}`);
 if (archResults.length > 0) console.log(`    first: ${archResults[0]}`);
 assert("ARCHETYPES all have valid morBoundaries", archResults.length === 0);
 
+// 6.E.4c data-deletion proof: legacy nodes.MOR/TRB/PF template entries
+// stripped from every archetype. Active runtime path was already gated
+// off these via useMorModule (PR 6.E.2a); deletion makes that gate
+// implicit (template undefined → loop skips automatically).
+let archesWithLegacyMOR = 0;
+let archesWithLegacyTRB = 0;
+let archesWithLegacyPF = 0;
+for (const a of ARCHETYPES) {
+  if (a.nodes.MOR !== undefined) archesWithLegacyMOR++;
+  if (a.nodes.TRB !== undefined) archesWithLegacyTRB++;
+  if (a.nodes.PF !== undefined)  archesWithLegacyPF++;
+}
+console.log(`  archetypes still carrying nodes.MOR: ${archesWithLegacyMOR}`);
+console.log(`  archetypes still carrying nodes.TRB: ${archesWithLegacyTRB}`);
+console.log(`  archetypes still carrying nodes.PF:  ${archesWithLegacyPF}`);
+assert("no archetype carries nodes.MOR (6.E.4c deletion landed)",
+  archesWithLegacyMOR === 0);
+assert("no archetype carries nodes.TRB (6.E.4c deletion landed)",
+  archesWithLegacyTRB === 0);
+assert("no archetype carries nodes.PF (6.E.4c deletion landed)",
+  archesWithLegacyPF === 0);
+
 const allCandidates = ELECTIONS.flatMap(e => e.candidates);
+console.log(`  candidates: ${allCandidates.length} entries (cardinality check)`);
+assert("candidate count === 141 (no entries added/removed)",
+  allCandidates.length === 141);
 const candResults = validateMorBoundariesPopulated(allCandidates, "candidate");
-console.log(`  candidates: ${allCandidates.length} entries, ${candResults.length} failures`);
+console.log(`  candidate morBoundaries failures: ${candResults.length}`);
 if (candResults.length > 0) console.log(`    first: ${candResults[0]}`);
 assert("ELECTIONS candidates all have valid morBoundaries", candResults.length === 0);
 

@@ -7,12 +7,17 @@ import { morModuleDistance } from "./math.js";
  * `morBoundaries`, archetypeDistance drops these per-node terms and folds
  * their geometry into a single morModule contribution computed below.
  *
- * When either side lacks `morBoundaries` (e.g., live quiz state today —
- * `api.ts` initializer + `update.ts` writer don't populate it until
- * 6.E.2b/6.F), the scorer falls back to the legacy per-node reads so the
- * MOR/TRB/PF contribution is not silently dropped. The skip is therefore
- * per-archetype, not unconditional. The legacy data fields stay until
- * 6.E.4 cleanup.
+ * Compatibility-fallback note (post 6.E.4c): when either side lacks
+ * `morBoundaries`, the per-archetype gate skips the morModule term and
+ * the per-node loop runs without the MOR/TRB/PF skip. After 6.E.4c
+ * stripped MOR/TRB/PF templates from every archetype, those nodes
+ * contribute nothing to the per-node loop either (the
+ * `if (!template) continue;` guard handles the missing entries). The
+ * fallback is therefore a finite-distance compatibility path for
+ * malformed or hand-built state — NOT a faithful legacy MOR/TRB/PF
+ * geometry reproduction. Live api.ts always passes the gate (every
+ * archetype + the api.ts state initializer carry morBoundaries since
+ * 6.E.2b/6.E.4a).
  */
 const MOR_MODULE_LEGACY = ["MOR", "TRB", "PF"];
 function expectedPos(posDist) {
@@ -50,12 +55,15 @@ function expectedSal(salDist) {
 export function archetypeDistance(state, archetype) {
     let totalDist = 0;
     let totalWeight = 0;
-    // Per-archetype gate: only fold MOR/TRB/PF into the compound module when
-    // BOTH sides have the new data. If either side lacks it (live quiz today
-    // — see api.ts/update.ts), we keep reading the legacy per-node fields so
-    // the moral-circle contribution is not silently dropped during the
-    // multi-PR cutover. This collapses to "always use module" once 6.E.2b
-    // wires morBoundaries into respondent state and 6.E.4 strips legacy.
+    // Per-archetype gate: fold MOR/TRB/PF into the compound module when
+    // BOTH sides have the new data. Live api.ts always passes the gate
+    // (every archetype + the api.ts state initializer carry morBoundaries
+    // since 6.E.2b/6.E.4a). If either side lacks it (malformed or
+    // hand-built state from external integrations / dumps / future
+    // codepaths), the morModule term is skipped — and post-6.E.4c the
+    // per-node loop has no MOR/TRB/PF templates to read either. The
+    // fallback is therefore a finite-distance compatibility path, NOT a
+    // faithful legacy MOR/TRB/PF geometry reproduction.
     const useMorModule = !!state.morBoundaries && !!archetype.morBoundaries;
     for (const nodeId of CONTINUOUS_NODES) {
         if (useMorModule && MOR_MODULE_LEGACY.includes(nodeId))
