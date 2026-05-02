@@ -1,0 +1,411 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-02",
+  "scope": "modern survey-era (2008, 2012, 2016, 2020, 2024) for survey_to_prism mapper",
+  "verification_legend": {
+    "verified-codebook": "Variable name confirmed by direct read of source codebook",
+    "verified-search": "Variable name surfaced by web search but full text not directly read",
+    "training-data-verify": "Drawn from prior knowledge of long-standing variable conventions; re-verify before use",
+    "needs-codebook-pull": "Variable likely exists but exact code not located in this pass"
+  },
+  "coverage_legend": {
+    "STRONG-DIRECT": "Standard battery directly measures the construct",
+    "PROXY": "Adjacent measure with reasonable inferential bridge",
+    "WEAK": "No direct measure, weak inferential coverage",
+    "MISSING": "No usable variable in this source",
+    "DERIVED": "Construct must be computed from a combination of variables"
+  },
+  "sources": {
+    "ces_cumulative": {
+      "title": "Cumulative CES Common Content",
+      "doi": "10.7910/DVN/II2DB6",
+      "version": "v10.0 (2024-05-21)",
+      "coverage_years": [2006, 2024],
+      "coverage_total_n": 701955,
+      "annual_n": {
+        "2008": 32800,
+        "2012": 54535,
+        "2016": 64600,
+        "2020": 61000,
+        "2024": 60000
+      },
+      "codebook_url": "https://csmweb-prod-02.ist.berkeley.edu/sdaweb/docs/ces-cumulative-2024-v10/DOC/guide_cumulative_2006-2024.pdf",
+      "limitation": "No issue-attitude variables. Spine for ID/weights/demographics/vote/party/ideology/turnout only."
+    },
+    "ces_per_year": {
+      "2008": { "doi": "10.7910/DVN/YUYIVB", "verification": "verified-search" },
+      "2012": { "doi": "10.7910/DVN/HQEVPK", "verification": "verified-search" },
+      "2016": { "doi": "10.7910/DVN/GDF6Z0", "verification": "verified-search", "html_codebook": "https://sda.berkeley.edu/sdaweb/docs/cces2016/DOC/hcbk.htm" },
+      "2020": { "doi": "10.7910/DVN/E9N6PH", "verification": "verified-search" },
+      "2024": { "doi": "10.7910/DVN/X11EP6", "verification": "verified-search" }
+    },
+    "anes_cumulative": {
+      "title": "ANES Time Series Cumulative Data File",
+      "coverage_years": [1948, 2024],
+      "latest_release": "2025-12-11",
+      "codebook_url_legacy": "https://electionstudies.org/wp-content/uploads/2022/09/anes_timeseries_cdf_codebook_var_20220916.pdf",
+      "variable_scheme": "VCF{nnnn} — harmonized across years included",
+      "limitation": "Question must appear in >=3 Time Series studies to enter cumulative file"
+    },
+    "anes_per_year": {
+      "2020": {
+        "title": "ANES 2020 Time Series Study",
+        "n": 8280,
+        "modes": { "web": 7782, "video": 359, "telephone": 139 },
+        "codebook_url": "https://electionstudies.org/wp-content/uploads/2022/02/anes_timeseries_2020_userguidecodebook_20220210.pdf",
+        "variable_scheme": "V20xxxx (V201xxx pre, V202xxx post)"
+      },
+      "2024": {
+        "title": "ANES 2024 Time Series Study",
+        "release": "Full release 2025-08-08",
+        "codebook_url": "https://electionstudies.org/wp-content/uploads/2025/08/anes_timeseries_2024_userguidecodebook_20250808.pdf",
+        "variable_scheme": "V24xxxx (V241xxx pre, V242xxx post — extrapolated, verify)"
+      },
+      "2016": { "title": "ANES 2016 Time Series Study", "verification": "training-data-verify" },
+      "2012": { "title": "ANES 2012 Time Series Study", "verification": "training-data-verify" },
+      "2008": { "title": "ANES 2008 Time Series Study", "verification": "training-data-verify" }
+    }
+  },
+  "ces_cumulative_standard_fields": {
+    "id": [{ "name": "year", "type": "int" }, { "name": "case_id", "type": "int", "join_key_with": "year" }],
+    "weights": [
+      { "name": "weight", "use": "pre-wave year-specific" },
+      { "name": "weight_cumulative", "use": "multi-year pooled" },
+      { "name": "weight_post", "use": "post-wave" },
+      { "name": "rvweight", "use": "validated registered voters" },
+      { "name": "rvweight_post", "use": "validated registered voters post-wave" }
+    ],
+    "turnout_vote": [
+      { "name": "vv_turnout_gvm", "label": "Validated turnout general election" },
+      { "name": "vv_regstatus", "label": "Validated registration status" },
+      { "name": "intent_turnout_self", "label": "Self-reported turnout intent (pre)" },
+      { "name": "voted_turnout_self", "label": "Self-reported turnout (post)" },
+      { "name": "intent_pres_08", "label": "2008 president preference (pre)" },
+      { "name": "intent_pres_12", "label": "2012 president preference (pre)" },
+      { "name": "intent_pres_16", "label": "2016 president preference (pre)" },
+      { "name": "intent_pres_20", "label": "2020 president preference (pre)" },
+      { "name": "intent_pres_24", "label": "2024 president preference (pre)" },
+      { "name": "voted_pres_08", "label": "2008 president vote (post)" },
+      { "name": "voted_pres_12", "label": "2012 president vote (post)" },
+      { "name": "voted_pres_16", "label": "2016 president vote (post)" },
+      { "name": "voted_pres_20", "label": "2020 president vote (post)" },
+      { "name": "voted_pres_24", "label": "2024 president vote (post)" }
+    ],
+    "party_id": [
+      { "name": "pid3", "scale": "3-cat (Dem/Rep/Indep)" },
+      { "name": "pid7", "scale": "7-pt strong-D to strong-R" },
+      { "name": "pid3_leaner", "scale": "3-cat with leaners" }
+    ],
+    "ideology": [{ "name": "ideo5", "scale": "5-pt very-lib to very-cons" }],
+    "demographics": [
+      "gender", "gender4", "sex", "sexuality", "birthyr", "age",
+      "educ", "race", "race_h", "hispanic", "hisp_origin", "citizen",
+      "religion", "relig_imp", "relig_bornagain", "relig_protestant", "relig_church",
+      "marstat", "ownhome", "has_child", "no_milstat",
+      "faminc", "employ", "no_healthins", "union", "union_hh", "investor", "economy_retro"
+    ],
+    "engagement_proxies": ["newsint", "approval_pres", "approval_rep", "approval_sen1", "approval_sen2", "approval_gov"]
+  },
+  "prism_node_catalog": {
+    "MAT": {
+      "description": "Material orientation (1=redistribution, 5=free-market)",
+      "ces_cumulative": { "coverage": "PROXY", "vars": ["economy_retro", "faminc", "union", "investor", "no_healthins"] },
+      "ces_year_specific_2016": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["CC16_337_1", "CC16_337_2", "CC16_337_3", "CC16_415r", "CC16_416r", "CC16_351I", "CC16_351K"]
+      },
+      "anes_cumulative": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["VCF0809", "VCF0839", "VCF0806"],
+        "verification": "training-data-verify"
+      },
+      "mapper_note": "Strongest single-node mapping. Use VCF0809 + VCF0839 as spine; refine with year-specific items."
+    },
+    "CD": {
+      "description": "Cultural direction (1=progressive, 5=traditionalist)",
+      "ces_cumulative": { "coverage": "WEAK", "vars": ["relig_imp", "relig_church"] },
+      "ces_year_specific_2016": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["CC16_332a", "CC16_332b", "CC16_332c", "CC16_332d", "CC16_332e", "CC16_332f", "CC16_335"]
+      },
+      "anes_cumulative": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["VCF0837", "VCF0838", "VCF0834", "VCF0876", "VCF0877"],
+        "verification": "training-data-verify"
+      },
+      "mapper_note": "Abortion + women's role + gay marriage as 3-item index loads cleanly on CD."
+    },
+    "CU": {
+      "description": "Cultural uniformity / pluralism (1=one shared way, 5=different ways side-by-side)",
+      "ces_cumulative": { "coverage": "WEAK", "vars": [] },
+      "ces_year_specific_2016": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["CC16_331_1", "CC16_331_2", "CC16_331_3", "CC16_331_4", "CC16_331_5", "CC16_331_6", "CC16_331_7", "CC16_331_8"]
+      },
+      "anes_cumulative": {
+        "coverage": "PROXY",
+        "vars": ["VCF0879"],
+        "verification": "training-data-verify"
+      },
+      "anes_2020": { "coverage": "STRONG-DIRECT", "vars": ["V202232", "V202233", "V202234"] },
+      "mapper_note": "CU and CD often co-vary. Joint factor analysis preferred over single-variable mapping."
+    },
+    "MOR": {
+      "description": "Moral circle (1=narrow/in-group, 5=universalist)",
+      "ces_cumulative": { "coverage": "WEAK", "vars": [] },
+      "ces_year_specific_2016": { "coverage": "DERIVED", "vars": ["CC16_331_5", "CC16_331_8", "CC16_312"] },
+      "anes_cumulative": { "coverage": "DERIVED", "vars": ["VCF0830", "VCF0879"], "verification": "training-data-verify" },
+      "mapper_note": "Use refugee/Muslim-ban + foreign-aid items + thermometer in/out-group differentials"
+    },
+    "morBoundaries": {
+      "description": "Compound module (ADR-006): 7-boundary vector + intensity scalar",
+      "boundaries": ["national", "ethnic_racial", "religious", "class", "ideological", "gender", "political_tribe"],
+      "all_sources": { "coverage": "DERIVED" },
+      "mapper_note": "v0 sketch (verify after fitting on 2020 ANES first):",
+      "boundary_assembly": {
+        "national": "national-identity importance + immigration restrictiveness",
+        "ethnic_racial": "thermometer gap own-race vs other-race + race-conscious-policy stance (VCF0830)",
+        "religious": "relig_imp × relig_church × thermometer differential",
+        "class": "thermometer rich-vs-poor + economic-conflict items",
+        "ideological": "VCF0211/0212 thermometer gap + ideology strength",
+        "gender": "VCF0834 women's role + gender thermometer gap",
+        "political_tribe": "VCF0201/0202 partisan thermometer gap × pid7 strength"
+      },
+      "intensity": "composite scalar from PF + TRB + MOR salience proxies"
+    },
+    "PRO": {
+      "description": "Proceduralism (1=results, 5=rules)",
+      "ces_cumulative": { "coverage": "MISSING", "vars": [] },
+      "ces_year_specific_2016": { "coverage": "WEAK", "vars": [] },
+      "anes_cumulative": { "coverage": "PROXY", "vars": ["VCF0604", "VCF0606"], "verification": "training-data-verify" },
+      "mapper_note": "Weakly covered. May need DERIVED inference from democracy-norms × partisan-asymmetry."
+    },
+    "COM": {
+      "description": "Compromise tolerance (1=principled, 5=dealmaker)",
+      "all_sources": { "coverage": "MISSING" },
+      "mapper_note": "Worst-covered node. v0 mapper: near-uniform-prior with light derivation from pid7-strength × ideo-strength."
+    },
+    "ZS": {
+      "description": "Zero-sum orientation (1=positive-sum, 5=zero-sum)",
+      "ces_cumulative": { "coverage": "WEAK", "vars": ["economy_retro"] },
+      "ces_year_specific_2016": { "coverage": "DERIVED", "vars": [] },
+      "anes_cumulative": { "coverage": "DERIVED", "vars": [] },
+      "anes_2020": { "coverage": "STRONG-DIRECT", "vars": ["V202233"] },
+      "mapper_note": "Build 3-4 item index from trade + immigration-jobs items"
+    },
+    "ONT_H": {
+      "description": "Human malleability (1=fixed, 5=shaped by environment)",
+      "ces_cumulative": { "coverage": "MISSING", "vars": [] },
+      "ces_year_specific_2016": { "coverage": "MISSING", "vars": [] },
+      "anes_cumulative": { "coverage": "DERIVED", "vars": [] },
+      "anes_per_year": { "coverage": "PROXY", "vars": ["Feldman-Stenner items: V162267-V162272 (2016)"], "verification": "training-data-verify" },
+      "mapper_note": "Maps inversely to authoritarian-parenting battery. CES-only path: ONT_H ~ uniform prior."
+    },
+    "ONT_S": {
+      "description": "System ontology / institutional trust (1=rigged, 5=institutions can produce good change)",
+      "ces_cumulative": { "coverage": "WEAK", "vars": ["approval_pres", "approval_rep"] },
+      "ces_year_specific_2016": { "coverage": "DERIVED", "vars": [] },
+      "anes_cumulative": { "coverage": "STRONG-DIRECT", "vars": ["VCF0604", "VCF0606"], "verification": "training-data-verify" },
+      "anes_per_year": { "coverage": "STRONG-DIRECT", "vars": ["V162310-series 2016 trust battery"], "verification": "training-data-verify" }
+    },
+    "EPS": {
+      "description": "Epistemic style (categorical: 6 categories)",
+      "ces_cumulative": { "coverage": "MISSING", "vars": [] },
+      "ces_year_specific_2016": { "coverage": "DERIVED", "vars": ["newsint", "media-trust items 2018+"] },
+      "anes_cumulative": { "coverage": "DERIVED", "vars": [] },
+      "anes_2020": { "coverage": "PROXY", "vars": ["faith-in-experts/science battery"] },
+      "mapper_note": "v0 should output probability distribution over 6 categories with substantial uncertainty"
+    },
+    "AES": {
+      "description": "Aesthetic style (categorical: 6 categories)",
+      "all_sources": { "coverage": "MISSING" },
+      "mapper_note": "Zero direct survey coverage. Per ADR-003 not load-bearing. v0: uniform prior or weak inference from candidate-thermometer differentials."
+    },
+    "PF": {
+      "description": "Political fusion (1=independent, 5=strong partisan)",
+      "ces_cumulative": { "coverage": "STRONG-DIRECT", "vars": ["pid7", "pid3_leaner"] },
+      "anes_cumulative": { "coverage": "STRONG-DIRECT", "vars": ["VCF0301", "VCF0305"], "verification": "training-data-verify" },
+      "mapper_note": "Map pid7 ∈ {1..7} → PF position based on |pid - 4| (strength, not direction)"
+    },
+    "TRB": {
+      "description": "Tribal pull (1=universalist, 5=tribal in-group)",
+      "ces_cumulative": { "coverage": "PROXY", "vars": ["pid7", "race", "religion"] },
+      "ces_year_specific_2016": { "coverage": "DERIVED", "vars": [] },
+      "anes_cumulative": {
+        "coverage": "STRONG-DIRECT",
+        "vars": ["VCF0201 minus VCF0202 (own-party - other-party thermometer)", "race/religion thermometer differentials"],
+        "verification": "training-data-verify"
+      },
+      "mapper_note": "ANES-anchored. CES-only path much weaker."
+    },
+    "ENG": {
+      "description": "Engagement (1=apolitical, 5=highly engaged)",
+      "ces_cumulative": { "coverage": "STRONG-DIRECT", "vars": ["newsint", "intent_turnout_self", "voted_turnout_self", "vv_turnout_gvm"] },
+      "anes_cumulative": { "coverage": "STRONG-DIRECT", "vars": ["interest-in-campaign + follow-politics + past-vote items"] },
+      "mapper_note": "Validated turnout (vv_turnout_gvm) is the gold-standard component; combine with newsint for position estimate"
+    }
+  },
+  "coverage_matrix": {
+    "MAT":           { "ces_cumulative": "PROXY",   "ces_year": "STRONG", "anes_cum": "STRONG", "anes_year": "STRONG" },
+    "CD":            { "ces_cumulative": "WEAK",    "ces_year": "STRONG", "anes_cum": "STRONG", "anes_year": "STRONG" },
+    "CU":            { "ces_cumulative": "WEAK",    "ces_year": "STRONG", "anes_cum": "PROXY",  "anes_year": "STRONG" },
+    "MOR":           { "ces_cumulative": "WEAK",    "ces_year": "DERIVED", "anes_cum": "DERIVED", "anes_year": "DERIVED" },
+    "morBoundaries": { "ces_cumulative": "DERIVED", "ces_year": "DERIVED", "anes_cum": "DERIVED", "anes_year": "DERIVED" },
+    "PRO":           { "ces_cumulative": "MISSING", "ces_year": "WEAK", "anes_cum": "PROXY", "anes_year": "WEAK" },
+    "COM":           { "ces_cumulative": "MISSING", "ces_year": "MISSING", "anes_cum": "WEAK", "anes_year": "WEAK" },
+    "ZS":            { "ces_cumulative": "WEAK",    "ces_year": "DERIVED", "anes_cum": "DERIVED", "anes_year": "STRONG" },
+    "ONT_H":         { "ces_cumulative": "MISSING", "ces_year": "MISSING", "anes_cum": "DERIVED", "anes_year": "PROXY" },
+    "ONT_S":         { "ces_cumulative": "WEAK",    "ces_year": "DERIVED", "anes_cum": "STRONG", "anes_year": "STRONG" },
+    "EPS":           { "ces_cumulative": "MISSING", "ces_year": "DERIVED", "anes_cum": "DERIVED", "anes_year": "PROXY" },
+    "AES":           { "ces_cumulative": "MISSING", "ces_year": "MISSING", "anes_cum": "MISSING", "anes_year": "MISSING" },
+    "PF":            { "ces_cumulative": "STRONG",  "ces_year": "STRONG", "anes_cum": "STRONG", "anes_year": "STRONG" },
+    "TRB":           { "ces_cumulative": "PROXY",   "ces_year": "DERIVED", "anes_cum": "STRONG", "anes_year": "STRONG" },
+    "ENG":           { "ces_cumulative": "STRONG",  "ces_year": "STRONG", "anes_cum": "STRONG", "anes_year": "STRONG" }
+  },
+  "top_10_mapper_risk_gaps": [
+    "AES has zero survey coverage anywhere — uniform prior or thermometer-circular inference",
+    "morBoundaries 7-vector × intensity is highest-stakes derived inference; prototype on 2020 ANES first",
+    "ONT_H requires Feldman-Stenner items only present in ANES — CES-only path effectively missing ONT_H",
+    "COM essentially unmeasurable; mapper output near-uniform-prior across electorate",
+    "CES Cumulative has zero issue-attitude vars; per-year merge required (~40-60 hrs per cycle)",
+    "ANES year-specific codes not stable across cycles (V202xxx vs V162xxx vs V120xxx)",
+    "MEANS-cluster (PRO+COM+AES) all weakly covered; vote prediction will be ENDS-driven",
+    "TRB requires feeling-thermometer gaps absent from CES; CES-only TRB is crude proxy",
+    "2024 ANES variable codes not directly verified this pass (PDF 403 to WebFetch)",
+    "VCF item availability year-restricted; some items only post-1988 or post-1992; per-(node × year) availability matrix needed"
+  ],
+  "open_questions": [
+    "CES alone vs CES+ANES for backtest validation? (CES has 5x sample size; ANES has 5x attitude richness)",
+    "Two-stage independent-posterior mapping vs joint factor model?",
+    "morBoundaries prototype dump: 2020 ANES (most data) or 2016 ANES (matches existing PRISM candidate signatures)?"
+  ],
+  "geographic_sources": {
+    "added": "2026-05-02 in A1b intake",
+    "purpose": "Population scaffold for poststratification + optional geographic / psychographic enrichment for Phase 4. Not part of survey_to_prism mapper itself.",
+    "acs_census": {
+      "products": {
+        "acs_1yr": {
+          "granularity": "geographies >= 65,000 pop",
+          "cadence": "annual",
+          "use_for": "national + state demographic distributions",
+          "limitations": "no tract/block-group; 2020 1-year not released due to COVID response collapse"
+        },
+        "acs_5yr": {
+          "granularity": "all geographies down to block group",
+          "cadence": "annual rolling 5-year window",
+          "use_for": "tract/block-group poststratification (the workhorse)",
+          "limitations": "language tables suppressed at block group level"
+        },
+        "decennial_census": {
+          "granularity": "all geographies down to block",
+          "cadence": "every 10 years",
+          "use_for": "anchoring totals; redistricting blocks"
+        },
+        "pums": {
+          "granularity": "PUMA (~100K pop)",
+          "cadence": "annual + 5-year",
+          "use_for": "individual-level records for raking / IPF; preferred via IPUMS USA"
+        }
+      },
+      "vintage_per_backtest_year": {
+        "2008": "ACS 5-year 2005-2009 OR 2008 1-year (5-year coverage starts 2009)",
+        "2012": "ACS 5-year 2010-2014",
+        "2016": "ACS 5-year 2014-2018",
+        "2020": "ACS 5-year 2016-2020 OR 2018-2022 (2020 1-year not released)",
+        "2024": "ACS 5-year 2020-2024 (when released) OR 2019-2023 most recent full"
+      },
+      "key_tables": {
+        "race_ethnicity": ["B02001 race", "B03002 Hispanic by race (preferred)", "B03003 Hispanic origin"],
+        "age_sex": ["B01001 sex by age (workhorse)", "B01002 median age by sex", "B01003 total population"],
+        "education": ["B15003 educational attainment 25+", "B15001 sex by age by education"],
+        "income": ["B19013 median HH income", "B19001 HH income brackets (raking)", "B19101 family income", "B19301 per capita income"],
+        "employment": ["B23025 employment status 16+", "C24010 sex by occupation"],
+        "housing": ["B25003 tenure (own/rent)", "B25001 total units", "B25024 units in structure"],
+        "household_type": ["B11001 HH type", "B11003 family type by children", "B11016 HH type by size"],
+        "nativity_language": ["B05002 place of birth/nativity", "B05003 sex by age by nativity", "B16001 language at home (NOT block-group)", "B16004 age by language"]
+      },
+      "geography_levels": {
+        "nation": { "n": 1 },
+        "state": { "n": 51, "includes": "DC" },
+        "congressional_district": { "n": 435, "caveat": "redrawn each cycle; use vintage-matched districts" },
+        "county": { "n": 3143, "best_for": "stable cross-time political analysis" },
+        "tract": { "n": 73000, "approx_pop": 4000, "caveat": "boundary changes at decennial reboundaring; need crosswalks" },
+        "block_group": { "n": 240000, "approx_pop": "600-3000", "caveat": "disclosure suppression on small-N cells" },
+        "block": { "n": 8000000, "data": "decennial only" }
+      },
+      "access_paths": ["data.census.gov (web)", "Census API (api.census.gov)", "tidycensus R package (recommended)", "cenpy Python", "IPUMS USA (cross-year PUMS)", "NHGIS (consistent boundaries cross-vintage)"],
+      "what_acs_can_measure": ["race/ethnicity", "age/sex", "education", "income", "employment", "homeownership", "household structure", "nativity/citizenship/language", "commute", "health insurance", "internet access"],
+      "what_acs_cannot_measure": ["political attitudes", "vote choice", "party ID", "religion (Census statutorily prohibited from publishing)", "gun ownership"],
+      "role_in_prism_simulator": "Provides cell structure (race x age x education x income x geography) for poststratification of survey respondents to population. Contributes nothing to PRISM signature mapping directly."
+    },
+    "esri_tapestry": {
+      "verified_2026_05_02": true,
+      "esri_legacy_2024": {
+        "name": "Esri Tapestry Segmentation",
+        "status": "Retiring June 2026",
+        "segments_distinct": 67,
+        "segments_total_with_unclassified": 68,
+        "lifemode_distinct": 14,
+        "lifemode_total_with_unclassified": 15,
+        "built_on": "Census 2020 + ACS 2018-2022 + Esri Updated Demographics 2024"
+      },
+      "arcgis_2025_current": {
+        "name": "ArcGIS Tapestry",
+        "status": "Current; June 2025 release",
+        "segments_distinct": 60,
+        "segments_total_with_unclassified": 61,
+        "lifemode_distinct": 12,
+        "lifemode_distinct_letters": "A through L",
+        "lifemode_total_with_unclassified": 13,
+        "built_on": "Census 2020 + ACS 2019-2023 + Esri Updated Demographics 2025"
+      },
+      "migration_notes": {
+        "persistent_segments": 33,
+        "new_segments": 27,
+        "official_crosswalk_exists": false,
+        "caveat": "Persistent-by-name segments may have shifted geographic footprints"
+      },
+      "vintage_comparability_per_backtest_year": {
+        "2008": "Effectively unavailable (current Tapestry products are 2024+2025 only)",
+        "2012": "Effectively unavailable",
+        "2016": "Limited / commercial-archive only",
+        "2020": "Tapestry 2024 acceptable proxy (modest temporal mismatch)",
+        "2024": "Direct match (2024 legacy or 2025 ArcGIS)"
+      },
+      "what_esri_can_inform": ["lifestyle segment characterization at any geography (BG up)", "consumer behavior cross-tab", "media consumption", "density classification", "affluence/life-stage gradients", "geographic clustering of similar neighborhoods"],
+      "what_esri_cannot_directly_inform": ["political attitudes", "vote choice or partisanship", "PRISM node signatures directly", "issue salience"],
+      "indirect_inferential_use": "MRP covariates (segment-level priors); narrative coloring of cluster reports; should not be load-bearing for vote prediction",
+      "access_paths": ["ArcGIS Business Analyst (desktop or web)", "ArcGIS GeoEnrichment (REST API)", "Living Atlas of the World (free tier; limited samples)", "Downloadable segment description tables (free; not geographic assignments)"],
+      "licensing": "Commercial. ArcGIS Online subscription with Business Analyst, or GeoEnrichment service credits. Often available via university institutional licenses."
+    },
+    "voter_file_vendors": {
+      "L2": { "records_M": 210, "fields": "600+", "coverage": "all 50 states", "license": "bipartisan; common in academic libraries" },
+      "Catalist": { "records_M": 256, "coverage": "all 50 states", "license": "Democrats / progressives only" },
+      "TargetSmart": { "fields": "700+", "license": "primarily Democratic-aligned" },
+      "Aristotle": { "license": "bipartisan; older brand" },
+      "i360": { "license": "Republican-aligned" },
+      "Resonate": { "attributes": "1400+", "license": "commercial enterprise tier" },
+      "when_voter_files_beat_tapestry": ["individual-level data (not just neighborhood)", "vote history per individual", "party registration in registration states", "direct contactability"],
+      "when_tapestry_beats_voter_files": ["neighborhood-only (no individual matching)", "sub-Census-block geography", "consumer-behavior context", "non-registered-voter coverage"]
+    },
+    "recommended_stacks": {
+      "phase_1_mvp_2008_2024_backtest": {
+        "required": ["CES Cumulative + per-year Common Content (from A1)", "ANES Time Series per-year (from A1)", "ACS 5-year matching cycle"],
+        "not_needed": ["Esri Tapestry", "Voter file vendors", "ACS 1-year", "PUMS"]
+      },
+      "phase_4_geography_county_state": {
+        "required": ["CES (state-level subsamples)", "ACS 5-year (county-level)", "ACS PUMS via IPUMS USA (cross-year harmonized)", "County-level vote returns (Dave Leip / MIT Election Data Lab)"],
+        "optional": ["Esri ArcGIS Tapestry (current vintage only; not for pre-2020 backtest)", "L2 voter file (if Electoral College state-by-state with subgroup turnout)", "NHGIS (consistent tract boundaries cross-decennial)"]
+      },
+      "phase_4_avoid": ["Using 2025 Tapestry for 2008/2012/2016 neighborhoods (15-year temporal mismatch)", "Voter file longitudinal alignment 2008 -> 2024 without major cleaning", "Esri in Phase 1 (licensing cost without Phase 1 value)"]
+    },
+    "top_5_esri_risks": [
+      "No retroactive vintage for 2008/2012/2016 backtest years (Esri ships 2024+2025 only)",
+      "2024 -> 2025 vocabulary discontinuity with no official crosswalk; 27 of 60 segments are new",
+      "Census-derivative circularity (Tapestry built from same ACS already used for poststratification)",
+      "Closed/paid licensing constrains reproducibility",
+      "No direct political attitude content; using as vote-prediction signal risks correlation-as-causation"
+    ],
+    "effect_on_mapper_plan": "Adds geography hooks; does not change core survey_to_prism mapper plan. Poststratification weighting is downstream of the mapper. Optional geographic enrichment (Esri / voter files) is Phase 4 only."
+  }
+}
