@@ -386,24 +386,52 @@
       font-size: 0.7rem; margin-bottom: 0.35rem; display: block;
       letter-spacing: 0.06em; text-transform: uppercase; color: #555;
     }
-    /* v27.5: TALL and SLIM vbar — narrower overall (160px max width),
-       much taller (260px), bars trimmed to 14px wide with 6px gaps.
-       Portrait orientation rather than fat squat landscape. */
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-chart,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart {
-      height: 260px; padding: 0.25rem 0 1.5rem;
-      max-width: 160px; margin: 0 auto;
+    /* v27.7: leaderboard-style categorical chart for EPS/AES — sorted
+       horizontal probability bars. Matches the horizontal-bar aesthetic
+       of the continuous nodes elsewhere on the page. */
+    .cat-list { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.25rem 0; }
+    .cat-list-row {
+      display: grid;
+      grid-template-columns: minmax(95px, 110px) minmax(0, 1fr) 36px;
+      align-items: center;
+      gap: 0.65rem;
+      cursor: help;
     }
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-grid,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.25rem 0 1.5rem 18px; }
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-yaxis,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 16px; top: 0.25rem; bottom: 1.5rem; font-size: 0.6rem; }
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-cols,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 18px; top: 0.25rem; bottom: 1.5rem; gap: 6px; }
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar-track,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 14px; left: 50%; transform: translateX(-50%); }
-    .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar { left: 0; right: 0; border-radius: 1.5px; }
+    .cat-list-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      color: #666;
+      text-transform: capitalize;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .cat-list-row.top .cat-list-label { color: var(--ink); font-weight: 700; }
+    .cat-list-row.anti .cat-list-label { color: #999; font-style: italic; }
+    .cat-list-bar-wrap {
+      position: relative;
+      height: 12px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .cat-list-bar { position: absolute; top: 0; bottom: 0; left: 0; transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .cat-list-bar.regular { background: var(--cluster-color, #DAA520); }
+    .cat-list-bar.anti {
+      background: var(--ink);
+      background-image: repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 3px, #444 3px, #444 5px);
+      opacity: 0.7;
+    }
+    .cat-list-pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: right;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .cat-list-row.top .cat-list-pct { font-size: 0.95rem; }
+    .cat-list-row.anti .cat-list-pct { color: #999; }
     /* v21.2: hide collabel + score by default; only the top-positive and
        top-negative columns get the .show class (added in JS). Visible
        labels are bigger and allowed to overflow their column horizontally. */
@@ -2733,6 +2761,72 @@ document.addEventListener('DOMContentLoaded', () => {
     //   - if category is in archetype's antiCats → score = -3 (full aversion)
     //   - else → (prob - 1/6) * 6, clamped to [-3, +3]
     //     (uniform distribution = 0; modal category at 50%+ → ~+2 to +3)
+    // v27.7: leaderboard-style categorical chart — sorted descending by
+    // probability, each row = label | horizontal probability bar | %.
+    // Matches the horizontal-bar aesthetic of the continuous nodes.
+    function renderCatList(probs, antiCats, categoryLabels, clusterColor, nodeName) {
+      const wrap = document.createElement('div');
+      wrap.className = 'cat-list';
+      wrap.style.setProperty('--cluster-color', clusterColor);
+
+      const antiSet = new Set(antiCats || []);
+      const items = categoryLabels.map((label, i) => ({
+        label,
+        prob: probs[i] || 0,
+        isAnti: antiSet.has(i),
+        idx: i,
+      }));
+      // Non-anti sorted by probability desc; anti-categories pinned at the bottom.
+      items.sort((a, b) => {
+        if (a.isAnti !== b.isAnti) return a.isAnti ? 1 : -1;
+        return b.prob - a.prob;
+      });
+
+      const topProb = items.find(it => !it.isAnti && it.prob > 0)?.prob || 0;
+      const maxBarPct = Math.max(60, topProb * 100); // bars can occupy at least 60% of track for visual scale
+
+      items.forEach((item, i) => {
+        const isTop = !item.isAnti && i === 0 && item.prob > 0;
+        const row = document.createElement('div');
+        row.className = 'cat-list-row' + (item.isAnti ? ' anti' : '') + (isTop ? ' top' : '');
+
+        const labelEl = document.createElement('div');
+        labelEl.className = 'cat-list-label';
+        labelEl.textContent = item.label;
+
+        const barWrap = document.createElement('div');
+        barWrap.className = 'cat-list-bar-wrap';
+        const bar = document.createElement('div');
+        bar.className = 'cat-list-bar ' + (item.isAnti ? 'anti' : 'regular');
+        const widthPct = item.isAnti ? 100 : (item.prob * 100 / maxBarPct) * 100;
+        bar.style.width = Math.min(100, widthPct).toFixed(1) + '%';
+        barWrap.appendChild(bar);
+
+        const pctEl = document.createElement('div');
+        pctEl.className = 'cat-list-pct';
+        pctEl.textContent = item.isAnti ? '—' : Math.round(item.prob * 100) + '%';
+
+        row.appendChild(labelEl);
+        row.appendChild(barWrap);
+        row.appendChild(pctEl);
+
+        attachTip(row, buildTip({
+          title: item.label,
+          desc: item.isAnti
+            ? `Anti-category — actively rejected by this archetype's ${(nodeName || 'style').toLowerCase()}.`
+            : `One of six possible ${(nodeName || 'style').toLowerCase()} categories.`,
+          rows: item.isAnti ? [] : [['Probability', `${(item.prob * 100).toFixed(1)}%`]],
+          interp: item.isAnti
+            ? `Treated as the opposite of how this archetype thinks/expresses.`
+            : (isTop ? 'Top category for this archetype.' : ''),
+        }));
+
+        wrap.appendChild(row);
+      });
+
+      return wrap;
+    }
+
     function renderCatVerticalBars(probs, antiCats, categoryLabels, clusterColor) {
       const wrap = document.createElement('div');
       wrap.className = 'cat-vbar-chart';
@@ -3377,7 +3471,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             const arcAntiCats = (archetype.nodes && archetype.nodes[cn.code] && archetype.nodes[cn.code].antiCats) || [];
             const labels = cn.categories.map(s => s.charAt(0).toUpperCase() + s.slice(1));
-            row.appendChild(renderCatVerticalBars(probs, arcAntiCats, labels, clusterColors[clusterName]));
+            row.appendChild(renderCatList(probs, arcAntiCats, labels, clusterColors[clusterName], cn.name));
           }
 
           block.appendChild(row);
