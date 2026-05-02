@@ -104,18 +104,18 @@
     .election-legend .leg-swatch.strategic { box-shadow: 0 0 0 2px #d4a017; }
 
     /* SECTION 3: MAP */
-    #map-section { padding: 2rem 0; border-bottom: 2px solid var(--ink); }
+    /* v27.8: tightened section padding (was 2rem) and shrunk map by 10%
+       (was 115vw / 580px → 103.5vw / 522px). */
+    #map-section { padding: 0.5rem 0 1rem; border-bottom: 2px solid var(--ink); }
     #map-section .container { max-width: 100%; padding: 0 1rem; }
-    /* Oversized map: 115vw wide, centered so it bleeds 7.5vw past each edge.
-       body { overflow-x: hidden } prevents horizontal scrollbars. */
-    #map-section #map-container { margin-left: calc(50% - 57.5vw); width: 115vw; max-width: none; }
+    #map-section #map-container { margin-left: calc(50% - 51.75vw); width: 103.5vw; max-width: none; }
     .map-controls { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
     #year-display { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; min-width: 70px; font-variant-numeric: tabular-nums; }
     .slider-wrap { flex: 1; display: flex; align-items: center; gap: 0.5rem; }
     .slider-wrap span { font-size: 0.65rem; color: #888; }
     #year-slider { flex: 1; height: 4px; -webkit-appearance: none; appearance: none; background: var(--ink); outline: none; cursor: pointer; }
     #year-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--pool-deep); border: 2px solid var(--ink); cursor: pointer; }
-    #map-container { position: relative; width: 100%; aspect-ratio: 2.1 / 1; min-height: 580px; }
+    #map-container { position: relative; width: 100%; aspect-ratio: 2.1 / 1; min-height: 522px; }
     #map-container svg { width: 100%; height: 100%; }
     .country { stroke: var(--ink); stroke-width: 0.3px; transition: fill 0.3s; }
     .country.inactive { fill: #e5e5e5 !important; }
@@ -282,7 +282,7 @@
     .ed-empty-note { color: #888; font-size: 0.7rem; font-style: italic; padding: 0.6rem 0; }
 
     /* SECTION 4: PROFILE */
-    #profile-section { padding: 2rem 0 2.5rem; }
+    #profile-section { padding: 1.25rem 0 0.5rem; }
     #profile-section .container { max-width: 100%; padding: 0 0.5rem; }
     .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
     .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
