@@ -1,0 +1,1019 @@
+{
+  "year": 2020,
+  "totalAgents": 121,
+  "totalSamples": 1210,
+  "totalWeight": 121,
+  "turnoutWeight": 103.50000000000003,
+  "turnoutRate": 0.8553719008264465,
+  "byCandidate": [
+    {
+      "name": "Biden",
+      "party": "Democratic",
+      "weightedVotes": 65.50000000000055,
+      "voteShare": 0.5413223140495913,
+      "voteShareOfTurnout": 0.6328502415458989
+    },
+    {
+      "name": "Trump",
+      "party": "Republican",
+      "weightedVotes": 38.00000000000027,
+      "voteShare": 0.31404958677686173,
+      "voteShareOfTurnout": 0.3671497584541088
+    }
+  ],
+  "byParty": {
+    "D": {
+      "weightedVotes": 65.50000000000055,
+      "voteShare": 0.5413223140495913,
+      "voteShareOfTurnout": 0.6328502415458989
+    },
+    "R": {
+      "weightedVotes": 38.00000000000027,
+      "voteShare": 0.31404958677686173,
+      "voteShareOfTurnout": 0.3671497584541088
+    },
+    "T": {
+      "weightedVotes": 0,
+      "voteShare": 0,
+      "voteShareOfTurnout": 0
+    },
+    "O": {
+      "weightedVotes": 0,
+      "voteShare": 0,
+      "voteShareOfTurnout": 0
+    }
+  },
+  "abstain": {
+    "weightedAbstainers": 17.49999999999998,
+    "abstainRate": 0.14462809917355354
+  },
+  "perAgent": [
+    {
+      "id": "arc-001",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-002",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.8999999999999999
+      },
+      "abstainShare": 0.1
+    },
+    {
+      "id": "arc-003",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-004",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-005",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-006",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-007",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-008",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-010",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-011",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-012",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-013",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.30000000000000004
+      },
+      "abstainShare": 0.7
+    },
+    {
+      "id": "arc-014",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.5
+      },
+      "abstainShare": 0.5
+    },
+    {
+      "id": "arc-015",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-016",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.2
+      },
+      "abstainShare": 0.8
+    },
+    {
+      "id": "arc-017",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-020",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.7999999999999999
+      },
+      "abstainShare": 0.2
+    },
+    {
+      "id": "arc-021",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-022",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.2
+      },
+      "abstainShare": 0.8
+    },
+    {
+      "id": "arc-024",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-026",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-027",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-028",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.30000000000000004
+      },
+      "abstainShare": 0.7
+    },
+    {
+      "id": "arc-029",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.1
+      },
+      "abstainShare": 0.9
+    },
+    {
+      "id": "arc-031",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-032",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-033",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-035",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-036",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-037",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-039",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-040",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-042",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-043",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-045",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-046",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-048",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-049",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-050",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-051",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.2
+      },
+      "abstainShare": 0.8
+    },
+    {
+      "id": "arc-053",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-054",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-056",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-057",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-059",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-060",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-061",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.30000000000000004
+      },
+      "abstainShare": 0.7
+    },
+    {
+      "id": "arc-062",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-063",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-065",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.8999999999999999
+      },
+      "abstainShare": 0.1
+    },
+    {
+      "id": "arc-067",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.4
+      },
+      "abstainShare": 0.6
+    },
+    {
+      "id": "arc-069",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-070",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-071",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.2
+      },
+      "abstainShare": 0.8
+    },
+    {
+      "id": "arc-072",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-073",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.5,
+        "Biden": 0.1
+      },
+      "abstainShare": 0.4
+    },
+    {
+      "id": "arc-074",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-076",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.5
+      },
+      "abstainShare": 0.5
+    },
+    {
+      "id": "arc-077",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.4
+      },
+      "abstainShare": 0.6
+    },
+    {
+      "id": "arc-078",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.8999999999999999,
+        "Trump": 0.1
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-079",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-081",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-082",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-083",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-084",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-085",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-086",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-087",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-088",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-089",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-090",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.7
+      },
+      "abstainShare": 0.3
+    },
+    {
+      "id": "arc-091",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-092",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-094",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.8999999999999999
+      },
+      "abstainShare": 0.1
+    },
+    {
+      "id": "arc-095",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-097",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.8999999999999999
+      },
+      "abstainShare": 0.1
+    },
+    {
+      "id": "arc-098",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-099",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-100",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-101",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-103",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-104",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-105",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-106",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-107",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-108",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-109",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-110",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-111",
+      "weight": 1,
+      "voteDistribution": {},
+      "abstainShare": 1
+    },
+    {
+      "id": "arc-112",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-113",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-114",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-115",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-116",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-117",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-118",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.7
+      },
+      "abstainShare": 0.3
+    },
+    {
+      "id": "arc-119",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-120",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-121",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-122",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-124",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-125",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-126",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-127",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-128",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-129",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.8999999999999999,
+        "Biden": 0.1
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-131",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-132",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-134",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-135",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.7
+      },
+      "abstainShare": 0.3
+    },
+    {
+      "id": "arc-136",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.2,
+        "Trump": 0.4
+      },
+      "abstainShare": 0.4
+    },
+    {
+      "id": "arc-137",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-138",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-139",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.2
+      },
+      "abstainShare": 0.8
+    },
+    {
+      "id": "arc-140",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-141",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-142",
+      "weight": 1,
+      "voteDistribution": {
+        "Trump": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-143",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-144",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-145",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    },
+    {
+      "id": "arc-146",
+      "weight": 1,
+      "voteDistribution": {
+        "Biden": 0.9999999999999999
+      },
+      "abstainShare": 0
+    }
+  ],
+  "meta": {
+    "sourceCounts": {
+      "SYNTHETIC-ARCHETYPE": 121
+    },
+    "avgSamplesPerAgent": 10,
+    "runAt": "2026-05-02T21:30:57.657Z"
+  }
+}
