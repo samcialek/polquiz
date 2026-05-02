@@ -1,0 +1,185 @@
+{
+  "year": 2020,
+  "subgroups": [
+    {
+      "subgroup": "age:30-44",
+      "weightedSize": 121,
+      "weightedTurnout": 101,
+      "shareOfElectorate": 1,
+      "turnoutRate": 0.8347107438016529,
+      "abstainRate": 0.1652892561983471,
+      "byParty": {
+        "D": {
+          "weightedVotes": 63,
+          "voteShare": 0.5206611570247934,
+          "voteShareOfTurnout": 0.6237623762376238
+        },
+        "R": {
+          "weightedVotes": 38,
+          "voteShare": 0.3140495867768595,
+          "voteShareOfTurnout": 0.37623762376237624
+        },
+        "T": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        },
+        "O": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        }
+      },
+      "byCandidate": {
+        "Biden": 0.6237623762376238,
+        "Trump": 0.37623762376237624
+      },
+      "agentCount": 121
+    },
+    {
+      "subgroup": "edu:college",
+      "weightedSize": 121,
+      "weightedTurnout": 101,
+      "shareOfElectorate": 1,
+      "turnoutRate": 0.8347107438016529,
+      "abstainRate": 0.1652892561983471,
+      "byParty": {
+        "D": {
+          "weightedVotes": 63,
+          "voteShare": 0.5206611570247934,
+          "voteShareOfTurnout": 0.6237623762376238
+        },
+        "R": {
+          "weightedVotes": 38,
+          "voteShare": 0.3140495867768595,
+          "voteShareOfTurnout": 0.37623762376237624
+        },
+        "T": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        },
+        "O": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        }
+      },
+      "byCandidate": {
+        "Biden": 0.6237623762376238,
+        "Trump": 0.37623762376237624
+      },
+      "agentCount": 121
+    },
+    {
+      "subgroup": "gender:F",
+      "weightedSize": 121,
+      "weightedTurnout": 101,
+      "shareOfElectorate": 1,
+      "turnoutRate": 0.8347107438016529,
+      "abstainRate": 0.1652892561983471,
+      "byParty": {
+        "D": {
+          "weightedVotes": 63,
+          "voteShare": 0.5206611570247934,
+          "voteShareOfTurnout": 0.6237623762376238
+        },
+        "R": {
+          "weightedVotes": 38,
+          "voteShare": 0.3140495867768595,
+          "voteShareOfTurnout": 0.37623762376237624
+        },
+        "T": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        },
+        "O": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        }
+      },
+      "byCandidate": {
+        "Biden": 0.6237623762376238,
+        "Trump": 0.37623762376237624
+      },
+      "agentCount": 121
+    },
+    {
+      "subgroup": "race:white",
+      "weightedSize": 121,
+      "weightedTurnout": 101,
+      "shareOfElectorate": 1,
+      "turnoutRate": 0.8347107438016529,
+      "abstainRate": 0.1652892561983471,
+      "byParty": {
+        "D": {
+          "weightedVotes": 63,
+          "voteShare": 0.5206611570247934,
+          "voteShareOfTurnout": 0.6237623762376238
+        },
+        "R": {
+          "weightedVotes": 38,
+          "voteShare": 0.3140495867768595,
+          "voteShareOfTurnout": 0.37623762376237624
+        },
+        "T": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        },
+        "O": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        }
+      },
+      "byCandidate": {
+        "Biden": 0.6237623762376238,
+        "Trump": 0.37623762376237624
+      },
+      "agentCount": 121
+    },
+    {
+      "subgroup": "white-college",
+      "weightedSize": 121,
+      "weightedTurnout": 101,
+      "shareOfElectorate": 1,
+      "turnoutRate": 0.8347107438016529,
+      "abstainRate": 0.1652892561983471,
+      "byParty": {
+        "D": {
+          "weightedVotes": 63,
+          "voteShare": 0.5206611570247934,
+          "voteShareOfTurnout": 0.6237623762376238
+        },
+        "R": {
+          "weightedVotes": 38,
+          "voteShare": 0.3140495867768595,
+          "voteShareOfTurnout": 0.37623762376237624
+        },
+        "T": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        },
+        "O": {
+          "weightedVotes": 0,
+          "voteShare": 0,
+          "voteShareOfTurnout": 0
+        }
+      },
+      "byCandidate": {
+        "Biden": 0.6237623762376238,
+        "Trump": 0.37623762376237624
+      },
+      "agentCount": 121
+    }
+  ],
+  "meta": {
+    "totalElectorateWeight": 121,
+    "runAt": "2026-05-02T22:39:52.489Z",
+    "coverageNotes": []
+  }
+}
