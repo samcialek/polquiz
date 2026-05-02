@@ -485,7 +485,7 @@
        stays empty; the bars never sprawl beyond their fixed width. No
        border / no card — panels flow as page sections instead of cells. */
     .profile-flex { display: flex; gap: 2rem; align-items: flex-start; padding: 1rem 0 0.5rem; }
-    .profile-donut-col { flex: 0 0 360px; position: sticky; top: 1rem; }
+    .profile-donut-col { flex: 0 0 460px; position: sticky; top: 1rem; padding-left: 1.5rem; }
     .profile-drill-col { flex: 1 1 auto; min-width: 0; }
     .cluster-overview { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .cluster-overview svg { max-width: 100%; height: auto; display: block; }
@@ -922,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="profile-flex">
       <div class="profile-donut-col">
         <div class="cluster-overview">
-          <svg id="cluster-donut" viewBox="-180 -180 360 360" width="360" height="360"></svg>
+          <svg id="cluster-donut" viewBox="-180 -180 360 360" width="440" height="440"></svg>
           <div class="donut-hint">Click a wedge to drill into a cluster</div>
         </div>
       </div>
@@ -3407,6 +3407,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '011': { ENDS: 0.78, MEANS: 0.42, REALITY: 0.65, SELF: 0.88 },
         '088': { ENDS: 0.62, MEANS: 0.38, REALITY: 0.40, SELF: 0.55 },
         '001': { ENDS: 0.70, MEANS: 0.80, REALITY: 0.55, SELF: 0.45 },
+        // v27.6 — demo: ENDS-dominant individual, SELF only 10%.
+        '134': { ENDS: 0.50, MEANS: 0.25, REALITY: 0.15, SELF: 0.10 },
       };
       const CLUSTER_EMPHASIS_DEFAULT = { ENDS: 0.55, MEANS: 0.55, REALITY: 0.5, SELF: 0.5 };
       const emphasisRaw = CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT;
