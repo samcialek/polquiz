@@ -387,13 +387,13 @@
       letter-spacing: 0.06em; text-transform: uppercase; color: #555;
     }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-chart,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart { height: 170px; padding: 0.25rem 0 1.6rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart { height: 130px; padding: 0.2rem 0 1.4rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-grid,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.25rem 0 1.6rem 22px; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.2rem 0 1.4rem 20px; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-yaxis,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 18px; top: 0.25rem; bottom: 1.6rem; font-size: 0.6rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 18px; top: 0.2rem; bottom: 1.4rem; font-size: 0.6rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-cols,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 22px; top: 0.25rem; bottom: 1.6rem; gap: 0; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 20px; top: 0.2rem; bottom: 1.4rem; gap: 0; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar-track,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 100%; left: 0; transform: none; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar,
@@ -498,36 +498,43 @@
     .cluster-panel { display: none; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    /* No card / no cell — just open page section. */
+    /* No card / no cell — just open page section. Tightened spacing. */
     .cluster-panel .node-cluster {
       background: transparent;
       border: none;
-      padding: 0.5rem 0;
+      padding: 0.25rem 0;
       border-radius: 0;
       margin: 0;
     }
     .cluster-panel .cluster-title {
       font-size: 0.95rem;
       letter-spacing: 0.12em;
-      padding-bottom: 0.6rem;
-      margin-bottom: 1.25rem;
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.85rem;
     }
-    /* Consistent 2-col internal grid for ALL clusters — bars always take
-       the same width, regardless of whether the right sidebar has content. */
+    /* Consistent 2-col internal grid for ALL clusters. */
     .cluster-panel .node-cluster {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
-      gap: 1.25rem 2rem;
+      gap: 0.5rem 2rem;
       align-items: start;
     }
     .cluster-panel .node-cluster .cluster-title { grid-column: 1 / -1; }
-    .cluster-panel .node-cluster .node-row { grid-column: 1; }
+    .cluster-panel .node-cluster .node-row { grid-column: 1; margin-bottom: 0.7rem !important; }
     .cluster-panel .node-cluster .cat-vbar-row,
     .cluster-panel .node-cluster .moral-circle-section {
       grid-column: 2;
       grid-row: 2 / span 100;
       align-self: start;
     }
+    /* Hide the moral-circle title + tagline above the sunburst — visual is
+       enough; details live in the per-wedge tooltips. */
+    .cluster-panel .moral-circle-title,
+    .cluster-panel .moral-circle-tagline { display: none; }
+    .cluster-panel .moral-circle-svg-wrap { padding: 0; }
+    .cluster-panel .moral-circle-svg-wrap svg { max-width: 200px; }
+    .cluster-panel .moral-circle-legend { font-size: 0.72rem; gap: 0.18rem 0.7rem; padding-top: 0.45rem; margin-top: 0.35rem; border-top-width: 1px; }
+    .cluster-panel .moral-circle-legend .swatch { width: 9px; height: 9px; }
     @media (max-width: 920px) {
       .profile-flex { flex-direction: column; align-items: stretch; gap: 1.25rem; }
       .profile-donut-col { position: static; flex-basis: auto; }
@@ -3212,9 +3219,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // the same signal that width already encodes; keep row opacity at full.
         // Non-SELF: height scales with salience, opacity fades with low salience.
         const isSelf = d.isSelf;
-        // v22: single-panel mode — barH range 10-32 px. Full-width panel
-        // can afford taller bars; salience encoding reads clearly.
-        const barH = isSelf ? 18 : Math.round(10 + d.sal * 22);
+        // v27 — Compact: barH range 8-22 px. Salience reads, but rows stay tight.
+        const barH = isSelf ? 14 : Math.round(8 + d.sal * 14);
         const row = document.createElement('div');
         row.className = 'node-row';
         row.style.opacity = isSelf ? 1 : (0.65 + d.sal * 0.35);
