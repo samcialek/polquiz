@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PRISM - Political Refraction and Identity Spectrum Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="prism-engine-bundle.min.js?v=20260429-pr3d-q207-pro"></script>
+<style>
+    :root {
+        --pool: #d1f6ff;
+        --pool-deep: #89ccf0;
+        --pool-shadow: #6BB8D9;
+        --flesh: #fa8072;
+        --flesh-light: #FFB4A8;
+        --cream: #ede2ab;
+        --white: #FFFEF8;
+        --ink: #1a1a1a;
+        --ink-light: #4a4a4a;
+        --ink-faint: #888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'EB Garamond', Georgia, serif;
+        background: var(--pool);
+        color: var(--ink);
+        line-height: 1.7;
+        font-size: 18px;
+        min-height: 100vh;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    .header {
+        background: var(--white);
+        border-bottom: 2px solid var(--ink);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .header-title {
+        font-family: 'EB Garamond', serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .header-meta {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        color: var(--ink-light);
+        text-transform: lowercase;
+        letter-spacing: 0.05em;
+    }
+
+    .progress-indicator {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        background: var(--pool-deep);
+        border: 2px solid var(--ink);
+        color: var(--ink);
+        font-weight: 700;
+    }
+
+    /* ── Container ──────────────────────────────────── */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    /* ── Landing ────────────────────────────────────── */
+    .landing {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .landing h1 {
+        font-family: 'EB Garamond', serif;
+        font-style: italic;
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .landing .subtitle {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        color: var(--ink-light);
+        text-transform: lowercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 2rem;
+    }
+
+    .landing .description {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .landing .stats {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-box {
+        background: var(--white);
+        border: 2px solid var(--ink);
+        padding: 1rem 1.5rem;
+        box-shadow: 4px 4px 0 var(--pool-shadow);
+    }
+
+    .stat-number {
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--flesh);
+    }
+
+    .stat-label {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-light);
+    }
+
+    .start-btn {
+        display: inline-block;
+        padding: 1.25rem 3rem;
+        background: var(--flesh);
+        color: var(--white);
+        border: 2px solid var(--ink);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: lowercase;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition: all 0.1s;
+    }
+
+    .start-btn:hover {
+        background: var(--cream);
+        color: var(--ink);
+        box-shadow: 6px 6px 0 var(--ink);
+        transform: translate(-2px, -2px);
+    }
+
+    .start-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    /* ── Question card ─────────────────────────────── */
+    .question-card {
+        background: var(--white);
+        border: 2px solid var(--ink);
+        padding: 2rem;
+        box-shadow: 4px 4px 0 var(--pool-shadow);
+        margin-bottom: 1rem;
+        transition: all 0.15s;
+    }
+
+    .question-number {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.65rem;
+        color: var(--white);
+        background: var(--ink);
+        padding: 0.25rem 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .question-phase {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.6rem;
+        color: var(--ink-light);
+        padding: 0.2rem 0.5rem;
+        border: 1px dashed var(--ink-light);
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+
+    .question-text {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.45rem;
+        font-weight: 500;
+        line-height: 1.45;
+        margin-bottom: 1.5rem;
+        text-align: left;
+        padding-right: 2.5rem;
+    }
+
+    .question-subtext {
+        font-size: 0.9rem;
+        color: var(--ink-light);
+        font-style: italic;
+        margin-top: -1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    /* ── Multiple choice ───────────────────────────── */
+    .mc-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .mc-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        border: 2px solid var(--ink);
+        background: var(--pool);
+        cursor: pointer;
+        transition: all 0.1s;
+    }
+
+    .mc-option:hover {
+        background: var(--pool-deep);
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .mc-option.selected {
+        background: var(--cream);
+        box-shadow: 3px 3px 0 var(--flesh);
+    }
+
+    .equal-errors-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .equal-errors-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.25rem;
+        padding: 1rem 1.5rem;
+        border: 2px solid var(--ink);
+        background: var(--flesh);
+        color: var(--white);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.95rem;
+        font-style: italic;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 0.1s;
+    }
+
+    .equal-errors-btn:hover {
+        background: #e8665a;
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .mc-marker {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--ink);
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mc-option.selected .mc-marker {
+        background: var(--flesh);
+        color: var(--white);
+    }
+
+    .mc-text {
+        flex: 1;
+        font-size: 1.25rem;
+        line-height: 1.45;
+    }
+
+    /* ── Slider ─────────────────────────────────────── */
+    .slider-container {
+        padding: 1rem 0;
+    }
+
+    .slider-labels {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.95rem;
+        color: var(--ink-faint);
+        text-transform: lowercase;
+        margin-bottom: 0.75rem;
+        gap: 1rem;
+    }
+    .slider-labels > span {
+        max-width: 50%;
+        line-height: 1.25;
+    }
+    .slider-labels > span:first-child  { text-align: left; }
+    .slider-labels > span:last-child   { text-align: right; }
+
+    .slider-track-bg {
+        height: 8px;
+        background: linear-gradient(90deg, var(--pool-deep), var(--cream), var(--flesh-light));
+        border: 1px solid var(--ink);
+        margin-bottom: -8px;
+        position: relative;
+    }
+
+    .slider-input {
+        width: 100%;
+        height: 8px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .slider-input[data-mode="likert"] {
+        /* Snap feel for discrete scale */
+    }
+    .slider-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--white);
+        border: 2px solid var(--ink);
+        cursor: pointer;
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .slider-input::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--white);
+        border: 2px solid var(--ink);
+        cursor: pointer;
+    }
+
+    .slider-value {
+        text-align: center;
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.2rem;
+        color: var(--flesh);
+        margin-top: 0.75rem;
+        font-weight: 700;
+    }
+
+    /* ── Allocation ─────────────────────────────────── */
+    .allocation-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .allocation-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 0.25rem 0;
+    }
+
+    .allocation-label {
+        flex: 1;
+        font-size: 1.1rem;
+        min-width: 200px;
+        line-height: 1.35;
+    }
+
+    .allocation-label[data-bucket="effort_choices"] {
+        font-size: 1.25rem;
+    }
+
+    .allocation-slider {
+        flex: 2;
+        height: 14px;
+        -webkit-appearance: none;
+        background: var(--pool-deep);
+        border: 1px solid var(--ink);
+    }
+
+    .allocation-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        background: var(--flesh);
+        border: 2px solid var(--ink);
+        cursor: pointer;
+    }
+
+    .allocation-value {
+        font-family: 'Courier Prime', monospace;
+        font-weight: 700;
+        font-size: 1.2rem;
+        min-width: 60px;
+        text-align: right;
+    }
+
+    .allocation-total {
+        text-align: center;
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.15rem;
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        background: var(--pool);
+        border: 1px solid var(--ink);
+    }
+
+    .allocation-total.valid { color: #059669; }
+    .allocation-total.invalid { color: #dc2626; }
+
+    /* ── Ranking ────────────────────────────────────── */
+    .ranking-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        user-select: none;
+    }
+
+    .ranking-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border: 3px solid var(--ink);
+        background: var(--pool);
+        cursor: grab;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.1s;
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .ranking-item:hover {
+        background: var(--pool-deep);
+        transform: translateX(4px);
+        box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .ranking-item:active { cursor: grabbing; }
+    .ranking-item.dragging { opacity: 0.7; border-style: dashed; background: var(--cream); }
+
+    .ranking-number {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        width: 28px;
+        height: 28px;
+        border: 2px solid var(--ink);
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .ranking-text {
+        flex: 1;
+        font-size: 1.15rem;
+    }
+
+    .ranking-handle {
+        font-family: 'Courier Prime', monospace;
+        color: var(--ink-light);
+        font-size: 1.4rem;
+        cursor: grab;
+    }
+
+    /* ── Best-Worst ─────────────────────────────────── */
+    .bw-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .bw-header {
+        display: grid;
+        grid-template-columns: 80px 1fr 80px;
+        gap: 1rem;
+        padding: 0 0.5rem 0.75rem;
+        border-bottom: 2px solid var(--ink);
+        margin-bottom: 0.5rem;
+    }
+
+    .bw-header span {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-light);
+        text-align: center;
+    }
+
+    .bw-header span:nth-child(2) { text-align: left; }
+
+    .bw-row {
+        display: grid;
+        grid-template-columns: 80px 1fr 80px;
+        gap: 1rem;
+        align-items: center;
+        padding: 0.75rem 0.5rem;
+        border: 2px solid var(--ink);
+        background: var(--pool);
+        transition: all 0.15s;
+    }
+
+    .bw-row.selected-best {
+        background: #e8f5e9;
+        border-color: #2e7d32;
+    }
+
+    .bw-row.selected-worst {
+        background: #ffebee;
+        border-color: #c62828;
+    }
+
+    .bw-btn {
+        width: 36px;
+        height: 36px;
+        border: 2px solid var(--ink);
+        background: var(--white);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier Prime', monospace;
+        font-size: 1rem;
+        font-weight: 700;
+        transition: all 0.1s;
+        margin: 0 auto;
+    }
+
+    .bw-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .bw-btn.best-btn { border-radius: 50%; }
+    .bw-btn.best-btn.selected { background: #2e7d32; color: var(--white); }
+    .bw-btn.worst-btn { border-radius: 4px; }
+    .bw-btn.worst-btn.selected { background: #c62828; color: var(--white); }
+
+    .bw-label {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    /* Priority batteries (Q93-Q96): shift the label/header TEXT right (buttons stay put)
+       and pull the header text closer to its underline. */
+    .bw-container--priority .bw-label { padding-left: 2rem; }
+    .bw-container--priority .bw-header span:nth-child(2) { padding-left: 2rem; }
+    .bw-container--priority .bw-header { padding-bottom: 0.15rem; }
+
+    /* ── Priority sort (card-sort) ─────────────────────
+       Three buckets (high/mid/low) + a pool of unsorted items. Drag items by
+       clicking and holding; they drop into whichever column you release over.
+       Click-to-place is preserved as a fallback (tap item, then tap column). */
+
+    /* When a priority_sort is active, widen the container so three columns
+       breathe. Applied via body class toggled in showQuestion(). */
+    body.ps-active .container { max-width: 1200px; padding: 1.25rem 1rem; }
+
+    .ps-container { display: flex; flex-direction: column; gap: 1rem; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+    .ps-pool-label {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.005em;
+        line-height: 1.4;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+    }
+    .ps-pool {
+        border: 2px dashed var(--ink);
+        background: var(--white);
+        padding: 0.75rem;
+        min-height: 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        transition: background 0.12s;
+    }
+    .ps-pool.ps-dropping { background: var(--cream); }
+    @media (max-width: 800px) {
+        .ps-pool { grid-template-columns: 1fr; }
+    }
+    .ps-buckets {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 0.75rem;
+    }
+    .ps-cols-3 .ps-buckets { grid-template-columns: 1fr 1fr 1fr; }
+    .ps-cols-4 .ps-buckets { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .ps-bucket {
+        border: 2px solid var(--ink);
+        padding: 0.75rem;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: transform 0.12s, box-shadow 0.12s;
+    }
+    #ps-bucket-supportHigh { background: #b8861a; }  /* dark gold — strong support */
+    #ps-bucket-supportMid  { background: #4a8ba8; }  /* darkened pool — mild support */
+    #ps-bucket-neutral     { background: #2d2d2d; }  /* near-black — no stake */
+    #ps-bucket-opposeHigh  { background: #a8322a; }  /* dark crimson — strong opposition */
+    .ps-bucket.ps-dropping {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+    .ps-bucket-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        font-weight: 800;
+        margin-bottom: 0.7rem;
+        line-height: 1.25;
+        text-align: center;
+    }
+    .ps-bucket-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        flex: 1;
+    }
+    .ps-item {
+        border: 2px solid var(--ink);
+        background: var(--white);
+        padding: 0.65rem 0.85rem;
+        line-height: 1.3;
+        cursor: grab;
+        user-select: none;
+        transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .ps-item-head {
+        display: block;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--ink);
+    }
+    .ps-item-sub {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 1.15rem;
+        font-weight: 400;
+        line-height: 1.35;
+        color: var(--ink-light);
+    }
+    .ps-item:hover { box-shadow: 2px 2px 0 var(--ink); transform: translate(-1px, -1px); }
+    .ps-item:active { cursor: grabbing; }
+    .ps-item.ps-item--dragging {
+        opacity: 0.35;
+        box-shadow: none;
+        transform: none;
+    }
+    .ps-item.ps-item--selected {
+        background: var(--flesh);
+        box-shadow: 2px 2px 0 var(--ink);
+        transform: translate(-1px, -1px);
+    }
+    .ps-item.ps-item--selected .ps-item-head,
+    .ps-item.ps-item--selected .ps-item-sub { color: var(--white); }
+    .ps-item--in-bucket { padding: 0.55rem 0.75rem; }
+    .ps-item--in-bucket .ps-item-head { font-size: 1.05rem; }
+    .ps-item--in-bucket .ps-item-sub { display: none; }
+
+    @media (max-width: 1050px) {
+        .ps-buckets { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+        .ps-buckets { grid-template-columns: 1fr; }
+        .ps-bucket { min-height: 90px; }
+    }
+
+    /* ── Continue button ───────────────────────────── */
+    .back-btn {
+        cursor: pointer;
+        color: var(--ink-light, rgba(245,240,232,0.4));
+        transition: color 0.2s;
+        user-select: none;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.03em;
+    }
+    .back-btn:hover {
+        color: var(--ink, #f5f0e8);
+    }
+    .continue-btn {
+        display: block;
+        width: 100%;
+        padding: 1rem 2rem;
+        margin-top: 1.5rem;
+        background: var(--pool-deep);
+        color: var(--ink);
+        border: 2px solid var(--ink);
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: all 0.15s ease;
+    }
+
+    .continue-btn:hover {
+        background: var(--cream);
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .continue-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    /* ── Results ────────────────────────────────────── */
+    .results-container {
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .results-container h2 {
+        font-family: 'EB Garamond', serif;
+        font-style: italic;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .result-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--flesh);
+        margin-bottom: 0.5rem;
+    }
+
+    .result-confidence {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        color: var(--ink-light);
+        margin-bottom: 2rem;
+    }
+
+    .top5-list {
+        text-align: left;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .top5-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--ink);
+        background: var(--white);
+        margin-bottom: 0.5rem;
+        box-shadow: 2px 2px 0 var(--pool-shadow);
+    }
+
+    .top5-item:first-child {
+        background: var(--cream);
+        box-shadow: 4px 4px 0 var(--flesh);
+    }
+
+    .top5-rank {
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        width: 32px;
+        text-align: center;
+    }
+
+    .top5-info { flex: 1; }
+
+    .top5-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .top5-bar {
+        height: 6px;
+        background: var(--pool);
+        border: 1px solid var(--ink);
+        margin-top: 4px;
+    }
+
+    .top5-bar-fill {
+        height: 100%;
+        background: var(--flesh);
+        transition: width 0.5s;
+    }
+
+    .top5-score {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        min-width: 50px;
+        text-align: right;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    .footer-note {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: var(--white);
+        border: 2px dashed var(--pool-shadow);
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        color: var(--ink-light);
+        text-align: center;
+        text-transform: lowercase;
+        letter-spacing: 0.03em;
+    }
+
+    /* ── Progress bar ──────────────────────────────── */
+    .progress-bar-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-bar-track {
+        height: 8px;
+        background: var(--pool-deep);
+        border: 1px solid var(--ink);
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background: var(--flesh);
+        transition: width 0.3s;
+    }
+
+    .progress-text {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        color: var(--ink-light);
+        margin-top: 0.25rem;
+    }
+
+    /* ── Animations ─────────────────────────────────── */
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-card { animation: slideIn 0.3s ease; }
+
+    /* ── Priority-sort bucket overrides (per-question color) ─── */
+    /* Q99 cross_partisan_priority_sort */
+    #ps-bucket-fine         { background: #3d7a4e; }
+    #ps-bucket-not_ideal    { background: #a86b1f; }
+    #ps-bucket-dealbreaker  { background: #a8322a; }
+    /* Q102 membership_criteria_priority_sort */
+    #ps-bucket-essential    { background: #b8861a; }
+    #ps-bucket-nice         { background: #8b7355; }
+    #ps-bucket-irrelevant   { background: #2d2d2d; }
+
+    /* ── Strength / ratio follow-up ──────────────────── */
+    .strength-followup {
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 2px solid var(--ink-faint, #d0d0d0);
+        animation: slideIn 0.3s ease;
+    }
+    .strength-prompt {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--ink);
+    }
+    .strength-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    .strength-btn {
+        border: 2px solid var(--ink);
+        background: var(--white);
+        padding: 1rem 1.25rem;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--ink);
+        transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .strength-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+    .ratio-slider-labels {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.95rem;
+        color: var(--ink-light);
+        margin: 0.5rem 0.25rem 0.25rem;
+    }
+    .ratio-slider-input {
+        width: 100%;
+        height: 14px;
+        margin: 0.25rem 0 0.5rem;
+    }
+    .ratio-slider-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        background: var(--flesh);
+        border: 2px solid var(--ink);
+        cursor: pointer;
+        border-radius: 2px;
+    }
+    .ratio-value {
+        text-align: center;
+        font-family: 'Courier Prime', monospace;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--flesh);
+        margin-bottom: 1rem;
+    }
+
+    /* ── Dual-axis positioner ────────────────────────── */
+    .da-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 0;
+    }
+    .da-y-label-top, .da-y-label-bottom {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        margin: 0.3rem 0;
+        text-align: center;
+    }
+    .da-grid-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .da-x-label-left, .da-x-label-right {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        width: 110px;
+        text-align: center;
+    }
+    .da-grid {
+        width: 360px;
+        height: 360px;
+        background: var(--pool, #9bbcc9);
+        border: 2px solid var(--pool-shadow, #6b8b98);
+        border-radius: 12px;
+        position: relative;
+        cursor: crosshair;
+        background-image:
+            linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px);
+        background-size: 25% 25%;
+    }
+    .da-grid-h, .da-grid-v {
+        position: absolute;
+        background: rgba(255,255,255,0.7);
+        pointer-events: none;
+    }
+    .da-grid-h { top: 50%; left: 0; width: 100%; height: 2px; }
+    .da-grid-v { left: 50%; top: 0; width: 2px; height: 100%; }
+    .da-marker {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        background: var(--flesh);
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        cursor: grab;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        pointer-events: none;
+    }
+    .da-readout {
+        margin-top: 1rem;
+        max-width: 520px;
+        border: 2px solid var(--ink);
+        padding: 1rem 1.25rem;
+        background: var(--white);
+        box-shadow: 3px 3px 0 var(--ink);
+    }
+    .da-zone-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--flesh);
+        margin-bottom: 0.15rem;
+    }
+    .da-zone-sublabel {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-faint, #a0a0a0);
+        margin-bottom: 0.6rem;
+    }
+    .da-zone-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .da-zone-bullets li {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1rem;
+        line-height: 1.35;
+        color: var(--ink);
+        padding: 0.25rem 0 0.25rem 1rem;
+        position: relative;
+    }
+    .da-zone-bullets li::before {
+        content: '›';
+        position: absolute;
+        left: 0;
+        color: var(--flesh);
+        font-weight: 700;
+    }
+
+    /* ── Conjoint two-card layout ────────────────────── */
+    .cj-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .cj-card {
+        background: var(--white);
+        border: 2px solid var(--ink);
+        border-radius: 0;
+        padding: 1.5rem 1.25rem;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition: transform 0.12s, box-shadow 0.12s;
+        display: flex;
+        flex-direction: column;
+    }
+    .cj-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--ink);
+    }
+    .cj-card.selected {
+        background: #fff5f3;
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--flesh);
+    }
+    .cj-name {
+        font-family: 'EB Garamond', serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--ink);
+        text-align: center;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--ink);
+    }
+    .cj-attr {
+        padding: 0.75rem 0;
+        border-top: 1px solid #d0d0d0;
+    }
+    .cj-attr:first-of-type { border-top: none; }
+    .cj-attr-label {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+    }
+    .cj-attr-value {
+        font-size: 1.15rem;
+        line-height: 1.4;
+        color: var(--ink);
+    }
+
+    /* ── Mobile ─────────────────────────────────────── */
+    @media (max-width: 600px) {
+        .container { padding: 1rem; }
+        .landing h1 { font-size: 2rem; }
+        .question-card { padding: 1.25rem; }
+        .header { padding: 0.75rem 1rem; }
+        .stats { gap: 1rem; }
+        .bw-header, .bw-row { grid-template-columns: 60px 1fr 60px; }
+        .cj-grid { grid-template-columns: 1fr; }
+        .strength-buttons { grid-template-columns: 1fr; }
+        .da-grid { width: 280px; height: 280px; }
+        .da-x-label-left, .da-x-label-right { width: 80px; font-size: 0.7rem; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div>
+        <div class="header-title">PRISM</div>
+        <div class="header-meta">political refraction and identity spectrum model</div>
+    </div>
+    <div class="progress-indicator" id="progress-indicator">-</div>
+</div>
+
+<!-- Main content -->
+<div class="container" id="quiz-root">
+
+    <!-- Landing page -->
+    <div class="landing" id="landing">
+        <h1>PRISM</h1>
+        <div class="subtitle">political refraction and identity spectrum model</div>
+        <div class="description">
+            A comprehensive political disposition assessment that maps you to one of 118
+            political archetypes across 14 latent dimensions. Questions adapt in real time
+            based on your responses using Bayesian posterior updating.
+        </div>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">118</div>
+                <div class="stat-label">Archetypes</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Dimensions</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">~27</div>
+                <div class="stat-label">Questions</div>
+            </div>
+        </div>
+        <button class="start-btn" onclick="startQuiz()">begin assessment</button>
+    </div>
+
+    <!-- Quiz area (hidden until start) -->
+    <div id="quiz-area" style="display:none;"></div>
+
+</div>
+
+<!-- Footer -->
+<div class="container">
+    <div class="footer-note" id="footer">
+        prism v2 - adaptive bayesian question selection - matricesofconfusion.com
+    </div>
+</div>
+
+<script>
+// ── Question text map ──────────────────────────────────────────────────────
+// Maps engine promptShort → full question text (verbatim from quiz v1)
+const Q_TEXT = {
+    party_identification: "When you think about your political identity, which best describes you?",
+    patriotism_institutional_trust: "Which best describes your relationship with your country and its institutions?",
+    state_scope_preference: "Which best describes the role you want government to play?",
+    military_intervention: "Which most closely matches your view of the optimal US military and diplomacy posture?",
+    international_engagement: "How should America engage with the rest of the world?",
+    trade_nationalism: "What's your view on international trade?",
+    religion_in_public_life: "What role should religion play in public policy?",
+    emergency_powers: "When can government bypass normal constitutional process to act decisively?",
+    courts_vs_majority: "When elected majorities and the courts disagree, who should usually prevail?",
+    zero_sum_economics_view: "When you think about the economy, which best describes your view?",
+    human_malleability_view: "Setting aside whether people are inherently good or bad, how much do you think a person's character and behavior can be reshaped by their environment, education, and institutions?",
+    equal_standing_within_polity: "When citizens, legal residents, minorities, or other groups living under the country's laws are denied equal moral or legal standing, how central is fixing that to your politics?",
+    institutions_foundational: "Setting aside how well institutions function right now, how essential do you think strong institutions — laws, courts, civic organizations, international bodies — are to a society's long-term flourishing?",
+    theory_of_change_progress: "Looking at major political progress in the United States over the last 100 years, where has it MOSTLY come from?",
+    strengthen_democracy_priority: "If you were prioritizing one approach to strengthen American democracy today, which would do MORE?",
+    strategic_voting: "When your preferred candidate has little chance of winning, what do you do?",
+    negative_partisanship: "Are there any parties you would never vote for, regardless of the candidate?",
+    political_content_frequency: "How many days per week do you typically consume political content (news, podcasts, social media, discussions)?",
+    political_identity_centrality: "How central is your political identity to your overall sense of self?",
+    nyt_headline_click: "You have 30 minutes to read one article in the New York Times. Which headline do you click?",
+    inequality_causes_allocation: "What portion of economic inequality is caused by each? (Must sum to 100%)",
+    bad_outcomes_blame_allocation: "When things go badly in the economy or politics - recessions, policy failures, crises - who or what is most to blame?",
+    controversial_speaker: "A controversial speaker is invited to a university. They have views many find deeply offensive but haven't called for violence. What should happen?",
+    who_should_shape_a_law: "A new law will significantly affect your community. Rank who should have the MOST say in shaping it (drag to reorder, 1 = most influence):",
+    child_traits: "Which trait is more important to teach children?",
+    opponent_model_allocation: "What portion of people who vote for the party you oppose fall into each category? (Must sum to 100%)",
+    effective_leader_style: "The most effective political leaders are those who:",
+    politically_important_identities: "Which identities shape how you see politics? Sort each one into the column that fits best — some, many, or none may go in \"Doesn't really register.\"",
+    cultural_social_placement: "On social-direction issues — abortion, LGBTQ rights, gender identity, marriage, religious accommodation, and how fast traditions should evolve — where would you place yourself?",
+
+    cultural_social_salience: "How much do cultural and social issues matter to you personally, relative to other political concerns?",
+    domestic_vs_abroad_lives: "Your government can fund one program this year. Program A saves an estimated 10 lives in your country. Program B saves an estimated 100 lives in a developing nation. Where should the money go?",
+    guess_top_marginal_tax_rate: "What do you think the current top marginal federal income tax rate is?",
+    preferred_top_marginal_tax_rate: "What should the top marginal federal income tax rate be?",
+    human_progress_salience: "When you think about the future, how much do you focus on whether humanity as a whole is getting better or worse?",
+    mainstream_media_accuracy_estimate: "Combining the Wall Street Journal, Bloomberg, and New York Times: what percentage of their factual claims do you believe are accurate?",
+    percent_groups_want_best_share_values: "Think about people in your country. What percentage of them do you believe genuinely want what is best for the country, even if they disagree with you about how to get there?",
+    rules_procedures_matter_salience: "When evaluating a political outcome, how much do you care about whether the right process was followed, independent of the result?",
+    opponents_matter_to_identity: "How much does having a clearly defined political opponent or outgroup matter to your sense of political identity?",
+    views_changed_in_10_years: "How much do you think your political views have changed in the past 10 years?",
+    social_progress_salience: "How much do you personally care about the question of whether society is making social progress?",
+    immigration_national_identity_salience: "How important is the question of immigration and national identity to you personally?",
+    national_priorities_bundle: "If the next administration could pursue ONE bold agenda, which would you most want it to be?",
+    coalition_vs_principle: "Your political party or movement takes a position you disagree with on an important issue. What do you do?",
+    politics_at_social_gatherings: "When politics comes up at social gatherings, you typically:",
+    climate_energy_bundle: "Which approach to climate and energy policy do you prefer?",
+    university_admissions_approach: "A prestigious university is deciding how to allocate limited spots. Which approach do you support?",
+    criminal_justice_bundle: "Which criminal justice approach do you prefer?",
+    ceo_worker_pay_ratio: "What's the maximum acceptable ratio between CEO pay and average worker pay?",
+    human_improvement_capacity: "Through better education, institutions, and accumulated knowledge, how much can humans actually improve over generations?",
+    criminal_trial_error_tradeoff: "In criminal trials, which type of error is worse?",
+    vacation_new_vs_familiar: "For your next vacation, which would you prefer?",
+    welfare_error_tradeoff: "In welfare programs, which error is worse?",
+    mask_mandate_acceptability: "Think back to the COVID-19 pandemic. Assuming you could confirm indoor mask use reduced spread of the virus moderately, how acceptable is a mask mandate for indoor public spaces during a surge?",
+    information_control_error_tradeoff: "Information Control: Platforms and governments must balance two risks. Which error is worse?",
+    trade_liberalization_effects: "Looking at the last 50 years of global trade, countries that significantly opened their economies generally...",
+    immigration_enforcement_error_tradeoff: "Immigration Enforcement: Immigration enforcement can be stricter or looser. Which error is worse?",
+    threats_to_america_external_internal: "Where do the biggest threats to America come from?",
+    fda_speed_vs_safety: "Medical Regulation: The FDA must balance speed vs. safety in approving new treatments. Which error is worse?",
+    stupid_workplace_rule_response: "Your workplace implements a new rule everyone agrees is stupid but technically required by policy. What do you do?",
+    election_access_vs_security: "Electoral Security: Election rules can prioritize access or security. Which error is worse?",
+    close_friends_voted_differently: "You discover that a close friend voted for a candidate or party you strongly oppose. How do you feel?",
+    veil_of_ignorance_society_choice: "If you didn't know what position you would occupy (rich or poor, lucky or unlucky), which society would you choose to live in?",
+    what_changed_minds_through_history: "Which has changed more minds throughout history?",
+    political_conflict_with_close_others: "When your political views conflict with those of close friends or family...",
+    improvement_mechanism: "When society improves, what is the main mechanism that makes it possible?",
+    political_membership_criterion_rewrite: "When you think about what makes someone \"truly American,\" which matters most?",
+    parents_politics_growing_up: "How would you describe your parents' or guardians' political views when you were growing up?",
+    religion_in_upbringing: "How would you describe the role of religion in your upbringing?",
+    parents_political_engagement: "How politically engaged were your parents or guardians when you were growing up?",
+    neighborhood_safety_childhood: "During your childhood and teenage years, how safe did you feel in your neighborhood?",
+    what_matters_more_in_leader: "What matters more in a political leader?",
+    political_pitch_resonance: "Which political pitch would resonate most with you?",
+    movement_aesthetics_reaction: "When a political movement develops strong aesthetics (flags, songs, slogans), this is:",
+    engagement_motivations_top2: "What are the top two reasons you engage (or would engage) with politics? Select exactly two.",
+    what_changed_your_mind: "Think of a time you changed your mind on a political issue. What caused the change?",
+    factual_estimates_and_confidence: "When you want to know what's actually true about a contested political issue, how much trust would you place in each source? Allocate 100 points across the four.",
+    source_trust_conflict: "When sources disagree on a contentious political issue, what kind of evidence most changes your mind?",
+    factory_closure_causes_ranking: "A major factory in your region announces it's closing, eliminating 2,000 jobs. Rank these causes from most to least responsible:",
+    integration_expectations_rewrite: "What should be expected of immigrants who want to become full citizens of your country?",
+    best_worst_battery: "Which of these political issues matters MOST and LEAST to you personally?",
+    pole_priorities_ends: "Here are some priorities a society could aim for. Pick the one you'd most (and least) want to see in a presidential candidate.",
+    pole_priorities_ends_b: "Here are a few more along the same lines. Pick the one you'd most (and least) want to see in a presidential candidate.",
+    priority_sort_opener: "Here are some priorities a society could aim for. Place each one into the column that fits best. Tap an item, then tap the column.",
+    issue_salience_screener: "Sort each political topic by how much it matters to how you see politics. Topics that feel central to your identity go on the left; topics that don't really register go on the right.",
+    cross_partisan_priority_sort: "Imagine each of these people told you they hold political views strongly opposed to yours. For each relationship, how would that sit with you?",
+    membership_criteria_priority_sort: "When you think about what it takes for someone to belong fully as a member of this country, how important is each of the following?",
+    leader_conjoint: "Two candidates are running for a high office. Based only on the attributes shown, which one would you choose?",
+    cultural_social_placement_dual: "Place yourself on the social-direction spectrum — covering reproductive rights, LGBTQ rights, gender identity, marriage, religious accommodation, and how fast (or whether) social conventions should change. The horizontal axis is your position. The vertical axis is how much these issues matter to you.",
+    political_thought_frequency: "How often does politics come up in your day-to-day thoughts?",
+    group_solidarity_feeling: "Think about the identity you just placed first. When a group you see yourself as part of is treated unfairly, how does it usually sit with you?",
+    epistemic_style_battery: "When you're forming a political view, what do you most trust as a guide? And what do you trust LEAST? Pick one MOST trusted and one LEAST trusted.",
+    political_frustration: "What frustrates you most about politics?",
+    party_culture_conflict_response: "Your political party takes a position that conflicts with a deeply held cultural or moral value of yours. What do you do?",
+    community_fund_allocation: "Your community receives an unexpected windfall of $10 million. How would you allocate it?",
+    universal_vs_local_obligations: "When it comes to moral obligations, which statement is closer to your view?",
+    opponent_success_response: "A political opponent achieves a policy outcome you actually agree with. How do you react?",
+    common_ground_salience: "How important is it to you to find common ground with political opponents?",
+    zero_sum_politics_view: "In politics, when one group gains power or resources, another group usually loses.",
+    rhetoric_style_importance: "How much does the style and tone of political communication matter to you, independent of the substance?",
+    inequality_solutions_ranking: "Rank these approaches to reducing economic inequality from most to least effective.",
+    culture_vs_diversity_scope: "Which statement is closer to your view?",
+    cross_party_marriage_comfort: "How comfortable would you be if a close family member married someone with very different political views?",
+    success_attribution: "When someone achieves great success in life, how much is due to their own effort versus circumstances and luck?",
+    decision_making_style: "When making an important political decision, do you rely more on careful analysis or gut instinct?",
+    speaker_appeal: "Which type of political speaker do you find most compelling?",
+    expert_disagreement_reaction: "When credentialed experts disagree on a policy question, what do you typically conclude?",
+    political_attention_style: "When following political news, do you tend to focus on specific issues or the big picture?",
+    party_vs_cause_loyalty: "When your political side takes a position you think is wrong, what is your instinct?",
+    openness_assimilation_closure: "How should the country handle the mix of different religions, languages, lifestyles, and ways of life that make up its population? Pick the view closest to yours.",
+    broken_politics_diagnosis: "What feels most broken about politics?",
+    institutions_harden_into_domination: "Even organizations built for good reasons usually grow corrupted over time.",
+    institutional_legitimacy_source: "What gives a political institution the right to make decisions that affect everyone?",
+    family_cross_partisan_marriage: "Imagine a close family member is marrying someone whose politics are the opposite of yours. How does that sit with you?"
+};
+
+// ── Option label map ───────────────────────────────────────────────────────
+const OPT_LABELS = {
+    1: "None of the above—integration should not be expected",
+    10: "10:1 or less",
+    100: "100:1",
+    300: "300:1 (about current average)",
+    50: "50:1",
+    accept: "Accept—reasonable given the circumstances",
+    accept_mandate: "Fully support-public health requires collective action",
+    actively_bring_up: "Engage passionately - these conversations matter",
+    adopt_values: "Adopt core national values",
+    affirmative_action: "Quotas to ensure proportional representation of all groups",
+    aggressive_transition: "Aggressive transition - phase out fossil fuels as fast as possible",
+    allow_fully: "Allowing disinformation to spread, causing harm",
+    allow_illegal: "Allowing someone to stay who should be deported",
+    allow_no_restrictions: "Allow them to speak with no restrictions",
+    allow_with_counterspeech: "Allow but also provide platform for counter-speech",
+    allow_with_labels: "Both roughly equally bad",
+    apolitical: "Apolitical—politics was rarely discussed",
+    art_music: "Art, music, and cultural expression",
+    ask_trusted_people: "Ask people I trust what they think",
+    automation: "Automation and technological change",
+    avoid_entirely: "Avoid entirely—politics ruins social situations",
+    avoid_if_possible: "I usually keep quiet to avoid conflict",
+    bad_motives: "Have genuinely bad motives",
+    balance_both_errors: "Both roughly equally bad",
+    balanced_approach: "Balanced approach - both accountability and rehabilitation matter",
+    balanced_errors: "Both roughly equally bad",
+    balanced_timeline: "Both roughly equally bad",
+    big_picture: "Someone who paints the big picture and connects the dots",
+    born_here: "Being born and raised in America",
+    born_raised: "Being born and raised in America",
+    both: "Both roughly equally",
+    both_equally: "Both roughly equally",
+    both_sides_broken: "Both parties are broken - neither represents ordinary people",
+    both_wrong: "Assume the truth is probably somewhere in between",
+    bridge_builder: "Someone who builds bridges across divides",
+    build_expert_coalitions: "Build expert coalitions and institutional support",
+    business_stakeholders: "Business owners and economic stakeholders",
+    bypass: "Quietly ignore when possible",
+    calls_out_power: "Someone who calls out power and injustice",
+    cancel: "Cancel the event - some views shouldn",
+    cant_predict: "Hard to say - depends on the situation",
+    cause_over_party: "Party labels matter less than whether the position serves the cause",
+    central: "Central—religion shaped daily life, values, and community",
+    change_subject: "Try to change the subject—not the place",
+    channel_anger: "Channel popular anger and frustration into political energy",
+    charitable_giving: "Charitable giving and philanthropy",
+    check_credentials: "Check which expert has better credentials or track record",
+    check_evidence: "Look at the underlying evidence myself",
+    check_experience: "Think about what matches my personal experience",
+    check_personal_impact: "Think about how it affects me and people like me",
+    check_values: "Consider which position aligns with my values",
+    civic_assimilation: "Stay open to many religions, languages, and lifestyles, but everyone should share a common civic culture and core values",
+    civic_duty: "Civic duty - it's my responsibility as a citizen to participate",
+    civic_loss: "People no longer share a common civic and national life",
+    civic_participation: "Participating in civic life (voting, community involvement)",
+    class_identity: "Class (working, middle, etc.)",
+    coalition_first: "Dilute the message to build a broader coalition with people you disagree with.",
+    coherent_vision: "Articulating a coherent vision that connects all their positions",
+    combative_mobilization: "Politics is too restrained - it needs leaders willing to fight harder",
+    community_bonds: "Community bonds and solidarity",
+    community_deliberation: "Community deliberation and democratic process",
+    community_mutual_aid: "Community and mutual aid organizations",
+    community_voice: "Someone who speaks from real community experience",
+    compelling_narratives: "Compelling narratives and storytelling",
+    compelling_vision: "Paint a compelling vision of what the country could become",
+    competence_record: "A track record of actually getting results",
+    complex_forces: "Complex forces nobody controls",
+    compliant: "Follow it - rules are rules",
+    comply_reluctantly: "Accept - reasonable given the circumstances",
+    continuous_improvement: "Humanity is generally progressing - things get better over time",
+    corporate_decisions: "Corporate decisions prioritizing profits over workers",
+    corporate_power_inequality: "Corporate power and growing inequality",
+    dem: "Democrat — I usually vote Democratic",
+    rep: "Republican — I usually vote Republican",
+    ind: "Independent — I evaluate each election on its own",
+    third: "Third party — I usually vote outside the two major parties",
+    none: "No consistent party identification",
+    proud_and_trust: "I'm generally proud of my country and trust most of its core institutions, despite their flaws",
+    proud_distrustful: "I'm proud of my country but distrust most of its current institutions",
+    moderate_pride_mixed_trust: "I'm somewhat proud but skeptical of many institutions in their current form",
+    internationalist_trusting: "I don't think in country-pride terms but I trust most major democratic institutions",
+    critical_low_trust: "I'm critical of my country and don't trust most institutions",
+    universal_strong_state: "Universal services and a strong state — public healthcare, public education through college, robust social insurance, even at higher taxes",
+    basic_safety_net_mixed: "Basic safety net and mixed economy — government provides core protections and corrects market failures but doesn't run most things",
+    market_enabling_limited: "Market-enabling limited state — government should mostly enable markets, individual choice, and small-business activity",
+    anti_bureaucratic_localist: "Anti-bureaucratic alternative — federal government does too much; problems should be solved at community / state / private level",
+    robust_intervention: "Use military force decisively when American interests or values demand it",
+    alliance_diplomacy: "Lead through alliances and diplomacy — force is a last resort, within international institutions",
+    restraint_only: "Strategic prudence — intervene only to protect vital US security interests; treat foreign policy as cost-benefit, not values projection",
+    anti_war: "War is rarely just — pursue diplomacy and disarmament; military force causes more harm than it prevents",
+    deep_engagement: "America should engage deeply in international institutions and treaties",
+    selective_alliance: "Strong alliances yes, but be selective and protect American sovereignty",
+    unilateral_strength: "America should act unilaterally to defend its interests; don't be constrained by international institutions",
+    withdraw_focus_home: "Withdraw from foreign entanglements — focus on home",
+    free_trade: "Free trade is mostly good — remove barriers, embrace globalization",
+    fair_trade_with_protections: "Fair trade with worker and environmental protections — pro-trade but with rules",
+    tariffs_protect_jobs: "Tariffs and protections to defend American jobs and industry",
+    trade_what_helps_people: "Whatever trade policy materially helps working people — open or closed",
+    religion_central: "Religious values should be central to public policy and law",
+    religion_inform: "Religion can inform public values, but laws should serve everyone equally",
+    religion_neutral: "Government should be neutral toward religion — neither favor nor restrict",
+    religion_separate: "Strict separation — religion has no place in public policy",
+    never_emergency_bypass: "Constitutional process binds even in emergencies — never bypass",
+    narrow_emergency: "Narrow, time-limited emergency powers under congressional or judicial check",
+    moderate_emergency: "Government can act decisively when problems demand it, with later review",
+    strong_leader_acts: "When the system is gridlocked or failing, a strong leader should act and let courts catch up",
+    courts_protect_rights: "Courts protect rights even against majority opinion — that's their job",
+    courts_check_with_deference: "Courts check majorities but should generally defer to elected branches",
+    majority_should_rule: "The democratic majority should mostly get its way — courts shouldn't override the public",
+    elites_blocking_change: "Unelected elites in courts and bureaucracy are blocking the people's mandate",
+    pie_grows_for_all: "When the economy grows, most people can benefit — wealth creation is positive-sum",
+    growth_with_distribution: "Growth helps when distribution is fair — both creating and sharing matter",
+    winners_at_others_expense: "When some win big, others lose — economic gains usually come at someone's expense",
+    rigged_against_most: "The whole economy is rigged so most people can't get ahead no matter what",
+    largely_fixed: "Mostly fixed by adulthood — character and behavior barely change after that",
+    modest_shaping: "Some shaping is possible, but human nature sets real limits",
+    substantial_shaping: "Substantially shaped by upbringing, education, and community",
+    mostly_made_by_environment: "Mostly made — character and behavior are largely products of how a person is raised, taught, and surrounded; people can be changed substantially",
+    substantial_capacity: "Substantially — each generation can be wiser, kinder, and more capable than the last",
+    gradual_with_limits: "Gradually — there's real progress but human nature sets ceilings",
+    cyclical_gains_lost: "Cyclical — gains in one generation are usually lost in the next",
+    negligible_capacity: "Negligibly — human nature is the main constraint; education and institutions can't really change it",
+    state_institutions: "Strong state institutions — laws, programs, public education, agencies",
+    family_community_tradition: "Family, community, and local relationships — close human bonds",
+    market_innovation: "Markets, trade, and innovation — economic dynamism shaping behavior",
+    cultural_inherited: "Inherited cultural and religious traditions — accumulated wisdom",
+    doesnt_improve: "Society doesn't really improve — gains are illusory or temporary",
+    central_universalism: "Central — equal full personhood for everyone within the country is foundational; when it's denied, that's the political issue I focus on",
+    important_one_of_many: "Important, but one issue among many; matters when it's directly happening",
+    depends_on_situation: "Important in extreme cases, but I focus on broader policy",
+    some_differentiation_acceptable: "Some differentiation is part of stable political order; perfect equality isn't always the goal",
+    natural_hierarchy: "Different groups have different roles — that's how polities work",
+    foundational_essential: "Foundational — necessary infrastructure for any thriving society; you can't have human progress without strong institutions",
+    important_with_caveats: "Important, but they need constant maintenance and reform to stay legitimate",
+    depends_on_design: "Depends on which institutions and how they're structured",
+    instruments_not_essential: "Useful instruments but not foundational; people can flourish under many different arrangements",
+    obstacles_to_progress: "Often obstacles — entrenched institutions block needed change more than they enable it",
+    institutions_and_laws: "From durable institutions and laws — courts, the Federal Reserve, the interstate highway system, public-health agencies, NATO, Medicare, the Civil Rights Act",
+    movements_against_power: "From social movements forcing change against entrenched power — labor, civil rights, women's, gay rights, climate",
+    tech_and_economic: "From technological and economic dynamism — postwar growth, Silicon Valley, productivity gains lifting living standards",
+    leaders_with_vision: "From leaders with vision who mobilized the country — FDR, Reagan, Obama, leaders who reshaped what was politically possible",
+    markets_voluntary: "From markets, voluntary exchange, and individual initiative — most progress is bottom-up, not government-led",
+    reform_existing: "Repair existing constitutional and public institutions — Congress, courts, agencies, professional norms",
+    build_new: "Replace outdated institutions with new ones designed for current challenges — many existing ones can't be repaired",
+    devolve_power: "Return power from federal to state and local governments — decisions should be closer to the people affected",
+    democratize_rein_in: "Reduce the role of unelected experts and elites — reassert democratic majorities and ordinary-citizen control",
+    shrink_government: "Less government overall — more should be left to civil society and markets",
+    strategic_lesser_evil: "I vote for the leading lesser-evil candidate from a major party",
+    sincere_always: "I vote for whoever I actually prefer, even if they have no chance of winning",
+    depends_on_stakes: "It depends on the stakes — sometimes strategic, sometimes sincere",
+    not_sure: "I'm not sure — I haven't faced this dilemma",
+    never_dem: "I would never vote Democratic, regardless of the candidate",
+    never_rep: "I would never vote Republican, regardless of the candidate",
+    never_dem_or_rep: "I would never vote for either major party",
+    no_categorical_no: "I'd consider voting for any party if the candidate were right",
+    consider_all: "I evaluate every candidate on their own — no categorical exclusions",
+    expert_consensus_breaks_tie: "Domain experts with a clear consensus, even if I can't verify every detail myself",
+    primary_evidence_breaks_tie: "Primary sources, data, or methods I can inspect directly, even if experts disagree",
+    lived_experience_breaks_tie: "Direct lived experience from people the issue actually affects",
+    tradition_breaks_tie: "Long-standing inherited, religious, local, or practical wisdom",
+    follow_money_breaks_tie: "Who benefits from each claim — I'm skeptical of any source until I see who gains",
+    cultural_adoption: "Adopting American culture, customs, and way of life",
+    cultural_customs: "Adopt local customs and cultural practices",
+    cultural_heritage: "Adopting American culture, customs, and way of life",
+    cycles: "History moves in cycles - neither improving nor declining overall",
+    cyclical: "History moves in cycles - neither improving nor declining overall",
+    data_driven: "\"The data shows these three interventions will have the highest impact\"",
+    data_driven_campaign: "A warning sign-substance is being replaced by style",
+    data_evidence: "Data or evidence that contradicted what I believed",
+    decline: "Progress is mostly an illusion - human nature doesn",
+    decline_view: "Mostly illusory-superficial changes hiding deeper problems",
+    deep_expertise: "Someone with deep expertise in their field",
+    depends_on_issue: "Depends on the issue - some principles are non-negotiable, others aren't",
+    deport_legal: "Wrongly deporting someone who is legally eligible to stay",
+    equal_errors: "Both errors are equally bad",
+    convict_innocent: "Convicting an innocent person",
+    free_guilty: "Letting a guilty person go free",
+    fp: "Giving benefits to someone who doesn't qualify",
+    fn: "Denying benefits to someone who genuinely needs them",
+    let_stay_illegal: "Letting someone remain in the country who should be deported",
+    allow_harmful: "Allowing harmful speech (disinformation, calls for violence) to reach a wide audience",
+    censor_legitimate: "Wrongly silencing a legitimate speaker or suppressing a true idea",
+    discrimination_bias: "Discrimination and bias",
+    discuss_if_comes_up: "Share your views but try to keep it civil",
+    disenfranchise: "Preventing a legitimate voter from voting (disenfranchisement)",
+    disinfo: "Allowing disinformation to spread, causing harm",
+    distance_somewhat: "Would create some distance in the friendship",
+    dont_care_style: "I don't really care how politicians present themselves",
+    due_process_priority: "Due process comes first - better to let some guilty go free than convict the innocent",
+    easier_access: "Preventing a legitimate voter from voting (disenfranchisement)",
+    economic_contribution: "Work and contribute economically",
+    economic_interests: "Economic necessity and material conditions",
+    economic_necessity: "Economic necessity and material conditions",
+    economics_first: "These pluralism questions matter less than economic fairness and material security",
+    effort_choices: "Individual effort and choices",
+    elders_religious: "Community elders and religious leaders",
+    elected_officials: "Elected officials accountable to voters",
+    elite_exclusion: "Elites make the real decisions and shut ordinary people out",
+    embrace_diversity: "Embrace diversity and cultural change",
+    end_friendship: "Would seriously strain or end the friendship",
+    enemy_focus: "\"The other side is destroying everything—we have to stop them\"",
+    engage_carefully: "I engage in discussion but stay respectful",
+    engage_passionately: "Engage passionately—these conversations matter",
+    enjoy_debate: "I enjoy the debate - disagreement is how we sharpen our thinking",
+    eq: "Both roughly equally bad",
+    equal_society: "A very equal society with a high floor but lower ceiling",
+    essential_power: "Essential—aesthetic power is political power",
+    ethnic_racial_identity: "Ethnic / racial identity",
+    every_day: "Every day, multiple times a day",
+    evidence_and_argument: "Logical arguments and empirical evidence",
+    evidence_pitch: "A data-driven pitch with charts, studies, and detailed policy analysis",
+    expert_coalitions: "Build expert coalitions and institutional support",
+    expert_consensus: "Expert consensus and institutional research",
+    expert_team: "Surrounding themselves with experts who craft smart policy",
+    external: "External - foreign powers, terrorism, immigration",
+    external_threats: "External - foreign powers, terrorism, immigration",
+    fairness: "Fairness and equality",
+    familiar: "Return to a favorite destination you know well",
+    familiar_place: "Return to a favorite destination you know well",
+    family_background: "Family background/inherited advantages",
+    few_days: "A few days a week",
+    fiery_rally: "Natural and healthy-movements need identity",
+    fight_injustice: "Fight injustice - the system is broken and needs to change",
+    fight_pitch: "A fighting pitch that calls out the system and demands change",
+    fight_to_reverse: "Fight to reverse it - elections aren't final",
+    fight_to_win: "Fight hard and win-results matter more than style",
+    fight_win: "Fight hard and win—results matter more than style",
+    fighter: "Fighter - takes on powerful interests head-on",
+    fighting_spirit: "The will to fight for their side against opposition",
+    fights_for_us: "The will to fight for their side against opposition",
+    fn: "Denying benefits to someone who genuinely needs them",
+    follow_always: "Follow it - rules are rules",
+    follow_laws: "Follow the law",
+    follow_then_advocate: "Follow while working through proper channels to change it",
+    fp: "Giving benefits to someone who doesn't qualify",
+    fragile_reversible: "Fragile—could easily be reversed",
+    fraud: "Allowing an illegitimate vote to count (voter fraud)",
+    free_market_growth: "Free-market growth lifts all boats",
+    free_market_society: "A free market society with minimal redistribution",
+    full_support: "Fully support—public health requires collective action",
+    gender_identity: "Gender identity",
+    generous_policy: "Deporting someone who is legally eligible to stay",
+    gets_results: "A track record of actually getting results",
+    global_aid: "Give to global aid that helps more people",
+    global_citizen: "Global citizen",
+    global_competition: "Inevitable market forces and global competition",
+    global_obligations_first: "Global obligations come first",
+    good_choices: "Good personal choices and hard work",
+    government_overreach: "Government overreach and loss of personal freedom",
+    government_policy: "Government policies (trade deals, regulations) failed to protect local industry",
+    government_redistribution: "Government redistribution (taxes, transfers)",
+    gradual_improvement: "Progress is real but slow, uneven, and fragile",
+    gradual_progress: "Progress is real but slow, uneven, and fragile",
+    gradual_transition: "Gradual transition - move toward renewables but protect jobs and energy security",
+    grassroots_community: "A neutral tool-depends how it",
+    gut_feeling: "Trust my gut instinct",
+    hard_work_talent: "Hard work and talent",
+    help_community: "Help my community - politics is how we solve local problems",
+    holistic_review: "Merit plus consideration for economic disadvantage",
+    hurt: "Often stagnated or fell behind more protectionist countries",
+    ideological_identity: "Ideological (liberal, conservative, etc.)",
+    ignore_quietly: "Quietly ignore when possible",
+    illusion: "Progress is mostly an illusion - human nature doesn't change",
+    illusory_superficial: "Mostly illusory—superficial changes hiding deeper problems",
+    important: "Important—regular practice and religious identity, but not all-encompassing",
+    independence: "Independence and self-reliance",
+    independence_vs_elders: "Independence vs. Respect for elders",
+    individual_freedom: "Individual freedom and personal liberty",
+    inherited_tradition: "It carries inherited ways of life forward",
+    inspirational_visionary: "Inspirational visionary - rallies people around a compelling future",
+    intellectual_challenge: "Intellectual challenge - I find policy and strategy fascinating",
+    internal: "Internal - domestic extremism, inequality, institutional decay",
+    internal_division: "Internal - domestic extremism, inequality, institutional decay",
+    international_cooperation: "International cooperation and shared governance",
+    justice_first: "It serves a just outcome, even when procedure gets in the way",
+    keep_friendship: "A bit uncomfortable but wouldn",
+    learn_language: "Learn to speak the national language",
+    legal_status: "Having legal citizenship status",
+    legitimate_values: "Have different but legitimate values",
+    listen_mostly: "Listen mostly, share selectively",
+    lived_experience: "Lived experience and personal observation",
+    local_charity: "Give to local charity you can see the impact of",
+    local_charity_vs_global_aid: "Local charity vs. Global aid",
+    logical_arguments: "Logical arguments and empirical evidence",
+    look_for_independent: "Look for an independent or third-party candidate",
+    look_up_facts: "Look up the facts and data",
+    lottery: "Random lottery among qualified applicants",
+    luck_random: "Luck and random chance",
+    market_based_development: "Let the market decide what gets built",
+    market_decides: "No limit - the market should decide",
+    market_led: "Market-led - let innovation and market forces drive the transition",
+    master_policy_details: "Master policy details and explain complex tradeoffs clearly",
+    maybe_good_outcome: "Wait and see - maybe the outcome won",
+    measured_rally: "Sometimes necessary but should be viewed skeptically",
+    minimal: "Minimally engaged—they rarely discussed politics or participated",
+    misinformed: "Are misinformed or lack information — they would reach a different view if they had better information",
+    mix_both: "A mix - revisit a favorite but explore new parts",
+    mixed: "Mixed or moderate",
+    mixed_effects: "Results varied too much by country to generalize",
+    moderate: "Moderate—some religious exposure but not a major influence",
+    moderate_household: "Mixed or moderate",
+    modernize_infrastructure: "Modernize infrastructure and attract investment",
+    moral_character: "Articulating a coherent vision that connects all their positions",
+    moral_movements: "Compelling narratives and storytelling",
+    most_days: "Most days",
+    mostly_harmful: "Often stagnated or fell behind more protectionist countries",
+    mostly_safe: "Mostly safe—occasional concerns but generally secure",
+    mutual_gain: "Grew wealthier, as did their trading partners",
+    national_identity: "National identity (American)",
+    national_obligations_first: "National obligations come first",
+    national_obligations_vs_global_obligations: "National obligations vs. Global obligations",
+    national_sovereignty: "National sovereignty and self-determination",
+    national_sovereignty_vs_international_coop: "National sovereignty vs. International cooperation",
+    national_strength: "National strength and security",
+    natural_healthy: "Natural and healthy—movements need identity",
+    net_positive_but_uneven: "Saw mixed results - some sectors and groups gained, others lost",
+    net_positive_clear: "Grew wealthier, as did their trading partners",
+    neutral_tool: "A neutral tool—depends how it's used",
+    never: "Never or almost never",
+    never_changed: "My core views haven't really changed",
+    never_discussed: "Minimally engaged-they rarely discussed politics or participated",
+    new_place: "Visit somewhere completely new and unfamiliar",
+    no_action_needed: "No major action needed - climate concerns are overstated",
+    no_big_deal: "No big deal - wouldn",
+    no_limit: "No limit - the market should decide",
+    no_problem: "No problem at all - wouldn",
+    no_representation: "Ordinary people have no one who truly speaks for them",
+    none: "Not at all—politics was essentially absent from my upbringing",
+    none_matters: "None of these—anyone can be truly American regardless",
+    not_political: "Apolitical - politics was rarely discussed",
+    not_religious: "Secular - raised without religion",
+    novel: "Visit somewhere completely new and unfamiliar",
+    novelty: "A bizarre new scientific theory that upends everything we know about physics",
+    obedience: "Obedience and following rules",
+    obedience_vs_self_reliance: "Obedience vs. Self-reliance",
+    occasionally_discussed: "Somewhat engaged-they voted and occasionally discussed politics",
+    open_borders: "Deporting someone who is legally eligible to stay",
+    open_pluralist: "Different religions, languages, lifestyles, and conceptions of a good life can coexist as equals — the country shouldn't demand a shared standard",
+    openly_challenge: "Malicious compliance to expose the absurdity",
+    opportunity_society: "A society with high opportunity and significant inequality",
+    oppose: "Strongly oppose any mandate—no authority should mandate personal choices",
+    option_a: "Option A",
+    option_b: "Option B",
+    order_and_results: "It keeps order and gets results when things are unstable",
+    ordinary_choices: "Ordinary people",
+    organized_residents: "Organized and active residents who will be directly affected",
+    other_side_bad: "Why the other political side is even worse than you thought",
+    own_community_vs_strangers_abroad: "Protect your own community vs. Help strangers abroad",
+    own_reasoning: "Work it out through my own independent reasoning",
+    paint_vision: "Paint a compelling vision of what the country could become",
+    permanent_irreversible: "Permanent—these gains are essentially irreversible",
+    personal_experience: "A personal experience that challenged my assumptions",
+    personal_research: "Your own research and evidence gathering",
+    policy_detail: "Master policy details and explain complex tradeoffs clearly",
+    policy_specifics: "\"Here are my 12 detailed policy proposals with cost estimates\"",
+    politics_irrelevant: "Politics is mostly irrelevant to real life",
+    system_works: "I'm not especially frustrated — the system works reasonably well",
+    power_struggles: "Art, music, and cultural expression",
+    powerful_incompetent: "Powerful people acting incompetently",
+    powerful_selfish: "Powerful people acting with selfish motivations",
+    practical: "Ten practical tips to organize your home and life",
+    practical_results: "\"I've done it before and I'll do it again—check my record\"",
+    practical_tips: "Ten practical tips to organize your home and life",
+    pragmatic_dealmaker: "Pragmatic dealmaker - gets things done through negotiation",
+    preserve_culture: "Preserve a shared culture, language, religion, and way of life — too much pluralism erodes the country",
+    preserve_culture_vs_embrace_diversity: "Preserve culture vs. Embrace diversity",
+    preserve_heritage: "Preserve heritage and character of the area",
+    priorities_traditional: "Traditional Order — secure borders, civics in schools, strong families, back the police",
+    priorities_fairness: "Economic Fairness — universal services, tax wealth, raise wages, break up monopolies",
+    priorities_strength: "National Strength — cut regulation, invest in defense, protect industries, selective immigration",
+    priorities_future: "Planet & Future — climate action, global cooperation, scientific research, generational investment",
+    principle_first: "Maintain a clear, principled message, even if it alienates moderate voters.",
+    principled_ideologue: "Principled ideologue - stands firm on core values",
+    prioritize_safety: "Blocking a treatment that would have helped patients (FDA too slow)",
+    prioritize_speed: "Approving a treatment that causes harm (FDA too fast)",
+    procedural_integrity: "Procedural integrity and rule of law",
+    procedural_rules: "It follows neutral constitutional rules and procedures",
+    progress: "Humanity is generally progressing - things get better over time",
+    protect_own_community: "Protect your own community first",
+    protect_strangers_abroad: "Help strangers abroad in greater need",
+    protect_values: "Protect my values - the other side threatens what I care about",
+    punishment_focus: "Punishment focus - crime requires strong deterrence and consequences",
+    push_back_internally: "Push back internally, but keep public unity",
+    random_luck: "Random chance / bad luck",
+    rather_convict_innocent: "Letting a guilty person go free",
+    rather_free_guilty: "Convicting an innocent person",
+    rather_help_undeserving: "Denying benefits to someone who genuinely needs them",
+    rather_miss_needy: "Giving benefits to someone who doesn",
+    ratio_10_to_1: "10:1 or less",
+    ratio_200_to_1: "300:1 (about current average)",
+    ratio_50_to_1: "50:1",
+    real_contested: "Real but contested—requires constant defense",
+    reform: "Follow while working through proper channels to change it",
+    rehabilitation_focus: "Rehabilitation focus - invest in reform, reduce incarceration",
+    religious_identity: "Religious identity",
+    religious_moral: "A religious or moral awakening",
+    religious_spiritual: "Religious and spiritual experiences",
+    remove_immediately: "Empowering authorities to decide what is true, potentially silencing dissent",
+    research_data: "Research the data and evidence thoroughly",
+    researchers: "Researchers who have studied the issue",
+    resent: "Resent as overreach—even if masks help",
+    resist_mandate: "Strongly oppose any mandate-no authority should mandate personal choices",
+    respect_for_elders: "Respect for elders and authority",
+    restricted: "Allow but with some restrictions on content",
+    right_connections: "Having the right connections and opportunities",
+    right_positions: "Having the right position on each individual issue",
+    safety_net_society: "A society with a strong safety net and moderate inequality",
+    say_so_publicly: "Say so publicly, even if it weakens my side",
+    says_what_they_think: "Someone who says what they really think, regardless of backlash",
+    secular: "Secular—raised without religion or with explicit non-religious worldview",
+    security_priority: "Security comes first - we need strong enforcement even if some rights are curtailed",
+    self_interest: "Self-interest - politics directly affects my life and the people I care about",
+    self_reliance: "Self-reliance and thinking for yourself",
+    serious_concern: "A serious concern - would create real tension",
+    sexual_identity: "Sexual identity",
+    share_views: "Share your views but try to keep it civil",
+    shared_values: "Sharing core American values and beliefs (freedom, democracy, opportunity)",
+    silence: "Empowering authorities to decide what is true, potentially silencing dissent",
+    skip_it: "Mostly skip it - I",
+    slight_discomfort: "Slightly uncomfortable but wouldn",
+    solid_continue: "Solid—likely to continue expanding",
+    some_con: "Somewhat conservative",
+    some_lib: "Somewhat liberal/progressive",
+    sometimes_necessary: "Sometimes necessary but should be viewed skeptically",
+    somewhat: "Somewhat engaged—they voted and occasionally discussed politics",
+    somewhat_religious: "Important - regular practice and religious identity",
+    somewhat_unsafe: "Somewhat unsafe—regularly aware of crime or danger",
+    stagnation: "History moves in cycles - neither improving nor declining overall",
+    stand_ground: "I argue my position strongly - truth matters more",
+    stay_home: "Stay home and not vote",
+    steady_hand: "Steady hand - maintains stability and continuity",
+    steady_improvement: "Humanity is generally progressing - things get better over time",
+    stick_with_side: "Stick with my side - the other camp is the real threat",
+    strict_enforcement: "Allowing someone to stay who should be deported",
+    strict_merit: "Purely by academic merit (test scores, grades)",
+    strong_con: "Strongly conservative",
+    strong_lib: "Strongly liberal/progressive",
+    strong_regulations: "Strong regulations on business",
+    subvert: "Malicious compliance to expose the absurdity",
+    system_advantages: "Systemic advantages some groups have over others",
+    system_broken: "The system that produced this outcome is broken",
+    system_unjust: "The system itself is fundamentally unjust",
+    technocratic_expert: "Technocratic expert - uses data and evidence to decide",
+    tighter_security: "Allowing an illegitimate vote to count (voter fraud)",
+    timeless_principles: "The proven principles that have guided successful societies for centuries",
+    too_fast: "Approving a treatment that causes harm (FDA too fast)",
+    too_slow: "Blocking a treatment that would have helped patients (FDA too slow)",
+    tradition: "The proven principles that have guided successful societies for centuries",
+    tradition_continuity: "Tradition and cultural continuity",
+    tribal: "Why the other political side is even worse than you thought",
+    trusted_advice: "Consult trusted friends, family, or mentors",
+    trusted_authority: "A person I respected who held different views",
+    tune_out: "Tune out — if experts can't agree, I probably can't either",
+    unified_narrative: "\"Here's my vision for what this country can become and how we get there\"",
+    unifying_vision: "Surrounding themselves with experts who craft smart policy",
+    unity_pitch: "A unifying pitch grounded in shared principles and institutions",
+    values_eroding: "Traditional values and social fabric are eroding",
+    values_pitch: "A values-based pitch rooted in tradition and shared heritage",
+    values_tradition: "Rely on core values, principles, or traditions",
+    varied: "Results varied too much by country to generalize",
+    very: "Very engaged—politics was frequently discussed, they voted regularly, may have been activists",
+    very_conservative: "Strongly conservative",
+    very_engaged: "Very engaged-politics was frequently discussed, they voted regularly, may have been activists",
+    very_progressive: "Strongly liberal/progressive",
+    very_religious: "Central-religion shaped daily life, values, and community",
+    very_safe: "Very safe—crime and danger were not concerns",
+    very_unsafe: "Very unsafe—violence or crime was a constant presence",
+    very_upset: "Very upset - might reconsider the relationship",
+    vote_other_party: "Vote for the other party\u2019s candidate",
+    vote_party_anyway: "Vote for the party anyway",
+    warning_sign: "A warning sign—substance is being replaced by style",
+    watch_leaders: "Watch what leaders and public figures are saying",
+    weird_science: "A bizarre new scientific theory that upends everything we know about physics",
+    whole_system: "The whole system is set up to benefit the powerful",
+    winner_takes: "Grew wealthier, often at trading partners' expense",
+    worker_choices: "Workers and unions priced themselves out of the market",
+    worried_but_accept: "Worried but accept - that",
+
+    // Pole-priority battery items — Q93 + Q94 (ENDS+MEANS). Each item encodes
+    // both which node matters (salience) and which pole the respondent leans
+    // toward (position).
+    // Q93 + Q94 — parallel noun-phrase format: [identity label] — [clarifier].
+    mat_low:  "Shared prosperity — tax the wealthy, strong unions, living wages, broad programs, narrow the gap",
+    mat_high: "Free markets — lower taxes and less regulation so the pie grows and people keep what they earn",
+    cd_low:   "Progressive social change — expanding rights, recognition, and inclusion for gender, sexuality, and racial justice",
+    cd_high:  "Traditional values — faith, family, and inherited cultural norms, a way of life tested by time",
+    cu_low:   "One common culture — newcomers assimilate to a shared language, customs, and civic norms",
+    cu_high:  "Cultural pluralism — many cultures and faiths thriving side by side, treated as equal parts of the whole",
+    mor_low:  "Family and country first — take care of our own before we worry about strangers abroad",
+    mor_high: "Global solidarity — every person counts the same, help those in need whether they're close or far",
+    pro_low:  "Strong leadership — a president who cuts through red tape, overrules gridlock, and actually delivers",
+    pro_high: "Rule of law — the Constitution and fair process bind every side, no shortcuts for your own team",
+    com_low:  "Principled conviction — some things aren't for sale, hold the line even when it costs politically",
+    com_high: "Pragmatic compromise — meet halfway, find common ground across the aisle, accept partial wins",
+
+    // Q97 — political_thought_frequency (PF scenario)
+    rarely_elections:     "Rarely — mostly during election season or big news moments",
+    sometimes_events:     "Sometimes — when something big happens I'll think about it",
+    regularly_daily:      "Regularly — it's part of my daily media and conversations",
+    constantly_worldview: "Constantly — politics shapes how I see most things",
+
+    // Q98 — group_solidarity_feeling (TRB scenario)
+    personal_feels:     "Personal — like it's happening to me",
+    important_care:     "Important — I pay attention and care, even if it's not personal",
+    aware_distant:      "Aware, but it doesn't really touch me day to day",
+    universalist_self:  "Distant — I don't really see myself through group identity",
+
+    // Q89 — Epistemic style battery items
+    eps_empiricist:       "Hard evidence — studies, data, and what measurement actually shows",
+    eps_institutionalist: "Established institutions and recognized expert consensus",
+    eps_traditionalist:   "Long-standing traditions, inherited wisdom, and what has endured",
+    eps_intuitionist:     "My moral intuition and gut sense of right and wrong",
+    eps_autonomous:       "Reasoning it through myself — I don't take anyone's word, including experts",
+    eps_nihilist:         "Honestly, I'm not sure any source can really be trusted",
+
+    // Q87 — family_cross_partisan_marriage options
+    politics_separate: "Completely fine — politics is separate from who they are as a person",
+    slightly_awkward: "A bit awkward, but it doesn't change anything important",
+    bothered_distance: "Bothered — I'd find it harder to feel close to them",
+    major_problem: "A major problem — I'd seriously question the relationship"
+};
+
+// ── Slider pole labels ─────────────────────────────────────────────────────
+const SLIDER_LABELS = {
+    political_identity_centrality: { low: "not central at all - rarely think about politics", high: "core to who I am - politics defines me" },
+    cultural_social_placement: { low: "very progressive / open", high: "very conservative / traditional" },
+    cultural_social_salience: { low: "not important to me at all", high: "one of my most important concerns" },
+    domestic_vs_abroad_lives: { low: "program A - save 10 lives domestically", high: "program B - save 100 lives abroad" },
+    guess_top_marginal_tax_rate: { low: "0%", high: "100%" },
+    preferred_top_marginal_tax_rate: { low: "0%", high: "100%" },
+    human_progress_salience: { low: "rarely think about it", high: "think about it constantly" },
+    mainstream_media_accuracy_estimate: { low: "0% - almost none is accurate", high: "100% - almost all is accurate" },
+    percent_groups_want_best_share_values: { low: "0% - almost nobody", high: "100% - almost everyone" },
+    rules_procedures_matter_salience: { low: "doesn't matter - results are what count", high: "matters enormously - process is everything" },
+    opponents_matter_to_identity: { low: "not at all", high: "a great deal" },
+    social_progress_salience: { low: "don't care much", high: "care deeply" },
+    immigration_national_identity_salience: { low: "not important to me", high: "extremely important to me" },
+    ceo_worker_pay_ratio: { low: "1:1 - equal pay", high: "500:1 or more" },
+    success_attribution: { low: "almost entirely circumstances and luck", high: "almost entirely their own effort" },
+    cross_party_marriage_comfort: { low: "very uncomfortable", high: "completely comfortable" },
+    views_changed_in_10_years: { low: "not at all - same views as a decade ago", high: "dramatically - almost unrecognizable" },
+    common_ground_salience: { low: "not important - stand on principle", high: "extremely important - compromise is essential" },
+    zero_sum_politics_view: { low: "strongly disagree - politics can be win-win", high: "strongly agree - someone always loses" },
+    rhetoric_style_importance: { low: "doesn't matter at all - only substance counts", high: "matters enormously - tone is everything" },
+    institutions_harden_into_domination: { low: "strongly disagree", high: "strongly agree" },
+};
+
+// ── Quiz state ─────────────────────────────────────────────────────────────
+let quizStarted = false;
+
+function newPrismRunId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+    }
+    return String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+}
+
+function getPrismRunId() {
+    if (!window._prismRunId) window._prismRunId = newPrismRunId();
+    return window._prismRunId;
+}
+
+function prismRunKey(baseKey) {
+    return baseKey + ':' + getPrismRunId();
+}
+
+function startQuiz() {
+    PrismEngine.initQuiz();
+    window._prismRunId = newPrismRunId();
+    window._prismTraceKey = 'prism-trace:' + window._prismRunId;
+    window._prismTrace = [];
+    console.log('[PRISM trace] initialized for run ' + window._prismRunId + ' - trace will record every answer');
+    quizStarted = true;
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('quiz-area').style.display = 'block';
+    showQuestion();
+}
+
+// Record an answer AND submit it. Every UI call site calls this instead of
+// PrismEngine.submitAnswer directly so we reliably capture pre/post state.
+// Previous wrapper pattern (PrismEngine.submitAnswer = function(...){}) failed
+// silently because esbuild IIFE exports a frozen namespace object — the
+// assignment did nothing.
+function traceSubmit(qId, answer) {
+    // Dedupe guard: if this qId is already recorded in trace, drop. Prevents
+    // back-button + re-answer flows from inflating the trace and from re-applying
+    // evidence to state. Engine state.answers[qId] alone isn't enough — the
+    // engine's submitAnswer overwrites cleanly, but the trace would still record
+    // both. We treat trace as the source of truth for "has this been answered."
+    if (Array.isArray(window._prismTrace) && window._prismTrace.some(e => e.qId === qId)) {
+        console.warn('[PRISM trace] duplicate submit ignored: Q' + qId + ' was already answered');
+        return;
+    }
+    let preState = null, postState = null;
+    try {
+        preState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
+    } catch(e) { /* non-fatal */ }
+    try {
+        PrismEngine.submitAnswer(qId, answer);
+    } catch(e) {
+        console.error('[PRISM trace] submitAnswer threw:', e);
+        throw e;
+    }
+    try {
+        postState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
+    } catch(e) { /* non-fatal */ }
+    if (!window._prismTrace) window._prismTrace = [];
+    const entry = {
+        idx: window._prismTrace.length + 1,
+        qId: qId,
+        answer: answer,
+        preState: preState,
+        postState: postState,
+        timestamp: Date.now()
+    };
+    window._prismTrace.push(entry);
+    try {
+        const traceJson = JSON.stringify(window._prismTrace);
+        localStorage.setItem(window._prismTraceKey || prismRunKey('prism-trace'), traceJson);
+        localStorage.setItem('prism-trace', traceJson);
+        console.log('[PRISM trace] recorded Q' + qId + ' (entry #' + entry.idx + ')');
+    } catch(e) {
+        console.warn('[PRISM trace] localStorage write failed:', e.message);
+    }
+}
+
+function showQuestion() {
+    const area = document.getElementById('quiz-area');
+    const progressEl = document.getElementById('progress-indicator');
+
+    if (PrismEngine.isComplete()) {
+        showResults();
+        return;
+    }
+
+    const q = PrismEngine.getNextQuestion();
+    if (!q) {
+        showResults();
+        return;
+    }
+    window._currentQ = q;
+    window._pendingStrength = null;
+
+    const progress = PrismEngine.getProgress();
+    const answered = progress.questionsAnswered;
+    const remaining = progress.estimatedTotal - answered;
+
+    progressEl.textContent = `${answered} answered · ~${remaining} remaining`;
+
+    // Build progress bar
+    const pct = Math.min(100, Math.round((answered / progress.estimatedTotal) * 100));
+
+    const questionText = Q_TEXT[q.promptShort] || q.promptFull || q.promptShort.replace(/_/g, ' ');
+
+    let html = `
+        <div class="progress-bar-container">
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: ${pct}%"></div>
+            </div>
+            <div class="progress-text">
+                <span>question ${answered + 1}</span>
+                <span>~${remaining} remaining</span>
+            </div>
+        </div>
+        <div class="question-card">
+            <span class="question-number">question ${answered + 1}</span>
+            <div class="question-text">${questionText}</div>
+    `;
+
+    // Render based on UI type
+    switch (q.uiType) {
+        case 'single_choice':
+            html += renderMC(q);
+            break;
+        case 'multi':
+            html += renderMulti(q);
+            break;
+        case 'slider':
+            html += renderSlider(q);
+            break;
+        case 'allocation':
+            html += renderAllocation(q);
+            break;
+        case 'ranking':
+            html += renderRanking(q);
+            break;
+        case 'best_worst':
+            html += renderBW(q);
+            break;
+        case 'priority_sort':
+            html += renderPrioritySort(q);
+            break;
+        case 'pairwise':
+            html += renderPairwise(q);
+            break;
+        case 'dual_axis':
+            html += renderDualAxis(q);
+            break;
+        case 'conjoint':
+            html += renderConjoint(q);
+            break;
+        default:
+            if (q.options && q.options.length > 0) {
+                html += renderMC(q);
+            } else {
+                html += renderSlider(q);
+            }
+    }
+
+    const canBack = PrismEngine.canGoBack && PrismEngine.canGoBack();
+    if (canBack) {
+        html += '<div style="text-align:left;margin-top:16px"><span class="back-btn" onclick="goBack()" style="font-size:13px">← back</span></div>';
+    }
+    html += '</div>';
+    area.innerHTML = html;
+
+    // Priority sort: widen the page container and paint items into columns
+    if (q.uiType === 'priority_sort') {
+        document.body.classList.add('ps-active');
+        psRender();
+    } else {
+        document.body.classList.remove('ps-active');
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+    if (PrismEngine.goBack) {
+        const rewoundQId = PrismEngine.goBack();
+        // Keep window._prismTrace consistent with the rolled-back engine state.
+        // Engine.goBack pops its own snapshot; we pop the matching trace entry
+        // so traceSubmit's dedupe-by-qId guard correctly accepts a re-answer
+        // for the rewound question. Pop until the last trace entry's qId
+        // matches the one the engine just rewound (defensive — typically just
+        // pops one entry).
+        if (Array.isArray(window._prismTrace) && window._prismTrace.length > 0) {
+            const last = window._prismTrace[window._prismTrace.length - 1];
+            // Only pop if the last entry corresponds to the rewound question;
+            // if rewoundQId is null, fall back to popping the most recent entry.
+            if (rewoundQId == null || last.qId === rewoundQId) {
+                window._prismTrace.pop();
+                try {
+                    const traceJson = JSON.stringify(window._prismTrace);
+                    localStorage.setItem(window._prismTraceKey || prismRunKey('prism-trace'), traceJson);
+                    localStorage.setItem('prism-trace', traceJson);
+                } catch(e) { /* localStorage write failure is non-fatal */ }
+                console.log('[PRISM trace] back-button popped Q' + last.qId + ' from trace');
+            }
+        }
+        showQuestion();
+    }
+}
+
+function getOptLabel(key, q) {
+    if (q.optionLabels && q.optionLabels[key]) return q.optionLabels[key];
+    if (OPT_LABELS[key]) return OPT_LABELS[key];
+    return key.replace(/_/g, ' ');
+}
+
+// ── Multiple choice ────────────────────────────────────────────────────────
+function renderMC(q) {
+    const letters = 'ABCDEFGHIJKLMNOP';
+    const opts = q.options || [];
+    // Equal-errors option (added 2026-04-24 per ADR-008) renders as a
+    // visually-distinct centered button below the A/B options, NOT as a
+    // third A/B-style row. Same visual treatment for any option keyed
+    // 'equal_errors'.
+    const mainOpts = opts.filter(o => o !== 'equal_errors');
+    const hasEqualErrors = opts.includes('equal_errors');
+
+    let html = '<div class="mc-options">';
+    mainOpts.forEach((opt, i) => {
+        html += `
+            <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
+                <div class="mc-marker">${letters[i] || ''}</div>
+                <div class="mc-text">${getOptLabel(opt, q)}</div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    if (hasEqualErrors) {
+        html += `
+          <div class="equal-errors-wrap">
+            <button type="button" class="equal-errors-btn" onclick="selectMC(this, ${q.id}, 'equal_errors')">Both errors feel equally bad to me</button>
+          </div>
+        `;
+    }
+    return html;
+}
+
+function selectMC(el, qId, answer) {
+    // The equal-errors button isn't a normal .mc-option — handle separately
+    if (answer === 'equal_errors') {
+        document.querySelectorAll('.mc-option, .cj-card').forEach(o => o.classList.remove('selected'));
+        const q = window._currentQ;
+        // Salience subquery (ADR-008): is this principled balance or just-don't-care?
+        // Different downstream effect — principled balance = high salience on the
+        // PRO node Q34/Q27/Q30/Q33 measure; don't-care = low salience signal.
+        if (q && q.strengthFollowUp) {
+            mountEqualErrorsSalienceSubquery(qId);
+            return;
+        }
+        setTimeout(() => { traceSubmit(qId, answer); showQuestion(); }, 200);
+        return;
+    }
+
+    el.parentElement.querySelectorAll('.mc-option, .cj-card').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+
+    const q = window._currentQ;
+    if (q && q.strengthFollowUp) {
+        window._pendingStrength = { qId, option: answer };
+        setTimeout(() => mountStrengthFollowUp(q), 220);
+        return;
+    }
+
+    setTimeout(() => {
+        traceSubmit(qId, answer);
+        showQuestion();
+    }, 300);
+}
+
+function multiLimits(q) {
+    if (q.promptShort === 'engagement_motivations_top2') return { min: 2, max: 2 };
+    if (q.promptShort === 'what_changed_your_mind') return { min: 1, max: 2 };
+    return { min: 1, max: Math.max(1, Math.min(2, (q.options || []).length)) };
+}
+
+function renderMulti(q) {
+    const letters = 'ABCDEFGHIJKLMNOP';
+    const opts = q.options || [];
+    const limits = multiLimits(q);
+    let html = `<div class="mc-options multi-options" data-min="${limits.min}" data-max="${limits.max}">`;
+    opts.forEach((opt, i) => {
+        html += `
+            <div class="mc-option" data-option="${opt}" onclick="toggleMulti(this)">
+                <div class="mc-marker">${letters[i] || ''}</div>
+                <div class="mc-text">${getOptLabel(opt, q)}</div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    html += `<button class="continue-btn" id="multi-continue" onclick="submitMulti(${q.id})" disabled>continue -></button>`;
+    return html;
+}
+
+function toggleMulti(el) {
+    const wrap = el.closest('.multi-options');
+    if (!wrap) return;
+    const max = Number(wrap.dataset.max || 1);
+    const selected = Array.from(wrap.querySelectorAll('.mc-option.selected'));
+    if (el.classList.contains('selected')) {
+        el.classList.remove('selected');
+    } else {
+        if (selected.length >= max) return;
+        el.classList.add('selected');
+    }
+    const min = Number(wrap.dataset.min || 1);
+    const count = wrap.querySelectorAll('.mc-option.selected').length;
+    const btn = document.getElementById('multi-continue');
+    if (btn) btn.disabled = count < min || count > max;
+}
+
+function submitMulti(qId) {
+    const answers = Array.from(document.querySelectorAll('.multi-options .mc-option.selected'))
+        .map(el => el.dataset.option)
+        .filter(Boolean);
+    traceSubmit(qId, answers);
+    showQuestion();
+}
+
+// Salience subquery for "both errors equal" picks (ADR-008). Captures whether
+// the user is signaling principled balance (high node-salience) or apathy
+// (low node-salience). Routes via applyRatioBoost — high → ratio=10, low → 1.5.
+function mountEqualErrorsSalienceSubquery(qId) {
+    const card = document.querySelector('.question-card');
+    if (!card) return;
+    const slot = document.createElement('div');
+    slot.className = 'strength-followup';
+    slot.id = 'strength-followup';
+    slot.innerHTML = `
+      <div class="strength-prompt">When you say both errors are equally bad, which captures it?</div>
+      <div class="strength-buttons">
+        <button class="strength-btn" onclick="submitEqualErrors(${qId}, 'principled')">Strong principled balance — both errors feel important</button>
+        <button class="strength-btn" onclick="submitEqualErrors(${qId}, 'dont_care')">I don't care much about this tradeoff</button>
+      </div>
+    `;
+    card.appendChild(slot);
+    slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function submitEqualErrors(qId, kind) {
+    if (kind === 'principled' && PrismEngine.applyRatioBoost) {
+        PrismEngine.applyRatioBoost(qId, 10);
+    }
+    // 'dont_care' applies no ratio boost — leaves salience at floor.
+    traceSubmit(qId, 'equal_errors');
+    showQuestion();
+}
+
+// ── Strength / ratio follow-up ─────────────────────────────────────────────
+// Fires after the primary pick on questions with `strengthFollowUp`. Uses
+// PrismEngine.applyRatioBoost to stash a ratio for this qId; the engine
+// consumes it in the submitAnswer dispatch (applyStoredRatioBoost) and
+// multiplies the derived SalienceDist into every salience-role touch on
+// the question.
+function mountStrengthFollowUp(q) {
+    const card = document.querySelector('.question-card');
+    if (!card) return;
+    const slot = document.createElement('div');
+    slot.className = 'strength-followup';
+    slot.id = 'strength-followup';
+    if (q.strengthFollowUp.kind === 'strength') {
+        const strong = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.strong) || 'A lot';
+        const weak = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.weak) || 'A little';
+        slot.innerHTML = `
+          <div class="strength-prompt">${q.strengthFollowUp.prompt}</div>
+          <div class="strength-buttons">
+            <button class="strength-btn" onclick="submitStrength(10)">${strong}</button>
+            <button class="strength-btn" onclick="submitStrength(1.5)">${weak}</button>
+          </div>
+        `;
+    } else {
+        const lowEnd = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.lowEnd) || '1.5 : 1';
+        const highEnd = (q.strengthFollowUp.labels && q.strengthFollowUp.labels.highEnd) || '100+ : 1';
+        slot.innerHTML = `
+          <div class="strength-prompt">${q.strengthFollowUp.prompt}</div>
+          <div class="ratio-slider-labels">
+            <span>${lowEnd}</span>
+            <span>${highEnd}</span>
+          </div>
+          <input class="ratio-slider-input" type="range" min="0" max="7" step="1" value="3"
+                 oninput="document.getElementById('ratio-val').textContent = ratioLabel(sliderToRatio(this.value))" id="ratio-slider"/>
+          <div class="ratio-value" id="ratio-val">10 : 1</div>
+          <button class="continue-btn" onclick="submitRatio()">continue →</button>
+        `;
+    }
+    card.appendChild(slot);
+    slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Discrete ratio stops (2026-04-24 per user request): 1.5, 2, 5, 10, 25, 50, 100, 100+.
+// Infinity represents "100+" — passed to applyRatioBoost as 150 (capped).
+const RATIO_STOPS = [1.5, 2, 5, 10, 25, 50, 100, Infinity];
+
+function sliderToRatio(v) {
+    const idx = Math.round(Math.max(0, Math.min(7, Number(v))));
+    return RATIO_STOPS[idx];
+}
+
+function ratioLabel(r) {
+    return r === Infinity ? '100+ : 1' : r + ' : 1';
+}
+
+function submitStrength(ratio) {
+    const p = window._pendingStrength;
+    if (!p) return;
+    if (PrismEngine.applyRatioBoost) PrismEngine.applyRatioBoost(p.qId, ratio);
+    traceSubmit(p.qId, p.option);
+    window._pendingStrength = null;
+    showQuestion();
+}
+
+function submitRatio() {
+    const p = window._pendingStrength;
+    if (!p) return;
+    const input = document.getElementById('ratio-slider');
+    let ratio = input ? sliderToRatio(input.value) : 10;
+    if (ratio === Infinity) ratio = 150; // "100+" passed as 150 to applyRatioBoost
+    if (PrismEngine.applyRatioBoost) PrismEngine.applyRatioBoost(p.qId, ratio);
+    traceSubmit(p.qId, p.option);
+    window._pendingStrength = null;
+    showQuestion();
+}
+
+// ── Slider ─────────────────────────────────────────────────────────────────
+// Questions that are truly percentage-based keep 0-100 scale
+const PERCENT_SLIDERS = new Set([
+    'guess_top_marginal_tax_rate',
+    'preferred_top_marginal_tax_rate',
+    'mainstream_media_accuracy_estimate',
+    'percent_groups_want_best_share_values',
+]);
+
+// Map 1-7 display value to 0-100 engine value
+const LIKERT_TO_100 = { 1: 0, 2: 17, 3: 33, 4: 50, 5: 67, 6: 83, 7: 100 };
+
+function renderSlider(q) {
+    const isPercent = PERCENT_SLIDERS.has(q.promptShort);
+    const labels = SLIDER_LABELS[q.promptShort] || {};
+
+    if (isPercent) {
+        // Keep 0-100 for percentage questions
+        const lowLabel = labels.low || '0%';
+        const highLabel = labels.high || '100%';
+        return `
+            <div class="slider-container">
+                <div class="slider-labels">
+                    <span>${lowLabel}</span>
+                    <span>${highLabel}</span>
+                </div>
+                <div class="slider-track-bg"></div>
+                <input class="slider-input" type="range" min="0" max="100" value="50"
+                       oninput="document.getElementById('slider-val').textContent = this.value + '%'" id="main-slider" data-mode="percent"/>
+                <div class="slider-value" id="slider-val">50%</div>
+            </div>
+            <button class="continue-btn" onclick="submitSlider(${q.id})">continue →</button>
+        `;
+    } else {
+        // 1-7 Likert scale for everything else
+        const lowLabel = labels.low || '1';
+        const highLabel = labels.high || '7';
+        return `
+            <div class="slider-container">
+                <div class="slider-labels">
+                    <span>1 - ${lowLabel}</span>
+                    <span>7 - ${highLabel}</span>
+                </div>
+                <div class="slider-track-bg"></div>
+                <input class="slider-input" type="range" min="1" max="7" value="4" step="1"
+                       oninput="document.getElementById('slider-val').textContent = this.value" id="main-slider" data-mode="likert"/>
+                <div class="slider-value" id="slider-val">4</div>
+            </div>
+            <button class="continue-btn" onclick="submitSlider(${q.id})">continue →</button>
+        `;
+    }
+}
+
+function submitSlider(qId) {
+    const slider = document.getElementById('main-slider');
+    const mode = slider.getAttribute('data-mode');
+    let val = Number(slider.value);
+    // Convert 1-7 Likert to 0-100 for engine
+    if (mode === 'likert') {
+        val = LIKERT_TO_100[val] ?? Math.round((val - 1) * 100 / 6);
+    }
+    traceSubmit(qId, val);
+    showQuestion();
+}
+
+// ── Allocation ─────────────────────────────────────────────────────────────
+function renderAllocation(q) {
+    const buckets = q.allocationBuckets || [];
+    const n = buckets.length;
+    const defaultVal = Math.round(100 / n);
+
+    let html = '<div class="allocation-container">';
+    buckets.forEach((b, i) => {
+        const label = getOptLabel(b, q);
+        html += `
+            <div class="allocation-row">
+                <div class="allocation-label" data-bucket="${b}">${label}</div>
+                <input class="allocation-slider" type="range" min="0" max="100" value="${defaultVal}"
+                       data-bucket="${b}" oninput="updateAllocDisplay()"/>
+                <div class="allocation-value" id="alloc-val-${i}">${defaultVal}</div>
+            </div>
+        `;
+    });
+    html += '<div class="allocation-total" id="alloc-total">Total: 100</div>';
+    html += '</div>';
+    html += `<button class="continue-btn" onclick="submitAllocation(${q.id})">continue →</button>`;
+    return html;
+}
+
+function updateAllocDisplay() {
+    const sliders = document.querySelectorAll('.allocation-slider');
+    let total = 0;
+    sliders.forEach((s, i) => {
+        const val = Number(s.value);
+        total += val;
+        document.getElementById('alloc-val-' + i).textContent = val;
+    });
+    const totalEl = document.getElementById('alloc-total');
+    totalEl.textContent = 'Total: ' + total;
+    totalEl.className = 'allocation-total ' + (total === 100 ? 'valid' : 'invalid');
+}
+
+function submitAllocation(qId) {
+    const sliders = document.querySelectorAll('.allocation-slider');
+    const values = {};
+    sliders.forEach(s => { values[s.dataset.bucket] = Number(s.value); });
+    traceSubmit(qId, values);
+    showQuestion();
+}
+
+// ── Ranking ────────────────────────────────────────────────────────────────
+function renderRanking(q) {
+    const items = q.rankingItems || [];
+    let html = '<div class="ranking-container" id="ranking-list">';
+    items.forEach((item, i) => {
+        const label = getOptLabel(item, q);
+        html += `
+            <div class="ranking-item" draggable="true" data-item="${item}">
+                <span class="ranking-handle">☰</span>
+                <span class="ranking-number">${i + 1}</span>
+                <span class="ranking-text">${label}</span>
+            </div>
+        `;
+    });
+    html += '</div>';
+    html += `<button class="continue-btn" onclick="submitRanking(${q.id})">continue →</button>`;
+    return html;
+}
+
+function submitRanking(qId) {
+    const items = document.querySelectorAll('.ranking-item');
+    const order = [];
+    items.forEach(item => order.push(item.dataset.item));
+    traceSubmit(qId, order);
+    showQuestion();
+}
+
+// ── Best-Worst ─────────────────────────────────────────────────────────────
+let bwBest = [], bwWorst = [], bwQId = null, bwMaxPicks = 1;
+
+function renderBW(q) {
+    bwBest = []; bwWorst = []; bwQId = q.id;
+    bwMaxPicks = q.bwMaxPicks || 1;
+    const items = q.bestWorstItems || [];
+    const mostLabel = bwMaxPicks > 1 ? `pick ${bwMaxPicks} most` : 'most';
+    const leastLabel = bwMaxPicks > 1 ? `pick ${bwMaxPicks} least` : 'least';
+    let html = `<div class="bw-container">`;
+    html += `<div class="bw-header"><span>${mostLabel}</span><span>priority</span><span>${leastLabel}</span></div>`;
+    items.forEach(item => {
+        const label = getOptLabel(item, q);
+        html += `
+            <div class="bw-row" id="bw-row-${item}">
+                <button class="bw-btn best-btn" onclick="selectBW('best','${item}')"></button>
+                <div class="bw-label">${label}</div>
+                <button class="bw-btn worst-btn" onclick="selectBW('worst','${item}')"></button>
+            </div>
+        `;
+    });
+    html += '</div>';
+    return html;
+}
+
+function selectBW(type, item) {
+    const list  = (type === 'best') ? bwBest : bwWorst;
+    const other = (type === 'best') ? bwWorst : bwBest;
+    const idx = list.indexOf(item);
+    if (idx >= 0) {
+        list.splice(idx, 1);
+    } else {
+        const oidx = other.indexOf(item);
+        if (oidx >= 0) other.splice(oidx, 1);
+        list.push(item);
+        if (list.length > bwMaxPicks) list.shift();
+    }
+
+    // Update UI
+    document.querySelectorAll('.bw-row').forEach(row => {
+        row.classList.remove('selected-best', 'selected-worst');
+    });
+    document.querySelectorAll('.bw-btn').forEach(btn => btn.classList.remove('selected'));
+    bwBest.forEach(i => {
+        document.getElementById('bw-row-' + i).classList.add('selected-best');
+        document.getElementById('bw-row-' + i).querySelector('.best-btn').classList.add('selected');
+    });
+    bwWorst.forEach(i => {
+        document.getElementById('bw-row-' + i).classList.add('selected-worst');
+        document.getElementById('bw-row-' + i).querySelector('.worst-btn').classList.add('selected');
+    });
+
+    if (bwBest.length === bwMaxPicks && bwWorst.length === bwMaxPicks) {
+        setTimeout(() => {
+            // Always submit arrays so priority batteries route through
+            // applyBestWorstSalience (salience-only, safe) rather than
+            // applyRankingAnswer (NaN on OptionEvidenceContinuous rankingMaps).
+            const payload = { best: bwBest.slice(), worst: bwWorst.slice() };
+            traceSubmit(bwQId, payload);
+            showQuestion();
+        }, 400);
+    }
+}
+
+// ── Priority sort (card-sort) ──────────────────────────────────────────────
+let psQId = null;
+let psQuestion = null;       // active question object (for optionLabels lookup)
+let psAllItems = [];
+// Placement: item -> "pool" | UI-bucket-key (layout-dependent)
+let psPlacement = {};
+let psSelectedItem = null; // for click-to-place fallback
+let psDraggingItem = null; // live drag reference (survives browsers that don't pass dataTransfer text)
+let psJustDropped = false; // swallow the synthetic click that follows a mouse-drag drop
+let psLayout = null;       // active layout (buckets[] + poolLabel), set per render
+
+// Per-question bucket layouts. Each bucket maps a UI key/title to the engine's
+// fixed 4-bucket schema (supportHigh/supportMid/neutral/opposeHigh). Layouts
+// with fewer than 4 UI buckets simply skip the unused engine keys — the engine
+// handles empty arrays cleanly.
+const PS_LAYOUTS = {
+    cross_partisan_priority_sort: {
+        buckets: [
+            { uiKey: 'fine',        engineKey: 'neutral',     title: "Fine<br>by me" },
+            { uiKey: 'not_ideal',   engineKey: 'supportMid',  title: "Not my<br>first choice" },
+            { uiKey: 'dealbreaker', engineKey: 'supportHigh', title: "Hard<br>no" }
+        ],
+        poolLabel: "Sort each into the column that fits best (drag or tap the item, then the column)."
+    },
+    membership_criteria_priority_sort: {
+        // 3-bucket layout per user feedback (2026-04-25): the original
+        // "Wrong way to think about it" 4th column was redundant — items the
+        // respondent rejects already get filed as "Irrelevant", and the
+        // engine handles missing opposeHigh as an empty array.
+        buckets: [
+            { uiKey: 'essential',   engineKey: 'supportHigh', title: "Essential" },
+            { uiKey: 'nice',        engineKey: 'supportMid',  title: "Nice but<br>not important" },
+            { uiKey: 'irrelevant',  engineKey: 'neutral',     title: "Irrelevant" }
+        ],
+        poolLabel: "Sort each into the column that fits best (drag or tap the item, then the column)."
+    },
+    // Q103 salience screener: 3 buckets using the default supportHigh / supportMid /
+    // neutral uiKeys so the bucket colors (gold/blue/black) carry over from the
+    // default CSS rules. Titles reframe the scale in salience terms. The 4th
+    // engine slot (opposeHigh) is inert here — the UI never routes items to it.
+    issue_salience_screener: {
+        buckets: [
+            { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Matters a lot<br>to me" },
+            { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "Matters<br>somewhat" },
+            { uiKey: 'neutral',     engineKey: 'neutral',     title: "Doesn't really<br>register" }
+        ],
+        poolLabel: "Sort each topic into the column that fits best (drag or tap the item, then the column)."
+    },
+    // Q60 identity-anchor sort: 3 buckets. If respondent puts everything in
+    // "neutral" the trbAnchor posterior stays uniform → reads as mixed_none
+    // (no dominant political identity). "Central" items push exp(1) toward
+    // their anchor; "somewhat" items push exp(0.4). See applyPrioritySort.
+    politically_important_identities: {
+        buckets: [
+            { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Central to<br>who I am" },
+            { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "Matters<br>somewhat" },
+            { uiKey: 'neutral',     engineKey: 'neutral',     title: "Doesn't really<br>register" }
+        ],
+        poolLabel: "Drag each identity into the column that fits best (or tap an item, then tap a column)."
+    }
+};
+const PS_DEFAULT_LAYOUT = {
+    buckets: [
+        { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "I strongly<br>support this" },
+        { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "I somewhat<br>support this" },
+        { uiKey: 'neutral',     engineKey: 'neutral',     title: "I don't care<br>about this" },
+        { uiKey: 'opposeHigh',  engineKey: 'opposeHigh',  title: "I'm skeptical<br>of this" }
+    ],
+    poolLabel: "Drag each item into a column above (or tap an item, then tap a column)"
+};
+
+function psUiKeys() {
+    return (psLayout ? psLayout.buckets : PS_DEFAULT_LAYOUT.buckets).map(b => b.uiKey);
+}
+
+function renderPrioritySort(q) {
+    psQId = q.id;
+    psQuestion = q;
+    psAllItems = (q.rankingItems || []).slice();
+    psPlacement = {};
+    psAllItems.forEach(item => { psPlacement[item] = 'pool'; });
+    psSelectedItem = null;
+    psLayout = PS_LAYOUTS[q.promptShort] || PS_DEFAULT_LAYOUT;
+
+    const nCols = psLayout.buckets.length;
+    const bucketHtml = psLayout.buckets.map(b => `
+        <div class="ps-bucket" id="ps-bucket-${b.uiKey}" data-ps-zone="${b.uiKey}">
+            <div class="ps-bucket-title">${b.title}</div>
+            <div class="ps-bucket-items"></div>
+        </div>
+    `).join('');
+
+    return `
+        <div class="ps-container ps-cols-${nCols}" id="ps-container">
+            <div class="ps-buckets">${bucketHtml}</div>
+            <div>
+                <div class="ps-pool-label">${psLayout.poolLabel}</div>
+                <div class="ps-pool" id="ps-pool" data-ps-zone="pool"></div>
+            </div>
+            <button class="continue-btn" id="ps-submit" onclick="submitPrioritySort()" disabled style="opacity:0.5;cursor:not-allowed">
+                continue →
+            </button>
+        </div>
+    `;
+}
+
+function psRender() {
+    const pool = document.getElementById('ps-pool');
+    if (!pool) return;
+    const keys = psUiKeys();
+    const buckets = {};
+    keys.forEach(k => {
+        const el = document.querySelector(`#ps-bucket-${k} .ps-bucket-items`);
+        if (el) { buckets[k] = el; el.innerHTML = ''; }
+    });
+    pool.innerHTML = '';
+
+    psAllItems.forEach(item => {
+        const place = psPlacement[item] || 'pool';
+        const label = getOptLabel(item, psQuestion || { optionLabels: null });
+        const parts = label.split(/\s+—\s+/);
+        const head = parts[0] || label;
+        const sub = parts.slice(1).join(' — ');
+        const selClass = (psSelectedItem === item) ? ' ps-item--selected' : '';
+        const inBucketClass = (place === 'pool') ? '' : ' ps-item--in-bucket';
+        const div = document.createElement('div');
+        div.className = `ps-item${inBucketClass}${selClass}`;
+        const headEl = document.createElement('span');
+        headEl.className = 'ps-item-head';
+        headEl.textContent = head;
+        div.appendChild(headEl);
+        if (sub) {
+            const subEl = document.createElement('span');
+            subEl.className = 'ps-item-sub';
+            subEl.textContent = sub;
+            div.appendChild(subEl);
+        }
+        div.setAttribute('draggable', 'true');
+        div.dataset.item = item;
+        (place === 'pool' ? pool : buckets[place] || pool).appendChild(div);
+    });
+
+    // Enable submit only when pool is empty
+    const allPlaced = psAllItems.every(i => psPlacement[i] !== 'pool');
+    const btn = document.getElementById('ps-submit');
+    if (btn) {
+        if (allPlaced) {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        } else {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+        }
+    }
+}
+
+function psPlace(bucket, item) {
+    if (!item) return;
+    psPlacement[item] = bucket;
+    psSelectedItem = null;
+    psRender();
+}
+
+function submitPrioritySort() {
+    const placements = { supportHigh: [], supportMid: [], neutral: [], opposeHigh: [] };
+    const uiToEngine = {};
+    (psLayout ? psLayout.buckets : PS_DEFAULT_LAYOUT.buckets).forEach(b => {
+        uiToEngine[b.uiKey] = b.engineKey;
+    });
+    let placedCount = 0;
+    psAllItems.forEach(item => {
+        const uiKey = psPlacement[item];
+        const engineKey = uiToEngine[uiKey];
+        if (engineKey && placements[engineKey]) {
+            placements[engineKey].push(item);
+            placedCount++;
+        }
+    });
+    if (placedCount !== psAllItems.length) return;
+    traceSubmit(psQId, placements);
+    showQuestion();
+}
+
+// ── Priority sort drag-and-drop (HTML5) and click-to-place fallback ────────
+document.addEventListener('dragstart', function(e) {
+    const el = e.target.closest && e.target.closest('.ps-item');
+    if (!el || !el.dataset.item) return;
+    psDraggingItem = el.dataset.item;
+    el.classList.add('ps-item--dragging');
+    if (e.dataTransfer) {
+        e.dataTransfer.effectAllowed = 'move';
+        try { e.dataTransfer.setData('text/plain', el.dataset.item); } catch (_) {}
+    }
+});
+
+document.addEventListener('dragend', function(e) {
+    const el = e.target.closest && e.target.closest('.ps-item');
+    if (el) el.classList.remove('ps-item--dragging');
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    psDraggingItem = null;
+});
+
+document.addEventListener('dragover', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (!zone) return;
+    e.preventDefault();
+    if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    zone.classList.add('ps-dropping');
+});
+
+document.addEventListener('dragleave', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (zone && !zone.contains(e.relatedTarget)) zone.classList.remove('ps-dropping');
+});
+
+document.addEventListener('drop', function(e) {
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (!zone) return;
+    e.preventDefault();
+    let item = psDraggingItem;
+    if (!item && e.dataTransfer) {
+        try { item = e.dataTransfer.getData('text/plain'); } catch (_) {}
+    }
+    document.querySelectorAll('.ps-bucket, .ps-pool').forEach(z => z.classList.remove('ps-dropping'));
+    psDraggingItem = null;
+    psJustDropped = true;
+    setTimeout(() => { psJustDropped = false; }, 50);
+    if (!item) return;
+    psPlace(zone.dataset.psZone, item);
+});
+
+// Click-to-place fallback: tap an item, then tap a zone. Ignored right after
+// a drop (browsers synthesize a click at drop-position that would otherwise
+// immediately re-select the item).
+document.addEventListener('click', function(e) {
+    if (psJustDropped) return;
+    const item = e.target.closest && e.target.closest('.ps-item');
+    if (item && item.dataset.item) {
+        psSelectedItem = (psSelectedItem === item.dataset.item) ? null : item.dataset.item;
+        psRender();
+        return;
+    }
+    const zone = e.target.closest && e.target.closest('[data-ps-zone]');
+    if (zone && psSelectedItem) {
+        psPlace(zone.dataset.psZone, psSelectedItem);
+    }
+});
+
+// ── Dual-axis ──────────────────────────────────────────────────────────────
+// 2D grid; one tap produces (x, y) both in [0, 1]. Engine-side applies
+// convex mix on posDist (x) and a SalienceDist likelihood (y) to q.dualAxisMap.node.
+// Zone bullets below the grid update live as x moves. Zones are looked up
+// per question via DUAL_AXIS_ZONES keyed by promptShort.
+const DUAL_AXIS_ZONES = {
+    cultural_social_placement_dual: [
+        { max: 0.20, name: 'Far progressive', bullets: [
+            'Abortion legal until viability',
+            'Allow puberty blockers for minors',
+            'Reparations for historical injustice'
+        ]},
+        { max: 0.40, name: 'Progressive', bullets: [
+            'Legal abortion through second trimester',
+            'Allow gender transition with age-appropriate care',
+            'Allow affirmative action in hiring'
+        ]},
+        { max: 0.60, name: 'Moderate', bullets: [
+            'Legal abortion with some restrictions',
+            'Allow case-by-case transition for minors',
+            'Colorblind equality, incremental reform'
+        ]},
+        { max: 0.80, name: 'Traditional', bullets: [
+            'Abortion restricted after first trimester',
+            'Restrict gender transition to adults',
+            'Strong religious liberty protections'
+        ]},
+        { max: 1.00, name: 'Far traditional', bullets: [
+            'Abortion illegal, narrow exceptions',
+            'Biological sex for sports and restrooms',
+            'Marriage as one man, one woman'
+        ]},
+    ],
+};
+
+function zoneForX(zones, x) {
+    for (const z of zones) if (x <= z.max) return z;
+    return zones[zones.length - 1];
+}
+
+function renderDualAxis(q) {
+    const zones = DUAL_AXIS_ZONES[q.promptShort] || DUAL_AXIS_ZONES.cultural_social_placement_dual;
+    const xAxisLow = 'Progressive';
+    const xAxisHigh = 'Traditional';
+    const yAxisLow = "Doesn't matter to me";
+    const yAxisHigh = 'Matters a lot to me';
+    const z0 = zoneForX(zones, 0.5);
+    const bulletsHtml = z0.bullets.map(b => `<li>${b}</li>`).join('');
+    return `
+      <div class="da-container" data-qid="${q.id}">
+        <div class="da-y-label-top">${yAxisHigh}</div>
+        <div class="da-grid-wrap">
+          <div class="da-x-label-left">${xAxisLow}</div>
+          <div class="da-grid" id="da-grid" onclick="daClick(event, ${q.id})">
+            <div class="da-grid-h"></div>
+            <div class="da-grid-v"></div>
+            <div class="da-marker" id="da-marker" style="left:50%;top:50%;"></div>
+          </div>
+          <div class="da-x-label-right">${xAxisHigh}</div>
+        </div>
+        <div class="da-y-label-bottom">${yAxisLow}</div>
+        <div class="da-readout">
+          <div class="da-zone-name" id="da-zone-name">${z0.name}</div>
+          <div class="da-zone-sublabel">Sample of beliefs (not prescriptive — may hold two or fewer)</div>
+          <ul class="da-zone-bullets" id="da-zone-bullets">${bulletsHtml}</ul>
+        </div>
+        <button class="continue-btn" id="da-continue" onclick="submitDualAxis(${q.id})" disabled>drop the marker first</button>
+      </div>
+    `;
+}
+
+let _daPlaced = false;
+
+function daClick(ev, qId) {
+    const grid = document.getElementById('da-grid');
+    const marker = document.getElementById('da-marker');
+    if (!grid || !marker) return;
+    const rect = grid.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
+    // Invert y because screen y grows downward but our axis has "central" at top.
+    const y = Math.max(0, Math.min(1, 1 - (ev.clientY - rect.top) / rect.height));
+    marker.style.left = (x * 100) + '%';
+    marker.style.top = ((1 - y) * 100) + '%';
+    _daPlaced = true;
+
+    const zones = DUAL_AXIS_ZONES[window._currentQ && window._currentQ.promptShort] ||
+                  DUAL_AXIS_ZONES.cultural_social_placement_dual;
+    const z = zoneForX(zones, x);
+    const nameEl = document.getElementById('da-zone-name');
+    const bulletsEl = document.getElementById('da-zone-bullets');
+    if (nameEl) nameEl.textContent = z.name;
+    if (bulletsEl) bulletsEl.innerHTML = z.bullets.map(b => `<li>${b}</li>`).join('');
+
+    const btn = document.getElementById('da-continue');
+    if (btn) { btn.disabled = false; btn.textContent = 'continue →'; }
+    window._daAnswer = { x, y };
+}
+
+function submitDualAxis(qId) {
+    if (!_daPlaced || !window._daAnswer) return;
+    traceSubmit(qId, window._daAnswer);
+    window._daAnswer = null;
+    _daPlaced = false;
+    showQuestion();
+}
+
+// ── Conjoint ───────────────────────────────────────────────────────────────
+// Two candidate cards side-by-side. Engine treats this as single_choice (2
+// options: "a", "b"). Display content is looked up here by promptShort so the
+// engine layer stays evidence-only. Strength follow-up handles salience
+// via applyRatioBoost.
+const CONJOINT_CANDIDATES = {
+    leader_conjoint: {
+        a: {
+            name: 'Candidate A',
+            attributes: [
+                { label: 'Style',       value: 'Fighter — confronts opposition directly' },
+                { label: 'Outlook',     value: 'Progressive — shape change actively' },
+                { label: 'Affiliation', value: 'Loyal to party and movement' },
+                { label: 'Priority',    value: 'Economic justice and redistribution' }
+            ]
+        },
+        b: {
+            name: 'Candidate B',
+            attributes: [
+                { label: 'Style',       value: 'Statesman — measured, institutional' },
+                { label: 'Outlook',     value: 'Traditional — preserve what works' },
+                { label: 'Affiliation', value: 'Country before party' },
+                { label: 'Priority',    value: 'Cultural continuity and social order' }
+            ]
+        }
+    }
+};
+
+function renderConjoint(q) {
+    const spec = CONJOINT_CANDIDATES[q.promptShort];
+    if (!spec) return renderMC(q);
+    const cards = (q.options || ['a', 'b']).map(key => {
+        const c = spec[key];
+        if (!c) return '';
+        const attrHtml = c.attributes.map(a => `
+          <div class="cj-attr">
+            <div class="cj-attr-label">${a.label}</div>
+            <div class="cj-attr-value">${a.value}</div>
+          </div>
+        `).join('');
+        return `
+          <div class="cj-card" onclick="selectMC(this, ${q.id}, '${key}')">
+            <div class="cj-name">${c.name}</div>
+            ${attrHtml}
+          </div>
+        `;
+    }).join('');
+    return `<div class="cj-grid">${cards}</div>`;
+}
+
+// ── Pairwise ───────────────────────────────────────────────────────────────
+function renderPairwise(q) {
+    // Pairwise questions present N independent A/B pairs; the answer shape is
+    // { pairId1: chosenOptKey, pairId2: chosenOptKey, ... }. The engine sends
+    // q.pairIds (ordered list of pair IDs) and q.pairOptions (pairId → [optA,optB]).
+    const pairIds = Array.isArray(q.pairIds) && q.pairIds.length > 0 ? q.pairIds : [];
+    const pairOptions = q.pairOptions || {};
+    window._pairwiseSelections = {};
+
+    let html = '';
+    pairIds.forEach((pairId, idx) => {
+        const opts = pairOptions[pairId] || [];
+        const pairLabel = getOptLabel(pairId, q);
+        html += `<div class="pair-block" style="margin-bottom:1.5rem;">`;
+        if (pairIds.length > 1) {
+            html += `<div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink);">${idx + 1}. ${pairLabel}</div>`;
+        }
+        html += `<div class="mc-options" data-pair-id="${pairId}">`;
+        opts.forEach((opt, i) => {
+            html += `
+                <div class="mc-option" onclick="selectPair(this, '${q.id}', '${pairId}', '${opt}')">
+                    <div class="mc-marker">${'AB'[i] || ''}</div>
+                    <div class="mc-text">${getOptLabel(opt, q)}</div>
+                </div>
+            `;
+        });
+        html += `</div></div>`;
+    });
+    return html;
+}
+
+function selectPair(el, qId, pairId, optKey) {
+    // Highlight just the chosen option within this pair's option group.
+    const group = el.parentElement;
+    group.querySelectorAll('.mc-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+
+    if (!window._pairwiseSelections) window._pairwiseSelections = {};
+    window._pairwiseSelections[pairId] = optKey;
+
+    // Auto-submit once every pair has a selection.
+    const q = window._currentQ;
+    const pairIds = (q && Array.isArray(q.pairIds)) ? q.pairIds : [];
+    const allAnswered = pairIds.length > 0 && pairIds.every(pid => window._pairwiseSelections[pid]);
+    if (allAnswered) {
+        const answer = { ...window._pairwiseSelections };
+        setTimeout(() => {
+            traceSubmit(Number(qId), answer);
+            window._pairwiseSelections = {};
+            showQuestion();
+        }, 300);
+    }
+}
+
+// ── Results ────────────────────────────────────────────────────────────────
+//
+// Two-stage flow when identity-primary signal is detected:
+//   Stage 1: previewIdentityPrimary() — does the user's posterior pass the
+//            TRB/PF + ideology-thinness + anchor-dominance gates? If yes
+//            but demographics are missing, prompt for demographic confirmation.
+//   Stage 2: getResults() with stored demographics — resolver fires identity-
+//            primary overlay if demographics confirm; otherwise base archetype
+//            only.
+function showResults() {
+    if (PrismEngine.previewIdentityPrimary) {
+        try {
+            const preview = PrismEngine.previewIdentityPrimary();
+            if (preview && shouldPromptDemographics(preview)) {
+                showDemographicBlock(preview, finishResults);
+                return;
+            }
+        } catch (e) {
+            console.warn('previewIdentityPrimary failed:', e);
+        }
+    }
+    finishResults();
+}
+
+function shouldPromptDemographics(preview) {
+    // Show the demographic mini-block only when the resolver has already
+    // verified TRB/PF + ideology-thinness + anchor-dominance (so demographic
+    // confirmation is the only missing piece). Anchors that don't map to
+    // identity-primary categories (national/ideological/mixed_none) do not
+    // trigger the prompt — adding demographics wouldn't change the result.
+    if (!preview || !preview.gate) return false;
+    const g = preview.gate;
+    if (!g.passedLatent || !g.passedIdeologyThinness || !g.passedAnchorDominance) return false;
+    const a = preview.anchor;
+    return a === 'ethnic_racial' || a === 'religious' || a === 'sexual' || a === 'gender';
+}
+
+function showDemographicBlock(preview, onDone) {
+    const area = document.getElementById('quiz-area');
+    const anchor = preview.anchor;
+    const fields = demographicFieldsForAnchor(anchor);
+    let html = `
+      <div class="card">
+        <div class="qprompt">A few optional questions to refine your result.</div>
+        <div class="qsubprompt">Your answers stay on this device. Skip if you'd rather not share.</div>
+        <div id="demo-fields" style="display:flex;flex-direction:column;gap:1.25rem;margin:1.5rem 0;">
+    `;
+    fields.forEach(f => {
+        html += `
+          <div>
+            <label style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;display:block;margin-bottom:0.4rem;">${f.label}</label>
+            <select id="demo-${f.key}" style="width:100%;padding:0.6rem;font-size:1rem;border:1.5px solid var(--ink);background:var(--white);font-family:'Space Grotesk',sans-serif;">
+              <option value="">— select or skip —</option>
+              ${f.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
+            </select>
+          </div>
+        `;
+    });
+    html += `
+        </div>
+        <div style="display:flex;gap:0.75rem;">
+          <button class="continue-btn" onclick="submitDemographicBlock()">submit and see results →</button>
+          <button class="continue-btn" style="background:transparent;color:var(--ink);" onclick="skipDemographicBlock()">skip</button>
+        </div>
+      </div>
+    `;
+    area.innerHTML = html;
+    window._demoOnDone = onDone;
+    window._demoFields = fields;
+}
+
+function demographicFieldsForAnchor(anchor) {
+    if (anchor === 'ethnic_racial') {
+        return [{ key: 'demo_ethnicity', label: 'Which of these best describes your race or ethnicity?',
+            options: [
+                { value: 'white', label: 'White' },
+                { value: 'black', label: 'Black or African American' },
+                { value: 'hispanic', label: 'Hispanic or Latino' },
+                { value: 'asian', label: 'Asian' },
+                { value: 'mixed', label: 'Mixed or multiple' },
+                { value: 'other', label: 'Other' },
+            ]
+        }];
+    }
+    if (anchor === 'religious') {
+        return [{ key: 'demo_religion', label: 'Which best describes your religious tradition?',
+            options: [
+                { value: 'christian', label: 'Protestant Christian' },
+                { value: 'evangelical', label: 'Evangelical Christian' },
+                { value: 'catholic', label: 'Catholic' },
+                { value: 'jewish', label: 'Jewish' },
+                { value: 'muslim', label: 'Muslim' },
+                { value: 'other', label: 'Other / unaffiliated' },
+            ]
+        }];
+    }
+    if (anchor === 'sexual') {
+        return [{ key: 'demo_lgbtq', label: 'Do you identify as LGBTQ+?',
+            options: [
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
+            ]
+        }];
+    }
+    if (anchor === 'gender') {
+        return [{ key: 'demo_gender', label: 'What is your gender?',
+            options: [
+                { value: 'male', label: 'Male' },
+                { value: 'female', label: 'Female' },
+                { value: 'nonbinary', label: 'Non-binary' },
+                { value: 'other', label: 'Other / prefer not to say' },
+            ]
+        }];
+    }
+    return [];
+}
+
+function submitDemographicBlock() {
+    const fields = window._demoFields || [];
+    const demo = {};
+    let any = false;
+    fields.forEach(f => {
+        const el = document.getElementById('demo-' + f.key);
+        if (el && el.value) { demo[f.key] = el.value; any = true; }
+    });
+    if (any && PrismEngine.submitDemographics) {
+        try { PrismEngine.submitDemographics(demo); } catch (e) { console.warn('submitDemographics failed', e); }
+    }
+    const onDone = window._demoOnDone;
+    window._demoOnDone = null;
+    window._demoFields = null;
+    if (onDone) onDone();
+}
+
+function skipDemographicBlock() {
+    const onDone = window._demoOnDone;
+    window._demoOnDone = null;
+    window._demoFields = null;
+    if (onDone) onDone();
+}
+
+function finishResults() {
+    const runId = getPrismRunId();
+    const results = PrismEngine.getResults();
+    const respondentState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
+
+    // Save everything to localStorage for the results page
+    const prismResults = {
+        runId: runId,
+        // Stamp from the engine bundle so dump consumers can flag staleness
+        // when engine fixes ship. PR 1 trace-reliability addition.
+        bundleVersion: (PrismEngine && PrismEngine.BUNDLE_VERSION) || null,
+        archetypeId: results.match.id,
+        archetypeName: results.match.name,
+        archetypeTier: results.match.tier,
+        confidence: results.confidence,
+        confidenceBand: results.confidenceBand || null,
+        questionsAnswered: results.questionsAnswered,
+        top3: results.top3 || null,
+        top5: results.top5 || null,
+        family: results.family || null,
+        identityPrimary: results.identityPrimary || null,
+        // Per-node contribution to winner + margin to runner-up. Engine
+        // already computes these via getResults; PR 1 propagates to the dump
+        // so debugging doesn't require reconstructing from pre/post state.
+        diagnostics: results.diagnostics || null,
+        engagement: results.engagement || null,
+        respondentState: respondentState,
+        timestamp: Date.now()
+    };
+    const prismResultsJson = JSON.stringify(prismResults);
+    localStorage.setItem(prismRunKey('prism-results'), prismResultsJson);
+    localStorage.setItem(prismRunKey('prism_results'), prismResultsJson);
+    localStorage.setItem('prism-results', prismResultsJson);
+    localStorage.setItem('prism_results', prismResultsJson);
+
+    // Respondent-signature election predictions: per-candidate era-activation-
+    // adjusted weighted-Euclidean distances plus non-ideological modifier
+    // (ADR-004). Stored raw for the results page hover UI.
+    if (PrismEngine.getElectionPredictions) {
+        try {
+            const preds = PrismEngine.getElectionPredictions();
+            const predsJson = JSON.stringify(preds);
+            localStorage.setItem(prismRunKey('prism-election-raw'), predsJson);
+            localStorage.setItem('prism-election-raw', predsJson);
+        } catch (err) {
+            console.warn('getElectionPredictions failed', err);
+            localStorage.removeItem(prismRunKey('prism-election-raw'));
+            localStorage.removeItem('prism-election-raw');
+        }
+    }
+
+    // Redirect to results page. If a friend prediction is staged in
+    // localStorage (set by predict.html), append ?compare=1 so results-live.html
+    // routes to the friend-vs-user comparison view instead of standard results.
+    let resultsUrl = 'results-live.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
+    try {
+        const friendPred = localStorage.getItem('prism-friend-prediction');
+        if (friendPred) {
+            const parsed = JSON.parse(friendPred);
+            if (parsed && parsed.encodedUserState) {
+                resultsUrl += '&compare=1';
+            }
+        }
+    } catch (e) { /* fall through to standard results */ }
+    window.location.href = resultsUrl;
+}
+
+// ── Drag-and-drop for ranking ──────────────────────────────────────────────
+document.addEventListener('dragstart', function(e) {
+    if (e.target.classList?.contains('ranking-item')) {
+        e.target.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+    }
+});
+document.addEventListener('dragend', function(e) {
+    if (e.target.classList?.contains('ranking-item')) {
+        e.target.classList.remove('dragging');
+    }
+});
+document.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    const dragging = document.querySelector('.ranking-item.dragging');
+    if (!dragging) return;
+    const container = document.getElementById('ranking-list');
+    if (!container) return;
+    const siblings = [...container.querySelectorAll('.ranking-item:not(.dragging)')];
+    const next = siblings.find(s => {
+        const rect = s.getBoundingClientRect();
+        return e.clientY < rect.top + rect.height / 2;
+    });
+    container.insertBefore(dragging, next || null);
+    // Update numbers
+    container.querySelectorAll('.ranking-item').forEach((item, i) => {
+        item.querySelector('.ranking-number').textContent = i + 1;
+    });
+});
+</script>
+
+</body>
+</html>
