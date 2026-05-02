@@ -83,9 +83,9 @@
       animation: defining-pulse 0.65s cubic-bezier(0.25, 1.0, 0.4, 1.0) both;
       z-index: 5;
     }
-    /* Election legend hidden until the emphasis sequence kicks off. */
-    .election-legend { transition: opacity 0.5s cubic-bezier(0.2, 0.85, 0.25, 1); }
-    .election-legend.cine-pending { opacity: 0; pointer-events: none; }
+    /* Election legend + summary hidden until the row cascade completes. */
+    .election-legend, .election-summary { transition: opacity 0.5s cubic-bezier(0.2, 0.85, 0.25, 1); }
+    .election-legend.cine-pending, .election-summary.cine-pending { opacity: 0; pointer-events: none; }
 
     /* "Your Year America Was Great" callout — banner above the elections grid. */
     .great-year-banner { display: flex; align-items: center; gap: 1.25rem; padding: 0.85rem 1rem; margin-bottom: 1rem; background: rgba(0,0,0,0.04); border-left: 3px solid var(--ink); }
@@ -1114,7 +1114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="section-label">US Presidential Elections · 1789–2024</div>
     <div id="closest-match-note" style="display:none;font-size:0.78rem;color:#666;font-style:italic;margin:-0.4rem 0 0.8rem 0;">Based on your closest current match — alignment may shift if your archetype resolution sharpens.</div>
     <div class="elections-grid reveal-stagger" id="elections-grid"></div>
-    <div class="election-summary" id="election-summary"></div>
+    <div class="election-summary cine-pending" id="election-summary"></div>
     <div class="election-legend cine-pending" id="election-legend"></div>
   </div>
 </section>
@@ -4049,10 +4049,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // downstream phases shift ~1s earlier. Rows finish around t≈2.05s
       // (5×300ms + 0.4s fade + 50ms safety = 1950ms; round up to 2.1s).
 
-      // Phase 2a: legend + strategic cells at t=2.1s.
+      // Phase 2a: legend + summary + strategic cells at t=2.1s — once all
+      // 60 election cells have landed.
       setTimeout(() => {
         const legend = document.getElementById('election-legend');
         if (legend) legend.classList.remove('cine-pending');
+        const summary = document.getElementById('election-summary');
+        if (summary) summary.classList.remove('cine-pending');
         if (typeof v13StrategicCells !== 'undefined') {
           v13StrategicCells.forEach(cell => cell.classList.add('strategic'));
         }
@@ -4116,6 +4119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
         const legend = document.getElementById('election-legend');
         if (legend) legend.classList.remove('cine-pending');
+        const summary = document.getElementById('election-summary');
+        if (summary) summary.classList.remove('cine-pending');
         if (typeof v13StrategicCells !== 'undefined') {
           v13StrategicCells.forEach(cell => cell.classList.add('strategic'));
         }
