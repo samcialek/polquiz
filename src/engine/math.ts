@@ -193,6 +193,41 @@ export function boundednessScore(intensity: number, b: MorBoundaries): number {
 }
 
 /**
+ * Strict per-key boundary validator (PR 6.E.4a). Throws if any of the 7
+ * MOR_BOUNDARY_ORDER keys is absent or not a finite number in [0, 1].
+ * Used by morModuleDistance / morTargetVectorDistance to refuse to
+ * compute on partial / malformed boundary objects rather than silently
+ * substituting per-key defaults.
+ */
+function assertBoundariesValid(
+  b: { [k in MorBoundaryId]?: number },
+  label: string,
+): void {
+  for (const key of MOR_BOUNDARY_ORDER) {
+    const v = b[key];
+    if (typeof v !== "number" || !Number.isFinite(v) || v < 0 || v > 1) {
+      throw new Error(
+        `${label}: morBoundaries.${key} invalid (got ${String(v)}); ` +
+        `must be a finite number in [0, 1]`,
+      );
+    }
+  }
+}
+
+/**
+ * Strict intensity validator (PR 6.E.4a). Throws if intensity is absent
+ * or not a finite number in [0, 3].
+ */
+function assertIntensityValid(i: unknown, label: string): void {
+  if (typeof i !== "number" || !Number.isFinite(i) || i < 0 || i > 3) {
+    throw new Error(
+      `${label}: intensity invalid (got ${String(i)}); ` +
+      `must be a finite number in [0, 3]`,
+    );
+  }
+}
+
+/**
  * Per-module distance for archetype matching: vector distance over the 7
  * boundaries (Euclidean / sqrt(7)) blended with the absolute intensity gap
  * (normalized to /3). 70/30 split; the outer scorer applies the standard
@@ -204,30 +239,42 @@ export function boundednessScore(intensity: number, b: MorBoundaries): number {
  *   morModuleDist = 0.7 × boundaryDist + 0.3 × intensityDist
  *
  * Returns a value in [0, 1].
+ *
+ * Strict invariant (PR 6.E.4a): both sides must carry well-formed
+ * morBoundaries. Callers gate on
+ * `useMorModule = !!state.morBoundaries && !!archetype.morBoundaries`
+ * before invoking. Inside, every boundary key + intensity is validated
+ * via `assertBoundariesValid` / `assertIntensityValid`; partial or
+ * malformed data throws naming the offending field. No `?? 0.5` per-key
+ * fallback — silent neutral-looking results would hide bugs.
  */
 export function morModuleDistance(
   respondent: MorBoundariesNodeState | undefined,
   target: ArchetypeMorBoundaries | undefined,
   weights: { boundary?: number; intensity?: number } = {},
 ): number {
-  // Graceful fallback: if either side lacks the module (legacy data during
-  // the additive transition), return the median midpoint distance 0.5 so
-  // the term contributes neutrally rather than wildly.
-  // TODO(6.E.4): replace this fallback with a hard validator/throw once all
-  //   archetype/respondent state guarantees morBoundaries is present. Silent
-  //   neutral-distance hides bugs after the cutover completes.
-  if (!respondent || !target) return 0.5;
+  if (!respondent) {
+    throw new Error("morModuleDistance: respondent.morBoundaries is missing — caller must gate on useMorModule (PR 6.E.4a invariant)");
+  }
+  if (!target) {
+    throw new Error("morModuleDistance: target.morBoundaries is missing — caller must gate on useMorModule (PR 6.E.4a invariant)");
+  }
+  assertBoundariesValid(respondent.boundaries, "morModuleDistance respondent");
+  assertBoundariesValid(target.boundaries, "morModuleDistance target");
+  assertIntensityValid(respondent.intensity, "morModuleDistance respondent");
+  assertIntensityValid(target.intensity, "morModuleDistance target");
+
   const wB = weights.boundary ?? 0.7;
   const wI = weights.intensity ?? 0.3;
   const rb = respondent.boundaries;
   const tb = target.boundaries;
   let sumSq = 0;
   for (const key of MOR_BOUNDARY_ORDER) {
-    const d = (rb[key] ?? 0.5) - (tb[key] ?? 0.5);
+    const d = rb[key]! - tb[key]!;
     sumSq += d * d;
   }
   const boundaryDist = Math.sqrt(sumSq / MOR_BOUNDARY_ORDER.length);
-  const intensityDist = Math.abs((respondent.intensity ?? 0) - (target.intensity ?? 0)) / 3;
+  const intensityDist = Math.abs(respondent.intensity - target.intensity) / 3;
   return wB * boundaryDist + wI * intensityDist;
 }
 
@@ -240,21 +287,66 @@ export function morModuleDistance(
  *   politicalDist = sqrt(Σ (resp.boundaries[i] − target.boundaries[i])² / 7)
  *
  * Returns a value in [0, 1].
+ *
+ * Strict invariant (PR 6.E.4a): same as morModuleDistance — both
+ * boundary objects must have all 7 keys finite in [0, 1]. Throws via
+ * `assertBoundariesValid` on missing/malformed data. No `?? 0.5`
+ * per-key fallback.
  */
 export function morTargetVectorDistance(
   respondentBoundaries: MorBoundaries | undefined,
   targetBoundaries: MorBoundaries | undefined,
 ): number {
-  // TODO(6.E.4): same as morModuleDistance — replace silent 0.5 fallback
-  //   with a hard check once all candidate/regime data guarantees
-  //   morBoundaries is present.
-  if (!respondentBoundaries || !targetBoundaries) return 0.5;
+  if (!respondentBoundaries) {
+    throw new Error("morTargetVectorDistance: respondentBoundaries is missing — caller must gate on useMorModule (PR 6.E.4a invariant)");
+  }
+  if (!targetBoundaries) {
+    throw new Error("morTargetVectorDistance: targetBoundaries is missing — caller must gate on useMorModule (PR 6.E.4a invariant)");
+  }
+  assertBoundariesValid(respondentBoundaries, "morTargetVectorDistance respondent");
+  assertBoundariesValid(targetBoundaries, "morTargetVectorDistance target");
+
   let sumSq = 0;
   for (const key of MOR_BOUNDARY_ORDER) {
-    const d = (respondentBoundaries[key] ?? 0.5) - (targetBoundaries[key] ?? 0.5);
+    const d = respondentBoundaries[key]! - targetBoundaries[key]!;
     sumSq += d * d;
   }
   return Math.sqrt(sumSq / MOR_BOUNDARY_ORDER.length);
+}
+
+/**
+ * Validator (PR 6.E.4a): asserts that every entry in a list of objects
+ * carries a well-formed morBoundaries field. Used by smokes/diagnostics
+ * to verify data integrity at startup or before bulk operations. Returns
+ * a list of failure descriptions; empty list means all entries valid.
+ *
+ * Each entry must:
+ *   - have a `morBoundaries` property
+ *   - whose `boundaries` passes `validateMorBoundaries` (all 7 keys, finite, [0,1])
+ *   - whose `intensity` is a finite number in [0, 3]
+ */
+export function validateMorBoundariesPopulated(
+  entries: ReadonlyArray<{ id?: string; name?: string; year?: number; morBoundaries?: unknown }>,
+  label: string,
+): string[] {
+  const failures: string[] = [];
+  for (const e of entries) {
+    const tag = e.id ?? e.name ?? (e.year !== undefined ? String(e.year) : "(unknown)");
+    if (!e.morBoundaries) {
+      failures.push(`${label} ${tag}: missing morBoundaries`);
+      continue;
+    }
+    const mb = e.morBoundaries as { boundaries?: unknown; intensity?: unknown };
+    const bErr = validateMorBoundaries(mb.boundaries);
+    if (bErr) {
+      failures.push(`${label} ${tag}: ${bErr}`);
+    }
+    const i = mb.intensity;
+    if (typeof i !== "number" || !Number.isFinite(i) || i < 0 || i > 3) {
+      failures.push(`${label} ${tag}: intensity invalid (${i})`);
+    }
+  }
+  return failures;
 }
 
 /**

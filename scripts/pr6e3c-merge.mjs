@@ -42,7 +42,7 @@ function parseNumericMap(literal) {
   const entries = [];
   for (const p of parts) {
     const m = p.match(/^(\w+)\s*:\s*(-?[\d.eE+-]+)$/);
-    if (!m) return null; // bail on anything we don't recognize
+    if (!m) return null; // unparseable entry; caller logs + skips field, file processing continues
     entries.push([m[1], m[2]]);
   }
   return { entries };

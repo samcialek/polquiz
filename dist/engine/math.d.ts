@@ -82,6 +82,14 @@ export declare function boundednessScore(intensity: number, b: MorBoundaries): n
  *   morModuleDist = 0.7 × boundaryDist + 0.3 × intensityDist
  *
  * Returns a value in [0, 1].
+ *
+ * Strict invariant (PR 6.E.4a): both sides must carry well-formed
+ * morBoundaries. Callers gate on
+ * `useMorModule = !!state.morBoundaries && !!archetype.morBoundaries`
+ * before invoking. Inside, every boundary key + intensity is validated
+ * via `assertBoundariesValid` / `assertIntensityValid`; partial or
+ * malformed data throws naming the offending field. No `?? 0.5` per-key
+ * fallback — silent neutral-looking results would hide bugs.
  */
 export declare function morModuleDistance(respondent: MorBoundariesNodeState | undefined, target: ArchetypeMorBoundaries | undefined, weights?: {
     boundary?: number;
@@ -96,8 +104,30 @@ export declare function morModuleDistance(respondent: MorBoundariesNodeState | u
  *   politicalDist = sqrt(Σ (resp.boundaries[i] − target.boundaries[i])² / 7)
  *
  * Returns a value in [0, 1].
+ *
+ * Strict invariant (PR 6.E.4a): same as morModuleDistance — both
+ * boundary objects must have all 7 keys finite in [0, 1]. Throws via
+ * `assertBoundariesValid` on missing/malformed data. No `?? 0.5`
+ * per-key fallback.
  */
 export declare function morTargetVectorDistance(respondentBoundaries: MorBoundaries | undefined, targetBoundaries: MorBoundaries | undefined): number;
+/**
+ * Validator (PR 6.E.4a): asserts that every entry in a list of objects
+ * carries a well-formed morBoundaries field. Used by smokes/diagnostics
+ * to verify data integrity at startup or before bulk operations. Returns
+ * a list of failure descriptions; empty list means all entries valid.
+ *
+ * Each entry must:
+ *   - have a `morBoundaries` property
+ *   - whose `boundaries` passes `validateMorBoundaries` (all 7 keys, finite, [0,1])
+ *   - whose `intensity` is a finite number in [0, 3]
+ */
+export declare function validateMorBoundariesPopulated(entries: ReadonlyArray<{
+    id?: string;
+    name?: string;
+    year?: number;
+    morBoundaries?: unknown;
+}>, label: string): string[];
 /**
  * Schema validator for a `MorBoundaries` object. Returns `null` if valid,
  * otherwise an error message naming the first invalid field. Useful for
