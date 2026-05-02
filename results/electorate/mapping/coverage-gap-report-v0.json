@@ -1,0 +1,110 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-02",
+  "scope": "Mapper coverage gap report for modern survey-era backtest (2008-2024). Documentation only — does not modify the mapper spec.",
+  "inputs": [
+    "results/electorate/mapping/survey-to-prism-v0.json",
+    "results/electorate/mapping/survey-to-prism-v0.md",
+    "results/electorate/intake/variable-catalog-v0.json"
+  ],
+  "terminology": {
+    "moral_boundary_salience": "Identity-driven appeal is read through moral-boundary salience and moral-boundary loading.",
+    "engagement": "One-dimensional scalar separate from policy alignment. Never called activation.",
+    "PF_TRB": "Legacy implementation field names; not active model concepts."
+  },
+  "grade_legend": {
+    "strong": "Direct standard-battery measurement available with low uncertainty.",
+    "moderate": "Mix of strong and proxy/derived sources; medium uncertainty.",
+    "partial": "Strong only on a single source (typically ANES year-specific).",
+    "weak": "Mostly proxy or derived; high uncertainty.",
+    "derived": "All-source derivation only; no direct items.",
+    "near-absent": "Mostly missing; only weak proxies in one source.",
+    "absent": "No usable signal in any source."
+  },
+  "coverage_rollup": [
+    { "target": "MAT",                                    "ces_cumulative": "proxy",   "ces_year": "strong",  "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low" },
+    { "target": "CD",                                     "ces_cumulative": "weak",    "ces_year": "strong",  "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low-medium" },
+    { "target": "CU",                                     "ces_cumulative": "weak",    "ces_year": "strong",  "anes_cumulative": "proxy",   "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low-medium" },
+    { "target": "MOR",                                    "ces_cumulative": "weak",    "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "derived", "rollup": "derived",      "uncertainty_floor": "medium-high" },
+    { "target": "PRO",                                    "ces_cumulative": "missing", "ces_year": "weak",    "anes_cumulative": "proxy",   "anes_year": "weak",    "rollup": "weak",         "uncertainty_floor": "high" },
+    { "target": "COM",                                    "ces_cumulative": "missing", "ces_year": "missing", "anes_cumulative": "weak",    "anes_year": "weak",    "rollup": "near-absent",  "uncertainty_floor": "high" },
+    { "target": "ZS",                                     "ces_cumulative": "weak",    "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "strong",  "rollup": "partial",      "uncertainty_floor": "medium" },
+    { "target": "ONT_H",                                  "ces_cumulative": "missing", "ces_year": "missing", "anes_cumulative": "derived", "anes_year": "proxy",   "rollup": "near-absent",  "uncertainty_floor": "high" },
+    { "target": "ONT_S",                                  "ces_cumulative": "weak",    "ces_year": "derived", "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low-medium" },
+    { "target": "EPS",                                    "ces_cumulative": "missing", "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "proxy",   "rollup": "weak",         "uncertainty_floor": "high" },
+    { "target": "AES",                                    "ces_cumulative": "missing", "ces_year": "missing", "anes_cumulative": "missing", "anes_year": "missing", "rollup": "absent",       "uncertainty_floor": "maximal" },
+    { "target": "moral-boundary.political_camp",          "ces_cumulative": "strong",  "ces_year": "strong",  "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low" },
+    { "target": "moral-boundary.religious",               "ces_cumulative": "strong",  "ces_year": "strong",  "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "low" },
+    { "target": "moral-boundary.national",                "ces_cumulative": "weak",    "ces_year": "proxy",   "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "medium" },
+    { "target": "moral-boundary.ethnic_racial",           "ces_cumulative": "proxy",   "ces_year": "derived", "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "medium" },
+    { "target": "moral-boundary.gender",                  "ces_cumulative": "proxy",   "ces_year": "derived", "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "medium" },
+    { "target": "moral-boundary.ideological",             "ces_cumulative": "proxy",   "ces_year": "derived", "anes_cumulative": "strong",  "anes_year": "strong",  "rollup": "strong",       "uncertainty_floor": "medium" },
+    { "target": "moral-boundary.class",                   "ces_cumulative": "proxy",   "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "proxy",   "rollup": "weak",         "uncertainty_floor": "high" },
+    { "target": "engagement",                             "ces_cumulative": "proxy",   "ces_year": "proxy",   "anes_cumulative": "proxy",   "anes_year": "proxy",   "rollup": "moderate",     "uncertainty_floor": "medium" }
+  ],
+  "hard_gaps": [
+    {
+      "target": "AES",
+      "reason": "No standard battery measures aesthetic-style preference. Cannot be inferred from issue items.",
+      "expected_failure_in_C3_C4": "Style-driven elections (2016/2020/2024 era-elevated) miss white-non-college and college-educated cells. C4 will tag as mapper_error+candidate_signature_error; underlying cause is flat AES posterior."
+    },
+    {
+      "target": "COM",
+      "reason": "CES doesn't measure compromise tolerance directly. ANES has only weak proxies.",
+      "expected_failure_in_C3_C4": "Rare; usually small impact since COM doesn't strongly drive vote choice. Possible suburban-moderate cell misses in landslide years."
+    },
+    {
+      "target": "ONT_H",
+      "reason": "CES is silent on human-malleability worldview. ANES yields it as proxy only.",
+      "expected_failure_in_C3_C4": "White-college vs non-college misclassification on cultural-traditionalism axis."
+    },
+    {
+      "target": "moral-boundary.class",
+      "reason": "Weakest of the 7 boundaries across all sources. Most often proxy/derived.",
+      "expected_failure_in_C3_C4": "Working-class / non-college / multi-racial-working-class cell failures, especially in realignment elections. C4 will tag mapper_error+vote_formula_error; usually the true cause is class-loading mis-resolution.",
+      "cascading_risk": true
+    },
+    {
+      "target": "engagement",
+      "reason": "Risk of conflation with policy salience or partisan strength. Survey 'interest' items can be read as both turnout signal AND salience signal.",
+      "expected_failure_in_C3_C4": "Multiple subgroups missing turnout simultaneously, asymmetric by party. C4 will tag turnout_model_error+mapper_error (engagement)."
+    }
+  ],
+  "individual_vs_geography_gaps": {
+    "individual_measurement_gaps": ["AES absent", "COM near-absent", "ONT_H near-absent", "moral-boundary.class weak"],
+    "individual_measurement_fix_strategy": "Add survey items, accept wider posteriors, build proxy bridges with stated uncertainty. ACS / Esri cannot fix individual measurement gaps.",
+    "poststratification_gaps": ["Subgroup population shares for the year being backtested"],
+    "poststratification_fix_strategy": "ACS demographic poststratification weights.",
+    "geography_gaps": ["State / county / block-group composition of synthesized electorate"],
+    "geography_fix_strategy": "Esri Tapestry (optional) or ACS-only fallback."
+  },
+  "do_not_overfit": {
+    "principle": "Mapper revisions should only happen when failure pattern is (a) consistent across multiple coalitions, (b) tied to a target with weak or derived coverage, and (c) NOT explained by candidate-coding audit flags or poststratification mismatch.",
+    "skip_revision_when": [
+      "Single-cell miss in a year with a known candidate-coding flag.",
+      "Failure on a cell with high uncertainty floor (AES, COM, ONT_H).",
+      "Failure on a single subgroup while all others pass.",
+      "Failure with delta within 1.5x tolerance (minor severity).",
+      "C4 top-level hypothesis is benchmark_or_coverage_issue.",
+      "Failure across many cells with same directional sign — that's a candidate-signature problem, not a mapper problem."
+    ]
+  },
+  "gap_priority_ranking": [
+    "AES (absent everywhere)",
+    "COM (near-absent)",
+    "ONT_H (near-absent)",
+    "moral-boundary.class (weakest of 7 boundaries; cascading risk)",
+    "EPS (weak/derived)",
+    "MOR (derived from culturally-coded items)",
+    "PRO (weak in CES; proxy in ANES)",
+    "engagement (moderate; conflation risk)",
+    "moral-boundary.national/ethnic_racial/gender/ideological (strong ANES, weaker CES)",
+    "MAT, CD, CU, ONT_S, moral-boundary.political_camp/religious (strong)"
+  ],
+  "non_actions": {
+    "does_not_modify_mapper_spec": true,
+    "does_not_recommend_candidate_edits": true,
+    "does_not_alter_benchmarks_or_tolerance": true,
+    "does_not_define_a_calibration_target": true
+  }
+}
