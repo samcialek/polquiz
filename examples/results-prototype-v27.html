@@ -386,23 +386,22 @@
       font-size: 0.7rem; margin-bottom: 0.35rem; display: block;
       letter-spacing: 0.06em; text-transform: uppercase; color: #555;
     }
-    /* v27.4: properly proportioned vbar — chart is constrained in width
-       (220px max) and taller (190px) so each bar reads as a slender
-       column instead of a fat squat brick. Bars: ~22px wide with 4px
-       gaps for breathing room. Chart centered within the right column. */
+    /* v27.5: TALL and SLIM vbar — narrower overall (160px max width),
+       much taller (260px), bars trimmed to 14px wide with 6px gaps.
+       Portrait orientation rather than fat squat landscape. */
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-chart,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-chart {
-      height: 190px; padding: 0.25rem 0 1.5rem;
-      max-width: 220px; margin: 0 auto;
+      height: 260px; padding: 0.25rem 0 1.5rem;
+      max-width: 160px; margin: 0 auto;
     }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-grid,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.25rem 0 1.5rem 22px; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-grid { inset: 0.25rem 0 1.5rem 18px; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-yaxis,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 20px; top: 0.25rem; bottom: 1.5rem; font-size: 0.62rem; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-yaxis { width: 16px; top: 0.25rem; bottom: 1.5rem; font-size: 0.6rem; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-cols,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 22px; top: 0.25rem; bottom: 1.5rem; gap: 4px; }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-cols { left: 18px; top: 0.25rem; bottom: 1.5rem; gap: 6px; }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar-track,
-    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 22px; left: 50%; transform: translateX(-50%); }
+    .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar-track { width: 14px; left: 50%; transform: translateX(-50%); }
     .cluster-panel[data-cluster="MEANS"] .cat-vbar-bar,
     .cluster-panel[data-cluster="REALITY"] .cat-vbar-bar { left: 0; right: 0; border-radius: 1.5px; }
     /* v21.2: hide collabel + score by default; only the top-positive and
