@@ -188,9 +188,10 @@
     #election-tooltip .et-rerouted { margin-top: 0.4rem; font-size: 0.62rem; color: #aaa; line-height: 1.45; }
     #election-tooltip .et-rerouted strong { color: #ddd; font-weight: 600; }
 
-    /* Election click-detail panel — slides in from the right when a cell is
-       clicked. Shows the full matchup + per-node distance breakdown for a
-       focused candidate. Backdrop dims the page; ESC / backdrop-click closes. */
+    /* Election click-detail panel — Phase A (v21.7).
+       Wider footprint (~1/3 of viewport), larger type and bars throughout,
+       collapsible sections (chrome). Slide-in from right with backdrop.
+       ESC / backdrop / × closes. Click another cell to swap content in place. */
     .election-cell { cursor: pointer; }
     #election-detail-backdrop {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
@@ -198,88 +199,263 @@
     }
     #election-detail-backdrop.open { display: block; opacity: 1; }
     #election-detail-panel {
-      position: fixed; top: 0; right: 0; bottom: 0; width: 480px; max-width: 95vw;
-      background: #161616; color: #e0e0e0; z-index: 1501; transform: translateX(100%);
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 33vw; min-width: 600px; max-width: 800px;
+      background: #161616; color: #e6e6e6; z-index: 1501; transform: translateX(100%);
       transition: transform 0.25s cubic-bezier(0.2, 0.85, 0.25, 1);
       box-shadow: -8px 0 32px rgba(0,0,0,0.5); overflow-y: auto;
-      font-size: 0.78rem; line-height: 1.5;
+      font-size: 0.92rem; line-height: 1.55;
     }
     #election-detail-panel.open { transform: translateX(0); }
-    .ed-header { position: sticky; top: 0; background: #1a1a1a; padding: 1rem 1.25rem 0.85rem; border-bottom: 1px solid #2c2c2c; z-index: 2; }
-    .ed-header-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
-    .ed-year { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; color: #fff; letter-spacing: -0.01em; }
-    .ed-context { font-size: 0.66rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
-    .ed-close { background: none; border: 1px solid #444; color: #ccc; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0; border-radius: 2px; }
-    .ed-close:hover { background: #2a2a2a; color: #fff; }
-    .ed-body { padding: 1rem 1.25rem 1.5rem; }
-    .ed-section-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin: 0.6rem 0 0.5rem; }
-    .ed-section-label:first-child { margin-top: 0; }
-    /* Matchup list — clickable candidate rows; the focused candidate gets
-       per-node breakdown rendered below. */
-    .ed-cand-row { display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 0.6rem; padding: 0.5rem 0.6rem; border: 1px solid #2c2c2c; background: #1d1d1d; cursor: pointer; margin-bottom: 0.3rem; transition: background 0.1s, border-color 0.1s; }
-    .ed-cand-row:hover { background: #232323; }
-    .ed-cand-row.focused { background: #252525; border-color: #6fa6ff; }
-    .ed-cand-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .ed-cand-dot.dem { background: var(--dem-blue); }
-    .ed-cand-dot.rep { background: var(--rep-red); }
-    .ed-cand-dot.third { background: var(--third-gold); }
-    .ed-cand-dot.other { background: #888; }
-    .ed-cand-name { font-size: 0.82rem; color: #eee; font-weight: 500; }
-    .ed-cand-name .ed-cand-party { color: #888; font-size: 0.66rem; margin-left: 0.4rem; }
-    .ed-cand-tags { display: inline-flex; gap: 0.3rem; margin-left: 0.4rem; }
-    .ed-cand-tag { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.3rem; border-radius: 2px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+    /* Sticky header — year, era summary line, expand-all + close. */
+    .ed-header {
+      position: sticky; top: 0; z-index: 5;
+      background: #1a1a1a; padding: 1.1rem 1.5rem 1rem;
+      border-bottom: 1px solid #2c2c2c;
+    }
+    .ed-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .ed-year { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.85rem; color: #fff; letter-spacing: -0.015em; line-height: 1.05; }
+    .ed-subtitle { font-size: 0.95rem; color: #bbb; margin-top: 0.25rem; line-height: 1.4; }
+    .ed-context { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.45rem; font-weight: 600; }
+    .ed-header-actions { display: flex; gap: 0.4rem; align-items: center; flex-shrink: 0; }
+    .ed-icon-btn {
+      background: none; border: 1px solid #3a3a3a; color: #ccc;
+      cursor: pointer; padding: 0; border-radius: 3px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; line-height: 1;
+    }
+    .ed-icon-btn:hover { background: #2a2a2a; color: #fff; border-color: #555; }
+    .ed-icon-btn.toggle-all { padding: 0 0.65rem; height: 32px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .ed-close { width: 32px; height: 32px; font-size: 1.25rem; }
+    .ed-body { padding: 0.5rem 1.5rem 2rem; }
+    /* Collapsible section primitive. Header is clickable; body hides via .collapsed. */
+    .ed-section { margin-top: 1.4rem; border-top: 1px solid #242424; padding-top: 1rem; }
+    .ed-section:first-child { margin-top: 0.5rem; border-top: none; padding-top: 0.4rem; }
+    .ed-section-head {
+      display: flex; align-items: center; gap: 0.5rem;
+      cursor: pointer; user-select: none; padding: 0.2rem 0;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 700;
+      color: #ccc; text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .ed-section-head:hover { color: #fff; }
+    .ed-section-head .ed-chev {
+      display: inline-block; width: 12px; height: 12px;
+      transition: transform 0.18s; color: #888; font-size: 0.85rem; line-height: 1;
+    }
+    .ed-section.collapsed .ed-chev { transform: rotate(-90deg); }
+    .ed-section.collapsed .ed-section-body { display: none; }
+    .ed-section-meta { margin-left: auto; font-size: 0.7rem; color: #777; font-weight: 500; text-transform: none; letter-spacing: 0.02em; }
+    .ed-section-body { margin-top: 0.85rem; }
+
+    /* ── Era context section ─────────────────────────────────────────── */
+    .ed-era-summary { font-size: 0.92rem; color: #d6d6d6; line-height: 1.6; margin-bottom: 0.85rem; }
+    .ed-era-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .ed-era-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.65rem; border-radius: 3px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 600;
+      border: 1px solid;
+    }
+    .ed-era-badge.x2 { background: rgba(255,216,107,0.1); color: #ffd86b; border-color: rgba(255,216,107,0.35); }
+    .ed-era-badge.x3 { background: rgba(255,107,107,0.12); color: #ff9595; border-color: rgba(255,107,107,0.4); }
+    .ed-era-badge .ed-badge-mult { font-size: 0.85rem; font-weight: 700; }
+    .ed-era-empty { font-size: 0.85rem; color: #999; font-style: italic; }
+    .ed-era-tier { font-size: 0.72rem; color: #888; margin-top: 0.7rem; font-style: italic; }
+
+    /* ── Matchup section — candidate cards with photos ───────────────── */
+    .ed-cand-list { display: flex; flex-direction: column; gap: 0.55rem; }
+    .ed-cand-card {
+      display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 0.85rem;
+      padding: 0.7rem 0.85rem; border: 1px solid #2c2c2c; background: #1d1d1d;
+      cursor: pointer; transition: background 0.1s, border-color 0.1s;
+    }
+    .ed-cand-card:hover { background: #232323; border-color: #3a3a3a; }
+    .ed-cand-card.focused { background: #252525; border-color: #6fa6ff; box-shadow: inset 0 0 0 1px #6fa6ff; }
+    .ed-cand-card.abstain-row { opacity: 0.7; }
+    .ed-cand-photo {
+      width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+      background: rgba(0,0,0,0.3); position: relative; flex-shrink: 0;
+      border: 2px solid;
+    }
+    .ed-cand-photo.dem { border-color: var(--dem-blue); }
+    .ed-cand-photo.rep { border-color: var(--rep-red); }
+    .ed-cand-photo.third { border-color: var(--third-gold); }
+    .ed-cand-photo.other { border-color: #888; }
+    .ed-cand-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ed-cand-photo .ed-cand-initial {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem;
+      color: rgba(255,255,255,0.85); z-index: 0;
+    }
+    .ed-cand-photo img { position: relative; z-index: 1; }
+    .ed-cand-info { min-width: 0; }
+    .ed-cand-name { font-size: 1.08rem; color: #fff; font-weight: 600; line-height: 1.2; }
+    .ed-cand-meta { font-size: 0.78rem; color: #888; margin-top: 0.2rem; }
+    .ed-cand-tags { display: inline-flex; gap: 0.35rem; margin-left: 0.5rem; vertical-align: 1px; }
+    .ed-cand-tag {
+      font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.12rem 0.4rem; border-radius: 2px; font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+    }
     .ed-cand-tag.ballot { background: rgba(255,255,255,0.16); color: #fff; }
     .ed-cand-tag.values { background: rgba(255,216,107,0.18); color: #ffd86b; }
-    .ed-cand-dist { font-family: 'Courier Prime', monospace; font-size: 0.78rem; color: #ccc; font-variant-numeric: tabular-nums; }
-    .ed-cand-row.focused .ed-cand-dist { color: #fff; font-weight: 600; }
-    /* Decision strip */
-    .ed-decision { margin-top: 0.6rem; padding: 0.5rem 0.7rem; background: #1d1d1d; border-left: 2px solid #555; font-size: 0.7rem; color: #bbb; }
+    .ed-cand-dist {
+      font-family: 'Courier Prime', monospace; font-size: 1.05rem; color: #ccc;
+      font-variant-numeric: tabular-nums; font-weight: 600;
+    }
+    .ed-cand-card.focused .ed-cand-dist { color: #fff; }
+
+    /* Decision strip beneath the matchup */
+    .ed-decision {
+      margin-top: 0.85rem; padding: 0.7rem 0.9rem; background: #1d1d1d;
+      border-left: 3px solid #555; font-size: 0.88rem; color: #c5c5c5;
+    }
     .ed-decision.vote { border-left-color: #8fd38f; }
     .ed-decision.abstain { border-left-color: #d38f8f; }
     .ed-decision .ed-decision-verb { font-weight: 600; color: #fff; }
-    .ed-rerouted-note { margin-top: 0.5rem; font-size: 0.65rem; color: #aaa; line-height: 1.5; }
+    .ed-rerouted-note {
+      margin-top: 0.55rem; font-size: 0.83rem; color: #b5b5b5; line-height: 1.6;
+    }
     .ed-rerouted-note strong { color: #ddd; }
-    /* Per-node breakdown — one row per continuous node, sorted by contribution.
-       Bar shows respondent (left dot) vs candidate (right dot) on a 1-5 scale.
-       Contribution column reads the share this node added to the total
-       weighted distance² (so big swing nodes pop). */
-    .ed-focus-header { margin: 0.9rem 0 0.5rem; padding: 0.55rem 0.7rem; background: #1d1d1d; border: 1px solid #2c2c2c; }
-    .ed-focus-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 600; color: #fff; }
-    .ed-focus-stat { display: flex; gap: 1rem; margin-top: 0.35rem; font-size: 0.68rem; color: #999; }
-    .ed-focus-stat .ed-stat-value { color: #ddd; font-family: 'Courier Prime', monospace; font-weight: 600; }
-    .ed-node-list { display: flex; flex-direction: column; gap: 0; }
-    .ed-node-row { display: grid; grid-template-columns: 1.4fr 2fr 0.8fr; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid #242424; }
-    .ed-node-row:last-child { border-bottom: none; }
-    .ed-node-name { font-size: 0.74rem; color: #ddd; font-weight: 500; }
-    .ed-node-name .ed-node-cluster { display: block; font-size: 0.55rem; color: #777; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.1rem; }
-    .ed-node-act { display: inline-block; font-size: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.03rem 0.28rem; border-radius: 2px; margin-left: 0.3rem; vertical-align: 1px; }
-    .ed-node-act.x2 { background: rgba(255,216,107,0.2); color: #ffd86b; }
-    .ed-node-act.x3 { background: rgba(255,107,107,0.25); color: #ff8080; }
-    /* Position bar — 1-5 scale axis with two dots: yours + candidate's. */
-    .ed-pos-bar { position: relative; height: 18px; }
-    .ed-pos-axis { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #333; }
-    .ed-pos-tick { position: absolute; top: 50%; width: 1px; height: 5px; background: #333; transform: translate(-50%, -50%); }
-    .ed-pos-dot { position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%; transform: translate(-50%, -50%); border: 1.5px solid #161616; }
-    .ed-pos-dot.you { background: #6fa6ff; z-index: 2; }
-    .ed-pos-dot.cand { background: #fff; z-index: 1; }
-    .ed-pos-poles { display: flex; justify-content: space-between; font-size: 0.55rem; color: #666; margin-top: 0.15rem; line-height: 1.2; gap: 0.4rem; }
-    .ed-pos-poles span:last-child { text-align: right; }
-    .ed-contrib { text-align: right; font-family: 'Courier Prime', monospace; font-size: 0.68rem; color: #888; font-variant-numeric: tabular-nums; }
-    .ed-contrib-bar { display: inline-block; height: 5px; background: linear-gradient(90deg, #555, #999); margin-left: 0.4rem; vertical-align: middle; min-width: 1px; }
-    .ed-contrib.high { color: #ffd86b; }
-    .ed-contrib.high .ed-contrib-bar { background: linear-gradient(90deg, #b88c1a, #ffd86b); }
-    /* Legend strip above breakdown — quick "blue = you, white = them" key. */
-    .ed-legend { display: flex; gap: 1rem; font-size: 0.62rem; color: #888; margin-bottom: 0.4rem; }
-    .ed-legend-item { display: inline-flex; align-items: center; gap: 0.3rem; }
-    .ed-legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── Per-node breakdown for focused candidate ────────────────────── */
+    .ed-focus-header { margin-bottom: 0.85rem; padding: 0.75rem 0.9rem; background: #1d1d1d; border: 1px solid #2c2c2c; }
+    .ed-focus-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .ed-focus-stat { display: flex; gap: 1.5rem; margin-top: 0.4rem; font-size: 0.85rem; color: #aaa; }
+    .ed-focus-stat .ed-stat-value { color: #fff; font-family: 'Courier Prime', monospace; font-weight: 600; margin-left: 0.3rem; }
+    .ed-legend { display: flex; gap: 1.25rem; font-size: 0.78rem; color: #aaa; margin-bottom: 0.7rem; align-items: center; }
+    .ed-legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .ed-legend-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
     .ed-legend-dot.you { background: #6fa6ff; }
     .ed-legend-dot.cand { background: #fff; }
-    /* Footer notes — modifier breakdown, categorical note, missing-data note. */
-    .ed-modifiers { margin-top: 0.8rem; padding: 0.55rem 0.7rem; background: #1d1d1d; border: 1px dashed #333; font-size: 0.66rem; color: #aaa; }
-    .ed-modifiers .ed-mod-row { display: flex; justify-content: space-between; padding: 0.15rem 0; }
-    .ed-modifiers .ed-mod-row .ed-mod-val { font-family: 'Courier Prime', monospace; color: #ddd; }
-    .ed-modifiers .ed-mod-note { font-size: 0.6rem; color: #777; margin-top: 0.3rem; line-height: 1.45; font-style: italic; }
-    .ed-empty-note { color: #888; font-size: 0.7rem; font-style: italic; padding: 0.6rem 0; }
+    .ed-node-list { display: flex; flex-direction: column; gap: 0; }
+    .ed-node-row {
+      display: grid; grid-template-columns: 1.5fr 2.4fr 1fr; align-items: center; gap: 1rem;
+      padding: 0.7rem 0; border-bottom: 1px solid #242424;
+    }
+    .ed-node-row:last-child { border-bottom: none; }
+    .ed-node-name { font-size: 0.95rem; color: #e6e6e6; font-weight: 500; }
+    .ed-node-name .ed-node-cluster { display: block; font-size: 0.65rem; color: #777; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; font-weight: 600; }
+    .ed-node-act {
+      display: inline-block; font-size: 0.62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.1rem 0.38rem; border-radius: 2px; margin-left: 0.45rem;
+      vertical-align: 1px;
+    }
+    .ed-node-act.x2 { background: rgba(255,216,107,0.2); color: #ffd86b; }
+    .ed-node-act.x3 { background: rgba(255,107,107,0.25); color: #ff8080; }
+    /* Position bar — bigger and more legible than v21.6. */
+    .ed-pos-bar { position: relative; height: 28px; background: rgba(255,255,255,0.025); border-radius: 2px; }
+    .ed-pos-axis { position: absolute; left: 6%; right: 6%; top: 50%; height: 2px; background: #2e2e2e; border-radius: 1px; }
+    .ed-pos-tick { position: absolute; top: 50%; width: 2px; height: 8px; background: #3a3a3a; transform: translate(-50%, -50%); border-radius: 1px; }
+    .ed-pos-dot {
+      position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 50%;
+      transform: translate(-50%, -50%); border: 2px solid #161616;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
+    }
+    .ed-pos-dot.you { background: #6fa6ff; z-index: 2; }
+    .ed-pos-dot.cand { background: #fff; z-index: 1; }
+    .ed-pos-poles {
+      display: flex; justify-content: space-between; font-size: 0.7rem;
+      color: #888; margin-top: 0.3rem; line-height: 1.3; gap: 0.6rem;
+    }
+    .ed-pos-poles span:last-child { text-align: right; }
+    .ed-contrib {
+      text-align: right; font-family: 'Courier Prime', monospace;
+      font-size: 0.92rem; color: #aaa; font-variant-numeric: tabular-nums; font-weight: 600;
+    }
+    .ed-contrib-share { display: block; }
+    .ed-contrib-bar {
+      display: block; height: 4px; background: #555;
+      margin-top: 0.35rem; margin-left: auto; min-width: 2px; max-width: 100%;
+      border-radius: 2px;
+    }
+    .ed-contrib.high { color: #ffd86b; }
+    .ed-contrib.high .ed-contrib-bar { background: linear-gradient(90deg, #b88c1a, #ffd86b); }
+
+    /* ── Full signature table — you vs every candidate × all 12 nodes ── */
+    .ed-sig-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'Courier Prime', monospace; font-size: 0.88rem;
+    }
+    .ed-sig-table th, .ed-sig-table td {
+      padding: 0.45rem 0.4rem; text-align: center; vertical-align: middle;
+      border-bottom: 1px solid #242424;
+    }
+    .ed-sig-table th {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 0.78rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em;
+      background: #1a1a1a; position: sticky; top: 0;
+    }
+    .ed-sig-table th.sig-cand-col { color: #ccc; padding-bottom: 0.55rem; }
+    .ed-sig-table th.sig-cand-col .sig-cand-thumb {
+      display: block; width: 28px; height: 28px; border-radius: 50%; margin: 0 auto 0.25rem;
+      border: 1.5px solid; background: rgba(0,0,0,0.4); overflow: hidden; position: relative;
+    }
+    .ed-sig-table th.sig-cand-col .sig-cand-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ed-sig-table th.sig-cand-col.dem .sig-cand-thumb { border-color: var(--dem-blue); }
+    .ed-sig-table th.sig-cand-col.rep .sig-cand-thumb { border-color: var(--rep-red); }
+    .ed-sig-table th.sig-cand-col.third .sig-cand-thumb { border-color: var(--third-gold); }
+    .ed-sig-table th.sig-cand-col.other .sig-cand-thumb { border-color: #888; }
+    .ed-sig-table th.sig-cand-col .sig-cand-label { font-size: 0.7rem; }
+    .ed-sig-table th.sig-you-col { color: #6fa6ff; }
+    .ed-sig-table td.sig-node {
+      text-align: left; font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; color: #ddd; font-weight: 500; padding-left: 0.1rem;
+    }
+    .ed-sig-table td.sig-node .sig-node-cluster { font-size: 0.6rem; color: #777; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 0.3rem; }
+    .ed-sig-table td.sig-cell {
+      position: relative; min-width: 44px;
+      color: #aaa; font-weight: 600;
+    }
+    .ed-sig-table td.sig-cell.you-col { color: #fff; background: rgba(111,166,255,0.06); }
+    /* Closeness highlight — when the user's distance to this candidate on
+       this node is in the smallest ~20% of the row's spread, tint the cell.
+       Helps with "where do I match this person?" pattern-spotting. */
+    .ed-sig-table td.sig-cell.close { background: rgba(143,211,143,0.12); color: #cdebcd; }
+    .ed-sig-table td.sig-cell.far { background: rgba(211,143,143,0.10); color: #f3c5c5; }
+    .ed-sig-table tr.act-row { background: rgba(255,216,107,0.04); }
+    .ed-sig-table tr.act-row td.sig-node::after {
+      content: ' ●'; color: #ffd86b; font-size: 0.7rem; vertical-align: 1px;
+    }
+    .ed-sig-table tr.super-act-row { background: rgba(255,107,107,0.05); }
+    .ed-sig-table tr.super-act-row td.sig-node::after {
+      content: ' ●●'; color: #ff8080; font-size: 0.7rem; vertical-align: 1px;
+    }
+    .ed-sig-table-legend {
+      margin-top: 0.7rem; font-size: 0.78rem; color: #888; line-height: 1.6;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+    .ed-sig-table-legend .leg-swatch {
+      display: inline-block; width: 12px; height: 12px; border-radius: 2px;
+      vertical-align: -2px; margin-right: 0.35rem;
+    }
+    .ed-sig-table-legend .leg-swatch.close { background: rgba(143,211,143,0.4); }
+    .ed-sig-table-legend .leg-swatch.far { background: rgba(211,143,143,0.4); }
+    .ed-sig-table-legend .leg-swatch.act { background: rgba(255,216,107,0.5); }
+
+    /* Modifiers footer */
+    .ed-modifiers {
+      margin-top: 1rem; padding: 0.75rem 0.9rem; background: #1d1d1d;
+      border: 1px dashed #333; font-size: 0.85rem; color: #b5b5b5;
+    }
+    .ed-modifiers .ed-mod-row {
+      display: flex; justify-content: space-between; padding: 0.25rem 0;
+    }
+    .ed-modifiers .ed-mod-row .ed-mod-val {
+      font-family: 'Courier Prime', monospace; color: #fff; font-weight: 600;
+    }
+    .ed-modifiers .ed-mod-note {
+      font-size: 0.78rem; color: #888; margin-top: 0.5rem;
+      line-height: 1.55; font-style: italic;
+    }
+    .ed-empty-note { color: #888; font-size: 0.88rem; font-style: italic; padding: 0.7rem 0; }
+
+    /* Narrow-viewport fallback — let the panel become full-width on small screens. */
+    @media (max-width: 900px) {
+      #election-detail-panel { width: 100vw; min-width: 0; max-width: none; }
+      .ed-sig-table { font-size: 0.78rem; }
+      .ed-sig-table th.sig-cand-col .sig-cand-thumb { width: 24px; height: 24px; }
+    }
 
     /* SECTION 4: PROFILE */
     #profile-section { padding: 2rem 0 2.5rem; }
@@ -1885,6 +2061,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailPanel = document.getElementById('election-detail-panel');
     const detailBackdrop = document.getElementById('election-detail-backdrop');
     let detailFocusByYear = {}; // remember last-focused candidate per year
+    // Track which sections the user has manually collapsed; preserved across
+    // re-renders within a session (clicking a different cell, swapping focus).
+    // Defaults: era + matchup + breakdown open, signature table collapsed.
+    const sectionDefaults = { era: false, matchup: false, breakdown: false, signatures: true };
+    const sectionState = { ...sectionDefaults };
+
+    // ── Pretty era-summary, used in the header subtitle and the era section.
+    // Maps "no activation" / "activated: MAT, CD" / "super-activated: MAT" into
+    // a human sentence, plus pulls the LLM-pass rationale from the JSON notes.
+    function renderEraBadges(era) {
+      const bits = [];
+      [...era.super_activated].forEach(n => {
+        const label = (NODE_META[n] && NODE_META[n].name) || n;
+        bits.push(`<span class="ed-era-badge x3"><span class="ed-badge-mult">3×</span>${label} <span style="opacity:0.7;font-weight:500;font-size:0.7rem;">super-activated</span></span>`);
+      });
+      [...era.activated].filter(n => !era.super_activated.has(n)).forEach(n => {
+        const label = (NODE_META[n] && NODE_META[n].name) || n;
+        bits.push(`<span class="ed-era-badge x2"><span class="ed-badge-mult">2×</span>${label} <span style="opacity:0.7;font-weight:500;font-size:0.7rem;">activated</span></span>`);
+      });
+      return bits.length > 0
+        ? `<div class="ed-era-badges">${bits.join('')}</div>`
+        : `<div class="ed-era-empty">No nodes received an era-activation boost — vote was driven by candidate-level factors and the respondent's own salience pattern.</div>`;
+    }
+
+    function eraOneLineSummary(era) {
+      if (era.super_activated.size > 0) {
+        const n = [...era.super_activated][0];
+        const label = (NODE_META[n] && NODE_META[n].name) || n;
+        return `Organized around ${label}`;
+      }
+      if (era.activated.size > 0) {
+        const labels = [...era.activated].map(n => (NODE_META[n] && NODE_META[n].name) || n);
+        return `Sorted on ${labels.join(' + ')}`;
+      }
+      return 'No PRISM-node activation';
+    }
+
+    // Helper for the candidate photo tile — reuses the existing getPhoto map
+    // (declared at the module top) so the panel uses the same lookup as the
+    // grid cell photos.
+    function renderCandPhoto(name, year, partyClass, sizeClass) {
+      const url = getPhoto(name, year);
+      const initial = (name || '?').replace(/^[A-Z]\.\s*/, '').charAt(0).toUpperCase() || '?';
+      const photoInner = url
+        ? `<img src="${url}" alt="${escapeAttr(name)}" loading="lazy" onerror="this.style.display='none'"><span class="ed-cand-initial">${initial}</span>`
+        : `<span class="ed-cand-initial">${initial}</span>`;
+      return `<div class="ed-cand-photo ${partyClass} ${sizeClass || ''}">${photoInner}</div>`;
+    }
+
+    // Per-row "closeness" classification for the signature table: shows
+    // where you and a candidate land within ~1 unit on a 1–5 scale.
+    function closenessClass(diff) {
+      if (diff <= 1.0) return 'close';
+      if (diff >= 2.5) return 'far';
+      return '';
+    }
 
     function openElectionDetail(year, focusName) {
       const pred = rawPredsByYear[year];
@@ -1904,67 +2136,84 @@ document.addEventListener('DOMContentLoaded', () => {
         ? candProfilesAll.find(c => c.name === focusScore.name)
         : null;
 
-      // Header — year, era notes if present, close button.
+      // ── Header
+      const subtitleParts = ranked.length === 1
+        ? [`${ranked[0].name} (${ranked[0].party}) — unopposed`]
+        : ranked.length === 2
+          ? [`${ranked[0].name} vs ${ranked[1].name}`]
+          : [`${ranked[0].name} vs ${ranked[1].name} + ${ranked.length - 2} more`];
       let html = `<div class="ed-header">`;
       html += `  <div class="ed-header-row">`;
-      html += `    <div><div class="ed-year">${year}</div>`;
-      const ctxBits = [];
-      if (era.super_activated.size > 0) ctxBits.push(`super-activated: ${[...era.super_activated].join(', ')}`);
-      else if (era.activated.size > 0) ctxBits.push(`activated: ${[...era.activated].join(', ')}`);
-      else ctxBits.push('no era activation');
-      html += `    <div class="ed-context">${ctxBits.join(' · ')}</div></div>`;
-      html += `    <button class="ed-close" aria-label="Close" onclick="closeElectionDetail()">×</button>`;
+      html += `    <div style="min-width:0;">`;
+      html += `      <div class="ed-year">${year}</div>`;
+      html += `      <div class="ed-subtitle">${subtitleParts.join(' · ')}</div>`;
+      html += `      <div class="ed-context">${eraOneLineSummary(era)}</div>`;
+      html += `    </div>`;
+      html += `    <div class="ed-header-actions">`;
+      html += `      <button class="ed-icon-btn toggle-all" onclick="toggleAllElectionSections()" title="Expand or collapse all sections">Toggle all</button>`;
+      html += `      <button class="ed-icon-btn ed-close" aria-label="Close" onclick="closeElectionDetail()">×</button>`;
+      html += `    </div>`;
       html += `  </div>`;
       html += `</div>`;
 
       html += `<div class="ed-body">`;
 
-      // Matchup — clickable list. Click a row to swap focus.
-      html += `<div class="ed-section-label">The matchup</div>`;
+      // ── Section: era context ─────────────────────────────────────────
+      const eraNote = era.notes ? `<div class="ed-era-summary">${era.notes}</div>` : '';
+      const tierLine = eraActivations && eraActivations.elections && eraActivations.elections[String(year)]
+        ? `<div class="ed-era-tier">Activation call: tier ${eraActivations.elections[String(year)].tier || '—'} (LLM-pass methodology, see footer).</div>`
+        : '';
+      html += sectionWrap('era', 'Era context', eraNote + renderEraBadges(era) + tierLine);
+
+      // ── Section: matchup — candidate cards ───────────────────────────
+      let matchupBody = `<div class="ed-cand-list">`;
       ranked.forEach(c => {
         const tags = [];
         if (c.name === ballotName) tags.push('<span class="ed-cand-tag ballot">ballot</span>');
         if (c.name === valuesName && valuesName !== ballotName) tags.push('<span class="ed-cand-tag values">values</span>');
         const focusedCls = c.name === focus ? ' focused' : '';
-        html += `<div class="ed-cand-row${focusedCls}" data-cand="${escapeAttr(c.name)}">`;
-        html += `  <span class="ed-cand-dot ${partyToUiDot(c.party)}"></span>`;
-        html += `  <span class="ed-cand-name">${c.name}<span class="ed-cand-party">${c.party}</span>${tags.length ? `<span class="ed-cand-tags">${tags.join('')}</span>` : ''}</span>`;
-        html += `  <span class="ed-cand-dist">${c.distance.toFixed(2)}</span>`;
-        html += `</div>`;
+        const partyCls = partyToUiDot(c.party);
+        matchupBody += `<div class="ed-cand-card${focusedCls}" data-cand="${escapeAttr(c.name)}">`;
+        matchupBody += `  ${renderCandPhoto(c.name, year, partyCls)}`;
+        matchupBody += `  <div class="ed-cand-info">`;
+        matchupBody += `    <div class="ed-cand-name">${c.name}${tags.length ? `<span class="ed-cand-tags">${tags.join('')}</span>` : ''}</div>`;
+        matchupBody += `    <div class="ed-cand-meta">${c.party}</div>`;
+        matchupBody += `  </div>`;
+        matchupBody += `  <div class="ed-cand-dist">${c.distance.toFixed(2)}</div>`;
+        matchupBody += `</div>`;
       });
-
-      // Decision strip — vote vs abstain + clearing bar.
+      matchupBody += `</div>`;
+      // Decision + reroute notes live inside the matchup section since they
+      // describe the matchup outcome.
       if (pred.clearingBar != null && pred.decision) {
         const dcls = pred.decision === 'vote' ? 'vote' : 'abstain';
         const verb = pred.decision === 'vote' ? 'You voted' : 'You abstained';
-        html += `<div class="ed-decision ${dcls}"><span class="ed-decision-verb">${verb}</span> · clearing bar ${pred.clearingBar.toFixed(2)}</div>`;
+        matchupBody += `<div class="ed-decision ${dcls}"><span class="ed-decision-verb">${verb}</span> · clearing bar ${pred.clearingBar.toFixed(2)}</div>`;
       }
       const rerouted = pred.decision === 'vote' && valuesName && valuesName !== ballotName;
       if (rerouted) {
-        html += `<div class="ed-rerouted-note">Closest by values: <strong>${valuesName}</strong>. Modeled ballot: <strong>${ballotName}</strong> after vote-choice modifiers (party loyalty, strategic voting, non-ideological factors).</div>`;
+        matchupBody += `<div class="ed-rerouted-note">Closest by values: <strong>${valuesName}</strong>. Modeled ballot: <strong>${ballotName}</strong> after vote-choice modifiers (party loyalty, strategic voting, non-ideological factors).</div>`;
       }
+      html += sectionWrap('matchup', 'The matchup', matchupBody, `${ranked.length} candidate${ranked.length === 1 ? '' : 's'}`);
 
-      // Per-node breakdown for the focused candidate.
-      html += `<div class="ed-focus-header">`;
-      html += `  <div class="ed-focus-name">Your distance from ${focusScore.name}</div>`;
-      html += `  <div class="ed-focus-stat"><span>Values: <span class="ed-stat-value">${focusScore.baseIdeologicalDistance != null ? focusScore.baseIdeologicalDistance.toFixed(2) : focusScore.distance.toFixed(2)}</span></span><span>Final: <span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span></div>`;
-      html += `</div>`;
-
+      // ── Section: per-node breakdown for focused candidate ────────────
+      let bdBody = `<div class="ed-focus-header">`;
+      bdBody += `  <div class="ed-focus-name">Your distance from ${focusScore.name}</div>`;
+      bdBody += `  <div class="ed-focus-stat">`;
+      bdBody += `    <span>Values<span class="ed-stat-value">${focusScore.baseIdeologicalDistance != null ? focusScore.baseIdeologicalDistance.toFixed(2) : focusScore.distance.toFixed(2)}</span></span>`;
+      bdBody += `    <span>Final<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
+      bdBody += `  </div>`;
+      bdBody += `</div>`;
       if (!focusProfile) {
-        html += `<div class="ed-empty-note">Per-node breakdown unavailable — candidate profile data not loaded for this election.</div>`;
+        bdBody += `<div class="ed-empty-note">Per-node breakdown unavailable — candidate profile data not loaded for this election.</div>`;
       } else {
         const bd = computeBreakdown(focusProfile, era, sig);
         if (bd.rows.length === 0) {
-          html += `<div class="ed-empty-note">No comparable nodes between your signature and ${focusScore.name}.</div>`;
+          bdBody += `<div class="ed-empty-note">No comparable nodes between your signature and ${focusScore.name}.</div>`;
         } else {
-          html += `<div class="ed-section-label">Per-node breakdown · sorted by impact</div>`;
-          html += `<div class="ed-legend"><span class="ed-legend-item"><span class="ed-legend-dot you"></span>You</span><span class="ed-legend-item"><span class="ed-legend-dot cand"></span>${focusScore.name}</span></div>`;
-          // Biggest contributors first — these are the nodes that drove your
-          // (dis)agreement. Skipping zero-contribution rows feels misleading
-          // since "low salience" is meaningful information; keep them in but
-          // dimmed visually via the bar width.
+          bdBody += `<div class="ed-legend"><span class="ed-legend-item"><span class="ed-legend-dot you"></span>You</span><span class="ed-legend-item"><span class="ed-legend-dot cand"></span>${focusScore.name}</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
           const sorted = bd.rows.slice().sort((a, b) => b.contribution - a.contribution);
-          html += `<div class="ed-node-list">`;
+          bdBody += `<div class="ed-node-list">`;
           sorted.forEach(r => {
             const meta = NODE_META[r.node] || { name: r.node, cluster: '', low: '', high: '' };
             const yourLeft = ((r.yourPos - 1) / 4) * 100;
@@ -1973,26 +2222,24 @@ document.addEventListener('DOMContentLoaded', () => {
                           : r.mult === 2 ? '<span class="ed-node-act x2">2×</span>'
                           : '';
             const contribCls = r.share > 0.20 ? 'ed-contrib high' : 'ed-contrib';
-            html += `<div class="ed-node-row">`;
-            html += `  <div class="ed-node-name">${meta.name}${actBadge}<span class="ed-node-cluster">${meta.cluster}</span></div>`;
-            html += `  <div>`;
-            html += `    <div class="ed-pos-bar">`;
-            html += `      <div class="ed-pos-axis"></div>`;
-            for (let i = 0; i < 5; i++) html += `<div class="ed-pos-tick" style="left:${i * 25}%"></div>`;
-            html += `      <div class="ed-pos-dot cand" style="left:${candLeft}%" title="${focusScore.name}: ${r.candPos}"></div>`;
-            html += `      <div class="ed-pos-dot you" style="left:${yourLeft}%" title="You: ${r.yourPos.toFixed(1)}"></div>`;
-            html += `    </div>`;
-            html += `    <div class="ed-pos-poles"><span>${meta.low}</span><span>${meta.high}</span></div>`;
-            html += `  </div>`;
-            html += `  <div class="${contribCls}">${(r.share * 100).toFixed(0)}%<span class="ed-contrib-bar" style="width:${Math.max(2, r.barPct * 0.5)}px"></span></div>`;
-            html += `</div>`;
+            const barPx = Math.max(8, r.barPct * 0.7);
+            bdBody += `<div class="ed-node-row">`;
+            bdBody += `  <div class="ed-node-name">${meta.name}${actBadge}<span class="ed-node-cluster">${meta.cluster}</span></div>`;
+            bdBody += `  <div>`;
+            bdBody += `    <div class="ed-pos-bar">`;
+            bdBody += `      <div class="ed-pos-axis"></div>`;
+            for (let i = 0; i < 5; i++) bdBody += `<div class="ed-pos-tick" style="left:${6 + i * 22}%"></div>`;
+            bdBody += `      <div class="ed-pos-dot cand" style="left:${6 + (candLeft * 0.88)}%" title="${focusScore.name}: ${r.candPos}"></div>`;
+            bdBody += `      <div class="ed-pos-dot you" style="left:${6 + (yourLeft * 0.88)}%" title="You: ${r.yourPos.toFixed(1)}"></div>`;
+            bdBody += `    </div>`;
+            bdBody += `    <div class="ed-pos-poles"><span>${meta.low}</span><span>${meta.high}</span></div>`;
+            bdBody += `  </div>`;
+            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${(r.share * 100).toFixed(0)}%</span><span class="ed-contrib-bar" style="width:${barPx}px"></span></div>`;
+            bdBody += `</div>`;
           });
-          html += `</div>`;
+          bdBody += `</div>`;
         }
-
-        // Modifier strip — show the mechanical pieces that turned values-distance
-        // into the final modeled ballot distance, so users can see why their
-        // values match wasn't necessarily their ballot.
+        // Modifiers footer
         const mods = [];
         if (focusScore.moralFloorPenalty && focusScore.moralFloorPenalty > 0) {
           mods.push(`<div class="ed-mod-row"><span>Moral-floor penalty</span><span class="ed-mod-val">+${focusScore.moralFloorPenalty.toFixed(2)}</span></div>`);
@@ -2008,13 +2255,70 @@ document.addEventListener('DOMContentLoaded', () => {
           mods.push(`<div class="ed-mod-row"><span>Negative-partisanship</span><span class="ed-mod-val">×${focusScore.negativePartisanshipMultiplier.toFixed(2)}</span></div>`);
         }
         if (mods.length > 0) {
-          html += `<div class="ed-modifiers">`;
-          html += `  <div class="ed-section-label" style="margin-top:0;color:#888;">Modifiers applied to values distance</div>`;
-          html += mods.join('');
-          html += `  <div class="ed-mod-note">Per-node breakdown above shows values-only contributions. EPS/AES (style) and any moral-circle compound terms are folded into the values total but not expanded per-node here.</div>`;
-          html += `</div>`;
+          bdBody += `<div class="ed-modifiers">`;
+          bdBody += `  <div style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">Modifiers applied to values distance</div>`;
+          bdBody += mods.join('');
+          bdBody += `  <div class="ed-mod-note">Per-node breakdown above shows values-only contributions. EPS/AES (style) and the compound moral-circle term are folded into the values total but not expanded per-node here.</div>`;
+          bdBody += `</div>`;
         }
       }
+      html += sectionWrap('breakdown', `Your distance · ${focusScore.name}`, bdBody, `final ${focusScore.distance.toFixed(2)}`);
+
+      // ── Section: full signature table — you vs every candidate ───────
+      // Continuous nodes only (12). For each row: your pos + each candidate's
+      // pos. Cells get .close/.far tinting based on absolute diff from you.
+      // Activated nodes get a ●/●● marker on the node label.
+      const sigBody = (() => {
+        if (!candProfilesAll || candProfilesAll.length === 0) {
+          return `<div class="ed-empty-note">Candidate profiles missing for this election.</div>`;
+        }
+        // Header row — thumbnails for each candidate column.
+        let h = `<table class="ed-sig-table"><thead><tr>`;
+        h += `<th style="text-align:left;">Node</th>`;
+        h += `<th class="sig-you-col">You</th>`;
+        ranked.forEach(c => {
+          const partyCls = partyToUiDot(c.party);
+          const url = getPhoto(c.name, year);
+          const initial = (c.name || '?').replace(/^[A-Z]\.\s*/, '').charAt(0).toUpperCase() || '?';
+          const thumbInner = url
+            ? `<img src="${url}" alt="${escapeAttr(c.name)}" loading="lazy" onerror="this.style.display='none'">`
+            : `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:rgba(255,255,255,0.85);font-weight:700;font-size:0.85rem;">${initial}</span>`;
+          h += `<th class="sig-cand-col ${partyCls}"><span class="sig-cand-thumb">${thumbInner}</span><span class="sig-cand-label">${c.name}</span></th>`;
+        });
+        h += `</tr></thead><tbody>`;
+        // Body rows — one per continuous node.
+        BREAKDOWN_NODES.forEach(node => {
+          const meta = NODE_META[node] || { name: node, cluster: '' };
+          const isSuper = era.super_activated.has(node);
+          const isAct = era.activated.has(node) && !isSuper;
+          const rowCls = isSuper ? 'super-act-row' : (isAct ? 'act-row' : '');
+          const sEntry = sig[node];
+          const yourPosStr = sEntry ? sEntry.pos.toFixed(1) : '—';
+          h += `<tr class="${rowCls}">`;
+          h += `  <td class="sig-node">${meta.name}<span class="sig-node-cluster">${meta.cluster}</span></td>`;
+          h += `  <td class="sig-cell you-col">${yourPosStr}</td>`;
+          ranked.forEach(c => {
+            const profile = candProfilesAll.find(cc => cc.name === c.name);
+            if (!profile || profile[node] == null) {
+              h += `<td class="sig-cell">—</td>`;
+            } else {
+              const candPos = profile[node];
+              const diff = sEntry ? Math.abs(sEntry.pos - candPos) : null;
+              const cls = diff != null ? closenessClass(diff) : '';
+              h += `<td class="sig-cell ${cls}">${candPos}</td>`;
+            }
+          });
+          h += `</tr>`;
+        });
+        h += `</tbody></table>`;
+        h += `<div class="ed-sig-table-legend">`;
+        h += `  <span><span class="leg-swatch close"></span>within 1.0 of you</span>`;
+        h += `  <span><span class="leg-swatch far"></span>2.5+ away</span>`;
+        h += `  <span><span class="leg-swatch act" style="background:#ffd86b;"></span>● activated · ●● super-activated</span>`;
+        h += `</div>`;
+        return h;
+      })();
+      html += sectionWrap('signatures', 'Full signature table — all candidates', sigBody);
 
       html += `</div>`; // /.ed-body
 
@@ -2022,16 +2326,55 @@ document.addEventListener('DOMContentLoaded', () => {
       detailPanel.classList.add('open');
       detailPanel.setAttribute('aria-hidden', 'false');
       detailBackdrop.classList.add('open');
+      detailPanel.scrollTop = 0;
 
-      // Bind matchup-row clicks to swap focus without recomputing the data
-      // fetches — just re-render with the new focus name.
-      detailPanel.querySelectorAll('.ed-cand-row').forEach(row => {
-        row.addEventListener('click', () => {
-          const newFocus = row.dataset.cand;
+      // ── Bind interactions
+      // Candidate-card clicks → swap focus + re-render in place.
+      detailPanel.querySelectorAll('.ed-cand-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const newFocus = card.dataset.cand;
           if (newFocus && newFocus !== focus) openElectionDetail(year, newFocus);
         });
       });
+      // Section-head clicks → toggle that section.
+      detailPanel.querySelectorAll('.ed-section-head').forEach(head => {
+        head.addEventListener('click', () => {
+          const sec = head.parentElement;
+          const id = sec.dataset.sectionId;
+          sec.classList.toggle('collapsed');
+          if (id) sectionState[id] = sec.classList.contains('collapsed');
+        });
+      });
     }
+
+    // Section primitive — wraps a body in a collapsible section. Reads the
+    // current sectionState so toggles persist across re-renders.
+    function sectionWrap(id, title, body, meta) {
+      const collapsed = sectionState[id] ? ' collapsed' : '';
+      const metaSpan = meta ? `<span class="ed-section-meta">${meta}</span>` : '';
+      return `<section class="ed-section${collapsed}" data-section-id="${id}">`
+        + `<div class="ed-section-head"><span class="ed-chev">▾</span>${title}${metaSpan}</div>`
+        + `<div class="ed-section-body">${body}</div>`
+        + `</section>`;
+    }
+
+    // Header "Toggle all" — if any section is open, collapse all; otherwise
+    // expand all. Reflects the new state on every section element + sectionState.
+    function toggleAllElectionSections() {
+      const sections = detailPanel.querySelectorAll('.ed-section');
+      const anyOpen = [...sections].some(s => !s.classList.contains('collapsed'));
+      sections.forEach(s => {
+        const id = s.dataset.sectionId;
+        if (anyOpen) {
+          s.classList.add('collapsed');
+          if (id) sectionState[id] = true;
+        } else {
+          s.classList.remove('collapsed');
+          if (id) sectionState[id] = false;
+        }
+      });
+    }
+    window.toggleAllElectionSections = toggleAllElectionSections;
 
     function closeElectionDetail() {
       detailPanel.classList.remove('open');
