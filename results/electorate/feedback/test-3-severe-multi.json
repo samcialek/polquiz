@@ -1,0 +1,210 @@
+{
+  "year": 2020,
+  "failures": [
+    {
+      "subgroup": "white-non-college",
+      "metric": "D",
+      "predicted": 0.55,
+      "benchmark": 0.3,
+      "deltaPp": 25.000000000000007,
+      "tolerancePp": 7,
+      "severity": "severe",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "high",
+          "rationale": "white-non-college D-share is over-predicting by 25.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated. This is a known realignment cell; check moral-boundary loading and culturally-coded items."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "high",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to white-non-college."
+        },
+        {
+          "category": "vote_formula_error",
+          "confidence": "medium",
+          "rationale": "white-non-college is a realignment cell. Inspect how moral-boundary salience and the salience-power weighting interact for this subgroup's dominant moral-boundary loadings."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"white-non-college\" (race / education / age axes for political-coalition shifts).",
+        "Cross-check moral-boundary loadings for white-non-college — uniform-mapper outputs across realignment cells often hide a load-bearing miscalibration.",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding.",
+        "Trace a single agent in this subgroup through respondentVoteChoice with telemetry on; see which node-impact term dominates the distance and whether that aligns with the subgroup's actual decisive axis."
+      ],
+      "isMissingData": false
+    },
+    {
+      "subgroup": "white-college",
+      "metric": "D",
+      "predicted": 0.75,
+      "benchmark": 0.51,
+      "deltaPp": 24,
+      "tolerancePp": 7,
+      "severity": "severe",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "high",
+          "rationale": "white-college D-share is over-predicting by 24.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated. This is a known realignment cell; check moral-boundary loading and culturally-coded items."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "high",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to white-college."
+        },
+        {
+          "category": "vote_formula_error",
+          "confidence": "medium",
+          "rationale": "white-college is a realignment cell. Inspect how moral-boundary salience and the salience-power weighting interact for this subgroup's dominant moral-boundary loadings."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"white-college\" (race / education / age axes for political-coalition shifts).",
+        "Cross-check moral-boundary loadings for white-college — uniform-mapper outputs across realignment cells often hide a load-bearing miscalibration.",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding.",
+        "Trace a single agent in this subgroup through respondentVoteChoice with telemetry on; see which node-impact term dominates the distance and whether that aligns with the subgroup's actual decisive axis."
+      ],
+      "isMissingData": false
+    },
+    {
+      "subgroup": "race:Latino",
+      "metric": "D",
+      "predicted": 0.78,
+      "benchmark": 0.55,
+      "deltaPp": 23,
+      "tolerancePp": 7,
+      "severity": "severe",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "high",
+          "rationale": "race:Latino D-share is over-predicting by 23.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated. This is a known realignment cell; check moral-boundary loading and culturally-coded items."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "high",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to race:Latino."
+        },
+        {
+          "category": "vote_formula_error",
+          "confidence": "medium",
+          "rationale": "race:Latino is a realignment cell. Inspect how moral-boundary salience and the salience-power weighting interact for this subgroup's dominant moral-boundary loadings."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"race:Latino\" (race / education / age axes for political-coalition shifts).",
+        "Cross-check moral-boundary loadings for race:Latino — uniform-mapper outputs across realignment cells often hide a load-bearing miscalibration.",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding.",
+        "Trace a single agent in this subgroup through respondentVoteChoice with telemetry on; see which node-impact term dominates the distance and whether that aligns with the subgroup's actual decisive axis."
+      ],
+      "isMissingData": false
+    },
+    {
+      "subgroup": "race:Asian",
+      "metric": "D",
+      "predicted": 0.7,
+      "benchmark": 0.55,
+      "deltaPp": 14.999999999999991,
+      "tolerancePp": 7,
+      "severity": "moderate",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "medium",
+          "rationale": "race:Asian D-share is over-predicting by 15.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated. This is a known realignment cell; check moral-boundary loading and culturally-coded items."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "medium",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to race:Asian."
+        },
+        {
+          "category": "vote_formula_error",
+          "confidence": "low",
+          "rationale": "race:Asian is a realignment cell. Inspect how moral-boundary salience and the salience-power weighting interact for this subgroup's dominant moral-boundary loadings."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"race:Asian\" (race / education / age axes for political-coalition shifts).",
+        "Cross-check moral-boundary loadings for race:Asian — uniform-mapper outputs across realignment cells often hide a load-bearing miscalibration.",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding.",
+        "Trace a single agent in this subgroup through respondentVoteChoice with telemetry on; see which node-impact term dominates the distance and whether that aligns with the subgroup's actual decisive axis."
+      ],
+      "isMissingData": false
+    },
+    {
+      "subgroup": "age:18-29",
+      "metric": "D",
+      "predicted": 0.74,
+      "benchmark": 0.62,
+      "deltaPp": 12,
+      "tolerancePp": 7,
+      "severity": "moderate",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "medium",
+          "rationale": "age:18-29 D-share is over-predicting by 12.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "medium",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to age:18-29."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"age:18-29\" (race / education / age axes for political-coalition shifts).",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding."
+      ],
+      "isMissingData": false
+    },
+    {
+      "subgroup": "age:65+",
+      "metric": "D",
+      "predicted": 0.5,
+      "benchmark": 0.42,
+      "deltaPp": 8.000000000000002,
+      "tolerancePp": 7,
+      "severity": "minor",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "medium",
+          "rationale": "age:65+ D-share is over-predicting by 8.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "medium",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to age:65+."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"age:65+\" (race / education / age axes for political-coalition shifts).",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding."
+      ],
+      "isMissingData": false
+    }
+  ],
+  "topLevelHypotheses": [
+    "Predicted D share exceeds benchmark in 6/6 D-failures — likely candidate_signature_error: the Democratic candidate is systematically over-attractive across subgroups.",
+    "4/6 failures are on coalition realignment cells (white-college / non-college / race-by-education) — likely mapper_error: survey-to-PRISM mapping may not capture the realignment axis. Inspect moral-boundary loadings for these cells."
+  ],
+  "summary": {
+    "totalFailures": 6,
+    "severeCount": 3,
+    "moderateCount": 2,
+    "minorCount": 1,
+    "coverageIssueCount": 0
+  },
+  "meta": {
+    "runAt": "2026-05-02T23:16:16.746Z",
+    "sourceTolerancePp": 7
+  }
+}

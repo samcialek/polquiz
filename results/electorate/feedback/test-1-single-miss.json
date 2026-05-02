@@ -1,0 +1,53 @@
+{
+  "year": 2020,
+  "failures": [
+    {
+      "subgroup": "white-college",
+      "metric": "D",
+      "predicted": 0.71,
+      "benchmark": 0.51,
+      "deltaPp": 19.999999999999996,
+      "tolerancePp": 7,
+      "severity": "moderate",
+      "diagnoses": [
+        {
+          "category": "mapper_error",
+          "confidence": "medium",
+          "rationale": "white-college D-share is over-predicting by 20.0pp. Survey-item-to-PRISM mapping for the nodes that distinguish this subgroup may be miscalibrated. This is a known realignment cell; check moral-boundary loading and culturally-coded items."
+        },
+        {
+          "category": "candidate_signature_error",
+          "confidence": "medium",
+          "rationale": "Democratic candidate signature may be off — check this candidate's node coding for the dimensions most salient to white-college."
+        },
+        {
+          "category": "vote_formula_error",
+          "confidence": "low",
+          "rationale": "white-college is a realignment cell. Inspect how moral-boundary salience and the salience-power weighting interact for this subgroup's dominant moral-boundary loadings."
+        }
+      ],
+      "recommendedInspection": [
+        "Open mapping/survey-to-prism.yaml; review survey items that drive the nodes most salient to \"white-college\" (race / education / age axes for political-coalition shifts).",
+        "Cross-check moral-boundary loadings for white-college — uniform-mapper outputs across realignment cells often hide a load-bearing miscalibration.",
+        "Open src/historical/candidates.ts for the relevant election; review the Democratic candidate's node coding (especially MAT / CD / CU / ONT_S and AES if style was decisive).",
+        "Compare this candidate's signature against any nearby-year candidate to spot inconsistent coding.",
+        "Trace a single agent in this subgroup through respondentVoteChoice with telemetry on; see which node-impact term dominates the distance and whether that aligns with the subgroup's actual decisive axis."
+      ],
+      "isMissingData": false
+    }
+  ],
+  "topLevelHypotheses": [
+    "No systematic cross-failure pattern detected. Each failure row stands on its own; treat per-row diagnoses as the working theory."
+  ],
+  "summary": {
+    "totalFailures": 1,
+    "severeCount": 0,
+    "moderateCount": 1,
+    "minorCount": 0,
+    "coverageIssueCount": 0
+  },
+  "meta": {
+    "runAt": "2026-05-02T23:16:16.745Z",
+    "sourceTolerancePp": 7
+  }
+}
