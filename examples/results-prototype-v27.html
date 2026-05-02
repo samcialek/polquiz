@@ -527,14 +527,14 @@
       grid-row: 2 / span 100;
       align-self: start;
     }
-    /* Hide the moral-circle title + tagline above the sunburst — visual is
-       enough; details live in the per-wedge tooltips. */
+    /* Strip everything around the sunburst — title, tagline, AND legend.
+       The wedges are already labeled in the SVG; per-wedge hover gives
+       the rest. The chart can now use the full right-column width. */
     .cluster-panel .moral-circle-title,
-    .cluster-panel .moral-circle-tagline { display: none; }
+    .cluster-panel .moral-circle-tagline,
+    .cluster-panel .moral-circle-legend { display: none; }
     .cluster-panel .moral-circle-svg-wrap { padding: 0; }
-    .cluster-panel .moral-circle-svg-wrap svg { max-width: 200px; }
-    .cluster-panel .moral-circle-legend { font-size: 0.72rem; gap: 0.18rem 0.7rem; padding-top: 0.45rem; margin-top: 0.35rem; border-top-width: 1px; }
-    .cluster-panel .moral-circle-legend .swatch { width: 9px; height: 9px; }
+    .cluster-panel .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
     @media (max-width: 920px) {
       .profile-flex { flex-direction: column; align-items: stretch; gap: 1.25rem; }
       .profile-donut-col { position: static; flex-basis: auto; }
