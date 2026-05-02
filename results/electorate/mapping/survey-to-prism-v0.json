@@ -1,0 +1,363 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-02",
+  "scope": "First-pass survey_to_prism mapper specification for modern survey-era backtest (2008, 2012, 2016, 2020, 2024)",
+  "inputs": [
+    "results/electorate/intake/ces-anes-codebook-intake.md",
+    "results/electorate/intake/acs-esri-geography-intake.md",
+    "results/electorate/intake/variable-catalog-v0.json"
+  ],
+  "terminology": {
+    "moral_boundary_salience": "Replaces legacy 'partisan fusion' / 'tribalism' framing. Universal moral circle is the baseline; each per-boundary salience is the loading above that baseline on a specific identity-political dimension.",
+    "engagement": "Continuous one-dimensional scalar (range 0-10). NOT 'activation'. Governs participation/abstention propensity.",
+    "PF_TRB": "NOT mapper outputs. Legacy code may reference these field names; if so, populated as compatibility shims derived from moral-boundary outputs."
+  },
+  "coverage_legend": {
+    "strong": "Standard battery directly measures the construct",
+    "proxy": "Adjacent measure with reasonable inferential bridge",
+    "weak": "No direct measure; weak inferential coverage",
+    "missing": "No usable variable in this source",
+    "derived": "Constructed from a combination of variables"
+  },
+  "uncertainty_legend": {
+    "low": "3+ converging items per respondent typical",
+    "medium": "1-2 items per respondent or composite inference",
+    "high": "Sparse evidence, broad fallback prior, or structurally weak coverage"
+  },
+  "data_role": {
+    "ACS": "Poststratification weighting only. Never overrides survey answers for an individual respondent. May supply weak demographic priors as fallback only.",
+    "Esri": "Geography hooks only. Not an individual political mapper. No PRISM target receives primary signal from Esri."
+  },
+  "output_signature_shape": {
+    "MAT":   { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "CD":    { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "CU":    { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "MOR":   { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"], "note": "universal-circle posture" },
+    "moralBoundaries": {
+      "fields": ["national.salience(0-3)", "ethnic_racial.salience(0-3)", "religious.salience(0-3)", "class.salience(0-3)", "ideological.salience(0-3)", "gender.salience(0-3)", "political_camp.salience(0-3)", "intensity.value(0-3)"],
+      "note": "each per-boundary salience carries its own uncertainty flag"
+    },
+    "PRO":   { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "COM":   { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "ZS":    { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "ONT_H": { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "ONT_S": { "fields": ["posPosterior(Dist5)", "salPosterior(Dist4)", "uncertainty"] },
+    "EPS":   { "fields": ["catDistribution(Dist6)", "salPosterior(Dist4)", "uncertainty"], "categories": ["empiricist", "institutionalist", "traditionalist", "intuitionist", "autonomous", "nihilist"] },
+    "AES":   { "fields": ["catDistribution(Dist6)", "salPosterior(Dist4)", "uncertainty"], "categories": ["statesman", "technocrat", "pastoral", "authentic", "fighter", "visionary"] },
+    "engagement": { "fields": ["value(0-10)", "uncertainty"], "note": "continuous scalar; NOT activation" },
+    "legacyShims_optional": { "PF": "derived from moralBoundaries.political_camp", "TRB": "derived from moralBoundaries.intensity x dominant_boundary" }
+  },
+  "targets": {
+    "MAT": {
+      "description": "Material orientation (1=redistribution, 5=free-market)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "proxy", "ces_year": "strong", "anes_cumulative": "strong", "anes_year": "strong" },
+      "source_variables": {
+        "ces_cumulative": ["economy_retro", "faminc", "union", "investor", "no_healthins"],
+        "ces_year_specific": ["CC16_337_1 cut defense", "CC16_337_2 cut domestic", "CC16_337_3 raise taxes", "CC16_415r deficit-reduction tax-vs-cut", "CC16_416r tax-type income-vs-sales", "CC16_351I repeal ACA", "CC16_351K min wage"],
+        "anes_cumulative": ["VCF0809 jobs/standard-of-living", "VCF0839 gov services/spending", "VCF0806 gov health insurance"],
+        "anes_year_specific": ["year-specific V20xxxx items on healthcare/taxes/jobs/min-wage"]
+      },
+      "mapping_direction": "Liberal-end answers (raise taxes, expand healthcare, support gov jobs) -> MAT position low (1-2). Free-market answers -> high (4-5).",
+      "uncertainty_per_respondent": "low if 3+ items; medium if 1-2",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "salPosterior": "centered at 1.5", "uncertainty": "high" },
+      "validation_risks": "Direction unambiguous. Risk: pid7 correlates strongly with MAT in modern eras — must NOT use party ID as MAT input or mapper becomes circular for vote prediction. Use party ID only for political-camp salience."
+    },
+    "CD": {
+      "description": "Cultural direction (1=progressive, 5=traditionalist)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "weak", "ces_year": "strong", "anes_cumulative": "strong", "anes_year": "strong" },
+      "source_variables": {
+        "ces_cumulative": ["relig_imp", "relig_church"],
+        "ces_year_specific": ["CC16_332a-f abortion battery", "CC16_335 gay marriage", "LGBTQ/gender-identity items 2018+"],
+        "anes_cumulative": ["VCF0837/0838 abortion", "VCF0834 women's role", "VCF0876/0877 gay rights"],
+        "anes_year_specific": ["trans rights, gender identity, religious accommodation 2020+"]
+      },
+      "mapping_direction": "Progressive answers -> CD low (1-2). Traditionalist answers -> high (4-5).",
+      "uncertainty_per_respondent": "medium for any 2-item CES year-specific; high for full battery",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "salPosterior": "derived from relig_imp", "uncertainty": "high" },
+      "validation_risks": "Trans-rights items CD-loaded only 2020+. Mapper needs era-specific item selection. Mixed-position respondents need posterior smoothing."
+    },
+    "CU": {
+      "description": "Cultural uniformity / pluralism (1=one shared way, 5=different ways side-by-side)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "weak", "ces_year": "strong", "anes_cumulative": "proxy", "anes_year": "strong" },
+      "source_variables": {
+        "ces_year_specific": ["CC16_331_1-8 immigration battery (DACA, refugees, Muslim ban, English/civic)"],
+        "anes_cumulative": ["VCF0879 immigration levels"],
+        "anes_year_specific": ["V202232/233/234 immigration levels/jobs/refugees in 2020"]
+      },
+      "mapping_direction": "Pluralist / pro-immigration / multi-culture -> CU high (4-5). Restrictionist / one-shared-way -> CU low (1-2).",
+      "uncertainty_per_respondent": "medium from CES year-specific; low from ANES VCF alone",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "salPosterior": "centered at 1.5", "uncertainty": "high" },
+      "validation_risks": "CU and CD often co-vary; joint factor analysis preferred. National-identity items load on CU AND moralBoundaries.national; mapper must split signal."
+    },
+    "MOR_position": {
+      "description": "Universal moral-circle posture (1=narrow/in-group, 5=universal)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "weak", "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "derived" },
+      "source_variables": {
+        "ces_year_specific": ["refugee + Muslim-ban items (CC16_331_5/_8)", "foreign aid items"],
+        "anes_cumulative": ["VCF0830 aid to Black Americans + immigration items + thermometer differentials"],
+        "anes_year_specific": ["group-empathy battery 2020", "foreign-aid items"]
+      },
+      "mapping_direction": "Universalist (support refugees, foreign aid, narrow in-group/out-group thermometer gap) -> MOR high (4-5). Narrow-circle -> low (1-2).",
+      "uncertainty_per_respondent": "medium when 3+ items; high only with thermometer-gap signal (ANES path)",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "uncertainty": "high" },
+      "validation_risks": "MOR position and moral-boundary salience are conceptually orthogonal — narrow MOR + high overall moral-boundary loading = tribal nationalist; wide MOR + low loading = chill cosmopolitan. Mapper must not collapse these."
+    },
+    "moralBoundaries": {
+      "description": "7-boundary loading vector + intensity scalar. Replaces partisan-fusion / tribalism framing. Universal moral circle is baseline; each boundary loading is salience above baseline on that specific identity-political dimension.",
+      "output_type": "per-boundary salience scalar 0-3 + aggregate intensity",
+      "boundaries": {
+        "national": {
+          "coverage": { "ces_cumulative": "weak", "ces_year": "proxy", "anes_cumulative": "strong", "anes_year": "strong" },
+          "source_variables": ["national-pride items", "immigration restrictiveness composite", "flag/anthem items in some ANES waves"],
+          "mapping_direction": "High national-pride + immigration restrictionism + 'America first' framing -> high salience (2.5-3). Globalist / anti-nationalist -> low (0-0.5).",
+          "uncertainty": "medium typical; high when 4+ items converge",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "National-pride items vary across waves; ANES more consistent than CES."
+        },
+        "ethnic_racial": {
+          "coverage": { "ces_cumulative": "proxy", "ces_year": "derived", "anes_cumulative": "strong", "anes_year": "strong" },
+          "source_variables": ["own-race vs other-race feeling thermometer differential", "VCF0830 aid to Black Americans", "race-policy items", "Black Lives Matter items 2020+"],
+          "mapping_direction": "Wide own-race vs other-race thermometer gap + race-conscious policy stance -> high salience. Symmetric thermometers + race-blind framing -> low salience.",
+          "uncertainty": "medium for CES; high for ANES with thermometers",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "MUST NOT conflate respondent's own race with high ethnic-racial salience. Salience is about how a boundary structures political reasoning, not group membership."
+        },
+        "religious": {
+          "coverage": { "ces_cumulative": "strong", "ces_year": "strong", "anes_cumulative": "strong", "anes_year": "strong" },
+          "source_variables": ["relig_imp x relig_church x relig_bornagain composite", "religion-in-public-life items"],
+          "mapping_direction": "High relig_imp + frequent relig_church + relig_bornagain -> high salience. Atheist/never-attends -> low (0-0.5).",
+          "uncertainty": "medium to high for most respondents",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "Best-covered moral boundary. Risk: cultural Christians (identify but rarely attend) may have high political religious salience that single-item relig_imp misses."
+        },
+        "class": {
+          "coverage": { "ces_cumulative": "proxy", "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "proxy" },
+          "source_variables": ["union + union_hh + faminc x educ interaction", "rich-vs-poor thermometer gap", "rural-urban identity items 2020+"],
+          "mapping_direction": "Rich-vs-poor thermometer gap + economic-conflict salience + union household -> high salience. Detached-from-class-framing -> low.",
+          "uncertainty": "low to medium",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "Most implicit moral boundary in US surveys. Americans rarely self-describe class identity even when their politics is class-organized. Mapper must accept low confidence."
+        },
+        "ideological": {
+          "coverage": { "ces_cumulative": "strong", "ces_year": "strong", "anes_cumulative": "strong", "anes_year": "strong" },
+          "source_variables": ["ideo5 strength + pid7 strength composite", "VCF0803 7-pt ideology + VCF0810 strength", "liberal-vs-conservative thermometer gap (VCF0211/0212)"],
+          "mapping_direction": "Strong ideological self-placement + wide liberal-conservative thermometer gap -> high salience. Centrist/non-ideological -> low.",
+          "uncertainty": "low for most respondents",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "Strong coverage. Risk: ideology strength correlates with engagement; mapper must not double-count engagement signal."
+        },
+        "gender": {
+          "coverage": { "ces_cumulative": "proxy", "ces_year": "derived", "anes_cumulative": "proxy", "anes_year": "strong" },
+          "source_variables": ["gender x political behavior interaction", "sexuality for LGBTQ", "gender-identity policy items 2018+", "Me Too/Planned Parenthood thermometers (V202183, V202185 in 2020)"],
+          "mapping_direction": "Gender-conscious policy stance + wide men-vs-women thermometer gap + Me Too engagement -> high salience. Gender-blind framing -> low.",
+          "uncertainty": "low to medium",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "Asymmetric: gender salience as a moral boundary is much higher among women in modern data, but mapper must NOT assume 'respondent is woman -> gender salience high'. Depends on whether their politics is organized around gender."
+        },
+        "political_camp": {
+          "coverage": { "ces_cumulative": "proxy", "ces_year": "derived", "anes_cumulative": "strong", "anes_year": "strong" },
+          "source_variables": ["pid7 strength alone (CES)", "VCF0201 - VCF0202 Dem-vs-Rep thermometer gap x VCF0301 party-ID 7-pt strength (canonical affective polarization measure)", "out-party thermometers"],
+          "mapping_direction": "Wide party-thermometer gap + strong partisan ID + high political-camp consciousness -> high salience. Independent/split-ticket/cross-party-warm -> low.",
+          "uncertainty": "medium for CES (pid7 strength alone is blunt); low for ANES with thermometers",
+          "fallback_prior": { "salience": 1.0, "uncertainty": "high" },
+          "risks": "ANES dramatically beats CES here. Mapper confidence much higher with thermometers. DO NOT call this 'partisan fusion' — that's a legacy framing."
+        },
+        "intensity": {
+          "description": "Aggregate moral-boundary loading scalar 0-3",
+          "computation": "Composite of seven per-boundary salience values; e.g., intensity = max(per_boundary) * 0.6 + mean(per_boundary) * 0.4, capped at 3",
+          "coverage": "Inherits worst coverage across contributing boundaries",
+          "uncertainty": "Minimum confidence across contributing boundaries (no more reliable than weakest input)",
+          "fallback_prior": "If 5+ boundaries at fallback prior, intensity also falls back to 1.0 with high uncertainty",
+          "risks": "Optional output for engine consumers needing single scalar (older code paths). Should not be primary signal — per-boundary breakdown is richer."
+        }
+      }
+    },
+    "PRO": {
+      "description": "Proceduralism (1=results, 5=rules)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "missing", "ces_year": "weak", "anes_cumulative": "proxy", "anes_year": "weak" },
+      "source_variables": {
+        "ces_year_specific": ["election-integrity items 2020/2024", "willingness-to-break-norms items sporadic"],
+        "anes_cumulative": ["VCF0604 trust in government", "VCF0606 who-government-benefits"],
+        "anes_year_specific": ["democracy-norms battery 2020+", "election-legitimacy items 2020+"]
+      },
+      "mapping_direction": "High norm-respect + procedural trust -> PRO high (4-5). Willing to break rules / 'results matter' -> low (1-2).",
+      "uncertainty_per_respondent": "low to medium even with best inputs",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "uncertainty": "high" },
+      "validation_risks": "Weak survey coverage. Mapper must accept PRO as highest-uncertainty continuous node. Vote-formula sensitivity to PRO is a model-coverage risk if engine relies heavily on it."
+    },
+    "COM": {
+      "description": "Compromise tolerance (1=principled, 5=dealmaker)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "missing", "ces_year": "missing", "anes_cumulative": "weak", "anes_year": "weak" },
+      "source_variables": {
+        "anes_year_specific": ["'politicians should compromise' Likert items in 2016, 2020"]
+      },
+      "mapping_direction": "Pro-compromise -> COM high; principled / no-deals -> low (when items exist)",
+      "uncertainty_per_respondent": "low for nearly all respondents",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "salPosterior": "weakly derived from pid7-strength x ideo5-strength", "uncertainty": "high" },
+      "validation_risks": "Weakest-covered continuous node. v0 mapper output for COM near-uniform-prior across most of electorate. Engine consumers must know COM is not a high-signal field."
+    },
+    "ZS": {
+      "description": "Zero-sum orientation (1=positive-sum, 5=zero-sum)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "weak", "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "strong" },
+      "source_variables": {
+        "ces_cumulative": ["economy_retro"],
+        "ces_year_specific": ["trade items", "inter-group economic competition"],
+        "anes_cumulative": ["race-aid + immigration-takes-jobs"],
+        "anes_year_specific": ["V202233 immigration-takes-jobs in 2020"]
+      },
+      "mapping_direction": "'Their gain is our loss' across trade/immigration/economic -> ZS high (4-5). Positive-sum / 'rising tide' -> ZS low (1-2).",
+      "uncertainty_per_respondent": "medium when 3+ items converge",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "uncertainty": "high" },
+      "validation_risks": "ZS often correlates with moralBoundaries.national and ethnic_racial — joint estimation prevents double-counting."
+    },
+    "ONT_H": {
+      "description": "Human malleability (1=fixed, 5=shaped by environment)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "missing", "ces_year": "missing", "anes_cumulative": "derived", "anes_year": "proxy" },
+      "source_variables": {
+        "anes_year_specific": ["Feldman-Stenner authoritarian-parenting battery (V162267-V162272 in 2016 — verify)"]
+      },
+      "mapping_direction": "Authoritarian-parenting answers (obedience > self-reliance) -> ONT_H low (1-2; humans fixed). Permissive-parenting -> high (4-5; humans shaped by environment).",
+      "uncertainty_per_respondent": "medium from full Feldman-Stenner battery; low otherwise",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "uncertainty": "high" },
+      "validation_risks": "CES-only mapper path has effectively no ONT_H signal. v0 spec recommends accepting ONT_H = uniform prior for CES electorates rather than imputing from demographics (risky)."
+    },
+    "ONT_S": {
+      "description": "System ontology (1=rigged, 5=institutions can produce good change)",
+      "output_type": "position+salience",
+      "coverage": { "ces_cumulative": "weak", "ces_year": "derived", "anes_cumulative": "strong", "anes_year": "strong" },
+      "source_variables": {
+        "ces_cumulative": ["approval_pres", "approval_rep"],
+        "ces_year_specific": ["'system rigged' items 2016+"],
+        "anes_cumulative": ["VCF0604 trust in government", "VCF0606 benefits-few-vs-many"],
+        "anes_year_specific": ["trust-in-institutions battery: gov, courts, media, science (V162310-series 2016)"]
+      },
+      "mapping_direction": "High trust in institutions + belief institutions can produce good change -> ONT_S high (4-5). 'System is rigged' / institutional nihilism -> low (1-2).",
+      "uncertainty_per_respondent": "high for ANES path with trust battery; medium for CES",
+      "fallback_prior": { "posPosterior": "uniform Dist5", "salPosterior": "centered at 1.5", "uncertainty": "high" },
+      "validation_risks": "Beware partisan situational confound: under co-partisan administration, in-party partisans report higher trust than they 'really' hold. Weight non-administration-tied institutions (courts, scientists) over presidential approval."
+    },
+    "EPS_distribution": {
+      "description": "Epistemic style distribution (categorical: 6 categories)",
+      "categories": ["empiricist", "institutionalist", "traditionalist", "intuitionist", "autonomous", "nihilist"],
+      "output_type": "category-distribution+salience",
+      "coverage": { "ces_cumulative": "missing", "ces_year": "derived", "anes_cumulative": "derived", "anes_year": "proxy" },
+      "source_variables": {
+        "ces_year_specific": ["newsint", "media-trust items 2018+", "trust-in-experts items"],
+        "anes_cumulative": ["trust-in-media + science-trust items"],
+        "anes_year_specific": ["faith-in-experts/science battery 2020"]
+      },
+      "mapping_direction": "High science-trust + media-trust + journalism-trust -> empiricist or institutionalist weight. Religious-authority preference -> traditionalist. Personal-experience-only -> autonomous. Distrust all sources -> nihilist.",
+      "uncertainty_per_respondent": "low to medium — categorical 6-way assignment from 2-3 items has substantial uncertainty",
+      "fallback_prior": { "catDistribution": "broad prior centered on institutionalist+empiricist [0.20, 0.30, 0.10, 0.15, 0.15, 0.10]", "uncertainty": "high" },
+      "validation_risks": "v0 mapper must output probability distribution over 6 categories, NOT hard categorical assignment. Most respondents land on a mixture rather than a clean bucket."
+    },
+    "AES_distribution": {
+      "description": "Aesthetic style distribution (categorical: 6 categories)",
+      "categories": ["statesman", "technocrat", "pastoral", "authentic", "fighter", "visionary"],
+      "output_type": "category-distribution+salience",
+      "coverage": { "all_sources": "missing" },
+      "source_variables": "Surveys do not directly probe aesthetic preference",
+      "mapping_direction": "n/a",
+      "uncertainty_per_respondent": "high by construction",
+      "fallback_prior": { "catDistribution": "uniform Dist6 [1/6 x 6]", "salPosterior": "centered at 1.0", "uncertainty": "high" },
+      "validation_risks": "Per ADR-003, AES is archetype-label flavor and not load-bearing for vote prediction. v0 mapper outputs uniform AES for everyone — honest answer. DO NOT infer AES from candidate-feeling-thermometer differentials (circular for vote prediction). If non-circular AES proxy identified later, this is the right place to add it."
+    },
+    "engagement": {
+      "description": "Continuous one-dimensional scalar 0-10. NOT activation. Governs participation/abstention.",
+      "output_type": "continuous-scalar",
+      "scale": "0 = apolitical, 10 = highly engaged",
+      "coverage": { "ces_cumulative": "strong", "ces_year": "strong", "anes_cumulative": "strong", "anes_year": "strong" },
+      "source_variables": {
+        "ces_cumulative": ["newsint 4-pt news interest", "intent_turnout_self", "voted_turnout_self", "vv_turnout_gvm validated"],
+        "ces_year_specific": ["political-discussion items in some cycles"],
+        "anes_cumulative": ["interest-in-campaign + follow-politics + past-vote items"],
+        "anes_year_specific": ["social-media political activity 2016+"]
+      },
+      "mapping_direction": "Validated turnout=1 + newsint='most of the time' + multiple past-cycles voted + frequent political-discussion -> engagement near 10. Validated turnout=0 + newsint='hardly at all' + no past voting -> near 0.",
+      "uncertainty_per_respondent": "high when vv_turnout_gvm available; medium from self-report only",
+      "fallback_prior": { "value": 5.0, "uncertainty": "high" },
+      "explicitly_NOT": "activation. Engagement is not a binary. Mapper outputs real-valued scalar — engine consumers should treat as such.",
+      "validation_risks": "vv_turnout_gvm is gold-standard component; weight heavily. intent_turnout_self overstates actual turnout — discount relative to validated. Self-report bias is asymmetric (over-reporting voting much more common than under-reporting)."
+    },
+    "legacy_compatibility_shims": {
+      "description": "Optional output, NOT primary mapper concepts. Sunset when engine no longer reads these field names directly.",
+      "PF_legacy": {
+        "derivation": "posPosterior reflecting moralBoundaries.political_camp.salience mapped to 1-5 scale (salience 0 -> pos 1; salience 3 -> pos 5)",
+        "status": "compatibility shim only"
+      },
+      "TRB_legacy": {
+        "derivation": "posPosterior reflecting moralBoundaries.intensity x dominant_boundary_indicator mapped to 1-5",
+        "status": "compatibility shim only"
+      }
+    }
+  },
+  "coverage_uncertainty_matrix": {
+    "MAT":                              { "ces_cum": "P", "ces_yr": "S", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" },
+    "CD":                               { "ces_cum": "W", "ces_yr": "S", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" },
+    "CU":                               { "ces_cum": "W", "ces_yr": "S", "anes_cum": "P", "anes_yr": "S", "best_uncertainty": "medium" },
+    "MOR_position":                     { "ces_cum": "W", "ces_yr": "D", "anes_cum": "D", "anes_yr": "D", "best_uncertainty": "medium" },
+    "moralBoundaries.national":         { "ces_cum": "W", "ces_yr": "P", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "medium" },
+    "moralBoundaries.ethnic_racial":    { "ces_cum": "P", "ces_yr": "D", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "medium" },
+    "moralBoundaries.religious":        { "ces_cum": "S", "ces_yr": "S", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" },
+    "moralBoundaries.class":            { "ces_cum": "P", "ces_yr": "D", "anes_cum": "D", "anes_yr": "P", "best_uncertainty": "high" },
+    "moralBoundaries.ideological":      { "ces_cum": "S", "ces_yr": "S", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" },
+    "moralBoundaries.gender":           { "ces_cum": "P", "ces_yr": "D", "anes_cum": "P", "anes_yr": "S", "best_uncertainty": "medium" },
+    "moralBoundaries.political_camp":   { "ces_cum": "P", "ces_yr": "D", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "medium" },
+    "moralBoundaries.intensity":        { "note": "inherits worst input" },
+    "PRO":                              { "ces_cum": "M", "ces_yr": "W", "anes_cum": "P", "anes_yr": "W", "best_uncertainty": "high" },
+    "COM":                              { "ces_cum": "M", "ces_yr": "M", "anes_cum": "W", "anes_yr": "W", "best_uncertainty": "high" },
+    "ZS":                               { "ces_cum": "W", "ces_yr": "D", "anes_cum": "D", "anes_yr": "S", "best_uncertainty": "medium" },
+    "ONT_H":                            { "ces_cum": "M", "ces_yr": "M", "anes_cum": "D", "anes_yr": "P", "best_uncertainty": "high" },
+    "ONT_S":                            { "ces_cum": "W", "ces_yr": "D", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" },
+    "EPS_distribution":                 { "ces_cum": "M", "ces_yr": "D", "anes_cum": "D", "anes_yr": "P", "best_uncertainty": "high" },
+    "AES_distribution":                 { "ces_cum": "M", "ces_yr": "M", "anes_cum": "M", "anes_yr": "M", "best_uncertainty": "high" },
+    "engagement":                       { "ces_cum": "S", "ces_yr": "S", "anes_cum": "S", "anes_yr": "S", "best_uncertainty": "low" }
+  },
+  "mapper_revision_protocol": {
+    "five_way_failure_classification": [
+      "mapper_error: survey-to-PRISM mapping miscalibrated for the failing subgroup. Revise this spec.",
+      "candidate_signature_error: candidate's PRISM coding off. Revise candidate signature, NOT mapper.",
+      "turnout_engagement_error: mapper's engagement mis-estimates participation. Investigate engagement coverage first; only revise mapper if engagement inputs clearly under-utilized.",
+      "vote_formula_error: engine's distance/weighting/clearing-bar logic produces wrong outputs even with correct mapper outputs. Engine-side issue; mapper unchanged.",
+      "benchmark_or_coverage_error: benchmark missing, subgroup tag mis-spelled, or population not in scope. Fix benchmarks/tagger; mapper unchanged."
+    ],
+    "mapper_error_decision_rules": [
+      "Candidate signature for the election independently audited and reasonable",
+      "Engagement/turnout for failing subgroup tracks reported levels (no gross mis-estimation)",
+      "Engine vote-formula validated against other-cycle predictions for similar subgroups",
+      "Failing subgroup's per-target uncertainty was NOT already flagged 'high' (high-uncertainty targets are expected to mispredict; that's coverage gap, not mapper bug)"
+    ],
+    "no_overfit_guardrails": [
+      "One-cycle rule: do NOT revise mapping based on a single year's failure. Hold proposed change against >=2 cycles. If improves failing year but worsens another by >=1 severity bucket, reject.",
+      "Subgroup-symmetric check: a revision helping one subgroup at cost of another is usually a coverage problem, not a mapper problem.",
+      "Direction-of-effect sanity: revision must have defensible theoretical direction-of-effect, not just empirical one.",
+      "Document every revision with: failing year, failing subgroup, gate-output severity, hypothesized cause, proposed change, cross-cycle holdout result, decision (accept/reject/per-cycle override)."
+    ],
+    "structural_vs_per_cycle": {
+      "structural_revision": "Changes mapping for all cycles equally. Requires holdout validation across >=3 cycles + revision history entry.",
+      "per_cycle_override": "Documented adjustment for a specific year (e.g., Vietnam-elevated national salience in 1968). Each override is a coverage gap acknowledged, not a fix — flagged as known gap until structural revision absorbs it."
+    },
+    "never_trigger_revision": [
+      "A single year's popular-vote-share miss without coalition decomposition",
+      "Pressure from candidate-signature debate (different problem)",
+      "Pressure from engine knob debates (different problem)",
+      "An election that surprised pundits (an election surprising pundits is not, by itself, evidence the mapper is wrong)"
+    ]
+  },
+  "open_issues_for_v1": [
+    "Joint vs independent posterior fitting — v0 treats targets independently; v1 should explore joint fitting (e.g., MAT and CD have known joint structure: libertarians, populists)",
+    "morBoundaries inference order — parallel vs sequential boundary fitting; v0 treats as parallel, v1 should test",
+    "Engagement -> turnout function — engine-side decision; mapper's 0-10 scale calibrated to be easy to map to clearing-bar thresholds",
+    "Era-specific item availability — v0 coverage labels assume modern CES/ANES; pre-2008 mappings need different (mostly thinner) labels",
+    "ANES VCF code verification — codes from training-data knowledge in A1 should be verified against actual codebooks before any ANES-VCF mapping is coded"
+  ],
+  "revision_history": []
+}
