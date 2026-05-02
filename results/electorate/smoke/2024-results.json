@@ -1,0 +1,873 @@
+{
+  "year": 2024,
+  "totalVoters": 121,
+  "voted": {
+    "D": 68,
+    "R": 46,
+    "T": 0,
+    "O": 0
+  },
+  "abstain": 7,
+  "voteShare": {
+    "D": 0.5619834710743802,
+    "R": 0.38016528925619836,
+    "T": 0,
+    "O": 0
+  },
+  "voteShareOfTurnout": {
+    "D": 0.5964912280701754,
+    "R": 0.40350877192982454,
+    "T": 0,
+    "O": 0
+  },
+  "turnoutRate": 0.9421487603305785,
+  "perArchetype": [
+    {
+      "id": "001",
+      "name": "Rawlsian Reformer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "002",
+      "name": "Independent Social Democrat",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "003",
+      "name": "Consensus Redistributionist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "004",
+      "name": "Labor Reformer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "005",
+      "name": "Pluralist Structuralist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "006",
+      "name": "Fairness Pragmatist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "007",
+      "name": "Solidarist Reformer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "008",
+      "name": "Procedural Redistributionist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "010",
+      "name": "Bread-and-Butter Progressive",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "011",
+      "name": "Jacobin Egalitarian",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "012",
+      "name": "Class-War Leftist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "013",
+      "name": "Radical Leveler",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "014",
+      "name": "Activist Progressive",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "015",
+      "name": "Moral Firebrand",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "016",
+      "name": "Insurgent Equalizer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "017",
+      "name": "Uncompromising Redistributionist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "020",
+      "name": "Grassroots Autonomist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "021",
+      "name": "Principled Cosmopolitan",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "022",
+      "name": "Pluralist Universalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "024",
+      "name": "Ethical Internationalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "026",
+      "name": "Cosmopolitan Pragmatist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "027",
+      "name": "Popperian Liberal",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "028",
+      "name": "Global Caretaker",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "029",
+      "name": "Liberationist Progressive",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "031",
+      "name": "Planetary Steward",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "032",
+      "name": "Hamiltonian Technocrat",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "033",
+      "name": "Systems Modernizer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "035",
+      "name": "Administrative Liberal",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "036",
+      "name": "Institutional Optimizer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "037",
+      "name": "Fabian Modernizer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "039",
+      "name": "Data-Driven Moderate",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "040",
+      "name": "Reform Engineer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "042",
+      "name": "Localist Progressive",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "043",
+      "name": "Quiet Egalitarian",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "045",
+      "name": "Rooted Social Reformer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "046",
+      "name": "Pastoral Leftist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "048",
+      "name": "Solidaristic Localist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "049",
+      "name": "Moral Egalitarian",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "050",
+      "name": "Traditionalist Moralist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "051",
+      "name": "Systemic Redistributionist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "053",
+      "name": "Consensus Builder",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "054",
+      "name": "Arbiter Moderate",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "056",
+      "name": "Institutional Leftist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "057",
+      "name": "Temperate Pluralist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "059",
+      "name": "Public-Minded Moderate",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "060",
+      "name": "Hinge Citizen",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "061",
+      "name": "Millian Liberal",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "062",
+      "name": "Meritocratic Liberal",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "063",
+      "name": "Enterprise Pluralist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "065",
+      "name": "Opportunity Liberal",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "067",
+      "name": "Free-Exchange Modernist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "069",
+      "name": "Bleeding-Heart Libertarian",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "070",
+      "name": "Burkean Steward",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "071",
+      "name": "Constitutional Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "072",
+      "name": "Blackstone Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "073",
+      "name": "Civic Traditionalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "074",
+      "name": "Responsible Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "076",
+      "name": "Fiscal Gradualist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "077",
+      "name": "Ordered Libertarian",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "078",
+      "name": "Meritocratic Conservative",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "079",
+      "name": "National Developmentalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "081",
+      "name": "Heritage Guardian",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "082",
+      "name": "Altar-and-Hearth Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "083",
+      "name": "Closed Traditionalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "085",
+      "name": "Customary Localist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "086",
+      "name": "Duty Traditionalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "087",
+      "name": "Continuity Conservative",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "088",
+      "name": "Gentle Traditionalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "089",
+      "name": "Integral Traditionalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "090",
+      "name": "Hobbesian Guardian",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "091",
+      "name": "Security Paternalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "092",
+      "name": "Partisan Tribalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "094",
+      "name": "Hard-State Manager",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "095",
+      "name": "Emergency Orderist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "097",
+      "name": "Authority Pragmatist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "098",
+      "name": "Anti-Elite Populist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "099",
+      "name": "Scarcity Populist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "100",
+      "name": "Tribal Insurgent",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "101",
+      "name": "Embattled Majoritarian",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "103",
+      "name": "Grievance Mobilizer",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "104",
+      "name": "National Protector",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "105",
+      "name": "Combative Populist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "106",
+      "name": "Militant Partisan",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "107",
+      "name": "Resentful Localist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "108",
+      "name": "Passive Cynic",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "109",
+      "name": "Alienated Outsider",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "110",
+      "name": "Principled Abstainer",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "111",
+      "name": "Cosmopolitan Nonconformist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "112",
+      "name": "Engaged Cosmopolitan",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "113",
+      "name": "Disaffected Contrarian",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "114",
+      "name": "Political Nihilist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "115",
+      "name": "Quietist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "116",
+      "name": "Quiet Middle",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "117",
+      "name": "Comfortable Bystander",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "118",
+      "name": "Survival Pragmatist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "119",
+      "name": "Apolitical Striver",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "120",
+      "name": "Good Neighbor",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "121",
+      "name": "Spectator Citizen",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "122",
+      "name": "Civic Minimalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "124",
+      "name": "Latent Alarmist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "125",
+      "name": "Reluctant Partisan",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "126",
+      "name": "Uncompromising Activist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "127",
+      "name": "Tribal Loyalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "128",
+      "name": "Loyal Democrat",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "129",
+      "name": "Loyal Republican",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "131",
+      "name": "Duty Voter",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "132",
+      "name": "Negative Partisan",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "134",
+      "name": "Progressive Civic Nationalist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "135",
+      "name": "Disruptive Cosmopolitan",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "136",
+      "name": "Aspirational Traditionalist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "137",
+      "name": "Moral Crusader",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "138",
+      "name": "Optimistic Challenger",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "abstain"
+    },
+    {
+      "id": "139",
+      "name": "Civic Assimilationist",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "140",
+      "name": "Market Green Modernist",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "141",
+      "name": "Black Voter",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "142",
+      "name": "White Grievance Voter",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "143",
+      "name": "Evangelical Voter",
+      "nearest": "Trump",
+      "nearestParty": "Republican",
+      "decision": "vote"
+    },
+    {
+      "id": "144",
+      "name": "LGBTQ Voter",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "145",
+      "name": "Feminist Voter",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    },
+    {
+      "id": "146",
+      "name": "Male Grievance Voter",
+      "nearest": "Harris",
+      "nearestParty": "Democratic",
+      "decision": "vote"
+    }
+  ]
+}
