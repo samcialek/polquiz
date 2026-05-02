@@ -521,19 +521,27 @@
     }
     .cluster-panel .node-cluster .cluster-title { grid-column: 1 / -1; }
     .cluster-panel .node-cluster .node-row { grid-column: 1; margin-bottom: 0.7rem !important; }
-    .cluster-panel .node-cluster .cat-vbar-row,
-    .cluster-panel .node-cluster .moral-circle-section {
+    .cluster-panel .node-cluster .cat-vbar-row {
       grid-column: 2;
       grid-row: 2 / span 100;
       align-self: start;
     }
+    /* Sunburst is the SELF cluster's centerpiece — span both columns,
+       center horizontally. Bars (just ENG in SELF) sit above it. */
+    .cluster-panel .node-cluster .moral-circle-section {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 100%;
+      max-width: 480px;
+      margin-top: 0.85rem;
+    }
     /* Strip everything around the sunburst — title, tagline, AND legend.
        The wedges are already labeled in the SVG; per-wedge hover gives
-       the rest. The chart can now use the full right-column width. */
+       the rest. */
     .cluster-panel .moral-circle-title,
     .cluster-panel .moral-circle-tagline,
     .cluster-panel .moral-circle-legend { display: none; }
-    .cluster-panel .moral-circle-svg-wrap { padding: 0; }
+    .cluster-panel .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
     .cluster-panel .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
     @media (max-width: 920px) {
       .profile-flex { flex-direction: column; align-items: stretch; gap: 1.25rem; }
@@ -2963,6 +2971,26 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('stroke', cat.color);
         path.setAttribute('stroke-width', 1);
         path.setAttribute('stroke-opacity', 0.85);
+        path.style.cursor = 'help';
+        // Per-wedge floating tooltip via the v22 attachTip system.
+        const diff = d.position - universalPct;
+        const interp = d.position >= universalPct + 5
+          ? `<strong>In-group preference</strong> — ${diff}% above your universal baseline.`
+          : d.position >= universalPct - 5
+            ? `Within ~5% of your universal baseline — neither preferred nor de-prioritized.`
+            : d.position >= 50
+              ? `Inside your moral circle, but ${-diff}% <em>below</em> your universal baseline.`
+              : `Outside your moral circle (${d.position}% inclusion).`;
+        attachTip(path, buildTip({
+          title: cat.label,
+          desc: `Inclusion of ${cat.label.toLowerCase()} in your moral circle.`,
+          rows: [
+            ['Inclusion', `${d.position}%`],
+            ['Salience', `${d.salience.toFixed(1)} / 3`],
+            ['Universal baseline', `${universalPct}%`],
+          ],
+          interp,
+        }));
         svg.appendChild(path);
       });
 
@@ -3069,7 +3097,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // v16: revert to bar rows for every continuous node — ENDS (MAT, CD, CU),
     // MEANS (PRO, COM, ONT_S), REALITY (ZS, ONT_H). ENG still lives in the
     // page-header badge per v3.
-    const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S'];
+    const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
     const SELF_CODES = [];
     // 50% interquartile bands now appear on every continuous node.
     const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','SELF']);
