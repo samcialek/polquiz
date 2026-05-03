@@ -1,0 +1,150 @@
+{
+  "schema_version": "v0.1",
+  "created": "2026-05-03",
+  "doc_type": "calibration_plan",
+  "phase": "2.4",
+  "scope": "Two-stage turnout/abstention calibration plan for the Phase 2 mapper-backed backtest. Design only; no code or mapper implementation.",
+  "inputs_read": [
+    "results/electorate/backtest/observed-survey-aggregate.md",
+    "results/electorate/backtest/observed-survey-aggregate.json",
+    "results/electorate/backtest/benchmarks-2008-2024.md",
+    "results/electorate/backtest/benchmarks-2008-2024.json",
+    "results/electorate/mapping/survey-to-prism-v0.md",
+    "results/electorate/mapping/survey-to-prism-v0.json",
+    "src/electorate/cesBacktestLoader.ts"
+  ],
+  "phase_2_3_evidence_summary": {
+    "known_voter_conditional_dro_signal": "strong (largest gap any year: 2016 R +2.24pp / D -2.33pp; abs-gap-sum < 5pp every year)",
+    "abstain_share_of_vep_signal": "systematically biased; CCES post-wave weights scale to validated/registered voters not VEP. Survey reports ~0% abstain weight 2012-2024 vs 34.57-41.97% benchmark. 2008 close to benchmark (38.11% vs 38.44%) due to different weight construction.",
+    "unknown_share_signal": "structural and large; 9.52% (2008) to 33.49% (2020); post-wave non-response; cannot be re-fit; must be carried explicitly or modeled."
+  },
+  "decisions": {
+    "Q1_two_stage_decomposition": {
+      "decision": "yes",
+      "rationale": "Phase 2.3 evidence shows known-voter conditional DRO shares are within <3pp of FEC every year, while abstention shares require representing abstainers (which CCES post-wave weights do not). A monolithic joint fit would let strong vote-choice signal carry weak abstention fit, corrupting both.",
+      "stages": {
+        "A": "vote-choice fit conditional on observed voters; denom = D + R + Other survey weight; target = FEC D/R/Other % of total presidential vote",
+        "B": "abstention model + global calibration to benchmark VEP (count-level); operates on full sample but constrained at aggregate level not by sample weights"
+      },
+      "auditability": "Stage A failure = mapper/vote-choice issue. Stage B failure = engagement-to-turnout function issue. Independently auditable."
+    },
+    "Q2_abstention_model": {
+      "decision": "Option_C_engagement_driven_relative_propensity_globally_calibrated",
+      "options_considered": {
+        "A": {
+          "name": "year-level abstention prior from benchmark VEP only",
+          "summary": "p_abstain = constant per year",
+          "verdict": "rejected_as_primary_kept_as_fallback",
+          "reason": "discards all individual engagement signal; renders mapper engagement field inert for participation; useless for subgroup analysis"
+        },
+        "B": {
+          "name": "subgroup/year calibration using survey observed abstention",
+          "summary": "fit per-cell abstention rates from CCES Abstain rows",
+          "verdict": "rejected",
+          "reason": "CCES post-wave abstention is structurally underrepresented (~0% weight 2012-2024). Fitting on 0 propagates weight-frame bias into every subgroup. Survey nonresponse not MAR with respect to vote-choice; using it would cross-contaminate Stage A."
+        },
+        "C": {
+          "name": "engagement-driven propensity, globally calibrated to benchmark abstention",
+          "summary": "p_abstain ∝ f(engagement, demographics); single global multiplier α_year scales to match benchmark count",
+          "verdict": "accepted_v0_primary",
+          "reason": "preserves individual heterogeneity; aggregate match by construction; engagement has 'low' inherent uncertainty per A2 spec; subgroup breakdown emerges naturally"
+        }
+      },
+      "stage_b_specification_v0": {
+        "propensity_function": "f(engagement, demographics) = sigmoid(β_0 - β_eng × engagement + β_age × age_term + ...); initial calibration so f=1.0 at engagement=0 and f=0.05 at engagement=10; exact form is engine concern",
+        "global_calibration": "find α_year such that Σ_i (weight_i × α_year × f_i) = benchmark_abstain_count_year (one-dimensional root-finding per year)",
+        "heterogeneity_preservation": "global scaling shifts mean only; does not flatten distribution; respondents with engagement=8 vs engagement=2 retain different p_abstain after calibration",
+        "fallback_to_option_a": "if engagement coverage drops below 90% for a year, revert to flat per-year prior with explicit degraded_to_option_a flag"
+      },
+      "terminology_note": "engagement is the mapper's continuous one-dimensional scalar (NOT activation); Stage B never re-binarizes it"
+    },
+    "Q3_unknown_handling": {
+      "default": "explicit_first_class_bucket_never_silently_redistributed",
+      "stage_a_scope": "Unknown excluded from known-voter vote-share fit denominator (denom = D + R + Other only); inherits Phase 2.3 convention",
+      "sensitivity_analyses_labeled_never_silent": {
+        "S1": "redistribute Unknown to D/R/Other in proportion to within-state known-voter shares",
+        "S2": "redistribute Unknown to Abstain (all of it)",
+        "S3": "redistribute Unknown 50/50 between S1 distribution and Abstain"
+      },
+      "tag_field": "unknown_handling: 'explicit' | 'S1' | 'S2' | 'S3'",
+      "rationale": "Unknown is structurally informative, not noise. A respondent who took post-wave but refused to disclose vote is different evidence than one who didn't take post-wave. Future mapper revisions may use Unknown demographic profile to refine engagement coverage; bucket must remain accessible.",
+      "ceiling": "if total Unknown share exceeds 40% in any year, this plan needs revisiting (current ceiling: 33.49% in 2020)"
+    },
+    "Q4_first_runnable_target": {
+      "decision": "Stage_A_known_voter_DRO_share_first",
+      "stage_a_target_spec": {
+        "sample_restriction": "voteChoiceObserved ∈ {D, R, Other}",
+        "predicted_pipeline": "respondent → mapper PRISM signature → engine per-candidate distance + clearing-bar → implied vote choice = candidate at min distance",
+        "aggregate": "weighted predicted D/R/Other shares of known-voter total",
+        "comparison": "FEC D/R/Other % of total presidential vote (shares_of_total_*; FEC-PDF-verified)",
+        "report_format": "predicted_D - benchmark_D in pp, per year and per candidate"
+      },
+      "v0_acceptance_bands_pp": {
+        "expected_baseline": "< 5pp per-candidate gap",
+        "good_first_pass": "< 3pp per-candidate gap",
+        "ready_for_stage_b": "< 2pp per-candidate gap"
+      },
+      "why_first": "isolates mapper + vote-formula from engagement/turnout function. Stage A failure = Stage B meaningless. Stage A success = Stage B becomes clean engagement-tuning problem.",
+      "stage_b_can_be_developed_in_parallel": true
+    },
+    "Q5_smoke_invariants": {
+      "stage_a_invariants": [
+        { "id": 1, "label": "all 5 years produce a Stage A result", "hard": true },
+        { "id": 2, "label": "per-year weighted D + R + Other (predicted) > 0", "hard": true },
+        { "id": 3, "label": "predicted shares sum to ~1: |pred_D + pred_R + pred_Other - 1| < 1e-6", "hard": true },
+        { "id": 4, "label": "all three buckets non-zero in years with full data (mapper does not collapse Other)", "hard": true },
+        { "id": 5, "label": "per-candidate gap within v0 acceptance band: |pred_X - bench_X| < 5pp for X in {D,R,Other}", "hard": false, "note": "soft; failure surfaces labeled regression entry, does not abort smoke" },
+        { "id": 6, "label": "no Unknown rows leak into Stage A (sample restriction enforced before aggregation)", "hard": true },
+        { "id": 7, "label": "no mapper output uses pid7 / party-ID-derived fields as primary input to MAT or vote-choice node weights (per A2 spec §2.1 risk)", "hard": true }
+      ],
+      "stage_b_invariants": [
+        { "id": 8, "label": "aggregate calibration exact: |Σ_i (w_i × α_year × f_i) - benchmark_abstain_count| / benchmark_abstain_count < 1e-3", "hard": true },
+        { "id": 9, "label": "engagement covariance non-zero: cov(engagement, p_abstain_calibrated) < 0", "hard": true },
+        { "id": 10, "label": "per-quintile abstention spread > 5pp (top-engagement quintile vs bottom-engagement quintile)", "hard": true },
+        { "id": 11, "label": "Stage B fallback flag set when engagement coverage < 90%", "hard": true }
+      ],
+      "joint_invariants": [
+        { "id": 12, "label": "Unknown handling tag carried in every output: 'explicit' (default) or labeled sensitivity", "hard": true },
+        { "id": 13, "label": "year-level total reconstruction: pred_D_count + pred_R_count + pred_Other_count + pred_Abstain_count + Unknown_count = total_weight (within tolerance)", "hard": true },
+        { "id": 14, "label": "benchmark loaded for every year; abort if any of D/R/Other/Total/VEP/Abstain fields null", "hard": true },
+        { "id": 15, "label": "no prediction language in loader or observed-aggregate module (Phase 2.1 + 2.3 modules remain 'what the survey says'; only Stage A/B paths use 'predicted')", "hard": true }
+      ]
+    }
+  },
+  "explicitly_out_of_scope": [
+    "mapper functional form for any specific PRISM target (owned by survey-to-prism-v0.md)",
+    "engine vote-formula (distance / clearing-bar / era-context multipliers; owned by src/historical/respondentVoteChoice.ts and era-activations system)",
+    "per-state or per-subgroup decomposition (national-aggregate only in 2.4; subgroups in Phase 3)",
+    "mapper revision rules (owned by survey-to-prism-v0.md §4 Mapper Revision Protocol)",
+    "EIG / selector / quiz behavior (out of Phase 2 boundary)"
+  ],
+  "sequencing_proposed_not_committed": [
+    { "phase": "2.4", "deliverable": "this plan", "status": "current" },
+    { "phase": "2.5", "deliverable": "minimal Stage A scaffold (mapperBackedAggregate.ts + smoke); placeholder uniform-prior mapper; verifies wiring end-to-end; smoke enforces invariants 1-7, 14, 15", "status": "proposed" },
+    { "phase": "2.6", "deliverable": "first non-trivial mapper for strongest-coverage targets (MAT, ideological, religious, engagement); rerun Stage A; expect 5-10pp gaps", "status": "proposed" },
+    { "phase": "2.7", "deliverable": "Stage B engagement-driven turnout calibration; smoke enforces 8-13", "status": "proposed" },
+    { "phase": "2.8+", "deliverable": "iterate mapper coverage on remaining targets; tighten Stage A acceptance band; introduce Unknown sensitivity analyses", "status": "proposed" }
+  ],
+  "canonical_terminology_compliance": {
+    "engagement_is_continuous_one_dimensional_scalar_not_activation": true,
+    "moral_boundary_salience_used_not_partisan_fusion_or_tribalism": true,
+    "abstention_is_first_class_category_with_own_benchmark_not_residual": true,
+    "unknown_is_first_class_bucket_not_collapsed_into_abstain_or_missing": true
+  },
+  "open_questions_deferred_to_v1_or_phase_3": [
+    "Is engagement-to-turnout monotone or U-shaped (low-information voters under specific mobilization)? v0 assumes monotone-decreasing.",
+    "Should Stage B condition on demographics in addition to engagement? v0 starts engagement-only for parsimony.",
+    "Is per-state Stage B calibration justified vs national-only α_year? v0 is national-only.",
+    "For Unknown sensitivity, are S1/S2/S3 the right three? Should an S4 (PRISM-signature-conditional redistribution) be added once mapper exists?"
+  ],
+  "what_this_plan_does_not_do": [
+    "no engine code changes",
+    "no mapper code changes",
+    "no benchmark or candidate data changes",
+    "no era-context / activation map changes",
+    "no EIG/selector/quiz changes",
+    "no browser / dist / output / live-data changes",
+    "no raw-data changes"
+  ],
+  "companion_md": "turnout-abstention-calibration-plan.md"
+}
