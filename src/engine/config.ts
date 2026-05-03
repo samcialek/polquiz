@@ -91,19 +91,23 @@ export const LEGACY_FIXED_OPENER: readonly number[] = [
 // ──────────────────────────────────────────────────────────────────────────────
 //
 // Replaces the 32-question FIXED_OPENER with a two-tier fixed front door
-// (15 questions) followed by salience-gated top-K drilling and EIG-fill.
+// (14 questions) followed by salience-gated top-K drilling and EIG-fill.
 //
 // Design principle: discover what's salient first, then spend question budget
 // on the nodes the respondent actually cares about. Low-salience nodes get one
 // rough position read via universal screeners and nothing further.
 //
-// CORE_OPENER (10) — establish salience for every node, capture metadata.
+// CORE_OPENER (9) — establish salience for every node, capture metadata.
 // UNIVERSAL_SCREENERS (5) — give every major node ≥ 1 light position read,
 //                           even when its salience is zero.
 // After fixed phase, selector enters TOP_K_DRILL → EIG_FILL phases (see
 // browser/api.ts:getNextQuestion + engine/selectorEIG.ts).
 //
 // Items deliberately excluded from fixed and queued as conditional/adaptive:
+//   - Q1 (political_content_frequency): redundant ENG reinforcement; dropped
+//          2026-05-03 per fixed-13/14 matrix (F13-B). Persona-replay top-1/
+//          top-3 fully preserved (66/85), avg Q saved 1.58. ENG position
+//          evidence still arrives via Q97 + dynamic-phase questions.
 //   - Q4 (cultural_social_salience): conditional on uncertain CD/CU/MOR sal.
 //   - Q98 (group_solidarity): adaptive if TRB / identity-primary risk is high.
 //   - Q101 (cultural_social_placement_dual): pending rewrite (omnibus social-
@@ -115,11 +119,10 @@ export const LEGACY_FIXED_OPENER: readonly number[] = [
 export const CORE_OPENER: readonly number[] = [
   200, // party identification — partyID metadata for election compute
   103, // issue salience screener — global salience router (priorityBattery)
-  97,  // political thought frequency — PF / ENG activation
-  1,   // political content frequency — ENG activation reinforcement
+  97,  // political thought frequency — PF / ENG position
   60,  // politically important identities — TRB anchor
   89,  // epistemic style battery — EPS category + salience
-  22,  // source trust conflict — EPS tie-breaker
+  22,  // source trust conflict — EPS tie-breaker (load-bearing for top-1)
   218, // aesthetic style ranking — AES category + salience
   211, // strategic voting — vote-prediction metadata
   212, // negative partisanship — vote-prediction metadata
