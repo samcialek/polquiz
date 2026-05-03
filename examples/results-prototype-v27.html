@@ -2124,11 +2124,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ONT_S: { name: 'Institutions',      cluster: 'MEANS',   low: 'Not the right tool',        high: 'Can produce good change' },
       ZS:    { name: 'Zero-Sum',          cluster: 'REALITY', low: 'Everyone can win',          high: 'One side wins' },
       ONT_H: { name: 'Human Malleability',cluster: 'REALITY', low: 'Character is fixed',        high: 'Shaped by environment' },
-      PF:    { name: 'Partisan Fusion',   cluster: 'SELF',    low: 'Independent',               high: 'Strong partisan' },
-      TRB:   { name: 'Tribal Pull',       cluster: 'SELF',    low: 'Universalist',              high: 'Tribal in-group' },
-      ENG:   { name: 'Engagement',        cluster: 'SELF',    low: 'Tuned out',                 high: 'All in' },
     };
-    const BREAKDOWN_NODES = ['MAT','CD','CU','MOR','PRO','COM','ONT_S','ZS','ONT_H','PF','TRB','ENG'];
+    // v27.22: BREAKDOWN_NODES mirrors engine SCORING_NODES (respondentVoteChoice.ts
+    // line 197). PF / TRB / ENG removed — engine excludes them from candidate-
+    // distance computation. PF and TRB are inert legacy fields; ENG drives the
+    // vote/abstain clearing-bar, not who you vote for. EPS / AES (categorical
+    // lock-and-key) and morBoundaries (compound vector) land in Phase 2 and 3.
+    const BREAKDOWN_NODES = ['MAT','CD','CU','MOR','PRO','COM','ONT_S','ZS','ONT_H'];
 
     // Build (pos, sal) lookup from respondent state, falling back to the
     // matched archetype's centroid signature for legacy / archetype-link runs.
@@ -2425,6 +2427,12 @@ document.addEventListener('DOMContentLoaded', () => {
           bdBody += `  <div class="ed-mod-note">Per-node breakdown above shows values-only contributions. EPS/AES (style) and the compound moral-circle term are folded into the values total but not expanded per-node here.</div>`;
           bdBody += `</div>`;
         }
+        // v27.22: small engagement footer — explains why ENG isn't a row.
+        // Engagement is one-dimensional and separate from policy alignment;
+        // it sets the threshold for vote vs abstain, not who you vote for.
+        bdBody += `<div class="ed-modifiers" style="margin-top:0.6rem;">`;
+        bdBody += `  <div class="ed-mod-note" style="font-style:italic;">Engagement is not a candidate-distance node. It controls the vote/abstain threshold (clearing-bar): how close a candidate must be before you vote at all rather than sit out. PF / TRB are inert legacy fields; identity-driven appeal is read through moral-boundary salience.</div>`;
+        bdBody += `</div>`;
       }
       html += sectionWrap('breakdown', `Your distance · ${focusScore.name}`, bdBody, `final ${focusScore.distance.toFixed(2)}`);
 
