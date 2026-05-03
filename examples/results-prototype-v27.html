@@ -749,8 +749,25 @@
       grid-row: 2 / span var(--cat-span, 1);
       align-self: start;
     }
-    /* Sunburst is the SELF cluster's centerpiece — span both columns,
-       center horizontally. Bars (just ENG in SELF) sit above it. */
+    /* Sunburst is the SELF cluster's centerpiece. v27.18: place sunburst
+       in column 1 of the SELF panel and put the ENG row in column 2 next
+       to it (instead of stacked above), so the chart no longer wastes
+       vertical space and ENG reads as a side-stat card. */
+    .cluster-panel[data-cluster="SELF"] .node-cluster .moral-circle-section {
+      grid-column: 1;
+      grid-row: 2;
+      justify-self: center;
+      width: 100%;
+      max-width: 560px;
+      margin-top: 0;
+    }
+    .cluster-panel[data-cluster="SELF"] .node-cluster .node-row {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+      margin-top: 0.5rem;
+    }
+    /* Other cluster panels keep the universal placement. */
     .cluster-panel .node-cluster .moral-circle-section {
       grid-column: 1 / -1;
       justify-self: center;
@@ -3392,7 +3409,12 @@ document.addEventListener('DOMContentLoaded', () => {
       function polar(r, theta) { return { x: r * Math.cos(theta), y: r * Math.sin(theta) }; }
       function salToOpacity(sal) { return 0.18 + (Math.min(3, Math.max(0, sal)) / 3) * 0.77; }
 
-      [0.25, 0.5, 0.75, 1.0].forEach(p => {
+      // v27.18: outer reference ring is now at 75% inclusion (not 100%).
+      // Wedges with inclusion > 75% deliberately extend beyond the ring,
+      // visually drawing attention to high-loading boundaries. The 100%
+      // ring is dropped; 25% is faint reference; 50% remains dashed
+      // (moral-circle threshold marker).
+      [0.25, 0.5, 0.75].forEach(p => {
         const r = R50 * (p / 0.5);
         const c = document.createElementNS(ns, 'circle');
         c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
@@ -3402,6 +3424,10 @@ document.addEventListener('DOMContentLoaded', () => {
           c.setAttribute('stroke-width', 1);
           c.setAttribute('stroke-dasharray', '3 3');
           c.setAttribute('opacity', 0.5);
+        } else if (p === 0.75) {
+          c.setAttribute('stroke', '#1a1a1a');
+          c.setAttribute('stroke-width', 1.5);
+          c.setAttribute('opacity', 0.55);
         } else {
           c.setAttribute('stroke', '#1a1a1a');
           c.setAttribute('stroke-width', 0.5);
@@ -3742,16 +3768,14 @@ document.addEventListener('DOMContentLoaded', () => {
         attachTip(row, tipHtml);
 
         if (d.code === 'ENG') {
-          // SELF-cluster ENG is one-dimensional engagement; a bar adds
-          // nothing beyond the value. Render as name + level word + value.
-          const engLevel = d.pos < 2 ? 'Tuned out'
-                         : d.pos < 3 ? 'Casual'
-                         : d.pos < 4 ? 'Engaged'
-                         : 'All-in';
+          // v27.18: ENG sits as a side-stat card in the SELF panel column 2.
+          // Engagement is one-dimensional; render as a label + a single
+          // percentage (1-5 position mapped linearly to 0-100%).
+          const pct = Math.round(((d.pos - 1) / 4) * 100);
+          row.style.cssText = "display:flex;flex-direction:column;align-items:flex-start;gap:0.4rem;padding:1.5rem 0.5rem 0;";
           row.innerHTML = `
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--ink);font-weight:600;">${d.name}</div>
-            <div class="node-bar-wrap" style="display:flex;align-items:center;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:#333;">${engLevel}</div>
-            <div class="node-value">${d.pos.toFixed(1)}</div>`;
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:#666;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;">Engagement</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:3rem;color:var(--ink);font-weight:700;line-height:1;">${pct}%</div>`;
         } else if (!isSelf && d.sal === 0) {
           // Drop the literal "no salience" text — value alone is enough; row
           // tooltip still explains the absence on hover.
