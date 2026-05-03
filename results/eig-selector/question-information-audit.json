@@ -59,7 +59,7 @@
       "fixedOpenerTouchCount": 3,
       "dynamicOnlyTouchCount": 22,
       "forcedCoverageProbeCount": 0,
-      "hollowTouchCount": 1,
+      "hollowTouchCount": 0,
       "coverageStatus": "adequate_position_coverage"
     },
     "CD": {
@@ -119,7 +119,7 @@
       "fixedOpenerTouchCount": 4,
       "dynamicOnlyTouchCount": 28,
       "forcedCoverageProbeCount": 2,
-      "hollowTouchCount": 2,
+      "hollowTouchCount": 0,
       "coverageStatus": "over_covered_position"
     },
     "COM": {
@@ -231,15 +231,15 @@
       "node": "EPS",
       "cluster": "MEANS",
       "positionTouchCount": 0,
-      "salienceTouchCount": 4,
+      "salienceTouchCount": 3,
       "categoryTouchCount": 23,
       "meaningfulPositionTouchCount": 0,
       "cleanDirectProbeCount": 0,
       "omnibusProbeCount": 9,
-      "fixedOpenerTouchCount": 5,
+      "fixedOpenerTouchCount": 4,
       "dynamicOnlyTouchCount": 22,
       "forcedCoverageProbeCount": 0,
-      "hollowTouchCount": 4,
+      "hollowTouchCount": 3,
       "coverageStatus": "over_covered_category"
     },
     "AES": {
@@ -1580,27 +1580,9 @@
           "strengthScore": 1.4,
           "strengthClass": "strong",
           "optionCount": 5
-        },
-        {
-          "node": "EPS",
-          "role": "salience",
-          "kind": "categorical",
-          "weight": 0.4,
-          "touchType": "tie_breaker_authority",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
         }
       ],
-      "flags": [
-        {
-          "kind": "hollow_touch",
-          "detail": "EPS/salience declared (weight=0.4) but no evidence map or implicit derivation affects it"
-        }
-      ],
+      "flags": [],
       "totalEvidenceWeighted": 1.288,
       "signalPerBurden": 1.288,
       "realizedUse": {
@@ -1772,9 +1754,9 @@
           "kind": "continuous",
           "weight": 0.7,
           "touchType": "error_asymmetry_ratio",
-          "hasEvidence": false,
+          "hasEvidence": true,
           "hasExplicitEvidence": false,
-          "derivedImplicit": false,
+          "derivedImplicit": true,
           "strengthScore": 0,
           "strengthClass": "too_weak",
           "optionCount": 0
@@ -1794,10 +1776,6 @@
         }
       ],
       "flags": [
-        {
-          "kind": "hollow_touch",
-          "detail": "PRO/salience declared (weight=0.7) but no evidence map or implicit derivation affects it"
-        },
         {
           "kind": "subthreshold_touch",
           "detail": "MOR/position weight=0.12 < MEANINGFUL_POSITION_WEIGHT (0.4)"
@@ -1845,9 +1823,9 @@
           "kind": "continuous",
           "weight": 0.65,
           "touchType": "error_asymmetry_ratio",
-          "hasEvidence": false,
+          "hasEvidence": true,
           "hasExplicitEvidence": false,
-          "derivedImplicit": false,
+          "derivedImplicit": true,
           "strengthScore": 0,
           "strengthClass": "too_weak",
           "optionCount": 0
@@ -1880,10 +1858,6 @@
         }
       ],
       "flags": [
-        {
-          "kind": "hollow_touch",
-          "detail": "MAT/salience declared (weight=0.65) but no evidence map or implicit derivation affects it"
-        },
         {
           "kind": "subthreshold_touch",
           "detail": "PRO/position weight=0.22 < MEANINGFUL_POSITION_WEIGHT (0.4)"
@@ -2218,9 +2192,9 @@
           "kind": "continuous",
           "weight": 0.55,
           "touchType": "boundary_error_asymmetry_ratio",
-          "hasEvidence": false,
+          "hasEvidence": true,
           "hasExplicitEvidence": false,
-          "derivedImplicit": false,
+          "derivedImplicit": true,
           "strengthScore": 0,
           "strengthClass": "too_weak",
           "optionCount": 0
@@ -2253,10 +2227,6 @@
         }
       ],
       "flags": [
-        {
-          "kind": "hollow_touch",
-          "detail": "PRO/salience declared (weight=0.55) but no evidence map or implicit derivation affects it"
-        },
         {
           "kind": "subthreshold_touch",
           "detail": "CU/position weight=0.22 < MEANINGFUL_POSITION_WEIGHT (0.4)"
@@ -6797,10 +6767,6 @@
     "P0": [
       15,
       20,
-      22,
-      25,
-      27,
-      33,
       39,
       66,
       77
@@ -6829,8 +6795,11 @@
       16,
       21,
       23,
+      25,
+      27,
       28,
       29,
+      33,
       34,
       37,
       41,

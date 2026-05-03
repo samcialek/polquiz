@@ -4,7 +4,7 @@ Detail expansion of the per-node table in the main audit. Each section lists eve
 
 ## MAT (ENDS) — adequate_position_coverage
 
-Position touches: 19 (10 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 3 · omnibus probes: 13 · hollow touches: 1 · fixed-opener touches: 3
+Position touches: 19 (10 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 3 · omnibus probes: 13 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -30,7 +30,7 @@ Position touches: 19 (10 meaningful) · salience touches: 6 · category touches:
 | 50 | `integration_expectations_rewrite` | position | 0.15 | 0.6 | reasonable | 3 | — | 0 | — |
 | 82 | `openness_assimilation_closure` | position | 0.08 | 0.94 | reasonable | 4 | — | 0 | — |
 | 15 | `inequality_causes_allocation` | salience | 0.55 | 0 | too_weak | 4 | — | 0 | — |
-| 27 | `welfare_error_tradeoff` | salience | 0.65 | 0 | too_weak | 3 | — | 0 | Y |
+| 27 | `welfare_error_tradeoff` | salience | 0.65 | 0 | too_weak | 3 | — | 0 | — |
 | 63 | `best_worst_battery` | salience | 0.18 | 0 | too_weak | 9 | — | 0 | — |
 | 93 | `priority_sort_opener` | salience | 0.85 | 0 | too_weak | 6 | F | 0 | — |
 
@@ -111,7 +111,7 @@ Position touches: 13 (4 meaningful) · salience touches: 6 · category touches: 
 
 ## PRO (MEANS) — over_covered_position
 
-Position touches: 24 (13 meaningful) · salience touches: 8 · category touches: 0 · clean direct probes: 0 · omnibus probes: 11 · hollow touches: 2 · fixed-opener touches: 4
+Position touches: 24 (13 meaningful) · salience touches: 8 · category touches: 0 · clean direct probes: 0 · omnibus probes: 11 · hollow touches: 0 · fixed-opener touches: 4
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -142,9 +142,9 @@ Position touches: 24 (13 meaningful) · salience touches: 8 · category touches:
 | 5 | `engagement_motivations_top2` | salience | 0.2 | 0.7 | reasonable | 7 | — | 0 | — |
 | 27 | `welfare_error_tradeoff` | position | 0.22 | 0.36 | too_weak | 3 | — | 0 | — |
 | 64 | `political_frustration` | position | 0.15 | 0.32 | too_weak | 5 | — | 0 | — |
-| 25 | `criminal_trial_error_tradeoff` | salience | 0.7 | 0 | too_weak | 2 | — | 0 | Y |
+| 25 | `criminal_trial_error_tradeoff` | salience | 0.7 | 0 | too_weak | 2 | — | 0 | — |
 | 30 | `information_control_error_tradeoff` | salience | 0.65 | 0 | too_weak | 3 | — | 0 | — |
-| 33 | `immigration_enforcement_error_tradeoff` | salience | 0.55 | 0 | too_weak | 3 | — | 0 | Y |
+| 33 | `immigration_enforcement_error_tradeoff` | salience | 0.55 | 0 | too_weak | 3 | — | 0 | — |
 | 63 | `best_worst_battery` | salience | 0.34 | 0 | too_weak | 9 | — | 0 | — |
 | 93 | `priority_sort_opener` | salience | 0.85 | 0 | too_weak | 6 | F | 0 | — |
 
@@ -301,7 +301,7 @@ Position touches: 9 (4 meaningful) · salience touches: 0 · category touches: 0
 
 ## EPS (MEANS) — over_covered_category
 
-Position touches: 0 (0 meaningful) · salience touches: 4 · category touches: 23 · clean direct probes: 0 · omnibus probes: 9 · hollow touches: 4 · fixed-opener touches: 5
+Position touches: 0 (0 meaningful) · salience touches: 3 · category touches: 23 · clean direct probes: 0 · omnibus probes: 9 · hollow touches: 3 · fixed-opener touches: 4
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -329,7 +329,6 @@ Position touches: 0 (0 meaningful) · salience touches: 4 · category touches: 2
 | 39 | `opponent_model_allocation` | category | 0.2 | 0.533 | reasonable | 6 | — | 0 | — |
 | 15 | `inequality_causes_allocation` | category | 0.1 | 0 | too_weak | 4 | — | 0 | Y |
 | 20 | `bad_outcomes_blame_allocation` | category | 0.1 | 0 | too_weak | 4 | — | 0 | Y |
-| 22 | `source_trust_conflict` | salience | 0.4 | 0 | too_weak | 1 | F | 0 | Y |
 | 66 | `community_fund_allocation` | category | 0.1 | 0 | too_weak | 6 | — | 0 | Y |
 | 89 | `epistemic_style_battery` | salience | 0.55 | 0 | too_weak | 1 | F | 0 | — |
 

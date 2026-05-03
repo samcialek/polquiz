@@ -29,13 +29,13 @@ Issue classification:
 | 20 | `bad_outcomes_blame_allocation` | allocation | 4 | overloaded_question, subthreshold_touch, hollow_touch | P0 |
 | 66 | `community_fund_allocation` | allocation | 6 | overloaded_question, subthreshold_touch, hollow_touch | P0 |
 | 103 | `issue_salience_screener` | priority_sort | 11 | overloaded_question, evidence_too_strong | P1 |
-| 27 | `welfare_error_tradeoff` | single_choice | 3 | hollow_touch, subthreshold_touch | P0 |
-| 33 | `immigration_enforcement_error_tradeoff` | single_choice | 3 | hollow_touch, subthreshold_touch | P0 |
-| 25 | `criminal_trial_error_tradeoff` | single_choice | 2 | hollow_touch, subthreshold_touch | P0 |
-| 22 | `source_trust_conflict` | single_choice | 1 | hollow_touch | P0 |
 | 77 | `decision_making_style` | single_choice | 2 | hollow_touch | P0 |
+| 5 | `engagement_motivations_top2` | multi | 7 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 84 | `institutions_harden_into_domination` | slider | 5 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 85 | `institutional_legitimacy_source` | single_choice | 4 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 206 | `religion_in_public_life` | single_choice | 4 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
 
-### 1a. P0 hollow-touch detail (9 questions)
+### 1a. P0 hollow-touch detail (5 questions)
 
 Each row is a touchProfile entry that declares a node/role but the engine call path delivers no evidence for that combination — neither explicit per-option arrays nor any of the implicit-derivation paths in `update.ts` (extremity-boost for single_choice/slider, HHI for allocation, RANK_SAL for ranking, SAL_IF_BEST/WORST/MIDDLE for best_worst, salienceBuckets for priority_sort, y-axis for dual_axis). `registerTouches` still increments `node.touches` for these — so the routing ledger inflates while estimates stay unchanged.
 
@@ -44,10 +44,6 @@ Each row is a touchProfile entry that declares a node/role but the engine call p
 | 15 | allocation | ZS/position | 0.15 | low (subthreshold) |
 | 15 | allocation | EPS/category | 0.1 | low (subthreshold) |
 | 20 | allocation | EPS/category | 0.1 | low (subthreshold) |
-| 22 | single_choice | EPS/salience | 0.4 | **HIGH** (counts toward routing) |
-| 25 | single_choice | PRO/salience | 0.7 | **HIGH** (counts toward routing) |
-| 27 | single_choice | MAT/salience | 0.65 | **HIGH** (counts toward routing) |
-| 33 | single_choice | PRO/salience | 0.55 | **HIGH** (counts toward routing) |
 | 39 | allocation | ZS/position | 0.35 | low (subthreshold) |
 | 39 | allocation | MOR/position | 0.15 | low (subthreshold) |
 | 66 | allocation | EPS/category | 0.1 | low (subthreshold) |
@@ -113,7 +109,7 @@ Each row is a touchProfile entry that declares a node/role but the engine call p
 | 4 | 1 | `political_content_frequency` | single_choice | 1 | 1 | — |
 | 5 | 60 | `politically_important_identities` | priority_sort | 1 | 3 | — |
 | 6 | 89 | `epistemic_style_battery` | best_worst | 1 | 2 | — |
-| 7 | 22 | `source_trust_conflict` | single_choice | 1 | 1 | hollow_touch |
+| 7 | 22 | `source_trust_conflict` | single_choice | 1 | 1 | — |
 | 8 | 218 | `aesthetic_style_ranking` | best_worst | 1 | 2 | — |
 | 9 | 211 | `strategic_voting` | single_choice | 0 | 1 | metadata_without_evidence |
 | 10 | 212 | `negative_partisanship` | single_choice | 0 | 1 | metadata_without_evidence |
@@ -139,11 +135,11 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 
 | node | cluster | pos touches | sal touches | cat touches | meaningful pos | clean direct probes | omnibus probes | fixed-opener touches | hollow | status |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| MAT | ENDS | 19 | 6 | 0 | 10 | 3 | 13 | 3 | 1 | adequate_position_coverage |
+| MAT | ENDS | 19 | 6 | 0 | 10 | 3 | 13 | 3 | 0 | adequate_position_coverage |
 | CD | ENDS | 12 | 6 | 0 | 8 | 2 | 12 | 3 | 0 | adequate_position_coverage |
 | CU | ENDS | 11 | 6 | 0 | 3 | 0 | 6 | 5 | 0 | adequate_position_coverage |
 | MOR | ENDS | 13 | 6 | 0 | 4 | 1 | 9 | 3 | 1 | adequate_position_coverage |
-| PRO | MEANS | 24 | 8 | 0 | 13 | 0 | 11 | 4 | 2 | over_covered_position |
+| PRO | MEANS | 24 | 8 | 0 | 13 | 0 | 11 | 4 | 0 | over_covered_position |
 | COM | MEANS | 15 | 5 | 0 | 5 | 2 | 13 | 3 | 0 | adequate_position_coverage |
 | ZS | REALITY | 11 | 6 | 0 | 6 | 1 | 9 | 3 | 2 | adequate_position_coverage |
 | ONT_H | REALITY | 13 | 4 | 0 | 3 | 2 | 6 | 4 | 0 | adequate_position_coverage |
@@ -151,7 +147,7 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 | PF | SELF | 7 | 0 | 0 | 5 | 0 | 1 | 1 | 0 | adequate_position_coverage |
 | TRB | SELF | 15 | 0 | 0 | 7 | 2 | 4 | 0 | 0 | adequate_position_coverage |
 | ENG | SELF | 9 | 0 | 0 | 4 | 1 | 3 | 2 | 0 | adequate_position_coverage |
-| EPS | MEANS | 0 | 4 | 23 | 0 | 0 | 9 | 5 | 4 | over_covered_category |
+| EPS | MEANS | 0 | 3 | 23 | 0 | 0 | 9 | 4 | 3 | over_covered_category |
 | AES | MEANS | 0 | 4 | 10 | 0 | 0 | 2 | 3 | 1 | over_covered_category |
 
 ## 9. Special-attention questions (per spec)
@@ -159,7 +155,7 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 | qid | note | nodes | uiType | burden | total evidence | signal/burden | flags |
 |---:|---|---:|---|---:|---:|---:|---|
 | 1 | redundant engagement reinforcement? | 1 | single_choice | 1 | 2.643 | 2.643 | — |
-| 22 | EPS tie-breaker, possible conditional-only? | 1 | single_choice | 1 | 1.288 | 1.288 | hollow_touch |
+| 22 | EPS tie-breaker, possible conditional-only? | 1 | single_choice | 1 | 1.288 | 1.288 | — |
 | 102 | expensive but structurally important — why? | 1 | priority_sort | 3 | 0.381 | 0.127 | subthreshold_touch |
 | 82 | CD/CU lever; mixed or too strong? | 4 | single_choice | 1 | 4.73 | 4.73 | overloaded_question, subthreshold_touch |
 | 3 | clean CD probe; now Top-K routed | 1 | slider | 1 | 2.502 | 2.502 | — |
@@ -178,7 +174,7 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 
 ## 10. Recommended next experiments
 
-Issue counts: **9 P0** · **14 P1** · **40 P2**
+Issue counts: **5 P0** · **14 P1** · **43 P2**
 
 ### Intentional patterns (not bugs)
 

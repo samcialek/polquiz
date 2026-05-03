@@ -349,6 +349,11 @@ function hasImplicitDerivation(q, t) {
   if (q.uiType === "ranking" || q.uiType === "priority_sort" || q.uiType === "best_worst") return true;
   // Dual axis: y-axis IS the salience signal.
   if (q.uiType === "dual_axis") return true;
+  // strengthFollowUp (kind: "strength" | "ratio"): post-answer hook
+  // applyStoredRatioBoost in src/browser/api.ts loops every salience touchProfile
+  // entry and multiplies in ratioToSalienceDist(ratio). Applies to single_choice,
+  // multi, conjoint — any uiType that pairs with a strength/ratio follow-up.
+  if (q.strengthFollowUp) return true;
   // single_choice / slider: extremity boost triggered when chosen option has
   // an extreme continuous pos evidence map.
   if (q.uiType === "single_choice" || q.uiType === "slider") {
@@ -368,7 +373,7 @@ function hasImplicitDerivation(q, t) {
       }
     }
   }
-  // multi / pairwise / conjoint: NO implicit salience derivation in current update.ts.
+  // multi / pairwise / conjoint without strengthFollowUp: NO implicit derivation.
   return false;
 }
 

@@ -1849,8 +1849,11 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       "follow_money_breaks_tie",
     ],
     touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" },
-      { node: "EPS", kind: "categorical", role: "salience", weight: 0.40, touchType: "tie_breaker_authority" }
+      // EPS/salience row dropped 2026-05-03 per question-information audit:
+      // Q22 single_choice has no strengthFollowUp and no per-option .sal arrays,
+      // so the engine never updated EPS salience from this question. EPS salience
+      // is supplied by Q103 (issue salience screener) and Q89 (best_worst battery).
+      { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" }
     ],
     optionEvidence: {
       // Expert consensus wins when claims conflict → institutionalist
