@@ -1,6 +1,6 @@
 # Signature Imputation Bridge v1 — Smoke (Phase 2.7.5)
 
-**Run at:** 2026-05-03T22:46:05.608Z
+**Run at:** 2026-05-03T22:50:27.799Z
 **Mock universe version:** `v0.1-mock`
 **Bridge options:** numDraws=5, randomSeed=20260503, sampleRowLimitPerYear=5000
 
@@ -16,30 +16,30 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 
 | Year | Donors loaded | Donors w/ full demo | Universe cells | Output rows | Mean donor pool | Mean ESS | Spy byte-identical |
 |---|---:|---:|---:|---:|---:|---:|:--:|
-| 2008 | 5000 | 5000 | 7 | 35 | 50.6 | 41.8 | ✓ |
-| 2012 | 5000 | 5000 | 7 | 35 | 49.1 | 29.1 | ✓ |
-| 2016 | 5000 | 5000 | 7 | 35 | 38.9 | 20.3 | ✓ |
-| 2020 | 5000 | 5000 | 7 | 35 | 71.4 | 45.0 | ✓ |
-| 2024 | 5000 | 5000 | 7 | 35 | 93.0 | 34.4 | ✓ |
+| 2008 | 5000 | 5000 | 7 | 35 | 52.0 | 45.7 | ✓ |
+| 2012 | 5000 | 5000 | 7 | 35 | 338.7 | 197.7 | ✓ |
+| 2016 | 5000 | 5000 | 7 | 35 | 55.6 | 31.7 | ✓ |
+| 2020 | 5000 | 5000 | 7 | 35 | 53.9 | 31.8 | ✓ |
+| 2024 | 5000 | 5000 | 7 | 35 | 116.0 | 40.9 | ✓ |
 
 ## Backoff distribution per year (rows landed at step k)
 
 | Year | s1 | s2 | s3 | s4 | s5 | s6 | s7 | s8 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2008 | 0 | 0 | 20 | 0 | 0 | 5 | 10 | 0 |
-| 2012 | 0 | 0 | 15 | 0 | 0 | 10 | 10 | 0 |
-| 2016 | 0 | 0 | 20 | 5 | 0 | 5 | 5 | 0 |
+| 2008 | 0 | 0 | 15 | 5 | 0 | 0 | 15 | 0 |
+| 2012 | 0 | 0 | 0 | 15 | 0 | 5 | 15 | 0 |
+| 2016 | 0 | 0 | 5 | 15 | 0 | 5 | 10 | 0 |
 | 2020 | 0 | 0 | 20 | 0 | 0 | 0 | 15 | 0 |
-| 2024 | 0 | 0 | 10 | 10 | 0 | 5 | 10 | 0 |
+| 2024 | 0 | 0 | 5 | 5 | 5 | 10 | 10 | 0 |
 
 ## Uncertainty distribution per year (rows)
 
 | Year | low | medium | high |
 |---|---:|---:|---:|
 | 2008 | 0 | 20 | 15 |
-| 2012 | 0 | 10 | 25 |
+| 2012 | 0 | 15 | 20 |
 | 2016 | 0 | 15 | 20 |
-| 2020 | 0 | 20 | 15 |
+| 2020 | 0 | 15 | 20 |
 | 2024 | 0 | 10 | 25 |
 
 ## Per-year invariants
@@ -47,10 +47,10 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 ### 2008
 
 - Mock universe rows: 7; output rows: 35
-- Mean donor pool size: 50.6; mean ESS: 41.8
+- Mean donor pool size: 52.0; mean ESS: 45.7
 - Vote-choice scrubbing spy byte-identical: **yes**
 - Per-row validation errors: 0
-- Example provenance note (row 0): `hot-deck-step-6; cellKey=s6|2008|hispanic|female|30-44; donorPoolSize=29; effectiveSampleSize=25.22; donorWeightTotal=30.98; selectedDonorId=R6895468; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=4 weight=3.67 below thresholds | step3: pool=6 weight=5.21 below thresholds | step4: pool=16 weight=17.77 below thresholds | step5: pool=12 weight=10.53 below thresholds]`
+- Example provenance note (row 0): `hot-deck-step-7; cellKey=s7|2008|hispanic|female; donorPoolSize=80; effectiveSampleSize=71.29; donorWeightTotal=87.49; selectedDonorId=R6895468; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=2 weight=1.65 below thresholds | step3: pool=4 weight=3.19 below thresholds | step4: pool=10 weight=9.60 below thresholds | step5: pool=8 weight=6.49 below thresholds | step6: pool=17 weight=15.38 below thresholds]`
 
 | # | Check | Pass | Detail |
 |---|---|:--:|---|
@@ -69,10 +69,10 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 ### 2012
 
 - Mock universe rows: 7; output rows: 35
-- Mean donor pool size: 49.1; mean ESS: 29.1
+- Mean donor pool size: 338.7; mean ESS: 197.7
 - Vote-choice scrubbing spy byte-identical: **yes**
 - Per-row validation errors: 0
-- Example provenance note (row 0): `hot-deck-step-7; cellKey=s7|2012|asian|female; donorPoolSize=31; effectiveSampleSize=19.80; donorWeightTotal=27.14; selectedDonorId=R161776734; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: pool=1 weight=1.39 below thresholds | step2: pool=2 weight=4.16 below thresholds | step3: pool=3 weight=4.45 below thresholds | step4: pool=5 weight=8.44 below thresholds | step5: pool=5 weight=7.00 below thresholds | step6: pool=7 weight=10.99 below thresholds]`
+- Example provenance note (row 0): `hot-deck-step-7; cellKey=s7|2012|asian|female; donorPoolSize=31; effectiveSampleSize=19.80; donorWeightTotal=27.14; selectedDonorId=R161776734; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: 0 donors at cellKey | step3: 0 donors at cellKey | step4: pool=2 weight=3.99 below thresholds | step5: 0 donors at cellKey | step6: pool=2 weight=3.99 below thresholds]`
 
 | # | Check | Pass | Detail |
 |---|---|:--:|---|
@@ -91,10 +91,10 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 ### 2016
 
 - Mock universe rows: 7; output rows: 35
-- Mean donor pool size: 38.9; mean ESS: 20.3
+- Mean donor pool size: 55.6; mean ESS: 31.7
 - Vote-choice scrubbing spy byte-identical: **yes**
 - Per-row validation errors: 0
-- Example provenance note (row 0): `hot-deck-step-7; cellKey=s7|2016|hispanic|male; donorPoolSize=72; effectiveSampleSize=27.97; donorWeightTotal=59.49; selectedDonorId=R301041731; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: pool=1 weight=4.59 below thresholds | step2: pool=1 weight=4.59 below thresholds | step3: pool=1 weight=4.59 below thresholds | step4: pool=1 weight=4.59 below thresholds | step5: pool=4 weight=12.14 below thresholds | step6: pool=5 weight=12.33 below thresholds]`
+- Example provenance note (row 0): `hot-deck-step-7; cellKey=s7|2016|hispanic|male; donorPoolSize=72; effectiveSampleSize=27.97; donorWeightTotal=59.49; selectedDonorId=R301041731; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: 0 donors at cellKey | step3: 0 donors at cellKey | step4: 0 donors at cellKey | step5: pool=1 weight=2.06 below thresholds | step6: pool=1 weight=2.06 below thresholds]`
 
 | # | Check | Pass | Detail |
 |---|---|:--:|---|
@@ -113,10 +113,10 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 ### 2020
 
 - Mock universe rows: 7; output rows: 35
-- Mean donor pool size: 71.4; mean ESS: 45.0
+- Mean donor pool size: 53.9; mean ESS: 31.8
 - Vote-choice scrubbing spy byte-identical: **yes**
 - Per-row validation errors: 0
-- Example provenance note (row 0): `hot-deck-step-3; cellKey=s3|2020|west|white|female|45-64|ba_plus; donorPoolSize=72; effectiveSampleSize=59.99; donorWeightTotal=62.97; selectedDonorId=R1231253673; uncertainty=medium; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=21 weight=15.93 below thresholds]`
+- Example provenance note (row 0): `hot-deck-step-3; cellKey=s3|2020|West|white|female|55-64|bachelor; donorPoolSize=28; effectiveSampleSize=24.15; donorWeightTotal=23.47; selectedDonorId=R1234958571; uncertainty=medium; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=10 weight=8.10 below thresholds]`
 
 | # | Check | Pass | Detail |
 |---|---|:--:|---|
@@ -135,10 +135,10 @@ Promotes the v0 mock-bridge into v1 weighted hot-deck imputation per `signature-
 ### 2024
 
 - Mock universe rows: 7; output rows: 35
-- Mean donor pool size: 93.0; mean ESS: 34.4
+- Mean donor pool size: 116.0; mean ESS: 40.9
 - Vote-choice scrubbing spy byte-identical: **yes**
 - Per-row validation errors: 0
-- Example provenance note (row 0): `hot-deck-step-6; cellKey=s6|2024|hispanic|male|30-44; donorPoolSize=49; effectiveSampleSize=14.31; donorWeightTotal=96.76; selectedDonorId=R1863206610; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=1 weight=1.82 below thresholds | step3: pool=7 weight=16.54 below thresholds | step4: pool=18 weight=44.69 below thresholds | step5: pool=12 weight=21.18 below thresholds]`
+- Example provenance note (row 0): `hot-deck-step-6; cellKey=s6|2024|hispanic|male|35-44; donorPoolSize=28; effectiveSampleSize=10.47; donorWeightTotal=41.01; selectedDonorId=R1860962060; uncertainty=high; donorWeightSource=raw; backoffPath=[step1: 0 donors at cellKey | step2: pool=1 weight=1.82 below thresholds | step3: pool=5 weight=12.40 below thresholds | step4: pool=11 weight=24.19 below thresholds | step5: pool=7 weight=15.72 below thresholds]`
 
 | # | Check | Pass | Detail |
 |---|---|:--:|---|

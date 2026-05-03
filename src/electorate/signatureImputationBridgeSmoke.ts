@@ -5,7 +5,7 @@
  *   1. Loads a sample of CCES/CES respondents and maps each to a
  *      `SurveyPrismSignature` (via the existing mapper).
  *   2. Wraps each into a `BridgeDonorSignature` with bucketed demographics.
- *   3. Adapts the year's `mockVepUniverse` cells into `BridgeUniverseRow[]`.
+ *   3. Adapts the year's `mockVepUniverse` cells into `VepUniverseRow[]`.
  *   4. Runs `runSignatureImputationBridge` with a fixed seed and `numDraws=5`.
  *   5. Validates every output row with `validateSyntheticElectorateRow`.
  *   6. Runs the **vote-choice scrubbing spy**: re-runs the bridge with
@@ -45,9 +45,15 @@ import {
   runSignatureImputationBridge,
   type BridgeDemographicBuckets,
   type BridgeDonorSignature,
-  type BridgeUniverseRow,
   type BridgeStats,
 } from "./signatureImputationBridge.js";
+import type {
+  VepAgeBucket,
+  VepEducation,
+  VepIncomeBucket,
+  VepRace,
+  VepUniverseRow,
+} from "./vepUniverseTypes.js";
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
@@ -87,14 +93,17 @@ function fipsToPostal(raw: string | undefined | number): string | null {
   return FIPS_TO_POSTAL[s] ?? null;
 }
 
-function bucketAge(year: number, birthyr: number | undefined): string | null {
+function bucketAge(year: number, birthyr: number | undefined): VepAgeBucket | null {
   if (typeof birthyr !== "number" || !Number.isFinite(birthyr) || birthyr < 1900 || birthyr > year) return null;
   const age = year - birthyr;
   if (age < 18) return null;
-  if (age < 30) return "18-29";
-  if (age < 45) return "30-44";
-  if (age < 65) return "45-64";
-  return "65+";
+  if (age < 25) return "18-24";
+  if (age < 35) return "25-34";
+  if (age < 45) return "35-44";
+  if (age < 55) return "45-54";
+  if (age < 65) return "55-64";
+  if (age < 75) return "65-74";
+  return "75+";
 }
 
 function bucketRace(raw: string | number | undefined): string | null {
@@ -124,25 +133,30 @@ function bucketSex(raw: string | number | undefined): string | null {
   return "other";
 }
 
-function bucketEducation(raw: string | number | undefined): string | null {
+function bucketEducation(raw: string | number | undefined): VepEducation | null {
   if (raw === undefined || raw === null) return null;
   const code = parseInt(String(raw).trim(), 10);
   if (!Number.isFinite(code)) return null;
-  if (code <= 2) return "hs_or_less";
+  if (code <= 1) return "less_than_hs";
+  if (code === 2) return "hs_grad";
   if (code <= 4) return "some_college";
-  if (code <= 6) return "ba_plus";
+  if (code === 5) return "bachelor";
+  if (code === 6) return "graduate";
   return null;
 }
 
-function bucketIncome(raw: string | number | undefined): string | null {
+function bucketIncome(raw: string | number | undefined): VepIncomeBucket | null {
   if (raw === undefined || raw === null) return null;
   const code = parseInt(String(raw).trim(), 10);
   if (!Number.isFinite(code) || code <= 0) return null;
   // Skip code values that conventionally mean "skipped" / "prefer not to say".
   if (code >= 90) return null;
-  if (code <= 4) return "low";
-  if (code <= 8) return "middle";
-  return "high";
+  if (code <= 4) return "<25k";
+  if (code <= 6) return "25-50k";
+  if (code <= 8) return "50-75k";
+  if (code <= 10) return "75-100k";
+  if (code <= 12) return "100-150k";
+  return "150k+";
 }
 
 /** Build a BridgeDonorSignature from a mapped signature + raw payload demographics. */
@@ -169,20 +183,78 @@ function donorFromSignature(
   return { signature, demographics, weight: signature.weight };
 }
 
-/** Adapt MockVepCell to BridgeUniverseRow. */
-function universeRowFromMockCell(cell: MockVepCell): BridgeUniverseRow {
+function mockAgeBucket(bucket: string): VepAgeBucket {
+  switch (bucket) {
+    case "18-29": return "18-24";
+    case "30-44": return "35-44";
+    case "45-64": return "55-64";
+    case "65+": return "65-74";
+    default: return "35-44";
+  }
+}
+
+function mockRepresentativeAge(bucket: VepAgeBucket): number {
+  switch (bucket) {
+    case "18-24": return 21;
+    case "25-34": return 30;
+    case "35-44": return 40;
+    case "45-54": return 50;
+    case "55-64": return 60;
+    case "65-74": return 70;
+    case "75+": return 78;
+  }
+}
+
+function mockRace(cell: MockVepCell): { race: VepRace; hispanic: boolean } {
+  switch (cell.raceEthnicity) {
+    case "white": return { race: "white", hispanic: false };
+    case "black": return { race: "black", hispanic: false };
+    case "asian": return { race: "asian", hispanic: false };
+    case "hispanic": return { race: "white", hispanic: true };
+    default: return { race: "other_single", hispanic: false };
+  }
+}
+
+function mockEducation(value: string): VepEducation {
+  switch (value) {
+    case "hs_or_less": return "hs_grad";
+    case "some_college": return "some_college";
+    case "ba_plus": return "bachelor";
+    default: return "some_college";
+  }
+}
+
+function mockIncome(value: string): VepIncomeBucket {
+  switch (value) {
+    case "low": return "<25k";
+    case "middle": return "50-75k";
+    case "high": return "100-150k";
+    default: return "50-75k";
+  }
+}
+
+/** Adapt MockVepCell to the canonical VepUniverseRow contract. */
+function universeRowFromMockCell(cell: MockVepCell): VepUniverseRow {
+  const ageBucket = mockAgeBucket(cell.ageBucket);
+  const { race, hispanic } = mockRace(cell);
   return {
-    universeRowId: cell.cellId,
+    respondentId: cell.cellId,
     year: cell.year,
-    demographics: {
-      state: cell.state,
-      ageBucket: cell.ageBucket,
-      raceEthnicity: cell.raceEthnicity,
-      sex: cell.sex,
-      education: cell.education,
-      incomeBucket: cell.incomeBucket,
-    },
+    state: cell.state,
+    age: mockRepresentativeAge(ageBucket),
+    ageBucket,
+    sex: cell.sex === "male" ? "male" : "female",
+    race,
+    hispanic,
+    education: mockEducation(cell.education),
+    incomeBucket: mockIncome(cell.incomeBucket),
+    citizenship: "us_born",
+    vepEligible: true,
     personWeight: cell.cellWeight,
+    sourceDataset: "mock_vep_universe",
+    sourceVintage: MOCK_VEP_UNIVERSE_VERSION,
+    coverageNotes: [MOCK_DISCLAIMER],
+    uncertainty: "high",
   };
 }
 

@@ -38,6 +38,10 @@ import {
   type SyntheticElectorateSignature,
 } from "./syntheticElectorateContract.js";
 import type { SurveyPrismSignature } from "./surveyToPrismMapper.js";
+import {
+  STATE_TO_REGION,
+  type VepUniverseRow,
+} from "./vepUniverseTypes.js";
 
 // ─── Public types ──────────────────────────────────────────────────────────
 
@@ -75,27 +79,6 @@ export interface BridgeDonorSignature {
   weight: number;
 }
 
-/** Universe row supplied to the bridge — one represented eligible adult/cell. */
-export interface BridgeUniverseRow {
-  /** Stable unique identifier for this universe row across draws. */
-  universeRowId: string;
-  year: 2008 | 2012 | 2016 | 2020 | 2024;
-  /** Demographic buckets used as the matching key. */
-  demographics: BridgeDemographicBuckets;
-  /**
-   * Population share carried by this row (eventually PUMS PWGTP × replicate
-   * weight; for the mock fixture it is the cell weight). Becomes
-   * `cellWeight` on the output row.
-   */
-  personWeight: number;
-  /** Optional pass-through demographics propagated to the output row. */
-  age?: number | null;
-  countyFips?: string | null;
-  congressionalDistrict?: string | null;
-  metroStatus?: string | null;
-  densityBucket?: string | null;
-}
-
 export interface BridgeOptions {
   year: 2008 | 2012 | 2016 | 2020 | 2024;
   /** Number of independent draws per universe row. Default 5. */
@@ -131,21 +114,29 @@ export interface BridgeStats {
 
 // ─── Internal helpers ──────────────────────────────────────────────────────
 
-const STATE_TO_REGION: Record<string, "northeast" | "midwest" | "south" | "west"> = {
-  CT: "northeast", ME: "northeast", MA: "northeast", NH: "northeast", NJ: "northeast",
-  NY: "northeast", PA: "northeast", RI: "northeast", VT: "northeast",
-  IL: "midwest", IN: "midwest", IA: "midwest", KS: "midwest", MI: "midwest",
-  MN: "midwest", MO: "midwest", NE: "midwest", ND: "midwest", OH: "midwest",
-  SD: "midwest", WI: "midwest",
-  AL: "south", AR: "south", DE: "south", DC: "south", FL: "south", GA: "south",
-  KY: "south", LA: "south", MD: "south", MS: "south", NC: "south", OK: "south",
-  SC: "south", TN: "south", TX: "south", VA: "south", WV: "south",
-  AK: "west", AZ: "west", CA: "west", CO: "west", HI: "west", ID: "west",
-  MT: "west", NV: "west", NM: "west", OR: "west", UT: "west", WA: "west", WY: "west",
-};
-
 function regionOf(state: string): string {
-  return STATE_TO_REGION[state] ?? "unknown_region";
+  return STATE_TO_REGION[state] ?? "Unknown";
+}
+
+function universeRaceBucket(row: VepUniverseRow): string {
+  if (row.hispanic) return "hispanic";
+  switch (row.race) {
+    case "white": return "white";
+    case "black": return "black";
+    case "asian": return "asian";
+    default: return "other";
+  }
+}
+
+function universeDemographics(row: VepUniverseRow): BridgeDemographicBuckets {
+  return {
+    state: row.state,
+    ageBucket: row.ageBucket,
+    raceEthnicity: universeRaceBucket(row),
+    sex: row.sex,
+    education: row.education,
+    incomeBucket: row.incomeBucket,
+  };
 }
 
 /** FNV-1a 32-bit string hash. */
@@ -251,15 +242,16 @@ interface MatchedPool {
 
 /** Walk steps 1..maxStep until a pool of ≥minDonors and ≥minDonorWeight is found. */
 function matchDonorPool(
-  universeRow: BridgeUniverseRow,
+  universeRow: VepUniverseRow,
   donors: BridgeDonorSignature[],
   index: Map<string, number[]>,
   opts: { minDonors: number; minDonorWeight: number; maxStep: BackoffStep; year: number },
 ): MatchedPool | null {
   const backoffPath: string[] = [];
+  const demographics = universeDemographics(universeRow);
   for (let step = 1; step <= opts.maxStep; step++) {
     const k = step as BackoffStep;
-    const cellKey = cellKeyForStep(k, universeRow.demographics, opts.year);
+    const cellKey = cellKeyForStep(k, demographics, opts.year);
     if (cellKey === null) {
       backoffPath.push(`step${step}: skipped (income missing on universe row)`);
       continue;
@@ -364,7 +356,7 @@ function formatProvenance(p: {
  */
 export function runSignatureImputationBridge(
   donors: BridgeDonorSignature[],
-  universe: BridgeUniverseRow[],
+  universe: VepUniverseRow[],
   opts: BridgeOptions,
 ): { rows: SyntheticElectorateRow[]; stats: BridgeStats } {
   const numDraws = opts.numDraws ?? 5;
@@ -389,6 +381,7 @@ export function runSignatureImputationBridge(
 
   for (let i = 0; i < yearUniverse.length; i++) {
     const u = yearUniverse[i]!;
+    const uDemographics = universeDemographics(u);
     const matched = matchDonorPool(u, yearDonors, index, {
       minDonors, minDonorWeight, maxStep, year: opts.year,
     });
@@ -402,7 +395,7 @@ export function runSignatureImputationBridge(
     essSum += matched.ess;
 
     for (let drawId = 0; drawId < numDraws; drawId++) {
-      const seedComponent = fnv1a(`${seed}|${u.universeRowId}|${drawId}`);
+      const seedComponent = fnv1a(`${seed}|${u.respondentId}|${drawId}`);
       const rng = mulberry32(seedComponent);
       const localIdx = sampleWeighted(matched.donorWeights, rng);
       const donorIdxInArray = matched.donorIndices[localIdx]!;
@@ -428,24 +421,24 @@ export function runSignatureImputationBridge(
         year: opts.year,
         drawId,
         rowKind: "weighted_cell",
-        cellId: u.universeRowId,
+        cellId: u.respondentId,
         cellWeight: u.personWeight,
         populationSource: "survey_weighted",
         signatureSource: "imputed_from_cell",
         demographics: {
-          state: u.demographics.state,
-          age: u.age ?? null,
-          ageBucket: u.demographics.ageBucket,
-          raceEthnicity: u.demographics.raceEthnicity,
-          sex: u.demographics.sex,
-          education: u.demographics.education,
-          incomeBucket: u.demographics.incomeBucket,
+          state: u.state,
+          age: u.age,
+          ageBucket: u.ageBucket,
+          raceEthnicity: uDemographics.raceEthnicity,
+          sex: u.sex,
+          education: u.education,
+          incomeBucket: u.incomeBucket,
           citizenVotingEligible: true,
           geography: {
-            countyFips: u.countyFips ?? null,
-            congressionalDistrict: u.congressionalDistrict ?? null,
-            metroStatus: u.metroStatus ?? null,
-            densityBucket: u.densityBucket ?? null,
+            countyFips: null,
+            congressionalDistrict: null,
+            metroStatus: null,
+            densityBucket: null,
           },
         },
         signature,
