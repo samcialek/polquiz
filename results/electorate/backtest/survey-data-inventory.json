@@ -1,0 +1,113 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-03",
+  "doc_type": "survey_data_inventory",
+  "search_scope": "filesystem-wide excluding .git/ and node_modules; matched *ces* *cces* *anes* *survey* *voter* *microdata* *pums* *cumulative*; enumerated *.tab *.csv *.tsv *.dta *.sav *.parquet *.rds",
+  "headline": {
+    "cces_2016_present": true,
+    "cces_other_years_present": false,
+    "anes_present": false,
+    "phase_2_path": "Step 4 — loader + smoke against CCES 2016. Multi-year backtest blocked on data acquisition for 2008/2012/2020/2024."
+  },
+  "available_microdata": [
+    {
+      "path": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "guessed_source": "CCES 2016 Common Content, Feb 2018 release with voter validation appended (filename suffix _VV)",
+      "years_covered": [2016],
+      "format": "tab-delimited text (.tab); UTF-8; header row + 64,600 data rows",
+      "size_bytes": 134761608,
+      "size_mb": 128.5,
+      "n_rows": 64600,
+      "n_columns": 563,
+      "readable": true,
+      "vote_choice_present": true,
+      "vote_choice_columns": {
+        "presidential_post": "CC16_410a",
+        "presidential_post_nonvoter_would_have": "CC16_410a_nv",
+        "presidential_pre": "CC16_364b",
+        "senate_post": "CC16_410b",
+        "house_post": "CC16_412",
+        "recall_2012": ["CC16_316", "CC16_326"]
+      },
+      "turnout_present": true,
+      "turnout_columns": {
+        "validated_general": "CL_E2016GVM",
+        "validated_primary": "CL_E2016PPEP",
+        "voter_file_match": "CL_matched",
+        "voter_status": "CL_voterstatus",
+        "took_post_wave": "tookpost",
+        "self_reported_turnout_intent_pre": "CC16_364"
+      },
+      "weights_present": true,
+      "weight_columns": {
+        "pre": "commonweight",
+        "post": "commonweight_post",
+        "validated_voter_pre": "commonweight_vv",
+        "validated_voter_post": "commonweight_vv_post",
+        "lgbt_balanced": "commonweight_vv_lgbt"
+      },
+      "id_column": "V101",
+      "demographic_columns": ["inputstate", "birthyr", "gender", "educ", "race", "race_other", "hispanic", "Hispanic_origin_1..12", "countyfips", "cdid113", "cdid115"],
+      "party_id_columns": ["pid3", "pid7"],
+      "ideology_columns": ["ideo5"],
+      "approval_columns": ["CC16_320a (Obama)", "CC16_320b (Congress)", "CC16_320c (Governor)", "etc."],
+      "codebook_files": [
+        "data/cces2016/hcbk0001.htm",
+        "data/cces2016/hcbk0002.htm",
+        "data/cces2016/hcbk0003.htm",
+        "data/cces2016/hcbk0004.htm",
+        "data/cces2016/hcbk0005.htm",
+        "data/cces2016/hcbk0006.htm",
+        "data/cces2016/hcbk0007.htm",
+        "data/cces2016/hcbk0008.htm",
+        "data/cces2016/hcbk0009.htm",
+        "data/cces2016/hcbk0010.htm",
+        "data/cces2016/hcbk0011.htm",
+        "data/cces2016/hcbk0012.htm",
+        "data/cces2016/hcbk0013.htm",
+        "data/cces2016/hcbk0014.htm",
+        "data/cces2016/hcbk0015.htm",
+        "data/cces2016/hcbk0016.htm",
+        "data/cces2016/hcbkfx0.htm",
+        "data/cces2016/header.txt",
+        "data/cces2016/sample-rows.txt"
+      ]
+    }
+  ],
+  "other_files_surfaced": [
+    { "path": "data/glp1-synthetic-panel.csv", "relevance": "none — unrelated synthetic panel" },
+    { "path": "output/respondent-classifications.csv", "relevance": "none — downstream PRISM output, not source microdata" },
+    { "path": "results/cces2016-bridge/*.csv", "relevance": "none — derived audit/calibration artifacts from existing src/eval/cces2016-electorate-bridge.ts" },
+    { "path": "imported-transcripts/jeff-beck-research/*", "relevance": "none — research notes" }
+  ],
+  "existing_prior_work_using_cces_2016": {
+    "note": "For situational awareness only — these files exist and MUST NOT be modified by Phase 2 work per global rules ('Do not modify ... existing mapper specs').",
+    "files": [
+      "src/eval/cces2016-electorate-bridge.ts",
+      "dist/eval/cces2016-electorate-bridge.{js,d.ts,js.map}",
+      "results/cces2016-bridge/ (multiple CSVs and reports)",
+      "results/counterfactuals/cces2016-metadata.json"
+    ],
+    "phase_2_loader_relationship": "The Phase 2 loader is intentionally a thin, mapper-agnostic file reader — it normalizes raw rows into a typed structure for downstream consumption. It does NOT duplicate the bridge's mapping logic."
+  },
+  "missing_data_per_backtest_year": {
+    "2008": { "ces": "missing", "anes": "missing", "blocker": "acquire CCES 2008 Common Content (10.7910/DVN/YUYIVB)" },
+    "2012": { "ces": "missing", "anes": "missing", "blocker": "acquire CCES 2012 Common Content (10.7910/DVN/HQEVPK)" },
+    "2016": { "ces": "present", "anes": "missing", "blocker": "none for CES path" },
+    "2020": { "ces": "missing", "anes": "missing", "blocker": "acquire CES 2020 Common Content (10.7910/DVN/E9N6PH)" },
+    "2024": { "ces": "missing", "anes": "missing", "blocker": "acquire CES 2024 Common Content (10.7910/DVN/X11EP6)" }
+  },
+  "alternative_cumulative_acquisition": {
+    "title": "Cumulative CES Common Content",
+    "doi": "10.7910/DVN/II2DB6",
+    "version": "v10 (2024-05-21)",
+    "coverage": "2006-2024 (~700K respondents)",
+    "limitation": "Excludes most issue-attitude variables (harmonized subset is ID/weights/demographics/vote/party/ideology/turnout only). Per-year files still required for issue-attitude items used by PRISM mapping."
+  },
+  "anes_status": {
+    "present_locally": false,
+    "acquisition_doc": "results/era-weights/anes-acquisition-log.md",
+    "status_per_log": "acquisition pending — Sam's action required"
+  },
+  "decision": "Step 4 path — loader + smoke against CCES 2016. Loader will be year-parameterized so the same code path covers additional years once microdata is acquired."
+}
