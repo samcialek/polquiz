@@ -743,7 +743,10 @@
     .cluster-panel .node-cluster .node-row { grid-column: 1; margin-bottom: 0.7rem !important; }
     .cluster-panel .node-cluster .cat-vbar-row {
       grid-column: 2;
-      grid-row: 2 / span 100;
+      /* v27.14: fallback only. JS sets the exact row span from the number of
+         continuous rows in the active cluster. The old 100-row span created a
+         huge implicit-grid height under MEANS/REALITY. */
+      grid-row: 2 / span var(--cat-span, 1);
       align-self: start;
     }
     /* Sunburst is the SELF cluster's centerpiece — span both columns,
@@ -3813,6 +3816,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const row = document.createElement('div');
           row.className = 'cat-vbar-row';
+          row.style.setProperty('--cat-span', String(Math.max(1, clusterDims.length)));
           row.style.opacity = sal === 0 ? 0.55 : (0.65 + sal * 0.35);
           const salScale = sal * 3;
           row.title = sal === 0
