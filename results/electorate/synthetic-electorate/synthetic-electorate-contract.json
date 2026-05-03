@@ -1,0 +1,435 @@
+{
+  "schema_version": "v0.1",
+  "created": "2026-05-03",
+  "doc_type": "synthetic_electorate_contract",
+  "manifest": {
+    "schemaVersion": "v0.1",
+    "created": "2026-05-03",
+    "years": [
+      2008,
+      2012,
+      2016,
+      2020,
+      2024
+    ],
+    "rowKind": "weighted_cell",
+    "draws": 0,
+    "files": [],
+    "invariants": [
+      "Every row represents a voting-eligible citizen adult or a weighted cell of such adults.",
+      "Every row carries all position nodes, categorical nodes, moral-boundary loadings, and engagement.",
+      "All posterior distributions are finite and normalized.",
+      "Every node has provenance and uncertainty.",
+      "Weights are finite and positive.",
+      "Vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections, not source fields in the signature contract.",
+      "A synthetic-person table is an expansion of weighted cells, not a more exact source of truth."
+    ]
+  },
+  "example_row": {
+    "schemaVersion": "v0.1",
+    "year": 2024,
+    "drawId": 0,
+    "rowKind": "weighted_cell",
+    "cellId": "2024|CA|age_30_44|race_hispanic|sex_female|edu_ba|inc_mid",
+    "cellWeight": 1250,
+    "populationSource": "acs_pums",
+    "signatureSource": "imputed_from_cell",
+    "demographics": {
+      "state": "CA",
+      "age": null,
+      "ageBucket": "30-44",
+      "raceEthnicity": "hispanic",
+      "sex": "female",
+      "education": "ba_plus",
+      "incomeBucket": "middle",
+      "citizenVotingEligible": true
+    },
+    "signature": {
+      "positionNodes": {
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        }
+      },
+      "categoricalNodes": {
+        "EPS": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.2,
+            0.3,
+            0.3,
+            0.2
+          ],
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        }
+      },
+      "engagement": {
+        "value": 5,
+        "provenance": {
+          "source": "imputed_from_cell",
+          "vars": [],
+          "partyIdDerived": false,
+          "uncertainty": "high",
+          "notes": "contract example only"
+        }
+      },
+      "moralBoundaries": {
+        "national": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "ethnic_racial": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "religious": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "class": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "ideological": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "gender": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "political_camp": {
+          "salience": 1,
+          "provenance": {
+            "source": "imputed_from_cell",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "contract example only"
+          }
+        },
+        "intensity": 1,
+        "intensityProvenance": {
+          "source": "imputed_from_cell",
+          "vars": [],
+          "partyIdDerived": false,
+          "uncertainty": "high",
+          "notes": "contract example only"
+        }
+      },
+      "coverage": {
+        "realSignalTargets": 0,
+        "imputedTargets": 19,
+        "fallbackTargets": 0,
+        "totalTargets": 19,
+        "notes": [
+          "Example row; not generated from real data."
+        ]
+      }
+    },
+    "uncertainty": {
+      "demographicCoverage": "medium",
+      "signatureCoverage": "high",
+      "imputation": "high"
+    }
+  },
+  "checks": [
+    {
+      "name": "example row validates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all position nodes listed",
+      "pass": true,
+      "detail": "MAT,CD,CU,MOR,PRO,COM,ZS,ONT_H,ONT_S"
+    },
+    {
+      "name": "all categorical nodes listed",
+      "pass": true,
+      "detail": "EPS,AES"
+    },
+    {
+      "name": "all moral-boundary loadings listed",
+      "pass": true,
+      "detail": "national,ethnic_racial,religious,class,ideological,gender,political_camp"
+    },
+    {
+      "name": "manifest covers five election years",
+      "pass": true,
+      "detail": "2008,2012,2016,2020,2024"
+    },
+    {
+      "name": "contract keeps outcomes downstream",
+      "pass": true,
+      "detail": "no candidate-distance field on row"
+    }
+  ],
+  "overall_pass": true
+}
