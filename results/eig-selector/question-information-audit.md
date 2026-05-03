@@ -24,30 +24,23 @@ Issue classification:
 
 | qid | promptShort | uiType | nodes | flags | priority |
 |---:|---|---|---:|---|:-:|
-| 39 | `opponent_model_allocation` | allocation | 6 | overloaded_question, evidence_too_strong, subthreshold_touch, hollow_touch | P0 |
-| 15 | `inequality_causes_allocation` | allocation | 4 | overloaded_question, hollow_touch, subthreshold_touch | P0 |
-| 20 | `bad_outcomes_blame_allocation` | allocation | 4 | overloaded_question, subthreshold_touch, hollow_touch | P0 |
-| 66 | `community_fund_allocation` | allocation | 6 | overloaded_question, subthreshold_touch, hollow_touch | P0 |
 | 103 | `issue_salience_screener` | priority_sort | 11 | overloaded_question, evidence_too_strong | P1 |
-| 77 | `decision_making_style` | single_choice | 2 | hollow_touch | P0 |
 | 5 | `engagement_motivations_top2` | multi | 7 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 39 | `opponent_model_allocation` | allocation | 4 | overloaded_question, evidence_too_strong, subthreshold_touch | P1 |
 | 84 | `institutions_harden_into_domination` | slider | 5 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
 | 85 | `institutional_legitimacy_source` | single_choice | 4 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
 | 206 | `religion_in_public_life` | single_choice | 4 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 63 | `best_worst_battery` | best_worst | 9 | overloaded_question, subthreshold_touch, declared_low_actual_high | P1 |
+| 24 | `child_traits` | pairwise | 3 | declared_low_actual_high, subthreshold_touch | P1 |
+| 30 | `information_control_error_tradeoff` | single_choice | 3 | declared_low_actual_high, subthreshold_touch | P1 |
+| 64 | `political_frustration` | single_choice | 5 | overloaded_question, subthreshold_touch | P2 |
 
-### 1a. P0 hollow-touch detail (5 questions)
+### 1a. P0 hollow-touch detail (0 questions)
 
 Each row is a touchProfile entry that declares a node/role but the engine call path delivers no evidence for that combination — neither explicit per-option arrays nor any of the implicit-derivation paths in `update.ts` (extremity-boost for single_choice/slider, HHI for allocation, RANK_SAL for ranking, SAL_IF_BEST/WORST/MIDDLE for best_worst, salienceBuckets for priority_sort, y-axis for dual_axis). `registerTouches` still increments `node.touches` for these — so the routing ledger inflates while estimates stay unchanged.
 
 | qid | uiType | hollow node/role | weight | impact |
 |---:|---|---|---:|---|
-| 15 | allocation | ZS/position | 0.15 | low (subthreshold) |
-| 15 | allocation | EPS/category | 0.1 | low (subthreshold) |
-| 20 | allocation | EPS/category | 0.1 | low (subthreshold) |
-| 39 | allocation | ZS/position | 0.35 | low (subthreshold) |
-| 39 | allocation | MOR/position | 0.15 | low (subthreshold) |
-| 66 | allocation | EPS/category | 0.1 | low (subthreshold) |
-| 77 | single_choice | AES/category | 0.15 | low (subthreshold) |
 
 ## 2. Questions that appear too weak
 
@@ -69,13 +62,11 @@ Each row is a touchProfile entry that declares a node/role but the engine call p
 |---:|---|---|---|
 | 5 | `engagement_motivations_top2` | multi | touches 7 distinct nodes/anchors |
 | 6 | `national_priorities_bundle` | single_choice | touches 5 distinct nodes/anchors |
-| 15 | `inequality_causes_allocation` | allocation | touches 4 distinct nodes/anchors |
-| 20 | `bad_outcomes_blame_allocation` | allocation | touches 4 distinct nodes/anchors |
-| 39 | `opponent_model_allocation` | allocation | touches 6 distinct nodes/anchors |
+| 39 | `opponent_model_allocation` | allocation | touches 4 distinct nodes/anchors |
 | 48 | `improvement_mechanism` | single_choice | touches 4 distinct nodes/anchors |
 | 63 | `best_worst_battery` | best_worst | touches 9 distinct nodes/anchors |
 | 64 | `political_frustration` | single_choice | touches 5 distinct nodes/anchors |
-| 66 | `community_fund_allocation` | allocation | touches 6 distinct nodes/anchors |
+| 66 | `community_fund_allocation` | allocation | touches 5 distinct nodes/anchors |
 | 82 | `openness_assimilation_closure` | single_choice | touches 4 distinct nodes/anchors |
 | 83 | `broken_politics_diagnosis` | single_choice | touches 5 distinct nodes/anchors |
 | 84 | `institutions_harden_into_domination` | slider | touches 5 distinct nodes/anchors |
@@ -135,20 +126,20 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 
 | node | cluster | pos touches | sal touches | cat touches | meaningful pos | clean direct probes | omnibus probes | fixed-opener touches | hollow | status |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| MAT | ENDS | 19 | 6 | 0 | 10 | 3 | 13 | 3 | 0 | adequate_position_coverage |
+| MAT | ENDS | 19 | 6 | 0 | 10 | 3 | 11 | 3 | 0 | adequate_position_coverage |
 | CD | ENDS | 12 | 6 | 0 | 8 | 2 | 12 | 3 | 0 | adequate_position_coverage |
 | CU | ENDS | 11 | 6 | 0 | 3 | 0 | 6 | 5 | 0 | adequate_position_coverage |
-| MOR | ENDS | 13 | 6 | 0 | 4 | 1 | 9 | 3 | 1 | adequate_position_coverage |
+| MOR | ENDS | 12 | 6 | 0 | 4 | 1 | 8 | 3 | 0 | adequate_position_coverage |
 | PRO | MEANS | 24 | 8 | 0 | 13 | 0 | 11 | 4 | 0 | over_covered_position |
-| COM | MEANS | 15 | 5 | 0 | 5 | 2 | 13 | 3 | 0 | adequate_position_coverage |
-| ZS | REALITY | 11 | 6 | 0 | 6 | 1 | 9 | 3 | 2 | adequate_position_coverage |
-| ONT_H | REALITY | 13 | 4 | 0 | 3 | 2 | 6 | 4 | 0 | adequate_position_coverage |
+| COM | MEANS | 15 | 5 | 0 | 5 | 2 | 11 | 3 | 0 | adequate_position_coverage |
+| ZS | REALITY | 9 | 6 | 0 | 6 | 1 | 5 | 3 | 0 | adequate_position_coverage |
+| ONT_H | REALITY | 13 | 4 | 0 | 3 | 2 | 5 | 4 | 0 | adequate_position_coverage |
 | ONT_S | REALITY | 11 | 6 | 0 | 6 | 0 | 4 | 3 | 0 | adequate_position_coverage |
 | PF | SELF | 7 | 0 | 0 | 5 | 0 | 1 | 1 | 0 | adequate_position_coverage |
 | TRB | SELF | 15 | 0 | 0 | 7 | 2 | 4 | 0 | 0 | adequate_position_coverage |
 | ENG | SELF | 9 | 0 | 0 | 4 | 1 | 3 | 2 | 0 | adequate_position_coverage |
-| EPS | MEANS | 0 | 3 | 23 | 0 | 0 | 9 | 4 | 3 | over_covered_category |
-| AES | MEANS | 0 | 4 | 10 | 0 | 0 | 2 | 3 | 1 | over_covered_category |
+| EPS | MEANS | 0 | 3 | 20 | 0 | 0 | 6 | 4 | 0 | over_covered_category |
+| AES | MEANS | 0 | 4 | 9 | 0 | 0 | 2 | 3 | 0 | adequate_category_coverage |
 
 ## 9. Special-attention questions (per spec)
 
@@ -174,7 +165,7 @@ Bottom 5 fixed-opener questions by `signal_per_burden` (= weighted-evidence-sum 
 
 ## 10. Recommended next experiments
 
-Issue counts: **5 P0** · **14 P1** · **43 P2**
+Issue counts: **0 P0** · **15 P1** · **46 P2**
 
 ### Intentional patterns (not bugs)
 

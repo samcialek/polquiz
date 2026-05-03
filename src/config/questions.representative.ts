@@ -108,11 +108,12 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     // trust. A respondent who attributes inequality to structural causes
     // typically wants stronger institutions to address it, not weaker ones.
     // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+    // ZS/position and EPS/category rows dropped 2026-05-03 per question-information
+    // audit: allocationMap has no ZS or EPS entries in any bucket, so the engine
+    // never updated either node from this question.
     touchProfile: [
       { node: "MAT", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "inequality_worldview" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "allocation_shape" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
       { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
     ],
     allocationMap: {
@@ -136,11 +137,12 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     // matter and could work better. This is a ZS / ONT_H probe (zero-sum
     // worldview + view of human nature), not an institutional-trust probe.
     // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+    // EPS/category row dropped 2026-05-03 per question-information audit:
+    // allocationMap has no EPS entries in any bucket.
     touchProfile: [
       { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
       { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.30, touchType: "allocation_shape" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
       { node: "ZS", kind: "continuous", role: "salience", weight: 0.50, touchType: "derived_allocation_concentration" }
     ],
     allocationMap: {
@@ -270,12 +272,13 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     // - self_interest = rational actors, low malleability. Kept at -0.5 ONT_H.
     // - bad_motives = fixed in bad faith, very low malleability. Kept -0.8.
     // - legitimate_values = good-faith disagreement. Kept at 0 ONT_H.
+    // ZS/position and MOR/position rows dropped 2026-05-03 per question-information
+    // audit: allocationMap has no ZS or MOR entries in any bucket. EPS/category
+    // retained — `misinformed` bucket has explicit categorical EPS distribution.
     touchProfile: [
       { node: "TRB", kind: "continuous", role: "position", weight: 0.75, touchType: "outgroup_model" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "outgroup_model" },
       { node: "ONT_H", kind: "continuous", role: "position", weight: 0.30, touchType: "malleability_proxy" },
-      { node: "ZS", kind: "continuous", role: "position", weight: 0.35, touchType: "outgroup_model" },
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "opponent_moral_scope" },
       { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "allocation_shape_epistemic" }
     ],
     allocationMap: {
@@ -2278,6 +2281,9 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
 
   // Q66 — Community Fund Allocation. Re-enabled 2026-04-26 after pattern
   // extraction added COM/EPS/AES signals and pair-level allocation rules.
+  // EPS/category row dropped 2026-05-03 per question-information audit:
+  // allocationMap has no EPS entries (only AES). The "EPS extraction" comment
+  // above predated the actual evidence-map pruning.
   ,{
     id: 66,
     stage: "stage2",
@@ -2291,7 +2297,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "PRO", kind: "continuous", role: "position", weight: 0.60, touchType: "governance_allocation" },
       { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "economic_proxy" },
       { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "governance_allocation" },
-      { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
       { node: "AES", kind: "categorical", role: "category", weight: 0.35, touchType: "civic_style_allocation" }
     ],
     allocationMap: {
@@ -2544,9 +2549,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     uiType: "single_choice",
     quality: 0.93,
     rewriteNeeded: false,
+    // AES/category row dropped 2026-05-03 per question-information audit:
+    // the only option that referenced AES (`gut_feeling`) used
+    // `AES_PROTOTYPES.plainspoken` which is undefined (no such category — the
+    // 6 AES categories are statesman/technocrat/pastoral/authentic/fighter/
+    // visionary). Engine never updated AES from this question. Orphan reference
+    // in `gut_feeling.categorical.AES` is silently no-op at runtime.
     touchProfile: [
-      { node: "EPS", kind: "categorical", role: "category",  weight: 0.95, touchType: "decision_style" },
-      { node: "AES", kind: "categorical", role: "category",  weight: 0.15, touchType: "style_proxy" }
+      { node: "EPS", kind: "categorical", role: "category",  weight: 0.95, touchType: "decision_style" }
     ],
     optionEvidence: {
       research_data: {

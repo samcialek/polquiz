@@ -4,11 +4,11 @@ Detail expansion of the per-node table in the main audit. Each section lists eve
 
 ## MAT (ENDS) — adequate_position_coverage
 
-Position touches: 19 (10 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 3 · omnibus probes: 13 · hollow touches: 0 · fixed-opener touches: 3
+Position touches: 19 (10 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 3 · omnibus probes: 11 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
-| 15 | `inequality_causes_allocation` | position | 0.85 | 3.2 | strong | 4 | — | 0 | — |
+| 15 | `inequality_causes_allocation` | position | 0.85 | 3.2 | strong | 2 | — | 0 | — |
 | 103 | `issue_salience_screener` | salience | 0.95 | 2.76 | too_strong | 11 | F | 0 | — |
 | 13 | `preferred_top_marginal_tax_rate` | position | 0.92 | 2.78 | strong | 1 | — | 0 | — |
 | 17 | `ceo_worker_pay_ratio` | position | 0.9 | 2.26 | reasonable | 1 | — | 0 | — |
@@ -24,12 +24,12 @@ Position touches: 19 (10 meaningful) · salience touches: 6 · category touches:
 | 215 | `theory_of_change_progress` | position | 0.3 | 1.88 | reasonable | 3 | — | 0 | — |
 | 205 | `trade_nationalism` | position | 0.35 | 1.39 | reasonable | 3 | — | 0 | — |
 | 216 | `strengthen_democracy_priority` | position | 0.25 | 1.54 | reasonable | 3 | — | 0 | — |
-| 66 | `community_fund_allocation` | position | 0.2 | 1.6 | reasonable | 6 | — | 0 | — |
+| 66 | `community_fund_allocation` | position | 0.2 | 1.6 | reasonable | 5 | — | 0 | — |
 | 6 | `national_priorities_bundle` | salience | 0.3 | 0.6 | reasonable | 5 | — | 0 | — |
 | 64 | `political_frustration` | position | 0.35 | 0.39 | too_weak | 5 | — | 0 | — |
 | 50 | `integration_expectations_rewrite` | position | 0.15 | 0.6 | reasonable | 3 | — | 0 | — |
 | 82 | `openness_assimilation_closure` | position | 0.08 | 0.94 | reasonable | 4 | — | 0 | — |
-| 15 | `inequality_causes_allocation` | salience | 0.55 | 0 | too_weak | 4 | — | 0 | — |
+| 15 | `inequality_causes_allocation` | salience | 0.55 | 0 | too_weak | 2 | — | 0 | — |
 | 27 | `welfare_error_tradeoff` | salience | 0.65 | 0 | too_weak | 3 | — | 0 | — |
 | 63 | `best_worst_battery` | salience | 0.18 | 0 | too_weak | 9 | — | 0 | — |
 | 93 | `priority_sort_opener` | salience | 0.85 | 0 | too_weak | 6 | F | 0 | — |
@@ -46,7 +46,7 @@ Position touches: 12 (8 meaningful) · salience touches: 6 · category touches: 
 | 82 | `openness_assimilation_closure` | position | 0.9 | 2.42 | reasonable | 4 | — | 0 | — |
 | 101 | `cultural_social_placement_dual` | position | 0.8 | 2.14 | reasonable | 1 | — | 0 | — |
 | 4 | `cultural_social_salience` | salience | 0.9 | 1.85 | strong | 3 | — | 0 | — |
-| 66 | `community_fund_allocation` | position | 0.75 | 1.8 | reasonable | 6 | — | 0 | — |
+| 66 | `community_fund_allocation` | position | 0.75 | 1.8 | reasonable | 5 | — | 0 | — |
 | 6 | `national_priorities_bundle` | position | 0.6 | 2.05 | reasonable | 5 | — | 0 | — |
 | 93 | `priority_sort_opener` | position | 0.55 | 2.14 | reasonable | 6 | F | 0 | — |
 | 206 | `religion_in_public_life` | position | 0.4 | 1.98 | reasonable | 4 | — | 0 | — |
@@ -85,7 +85,7 @@ Position touches: 11 (3 meaningful) · salience touches: 6 · category touches: 
 
 ## MOR (ENDS) — adequate_position_coverage
 
-Position touches: 13 (4 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 1 · omnibus probes: 9 · hollow touches: 1 · fixed-opener touches: 3
+Position touches: 12 (4 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 1 · omnibus probes: 8 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -105,7 +105,6 @@ Position touches: 13 (4 meaningful) · salience touches: 6 · category touches: 
 | 4 | `cultural_social_salience` | salience | 0.2 | 1.51 | reasonable | 3 | — | 0 | — |
 | 5 | `engagement_motivations_top2` | salience | 0.2 | 0.72 | reasonable | 7 | — | 0 | — |
 | 25 | `criminal_trial_error_tradeoff` | position | 0.12 | 0.56 | reasonable | 2 | — | 0 | — |
-| 39 | `opponent_model_allocation` | position | 0.15 | 0 | too_weak | 6 | — | 0 | Y |
 | 63 | `best_worst_battery` | salience | 0.38 | 0 | too_weak | 9 | — | 0 | — |
 | 93 | `priority_sort_opener` | salience | 0.85 | 0 | too_weak | 6 | F | 0 | — |
 
@@ -120,7 +119,7 @@ Position touches: 24 (13 meaningful) · salience touches: 8 · category touches:
 | 21 | `controversial_speaker` | position | 0.8 | 2.68 | strong | 2 | — | 0 | — |
 | 38 | `rules_procedures_matter_salience` | salience | 0.95 | 1.85 | strong | 1 | — | 0 | — |
 | 207 | `emergency_powers` | position | 0.65 | 2.46 | reasonable | 2 | Pr | 0 | — |
-| 66 | `community_fund_allocation` | position | 0.6 | 2.4 | reasonable | 6 | — | 0 | — |
+| 66 | `community_fund_allocation` | position | 0.6 | 2.4 | reasonable | 5 | — | 0 | — |
 | 25 | `criminal_trial_error_tradeoff` | position | 0.75 | 1.86 | reasonable | 2 | — | 0 | — |
 | 208 | `courts_vs_majority` | position | 0.55 | 2.41 | reasonable | 2 | — | 0 | — |
 | 37 | `stupid_workplace_rule_response` | position | 0.6 | 1.98 | reasonable | 2 | — | 0 | — |
@@ -150,21 +149,21 @@ Position touches: 24 (13 meaningful) · salience touches: 8 · category touches:
 
 ## COM (MEANS) — adequate_position_coverage
 
-Position touches: 15 (5 meaningful) · salience touches: 5 · category touches: 0 · clean direct probes: 2 · omnibus probes: 13 · hollow touches: 0 · fixed-opener touches: 3
+Position touches: 15 (5 meaningful) · salience touches: 5 · category touches: 0 · clean direct probes: 2 · omnibus probes: 11 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
 | 103 | `issue_salience_screener` | salience | 0.95 | 2.76 | too_strong | 11 | F | 0 | — |
 | 69 | `common_ground_salience` | salience | 0.9 | 1.85 | strong | 1 | — | 0 | — |
 | 7 | `coalition_vs_principle` | position | 0.85 | 1.8 | reasonable | 1 | Pr | 0 | — |
-| 39 | `opponent_model_allocation` | position | 0.45 | 3 | strong | 6 | — | 0 | — |
+| 39 | `opponent_model_allocation` | position | 0.45 | 3 | strong | 4 | — | 0 | — |
 | 93 | `priority_sort_opener` | position | 0.55 | 2.14 | reasonable | 6 | F | 0 | — |
 | 47 | `political_conflict_with_close_others` | position | 0.7 | 1.53 | reasonable | 1 | — | 0 | — |
-| 20 | `bad_outcomes_blame_allocation` | position | 0.3 | 2 | reasonable | 4 | — | 0 | — |
+| 20 | `bad_outcomes_blame_allocation` | position | 0.3 | 2 | reasonable | 3 | — | 0 | — |
 | 21 | `controversial_speaker` | position | 0.35 | 1.65 | reasonable | 2 | — | 0 | — |
-| 15 | `inequality_causes_allocation` | position | 0.25 | 1.8 | reasonable | 4 | — | 0 | — |
+| 15 | `inequality_causes_allocation` | position | 0.25 | 1.8 | reasonable | 2 | — | 0 | — |
 | 84 | `institutions_harden_into_domination` | position | 0.25 | 1.42 | reasonable | 5 | — | 0 | — |
-| 66 | `community_fund_allocation` | position | 0.35 | 1 | reasonable | 6 | — | 0 | — |
+| 66 | `community_fund_allocation` | position | 0.35 | 1 | reasonable | 5 | — | 0 | — |
 | 9 | `politics_at_social_gatherings` | position | 0.45 | 0.73 | reasonable | 2 | — | 0 | — |
 | 37 | `stupid_workplace_rule_response` | position | 0.25 | 0.92 | reasonable | 2 | — | 0 | — |
 | 83 | `broken_politics_diagnosis` | position | 0.2 | 1.02 | reasonable | 5 | — | 0 | — |
@@ -177,7 +176,7 @@ Position touches: 15 (5 meaningful) · salience touches: 5 · category touches: 
 
 ## ZS (REALITY) — adequate_position_coverage
 
-Position touches: 11 (6 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 1 · omnibus probes: 9 · hollow touches: 2 · fixed-opener touches: 3
+Position touches: 9 (6 meaningful) · salience touches: 6 · category touches: 0 · clean direct probes: 1 · omnibus probes: 5 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -187,21 +186,19 @@ Position touches: 11 (6 meaningful) · salience touches: 6 · category touches: 
 | 84 | `institutions_harden_into_domination` | position | 0.6 | 2.48 | reasonable | 5 | — | 0 | — |
 | 35 | `percent_groups_want_best_share_values` | position | 0.55 | 2.64 | strong | 2 | — | 0 | — |
 | 84 | `institutions_harden_into_domination` | salience | 0.6 | 1.85 | strong | 5 | — | 0 | — |
-| 20 | `bad_outcomes_blame_allocation` | position | 0.55 | 1.8 | reasonable | 4 | — | 0 | — |
+| 20 | `bad_outcomes_blame_allocation` | position | 0.55 | 1.8 | reasonable | 3 | — | 0 | — |
 | 31 | `trade_liberalization_effects` | salience | 0.5 | 1.33 | reasonable | 2 | — | 0 | — |
 | 6 | `national_priorities_bundle` | position | 0.4 | 1.48 | reasonable | 5 | — | 0 | — |
 | 203 | `military_intervention` | position | 0.3 | 1.78 | reasonable | 3 | — | 0 | — |
 | 34 | `threats_to_america_external_internal` | position | 0.35 | 1.21 | reasonable | 2 | — | 0 | — |
 | 205 | `trade_nationalism` | position | 0.25 | 1.39 | reasonable | 3 | — | 0 | — |
 | 209 | `zero_sum_economics_view` | salience | 0.5 | 0.64 | reasonable | 1 | F | 0 | — |
-| 15 | `inequality_causes_allocation` | position | 0.15 | 0 | too_weak | 4 | — | 0 | Y |
-| 20 | `bad_outcomes_blame_allocation` | salience | 0.5 | 0 | too_weak | 4 | — | 0 | — |
-| 39 | `opponent_model_allocation` | position | 0.35 | 0 | too_weak | 6 | — | 0 | Y |
+| 20 | `bad_outcomes_blame_allocation` | salience | 0.5 | 0 | too_weak | 3 | — | 0 | — |
 | 63 | `best_worst_battery` | salience | 0.12 | 0 | too_weak | 9 | — | 0 | — |
 
 ## ONT_H (REALITY) — adequate_position_coverage
 
-Position touches: 13 (3 meaningful) · salience touches: 4 · category touches: 0 · clean direct probes: 2 · omnibus probes: 6 · hollow touches: 0 · fixed-opener touches: 4
+Position touches: 13 (3 meaningful) · salience touches: 4 · category touches: 0 · clean direct probes: 2 · omnibus probes: 5 · hollow touches: 0 · fixed-opener touches: 4
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -211,14 +208,14 @@ Position touches: 13 (3 meaningful) · salience touches: 4 · category touches: 
 | 19 | `human_progress_salience` | salience | 0.95 | 1.85 | strong | 1 | — | 0 | — |
 | 49 | `social_progress_salience` | salience | 0.95 | 1.85 | strong | 2 | — | 0 | — |
 | 48 | `improvement_mechanism` | position | 0.7 | 2.04 | reasonable | 4 | — | 0 | — |
-| 39 | `opponent_model_allocation` | position | 0.3 | 2.1 | reasonable | 6 | — | 0 | — |
+| 39 | `opponent_model_allocation` | position | 0.3 | 2.1 | reasonable | 4 | — | 0 | — |
 | 84 | `institutions_harden_into_domination` | position | 0.2 | 2.42 | reasonable | 5 | — | 0 | — |
 | 6 | `national_priorities_bundle` | position | 0.3 | 1.59 | reasonable | 5 | — | 0 | — |
 | 207 | `emergency_powers` | position | 0.2 | 1.39 | reasonable | 2 | Pr | 0 | — |
 | 208 | `courts_vs_majority` | position | 0.2 | 1.34 | reasonable | 2 | — | 0 | — |
 | 203 | `military_intervention` | position | 0.2 | 1.3 | reasonable | 3 | — | 0 | — |
 | 16 | `criminal_justice_bundle` | position | 0.2 | 1.27 | reasonable | 2 | — | 0 | — |
-| 20 | `bad_outcomes_blame_allocation` | position | 0.25 | 1 | reasonable | 4 | — | 0 | — |
+| 20 | `bad_outcomes_blame_allocation` | position | 0.25 | 1 | reasonable | 3 | — | 0 | — |
 | 24 | `child_traits` | position | 0.1 | 1 | reasonable | 3 | — | 0 | — |
 | 210 | `human_malleability_view` | salience | 0.4 | 0.25 | too_weak | 1 | F | 0 | — |
 | 214 | `institutions_foundational` | position | 0.1 | 0.75 | reasonable | 3 | F | 0 | — |
@@ -267,7 +264,7 @@ Position touches: 15 (7 meaningful) · salience touches: 0 · category touches: 
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
-| 39 | `opponent_model_allocation` | position | 0.75 | 3.6 | too_strong | 6 | — | 0 | — |
+| 39 | `opponent_model_allocation` | position | 0.75 | 3.6 | too_strong | 4 | — | 0 | — |
 | 35 | `percent_groups_want_best_share_values` | position | 0.8 | 2.64 | strong | 2 | — | 0 | — |
 | 98 | `group_solidarity_feeling` | position | 0.85 | 2.45 | reasonable | 2 | — | 0 | — |
 | 42 | `close_friends_voted_differently` | position | 0.9 | 2.28 | reasonable | 1 | — | 0 | — |
@@ -301,12 +298,12 @@ Position touches: 9 (4 meaningful) · salience touches: 0 · category touches: 0
 
 ## EPS (MEANS) — over_covered_category
 
-Position touches: 0 (0 meaningful) · salience touches: 3 · category touches: 23 · clean direct probes: 0 · omnibus probes: 9 · hollow touches: 3 · fixed-opener touches: 4
+Position touches: 0 (0 meaningful) · salience touches: 3 · category touches: 20 · clean direct probes: 0 · omnibus probes: 6 · hollow touches: 0 · fixed-opener touches: 4
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
 | 103 | `issue_salience_screener` | salience | 0.95 | 2.76 | too_strong | 11 | F | 0 | — |
-| 77 | `decision_making_style` | category | 0.95 | 1.58 | strong | 2 | — | 0 | — |
+| 77 | `decision_making_style` | category | 0.95 | 1.58 | strong | 1 | — | 0 | — |
 | 217 | `epistemic_style_ranking` | category | 0.95 | 1.58 | strong | 1 | — | 0 | — |
 | 79 | `expert_disagreement_reaction` | category | 0.92 | 1.58 | strong | 2 | — | 0 | — |
 | 55 | `what_changed_your_mind` | category | 0.95 | 1.52 | strong | 1 | — | 0 | — |
@@ -326,15 +323,12 @@ Position touches: 0 (0 meaningful) · salience touches: 3 · category touches: 2
 | 30 | `information_control_error_tradeoff` | category | 0.2 | 1.34 | strong | 3 | — | 0 | — |
 | 85 | `institutional_legitimacy_source` | category | 0.2 | 1.2 | strong | 4 | — | 0 | — |
 | 78 | `speaker_appeal` | category | 0.15 | 1.027 | reasonable | 2 | — | 0 | — |
-| 39 | `opponent_model_allocation` | category | 0.2 | 0.533 | reasonable | 6 | — | 0 | — |
-| 15 | `inequality_causes_allocation` | category | 0.1 | 0 | too_weak | 4 | — | 0 | Y |
-| 20 | `bad_outcomes_blame_allocation` | category | 0.1 | 0 | too_weak | 4 | — | 0 | Y |
-| 66 | `community_fund_allocation` | category | 0.1 | 0 | too_weak | 6 | — | 0 | Y |
+| 39 | `opponent_model_allocation` | category | 0.2 | 0.533 | reasonable | 4 | — | 0 | — |
 | 89 | `epistemic_style_battery` | salience | 0.55 | 0 | too_weak | 1 | F | 0 | — |
 
-## AES (MEANS) — over_covered_category
+## AES (MEANS) — adequate_category_coverage
 
-Position touches: 0 (0 meaningful) · salience touches: 4 · category touches: 10 · clean direct probes: 0 · omnibus probes: 2 · hollow touches: 1 · fixed-opener touches: 3
+Position touches: 0 (0 meaningful) · salience touches: 4 · category touches: 9 · clean direct probes: 0 · omnibus probes: 2 · hollow touches: 0 · fixed-opener touches: 3
 
 | qid | promptShort | role | weight | strength | class | nodes in q | fixed | asked | hollow |
 |---:|---|---|---:|---:|---|---:|:-:|---:|:-:|
@@ -348,7 +342,6 @@ Position touches: 0 (0 meaningful) · salience touches: 4 · category touches: 1
 | 11 | `nyt_headline_click` | category | 0.45 | 1.5 | strong | 2 | — | 0 | — |
 | 59 | `what_matters_more_in_leader` | category | 0.45 | 1.5 | strong | 2 | — | 0 | — |
 | 78 | `speaker_appeal` | salience | 0.4 | 1.64 | reasonable | 2 | — | 0 | — |
-| 66 | `community_fund_allocation` | category | 0.35 | 1.24 | strong | 6 | — | 0 | — |
+| 66 | `community_fund_allocation` | category | 0.35 | 1.24 | strong | 5 | — | 0 | — |
 | 24 | `child_traits` | category | 0.3 | 1.42 | strong | 3 | — | 0 | — |
-| 77 | `decision_making_style` | category | 0.15 | 0 | too_weak | 2 | — | 0 | Y |
 | 218 | `aesthetic_style_ranking` | salience | 0.35 | 0 | too_weak | 1 | F | 0 | — |

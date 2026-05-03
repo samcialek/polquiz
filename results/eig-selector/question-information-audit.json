@@ -55,7 +55,7 @@
       "categoryTouchCount": 0,
       "meaningfulPositionTouchCount": 10,
       "cleanDirectProbeCount": 3,
-      "omnibusProbeCount": 13,
+      "omnibusProbeCount": 11,
       "fixedOpenerTouchCount": 3,
       "dynamicOnlyTouchCount": 22,
       "forcedCoverageProbeCount": 0,
@@ -95,16 +95,16 @@
     "MOR": {
       "node": "MOR",
       "cluster": "ENDS",
-      "positionTouchCount": 13,
+      "positionTouchCount": 12,
       "salienceTouchCount": 6,
       "categoryTouchCount": 0,
       "meaningfulPositionTouchCount": 4,
       "cleanDirectProbeCount": 1,
-      "omnibusProbeCount": 9,
+      "omnibusProbeCount": 8,
       "fixedOpenerTouchCount": 3,
-      "dynamicOnlyTouchCount": 16,
+      "dynamicOnlyTouchCount": 15,
       "forcedCoverageProbeCount": 2,
-      "hollowTouchCount": 1,
+      "hollowTouchCount": 0,
       "coverageStatus": "adequate_position_coverage"
     },
     "PRO": {
@@ -130,7 +130,7 @@
       "categoryTouchCount": 0,
       "meaningfulPositionTouchCount": 5,
       "cleanDirectProbeCount": 2,
-      "omnibusProbeCount": 13,
+      "omnibusProbeCount": 11,
       "fixedOpenerTouchCount": 3,
       "dynamicOnlyTouchCount": 17,
       "forcedCoverageProbeCount": 1,
@@ -140,16 +140,16 @@
     "ZS": {
       "node": "ZS",
       "cluster": "REALITY",
-      "positionTouchCount": 11,
+      "positionTouchCount": 9,
       "salienceTouchCount": 6,
       "categoryTouchCount": 0,
       "meaningfulPositionTouchCount": 6,
       "cleanDirectProbeCount": 1,
-      "omnibusProbeCount": 9,
+      "omnibusProbeCount": 5,
       "fixedOpenerTouchCount": 3,
-      "dynamicOnlyTouchCount": 14,
+      "dynamicOnlyTouchCount": 12,
       "forcedCoverageProbeCount": 0,
-      "hollowTouchCount": 2,
+      "hollowTouchCount": 0,
       "coverageStatus": "adequate_position_coverage"
     },
     "ONT_H": {
@@ -160,7 +160,7 @@
       "categoryTouchCount": 0,
       "meaningfulPositionTouchCount": 3,
       "cleanDirectProbeCount": 2,
-      "omnibusProbeCount": 6,
+      "omnibusProbeCount": 5,
       "fixedOpenerTouchCount": 4,
       "dynamicOnlyTouchCount": 13,
       "forcedCoverageProbeCount": 2,
@@ -232,14 +232,14 @@
       "cluster": "MEANS",
       "positionTouchCount": 0,
       "salienceTouchCount": 3,
-      "categoryTouchCount": 23,
+      "categoryTouchCount": 20,
       "meaningfulPositionTouchCount": 0,
       "cleanDirectProbeCount": 0,
-      "omnibusProbeCount": 9,
+      "omnibusProbeCount": 6,
       "fixedOpenerTouchCount": 4,
-      "dynamicOnlyTouchCount": 22,
+      "dynamicOnlyTouchCount": 19,
       "forcedCoverageProbeCount": 0,
-      "hollowTouchCount": 3,
+      "hollowTouchCount": 0,
       "coverageStatus": "over_covered_category"
     },
     "AES": {
@@ -247,15 +247,15 @@
       "cluster": "MEANS",
       "positionTouchCount": 0,
       "salienceTouchCount": 4,
-      "categoryTouchCount": 10,
+      "categoryTouchCount": 9,
       "meaningfulPositionTouchCount": 0,
       "cleanDirectProbeCount": 0,
       "omnibusProbeCount": 2,
       "fixedOpenerTouchCount": 3,
-      "dynamicOnlyTouchCount": 11,
+      "dynamicOnlyTouchCount": 10,
       "forcedCoverageProbeCount": 0,
-      "hollowTouchCount": 1,
-      "coverageStatus": "over_covered_category"
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_category_coverage"
     }
   },
   "audits": [
@@ -351,7 +351,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@21",
+          "D1@22",
           "D2@23"
         ],
         "inFixedOpener": false
@@ -393,9 +393,8 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@11",
-          "D2@11",
-          "D3@11"
+          "D1@15",
+          "D3@15"
         ],
         "inFixedOpener": false
       }
@@ -714,7 +713,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@15"
+          "D1@16"
         ],
         "inFixedOpener": false
       }
@@ -755,9 +754,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@16",
+          "D1@17",
           "D2@18",
-          "D3@17"
+          "D3@18"
         ],
         "inFixedOpener": false
       }
@@ -959,10 +958,7 @@
       "realizedUse": {
         "askedCount": 0,
         "avgSlot": null,
-        "inDumps": [
-          "D2@22"
-        ],
-        "inFixedOpener": false
+        "inDumps": []
       }
     },
     {
@@ -1107,7 +1103,7 @@
       "rewriteNeeded": false,
       "priorityBattery": false,
       "burden": 2,
-      "distinctNodesTouched": 4,
+      "distinctNodesTouched": 2,
       "isFixedOpener": false,
       "fixedOpenerSlot": null,
       "isForcedCoverageProbe": false,
@@ -1126,19 +1122,6 @@
           "optionCount": 3
         },
         {
-          "node": "ZS",
-          "role": "position",
-          "kind": "continuous",
-          "weight": 0.15,
-          "touchType": "inequality_worldview",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
-        },
-        {
           "node": "COM",
           "role": "position",
           "kind": "continuous",
@@ -1150,19 +1133,6 @@
           "strengthScore": 1.8,
           "strengthClass": "reasonable",
           "optionCount": 4
-        },
-        {
-          "node": "EPS",
-          "role": "category",
-          "kind": "categorical",
-          "weight": 0.1,
-          "touchType": "allocation_shape_epistemic",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
         },
         {
           "node": "MAT",
@@ -1180,24 +1150,8 @@
       ],
       "flags": [
         {
-          "kind": "overloaded_question",
-          "detail": "touches 4 distinct nodes/anchors"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "ZS/position declared (weight=0.15) but no evidence map or implicit derivation affects it"
-        },
-        {
-          "kind": "subthreshold_touch",
-          "detail": "ZS/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
           "kind": "subthreshold_touch",
           "detail": "COM/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
         }
       ],
       "totalEvidenceWeighted": 3.17,
@@ -1342,9 +1296,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@17",
+          "D1@18",
           "D2@20",
-          "D3@21"
+          "D3@23"
         ],
         "inFixedOpener": false
       }
@@ -1385,7 +1339,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D2@27"
+          "D2@26"
         ],
         "inFixedOpener": false
       }
@@ -1400,7 +1354,7 @@
       "rewriteNeeded": false,
       "priorityBattery": false,
       "burden": 2,
-      "distinctNodesTouched": 4,
+      "distinctNodesTouched": 3,
       "isFixedOpener": false,
       "fixedOpenerSlot": null,
       "isForcedCoverageProbe": false,
@@ -1445,19 +1399,6 @@
           "optionCount": 4
         },
         {
-          "node": "EPS",
-          "role": "category",
-          "kind": "categorical",
-          "weight": 0.1,
-          "touchType": "allocation_shape_epistemic",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
-        },
-        {
           "node": "ZS",
           "role": "salience",
           "kind": "continuous",
@@ -1473,20 +1414,12 @@
       ],
       "flags": [
         {
-          "kind": "overloaded_question",
-          "detail": "touches 4 distinct nodes/anchors"
-        },
-        {
           "kind": "subthreshold_touch",
           "detail": "ONT_H/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
         },
         {
           "kind": "subthreshold_touch",
           "detail": "COM/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
         }
       ],
       "totalEvidenceWeighted": 1.84,
@@ -1588,7 +1521,12 @@
       "realizedUse": {
         "askedCount": 0,
         "avgSlot": null,
-        "inDumps": []
+        "inDumps": [
+          "D1@6",
+          "D2@6",
+          "D3@6"
+        ],
+        "inFixedOpener": false
       }
     },
     {
@@ -2152,8 +2090,8 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@19",
-          "D3@22"
+          "D1@20",
+          "D3@24"
         ],
         "inFixedOpener": false
       }
@@ -2503,9 +2441,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@24",
+          "D1@25",
           "D2@28",
-          "D3@28"
+          "D3@29"
         ],
         "inFixedOpener": false
       }
@@ -2520,7 +2458,7 @@
       "rewriteNeeded": false,
       "priorityBattery": false,
       "burden": 2,
-      "distinctNodesTouched": 6,
+      "distinctNodesTouched": 4,
       "isFixedOpener": false,
       "fixedOpenerSlot": null,
       "isForcedCoverageProbe": false,
@@ -2565,32 +2503,6 @@
           "optionCount": 3
         },
         {
-          "node": "ZS",
-          "role": "position",
-          "kind": "continuous",
-          "weight": 0.35,
-          "touchType": "outgroup_model",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
-        },
-        {
-          "node": "MOR",
-          "role": "position",
-          "kind": "continuous",
-          "weight": 0.15,
-          "touchType": "opponent_moral_scope",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
-        },
-        {
           "node": "EPS",
           "role": "category",
           "kind": "categorical",
@@ -2607,7 +2519,7 @@
       "flags": [
         {
           "kind": "overloaded_question",
-          "detail": "touches 6 distinct nodes/anchors"
+          "detail": "touches 4 distinct nodes/anchors"
         },
         {
           "kind": "evidence_too_strong",
@@ -2616,22 +2528,6 @@
         {
           "kind": "subthreshold_touch",
           "detail": "ONT_H/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "ZS/position declared (weight=0.35) but no evidence map or implicit derivation affects it"
-        },
-        {
-          "kind": "subthreshold_touch",
-          "detail": "ZS/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "MOR/position declared (weight=0.15) but no evidence map or implicit derivation affects it"
-        },
-        {
-          "kind": "subthreshold_touch",
-          "detail": "MOR/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
         }
       ],
       "totalEvidenceWeighted": 4.787,
@@ -3046,7 +2942,7 @@
         "avgSlot": null,
         "inDumps": [
           "D2@29",
-          "D3@20"
+          "D3@22"
         ],
         "inFixedOpener": false
       }
@@ -3191,9 +3087,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@22",
+          "D1@23",
           "D2@31",
-          "D3@30"
+          "D3@31"
         ],
         "inFixedOpener": false
       }
@@ -3456,8 +3352,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@20",
-          "D3@19"
+          "D1@21"
         ],
         "inFixedOpener": false
       }
@@ -3653,9 +3548,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@25",
+          "D1@26",
           "D2@30",
-          "D3@29"
+          "D3@30"
         ],
         "inFixedOpener": false
       }
@@ -3781,7 +3676,7 @@
       "rewriteNeeded": false,
       "priorityBattery": false,
       "burden": 2,
-      "distinctNodesTouched": 6,
+      "distinctNodesTouched": 5,
       "isFixedOpener": false,
       "fixedOpenerSlot": null,
       "isForcedCoverageProbe": false,
@@ -3839,19 +3734,6 @@
           "optionCount": 1
         },
         {
-          "node": "EPS",
-          "role": "category",
-          "kind": "categorical",
-          "weight": 0.1,
-          "touchType": "allocation_shape_epistemic",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
-        },
-        {
           "node": "AES",
           "role": "category",
           "kind": "categorical",
@@ -3868,7 +3750,7 @@
       "flags": [
         {
           "kind": "overloaded_question",
-          "detail": "touches 6 distinct nodes/anchors"
+          "detail": "touches 5 distinct nodes/anchors"
         },
         {
           "kind": "subthreshold_touch",
@@ -3877,10 +3759,6 @@
         {
           "kind": "subthreshold_touch",
           "detail": "COM/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
-        },
-        {
-          "kind": "hollow_touch",
-          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
         }
       ],
       "totalEvidenceWeighted": 3.894,
@@ -3927,9 +3805,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@23",
-          "D2@26",
-          "D3@26"
+          "D1@24",
+          "D2@25",
+          "D3@27"
         ],
         "inFixedOpener": false
       }
@@ -3970,8 +3848,8 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D2@25",
-          "D3@27"
+          "D2@27",
+          "D3@28"
         ],
         "inFixedOpener": false
       }
@@ -3986,7 +3864,7 @@
       "rewriteNeeded": false,
       "priorityBattery": false,
       "burden": 1,
-      "distinctNodesTouched": 2,
+      "distinctNodesTouched": 1,
       "isFixedOpener": false,
       "fixedOpenerSlot": null,
       "isForcedCoverageProbe": false,
@@ -4003,27 +3881,9 @@
           "strengthScore": 1.58,
           "strengthClass": "strong",
           "optionCount": 6
-        },
-        {
-          "node": "AES",
-          "role": "category",
-          "kind": "categorical",
-          "weight": 0.15,
-          "touchType": "style_proxy",
-          "hasEvidence": false,
-          "hasExplicitEvidence": false,
-          "derivedImplicit": false,
-          "strengthScore": 0,
-          "strengthClass": "too_weak",
-          "optionCount": 0
         }
       ],
-      "flags": [
-        {
-          "kind": "hollow_touch",
-          "detail": "AES/category declared (weight=0.15) but no evidence map or implicit derivation affects it"
-        }
-      ],
+      "flags": [],
       "totalEvidenceWeighted": 1.501,
       "signalPerBurden": 1.501,
       "realizedUse": {
@@ -4093,7 +3953,11 @@
       "realizedUse": {
         "askedCount": 0,
         "avgSlot": null,
-        "inDumps": []
+        "inDumps": [
+          "D2@22",
+          "D3@20"
+        ],
+        "inFixedOpener": false
       }
     },
     {
@@ -4163,7 +4027,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D3@25"
+          "D3@21"
         ],
         "inFixedOpener": false
       }
@@ -4330,7 +4194,7 @@
         "avgSlot": null,
         "inDumps": [
           "D2@17",
-          "D3@16"
+          "D3@17"
         ],
         "inFixedOpener": false
       }
@@ -4560,7 +4424,7 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D3@24"
+          "D3@26"
         ],
         "inFixedOpener": false
       }
@@ -4955,9 +4819,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@9",
-          "D2@9",
-          "D3@9"
+          "D1@10",
+          "D2@10",
+          "D3@10"
         ],
         "inFixedOpener": false
       }
@@ -5251,9 +5115,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@10",
-          "D2@10",
-          "D3@10"
+          "D1@11",
+          "D2@11",
+          "D3@11"
         ],
         "inFixedOpener": false
       }
@@ -6063,9 +5927,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@18",
+          "D1@19",
           "D2@21",
-          "D3@18"
+          "D3@19"
         ],
         "inFixedOpener": false
       }
@@ -6270,9 +6134,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@7",
-          "D2@7",
-          "D3@7"
+          "D1@8",
+          "D2@8",
+          "D3@8"
         ],
         "inFixedOpener": false
       }
@@ -6304,9 +6168,9 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@8",
-          "D2@8",
-          "D3@8"
+          "D1@9",
+          "D2@9",
+          "D3@9"
         ],
         "inFixedOpener": false
       }
@@ -6396,7 +6260,7 @@
         "avgSlot": null,
         "inDumps": [
           "D2@19",
-          "D3@15"
+          "D3@16"
         ],
         "inFixedOpener": false
       }
@@ -6577,7 +6441,7 @@
         "avgSlot": null,
         "inDumps": [
           "D2@15",
-          "D3@23"
+          "D3@25"
         ],
         "inFixedOpener": false
       }
@@ -6755,27 +6619,22 @@
         "askedCount": 0,
         "avgSlot": null,
         "inDumps": [
-          "D1@6",
-          "D2@6",
-          "D3@6"
+          "D1@7",
+          "D2@7",
+          "D3@7"
         ],
         "inFixedOpener": false
       }
     }
   ],
   "issueClassification": {
-    "P0": [
-      15,
-      20,
-      39,
-      66,
-      77
-    ],
+    "P0": [],
     "P1": [
       5,
       24,
       30,
       36,
+      39,
       51,
       59,
       61,
@@ -6792,7 +6651,9 @@
       6,
       10,
       14,
+      15,
       16,
+      20,
       21,
       23,
       25,
@@ -6808,6 +6669,7 @@
       50,
       54,
       64,
+      66,
       79,
       81,
       82,
