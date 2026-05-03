@@ -2355,8 +2355,16 @@ document.addEventListener('DOMContentLoaded', () => {
                           : '';
             const contribCls = r.share > 0.20 ? 'ed-contrib high' : 'ed-contrib';
             const barPx = Math.max(8, r.barPct * 0.7);
+            // v27.19: surface user salience under the cluster label so the
+            // impact % is interpretable. impact = effSal × gap² ; the user
+            // needs to see effSal (= sal × era_mult) to make sense of the
+            // share. The era multiplier is already shown via actBadge; we
+            // just expose raw salience and the effective value.
+            const salDisplay = (r.effSal > r.sal + 0.05)
+              ? `sal ${r.sal.toFixed(1)}/3 → ${r.effSal.toFixed(1)} eff`
+              : `sal ${r.sal.toFixed(1)}/3`;
             bdBody += `<div class="ed-node-row">`;
-            bdBody += `  <div class="ed-node-name">${meta.name}${actBadge}<span class="ed-node-cluster">${meta.cluster}</span></div>`;
+            bdBody += `  <div class="ed-node-name">${meta.name}${actBadge}<span class="ed-node-cluster">${meta.cluster} · ${salDisplay}</span></div>`;
             bdBody += `  <div>`;
             bdBody += `    <div class="ed-pos-bar">`;
             bdBody += `      <div class="ed-pos-axis"></div>`;
@@ -3542,7 +3550,7 @@ document.addEventListener('DOMContentLoaded', () => {
         t.setAttribute('x', lp.x.toFixed(2));
         t.setAttribute('y', lp.y.toFixed(2));
         t.setAttribute('font-family', "'Space Grotesk', sans-serif");
-        t.setAttribute('font-size', '16');
+        t.setAttribute('font-size', '18');
         t.setAttribute('font-weight', '600');
         t.setAttribute('fill', '#1a1a1a');
         t.setAttribute('text-anchor', anchor);
@@ -3973,7 +3981,7 @@ document.addEventListener('DOMContentLoaded', () => {
         labelEl.setAttribute('y', (ly - 4).toFixed(2));
         labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
         labelEl.setAttribute('font-weight', '700');
-        labelEl.setAttribute('font-size', '18');
+        labelEl.setAttribute('font-size', '16');
         labelEl.setAttribute('letter-spacing', '0.14em');
         labelEl.setAttribute('fill', '#1a1a1a');
         labelEl.setAttribute('text-anchor', 'middle');
