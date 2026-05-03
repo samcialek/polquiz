@@ -1,0 +1,320 @@
+{
+  "schema_version": "v0",
+  "generator": "src/electorate/vepUniverseLoaderSmoke.ts",
+  "runAt": "2026-05-03T22:43:07.893Z",
+  "fixture_size": {
+    "perYear": 6,
+    "totalYears": 5
+  },
+  "invariants": {
+    "allRowsValid": true,
+    "eligibleMixExercisedAllYears": true,
+    "ageToBucketSpotCheckPasses": true,
+    "ageToBucketThrowsOnInvalid": true,
+    "validatorCatchesDeliberatelyBadRow": true
+  },
+  "bucketSpotCheck": [
+    {
+      "age": 18,
+      "expected": "18-24",
+      "actual": "18-24"
+    },
+    {
+      "age": 24,
+      "expected": "18-24",
+      "actual": "18-24"
+    },
+    {
+      "age": 25,
+      "expected": "25-34",
+      "actual": "25-34"
+    },
+    {
+      "age": 34,
+      "expected": "25-34",
+      "actual": "25-34"
+    },
+    {
+      "age": 35,
+      "expected": "35-44",
+      "actual": "35-44"
+    },
+    {
+      "age": 44,
+      "expected": "35-44",
+      "actual": "35-44"
+    },
+    {
+      "age": 45,
+      "expected": "45-54",
+      "actual": "45-54"
+    },
+    {
+      "age": 54,
+      "expected": "45-54",
+      "actual": "45-54"
+    },
+    {
+      "age": 55,
+      "expected": "55-64",
+      "actual": "55-64"
+    },
+    {
+      "age": 64,
+      "expected": "55-64",
+      "actual": "55-64"
+    },
+    {
+      "age": 65,
+      "expected": "65-74",
+      "actual": "65-74"
+    },
+    {
+      "age": 74,
+      "expected": "65-74",
+      "actual": "65-74"
+    },
+    {
+      "age": 75,
+      "expected": "75+",
+      "actual": "75+"
+    },
+    {
+      "age": 95,
+      "expected": "75+",
+      "actual": "75+"
+    }
+  ],
+  "reports": [
+    {
+      "year": 2008,
+      "rowsTotal": 6,
+      "rowsValid": 6,
+      "validationErrors": [],
+      "vepEligibleRows": 4,
+      "weightedTotal": 875.9,
+      "weightedVepEligible": 606.4,
+      "vepEligibleShare": 0.6923164744833885,
+      "byState": {
+        "OH": 152.4,
+        "FL": 121.7,
+        "CA": 188.2,
+        "TX": 167,
+        "NY": 102.5,
+        "PA": 144.1
+      },
+      "byRace": {
+        "white": 274.1,
+        "black": 246.6,
+        "amerindian": 0,
+        "asian": 188.2,
+        "nhpi": 0,
+        "other_single": 167,
+        "two_or_more": 0
+      },
+      "byAgeBucket": {
+        "18-24": 102.5,
+        "25-34": 188.2,
+        "35-44": 319.4,
+        "45-54": 0,
+        "55-64": 144.1,
+        "65-74": 121.7,
+        "75+": 0
+      },
+      "bySex": {
+        "male": 421.9,
+        "female": 454
+      },
+      "byCitizenship": {
+        "us_born": 520.7,
+        "us_naturalized": 188.2,
+        "us_territory": 0,
+        "non_citizen": 167
+      }
+    },
+    {
+      "year": 2012,
+      "rowsTotal": 6,
+      "rowsValid": 6,
+      "validationErrors": [],
+      "vepEligibleRows": 5,
+      "weightedTotal": 809,
+      "weightedVepEligible": 713.6,
+      "vepEligibleShare": 0.8820766378244747,
+      "byState": {
+        "MI": 159,
+        "GA": 109.8,
+        "WA": 174.6,
+        "AZ": 128.3,
+        "NJ": 141.9,
+        "IL": 95.4
+      },
+      "byRace": {
+        "white": 300.9,
+        "black": 109.8,
+        "amerindian": 128.3,
+        "asian": 174.6,
+        "nhpi": 0,
+        "other_single": 0,
+        "two_or_more": 95.4
+      },
+      "byAgeBucket": {
+        "18-24": 0,
+        "25-34": 475.5,
+        "35-44": 95.4,
+        "45-54": 128.3,
+        "55-64": 0,
+        "65-74": 109.8,
+        "75+": 0
+      },
+      "bySex": {
+        "male": 524.6,
+        "female": 284.4
+      },
+      "byCitizenship": {
+        "us_born": 397.1,
+        "us_naturalized": 316.5,
+        "us_territory": 0,
+        "non_citizen": 95.4
+      }
+    },
+    {
+      "year": 2016,
+      "rowsTotal": 6,
+      "rowsValid": 6,
+      "validationErrors": [],
+      "vepEligibleRows": 4,
+      "weightedTotal": 843.6,
+      "weightedVepEligible": 598.2,
+      "vepEligibleShare": 0.7091038406827881,
+      "byState": {
+        "WI": 134.2,
+        "NC": 148.7,
+        "TX": 117.3,
+        "CA": 198,
+        "FL": 88.9,
+        "NV": 156.5
+      },
+      "byRace": {
+        "white": 340.4,
+        "black": 148.7,
+        "amerindian": 0,
+        "asian": 198,
+        "nhpi": 0,
+        "other_single": 156.5,
+        "two_or_more": 0
+      },
+      "byAgeBucket": {
+        "18-24": 206.2,
+        "25-34": 156.5,
+        "35-44": 148.7,
+        "45-54": 134.2,
+        "55-64": 198,
+        "65-74": 0,
+        "75+": 0
+      },
+      "bySex": {
+        "male": 503.2,
+        "female": 340.4
+      },
+      "byCitizenship": {
+        "us_born": 489.1,
+        "us_naturalized": 198,
+        "us_territory": 0,
+        "non_citizen": 156.5
+      }
+    },
+    {
+      "year": 2020,
+      "rowsTotal": 6,
+      "rowsValid": 6,
+      "validationErrors": [],
+      "vepEligibleRows": 5,
+      "weightedTotal": 830.6000000000001,
+      "weightedVepEligible": 679.3000000000001,
+      "vepEligibleShare": 0.8178425234770045,
+      "byState": {
+        "PA": 162.4,
+        "AZ": 145,
+        "GA": 138.6,
+        "MA": 109.2,
+        "WA": 124.1,
+        "TX": 151.3
+      },
+      "byRace": {
+        "white": 416.59999999999997,
+        "black": 138.6,
+        "amerindian": 0,
+        "asian": 124.1,
+        "nhpi": 0,
+        "other_single": 151.3,
+        "two_or_more": 0
+      },
+      "byAgeBucket": {
+        "18-24": 124.1,
+        "25-34": 145,
+        "35-44": 313.70000000000005,
+        "45-54": 0,
+        "55-64": 138.6,
+        "65-74": 0,
+        "75+": 109.2
+      },
+      "bySex": {
+        "male": 405.5,
+        "female": 425.1
+      },
+      "byCitizenship": {
+        "us_born": 555.2,
+        "us_naturalized": 124.1,
+        "us_territory": 0,
+        "non_citizen": 151.3
+      }
+    },
+    {
+      "year": 2024,
+      "rowsTotal": 6,
+      "rowsValid": 6,
+      "validationErrors": [],
+      "vepEligibleRows": 5,
+      "weightedTotal": 827.4,
+      "weightedVepEligible": 735.5,
+      "vepEligibleShare": 0.8889291757312062,
+      "byState": {
+        "MI": 156.8,
+        "PA": 142.5,
+        "FL": 130.1,
+        "CA": 167.4,
+        "OH": 138.7,
+        "NY": 91.9
+      },
+      "byRace": {
+        "white": 286.9,
+        "black": 234.4,
+        "amerindian": 0,
+        "asian": 167.4,
+        "nhpi": 0,
+        "other_single": 0,
+        "two_or_more": 138.7
+      },
+      "byAgeBucket": {
+        "18-24": 259.3,
+        "25-34": 0,
+        "35-44": 142.5,
+        "45-54": 295.5,
+        "55-64": 0,
+        "65-74": 130.1,
+        "75+": 0
+      },
+      "bySex": {
+        "male": 401.79999999999995,
+        "female": 425.59999999999997
+      },
+      "byCitizenship": {
+        "us_born": 659.9999999999999,
+        "us_naturalized": 167.4,
+        "us_territory": 0,
+        "non_citizen": 0
+      }
+    }
+  ]
+}
