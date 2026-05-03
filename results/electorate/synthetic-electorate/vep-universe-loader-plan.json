@@ -1,0 +1,150 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7",
+  "created": "2026-05-03",
+  "status": "design plan + scaffold; no code, no raw downloads",
+  "purpose": "Population skeleton for the simulator: one row per represented voting-eligible adult/cell across 2008/2012/2016/2020/2024.",
+  "framing_principle": "CES/CCES gives node signatures; ACS/PUMS gives the full eligible-adult population skeleton.",
+  "explicitly_not_in_v0": [
+    "No PRISM node signatures — Phase 2.6 mapper handles signatures separately.",
+    "No vote prediction or candidate scoring — Phase 2.8+.",
+    "No raw ACS/PUMS downloads — gated behind explicit user approval and a separate intake commit (~10–15 GB across 5 vintages).",
+    "No Esri Tapestry use — pre-2020 vintages unavailable; downstream-of-ACS anyway.",
+    "No commercial voter files — only cover ~70% of adults (registered voters); abstention calibration needs full eligible universe.",
+    "No mapper / vote-formula / candidate / EIG / selector / browser / dist / output edits."
+  ],
+  "two_layer_architecture": {
+    "cell_marginals": {
+      "role": "Reproducible demographic totals at any geography for raking / IPF",
+      "source": "ACS 5-year B-tables via Census API",
+      "produces": "Cells of (year, state, age_bucket, race, sex, education, income_bucket, citizenship) with population counts",
+      "use_cases": ["validation of PUMS aggregates", "MRP poststratification at sub-state geographies", "cross-cycle consistency checks"]
+    },
+    "individual_microdata": {
+      "role": "Synthetic-respondent rows with per-respondent uncertainty + survey-style replicate weights",
+      "source": "ACS 5-year PUMS via IPUMS USA",
+      "produces": "One row per PUMS respondent, with personWeight + 80 replicate weights",
+      "primary_for_v1": true
+    }
+  },
+  "target_row_schema": {
+    "type_name": "VepUniverseRow",
+    "fields": [
+      { "name": "respondentId", "type": "string", "source": "PUMS SERIALNO + SPORDER", "notes": "PUMS-{vintage}-{state}-{serial}-{sporder}" },
+      { "name": "year", "type": "number", "source": "argument", "values": [2008, 2012, 2016, 2020, 2024] },
+      { "name": "state", "type": "string", "source": "PUMS STATE → 2-letter abbrev", "notes": "50 states + DC; territories excluded for v1" },
+      { "name": "puma", "type": "string", "source": "PUMS PUMA", "notes": "5-digit code for sub-state geography (~100K pop)" },
+      { "name": "age", "type": "number", "source": "PUMS AGEP", "range": "0..95 (top-coded)" },
+      { "name": "age_bucket", "type": "string", "source": "derived", "values": ["18-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75+"] },
+      { "name": "sex", "type": "string", "source": "PUMS SEX", "values": ["male", "female"], "notes": "PUMS does not include non-binary 2008-2024 5-year files" },
+      { "name": "race", "type": "string", "source": "PUMS RAC1P", "values": ["white", "black", "amerindian", "asian", "nhpi", "other_single", "two_or_more"] },
+      { "name": "hispanic", "type": "boolean", "source": "PUMS HISP", "notes": "true for Hispanic/Latino origin (any race)" },
+      { "name": "education", "type": "string", "source": "PUMS SCHL (collapsed)", "values": ["less_than_hs", "hs_grad", "some_college", "bachelor", "graduate"] },
+      { "name": "income_bucket", "type": "string | null", "source": "PUMS HINCP (household)", "values": ["<25k", "25-50k", "50-75k", "75-100k", "100-150k", "150k+", null], "notes": "null when group quarters" },
+      { "name": "citizenship", "type": "enum", "source": "PUMS CIT", "values": ["us_born", "us_naturalized", "us_territory", "non_citizen"] },
+      { "name": "vepEligible", "type": "boolean", "source": "derived", "notes": "true iff citizenship ∈ {us_born, us_naturalized} AND age >= 18 AND not in disqualifying state-level felon-disenfranchisement category" },
+      { "name": "personWeight", "type": "number", "source": "PUMS PWGTP", "notes": "Population share carried by this row" },
+      { "name": "replicateWeights", "type": "number[]", "source": "PUMS PWGTP1..PWGTP80", "notes": "80 replicate weights for variance estimation; optional consumption" },
+      { "name": "sourceDataset", "type": "string", "source": "argument", "example": "acs5_2014_2018" },
+      { "name": "sourceVintage", "type": "string", "source": "argument", "example": "2014-2018" },
+      { "name": "coverageNotes", "type": "string[]", "source": "derived", "examples": ["post_2020_disclosure_avoidance_applied", "income_top_coded", "PUMA_2010_boundaries"] },
+      { "name": "uncertainty", "type": "low | medium | high", "source": "derived", "notes": "low for state aggregates; medium at PUMA; high when small cells get IPF/raking smoothing" }
+    ],
+    "join_key_for_simulator": "respondentId; the synthetic electorate is the union of all rows where vepEligible === true, weighted by personWeight"
+  },
+  "source_files_per_year": [
+    {
+      "year": 2008,
+      "acs_5_year_vintage": "2005-2009",
+      "acs_1_year_vintage": "2008",
+      "pums_file": "configured IPUMS extract (5-year preferred for sub-state coverage; supplement with 2008 1-year for state-level totals where 1-year supports the geography)",
+      "approx_file_size_gb": 1.5,
+      "notes": "ACS 5-year coverage starts 2009; for 2008 specifically, 2005-2009 5-year is the workhorse."
+    },
+    { "year": 2012, "acs_5_year_vintage": "2008-2012", "pums_file": "configured IPUMS extract", "approx_file_size_gb": 2.0, "notes": "Mature 5-year by then." },
+    { "year": 2016, "acs_5_year_vintage": "2012-2016", "pums_file": "configured IPUMS extract", "approx_file_size_gb": 2.5, "notes": "Workhorse." },
+    { "year": 2020, "acs_5_year_vintage": "2016-2020", "pums_file": "configured IPUMS extract", "approx_file_size_gb": 3.0, "notes": "2020 1-year ACS NOT released (COVID nonresponse); 5-year is the only ACS option." },
+    { "year": 2024, "acs_5_year_vintage": "2020-2024 (when released; currently 2019-2023)", "pums_file": "configured IPUMS extract", "approx_file_size_gb": 3.0, "notes": "If 2020-2024 not yet shipped, use 2019-2023 with documented vintage_lag: 1 flag." }
+  ],
+  "v1_acquisition_plan": {
+    "status": "gated; requires explicit user approval before downloads",
+    "steps": [
+      "1. Open IPUMS USA account (free; institutional or personal).",
+      "2. Configure five extracts (one per cycle), each containing all 50 states + DC and all PUMAs.",
+      "3. Required variables per extract: YEAR, STATEFIP, PUMA, SERIALNO, SPORDER, PWGTP, PWGTP1..80, AGEP, SEX, RAC1P, HISP, SCHL, HINCP, CIT, MIGSP1.",
+      "4. Subset to age 18+ to halve file size.",
+      "5. Download .dat.gz + .xml codebook to data/acs-pums/{year}/.",
+      "6. Add data/acs-pums/.gitignore excluding .dat / .dat.gz / .xml (mirrors data/backtest-sources/ convention)."
+    ],
+    "approx_total_size_gb": 12,
+    "until_acquisition_lands": "Loader v1 will return a typed 'no data available for year X' sentinel rather than throwing."
+  },
+  "loader_output_contract": {
+    "module": "src/electorate/vepUniverseLoader.ts",
+    "options_type": "VepUniverseLoaderOptions",
+    "stream_export": "streamVepUniverse(opts): AsyncGenerator<VepUniverseRow, VepUniverseStats, void>",
+    "load_export": "loadVepUniverse(opts): Promise<{ rows: VepUniverseRow[]; stats: VepUniverseStats; }>",
+    "stats_fields": [
+      "totalRows",
+      "rowsSkipped",
+      "weightedTotalPopulation",
+      "weightedVepEligiblePopulation",
+      "weightedAgeMarginals",
+      "weightedRaceMarginals",
+      "weightedEducationMarginals",
+      "weightedSexMarginals",
+      "weightedCitizenshipMarginals",
+      "benchmarkComparison: { vepGapShare: number; vepGapAbsolute: number; benchmarkSource: 'mcdonald_uf' }"
+    ]
+  },
+  "validation_invariants": [
+    "Total weighted VEP per year matches benchmark within 1.5% (allows for felon-disenfranchisement methodology differences).",
+    "State-level VEP totals match McDonald/UF state breakdowns within 2% per state.",
+    "Age-by-citizenship marginals match ACS B05003 within ACS sampling error (90% CI overlap).",
+    "All vepEligible: true rows have age >= 18 and citizenship ∈ {us_born, us_naturalized}.",
+    "Replicate weights present and finite for every row.",
+    "No row has personWeight <= 0."
+  ],
+  "felon_disenfranchisement": {
+    "issue": "PUMS does not include conviction history; McDonald/UF VEP already applies a felon-disenfranchisement adjustment.",
+    "v1_approach": "Apply a static per-state percentage from the Sentencing Project's tracker. vepEligible becomes a probabilistic flag (e.g., 97% true / 3% false) for affected demographic cells.",
+    "v2_approach": "Replace static percentages with a year-specific tracker table.",
+    "audit_signal": "Loader's benchmarkComparison.vepGap surfaces any residual mismatch between PUMS-derived VEP and McDonald/UF VEP."
+  },
+  "rejected_alternatives": {
+    "voter_files": {
+      "rationale_against": "Cover only ~70% of adults (registered voters). Abstention calibration (Phase 2.4 Stage B) integrates over full eligible universe; need unregistered-but-eligible adults too.",
+      "future_role": "Possible cross-validation of turnout subgroup behavior at v3+; not the universe definition."
+    },
+    "esri_tapestry": {
+      "rationale_against_universe": "Census-derivative; using it as the universe layer would be circular vs ACS used directly. Plus pre-2020 vintages unavailable.",
+      "future_role": "Optional MRP covariate or narrative coloring at reporting time. Not the population skeleton."
+    },
+    "decennial_only": {
+      "rationale_against": "Decadal cadence is too coarse for cycle-by-cycle backtest; each election year needs ACS 5-year ending at or before that year."
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 2.2 — benchmarks-2008-2024 (read-only consumption for VEP cross-check)",
+      "Phase 2.4 — turnout-abstention-calibration-plan (Stage B abstention will integrate over this universe)",
+      "Phase 2.6 — survey-to-prism mapper (signatures will be imputed onto this universe by demographic cell)"
+    ],
+    "blocks": [
+      "Phase 2.8 — mapper-backed aggregate target requires this universe as denominator for share-of-VEP comparisons.",
+      "Phase 4 — any sub-national geography work."
+    ]
+  },
+  "open_issues_for_v1": [
+    "Felon-disenfranchisement state lookup table — Sentencing Project tracker URL + retrieval cadence.",
+    "Whether to ship MRP raking helper inside the loader or as a separate module (prefer separate; mapper does not need raking for v1 backtest).",
+    "PUMA-2010 vs PUMA-2020 boundary changes — pre-2018 PUMS uses 2010 boundaries; 2018+ uses 2020 boundaries. Cross-vintage analyses need a crosswalk.",
+    "MIGSP1 (residence 1 year ago) — extract now for future migration-model use, but loader v1 does not consume it."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/vep-universe-loader-plan.md",
+    "results/electorate/synthetic-electorate/vep-universe-loader-plan.json"
+  ],
+  "terminology": "vepEligible is the population-skeleton invariant; engagement and turnout are downstream concerns. Engagement is referenced only as the input to Stage B abstention calibration once the universe is loaded — separate 1D continuous scalar per ADR canon. Compound moral-circle (moralBoundaries) terminology used where applicable. Legacy code identifiers (PWGTP, RAC1P, SCHL etc.) appear only as PUMS column names.",
+  "revision_history": []
+}
