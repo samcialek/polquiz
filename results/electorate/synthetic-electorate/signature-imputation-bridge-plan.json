@@ -1,0 +1,165 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7.5",
+  "created": "2026-05-03",
+  "status": "design plan only; no code, no raw data downloads",
+  "purpose": "Specify how Phase 2.6 mapper signatures get attached to Phase 2.7 universe rows to produce SyntheticElectorateRow[] per the existing contract.",
+  "decision": {
+    "v1_default": "weighted hot-deck / nearest-neighbor donor imputation",
+    "v2_planned": "MRP (multilevel regression with poststratification)",
+    "raking_role": "validation/calibration companion, not the bridge — does not attach signatures to ACS/PUMS rows",
+    "explicitly_not_the_product": "dense joint matrix; the product is SyntheticElectorateRow[] conforming to syntheticElectorateContract.ts"
+  },
+  "explicitly_not_in_v1": [
+    "No code — plan only.",
+    "No engine / selector / topK / browser / dist / output / live-data edits.",
+    "No candidate data, era-context data, or raw-data downloads.",
+    "No new bridge implementation — v0 mock at syntheticElectorateContractSmoke.ts stays in place until v1 ships."
+  ],
+  "inputs": [
+    "SurveyPrismSignature[] for the year (Phase 2.6 mapper output)",
+    "VepUniverseRow[] for the year (Phase 2.7 v1 loader output — pending acquisition approval)",
+    "numDraws (engine config; default 5)",
+    "randomSeed (engine config; deterministic)"
+  ],
+  "outputs": [
+    "SyntheticElectorateRow[] conforming to src/electorate/syntheticElectorateContract.ts",
+    "BridgeStats summary with per-step row counts, ESS, uncertainty distribution"
+  ],
+  "matching_keys_and_backoff": {
+    "step_1": "(year, state, race, sex, age_bucket, education, income_bucket)",
+    "step_2": "(year, state, race, sex, age_bucket, education)",
+    "step_3": "(year, state-region, race, sex, age_bucket, education)",
+    "step_4": "(year, state-region, race, sex, age_bucket)",
+    "step_5": "(year, race, sex, age_bucket, education)",
+    "step_6": "(year, race, sex, age_bucket)",
+    "step_7": "(year, race, sex)",
+    "step_8": "(year) — last-resort national pool, requires --allow-national-fallback flag",
+    "state_region_collapse": "50+1 states → 4 Census regions (Northeast / Midwest / South / West)",
+    "min_donors": 25,
+    "min_donor_weight": 5.0,
+    "max_backoff_step_default": 7,
+    "income_bucket_handling": "if VepUniverseRow.income_bucket is null, step 1 is skipped (no demographic invention)"
+  },
+  "sampling": {
+    "weighting": "donor i has draw probability w_i / Σ w_j where w_i is the CCES survey weight (post-wave validated-voter preferred per cesBacktestLoader.ts)",
+    "draws": "independent across drawId (with replacement); for numDraws=5 and a 8-donor pool, expect overlap",
+    "signature_handling": "donor's full SurveyPrismSignature copied verbatim; no averaging, no smoothing, no truncation",
+    "uncertainty_propagation": "donor's per-target provenance carried into SyntheticElectorateRow.signature.coverage.notes prefixed with 'hot-deck-{step}: '"
+  },
+  "imputation_provenance_contract": {
+    "format": "hot-deck-step-{k}: cellKey={...}; donorPoolSize=N; effectiveSampleSize=ESS; donorWeightTotal=W; selectedDonorId=R{respId}; uncertainty=U; backoffPath=[stepReasons]",
+    "ess_definition": "Kish ESS = (Σ w_i)² / Σ w_i²",
+    "selectedDonorId": "the actual CCES respondentId (not a hash, not a cell ID) so any signature can be traced back",
+    "row_uncertainty_classification": {
+      "low": "step ≤ 2 AND donor pool ≥ 100 AND ESS ≥ 50",
+      "medium": "step ≤ 4 OR donor pool 25–100 OR ESS 20–50",
+      "high": "step ≥ 5 OR donor pool < 25 OR ESS < 20"
+    },
+    "signature_uncertainty": "inherited from donor; hot-deck never lowers signature uncertainty"
+  },
+  "circularity_invariants_forbidden_in_matching": [
+    "voteChoiceObserved",
+    "any predicted vote choice from any model",
+    "pid7 direction (pid7 strength persists inside the donor signature for moralBoundaries.political_camp, with partyIdDerived: true flag preserved; never used as a matching dimension)",
+    "candidate feeling thermometers, vote intent, predicted turnout"
+  ],
+  "data_hygiene_invariants": [
+    "no raking / IPF inside the bridge (raking is a companion artifact, not part of matching)",
+    "no demographic invention (null fields skip steps, do not get guessed)",
+    "no row creation (bridge produces exactly numDraws output rows per universe row; does not split, expand, or collapse)"
+  ],
+  "v1_implementation_contract": {
+    "module": "src/electorate/signatureImputationBridge.ts (planned; not in this commit)",
+    "options_type": "BridgeOptions",
+    "options_fields": {
+      "year": "2008 | 2012 | 2016 | 2020 | 2024",
+      "numDraws": "default 5",
+      "randomSeed": "deterministic",
+      "minDonors": "default 25",
+      "minDonorWeight": "default 5.0",
+      "allowNationalFallback": "default false (step 8 disabled)",
+      "donorWeightSource": "'raw' | 'raked'; default 'raw'"
+    },
+    "primary_function": "runSignatureImputationBridge(signatures, universe, opts) => { rows, stats }",
+    "stats_fields": [
+      "inputUniverseRows",
+      "outputRows (= inputUniverseRows × numDraws)",
+      "perStepRowCount: per-step counts",
+      "perStepShare: per-step share of output rows",
+      "meanDonorPoolSize",
+      "meanEffectiveSampleSize",
+      "uncertaintyDistribution: { low, medium, high }",
+      "unmatchableUniverseRows"
+    ],
+    "determinism": "stateless; same (input, randomSeed) → byte-identical output"
+  },
+  "v1_smoke_contract": [
+    "outputRows == inputUniverseRows × numDraws",
+    "every row passes validateSyntheticElectorateRow",
+    "every row has signatureSource = 'imputed_from_cell'",
+    "every position dist sums to 1; cat dist sums to 1; salience values in [0, 3]; engagement in [0, 10]",
+    "selectedDonorId resolves to a real CCES respondent in input signatures[]",
+    "vote-choice scrubbing spy: bridge with voteChoiceObserved scrubbed produces byte-identical signature output (same seed)",
+    "backoff distribution sanity: per-year, perStepShare[step1+step2] >= 60% for 2012/2016/2020/2024; year landing >= 50% in step 5+ flags as donor coverage too thin",
+    "no silent unmatched rows: unmatchableUniverseRows = 0 when allowNationalFallback = true; otherwise reported"
+  ],
+  "alternatives_considered": {
+    "cell_based_imputation": {
+      "verdict": "rejected as primary",
+      "reason": "Degenerate case of hot-deck with MAX_BACKOFF_STEP = 1; v1 hot-deck reduces to cell-based when every cell has ≥ 25 donors. The backoff is the value-add — handles thin-cell tails honestly."
+    },
+    "raking_ipf": {
+      "verdict": "rejected as bridge; accepted as companion",
+      "reason": "Adjusts CES weights to ACS marginals; does not produce per-universe-row signatures. To turn raked CES into SyntheticElectorateRow[] you still need a bridge step (probably hot-deck). Raking remains useful as a sanity check + optional donor-weight source."
+    },
+    "mrp": {
+      "verdict": "deferred to v2",
+      "reason": "Requires per-target × per-year fitted models (≈19 × 5 = 95 fits) with holdout validation, priors, convergence checks. Too much engineering load for v1 when hot-deck answers the same question transparently. v1 design keeps signatureSource enum forward-compatible — v2 swap is single-file."
+    },
+    "weighted_hot_deck_nearest_neighbor": {
+      "verdict": "ACCEPTED as v1 default",
+      "reasons": [
+        "Preserves mapper's per-respondent posterior structure (full distributions, not point estimates)",
+        "Honest about uncertainty by construction (multiple draws, ESS, backoff path)",
+        "Implementable in one file with no fitting step",
+        "Compatible with existing contract (SignatureSource enum already includes 'imputed_from_cell')",
+        "Failure modes inspectable from provenance"
+      ]
+    }
+  },
+  "v2_mrp_prerequisites": [
+    "v1 hot-deck shipped and smoke-validated",
+    "Phase 2.8 scorer in place for evaluation",
+    "Holdout-cycle protocol: fit MRP on 4 cycles, predict the 5th, measure predicted_D - benchmark_D per state. v2 ships when MRP matches or beats hot-deck on holdout in ≥ 4/5 cycles."
+  ],
+  "raking_companion_use_cases": [
+    "Phase 2.7 v1 loader publishes raked_weight_{vintage}.csv as sanity-check artifact (take CES weights, rake to ACS marginals on age × race × sex × education × state)",
+    "Phase 2.8 backtest compares bridge-imputed marginals to raked-CES marginals — large divergence flags hidden backoff issues",
+    "Bridge optionally consumes raked weights via donorWeightSource: 'raked' but does not run the raking step itself"
+  ],
+  "phase_dependencies": {
+    "depends_on": [
+      { "phase": "2.6 mapper", "artifact": "SurveyPrismSignature", "status": "shipped (25fb6cb)" },
+      { "phase": "2.7 v1 loader", "artifact": "VepUniverseRow", "status": "planned (1c48861); awaiting acquisition approval" },
+      { "phase": "contract", "artifact": "syntheticElectorateContract.ts", "status": "shipped (69c31f0)" },
+      { "phase": "v0 mock bridge", "artifact": "syntheticElectorateContractSmoke.ts", "status": "shipped (004c4ee); placeholder, v1 replaces" }
+    ],
+    "blocks": [
+      "Phase 2.8 mapper-backed Stage A backtest (needs SyntheticElectorateRow[] input)",
+      "Phase 2.4 Stage B abstention calibration (needs per-row engagement + universe weights)",
+      "Any sub-national geography work"
+    ]
+  },
+  "open_issues_for_v1_implementation": [
+    "Tie-breaking when multiple donors have identical sampling probability (pick lowest respondentId for determinism — to be confirmed at v1 implementation).",
+    "Donor signature deep-copy vs reference-share — must be deep-copy to prevent downstream consumers mutating shared objects.",
+    "How to surface backoffPath in the JSON output without bloating per-row size; current plan stores as compact comma-separated string."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/signature-imputation-bridge-plan.md",
+    "results/electorate/synthetic-electorate/signature-imputation-bridge-plan.json"
+  ],
+  "terminology": "signatureSource = 'imputed_from_cell' is the v1 contract value. Engagement is referenced as a separate 1D continuous scalar per ADR canon — the bridge transports it unchanged from donor to recipient. Compound moral-circle (moralBoundaries) terminology used throughout. Legacy code identifiers (pid7, PWGTP, RAC1P etc.) appear only as survey/PUMS column names.",
+  "revision_history": []
+}
