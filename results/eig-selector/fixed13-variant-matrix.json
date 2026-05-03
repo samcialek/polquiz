@@ -1,0 +1,710 @@
+{
+  "meta": {
+    "date": "2026-05-03",
+    "head": "a246d96",
+    "generator": "scripts/fixed13-variant-runner.mjs",
+    "evaluator": "Terminal-3"
+  },
+  "acceptanceGates": {
+    "fixedLengthA": 13,
+    "fixedLengthBC": 14,
+    "d2TargetRank": 1,
+    "d3TargetRank": 1,
+    "d1CdPosMin": 4.46,
+    "d1CuPosMax": 1.4,
+    "personaTop1MinPct": 52.5,
+    "personaTop3MinPct": 68.2,
+    "avgQReductionMin": 1
+  },
+  "baseline": {
+    "dumps": {
+      "D1": {
+        "target": "088",
+        "matched": "090",
+        "matchedDistance": 0.384,
+        "targetRank": -1,
+        "qTotal": 25,
+        "q3Slot": 11,
+        "q82Slot": null,
+        "nodes": {
+          "CD": {
+            "pos": 4.46,
+            "sal": 2.94,
+            "touches": 7
+          },
+          "CU": {
+            "pos": 1.4,
+            "sal": 2.65,
+            "touches": 7
+          },
+          "MOR": {
+            "pos": 1.63,
+            "sal": 2.81,
+            "touches": 5
+          },
+          "PRO": {
+            "pos": 3.14,
+            "sal": 1.5,
+            "touches": 7
+          },
+          "ONT_H": {
+            "pos": 1.8,
+            "sal": 2.66,
+            "touches": 7
+          },
+          "ONT_S": {
+            "pos": 3.22,
+            "sal": 2.2,
+            "touches": 4
+          }
+        }
+      },
+      "D2": {
+        "target": "056",
+        "matched": "056",
+        "matchedDistance": 0.371,
+        "targetRank": 1,
+        "qTotal": 31,
+        "q3Slot": 11,
+        "q82Slot": 17,
+        "nodes": {
+          "CD": {
+            "pos": 2.94,
+            "sal": 1.6,
+            "touches": 8
+          },
+          "CU": {
+            "pos": 3.23,
+            "sal": 2.87,
+            "touches": 10
+          },
+          "MOR": {
+            "pos": 3.7,
+            "sal": 2.24,
+            "touches": 8
+          },
+          "PRO": {
+            "pos": 3.73,
+            "sal": 1.94,
+            "touches": 10
+          },
+          "ONT_H": {
+            "pos": 3.96,
+            "sal": 2.58,
+            "touches": 8
+          },
+          "ONT_S": {
+            "pos": 4.49,
+            "sal": 2.95,
+            "touches": 7
+          }
+        }
+      },
+      "D3": {
+        "target": "011",
+        "matched": "011",
+        "matchedDistance": 0.372,
+        "targetRank": 1,
+        "qTotal": 30,
+        "q3Slot": 11,
+        "q82Slot": 16,
+        "nodes": {
+          "CD": {
+            "pos": 1.53,
+            "sal": 2.5,
+            "touches": 7
+          },
+          "CU": {
+            "pos": 4.27,
+            "sal": 2.33,
+            "touches": 9
+          },
+          "MOR": {
+            "pos": 4.58,
+            "sal": 2.92,
+            "touches": 7
+          },
+          "PRO": {
+            "pos": 2.62,
+            "sal": 1.94,
+            "touches": 10
+          },
+          "ONT_H": {
+            "pos": 2.88,
+            "sal": 1.86,
+            "touches": 8
+          },
+          "ONT_S": {
+            "pos": 2.49,
+            "sal": 2.13,
+            "touches": 7
+          }
+        }
+      }
+    },
+    "persona": {
+      "top1": 66,
+      "top3": 85,
+      "total": 121,
+      "top1pct": 54.5,
+      "top3pct": 70.2,
+      "avgQ": 28.55
+    },
+    "label": "Baseline (15)",
+    "opener": {
+      "length": 15,
+      "core": [
+        200,
+        103,
+        97,
+        1,
+        60,
+        89,
+        22,
+        218,
+        211,
+        212
+      ],
+      "universal": [
+        93,
+        102,
+        209,
+        210,
+        214
+      ]
+    }
+  },
+  "variants": {
+    "F13-A": {
+      "dumps": {
+        "D1": {
+          "target": "088",
+          "matched": "090",
+          "matchedDistance": 0.384,
+          "targetRank": -1,
+          "qTotal": 25,
+          "q3Slot": 14,
+          "q82Slot": null,
+          "nodes": {
+            "CD": {
+              "pos": 4.46,
+              "sal": 2.94,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 1.4,
+              "sal": 2.65,
+              "touches": 7
+            },
+            "MOR": {
+              "pos": 1.63,
+              "sal": 2.81,
+              "touches": 5
+            },
+            "PRO": {
+              "pos": 3.14,
+              "sal": 1.5,
+              "touches": 7
+            },
+            "ONT_H": {
+              "pos": 1.8,
+              "sal": 2.66,
+              "touches": 7
+            },
+            "ONT_S": {
+              "pos": 3.22,
+              "sal": 2.2,
+              "touches": 4
+            }
+          }
+        },
+        "D2": {
+          "target": "056",
+          "matched": "056",
+          "matchedDistance": 0.371,
+          "targetRank": 1,
+          "qTotal": 30,
+          "q3Slot": null,
+          "q82Slot": 16,
+          "nodes": {
+            "CD": {
+              "pos": 2.87,
+              "sal": 1.6,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 3.23,
+              "sal": 2.87,
+              "touches": 10
+            },
+            "MOR": {
+              "pos": 3.7,
+              "sal": 2.24,
+              "touches": 8
+            },
+            "PRO": {
+              "pos": 3.73,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 3.96,
+              "sal": 2.58,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 4.49,
+              "sal": 2.95,
+              "touches": 7
+            }
+          }
+        },
+        "D3": {
+          "target": "011",
+          "matched": "011",
+          "matchedDistance": 0.372,
+          "targetRank": 1,
+          "qTotal": 30,
+          "q3Slot": 14,
+          "q82Slot": 16,
+          "nodes": {
+            "CD": {
+              "pos": 1.53,
+              "sal": 2.5,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 4.27,
+              "sal": 2.33,
+              "touches": 9
+            },
+            "MOR": {
+              "pos": 4.58,
+              "sal": 2.92,
+              "touches": 7
+            },
+            "PRO": {
+              "pos": 2.62,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 2.88,
+              "sal": 1.86,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 2.49,
+              "sal": 2.13,
+              "touches": 7
+            }
+          }
+        }
+      },
+      "persona": {
+        "top1": 59,
+        "top3": 81,
+        "total": 121,
+        "top1pct": 48.8,
+        "top3pct": 66.9,
+        "avgQ": 26.05
+      },
+      "label": "F13-A",
+      "spec": {
+        "length": 13,
+        "role": "primary candidate",
+        "drops": [
+          "Q1",
+          "Q22"
+        ],
+        "adds": [],
+        "sequence": [
+          200,
+          103,
+          97,
+          60,
+          89,
+          218,
+          211,
+          212,
+          93,
+          102,
+          209,
+          210,
+          214
+        ]
+      },
+      "gates": {
+        "fixedLength": true,
+        "dynamicStartsSlot": true,
+        "d2TargetRank": true,
+        "d3TargetRank": true,
+        "d1CdPos": true,
+        "d1CuPos": true,
+        "personaTop1": false,
+        "personaTop3": false,
+        "avgQDecrease": true,
+        "allPass": false
+      }
+    },
+    "F13-B": {
+      "dumps": {
+        "D1": {
+          "target": "088",
+          "matched": "090",
+          "matchedDistance": 0.386,
+          "targetRank": -1,
+          "qTotal": 26,
+          "q3Slot": 15,
+          "q82Slot": null,
+          "nodes": {
+            "CD": {
+              "pos": 4.46,
+              "sal": 2.94,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 1.4,
+              "sal": 2.65,
+              "touches": 7
+            },
+            "MOR": {
+              "pos": 1.63,
+              "sal": 2.81,
+              "touches": 5
+            },
+            "PRO": {
+              "pos": 3.14,
+              "sal": 1.5,
+              "touches": 7
+            },
+            "ONT_H": {
+              "pos": 1.8,
+              "sal": 2.66,
+              "touches": 7
+            },
+            "ONT_S": {
+              "pos": 3.22,
+              "sal": 2.2,
+              "touches": 4
+            }
+          }
+        },
+        "D2": {
+          "target": "056",
+          "matched": "056",
+          "matchedDistance": 0.374,
+          "targetRank": 1,
+          "qTotal": 31,
+          "q3Slot": null,
+          "q82Slot": 17,
+          "nodes": {
+            "CD": {
+              "pos": 2.87,
+              "sal": 1.6,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 3.23,
+              "sal": 2.87,
+              "touches": 10
+            },
+            "MOR": {
+              "pos": 3.7,
+              "sal": 2.24,
+              "touches": 8
+            },
+            "PRO": {
+              "pos": 3.73,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 3.96,
+              "sal": 2.58,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 4.49,
+              "sal": 2.95,
+              "touches": 7
+            }
+          }
+        },
+        "D3": {
+          "target": "011",
+          "matched": "011",
+          "matchedDistance": 0.386,
+          "targetRank": 1,
+          "qTotal": 31,
+          "q3Slot": 15,
+          "q82Slot": 17,
+          "nodes": {
+            "CD": {
+              "pos": 1.53,
+              "sal": 2.5,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 4.27,
+              "sal": 2.33,
+              "touches": 9
+            },
+            "MOR": {
+              "pos": 4.58,
+              "sal": 2.92,
+              "touches": 7
+            },
+            "PRO": {
+              "pos": 2.62,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 2.88,
+              "sal": 1.86,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 2.49,
+              "sal": 2.13,
+              "touches": 7
+            }
+          }
+        }
+      },
+      "persona": {
+        "top1": 66,
+        "top3": 85,
+        "total": 121,
+        "top1pct": 54.5,
+        "top3pct": 70.2,
+        "avgQ": 26.97
+      },
+      "label": "F13-B",
+      "spec": {
+        "length": 14,
+        "role": "diagnostic — drop Q1 only",
+        "drops": [
+          "Q1"
+        ],
+        "adds": [],
+        "sequence": [
+          200,
+          103,
+          97,
+          60,
+          89,
+          22,
+          218,
+          211,
+          212,
+          93,
+          102,
+          209,
+          210,
+          214
+        ]
+      },
+      "gates": {
+        "fixedLength": true,
+        "dynamicStartsSlot": true,
+        "d2TargetRank": true,
+        "d3TargetRank": true,
+        "d1CdPos": true,
+        "d1CuPos": true,
+        "personaTop1": true,
+        "personaTop3": true,
+        "avgQDecrease": true,
+        "allPass": true
+      }
+    },
+    "F13-C": {
+      "dumps": {
+        "D1": {
+          "target": "088",
+          "matched": "090",
+          "matchedDistance": 0.384,
+          "targetRank": -1,
+          "qTotal": 25,
+          "q3Slot": 11,
+          "q82Slot": null,
+          "nodes": {
+            "CD": {
+              "pos": 4.46,
+              "sal": 2.94,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 1.4,
+              "sal": 2.65,
+              "touches": 7
+            },
+            "MOR": {
+              "pos": 1.63,
+              "sal": 2.81,
+              "touches": 5
+            },
+            "PRO": {
+              "pos": 3.14,
+              "sal": 1.5,
+              "touches": 7
+            },
+            "ONT_H": {
+              "pos": 1.8,
+              "sal": 2.66,
+              "touches": 7
+            },
+            "ONT_S": {
+              "pos": 3.22,
+              "sal": 2.2,
+              "touches": 4
+            }
+          }
+        },
+        "D2": {
+          "target": "056",
+          "matched": "056",
+          "matchedDistance": 0.371,
+          "targetRank": 1,
+          "qTotal": 31,
+          "q3Slot": 11,
+          "q82Slot": 17,
+          "nodes": {
+            "CD": {
+              "pos": 2.94,
+              "sal": 1.6,
+              "touches": 8
+            },
+            "CU": {
+              "pos": 3.23,
+              "sal": 2.87,
+              "touches": 10
+            },
+            "MOR": {
+              "pos": 3.7,
+              "sal": 2.24,
+              "touches": 8
+            },
+            "PRO": {
+              "pos": 3.73,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 3.96,
+              "sal": 2.58,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 4.49,
+              "sal": 2.95,
+              "touches": 7
+            }
+          }
+        },
+        "D3": {
+          "target": "011",
+          "matched": "011",
+          "matchedDistance": 0.372,
+          "targetRank": 1,
+          "qTotal": 30,
+          "q3Slot": 11,
+          "q82Slot": 16,
+          "nodes": {
+            "CD": {
+              "pos": 1.53,
+              "sal": 2.5,
+              "touches": 7
+            },
+            "CU": {
+              "pos": 4.27,
+              "sal": 2.33,
+              "touches": 9
+            },
+            "MOR": {
+              "pos": 4.58,
+              "sal": 2.92,
+              "touches": 7
+            },
+            "PRO": {
+              "pos": 2.62,
+              "sal": 1.94,
+              "touches": 10
+            },
+            "ONT_H": {
+              "pos": 2.88,
+              "sal": 1.86,
+              "touches": 8
+            },
+            "ONT_S": {
+              "pos": 2.49,
+              "sal": 2.13,
+              "touches": 7
+            }
+          }
+        }
+      },
+      "persona": {
+        "top1": 62,
+        "top3": 84,
+        "total": 121,
+        "top1pct": 51.2,
+        "top3pct": 69.4,
+        "avgQ": 27.01
+      },
+      "label": "F13-C",
+      "spec": {
+        "length": 14,
+        "role": "diagnostic — drop Q1+Q22, add Q3 fixed",
+        "drops": [
+          "Q1",
+          "Q22"
+        ],
+        "adds": [
+          "Q3@11"
+        ],
+        "sequence": [
+          200,
+          103,
+          97,
+          60,
+          89,
+          218,
+          211,
+          212,
+          93,
+          102,
+          3,
+          209,
+          210,
+          214
+        ]
+      },
+      "gates": {
+        "fixedLength": true,
+        "dynamicStartsSlot": true,
+        "d2TargetRank": true,
+        "d3TargetRank": true,
+        "d1CdPos": true,
+        "d1CuPos": true,
+        "personaTop1": false,
+        "personaTop3": true,
+        "avgQDecrease": true,
+        "allPass": false
+      }
+    }
+  },
+  "summary": {
+    "passingVariantsAllGates": [
+      "F13-B"
+    ],
+    "primaryCandidate": "F13-A",
+    "primaryCandidatePassed": false,
+    "cleanestWin": "F13-B",
+    "cleanestWinNotes": "F13-B is fixed-14 (not fixed-13) but achieves full baseline parity on top-1 and top-3 with -1.58 AvgQ savings. Outperforms every fixed-12 variant and the fixed-13 candidate.",
+    "loadBearingFinding": "Q22 is the load-bearing cut. Every variant that drops Q22 (V12-A/B/C/D/E, F13-A, F13-C) loses 4-10 personas on top-1. Every variant that keeps Q22 retains broad recovery.",
+    "fixed13Ready": false,
+    "decision": "Revert config.ts to HEAD; commit docs only. Recommend separately considering F13-B as fixed-14 candidate."
+  }
+}
