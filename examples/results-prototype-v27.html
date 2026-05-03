@@ -587,6 +587,10 @@
     }
     .cat-list-row.top .cat-list-label { color: var(--ink); font-weight: 700; }
     .cat-list-row.anti .cat-list-label { color: #999; font-style: italic; }
+    /* v27.20: bidirectional cat-list bars on a -3 to +3 affinity/aversion
+       scale. Zero line at center; positive (cluster color) fills right,
+       negative (muted gray) fills left. Anti-categories render as a full
+       left-fill in ink with diagonal stripes (pinned at -3). */
     .cat-list-bar-wrap {
       position: relative;
       height: 12px;
@@ -595,12 +599,24 @@
       border-radius: 2px;
       overflow: hidden;
     }
-    .cat-list-bar { position: absolute; top: 0; bottom: 0; left: 0; transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .cat-list-bar.regular { background: var(--cluster-color, #DAA520); }
+    .cat-list-bar-wrap::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -2px;
+      bottom: -2px;
+      width: 1px;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .cat-list-bar { position: absolute; top: 0; bottom: 0; transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .cat-list-bar.positive { background: var(--cluster-color, #DAA520); left: 50%; }
+    .cat-list-bar.negative { background: #999; opacity: 0.55; }
     .cat-list-bar.anti {
       background: var(--ink);
       background-image: repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 3px, #444 3px, #444 5px);
       opacity: 0.7;
+      left: 0; width: 50%;
     }
     .cat-list-pct {
       font-family: 'IBM Plex Mono', monospace;
@@ -3145,37 +3161,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const CAT_PALETTE = ['#cc7722', '#b8002b', '#daa520', '#2e8b57', '#3d8b8b', '#6A0DAD'];
 
-    // v16: vertical bar chart for categorical nodes (EPS/AES).
-    // Score per category on a -3 to +3 scale:
-    //   - if category is in archetype's antiCats → score = -3 (full aversion)
-    //   - else → (prob - 1/6) * 6, clamped to [-3, +3]
-    //     (uniform distribution = 0; modal category at 50%+ → ~+2 to +3)
-    // v27.7: leaderboard-style categorical chart — sorted descending by
-    // probability, each row = label | horizontal probability bar | %.
-    // Matches the horizontal-bar aesthetic of the continuous nodes.
+    // Categorical leaderboard for EPS / AES, on a -3 to +3 affinity/
+     // aversion scale (restored 2026-05-03 per design re-discussion).
+    // Score formula:
+    //   - anti-categories → score = -3 (full aversion)
+    //   - else → (prob - 1/6) × 6, clamped to [-3, +3]
+    //     uniform 1/6 → 0 ; mode at ~50%+ → ~+2 to +3 ; near-zero prob → ~-1
+    // Bar fills outward from a center zero-line. Sort: most-positive first,
+    // anti rows at the bottom.
     function renderCatList(probs, antiCats, categoryLabels, clusterColor, nodeName) {
       const wrap = document.createElement('div');
       wrap.className = 'cat-list';
       wrap.style.setProperty('--cluster-color', clusterColor);
 
       const antiSet = new Set(antiCats || []);
-      const items = categoryLabels.map((label, i) => ({
-        label,
-        prob: probs[i] || 0,
-        isAnti: antiSet.has(i),
-        idx: i,
-      }));
-      // Non-anti sorted by probability desc; anti-categories pinned at the bottom.
-      items.sort((a, b) => {
-        if (a.isAnti !== b.isAnti) return a.isAnti ? 1 : -1;
-        return b.prob - a.prob;
+      const items = categoryLabels.map((label, i) => {
+        const prob = probs[i] || 0;
+        const isAnti = antiSet.has(i);
+        let score;
+        if (isAnti) score = -3;
+        else { score = (prob - 1 / 6) * 6; score = Math.max(-3, Math.min(3, score)); }
+        return { label, prob, isAnti, idx: i, score };
       });
-
-      const topProb = items.find(it => !it.isAnti && it.prob > 0)?.prob || 0;
-      const maxBarPct = Math.max(60, topProb * 100); // bars can occupy at least 60% of track for visual scale
+      // Sort by score descending — top affinity first; anti pinned to bottom by score=-3.
+      items.sort((a, b) => b.score - a.score);
 
       items.forEach((item, i) => {
-        const isTop = !item.isAnti && i === 0 && item.prob > 0;
+        const isTop = !item.isAnti && i === 0 && item.score > 0.05;
         const row = document.createElement('div');
         row.className = 'cat-list-row' + (item.isAnti ? ' anti' : '') + (isTop ? ' top' : '');
 
@@ -3186,14 +3198,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const barWrap = document.createElement('div');
         barWrap.className = 'cat-list-bar-wrap';
         const bar = document.createElement('div');
-        bar.className = 'cat-list-bar ' + (item.isAnti ? 'anti' : 'regular');
-        const widthPct = item.isAnti ? 100 : (item.prob * 100 / maxBarPct) * 100;
-        bar.style.width = Math.min(100, widthPct).toFixed(1) + '%';
+        let barClass, barLeft, barWidth;
+        if (item.isAnti) {
+          barClass = 'anti';
+          barLeft = null; barWidth = null; // CSS handles full left-half fill
+        } else if (item.score >= 0) {
+          barClass = 'positive';
+          barLeft = 50;                              // start at center
+          barWidth = (item.score / 3) * 50;          // fill right
+        } else {
+          barClass = 'negative';
+          barWidth = (Math.abs(item.score) / 3) * 50;
+          barLeft = 50 - barWidth;                   // fill left toward center
+        }
+        bar.className = 'cat-list-bar ' + barClass;
+        if (barLeft != null) bar.style.left = barLeft.toFixed(1) + '%';
+        if (barWidth != null) bar.style.width = barWidth.toFixed(1) + '%';
         barWrap.appendChild(bar);
 
         const pctEl = document.createElement('div');
         pctEl.className = 'cat-list-pct';
-        pctEl.textContent = item.isAnti ? '—' : Math.round(item.prob * 100) + '%';
+        // Score on -3 to +3 scale, signed; anti shows -3.
+        pctEl.textContent = (item.score > 0 ? '+' : '') + item.score.toFixed(1);
 
         row.appendChild(labelEl);
         row.appendChild(barWrap);
@@ -3204,10 +3230,12 @@ document.addEventListener('DOMContentLoaded', () => {
           desc: item.isAnti
             ? `Anti-category — actively rejected by this archetype's ${(nodeName || 'style').toLowerCase()}.`
             : `One of six possible ${(nodeName || 'style').toLowerCase()} categories.`,
-          rows: item.isAnti ? [] : [['Probability', `${(item.prob * 100).toFixed(1)}%`]],
+          rows: item.isAnti
+            ? [['Score', '-3.0 (anti)']]
+            : [['Probability', `${(item.prob * 100).toFixed(1)}%`], ['Score', `${item.score >= 0 ? '+' : ''}${item.score.toFixed(2)} (uniform = 0)`]],
           interp: item.isAnti
             ? `Treated as the opposite of how this archetype thinks/expresses.`
-            : (isTop ? 'Top category for this archetype.' : ''),
+            : (isTop ? `Top affinity. Score reflects how much above uniform (1/6 = 16.7%) this category sits.` : ''),
         }));
 
         wrap.appendChild(row);
