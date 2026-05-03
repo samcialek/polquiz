@@ -163,6 +163,27 @@ export function selectTopKDrillQuestion(
   if (needsDrill.length === 0) return null;
   const needsDrillSet = new Set<string>(needsDrill);
 
+  // Cultural direction coverage (added 2026-05-02 per opener-redesign audit).
+  // When CD is among the nodes still needing drill, prefer Q3 — the cleanest
+  // CD position probe in the bank (single-node CD/position@0.90 slider, no
+  // side touches). The default sort below would pick Q82 (CD+CU multi-hit
+  // with side touches on MOR/MAT) over Q3 because of multi-hit preference,
+  // but Q82's option-D `economics_first` carries a wash-out vector that can
+  // pull a strong cultural placement back toward neutral. Q3 is a clean
+  // first-line CD probe that locks the direct placement before Q82 fires.
+  // Scope: CD only, Q3 only — do not generalize.
+  if (needsDrillSet.has("CD")) {
+    const q3 = available.find(q => q.id === 3);
+    if (q3) {
+      const hasCleanCdPositionTouch = q3.touchProfile?.some(
+        tp => tp.node === "CD" &&
+              tp.role === "position" &&
+              tp.weight >= MEANINGFUL_POSITION_WEIGHT,
+      );
+      if (hasCleanCdPositionTouch) return q3;
+    }
+  }
+
   type Cand = { q: QuestionDef; multiHit: number; quality: number };
   const candidates: Cand[] = [];
   for (const q of available) {
