@@ -363,6 +363,23 @@
       color: #888; margin-top: 0.3rem; line-height: 1.3; gap: 0.6rem;
     }
     .ed-pos-poles span:last-child { text-align: right; }
+    /* v27.24 — Phase 2: categorical (style match) row visual. Match-mass bar
+       reads 0–100% of respondent's probability mass on candidate's category.
+       Cluster color fill; subtitle shows the math. */
+    .ed-cat-line {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem;
+      color: #ccc; line-height: 1.35; margin-bottom: 0.35rem;
+    }
+    .ed-cat-line strong { color: #fff; font-weight: 600; }
+    .ed-cat-bar {
+      position: relative; height: 8px; background: rgba(255,255,255,0.06);
+      border-radius: 2px; overflow: hidden; cursor: help;
+    }
+    .ed-cat-bar-fill {
+      position: absolute; top: 0; bottom: 0; left: 0;
+      background: var(--pool-deep, #6fa6ff); border-radius: 2px;
+      transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
     .ed-contrib {
       text-align: right; font-family: 'Courier Prime', monospace;
       font-size: 0.92rem; color: #aaa; font-variant-numeric: tabular-nums; font-weight: 600;
@@ -2127,13 +2144,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // v27.22: BREAKDOWN_NODES mirrors engine SCORING_NODES (respondentVoteChoice.ts
     // line 197). PF / TRB / ENG removed — engine excludes them from candidate-
-    // distance computation. PF and TRB are inert legacy fields; ENG drives the
-    // vote/abstain clearing-bar, not who you vote for. EPS / AES (categorical
-    // lock-and-key) and morBoundaries (compound vector) land in Phase 2 and 3.
+    // distance computation. EPS / AES land in Phase 2 (v27.24) as separate
+    // categorical contributions; morBoundaries lands in Phase 3.
     const BREAKDOWN_NODES = ['MAT','CD','CU','MOR','PRO','COM','ONT_S','ZS','ONT_H'];
+    // v27.24 — Phase 2: EPS/AES style-match contributions, mirroring engine
+    // categoricalDistance() at respondentVoteChoice.ts:359-377. Lock-and-key:
+    // matchMass = catDist[cand_cat_idx]; gap term = (1 - matchMass) × 4
+    // (linear, NOT squared); style weight = (CATEGORICAL_BASE_SALIENCE × era
+    // style mult)² (squared). Contribution = styleWeight × gapTerm.
+    // Categorical "weight" is NOT respondent-specific salience — it's a fixed
+    // background style-compatibility weight scaled by year style-relevance.
+    const CATEGORICAL_SCORING_NODES = ['EPS', 'AES'];
+    const CATEGORICAL_BASE_SALIENCE = 0.6;
+    const STYLE_DRIVEN_ELECTIONS = {
+      1932: 1.4, 1960: 1.4, 1980: 1.5, 2008: 1.4,
+      2016: 2.0, 2020: 1.7, 2024: 1.8,
+    };
+    function styleEraMult(year) { return STYLE_DRIVEN_ELECTIONS[year] ?? 1.0; }
+    const CAT_LABELS = {
+      EPS: ['Empiricist','Institutionalist','Traditionalist','Intuitionist','Autonomous','Nihilist'],
+      AES: ['Statesman','Technocrat','Pastoral','Plainspoken','Fighter','Visionary'],
+    };
+    const CAT_NODE_META = {
+      EPS: { name: 'Epistemic style', cluster: 'REALITY' },
+      AES: { name: 'Aesthetic style', cluster: 'MEANS' },
+    };
 
-    // Build (pos, sal) lookup from respondent state, falling back to the
-    // matched archetype's centroid signature for legacy / archetype-link runs.
+    // Build (pos, sal) lookup for continuous nodes + (catDist) for EPS/AES,
+    // falling back to the matched archetype's centroid signature for legacy /
+    // archetype-link runs.
     function getRespondentSignatureForBreakdown() {
       const sig = {};
       const cont = respondentState && respondentState.continuous;
@@ -2142,6 +2181,14 @@ document.addEventListener('DOMContentLoaded', () => {
           sig[code] = { pos: cont[code].expectedPos, sal: cont[code].salience ?? 0 };
         } else if (archetype.nodes && archetype.nodes[code]) {
           sig[code] = { pos: archetype.nodes[code].pos, sal: archetype.nodes[code].sal ?? 0 };
+        }
+      }
+      const respCat = respondentState && respondentState.categorical;
+      for (const code of CATEGORICAL_SCORING_NODES) {
+        if (respCat && respCat[code] && Array.isArray(respCat[code].catDist)) {
+          sig[code] = { catDist: respCat[code].catDist };
+        } else if (archetype.nodes && archetype.nodes[code] && Array.isArray(archetype.nodes[code].probs)) {
+          sig[code] = { catDist: archetype.nodes[code].probs };
         }
       }
       return sig;
@@ -2173,10 +2220,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // the engine — squaring the salience-weight emphasizes single-issue votes
     // the same way predictVote does.
     const SAL_POWER = 2;
-    function computeBreakdown(candProfile, era, sig) {
+    function computeBreakdown(candProfile, era, sig, year) {
       const rows = [];
       let sumWeightedSq = 0;
       let sumWeight = 0;
+      // Continuous-node contributions (engine SCORING_NODES).
       for (const node of BREAKDOWN_NODES) {
         const s = sig[node];
         const candPos = candProfile[node];
@@ -2189,10 +2237,41 @@ document.addEventListener('DOMContentLoaded', () => {
         sumWeightedSq += contribution;
         sumWeight += effSal;
         rows.push({
+          rowType: 'continuous',
           node, mult,
           yourPos: s.pos, candPos,
           sal: s.sal, effSal,
           diff: Math.abs(diff),
+          contribution,
+        });
+      }
+      // Categorical contributions (EPS/AES) — mirrors engine categoricalDistance().
+      // styleWeight = (CATEGORICAL_BASE_SALIENCE × styleEraMult)² ; gap term = (1-matchMass)*4 (linear, NOT squared).
+      const sEra = styleEraMult(year);
+      for (const code of CATEGORICAL_SCORING_NODES) {
+        const s = sig[code];
+        const candIdx = candProfile[code];
+        if (!s || candIdx == null || candIdx < 0 || candIdx >= 6) continue;
+        if (!Array.isArray(s.catDist) || s.catDist.length !== 6) continue;
+        const matchMass = s.catDist[candIdx] ?? 0;
+        const styleWeight = Math.pow(CATEGORICAL_BASE_SALIENCE * sEra, SAL_POWER);
+        const gapTerm = (1 - matchMass) * 4;
+        const contribution = styleWeight * gapTerm;
+        sumWeightedSq += contribution;
+        sumWeight += styleWeight;
+        // Identify respondent's top category for the visual.
+        let topIdx = 0, topMass = -1;
+        for (let i = 0; i < 6; i++) if ((s.catDist[i] ?? 0) > topMass) { topMass = s.catDist[i] ?? 0; topIdx = i; }
+        rows.push({
+          rowType: 'categorical',
+          node: code,
+          candIdx, candCat: CAT_LABELS[code][candIdx] || `cat${candIdx}`,
+          yourTopIdx: topIdx, yourTopCat: CAT_LABELS[code][topIdx] || `cat${topIdx}`,
+          yourTopMass: topMass,
+          matchMass,
+          styleEraMult: sEra,
+          styleWeight,
+          gapTerm,
           contribution,
         });
       }
@@ -2357,7 +2436,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!focusProfile) {
         bdBody += `<div class="ed-empty-note">Per-node breakdown unavailable — candidate profile data not loaded for this election.</div>`;
       } else {
-        const bd = computeBreakdown(focusProfile, era, sig);
+        const bd = computeBreakdown(focusProfile, era, sig, year);
         if (bd.rows.length === 0) {
           bdBody += `<div class="ed-empty-note">No comparable nodes between your signature and ${focusScore.name}.</div>`;
         } else {
@@ -2365,19 +2444,46 @@ document.addEventListener('DOMContentLoaded', () => {
           const sorted = bd.rows.slice().sort((a, b) => b.contribution - a.contribution);
           bdBody += `<div class="ed-node-list">`;
           sorted.forEach(r => {
+            const contribCls = r.share > 0.20 ? 'ed-contrib high' : 'ed-contrib';
+            const barPx = Math.max(8, r.barPct * 0.7);
+
+            if (r.rowType === 'categorical') {
+              // v27.24 — Phase 2: style-match row for EPS/AES.
+              // Mirrors engine: matchMass = catDist[cand_idx] ; gap term =
+              // (1 - matchMass) × 4 ; styleWeight = (0.6 × styleEraMult)².
+              // Categorical "weight" is fixed background style compatibility,
+              // NOT respondent salience.
+              const meta = CAT_NODE_META[r.node] || { name: r.node, cluster: '' };
+              const matchPct = (r.matchMass * 100).toFixed(0);
+              const topPct = (r.yourTopMass * 100).toFixed(0);
+              const styleEraBadge = r.styleEraMult > 1.05
+                ? `<span class="ed-node-act x2" title="Style-driven election: weight scaled ${r.styleEraMult.toFixed(1)}×">style era ${r.styleEraMult.toFixed(1)}×</span>`
+                : '';
+              const styleSubline = `${meta.cluster} · style match · weight (0.6 × ${r.styleEraMult.toFixed(2)})² = ${r.styleWeight.toFixed(2)}`;
+              const tipHtml = `Match mass: ${matchPct}%
+Style weight: (0.6 × ${r.styleEraMult.toFixed(2)})² = ${r.styleWeight.toFixed(3)}
+Gap term: (1 - ${r.matchMass.toFixed(2)}) × 4 = ${r.gapTerm.toFixed(2)}
+Contribution: ${r.styleWeight.toFixed(3)} × ${r.gapTerm.toFixed(2)} = ${r.contribution.toFixed(3)}`;
+              bdBody += `<div class="ed-node-row ed-cat-row">`;
+              bdBody += `  <div class="ed-node-name">${meta.name}${styleEraBadge}<span class="ed-node-cluster">${styleSubline}</span></div>`;
+              bdBody += `  <div>`;
+              bdBody += `    <div class="ed-cat-line">Your top: <strong>${r.yourTopCat}</strong> (${topPct}%) → Cand: <strong>${r.candCat}</strong> · match mass <strong>${matchPct}%</strong></div>`;
+              bdBody += `    <div class="ed-cat-bar" title="${tipHtml.replace(/"/g, '&quot;')}">`;
+              bdBody += `      <div class="ed-cat-bar-fill" style="width:${matchPct}%"></div>`;
+              bdBody += `    </div>`;
+              bdBody += `  </div>`;
+              bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${(r.share * 100).toFixed(0)}%</span><span class="ed-contrib-bar" style="width:${barPx}px"></span></div>`;
+              bdBody += `</div>`;
+              return;
+            }
+
+            // ── Continuous-node row (existing visual) ────────────────────
             const meta = NODE_META[r.node] || { name: r.node, cluster: '', low: '', high: '' };
             const yourLeft = ((r.yourPos - 1) / 4) * 100;
             const candLeft = ((r.candPos - 1) / 4) * 100;
             const actBadge = r.mult === 3 ? '<span class="ed-node-act x3">3×</span>'
                           : r.mult === 2 ? '<span class="ed-node-act x2">2×</span>'
                           : '';
-            const contribCls = r.share > 0.20 ? 'ed-contrib high' : 'ed-contrib';
-            const barPx = Math.max(8, r.barPct * 0.7);
-            // v27.19: surface user salience under the cluster label so the
-            // impact % is interpretable. impact = effSal × gap² ; the user
-            // needs to see effSal (= sal × era_mult) to make sense of the
-            // share. The era multiplier is already shown via actBadge; we
-            // just expose raw salience and the effective value.
             const salDisplay = (r.effSal > r.sal + 0.05)
               ? `sal ${r.sal.toFixed(1)}/3 → ${r.effSal.toFixed(1)} eff`
               : `sal ${r.sal.toFixed(1)}/3`;
@@ -2387,7 +2493,6 @@ document.addEventListener('DOMContentLoaded', () => {
             bdBody += `    <div class="ed-pos-bar">`;
             bdBody += `      <div class="ed-pos-axis"></div>`;
             for (let i = 0; i < 5; i++) bdBody += `<div class="ed-pos-tick" style="left:${6 + i * 22}%"></div>`;
-            // Red connector showing the position gap that drives impact.
             const youX = 6 + (yourLeft * 0.88);
             const candX = 6 + (candLeft * 0.88);
             const lineLeft = Math.min(youX, candX);
