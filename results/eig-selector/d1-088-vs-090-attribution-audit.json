@@ -1,0 +1,674 @@
+{
+  "date": "2026-05-03T12:57:03.902Z",
+  "head": "0fdf0e1 (post Q3 topK patch)",
+  "d1": {
+    "matched": "090",
+    "matchedDistance": 0.3839634025298178,
+    "top5": [
+      {
+        "id": "090",
+        "name": "Hobbesian Guardian",
+        "tier": "T1",
+        "distance": 0.3839634025298178
+      },
+      {
+        "id": "085",
+        "name": "Customary Localist",
+        "tier": "T1",
+        "distance": 0.39553601255049586
+      },
+      {
+        "id": "083",
+        "name": "Closed Traditionalist",
+        "tier": "T1",
+        "distance": 0.4056172422499022
+      },
+      {
+        "id": "087",
+        "name": "Continuity Conservative",
+        "tier": "T1",
+        "distance": 0.4056963551543811
+      },
+      {
+        "id": "081",
+        "name": "Heritage Guardian",
+        "tier": "T1",
+        "distance": 0.40823029388230986
+      }
+    ],
+    "target088InTop5": false,
+    "target090InTop5": true,
+    "finalState": {
+      "MAT": {
+        "touches": 6,
+        "expectedPos": 3.7600000000000002,
+        "salience": 1.422222222222222
+      },
+      "CD": {
+        "touches": 7,
+        "expectedPos": 4.461005720426185,
+        "salience": 2.9382050237546564
+      },
+      "CU": {
+        "touches": 7,
+        "expectedPos": 1.3984299999999998,
+        "salience": 2.6505787654259017
+      },
+      "MOR": {
+        "touches": 6,
+        "expectedPos": 1.399334861103348,
+        "salience": 2.8579333709768493
+      },
+      "PRO": {
+        "touches": 7,
+        "expectedPos": 3.135321100917431,
+        "salience": 1.4992967651195501
+      },
+      "COM": {
+        "touches": 6,
+        "expectedPos": 2.7128958146039355,
+        "salience": 0.8213267203967761
+      },
+      "ZS": {
+        "touches": 7,
+        "expectedPos": 4.200187441424555,
+        "salience": 2.776595744680851
+      },
+      "ONT_H": {
+        "touches": 7,
+        "expectedPos": 1.8029485270658299,
+        "salience": 2.6611364579012857
+      },
+      "ONT_S": {
+        "touches": 4,
+        "expectedPos": 3.2242562929061784,
+        "salience": 2.202830188679245
+      },
+      "PF": {
+        "touches": 2,
+        "expectedPos": 4.634292224437482,
+        "salience": 2.333333333333333
+      },
+      "TRB": {
+        "touches": 4,
+        "expectedPos": 4.388916876574307,
+        "salience": 2.217391304347826
+      },
+      "ENG": {
+        "touches": 3,
+        "expectedPos": 4.727569544207914,
+        "salience": 2.333333333333333
+      }
+    }
+  },
+  "decomposition": {
+    "arch088": {
+      "contribs": [
+        {
+          "node": "MAT",
+          "role": "continuous",
+          "archPos": 3,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 4,
+          "respSal": 1,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.125,
+          "contribution": 0.6384375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "CD",
+          "role": "continuous",
+          "archPos": 4,
+          "archSal": 2,
+          "archAnti": "low",
+          "respPos": 4,
+          "respSal": 3,
+          "nodeDist": 0.21,
+          "nodeWeight": 1.875,
+          "contribution": 0.39375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "CU",
+          "role": "continuous",
+          "archPos": 3,
+          "archSal": 2,
+          "archAnti": "high",
+          "respPos": 1,
+          "respSal": 3,
+          "nodeDist": 0.6649999999999999,
+          "nodeWeight": 1.875,
+          "contribution": 1.246875,
+          "antiPenalty": 0
+        },
+        {
+          "node": "PRO",
+          "role": "continuous",
+          "archPos": 3,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 3,
+          "respSal": 1,
+          "nodeDist": 0.21,
+          "nodeWeight": 1.125,
+          "contribution": 0.23625,
+          "antiPenalty": 0
+        },
+        {
+          "node": "COM",
+          "role": "continuous",
+          "archPos": 4,
+          "archSal": 2,
+          "archAnti": "low",
+          "respPos": 3,
+          "respSal": 1,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.125,
+          "contribution": 0.6384375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ZS",
+          "role": "continuous",
+          "archPos": 3,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 4,
+          "respSal": 3,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.875,
+          "contribution": 1.0640625,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ONT_H",
+          "role": "continuous",
+          "archPos": 4,
+          "archSal": 1,
+          "archAnti": null,
+          "respPos": 2,
+          "respSal": 3,
+          "nodeDist": 0.7349999999999999,
+          "nodeWeight": 1.25,
+          "contribution": 0.9187499999999998,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ONT_S",
+          "role": "continuous",
+          "archPos": 3,
+          "archSal": 2,
+          "archAnti": "high",
+          "respPos": 3,
+          "respSal": 2,
+          "nodeDist": 0,
+          "nodeWeight": 1.5,
+          "contribution": 0,
+          "antiPenalty": 0
+        },
+        {
+          "node": "EPS",
+          "role": "categorical",
+          "archProbsPeak": 2,
+          "respProbsPeak": 0,
+          "archSal": 1,
+          "respSal": 3,
+          "nodeDist": 0.746,
+          "nodeWeight": 1.25,
+          "contribution": 0.9325
+        },
+        {
+          "node": "AES",
+          "role": "categorical",
+          "archProbsPeak": 2,
+          "respProbsPeak": 0,
+          "archSal": 2,
+          "respSal": 3,
+          "nodeDist": 0.6705,
+          "nodeWeight": 1.875,
+          "contribution": 1.2571875
+        }
+      ],
+      "morContrib": null,
+      "finalDist": 0.4925210084033614,
+      "totalDist": 7.326250000000001,
+      "totalWeight": 14.875
+    },
+    "arch090": {
+      "contribs": [
+        {
+          "node": "MAT",
+          "role": "continuous",
+          "archPos": 4,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 4,
+          "respSal": 1,
+          "nodeDist": 0.21,
+          "nodeWeight": 1.125,
+          "contribution": 0.23625,
+          "antiPenalty": 0
+        },
+        {
+          "node": "CD",
+          "role": "continuous",
+          "archPos": 5,
+          "archSal": 2,
+          "archAnti": "low",
+          "respPos": 4,
+          "respSal": 3,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.875,
+          "contribution": 1.0640625,
+          "antiPenalty": 0
+        },
+        {
+          "node": "CU",
+          "role": "continuous",
+          "archPos": 1,
+          "archSal": 2,
+          "archAnti": "high",
+          "respPos": 1,
+          "respSal": 3,
+          "nodeDist": 0.21,
+          "nodeWeight": 1.875,
+          "contribution": 0.39375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "PRO",
+          "role": "continuous",
+          "archPos": 4,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 3,
+          "respSal": 1,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.125,
+          "contribution": 0.6384375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "COM",
+          "role": "continuous",
+          "archPos": 2,
+          "archSal": 2,
+          "archAnti": null,
+          "respPos": 3,
+          "respSal": 1,
+          "nodeDist": 0.5675,
+          "nodeWeight": 1.125,
+          "contribution": 0.6384375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ZS",
+          "role": "continuous",
+          "archPos": 5,
+          "archSal": 3,
+          "archAnti": null,
+          "respPos": 4,
+          "respSal": 3,
+          "nodeDist": 0.35750000000000004,
+          "nodeWeight": 2.5,
+          "contribution": 0.89375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ONT_H",
+          "role": "continuous",
+          "archPos": 1,
+          "archSal": 3,
+          "archAnti": "high",
+          "respPos": 2,
+          "respSal": 3,
+          "nodeDist": 0.35750000000000004,
+          "nodeWeight": 2.5,
+          "contribution": 0.89375,
+          "antiPenalty": 0
+        },
+        {
+          "node": "ONT_S",
+          "role": "continuous",
+          "archPos": 1,
+          "archSal": 2,
+          "archAnti": "high",
+          "respPos": 3,
+          "respSal": 2,
+          "nodeDist": 0.45499999999999996,
+          "nodeWeight": 1.5,
+          "contribution": 0.6824999999999999,
+          "antiPenalty": 0
+        },
+        {
+          "node": "EPS",
+          "role": "categorical",
+          "archProbsPeak": 1,
+          "respProbsPeak": 0,
+          "archSal": 1,
+          "respSal": 3,
+          "nodeDist": 0.71675,
+          "nodeWeight": 1.25,
+          "contribution": 0.8959375
+        },
+        {
+          "node": "AES",
+          "role": "categorical",
+          "archProbsPeak": 0,
+          "respProbsPeak": 0,
+          "archSal": 1,
+          "respSal": 3,
+          "nodeDist": 0.6843333333333332,
+          "nodeWeight": 1.25,
+          "contribution": 0.8554166666666665
+        }
+      ],
+      "morContrib": null,
+      "finalDist": 0.4460335917312661,
+      "totalDist": 7.192291666666666,
+      "totalWeight": 16.125
+    }
+  },
+  "perNodeDeltas": [
+    {
+      "node": "CU",
+      "role": "continuous",
+      "c088": 1.246875,
+      "c090": 0.39375,
+      "w088": 1.875,
+      "w090": 1.875,
+      "t088": {
+        "node": "CU",
+        "role": "continuous",
+        "archPos": 3,
+        "archSal": 2,
+        "archAnti": "high",
+        "respPos": 1,
+        "respSal": 3,
+        "nodeDist": 0.6649999999999999,
+        "nodeWeight": 1.875,
+        "contribution": 1.246875,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "CU",
+        "role": "continuous",
+        "archPos": 1,
+        "archSal": 2,
+        "archAnti": "high",
+        "respPos": 1,
+        "respSal": 3,
+        "nodeDist": 0.21,
+        "nodeWeight": 1.875,
+        "contribution": 0.39375,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "MAT",
+      "role": "continuous",
+      "c088": 0.6384375,
+      "c090": 0.23625,
+      "w088": 1.125,
+      "w090": 1.125,
+      "t088": {
+        "node": "MAT",
+        "role": "continuous",
+        "archPos": 3,
+        "archSal": 2,
+        "archAnti": null,
+        "respPos": 4,
+        "respSal": 1,
+        "nodeDist": 0.5675,
+        "nodeWeight": 1.125,
+        "contribution": 0.6384375,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "MAT",
+        "role": "continuous",
+        "archPos": 4,
+        "archSal": 2,
+        "archAnti": null,
+        "respPos": 4,
+        "respSal": 1,
+        "nodeDist": 0.21,
+        "nodeWeight": 1.125,
+        "contribution": 0.23625,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "AES",
+      "role": "categorical",
+      "c088": 1.2571875,
+      "c090": 0.8554166666666665,
+      "w088": 1.875,
+      "w090": 1.25,
+      "t088": {
+        "node": "AES",
+        "role": "categorical",
+        "archProbsPeak": 2,
+        "respProbsPeak": 0,
+        "archSal": 2,
+        "respSal": 3,
+        "nodeDist": 0.6705,
+        "nodeWeight": 1.875,
+        "contribution": 1.2571875
+      },
+      "t090": {
+        "node": "AES",
+        "role": "categorical",
+        "archProbsPeak": 0,
+        "respProbsPeak": 0,
+        "archSal": 1,
+        "respSal": 3,
+        "nodeDist": 0.6843333333333332,
+        "nodeWeight": 1.25,
+        "contribution": 0.8554166666666665
+      }
+    },
+    {
+      "node": "ZS",
+      "role": "continuous",
+      "c088": 1.0640625,
+      "c090": 0.89375,
+      "w088": 1.875,
+      "w090": 2.5,
+      "t088": {
+        "node": "ZS",
+        "role": "continuous",
+        "archPos": 3,
+        "archSal": 2,
+        "archAnti": null,
+        "respPos": 4,
+        "respSal": 3,
+        "nodeDist": 0.5675,
+        "nodeWeight": 1.875,
+        "contribution": 1.0640625,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "ZS",
+        "role": "continuous",
+        "archPos": 5,
+        "archSal": 3,
+        "archAnti": null,
+        "respPos": 4,
+        "respSal": 3,
+        "nodeDist": 0.35750000000000004,
+        "nodeWeight": 2.5,
+        "contribution": 0.89375,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "EPS",
+      "role": "categorical",
+      "c088": 0.9325,
+      "c090": 0.8959375,
+      "w088": 1.25,
+      "w090": 1.25,
+      "t088": {
+        "node": "EPS",
+        "role": "categorical",
+        "archProbsPeak": 2,
+        "respProbsPeak": 0,
+        "archSal": 1,
+        "respSal": 3,
+        "nodeDist": 0.746,
+        "nodeWeight": 1.25,
+        "contribution": 0.9325
+      },
+      "t090": {
+        "node": "EPS",
+        "role": "categorical",
+        "archProbsPeak": 1,
+        "respProbsPeak": 0,
+        "archSal": 1,
+        "respSal": 3,
+        "nodeDist": 0.71675,
+        "nodeWeight": 1.25,
+        "contribution": 0.8959375
+      }
+    },
+    {
+      "node": "ONT_H",
+      "role": "continuous",
+      "c088": 0.9187499999999998,
+      "c090": 0.89375,
+      "w088": 1.25,
+      "w090": 2.5,
+      "t088": {
+        "node": "ONT_H",
+        "role": "continuous",
+        "archPos": 4,
+        "archSal": 1,
+        "archAnti": null,
+        "respPos": 2,
+        "respSal": 3,
+        "nodeDist": 0.7349999999999999,
+        "nodeWeight": 1.25,
+        "contribution": 0.9187499999999998,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "ONT_H",
+        "role": "continuous",
+        "archPos": 1,
+        "archSal": 3,
+        "archAnti": "high",
+        "respPos": 2,
+        "respSal": 3,
+        "nodeDist": 0.35750000000000004,
+        "nodeWeight": 2.5,
+        "contribution": 0.89375,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "PRO",
+      "role": "continuous",
+      "c088": 0.23625,
+      "c090": 0.6384375,
+      "w088": 1.125,
+      "w090": 1.125,
+      "t088": {
+        "node": "PRO",
+        "role": "continuous",
+        "archPos": 3,
+        "archSal": 2,
+        "archAnti": null,
+        "respPos": 3,
+        "respSal": 1,
+        "nodeDist": 0.21,
+        "nodeWeight": 1.125,
+        "contribution": 0.23625,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "PRO",
+        "role": "continuous",
+        "archPos": 4,
+        "archSal": 2,
+        "archAnti": null,
+        "respPos": 3,
+        "respSal": 1,
+        "nodeDist": 0.5675,
+        "nodeWeight": 1.125,
+        "contribution": 0.6384375,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "CD",
+      "role": "continuous",
+      "c088": 0.39375,
+      "c090": 1.0640625,
+      "w088": 1.875,
+      "w090": 1.875,
+      "t088": {
+        "node": "CD",
+        "role": "continuous",
+        "archPos": 4,
+        "archSal": 2,
+        "archAnti": "low",
+        "respPos": 4,
+        "respSal": 3,
+        "nodeDist": 0.21,
+        "nodeWeight": 1.875,
+        "contribution": 0.39375,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "CD",
+        "role": "continuous",
+        "archPos": 5,
+        "archSal": 2,
+        "archAnti": "low",
+        "respPos": 4,
+        "respSal": 3,
+        "nodeDist": 0.5675,
+        "nodeWeight": 1.875,
+        "contribution": 1.0640625,
+        "antiPenalty": 0
+      }
+    },
+    {
+      "node": "ONT_S",
+      "role": "continuous",
+      "c088": 0,
+      "c090": 0.6824999999999999,
+      "w088": 1.5,
+      "w090": 1.5,
+      "t088": {
+        "node": "ONT_S",
+        "role": "continuous",
+        "archPos": 3,
+        "archSal": 2,
+        "archAnti": "high",
+        "respPos": 3,
+        "respSal": 2,
+        "nodeDist": 0,
+        "nodeWeight": 1.5,
+        "contribution": 0,
+        "antiPenalty": 0
+      },
+      "t090": {
+        "node": "ONT_S",
+        "role": "continuous",
+        "archPos": 1,
+        "archSal": 2,
+        "archAnti": "high",
+        "respPos": 3,
+        "respSal": 2,
+        "nodeDist": 0.45499999999999996,
+        "nodeWeight": 1.5,
+        "contribution": 0.6824999999999999,
+        "antiPenalty": 0
+      }
+    }
+  ]
+}
