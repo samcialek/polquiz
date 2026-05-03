@@ -1,0 +1,570 @@
+[
+  {
+    "label": "Dump 1 — 088 Gentle Traditionalist (hardened-fascist persona)",
+    "archId": "088",
+    "recordedAnswered": 21,
+    "synthesizedAnswered": 6,
+    "totalAnswered": 27,
+    "questionsAsked": [
+      {
+        "qId": 200,
+        "source": "recorded"
+      },
+      {
+        "qId": 103,
+        "source": "recorded"
+      },
+      {
+        "qId": 97,
+        "source": "recorded"
+      },
+      {
+        "qId": 60,
+        "source": "recorded"
+      },
+      {
+        "qId": 89,
+        "source": "recorded"
+      },
+      {
+        "qId": 218,
+        "source": "recorded"
+      },
+      {
+        "qId": 212,
+        "source": "recorded"
+      },
+      {
+        "qId": 93,
+        "source": "recorded"
+      },
+      {
+        "qId": 8,
+        "source": "synthesized"
+      },
+      {
+        "qId": 209,
+        "source": "recorded"
+      },
+      {
+        "qId": 210,
+        "source": "recorded"
+      },
+      {
+        "qId": 214,
+        "source": "recorded"
+      },
+      {
+        "qId": 3,
+        "source": "synthesized"
+      },
+      {
+        "qId": 20,
+        "source": "synthesized"
+      },
+      {
+        "qId": 18,
+        "source": "recorded"
+      },
+      {
+        "qId": 7,
+        "source": "synthesized"
+      },
+      {
+        "qId": 207,
+        "source": "synthesized"
+      },
+      {
+        "qId": 102,
+        "source": "recorded"
+      },
+      {
+        "qId": 6,
+        "source": "recorded"
+      },
+      {
+        "qId": 215,
+        "source": "recorded"
+      },
+      {
+        "qId": 61,
+        "source": "recorded"
+      },
+      {
+        "qId": 2,
+        "source": "synthesized"
+      },
+      {
+        "qId": 51,
+        "source": "recorded"
+      },
+      {
+        "qId": 82,
+        "source": "recorded"
+      },
+      {
+        "qId": 69,
+        "source": "recorded"
+      },
+      {
+        "qId": 38,
+        "source": "recorded"
+      },
+      {
+        "qId": 63,
+        "source": "recorded"
+      }
+    ],
+    "matchedId": "083",
+    "matchedName": "Closed Traditionalist",
+    "matchedDistance": 0.3912048648853277,
+    "targetRank": 3,
+    "targetDistance": 0.3988830258421224,
+    "perNode": {
+      "MAT": {
+        "touches": 8,
+        "expectedPos": 2.9522267206477726,
+        "salience": 1.743119266055046
+      },
+      "CD": {
+        "touches": 8,
+        "expectedPos": 4.207990950979045,
+        "salience": 2.9382050237546564
+      },
+      "CU": {
+        "touches": 8,
+        "expectedPos": 1.4996870429774252,
+        "salience": 2.6505787654259017
+      },
+      "MOR": {
+        "touches": 7,
+        "expectedPos": 1.7631066634190957,
+        "salience": 2.806964746345658
+      },
+      "PRO": {
+        "touches": 8,
+        "expectedPos": 2.910461828463713,
+        "salience": 1.4992967651195501
+      },
+      "COM": {
+        "touches": 7,
+        "expectedPos": 2.442096699532615,
+        "salience": 0.8213267203967761
+      },
+      "ZS": {
+        "touches": 7,
+        "expectedPos": 4.215654415082577,
+        "salience": 2.4926382809391168
+      },
+      "ONT_H": {
+        "touches": 8,
+        "expectedPos": 1.7264711220862146,
+        "salience": 2.6611364579012857
+      },
+      "ONT_S": {
+        "touches": 5,
+        "expectedPos": 2.9162754303599367,
+        "salience": 1.9775609756097559
+      },
+      "PF": {
+        "touches": 2,
+        "expectedPos": 4.618852459016393,
+        "salience": 2.333333333333333
+      },
+      "TRB": {
+        "touches": 1,
+        "expectedPos": 3,
+        "salience": 1.4000000000000001
+      },
+      "ENG": {
+        "touches": 2,
+        "expectedPos": 4.649933598937583,
+        "salience": 2.333333333333333
+      }
+    }
+  },
+  {
+    "label": "Dump 2 — 056 Institutional Leftist (Sam's 2026-04-28 run)",
+    "archId": "056",
+    "recordedAnswered": 26,
+    "synthesizedAnswered": 3,
+    "totalAnswered": 29,
+    "questionsAsked": [
+      {
+        "qId": 200,
+        "source": "recorded"
+      },
+      {
+        "qId": 103,
+        "source": "recorded"
+      },
+      {
+        "qId": 97,
+        "source": "recorded"
+      },
+      {
+        "qId": 60,
+        "source": "recorded"
+      },
+      {
+        "qId": 89,
+        "source": "recorded"
+      },
+      {
+        "qId": 218,
+        "source": "recorded"
+      },
+      {
+        "qId": 212,
+        "source": "recorded"
+      },
+      {
+        "qId": 93,
+        "source": "recorded"
+      },
+      {
+        "qId": 8,
+        "source": "synthesized"
+      },
+      {
+        "qId": 209,
+        "source": "recorded"
+      },
+      {
+        "qId": 210,
+        "source": "recorded"
+      },
+      {
+        "qId": 214,
+        "source": "recorded"
+      },
+      {
+        "qId": 215,
+        "source": "recorded"
+      },
+      {
+        "qId": 202,
+        "source": "recorded"
+      },
+      {
+        "qId": 82,
+        "source": "recorded"
+      },
+      {
+        "qId": 7,
+        "source": "recorded"
+      },
+      {
+        "qId": 18,
+        "source": "recorded"
+      },
+      {
+        "qId": 207,
+        "source": "recorded"
+      },
+      {
+        "qId": 102,
+        "source": "recorded"
+      },
+      {
+        "qId": 11,
+        "source": "synthesized"
+      },
+      {
+        "qId": 2,
+        "source": "synthesized"
+      },
+      {
+        "qId": 4,
+        "source": "recorded"
+      },
+      {
+        "qId": 71,
+        "source": "recorded"
+      },
+      {
+        "qId": 69,
+        "source": "recorded"
+      },
+      {
+        "qId": 19,
+        "source": "recorded"
+      },
+      {
+        "qId": 38,
+        "source": "recorded"
+      },
+      {
+        "qId": 63,
+        "source": "recorded"
+      },
+      {
+        "qId": 49,
+        "source": "recorded"
+      },
+      {
+        "qId": 51,
+        "source": "recorded"
+      }
+    ],
+    "matchedId": "056",
+    "matchedName": "Institutional Leftist",
+    "matchedDistance": 0.3792944018428645,
+    "targetRank": 1,
+    "targetDistance": 0.3792944018428645,
+    "perNode": {
+      "MAT": {
+        "touches": 7,
+        "expectedPos": 1.618942770252697,
+        "salience": 2.9090286627232445
+      },
+      "CD": {
+        "touches": 7,
+        "expectedPos": 2.8676171079429733,
+        "salience": 1.6036895674300256
+      },
+      "CU": {
+        "touches": 9,
+        "expectedPos": 2.830229827565983,
+        "salience": 2.865220593315272
+      },
+      "MOR": {
+        "touches": 7,
+        "expectedPos": 3.372448979591837,
+        "salience": 1.5969949020660048
+      },
+      "PRO": {
+        "touches": 9,
+        "expectedPos": 3.6834174376226523,
+        "salience": 1.9415873015873015
+      },
+      "COM": {
+        "touches": 7,
+        "expectedPos": 2.391891891891892,
+        "salience": 1.596273291925466
+      },
+      "ZS": {
+        "touches": 4,
+        "expectedPos": 2.51,
+        "salience": 1.6666666666666665
+      },
+      "ONT_H": {
+        "touches": 8,
+        "expectedPos": 3.9610423795735716,
+        "salience": 2.583923811033922
+      },
+      "ONT_S": {
+        "touches": 7,
+        "expectedPos": 4.485409340489851,
+        "salience": 2.954185729228186
+      },
+      "PF": {
+        "touches": 2,
+        "expectedPos": 4.618852459016393,
+        "salience": 2.333333333333333
+      },
+      "TRB": {
+        "touches": 1,
+        "expectedPos": 3,
+        "salience": 1.4000000000000001
+      },
+      "ENG": {
+        "touches": 2,
+        "expectedPos": 4.649933598937583,
+        "salience": 2.333333333333333
+      }
+    }
+  },
+  {
+    "label": "Dump 3 — 011 Jacobin Egalitarian",
+    "archId": "011",
+    "recordedAnswered": 22,
+    "synthesizedAnswered": 7,
+    "totalAnswered": 29,
+    "questionsAsked": [
+      {
+        "qId": 200,
+        "source": "recorded"
+      },
+      {
+        "qId": 103,
+        "source": "recorded"
+      },
+      {
+        "qId": 97,
+        "source": "recorded"
+      },
+      {
+        "qId": 60,
+        "source": "recorded"
+      },
+      {
+        "qId": 89,
+        "source": "recorded"
+      },
+      {
+        "qId": 218,
+        "source": "recorded"
+      },
+      {
+        "qId": 212,
+        "source": "recorded"
+      },
+      {
+        "qId": 93,
+        "source": "recorded"
+      },
+      {
+        "qId": 8,
+        "source": "synthesized"
+      },
+      {
+        "qId": 209,
+        "source": "recorded"
+      },
+      {
+        "qId": 210,
+        "source": "recorded"
+      },
+      {
+        "qId": 214,
+        "source": "recorded"
+      },
+      {
+        "qId": 3,
+        "source": "synthesized"
+      },
+      {
+        "qId": 82,
+        "source": "recorded"
+      },
+      {
+        "qId": 7,
+        "source": "synthesized"
+      },
+      {
+        "qId": 207,
+        "source": "synthesized"
+      },
+      {
+        "qId": 102,
+        "source": "recorded"
+      },
+      {
+        "qId": 61,
+        "source": "synthesized"
+      },
+      {
+        "qId": 49,
+        "source": "recorded"
+      },
+      {
+        "qId": 18,
+        "source": "synthesized"
+      },
+      {
+        "qId": 31,
+        "source": "synthesized"
+      },
+      {
+        "qId": 215,
+        "source": "recorded"
+      },
+      {
+        "qId": 84,
+        "source": "recorded"
+      },
+      {
+        "qId": 79,
+        "source": "recorded"
+      },
+      {
+        "qId": 69,
+        "source": "recorded"
+      },
+      {
+        "qId": 71,
+        "source": "recorded"
+      },
+      {
+        "qId": 38,
+        "source": "recorded"
+      },
+      {
+        "qId": 63,
+        "source": "recorded"
+      },
+      {
+        "qId": 51,
+        "source": "recorded"
+      }
+    ],
+    "matchedId": "011",
+    "matchedName": "Jacobin Egalitarian",
+    "matchedDistance": 0.3690196995341262,
+    "targetRank": 1,
+    "targetDistance": 0.3690196995341262,
+    "perNode": {
+      "MAT": {
+        "touches": 6,
+        "expectedPos": 2.014000770523956,
+        "salience": 2.1185277604491577
+      },
+      "CD": {
+        "touches": 7,
+        "expectedPos": 1.5349440645378263,
+        "salience": 2.504818724185406
+      },
+      "CU": {
+        "touches": 8,
+        "expectedPos": 3.9814250097808332,
+        "salience": 2.3347615083152276
+      },
+      "MOR": {
+        "touches": 6,
+        "expectedPos": 4.631347373146053,
+        "salience": 2.8357831120832704
+      },
+      "PRO": {
+        "touches": 9,
+        "expectedPos": 2.3445854712395358,
+        "salience": 1.9415873015873015
+      },
+      "COM": {
+        "touches": 7,
+        "expectedPos": 2.7516501650165015,
+        "salience": 1.2203389830508473
+      },
+      "ZS": {
+        "touches": 8,
+        "expectedPos": 4.122870249017038,
+        "salience": 2.1414470301950166
+      },
+      "ONT_H": {
+        "touches": 8,
+        "expectedPos": 2.8816265863790544,
+        "salience": 1.8576923076923078
+      },
+      "ONT_S": {
+        "touches": 7,
+        "expectedPos": 2.4905493729023136,
+        "salience": 2.1277533039647576
+      },
+      "PF": {
+        "touches": 1,
+        "expectedPos": 2.38,
+        "salience": 1.5
+      },
+      "TRB": {
+        "touches": 1,
+        "expectedPos": 3,
+        "salience": 1.44
+      },
+      "ENG": {
+        "touches": 2,
+        "expectedPos": 1.4413692643845595,
+        "salience": 2
+      }
+    }
+  }
+]

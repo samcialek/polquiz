@@ -1,0 +1,114 @@
+Running 121 personas (one per active archetype)
+  ... 10/121  latest: 011 Jacobin Egalitarian → top1=013 Radical Leveler (d=0.39)  rank=2
+  ... 20/121  latest: 024 Ethical Internationalist → top1=031 Planetary Steward (d=0.35)  rank=2
+  ... 30/121  latest: 037 Fabian Modernizer → top1=037 Fabian Modernizer (d=0.35)  rank=1
+  ... 40/121  latest: 051 Systemic Redistributionist → top1=051 Systemic Redistributionist (d=0.38)  rank=1
+  ... 50/121  latest: 065 Opportunity Liberal → top1=031 Planetary Steward (d=0.35)  rank=-1
+  ... 60/121  latest: 078 Meritocratic Conservative → top1=078 Meritocratic Conservative (d=0.39)  rank=1
+  ... 70/121  latest: 089 Integral Traditionalist → top1=083 Closed Traditionalist (d=0.34)  rank=-1
+  ... 80/121  latest: 101 Embattled Majoritarian → top1=106 Militant Partisan (d=0.37)  rank=3
+  ... 90/121  latest: 112 Engaged Cosmopolitan → top1=112 Engaged Cosmopolitan (d=0.38)  rank=1
+  ... 100/121  latest: 122 Civic Minimalist → top1=050 Traditionalist Moralist (d=0.40)  rank=-1
+  ... 110/121  latest: 135 Disruptive Cosmopolitan → top1=021 Principled Cosmopolitan (d=0.39)  rank=-1
+  ... 120/121  latest: 145 Feminist Voter → top1=048 Solidaristic Localist (d=0.37)  rank=-1
+
+=== Recovery Rates ===
+Top-1: 56/121 (46.3%)
+Top-3: 80/121 (66.1%)
+Avg questions answered: 26.1
+
+=== Personas NOT recovered in top-3 (41) ===
+  003 Consensus Redistributionist        → got 002 Independent Social Democrat
+  015 Moral Firebrand                    → got 012 Class-War Leftist
+  022 Pluralist Universalist             → got 027 Popperian Liberal
+  029 Liberationist Progressive          → got 031 Planetary Steward
+  050 Traditionalist Moralist            → got 087 Continuity Conservative
+  053 Consensus Builder                  → got 039 Data-Driven Moderate
+  059 Public-Minded Moderate             → got 048 Solidaristic Localist
+  060 Hinge Citizen                      → got 046 Pastoral Leftist
+  062 Meritocratic Liberal               → got 039 Data-Driven Moderate
+  065 Opportunity Liberal                → got 031 Planetary Steward
+  067 Free-Exchange Modernist            → got 033 Systems Modernizer
+  069 Bleeding-Heart Libertarian         → got 065 Opportunity Liberal
+  076 Fiscal Gradualist                  → got 088 Gentle Traditionalist
+  077 Ordered Libertarian                → got 039 Data-Driven Moderate
+  079 National Developmentalist          → got 036 Institutional Optimizer
+  086 Duty Traditionalist                → got 088 Gentle Traditionalist
+  089 Integral Traditionalist            → got 083 Closed Traditionalist
+  100 Tribal Insurgent                   → got 106 Militant Partisan
+  110 Principled Abstainer               → got 112 Engaged Cosmopolitan
+  111 Cosmopolitan Nonconformist         → got 112 Engaged Cosmopolitan
+  115 Quietist                           → got 087 Continuity Conservative
+  116 Quiet Middle                       → got 039 Data-Driven Moderate
+  117 Comfortable Bystander              → got 048 Solidaristic Localist
+  119 Apolitical Striver                 → got 060 Hinge Citizen
+  121 Spectator Citizen                  → got 134 Progressive Civic Nationalis
+  122 Civic Minimalist                   → got 050 Traditionalist Moralist
+  125 Reluctant Partisan                 → got 006 Fairness Pragmatist
+  127 Tribal Loyalist                    → got 131 Duty Voter
+  128 Loyal Democrat                     → got 042 Localist Progressive
+  129 Loyal Republican                   → got 072 Blackstone Conservative
+  ... and 11 more
+
+=== Top-1 misassignments (persona → wrong archetype) ===
+Personas where target was NOT top-1: 65
+Examples (first 20):
+  003:Consensus Redistributionist → 002:Independent Social Democrat
+  005:Pluralist Structuralist → 032:Hamiltonian Technocrat
+  007:Solidarist Reformer → 087:Continuity Conservative
+  008:Procedural Redistributionist → 002:Independent Social Democrat
+  010:Bread-and-Butter Progressive → 002:Independent Social Democrat
+  011:Jacobin Egalitarian → 013:Radical Leveler
+  015:Moral Firebrand → 012:Class-War Leftist
+  016:Insurgent Equalizer → 013:Radical Leveler
+  017:Uncompromising Redistributionist → 012:Class-War Leftist
+  022:Pluralist Universalist → 027:Popperian Liberal
+  024:Ethical Internationalist → 031:Planetary Steward
+  029:Liberationist Progressive → 031:Planetary Steward
+  035:Administrative Liberal → 039:Data-Driven Moderate
+  042:Localist Progressive → 048:Solidaristic Localist
+  045:Rooted Social Reformer → 088:Gentle Traditionalist
+  046:Pastoral Leftist → 088:Gentle Traditionalist
+  050:Traditionalist Moralist → 087:Continuity Conservative
+  053:Consensus Builder → 039:Data-Driven Moderate
+  054:Arbiter Moderate → 037:Fabian Modernizer
+  059:Public-Minded Moderate → 048:Solidaristic Localist
+
+=== Attractor archetypes (where mispredicted personas land) ===
+  048 Solidaristic Localist              attracts 9 wrong personas
+  087 Continuity Conservative            attracts 5 wrong personas
+  039 Data-Driven Moderate               attracts 5 wrong personas
+  106 Militant Partisan                  attracts 5 wrong personas
+  088 Gentle Traditionalist              attracts 4 wrong personas
+  002 Independent Social Democrat        attracts 3 wrong personas
+  012 Class-War Leftist                  attracts 3 wrong personas
+  031 Planetary Steward                  attracts 3 wrong personas
+  091 Security Paternalist               attracts 3 wrong personas
+  013 Radical Leveler                    attracts 2 wrong personas
+  065 Opportunity Liberal                attracts 2 wrong personas
+  112 Engaged Cosmopolitan               attracts 2 wrong personas
+  032 Hamiltonian Technocrat             attracts 1 wrong personas
+  027 Popperian Liberal                  attracts 1 wrong personas
+  037 Fabian Modernizer                  attracts 1 wrong personas
+
+
+=== Dump 1 — 088 Gentle Traditionalist (hardened-fascist persona) ===
+  Q total: 25  (recorded 20, synthesized 5)
+  matched: 090 Hobbesian Guardian · distance 0.38
+  target 088 rank: -1
+  perNode: MAT:6(p3.8/s1.42) CD:7(p4.5/s2.94) CU:7(p1.4/s2.65) MOR:5(p1.6/s2.81) PRO:7(p3.1/s1.50) COM:6(p2.7/s0.82) ZS:7(p4.2/s2.78) ONT_H:7(p1.8/s2.66) ONT_S:4(p3.2/s2.20) PF:2(p4.6/s2.33) TRB:1(p3.0/s1.40) ENG:2(p4.6/s2.33)
+Wrote output/persona-replay.json
+
+=== Dump 2 — 056 Institutional Leftist (Sam's 2026-04-28 run) ===
+  Q total: 30  (recorded 28, synthesized 2)
+  matched: 056 Institutional Leftist · distance 0.38
+  target 056 rank: 1 · distance 0.38
+  perNode: MAT:7(p1.6/s2.91) CD:7(p2.9/s1.60) CU:10(p2.8/s2.87) MOR:8(p3.7/s2.24) PRO:10(p3.7/s1.94) COM:7(p2.4/s1.60) ZS:4(p2.5/s1.67) ONT_H:8(p4.0/s2.58) ONT_S:7(p4.5/s2.95) PF:2(p4.6/s2.33) TRB:1(p3.0/s1.40) ENG:2(p4.6/s2.33)
+
+=== Dump 3 — 011 Jacobin Egalitarian ===
+  Q total: 30  (recorded 24, synthesized 6)
+  matched: 011 Jacobin Egalitarian · distance 0.37
+  target 011 rank: 1 · distance 0.37
+  perNode: MAT:6(p2.0/s2.12) CD:7(p1.5/s2.50) CU:9(p3.9/s2.33) MOR:7(p4.6/s2.92) PRO:10(p2.6/s1.94) COM:7(p2.8/s1.22) ZS:8(p4.1/s2.14) ONT_H:8(p2.9/s1.86) ONT_S:7(p2.5/s2.13) PF:1(p2.4/s1.50) TRB:1(p3.0/s1.44) ENG:2(p1.4/s2.00)
+
+Wrote C:\Users\Sam\Desktop\polmodel-clean\output\dump-replay.json

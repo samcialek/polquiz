@@ -1,0 +1,94 @@
+Running 121 personas (one per active archetype)
+  ... 10/121  latest: 011 Jacobin Egalitarian → top1=011 Jacobin Egalitarian (d=0.39)  rank=1
+  ... 20/121  latest: 024 Ethical Internationalist → top1=024 Ethical Internationalist (d=0.35)  rank=1
+  ... 30/121  latest: 037 Fabian Modernizer → top1=037 Fabian Modernizer (d=0.35)  rank=1
+  ... 40/121  latest: 051 Systemic Redistributionist → top1=051 Systemic Redistributionist (d=0.38)  rank=1
+  ... 50/121  latest: 065 Opportunity Liberal → top1=031 Planetary Steward (d=0.34)  rank=-1
+  ... 60/121  latest: 078 Meritocratic Conservative → top1=078 Meritocratic Conservative (d=0.35)  rank=1
+  ... 70/121  latest: 089 Integral Traditionalist → top1=083 Closed Traditionalist (d=0.35)  rank=-1
+  ... 80/121  latest: 101 Embattled Majoritarian → top1=106 Militant Partisan (d=0.36)  rank=2
+  ... 90/121  latest: 112 Engaged Cosmopolitan → top1=112 Engaged Cosmopolitan (d=0.40)  rank=1
+  ... 100/121  latest: 122 Civic Minimalist → top1=050 Traditionalist Moralist (d=0.39)  rank=-1
+  ... 110/121  latest: 135 Disruptive Cosmopolitan → top1=135 Disruptive Cosmopolitan (d=0.39)  rank=1
+  ... 120/121  latest: 145 Feminist Voter → top1=048 Solidaristic Localist (d=0.38)  rank=-1
+
+=== Recovery Rates ===
+Top-1: 66/121 (54.5%)
+Top-3: 85/121 (70.2%)
+Avg questions answered: 28.6
+
+=== Personas NOT recovered in top-3 (36) ===
+  003 Consensus Redistributionist        → got 039 Data-Driven Moderate
+  015 Moral Firebrand                    → got 012 Class-War Leftist
+  016 Insurgent Equalizer                → got 107 Resentful Localist
+  059 Public-Minded Moderate             → got 048 Solidaristic Localist
+  060 Hinge Citizen                      → got 046 Pastoral Leftist
+  062 Meritocratic Liberal               → got 039 Data-Driven Moderate
+  065 Opportunity Liberal                → got 031 Planetary Steward
+  067 Free-Exchange Modernist            → got 033 Systems Modernizer
+  069 Bleeding-Heart Libertarian         → got 065 Opportunity Liberal
+  076 Fiscal Gradualist                  → got 074 Responsible Conservative
+  077 Ordered Libertarian                → got 042 Localist Progressive
+  086 Duty Traditionalist                → got 046 Pastoral Leftist
+  089 Integral Traditionalist            → got 083 Closed Traditionalist
+  100 Tribal Insurgent                   → got 106 Militant Partisan
+  109 Alienated Outsider                 → got 098 Anti-Elite Populist
+  110 Principled Abstainer               → got 137 Moral Crusader
+  111 Cosmopolitan Nonconformist         → got 042 Localist Progressive
+  115 Quietist                           → got 087 Continuity Conservative
+  116 Quiet Middle                       → got 048 Solidaristic Localist
+  117 Comfortable Bystander              → got 048 Solidaristic Localist
+  119 Apolitical Striver                 → got 078 Meritocratic Conservative
+  121 Spectator Citizen                  → got 134 Progressive Civic Nationalis
+  122 Civic Minimalist                   → got 050 Traditionalist Moralist
+  125 Reluctant Partisan                 → got 048 Solidaristic Localist
+  127 Tribal Loyalist                    → got 131 Duty Voter
+  128 Loyal Democrat                     → got 042 Localist Progressive
+  132 Negative Partisan                  → got 091 Security Paternalist
+  136 Aspirational Traditionalist        → got 087 Continuity Conservative
+  137 Moral Crusader                     → got 083 Closed Traditionalist
+  138 Optimistic Challenger              → got 012 Class-War Leftist
+  ... and 6 more
+
+=== Top-1 misassignments (persona → wrong archetype) ===
+Personas where target was NOT top-1: 55
+Examples (first 20):
+  003:Consensus Redistributionist → 039:Data-Driven Moderate
+  008:Procedural Redistributionist → 002:Independent Social Democrat
+  015:Moral Firebrand → 012:Class-War Leftist
+  016:Insurgent Equalizer → 107:Resentful Localist
+  017:Uncompromising Redistributionist → 012:Class-War Leftist
+  020:Grassroots Autonomist → 029:Liberationist Progressive
+  022:Pluralist Universalist → 026:Cosmopolitan Pragmatist
+  028:Global Caretaker → 065:Opportunity Liberal
+  035:Administrative Liberal → 039:Data-Driven Moderate
+  042:Localist Progressive → 048:Solidaristic Localist
+  049:Moral Egalitarian → 043:Quiet Egalitarian
+  050:Traditionalist Moralist → 087:Continuity Conservative
+  054:Arbiter Moderate → 037:Fabian Modernizer
+  059:Public-Minded Moderate → 048:Solidaristic Localist
+  060:Hinge Citizen → 046:Pastoral Leftist
+  062:Meritocratic Liberal → 039:Data-Driven Moderate
+  065:Opportunity Liberal → 031:Planetary Steward
+  067:Free-Exchange Modernist → 033:Systems Modernizer
+  069:Bleeding-Heart Libertarian → 065:Opportunity Liberal
+  076:Fiscal Gradualist → 074:Responsible Conservative
+
+=== Attractor archetypes (where mispredicted personas land) ===
+  048 Solidaristic Localist              attracts 11 wrong personas
+  087 Continuity Conservative            attracts 4 wrong personas
+  106 Militant Partisan                  attracts 4 wrong personas
+  039 Data-Driven Moderate               attracts 3 wrong personas
+  012 Class-War Leftist                  attracts 3 wrong personas
+  042 Localist Progressive               attracts 3 wrong personas
+  065 Opportunity Liberal                attracts 2 wrong personas
+  046 Pastoral Leftist                   attracts 2 wrong personas
+  083 Closed Traditionalist              attracts 2 wrong personas
+  091 Security Paternalist               attracts 2 wrong personas
+  137 Moral Crusader                     attracts 2 wrong personas
+  002 Independent Social Democrat        attracts 1 wrong personas
+  107 Resentful Localist                 attracts 1 wrong personas
+  029 Liberationist Progressive          attracts 1 wrong personas
+  026 Cosmopolitan Pragmatist            attracts 1 wrong personas
+
+Wrote output/persona-replay.json
