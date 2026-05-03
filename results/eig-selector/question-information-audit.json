@@ -1,0 +1,6867 @@
+{
+  "meta": {
+    "date": "2026-05-03",
+    "head": "e776daa",
+    "personaCount": 121,
+    "generator": "scripts/question-information-audit.mjs",
+    "bank": "src/config/questions.representative.ts",
+    "questionCount": 96
+  },
+  "constants": {
+    "MEANINGFUL_POSITION_WEIGHT": 0.4,
+    "POSITION_DRILL_SAL_FLOOR": 1.5,
+    "FIXED_OPENER": [
+      200,
+      103,
+      97,
+      1,
+      60,
+      89,
+      22,
+      218,
+      211,
+      212,
+      93,
+      102,
+      209,
+      210,
+      214
+    ],
+    "FORCED_COVERAGE_PROBES": [
+      7,
+      213,
+      18,
+      207
+    ],
+    "UI_BURDEN": {
+      "single_choice": 1,
+      "slider": 1,
+      "pairwise": 1,
+      "dual_axis": 2,
+      "best_worst": 2,
+      "allocation": 2,
+      "conjoint": 2,
+      "multi": 2,
+      "priority_sort": 3,
+      "ranking": 3
+    }
+  },
+  "nodeCoverage": {
+    "MAT": {
+      "node": "MAT",
+      "cluster": "ENDS",
+      "positionTouchCount": 19,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 10,
+      "cleanDirectProbeCount": 3,
+      "omnibusProbeCount": 13,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 22,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 1,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "CD": {
+      "node": "CD",
+      "cluster": "ENDS",
+      "positionTouchCount": 12,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 8,
+      "cleanDirectProbeCount": 2,
+      "omnibusProbeCount": 12,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 15,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "CU": {
+      "node": "CU",
+      "cluster": "ENDS",
+      "positionTouchCount": 11,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 3,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 6,
+      "fixedOpenerTouchCount": 5,
+      "dynamicOnlyTouchCount": 12,
+      "forcedCoverageProbeCount": 1,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "MOR": {
+      "node": "MOR",
+      "cluster": "ENDS",
+      "positionTouchCount": 13,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 4,
+      "cleanDirectProbeCount": 1,
+      "omnibusProbeCount": 9,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 16,
+      "forcedCoverageProbeCount": 2,
+      "hollowTouchCount": 1,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "PRO": {
+      "node": "PRO",
+      "cluster": "MEANS",
+      "positionTouchCount": 24,
+      "salienceTouchCount": 8,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 13,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 11,
+      "fixedOpenerTouchCount": 4,
+      "dynamicOnlyTouchCount": 28,
+      "forcedCoverageProbeCount": 2,
+      "hollowTouchCount": 2,
+      "coverageStatus": "over_covered_position"
+    },
+    "COM": {
+      "node": "COM",
+      "cluster": "MEANS",
+      "positionTouchCount": 15,
+      "salienceTouchCount": 5,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 5,
+      "cleanDirectProbeCount": 2,
+      "omnibusProbeCount": 13,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 17,
+      "forcedCoverageProbeCount": 1,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "ZS": {
+      "node": "ZS",
+      "cluster": "REALITY",
+      "positionTouchCount": 11,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 6,
+      "cleanDirectProbeCount": 1,
+      "omnibusProbeCount": 9,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 14,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 2,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "ONT_H": {
+      "node": "ONT_H",
+      "cluster": "REALITY",
+      "positionTouchCount": 13,
+      "salienceTouchCount": 4,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 3,
+      "cleanDirectProbeCount": 2,
+      "omnibusProbeCount": 6,
+      "fixedOpenerTouchCount": 4,
+      "dynamicOnlyTouchCount": 13,
+      "forcedCoverageProbeCount": 2,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "ONT_S": {
+      "node": "ONT_S",
+      "cluster": "REALITY",
+      "positionTouchCount": 11,
+      "salienceTouchCount": 6,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 6,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 4,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 14,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "PF": {
+      "node": "PF",
+      "cluster": "SELF",
+      "positionTouchCount": 7,
+      "salienceTouchCount": 0,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 5,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 1,
+      "fixedOpenerTouchCount": 1,
+      "dynamicOnlyTouchCount": 6,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "TRB": {
+      "node": "TRB",
+      "cluster": "SELF",
+      "positionTouchCount": 15,
+      "salienceTouchCount": 0,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 7,
+      "cleanDirectProbeCount": 2,
+      "omnibusProbeCount": 4,
+      "fixedOpenerTouchCount": 0,
+      "dynamicOnlyTouchCount": 15,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "ENG": {
+      "node": "ENG",
+      "cluster": "SELF",
+      "positionTouchCount": 9,
+      "salienceTouchCount": 0,
+      "categoryTouchCount": 0,
+      "meaningfulPositionTouchCount": 4,
+      "cleanDirectProbeCount": 1,
+      "omnibusProbeCount": 3,
+      "fixedOpenerTouchCount": 2,
+      "dynamicOnlyTouchCount": 7,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 0,
+      "coverageStatus": "adequate_position_coverage"
+    },
+    "EPS": {
+      "node": "EPS",
+      "cluster": "MEANS",
+      "positionTouchCount": 0,
+      "salienceTouchCount": 4,
+      "categoryTouchCount": 23,
+      "meaningfulPositionTouchCount": 0,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 9,
+      "fixedOpenerTouchCount": 5,
+      "dynamicOnlyTouchCount": 22,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 4,
+      "coverageStatus": "over_covered_category"
+    },
+    "AES": {
+      "node": "AES",
+      "cluster": "MEANS",
+      "positionTouchCount": 0,
+      "salienceTouchCount": 4,
+      "categoryTouchCount": 10,
+      "meaningfulPositionTouchCount": 0,
+      "cleanDirectProbeCount": 0,
+      "omnibusProbeCount": 2,
+      "fixedOpenerTouchCount": 3,
+      "dynamicOnlyTouchCount": 11,
+      "forcedCoverageProbeCount": 0,
+      "hollowTouchCount": 1,
+      "coverageStatus": "over_covered_category"
+    }
+  },
+  "audits": [
+    {
+      "qid": 1,
+      "promptShort": "political_content_frequency",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 4,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "behavior_frequency",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 3.11,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.643,
+      "signalPerBurden": 2.643,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 2,
+      "promptShort": "political_identity_centrality",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "slider",
+      "quality": 0.94,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "direct_centrality",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.95,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "identity_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.57,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ENG/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.26,
+      "signalPerBurden": 3.26,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@21",
+          "D2@23"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 3,
+      "promptShort": "cultural_social_placement",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "slider",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "direct_placement",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.78,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.502,
+      "signalPerBurden": 2.502,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@11",
+          "D2@11",
+          "D3@11"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 4,
+      "promptShort": "cultural_social_salience",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "slider",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.45,
+          "touchType": "boundary_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.64,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "values_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.51,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.705,
+      "signalPerBurden": 2.705,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@24"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 5,
+      "promptShort": "engagement_motivations_top2",
+      "stage": "screen20",
+      "section": "I",
+      "uiType": "multi",
+      "quality": 0.86,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 7,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "motive_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.7,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "motive_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.76,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "motive_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.72,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "motive_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.71,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "motive_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.61,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "motive_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.96,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "motive_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "strong",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 7 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PF/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ENG/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.2 but evidence range 1.40 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 1.334,
+      "signalPerBurden": 0.667,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 6,
+      "promptShort": "national_priorities_bundle",
+      "stage": "stage2",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 5,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.92,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.05,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.98,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.59,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.4,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "policy_bundle_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.6,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 5 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 4.915,
+      "signalPerBurden": 4.915,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@15"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 7,
+      "promptShort": "coalition_vs_principle",
+      "stage": "screen20",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": true,
+      "touchProfile": [
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "principle_tradeoff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.8,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.53,
+      "signalPerBurden": 1.53,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@16",
+          "D2@18",
+          "D3@17"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "stage": "screen20",
+      "section": "I",
+      "uiType": "slider",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "moral_scope_tradeoff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.64,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.376,
+      "signalPerBurden": 2.376,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 9,
+      "promptShort": "politics_at_social_gatherings",
+      "stage": "stage2",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.86,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "social_behavior",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.03,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.45,
+          "touchType": "social_behavior",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.73,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.546,
+      "signalPerBurden": 1.546,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 10,
+      "promptShort": "climate_energy_bundle",
+      "stage": "stage3",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.42,
+      "rewriteNeeded": true,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.45,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_S/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.99,
+      "signalPerBurden": 0.99,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 11,
+      "promptShort": "nyt_headline_click",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.86,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "taste_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.45,
+          "touchType": "style_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 3
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.081,
+      "signalPerBurden": 2.081,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@22"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 12,
+      "promptShort": "guess_top_marginal_tax_rate",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "slider",
+      "quality": 0.68,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.35,
+          "touchType": "factual_calibration",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 0.532,
+      "signalPerBurden": 0.532,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 13,
+      "promptShort": "preferred_top_marginal_tax_rate",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "slider",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.92,
+          "touchType": "policy_preference",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.78,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.558,
+      "signalPerBurden": 2.558,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 14,
+      "promptShort": "university_admissions_approach",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.83,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "fairness_design",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.25,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "fairness_design",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.68,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.799,
+      "signalPerBurden": 1.799,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 15,
+      "promptShort": "inequality_causes_allocation",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "allocation",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "causal_allocation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 3.2,
+          "strengthClass": "strong",
+          "optionCount": 3
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "inequality_worldview",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "allocation_shape",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.8,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.1,
+          "touchType": "allocation_shape_epistemic",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "derived_allocation_concentration",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "ZS/position declared (weight=0.15) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ZS/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
+        }
+      ],
+      "totalEvidenceWeighted": 3.17,
+      "signalPerBurden": 1.585,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 16,
+      "promptShort": "criminal_justice_bundle",
+      "stage": "stage3",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.4,
+      "rewriteNeeded": true,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.37,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "policy_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.27,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.665,
+      "signalPerBurden": 0.665,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 17,
+      "promptShort": "ceo_worker_pay_ratio",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.87,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "fairness_threshold",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.26,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.034,
+      "signalPerBurden": 2.034,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 18,
+      "promptShort": "human_improvement_capacity",
+      "stage": "screen20",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": true,
+      "touchProfile": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "malleability_capacity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.926,
+      "signalPerBurden": 1.926,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@17",
+          "D2@20",
+          "D3@21"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 19,
+      "promptShort": "human_progress_salience",
+      "stage": "screen20",
+      "section": "II",
+      "uiType": "slider",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.758,
+      "signalPerBurden": 1.758,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@27"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 20,
+      "promptShort": "bad_outcomes_blame_allocation",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "allocation",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "conflict_attribution",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.8,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "motive_model",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "allocation_shape",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.1,
+          "touchType": "allocation_shape_epistemic",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "derived_allocation_concentration",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
+        }
+      ],
+      "totalEvidenceWeighted": 1.84,
+      "signalPerBurden": 0.92,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 21,
+      "promptShort": "controversial_speaker",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "rights_tradeoff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.68,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "civic_balance",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.65,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.721,
+      "signalPerBurden": 2.721,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 22,
+      "promptShort": "source_trust_conflict",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 7,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.92,
+          "touchType": "tie_breaker_authority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.4,
+          "touchType": "tie_breaker_authority",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [
+        {
+          "kind": "hollow_touch",
+          "detail": "EPS/salience declared (weight=0.4) but no evidence map or implicit derivation affects it"
+        }
+      ],
+      "totalEvidenceWeighted": 1.288,
+      "signalPerBurden": 1.288,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 23,
+      "promptShort": "who_should_shape_a_law",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "ranking",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.7,
+          "touchType": "authority_ranking",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "governance_priority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.386,
+      "signalPerBurden": 0.462,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 24,
+      "promptShort": "child_traits",
+      "stage": "screen20",
+      "section": "III",
+      "uiType": "pairwise",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.35,
+          "touchType": "socialization_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.3,
+          "touchType": "socialization_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.42,
+          "strengthClass": "strong",
+          "optionCount": 3
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.1,
+          "touchType": "human_nature_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "AES/category weight=0.3 but evidence range 1.42 is strong"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.1 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.044,
+      "signalPerBurden": 1.044,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 25,
+      "promptShort": "criminal_trial_error_tradeoff",
+      "stage": "screen20",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.75,
+          "touchType": "error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.86,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "error_asymmetry_ratio",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "human_motive_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.56,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "hollow_touch",
+          "detail": "PRO/salience declared (weight=0.7) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.12 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.462,
+      "signalPerBurden": 1.462,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 27,
+      "promptShort": "welfare_error_tradeoff",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.72,
+          "touchType": "error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.78,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "error_asymmetry_ratio",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.22,
+          "touchType": "error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.36,
+          "strengthClass": "too_weak",
+          "optionCount": 2
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.24,
+          "touchType": "deservingness_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.46,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "hollow_touch",
+          "detail": "MAT/salience declared (weight=0.65) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.22 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.24 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.711,
+      "signalPerBurden": 1.711,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 28,
+      "promptShort": "mask_mandate_acceptability",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.76,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "public_health_authority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "collective_uniformity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.33,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.103,
+      "signalPerBurden": 1.103,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 29,
+      "promptShort": "factory_closure_causes_ranking",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "ranking",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "economic_attribution",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.4,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "economic_attribution",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.6,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "trade_protectionism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.6,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_S/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.98,
+      "signalPerBurden": 0.66,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 30,
+      "promptShort": "information_control_error_tradeoff",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.72,
+          "touchType": "speech_harm_tradeoff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.46,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "speech_harm_ratio",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "truth_authority_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.34,
+          "strengthClass": "strong",
+          "optionCount": 2
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "pluralism_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.44,
+          "strengthClass": "too_weak",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.2 but evidence range 1.34 is strong"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.12 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.372,
+      "signalPerBurden": 1.372,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 31,
+      "promptShort": "trade_liberalization_effects",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "macro_sum_view",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "macro_sum_view",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.33,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.45,
+          "touchType": "systems_view",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.28,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 3.06,
+      "signalPerBurden": 3.06,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@19",
+          "D3@22"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 33,
+      "promptShort": "immigration_enforcement_error_tradeoff",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.86,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.62,
+          "touchType": "boundary_error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.16,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "boundary_error_asymmetry_ratio",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.22,
+          "touchType": "boundary_error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.24,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "boundary_error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.12,
+          "strengthClass": "too_weak",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "hollow_touch",
+          "detail": "PRO/salience declared (weight=0.55) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.22 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_S/position weight=0.12 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.006,
+      "signalPerBurden": 1.006,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 34,
+      "promptShort": "threats_to_america_external_internal",
+      "stage": "stage3",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.38,
+      "rewriteNeeded": true,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "threat_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.21,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "threat_bundle",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.37,
+          "strengthClass": "too_weak",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ZS/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.497,
+      "signalPerBurden": 0.497,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 35,
+      "promptShort": "percent_groups_want_best_share_values",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "slider",
+      "quality": 0.84,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "outgroup_trust_estimate",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.64,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "outgroup_trust_estimate",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.64,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 3.564,
+      "signalPerBurden": 3.564,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 36,
+      "promptShort": "fda_speed_vs_safety",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.56,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "expertise_risk_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "strong",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.2 but evidence range 1.40 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 1.294,
+      "signalPerBurden": 1.294,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 37,
+      "promptShort": "stupid_workplace_rule_response",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.8,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "rule_response",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.98,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "rule_response",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.92,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.418,
+      "signalPerBurden": 1.418,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 38,
+      "promptShort": "rules_procedures_matter_salience",
+      "stage": "screen20",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.94,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.758,
+      "signalPerBurden": 1.758,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@24",
+          "D2@28",
+          "D3@28"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 39,
+      "promptShort": "opponent_model_allocation",
+      "stage": "screen20",
+      "section": "IV",
+      "uiType": "allocation",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 6,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.75,
+          "touchType": "outgroup_model",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 3.6,
+          "strengthClass": "too_strong",
+          "optionCount": 3
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.45,
+          "touchType": "outgroup_model",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 3,
+          "strengthClass": "strong",
+          "optionCount": 2
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "malleability_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.1,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "outgroup_model",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "opponent_moral_scope",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "allocation_shape_epistemic",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.533,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 6 distinct nodes/anchors"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "TRB/position range 3.60 (option count 3)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "ZS/position declared (weight=0.35) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ZS/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "MOR/position declared (weight=0.15) but no evidence map or implicit derivation affects it"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 4.787,
+      "signalPerBurden": 2.393,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 40,
+      "promptShort": "opponents_matter_to_identity",
+      "stage": "fixed12",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "opponent_identity_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.78,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "opponent_identity_activation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.68,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 3.683,
+      "signalPerBurden": 3.683,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 41,
+      "promptShort": "election_access_vs_security",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "error_asymmetry",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "partisan_fairness_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.22,
+          "strengthClass": "too_weak",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.097,
+      "signalPerBurden": 1.097,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 42,
+      "promptShort": "close_friends_voted_differently",
+      "stage": "screen20",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "network_homophily",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.28,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.052,
+      "signalPerBurden": 2.052,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 43,
+      "promptShort": "veil_of_ignorance_society_choice",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "distributive_choice",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.32,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.624,
+      "signalPerBurden": 1.624,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 44,
+      "promptShort": "views_changed_in_10_years",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.58,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.18,
+          "touchType": "identity_rigidity_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PF/position weight=0.18 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.385,
+      "signalPerBurden": 0.385,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 47,
+      "promptShort": "political_conflict_with_close_others",
+      "stage": "fixed12",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "interpersonal_conflict",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.53,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.071,
+      "signalPerBurden": 1.071,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 48,
+      "promptShort": "improvement_mechanism",
+      "stage": "screen20",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.87,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "malleability_mechanism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.04,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "malleability_mechanism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.98,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "malleability_mechanism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.62,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "malleability_mechanism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CD/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.459,
+      "signalPerBurden": 3.459,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 49,
+      "promptShort": "social_progress_salience",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "progress_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.57,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.072,
+      "signalPerBurden": 2.072,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@29",
+          "D3@20"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 50,
+      "promptShort": "integration_expectations_rewrite",
+      "stage": "stage2",
+      "section": "IV",
+      "uiType": "ranking",
+      "quality": 0.62,
+      "rewriteNeeded": true,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.75,
+          "touchType": "membership_expectation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "membership_expectation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.2,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "economic_membership_expectation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.6,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CD/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.89,
+      "signalPerBurden": 0.63,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "stage": "screen20",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.57,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "kind": "derived",
+          "weight": 0.25,
+          "touchType": "nationality_anchor",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 6,
+          "strengthClass": "strong",
+          "optionCount": 17
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "TRB_ANCHOR/anchor weight=0.25 but evidence range 6.00 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 3.558,
+      "signalPerBurden": 3.558,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@22",
+          "D2@31",
+          "D3@30"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 54,
+      "promptShort": "religion_in_upbringing",
+      "stage": "stage3",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.4,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 0,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [],
+      "flags": [
+        {
+          "kind": "metadata_without_evidence",
+          "detail": "no touchProfile entries"
+        }
+      ],
+      "totalEvidenceWeighted": 0,
+      "signalPerBurden": 0,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 55,
+      "promptShort": "what_changed_your_mind",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "multi",
+      "quality": 0.94,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "updating_channel",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.444,
+      "signalPerBurden": 0.722,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 56,
+      "promptShort": "effective_leader_style",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.92,
+          "touchType": "leader_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.38,
+      "signalPerBurden": 1.38,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 59,
+      "promptShort": "what_matters_more_in_leader",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.45,
+          "touchType": "leader_evaluation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "leader_evaluation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.2 but evidence range 1.52 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 0.979,
+      "signalPerBurden": 0.979,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 60,
+      "promptShort": "politically_important_identities",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "priority_sort",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 5,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "kind": "derived",
+          "weight": 0.95,
+          "touchType": "identity_ranking",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 8,
+          "strengthClass": "strong",
+          "optionCount": 8
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 7.6,
+      "signalPerBurden": 2.533,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@4",
+          "D2@4",
+          "D3@4"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 61,
+      "promptShort": "political_pitch_resonance",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.94,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.82,
+          "touchType": "rhetorical_preference",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.3,
+          "touchType": "rhetorical_preference",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.3 but evidence range 1.48 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 1.674,
+      "signalPerBurden": 1.674,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@20",
+          "D3@19"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 62,
+      "promptShort": "movement_aesthetics_reaction",
+      "stage": "screen20",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.88,
+          "touchType": "movement_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.32,
+      "signalPerBurden": 1.32,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 63,
+      "promptShort": "best_worst_battery",
+      "stage": "screen20",
+      "section": "VI",
+      "uiType": "best_worst",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 9,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.38,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.34,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.4,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "kind": "derived",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 6,
+          "strengthClass": "strong",
+          "optionCount": 18
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 9 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.12 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "TRB_ANCHOR/anchor weight=0.18 but evidence range 6.00 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 1.248,
+      "signalPerBurden": 0.624,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@25",
+          "D2@30",
+          "D3@29"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 64,
+      "promptShort": "political_frustration",
+      "stage": "stage2",
+      "section": "VI",
+      "uiType": "single_choice",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 5,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "grievance_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.39,
+          "strengthClass": "too_weak",
+          "optionCount": 1
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "grievance_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.36,
+          "strengthClass": "reasonable",
+          "optionCount": 6
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "grievance_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.32,
+          "strengthClass": "too_weak",
+          "optionCount": 1
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "grievance_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.07,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "frustration_intensity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.38,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 5 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CD/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ENG/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.631,
+      "signalPerBurden": 2.631,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 66,
+      "promptShort": "community_fund_allocation",
+      "stage": "stage2",
+      "section": "VI",
+      "uiType": "allocation",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 6,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.75,
+          "touchType": "value_allocation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.8,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "governance_allocation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.4,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "economic_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.6,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "governance_allocation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.1,
+          "touchType": "allocation_shape_epistemic",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.35,
+          "touchType": "civic_style_allocation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.24,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 6 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "hollow_touch",
+          "detail": "EPS/category declared (weight=0.1) but no evidence map or implicit derivation affects it"
+        }
+      ],
+      "totalEvidenceWeighted": 3.894,
+      "signalPerBurden": 1.947,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 69,
+      "promptShort": "common_ground_salience",
+      "stage": "stage2",
+      "section": "VI",
+      "uiType": "slider",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "COM",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.665,
+      "signalPerBurden": 1.665,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@23",
+          "D2@26",
+          "D3@26"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 71,
+      "promptShort": "rhetoric_style_importance",
+      "stage": "stage2",
+      "section": "VI",
+      "uiType": "slider",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.9,
+          "touchType": "direct_salience",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.665,
+      "signalPerBurden": 1.665,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@25",
+          "D3@27"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 77,
+      "promptShort": "decision_making_style",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.93,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "decision_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.58,
+          "strengthClass": "strong",
+          "optionCount": 6
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.15,
+          "touchType": "style_proxy",
+          "hasEvidence": false,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": false,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [
+        {
+          "kind": "hollow_touch",
+          "detail": "AES/category declared (weight=0.15) but no evidence map or implicit derivation affects it"
+        }
+      ],
+      "totalEvidenceWeighted": 1.501,
+      "signalPerBurden": 1.501,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 78,
+      "promptShort": "speaker_appeal",
+      "stage": "stage2",
+      "section": "V",
+      "uiType": "single_choice",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.88,
+          "touchType": "rhetorical_preference",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 6
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.4,
+          "touchType": "rhetorical_preference",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.64,
+          "strengthClass": "reasonable",
+          "optionCount": 7
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.15,
+          "touchType": "style_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.027,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.13,
+      "signalPerBurden": 2.13,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 79,
+      "promptShort": "expert_disagreement_reaction",
+      "stage": "stage2",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.92,
+          "touchType": "epistemic_response",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.58,
+          "strengthClass": "strong",
+          "optionCount": 6
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.4,
+          "touchType": "epistemic_response",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.38,
+          "strengthClass": "reasonable",
+          "optionCount": 6
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "epistemic_withdrawal",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.58,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ENG/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.243,
+      "signalPerBurden": 2.243,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D3@25"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 81,
+      "promptShort": "party_vs_cause_loyalty",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.92,
+          "touchType": "identity_loyalty",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.48,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.18,
+          "touchType": "activation_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.84,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.1,
+          "touchType": "camp_attachment",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.88,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ENG/position weight=0.18 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.1 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.621,
+      "signalPerBurden": 2.621,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 82,
+      "promptShort": "openness_assimilation_closure",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.9,
+          "touchType": "cultural_direction",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.42,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.88,
+          "touchType": "cultural_uniformity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.34,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.24,
+          "touchType": "moral_scope",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.74,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.08,
+          "touchType": "economics_signal",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.94,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.24 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.08 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 4.73,
+      "signalPerBurden": 4.73,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@17",
+          "D3@16"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 83,
+      "promptShort": "broken_politics_diagnosis",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 5,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "mobilization_style",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.99,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.45,
+          "touchType": "camp_attachment",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.63,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "cultural_direction",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.94,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "cultural_uniformity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.9,
+          "strengthClass": "reasonable",
+          "optionCount": 1
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "compromise_signal",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.02,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 5 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.821,
+      "signalPerBurden": 1.821,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 84,
+      "promptShort": "institutions_harden_into_domination",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "slider",
+      "quality": 0.89,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 5,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "zero_sum_institutions",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.48,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.6,
+          "touchType": "zero_sum_institutions",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.85,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "hierarchy_trust",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.42,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "compromise_signal",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.42,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "procedural_trust",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.3,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.3,
+          "touchType": "institutional_nihilism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.28,
+          "strengthClass": "strong",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 5 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.3 but evidence range 1.28 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 4.016,
+      "signalPerBurden": 4.016,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D3@24"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 85,
+      "promptShort": "institutional_legitimacy_source",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.91,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.88,
+          "touchType": "procedural_legitimacy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.64,
+          "strengthClass": "strong",
+          "optionCount": 4
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "cultural_direction",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.94,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.08,
+          "touchType": "compromise_signal",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.17,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.2,
+          "touchType": "legitimacy_authority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.2,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CD/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.08 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.2 but evidence range 1.20 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 2.845,
+      "signalPerBurden": 2.845,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 87,
+      "promptShort": "family_cross_partisan_marriage",
+      "stage": "stage3",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.88,
+          "touchType": "identity_fusion_affective",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.49,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.22,
+          "touchType": "camp_attachment",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.87,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.22 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.603,
+      "signalPerBurden": 2.603,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 89,
+      "promptShort": "epistemic_style_battery",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "best_worst",
+      "quality": 0.92,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 6,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.85,
+          "touchType": "epistemic_style_pick",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.55,
+          "touchType": "epistemic_style_pick",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.292,
+      "signalPerBurden": 0.646,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@5",
+          "D2@5",
+          "D3@5"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 93,
+      "promptShort": "priority_sort_opener",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "priority_sort",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": true,
+      "burden": 3,
+      "distinctNodesTouched": 6,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 11,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 6 distinct nodes/anchors"
+        }
+      ],
+      "totalEvidenceWeighted": 7.062,
+      "signalPerBurden": 2.354,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@9",
+          "D2@9",
+          "D3@9"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 97,
+      "promptShort": "political_thought_frequency",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 3,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PF",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.7,
+          "touchType": "thought_frequency_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.45,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "thought_frequency_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.69,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 3.195,
+      "signalPerBurden": 3.195,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@3",
+          "D2@3",
+          "D3@3"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 98,
+      "promptShort": "group_solidarity_feeling",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "group_solidarity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.45,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "in_group_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.96,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.474,
+      "signalPerBurden": 2.474,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 99,
+      "promptShort": "cross_partisan_priority_sort",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "priority_sort",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "cross_partisan_tolerance",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.59,
+          "strengthClass": "reasonable",
+          "optionCount": 6
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.272,
+      "signalPerBurden": 0.424,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 100,
+      "promptShort": "leader_conjoint",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "conjoint",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 0,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [],
+      "flags": [
+        {
+          "kind": "metadata_without_evidence",
+          "detail": "no touchProfile entries"
+        }
+      ],
+      "totalEvidenceWeighted": 0,
+      "signalPerBurden": 0,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 101,
+      "promptShort": "cultural_social_placement_dual",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "dual_axis",
+      "quality": 0.88,
+      "rewriteNeeded": true,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "dual_axis_cd",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.14,
+          "strengthClass": "reasonable",
+          "optionCount": 2
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.75,
+          "touchType": "dual_axis_cd",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 3,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "evidence_too_strong",
+          "detail": "CD/salience range 3.00 (option count 2)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.962,
+      "signalPerBurden": 1.981,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "priority_sort",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": true,
+      "burden": 3,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 12,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "membership_criteria",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.27,
+          "strengthClass": "reasonable",
+          "optionCount": 8
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.8,
+          "touchType": "membership_criteria",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.381,
+      "signalPerBurden": 0.127,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@10",
+          "D2@10",
+          "D3@10"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 103,
+      "promptShort": "issue_salience_screener",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "priority_sort",
+      "quality": 0.98,
+      "rewriteNeeded": false,
+      "priorityBattery": true,
+      "burden": 3,
+      "distinctNodesTouched": 11,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 2,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "salience_screener",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.76,
+          "strengthClass": "too_strong",
+          "optionCount": 2
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 11 distinct nodes/anchors"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "MAT/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "CD/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "CU/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "MOR/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "PRO/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "COM/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "ZS/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "ONT_H/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "ONT_S/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "EPS/salience range 2.76 (option count 2)"
+        },
+        {
+          "kind": "evidence_too_strong",
+          "detail": "AES/salience range 2.76 (option count 2)"
+        }
+      ],
+      "totalEvidenceWeighted": 28.842,
+      "signalPerBurden": 9.614,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@2",
+          "D2@2",
+          "D3@2"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 200,
+      "promptShort": "party_identification",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.99,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 0,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 1,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [],
+      "flags": [
+        {
+          "kind": "metadata_without_evidence",
+          "detail": "no touchProfile entries"
+        }
+      ],
+      "totalEvidenceWeighted": 0,
+      "signalPerBurden": 0,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@1",
+          "D2@1",
+          "D3@1"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 201,
+      "promptShort": "patriotism_institutional_trust",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "current_institutional_confidence",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.37,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "current_institutional_confidence",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "national_identification",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.39,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_S/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 0.691,
+      "signalPerBurden": 0.691,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 202,
+      "promptShort": "state_scope_preference",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.94,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "state_scope",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.99,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "state_capacity",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.38,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "institutional_importance",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.38,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.15,
+          "touchType": "pragmatism_proxy",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.26,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_S/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "COM/position weight=0.15 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.111,
+      "signalPerBurden": 2.111,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@16"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 203,
+      "promptShort": "military_intervention",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "interventionism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "interventionism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.78,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "interventionism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.3,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ZS/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.244,
+      "signalPerBurden": 1.244,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 204,
+      "promptShort": "international_engagement",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "international_orientation",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.67,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "moral_scope_global",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.67,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "national_identification",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.52,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "TRB/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.306,
+      "signalPerBurden": 1.306,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 205,
+      "promptShort": "trade_nationalism",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.35,
+          "touchType": "trade_economics",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.39,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.1,
+          "touchType": "economic_nationalism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.67,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "trade_zero_sum",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.39,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.35 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.1 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ZS/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.001,
+      "signalPerBurden": 1.001,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 206,
+      "promptShort": "religion_in_public_life",
+      "stage": "fixed12",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 4,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "CD",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.4,
+          "touchType": "religion_traditionalism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.98,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "religion_morality",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.67,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "religion_neutrality",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.03,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.3,
+          "touchType": "religion_epistemic",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.34,
+          "strengthClass": "strong",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "overloaded_question",
+          "detail": "touches 4 distinct nodes/anchors"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MOR/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "declared_low_actual_high",
+          "detail": "EPS/category weight=0.3 but evidence range 1.34 is strong"
+        }
+      ],
+      "totalEvidenceWeighted": 1.734,
+      "signalPerBurden": 1.734,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 207,
+      "promptShort": "emergency_powers",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": true,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.65,
+          "touchType": "constitutional_restraint",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.46,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "trust_concentrated_power",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.39,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.877,
+      "signalPerBurden": 1.877,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@18",
+          "D2@21",
+          "D3@18"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 208,
+      "promptShort": "courts_vs_majority",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.88,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 2,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "judicial_review",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.41,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "trust_majority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.34,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 1.594,
+      "signalPerBurden": 1.594,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 209,
+      "promptShort": "zero_sum_economics_view",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 13,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "zero_sum_direct",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.44,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "zero_sum_direct",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.64,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 2.394,
+      "signalPerBurden": 2.394,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@12",
+          "D2@12",
+          "D3@12"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 210,
+      "promptShort": "human_malleability_view",
+      "stage": "fixed12",
+      "section": "III",
+      "uiType": "single_choice",
+      "quality": 0.9,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 14,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "malleability_direct",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.36,
+          "strengthClass": "reasonable",
+          "optionCount": 4
+        },
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.4,
+          "touchType": "malleability_direct",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.25,
+          "strengthClass": "too_weak",
+          "optionCount": 4
+        }
+      ],
+      "flags": [
+        {
+          "kind": "evidence_too_weak",
+          "detail": "ONT_H/salience range 0.25 but weight=0.4 (counts toward routing)"
+        }
+      ],
+      "totalEvidenceWeighted": 2.106,
+      "signalPerBurden": 2.106,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@13",
+          "D2@13",
+          "D3@13"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 211,
+      "promptShort": "strategic_voting",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 0,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 9,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [],
+      "flags": [
+        {
+          "kind": "metadata_without_evidence",
+          "detail": "no touchProfile entries"
+        }
+      ],
+      "totalEvidenceWeighted": 0,
+      "signalPerBurden": 0,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@7",
+          "D2@7",
+          "D3@7"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 212,
+      "promptShort": "negative_partisanship",
+      "stage": "fixed12",
+      "section": "I",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 0,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 10,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [],
+      "flags": [
+        {
+          "kind": "metadata_without_evidence",
+          "detail": "no touchProfile entries"
+        }
+      ],
+      "totalEvidenceWeighted": 0,
+      "signalPerBurden": 0,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@8",
+          "D2@8",
+          "D3@8"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 213,
+      "promptShort": "equal_standing_within_polity",
+      "stage": "fixed12",
+      "section": "IV",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": true,
+      "touchProfile": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "within_polity_universalism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.5,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "within_polity_universalism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.04,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "within_polity_pluralism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.74,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "rights_proceduralism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.21,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "CU/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.409,
+      "signalPerBurden": 3.409,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@19",
+          "D3@15"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 214,
+      "promptShort": "institutions_foundational",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.95,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 15,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "institutional_essentialism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.5,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "institutional_essentialism",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.04,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "rule_of_law_normative",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.48,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.1,
+          "touchType": "trust_in_concentrated_authority",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.75,
+          "strengthClass": "reasonable",
+          "optionCount": 3
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "ONT_H/position weight=0.1 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.09,
+      "signalPerBurden": 3.09,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@14",
+          "D2@14",
+          "D3@14"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 215,
+      "promptShort": "theory_of_change_progress",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "theory_of_change",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.16,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.55,
+          "touchType": "theory_of_change",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.04,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "policy_lever",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.88,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.2,
+          "touchType": "process_vs_movement",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.94,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.2 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.16,
+      "signalPerBurden": 3.16,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D2@15",
+          "D3@23"
+        ],
+        "inFixedOpener": false
+      }
+    },
+    {
+      "qid": 216,
+      "promptShort": "strengthen_democracy_priority",
+      "stage": "stage2",
+      "section": "II",
+      "uiType": "single_choice",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 1,
+      "distinctNodesTouched": 3,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.85,
+          "touchType": "institutional_strengthening",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 2.16,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "kind": "continuous",
+          "weight": 0.5,
+          "touchType": "institutional_strengthening",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 0.64,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.25,
+          "touchType": "state_scope_implication",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.54,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "kind": "continuous",
+          "weight": 0.3,
+          "touchType": "process_vs_populist",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.86,
+          "strengthClass": "reasonable",
+          "optionCount": 5
+        }
+      ],
+      "flags": [
+        {
+          "kind": "subthreshold_touch",
+          "detail": "MAT/position weight=0.25 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        },
+        {
+          "kind": "subthreshold_touch",
+          "detail": "PRO/position weight=0.3 < MEANINGFUL_POSITION_WEIGHT (0.4)"
+        }
+      ],
+      "totalEvidenceWeighted": 3.099,
+      "signalPerBurden": 3.099,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 217,
+      "promptShort": "epistemic_style_ranking",
+      "stage": "fixed12",
+      "section": "II",
+      "uiType": "ranking",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 3,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": false,
+      "fixedOpenerSlot": null,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "direct_epistemic_rank",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.58,
+          "strengthClass": "strong",
+          "optionCount": 6
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.501,
+      "signalPerBurden": 0.5,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": []
+      }
+    },
+    {
+      "qid": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "stage": "fixed12",
+      "section": "V",
+      "uiType": "best_worst",
+      "quality": 0.96,
+      "rewriteNeeded": false,
+      "priorityBattery": false,
+      "burden": 2,
+      "distinctNodesTouched": 1,
+      "isFixedOpener": true,
+      "fixedOpenerSlot": 8,
+      "isForcedCoverageProbe": false,
+      "touchProfile": [
+        {
+          "node": "AES",
+          "role": "category",
+          "kind": "categorical",
+          "weight": 0.95,
+          "touchType": "direct_aesthetic_maxdiff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": true,
+          "derivedImplicit": false,
+          "strengthScore": 1.5,
+          "strengthClass": "strong",
+          "optionCount": 5
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "kind": "categorical",
+          "weight": 0.35,
+          "touchType": "direct_aesthetic_maxdiff",
+          "hasEvidence": true,
+          "hasExplicitEvidence": false,
+          "derivedImplicit": true,
+          "strengthScore": 0,
+          "strengthClass": "too_weak",
+          "optionCount": 0
+        }
+      ],
+      "flags": [],
+      "totalEvidenceWeighted": 1.425,
+      "signalPerBurden": 0.712,
+      "realizedUse": {
+        "askedCount": 0,
+        "avgSlot": null,
+        "inDumps": [
+          "D1@6",
+          "D2@6",
+          "D3@6"
+        ],
+        "inFixedOpener": false
+      }
+    }
+  ],
+  "issueClassification": {
+    "P0": [
+      15,
+      20,
+      22,
+      25,
+      27,
+      33,
+      39,
+      66,
+      77
+    ],
+    "P1": [
+      5,
+      24,
+      30,
+      36,
+      51,
+      59,
+      61,
+      63,
+      84,
+      85,
+      101,
+      103,
+      206,
+      210
+    ],
+    "P2": [
+      2,
+      6,
+      10,
+      14,
+      16,
+      21,
+      23,
+      28,
+      29,
+      34,
+      37,
+      41,
+      44,
+      48,
+      50,
+      54,
+      64,
+      79,
+      81,
+      82,
+      83,
+      87,
+      93,
+      98,
+      100,
+      102,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      207,
+      208,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216
+    ]
+  }
+}
