@@ -1,12 +1,106 @@
 {
   "schema_version": "v0.2-multiyear",
-  "run_at": "2026-05-03T13:52:57.614Z",
+  "run_at": "2026-05-03T14:19:24.539Z",
   "years": [
+    {
+      "year": 2008,
+      "source_file": "data/cces2008/cces_2008_common.tab",
+      "source_file_size_bytes": 59981783,
+      "duration_ms": 748,
+      "file_present": true,
+      "stats": {
+        "rowsLoaded": 32800,
+        "rowsSkipped": 0,
+        "turnoutCounts": {
+          "voted": 22235,
+          "nonvoter": 10565,
+          "unknown": 0
+        },
+        "validatedTurnoutCount": 32800,
+        "voteChoiceCounts": {
+          "D": 9087,
+          "R": 9727,
+          "Other": 300,
+          "Abstain": 10565,
+          "Unknown": 3121
+        },
+        "totalWeight": 32799.99999999798,
+        "weightMin": 0.298931081455426,
+        "weightMax": 6.49191011205216
+      },
+      "weighted_shares": {
+        "total_weight": 32799.99999999798,
+        "voter_weight": 20298.75984524401,
+        "by_choice_weight": {
+          "D": 8954.121102450406,
+          "R": 7938.111837140049,
+          "Other": 285.2307977629525,
+          "Abstain": 12501.240154755948,
+          "Unknown": 3121.296107890601
+        },
+        "by_turnout_weight": {
+          "voted": 20298.75984524422,
+          "nonvoter": 12501.240154755948,
+          "unknown": 0
+        },
+        "voter_conditional_share": {
+          "D": 0.44111665790008114,
+          "R": 0.39106388260462843,
+          "Other": 0.014051636648619295,
+          "Unknown": 0.15376782284667107
+        }
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "Loader produces > 0 rows from CES 2008",
+          "passed": true,
+          "detail": "rowsLoaded=32800, rowsSkipped=0"
+        },
+        {
+          "id": 2,
+          "label": "All weights are finite and > 0",
+          "passed": true,
+          "detail": "min=0.2989 max=6.4919"
+        },
+        {
+          "id": 3,
+          "label": "Non-voters retained (not silently dropped)",
+          "passed": true,
+          "detail": "nonvoter=10565, voted=22235, unknown=0"
+        },
+        {
+          "id": 4,
+          "label": "Validated-turnout count > 0",
+          "passed": true,
+          "detail": "validatedTurnoutCount=32800"
+        },
+        {
+          "id": 5,
+          "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
+          "passed": true,
+          "detail": "all voter rows have a non-Abstain choice"
+        },
+        {
+          "id": 6,
+          "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
+          "passed": true,
+          "detail": "all non-voter rows are 'Abstain'"
+        },
+        {
+          "id": 7,
+          "label": "D and R counts both > 0 (resolver code map sane)",
+          "passed": true,
+          "detail": "D=9087, R=9727, Other=300, Abstain=10565, Unknown=3121"
+        }
+      ],
+      "overall_pass": true
+    },
     {
       "year": 2012,
       "source_file": "data/cces2012/CCES12_Common_VV.tab",
       "source_file_size_bytes": 116562350,
-      "duration_ms": 1308,
+      "duration_ms": 1701,
       "file_present": true,
       "stats": {
         "rowsLoaded": 54535,
@@ -100,7 +194,7 @@
       "year": 2016,
       "source_file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
       "source_file_size_bytes": 134761608,
-      "duration_ms": 2317,
+      "duration_ms": 2162,
       "file_present": true,
       "stats": {
         "rowsLoaded": 64600,
@@ -194,7 +288,7 @@
       "year": 2020,
       "source_file": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
       "source_file_size_bytes": 188283717,
-      "duration_ms": 4508,
+      "duration_ms": 4336,
       "file_present": true,
       "stats": {
         "rowsLoaded": 61000,
@@ -288,7 +382,7 @@
       "year": 2024,
       "source_file": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
       "source_file_size_bytes": 183679005,
-      "duration_ms": 4564,
+      "duration_ms": 4561,
       "file_present": true,
       "stats": {
         "rowsLoaded": 60000,
@@ -380,10 +474,10 @@
     }
   ],
   "aggregate": {
-    "total_checks": 28,
-    "total_passed": 28,
+    "total_checks": 35,
+    "total_passed": 35,
     "all_passed": true,
-    "years_with_file_present": 4,
+    "years_with_file_present": 5,
     "years_skipped": []
   }
 }

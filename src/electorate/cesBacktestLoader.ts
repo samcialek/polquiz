@@ -54,15 +54,29 @@ interface YearResolver {
    */
   weightCols: string[];
   /**
-   * Validated-turnout column. Non-empty values that don't equal the
-   * `validatedTurnoutEmptyMarker` indicate the respondent was matched to a
-   * voter file AND voted (CCES 2016 sets `CL_E2016GVM` to non-empty when
-   * a validated general-election ballot exists). Set to undefined when
-   * the year's release does not include voter validation columns; loader
-   * falls back to self-reported tookpost + vote choice.
+   * Validated-turnout column. Two encoding conventions are supported:
+   *
+   *   (a) Non-empty / empty (CCES 2016, 2020): non-empty values mean
+   *       "validated voter file says they voted in the general election."
+   *       Use when `validatedTurnoutVotedValues` is undefined.
+   *
+   *   (b) Coded values (CCES 2008): "1" means voted, "0" means did not
+   *       vote, missing means no voter-file match. Use by setting
+   *       `validatedTurnoutVotedValues` to the set of values meaning
+   *       "voted" (e.g., `Set(["1"])`).
+   *
+   * Set `validatedTurnoutCol` to undefined when the year's release does not
+   * include voter validation columns; loader falls back to self-reported
+   * tookpost + vote choice.
    */
   validatedTurnoutCol?: string;
-  /** Empty-equivalents for the validated turnout column. */
+  /**
+   * Encoding (b) above: when set, only these values count as "voted".
+   * Other values (including empty) → null/unknown, NOT silently treated
+   * as voted. Used by CCES 2008's `vote_gen08` (0/1) column.
+   */
+  validatedTurnoutVotedValues?: Set<string>;
+  /** Empty-equivalents for encoding (a) above. */
   validatedTurnoutEmptyMarkers: Set<string>;
   /** Self-reported took-post-wave column. */
   tookPostCol?: string;
@@ -291,14 +305,74 @@ const CES_2024: YearResolver = {
   },
 };
 
+/**
+ * CCES 2008 resolver. Tab-delimited. Uses opaque V### column naming
+ * inherited from the legacy YouGov coding scheme; column purposes
+ * verified from CCES_2008_Guide_v4.doc (extracted via antiword to
+ * data/cces2008/codebook-extracted.txt).
+ *
+ * Two notable differences vs later cycles:
+ *   - **CC410 vote codes are REVERSED**: 1=McCain (R), 2=Obama (D).
+ *     Later cycles consistently use 1=D, 2=R.
+ *   - Validated turnout column `vote_gen08` uses an explicit 0/1
+ *     coding (0=did not vote, 1=voted) rather than empty/non-empty.
+ *     The loader handles this via `validatedTurnoutVotedValues`.
+ *
+ * V400 (Post-Election Survey Disposition):
+ *   1 = Complete  →  treated as "took post"
+ *   2 = All Else  →  treated as "did not take post"
+ *
+ * CC410 code map (per codebook):
+ *   1 = John McCain (R)
+ *   2 = Barack Obama (D)
+ *   3 = Robert Barr (Libertarian — Other)
+ *   4 = Cynthia McKinney (Green — Other)
+ *   5 = Ralph Nader (Independent — Other)
+ *   6 = Ron Paul (Other)
+ *   7 = Other candidate or party (Other)
+ *   8 = I did not vote in this race (Abstain)
+ *   9 = I did not vote in the election (Abstain)
+ *   98 = Skipped (Unknown)
+ *   99 = Not Asked (Unknown)
+ */
+const CCES_2008: YearResolver = {
+  idCol: "V100",
+  delimiter: "\t",
+  quoted: false,
+  weightCols: ["V201"],
+  validatedTurnoutCol: "vote_gen08",
+  validatedTurnoutVotedValues: new Set(["1"]),
+  validatedTurnoutEmptyMarkers: new Set(["", "__NA__", "NA"]),
+  tookPostCol: "V400",
+  tookPostTakenValues: new Set(["1"]),
+  tookPostNotTakenValues: new Set(["2"]),
+  presVoteCol: "CC410",
+  presVoteCodeMap: {
+    "1": "R", // McCain — REVERSED from later cycles
+    "2": "D", // Obama
+    "3": "Other",
+    "4": "Other",
+    "5": "Other",
+    "6": "Other",
+    "7": "Other",
+  },
+  presVoteAbstainCodes: new Set(["8", "9"]),
+  demoCols: {
+    state: "V206",
+    birthyr: "V207",
+    gender: "V208",
+    educ: "V213",
+    race: "V211",
+    // hispanic: not a separate column in 2008 (race covers ethnicity)
+  },
+};
+
 const RESOLVERS_BY_YEAR: Record<number, YearResolver> = {
+  2008: CCES_2008,
   2012: CCES_2012,
   2016: CCES_2016,
   2020: CES_2020,
   2024: CES_2024,
-  // 2008: opaque V### naming requires deeper codebook (CCES_2008_Guide_v4.doc)
-  //       investigation before resolver can be authored. Tracked in
-  //       results/electorate/backtest/data-needed-to-run-real-backtest.md.
 };
 
 // ─── Loader ────────────────────────────────────────────────────────────────
@@ -367,10 +441,15 @@ function readValidatedTurnout(row: Record<string, string>, resolver: YearResolve
   const v = row[resolver.validatedTurnoutCol];
   if (v === undefined) return null;
   const t = v.trim();
-  // Non-empty and not a known empty-marker → validated voter file recorded
-  // them as having voted in the general election. CCES sets this column to
-  // empty for non-voters AND for unmatched respondents — we cannot
-  // distinguish "non-voter" from "unmatched" from this column alone.
+  // Encoding (b): explicit voted-values set takes precedence (CCES 2008).
+  if (resolver.validatedTurnoutVotedValues) {
+    if (resolver.validatedTurnoutEmptyMarkers.has(t)) return null;
+    return resolver.validatedTurnoutVotedValues.has(t) ? true : false;
+  }
+  // Encoding (a): non-empty and not a known empty-marker → validated voter
+  // file recorded them as having voted in the general election. CCES sets
+  // this column to empty for non-voters AND for unmatched respondents — we
+  // cannot distinguish "non-voter" from "unmatched" from this column alone.
   if (resolver.validatedTurnoutEmptyMarkers.has(t)) return null;
   return true;
 }
@@ -411,6 +490,13 @@ function classifyTurnoutAndChoice(
       return { turnoutObserved: true, turnoutValidated: true, voteChoiceObserved: resolver.presVoteCodeMap[code] };
     }
     return { turnoutObserved: true, turnoutValidated: true, voteChoiceObserved: "Unknown" };
+  }
+
+  // Validated NON-voter (explicit "0" in CCES 2008's vote_gen08). The voter
+  // file confirms they did not vote in the general election. This is the
+  // gold-standard non-voter signal — overrides any self-report.
+  if (validated === false) {
+    return { turnoutObserved: false, turnoutValidated: true, voteChoiceObserved: "Abstain" };
   }
 
   // Did not take post-wave → cannot observe vote choice.

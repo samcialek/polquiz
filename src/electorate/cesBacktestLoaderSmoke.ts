@@ -41,6 +41,7 @@ interface YearTarget {
 }
 
 const YEAR_TARGETS: YearTarget[] = [
+  { year: 2008, filePath: "data/cces2008/cces_2008_common.tab",                            expectsValidatedTurnout: true },
   { year: 2012, filePath: "data/cces2012/CCES12_Common_VV.tab",                            expectsValidatedTurnout: false },
   { year: 2016, filePath: "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",             expectsValidatedTurnout: true },
   { year: 2020, filePath: "data/cces2020/CES20_Common_OUTPUT_vv.csv",                      expectsValidatedTurnout: true },
