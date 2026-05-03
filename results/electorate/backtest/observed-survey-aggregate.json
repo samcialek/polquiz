@@ -1,0 +1,571 @@
+{
+  "schema_version": "v0.1",
+  "run_at": "2026-05-03T15:29:55.729Z",
+  "benchmark_source": "results/electorate/backtest/benchmarks-2008-2024.json",
+  "benchmark_schema_version": "v0.3",
+  "description": "Observed weighted survey-vote aggregates per year, vs official FEC + USEP/UF benchmarks. Sanity-check only; no prediction, no tuning, no mapper. Unknown bucket retained explicitly.",
+  "years": [
+    {
+      "year": 2008,
+      "source_file": "data/cces2008/cces_2008_common.tab",
+      "file_present": true,
+      "duration_ms": 752,
+      "aggregate": {
+        "year": 2008,
+        "n_respondents": 32800,
+        "total_weight": 32799.99999999798,
+        "weight_min": 0.298931081455426,
+        "weight_max": 6.49191011205216,
+        "weighted_counts": {
+          "D": 8954.121102450406,
+          "R": 7938.111837140049,
+          "Other": 285.2307977629525,
+          "Abstain": 12501.240154755948,
+          "Unknown": 3121.296107890601
+        },
+        "shares_of_total_weight": {
+          "D": 0.2729914970259439,
+          "R": 0.2420156047908701,
+          "Other": 0.008696060907407623,
+          "Abstain": 0.38113537057185115,
+          "Unknown": 0.0951614667039876
+        },
+        "known_voter_shares": {
+          "D": 0.5212714309493282,
+          "R": 0.46212362654436323,
+          "Other": 0.0166049425063085
+        },
+        "turnout_share_implied": 0.5237031627242216,
+        "abstain_share_implied": 0.38113537057185115,
+        "unknown_share_implied": 0.0951614667039876,
+        "benchmark": {
+          "d_votes": 69498516,
+          "r_votes": 59948323,
+          "other_votes": 1866981,
+          "total_presidential_votes": 131313820,
+          "vep": 213313508,
+          "abstentions_presidential": 81999688,
+          "d_share_of_vep": 0.3258,
+          "r_share_of_vep": 0.281,
+          "other_share_of_vep": 0.0088,
+          "abstain_share_of_vep": 0.3844,
+          "turnout_share_of_vep_presidential": 0.6156,
+          "d_share_of_total": 0.5293,
+          "r_share_of_total": 0.4565,
+          "other_share_of_total": 0.014217703818227206
+        },
+        "gaps_pp_vs_vep_benchmark": {
+          "d_share_of_vep_gap_pp": -5.2808502974056095,
+          "r_share_of_vep_gap_pp": -3.8984395209129943,
+          "other_share_of_vep_gap_pp": -0.010393909259237728,
+          "abstain_share_of_vep_gap_pp": -0.32646294281488686,
+          "turnout_share_of_vep_gap_pp": -9.189683727577847,
+          "abs_gap_sum_pp": 9.516146670392729
+        },
+        "gaps_pp_vs_known_voter_benchmark": {
+          "d_share_known_voter_gap_pp": -0.8028569050671841,
+          "r_share_known_voter_gap_pp": 0.5623626544363214,
+          "other_share_known_voter_gap_pp": 0.23872386880812932,
+          "abs_gap_sum_pp": 1.6039434283116347
+        },
+        "unknown_handling_note": "Unknown share retained explicitly; not redistributed across D/R/Other/Abstain."
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2008: respondents loaded",
+          "passed": true,
+          "detail": "n=32,800"
+        },
+        {
+          "id": 2,
+          "label": "2008: all weighted counts and total_weight finite",
+          "passed": true,
+          "detail": "D=8954 R=7938 Other=285 Abstain=12501 Unknown=3121 total=32800"
+        },
+        {
+          "id": 3,
+          "label": "2008: bucket weights sum to total_weight (no silent drops)",
+          "passed": true,
+          "detail": "bucketSum=32800.00 total=32800.00 diff=1.98e-9"
+        },
+        {
+          "id": 4,
+          "label": "2008: D, R, Other, Abstain all weighted > 0",
+          "passed": true,
+          "detail": "D>0=true R>0=true Other>0=true Abstain>0=true (Unknown=3121)"
+        },
+        {
+          "id": 5,
+          "label": "2008: official benchmark loaded with positive VEP and pres-vote totals",
+          "passed": true,
+          "detail": "vep=213,313,508 total_pres=131,313,820"
+        },
+        {
+          "id": 6,
+          "label": "2008: Unknown bucket retained explicitly",
+          "passed": true,
+          "detail": "unknown_share=9.52% note=\"Unknown share retained explicitly; not redistributed across D/R/Other/Abstain.\""
+        },
+        {
+          "id": 7,
+          "label": "2008: VEP-share gaps all finite",
+          "passed": true,
+          "detail": "D_gap=-5.28pp R_gap=-3.90pp O_gap=-0.01pp Abstain_gap=-0.33pp turnout_gap=-9.19pp"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2012,
+      "source_file": "data/cces2012/CCES12_Common_VV.tab",
+      "file_present": true,
+      "duration_ms": 1715,
+      "aggregate": {
+        "year": 2012,
+        "n_respondents": 54535,
+        "total_weight": 52869.67966523333,
+        "weight_min": 0.0000100004310891659,
+        "weight_max": 15.0022763648575,
+        "weighted_counts": {
+          "D": 19722.212406414048,
+          "R": 17949.122205396812,
+          "Other": 673.9338018649265,
+          "Abstain": 50.71333355897088,
+          "Unknown": 14473.697917998736
+        },
+        "shares_of_total_weight": {
+          "D": 0.3730344600401128,
+          "R": 0.3394974646914687,
+          "Other": 0.012747075566415808,
+          "Abstain": 0.0009592139366094846,
+          "Unknown": 0.2737617857653963
+        },
+        "known_voter_shares": {
+          "D": 0.514332360218403,
+          "R": 0.46809223009625045,
+          "Other": 0.017575409685346443
+        },
+        "turnout_share_implied": 0.7252790002979974,
+        "abstain_share_implied": 0.0009592139366094846,
+        "unknown_share_implied": 0.2737617857653963,
+        "benchmark": {
+          "d_votes": 65915795,
+          "r_votes": 60933504,
+          "other_votes": 2236111,
+          "total_presidential_votes": 129085410,
+          "vep": 222437494,
+          "abstentions_presidential": 93352084,
+          "d_share_of_vep": 0.2963,
+          "r_share_of_vep": 0.2739,
+          "other_share_of_vep": 0.0101,
+          "abstain_share_of_vep": 0.4197,
+          "turnout_share_of_vep_presidential": 0.5803,
+          "d_share_of_total": 0.5106,
+          "r_share_of_total": 0.472,
+          "other_share_of_total": 0.017322724543385654
+        },
+        "gaps_pp_vs_vep_benchmark": {
+          "d_share_of_vep_gap_pp": 7.67344600401128,
+          "r_share_of_vep_gap_pp": 6.559746469146871,
+          "other_share_of_vep_gap_pp": 0.26470755664158085,
+          "abstain_share_of_vep_gap_pp": -41.874078606339054,
+          "turnout_share_of_vep_gap_pp": 14.497900029799737,
+          "abs_gap_sum_pp": 56.371978636138785
+        },
+        "gaps_pp_vs_known_voter_benchmark": {
+          "d_share_known_voter_gap_pp": 0.37323602184029525,
+          "r_share_known_voter_gap_pp": -0.3907769903749525,
+          "other_share_known_voter_gap_pp": 0.025268514196078937,
+          "abs_gap_sum_pp": 0.7892815264113267
+        },
+        "unknown_handling_note": "Unknown share retained explicitly; not redistributed across D/R/Other/Abstain."
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2012: respondents loaded",
+          "passed": true,
+          "detail": "n=54,535"
+        },
+        {
+          "id": 2,
+          "label": "2012: all weighted counts and total_weight finite",
+          "passed": true,
+          "detail": "D=19722 R=17949 Other=674 Abstain=51 Unknown=14474 total=52870"
+        },
+        {
+          "id": 3,
+          "label": "2012: bucket weights sum to total_weight (no silent drops)",
+          "passed": true,
+          "detail": "bucketSum=52869.68 total=52869.68 diff=1.60e-10"
+        },
+        {
+          "id": 4,
+          "label": "2012: D, R, Other, Abstain all weighted > 0",
+          "passed": true,
+          "detail": "D>0=true R>0=true Other>0=true Abstain>0=true (Unknown=14474)"
+        },
+        {
+          "id": 5,
+          "label": "2012: official benchmark loaded with positive VEP and pres-vote totals",
+          "passed": true,
+          "detail": "vep=222,437,494 total_pres=129,085,410"
+        },
+        {
+          "id": 6,
+          "label": "2012: Unknown bucket retained explicitly",
+          "passed": true,
+          "detail": "unknown_share=27.38% note=\"Unknown share retained explicitly; not redistributed across D/R/Other/Abstain.\""
+        },
+        {
+          "id": 7,
+          "label": "2012: VEP-share gaps all finite",
+          "passed": true,
+          "detail": "D_gap=+7.67pp R_gap=+6.56pp O_gap=+0.26pp Abstain_gap=-41.87pp turnout_gap=+14.50pp"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2016,
+      "source_file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "file_present": true,
+      "duration_ms": 2218,
+      "aggregate": {
+        "year": 2016,
+        "n_respondents": 64600,
+        "total_weight": 64317.21486984039,
+        "weight_min": 0.000100043362604996,
+        "weight_max": 15.0002968221713,
+        "weighted_counts": {
+          "D": 20462.264278676208,
+          "R": 21571.80706619661,
+          "Other": 2597.819181935261,
+          "Abstain": 72.53439518541553,
+          "Unknown": 19612.789947846963
+        },
+        "shares_of_total_weight": {
+          "D": 0.3181459943513718,
+          "R": 0.33539709562753556,
+          "Other": 0.04039072878377123,
+          "Abstain": 0.0011277602012494533,
+          "Unknown": 0.304938421036073
+        },
+        "known_voter_shares": {
+          "D": 0.45846734335364037,
+          "R": 0.4833272086746927,
+          "Other": 0.058205447971666914
+        },
+        "turnout_share_implied": 0.6939338187626786,
+        "abstain_share_implied": 0.0011277602012494533,
+        "unknown_share_implied": 0.304938421036073,
+        "benchmark": {
+          "d_votes": 65853514,
+          "r_votes": 62984828,
+          "other_votes": 7830934,
+          "total_presidential_votes": 136669276,
+          "vep": 230780798,
+          "abstentions_presidential": 94111522,
+          "d_share_of_vep": 0.2854,
+          "r_share_of_vep": 0.2729,
+          "other_share_of_vep": 0.0339,
+          "abstain_share_of_vep": 0.4078,
+          "turnout_share_of_vep_presidential": 0.5922,
+          "d_share_of_total": 0.4818,
+          "r_share_of_total": 0.4609,
+          "other_share_of_total": 0.057298423092546416
+        },
+        "gaps_pp_vs_vep_benchmark": {
+          "d_share_of_vep_gap_pp": 3.274599435137182,
+          "r_share_of_vep_gap_pp": 6.249709562753559,
+          "other_share_of_vep_gap_pp": 0.6490728783771229,
+          "abstain_share_of_vep_gap_pp": -40.667223979875054,
+          "turnout_share_of_vep_gap_pp": 10.173381876267861,
+          "abs_gap_sum_pp": 50.840605856142915
+        },
+        "gaps_pp_vs_known_voter_benchmark": {
+          "d_share_known_voter_gap_pp": -2.333265664635964,
+          "r_share_known_voter_gap_pp": 2.2427208674692722,
+          "other_share_known_voter_gap_pp": 0.0907024879120498,
+          "abs_gap_sum_pp": 4.666689020017286
+        },
+        "unknown_handling_note": "Unknown share retained explicitly; not redistributed across D/R/Other/Abstain."
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2016: respondents loaded",
+          "passed": true,
+          "detail": "n=64,600"
+        },
+        {
+          "id": 2,
+          "label": "2016: all weighted counts and total_weight finite",
+          "passed": true,
+          "detail": "D=20462 R=21572 Other=2598 Abstain=73 Unknown=19613 total=64317"
+        },
+        {
+          "id": 3,
+          "label": "2016: bucket weights sum to total_weight (no silent drops)",
+          "passed": true,
+          "detail": "bucketSum=64317.21 total=64317.21 diff=6.55e-11"
+        },
+        {
+          "id": 4,
+          "label": "2016: D, R, Other, Abstain all weighted > 0",
+          "passed": true,
+          "detail": "D>0=true R>0=true Other>0=true Abstain>0=true (Unknown=19613)"
+        },
+        {
+          "id": 5,
+          "label": "2016: official benchmark loaded with positive VEP and pres-vote totals",
+          "passed": true,
+          "detail": "vep=230,780,798 total_pres=136,669,276"
+        },
+        {
+          "id": 6,
+          "label": "2016: Unknown bucket retained explicitly",
+          "passed": true,
+          "detail": "unknown_share=30.49% note=\"Unknown share retained explicitly; not redistributed across D/R/Other/Abstain.\""
+        },
+        {
+          "id": 7,
+          "label": "2016: VEP-share gaps all finite",
+          "passed": true,
+          "detail": "D_gap=+3.27pp R_gap=+6.25pp O_gap=+0.65pp Abstain_gap=-40.67pp turnout_gap=+10.17pp"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2020,
+      "source_file": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
+      "file_present": true,
+      "duration_ms": 4306,
+      "aggregate": {
+        "year": 2020,
+        "n_respondents": 61000,
+        "total_weight": 68042.87700722224,
+        "weight_min": 0.0001000027,
+        "weight_max": 16.3112872322,
+        "weighted_counts": {
+          "D": 23354.119841219555,
+          "R": 20750.282475858578,
+          "Other": 1025.3482316081647,
+          "Abstain": 128.93488082359264,
+          "Unknown": 22784.191577712547
+        },
+        "shares_of_total_weight": {
+          "D": 0.34322651934221843,
+          "R": 0.3049589227929926,
+          "Other": 0.015069148700154635,
+          "Abstain": 0.0018949063663182138,
+          "Unknown": 0.334850502798319
+        },
+        "known_voter_shares": {
+          "D": 0.517488343216632,
+          "R": 0.4597916501548801,
+          "Other": 0.022720006628488047
+        },
+        "turnout_share_implied": 0.6632545908353656,
+        "abstain_share_implied": 0.0018949063663182138,
+        "unknown_share_implied": 0.334850502798319,
+        "benchmark": {
+          "d_votes": 81268924,
+          "r_votes": 74216154,
+          "other_votes": 2898325,
+          "total_presidential_votes": 158383403,
+          "vep": 242077783,
+          "abstentions_presidential": 83694380,
+          "d_share_of_vep": 0.3357,
+          "r_share_of_vep": 0.3066,
+          "other_share_of_vep": 0.012,
+          "abstain_share_of_vep": 0.3457,
+          "turnout_share_of_vep_presidential": 0.6543,
+          "d_share_of_total": 0.5131,
+          "r_share_of_total": 0.4686,
+          "other_share_of_total": 0.01829942370918751
+        },
+        "gaps_pp_vs_vep_benchmark": {
+          "d_share_of_vep_gap_pp": 0.752651934221843,
+          "r_share_of_vep_gap_pp": -0.1641077207007402,
+          "other_share_of_vep_gap_pp": 0.30691487001546347,
+          "abstain_share_of_vep_gap_pp": -34.380509363368176,
+          "turnout_share_of_vep_gap_pp": 0.895459083536565,
+          "abs_gap_sum_pp": 35.604183888306224
+        },
+        "gaps_pp_vs_known_voter_benchmark": {
+          "d_share_known_voter_gap_pp": 0.43883432166319514,
+          "r_share_known_voter_gap_pp": -0.8808349845119912,
+          "other_share_known_voter_gap_pp": 0.44205829193005375,
+          "abs_gap_sum_pp": 1.76172759810524
+        },
+        "unknown_handling_note": "Unknown share retained explicitly; not redistributed across D/R/Other/Abstain."
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2020: respondents loaded",
+          "passed": true,
+          "detail": "n=61,000"
+        },
+        {
+          "id": 2,
+          "label": "2020: all weighted counts and total_weight finite",
+          "passed": true,
+          "detail": "D=23354 R=20750 Other=1025 Abstain=129 Unknown=22784 total=68043"
+        },
+        {
+          "id": 3,
+          "label": "2020: bucket weights sum to total_weight (no silent drops)",
+          "passed": true,
+          "detail": "bucketSum=68042.88 total=68042.88 diff=2.04e-10"
+        },
+        {
+          "id": 4,
+          "label": "2020: D, R, Other, Abstain all weighted > 0",
+          "passed": true,
+          "detail": "D>0=true R>0=true Other>0=true Abstain>0=true (Unknown=22784)"
+        },
+        {
+          "id": 5,
+          "label": "2020: official benchmark loaded with positive VEP and pres-vote totals",
+          "passed": true,
+          "detail": "vep=242,077,783 total_pres=158,383,403"
+        },
+        {
+          "id": 6,
+          "label": "2020: Unknown bucket retained explicitly",
+          "passed": true,
+          "detail": "unknown_share=33.49% note=\"Unknown share retained explicitly; not redistributed across D/R/Other/Abstain.\""
+        },
+        {
+          "id": 7,
+          "label": "2020: VEP-share gaps all finite",
+          "passed": true,
+          "detail": "D_gap=+0.75pp R_gap=-0.16pp O_gap=+0.31pp Abstain_gap=-34.38pp turnout_gap=+0.90pp"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2024,
+      "source_file": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
+      "file_present": true,
+      "duration_ms": 4286,
+      "aggregate": {
+        "year": 2024,
+        "n_respondents": 60000,
+        "total_weight": 65600.5735961888,
+        "weight_min": 0.000097950925966768,
+        "weight_max": 15.177642016058,
+        "weighted_counts": {
+          "D": 22294.030220675555,
+          "R": 23366.325234741114,
+          "Other": 547.4909183526057,
+          "Abstain": 352.1340464737349,
+          "Unknown": 19040.59317594597
+        },
+        "shares_of_total_weight": {
+          "D": 0.33984505010442123,
+          "R": 0.3561908677594037,
+          "Other": 0.008345825171022793,
+          "Abstain": 0.005367850114258648,
+          "Unknown": 0.2902504068508964
+        },
+        "known_voter_shares": {
+          "D": 0.482472825942634,
+          "R": 0.5056787335582347,
+          "Other": 0.011848440499131311
+        },
+        "turnout_share_implied": 0.7043817430348477,
+        "abstain_share_implied": 0.005367850114258648,
+        "unknown_share_implied": 0.2902504068508964,
+        "benchmark": {
+          "d_votes": 75017613,
+          "r_votes": 77302580,
+          "other_votes": 2918109,
+          "total_presidential_votes": 155238302,
+          "vep": 243803423,
+          "abstentions_presidential": 88565121,
+          "d_share_of_vep": 0.3077,
+          "r_share_of_vep": 0.3171,
+          "other_share_of_vep": 0.012,
+          "abstain_share_of_vep": 0.3633,
+          "turnout_share_of_vep_presidential": 0.6367,
+          "d_share_of_total": 0.4832,
+          "r_share_of_total": 0.498,
+          "other_share_of_total": 0.01879760962600583
+        },
+        "gaps_pp_vs_vep_benchmark": {
+          "d_share_of_vep_gap_pp": 3.2145050104421258,
+          "r_share_of_vep_gap_pp": 3.9090867759403682,
+          "other_share_of_vep_gap_pp": -0.36541748289772075,
+          "abstain_share_of_vep_gap_pp": -35.793214988574135,
+          "turnout_share_of_vep_gap_pp": 6.768174303484765,
+          "abs_gap_sum_pp": 43.28222425785435
+        },
+        "gaps_pp_vs_known_voter_benchmark": {
+          "d_share_known_voter_gap_pp": -0.0727174057365998,
+          "r_share_known_voter_gap_pp": 0.7678733558234674,
+          "other_share_known_voter_gap_pp": -0.6949169126874519,
+          "abs_gap_sum_pp": 1.535507674247519
+        },
+        "unknown_handling_note": "Unknown share retained explicitly; not redistributed across D/R/Other/Abstain."
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2024: respondents loaded",
+          "passed": true,
+          "detail": "n=60,000"
+        },
+        {
+          "id": 2,
+          "label": "2024: all weighted counts and total_weight finite",
+          "passed": true,
+          "detail": "D=22294 R=23366 Other=547 Abstain=352 Unknown=19041 total=65601"
+        },
+        {
+          "id": 3,
+          "label": "2024: bucket weights sum to total_weight (no silent drops)",
+          "passed": true,
+          "detail": "bucketSum=65600.57 total=65600.57 diff=1.75e-10"
+        },
+        {
+          "id": 4,
+          "label": "2024: D, R, Other, Abstain all weighted > 0",
+          "passed": true,
+          "detail": "D>0=true R>0=true Other>0=true Abstain>0=true (Unknown=19041)"
+        },
+        {
+          "id": 5,
+          "label": "2024: official benchmark loaded with positive VEP and pres-vote totals",
+          "passed": true,
+          "detail": "vep=243,803,423 total_pres=155,238,302"
+        },
+        {
+          "id": 6,
+          "label": "2024: Unknown bucket retained explicitly",
+          "passed": true,
+          "detail": "unknown_share=29.03% note=\"Unknown share retained explicitly; not redistributed across D/R/Other/Abstain.\""
+        },
+        {
+          "id": 7,
+          "label": "2024: VEP-share gaps all finite",
+          "passed": true,
+          "detail": "D_gap=+3.21pp R_gap=+3.91pp O_gap=-0.37pp Abstain_gap=-35.79pp turnout_gap=+6.77pp"
+        }
+      ],
+      "overall_pass": true
+    }
+  ],
+  "aggregate": {
+    "total_checks": 35,
+    "total_passed": 35,
+    "all_passed": true,
+    "years_with_file_present": 5,
+    "years_skipped": []
+  }
+}
