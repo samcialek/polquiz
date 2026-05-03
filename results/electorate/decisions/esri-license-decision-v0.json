@@ -1,0 +1,175 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-03",
+  "doc_type": "decision_memo",
+  "subject": "Esri / ArcGIS Tapestry license acquisition",
+  "decision": "DEFER",
+  "scope": "Documentation only. No engine code, mapper specs, candidate data, era-context data, EIG files, or browser/dist/output/live-data files modified.",
+  "inputs_read": [
+    "results/electorate/intake/acs-esri-geography-intake.md",
+    "results/electorate/intake/ces-anes-codebook-intake.md",
+    "results/electorate/intake/variable-catalog-v0.json",
+    "results/electorate/mapping/survey-to-prism-v0.md",
+    "results/electorate/mapping/coverage-gap-report-v0.md"
+  ],
+  "terminology": {
+    "moral_boundary_salience": "Used throughout.",
+    "engagement": "One-dimensional continuous scalar.",
+    "legacy_boundary_shims": "Legacy implementation shims are irrelevant to this procurement decision."
+  },
+  "decision_summary": "Defer Esri Tapestry purchase. PRISM simulator's blocking constraints for Phase 1 and Phase 2 are upstream of geography (mapper coverage gaps, candidate signature audits, vote-formula validation). For those phases, ACS + IPUMS PUMS + NHGIS is sufficient and reproducible. Esri becomes worth re-evaluating only at Phase 4, and only if state/county projections show geographically patterned residuals that ACS covariates fail to explain.",
+  "phase_need_analysis": {
+    "phase_1_single_year_mvp": {
+      "needed": false,
+      "rationale": "Phase 1 is per-respondent: blocking constraints are mapper coverage gaps (AES absent, COM near-absent, ONT_H near-absent, PRO weak), candidate signature accuracy, and vote-formula sensitivity to high-uncertainty mapper outputs. Esri contributes nothing to any of these.",
+      "alternative_for_poststratification": "ACS 5-year via Census API"
+    },
+    "phase_2_modern_era_backtest": {
+      "needed": false,
+      "rationale": "Same constraints as Phase 1 across 2008-2024. Worse: Esri current vintage is 2024+2025 only, so 10-15-year temporal mismatch on pre-2020 cycles. Effectively unavailable for the bulk of Phase 2.",
+      "alternative_for_poststratification": "ACS 5-year per cycle + IPUMS PUMS for cross-year harmonization + NHGIS for boundary-consistent tract geography"
+    },
+    "phase_4_geography_projection": {
+      "needed": "maybe",
+      "rationale": "First attempt should use ACS-derived covariates only. Esri becomes a candidate covariate only if residuals cluster geographically and survive an ACS-only MRP fit.",
+      "first_attempt_stack": "ACS 5-year + IPUMS PUMS + NHGIS + county-level vote returns",
+      "esri_role_if_revisited": "MRP covariate or narrative coloring; not a primary political signal"
+    }
+  },
+  "what_esri_adds_beyond_acs": {
+    "race_age_sex_education_distributions": { "acs": true, "esri_marginal": "none — Tapestry built FROM these" },
+    "income_employment_housing": { "acs": true, "esri_marginal": "none — same" },
+    "household_structure": { "acs": true, "esri_marginal": "none — same" },
+    "consumer_behavior_media_consumption": { "acs": false, "esri_marginal": "moderate — genuinely additive" },
+    "lifestyle_segment_narrative_labels": { "acs": false, "esri_marginal": "low — useful for reports, not models" },
+    "lifestyle_gradients_tied_to_political_behavior": { "acs": false, "esri_marginal": "low — circular for vote prediction" },
+    "reproducibility_by_external_readers": { "acs": "high (free)", "esri_marginal": "negative — license-gated" },
+    "net_assessment": "Esri adds consumer-behavior + media-consumption variance ACS doesn't capture. Empirical literature suggests neighborhood lifestyle covariates add 1-3% improvement in subgroup RMSE in MRP — small but real. For PRISM, this would manifest most strongly in Phase 4 county-level projections, not Phase 1/2."
+  },
+  "what_esri_does_not_solve": [
+    "Mapper coverage gaps (AES, COM, ONT_H, PRO are missing/weak in survey data)",
+    "Moral-boundary salience inference (per-boundary loadings derived from individual-level survey responses)",
+    "Candidate signature accuracy (lives in src/historical/candidates.ts)",
+    "Era-context calibration (election-level, not geographic)",
+    "Engagement scalar inference (per-respondent from survey items)",
+    "Vote-formula validation (engine logic invariant to geographic enrichment)"
+  ],
+  "risks": {
+    "no_political_attitude_content": {
+      "severity": "high",
+      "detail": "Tapestry segments correlate with political behavior but don't measure it. Risk: downstream consumers treat 'tract is segment X, segment X tends Republican' as direct political signal — correlation-as-causation. Violates design choice of keeping PRISM signature inference at individual level from survey responses."
+    },
+    "paid_closed_licensing": {
+      "severity": "medium",
+      "detail": "ArcGIS Business Analyst or GeoEnrichment credits required. Reproducibility constrained: anyone replicating the analysis needs the same license tier. Pricing is quote-based / plan-based / credit-based and varies by institutional posture; verify current pricing directly with Esri before procurement. This memo does not anchor to a numeric range."
+    },
+    "current_vintage_mismatch_pre_2020": {
+      "severity": "high (for Phase 1/2 pre-2020 cycles)",
+      "detail": "Current Tapestry products ship 2024 + 2025 vintages only. Pre-2020 historical Tapestry not generally available. Using 2024-vintage segments to characterize 2010-era tracts introduces gross temporal mismatch (gentrified urban tracts, exurban developments). Effectively unavailable for 2008/2012/2016 backtests."
+    },
+    "vocabulary_discontinuity_2024_2025": {
+      "severity": "medium",
+      "detail": "June 2025 ArcGIS Tapestry replaced legacy Esri Tapestry Segmentation. Legacy 2024 (67 distinct + 1 unclassified segments / 14 + 1 LifeMode) retires June 2026. Current 2025 (60 distinct + 1 unclassified / 12 + 1 LifeMode A-L) is fresh release. 33 segments persist by name with potentially shifted footprints; 27 are new. NO official 2024 to 2025 crosswalk exists."
+    },
+    "acs_derivative_circularity": {
+      "severity": "medium",
+      "detail": "ArcGIS Tapestry built from Census 2020 + ACS 2019-2023 + Esri Updated Demographics 2025. If pipeline already uses ACS for poststratification, layering Tapestry on top is partial double-counting on the demographic axis. Defensible additive content (consumer behavior, media consumption) is a fraction of total Tapestry feature set; rest is re-packaged ACS."
+    }
+  },
+  "alternatives_compared": {
+    "acs_only": {
+      "description": "Census API directly via tidycensus or cenpy. ACS 5-year tables for matching cycle of each backtest year.",
+      "cost": "free",
+      "reproducibility": "high",
+      "phase_1_sufficient": true,
+      "phase_2_cross_year": "acceptable",
+      "phase_4_geography_baseline": "yes",
+      "verdict": "Sufficient baseline for Phase 1, Phase 2, and first attempt at Phase 4. Esri marginal contribution should be measured against this."
+    },
+    "acs_plus_pums_ipums_nhgis": {
+      "description": "ACS + IPUMS USA harmonized PUMS for cross-year individual-level demographic records + NHGIS for boundary-consistent tract/block-group geography across decennial reboundaring.",
+      "cost": "free",
+      "reproducibility": "high",
+      "phase_1_sufficient": true,
+      "phase_2_cross_year": "best",
+      "phase_4_geography_baseline": "best",
+      "verdict": "Recommended addition for Phase 2 cross-year work and Phase 4 geography. Same data lineage as ACS, no new vendor relationship."
+    },
+    "esri_tapestry": {
+      "description": "ArcGIS Business Analyst or GeoEnrichment service credits for current-vintage Tapestry segments.",
+      "cost": "quote / plan / credits — verify with Esri before procurement",
+      "reproducibility": "low (license-gated)",
+      "phase_1_sufficient": "overkill",
+      "phase_2_cross_year": "mismatched pre-2020",
+      "phase_4_geography_baseline": "optional add-on",
+      "verdict": "Defer. Re-evaluate after Phase 4 produces a geographic residual map that ACS covariates fail to explain."
+    },
+    "voter_files_l2_catalist_targetsmart": {
+      "description": "Per-individual voter records with vote history, party registration, demographic appends, contact data. ~210M-256M records.",
+      "cost": "commercial; quote-based — verify with vendor",
+      "reproducibility": "low (license-gated)",
+      "phase_1_sufficient": "overkill",
+      "phase_2_cross_year": "acceptable post-2008",
+      "phase_4_geography_baseline": "for state-level Electoral College only",
+      "verdict": "Defer alongside Esri. Solves a different problem (individual-level turnout/contactability). If Phase 4 expands to per-state Electoral College forecasting with subgroup turnout modeling, voter files become more valuable than Esri at that point."
+    }
+  },
+  "comparison_matrix": [
+    { "dimension": "cost", "acs_only": "free", "acs_plus_pums": "free", "esri": "quote / plan / credits — verify with Esri before procurement", "voter_files": "quote / commercial — verify with vendor" },
+    { "dimension": "reproducibility", "acs_only": "high", "acs_plus_pums": "high", "esri": "low", "voter_files": "low" },
+    { "dimension": "phase_1_sufficient", "acs_only": "yes", "acs_plus_pums": "yes", "esri": "overkill", "voter_files": "overkill" },
+    { "dimension": "phase_2_cross_year", "acs_only": "acceptable", "acs_plus_pums": "best", "esri": "mismatched pre-2020", "voter_files": "acceptable post-2008" },
+    { "dimension": "phase_4_geography_baseline", "acs_only": "yes", "acs_plus_pums": "best", "esri": "optional add-on", "voter_files": "for state-level only" },
+    { "dimension": "adds_non_demographic_variance", "acs_only": "no", "acs_plus_pums": "no", "esri": "consumer/lifestyle", "voter_files": "individual vote history" },
+    { "dimension": "vintage_stability", "acs_only": "excellent", "acs_plus_pums": "excellent", "esri": "poor (2024 to 2025 discontinuity)", "voter_files": "mixed" },
+    { "dimension": "political_attitude_content", "acs_only": "none", "acs_plus_pums": "none", "esri": "none", "voter_files": "partial (party reg + vote history)" },
+    { "dimension": "double_counting_risk", "acs_only": "n/a", "acs_plus_pums": "n/a", "esri": "yes (ACS-derived)", "voter_files": "partial (modeled fields)" }
+  ],
+  "recommendation": {
+    "headline": "Defer Esri Tapestry purchase",
+    "phase_1_stack": "ACS 5-year (matching cycle) via Census API (tidycensus / cenpy). Free, reproducible, sufficient.",
+    "phase_2_stack": "ACS 5-year per cycle + IPUMS PUMS + NHGIS for cross-year boundary consistency. Still free and reproducible.",
+    "phase_4_first_pass": "Same ACS + PUMS/IPUMS/NHGIS stack + county-level vote returns for validation. Attempt state/county MRP using ACS-derived covariates only.",
+    "phase_4_esri_revisit": "Only if ALL four revisit criteria are met (see revisit_criteria below).",
+    "voter_files": "Same defer/revisit posture. Re-evaluate only if Phase 4 expands to per-state Electoral College forecasting with explicit subgroup turnout modeling — separate decision from Esri."
+  },
+  "revisit_criteria": {
+    "all_four_required": [
+      {
+        "criterion": "national_backtest_passes",
+        "detail": "Weighted popular vote within ±3-5pp and correct major-party ordering for the modern era, per success metrics in 00-PLAN.md."
+      },
+      {
+        "criterion": "state_county_projection_fails_in_geographically_patterned_ways",
+        "detail": "Residuals cluster geographically (suburban rings, exurban Sun Belt, Appalachian counties, etc.) rather than scattering randomly. Random-residual error is not a Tapestry-addressable problem."
+      },
+      {
+        "criterion": "acs_covariates_demonstrably_insufficient",
+        "detail": "Residual pattern survives a proper MRP fit using ACS demographic cells (race x age x education x income x density) at tract/block-group resolution. Means actually running the MRP with ACS covariates and inspecting the geographic residual map; not assuming Esri is needed before checking."
+      },
+      {
+        "criterion": "licensing_allows_reproducible_internal_artifacts",
+        "detail": "Esri license at project's tier permits storing derived segment-by-geography lookups internally for reproducibility of past analyses. If license-encumbered derivations cannot be persisted, reproducibility cost too high regardless of model gain."
+      }
+    ],
+    "partial_match_guidance": {
+      "1_2_3_hold_but_4_fails": "Consider open-data alternatives (county-level Census of Agriculture for rural cells, USDA urban-rural classification, NCHS density tiers, public Pew typology data) before paid commercial enrichment.",
+      "1_and_2_hold_but_3_untested": "Do NOT acquire. Test ACS-only MRP first.",
+      "2_holds_but_1_fails": "Geographic residuals are not the bottleneck. Focus on national-backtest blockers (mapper coverage, candidate signatures, vote formula)."
+    }
+  },
+  "official_references": {
+    "note": "For verification of current pricing, deprecation timelines, and segment vocabulary at the time of any future re-evaluation. Pricing on the buy page is dynamic / quote-based; do not treat any number cited in this memo as authoritative.",
+    "links": {
+      "arcgis_business_analyst_buy": "https://www.esri.com/en-us/arcgis/products/arcgis-business-analyst/buy",
+      "esri_tapestry_segmentation_deprecation_kb": "https://support.esri.com/en-us/knowledge-base/esri-tapestry-segmentation-data-000039874",
+      "tapestry_migration_blog": "https://www.esri.com/arcgis-blog/products/bus-analyst/announcements/migrate-from-esri-tapestry-segmentation-to-arcgis-tapestry-using-arcgis-business-analyst"
+    }
+  },
+  "files_in_memo": [
+    "results/electorate/decisions/esri-license-decision-v0.md",
+    "results/electorate/decisions/esri-license-decision-v0.json"
+  ],
+  "engine_code_modified": false,
+  "commits_made": false
+}
