@@ -755,7 +755,7 @@
       grid-column: 1 / -1;
       justify-self: center;
       width: 100%;
-      max-width: 480px;
+      max-width: 560px;
       margin-top: 0.85rem;
     }
     /* Strip everything around the sunburst — title, tagline, AND legend.
@@ -3376,9 +3376,11 @@ document.addEventListener('DOMContentLoaded', () => {
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(ns, 'svg');
-      svg.setAttribute('viewBox', '-260 -240 520 480');
-      svg.setAttribute('width', '480');
-      svg.setAttribute('height', '440');
+      // v27.16: enlarged viewBox so labels with longer words ("ethnic_racial",
+      // "political_tribe") aren't clipped at the edges. SVG also bigger.
+      svg.setAttribute('viewBox', '-320 -290 640 580');
+      svg.setAttribute('width', '560');
+      svg.setAttribute('height', '510');
       svg.setAttribute('xmlns', ns);
 
       const N = MORAL_CIRCLE_CATEGORIES.length;
@@ -3503,18 +3505,18 @@ document.addEventListener('DOMContentLoaded', () => {
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
         const ang = angleForIndex(i);
-        const labelR = OUTER + 18;
+        const labelR = OUTER + 26;
         const lp = polar(labelR, ang);
         let anchor = 'middle';
         if (lp.x > 30) anchor = 'start';
         else if (lp.x < -30) anchor = 'end';
-        const dy = Math.sin(ang) > 0.4 ? 12 : Math.sin(ang) < -0.4 ? -2 : 4;
+        const dy = Math.sin(ang) > 0.4 ? 16 : Math.sin(ang) < -0.4 ? -4 : 5;
 
         const t = document.createElementNS(ns, 'text');
         t.setAttribute('x', lp.x.toFixed(2));
         t.setAttribute('y', lp.y.toFixed(2));
         t.setAttribute('font-family', "'Space Grotesk', sans-serif");
-        t.setAttribute('font-size', '12');
+        t.setAttribute('font-size', '16');
         t.setAttribute('font-weight', '600');
         t.setAttribute('fill', '#1a1a1a');
         t.setAttribute('text-anchor', anchor);
@@ -3526,11 +3528,11 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.setAttribute('x', lp.x.toFixed(2));
         pct.setAttribute('y', lp.y.toFixed(2));
         pct.setAttribute('font-family', "'IBM Plex Mono', monospace");
-        pct.setAttribute('font-size', '10');
+        pct.setAttribute('font-size', '13');
         pct.setAttribute('font-weight', '600');
         pct.setAttribute('fill', cat.color);
         pct.setAttribute('text-anchor', anchor);
-        pct.setAttribute('dy', dy + 13);
+        pct.setAttribute('dy', dy + 18);
         pct.textContent = d.position + '%';
         svg.appendChild(pct);
       });
@@ -3739,11 +3741,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         attachTip(row, tipHtml);
 
-        if (!isSelf && d.sal === 0) {
+        if (d.code === 'ENG') {
+          // SELF-cluster ENG is one-dimensional engagement; a bar adds
+          // nothing beyond the value. Render as name + level word + value.
+          const engLevel = d.pos < 2 ? 'Tuned out'
+                         : d.pos < 3 ? 'Casual'
+                         : d.pos < 4 ? 'Engaged'
+                         : 'All-in';
           row.innerHTML = `
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:#333;font-weight:600;">${d.name}</div>
-            <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#555;font-style:italic;">no salience</div></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--ink);font-weight:600;">${d.name}</div>
+            <div class="node-bar-wrap" style="display:flex;align-items:center;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:#333;">${engLevel}</div>
             <div class="node-value">${d.pos.toFixed(1)}</div>`;
+        } else if (!isSelf && d.sal === 0) {
+          // Drop the literal "no salience" text — value alone is enough; row
+          // tooltip still explains the absence on hover.
+          row.innerHTML = `
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:#999;font-weight:600;">${d.name}</div>
+            <div class="node-bar-wrap"></div>
+            <div class="node-value" style="color:#bbb;">${d.pos.toFixed(1)}</div>`;
         } else {
           // Emphasize the pole closer to the respondent's position: bold black
           // on the "your side" pole, dimmer gray on the opposite pole. SELF
@@ -3829,10 +3844,11 @@ document.addEventListener('DOMContentLoaded', () => {
           row.appendChild(nameDiv);
 
           if (sal === 0) {
-            const placeholder = document.createElement('div');
-            placeholder.style.cssText = "font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:#555;font-style:italic;align-self:center;";
-            placeholder.textContent = 'no salience';
-            row.appendChild(placeholder);
+            // Empty right column — drop the "no salience" placeholder text.
+            // Hover tooltip on the row still explains the absence.
+            const empty = document.createElement('div');
+            empty.style.cssText = 'min-height: 1.5rem;';
+            row.appendChild(empty);
           } else {
             const arcAntiCats = (archetype.nodes && archetype.nodes[cn.code] && archetype.nodes[cn.code].antiCats) || [];
             const labels = cn.categories.map(s => s.charAt(0).toUpperCase() + s.slice(1));
