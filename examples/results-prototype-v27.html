@@ -2427,11 +2427,14 @@ document.addEventListener('DOMContentLoaded', () => {
           bdBody += `  <div class="ed-mod-note">Per-node breakdown above shows values-only contributions. EPS/AES (style) and the compound moral-circle term are folded into the values total but not expanded per-node here.</div>`;
           bdBody += `</div>`;
         }
-        // v27.22: small engagement footer — explains why ENG isn't a row.
-        // Engagement is one-dimensional and separate from policy alignment;
-        // it sets the threshold for vote vs abstain, not who you vote for.
+        // v27.22 / v27.23: small footer — explains what's NOT in the per-node
+        // breakdown. Wording softened: PF/TRB aren't direct distance nodes but
+        // have residual effects (PF in the party-loyalty multiplier; TRB
+        // anchor fallback fires when morBoundaries is absent). The continuous
+        // breakdown above also doesn't yet include EPS/AES (style-match) or
+        // the compound moral-boundary vector — those land in later phases.
         bdBody += `<div class="ed-modifiers" style="margin-top:0.6rem;">`;
-        bdBody += `  <div class="ed-mod-note" style="font-style:italic;">Engagement is not a candidate-distance node. It controls the vote/abstain threshold (clearing-bar): how close a candidate must be before you vote at all rather than sit out. PF / TRB are inert legacy fields; identity-driven appeal is read through moral-boundary salience.</div>`;
+        bdBody += `  <div class="ed-mod-note" style="font-style:italic;">Engagement is not a candidate-distance node — it controls the vote/abstain threshold (clearing-bar) only. PF and TRB are not direct candidate-distance nodes either, though PF can affect the party-loyalty multiplier and TRB anchor alignment fires as a fallback when moral-boundary data is absent. EPS/AES (style match) and the compound moral-boundary term are also folded into the engine's values total but not yet expanded as rows here.</div>`;
         bdBody += `</div>`;
       }
       html += sectionWrap('breakdown', `Your distance · ${focusScore.name}`, bdBody, `final ${focusScore.distance.toFixed(2)}`);
