@@ -1,0 +1,516 @@
+{
+  "schema_version": "v0.1",
+  "run_at": "2026-05-03T17:52:58.962Z",
+  "phase": "2.5 Stage A — known-voter aggregate harness",
+  "benchmark_source": "results/electorate/backtest/benchmarks-2008-2024.json",
+  "benchmark_schema_version": "v0.3",
+  "description": "Known-voter D/R/Other weighted shares vs FEC, per year. Restriction: voteChoiceObserved ∈ {D,R,Other}; Abstain + Unknown excluded from denominator and reported separately. This is the OBSERVED BASELINE; the future mapper-backed predictions must beat or match these gaps.",
+  "prediction_source_for_this_run": "observed_survey_baseline",
+  "plan_reference": "results/electorate/backtest/turnout-abstention-calibration-plan.md §2 Q4 (acceptance bands) and §2 Q5 (invariants 1-7,14,15)",
+  "acceptance_band_thresholds_pp": {
+    "ready_for_stage_b": 2,
+    "good": 3,
+    "baseline_pass": 5
+  },
+  "aggregate_checks": [
+    {
+      "id": 0,
+      "label": "All 5 years present (file loaded for each)",
+      "passed": true,
+      "detail": "years_present=[2008,2012,2016,2020,2024], years_skipped=[]"
+    }
+  ],
+  "years": [
+    {
+      "year": 2008,
+      "source_file": "data/cces2008/cces_2008_common.tab",
+      "file_present": true,
+      "duration_ms": 795,
+      "result": {
+        "year": 2008,
+        "n_respondents_total": 32800,
+        "n_respondents_known_voter": 19114,
+        "excluded_weight": {
+          "abstain_weight": 12501.240154755948,
+          "unknown_weight": 3121.296107890601,
+          "total_excluded_weight": 15622.536262646548
+        },
+        "known_voter_denominator": 17177.46373735341,
+        "survey_known_voter_shares": {
+          "D": 0.5212714309493282,
+          "R": 0.46212362654436323,
+          "Other": 0.0166049425063085
+        },
+        "benchmark_known_voter_shares": {
+          "D": 0.5293,
+          "R": 0.4565,
+          "Other": 0.014217703818227206
+        },
+        "gaps_pp": {
+          "D": {
+            "survey_share": 0.5212714309493282,
+            "benchmark_share": 0.5293,
+            "signed_gap_pp": -0.8028569050671841,
+            "abs_gap_pp": 0.8028569050671841
+          },
+          "R": {
+            "survey_share": 0.46212362654436323,
+            "benchmark_share": 0.4565,
+            "signed_gap_pp": 0.5623626544363214,
+            "abs_gap_pp": 0.5623626544363214
+          },
+          "Other": {
+            "survey_share": 0.0166049425063085,
+            "benchmark_share": 0.014217703818227206,
+            "signed_gap_pp": 0.23872386880812932,
+            "abs_gap_pp": 0.23872386880812932
+          }
+        },
+        "max_abs_gap_pp": 0.8028569050671841,
+        "abs_gap_sum_pp": 1.6039434283116347,
+        "acceptance_label": "ready_for_stage_b",
+        "prediction_source": "observed_survey_baseline"
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2008: Stage A result produced (sample loaded)",
+          "passed": true,
+          "detail": "n_total=32,800 n_known_voter=19,114"
+        },
+        {
+          "id": 2,
+          "label": "2008: known-voter denominator > 0",
+          "passed": true,
+          "detail": "D+R+Other weight = 17177.46"
+        },
+        {
+          "id": 3,
+          "label": "2008: survey known-voter D/R/Other shares sum to 1",
+          "passed": true,
+          "detail": "sum=1.000000000000 diff=1.11e-16"
+        },
+        {
+          "id": 4,
+          "label": "2008: benchmark D/R/Other shares loaded and sum to 1 (within FEC rounding)",
+          "passed": true,
+          "detail": "D=52.93% R=45.65% Other=1.42% sum=100.00%"
+        },
+        {
+          "id": 5,
+          "label": "2008: acceptance label present and valid",
+          "passed": true,
+          "detail": "acceptance_label=ready_for_stage_b (max_abs_gap=+0.80pp)"
+        },
+        {
+          "id": 6,
+          "label": "2008: no Stage B / abstention calibration fields present in this Stage A result",
+          "passed": true,
+          "detail": "result keys = [year, n_respondents_total, n_respondents_known_voter, excluded_weight, known_voter_denominator, survey_known_voter_shares, benchmark_known_voter_shares, gaps_pp, max_abs_gap_pp, abs_gap_sum_pp, acceptance_label, prediction_source]; forbidden keys checked = [alpha_year, p_abstain, predicted_abstain_count, stage_b_result]"
+        },
+        {
+          "id": 7,
+          "label": "2008: Unknown excluded from Stage A denom and counted separately (Abstain too)",
+          "passed": true,
+          "detail": "unknown_weight=3121.30 abstain_weight=12501.24 (both excluded from D+R+Other denom)"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2012,
+      "source_file": "data/cces2012/CCES12_Common_VV.tab",
+      "file_present": true,
+      "duration_ms": 1830,
+      "result": {
+        "year": 2012,
+        "n_respondents_total": 54535,
+        "n_respondents_known_voter": 39220,
+        "excluded_weight": {
+          "abstain_weight": 50.71333355897088,
+          "unknown_weight": 14473.697917998736,
+          "total_excluded_weight": 14524.411251557707
+        },
+        "known_voter_denominator": 38345.26841367579,
+        "survey_known_voter_shares": {
+          "D": 0.514332360218403,
+          "R": 0.46809223009625045,
+          "Other": 0.017575409685346443
+        },
+        "benchmark_known_voter_shares": {
+          "D": 0.5106,
+          "R": 0.472,
+          "Other": 0.017322724543385654
+        },
+        "gaps_pp": {
+          "D": {
+            "survey_share": 0.514332360218403,
+            "benchmark_share": 0.5106,
+            "signed_gap_pp": 0.37323602184029525,
+            "abs_gap_pp": 0.37323602184029525
+          },
+          "R": {
+            "survey_share": 0.46809223009625045,
+            "benchmark_share": 0.472,
+            "signed_gap_pp": -0.3907769903749525,
+            "abs_gap_pp": 0.3907769903749525
+          },
+          "Other": {
+            "survey_share": 0.017575409685346443,
+            "benchmark_share": 0.017322724543385654,
+            "signed_gap_pp": 0.025268514196078937,
+            "abs_gap_pp": 0.025268514196078937
+          }
+        },
+        "max_abs_gap_pp": 0.3907769903749525,
+        "abs_gap_sum_pp": 0.7892815264113267,
+        "acceptance_label": "ready_for_stage_b",
+        "prediction_source": "observed_survey_baseline"
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2012: Stage A result produced (sample loaded)",
+          "passed": true,
+          "detail": "n_total=54,535 n_known_voter=39,220"
+        },
+        {
+          "id": 2,
+          "label": "2012: known-voter denominator > 0",
+          "passed": true,
+          "detail": "D+R+Other weight = 38345.27"
+        },
+        {
+          "id": 3,
+          "label": "2012: survey known-voter D/R/Other shares sum to 1",
+          "passed": true,
+          "detail": "sum=1.000000000000 diff=1.11e-16"
+        },
+        {
+          "id": 4,
+          "label": "2012: benchmark D/R/Other shares loaded and sum to 1 (within FEC rounding)",
+          "passed": true,
+          "detail": "D=51.06% R=47.20% Other=1.73% sum=99.99%"
+        },
+        {
+          "id": 5,
+          "label": "2012: acceptance label present and valid",
+          "passed": true,
+          "detail": "acceptance_label=ready_for_stage_b (max_abs_gap=+0.39pp)"
+        },
+        {
+          "id": 6,
+          "label": "2012: no Stage B / abstention calibration fields present in this Stage A result",
+          "passed": true,
+          "detail": "result keys = [year, n_respondents_total, n_respondents_known_voter, excluded_weight, known_voter_denominator, survey_known_voter_shares, benchmark_known_voter_shares, gaps_pp, max_abs_gap_pp, abs_gap_sum_pp, acceptance_label, prediction_source]; forbidden keys checked = [alpha_year, p_abstain, predicted_abstain_count, stage_b_result]"
+        },
+        {
+          "id": 7,
+          "label": "2012: Unknown excluded from Stage A denom and counted separately (Abstain too)",
+          "passed": true,
+          "detail": "unknown_weight=14473.70 abstain_weight=50.71 (both excluded from D+R+Other denom)"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2016,
+      "source_file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "file_present": true,
+      "duration_ms": 2312,
+      "result": {
+        "year": 2016,
+        "n_respondents_total": 64600,
+        "n_respondents_known_voter": 44850,
+        "excluded_weight": {
+          "abstain_weight": 72.53439518541553,
+          "unknown_weight": 19612.789947846963,
+          "total_excluded_weight": 19685.32434303238
+        },
+        "known_voter_denominator": 44631.89052680808,
+        "survey_known_voter_shares": {
+          "D": 0.45846734335364037,
+          "R": 0.4833272086746927,
+          "Other": 0.058205447971666914
+        },
+        "benchmark_known_voter_shares": {
+          "D": 0.4818,
+          "R": 0.4609,
+          "Other": 0.057298423092546416
+        },
+        "gaps_pp": {
+          "D": {
+            "survey_share": 0.45846734335364037,
+            "benchmark_share": 0.4818,
+            "signed_gap_pp": -2.333265664635964,
+            "abs_gap_pp": 2.333265664635964
+          },
+          "R": {
+            "survey_share": 0.4833272086746927,
+            "benchmark_share": 0.4609,
+            "signed_gap_pp": 2.2427208674692722,
+            "abs_gap_pp": 2.2427208674692722
+          },
+          "Other": {
+            "survey_share": 0.058205447971666914,
+            "benchmark_share": 0.057298423092546416,
+            "signed_gap_pp": 0.0907024879120498,
+            "abs_gap_pp": 0.0907024879120498
+          }
+        },
+        "max_abs_gap_pp": 2.333265664635964,
+        "abs_gap_sum_pp": 4.666689020017286,
+        "acceptance_label": "good",
+        "prediction_source": "observed_survey_baseline"
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2016: Stage A result produced (sample loaded)",
+          "passed": true,
+          "detail": "n_total=64,600 n_known_voter=44,850"
+        },
+        {
+          "id": 2,
+          "label": "2016: known-voter denominator > 0",
+          "passed": true,
+          "detail": "D+R+Other weight = 44631.89"
+        },
+        {
+          "id": 3,
+          "label": "2016: survey known-voter D/R/Other shares sum to 1",
+          "passed": true,
+          "detail": "sum=1.000000000000 diff=0.00e+0"
+        },
+        {
+          "id": 4,
+          "label": "2016: benchmark D/R/Other shares loaded and sum to 1 (within FEC rounding)",
+          "passed": true,
+          "detail": "D=48.18% R=46.09% Other=5.73% sum=100.00%"
+        },
+        {
+          "id": 5,
+          "label": "2016: acceptance label present and valid",
+          "passed": true,
+          "detail": "acceptance_label=good (max_abs_gap=+2.33pp)"
+        },
+        {
+          "id": 6,
+          "label": "2016: no Stage B / abstention calibration fields present in this Stage A result",
+          "passed": true,
+          "detail": "result keys = [year, n_respondents_total, n_respondents_known_voter, excluded_weight, known_voter_denominator, survey_known_voter_shares, benchmark_known_voter_shares, gaps_pp, max_abs_gap_pp, abs_gap_sum_pp, acceptance_label, prediction_source]; forbidden keys checked = [alpha_year, p_abstain, predicted_abstain_count, stage_b_result]"
+        },
+        {
+          "id": 7,
+          "label": "2016: Unknown excluded from Stage A denom and counted separately (Abstain too)",
+          "passed": true,
+          "detail": "unknown_weight=19612.79 abstain_weight=72.53 (both excluded from D+R+Other denom)"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2020,
+      "source_file": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
+      "file_present": true,
+      "duration_ms": 5162,
+      "result": {
+        "year": 2020,
+        "n_respondents_total": 61000,
+        "n_respondents_known_voter": 45448,
+        "excluded_weight": {
+          "abstain_weight": 128.93488082359264,
+          "unknown_weight": 22784.191577712547,
+          "total_excluded_weight": 22913.12645853614
+        },
+        "known_voter_denominator": 45129.750548686294,
+        "survey_known_voter_shares": {
+          "D": 0.517488343216632,
+          "R": 0.4597916501548801,
+          "Other": 0.022720006628488047
+        },
+        "benchmark_known_voter_shares": {
+          "D": 0.5131,
+          "R": 0.4686,
+          "Other": 0.01829942370918751
+        },
+        "gaps_pp": {
+          "D": {
+            "survey_share": 0.517488343216632,
+            "benchmark_share": 0.5131,
+            "signed_gap_pp": 0.43883432166319514,
+            "abs_gap_pp": 0.43883432166319514
+          },
+          "R": {
+            "survey_share": 0.4597916501548801,
+            "benchmark_share": 0.4686,
+            "signed_gap_pp": -0.8808349845119912,
+            "abs_gap_pp": 0.8808349845119912
+          },
+          "Other": {
+            "survey_share": 0.022720006628488047,
+            "benchmark_share": 0.01829942370918751,
+            "signed_gap_pp": 0.44205829193005375,
+            "abs_gap_pp": 0.44205829193005375
+          }
+        },
+        "max_abs_gap_pp": 0.8808349845119912,
+        "abs_gap_sum_pp": 1.76172759810524,
+        "acceptance_label": "ready_for_stage_b",
+        "prediction_source": "observed_survey_baseline"
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2020: Stage A result produced (sample loaded)",
+          "passed": true,
+          "detail": "n_total=61,000 n_known_voter=45,448"
+        },
+        {
+          "id": 2,
+          "label": "2020: known-voter denominator > 0",
+          "passed": true,
+          "detail": "D+R+Other weight = 45129.75"
+        },
+        {
+          "id": 3,
+          "label": "2020: survey known-voter D/R/Other shares sum to 1",
+          "passed": true,
+          "detail": "sum=1.000000000000 diff=0.00e+0"
+        },
+        {
+          "id": 4,
+          "label": "2020: benchmark D/R/Other shares loaded and sum to 1 (within FEC rounding)",
+          "passed": true,
+          "detail": "D=51.31% R=46.86% Other=1.83% sum=100.00%"
+        },
+        {
+          "id": 5,
+          "label": "2020: acceptance label present and valid",
+          "passed": true,
+          "detail": "acceptance_label=ready_for_stage_b (max_abs_gap=+0.88pp)"
+        },
+        {
+          "id": 6,
+          "label": "2020: no Stage B / abstention calibration fields present in this Stage A result",
+          "passed": true,
+          "detail": "result keys = [year, n_respondents_total, n_respondents_known_voter, excluded_weight, known_voter_denominator, survey_known_voter_shares, benchmark_known_voter_shares, gaps_pp, max_abs_gap_pp, abs_gap_sum_pp, acceptance_label, prediction_source]; forbidden keys checked = [alpha_year, p_abstain, predicted_abstain_count, stage_b_result]"
+        },
+        {
+          "id": 7,
+          "label": "2020: Unknown excluded from Stage A denom and counted separately (Abstain too)",
+          "passed": true,
+          "detail": "unknown_weight=22784.19 abstain_weight=128.93 (both excluded from D+R+Other denom)"
+        }
+      ],
+      "overall_pass": true
+    },
+    {
+      "year": 2024,
+      "source_file": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
+      "file_present": true,
+      "duration_ms": 4651,
+      "result": {
+        "year": 2024,
+        "n_respondents_total": 60000,
+        "n_respondents_known_voter": 42978,
+        "excluded_weight": {
+          "abstain_weight": 352.1340464737349,
+          "unknown_weight": 19040.59317594597,
+          "total_excluded_weight": 19392.727222419704
+        },
+        "known_voter_denominator": 46207.84637376927,
+        "survey_known_voter_shares": {
+          "D": 0.482472825942634,
+          "R": 0.5056787335582347,
+          "Other": 0.011848440499131311
+        },
+        "benchmark_known_voter_shares": {
+          "D": 0.4832,
+          "R": 0.498,
+          "Other": 0.01879760962600583
+        },
+        "gaps_pp": {
+          "D": {
+            "survey_share": 0.482472825942634,
+            "benchmark_share": 0.4832,
+            "signed_gap_pp": -0.0727174057365998,
+            "abs_gap_pp": 0.0727174057365998
+          },
+          "R": {
+            "survey_share": 0.5056787335582347,
+            "benchmark_share": 0.498,
+            "signed_gap_pp": 0.7678733558234674,
+            "abs_gap_pp": 0.7678733558234674
+          },
+          "Other": {
+            "survey_share": 0.011848440499131311,
+            "benchmark_share": 0.01879760962600583,
+            "signed_gap_pp": -0.6949169126874519,
+            "abs_gap_pp": 0.6949169126874519
+          }
+        },
+        "max_abs_gap_pp": 0.7678733558234674,
+        "abs_gap_sum_pp": 1.535507674247519,
+        "acceptance_label": "ready_for_stage_b",
+        "prediction_source": "observed_survey_baseline"
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "2024: Stage A result produced (sample loaded)",
+          "passed": true,
+          "detail": "n_total=60,000 n_known_voter=42,978"
+        },
+        {
+          "id": 2,
+          "label": "2024: known-voter denominator > 0",
+          "passed": true,
+          "detail": "D+R+Other weight = 46207.85"
+        },
+        {
+          "id": 3,
+          "label": "2024: survey known-voter D/R/Other shares sum to 1",
+          "passed": true,
+          "detail": "sum=1.000000000000 diff=0.00e+0"
+        },
+        {
+          "id": 4,
+          "label": "2024: benchmark D/R/Other shares loaded and sum to 1 (within FEC rounding)",
+          "passed": true,
+          "detail": "D=48.32% R=49.80% Other=1.88% sum=100.00%"
+        },
+        {
+          "id": 5,
+          "label": "2024: acceptance label present and valid",
+          "passed": true,
+          "detail": "acceptance_label=ready_for_stage_b (max_abs_gap=+0.77pp)"
+        },
+        {
+          "id": 6,
+          "label": "2024: no Stage B / abstention calibration fields present in this Stage A result",
+          "passed": true,
+          "detail": "result keys = [year, n_respondents_total, n_respondents_known_voter, excluded_weight, known_voter_denominator, survey_known_voter_shares, benchmark_known_voter_shares, gaps_pp, max_abs_gap_pp, abs_gap_sum_pp, acceptance_label, prediction_source]; forbidden keys checked = [alpha_year, p_abstain, predicted_abstain_count, stage_b_result]"
+        },
+        {
+          "id": 7,
+          "label": "2024: Unknown excluded from Stage A denom and counted separately (Abstain too)",
+          "passed": true,
+          "detail": "unknown_weight=19040.59 abstain_weight=352.13 (both excluded from D+R+Other denom)"
+        }
+      ],
+      "overall_pass": true
+    }
+  ],
+  "aggregate": {
+    "total_checks": 36,
+    "total_passed": 36,
+    "all_passed": true,
+    "years_with_file_present": 5,
+    "years_skipped": [],
+    "label_distribution": {
+      "ready_for_stage_b": 4,
+      "good": 1
+    }
+  }
+}
