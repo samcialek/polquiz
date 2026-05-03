@@ -1,0 +1,2361 @@
+{
+  "schema_version": "v0",
+  "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
+  "runAt": "2026-05-03T18:00:10.464Z",
+  "rowLimitPerYear": 200,
+  "reports": [
+    {
+      "year": 2008,
+      "filePath": "data/cces2008/cces_2008_common.tab",
+      "rowsRequested": 200,
+      "rowsMapped": 200,
+      "validationErrors": [],
+      "perNodeCoverage": {
+        "MAT": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CD": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CU": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "MOR": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "PRO": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "COM": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ZS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_H": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_S": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "EPS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "AES": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "perBoundaryCoverage": {
+        "national": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ethnic_racial": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "religious": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "class": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ideological": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "gender": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "political_camp": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "engagementCoverage": {
+        "realSignalCount": 200,
+        "fallbackCount": 0,
+        "realSignalShare": 1
+      },
+      "meanCoverage": {
+        "realSignalCount": 200,
+        "fallbackCount": 3800,
+        "realSignalShare": 0.05
+      },
+      "voteChoiceContractCheck": {
+        "passed": true,
+        "detail": "scrub-spy: scrubbing voteChoiceObserved produced byte-identical mapper output (no circular use)"
+      },
+      "sampleSignature": {
+        "respondentId": "46",
+        "year": 2008,
+        "weight": 0.552578906521529,
+        "voteChoiceObserved": "D",
+        "turnoutObserved": true,
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (abortion / LGBT / religion items)"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (immigration battery)"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: PRO low survey coverage; fallback per spec"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: COM weakest-covered continuous node; fallback per spec"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)"
+          }
+        },
+        "EPS": {
+          "catDistribution": [
+            0.2,
+            0.3,
+            0.1,
+            0.15,
+            0.15,
+            0.1
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 uses spec broad EPS prior; year-specific issue items deferred to v1"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.65,
+            0.25,
+            0.08,
+            0.02
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 outputs uniform AES — surveys do not directly probe aesthetic preference"
+          }
+        },
+        "engagement": {
+          "value": 6.5,
+          "provenance": {
+            "source": "real_signal",
+            "vars": [
+              "turnoutValidated"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "low"
+          }
+        },
+        "moralBoundaries": {
+          "national": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year national-pride / immigration-restrictiveness item parsed"
+            }
+          },
+          "ethnic_racial": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year race-policy / thermometer items parsed"
+            }
+          },
+          "religious": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "pew_churatd / pew_bornagain missing"
+            }
+          },
+          "class": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "union missing or skipped"
+            }
+          },
+          "ideological": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "ideo5 missing or skipped"
+            }
+          },
+          "gender": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+            }
+          },
+          "political_camp": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "pid7 missing or skipped"
+            }
+          },
+          "intensity": 1,
+          "intensityProvenance": {
+            "source": "fallback",
+            "vars": [
+              "__derived_from_boundaries__"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "0/7 boundaries from real signal"
+          }
+        },
+        "coverage": {
+          "realSignalCount": 1,
+          "fallbackCount": 19,
+          "totalTargets": 20
+        }
+      }
+    },
+    {
+      "year": 2012,
+      "filePath": "data/cces2012/CCES12_Common_VV.tab",
+      "rowsRequested": 200,
+      "rowsMapped": 200,
+      "validationErrors": [],
+      "perNodeCoverage": {
+        "MAT": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CD": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CU": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "MOR": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "PRO": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "COM": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ZS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_H": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_S": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "EPS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "AES": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "perBoundaryCoverage": {
+        "national": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ethnic_racial": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "religious": {
+          "realSignalCount": 199,
+          "fallbackCount": 1,
+          "realSignalShare": 0.995
+        },
+        "class": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "ideological": {
+          "realSignalCount": 181,
+          "fallbackCount": 19,
+          "realSignalShare": 0.905
+        },
+        "gender": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "political_camp": {
+          "realSignalCount": 195,
+          "fallbackCount": 5,
+          "realSignalShare": 0.975
+        }
+      },
+      "engagementCoverage": {
+        "realSignalCount": 200,
+        "fallbackCount": 0,
+        "realSignalShare": 1
+      },
+      "meanCoverage": {
+        "realSignalCount": 1172,
+        "fallbackCount": 2828,
+        "realSignalShare": 0.293
+      },
+      "voteChoiceContractCheck": {
+        "passed": true,
+        "detail": "scrub-spy: scrubbing voteChoiceObserved produced byte-identical mapper output (no circular use)"
+      },
+      "sampleSignature": {
+        "respondentId": "107765791",
+        "year": 2012,
+        "weight": 0.402242205955962,
+        "voteChoiceObserved": "Unknown",
+        "turnoutObserved": null,
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (abortion / LGBT / religion items)"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (immigration battery)"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: PRO low survey coverage; fallback per spec"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: COM weakest-covered continuous node; fallback per spec"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)"
+          }
+        },
+        "EPS": {
+          "catDistribution": [
+            0.2,
+            0.3,
+            0.1,
+            0.15,
+            0.15,
+            0.1
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 uses spec broad EPS prior; year-specific issue items deferred to v1"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.65,
+            0.25,
+            0.08,
+            0.02
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 outputs uniform AES — surveys do not directly probe aesthetic preference"
+          }
+        },
+        "engagement": {
+          "value": 2.5,
+          "provenance": {
+            "source": "real_signal",
+            "vars": [
+              "newsint"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "medium"
+          }
+        },
+        "moralBoundaries": {
+          "national": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year national-pride / immigration-restrictiveness item parsed"
+            }
+          },
+          "ethnic_racial": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year race-policy / thermometer items parsed"
+            }
+          },
+          "religious": {
+            "salience": 0.65,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pew_churatd",
+                "pew_bornagain"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium"
+            }
+          },
+          "class": {
+            "salience": 0.8,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "union"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "single-item proxy; class identification largely implicit in US surveys"
+            }
+          },
+          "ideological": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "ideo5 missing or skipped"
+            }
+          },
+          "gender": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+            }
+          },
+          "political_camp": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pid7"
+              ],
+              "partyIdDerived": true,
+              "uncertainty": "medium",
+              "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
+            }
+          },
+          "intensity": 0.94,
+          "intensityProvenance": {
+            "source": "real_signal",
+            "vars": [
+              "__derived_from_boundaries__"
+            ],
+            "partyIdDerived": true,
+            "uncertainty": "medium",
+            "notes": "3/7 boundaries from real signal"
+          }
+        },
+        "coverage": {
+          "realSignalCount": 5,
+          "fallbackCount": 15,
+          "totalTargets": 20
+        }
+      }
+    },
+    {
+      "year": 2016,
+      "filePath": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "rowsRequested": 200,
+      "rowsMapped": 200,
+      "validationErrors": [],
+      "perNodeCoverage": {
+        "MAT": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CD": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CU": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "MOR": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "PRO": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "COM": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ZS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_H": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_S": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "EPS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "AES": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "perBoundaryCoverage": {
+        "national": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ethnic_racial": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "religious": {
+          "realSignalCount": 199,
+          "fallbackCount": 1,
+          "realSignalShare": 0.995
+        },
+        "class": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "ideological": {
+          "realSignalCount": 187,
+          "fallbackCount": 13,
+          "realSignalShare": 0.935
+        },
+        "gender": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "political_camp": {
+          "realSignalCount": 199,
+          "fallbackCount": 1,
+          "realSignalShare": 0.995
+        }
+      },
+      "engagementCoverage": {
+        "realSignalCount": 197,
+        "fallbackCount": 3,
+        "realSignalShare": 0.985
+      },
+      "meanCoverage": {
+        "realSignalCount": 1182,
+        "fallbackCount": 2818,
+        "realSignalShare": 0.2955
+      },
+      "voteChoiceContractCheck": {
+        "passed": true,
+        "detail": "scrub-spy: scrubbing voteChoiceObserved produced byte-identical mapper output (no circular use)"
+      },
+      "sampleSignature": {
+        "respondentId": "222168628",
+        "year": 2016,
+        "weight": 1.04226669876482,
+        "voteChoiceObserved": "D",
+        "turnoutObserved": true,
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (abortion / LGBT / religion items)"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (immigration battery)"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: PRO low survey coverage; fallback per spec"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: COM weakest-covered continuous node; fallback per spec"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)"
+          }
+        },
+        "EPS": {
+          "catDistribution": [
+            0.2,
+            0.3,
+            0.1,
+            0.15,
+            0.15,
+            0.1
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 uses spec broad EPS prior; year-specific issue items deferred to v1"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.65,
+            0.25,
+            0.08,
+            0.02
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 outputs uniform AES — surveys do not directly probe aesthetic preference"
+          }
+        },
+        "engagement": {
+          "value": 8,
+          "provenance": {
+            "source": "real_signal",
+            "vars": [
+              "newsint",
+              "turnoutValidated"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "low"
+          }
+        },
+        "moralBoundaries": {
+          "national": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year national-pride / immigration-restrictiveness item parsed"
+            }
+          },
+          "ethnic_racial": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year race-policy / thermometer items parsed"
+            }
+          },
+          "religious": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pew_churatd",
+                "pew_bornagain"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium"
+            }
+          },
+          "class": {
+            "salience": 0.8,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "union"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "single-item proxy; class identification largely implicit in US surveys"
+            }
+          },
+          "ideological": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "ideo5"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium",
+              "notes": "salience-only; does not inform position"
+            }
+          },
+          "gender": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+            }
+          },
+          "political_camp": {
+            "salience": 1.1666666666666665,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pid7"
+              ],
+              "partyIdDerived": true,
+              "uncertainty": "medium",
+              "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
+            }
+          },
+          "intensity": 1.0409523809523809,
+          "intensityProvenance": {
+            "source": "real_signal",
+            "vars": [
+              "__derived_from_boundaries__"
+            ],
+            "partyIdDerived": true,
+            "uncertainty": "medium",
+            "notes": "4/7 boundaries from real signal"
+          }
+        },
+        "coverage": {
+          "realSignalCount": 6,
+          "fallbackCount": 14,
+          "totalTargets": 20
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "filePath": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
+      "rowsRequested": 200,
+      "rowsMapped": 200,
+      "validationErrors": [],
+      "perNodeCoverage": {
+        "MAT": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CD": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CU": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "MOR": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "PRO": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "COM": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ZS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_H": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_S": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "EPS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "AES": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "perBoundaryCoverage": {
+        "national": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ethnic_racial": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "religious": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "class": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "ideological": {
+          "realSignalCount": 192,
+          "fallbackCount": 8,
+          "realSignalShare": 0.96
+        },
+        "gender": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "political_camp": {
+          "realSignalCount": 197,
+          "fallbackCount": 3,
+          "realSignalShare": 0.985
+        }
+      },
+      "engagementCoverage": {
+        "realSignalCount": 197,
+        "fallbackCount": 3,
+        "realSignalShare": 0.985
+      },
+      "meanCoverage": {
+        "realSignalCount": 1183,
+        "fallbackCount": 2817,
+        "realSignalShare": 0.29575
+      },
+      "voteChoiceContractCheck": {
+        "passed": true,
+        "detail": "scrub-spy: scrubbing voteChoiceObserved produced byte-identical mapper output (no circular use)"
+      },
+      "sampleSignature": {
+        "respondentId": "1232318697",
+        "year": 2020,
+        "weight": 0.6065928325,
+        "voteChoiceObserved": "R",
+        "turnoutObserved": true,
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (abortion / LGBT / religion items)"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (immigration battery)"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: PRO low survey coverage; fallback per spec"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: COM weakest-covered continuous node; fallback per spec"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)"
+          }
+        },
+        "EPS": {
+          "catDistribution": [
+            0.2,
+            0.3,
+            0.1,
+            0.15,
+            0.15,
+            0.1
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 uses spec broad EPS prior; year-specific issue items deferred to v1"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.65,
+            0.25,
+            0.08,
+            0.02
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 outputs uniform AES — surveys do not directly probe aesthetic preference"
+          }
+        },
+        "engagement": {
+          "value": 9.5,
+          "provenance": {
+            "source": "real_signal",
+            "vars": [
+              "newsint",
+              "turnoutValidated"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "low"
+          }
+        },
+        "moralBoundaries": {
+          "national": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year national-pride / immigration-restrictiveness item parsed"
+            }
+          },
+          "ethnic_racial": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year race-policy / thermometer items parsed"
+            }
+          },
+          "religious": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pew_churatd",
+                "pew_bornagain"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium"
+            }
+          },
+          "class": {
+            "salience": 0.8,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "union"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "single-item proxy; class identification largely implicit in US surveys"
+            }
+          },
+          "ideological": {
+            "salience": 1.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "ideo5"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium",
+              "notes": "salience-only; does not inform position"
+            }
+          },
+          "gender": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+            }
+          },
+          "political_camp": {
+            "salience": 1.8333333333333333,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pid7"
+              ],
+              "partyIdDerived": true,
+              "uncertainty": "medium",
+              "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
+            }
+          },
+          "intensity": 1.536190476190476,
+          "intensityProvenance": {
+            "source": "real_signal",
+            "vars": [
+              "__derived_from_boundaries__"
+            ],
+            "partyIdDerived": true,
+            "uncertainty": "medium",
+            "notes": "4/7 boundaries from real signal"
+          }
+        },
+        "coverage": {
+          "realSignalCount": 6,
+          "fallbackCount": 14,
+          "totalTargets": 20
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "filePath": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
+      "rowsRequested": 200,
+      "rowsMapped": 200,
+      "validationErrors": [],
+      "perNodeCoverage": {
+        "MAT": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CD": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "CU": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "MOR": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "PRO": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "COM": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ZS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_H": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ONT_S": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "EPS": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "AES": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        }
+      },
+      "perBoundaryCoverage": {
+        "national": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "ethnic_racial": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "religious": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "class": {
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
+        },
+        "ideological": {
+          "realSignalCount": 190,
+          "fallbackCount": 10,
+          "realSignalShare": 0.95
+        },
+        "gender": {
+          "realSignalCount": 0,
+          "fallbackCount": 200,
+          "realSignalShare": 0
+        },
+        "political_camp": {
+          "realSignalCount": 196,
+          "fallbackCount": 4,
+          "realSignalShare": 0.98
+        }
+      },
+      "engagementCoverage": {
+        "realSignalCount": 200,
+        "fallbackCount": 0,
+        "realSignalShare": 1
+      },
+      "meanCoverage": {
+        "realSignalCount": 1184,
+        "fallbackCount": 2816,
+        "realSignalShare": 0.296
+      },
+      "voteChoiceContractCheck": {
+        "passed": true,
+        "detail": "scrub-spy: scrubbing voteChoiceObserved produced byte-identical mapper output (no circular use)"
+      },
+      "sampleSignature": {
+        "respondentId": "1853651564",
+        "year": 2024,
+        "weight": 0.822485451704736,
+        "voteChoiceObserved": "D",
+        "turnoutObserved": true,
+        "MAT": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)"
+          }
+        },
+        "CD": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (abortion / LGBT / religion items)"
+          }
+        },
+        "CU": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ideological position from issue items deferred (immigration battery)"
+          }
+        },
+        "MOR": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)"
+          }
+        },
+        "PRO": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: PRO low survey coverage; fallback per spec"
+          }
+        },
+        "COM": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: COM weakest-covered continuous node; fallback per spec"
+          }
+        },
+        "ZS": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+          }
+        },
+        "ONT_H": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal"
+          }
+        },
+        "ONT_S": {
+          "posPosterior": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)"
+          }
+        },
+        "EPS": {
+          "catDistribution": [
+            0.2,
+            0.3,
+            0.1,
+            0.15,
+            0.15,
+            0.1
+          ],
+          "salPosterior": [
+            0.3,
+            0.45,
+            0.2,
+            0.05
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 uses spec broad EPS prior; year-specific issue items deferred to v1"
+          }
+        },
+        "AES": {
+          "catDistribution": [
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666,
+            0.16666666666666666
+          ],
+          "salPosterior": [
+            0.65,
+            0.25,
+            0.08,
+            0.02
+          ],
+          "provenance": {
+            "source": "fallback",
+            "vars": [],
+            "partyIdDerived": false,
+            "uncertainty": "high",
+            "notes": "v0 outputs uniform AES — surveys do not directly probe aesthetic preference"
+          }
+        },
+        "engagement": {
+          "value": 8.7,
+          "provenance": {
+            "source": "real_signal",
+            "vars": [
+              "newsint",
+              "turnoutObserved"
+            ],
+            "partyIdDerived": false,
+            "uncertainty": "medium"
+          }
+        },
+        "moralBoundaries": {
+          "national": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year national-pride / immigration-restrictiveness item parsed"
+            }
+          },
+          "ethnic_racial": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year race-policy / thermometer items parsed"
+            }
+          },
+          "religious": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pew_churatd",
+                "pew_bornagain"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium"
+            }
+          },
+          "class": {
+            "salience": 0.8,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "union"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "single-item proxy; class identification largely implicit in US surveys"
+            }
+          },
+          "ideological": {
+            "salience": 0.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "ideo5"
+              ],
+              "partyIdDerived": false,
+              "uncertainty": "medium",
+              "notes": "salience-only; does not inform position"
+            }
+          },
+          "gender": {
+            "salience": 1,
+            "provenance": {
+              "source": "fallback",
+              "vars": [],
+              "partyIdDerived": false,
+              "uncertainty": "high",
+              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+            }
+          },
+          "political_camp": {
+            "salience": 2.5,
+            "provenance": {
+              "source": "real_signal",
+              "vars": [
+                "pid7"
+              ],
+              "partyIdDerived": true,
+              "uncertainty": "medium",
+              "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
+            }
+          },
+          "intensity": 1.9171428571428573,
+          "intensityProvenance": {
+            "source": "real_signal",
+            "vars": [
+              "__derived_from_boundaries__"
+            ],
+            "partyIdDerived": true,
+            "uncertainty": "medium",
+            "notes": "4/7 boundaries from real signal"
+          }
+        },
+        "coverage": {
+          "realSignalCount": 6,
+          "fallbackCount": 14,
+          "totalTargets": 20
+        }
+      }
+    }
+  ]
+}
