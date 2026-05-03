@@ -1,6 +1,6 @@
 # Signature Imputation Bridge v1 — Smoke (Phase 2.7.5)
 
-**Run at:** 2026-05-03T22:50:27.799Z
+**Run at:** 2026-05-03T22:52:46.546Z
 **Mock universe version:** `v0.1-mock`
 **Bridge options:** numDraws=5, randomSeed=20260503, sampleRowLimitPerYear=5000
 

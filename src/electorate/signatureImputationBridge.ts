@@ -45,19 +45,42 @@ import {
 
 // ─── Public types ──────────────────────────────────────────────────────────
 
-/** Demographic bucket strings used for hot-deck matching. */
+/**
+ * Demographic bucket strings used for hot-deck matching.
+ *
+ * Canonical bucket vocabulary (matches `vepUniverseTypes.ts` so universe rows
+ * and CES donors share a single key shape — no adapter needed at match time):
+ *   - `state`          : 2-letter postal code (50 + DC).
+ *   - `ageBucket`      : `VepAgeBucket` — `"18-24" | "25-34" | "35-44" |
+ *                        "45-54" | "55-64" | "65-74" | "75+"`.
+ *   - `raceEthnicity`  : 5-way collapse — `"white" | "black" | "asian" |
+ *                        "hispanic" | "other"`. Universe-side collapse drops
+ *                        `nhpi` / `amerindian` / `two_or_more` / `other_single`
+ *                        into `"other"` and overrides any race with
+ *                        `"hispanic"` when the universe row's `hispanic` flag
+ *                        is true. See `universeRaceBucket()` below. CES donor
+ *                        bucketing must mirror this 5-way scheme.
+ *   - `sex`            : `VepSex` — `"male" | "female"` (PUMS 2008-2024 5-yr
+ *                        files do not include non-binary). Donors that don't
+ *                        bucket to one of these can never match.
+ *   - `education`      : `VepEducation` — `"less_than_hs" | "hs_grad" |
+ *                        "some_college" | "bachelor" | "graduate"`.
+ *   - `incomeBucket`   : `VepIncomeBucket | null` — `"<25k" | "25-50k" |
+ *                        "50-75k" | "75-100k" | "100-150k" | "150k+"` or
+ *                        `null` (e.g., group quarters; skips step 1).
+ */
 export interface BridgeDemographicBuckets {
   /** 2-letter state postal code (e.g., "CA", "TX"). */
   state: string;
-  /** Age bucket label (e.g., "18-29", "30-44", "45-64", "65+"). */
+  /** Canonical VEP age bucket — see `VepAgeBucket` in `vepUniverseTypes.ts`. */
   ageBucket: string;
-  /** Race / ethnicity bucket label (e.g., "white", "black", "hispanic"). */
+  /** 5-way race/ethnicity bucket: white | black | asian | hispanic | other. */
   raceEthnicity: string;
-  /** Sex (e.g., "male", "female"). */
+  /** Sex: "male" | "female" (matches `VepSex`). */
   sex: string;
-  /** Education bucket (e.g., "hs_or_less", "some_college", "ba_plus"). */
+  /** Canonical VEP education bucket — see `VepEducation` in `vepUniverseTypes.ts`. */
   education: string;
-  /** Income bucket (e.g., "low", "middle", "high"); null = absent. */
+  /** Canonical VEP income bucket or null — see `VepIncomeBucket` in `vepUniverseTypes.ts`. */
   incomeBucket: string | null;
 }
 
