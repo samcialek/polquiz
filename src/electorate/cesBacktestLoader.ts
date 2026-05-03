@@ -37,6 +37,17 @@ interface YearResolver {
   /** Column name carrying the unique respondent ID. */
   idCol: string;
   /**
+   * Field delimiter for the file. CCES 2008/2012/2016 use `\t`; CES
+   * 2020/2024 ship CSVs with `,`. Loader splits accordingly.
+   */
+  delimiter: "\t" | ",";
+  /**
+   * Whether the file uses CSV-style double-quoting (CES 2020/2024 do).
+   * When true, the loader strips wrapping `"` and handles `""` as an
+   * embedded quote.
+   */
+  quoted: boolean;
+  /**
    * Ordered list of weight column names. Loader picks the first non-empty,
    * finite value per row. Order should be: most preferred (validated voter,
    * post-wave) first.
@@ -46,17 +57,27 @@ interface YearResolver {
    * Validated-turnout column. Non-empty values that don't equal the
    * `validatedTurnoutEmptyMarker` indicate the respondent was matched to a
    * voter file AND voted (CCES 2016 sets `CL_E2016GVM` to non-empty when
-   * a validated general-election ballot exists).
+   * a validated general-election ballot exists). Set to undefined when
+   * the year's release does not include voter validation columns; loader
+   * falls back to self-reported tookpost + vote choice.
    */
   validatedTurnoutCol?: string;
   /** Empty-equivalents for the validated turnout column. */
   validatedTurnoutEmptyMarkers: Set<string>;
   /** Self-reported took-post-wave column. */
   tookPostCol?: string;
+  /**
+   * Values in `tookPostCol` meaning "took the post-election wave".
+   * 2012/2016 use "1"; 2020/2024 use "2" (the YouGov coding flipped between
+   * 2016 and 2020 from 0/1 binary to 1/2 enumeration).
+   */
+  tookPostTakenValues: Set<string>;
+  /** Values meaning "did not take the post-election wave". */
+  tookPostNotTakenValues: Set<string>;
   /** Post-wave self-reported presidential vote choice column. */
   presVoteCol: string;
   /**
-   * Mapping from raw vote-choice codes (as text in the .tab file) to
+   * Mapping from raw vote-choice codes (as text in the file) to
    * normalized ObservedVoteChoice. Codes not in this map are treated as
    * "Unknown" if the respondent voted, or "Abstain" if turnoutObserved is
    * known false.
@@ -98,18 +119,22 @@ interface YearResolver {
  */
 const CCES_2016: YearResolver = {
   idCol: "V101",
+  delimiter: "\t",
+  quoted: false,
   weightCols: ["commonweight_vv_post", "commonweight_post", "commonweight_vv", "commonweight"],
   validatedTurnoutCol: "CL_E2016GVM",
-  validatedTurnoutEmptyMarkers: new Set(["", "__NA__"]),
+  validatedTurnoutEmptyMarkers: new Set(["", "__NA__", "NA"]),
   tookPostCol: "tookpost",
+  tookPostTakenValues: new Set(["1"]),
+  tookPostNotTakenValues: new Set(["0"]),
   presVoteCol: "CC16_410a",
   presVoteCodeMap: {
-    "1": "D",
-    "2": "R",
-    "3": "Other",
-    "4": "Other",
-    "5": "Other",
-    "6": "Other",
+    "1": "D", // Clinton
+    "2": "R", // Trump
+    "3": "Other", // Johnson
+    "4": "Other", // Stein
+    "5": "Other", // write-in
+    "6": "Other", // McMullin
   },
   presVoteAbstainCodes: new Set(["7"]),
   demoCols: {
@@ -124,10 +149,156 @@ const CCES_2016: YearResolver = {
   },
 };
 
+/**
+ * CCES 2012 resolver. Tab-delimited. No CL_E2012GVM-style validation
+ * column in the public release; the validated-voter weight (`weight_vv_post`)
+ * does the validation gating at the weight level instead. Loader falls
+ * back to self-reported tookpost + CC410a for turnout classification.
+ *
+ * CC410a code map (per cces_guide_2012.pdf, post-election president vote):
+ *   1 = Barack Obama (D)
+ *   2 = Mitt Romney (R)
+ *   3 = Gary Johnson (Libertarian — Other)
+ *   4 = Jill Stein (Green — Other)
+ *   5 = Other / write-in
+ *   6 = Not sure (Unknown)
+ *   7 = I did not vote in this race (Abstain)
+ *   8 = Skipped (Unknown)
+ *   9 = Not asked (Unknown)
+ */
+const CCES_2012: YearResolver = {
+  idCol: "V101",
+  delimiter: "\t",
+  quoted: false,
+  weightCols: ["weight_vv_post", "weight_vv", "weight"],
+  validatedTurnoutCol: undefined,
+  validatedTurnoutEmptyMarkers: new Set(["", "__NA__", "NA"]),
+  tookPostCol: "tookpost",
+  tookPostTakenValues: new Set(["1"]),
+  tookPostNotTakenValues: new Set(["0"]),
+  presVoteCol: "CC410a",
+  presVoteCodeMap: {
+    "1": "D",
+    "2": "R",
+    "3": "Other",
+    "4": "Other",
+    "5": "Other",
+  },
+  presVoteAbstainCodes: new Set(["7"]),
+  demoCols: {
+    state: "inputstate",
+    birthyr: "birthyr",
+    gender: "gender",
+    educ: "educ",
+    race: "race",
+    hispanic: "hispanic",
+    countyFips: "countyfips",
+  },
+};
+
+/**
+ * CES 2020 resolver. CSV-delimited with quoted strings. Includes voter
+ * validation: CL_2020gvm is the general-election validated-vote match.
+ *
+ * CC20_410 code map (per CCES Guide 2020, post-election president vote):
+ *   1 = Joe Biden (D)
+ *   2 = Donald Trump (R)
+ *   3 = Jo Jorgensen (Libertarian — Other)
+ *   4 = Howie Hawkins (Green — Other)
+ *   5 = Other / write-in
+ *   6 = I'm not sure (Unknown)
+ *   7 = I did not vote in this race (Abstain)
+ *   8 = Skipped (Unknown)
+ *   9 = Not asked (Unknown)
+ */
+const CES_2020: YearResolver = {
+  idCol: "caseid",
+  delimiter: ",",
+  quoted: true,
+  weightCols: ["vvweight_post", "commonpostweight", "vvweight", "commonweight"],
+  validatedTurnoutCol: "CL_2020gvm",
+  validatedTurnoutEmptyMarkers: new Set(["", "__NA__", "NA"]),
+  tookPostCol: "tookpost",
+  tookPostTakenValues: new Set(["2"]),
+  tookPostNotTakenValues: new Set(["1"]),
+  presVoteCol: "CC20_410",
+  presVoteCodeMap: {
+    "1": "D",
+    "2": "R",
+    "3": "Other",
+    "4": "Other",
+    "5": "Other",
+  },
+  presVoteAbstainCodes: new Set(["7"]),
+  demoCols: {
+    state: "inputstate",
+    birthyr: "birthyr",
+    gender: "gender",
+    educ: "educ",
+    race: "race",
+    hispanic: "hispanic",
+    countyFips: "countyfips",
+  },
+};
+
+/**
+ * CES 2024 resolver. CSV-delimited with quoted strings. The current
+ * Dataverse release does NOT include CL_*-style voter validation columns
+ * (validated voter file appended in a later cycle). Loader falls back to
+ * tookpost + CC24_410 for turnout classification, mirroring 2012.
+ *
+ * CC24_410 code map (per CES_2024_GUIDE_vv.pdf, post-election president
+ * vote — verify against cached codebook before relying for production):
+ *   1 = Kamala Harris (D)
+ *   2 = Donald Trump (R)
+ *   3 = Robert F. Kennedy Jr. (Other)
+ *   4 = Jill Stein (Other)
+ *   5 = Cornel West (Other)
+ *   6 = Chase Oliver (Other)
+ *   7 = Other / write-in
+ *   8 = I did not vote in this race (Abstain)
+ *   9 = I'm not sure / skipped (Unknown)
+ */
+const CES_2024: YearResolver = {
+  idCol: "caseid",
+  delimiter: ",",
+  quoted: true,
+  weightCols: ["vvweight_post", "commonpostweight", "vvweight", "commonweight"],
+  validatedTurnoutCol: undefined,
+  validatedTurnoutEmptyMarkers: new Set(["", "__NA__", "NA"]),
+  tookPostCol: "tookpost",
+  tookPostTakenValues: new Set(["2"]),
+  tookPostNotTakenValues: new Set(["1"]),
+  presVoteCol: "CC24_410",
+  presVoteCodeMap: {
+    "1": "D",
+    "2": "R",
+    "3": "Other",
+    "4": "Other",
+    "5": "Other",
+    "6": "Other",
+    "7": "Other",
+  },
+  presVoteAbstainCodes: new Set(["8"]),
+  demoCols: {
+    state: "inputstate",
+    birthyr: "birthyr",
+    gender: "gender4", // 2024 uses gender4 not gender
+    educ: "educ",
+    race: "race",
+    hispanic: "hispanic",
+    countyFips: "countyfips",
+  },
+};
+
 const RESOLVERS_BY_YEAR: Record<number, YearResolver> = {
+  2012: CCES_2012,
   2016: CCES_2016,
-  // 2008, 2012, 2020, 2024: add resolvers here when microdata + codebook
-  // verified. The structure is identical; only column names differ.
+  2020: CES_2020,
+  2024: CES_2024,
+  // 2008: opaque V### naming requires deeper codebook (CCES_2008_Guide_v4.doc)
+  //       investigation before resolver can be authored. Tracked in
+  //       results/electorate/backtest/data-needed-to-run-real-backtest.md.
 };
 
 // ─── Loader ────────────────────────────────────────────────────────────────
@@ -136,6 +307,45 @@ const NA_MARKERS = new Set(["", "__NA__", "NA"]);
 
 function isNullCell(value: string | undefined): boolean {
   return value === undefined || NA_MARKERS.has(value.trim());
+}
+
+/**
+ * Splits a single CSV/TSV row, handling quoted fields with embedded
+ * delimiters and escaped `""` quote sequences. For tab-delimited files
+ * with `quoted=false`, falls back to a simple `split(delimiter)` for
+ * speed.
+ */
+function splitRow(line: string, delimiter: "\t" | ",", quoted: boolean): string[] {
+  if (!quoted) return line.split(delimiter);
+  const out: string[] = [];
+  let buf = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (line[i + 1] === '"') {
+          buf += '"';
+          i++; // consume the escaped quote
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        buf += ch;
+      }
+    } else {
+      if (ch === '"') {
+        inQuotes = true;
+      } else if (ch === delimiter) {
+        out.push(buf);
+        buf = "";
+      } else {
+        buf += ch;
+      }
+    }
+  }
+  out.push(buf);
+  return out;
 }
 
 function parseFiniteNumber(s: string | undefined): number | null {
@@ -179,13 +389,15 @@ function classifyTurnoutAndChoice(
   resolver: YearResolver,
 ): { turnoutObserved: boolean | null; turnoutValidated: boolean; voteChoiceObserved: ObservedVoteChoice } {
   const validated = readValidatedTurnout(row, resolver);
-  const tookPost = resolver.tookPostCol ? row[resolver.tookPostCol] : undefined;
-  const tookPostNum = parseFiniteNumber(tookPost);
+  const tookPostRaw = resolver.tookPostCol ? row[resolver.tookPostCol] : undefined;
+  const tookPostStr = (tookPostRaw ?? "").trim();
+  const tookPostTaken = resolver.tookPostTakenValues.has(tookPostStr);
+  const tookPostNotTaken = resolver.tookPostNotTakenValues.has(tookPostStr);
   const choiceRaw = row[resolver.presVoteCol];
 
   // Validated voter (gold-standard for turnout). Vote choice from self-report.
   // Per CCES methodology: when the voter file confirms general-election
-  // turnout but the respondent's CC16_410a is empty OR carries an abstain
+  // turnout but the respondent's vote-choice is empty OR carries an abstain
   // code (e.g. "I did not vote in this race" — i.e., they voted downballot
   // but skipped the presidential race), turnout stays TRUE (validated wins)
   // and vote-choice is Unknown rather than Abstain. Abstain is reserved
@@ -202,12 +414,16 @@ function classifyTurnoutAndChoice(
   }
 
   // Did not take post-wave → cannot observe vote choice.
-  if (tookPostNum === 0) {
+  if (tookPostNotTaken) {
     return { turnoutObserved: null, turnoutValidated: false, voteChoiceObserved: "Unknown" };
   }
 
   // Took post-wave but no validation. Use self-report.
-  if (tookPostNum === 1 && !isNullCell(choiceRaw)) {
+  if (tookPostTaken) {
+    if (isNullCell(choiceRaw)) {
+      // Took post-wave but vote-choice missing → unknown.
+      return { turnoutObserved: null, turnoutValidated: false, voteChoiceObserved: "Unknown" };
+    }
     const code = (choiceRaw ?? "").trim();
     if (resolver.presVoteAbstainCodes.has(code)) {
       return { turnoutObserved: false, turnoutValidated: false, voteChoiceObserved: "Abstain" };
@@ -219,8 +435,8 @@ function classifyTurnoutAndChoice(
         voteChoiceObserved: resolver.presVoteCodeMap[code],
       };
     }
-    // tookpost==1 with an unrecognized code (e.g. "8 not sure") → voted
-    // status unknown.
+    // Took post-wave with an unrecognized code (e.g. "9 = not sure") →
+    // voted status unknown.
     return { turnoutObserved: null, turnoutValidated: false, voteChoiceObserved: "Unknown" };
   }
 
@@ -311,11 +527,11 @@ export async function* streamSurveyRespondents(
 
   for await (const line of rl) {
     if (header === null) {
-      header = line.split("\t");
+      header = splitRow(line, resolver.delimiter, resolver.quoted);
       continue;
     }
     if (stats.rowsLoaded + stats.rowsSkipped >= limit) break;
-    const fields = line.split("\t");
+    const fields = splitRow(line, resolver.delimiter, resolver.quoted);
     if (fields.length === 1 && fields[0] === "") continue; // blank line guard
 
     // Build row dict.

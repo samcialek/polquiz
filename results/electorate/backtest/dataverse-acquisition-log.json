@@ -1,0 +1,98 @@
+{
+  "schema_version": "v0",
+  "created": "2026-05-03",
+  "doc_type": "dataverse_acquisition_log",
+  "method": {
+    "metadata_api": "curl -fsS \"https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:{DOI}\"",
+    "file_download": "curl -fsSL -o data/cces{YEAR}/{filename} \"https://dataverse.harvard.edu/api/access/datafile/{fileId}\"",
+    "auth_required": false,
+    "all_targets_public": true
+  },
+  "datasets": [
+    {
+      "year": 2008,
+      "doi": "10.7910/DVN/YUYIVB",
+      "api_reachable": true,
+      "version_state": "RELEASED",
+      "files_listed": 9,
+      "metadata_local_path": "data/backtest-sources/dataverse-meta/dv-2008.json",
+      "files": [
+        { "file_id": 2438385, "filename": "cces_2008_common.tab", "content_type": "text/tab-separated-values", "size_bytes": 60000000, "size_mb_approx": 57.2, "restricted": false, "recommended": "microdata", "local_path": "data/cces2008/cces_2008_common.tab", "downloaded_this_run": true, "on_disk_size_bytes": 59981783 },
+        { "file_id": 2301849, "filename": "CCES 2008 Guide v4.doc", "content_type": "application/msword", "size_bytes": 800000, "size_mb_approx": 0.8, "restricted": false, "recommended": "codebook", "local_path": "data/cces2008/CCES_2008_Guide_v4.doc", "downloaded_this_run": true, "on_disk_size_bytes": 834048 },
+        { "file_id": 1537803, "filename": "CCES Election File (House and Senate).csv", "content_type": "text/plain", "size_bytes": 50000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1537805, "filename": "CCES Election File (House and Senate Notes).csv", "content_type": "text/plain", "size_bytes": 30000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1537808, "filename": "House Roll Call.csv", "content_type": "text/plain", "size_bytes": 20000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1539167, "filename": "Prez by State.csv", "content_type": "text/plain", "size_bytes": 5000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1537806, "filename": "Senator 1 Roll Call.csv", "content_type": "text/plain", "size_bytes": 10000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1537807, "filename": "Senator 2 Roll Call.csv", "content_type": "text/plain", "size_bytes": 10000, "restricted": false, "recommended": "optional", "downloaded_this_run": false },
+        { "file_id": 1537810, "filename": "state legislature party seats.xls", "content_type": "application/vnd.ms-excel", "size_bytes": 30000, "restricted": false, "recommended": "optional", "downloaded_this_run": false }
+      ],
+      "loader_resolver_added": false,
+      "loader_resolver_blocker": "Opaque V### column naming requires deeper read of CCES_2008_Guide_v4.doc (Word format) to confirm weight column (V201 candidate), tookpost equivalent, and CC410 code map. Tracked in data-needed-to-run-real-backtest.md."
+    },
+    {
+      "year": 2012,
+      "doi": "10.7910/DVN/HQEVPK",
+      "api_reachable": true,
+      "version_state": "RELEASED",
+      "files_listed": 4,
+      "metadata_local_path": "data/backtest-sources/dataverse-meta/dv-2012.json",
+      "files": [
+        { "file_id": 2500154, "filename": "CCES12_Common_VV.tab", "content_type": "text/tab-separated-values", "size_bytes": 116000000, "size_mb_approx": 111.2, "restricted": false, "recommended": "microdata (with voter validation)", "local_path": "data/cces2012/CCES12_Common_VV.tab", "downloaded_this_run": true, "on_disk_size_bytes": 116562350 },
+        { "file_id": 2456347, "filename": "commoncontent2012.tab", "content_type": "text/tab-separated-values", "size_bytes": 110000000, "size_mb_approx": 105.4, "restricted": false, "recommended": "alternate (no VV) — skipped", "downloaded_this_run": false },
+        { "file_id": 2688939, "filename": "cces_guide_2012.pdf", "content_type": "application/pdf", "size_bytes": 491049, "size_mb_approx": 0.5, "restricted": false, "recommended": "codebook", "local_path": "data/cces2012/cces_guide_2012.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 491049 },
+        { "file_id": 3036513, "filename": "vote-validation-guide-2012.pdf", "content_type": "application/pdf", "size_bytes": 254504, "size_mb_approx": 0.2, "restricted": false, "recommended": "VV codebook", "local_path": "data/cces2012/vote-validation-guide-2012.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 254504 }
+      ],
+      "loader_resolver_added": true,
+      "loader_resolver_notes": "Resolver added at src/electorate/cesBacktestLoader.ts. CC410a code map: 1=Obama, 2=Romney, 3-5=Other, 7=Abstain. tookpost taken=1/notTaken=0. No CL_E2012GVM column in this release; loader uses tookpost+CC410a fallback. Smoke 7/7 PASS."
+    },
+    {
+      "year": 2020,
+      "doi": "10.7910/DVN/E9N6PH",
+      "api_reachable": true,
+      "version_state": "RELEASED",
+      "files_listed": 7,
+      "metadata_local_path": "data/backtest-sources/dataverse-meta/dv-2020.json",
+      "files": [
+        { "file_id": 4949558, "filename": "CES20_Common_OUTPUT_vv.csv", "content_type": "text/csv", "size_bytes": 188283717, "size_mb_approx": 179.6, "restricted": false, "recommended": "microdata (CSV — preferred)", "local_path": "data/cces2020/CES20_Common_OUTPUT_vv.csv", "downloaded_this_run": true, "on_disk_size_bytes": 188283717 },
+        { "file_id": 4949545, "filename": "CES20_Common_OUTPUT_vv.dta", "content_type": "application/x-stata-14", "size_bytes": 850000000, "size_mb_approx": 810.7, "restricted": false, "recommended": "Stata — skipped (no Stata reader yet)", "downloaded_this_run": false },
+        { "file_id": 5793681, "filename": "CCES Guide 2020.pdf", "content_type": "application/pdf", "size_bytes": 879624, "size_mb_approx": 0.8, "restricted": false, "recommended": "codebook", "local_path": "data/cces2020/CCES_Guide_2020.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 879624 },
+        { "file_id": 4462965, "filename": "CES20_Common_pre_qx.pdf", "content_type": "application/pdf", "size_bytes": 764504, "size_mb_approx": 0.7, "restricted": false, "recommended": "questionnaire (pre)", "local_path": "data/cces2020/CES20_Common_pre_qx.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 764504 },
+        { "file_id": 4462966, "filename": "CES20_Common_post_qx.pdf", "content_type": "application/pdf", "size_bytes": 827715, "size_mb_approx": 0.8, "restricted": false, "recommended": "questionnaire (post)", "local_path": "data/cces2020/CES20_Common_post_qx.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 827715 },
+        { "file_id": 5793679, "filename": "misidentifiedNCrespondents.tab", "content_type": "text/tab-separated-values", "size_bytes": 5000, "restricted": false, "recommended": "NC errata data — skipped", "downloaded_this_run": false },
+        { "file_id": 5793680, "filename": "Technical Memo on NC Respondents Assigned to Incorrect Districts.pdf", "content_type": "application/pdf", "size_bytes": 100000, "restricted": false, "recommended": "NC errata memo — skipped", "downloaded_this_run": false }
+      ],
+      "loader_resolver_added": true,
+      "loader_resolver_notes": "Resolver added. CSV-delimited with quoted strings. CC20_410 code map: 1=Biden, 2=Trump, 3-5=Other, 7=Abstain. tookpost taken=2/notTaken=1 (REVERSED from 2012/2016 binary). CL_2020gvm validated-turnout column present (validation: 39,198 of 61,000 rows). Smoke 7/7 PASS."
+    },
+    {
+      "year": 2024,
+      "doi": "10.7910/DVN/X11EP6",
+      "api_reachable": true,
+      "version_state": "RELEASED",
+      "files_listed": 5,
+      "metadata_local_path": "data/backtest-sources/dataverse-meta/dv-2024.json",
+      "files": [
+        { "file_id": 12050325, "filename": "CCES24_Common_OUTPUT_vv_topost_final.csv", "content_type": "text/csv", "size_bytes": 183679005, "size_mb_approx": 175.2, "restricted": false, "recommended": "microdata (CSV — preferred)", "local_path": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv", "downloaded_this_run": true, "on_disk_size_bytes": 183679005 },
+        { "file_id": 12050327, "filename": "CCES24_Common_OUTPUT_vv_topost_final.dta", "content_type": "application/x-stata-14", "size_bytes": 994000000, "size_mb_approx": 947.5, "restricted": false, "recommended": "Stata — skipped (no Stata reader yet)", "downloaded_this_run": false },
+        { "file_id": 12050326, "filename": "CES_2024_GUIDE_vv.pdf", "content_type": "application/pdf", "size_bytes": 1162260, "size_mb_approx": 1.1, "restricted": false, "recommended": "codebook", "local_path": "data/cces2024/CES_2024_GUIDE_vv.pdf", "downloaded_this_run": true, "on_disk_size_bytes": 1162260 },
+        { "file_id": 11049825, "filename": "CCES24_Common_post.docx", "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "size_bytes": 113082, "size_mb_approx": 0.1, "restricted": false, "recommended": "questionnaire (post)", "local_path": "data/cces2024/CCES24_Common_post.docx", "downloaded_this_run": true, "on_disk_size_bytes": 113082 },
+        { "file_id": 11032062, "filename": "CCES24_Common_pre.docx", "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "size_bytes": 183194, "size_mb_approx": 0.2, "restricted": false, "recommended": "questionnaire (pre)", "local_path": "data/cces2024/CCES24_Common_pre.docx", "downloaded_this_run": true, "on_disk_size_bytes": 183194 }
+      ],
+      "loader_resolver_added": true,
+      "loader_resolver_notes": "Resolver added. CSV-delimited with quoted strings. Despite filename suffix '_vv_topost_final', the dataset does NOT include CL_*-style voter validation columns yet (validated voter file appended in a later release). Loader falls back to tookpost+CC24_410 self-report. CC24_410 code map: 1=Harris, 2=Trump, 3-7=Other (Kennedy, Stein, West, Oliver, write-in), 8=Abstain. tookpost taken=2/notTaken=1. Smoke 7/7 PASS. Demographics: gender column is 'gender4' (4-cat, not the older 'gender' binary)."
+    }
+  ],
+  "summary": {
+    "datasets_downloaded": 4,
+    "loader_resolvers_added": 3,
+    "loader_resolvers_blocked": 1,
+    "blocked_year": 2008,
+    "blocker_reason": "Opaque V### column naming requires deeper read of CCES_2008_Guide_v4.doc to confirm column purposes",
+    "files_downloaded_total": 14,
+    "raw_data_total_size_bytes": 549900000,
+    "raw_data_total_size_mb_approx": 524,
+    "raw_data_committed_to_repo": false,
+    "raw_data_location": "data/cces2008/, data/cces2012/, data/cces2020/, data/cces2024/ (untracked per global rules)"
+  }
+}

@@ -1,95 +1,389 @@
 {
-  "schema_version": "v0",
-  "run_at": "2026-05-03T13:13:51.326Z",
-  "source_file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
-  "source_file_size_bytes": 134761608,
-  "target_year": 2016,
-  "duration_ms": 1685,
-  "stats": {
-    "rowsLoaded": 64600,
-    "rowsSkipped": 0,
-    "turnoutCounts": {
-      "voted": 49497,
-      "nonvoter": 118,
-      "unknown": 14985
-    },
-    "validatedTurnoutCount": 35829,
-    "voteChoiceCounts": {
-      "D": 18755,
-      "R": 22136,
-      "Other": 3959,
-      "Abstain": 118,
-      "Unknown": 19632
-    },
-    "totalWeight": 64317.21486984039,
-    "weightMin": 0.000100043362604996,
-    "weightMax": 15.0002968221713
-  },
-  "weighted_shares": {
-    "total_weight": 64317.21486984039,
-    "voter_weight": 64244.68047465504,
-    "by_choice_weight": {
-      "D": 20462.264278676208,
-      "R": 21571.80706619661,
-      "Other": 2597.819181935261,
-      "Abstain": 72.53439518541553,
-      "Unknown": 19612.789947846963
-    },
-    "by_turnout_weight": {
-      "voted": 48793.58182433724,
-      "nonvoter": 72.53439518541553,
-      "unknown": 15451.098650317848
-    },
-    "voter_conditional_share": {
-      "D": 0.3185051918306094,
-      "R": 0.33577577017768545,
-      "Other": 0.040436331268860745,
-      "Unknown": 0.3052827067228444
-    }
-  },
-  "invariant_checks": [
+  "schema_version": "v0.2-multiyear",
+  "run_at": "2026-05-03T13:52:57.614Z",
+  "years": [
     {
-      "id": 1,
-      "label": "Loader produces > 0 rows from CCES 2016",
-      "passed": true,
-      "detail": "rowsLoaded=64600, rowsSkipped=0"
+      "year": 2012,
+      "source_file": "data/cces2012/CCES12_Common_VV.tab",
+      "source_file_size_bytes": 116562350,
+      "duration_ms": 1308,
+      "file_present": true,
+      "stats": {
+        "rowsLoaded": 54535,
+        "rowsSkipped": 0,
+        "turnoutCounts": {
+          "voted": 39220,
+          "nonvoter": 196,
+          "unknown": 15119
+        },
+        "validatedTurnoutCount": 0,
+        "voteChoiceCounts": {
+          "D": 19048,
+          "R": 18741,
+          "Other": 1431,
+          "Abstain": 196,
+          "Unknown": 15119
+        },
+        "totalWeight": 52869.67966523333,
+        "weightMin": 0.0000100004310891659,
+        "weightMax": 15.0022763648575
+      },
+      "weighted_shares": {
+        "total_weight": 52869.67966523333,
+        "voter_weight": 52818.96633167453,
+        "by_choice_weight": {
+          "D": 19722.212406414048,
+          "R": 17949.122205396812,
+          "Other": 673.9338018649265,
+          "Abstain": 50.71333355897088,
+          "Unknown": 14473.697917998736
+        },
+        "by_turnout_weight": {
+          "voted": 38345.26841367574,
+          "nonvoter": 50.71333355897088,
+          "unknown": 14473.697917998736
+        },
+        "voter_conditional_share": {
+          "D": 0.37339262344835045,
+          "R": 0.3398234280596488,
+          "Other": 0.012759314478685306,
+          "Unknown": 0.2740246340133153
+        }
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "Loader produces > 0 rows from CES 2012",
+          "passed": true,
+          "detail": "rowsLoaded=54535, rowsSkipped=0"
+        },
+        {
+          "id": 2,
+          "label": "All weights are finite and > 0",
+          "passed": true,
+          "detail": "min=0.0000 max=15.0023"
+        },
+        {
+          "id": 3,
+          "label": "Non-voters retained (not silently dropped)",
+          "passed": true,
+          "detail": "nonvoter=196, voted=39220, unknown=15119"
+        },
+        {
+          "id": 4,
+          "label": "Validated-turnout column not present in this release (n/a, treated as pass)",
+          "passed": true,
+          "detail": "expectsValidatedTurnout=false; validatedTurnoutCount=0"
+        },
+        {
+          "id": 5,
+          "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
+          "passed": true,
+          "detail": "all voter rows have a non-Abstain choice"
+        },
+        {
+          "id": 6,
+          "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
+          "passed": true,
+          "detail": "all non-voter rows are 'Abstain'"
+        },
+        {
+          "id": 7,
+          "label": "D and R counts both > 0 (resolver code map sane)",
+          "passed": true,
+          "detail": "D=19048, R=18741, Other=1431, Abstain=196, Unknown=15119"
+        }
+      ],
+      "overall_pass": true
     },
     {
-      "id": 2,
-      "label": "All weights are finite and > 0",
-      "passed": true,
-      "detail": "min=0.0001 max=15.0003"
+      "year": 2016,
+      "source_file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "source_file_size_bytes": 134761608,
+      "duration_ms": 2317,
+      "file_present": true,
+      "stats": {
+        "rowsLoaded": 64600,
+        "rowsSkipped": 0,
+        "turnoutCounts": {
+          "voted": 49497,
+          "nonvoter": 118,
+          "unknown": 14985
+        },
+        "validatedTurnoutCount": 35829,
+        "voteChoiceCounts": {
+          "D": 18755,
+          "R": 22136,
+          "Other": 3959,
+          "Abstain": 118,
+          "Unknown": 19632
+        },
+        "totalWeight": 64317.21486984039,
+        "weightMin": 0.000100043362604996,
+        "weightMax": 15.0002968221713
+      },
+      "weighted_shares": {
+        "total_weight": 64317.21486984039,
+        "voter_weight": 64244.68047465504,
+        "by_choice_weight": {
+          "D": 20462.264278676208,
+          "R": 21571.80706619661,
+          "Other": 2597.819181935261,
+          "Abstain": 72.53439518541553,
+          "Unknown": 19612.789947846963
+        },
+        "by_turnout_weight": {
+          "voted": 48793.58182433724,
+          "nonvoter": 72.53439518541553,
+          "unknown": 15451.098650317848
+        },
+        "voter_conditional_share": {
+          "D": 0.3185051918306094,
+          "R": 0.33577577017768545,
+          "Other": 0.040436331268860745,
+          "Unknown": 0.3052827067228444
+        }
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "Loader produces > 0 rows from CES 2016",
+          "passed": true,
+          "detail": "rowsLoaded=64600, rowsSkipped=0"
+        },
+        {
+          "id": 2,
+          "label": "All weights are finite and > 0",
+          "passed": true,
+          "detail": "min=0.0001 max=15.0003"
+        },
+        {
+          "id": 3,
+          "label": "Non-voters retained (not silently dropped)",
+          "passed": true,
+          "detail": "nonvoter=118, voted=49497, unknown=14985"
+        },
+        {
+          "id": 4,
+          "label": "Validated-turnout count > 0",
+          "passed": true,
+          "detail": "validatedTurnoutCount=35829"
+        },
+        {
+          "id": 5,
+          "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
+          "passed": true,
+          "detail": "all voter rows have a non-Abstain choice"
+        },
+        {
+          "id": 6,
+          "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
+          "passed": true,
+          "detail": "all non-voter rows are 'Abstain'"
+        },
+        {
+          "id": 7,
+          "label": "D and R counts both > 0 (resolver code map sane)",
+          "passed": true,
+          "detail": "D=18755, R=22136, Other=3959, Abstain=118, Unknown=19632"
+        }
+      ],
+      "overall_pass": true
     },
     {
-      "id": 3,
-      "label": "Non-voters retained (not silently dropped)",
-      "passed": true,
-      "detail": "nonvoter=118, voted=49497, unknown=14985"
+      "year": 2020,
+      "source_file": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
+      "source_file_size_bytes": 188283717,
+      "duration_ms": 4508,
+      "file_present": true,
+      "stats": {
+        "rowsLoaded": 61000,
+        "rowsSkipped": 0,
+        "turnoutCounts": {
+          "voted": 48789,
+          "nonvoter": 75,
+          "unknown": 12136
+        },
+        "validatedTurnoutCount": 39198,
+        "voteChoiceCounts": {
+          "D": 26188,
+          "R": 17702,
+          "Other": 1558,
+          "Abstain": 75,
+          "Unknown": 15477
+        },
+        "totalWeight": 68042.87700722224,
+        "weightMin": 0.0001000027,
+        "weightMax": 16.3112872322
+      },
+      "weighted_shares": {
+        "total_weight": 68042.87700722224,
+        "voter_weight": 67913.94212639885,
+        "by_choice_weight": {
+          "D": 23354.119841219555,
+          "R": 20750.282475858578,
+          "Other": 1025.3482316081647,
+          "Abstain": 128.93488082359264,
+          "Unknown": 22784.191577712547
+        },
+        "by_turnout_weight": {
+          "voted": 48317.97838533282,
+          "nonvoter": 128.93488082359264,
+          "unknown": 19595.963741066123
+        },
+        "voter_conditional_share": {
+          "D": 0.3438781362117628,
+          "R": 0.3055378884830296,
+          "Other": 0.015097757537028635,
+          "Unknown": 0.33548621776817894
+        }
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "Loader produces > 0 rows from CES 2020",
+          "passed": true,
+          "detail": "rowsLoaded=61000, rowsSkipped=0"
+        },
+        {
+          "id": 2,
+          "label": "All weights are finite and > 0",
+          "passed": true,
+          "detail": "min=0.0001 max=16.3113"
+        },
+        {
+          "id": 3,
+          "label": "Non-voters retained (not silently dropped)",
+          "passed": true,
+          "detail": "nonvoter=75, voted=48789, unknown=12136"
+        },
+        {
+          "id": 4,
+          "label": "Validated-turnout count > 0",
+          "passed": true,
+          "detail": "validatedTurnoutCount=39198"
+        },
+        {
+          "id": 5,
+          "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
+          "passed": true,
+          "detail": "all voter rows have a non-Abstain choice"
+        },
+        {
+          "id": 6,
+          "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
+          "passed": true,
+          "detail": "all non-voter rows are 'Abstain'"
+        },
+        {
+          "id": 7,
+          "label": "D and R counts both > 0 (resolver code map sane)",
+          "passed": true,
+          "detail": "D=26188, R=17702, Other=1558, Abstain=75, Unknown=15477"
+        }
+      ],
+      "overall_pass": true
     },
     {
-      "id": 4,
-      "label": "Validated-turnout count > 0",
-      "passed": true,
-      "detail": "validatedTurnoutCount=35829"
-    },
-    {
-      "id": 5,
-      "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
-      "passed": true,
-      "detail": "all voter rows have a non-Abstain choice"
-    },
-    {
-      "id": 6,
-      "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
-      "passed": true,
-      "detail": "all non-voter rows are 'Abstain'"
-    },
-    {
-      "id": 7,
-      "label": "D and R counts both > 0 (resolver code map sane)",
-      "passed": true,
-      "detail": "D=18755, R=22136, Other=3959, Abstain=118, Unknown=19632"
+      "year": 2024,
+      "source_file": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
+      "source_file_size_bytes": 183679005,
+      "duration_ms": 4564,
+      "file_present": true,
+      "stats": {
+        "rowsLoaded": 60000,
+        "rowsSkipped": 0,
+        "turnoutCounts": {
+          "voted": 42978,
+          "nonvoter": 574,
+          "unknown": 16448
+        },
+        "validatedTurnoutCount": 0,
+        "voteChoiceCounts": {
+          "D": 23527,
+          "R": 18501,
+          "Other": 950,
+          "Abstain": 574,
+          "Unknown": 16448
+        },
+        "totalWeight": 65600.5735961888,
+        "weightMin": 0.000097950925966768,
+        "weightMax": 15.177642016058
+      },
+      "weighted_shares": {
+        "total_weight": 65600.5735961888,
+        "voter_weight": 65248.43954971524,
+        "by_choice_weight": {
+          "D": 22294.030220675555,
+          "R": 23366.325234741114,
+          "Other": 547.4909183526057,
+          "Abstain": 352.1340464737349,
+          "Unknown": 19040.59317594597
+        },
+        "by_turnout_weight": {
+          "voted": 46207.84637376924,
+          "nonvoter": 352.1340464737349,
+          "unknown": 19040.59317594597
+        },
+        "voter_conditional_share": {
+          "D": 0.3416791324747145,
+          "R": 0.3581131655560503,
+          "Other": 0.008390866082482353,
+          "Unknown": 0.2918168358867529
+        }
+      },
+      "invariant_checks": [
+        {
+          "id": 1,
+          "label": "Loader produces > 0 rows from CES 2024",
+          "passed": true,
+          "detail": "rowsLoaded=60000, rowsSkipped=0"
+        },
+        {
+          "id": 2,
+          "label": "All weights are finite and > 0",
+          "passed": true,
+          "detail": "min=0.0001 max=15.1776"
+        },
+        {
+          "id": 3,
+          "label": "Non-voters retained (not silently dropped)",
+          "passed": true,
+          "detail": "nonvoter=574, voted=42978, unknown=16448"
+        },
+        {
+          "id": 4,
+          "label": "Validated-turnout column not present in this release (n/a, treated as pass)",
+          "passed": true,
+          "detail": "expectsValidatedTurnout=false; validatedTurnoutCount=0"
+        },
+        {
+          "id": 5,
+          "label": "Voter rows have voteChoiceObserved in {D,R,Other,Unknown}",
+          "passed": true,
+          "detail": "all voter rows have a non-Abstain choice"
+        },
+        {
+          "id": 6,
+          "label": "Non-voter rows have voteChoiceObserved == 'Abstain'",
+          "passed": true,
+          "detail": "all non-voter rows are 'Abstain'"
+        },
+        {
+          "id": 7,
+          "label": "D and R counts both > 0 (resolver code map sane)",
+          "passed": true,
+          "detail": "D=23527, R=18501, Other=950, Abstain=574, Unknown=16448"
+        }
+      ],
+      "overall_pass": true
     }
   ],
-  "overall_pass": true
+  "aggregate": {
+    "total_checks": 28,
+    "total_passed": 28,
+    "all_passed": true,
+    "years_with_file_present": 4,
+    "years_skipped": []
+  }
 }

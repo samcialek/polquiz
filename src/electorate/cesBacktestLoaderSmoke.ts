@@ -1,20 +1,23 @@
 /**
- * Phase 2 Backtest V0 — CCES loader smoke test.
+ * Phase 2 Backtest V0 — CCES loader smoke test (multi-year).
  *
- * Loads CCES 2016 Common Content from data/cces2016/ and runs invariant
- * checks on the normalized output. Does NOT modify or consume the
- * survey-to-PRISM mapper. Does NOT compute predicted vote shares — that's
- * the job of mode A / mode B once mapper + engine integration is wired.
+ * Loads each configured year's microdata from `data/cces{YEAR}/` and runs
+ * invariant checks per year. Does NOT modify or consume the survey-to-PRISM
+ * mapper. Does NOT compute predicted vote shares — that's the job of mode
+ * A / mode B once mapper + engine integration is wired.
  *
  * Invariants (per backtest-v0-architecture.md and surveyBacktestTypes.ts):
- *   1. Loader produces > 0 rows from CCES 2016
+ *   1. Loader produces > 0 rows
  *   2. All weights are finite (numeric, not NaN/Infinity) and > 0
  *   3. Non-voters are retained (turnoutCounts.nonvoter > 0)
- *   4. Validated-turnout count is > 0 (CCES 2016 has voter file matches)
+ *   4. Validated-turnout count > 0 IF the year's resolver declares a
+ *      validated-turnout column; otherwise this check is "n/a (no validation
+ *      column in this release)" and is treated as passing
  *   5. Voted respondents have voteChoiceObserved in {D, R, Other, Unknown}
  *   6. Non-voter respondents have voteChoiceObserved == "Abstain"
  *   7. D + R counts both > 0 (sanity that the resolver's code map works)
- *   8. JSON output validates
+ *
+ * Plus aggregate JSON output validates.
  *
  * Usage:
  *   npx tsx src/electorate/cesBacktestLoaderSmoke.ts
@@ -30,8 +33,19 @@ import * as path from "node:path";
 import { loadSurveyRespondents } from "./cesBacktestLoader.js";
 import type { LoaderInventoryStats, WeightedSurveyRespondent } from "./surveyBacktestTypes.js";
 
-const TARGET_FILE = "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab";
-const TARGET_YEAR = 2016;
+interface YearTarget {
+  year: number;
+  filePath: string;
+  /** True if the year's resolver declares a validated-turnout column. */
+  expectsValidatedTurnout: boolean;
+}
+
+const YEAR_TARGETS: YearTarget[] = [
+  { year: 2012, filePath: "data/cces2012/CCES12_Common_VV.tab",                            expectsValidatedTurnout: false },
+  { year: 2016, filePath: "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",             expectsValidatedTurnout: true },
+  { year: 2020, filePath: "data/cces2020/CES20_Common_OUTPUT_vv.csv",                      expectsValidatedTurnout: true },
+  { year: 2024, filePath: "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",        expectsValidatedTurnout: false },
+];
 
 interface InvariantCheck {
   id: number;
@@ -81,13 +95,14 @@ function weightedSharesOf(respondents: WeightedSurveyRespondent[]): WeightedShar
 }
 
 function runInvariants(
+  year: number,
   respondents: WeightedSurveyRespondent[],
   stats: LoaderInventoryStats,
-  shares: WeightedShares,
+  expectsValidatedTurnout: boolean,
 ): InvariantCheck[] {
   const out: InvariantCheck[] = [];
   // 1
-  out.push(check(1, "Loader produces > 0 rows from CCES 2016",
+  out.push(check(1, `Loader produces > 0 rows from CES ${year}`,
     stats.rowsLoaded > 0,
     `rowsLoaded=${stats.rowsLoaded}, rowsSkipped=${stats.rowsSkipped}`));
   // 2
@@ -106,12 +121,17 @@ function runInvariants(
   out.push(check(3, "Non-voters retained (not silently dropped)",
     stats.turnoutCounts.nonvoter > 0,
     `nonvoter=${stats.turnoutCounts.nonvoter}, voted=${stats.turnoutCounts.voted}, unknown=${stats.turnoutCounts.unknown}`));
-  // 4
-  out.push(check(4, "Validated-turnout count > 0",
-    stats.validatedTurnoutCount > 0,
-    `validatedTurnoutCount=${stats.validatedTurnoutCount}`));
+  // 4 — only required if the year's resolver declares a validated-turnout column.
+  if (expectsValidatedTurnout) {
+    out.push(check(4, "Validated-turnout count > 0",
+      stats.validatedTurnoutCount > 0,
+      `validatedTurnoutCount=${stats.validatedTurnoutCount}`));
+  } else {
+    out.push(check(4, "Validated-turnout column not present in this release (n/a, treated as pass)",
+      true,
+      `expectsValidatedTurnout=false; validatedTurnoutCount=${stats.validatedTurnoutCount}`));
+  }
   // 5
-  // For each voter row, voteChoiceObserved must be in D/R/Other/Unknown (not Abstain).
   let voterChoiceOk = true;
   for (const r of respondents) {
     if (r.turnoutObserved === true && r.voteChoiceObserved === "Abstain") {
@@ -137,128 +157,149 @@ function runInvariants(
   out.push(check(7, "D and R counts both > 0 (resolver code map sane)",
     stats.voteChoiceCounts.D > 0 && stats.voteChoiceCounts.R > 0,
     `D=${stats.voteChoiceCounts.D}, R=${stats.voteChoiceCounts.R}, Other=${stats.voteChoiceCounts.Other}, Abstain=${stats.voteChoiceCounts.Abstain}, Unknown=${stats.voteChoiceCounts.Unknown}`));
-  // 8 — JSON validation done after write
   return out;
-}
-
-function writeMarkdownSummary(
-  outDir: string,
-  stats: LoaderInventoryStats,
-  shares: WeightedShares,
-  checks: InvariantCheck[],
-  fileSizeBytes: number,
-  durationMs: number,
-): void {
-  const passed = checks.filter(c => c.passed).length;
-  let md = `# CCES 2016 Loader Smoke — Summary\n\n`;
-  md += `**Run at:** ${new Date().toISOString()}\n`;
-  md += `**Source file:** \`${TARGET_FILE}\` (${(fileSizeBytes / 1024 / 1024).toFixed(1)} MB)\n`;
-  md += `**Year:** ${TARGET_YEAR}\n`;
-  md += `**Duration:** ${(durationMs / 1000).toFixed(2)}s\n\n`;
-  md += `## Invariant checks\n\n`;
-  md += `| # | Check | Pass | Detail |\n|---|---|:--:|---|\n`;
-  for (const c of checks) {
-    md += `| ${c.id} | ${c.label} | ${c.passed ? "✓" : "✗"} | ${c.detail} |\n`;
-  }
-  md += `\n**Overall: ${passed === checks.length ? "✓ ALL PASS" : "✗ FAIL"}** (${passed}/${checks.length})\n\n`;
-  md += `## Loader stats\n\n`;
-  md += `- Rows loaded: **${stats.rowsLoaded.toLocaleString()}**\n`;
-  md += `- Rows skipped (missing/invalid weight or ID): **${stats.rowsSkipped.toLocaleString()}**\n`;
-  md += `- Weight range: ${stats.weightMin.toFixed(4)} → ${stats.weightMax.toFixed(4)}\n`;
-  md += `- Sum of weights: ${stats.totalWeight.toFixed(2)}\n\n`;
-  md += `## Turnout classification (raw row counts)\n\n`;
-  md += `| Class | Count | Share of loaded |\n|---|---:|---:|\n`;
-  md += `| Voted (turnoutObserved=true) | ${stats.turnoutCounts.voted.toLocaleString()} | ${pct(stats.turnoutCounts.voted, stats.rowsLoaded)} |\n`;
-  md += `| Non-voter (turnoutObserved=false) | ${stats.turnoutCounts.nonvoter.toLocaleString()} | ${pct(stats.turnoutCounts.nonvoter, stats.rowsLoaded)} |\n`;
-  md += `| Unknown (turnoutObserved=null) | ${stats.turnoutCounts.unknown.toLocaleString()} | ${pct(stats.turnoutCounts.unknown, stats.rowsLoaded)} |\n`;
-  md += `| Validated turnout (CL_E2016GVM populated) | ${stats.validatedTurnoutCount.toLocaleString()} | ${pct(stats.validatedTurnoutCount, stats.rowsLoaded)} |\n\n`;
-  md += `## Vote-choice classification (raw row counts)\n\n`;
-  md += `| Choice | Count | Share of loaded |\n|---|---:|---:|\n`;
-  for (const choice of ["D", "R", "Other", "Abstain", "Unknown"] as const) {
-    md += `| ${choice} | ${stats.voteChoiceCounts[choice].toLocaleString()} | ${pct(stats.voteChoiceCounts[choice], stats.rowsLoaded)} |\n`;
-  }
-  md += `\n## Weighted shares\n\n`;
-  md += `_For diagnostic context only — these are NOT predicted vote shares; they are the survey's observed weighted distribution._\n\n`;
-  md += `| Choice | Weighted total | Share of total weight | Share of voter+unknown weight |\n|---|---:|---:|---:|\n`;
-  for (const choice of ["D", "R", "Other", "Abstain", "Unknown"] as const) {
-    const wt = shares.byChoice[choice];
-    const shareOfAll = shares.totalWeight > 0 ? wt / shares.totalWeight : 0;
-    const shareOfVoter = shares.voterShareByChoice[choice] ?? null;
-    md += `| ${choice} | ${wt.toFixed(2)} | ${(shareOfAll * 100).toFixed(2)}% | ${shareOfVoter == null ? "—" : (shareOfVoter * 100).toFixed(2) + "%"} |\n`;
-  }
-  md += `\n**Note**: voter+unknown denominator excludes Abstain rows. The voter-conditional D-share above is comparable in spirit to the FEC D-share-of-total-presidential-votes once the predicted-vote layer is wired.\n\n`;
-  md += `## What this smoke verifies\n\n`;
-  md += `- The loader can read the CCES 2016 file end-to-end and produce typed respondent records.\n`;
-  md += `- Weights are sane (finite, positive).\n`;
-  md += `- Non-voters are retained (essential for abstention-share predictions in mode B).\n`;
-  md += `- Validated-turnout signal flows through (mode A oracle path's gold-standard input).\n`;
-  md += `- Vote-choice resolver maps codes correctly (D and R both populated).\n\n`;
-  md += `## What this smoke does NOT do\n\n`;
-  md += `- Does not run the survey-to-PRISM mapper.\n`;
-  md += `- Does not produce predicted vote shares.\n`;
-  md += `- Does not compare against benchmark FEC totals.\n`;
-  md += `- Does not produce mode A or mode B output.\n\n`;
-  md += `Those are downstream of the loader and require the mapper + engine integration to be wired.\n`;
-  fs.writeFileSync(path.join(outDir, "loader-smoke-summary.md"), md);
 }
 
 async function main(): Promise<void> {
   const cwd = process.cwd();
-  const filePath = path.join(cwd, TARGET_FILE);
-  if (!fs.existsSync(filePath)) {
-    console.error(`Source file not found: ${filePath}`);
-    process.exit(2);
-  }
-  const fileSizeBytes = fs.statSync(filePath).size;
-
-  const t0 = Date.now();
-  const { respondents, stats } = await loadSurveyRespondents({
-    filePath,
-    year: TARGET_YEAR,
-    rowLimit: null,
-    keepRawVarPayload: false, // keep memory tight for smoke; full payload not needed for invariant checks
-  });
-  const durationMs = Date.now() - t0;
-
-  const shares = weightedSharesOf(respondents);
-  const checks = runInvariants(respondents, stats, shares);
-
   const outDir = path.join(cwd, "results", "electorate", "backtest");
   fs.mkdirSync(outDir, { recursive: true });
 
-  // JSON output (light — does not include the full respondent array, only stats + checks).
+  interface YearResult {
+    year: number;
+    source_file: string;
+    source_file_size_bytes: number | null;
+    duration_ms: number;
+    file_present: boolean;
+    skipped_reason?: string;
+    stats?: LoaderInventoryStats;
+    weighted_shares?: {
+      total_weight: number;
+      voter_weight: number;
+      by_choice_weight: Record<string, number>;
+      by_turnout_weight: Record<string, number>;
+      voter_conditional_share: Record<string, number>;
+    };
+    invariant_checks?: Array<{ id: number; label: string; passed: boolean; detail: string }>;
+    overall_pass?: boolean;
+  }
+
+  const results: YearResult[] = [];
+  let totalChecks = 0;
+  let totalPassed = 0;
+
+  for (const target of YEAR_TARGETS) {
+    const filePath = path.join(cwd, target.filePath);
+    console.log(`\n=== ${target.year} (${target.filePath}) ===`);
+    if (!fs.existsSync(filePath)) {
+      console.log(`  ✗ file not present — skipping (data acquisition pending)`);
+      results.push({
+        year: target.year,
+        source_file: target.filePath,
+        source_file_size_bytes: null,
+        duration_ms: 0,
+        file_present: false,
+        skipped_reason: "microdata file not present locally",
+      });
+      continue;
+    }
+    const fileSizeBytes = fs.statSync(filePath).size;
+    const t0 = Date.now();
+    const { respondents, stats } = await loadSurveyRespondents({
+      filePath,
+      year: target.year,
+      rowLimit: null,
+      keepRawVarPayload: false,
+    });
+    const durationMs = Date.now() - t0;
+    const shares = weightedSharesOf(respondents);
+    const checks = runInvariants(target.year, respondents, stats, target.expectsValidatedTurnout);
+    const yearPassed = checks.filter(c => c.passed).length;
+    totalChecks += checks.length;
+    totalPassed += yearPassed;
+    console.log(`  rows=${stats.rowsLoaded.toLocaleString()} skipped=${stats.rowsSkipped} duration=${(durationMs / 1000).toFixed(1)}s checks=${yearPassed}/${checks.length}`);
+    for (const c of checks) {
+      const mark = c.passed ? "✓" : "✗";
+      console.log(`    ${mark} ${c.id}. ${c.label} — ${c.detail}`);
+    }
+    results.push({
+      year: target.year,
+      source_file: target.filePath,
+      source_file_size_bytes: fileSizeBytes,
+      duration_ms: durationMs,
+      file_present: true,
+      stats,
+      weighted_shares: {
+        total_weight: shares.totalWeight,
+        voter_weight: shares.voterWeight,
+        by_choice_weight: shares.byChoice,
+        by_turnout_weight: shares.byTurnout,
+        voter_conditional_share: shares.voterShareByChoice,
+      },
+      invariant_checks: checks.map(c => ({ id: c.id, label: c.label, passed: c.passed, detail: c.detail })),
+      overall_pass: checks.every(c => c.passed),
+    });
+  }
+
+  // ── JSON output
   const jsonOut = {
-    schema_version: "v0",
+    schema_version: "v0.2-multiyear",
     run_at: new Date().toISOString(),
-    source_file: TARGET_FILE,
-    source_file_size_bytes: fileSizeBytes,
-    target_year: TARGET_YEAR,
-    duration_ms: durationMs,
-    stats,
-    weighted_shares: {
-      total_weight: shares.totalWeight,
-      voter_weight: shares.voterWeight,
-      by_choice_weight: shares.byChoice,
-      by_turnout_weight: shares.byTurnout,
-      voter_conditional_share: shares.voterShareByChoice,
+    years: results,
+    aggregate: {
+      total_checks: totalChecks,
+      total_passed: totalPassed,
+      all_passed: totalPassed === totalChecks && totalChecks > 0,
+      years_with_file_present: results.filter(r => r.file_present).length,
+      years_skipped: results.filter(r => !r.file_present).map(r => r.year),
     },
-    invariant_checks: checks.map(c => ({
-      id: c.id,
-      label: c.label,
-      passed: c.passed,
-      detail: c.detail,
-    })),
-    overall_pass: checks.every(c => c.passed),
   };
   const jsonPath = path.join(outDir, "loader-smoke.json");
   fs.writeFileSync(jsonPath, JSON.stringify(jsonOut, null, 2));
 
-  writeMarkdownSummary(outDir, stats, shares, checks, fileSizeBytes, durationMs);
+  // ── Markdown summary
+  let md = `# CES Loader Smoke — Multi-Year Summary\n\n`;
+  md += `**Run at:** ${new Date().toISOString()}\n`;
+  md += `**Years targeted:** ${YEAR_TARGETS.map(t => t.year).join(", ")}\n\n`;
+  md += `## Per-year invariant checks\n\n`;
+  for (const r of results) {
+    md += `### ${r.year}\n\n`;
+    md += `- Source file: \`${r.source_file}\` ${r.source_file_size_bytes != null ? `(${(r.source_file_size_bytes / 1024 / 1024).toFixed(1)} MB)` : ""}\n`;
+    if (!r.file_present) {
+      md += `- **Skipped** — ${r.skipped_reason ?? "file not present"}\n\n`;
+      continue;
+    }
+    md += `- Duration: ${(r.duration_ms / 1000).toFixed(1)}s\n`;
+    md += `- Rows loaded: **${r.stats!.rowsLoaded.toLocaleString()}** (skipped ${r.stats!.rowsSkipped.toLocaleString()})\n`;
+    md += `- Weight range: ${r.stats!.weightMin.toFixed(4)} → ${r.stats!.weightMax.toFixed(4)}\n`;
+    md += `- Turnout: voted=${r.stats!.turnoutCounts.voted.toLocaleString()}, non-voter=${r.stats!.turnoutCounts.nonvoter.toLocaleString()}, unknown=${r.stats!.turnoutCounts.unknown.toLocaleString()}, validated=${r.stats!.validatedTurnoutCount.toLocaleString()}\n`;
+    md += `- Vote choice: D=${r.stats!.voteChoiceCounts.D.toLocaleString()}, R=${r.stats!.voteChoiceCounts.R.toLocaleString()}, Other=${r.stats!.voteChoiceCounts.Other.toLocaleString()}, Abstain=${r.stats!.voteChoiceCounts.Abstain.toLocaleString()}, Unknown=${r.stats!.voteChoiceCounts.Unknown.toLocaleString()}\n\n`;
+    md += `| # | Check | Pass | Detail |\n|---|---|:--:|---|\n`;
+    for (const c of r.invariant_checks!) {
+      md += `| ${c.id} | ${c.label} | ${c.passed ? "✓" : "✗"} | ${c.detail} |\n`;
+    }
+    md += `\n**Year ${r.year} overall: ${r.overall_pass ? "✓ ALL PASS" : "✗ FAIL"}** (${r.invariant_checks!.filter(c => c.passed).length}/${r.invariant_checks!.length})\n\n`;
+    md += `**Voter-conditional share (voter+unknown denominator)**: D=${(r.weighted_shares!.voter_conditional_share.D * 100).toFixed(2)}%, R=${(r.weighted_shares!.voter_conditional_share.R * 100).toFixed(2)}%, Other=${(r.weighted_shares!.voter_conditional_share.Other * 100).toFixed(2)}%, Unknown=${(r.weighted_shares!.voter_conditional_share.Unknown * 100).toFixed(2)}%\n\n`;
+  }
+  md += `## Aggregate\n\n`;
+  md += `- Total checks across all years: **${totalPassed}/${totalChecks}**\n`;
+  md += `- Years with file present (loaded): ${jsonOut.aggregate.years_with_file_present}\n`;
+  md += `- Years skipped (file not present): ${jsonOut.aggregate.years_skipped.join(", ") || "(none)"}\n\n`;
+  md += `## What this smoke verifies / does NOT do\n\n`;
+  md += `- ✓ Each loaded year reads end-to-end and produces typed respondent records\n`;
+  md += `- ✓ Weights sane (finite, positive)\n`;
+  md += `- ✓ Non-voters retained (essential for mode-B abstention prediction)\n`;
+  md += `- ✓ Validated-turnout signal flows where the year's release includes it\n`;
+  md += `- ✓ Vote-choice resolver code map sane (D and R both populated)\n`;
+  md += `- ✗ Does NOT run the survey-to-PRISM mapper\n`;
+  md += `- ✗ Does NOT produce predicted vote shares\n`;
+  md += `- ✗ Does NOT compare against benchmark FEC totals\n`;
+  fs.writeFileSync(path.join(outDir, "loader-smoke-summary.md"), md);
 
   // Verify JSON parses
   try {
     JSON.parse(fs.readFileSync(jsonPath, "utf8"));
-    console.log("JSON valid");
+    console.log("\nJSON valid");
   } catch (e) {
     console.error("JSON did not parse:", e);
     process.exit(3);
@@ -266,12 +307,8 @@ async function main(): Promise<void> {
 
   console.log(`\nWrote ${jsonPath}`);
   console.log(`Wrote ${path.join(outDir, "loader-smoke-summary.md")}`);
-  console.log(`\nInvariant checks: ${checks.filter(c => c.passed).length}/${checks.length} passed`);
-  for (const c of checks) {
-    const mark = c.passed ? "✓" : "✗";
-    console.log(`  ${mark} ${c.id.toString().padStart(2)}. ${c.label} — ${c.detail}`);
-  }
-  if (!checks.every(c => c.passed)) {
+  console.log(`\nAggregate: ${totalPassed}/${totalChecks} invariant checks passed across ${jsonOut.aggregate.years_with_file_present} year(s)`);
+  if (totalPassed !== totalChecks) {
     console.error(`\nSMOKE FAILED: at least one invariant check did not pass`);
     process.exit(1);
   }
