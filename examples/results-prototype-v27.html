@@ -3926,8 +3926,8 @@ document.addEventListener('DOMContentLoaded', () => {
           `L ${x2i.toFixed(2)} ${y2i.toFixed(2)} ` +
           `A ${R_IN} ${R_IN} 0 ${largeArc} 0 ${x1i.toFixed(2)} ${y1i.toFixed(2)} Z`);
         path.setAttribute('fill', clusterColors[cn]);
-        path.setAttribute('stroke', '#fff');
-        path.setAttribute('stroke-width', 2);
+        path.setAttribute('stroke', 'var(--cream, #f5ebe0)');
+        path.setAttribute('stroke-width', 3);
         path.setAttribute('class', 'donut-wedge');
         path.dataset.cluster = cn;
         const titleEl = document.createElementNS(ns, 'title');
@@ -3941,12 +3941,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const rMid = (R_OUT + R_IN) / 2;
         const lx = rMid * Math.cos(aMid);
         const ly = rMid * Math.sin(aMid);
+        // v27.17: editorial wedge typography — Space Grotesk uppercase with
+        // letter-spacing to match the page's section labels; bigger now that
+        // the donut has been doubled in size. Mono pct underneath.
         const labelEl = document.createElementNS(ns, 'text');
         labelEl.setAttribute('x', lx.toFixed(2));
-        labelEl.setAttribute('y', ly.toFixed(2));
+        labelEl.setAttribute('y', (ly - 4).toFixed(2));
         labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
         labelEl.setAttribute('font-weight', '700');
-        labelEl.setAttribute('font-size', '14');
+        labelEl.setAttribute('font-size', '18');
+        labelEl.setAttribute('letter-spacing', '0.14em');
         labelEl.setAttribute('fill', '#1a1a1a');
         labelEl.setAttribute('text-anchor', 'middle');
         labelEl.setAttribute('dominant-baseline', 'middle');
@@ -3956,28 +3960,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pctEl = document.createElementNS(ns, 'text');
         pctEl.setAttribute('x', lx.toFixed(2));
-        pctEl.setAttribute('y', (ly + 14).toFixed(2));
+        pctEl.setAttribute('y', (ly + 16).toFixed(2));
         pctEl.setAttribute('font-family', "'IBM Plex Mono', monospace");
-        pctEl.setAttribute('font-size', '10');
+        pctEl.setAttribute('font-size', '13');
         pctEl.setAttribute('font-weight', '600');
-        pctEl.setAttribute('fill', '#1a1a1a');
+        pctEl.setAttribute('fill', '#333');
         pctEl.setAttribute('text-anchor', 'middle');
         pctEl.style.pointerEvents = 'none';
         pctEl.textContent = `${(e * 100).toFixed(0)}%`;
         svg.appendChild(pctEl);
       });
 
-      // Center hint text.
-      const center = document.createElementNS(ns, 'text');
-      center.setAttribute('x', 0); center.setAttribute('y', 0);
-      center.setAttribute('font-family', "'Space Grotesk', sans-serif");
-      center.setAttribute('font-size', '11');
-      center.setAttribute('fill', '#888');
-      center.setAttribute('text-anchor', 'middle');
-      center.setAttribute('dominant-baseline', 'middle');
-      center.style.pointerEvents = 'none';
-      center.textContent = 'click a wedge';
-      svg.appendChild(center);
+      // v27.17: center hint text removed per design — wedges are obviously
+      // clickable from cursor change on hover; the text was ornamental.
 
       // Initial active cluster = the one with the highest (normalized) emphasis.
       let activeCluster = clusterOrder.reduce((a, b) => (emphasis[b] > emphasis[a] ? b : a), clusterOrder[0]);
