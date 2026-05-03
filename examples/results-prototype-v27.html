@@ -692,15 +692,25 @@
        bars left, special chart sidebar right). For ENDS the right column
        stays empty; the bars never sprawl beyond their fixed width. No
        border / no card — panels flow as page sections instead of cells. */
-    /* v27.13: donut taken out of flex flow via absolute positioning so it
-       no longer dictates the row height. The drill (panel) column flows in
-       normal block layout to the right of the donut via padding-left. The
-       map section now starts at the bottom of the panel, not the bottom of
-       the donut. min-height keeps short panels from causing the donut to
-       overflow into the map section. */
-    .profile-flex { position: relative; padding: 1rem 0 0.5rem 270px; min-height: 260px; }
-    .profile-donut-col { position: absolute; top: 1rem; left: 0; width: 260px; padding-left: 0.5rem; }
-    .profile-drill-col { min-width: 0; }
+    /* v27.14: donut hoisted to position: fixed, anchored to the viewport's
+       left side. It is no longer inside any section's flow, so no section's
+       height is influenced by it. The map sits immediately under the panel.
+       JS toggles `.donut-visible` on <body> when the profile section is in
+       view, so the donut doesn't float over unrelated sections. */
+    .profile-flex { position: relative; padding: 1rem 0 0.5rem; }
+    .profile-donut-col {
+      position: fixed;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 240px;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    body.donut-visible .profile-donut-col { opacity: 1; pointer-events: auto; }
+    .profile-drill-col { min-width: 0; padding-left: 280px; }
     .cluster-overview { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .cluster-overview svg { max-width: 100%; height: auto; display: block; }
     .cluster-overview .donut-wedge { transition: opacity 0.18s, stroke-width 0.18s; cursor: pointer; }
@@ -763,9 +773,15 @@
     .cluster-panel .moral-circle-legend { display: none; }
     .cluster-panel .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
     .cluster-panel .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
-    @media (max-width: 920px) {
-      .profile-flex { padding: 1rem 0 0.5rem; min-height: 0; }
-      .profile-donut-col { position: static; width: 100%; padding-left: 0; margin-bottom: 1rem; }
+    @media (max-width: 1100px) {
+      /* On narrower viewports, fixed-left donut would cover too much of the
+         panel. Fall back to inline donut at top, full-width panel below. */
+      .profile-flex { padding: 1rem 0 0.5rem; }
+      .profile-donut-col {
+        position: static; transform: none; opacity: 1; pointer-events: auto;
+        width: 100%; max-width: 320px; margin: 0 auto 1rem;
+      }
+      .profile-drill-col { padding-left: 0; }
       .cluster-panel .node-cluster { grid-template-columns: 1fr; }
       .cluster-panel .node-cluster .cat-vbar-row,
       .cluster-panel .node-cluster .moral-circle-section { grid-column: 1; grid-row: auto; }
@@ -3982,6 +3998,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('results').style.display = 'block';
     document.title = `PRISM Results — ${archetype.name}`;
+
+    // v27.14: fade the fixed-position donut in only when the profile
+    // section is in view. Otherwise it would float over unrelated content.
+    (function donutVisibility() {
+      const profile = document.getElementById('profile-section');
+      if (!profile) return;
+      const apply = (visible) => document.body.classList.toggle('donut-visible', visible);
+      if (!('IntersectionObserver' in window)) { apply(true); return; }
+      const io = new IntersectionObserver(entries => {
+        for (const e of entries) apply(e.isIntersecting);
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+      io.observe(profile);
+    })();
 
     // Draw map after results are visible so container has dimensions
     drawMap();
