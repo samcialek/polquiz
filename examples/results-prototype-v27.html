@@ -363,10 +363,57 @@
       color: #888; margin-top: 0.3rem; line-height: 1.3; gap: 0.6rem;
     }
     .ed-pos-poles span:last-child { text-align: right; }
-    /* v27.26 — Phase A cluster rollup. 4-row impact breakdown by cluster.
-       Bar fill = clusterDistance / 4 (mismatch magnitude, NOT averaged
-       political position). Internal segments show which member dimensions
-       drove the cluster distance. Numbers stay in hover. */
+    /* v27.30 — 2D cluster chart. Each cluster plotted at (gap, importance);
+       rectangle area sized by sqrt(contribution share). Replaces the row
+       breakdown. */
+    .ed-cluster-chart-legend {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; color: #aaa;
+      line-height: 1.5; margin: 0.25rem 0 0.6rem;
+    }
+    .ed-cluster-chart-legend strong { color: #fff; font-weight: 600; }
+    .ed-cluster-chart {
+      width: 100%; max-width: 540px; display: block; margin: 0 auto 0.4rem;
+      background: rgba(255,255,255,0.015);
+      border-radius: 4px;
+    }
+    .ed-cluster-chart .ed-chart-axis {
+      stroke: rgba(255,255,255,0.3); stroke-width: 1;
+    }
+    .ed-cluster-chart .ed-chart-tick {
+      stroke: rgba(255,255,255,0.3); stroke-width: 1;
+    }
+    .ed-cluster-chart .ed-chart-quadrant {
+      stroke: rgba(255,255,255,0.08); stroke-width: 1;
+      stroke-dasharray: 3 3;
+    }
+    .ed-cluster-chart .ed-chart-tick-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; fill: #888;
+    }
+    .ed-cluster-chart .ed-chart-axis-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px; font-weight: 600; fill: #aaa;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .ed-cluster-chart .ed-cluster-tile { cursor: help; }
+    .ed-cluster-chart .ed-cluster-tile rect { transition: fill-opacity 0.15s; }
+    .ed-cluster-chart .ed-cluster-tile:hover rect { fill-opacity: 1; }
+    .ed-cluster-chart .ed-tile-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px; font-weight: 700;
+      fill: #fff; letter-spacing: 0.08em;
+      pointer-events: none;
+    }
+    .ed-cluster-chart .ed-tile-driver {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px; font-weight: 500;
+      fill: rgba(255,255,255,0.85);
+      pointer-events: none;
+    }
+
+    /* v27.26 — legacy row breakdown CSS, kept for the suppressed if(false)
+       branch in case we toggle it back on for diagnostics. */
     .ed-cluster-list {
       display: flex; flex-direction: column; gap: 0.7rem;
     }
@@ -2437,6 +2484,91 @@ document.addEventListener('DOMContentLoaded', () => {
       return out;
     }
 
+    // v27.30 — 2D cluster chart. Each cluster plotted at (gap, importance);
+    // rectangle area sized by sqrt(contribution share). Replaces the per-row
+    // breakdown.
+    function renderClusterChart(clusterRows, bd) {
+      const W = 540, H = 360;
+      const M = { top: 18, right: 24, bottom: 44, left: 60 };
+      const innerW = W - M.left - M.right;
+      const innerH = H - M.top - M.bottom;
+      const X_DOMAIN = 4;
+      const observedMax = Math.max(0.001, ...clusterRows.map(c => c.weightShare));
+      const Y_DOMAIN = Math.min(1, Math.max(0.5, observedMax * 1.2));
+      const xScale = v => M.left + (Math.min(X_DOMAIN, v) / X_DOMAIN) * innerW;
+      const yScale = v => M.top + innerH - (Math.min(Y_DOMAIN, v) / Y_DOMAIN) * innerH;
+      const totalContrib = bd.sumWeightedSq || 1;
+      const rectSide = (share) => {
+        const t = Math.max(0, Math.min(1, Math.sqrt(share)));
+        return { w: 56 + t * 74, h: 34 + t * 34 };
+      };
+      const clusterColor = {
+        ENDS: '#fa8072', MEANS: '#DAA520', REALITY: '#3D6B7C', IDENTITY: '#8C7A5B',
+      };
+
+      let out = `<div class="ed-cluster-chart-legend">X-axis: <strong>position gap</strong> with this candidate (0 = match · 4 = max).&nbsp; Y-axis: <strong>importance</strong> — what % of your activation lives in this cluster.&nbsp; Rectangle <strong>size</strong> ≈ <strong>contribution</strong> to the engine's vote-choice math (importance × gap²). Hover for the full numbers.</div>`;
+      let svg = `<svg class="ed-cluster-chart" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">`;
+      // Quadrant divider lines (50% of each axis).
+      svg += `<line x1="${xScale(X_DOMAIN/2)}" y1="${M.top}" x2="${xScale(X_DOMAIN/2)}" y2="${M.top + innerH}" class="ed-chart-quadrant"/>`;
+      svg += `<line x1="${M.left}" y1="${yScale(Y_DOMAIN/2)}" x2="${M.left + innerW}" y2="${yScale(Y_DOMAIN/2)}" class="ed-chart-quadrant"/>`;
+      // Axes.
+      svg += `<line x1="${M.left}" y1="${M.top + innerH}" x2="${M.left + innerW}" y2="${M.top + innerH}" class="ed-chart-axis"/>`;
+      svg += `<line x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${M.top + innerH}" class="ed-chart-axis"/>`;
+      // X-axis ticks (0, 1, 2, 3, 4).
+      for (let xv = 0; xv <= X_DOMAIN; xv++) {
+        const xp = xScale(xv);
+        svg += `<line x1="${xp}" y1="${M.top + innerH}" x2="${xp}" y2="${M.top + innerH + 4}" class="ed-chart-tick"/>`;
+        svg += `<text x="${xp}" y="${M.top + innerH + 16}" class="ed-chart-tick-label" text-anchor="middle">${xv}</text>`;
+      }
+      svg += `<text x="${M.left + innerW/2}" y="${H - 8}" class="ed-chart-axis-label" text-anchor="middle">Position gap</text>`;
+      // Y-axis ticks at sensible step depending on Y_DOMAIN.
+      const yTickStep = Y_DOMAIN <= 0.6 ? 0.1 : Y_DOMAIN <= 0.8 ? 0.2 : 0.25;
+      for (let yv = 0; yv <= Y_DOMAIN + 1e-6; yv += yTickStep) {
+        const yp = yScale(yv);
+        svg += `<line x1="${M.left - 4}" y1="${yp}" x2="${M.left}" y2="${yp}" class="ed-chart-tick"/>`;
+        svg += `<text x="${M.left - 8}" y="${yp + 4}" class="ed-chart-tick-label" text-anchor="end">${(yv * 100).toFixed(0)}%</text>`;
+      }
+      svg += `<text x="${M.left - 44}" y="${M.top + innerH/2}" class="ed-chart-axis-label" text-anchor="middle" transform="rotate(-90, ${M.left - 44}, ${M.top + innerH/2})">Importance</text>`;
+      // Plot rectangles, biggest first so smaller ones land on top.
+      const sortedClusters = clusterRows.slice().sort((a, b) => b.contribution - a.contribution);
+      sortedClusters.forEach(c => {
+        const cx = xScale(c.distance);
+        const cy = yScale(c.weightShare);
+        const sz = rectSide(c.contribution / totalContrib);
+        // Clamp rectangle inside chart bounds so labels don't fall off the edge.
+        const halfW = sz.w / 2, halfH = sz.h / 2;
+        const minX = M.left + halfW + 2;
+        const maxX = M.left + innerW - halfW - 2;
+        const minY = M.top + halfH + 2;
+        const maxY = M.top + innerH - halfH - 2;
+        const ccx = Math.max(minX, Math.min(maxX, cx));
+        const ccy = Math.max(minY, Math.min(maxY, cy));
+        const rx = ccx - halfW;
+        const ry = ccy - halfH;
+        const fill = clusterColor[c.id] || '#888';
+        const driverNames = c.memberDistances.map(m => m.name);
+        const driverList = driverNames.length === 0
+          ? '(no contribution)'
+          : driverNames.length <= 3
+            ? driverNames.join(' · ')
+            : driverNames.slice(0, 3).join(' · ') + ` +${driverNames.length - 3}`;
+        const hoverTip = c.weight > 0
+          ? `${c.definition}\n\nImportance: ${(c.weightShare*100).toFixed(0)}% of your activation lives in this cluster (era-adjusted, candidate-independent).\nGap: ${c.distance.toFixed(2)} on the 0–4 position scale.\nContribution to ballot distance: ${(c.share*100).toFixed(0)}% (importance × gap²).\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
+          : `${c.definition}\n\nThis cluster carries no salience for you in this election. It cannot contribute to candidate distance.`;
+        const tipAttr = hoverTip.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        svg += `<g class="ed-cluster-tile">`;
+        svg += `<title>${tipAttr}</title>`;
+        svg += `<rect x="${rx.toFixed(1)}" y="${ry.toFixed(1)}" width="${sz.w.toFixed(1)}" height="${sz.h.toFixed(1)}" rx="3" ry="3" fill="${fill}" fill-opacity="0.85" stroke="${fill}" stroke-width="1.5"/>`;
+        const nameY = ry + 16;
+        const driverY = ry + sz.h - 8;
+        svg += `<text x="${ccx}" y="${nameY}" class="ed-tile-name" text-anchor="middle">${c.name}</text>`;
+        svg += `<text x="${ccx}" y="${driverY}" class="ed-tile-driver" text-anchor="middle">${driverList}</text>`;
+        svg += `</g>`;
+      });
+      svg += `</svg>`;
+      return out + svg;
+    }
+
     // ── Panel rendering ───────────────────────────────────────────────────
     const detailPanel = document.getElementById('election-detail-panel');
     const detailBackdrop = document.getElementById('election-detail-backdrop');
@@ -2580,8 +2712,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let bdBody = `<div class="ed-focus-header">`;
       bdBody += `  <div class="ed-focus-name">Your distance from ${focusScore.name}</div>`;
       bdBody += `  <div class="ed-focus-stat">`;
-      bdBody += `    <span>Values<span class="ed-stat-value">${focusScore.baseIdeologicalDistance != null ? focusScore.baseIdeologicalDistance.toFixed(2) : focusScore.distance.toFixed(2)}</span></span>`;
-      bdBody += `    <span>Final<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
+      bdBody += `    <span title="Profile distance — pure weighted-RMS distance from your cluster positions to the candidate's. No moral-floor / economy / partisan modifiers yet.">Profile distance<span class="ed-stat-value">${focusScore.baseIdeologicalDistance != null ? focusScore.baseIdeologicalDistance.toFixed(2) : focusScore.distance.toFixed(2)}</span></span>`;
+      bdBody += `    <span title="Ballot distance — what comes out after moral-floor penalty, non-ideological factors (economy / charisma / incumbency), party-loyalty multiplier, and negative-partisanship multiplier are applied. The actual number the engine decides on.">Ballot distance<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
       bdBody += `  </div>`;
       bdBody += `</div>`;
       if (!focusProfile) {
@@ -2595,14 +2727,15 @@ document.addEventListener('DOMContentLoaded', () => {
           // bd.rows for math + hover use only; the rendered output is 4
           // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
           const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq, bd.sumWeight);
-          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar <strong>width</strong> = mismatch with this candidate on the cluster's dimensions (0 = perfect match, ~4 = max). Bar <strong>height</strong> = importance — how much of your political activation lives in this cluster. Internal segments show which dimensions drove the mismatch. The engine's actual values-distance combines both: importance × mismatch². Hover any row for the full math.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by importance</span></div>`;
+          // v27.30: replaced the row breakdown with a 2D scatter chart.
+          // X = position gap, Y = importance, rectangle area ≈ contribution.
+          bdBody += renderClusterChart(clusterRows, bd);
+          // Skip the legacy per-row rendering below by short-circuiting.
+          if (false) {
+          bdBody += `<div class="ed-legend"></div>`;
           const sortedClusters = clusterRows.slice().sort((a, b) => b.weightShare - a.weightShare);
           bdBody += `<div class="ed-cluster-list">`;
-          // Max distance for normalizing fill width — cap at 4 (typical pos² scale).
           const maxScaleDist = 4;
-          // v27.29: 2D bar encoding — width = mismatch, height = importance
-          // (weight share). Bar area roughly correlates with engine
-          // contribution; each axis answers a separate question.
           const maxWeightShare = Math.max(0.001, ...sortedClusters.map(c => c.weightShare));
           sortedClusters.forEach(c => {
             const weightPct = (c.weightShare * 100).toFixed(0);
@@ -2650,6 +2783,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bdBody += `</div>`;
           });
           bdBody += `</div>`;
+          } // end if (false) — legacy row layout suppressed; chart replaces it
         }
         // Modifiers footer
         const mods = [];
