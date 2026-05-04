@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T16:43:35.420Z",
+  "runAt": "2026-05-04T17:50:30.015Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -143,7 +143,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C MAT: economic-battery decoder gated to 2016 (audited); year 2008 deferred until per-cycle codebook verification"
+            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2008 deferred"
           }
         },
         "CD": {
@@ -607,7 +607,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C MAT: economic-battery decoder gated to 2016 (audited); year 2012 deferred until per-cycle codebook verification"
+            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2012 deferred"
           }
         },
         "CD": {
@@ -1082,7 +1082,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1C MAT: 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
+            "notes": "v0.1C/E MAT (2016): 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
           }
         },
         "CD": {
@@ -1436,9 +1436,9 @@
       "validationErrors": [],
       "perNodeCoverage": {
         "MAT": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "CD": {
           "realSignalCount": 200,
@@ -1534,9 +1534,9 @@
         "realSignalShare": 0.985
       },
       "meanCoverage": {
-        "realSignalCount": 1786,
-        "fallbackCount": 2214,
-        "realSignalShare": 0.4465
+        "realSignalCount": 1986,
+        "fallbackCount": 2014,
+        "realSignalShare": 0.4965
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -1550,11 +1550,11 @@
         "turnoutObserved": true,
         "MAT": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.027429176073745228,
+            0.1849132391841622,
+            0.41163332585995493,
+            0.3025800758251756,
+            0.07344418305696213
           ],
           "salPosterior": [
             0.3,
@@ -1563,11 +1563,15 @@
             0.05
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC20_350b",
+              "CC20_351b",
+              "CC20_351a"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0.1C MAT: economic-battery decoder gated to 2016 (audited); year 2020 deferred until per-cycle codebook verification"
+            "uncertainty": "medium",
+            "notes": "v0.1C/E MAT (2020): 3/3 economic-battery items, totalWeight=1.8 (− redistributionist, + free-market); net=0.11 → pos=3.22, salience=0.87; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)"
           }
         },
         "CD": {
@@ -1913,8 +1917,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 9,
-          "fallbackCount": 11,
+          "realSignalCount": 10,
+          "fallbackCount": 10,
           "totalTargets": 20
         }
       }
@@ -2058,7 +2062,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C MAT: economic-battery decoder gated to 2016 (audited); year 2024 deferred until per-cycle codebook verification"
+            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2024 deferred"
           }
         },
         "CD": {

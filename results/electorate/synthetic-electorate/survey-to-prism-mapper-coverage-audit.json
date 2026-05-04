@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T16:43:48.297Z",
+  "run_at": "2026-05-04T17:50:44.981Z",
   "phase": "2.7.7 — survey-to-PRISM mapper coverage audit (read-only diagnostic)",
   "config": {
     "sample_row_limit_per_year": 5000,
@@ -2174,8 +2174,8 @@
       "total_weight": 4463.53307731566,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 8.92179962119214,
-        "weighted_mean_fallback_per_row": 11.078200378807932,
+        "weighted_mean_real_signal_per_row": 9.921799621192129,
+        "weighted_mean_fallback_per_row": 10.078200378807933,
         "weighted_mean_party_id_derived_per_row": 1.961751207405605
       },
       "per_target": [
@@ -2183,33 +2183,43 @@
           "target_name": "MAT",
           "target_kind": "continuous",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 99.97524356501096,
+            "high": 0.02475643498904117
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2.0002475643498903,
+          "top_source_fields": [
+            {
+              "field": "CC20_350b",
+              "weighted_use_pct": 99.97524356501096
+            },
+            {
+              "field": "CC20_351a",
+              "weighted_use_pct": 99.25194882805705
+            },
+            {
+              "field": "CC20_351b",
+              "weighted_use_pct": 98.80953193664911
+            }
+          ],
           "marginal_summary": {
             "weighted_avg_distribution": [
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012
+              0.32534973151134255,
+              0.23795371058450815,
+              0.1578591103275285,
+              0.15853516694569053,
+              0.12030228063093266
             ],
-            "spread": 0,
-            "weighted_mean": 3.0000000000000084,
-            "weighted_sd": 8.437694987151194e-15
+            "spread": 0.20504745088040988,
+            "weighted_mean": 2.510486554600365,
+            "weighted_sd": 1.1834728251181348
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "CD",
@@ -2804,13 +2814,6 @@
         }
       ],
       "signature_blockers": [
-        {
-          "target": "MAT",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
-        },
         {
           "target": "MOR",
           "reasons": [

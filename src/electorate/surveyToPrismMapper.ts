@@ -312,46 +312,88 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
 }
 
 /**
- * MAT (material orientation) — third real-signal core position target
- * shipped in mapper v0.1C. Year-gated to 2016 only because the 2016
- * economic battery is the audited one; CC20_350* items (DACA / Kavanaugh /
- * impeachment / etc.) are a different question family and CC16_351I has
- * no direct 2020 equivalent (per the extended directionality audit).
+ * Per-year polarity table for the economic battery. Polarity convention:
+ *   +1 = "rank-first / Favor / Support maps to MAT high (free-market)"
+ *   −1 = "rank-first / Favor / Support maps to MAT low (redistributionist)"
  *
- * Items shipped (per the directionality audit's MAT table):
- *   - `CC16_337_2` "Cut Domestic Spending" (3-way ranking) → **rank-first
- *     = MAT high (free-market)**, **rank-third = MAT low**, weight 0.5×
- *     (audit: ⚠ Ship reduced — direction correct but the basket bundles
- *     welfare with research/agriculture).
- *   - `CC16_337_3` "Raise Taxes" (3-way ranking) → **rank-first = MAT low
- *     (redistributionist)**, **rank-third = MAT high**, weight 1.0×
- *     (audit: ✅ Ship — cleanest of the three Q337 items).
- *   - `CC16_351I` "Repeal Affordable Care Act" (For / Against) → **For = MAT
- *     high (cut-entitlement)**, **Against = MAT low**, weight 1.0× (audit:
- *     ✅ Ship — direction unambiguous).
- *   - `CC16_351K` "Raise the federal minimum wage" (For / Against;
- *     codebook-verified via cross-cycle inference per audit §9 — the
- *     CC16_351 series mirrors specific Congressional roll-calls and the
- *     2014–2016 minimum-wage debate centered on the $10.10 increase) →
- *     **For = MAT low (pro-redistribution)**, **Against = MAT high**,
- *     weight 1.0× (audit: ✅ Ship contingent on wording → confirmed).
+ * 2016 items (Pass-1 audit): CC16_337_{2,3} are 3-way ranking items; rank=1
+ * = "ranked first / most preferred", rank=2 = "middle", rank=3 = "ranked
+ * third / least preferred". CC16_351{I,K} are For/Against binaries.
  *
- * `CC16_337_1` ("Cut Defense Spending") is **explicitly excluded** per the
- * audit — its strongest load is foreign-policy / national-priority, not
- * MAT, and using it would attribute non-economic preferences to MAT.
+ * 2020 items (Pass-2 audit §6): CC20_350b + CC20_351{a,b} are all binary
+ * Favor/Support vs Oppose/Against. The 2020 economic battery is structurally
+ * weaker than 2016 — there is **no 2020 ACA-repeal direct question** and
+ * no 2020 equivalent of CC16_337's budget-priority ranking. Total weight
+ * across all 3 items is 1.8, which sits below the `low`-uncertainty
+ * threshold of 2.0 — so even a respondent who answers all three lands at
+ * `medium` confidence by construction, matching the audit's recommendation
+ * to "treat MAT/position as **medium** confidence (vs `high` for 2016)".
+ *
+ * **Explicit exclusions (2020)**:
+ *   - CC20_415c, CC20_415d are STATE LEGISLATURE vote-choice questions —
+ *     not tax policy; cannot use for MAT (vote-prediction circularity).
+ *   - CC20_416a..c are HOUSE RACE vote-choice questions — same reason.
+ *   - CC20_350c (Kavanaugh), CC20_350f/g (impeachment) are partisan-camp
+ *     signals; NOT safe MAT/CD signals (audit: ❌ Hold).
+ */
+type EconomicItem =
+  | { col: string; kind: "rank";   polarity: 1 | -1; weight: number }
+  | { col: string; kind: "binary"; polarity: 1 | -1; weight: number };
+
+function economicItemsForYear(year: number): EconomicItem[] | null {
+  if (year === 2016) {
+    return [
+      // CC16_337_2 "Cut Domestic Spending" — rank-first = MAT high (free-market)
+      { col: "CC16_337_2", kind: "rank",   polarity:  1, weight: 0.5 },
+      // CC16_337_3 "Raise Taxes" — rank-first = MAT low (redistributionist)
+      { col: "CC16_337_3", kind: "rank",   polarity: -1, weight: 1.0 },
+      // CC16_351I "Repeal Affordable Care Act" — For = MAT high
+      { col: "CC16_351I",  kind: "binary", polarity:  1, weight: 1.0 },
+      // CC16_351K "Raise the federal minimum wage to $10.10" — For = MAT low
+      { col: "CC16_351K",  kind: "binary", polarity: -1, weight: 1.0 },
+    ];
+  }
+  if (year === 2020) {
+    return [
+      // CC20_350b "Raise the minimum wage to $15 an hour" — Favor = MAT low
+      // (2020 ↔ CC16_351K equivalent with $15 update; audit: ✅ Ship, High confidence)
+      { col: "CC20_350b", kind: "binary", polarity: -1, weight: 1.0 },
+      // CC20_351b "HEROES Act $3T incl. $1T state-and-local" — Support = MAT low
+      // (audit: ⚠ Reduced; Medium-confidence — more partisan than CARES, but still cross-loaded
+      // with COVID emergency framing)
+      { col: "CC20_351b", kind: "binary", polarity: -1, weight: 0.5 },
+      // CC20_351a "CARES Act $2T emergency relief" — Support = MAT low
+      // (audit: ⚠ Heavy reduction; Medium-Low — broadly popular emergency relief, weak MAT
+      // discriminator on its own)
+      { col: "CC20_351a", kind: "binary", polarity: -1, weight: 0.3 },
+    ];
+  }
+  return null;
+}
+
+/**
+ * MAT (material orientation) — real-signal core position target shipped in
+ * mapper v0.1C (2016) and extended in v0.1D-MAT (2020).
  *
  * Coding:
- *   - 337 ranks: `1` = Ranked first (most preferred), `2` = Ranked second,
- *     `3` = Ranked third (least preferred). `8` skipped, `9` not asked,
- *     `.` missing.
- *   - 351 binary: `1` = For, `2` = Against. Same skip codes.
+ *   - 337 ranks: `1` = Ranked first (most preferred), `2` = Ranked second
+ *     (middle), `3` = Ranked third (least preferred). `8` skipped, `9` not
+ *     asked, `.` missing.
+ *   - 351 binary: `1` = For / Favor / Support, `2` = Against / Oppose.
+ *     Same skip codes.
+ *   - 350 binary (2020 grid): `1` = Favor, `2` = Oppose. Same skip codes.
  *
- * Algorithm: each item produces a direction ∈ {−1, 0, +1} (rank 2 produces
- * 0 — neutral middle), multiplied by item polarity (the sign that maps
- * support / rank-first to "MAT high"). The weighted sum / weighted total
- * gives `net ∈ [−1, +1]` where + = free-market and − = redistributionist.
- * Position = 3 + 2 × net. Posterior is a discrete-Gaussian over {1..5}
- * with σ inverse to total weight collected.
+ * Algorithm: each item produces a signal ∈ {−1, 0, +1} (rank 2 produces 0
+ * — neutral middle), multiplied by item polarity. The weighted sum /
+ * weighted total gives `net ∈ [−1, +1]` where + = free-market and
+ * − = redistributionist. Position = 3 + 2 × net. Posterior is a discrete-
+ * Gaussian over {1..5} with σ inverse to total weight collected.
+ *
+ * Uncertainty: ≥ 2.0 → low, ≥ 1.0 → medium, < 1.0 → high. The 2020
+ * battery's max total weight (1.8) sits below the `low` threshold by
+ * construction, so 2020 MAT is capped at `medium` even with full data —
+ * which matches the audit's explicit "medium confidence (vs `high` for
+ * 2016)" recommendation.
  *
  * **Runtime sanity check (audit §9 recommendation)**: this v0.1 mapper
  * does NOT auto-flip CC16_351K direction at runtime even if the For-share
@@ -360,26 +402,17 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
  * inverting downstream.
  *
  * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
- * no `pid7`, no turnout fields. Only the four `CC16_337_2/_3 / CC16_351I/K`
- * columns are read.
+ * no `pid7`, no turnout fields. Only the year's `CC*_337_*` /
+ * `CC*_351{I,K,a,b}` / `CC20_350b` columns are read.
+ *
+ * **2024 deferred**: `CC24_328{c,d,e,f,b}` is audited (§8) but ships in a
+ * separate mapper revision; this function still returns fallback for 2024.
  */
 function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
-  if (r.year !== 2016) {
-    return fallbackContinuous(`v0.1C MAT: economic-battery decoder gated to 2016 (audited); year ${r.year} deferred until per-cycle codebook verification`);
+  const items = economicItemsForYear(r.year);
+  if (!items) {
+    return fallbackContinuous(`v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year ${r.year} deferred`);
   }
-
-  // For each item, polarity is the sign s such that "rank-first / Support"
-  // maps to (s × +1). Direction is computed as polarity × item-signal,
-  // where item-signal is +1 / 0 / −1 for ranks (rank-first / mid / rank-third)
-  // or +1 / −1 for binary (Support / Oppose).
-  type Item = { col: string; kind: "rank"; polarity: 1 | -1; weight: number }
-            | { col: string; kind: "binary"; polarity: 1 | -1; weight: number };
-  const items: Item[] = [
-    { col: "CC16_337_2", kind: "rank",   polarity:  1, weight: 0.5 }, // rank-first cut-domestic = MAT high
-    { col: "CC16_337_3", kind: "rank",   polarity: -1, weight: 1.0 }, // rank-first raise-taxes = MAT low
-    { col: "CC16_351I", kind: "binary",  polarity:  1, weight: 1.0 }, // For repeal ACA = MAT high
-    { col: "CC16_351K", kind: "binary",  polarity: -1, weight: 1.0 }, // For raise min wage = MAT low
-  ];
 
   let weightedDirectionSum = 0;
   let totalWeight = 0;
@@ -395,7 +428,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       else if (raw === 3) signal = -1;
       else continue; // 8, 9, etc. → drop
     } else {
-      if (raw === 1) signal = 1;       // For / Support
+      if (raw === 1) signal = 1;       // For / Favor / Support
       else if (raw === 2) signal = -1; // Against / Oppose
       else continue;
     }
@@ -406,12 +439,12 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   }
 
   if (totalWeight === 0) {
-    return fallbackContinuous("v0.1C MAT: respondent answered 0/4 economic-battery items");
+    return fallbackContinuous(`v0.1C/E MAT: respondent answered 0/${items.length} economic-battery items`);
   }
 
   const net = weightedDirectionSum / totalWeight; // [-1, +1] (- = redistributionist, + = free-market)
   const pos = 3 + 2 * net;                         // MAT high (5) = free-market; MAT low (1) = redistributionist
-  const sigma = Math.max(0.6, 1.4 - 0.25 * totalWeight); // 1.27 at weight=0.5; 0.6 at weight=3.2+
+  const sigma = Math.max(0.6, 1.4 - 0.25 * totalWeight); // narrows with more data
 
   const intensity = Math.abs(net); // 0..1
   const salScore = Math.min(3, 0.5 + intensity * 1.5 + (answered - 1) * 0.1);
@@ -427,7 +460,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       vars: usedVars,
       partyIdDerived: false,
       uncertainty,
-      notes: `v0.1C MAT: ${answered}/4 economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
+      notes: `v0.1C/E MAT (${r.year}): ${answered}/${items.length} economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)" : ""}`,
     },
   };
 }
