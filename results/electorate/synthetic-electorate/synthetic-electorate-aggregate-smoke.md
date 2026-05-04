@@ -1,6 +1,6 @@
 # Synthetic Electorate Aggregate — Smoke (Phase 2.7.6)
 
-**Run at:** 2026-05-04T19:49:32.788Z
+**Run at:** 2026-05-04T21:00:37.362Z
 **Aggregator schema:** `v0.1`
 **Mock universe version:** `v0.1-mock`
 **Pipeline:** sampleRowLimitPerYear=5000, numDraws=5, randomSeed=20260504
@@ -306,7 +306,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 
 - Rows: **35**; total weight: **44200** (range 880.00 → 1480.00)
 - Engagement: mean 8.129, sd 1.917
-- Moral-boundary intensity mean: 1.711
+- Moral-boundary intensity mean: 2.221
 
 ### Position-node marginals (1..5 scale)
 
@@ -334,11 +334,11 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 | Boundary | Mean salience |
 |---|---:|
 | national | 1.242 |
-| ethnic_racial | 1.000 |
+| ethnic_racial | 1.938 |
 | religious | 1.119 |
 | class | 1.037 |
 | ideological | 1.228 |
-| gender | 1.000 |
+| gender | 2.571 |
 | political_camp | 1.594 |
 
 ### Low-order joints (5×5 weighted outer-product, normalized)
@@ -394,7 +394,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 
 - Rows: **35**; total weight: **40050** (range 850.00 → 1500.00)
 - Engagement: mean 7.263, sd 1.498
-- Moral-boundary intensity mean: 2.023
+- Moral-boundary intensity mean: 2.079
 
 ### Position-node marginals (1..5 scale)
 
@@ -426,7 +426,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 | religious | 1.305 |
 | class | 0.886 |
 | ideological | 1.522 |
-| gender | 1.000 |
+| gender | 1.533 |
 | political_camp | 1.955 |
 
 ### Low-order joints (5×5 weighted outer-product, normalized)

@@ -1,6 +1,6 @@
 # Survey-to-PRISM mapper v0 — smoke summary
 
-**Run at:** 2026-05-04T19:49:04.431Z
+**Run at:** 2026-05-04T21:00:07.386Z
 **Years:** 2008, 2012, 2016, 2020, 2024
 **Sample size per year:** up to 200 respondents
 
@@ -13,8 +13,8 @@ Each respondent's mapper output was verified against `validateSignature` (every 
 | 2008 | 200 | 0 | 5.0% | ✅ |
 | 2012 | 200 | 0 | 29.3% | ✅ |
 | 2016 | 200 | 0 | 49.5% | ✅ |
-| 2020 | 200 | 0 | 49.6% | ✅ |
-| 2024 | 200 | 0 | 49.6% | ✅ |
+| 2020 | 200 | 0 | 59.7% | ✅ |
+| 2024 | 200 | 0 | 54.6% | ✅ |
 
 ## Per-target real-signal coverage by year
 
@@ -34,11 +34,11 @@ Coverage = share of mapped respondents whose target came from a real survey colu
 | EPS | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | AES | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | mb.national | 0.0% | 0.0% | 100.0% | 100.0% | 100.0% |
-| mb.ethnic_racial | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
+| mb.ethnic_racial | 0.0% | 0.0% | 0.0% | 100.0% | 0.0% |
 | mb.religious | 0.0% | 99.5% | 99.5% | 100.0% | 100.0% |
 | mb.class | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | mb.ideological | 0.0% | 90.5% | 93.5% | 96.0% | 95.0% |
-| mb.gender | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
+| mb.gender | 0.0% | 0.0% | 0.0% | 100.0% | 100.0% |
 | mb.political_camp | 0.0% | 97.5% | 99.5% | 98.5% | 98.0% |
 | engagement | 100.0% | 100.0% | 98.5% | 98.5% | 100.0% |
 

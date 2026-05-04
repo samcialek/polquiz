@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T19:49:04.428Z",
+  "runAt": "2026-05-04T21:00:07.378Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -397,7 +397,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year race-policy / thermometer items parsed"
+              "notes": "v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)"
             }
           },
           "religious": {
@@ -437,7 +437,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+              "notes": "v0.1I gender: gender-policy battery decoder gated to 2020/2024 (audited); year 2008 deferred to v0.2 with ANES gender items"
             }
           },
           "political_camp": {
@@ -861,7 +861,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year race-policy / thermometer items parsed"
+              "notes": "v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)"
             }
           },
           "religious": {
@@ -905,7 +905,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+              "notes": "v0.1I gender: gender-policy battery decoder gated to 2020/2024 (audited); year 2012 deferred to v0.2 with ANES gender items"
             }
           },
           "political_camp": {
@@ -1349,7 +1349,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year race-policy / thermometer items parsed"
+              "notes": "v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)"
             }
           },
           "religious": {
@@ -1395,7 +1395,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+              "notes": "v0.1I gender: gender-policy battery decoder gated to 2020/2024 (audited); year 2016 deferred to v0.2 with ANES gender items"
             }
           },
           "political_camp": {
@@ -1498,9 +1498,9 @@
           "realSignalShare": 1
         },
         "ethnic_racial": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "religious": {
           "realSignalCount": 200,
@@ -1518,9 +1518,9 @@
           "realSignalShare": 0.96
         },
         "gender": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "political_camp": {
           "realSignalCount": 197,
@@ -1534,9 +1534,9 @@
         "realSignalShare": 0.985
       },
       "meanCoverage": {
-        "realSignalCount": 1986,
-        "fallbackCount": 2014,
-        "realSignalShare": 0.4965
+        "realSignalCount": 2386,
+        "fallbackCount": 1614,
+        "realSignalShare": 0.5965
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -1838,13 +1838,18 @@
             }
           },
           "ethnic_racial": {
-            "salience": 1,
+            "salience": 1.3043478260869565,
             "provenance": {
-              "source": "fallback",
-              "vars": [],
+              "source": "real_signal",
+              "vars": [
+                "CC20_334a",
+                "CC20_334d",
+                "CC20_334e",
+                "CC20_334f"
+              ],
               "partyIdDerived": false,
-              "uncertainty": "high",
-              "notes": "v0: no per-year race-policy / thermometer items parsed"
+              "uncertainty": "medium",
+              "notes": "v0.1I ethnic_racial 2020: 4/5 items; signal=0.15 → salience=1.30; CC20_307 race-conditional gate=white-skipped; v0.2 needs ANES validation per spec §2.4"
             }
           },
           "religious": {
@@ -1884,13 +1889,17 @@
             }
           },
           "gender": {
-            "salience": 1,
+            "salience": 2,
             "provenance": {
-              "source": "fallback",
-              "vars": [],
+              "source": "real_signal",
+              "vars": [
+                "CC20_350a",
+                "CC20_350d",
+                "CC20_355d"
+              ],
               "partyIdDerived": false,
-              "uncertainty": "high",
-              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+              "uncertainty": "low",
+              "notes": "v0.1I gender 2020: 3/3 items; signal=0.50 → salience=2.00"
             }
           },
           "political_camp": {
@@ -1905,7 +1914,7 @@
               "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
             }
           },
-          "intensity": 1.5328571428571427,
+          "intensity": 1.707391304347826,
           "intensityProvenance": {
             "source": "real_signal",
             "vars": [
@@ -1913,12 +1922,12 @@
             ],
             "partyIdDerived": true,
             "uncertainty": "low",
-            "notes": "5/7 boundaries from real signal"
+            "notes": "7/7 boundaries from real signal"
           }
         },
         "coverage": {
-          "realSignalCount": 10,
-          "fallbackCount": 10,
+          "realSignalCount": 12,
+          "fallbackCount": 8,
           "totalTargets": 20
         }
       }
@@ -2013,9 +2022,9 @@
           "realSignalShare": 0.95
         },
         "gender": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "political_camp": {
           "realSignalCount": 196,
@@ -2029,9 +2038,9 @@
         "realSignalShare": 1
       },
       "meanCoverage": {
-        "realSignalCount": 1985,
-        "fallbackCount": 2015,
-        "realSignalShare": 0.49625
+        "realSignalCount": 2185,
+        "fallbackCount": 1815,
+        "realSignalShare": 0.54625
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -2337,7 +2346,7 @@
               "vars": [],
               "partyIdDerived": false,
               "uncertainty": "high",
-              "notes": "v0: no per-year race-policy / thermometer items parsed"
+              "notes": "v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)"
             }
           },
           "religious": {
@@ -2377,13 +2386,16 @@
             }
           },
           "gender": {
-            "salience": 1,
+            "salience": 2.1142857142857143,
             "provenance": {
-              "source": "fallback",
-              "vars": [],
+              "source": "real_signal",
+              "vars": [
+                "CC24_340c",
+                "CC24_323d"
+              ],
               "partyIdDerived": false,
-              "uncertainty": "high",
-              "notes": "v0: no per-year gender-policy / thermometer items parsed"
+              "uncertainty": "medium",
+              "notes": "v0.1I gender 2024: 2/2 items; signal=0.56 → salience=2.11; reduced composite (single-primary-item; spec §3.3)"
             }
           },
           "political_camp": {
@@ -2398,7 +2410,7 @@
               "notes": "party-ID derived; flagged for circularity exclusion in vote-prediction"
             }
           },
-          "intensity": 1.9190476190476191,
+          "intensity": 1.982721088435374,
           "intensityProvenance": {
             "source": "real_signal",
             "vars": [
@@ -2406,12 +2418,12 @@
             ],
             "partyIdDerived": true,
             "uncertainty": "low",
-            "notes": "5/7 boundaries from real signal"
+            "notes": "6/7 boundaries from real signal"
           }
         },
         "coverage": {
-          "realSignalCount": 10,
-          "fallbackCount": 10,
+          "realSignalCount": 11,
+          "fallbackCount": 9,
           "totalTargets": 20
         }
       }

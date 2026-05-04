@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T19:49:19.515Z",
+  "run_at": "2026-05-04T21:00:22.835Z",
   "phase": "2.7.7 — survey-to-PRISM mapper coverage audit (read-only diagnostic)",
   "config": {
     "sample_row_limit_per_year": 5000,
@@ -2174,8 +2174,8 @@
       "total_weight": 4463.53307731566,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 9.921799621192129,
-        "weighted_mean_fallback_per_row": 10.078200378807933,
+        "weighted_mean_real_signal_per_row": 11.92179962119214,
+        "weighted_mean_fallback_per_row": 8.078200378807912,
         "weighted_mean_party_id_derived_per_row": 1.961751207405605
       },
       "per_target": [
@@ -2632,26 +2632,36 @@
           "target_name": "moralBoundaries.ethnic_racial",
           "target_kind": "moral_boundary",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 100,
+            "high": 0
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2,
+          "top_source_fields": [
+            {
+              "field": "CC20_334f",
+              "weighted_use_pct": 100
+            },
+            {
+              "field": "CC20_334e",
+              "weighted_use_pct": 99.9870077741297
+            },
+            {
+              "field": "CC20_334d",
+              "weighted_use_pct": 99.9144633356601
+            }
+          ],
           "marginal_summary": {
-            "weighted_mean": 1,
-            "weighted_sd": 0,
-            "distance_from_fallback_default": 0
+            "weighted_mean": 1.7815017414640608,
+            "weighted_sd": 0.4325020950145268,
+            "distance_from_fallback_default": 0.7815017414640608
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "moralBoundaries.religious",
@@ -2742,26 +2752,36 @@
           "target_name": "moralBoundaries.gender",
           "target_kind": "moral_boundary",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
-            "low": 0,
+            "low": 100,
             "medium": 0,
-            "high": 100
+            "high": 0
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 1,
+          "top_source_fields": [
+            {
+              "field": "CC20_350d",
+              "weighted_use_pct": 99.98069910352903
+            },
+            {
+              "field": "CC20_350a",
+              "weighted_use_pct": 99.96596256929021
+            },
+            {
+              "field": "CC20_355d",
+              "weighted_use_pct": 99.22963440427905
+            }
+          ],
           "marginal_summary": {
-            "weighted_mean": 1,
-            "weighted_sd": 0,
-            "distance_from_fallback_default": 0
+            "weighted_mean": 2.5405355607028643,
+            "weighted_sd": 0.39844332621330136,
+            "distance_from_fallback_default": 1.5405355607028643
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "moralBoundaries.political_camp",
@@ -2798,16 +2818,16 @@
           "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 98.08756037028024,
           "uncertainty_weighted_share": {
-            "low": 94.13549672942591,
-            "medium": 5.8645032705743585,
+            "low": 100,
+            "medium": 0,
             "high": 0
           },
-          "mean_uncertainty_score": 1.0586450327057462,
+          "mean_uncertainty_score": 1,
           "top_source_fields": [],
           "marginal_summary": {
-            "weighted_mean": 1.856314947193415,
-            "weighted_sd": 0.3518993347629566,
-            "distance_from_fallback_default": 0.856314947193415
+            "weighted_mean": 2.2562253887158445,
+            "weighted_sd": 0.15994325117658606,
+            "distance_from_fallback_default": 1.2562253887158445
           },
           "near_uniform_or_fallback": false,
           "blocker_reasons": []
@@ -2868,20 +2888,6 @@
             "real-signal coverage 0.0% < 25%",
             "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
           ]
-        },
-        {
-          "target": "moralBoundaries.ethnic_racial",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
-        },
-        {
-          "target": "moralBoundaries.gender",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
         }
       ]
     },
@@ -2891,8 +2897,8 @@
       "total_weight": 5827.819631002991,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 9.898451720264307,
-        "weighted_mean_fallback_per_row": 10.101548279735743,
+        "weighted_mean_real_signal_per_row": 10.898451720264303,
+        "weighted_mean_fallback_per_row": 9.1015482797357,
         "weighted_mean_party_id_derived_per_row": 1.9578994908261096
       },
       "per_target": [
@@ -3451,26 +3457,32 @@
           "target_name": "moralBoundaries.gender",
           "target_kind": "moral_boundary",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 100,
+            "high": 0
           },
-          "mean_uncertainty_score": 3.0000000000000004,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2,
+          "top_source_fields": [
+            {
+              "field": "CC24_323d",
+              "weighted_use_pct": 99.98569892832589
+            },
+            {
+              "field": "CC24_340c",
+              "weighted_use_pct": 99.6614044048485
+            }
+          ],
           "marginal_summary": {
-            "weighted_mean": 1,
-            "weighted_sd": 0,
-            "distance_from_fallback_default": 0
+            "weighted_mean": 1.708059710584565,
+            "weighted_sd": 0.5049156665497008,
+            "distance_from_fallback_default": 0.708059710584565
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "moralBoundaries.political_camp",
@@ -3507,16 +3519,16 @@
           "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 97.89497454130547,
           "uncertainty_weighted_share": {
-            "low": 92.1224822612671,
-            "medium": 7.8775177387328785,
+            "low": 98.86906907136718,
+            "medium": 1.1309309286328235,
             "high": 0
           },
-          "mean_uncertainty_score": 1.0787751773873284,
+          "mean_uncertainty_score": 1.0113093092863283,
           "top_source_fields": [],
           "marginal_summary": {
-            "weighted_mean": 1.8964440786954253,
-            "weighted_sd": 0.326372950893119,
-            "distance_from_fallback_default": 0.8964440786954253
+            "weighted_mean": 1.9930950358592479,
+            "weighted_sd": 0.21126745905863997,
+            "distance_from_fallback_default": 0.9930950358592479
           },
           "near_uniform_or_fallback": false,
           "blocker_reasons": []
@@ -3580,13 +3592,6 @@
         },
         {
           "target": "moralBoundaries.ethnic_racial",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
-        },
-        {
-          "target": "moralBoundaries.gender",
           "reasons": [
             "real-signal coverage 0.0% < 25%",
             "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"

@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T19:49:32.787Z",
+  "run_at": "2026-05-04T21:00:37.361Z",
   "phase": "2.7.6 — synthetic electorate aggregate harness (mock universe)",
   "mock_disclaimer": "MOCK CONTRACT-TEST CELLS — not real population data; do not aggregate or interpret demographically.",
   "pipeline": {
@@ -1412,14 +1412,14 @@
         },
         "moral_boundary_mean_salience": {
           "national": 1.2424453242835596,
-          "ethnic_racial": 1,
+          "ethnic_racial": 1.9382057839858349,
           "religious": 1.1186764705882353,
           "class": 1.037420814479638,
           "ideological": 1.228054298642534,
-          "gender": 1,
+          "gender": 2.5714932126696834,
           "political_camp": 1.5942307692307693
         },
-        "moral_boundary_intensity_mean": 1.7108916720534366,
+        "moral_boundary_intensity_mean": 2.2206451149021484,
         "engagement": {
           "mean": 8.129253393665158,
           "sd": 1.916749672448746
@@ -1815,10 +1815,10 @@
           "religious": 1.3050561797752809,
           "class": 0.8859925093632959,
           "ideological": 1.5217228464419477,
-          "gender": 1,
+          "gender": 1.5328910290708044,
           "political_camp": 1.9546816479400748
         },
-        "moral_boundary_intensity_mean": 2.0228603531300164,
+        "moral_boundary_intensity_mean": 2.078736630232618,
         "engagement": {
           "mean": 7.263445692883895,
           "sd": 1.4977309887680612

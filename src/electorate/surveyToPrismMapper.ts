@@ -923,6 +923,247 @@ function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry
 }
 
 /**
+ * `moralBoundaries.ethnic_racial` salience — shipped in mapper v0.1I for
+ * **2020 only**.
+ *
+ * Per `mapper-zs-boundary-implementation-spec.md` §2: 2020 is the only
+ * cycle with a CCES race-policy battery clean enough for v0.1 (the
+ * post-George-Floyd `CC20_334` police-reform battery + `CC20_307` police-
+ * trust item). 2008 / 2012 / 2016 / 2024 lack analogous items in CCES
+ * standard form and stay at fallback (salience 1.0). v0.2 will revisit
+ * with ANES `VCF0830` once the ANES loader ships.
+ *
+ * **Items + per-item signal functions** (codebook-verified per spec §2.2):
+ *
+ *   - `CC20_307` "Do the police make you feel...?" (1=Mostly safe →
+ *     4=Mostly unsafe). **Race-conditional**: only contributes for
+ *     non-white respondents (white police-safety answers are largely
+ *     uninformative). `signal = max(0, (response − 2) / 2)` ∈ [0, 1].
+ *     Weight 0.5×.
+ *   - `CC20_334a` "Eliminate mandatory minimums for non-violent drug
+ *     offenders" — Support → +1.0, else 0. Weight 0.5×.
+ *   - `CC20_334d` "Decrease the number of police on the street by 10
+ *     percent..." — Support → +1.0, else 0. Weight 0.5×.
+ *   - `CC20_334e` "Ban the use of choke holds by police" — Support → +0.5,
+ *     else 0 (half-strength because broadly popular). Weight 0.3×.
+ *   - `CC20_334f` "Create a national registry of police investigated for
+ *     misconduct" — Support → +0.7, else 0. Weight 0.5×.
+ *
+ * **Formula** (per spec §2.4): `signal = (Σ w_i × s_i) / 2.3`. Output is
+ * one-sided in [0, +1]; salience = `1.0 + 2.0 × signal` ∈ [1.0, 3.0].
+ *
+ * **Excluded** per spec §2.3: `CC20_334b` (universally popular body
+ * cameras — zero discriminator), `CC20_334c` (anti-reform polarity flip),
+ * `CC20_334g` (anti-militarism cross-load), `CC20_334h` (PRO cross-load).
+ *
+ * Coding: 1=Support, 2=Oppose, 8=Skipped, 9=Not Asked, "."=missing.
+ *
+ * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers, no
+ * `pid7`, no turnout fields. Reads only `CC20_307`, `CC20_334{a,d,e,f}`,
+ * and the `race` / `hispanic` demographic columns (for the race-conditional
+ * gate on CC20_307).
+ */
+function deriveEthnicRacialBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
+  if (r.year !== 2020) {
+    return fallbackBoundary(`v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)`);
+  }
+  const payload = r.rawVarPayload;
+
+  // Race-conditional gate. Non-white = race ≠ 1 (white) OR hispanic flag = 1.
+  const race = parseCodedNumber(payload["race"]);
+  const hispanic = parseCodedNumber(payload["hispanic"]);
+  const isNonWhite = (race !== null && race !== 1) || hispanic === 1;
+
+  let numerator = 0;
+  const denominator = 2.3; // fixed per spec §2.4 (sum of all item weights)
+  let answeredCount = 0;
+  const usedVars: string[] = [];
+
+  // CC20_307 — race-conditional one-sided unsafe-to-high signal
+  if (isNonWhite) {
+    const v = parseCodedNumber(payload["CC20_307"]);
+    if (v !== null && v >= 1 && v <= 4) {
+      const s = Math.max(0, (v - 2) / 2);
+      numerator += 0.5 * s;
+      answeredCount++;
+      usedVars.push("CC20_307");
+    }
+  }
+
+  // CC20_334a — Support → +1.0 (one-sided)
+  const v_a = parseCodedNumber(payload["CC20_334a"]);
+  if (v_a === 1 || v_a === 2) {
+    numerator += 0.5 * (v_a === 1 ? 1.0 : 0);
+    answeredCount++;
+    usedVars.push("CC20_334a");
+  }
+
+  // CC20_334d — Support → +1.0 (one-sided)
+  const v_d = parseCodedNumber(payload["CC20_334d"]);
+  if (v_d === 1 || v_d === 2) {
+    numerator += 0.5 * (v_d === 1 ? 1.0 : 0);
+    answeredCount++;
+    usedVars.push("CC20_334d");
+  }
+
+  // CC20_334e — Support → +0.5 (one-sided, half-strength)
+  const v_e = parseCodedNumber(payload["CC20_334e"]);
+  if (v_e === 1 || v_e === 2) {
+    numerator += 0.3 * (v_e === 1 ? 0.5 : 0);
+    answeredCount++;
+    usedVars.push("CC20_334e");
+  }
+
+  // CC20_334f — Support → +0.7 (one-sided)
+  const v_f = parseCodedNumber(payload["CC20_334f"]);
+  if (v_f === 1 || v_f === 2) {
+    numerator += 0.5 * (v_f === 1 ? 0.7 : 0);
+    answeredCount++;
+    usedVars.push("CC20_334f");
+  }
+
+  if (answeredCount === 0) {
+    return fallbackBoundary("v0.1I ethnic_racial 2020: no race-policy items answered");
+  }
+
+  const signal = numerator / denominator; // [0, ~0.87]
+  const salience = Math.min(3.0, 1.0 + 2.0 * signal);
+
+  return {
+    salience,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty: "medium",
+      notes: `v0.1I ethnic_racial 2020: ${answeredCount}/5 items; signal=${signal.toFixed(2)} → salience=${salience.toFixed(2)}; CC20_307 race-conditional gate=${isNonWhite ? "non-white" : "white-skipped"}; v0.2 needs ANES validation per spec §2.4`,
+    },
+  };
+}
+
+/**
+ * `moralBoundaries.gender` salience — shipped in mapper v0.1I for **2020
+ * and 2024**.
+ *
+ * Per `mapper-zs-boundary-implementation-spec.md` §3: 2020 has the
+ * cleanest gender-salience composite (LGBT non-discrimination amendment +
+ * equal-pay item + transgender military item). 2024 has only the marriage-
+ * recognition item plus a marginal Dreamers cross-load. 2008 / 2012 /
+ * 2016 stay at fallback (no audited per-year gender items in CCES
+ * standard form for those cycles).
+ *
+ * **2020 items** (spec §3.1, §3.2):
+ *   - `CC20_350a` "Amend federal laws to prohibit discrimination on the
+ *     basis of gender identity and sexual orientation" — Favor → +1.0,
+ *     else 0 (one-sided). Weight 1.0×.
+ *   - `CC20_350d` "Require equal pay for women and men..." — Favor →
+ *     +0.5, else 0 (half-strength because broadly popular). Weight 0.5×.
+ *   - `CC20_355d` "Ban Transgender People in the Military" — **Support OR
+ *     Oppose** → +1.0, missing → 0 (DIRECTION-AGNOSTIC: both anti-trans and
+ *     pro-trans respondents show high gender salience; only apolitical
+ *     respondents push salience low). Weight 1.0×. **Cleanest gender-
+ *     salience signal** — the only direction-agnostic item.
+ *   - Formula: `signal = (Σ w_i × s_i) / 2.5`. Salience = 1.0 + 2.0 ×
+ *     signal ∈ [1.0, 3.0].
+ *
+ * **2024 items** (spec §3.3, §3.4 — REDUCED composite):
+ *   - `CC24_340c` "Federal recognition of same-sex + interracial
+ *     marriages" — Support → +0.7, else 0 (one-sided, reduced strength).
+ *     Weight 0.5×.
+ *   - `CC24_323d` "Provide permanent resident status to Dreamers" —
+ *     Support → +0.2, else 0 (light universalist cross-load; marginal).
+ *     Weight 0.2×.
+ *   - Formula: `signal = (Σ w_i × s_i) / 0.7`. Salience = 1.0 + 2.0 ×
+ *     signal. Mapper flags uncertainty `medium` — single-primary-item
+ *     composite.
+ *
+ * Coding: 1=Support/Favor, 2=Oppose, 8=Skipped, 9=Not Asked, "."=missing.
+ *
+ * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers, no
+ * `pid7`, no turnout fields. Reads only `CC20_350{a,d}`, `CC20_355d`,
+ * `CC24_340c`, `CC24_323d`.
+ */
+function deriveGenderBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
+  if (r.year !== 2020 && r.year !== 2024) {
+    return fallbackBoundary(`v0.1I gender: gender-policy battery decoder gated to 2020/2024 (audited); year ${r.year} deferred to v0.2 with ANES gender items`);
+  }
+  const payload = r.rawVarPayload;
+
+  let numerator = 0;
+  let denominator: number;
+  let answeredCount = 0;
+  const usedVars: string[] = [];
+  let uncertaintyClass: Uncertainty;
+
+  if (r.year === 2020) {
+    denominator = 2.5; // fixed per spec §3.2
+    uncertaintyClass = "low";
+
+    // CC20_350a — Favor → +1.0 (one-sided)
+    const v_350a = parseCodedNumber(payload["CC20_350a"]);
+    if (v_350a === 1 || v_350a === 2) {
+      numerator += 1.0 * (v_350a === 1 ? 1.0 : 0);
+      answeredCount++;
+      usedVars.push("CC20_350a");
+    }
+
+    // CC20_350d — Favor → +0.5 (one-sided, half-strength)
+    const v_350d = parseCodedNumber(payload["CC20_350d"]);
+    if (v_350d === 1 || v_350d === 2) {
+      numerator += 0.5 * (v_350d === 1 ? 0.5 : 0);
+      answeredCount++;
+      usedVars.push("CC20_350d");
+    }
+
+    // CC20_355d — Support OR Oppose → +1.0 (DIRECTION-AGNOSTIC)
+    const v_355d = parseCodedNumber(payload["CC20_355d"]);
+    if (v_355d === 1 || v_355d === 2) {
+      numerator += 1.0 * 1.0; // any response = full direction-agnostic signal
+      answeredCount++;
+      usedVars.push("CC20_355d");
+    }
+  } else {
+    // r.year === 2024
+    denominator = 0.7; // fixed per spec §3.4
+    uncertaintyClass = "medium";
+
+    // CC24_340c — Support → +0.7 (one-sided)
+    const v_340c = parseCodedNumber(payload["CC24_340c"]);
+    if (v_340c === 1 || v_340c === 2) {
+      numerator += 0.5 * (v_340c === 1 ? 0.7 : 0);
+      answeredCount++;
+      usedVars.push("CC24_340c");
+    }
+
+    // CC24_323d — Support → +0.2 (one-sided, marginal)
+    const v_323d = parseCodedNumber(payload["CC24_323d"]);
+    if (v_323d === 1 || v_323d === 2) {
+      numerator += 0.2 * (v_323d === 1 ? 0.2 : 0);
+      answeredCount++;
+      usedVars.push("CC24_323d");
+    }
+  }
+
+  if (answeredCount === 0) {
+    return fallbackBoundary(`v0.1I gender ${r.year}: no gender-policy items answered`);
+  }
+
+  const signal = numerator / denominator;
+  const salience = Math.min(3.0, 1.0 + 2.0 * signal);
+
+  return {
+    salience,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty: uncertaintyClass,
+      notes: `v0.1I gender ${r.year}: ${answeredCount}/${r.year === 2020 ? 3 : 2} items; signal=${signal.toFixed(2)} → salience=${salience.toFixed(2)}${r.year === 2024 ? "; reduced composite (single-primary-item; spec §3.3)" : ""}`,
+    },
+  };
+}
+
+/**
  * Class salience from `union` (1=yes member or HH, 2=no, 8=skipped).
  * Light proxy — surfaces at most a mild class boundary; spec rates this
  * as "medium" coverage at best.
@@ -1040,8 +1281,8 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   const political_camp = derivePoliticalCampBoundary(payload);
   const class_ = deriveClassBoundary(payload);
   const national = deriveNationalBoundary(r);
-  const ethnic_racial = fallbackBoundary("v0: no per-year race-policy / thermometer items parsed");
-  const gender = fallbackBoundary("v0: no per-year gender-policy / thermometer items parsed");
+  const ethnic_racial = deriveEthnicRacialBoundary(r);
+  const gender = deriveGenderBoundary(r);
 
   // Intensity = max(per_boundary) * 0.6 + mean(per_boundary) * 0.4 (per spec).
   const sals = [
