@@ -1,0 +1,218 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 acquisition manifest",
+  "created": "2026-05-04",
+  "status": "manifest only; no raw data downloads, no commits to data/",
+  "purpose": "Specify five IPUMS USA PUMS extracts (one per backtest cycle 2008/2012/2016/2020/2024) sufficient to populate VepUniverseRow instances per src/electorate/vepUniverseTypes.ts.",
+  "explicitly_not_in_this_manifest": [
+    "No raw data downloads.",
+    "No file checksums (those are recorded per-extract once downloaded).",
+    "No download URLs (IPUMS extracts require authenticated build; URLs are unique per extract).",
+    "No downloader script.",
+    "No engine / mapper / signature-imputation-bridge / selector / topK / browser / dist / output / live-data / candidate / era-context / raw-data edits."
+  ],
+  "extracts": [
+    {
+      "cycle": 2008,
+      "acs_vintage_primary": "5-year 2005-2009",
+      "acs_vintage_supplement": "1-year 2008 (for state-level totals on geographies >= 65k)",
+      "ipums_samples": ["us2005c", "us2006a", "us2007a", "us2008a", "us2009a"],
+      "approx_size_gb": 1.5,
+      "notes": "ACS 5-year coverage starts 2009; for 2008 the 5-yr 2005-2009 is the workhorse with the 1-yr 2008 file as state-level supplement."
+    },
+    {
+      "cycle": 2012,
+      "acs_vintage_primary": "5-year 2008-2012",
+      "ipums_samples": ["us2008a", "us2009a", "us2010a", "us2011a", "us2012a"],
+      "approx_size_gb": 2.0,
+      "notes": "Mature 5-year by then."
+    },
+    {
+      "cycle": 2016,
+      "acs_vintage_primary": "5-year 2012-2016",
+      "ipums_samples": ["us2012a", "us2013a", "us2014a", "us2015a", "us2016a"],
+      "approx_size_gb": 2.5,
+      "notes": "Workhorse."
+    },
+    {
+      "cycle": 2020,
+      "acs_vintage_primary": "5-year 2016-2020",
+      "ipums_samples": ["us2016a", "us2017a", "us2018a", "us2019a", "us2020a"],
+      "approx_size_gb": 3.0,
+      "notes": "2020 1-year ACS NOT released (COVID-driven response collapse). 5-yr is the only ACS option."
+    },
+    {
+      "cycle": 2024,
+      "acs_vintage_primary": "5-year 2020-2024 (when released; currently 2019-2023 interim)",
+      "ipums_samples": ["us2020a", "us2021a", "us2022a", "us2023a", "us2024a"],
+      "ipums_samples_interim": ["us2019a", "us2020a", "us2021a", "us2022a", "us2023a"],
+      "approx_size_gb": 3.0,
+      "notes": "If 2020-2024 not yet shipped, use 2019-2023 with documented vintage_lag: 1 flag in coverageNotes."
+    }
+  ],
+  "approx_total_size_gb": 12,
+  "required_variables": {
+    "identifier_geography": [
+      { "ipums": "YEAR", "pums": "YEAR", "vepRowField": "respondentId (component)", "notes": "ACS data year" },
+      { "ipums": "SAMPLE", "pums": "(IPUMS-only)", "vepRowField": "sourceDataset", "notes": "IPUMS sample code" },
+      { "ipums": "SERIAL", "pums": "SERIALNO", "vepRowField": "respondentId (component)", "notes": "Household serial" },
+      { "ipums": "PERNUM", "pums": "SPORDER", "vepRowField": "respondentId (component)", "notes": "Person number within household" },
+      { "ipums": "STATEFIP", "pums": "STATE", "vepRowField": "state", "notes": "Loader normalizes 2-digit FIPS to 2-letter abbrev" },
+      { "ipums": "PUMA", "pums": "PUMA", "vepRowField": "puma", "notes": "5-digit PUMA code" }
+    ],
+    "demographics": [
+      { "ipums": "AGE", "pums": "AGEP", "vepRowField": "age (+ derived ageBucket)", "notes": "Top-coded at 95" },
+      { "ipums": "SEX", "pums": "SEX", "vepRowField": "sex", "values": { "1": "male", "2": "female" } },
+      { "ipums": "RACE", "pums": "RAC1P (raw)", "vepRowField": "race", "notes": "IPUMS-harmonized RACE; RACED carries detail for collapsing" },
+      { "ipums": "RACED", "pums": "RAC1P", "vepRowField": "(intermediate)", "notes": "Detailed race code; not on row" },
+      { "ipums": "HISPAN", "pums": "HISP", "vepRowField": "hispanic", "notes": "Derived: HISPAN != 'not Hispanic'" },
+      { "ipums": "EDUC", "pums": "SCHL (raw)", "vepRowField": "education", "notes": "IPUMS-harmonized EDUC; EDUCD carries detail" },
+      { "ipums": "EDUCD", "pums": "SCHL", "vepRowField": "(intermediate)", "notes": "Detailed education code; not on row" },
+      { "ipums": "HHINCOME", "pums": "HINCP", "vepRowField": "incomeBucket", "notes": "Continuous, top-coded; loader bucketizes" },
+      { "ipums": "CITIZEN", "pums": "CIT", "vepRowField": "citizenship", "notes": "Mapped to {us_born, us_naturalized, us_territory, non_citizen}" }
+    ],
+    "weights": [
+      { "ipums": "PERWT", "pums": "PWGTP", "vepRowField": "personWeight", "notes": "Person weight; finite > 0" },
+      { "ipums": "REPWTP1..REPWTP80", "pums": "PWGTP1..PWGTP80", "vepRowField": "replicateWeights", "notes": "80 replicate weights for variance estimation" }
+    ],
+    "optional_for_future": [
+      { "ipums": "MIGSP1 / MIGPUMA1 / MIGPLAC1", "pums": "MIGSP1", "vepRowField": "(not on row in v1)", "future_use": "Migration model (Phase 4+)" },
+      { "ipums": "GQ", "pums": "GQ", "vepRowField": "(loader uses to set incomeBucket = null)", "future_use": "Group-quarters handling" }
+    ]
+  },
+  "subset_filters": {
+    "AGE": "AGE >= 18",
+    "STATEFIP": "1..56 (50 states + DC; excludes PR (72) and minor territories)",
+    "rationale": "US territories do not vote in presidential elections; bridge has no signature template for non-state populations."
+  },
+  "coding_tables": {
+    "race": {
+      "white_alone": "white",
+      "black_aa_alone": "black",
+      "amerindian_alone_or_alaska_native_or_tribe_specified": "amerindian",
+      "asian_alone": "asian",
+      "nhpi_alone": "nhpi",
+      "some_other_race_alone": "other_single",
+      "two_or_more_races": "two_or_more"
+    },
+    "hispanic": {
+      "not_hispanic": false,
+      "any_hispanic_origin": true
+    },
+    "education": {
+      "no_school_through_12th_no_diploma": "less_than_hs",
+      "regular_hs_diploma_or_ged": "hs_grad",
+      "some_college_or_associates": "some_college",
+      "bachelors": "bachelor",
+      "masters_professional_doctoral": "graduate"
+    },
+    "citizenship": {
+      "born_in_us": "us_born",
+      "born_in_pr_or_us_territories": "us_territory",
+      "born_abroad_of_us_parents": "us_born",
+      "us_citizen_by_naturalization": "us_naturalized",
+      "not_a_citizen": "non_citizen",
+      "note": "Born abroad of US parents -> us_born because they are constitutionally eligible voters."
+    },
+    "income_bucket": [
+      { "range_usd": "< 25000", "bucket": "<25k" },
+      { "range_usd": "25000-49999", "bucket": "25-50k" },
+      { "range_usd": "50000-74999", "bucket": "50-75k" },
+      { "range_usd": "75000-99999", "bucket": "75-100k" },
+      { "range_usd": "100000-149999", "bucket": "100-150k" },
+      { "range_usd": ">= 150000", "bucket": "150k+" },
+      { "range_usd": "group_quarters_indicator", "bucket": "null" }
+    ]
+  },
+  "vep_eligible_derivation": {
+    "formula": "vepEligible = (age >= 18) AND (citizenship ∈ {us_born, us_naturalized}) AND NOT state_disenfranchised(state, demographic_cell)",
+    "felon_disenfranchisement": "Static per-state percentage from the Sentencing Project tracker; surfaces in coverageNotes when applied."
+  },
+  "local_placement_convention": {
+    "root": "data/acs-pums/",
+    "per_cycle_subdir": "data/acs-pums/{year}/",
+    "files_per_cycle": [
+      "usa_NNNNN.dat.gz (raw data; UNTRACKED)",
+      "usa_NNNNN.xml (DDI codebook; UNTRACKED)",
+      "README.md (extract metadata: extract id, query parameters, sha256 checksums, download date; COMMITTABLE)"
+    ],
+    "gitignore": {
+      "path": "data/acs-pums/.gitignore",
+      "patterns": ["*.dat", "*.dat.gz", "*.xml", "*.csv"],
+      "rationale": "Mirrors data/backtest-sources/ convention (FEC PDFs, Election Lab CSVs are similarly untracked)."
+    }
+  },
+  "post_download_validation_suite": {
+    "V1_aggregate_vep": {
+      "metric": "Σ personWeight where vepEligible = true (per year)",
+      "compared_to": "results/electorate/backtest/benchmarks-2008-2024.json (McDonald/UF VEP)",
+      "pass_criterion": "|PUMS_VEP - benchmark_VEP| / benchmark_VEP < 0.015"
+    },
+    "V2_state_level_vep": {
+      "metric": "Σ personWeight where vepEligible = true (per year, per state)",
+      "compared_to": "McDonald/UF state-level breakdowns",
+      "pass_criterion": "max per-state gap < 0.02; replicate-weight 90% CI must cover benchmark for small-N states"
+    },
+    "V3_age_x_citizenship_marginals": {
+      "metric": "Weighted age-bucket × citizenship cross-tab",
+      "compared_to": "ACS B05003 published cells via Census API",
+      "pass_criterion": "90% CI from replicate weights overlaps published cell"
+    },
+    "V4_replicate_weight_integrity": {
+      "checks": [
+        "replicateWeights.length === 80 for every row",
+        "every weight finite and >= 0 (zero allowed by IPUMS contract)",
+        "per (state, year) Kish design effect (Σw)²/Σw² in [1.5, 5.0]"
+      ]
+    },
+    "V5_eligibility_invariant": {
+      "metric": "Every row with vepEligible=true has age>=18 AND citizenship ∈ {us_born, us_naturalized}",
+      "enforced_by": "validateVepUniverseRow in src/electorate/vepUniverseTypes.ts; loader smoke re-verifies on full corpus"
+    },
+    "V6_weight_non_negativity": {
+      "metric": "personWeight > 0 and finite for every row",
+      "loader_contract": "skip-on-bad-weight",
+      "alert_threshold": "rowsSkipped / rowsLoaded > 0.001 (0.1%)"
+    },
+    "V7_donor_cell_sparsity_cross_check": {
+      "metric": "For each (year, state, race × sex × age_bucket × education) cell, count CES/CCES donors",
+      "purpose": "Pre-flight for the bridge's MIN_DONORS=25 threshold; thin cells flagged for backoff awareness",
+      "output": "results/electorate/synthetic-electorate/cellSparsityReport.{year}.json (Phase 2.7 v1 loader smoke)"
+    }
+  },
+  "acquisition_gate": {
+    "policy": "User must explicitly approve before any IPUMS USA login / extract / download.",
+    "this_manifest": "Specifies what to acquire. Does not initiate acquisition.",
+    "checklist": [
+      "Open IPUMS USA account (https://usa.ipums.org/usa/, free)",
+      "Configure five extracts per the extracts table; apply subset filters",
+      "Submit each extract; record IPUMS extract ID per cycle README",
+      "Download .dat.gz + .xml to data/acs-pums/{year}/",
+      "Compute sha256 of each .dat.gz; record in cycle README",
+      "Commit only data/acs-pums/.gitignore + per-cycle README.md files; never raw data",
+      "Run vepUniverseLoader.ts smoke (Phase 2.7 v1) and verify V1-V7 all pass before universe is bridge-ready"
+    ]
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      { "artifact": "vep-universe-loader-plan.md", "status": "shipped" },
+      { "artifact": "vepUniverseTypes.ts (VepUniverseRow schema)", "status": "shipped (b3fa12a)" }
+    ],
+    "blocks": [
+      "Phase 2.7 v1 loader (vepUniverseLoader.ts)",
+      "Phase 2.8 mapper-backed Stage A backtest",
+      "Phase 2.4 Stage B abstention calibration"
+    ]
+  },
+  "open_issues_for_v1_loader": [
+    "Sentencing Project tracker URL + retrieval cadence for state_disenfranchised lookup table.",
+    "PUMA-2010 vs PUMA-2020 boundary changes — pre-2018 PUMS uses 2010 boundaries; 2018+ uses 2020; cross-vintage analyses need a crosswalk.",
+    "Whether to ship MRP raking helper inside the loader or as a separate module (prefer separate)."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/ipums-pums-extract-manifest.md",
+    "results/electorate/synthetic-electorate/ipums-pums-extract-manifest.json"
+  ],
+  "terminology": "vepEligible is the population-skeleton invariant. Engagement is a downstream-of-universe concern — separate 1D continuous scalar per ADR canon, not surfaced by PUMS. Compound moral-circle (moralBoundaries) terminology applies at the bridge step (already shipped at d2c9e14), not at extract time. Legacy code identifiers (PWGTP, RAC1P, SCHL, HINCP, STATEFIP etc.) appear only as PUMS / IPUMS column names.",
+  "revision_history": []
+}
