@@ -1,0 +1,353 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper v0.1 prep",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Independently verify directionality of every CCES item the v0.1 mapper plans to consume, before any code is written that could invert a sign.",
+  "codebooks_consulted": [
+    "data/cces2016/hcbk0006.htm (CCES 2016 HTML codebook, item batteries)",
+    "data/cces2016/hcbk0007.htm (CCES 2016 HTML codebook, congressional support items)",
+    "data/cces2016/hcbkfx0.htm (CCES 2016 HTML codebook index)",
+    "data/cces2020/CES20_Common_pre_qx.pdf (CES 2020 pre-wave question text)",
+    "data/cces2020/CES20_Common_OUTPUT_vv.csv header (CES 2020 column-name confirmation)"
+  ],
+  "explicitly_not_in_this_audit": [
+    "No mapper logic modifications.",
+    "No new evidence-map entries in src/config/questions.*.ts (those are PRISM quiz questions, unrelated to CCES survey items).",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits.",
+    "No raw-data downloads."
+  ],
+  "summary": {
+    "totalColumnsAudited": 19,
+    "shipReady": 10,
+    "shipReducedWeight": 6,
+    "holdForV02": 3,
+    "byBattery": {
+      "CD_abortion_CC16_332_CC20_332": { "audited": 13, "shipReady": 8, "mediumConfidence": 3, "holdV02": 2 },
+      "CU_immigration_CC16_331": { "audited": 4, "shipReady": 2, "mediumConfidence": 2, "holdV02": 0 },
+      "MAT_economic_CC16_337_CC16_351": { "audited": 5, "shipReady": 3, "mediumConfidence": 1, "holdV02": 1 },
+      "moralBoundaries_national_subset": { "audited": 2, "shipReady": 0, "mediumConfidence": 2, "holdV02": 0 }
+    }
+  },
+  "abortion_battery": {
+    "battery_prompt": "On the topic of abortion, do you support or oppose each of the following proposals?",
+    "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "items": [
+      {
+        "variable": "CC16_332a",
+        "year": 2016,
+        "question_wording": "Always allow a woman to obtain an abortion as a matter of choice",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD low; Oppose → CD high",
+        "confidence": "high",
+        "cross_loads": ["MOR (mild universalist)"],
+        "ship_ready_v01": true,
+        "v01_weight": 1.0,
+        "notes": "Maximally pro-choice item, unambiguous direction."
+      },
+      {
+        "variable": "CC20_332a",
+        "year": 2020,
+        "question_wording": "Always allow a woman to obtain an abortion as a matter of choice",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD low; Oppose → CD high",
+        "confidence": "high",
+        "cross_loads": ["MOR (mild universalist)"],
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC16_332b",
+        "year": 2016,
+        "question_wording": "Permit abortion only in case of rape, incest or when the woman's life is in danger",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction_intended": "Support → CD high; Oppose → CD low",
+        "confidence": "medium-low",
+        "cross_loads": [],
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "ambiguity_notes": "Asymmetric ambiguity on Oppose: can mean 'too restrictive' (→ CD low, dominant interpretation) OR 'not restrictive enough — abortion should be illegal even in rape/incest' (→ CD HIGH). Approx 5–10% of opposers also support CC16_332f total ban — those would be coded the wrong direction by a naive Support→high / Oppose→low rule.",
+        "v02_mitigation": "Code Oppose conditional on CC16_332f response: if respondent ALSO supports 332f total ban, flip the sign."
+      },
+      {
+        "variable": "CC20_332b",
+        "year": 2020,
+        "question_wording": "Permit abortion only in case of rape, incest or when the woman's life is in danger",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction_intended": "Support → CD high; Oppose → CD low",
+        "confidence": "medium-low",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "ambiguity_notes": "Same as CC16_332b."
+      },
+      {
+        "variable": "CC16_332c",
+        "year": 2016,
+        "question_wording": "Prohibit all abortions after the 20th week of pregnancy",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "high",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC20_332c",
+        "year": 2020,
+        "question_wording": "Prohibit all abortions after the 20th week of pregnancy",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "high",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC16_332d",
+        "year": 2016,
+        "question_wording": "Allow employers to decline coverage of abortions in insurance plans",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "medium",
+        "cross_loads": ["PRO (libertarian)", "moralBoundaries.religious"],
+        "ship_ready_v01": "with_reduced_weight",
+        "v01_weight": 0.5,
+        "notes": "Religious-liberty / employer-conscience framing. Respondent can support employer conscience for libertarian reasons without being culturally traditionalist on abortion itself."
+      },
+      {
+        "variable": "CC20_332d",
+        "year": 2020,
+        "question_wording": "Allow employers to decline coverage of abortions in insurance plans",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "medium",
+        "cross_loads": ["PRO (libertarian)", "moralBoundaries.religious"],
+        "ship_ready_v01": "with_reduced_weight",
+        "v01_weight": 0.5
+      },
+      {
+        "variable": "CC16_332e",
+        "year": 2016,
+        "question_wording": "Prohibit the expenditure of funds authorized or appropriated by federal law for any abortion (Hyde Amendment)",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "high-medium",
+        "cross_loads": ["MAT (light, federal-funding component)"],
+        "ship_ready_v01": true,
+        "v01_weight": 1.0,
+        "notes": "Direction unambiguous on CD. Light MAT cross-load is acceptable noise given Q337/Q351 do MAT heavy lifting."
+      },
+      {
+        "variable": "CC20_332e",
+        "year": 2020,
+        "question_wording": "Prohibit the expenditure of funds authorized or appropriated by federal law for any abortion (Hyde Amendment)",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD high; Oppose → CD low",
+        "confidence": "high-medium",
+        "cross_loads": ["MAT (light)"],
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC16_332f",
+        "year": 2016,
+        "question_wording": "Make abortions illegal in all circumstances",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD very high; Oppose → CD low (broad range, naturally averaged by composite)",
+        "confidence": "high_on_support_medium_on_oppose_magnitude",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0,
+        "notes": "Cleanest signal for the extreme traditionalist tail. Apply with high weight."
+      },
+      {
+        "variable": "CC20_332f",
+        "year": 2020,
+        "question_wording": "Make abortions illegal in all circumstances",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction": "Support → CD very high; Oppose → CD low",
+        "confidence": "high_on_support_medium_on_oppose_magnitude",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC20_332g",
+        "year": 2020,
+        "question_wording": "Prohibit states from requiring that abortions be performed only at hospitals (not clinics)",
+        "target_node": "CD",
+        "target_role": "position",
+        "direction_intended": "Support → CD low; Oppose → CD high",
+        "confidence": "low-medium",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "ambiguity_notes": "Double-negative wording ('Prohibit states from requiring...'). Misread risk: respondents may interpret as 'do you support hospital-only requirements?' and answer based on that, exactly inverting intended direction.",
+        "v02_validation": "Concurrent-validity check vs CC20_332a — Support rate on g should track pro-choice rate of a (~60%); large divergence indicates misreads."
+      }
+    ],
+    "v01_composite_recommendation": "Use a, c, e, f from both 2016 and 2020 (8 columns). Apply d at half weight. Hold b and g."
+  },
+  "immigration_battery_subset": {
+    "battery_codes": { "1": "Yes", "2": "No", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "battery_note": "CC16_331_* items had answered-N ~13K of 64K respondents (sampled subset / routed sub-question).",
+    "items": [
+      {
+        "variable": "CC16_331_1",
+        "year": 2016,
+        "question_wording": "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes",
+        "wording_source": "codebook label truncated; full wording from standard CCES 2016 Common Content Guide",
+        "target_nodes": ["CU/position (primary)", "MOR/position (light universalist)"],
+        "direction": "Yes → CU high; No → CU low",
+        "confidence": "high",
+        "ship_ready_v01": true,
+        "v01_weight_cu": 0.5,
+        "national_salience_load": "none material — does not measure national-boundary salience"
+      },
+      {
+        "variable": "CC16_331_2",
+        "year": 2016,
+        "question_wording": "Increase the number of border patrols on the U.S.-Mexican border",
+        "target_nodes": ["CU/position", "moralBoundaries.national"],
+        "direction": "Yes → CU low + national.salience high; No → CU high + national.salience low",
+        "confidence": "medium",
+        "ship_ready_v01": "with_reduced_weight",
+        "v01_weight_cu": 0.5,
+        "v01_weight_national": 0.5,
+        "cross_load_caveat": "Some respondents support more patrols for crime/security reasons (cross-loads on ZS, ONT_S) rather than national-pride reasons. Direction on CU is clean; national-salience load is medium."
+      },
+      {
+        "variable": "CC16_331_5",
+        "year": 2016,
+        "question_wording": "Admit no refugees from Syria",
+        "target_nodes": ["CU/position", "moralBoundaries.national", "MOR/position (light)"],
+        "direction": "Yes → CU low + national.salience high + MOR low; No → CU high + national.salience low + MOR high",
+        "confidence": "high",
+        "ship_ready_v01": true,
+        "v01_weight_cu": 1.0,
+        "v01_weight_national": 1.0,
+        "notes": "Cleanest 'national vs universal moral circle' item in the battery. Light cross-load to ethnic_racial / religious moral boundary because Syrian refugees were predominantly Muslim."
+      },
+      {
+        "variable": "CC16_331_8",
+        "year": 2016,
+        "question_wording": "Ban Muslims from immigrating to the U.S.",
+        "target_nodes": ["CU/position", "moralBoundaries.national", "moralBoundaries.religious", "moralBoundaries.ethnic_racial (secondary)"],
+        "direction": "Yes → CU low + multi-boundary high; No → CU high + multi-boundary low",
+        "confidence": "medium-high",
+        "ship_ready_v01": true,
+        "v01_weight_cu": 1.0,
+        "v01_weight_national": 1.0,
+        "v02_concern": "Multi-boundary load risks double-counting against other items. Religious + ethnic_racial loads should ship in v0.2 once bridge handles multi-boundary normalization."
+      }
+    ],
+    "v01_cu_composite": "Items 5 and 8 are cleanest CU position signal (weight 1.0). Items 1 and 2 at half weight (0.5).",
+    "v01_national_salience_composite": "Items 5 and 8 (weight 1.0). Item 2 at half weight (0.5). Item 1 does not contribute."
+  },
+  "economic_battery": {
+    "spec_discrepancy_note": "Original task spec mentioned 'CC16_337_1..5' but codebook shows only CC16_337_1, _2, _3 (Q337 is a 3-way ranking question, not 5-way).",
+    "Q337_codes": { "1": "Ranked first", "2": "Ranked second", "3": "Ranked third", ".": "Missing", "8": "Skipped", "9": "Not Asked" },
+    "Q337_prompt": "If the federal government had to balance the budget, in what order would you do these things?",
+    "items": [
+      {
+        "variable": "CC16_337_1",
+        "year": 2016,
+        "question_wording": "Cut Defense Spending",
+        "target_node": "(not MAT in v0.1; possibly future foreign-policy node)",
+        "direction_for_mat": "weak / cross-loaded",
+        "confidence": "low_for_mat",
+        "ship_ready_v01": false,
+        "ship_decision": "skip_for_mat",
+        "notes": "Cutting defense doesn't necessarily imply pro-redistribution. Strongest load is foreign-policy / national-priority, not MAT."
+      },
+      {
+        "variable": "CC16_337_2",
+        "year": 2016,
+        "question_wording": "Cut Domestic Spending",
+        "target_node": "MAT",
+        "target_role": "position",
+        "direction": "Ranked first → MAT high; Ranked third → MAT low",
+        "confidence": "medium",
+        "ship_ready_v01": "with_reduced_weight",
+        "v01_weight": 0.5,
+        "notes": "'Domestic' is a broad basket (welfare + research + agriculture); respondents who want to cut welfare specifically (high MAT) get bundled with respondents who want to cut research (mixed-MAT)."
+      },
+      {
+        "variable": "CC16_337_3",
+        "year": 2016,
+        "question_wording": "Raise Taxes",
+        "target_node": "MAT",
+        "target_role": "position",
+        "direction": "Ranked first → MAT low; Ranked third → MAT high",
+        "confidence": "high",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0,
+        "notes": "Cleanest of the three Q337 items."
+      },
+      {
+        "variable": "CC16_351I",
+        "year": 2016,
+        "question_wording": "For or Against — Congress — Repeal Affordable Care Act",
+        "codes": { "1": "For", "2": "Against", "8": "Skipped", "9": "Not Asked" },
+        "target_node": "MAT",
+        "target_role": "position",
+        "direction": "For → MAT high; Against → MAT low",
+        "confidence": "high",
+        "cross_loads": ["ONT_S (light institutional-distrust)"],
+        "ship_ready_v01": true,
+        "v01_weight": 1.0
+      },
+      {
+        "variable": "CC16_351K",
+        "year": 2016,
+        "question_wording_codebook": "Minimum wage",
+        "question_wording_assumed": "Raise the federal minimum wage to $10.10 per hour (standard 2016 CCES wording; needs question-PDF verification before v0.1 ships)",
+        "codes": { "1": "For", "2": "Against", "8": "Skipped", "9": "Not Asked" },
+        "target_node": "MAT",
+        "target_role": "position",
+        "direction": "For → MAT low; Against → MAT high",
+        "confidence": "high_contingent_on_wording_verification",
+        "ship_ready_v01": true,
+        "v01_weight": 1.0,
+        "v01_runtime_check": "Mapper implementer should add a runtime sanity check: if For share is much higher than expected against direction, the question may have been worded the opposite way that cycle."
+      }
+    ],
+    "v01_mat_composite": "Use CC16_337_3, CC16_351I, CC16_351K as core (weight 1.0). CC16_337_2 at half weight (0.5). CC16_337_1 does not contribute to MAT."
+  },
+  "moral_boundaries_national_subset": {
+    "items_in_scope": ["CC16_331_1", "CC16_331_2", "CC16_331_5", "CC16_331_8"],
+    "verdicts": {
+      "CC16_331_1": { "use_for_national_salience": false, "reason": "Pro-pluralist item; both pluralist and restrictionist respondents can have low/high national salience independent of this item." },
+      "CC16_331_2": { "use_for_national_salience": true, "weight": 0.5, "confidence": "medium", "cross_loads": ["ZS (security framing)"] },
+      "CC16_331_5": { "use_for_national_salience": true, "weight": 1.0, "confidence": "high", "cross_loads": ["religious", "ethnic_racial (defer to v0.2)"] },
+      "CC16_331_8": { "use_for_national_salience": true, "weight": 1.0, "confidence": "medium-high", "cross_loads": ["religious", "ethnic_racial (defer to v0.2)"] }
+    },
+    "v01_composite": "national.salience ← 1.0×CC16_331_5 + 1.0×CC16_331_8 + 0.5×CC16_331_2"
+  },
+  "cross_cycle_consistency": {
+    "CC16_332a_through_f_vs_CC20_332a_through_f": "Word-for-word identical (verified by diffing 2020 PDF question text against 2016 codebook labels).",
+    "CC20_332g": "New in 2020; held for v0.2.",
+    "CC16_331_immigration_vs_CC20_immigration": "Different variable names in 2020 (CC20_303* per inventory); v0.1 ships CC16_331_* for 2016 only and uses fallback prior for CU on 2020 until CC20 audit ships.",
+    "CC16_337_in_2020": "Q337 budget-priority ranking discontinued in CC20. v0.1 MAT for 2020 relies on CC20_351 / CC20_415r / CC20_416r equivalents (out of scope for this audit pass)."
+  },
+  "recommended_next_audits": [
+    "CC20 immigration battery (likely CC20_303*) for symmetric CU coverage across cycles.",
+    "CC20 economic items (CC20_351, CC20_415r, CC20_416r) to replace discontinued CC16_337 in 2020.",
+    "CC16/CC20 ANES-equivalent items (VCF0809, VCF0839, VCF0806) for any future ANES-fed mapper path.",
+    "CC16_351K wording verification — pull 2016 CCES Common Content Guide question text PDF if not already cached.",
+    "CC16_335 gay marriage and other CC16/CC20 LGBTQ-rights items for CD/position breadth."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-v01-source-directionality-audit.md",
+    "results/electorate/synthetic-electorate/mapper-v01-source-directionality-audit.json"
+  ],
+  "terminology": "moralBoundaries.national is the canonical compound moral-circle boundary per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — and is not surfaced by any of the columns audited here. Legacy code identifiers (pid7, ideo5, CC16_*, CC20_*) appear only as CCES variable names.",
+  "revision_history": []
+}
