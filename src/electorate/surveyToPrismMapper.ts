@@ -312,6 +312,99 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
 }
 
 /**
+ * CU (cultural uniformity / pluralism) — second real-signal core position
+ * target shipped in mapper v0.1B. Year-gated to 2016 only because the
+ * directionality audit at `results/electorate/synthetic-electorate/
+ * mapper-v01-source-directionality-audit.md` only verified the
+ * `CC16_331_*` immigration battery; the analogous 2020 stem (`CC20_303*`)
+ * is not yet audited.
+ *
+ * Items shipped (per the audit's confidence column):
+ *   - `CC16_331_1` "Grant legal status to long-term illegal immigrants who
+ *     paid taxes & no felony" → **Yes = pluralist (CU high)**, weight 0.5×
+ *     (audit: ✅ Ship reduced — clean direction but the only progressive
+ *     item, so reduced-weight to avoid over-flipping the polarity).
+ *   - `CC16_331_2` "Increase border patrols" → **Yes = restrictionist
+ *     (CU low)**, weight 0.5× (audit: ⚠ Ship reduced — direction clean but
+ *     cross-loaded with security/crime framing).
+ *   - `CC16_331_5` "Admit no refugees from Syria" → **Yes = restrictionist
+ *     (CU low)**, weight 1.0× (audit: ✅ Ship — cleanest item).
+ *   - `CC16_331_8` "Ban Muslims from immigrating" → **Yes = restrictionist
+ *     (CU low)**, weight 1.0× (audit: ✅ Ship — direction unambiguous).
+ *
+ * Coding (CCES standard): `1` = Yes, `2` = No, `8` = Skipped, `9` = Not
+ * Asked, `.` = missing. Skipped / NotAsked / missing are dropped.
+ *
+ * Algorithm: weighted sum of signed direction votes (+1 = restrictionist,
+ * −1 = pluralist) divided by the answered total weight gives `net` ∈
+ * [−1, +1]. Position = 3 − 2 × net (linear from net=−1 → CU 5 [pluralist]
+ * to net=+1 → CU 1 [restrictionist]).
+ *
+ * Posterior is a discrete-Gaussian over {1..5} with `σ` inverse to total
+ * weight collected. Salience = breadth-bonus + intensity. Uncertainty
+ * gates on total weight (≥ 1.5 → low; ≥ 0.5 → medium; otherwise no signal,
+ * fallback).
+ *
+ * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
+ * no `pid7`, no turnout fields. Only the four `CC16_331_*` columns are
+ * read.
+ */
+function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
+  if (r.year !== 2016) {
+    return fallbackContinuous(`v0.1B CU: immigration-battery decoder gated to 2016 (audited); year ${r.year} deferred`);
+  }
+  // polarity: +1 = "Yes is restrictionist (CU low)"; -1 = "Yes is pluralist (CU high)".
+  const items: Array<{ col: string; polarity: 1 | -1; weight: number }> = [
+    { col: "CC16_331_1", polarity: -1, weight: 0.5 },
+    { col: "CC16_331_2", polarity:  1, weight: 0.5 },
+    { col: "CC16_331_5", polarity:  1, weight: 1.0 },
+    { col: "CC16_331_8", polarity:  1, weight: 1.0 },
+  ];
+  let signedSum = 0;
+  let totalWeight = 0;
+  let answered = 0;
+  const usedVars: string[] = [];
+  for (const it of items) {
+    const raw = parseCodedNumber(r.rawVarPayload[it.col]);
+    if (raw === 1) {
+      signedSum += it.polarity * it.weight;
+      totalWeight += it.weight;
+      answered++;
+      usedVars.push(it.col);
+    } else if (raw === 2) {
+      signedSum -= it.polarity * it.weight;
+      totalWeight += it.weight;
+      answered++;
+      usedVars.push(it.col);
+    }
+  }
+  if (totalWeight === 0) {
+    return fallbackContinuous("v0.1B CU: respondent answered 0/4 immigration-battery items");
+  }
+  const net = signedSum / totalWeight; // [-1, +1]
+  const pos = 3 - 2 * net;              // pluralist (net=-1) → CU 5; restrictionist (net=+1) → CU 1
+  const sigma = Math.max(0.6, 1.4 - 0.3 * totalWeight); // 1.25 at weight=0.5; ~0.6 at weight=2.5+
+
+  const intensity = Math.abs(net); // 0..1
+  const salScore = Math.min(3, 0.5 + intensity * 1.5 + (answered - 1) * 0.1);
+  const salPosterior = salienceToDist(salScore);
+
+  const uncertainty: Uncertainty = totalWeight >= 1.5 ? "low" : totalWeight >= 0.5 ? "medium" : "high";
+
+  return {
+    posPosterior: positionPosteriorFromMean(pos, sigma),
+    salPosterior,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty,
+      notes: `v0.1B CU: ${answered}/4 immigration-battery items, totalWeight=${totalWeight.toFixed(1)} (− pluralist, + restrictionist); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
+    },
+  };
+}
+
+/**
  * Religious salience from CCES `pew_churatd` (church attendance: 1=more than
  * once a week, 2=once a week, 3=once or twice a month, 4=a few times a year,
  * 5=seldom, 6=never, 7=don't know) + `pew_bornagain` (1=yes, 2=no, 8/9=other).
@@ -397,6 +490,75 @@ function derivePoliticalCampBoundary(payload: Record<string, string>): MoralBoun
       partyIdDerived: true,
       uncertainty: "medium",
       notes: "party-ID derived; flagged for circularity exclusion in vote-prediction",
+    },
+  };
+}
+
+/**
+ * `moralBoundaries.national` salience from the CC16_331 immigration
+ * battery — shipped together with CU in mapper v0.1B.
+ *
+ * Per the directionality audit, the 4 immigration items load on the
+ * national boundary asymmetrically: a "Yes" answer to a restrictionist
+ * item signals high engagement with the national-identity frame; a "No"
+ * signals the respondent is NOT gating policy through that frame
+ * (universalist or other consideration). The audit's explicit
+ * recommendation: ship the salience composite from items 5, 8 (1.0×) and
+ * 2 (0.5×). **Item 1 (legal-status pluralist) is excluded** — both
+ * pluralist and restrictionist responses are compatible with high or
+ * low national salience independently of that item.
+ *
+ * Coding: 1=Yes, 2=No, 8=Skipped, 9=Not Asked, "."=missing.
+ *
+ * Algorithm: yes_share = (Σ weight where answer = Yes) / (Σ weight
+ * answered). Salience = 0.3 + 2.2 × yes_share (range [0.3, 2.5]). Cross-
+ * loads on `religious` / `ethnic_racial` from items 5 / 8 are NOT applied
+ * in v0.1B per the audit's "v0.2 normalize multi-boundary loads to avoid
+ * double-counting" deferral.
+ *
+ * Year-gated to 2016 only — the analogous 2020 immigration battery is not
+ * yet audited.
+ */
+function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
+  if (r.year !== 2016) {
+    return fallbackBoundary(`v0.1B national: immigration-battery decoder gated to 2016 (audited); year ${r.year} deferred`);
+  }
+  const items: Array<{ col: string; weight: number }> = [
+    { col: "CC16_331_2", weight: 0.5 },
+    { col: "CC16_331_5", weight: 1.0 },
+    { col: "CC16_331_8", weight: 1.0 },
+  ];
+  let yesWeight = 0;
+  let totalWeight = 0;
+  let answered = 0;
+  const usedVars: string[] = [];
+  for (const it of items) {
+    const raw = parseCodedNumber(r.rawVarPayload[it.col]);
+    if (raw === 1) {
+      yesWeight += it.weight;
+      totalWeight += it.weight;
+      answered++;
+      usedVars.push(it.col);
+    } else if (raw === 2) {
+      totalWeight += it.weight;
+      answered++;
+      usedVars.push(it.col);
+    }
+  }
+  if (totalWeight === 0) {
+    return fallbackBoundary("v0.1B national: respondent answered 0/3 immigration-battery items");
+  }
+  const yesShare = yesWeight / totalWeight; // [0, 1]
+  const salience = 0.3 + 2.2 * yesShare;     // [0.3, 2.5]
+  const uncertainty: Uncertainty = totalWeight >= 1.5 ? "low" : totalWeight >= 0.5 ? "medium" : "high";
+  return {
+    salience,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty,
+      notes: `v0.1B national: ${answered}/3 items (CC16_331_{2,5,8}); yes_share=${yesShare.toFixed(2)} → salience=${salience.toFixed(2)}; cross-loads on religious/ethnic_racial deferred to v0.2 per audit`,
     },
   };
 }
@@ -518,7 +680,7 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   const ideological = deriveIdeologicalBoundary(payload);
   const political_camp = derivePoliticalCampBoundary(payload);
   const class_ = deriveClassBoundary(payload);
-  const national = fallbackBoundary("v0: no per-year national-pride / immigration-restrictiveness item parsed");
+  const national = deriveNationalBoundary(r);
   const ethnic_racial = fallbackBoundary("v0: no per-year race-policy / thermometer items parsed");
   const gender = fallbackBoundary("v0: no per-year gender-policy / thermometer items parsed");
 
@@ -556,7 +718,7 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   // codebook verification of their candidate batteries.
   const MAT   = fallbackContinuous("v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)");
   const CD    = deriveCD(r);
-  const CU    = fallbackContinuous("v0: ideological position from issue items deferred (immigration battery)");
+  const CU    = deriveCU(r);
   const MOR   = fallbackContinuous("v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)");
   const PRO   = fallbackContinuous("v0: PRO low survey coverage; fallback per spec");
   const COM   = fallbackContinuous("v0: COM weakest-covered continuous node; fallback per spec");

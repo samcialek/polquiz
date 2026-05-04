@@ -1,6 +1,6 @@
 # Synthetic Electorate Aggregate — Smoke (Phase 2.7.6)
 
-**Run at:** 2026-05-04T15:20:44.931Z
+**Run at:** 2026-05-04T15:46:41.234Z
 **Aggregator schema:** `v0.1`
 **Mock universe version:** `v0.1-mock`
 **Pipeline:** sampleRowLimitPerYear=5000, numDraws=5, randomSeed=20260504
@@ -219,7 +219,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 
 - Rows: **35**; total weight: **41550** (range 760.00 → 1520.00)
 - Engagement: mean 8.365, sd 1.670
-- Moral-boundary intensity mean: 1.595
+- Moral-boundary intensity mean: 1.655
 
 ### Position-node marginals (1..5 scale)
 
@@ -227,7 +227,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 |---|---:|---:|---:|---:|---:|---:|
 | MAT | 3.000 | 0.000 | 3.000 | 3.000 | 3.000 | 1.000 |
 | CD | 2.786 | 1.261 | 1.205 | 3.000 | 4.306 | 1.739 |
-| CU | 3.000 | 0.000 | 3.000 | 3.000 | 3.000 | 1.000 |
+| CU | 3.604 | 1.381 | 1.205 | 4.306 | 4.795 | 1.876 |
 | MOR | 3.000 | 0.000 | 3.000 | 3.000 | 3.000 | 1.000 |
 | PRO | 3.000 | 0.000 | 3.000 | 3.000 | 3.000 | 1.000 |
 | COM | 3.000 | 0.000 | 3.000 | 3.000 | 3.000 | 1.000 |
@@ -246,7 +246,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 
 | Boundary | Mean salience |
 |---|---:|
-| national | 1.000 |
+| national | 1.058 |
 | ethnic_racial | 1.000 |
 | religious | 1.050 |
 | class | 0.954 |
@@ -258,7 +258,7 @@ Builds `SyntheticElectorateRow[]` through the existing v1 hot-deck bridge agains
 
 **MAT × CD** — `[0.049, 0.044, 0.033, 0.050, 0.025], [0.049, 0.044, 0.033, 0.050, 0.025], [0.049, 0.044, 0.033, 0.050, 0.025], [0.049, 0.044, 0.033, 0.050, 0.025], [0.049, 0.044, 0.033, 0.050, 0.025]`
 
-**CD × CU** — `[0.049, 0.049, 0.049, 0.049, 0.049], [0.044, 0.044, 0.044, 0.044, 0.044], [0.033, 0.033, 0.033, 0.033, 0.033], [0.050, 0.050, 0.050, 0.050, 0.050], [0.025, 0.025, 0.025, 0.025, 0.025]`
+**CD × CU** — `[0.001, 0.014, 0.023, 0.075, 0.131], [0.001, 0.007, 0.019, 0.070, 0.122], [0.009, 0.007, 0.010, 0.054, 0.083], [0.089, 0.050, 0.023, 0.045, 0.041], [0.056, 0.032, 0.013, 0.013, 0.009]`
 
 **MOR × PRO** — `[0.040, 0.040, 0.040, 0.040, 0.040], [0.040, 0.040, 0.040, 0.040, 0.040], [0.040, 0.040, 0.040, 0.040, 0.040], [0.040, 0.040, 0.040, 0.040, 0.040], [0.040, 0.040, 0.040, 0.040, 0.040]`
 

@@ -1,6 +1,6 @@
 # Survey-to-PRISM Mapper Coverage Audit (Phase 2.7.7)
 
-**Run at:** 2026-05-04T15:20:29.426Z
+**Run at:** 2026-05-04T15:46:13.041Z
 **Sample row limit per year:** 5000
 **Status:** Read-only diagnostic. The mapper is **NOT** modified by this audit.
 
@@ -32,7 +32,7 @@ Per target the audit reports:
 |---|---:|---:|---:|---:|
 | 2008 | 5000 | 1.00 | 19.00 | 0.00 |
 | 2012 | 5000 | 5.93 | 14.07 | 1.97 |
-| 2016 | 5000 | 6.92 | 13.08 | 1.96 |
+| 2016 | 5000 | 8.93 | 11.07 | 1.96 |
 | 2020 | 5000 | 6.91 | 13.09 | 1.96 |
 | 2024 | 5000 | 5.89 | 14.11 | 1.96 |
 
@@ -42,7 +42,7 @@ Per target the audit reports:
 |---|---|---:|---:|---:|---:|---:|---:|---|
 | `MAT` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `CD` | continuous | 0.0 | 0.0 | 100.0 | 100.0 | 0.0 | 40.0 | 2008, 2012, 2024 |
-| `CU` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
+| `CU` | continuous | 0.0 | 0.0 | 100.0 | 0.0 | 0.0 | 20.0 | 2008, 2012, 2020, 2024 |
 | `MOR` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `PRO` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `COM` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
@@ -52,14 +52,14 @@ Per target the audit reports:
 | `EPS` | categorical | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `AES` | categorical | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `engagement` | engagement | 100.0 | 99.7 | 99.9 | 99.3 | 98.9 | 99.6 | (none) |
-| `moralBoundaries.national` | moral_boundary | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
+| `moralBoundaries.national` | moral_boundary | 0.0 | 0.0 | 100.0 | 0.0 | 0.0 | 20.0 | 2008, 2012, 2020, 2024 |
 | `moralBoundaries.ethnic_racial` | moral_boundary | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `moralBoundaries.religious` | moral_boundary | 0.0 | 99.9 | 100.0 | 100.0 | 100.0 | 80.0 | 2008 |
 | `moralBoundaries.class` | moral_boundary | 0.0 | 99.5 | 99.9 | 100.0 | 100.0 | 79.9 | 2008 |
 | `moralBoundaries.ideological` | moral_boundary | 0.0 | 96.2 | 95.4 | 94.9 | 93.1 | 75.9 | 2008 |
 | `moralBoundaries.gender` | moral_boundary | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `moralBoundaries.political_camp` | moral_boundary | 0.0 | 98.3 | 98.1 | 98.1 | 97.9 | 78.5 | 2008 |
-| `moralBoundaries.intensity` | intensity | 0.0 | 99.5 | 99.1 | 98.8 | 98.9 | 79.3 | 2008 |
+| `moralBoundaries.intensity` | intensity | 0.0 | 99.5 | 100.0 | 98.8 | 98.9 | 79.5 | 2008 |
 
 ## 2008
 
@@ -165,8 +165,8 @@ Per target the audit reports:
 ## 2016
 
 - Rows mapped: **5000**; total weight: **4038**
-- Per row (weighted mean): real-signal targets **6.92 / 20**; fallback **13.08 / 20**; party-ID-derived **1.96 / 20**
-- Signature blockers: **13 / 20** (`MAT`, `CU`, `MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.national`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
+- Per row (weighted mean): real-signal targets **8.93 / 20**; fallback **11.07 / 20**; party-ID-derived **1.96 / 20**
+- Signature blockers: **11 / 20** (`MAT`, `MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
 
 ### Per-target coverage
 
@@ -174,7 +174,7 @@ Per target the audit reports:
 |---|---|---:|---:|---:|---:|---|---|:--:|
 | `MAT` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `CD` | continuous | 100.0 | 0.0 | 0.0 | 1.00 | `CC16_332a` (100%), `CC16_332c` (100%), `CC16_332d` (100%) | dist=[0.230, 0.215, 0.186, 0.245, 0.124], spread=1.21e-1, mean_pos=2.82 | ✓ |
-| `CU` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
+| `CU` | continuous | 100.0 | 0.0 | 0.0 | 1.10 | `CC16_331_1` (100%), `CC16_331_2` (100%), `CC16_331_5` (90%) | dist=[0.162, 0.152, 0.157, 0.249, 0.280], spread=1.28e-1, mean_pos=3.33 | ✓ |
 | `MOR` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `PRO` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `COM` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
@@ -184,19 +184,18 @@ Per target the audit reports:
 | `EPS` | categorical | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.300, 0.100, 0.150, 0.150, 0.100], spread=2.00e-1 | ✗ |
 | `AES` | categorical | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.167, 0.167, 0.167, 0.167, 0.167, 0.167], spread=0.00e+0 | ✗ |
 | `engagement` | engagement | 99.9 | 0.1 | 0.0 | 1.36 | `newsint` (100%), `turnoutValidated` (64%), `turnoutObserved` (24%) | mean=8.38, sd=1.61, |mean−5|=3.38 | ✓ |
-| `moralBoundaries.national` | moral_boundary | 0.0 | 100.0 | 0.0 | 3.00 | — | mean=1.000, sd=0.000, |mean−1|=0.000 | ✗ |
+| `moralBoundaries.national` | moral_boundary | 100.0 | 0.0 | 0.0 | 1.10 | `CC16_331_2` (100%), `CC16_331_5` (90%), `CC16_331_8` (90%) | mean=1.155, sd=0.878, |mean−1|=0.155 | ✓ |
 | `moralBoundaries.ethnic_racial` | moral_boundary | 0.0 | 100.0 | 0.0 | 3.00 | — | mean=1.000, sd=0.000, |mean−1|=0.000 | ✗ |
 | `moralBoundaries.religious` | moral_boundary | 100.0 | 0.0 | 0.0 | 2.01 | `pew_bornagain` (100%), `pew_churatd` (99%) | mean=1.189, sd=0.704, |mean−1|=0.189 | ✓ |
 | `moralBoundaries.class` | moral_boundary | 99.9 | 0.1 | 0.0 | 3.00 | `union` (100%) | mean=1.000, sd=0.315, |mean−1|=0.000 | ✓ |
 | `moralBoundaries.ideological` | moral_boundary | 95.4 | 4.6 | 0.0 | 2.05 | `ideo5` (95%) | mean=1.253, sd=0.669, |mean−1|=0.253 | ✓ |
 | `moralBoundaries.gender` | moral_boundary | 0.0 | 100.0 | 0.0 | 3.00 | — | mean=1.000, sd=0.000, |mean−1|=0.000 | ✗ |
 | `moralBoundaries.political_camp` | moral_boundary | 98.1 | 1.9 | 98.1 | 2.02 | `pid7` (98%) | mean=1.711, sd=0.752, |mean−1|=0.711 | ✓ |
-| `moralBoundaries.intensity` | intensity | 99.1 | 0.9 | 98.0 | 2.01 | — | mean=1.686, sd=0.379, |mean−1|=0.686 | ✓ |
+| `moralBoundaries.intensity` | intensity | 100.0 | 0.0 | 98.1 | 1.06 | — | mean=1.773, sd=0.361, |mean−1|=0.773 | ✓ |
 
 ### Signature blockers detail
 
 - **`MAT`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
-- **`CU`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`MOR`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`PRO`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`COM`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
@@ -205,7 +204,6 @@ Per target the audit reports:
 - **`ONT_S`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`EPS`** — real-signal coverage 0.0% < 25%
 - **`AES`** — real-signal coverage 0.0% < 25%; weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)
-- **`moralBoundaries.national`** — real-signal coverage 0.0% < 25%; weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)
 - **`moralBoundaries.ethnic_racial`** — real-signal coverage 0.0% < 25%; weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)
 - **`moralBoundaries.gender`** — real-signal coverage 0.0% < 25%; weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)
 
