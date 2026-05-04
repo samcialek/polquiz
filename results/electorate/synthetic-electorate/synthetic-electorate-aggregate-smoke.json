@@ -1,0 +1,2107 @@
+{
+  "schema_version": "v0.1",
+  "run_at": "2026-05-04T04:56:40.199Z",
+  "phase": "2.7.6 — synthetic electorate aggregate harness (mock universe)",
+  "mock_disclaimer": "MOCK CONTRACT-TEST CELLS — not real population data; do not aggregate or interpret demographically.",
+  "pipeline": {
+    "sampleRowLimitPerYear": 5000,
+    "numDraws": 5,
+    "randomSeed": 20260504
+  },
+  "forbidden_keys_checked": [
+    "predictedVote",
+    "candidateDistance",
+    "voteProbability",
+    "abstainProbability",
+    "alpha_year",
+    "predictedAbstainCount",
+    "stageBResult"
+  ],
+  "per_year_pipeline_stats": [
+    {
+      "year": 2008,
+      "file_present": true,
+      "donors": 5000,
+      "universe_rows": 7,
+      "output_rows": 35,
+      "per_row_validation_errors": 0
+    },
+    {
+      "year": 2012,
+      "file_present": true,
+      "donors": 5000,
+      "universe_rows": 7,
+      "output_rows": 35,
+      "per_row_validation_errors": 0
+    },
+    {
+      "year": 2016,
+      "file_present": true,
+      "donors": 5000,
+      "universe_rows": 7,
+      "output_rows": 35,
+      "per_row_validation_errors": 0
+    },
+    {
+      "year": 2020,
+      "file_present": true,
+      "donors": 5000,
+      "universe_rows": 7,
+      "output_rows": 35,
+      "per_row_validation_errors": 0
+    },
+    {
+      "year": 2024,
+      "file_present": true,
+      "donors": 5000,
+      "universe_rows": 7,
+      "output_rows": 35,
+      "per_row_validation_errors": 0
+    }
+  ],
+  "invariant_checks": [
+    {
+      "id": 1,
+      "label": "All 5 mock years loaded into the pipeline",
+      "passed": true,
+      "detail": "loaded=[2008,2012,2016,2020,2024]"
+    },
+    {
+      "id": 2,
+      "label": "Every input SyntheticElectorateRow validates per validateSyntheticElectorateRow",
+      "passed": true,
+      "detail": "total per-row errors = 0"
+    },
+    {
+      "id": 3,
+      "label": "All input row weights are finite and > 0",
+      "passed": true,
+      "detail": "min=760 max=1880 n=175"
+    },
+    {
+      "id": 4,
+      "label": "Aggregate output present for every loaded year",
+      "passed": true,
+      "detail": "aggregate years=[2008,2012,2016,2020,2024] expected=[2008,2012,2016,2020,2024]"
+    },
+    {
+      "id": 5,
+      "label": "Aggregate output carries the mock-universe disclaimer",
+      "passed": true,
+      "detail": "mock_disclaimer=\"MOCK CONTRACT-TEST CELLS — not real population data; do not ...\""
+    },
+    {
+      "id": 6,
+      "label": "No vote-prediction / candidate-distance / abstention-calibration keys in aggregate output",
+      "passed": true,
+      "detail": "forbidden keys checked = [predictedVote, candidateDistance, voteProbability, abstainProbability, alpha_year, predictedAbstainCount, stageBResult]; none present"
+    },
+    {
+      "id": 7,
+      "label": "Aggregate schema_version matches canonical",
+      "passed": true,
+      "detail": "schema_version=\"v0.1\""
+    },
+    {
+      "id": 8,
+      "label": "Every year's 9 position-node marginals are finite",
+      "passed": true,
+      "detail": "all years × 9 nodes pass finite check"
+    },
+    {
+      "id": 9,
+      "label": "Every year's MAT×CD / CD×CU / MOR×PRO joints are 5×5 and sum to 1",
+      "passed": true,
+      "detail": "all 3 joints × all years sum to 1"
+    },
+    {
+      "id": 10,
+      "label": "engagement_x_turnout_proxy is explicitly omitted with documented reason in every year",
+      "passed": true,
+      "detail": "all years carry omission status + reason"
+    }
+  ],
+  "aggregate": {
+    "schema_version": "v0.1",
+    "mock_disclaimer": "MOCK CONTRACT-TEST CELLS — not real population data; do not aggregate or interpret demographically.",
+    "total_rows": 175,
+    "total_weight": 214500,
+    "years": {
+      "2008": {
+        "year": 2008,
+        "row_count": 35,
+        "total_weight": 46100,
+        "weight_min": 940,
+        "weight_max": 1880,
+        "position_node_marginals": {
+          "MAT": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CD": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CU": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "MOR": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "PRO": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "COM": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ZS": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_H": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_S": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          }
+        },
+        "categorical_node_distributions": {
+          "EPS": {
+            "distribution": [
+              0.2,
+              0.3,
+              0.1,
+              0.15,
+              0.15,
+              0.1
+            ],
+            "mean_salience": 1
+          },
+          "AES": {
+            "distribution": [
+              0.1666666666666667,
+              0.1666666666666667,
+              0.1666666666666667,
+              0.1666666666666667,
+              0.1666666666666667,
+              0.1666666666666667
+            ],
+            "mean_salience": 0.46999999999999975
+          }
+        },
+        "moral_boundary_mean_salience": {
+          "national": 1,
+          "ethnic_racial": 1,
+          "religious": 1,
+          "class": 1,
+          "ideological": 1,
+          "gender": 1,
+          "political_camp": 1
+        },
+        "moral_boundary_intensity_mean": 1,
+        "engagement": {
+          "mean": 6.28590021691974,
+          "sd": 0.838755341959678
+        },
+        "low_order_joints": {
+          "MAT_x_CD": [
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ]
+          ],
+          "CD_x_CU": [
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ]
+          ],
+          "MOR_x_PRO": [
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ],
+            [
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999,
+              0.03999999999999999
+            ]
+          ],
+          "engagement_x_turnout_proxy": {
+            "status": "omitted",
+            "reason": "SyntheticElectorateRow carries no turnout / abstention field — vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections of the synthetic electorate, not source fields on the row contract. This joint will be filled when the downstream simulator publishes a per-row turnout / abstention projection."
+          }
+        },
+        "breakouts": {
+          "by_state": [
+            {
+              "group": "CA",
+              "row_count": 5,
+              "total_weight": 6250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "FL",
+              "row_count": 5,
+              "total_weight": 8050,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "GA",
+              "row_count": 5,
+              "total_weight": 5200,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "NY",
+              "row_count": 5,
+              "total_weight": 4700,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 4.4
+            },
+            {
+              "group": "OH",
+              "row_count": 5,
+              "total_weight": 5900,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "PA",
+              "row_count": 5,
+              "total_weight": 6600,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "TX",
+              "row_count": 5,
+              "total_weight": 9400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            }
+          ],
+          "by_ageBucket": [
+            {
+              "group": "18-24",
+              "row_count": 5,
+              "total_weight": 4700,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 4.4
+            },
+            {
+              "group": "35-44",
+              "row_count": 15,
+              "total_weight": 17350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "55-64",
+              "row_count": 10,
+              "total_weight": 16000,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "65-74",
+              "row_count": 5,
+              "total_weight": 8050,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            }
+          ],
+          "by_raceEthnicity": [
+            {
+              "group": "black",
+              "row_count": 10,
+              "total_weight": 9900,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 5.503030303030303
+            },
+            {
+              "group": "hispanic",
+              "row_count": 5,
+              "total_weight": 6250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "white",
+              "row_count": 20,
+              "total_weight": 29950,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            }
+          ],
+          "by_sex": [
+            {
+              "group": "female",
+              "row_count": 20,
+              "total_weight": 26100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.5
+            },
+            {
+              "group": "male",
+              "row_count": 15,
+              "total_weight": 20000,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.0065
+            }
+          ]
+        }
+      },
+      "2012": {
+        "year": 2012,
+        "row_count": 35,
+        "total_weight": 42600,
+        "weight_min": 870,
+        "weight_max": 1730,
+        "position_node_marginals": {
+          "MAT": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CD": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CU": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "MOR": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "PRO": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "COM": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ZS": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_H": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_S": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          }
+        },
+        "categorical_node_distributions": {
+          "EPS": {
+            "distribution": [
+              0.2,
+              0.3,
+              0.1,
+              0.15,
+              0.15,
+              0.1
+            ],
+            "mean_salience": 1
+          },
+          "AES": {
+            "distribution": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666
+            ],
+            "mean_salience": 0.4699999999999998
+          }
+        },
+        "moral_boundary_mean_salience": {
+          "national": 1,
+          "ethnic_racial": 1,
+          "religious": 1.4783215962441314,
+          "class": 0.9701408450704225,
+          "ideological": 1.2267605633802816,
+          "gender": 1,
+          "political_camp": 1.6584898278560252
+        },
+        "moral_boundary_intensity_mean": 1.7028647440196736,
+        "engagement": {
+          "mean": 7.479413145539906,
+          "sd": 1.4820842870787063
+        },
+        "low_order_joints": {
+          "MAT_x_CD": [
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ]
+          ],
+          "CD_x_CU": [
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ]
+          ],
+          "MOR_x_PRO": [
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ],
+            [
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998,
+              0.03999999999999998
+            ]
+          ],
+          "engagement_x_turnout_proxy": {
+            "status": "omitted",
+            "reason": "SyntheticElectorateRow carries no turnout / abstention field — vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections of the synthetic electorate, not source fields on the row contract. This joint will be filled when the downstream simulator publishes a per-row turnout / abstention projection."
+          }
+        },
+        "breakouts": {
+          "by_state": [
+            {
+              "group": "CA",
+              "row_count": 5,
+              "total_weight": 5550,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.42
+            },
+            {
+              "group": "FL",
+              "row_count": 5,
+              "total_weight": 7250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.7
+            },
+            {
+              "group": "GA",
+              "row_count": 5,
+              "total_weight": 5450,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.56
+            },
+            {
+              "group": "NY",
+              "row_count": 5,
+              "total_weight": 6400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.8
+            },
+            {
+              "group": "OH",
+              "row_count": 5,
+              "total_weight": 4950,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.26
+            },
+            {
+              "group": "PA",
+              "row_count": 5,
+              "total_weight": 4350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.1
+            },
+            {
+              "group": "TX",
+              "row_count": 5,
+              "total_weight": 8650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.02
+            }
+          ],
+          "by_ageBucket": [
+            {
+              "group": "18-24",
+              "row_count": 5,
+              "total_weight": 4350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.1
+            },
+            {
+              "group": "35-44",
+              "row_count": 15,
+              "total_weight": 19650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.842544529262087
+            },
+            {
+              "group": "55-64",
+              "row_count": 10,
+              "total_weight": 11350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.564493392070484
+            },
+            {
+              "group": "65-74",
+              "row_count": 5,
+              "total_weight": 7250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.7
+            }
+          ],
+          "by_raceEthnicity": [
+            {
+              "group": "asian",
+              "row_count": 5,
+              "total_weight": 5550,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.42
+            },
+            {
+              "group": "black",
+              "row_count": 5,
+              "total_weight": 4950,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.26
+            },
+            {
+              "group": "hispanic",
+              "row_count": 5,
+              "total_weight": 8650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.02
+            },
+            {
+              "group": "white",
+              "row_count": 20,
+              "total_weight": 23450,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.0781236673774
+            }
+          ],
+          "by_sex": [
+            {
+              "group": "female",
+              "row_count": 15,
+              "total_weight": 16300,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.750674846625767
+            },
+            {
+              "group": "male",
+              "row_count": 20,
+              "total_weight": 26300,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.311292775665399
+            }
+          ]
+        }
+      },
+      "2016": {
+        "year": 2016,
+        "row_count": 35,
+        "total_weight": 41550,
+        "weight_min": 760,
+        "weight_max": 1520,
+        "position_node_marginals": {
+          "MAT": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CD": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CU": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "MOR": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "PRO": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "COM": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ZS": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_H": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_S": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          }
+        },
+        "categorical_node_distributions": {
+          "EPS": {
+            "distribution": [
+              0.2,
+              0.3,
+              0.1,
+              0.15,
+              0.15,
+              0.1
+            ],
+            "mean_salience": 1
+          },
+          "AES": {
+            "distribution": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666
+            ],
+            "mean_salience": 0.47
+          }
+        },
+        "moral_boundary_mean_salience": {
+          "national": 1,
+          "ethnic_racial": 1,
+          "religious": 1.0495788206979542,
+          "class": 0.9542238267148014,
+          "ideological": 1.1729241877256318,
+          "gender": 1,
+          "political_camp": 1.406177296430004
+        },
+        "moral_boundary_intensity_mean": 1.594541057819036,
+        "engagement": {
+          "mean": 8.36488567990373,
+          "sd": 1.670380950568934
+        },
+        "low_order_joints": {
+          "MAT_x_CD": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "CD_x_CU": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "MOR_x_PRO": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "engagement_x_turnout_proxy": {
+            "status": "omitted",
+            "reason": "SyntheticElectorateRow carries no turnout / abstention field — vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections of the synthetic electorate, not source fields on the row contract. This joint will be filled when the downstream simulator publishes a per-row turnout / abstention projection."
+          }
+        },
+        "breakouts": {
+          "by_state": [
+            {
+              "group": "CA",
+              "row_count": 5,
+              "total_weight": 6700,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.04
+            },
+            {
+              "group": "FL",
+              "row_count": 5,
+              "total_weight": 5950,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.34
+            },
+            {
+              "group": "GA",
+              "row_count": 5,
+              "total_weight": 5500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.56
+            },
+            {
+              "group": "NY",
+              "row_count": 5,
+              "total_weight": 5100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.34
+            },
+            {
+              "group": "OH",
+              "row_count": 5,
+              "total_weight": 3800,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.04
+            },
+            {
+              "group": "PA",
+              "row_count": 5,
+              "total_weight": 6900,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.5
+            },
+            {
+              "group": "TX",
+              "row_count": 5,
+              "total_weight": 7600,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.04
+            }
+          ],
+          "by_ageBucket": [
+            {
+              "group": "18-24",
+              "row_count": 10,
+              "total_weight": 10500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.316190476190476
+            },
+            {
+              "group": "35-44",
+              "row_count": 5,
+              "total_weight": 5100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.34
+            },
+            {
+              "group": "55-64",
+              "row_count": 10,
+              "total_weight": 11450,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.445676855895196
+            },
+            {
+              "group": "65-74",
+              "row_count": 10,
+              "total_weight": 14500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.783034482758621
+            }
+          ],
+          "by_raceEthnicity": [
+            {
+              "group": "black",
+              "row_count": 5,
+              "total_weight": 5500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.56
+            },
+            {
+              "group": "hispanic",
+              "row_count": 10,
+              "total_weight": 12650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.240395256916996
+            },
+            {
+              "group": "white",
+              "row_count": 20,
+              "total_weight": 23400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.621367521367521
+            }
+          ],
+          "by_sex": [
+            {
+              "group": "female",
+              "row_count": 20,
+              "total_weight": 22850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.908490153172867
+            },
+            {
+              "group": "male",
+              "row_count": 15,
+              "total_weight": 18700,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.922566844919785
+            }
+          ]
+        }
+      },
+      "2020": {
+        "year": 2020,
+        "row_count": 35,
+        "total_weight": 44200,
+        "weight_min": 880,
+        "weight_max": 1480,
+        "position_node_marginals": {
+          "MAT": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CD": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CU": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "MOR": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "PRO": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "COM": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ZS": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_H": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_S": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          }
+        },
+        "categorical_node_distributions": {
+          "EPS": {
+            "distribution": [
+              0.2,
+              0.3,
+              0.1,
+              0.15,
+              0.15,
+              0.1
+            ],
+            "mean_salience": 1
+          },
+          "AES": {
+            "distribution": [
+              0.16666666666666669,
+              0.16666666666666669,
+              0.16666666666666669,
+              0.16666666666666669,
+              0.16666666666666669,
+              0.16666666666666669
+            ],
+            "mean_salience": 0.47000000000000025
+          }
+        },
+        "moral_boundary_mean_salience": {
+          "national": 1,
+          "ethnic_racial": 1,
+          "religious": 1.1186764705882353,
+          "class": 1.037420814479638,
+          "ideological": 1.228054298642534,
+          "gender": 1,
+          "political_camp": 1.5942307692307693
+        },
+        "moral_boundary_intensity_mean": 1.6356745313510015,
+        "engagement": {
+          "mean": 8.129253393665158,
+          "sd": 1.916749672448746
+        },
+        "low_order_joints": {
+          "MAT_x_CD": [
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ]
+          ],
+          "CD_x_CU": [
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ]
+          ],
+          "MOR_x_PRO": [
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ],
+            [
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994,
+              0.039999999999999994
+            ]
+          ],
+          "engagement_x_turnout_proxy": {
+            "status": "omitted",
+            "reason": "SyntheticElectorateRow carries no turnout / abstention field — vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections of the synthetic electorate, not source fields on the row contract. This joint will be filled when the downstream simulator publishes a per-row turnout / abstention projection."
+          }
+        },
+        "breakouts": {
+          "by_state": [
+            {
+              "group": "CA",
+              "row_count": 5,
+              "total_weight": 7400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.2
+            },
+            {
+              "group": "FL",
+              "row_count": 5,
+              "total_weight": 6850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.04
+            },
+            {
+              "group": "GA",
+              "row_count": 5,
+              "total_weight": 5850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.2
+            },
+            {
+              "group": "NY",
+              "row_count": 5,
+              "total_weight": 4400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.6
+            },
+            {
+              "group": "OH",
+              "row_count": 5,
+              "total_weight": 6200,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.7
+            },
+            {
+              "group": "PA",
+              "row_count": 5,
+              "total_weight": 7050,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.18
+            },
+            {
+              "group": "TX",
+              "row_count": 5,
+              "total_weight": 6450,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.2
+            }
+          ],
+          "by_ageBucket": [
+            {
+              "group": "18-24",
+              "row_count": 5,
+              "total_weight": 4400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.6
+            },
+            {
+              "group": "35-44",
+              "row_count": 10,
+              "total_weight": 12300,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.2
+            },
+            {
+              "group": "55-64",
+              "row_count": 10,
+              "total_weight": 14450,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 9.190242214532873
+            },
+            {
+              "group": "65-74",
+              "row_count": 10,
+              "total_weight": 13050,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.403371647509578
+            }
+          ],
+          "by_raceEthnicity": [
+            {
+              "group": "asian",
+              "row_count": 5,
+              "total_weight": 4400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.6
+            },
+            {
+              "group": "black",
+              "row_count": 5,
+              "total_weight": 5850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.2
+            },
+            {
+              "group": "hispanic",
+              "row_count": 5,
+              "total_weight": 6850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.04
+            },
+            {
+              "group": "white",
+              "row_count": 20,
+              "total_weight": 27100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.384833948339484
+            }
+          ],
+          "by_sex": [
+            {
+              "group": "female",
+              "row_count": 20,
+              "total_weight": 24850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.796136820925553
+            },
+            {
+              "group": "male",
+              "row_count": 15,
+              "total_weight": 19350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.557054263565892
+            }
+          ]
+        }
+      },
+      "2024": {
+        "year": 2024,
+        "row_count": 35,
+        "total_weight": 40050,
+        "weight_min": 850,
+        "weight_max": 1500,
+        "position_node_marginals": {
+          "MAT": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CD": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "CU": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "MOR": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "PRO": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "COM": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ZS": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_H": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          },
+          "ONT_S": {
+            "mean": 3,
+            "sd": 0,
+            "p10": 3,
+            "p50": 3,
+            "p90": 3,
+            "mean_salience": 1
+          }
+        },
+        "categorical_node_distributions": {
+          "EPS": {
+            "distribution": [
+              0.2,
+              0.3,
+              0.1,
+              0.15,
+              0.15,
+              0.1
+            ],
+            "mean_salience": 1
+          },
+          "AES": {
+            "distribution": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666
+            ],
+            "mean_salience": 0.4700000000000001
+          }
+        },
+        "moral_boundary_mean_salience": {
+          "national": 1,
+          "ethnic_racial": 1,
+          "religious": 1.3050561797752809,
+          "class": 0.8859925093632959,
+          "ideological": 1.5217228464419477,
+          "gender": 1,
+          "political_camp": 1.9546816479400748
+        },
+        "moral_boundary_intensity_mean": 1.796494025325486,
+        "engagement": {
+          "mean": 7.263445692883895,
+          "sd": 1.4977309887680612
+        },
+        "low_order_joints": {
+          "MAT_x_CD": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "CD_x_CU": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "MOR_x_PRO": [
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ],
+            [
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001,
+              0.04000000000000001
+            ]
+          ],
+          "engagement_x_turnout_proxy": {
+            "status": "omitted",
+            "reason": "SyntheticElectorateRow carries no turnout / abstention field — vote choice, abstention, candidate distance, and counterfactual outputs are downstream projections of the synthetic electorate, not source fields on the row contract. This joint will be filled when the downstream simulator publishes a per-row turnout / abstention projection."
+          }
+        },
+        "breakouts": {
+          "by_state": [
+            {
+              "group": "CA",
+              "row_count": 5,
+              "total_weight": 6300,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 8.26
+            },
+            {
+              "group": "FL",
+              "row_count": 5,
+              "total_weight": 7500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.96
+            },
+            {
+              "group": "GA",
+              "row_count": 5,
+              "total_weight": 4250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.62
+            },
+            {
+              "group": "NY",
+              "row_count": 5,
+              "total_weight": 5400,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.56
+            },
+            {
+              "group": "OH",
+              "row_count": 5,
+              "total_weight": 6100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.8
+            },
+            {
+              "group": "PA",
+              "row_count": 5,
+              "total_weight": 5650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.66
+            },
+            {
+              "group": "TX",
+              "row_count": 5,
+              "total_weight": 4850,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.7
+            }
+          ],
+          "by_ageBucket": [
+            {
+              "group": "18-24",
+              "row_count": 10,
+              "total_weight": 9100,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.662637362637363
+            },
+            {
+              "group": "35-44",
+              "row_count": 10,
+              "total_weight": 11950,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.503514644351465
+            },
+            {
+              "group": "55-64",
+              "row_count": 10,
+              "total_weight": 11500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.687304347826087
+            },
+            {
+              "group": "65-74",
+              "row_count": 5,
+              "total_weight": 7500,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 6.96
+            }
+          ],
+          "by_raceEthnicity": [
+            {
+              "group": "black",
+              "row_count": 10,
+              "total_weight": 9650,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.146010362694301
+            },
+            {
+              "group": "hispanic",
+              "row_count": 10,
+              "total_weight": 11150,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.581434977578476
+            },
+            {
+              "group": "white",
+              "row_count": 15,
+              "total_weight": 19250,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.1381298701298705
+            }
+          ],
+          "by_sex": [
+            {
+              "group": "female",
+              "row_count": 15,
+              "total_weight": 16350,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.394434250764526
+            },
+            {
+              "group": "male",
+              "row_count": 20,
+              "total_weight": 23700,
+              "MAT_mean": 3,
+              "CD_mean": 3,
+              "MOR_mean": 3,
+              "engagement_mean": 7.173080168776371
+            }
+          ]
+        }
+      }
+    }
+  },
+  "smoke_summary": {
+    "total_checks": 10,
+    "total_passed": 10,
+    "all_passed": true,
+    "total_input_rows": 175,
+    "years_aggregated": 5
+  }
+}
