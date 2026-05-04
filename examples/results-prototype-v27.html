@@ -363,6 +363,64 @@
       color: #888; margin-top: 0.3rem; line-height: 1.3; gap: 0.6rem;
     }
     .ed-pos-poles span:last-child { text-align: right; }
+    /* v27.26 — Phase A cluster rollup. 4-row impact breakdown by cluster.
+       Bar fill = clusterDistance / 4 (mismatch magnitude, NOT averaged
+       political position). Internal segments show which member dimensions
+       drove the cluster distance. Numbers stay in hover. */
+    .ed-cluster-list {
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .ed-cluster-row {
+      display: grid; grid-template-columns: 200px 1fr 60px;
+      align-items: center; gap: 1rem;
+      padding: 0.55rem 0.6rem;
+      background: rgba(255,255,255,0.015);
+      border-radius: 4px;
+      cursor: help;
+    }
+    .ed-cluster-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; color: #fff;
+      letter-spacing: 0.06em;
+      display: flex; flex-direction: column; gap: 0.15rem;
+    }
+    .ed-cluster-sub {
+      font-size: 0.7rem; font-weight: 500; color: #9aa3ad;
+      text-transform: none; letter-spacing: 0.01em;
+      font-style: italic;
+    }
+    .ed-cluster-drivers {
+      font-size: 0.7rem; font-weight: 500; color: #6e7783;
+      text-transform: none; letter-spacing: 0.01em;
+      margin-top: 0.15rem;
+    }
+    .ed-cluster-mid { display: flex; flex-direction: column; gap: 0.35rem; }
+    .ed-cluster-bar {
+      position: relative; height: 14px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 3px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .ed-cluster-bar-fill {
+      position: absolute; top: 0; bottom: 0; left: 0;
+      display: flex; flex-direction: row;
+      transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .ed-cluster-seg {
+      height: 100%;
+      background: var(--pool-deep, #6fa6ff);
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .ed-cluster-seg:last-child { border-right: none; }
+    .ed-cluster-meta {
+      display: flex; flex-direction: row; gap: 0.6rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem; color: #8a929d;
+      letter-spacing: 0.02em;
+    }
+    .ed-cluster-dist-label {
+      text-transform: capitalize;
+    }
     /* v27.24 — Phase 2: categorical (style match) row visual. Match-mass bar
        reads 0–100% of respondent's probability mass on candidate's category.
        Cluster color fill; subtitle shows the math. */
@@ -2135,7 +2193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       MAT:   { name: 'Material',          cluster: 'ENDS',    low: 'Share the wealth',          high: 'Let markets work' },
       CD:    { name: 'Cultural Direction',cluster: 'ENDS',    low: 'Change with the times',     high: 'Preserve what works' },
       CU:    { name: 'Assimilation',      cluster: 'ENDS',    low: 'One shared way of life',    high: 'Different ways, side by side' },
-      MOR:   { name: 'Moral Circle',      cluster: 'ENDS',    low: 'In-group only',             high: 'Universal' },
+      MOR:   { name: 'Moral Circle',      cluster: 'IDENTITY', low: 'In-group only',             high: 'Universal' },
       PRO:   { name: 'Procedure',         cluster: 'MEANS',   low: 'Get results, bend rules',   high: 'Follow the rules' },
       COM:   { name: 'Compromise',        cluster: 'MEANS',   low: 'Stand on principle',        high: 'Cut a deal' },
       ONT_S: { name: 'Institutions',      cluster: 'MEANS',   low: 'Not the right tool',        high: 'Can produce good change' },
@@ -2169,6 +2227,32 @@ document.addEventListener('DOMContentLoaded', () => {
       EPS: { name: 'Epistemic style', cluster: 'REALITY' },
       AES: { name: 'Aesthetic style', cluster: 'MEANS' },
     };
+
+    // v27.26 — Phase A cluster rollup. 4-row impact breakdown by cluster.
+    // MOR is in IDENTITY (not ENDS) per architecture update 2026-05-04 —
+    // moral circle is identity-related, not what-you-want.
+    // morBoundaries (compound vector) folds into IDENTITY when present;
+    // legacy MOR per-node is the fallback (currently active until task #51
+    // ships morBoundaries through the data export pipeline).
+    const IMPACT_CLUSTERS = [
+      { id: 'ENDS',     name: 'ENDS',     subline: 'what you want',
+        definition: 'ENDS measures what you want from politics — material policy, cultural direction, and assimilation.',
+        members: { continuous: ['MAT','CD','CU'], categorical: [] } },
+      { id: 'MEANS',    name: 'MEANS',    subline: 'how you pursue it',
+        definition: 'MEANS measures how you pursue your political goals — procedure, compromise, institutional belief, and aesthetic register.',
+        members: { continuous: ['PRO','COM','ONT_S'], categorical: ['AES'] } },
+      { id: 'REALITY',  name: 'REALITY',  subline: 'how you see the world',
+        definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, and epistemic style.',
+        members: { continuous: ['ZS','ONT_H'], categorical: ['EPS'] } },
+      { id: 'IDENTITY', name: 'IDENTITY', subline: 'who you are politically',
+        definition: 'IDENTITY measures who you are politically — moral circle and moral-boundary loadings.',
+        members: { continuous: ['MOR'], categorical: [], morModule: true } },
+    ];
+    function clusterOf(nodeCode) {
+      const c = IMPACT_CLUSTERS.find(cl =>
+        cl.members.continuous.includes(nodeCode) || cl.members.categorical.includes(nodeCode));
+      return c ? c.id : null;
+    }
 
     // Build (pos, sal) lookup for continuous nodes + (catDist) for EPS/AES,
     // falling back to the matched archetype's centroid signature for legacy /
@@ -2241,6 +2325,7 @@ document.addEventListener('DOMContentLoaded', () => {
           node, mult,
           yourPos: s.pos, candPos,
           sal: s.sal, effSal,
+          weight: effSal,           // unified field for cluster aggregation
           diff: Math.abs(diff),
           contribution,
         });
@@ -2271,6 +2356,7 @@ document.addEventListener('DOMContentLoaded', () => {
           matchMass,
           styleEraMult: sEra,
           styleWeight,
+          weight: styleWeight,        // unified for cluster aggregation
           gapTerm,
           contribution,
         });
@@ -2284,6 +2370,61 @@ document.addEventListener('DOMContentLoaded', () => {
         r.barPct = (r.contribution / maxContrib) * 100;
       }
       return { rows, ideological, sumWeightedSq, sumWeight };
+    }
+
+    // v27.26 — Phase A: aggregate per-node breakdown rows into 4 cluster
+    // rows. Identical contribution numbers; presentation-only rollup.
+    //   clusterContribution = Σ contribution[n]
+    //   clusterWeight       = Σ weight[n]   (effSal for continuous, styleWeight for categorical)
+    //   clusterDistance     = sqrt(clusterContribution / clusterWeight)
+    //   clusterImpactShare  = clusterContribution / totalContribution
+    //   spread              = weighted std-dev of member √(contribution/weight)
+    //                         used only to label "consistent" / "mixed" — never as a score.
+    function aggregateClusters(rows, totalContribution) {
+      const out = [];
+      for (const cl of IMPACT_CLUSTERS) {
+        const memberRows = rows.filter(r => clusterOf(r.node) === cl.id);
+        let cContrib = 0, cWeight = 0;
+        const memberDistances = []; // {dist, weight, name}
+        for (const r of memberRows) {
+          if (!r.weight || r.weight <= 0) continue;
+          cContrib += r.contribution;
+          cWeight += r.weight;
+          const memDist = Math.sqrt(r.contribution / r.weight);
+          const memMeta = NODE_META[r.node] || CAT_NODE_META[r.node] || { name: r.node };
+          memberDistances.push({ name: memMeta.name, node: r.node, dist: memDist, weight: r.weight, contribution: r.contribution });
+        }
+        const cDist = cWeight > 0 ? Math.sqrt(cContrib / cWeight) : 0;
+        const cShare = totalContribution > 0 ? cContrib / totalContribution : 0;
+        // weighted std-dev of member distances
+        let spread = 0;
+        if (cWeight > 0 && memberDistances.length >= 2) {
+          let varNum = 0;
+          for (const m of memberDistances) varNum += m.weight * Math.pow(m.dist - cDist, 2);
+          spread = Math.sqrt(varNum / cWeight);
+        }
+        // distance label
+        let distLabel = 'close';
+        if (cDist >= 2.0) distLabel = 'far';
+        else if (cDist >= 0.8) distLabel = 'moderate';
+        // spread label — only when meaningful
+        let spreadLabel = null;
+        if (memberDistances.length >= 2 && cDist > 0.05) {
+          const ratio = spread / cDist;
+          if (ratio < 0.3) spreadLabel = 'consistent';
+          else if (ratio > 0.6) spreadLabel = 'mixed';
+        }
+        // sort drivers by contribution desc
+        memberDistances.sort((a, b) => b.contribution - a.contribution);
+        out.push({
+          id: cl.id, name: cl.name, subline: cl.subline, definition: cl.definition,
+          memberDistances,
+          contribution: cContrib, weight: cWeight,
+          distance: cDist, share: cShare,
+          spread, distLabel, spreadLabel,
+        });
+      }
+      return out;
     }
 
     // ── Panel rendering ───────────────────────────────────────────────────
@@ -2440,72 +2581,53 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bd.rows.length === 0) {
           bdBody += `<div class="ed-empty-note">No comparable nodes between your signature and ${focusScore.name}.</div>`;
         } else {
-          bdBody += `<div class="ed-legend"><span class="ed-legend-item"><span class="ed-legend-dot you"></span>You</span><span class="ed-legend-item"><span class="ed-legend-dot cand"></span>${focusScore.name}</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
-          const sorted = bd.rows.slice().sort((a, b) => b.contribution - a.contribution);
-          bdBody += `<div class="ed-node-list">`;
-          sorted.forEach(r => {
-            const contribCls = r.share > 0.20 ? 'ed-contrib high' : 'ed-contrib';
-            const barPx = Math.max(8, r.barPct * 0.7);
-
-            if (r.rowType === 'categorical') {
-              // v27.24 — Phase 2: style-match row for EPS/AES.
-              // Mirrors engine: matchMass = catDist[cand_idx] ; gap term =
-              // (1 - matchMass) × 4 ; styleWeight = (0.6 × styleEraMult)².
-              // Categorical "weight" is fixed background style compatibility,
-              // NOT respondent salience.
-              const meta = CAT_NODE_META[r.node] || { name: r.node, cluster: '' };
-              const matchPct = (r.matchMass * 100).toFixed(0);
-              const topPct = (r.yourTopMass * 100).toFixed(0);
-              const styleEraBadge = r.styleEraMult > 1.05
-                ? `<span class="ed-node-act x2" title="Style-driven election: weight scaled ${r.styleEraMult.toFixed(1)}×">style era ${r.styleEraMult.toFixed(1)}×</span>`
-                : '';
-              const styleSubline = `${meta.cluster} · style match · weight (0.6 × ${r.styleEraMult.toFixed(2)})² = ${r.styleWeight.toFixed(2)}`;
-              const tipHtml = `Match mass: ${matchPct}%
-Style weight: (0.6 × ${r.styleEraMult.toFixed(2)})² = ${r.styleWeight.toFixed(3)}
-Gap term: (1 - ${r.matchMass.toFixed(2)}) × 4 = ${r.gapTerm.toFixed(2)}
-Contribution: ${r.styleWeight.toFixed(3)} × ${r.gapTerm.toFixed(2)} = ${r.contribution.toFixed(3)}`;
-              bdBody += `<div class="ed-node-row ed-cat-row">`;
-              bdBody += `  <div class="ed-node-name">${meta.name}${styleEraBadge}<span class="ed-node-cluster">${styleSubline}</span></div>`;
-              bdBody += `  <div>`;
-              bdBody += `    <div class="ed-cat-line">Your top: <strong>${r.yourTopCat}</strong> (${topPct}%) → Cand: <strong>${r.candCat}</strong> · match mass <strong>${matchPct}%</strong></div>`;
-              bdBody += `    <div class="ed-cat-bar" title="${tipHtml.replace(/"/g, '&quot;')}">`;
-              bdBody += `      <div class="ed-cat-bar-fill" style="width:${matchPct}%"></div>`;
-              bdBody += `    </div>`;
-              bdBody += `  </div>`;
-              bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${(r.share * 100).toFixed(0)}%</span><span class="ed-contrib-bar" style="width:${barPx}px"></span></div>`;
-              bdBody += `</div>`;
-              return;
+          // v27.26 — Phase A cluster rollup. Per-node rows are kept inside
+          // bd.rows for math + hover use only; the rendered output is 4
+          // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
+          const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq);
+          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Distance broken down by cluster — rolls up the per-dimension math without exposing individual codings.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
+          const sortedClusters = clusterRows.slice().sort((a, b) => b.contribution - a.contribution);
+          bdBody += `<div class="ed-cluster-list">`;
+          // Max distance for normalizing fill width — cap at 4 (typical pos² scale).
+          const maxScaleDist = 4;
+          sortedClusters.forEach(c => {
+            const sharePct = (c.share * 100).toFixed(0);
+            const fillPct = Math.min(100, (c.distance / maxScaleDist) * 100);
+            const barPx = Math.max(8, c.share * 100 * 0.7);
+            const contribCls = c.share > 0.30 ? 'ed-contrib high' : 'ed-contrib';
+            // Driver names for the subline (1-3 dimensions max, names only — no codings).
+            const driverNames = c.memberDistances.map(m => m.name);
+            const driverList = driverNames.length === 0
+              ? '(no contribution)'
+              : driverNames.length <= 3
+                ? driverNames.join(' · ')
+                : driverNames.slice(0, 3).join(' · ') + ` +${driverNames.length - 3}`;
+            // Internal segments — each member's contribution share within the
+            // cluster fill. Visual cue for "which dimensions drove this", no
+            // numbers shown by default.
+            let segs = '';
+            if (c.contribution > 0 && c.memberDistances.length > 0) {
+              for (const m of c.memberDistances) {
+                const segPct = (m.contribution / c.contribution) * 100;
+                segs += `<div class="ed-cluster-seg" style="width:${segPct.toFixed(2)}%" title="${m.name} · ${(m.contribution / c.contribution * 100).toFixed(0)}% of ${c.id}"></div>`;
+              }
             }
-
-            // ── Continuous-node row (existing visual) ────────────────────
-            const meta = NODE_META[r.node] || { name: r.node, cluster: '', low: '', high: '' };
-            const yourLeft = ((r.yourPos - 1) / 4) * 100;
-            const candLeft = ((r.candPos - 1) / 4) * 100;
-            const actBadge = r.mult === 3 ? '<span class="ed-node-act x3">3×</span>'
-                          : r.mult === 2 ? '<span class="ed-node-act x2">2×</span>'
-                          : '';
-            const salDisplay = (r.effSal > r.sal + 0.05)
-              ? `sal ${r.sal.toFixed(1)}/3 → ${r.effSal.toFixed(1)} eff`
-              : `sal ${r.sal.toFixed(1)}/3`;
-            bdBody += `<div class="ed-node-row">`;
-            bdBody += `  <div class="ed-node-name">${meta.name}${actBadge}<span class="ed-node-cluster">${meta.cluster} · ${salDisplay}</span></div>`;
-            bdBody += `  <div>`;
-            bdBody += `    <div class="ed-pos-bar">`;
-            bdBody += `      <div class="ed-pos-axis"></div>`;
-            for (let i = 0; i < 5; i++) bdBody += `<div class="ed-pos-tick" style="left:${6 + i * 22}%"></div>`;
-            const youX = 6 + (yourLeft * 0.88);
-            const candX = 6 + (candLeft * 0.88);
-            const lineLeft = Math.min(youX, candX);
-            const lineWidth = Math.abs(youX - candX);
-            if (lineWidth > 0.2) {
-              bdBody += `      <div class="ed-pos-line" style="left:${lineLeft}%;width:${lineWidth}%" title="Position gap: ${r.diff.toFixed(2)} (drives impact via salience × gap²)"></div>`;
-            }
-            bdBody += `      <div class="ed-pos-dot cand" style="left:${candX}%" title="${focusScore.name}: ${r.candPos}"></div>`;
-            bdBody += `      <div class="ed-pos-dot you" style="left:${youX}%" title="You: ${r.yourPos.toFixed(1)}"></div>`;
-            bdBody += `    </div>`;
-            bdBody += `    <div class="ed-pos-poles"><span>${meta.low}</span><span>${meta.high}</span></div>`;
+            // Distance + spread labels.
+            const labels = [];
+            if (c.contribution > 0) labels.push(c.distLabel);
+            if (c.spreadLabel) labels.push(c.spreadLabel);
+            const labelLine = labels.length ? labels.join(' · ') : 'no contribution';
+            // Hover tip — plain-language definition + math + drivers (names only).
+            const hoverTip = c.contribution > 0
+              ? `${c.definition}\n\nContribution: ${c.contribution.toFixed(2)} / ${bd.sumWeightedSq.toFixed(2)} = ${sharePct}% impact\nWeighted distance: ${c.distance.toFixed(2)}\nDrivers (by contribution): ${driverNames.join(', ')}`
+              : `${c.definition}\n\nNo contribution from this cluster on this candidate.`;
+            bdBody += `<div class="ed-cluster-row" title="${hoverTip.replace(/"/g, '&quot;')}">`;
+            bdBody += `  <div class="ed-cluster-name">${c.name}<span class="ed-cluster-sub">${c.subline}</span><span class="ed-cluster-drivers">${driverList}</span></div>`;
+            bdBody += `  <div class="ed-cluster-mid">`;
+            bdBody += `    <div class="ed-cluster-bar"><div class="ed-cluster-bar-fill" style="width:${fillPct.toFixed(1)}%">${segs}</div></div>`;
+            bdBody += `    <div class="ed-cluster-meta"><span class="ed-cluster-dist-label">${labelLine}</span></div>`;
             bdBody += `  </div>`;
-            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${(r.share * 100).toFixed(0)}%</span><span class="ed-contrib-bar" style="width:${barPx}px"></span></div>`;
+            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${sharePct}%</span><span class="ed-contrib-bar" style="width:${barPx.toFixed(0)}px"></span></div>`;
             bdBody += `</div>`;
           });
           bdBody += `</div>`;
@@ -2529,17 +2651,13 @@ Contribution: ${r.styleWeight.toFixed(3)} × ${r.gapTerm.toFixed(2)} = ${r.contr
           bdBody += `<div class="ed-modifiers">`;
           bdBody += `  <div style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">Modifiers applied to values distance</div>`;
           bdBody += mods.join('');
-          bdBody += `  <div class="ed-mod-note">Per-node breakdown above shows values-only contributions. EPS/AES (style) and the compound moral-circle term are folded into the values total but not expanded per-node here.</div>`;
+          bdBody += `  <div class="ed-mod-note">The cluster breakdown above shows values-only contributions, rolled up from the underlying per-dimension Euclidean distance math. Modifiers below are applied AFTER the values distance to produce the final ballot-distance.</div>`;
           bdBody += `</div>`;
         }
-        // v27.22 / v27.23: small footer — explains what's NOT in the per-node
-        // breakdown. Wording softened: PF/TRB aren't direct distance nodes but
-        // have residual effects (PF in the party-loyalty multiplier; TRB
-        // anchor fallback fires when morBoundaries is absent). The continuous
-        // breakdown above also doesn't yet include EPS/AES (style-match) or
-        // the compound moral-boundary vector — those land in later phases.
+        // v27.26 — engagement footer note. ENG controls the vote/abstain
+        // clearing bar; it is not part of candidate-distance.
         bdBody += `<div class="ed-modifiers" style="margin-top:0.6rem;">`;
-        bdBody += `  <div class="ed-mod-note" style="font-style:italic;">Engagement is not a candidate-distance node — it controls the vote/abstain threshold (clearing-bar) only. PF and TRB are not direct candidate-distance nodes either, though PF can affect the party-loyalty multiplier and TRB anchor alignment fires as a fallback when moral-boundary data is absent. EPS/AES (style match) and the compound moral-boundary term are also folded into the engine's values total but not yet expanded as rows here.</div>`;
+        bdBody += `  <div class="ed-mod-note" style="font-style:italic;">Engagement controls the vote/abstain threshold (clearing-bar). It is not part of candidate-distance.</div>`;
         bdBody += `</div>`;
       }
       html += sectionWrap('breakdown', `Your distance · ${focusScore.name}`, bdBody, `final ${focusScore.distance.toFixed(2)}`);
