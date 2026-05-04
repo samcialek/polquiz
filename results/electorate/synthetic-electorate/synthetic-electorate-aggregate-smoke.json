@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T21:00:37.361Z",
+  "run_at": "2026-05-04T22:40:55.558Z",
   "phase": "2.7.6 — synthetic electorate aggregate harness (mock universe)",
   "mock_disclaimer": "MOCK CONTRACT-TEST CELLS — not real population data; do not aggregate or interpret demographically.",
   "pipeline": {
@@ -972,12 +972,12 @@
             "mean_salience": 1
           },
           "ZS": {
-            "mean": 3,
-            "sd": 0,
-            "p10": 3,
+            "mean": 2.9311936738432425,
+            "sd": 0.5258822344418175,
+            "p10": 2.3397452998121704,
             "p50": 3,
-            "p90": 3,
-            "mean_salience": 1
+            "p90": 3.6602547001878305,
+            "mean_salience": 1.3226233453670277
           },
           "ONT_H": {
             "mean": 3,
@@ -1362,12 +1362,12 @@
             "mean_salience": 1
           },
           "ZS": {
-            "mean": 3,
-            "sd": 0,
-            "p10": 3,
-            "p50": 3,
-            "p90": 3,
-            "mean_salience": 1
+            "mean": 2.6947288472159174,
+            "sd": 0.8953579049462564,
+            "p10": 1.7779618425105117,
+            "p50": 2.658421034701304,
+            "p90": 4.222038157489488,
+            "mean_salience": 1.3474547511312218
           },
           "ONT_H": {
             "mean": 3,
@@ -1761,12 +1761,12 @@
             "mean_salience": 1
           },
           "ZS": {
-            "mean": 3,
-            "sd": 0,
-            "p10": 3,
-            "p50": 3,
-            "p90": 3,
-            "mean_salience": 1
+            "mean": 3.483309586249444,
+            "sd": 0.4514193278517599,
+            "p10": 2.78287168143203,
+            "p50": 3.7279230447205034,
+            "p90": 3.993092816540897,
+            "mean_salience": 1.288514357053683
           },
           "ONT_H": {
             "mean": 3,

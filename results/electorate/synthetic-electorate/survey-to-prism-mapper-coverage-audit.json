@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T21:00:22.835Z",
+  "run_at": "2026-05-04T22:40:42.987Z",
   "phase": "2.7.7 — survey-to-PRISM mapper coverage audit (read-only diagnostic)",
   "config": {
     "sample_row_limit_per_year": 5000,
@@ -1457,8 +1457,8 @@
       "total_weight": 4037.813513065154,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 9.932663096432362,
-        "weighted_mean_fallback_per_row": 10.067336903567627,
+        "weighted_mean_real_signal_per_row": 10.892376612723492,
+        "weighted_mean_fallback_per_row": 9.107623387276501,
         "weighted_mean_party_id_derived_per_row": 1.9612926165055924
       },
       "per_target": [
@@ -1688,8 +1688,8 @@
           "target_name": "ZS",
           "target_kind": "continuous",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 95.97135162911265,
+          "weighted_fallback_pct": 4.028648370887318,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
@@ -1697,24 +1697,26 @@
             "high": 100
           },
           "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "top_source_fields": [
+            {
+              "field": "CC16_337_3",
+              "weighted_use_pct": 95.97135162911265
+            }
+          ],
           "marginal_summary": {
             "weighted_avg_distribution": [
-              0.20000000000000004,
-              0.20000000000000004,
-              0.20000000000000004,
-              0.20000000000000004,
-              0.20000000000000004
+              0.12714603242851513,
+              0.22152396194477678,
+              0.27254253937891987,
+              0.23618590275547116,
+              0.14260156349231562
             ],
-            "spread": 0,
-            "weighted_mean": 2.9999999999999947,
-            "weighted_sd": 5.329070518200748e-15
+            "spread": 0.14539650695040474,
+            "weighted_mean": 3.045573002938299,
+            "weighted_sd": 0.5086157569029922
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "ONT_H",
@@ -2119,13 +2121,6 @@
           ]
         },
         {
-          "target": "ZS",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
-        },
-        {
           "target": "ONT_H",
           "reasons": [
             "real-signal coverage 0.0% < 25%",
@@ -2174,8 +2169,8 @@
       "total_weight": 4463.53307731566,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 11.92179962119214,
-        "weighted_mean_fallback_per_row": 8.078200378807912,
+        "weighted_mean_real_signal_per_row": 12.921799621192173,
+        "weighted_mean_fallback_per_row": 7.078200378807895,
         "weighted_mean_party_id_derived_per_row": 1.961751207405605
       },
       "per_target": [
@@ -2405,33 +2400,43 @@
           "target_name": "ZS",
           "target_kind": "continuous",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 100,
+            "high": 0
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2,
+          "top_source_fields": [
+            {
+              "field": "CC20_303",
+              "weighted_use_pct": 99.76217438909661
+            },
+            {
+              "field": "CC20_331d",
+              "weighted_use_pct": 99.39445170125583
+            },
+            {
+              "field": "CC20_355b",
+              "weighted_use_pct": 98.83675067956891
+            }
+          ],
           "marginal_summary": {
             "weighted_avg_distribution": [
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012
+              0.17180086679845305,
+              0.24810915015080118,
+              0.22840546232360548,
+              0.21212036205535423,
+              0.13956415867178915
             ],
-            "spread": 0,
-            "weighted_mean": 3.0000000000000084,
-            "weighted_sd": 8.437694987151194e-15
+            "spread": 0.10854499147901203,
+            "weighted_mean": 2.8995377956512396,
+            "weighted_sd": 1.013450820642926
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "ONT_H",
@@ -2856,13 +2861,6 @@
           ]
         },
         {
-          "target": "ZS",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
-        },
-        {
           "target": "ONT_H",
           "reasons": [
             "real-signal coverage 0.0% < 25%",
@@ -2897,8 +2895,8 @@
       "total_weight": 5827.819631002991,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 10.898451720264303,
-        "weighted_mean_fallback_per_row": 9.1015482797357,
+        "weighted_mean_real_signal_per_row": 11.898451720264243,
+        "weighted_mean_fallback_per_row": 8.101548279735706,
         "weighted_mean_party_id_derived_per_row": 1.9578994908261096
       },
       "per_target": [
@@ -3128,33 +3126,43 @@
           "target_name": "ZS",
           "target_kind": "continuous",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 99.77941989723497,
+            "high": 0.2205801027650299
           },
-          "mean_uncertainty_score": 3.0000000000000004,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2.0022058010276504,
+          "top_source_fields": [
+            {
+              "field": "CC24_303",
+              "weighted_use_pct": 99.77941989723497
+            },
+            {
+              "field": "CC24_341b",
+              "weighted_use_pct": 99.63205278064245
+            },
+            {
+              "field": "CC24_341c",
+              "weighted_use_pct": 99.50302626086346
+            }
+          ],
           "marginal_summary": {
             "weighted_avg_distribution": [
-              0.2000000000000005,
-              0.2000000000000005,
-              0.2000000000000005,
-              0.2000000000000005,
-              0.2000000000000005
+              0.038851809656256626,
+              0.13910083209564364,
+              0.2941883340531097,
+              0.33562522606974066,
+              0.19223379812525151
             ],
-            "spread": 0,
-            "weighted_mean": 2.99999999999999,
-            "weighted_sd": 1.0214051826551465e-14
+            "spread": 0.29677341641348404,
+            "weighted_mean": 3.503288370912093,
+            "weighted_sd": 0.46203401779095266
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "ONT_H",
@@ -3551,13 +3559,6 @@
         },
         {
           "target": "COM",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
-        },
-        {
-          "target": "ZS",
           "reasons": [
             "real-signal coverage 0.0% < 25%",
             "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"

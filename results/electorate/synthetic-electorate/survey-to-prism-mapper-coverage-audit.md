@@ -1,6 +1,6 @@
 # Survey-to-PRISM Mapper Coverage Audit (Phase 2.7.7)
 
-**Run at:** 2026-05-04T21:00:22.836Z
+**Run at:** 2026-05-04T22:40:42.989Z
 **Sample row limit per year:** 5000
 **Status:** Read-only diagnostic. The mapper is **NOT** modified by this audit.
 
@@ -32,9 +32,9 @@ Per target the audit reports:
 |---|---:|---:|---:|---:|
 | 2008 | 5000 | 1.00 | 19.00 | 0.00 |
 | 2012 | 5000 | 5.93 | 14.07 | 1.97 |
-| 2016 | 5000 | 9.93 | 10.07 | 1.96 |
-| 2020 | 5000 | 11.92 | 8.08 | 1.96 |
-| 2024 | 5000 | 10.90 | 9.10 | 1.96 |
+| 2016 | 5000 | 10.89 | 9.11 | 1.96 |
+| 2020 | 5000 | 12.92 | 7.08 | 1.96 |
+| 2024 | 5000 | 11.90 | 8.10 | 1.96 |
 
 ## Cross-year per-target real-signal coverage (weighted %)
 
@@ -46,7 +46,7 @@ Per target the audit reports:
 | `MOR` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `PRO` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `COM` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
-| `ZS` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
+| `ZS` | continuous | 0.0 | 0.0 | 96.0 | 100.0 | 100.0 | 59.2 | 2008, 2012 |
 | `ONT_H` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `ONT_S` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
 | `EPS` | categorical | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
@@ -165,8 +165,8 @@ Per target the audit reports:
 ## 2016
 
 - Rows mapped: **5000**; total weight: **4038**
-- Per row (weighted mean): real-signal targets **9.93 / 20**; fallback **10.07 / 20**; party-ID-derived **1.96 / 20**
-- Signature blockers: **10 / 20** (`MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
+- Per row (weighted mean): real-signal targets **10.89 / 20**; fallback **9.11 / 20**; party-ID-derived **1.96 / 20**
+- Signature blockers: **9 / 20** (`MOR`, `PRO`, `COM`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
 
 ### Per-target coverage
 
@@ -178,7 +178,7 @@ Per target the audit reports:
 | `MOR` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `PRO` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `COM` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
-| `ZS` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
+| `ZS` | continuous | 96.0 | 4.0 | 0.0 | 3.00 | `CC16_337_3` (96%) | dist=[0.127, 0.222, 0.273, 0.236, 0.143], spread=1.45e-1, mean_pos=3.05 | ✓ |
 | `ONT_H` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `ONT_S` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `EPS` | categorical | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.300, 0.100, 0.150, 0.150, 0.100], spread=2.00e-1 | ✗ |
@@ -198,7 +198,6 @@ Per target the audit reports:
 - **`MOR`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`PRO`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`COM`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
-- **`ZS`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_H`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_S`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`EPS`** — real-signal coverage 0.0% < 25%
@@ -209,8 +208,8 @@ Per target the audit reports:
 ## 2020
 
 - Rows mapped: **5000**; total weight: **4464**
-- Per row (weighted mean): real-signal targets **11.92 / 20**; fallback **8.08 / 20**; party-ID-derived **1.96 / 20**
-- Signature blockers: **8 / 20** (`MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`)
+- Per row (weighted mean): real-signal targets **12.92 / 20**; fallback **7.08 / 20**; party-ID-derived **1.96 / 20**
+- Signature blockers: **7 / 20** (`MOR`, `PRO`, `COM`, `ONT_H`, `ONT_S`, `EPS`, `AES`)
 
 ### Per-target coverage
 
@@ -222,7 +221,7 @@ Per target the audit reports:
 | `MOR` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `PRO` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `COM` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
-| `ZS` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
+| `ZS` | continuous | 100.0 | 0.0 | 0.0 | 2.00 | `CC20_303` (100%), `CC20_331d` (99%), `CC20_355b` (99%) | dist=[0.172, 0.248, 0.228, 0.212, 0.140], spread=1.09e-1, mean_pos=2.90 | ✓ |
 | `ONT_H` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `ONT_S` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `EPS` | categorical | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.300, 0.100, 0.150, 0.150, 0.100], spread=2.00e-1 | ✗ |
@@ -242,7 +241,6 @@ Per target the audit reports:
 - **`MOR`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`PRO`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`COM`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
-- **`ZS`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_H`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_S`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`EPS`** — real-signal coverage 0.0% < 25%
@@ -251,8 +249,8 @@ Per target the audit reports:
 ## 2024
 
 - Rows mapped: **5000**; total weight: **5828**
-- Per row (weighted mean): real-signal targets **10.90 / 20**; fallback **9.10 / 20**; party-ID-derived **1.96 / 20**
-- Signature blockers: **9 / 20** (`MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`)
+- Per row (weighted mean): real-signal targets **11.90 / 20**; fallback **8.10 / 20**; party-ID-derived **1.96 / 20**
+- Signature blockers: **8 / 20** (`MOR`, `PRO`, `COM`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`)
 
 ### Per-target coverage
 
@@ -264,7 +262,7 @@ Per target the audit reports:
 | `MOR` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `PRO` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `COM` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
-| `ZS` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
+| `ZS` | continuous | 100.0 | 0.0 | 0.0 | 2.00 | `CC24_303` (100%), `CC24_341b` (100%), `CC24_341c` (100%) | dist=[0.039, 0.139, 0.294, 0.336, 0.192], spread=2.97e-1, mean_pos=3.50 | ✓ |
 | `ONT_H` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `ONT_S` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `EPS` | categorical | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.300, 0.100, 0.150, 0.150, 0.100], spread=2.00e-1 | ✗ |
@@ -284,7 +282,6 @@ Per target the audit reports:
 - **`MOR`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`PRO`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`COM`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
-- **`ZS`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_H`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`ONT_S`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`EPS`** — real-signal coverage 0.0% < 25%

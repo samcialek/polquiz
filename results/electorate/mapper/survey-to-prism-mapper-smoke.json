@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T21:00:07.378Z",
+  "runAt": "2026-05-04T22:40:27.752Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -275,7 +275,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+            "notes": "v0.1J ZS: zero-sum decoder gated to 2016/2020/2024 (audited); year 2008 deferred"
           }
         },
         "ONT_H": {
@@ -739,7 +739,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+            "notes": "v0.1J ZS: zero-sum decoder gated to 2016/2020/2024 (audited); year 2012 deferred"
           }
         },
         "ONT_H": {
@@ -976,9 +976,9 @@
           "realSignalShare": 0
         },
         "ZS": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 197,
+          "fallbackCount": 3,
+          "realSignalShare": 0.985
         },
         "ONT_H": {
           "realSignalCount": 0,
@@ -1044,9 +1044,9 @@
         "realSignalShare": 0.985
       },
       "meanCoverage": {
-        "realSignalCount": 1982,
-        "fallbackCount": 2018,
-        "realSignalShare": 0.4955
+        "realSignalCount": 2179,
+        "fallbackCount": 1821,
+        "realSignalShare": 0.54475
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -1207,11 +1207,11 @@
         },
         "ZS": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.11020945604615712,
+            0.23691201406344845,
+            0.30575705978078893,
+            0.23691201406344845,
+            0.11020945604615712
           ],
           "salPosterior": [
             0.3,
@@ -1220,11 +1220,13 @@
             0.05
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC16_337_3"
+            ],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+            "notes": "v0.1J ZS (2016): 1/1 items, totalWeight=0.20 (− positive-sum, + zero-sum); signal=0.00 → pos=3.00, salience=0.50 (NEAR-FALLBACK per spec §1.2: single weak ranking item)"
           }
         },
         "ONT_H": {
@@ -1422,8 +1424,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 10,
-          "fallbackCount": 10,
+          "realSignalCount": 11,
+          "fallbackCount": 9,
           "totalTargets": 20
         }
       }
@@ -1466,9 +1468,9 @@
           "realSignalShare": 0
         },
         "ZS": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "ONT_H": {
           "realSignalCount": 0,
@@ -1534,9 +1536,9 @@
         "realSignalShare": 0.985
       },
       "meanCoverage": {
-        "realSignalCount": 2386,
-        "fallbackCount": 1614,
-        "realSignalShare": 0.5965
+        "realSignalCount": 2586,
+        "fallbackCount": 1414,
+        "realSignalShare": 0.6465
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -1699,24 +1701,28 @@
         },
         "ZS": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.5014241973097208,
+            0.38979724037734736,
+            0.10005977224516362,
+            0.008481399836929911,
+            0.000237390230838393
           ],
           "salPosterior": [
-            0.3,
-            0.45,
-            0.2,
-            0.05
+            0.1,
+            0.25,
+            0.35,
+            0.3
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC20_303",
+              "CC20_355b",
+              "CC20_331d"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+            "uncertainty": "medium",
+            "notes": "v0.1J ZS (2020): 3/3 items, totalWeight=1.10 (− positive-sum, + zero-sum); signal=-0.86 → pos=1.27, salience=2.00"
           }
         },
         "ONT_H": {
@@ -1926,8 +1932,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 12,
-          "fallbackCount": 8,
+          "realSignalCount": 13,
+          "fallbackCount": 7,
           "totalTargets": 20
         }
       }
@@ -1970,9 +1976,9 @@
           "realSignalShare": 0
         },
         "ZS": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "ONT_H": {
           "realSignalCount": 0,
@@ -2038,9 +2044,9 @@
         "realSignalShare": 1
       },
       "meanCoverage": {
-        "realSignalCount": 2185,
-        "fallbackCount": 1815,
-        "realSignalShare": 0.54625
+        "realSignalCount": 2385,
+        "fallbackCount": 1615,
+        "realSignalShare": 0.59625
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -2203,11 +2209,11 @@
         },
         "ZS": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.12505756731067438,
+            0.31688097680769317,
+            0.35136726694867976,
+            0.17049253710906612,
+            0.03620165182388666
           ],
           "salPosterior": [
             0.3,
@@ -2216,11 +2222,16 @@
             0.05
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC24_303",
+              "CC24_341b",
+              "CC24_341c",
+              "CC24_341d"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0: ZS from issue items deferred (trade, immigration takes jobs)"
+            "uncertainty": "medium",
+            "notes": "v0.1J ZS (2024): 4/4 items, totalWeight=0.80 (− positive-sum, + zero-sum); signal=-0.19 → pos=2.63, salience=1.08"
           }
         },
         "ONT_H": {
@@ -2422,8 +2433,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 11,
-          "fallbackCount": 9,
+          "realSignalCount": 12,
+          "fallbackCount": 8,
           "totalTargets": 20
         }
       }

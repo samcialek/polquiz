@@ -923,6 +923,183 @@ function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry
 }
 
 /**
+ * Per-year polarity table for the ZS (zero-sum) composite. ZS scale:
+ *   1 = positive-sum ("rising tide lifts all boats")
+ *   5 = zero-sum ("their gain is our loss")
+ *
+ * Per-item signal convention (∈ [−1, +1]): −1 pushes ZS-low (positive-sum),
+ * +1 pushes ZS-high (zero-sum). Each item's `kind` field selects one of
+ * the spec §1.5 transforms.
+ *
+ * 2016 (NEAR-FALLBACK per spec §1.2): single weak item only.
+ *   - `CC16_337_3` "Raise Taxes" (3-way ranking) at weight 0.2×.
+ *
+ * 2020 (MAP — primary, total weight 1.1, per spec §1.3):
+ *   - `CC20_303` past-year household-income change at weight 0.3×.
+ *   - `CC20_355b` TPP withdrawal at weight 0.5×.
+ *   - `CC20_331d` "Reduce LEGAL immigration by 50%" at weight 0.3× (light
+ *     ZS cross-load — primary load is CU + national.salience, already
+ *     routed there).
+ *
+ * 2024 (REDUCED, total weight 0.8, per spec §1.4):
+ *   - `CC24_303` past-year price change at weight 0.5× (sign INVERTED vs
+ *     CC20_303 — questions are different subjects).
+ *   - `CC24_341{b,c,d}` tax-rate / infrastructure items at weight 0.1×
+ *     each (one-sided light cross-loads; primary load is MAT).
+ */
+type ZsItemKind =
+  | "rank_first_to_zs_low"          // CC16_337_3: rank 1 → −0.5, rank 2 → 0, rank 3 → +0.5
+  | "income_decrease_to_zs_high"    // CC20_303: signal = clip((v−3)/2, [−1, +1])
+  | "price_increase_to_zs_high"     // CC24_303: signal = clip((3−v)/2, [−1, +1]) — INVERTED
+  | "support_to_zs_high"            // CC20_355b, CC20_331d: Support → +1.0; Oppose → −1.0
+  | "support_to_zs_low_light";      // CC24_341{b,c,d}: Support → −0.5; Oppose → 0 (one-sided)
+type ZsItem = { col: string; kind: ZsItemKind; weight: number };
+
+function zsItemsForYear(year: number): ZsItem[] | null {
+  if (year === 2016) {
+    return [
+      { col: "CC16_337_3", kind: "rank_first_to_zs_low", weight: 0.2 },
+    ];
+  }
+  if (year === 2020) {
+    return [
+      { col: "CC20_303",  kind: "income_decrease_to_zs_high", weight: 0.3 },
+      { col: "CC20_355b", kind: "support_to_zs_high",         weight: 0.5 },
+      { col: "CC20_331d", kind: "support_to_zs_high",         weight: 0.3 },
+    ];
+  }
+  if (year === 2024) {
+    return [
+      { col: "CC24_303",  kind: "price_increase_to_zs_high", weight: 0.5 },
+      { col: "CC24_341b", kind: "support_to_zs_low_light",   weight: 0.1 },
+      { col: "CC24_341c", kind: "support_to_zs_low_light",   weight: 0.1 },
+      { col: "CC24_341d", kind: "support_to_zs_low_light",   weight: 0.1 },
+    ];
+  }
+  return null;
+}
+
+/**
+ * ZS (zero-sum) — real-signal core position target shipped in mapper
+ * v0.1J for 2016 / 2020 / 2024 per
+ * `mapper-zs-boundary-implementation-spec.md` §1.
+ *
+ * Coding (CCES universal, all cycles): 1=Yes/Support/Favor, 2=No/Oppose,
+ * 8=Skipped, 9=Not Asked, "."=missing. Skipped / NotAsked / missing are
+ * dropped from the running tally.
+ *
+ * Algorithm (spec §1.5): per item produce a signal ∈ [−1, +1] via the
+ * item's `kind` transform. Weighted average across answered items:
+ * `zs_signal = Σ w_i × s_i / Σ w_i`. Position = `3 + 2 × zs_signal`
+ * (linear: signal=−1 → ZS 1 [positive-sum]; signal=+1 → ZS 5 [zero-sum]).
+ * Posterior is a discrete-Gaussian over {1..5} with σ inverse to total
+ * weight collected (same helper used by CD / CU / MAT).
+ *
+ * Salience: intensity (|signal|) + breadth bonus.
+ *
+ * Per-cycle uncertainty (per spec TL;DR):
+ *   - 2016: always `high` (NEAR-FALLBACK — single weak item only;
+ *     spec §1.2 explicitly recommends honest `uncertainty: "high"`).
+ *   - 2020: `medium` when any item answered, else `high`.
+ *   - 2024: `medium` when total weight ≥ 0.5 (i.e., the primary CC24_303
+ *     item answered), else `high`.
+ *
+ * **Critical implementation note (spec §1.4)**: `CC20_303` (income) and
+ * `CC24_303` (prices) have OPPOSITE direction signs because the question
+ * subjects differ. The two transforms `income_decrease_to_zs_high` and
+ * `price_increase_to_zs_high` are deliberately separate per the spec —
+ * they CANNOT share a single mapping function.
+ *
+ * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
+ * no `pid7`, no turnout fields. Reads only the year's audited columns.
+ */
+function deriveZS(r: WeightedSurveyRespondent): ContinuousNodeSignature {
+  const items = zsItemsForYear(r.year);
+  if (!items) {
+    return fallbackContinuous(`v0.1J ZS: zero-sum decoder gated to 2016/2020/2024 (audited); year ${r.year} deferred`);
+  }
+
+  let weightedDirectionSum = 0;
+  let totalWeight = 0;
+  let answered = 0;
+  const usedVars: string[] = [];
+
+  for (const it of items) {
+    const raw = parseCodedNumber(r.rawVarPayload[it.col]);
+    if (raw === null) continue;
+    let signal: number | null = null;
+    switch (it.kind) {
+      case "rank_first_to_zs_low":
+        if (raw === 1) signal = -0.5;
+        else if (raw === 2) signal = 0;
+        else if (raw === 3) signal = 0.5;
+        else signal = null;
+        break;
+      case "income_decrease_to_zs_high":
+        if (raw >= 1 && raw <= 5) {
+          signal = Math.max(-1, Math.min(1, (raw - 3) / 2));
+        }
+        break;
+      case "price_increase_to_zs_high":
+        if (raw >= 1 && raw <= 5) {
+          signal = Math.max(-1, Math.min(1, (3 - raw) / 2));
+        }
+        break;
+      case "support_to_zs_high":
+        if (raw === 1) signal = 1.0;
+        else if (raw === 2) signal = -1.0;
+        else signal = null;
+        break;
+      case "support_to_zs_low_light":
+        if (raw === 1) signal = -0.5;
+        else if (raw === 2) signal = 0;
+        else signal = null;
+        break;
+    }
+    if (signal === null) continue;
+    weightedDirectionSum += signal * it.weight;
+    totalWeight += it.weight;
+    answered++;
+    usedVars.push(it.col);
+  }
+
+  if (totalWeight === 0) {
+    return fallbackContinuous(`v0.1J ZS (${r.year}): respondent answered 0/${items.length} items`);
+  }
+
+  const zsSignal = weightedDirectionSum / totalWeight; // [-1, +1]
+  const pos = 3 + 2 * zsSignal;                         // ZS 1 (positive-sum) → ZS 5 (zero-sum)
+  // Sigma: 2016 has tiny weight (0.2) → wide; 2020/2024 narrower.
+  const sigma = Math.max(0.8, 1.5 - 0.5 * totalWeight);
+
+  const intensity = Math.abs(zsSignal);
+  const salScore = Math.min(3, 0.5 + intensity * 1.5 + (answered - 1) * 0.1);
+
+  // Per-cycle uncertainty cap per spec TL;DR.
+  let uncertainty: Uncertainty;
+  if (r.year === 2016) {
+    uncertainty = "high"; // near-fallback per spec §1.2
+  } else if (r.year === 2024) {
+    uncertainty = totalWeight >= 0.5 ? "medium" : "high";
+  } else {
+    // 2020
+    uncertainty = totalWeight >= 0.3 ? "medium" : "high";
+  }
+
+  return {
+    posPosterior: positionPosteriorFromMean(pos, sigma),
+    salPosterior: salienceToDist(salScore),
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty,
+      notes: `v0.1J ZS (${r.year}): ${answered}/${items.length} items, totalWeight=${totalWeight.toFixed(2)} (− positive-sum, + zero-sum); signal=${zsSignal.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2016 ? " (NEAR-FALLBACK per spec §1.2: single weak ranking item)" : ""}`,
+    },
+  };
+}
+
+/**
  * `moralBoundaries.ethnic_racial` salience — shipped in mapper v0.1I for
  * **2020 only**.
  *
@@ -1322,7 +1499,7 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   const MOR   = fallbackContinuous("v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)");
   const PRO   = fallbackContinuous("v0: PRO low survey coverage; fallback per spec");
   const COM   = fallbackContinuous("v0: COM weakest-covered continuous node; fallback per spec");
-  const ZS    = fallbackContinuous("v0: ZS from issue items deferred (trade, immigration takes jobs)");
+  const ZS    = deriveZS(r);
   const ONT_H = fallbackContinuous("v0: ONT_H requires Feldman-Stenner battery (ANES-only); CCES has no signal");
   const ONT_S = fallbackContinuous("v0: ONT_S from trust-in-institutions battery deferred (V162310 etc.)");
 
