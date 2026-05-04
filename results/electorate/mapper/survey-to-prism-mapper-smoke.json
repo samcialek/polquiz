@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T19:07:43.754Z",
+  "runAt": "2026-05-04T19:49:04.428Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -165,7 +165,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1A CD: abortion-battery decoder gated to 2016/2020 (codebook-verified); year 2008 deferred until per-cycle codebook verification"
+            "notes": "v0.1A/H CD: cultural-direction decoder gated to 2016/2020/2024 (codebook-verified); year 2008 deferred"
           }
         },
         "CU": {
@@ -629,7 +629,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1A CD: abortion-battery decoder gated to 2016/2020 (codebook-verified); year 2012 deferred until per-cycle codebook verification"
+            "notes": "v0.1A/H CD: cultural-direction decoder gated to 2016/2020/2024 (codebook-verified); year 2012 deferred"
           }
         },
         "CU": {
@@ -1111,7 +1111,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1A CD: 6/6 abortion-battery items (− progressive, + traditionalist); net=-0.67 → pos=1.67, salience=2.00"
+            "notes": "v0.1A/H CD (2016): 6/6 CD-battery items, totalWeight=6.0 (− progressive, + traditionalist); net=-0.67 → pos=1.67, salience=2.00"
           }
         },
         "CU": {
@@ -1600,7 +1600,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1A CD: 6/6 abortion-battery items (− progressive, + traditionalist); net=0.33 → pos=3.67, salience=1.50"
+            "notes": "v0.1A/H CD (2020): 6/6 CD-battery items, totalWeight=6.0 (− progressive, + traditionalist); net=0.33 → pos=3.67, salience=1.50"
           }
         },
         "CU": {
@@ -1936,9 +1936,9 @@
           "realSignalShare": 0.995
         },
         "CD": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "CU": {
           "realSignalCount": 200,
@@ -2029,9 +2029,9 @@
         "realSignalShare": 1
       },
       "meanCoverage": {
-        "realSignalCount": 1785,
-        "fallbackCount": 2215,
-        "realSignalShare": 0.44625
+        "realSignalCount": 1985,
+        "fallbackCount": 2015,
+        "realSignalShare": 0.49625
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -2073,24 +2073,30 @@
         },
         "CD": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.7604312375158611,
+            0.2328638009750445,
+            0.006686950091233967,
+            0.000018006870781764756,
+            4.547078803201374e-9
           ],
           "salPosterior": [
-            0.3,
-            0.45,
+            0.05,
             0.2,
-            0.05
+            0.4,
+            0.35
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC24_324a",
+              "CC24_324c",
+              "CC24_324d",
+              "CC24_340a",
+              "CC24_340c"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0.1A CD: abortion-battery decoder gated to 2016/2020 (codebook-verified); year 2024 deferred until per-cycle codebook verification"
+            "uncertainty": "low",
+            "notes": "v0.1A/H CD (2024): 5/5 CD-battery items, totalWeight=5.0 (− progressive, + traditionalist); net=-1.00 → pos=1.00, salience=2.40"
           }
         },
         "CU": {
@@ -2404,8 +2410,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 9,
-          "fallbackCount": 11,
+          "realSignalCount": 10,
+          "fallbackCount": 10,
           "totalTargets": 20
         }
       }

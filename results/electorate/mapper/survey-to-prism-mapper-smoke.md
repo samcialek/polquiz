@@ -1,6 +1,6 @@
 # Survey-to-PRISM mapper v0 — smoke summary
 
-**Run at:** 2026-05-04T19:07:43.759Z
+**Run at:** 2026-05-04T19:49:04.431Z
 **Years:** 2008, 2012, 2016, 2020, 2024
 **Sample size per year:** up to 200 respondents
 
@@ -14,7 +14,7 @@ Each respondent's mapper output was verified against `validateSignature` (every 
 | 2012 | 200 | 0 | 29.3% | ✅ |
 | 2016 | 200 | 0 | 49.5% | ✅ |
 | 2020 | 200 | 0 | 49.6% | ✅ |
-| 2024 | 200 | 0 | 44.6% | ✅ |
+| 2024 | 200 | 0 | 49.6% | ✅ |
 
 ## Per-target real-signal coverage by year
 
@@ -23,7 +23,7 @@ Coverage = share of mapped respondents whose target came from a real survey colu
 | target | 2008 | 2012 | 2016 | 2020 | 2024 |
 |---|---|---|---|---|---|
 | MAT | 0.0% | 0.0% | 100.0% | 100.0% | 99.5% |
-| CD | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% |
+| CD | 0.0% | 0.0% | 100.0% | 100.0% | 100.0% |
 | CU | 0.0% | 0.0% | 100.0% | 100.0% | 100.0% |
 | MOR | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | PRO | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
