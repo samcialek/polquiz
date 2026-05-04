@@ -1,0 +1,1852 @@
+{
+  "schema_version": "v0.1",
+  "run_at": "2026-05-04T15:11:40.732Z",
+  "phase": "2.7.8 — survey-to-PRISM mapper source inventory (read-only)",
+  "description": "Per-year column-header scan cross-referenced against curated candidate-source dictionary for currently-blocked PRISM targets. Identifies strong / proxy / weak / not_usable column candidates per target × year. Tags forbidden columns. Produces a v0.1 implementation priority list of the 3-5 safest targets to map first. The mapper is NOT modified by this audit.",
+  "blocked_targets": [
+    "MAT",
+    "CD",
+    "CU",
+    "MOR",
+    "PRO",
+    "COM",
+    "ZS",
+    "ONT_H",
+    "ONT_S",
+    "EPS",
+    "AES",
+    "moralBoundaries.national",
+    "moralBoundaries.ethnic_racial",
+    "moralBoundaries.gender"
+  ],
+  "year_headers": [
+    {
+      "year": 2008,
+      "file": "data/cces2008/cces_2008_common.tab",
+      "delimiter": "\t",
+      "file_present": true,
+      "column_count": 477,
+      "cc_year_columns_count": 0,
+      "pew_columns_count": 0,
+      "cl_columns_count": 0
+    },
+    {
+      "year": 2012,
+      "file": "data/cces2012/CCES12_Common_VV.tab",
+      "delimiter": "\t",
+      "file_present": true,
+      "column_count": 490,
+      "cc_year_columns_count": 0,
+      "pew_columns_count": 4,
+      "cl_columns_count": 0
+    },
+    {
+      "year": 2016,
+      "file": "data/cces2016/CCES16_Common_OUTPUT_Feb2018_VV.tab",
+      "delimiter": "\t",
+      "file_present": true,
+      "column_count": 563,
+      "cc_year_columns_count": 269,
+      "pew_columns_count": 4,
+      "cl_columns_count": 9
+    },
+    {
+      "year": 2020,
+      "file": "data/cces2020/CES20_Common_OUTPUT_vv.csv",
+      "delimiter": ",",
+      "file_present": true,
+      "column_count": 717,
+      "cc_year_columns_count": 328,
+      "pew_columns_count": 4,
+      "cl_columns_count": 8
+    },
+    {
+      "year": 2024,
+      "file": "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv",
+      "delimiter": ",",
+      "file_present": true,
+      "column_count": 694,
+      "cc_year_columns_count": 318,
+      "pew_columns_count": 4,
+      "cl_columns_count": 0
+    }
+  ],
+  "per_target_inventory": [
+    {
+      "target": "MAT",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "economy_retro",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "Retrospective economic evaluation; correlates with material orientation but also tracks partisan thermometer",
+          "directionality": "Worse-economy answer roughly co-moves with redistributionist position; verify per cycle (sign can flip during incumbent-out years).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "faminc",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": "faminc",
+            "2016": "faminc",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Family income — weak correlate of material preferences",
+          "directionality": "Lower income → MAT 1-2 (redistributionist). Effect is small; not load-bearing alone.",
+          "cycles_with_match": [
+            2012,
+            2016
+          ]
+        },
+        {
+          "column": "faminc_new",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": "faminc_new",
+            "2024": "faminc_new"
+          },
+          "strength": "weak",
+          "rationale": "Renamed family-income column in some 2020+ releases",
+          "directionality": "Same as `faminc`.",
+          "cycles_with_match": [
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "investor",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": "investor",
+            "2016": "investor",
+            "2020": "investor",
+            "2024": "investor"
+          },
+          "strength": "proxy",
+          "rationale": "Stock ownership; correlates with free-market lean",
+          "directionality": "Owns stocks → MAT 4-5 (free-market).",
+          "cycles_with_match": [
+            2012,
+            2016,
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "no_healthins",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "Uninsured; correlates with healthcare-expansion preference",
+          "directionality": "Uninsured → MAT 1-2 (expand gov role).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "union",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": "union",
+            "2016": "union",
+            "2020": "union",
+            "2024": "union"
+          },
+          "strength": "proxy",
+          "rationale": "Union household; left-economic correlate (also feeds moralBoundaries.class)",
+          "directionality": "Union member → MAT 1-2.",
+          "cycles_with_match": [
+            2012,
+            2016,
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "CC{Y2}_337_1",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_337_1",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Federal-spending battery item 1 (per A2 spec)",
+          "directionality": "Support cuts → MAT 4-5.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_337_2",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_337_2",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Federal-spending battery item 2",
+          "directionality": "Support cuts → MAT 4-5.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_337_3",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_337_3",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Federal-spending battery item 3",
+          "directionality": "Support cuts → MAT 4-5.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_337_4",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Federal-spending battery item 4",
+          "directionality": "Support cuts → MAT 4-5.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_337_5",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Federal-spending battery item 5",
+          "directionality": "Support cuts → MAT 4-5.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_415r",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_415r",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Deficit-reduction means (cuts vs taxes vs both)",
+          "directionality": "Prefer cuts → MAT 4-5; prefer taxes → MAT 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_416r",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_416r",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Tax-type preference",
+          "directionality": "Verify codebook.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_350a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": "CC20_350a",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "ACA-related issue item (year-specific position)",
+          "directionality": "Repeal → MAT 4-5.",
+          "cycles_with_match": [
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_351I",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_351I",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "ACA repeal",
+          "directionality": "Repeal → MAT 4-5.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_351K",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_351K",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Minimum wage increase",
+          "directionality": "Raise → MAT 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        }
+      ]
+    },
+    {
+      "target": "CD",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "relig_imp",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Religion importance; weak proxy (also feeds moralBoundaries.religious)",
+          "directionality": "High imp → CD 4-5 (traditionalist).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_332a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332a",
+            "2020": "CC20_332a",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — always allow as matter of choice",
+          "directionality": "Agree → CD 1-2 (progressive).",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_332b",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332b",
+            "2020": "CC20_332b",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — rape/incest exception",
+          "directionality": "Agree → CD 1-2.",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_332c",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332c",
+            "2020": "CC20_332c",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — health-of-mother",
+          "directionality": "Agree → CD 1-2.",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_332d",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332d",
+            "2020": "CC20_332d",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — restrict after 20 weeks",
+          "directionality": "Agree → CD 4-5 (traditionalist).",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_332e",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332e",
+            "2020": "CC20_332e",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — federal funding",
+          "directionality": "Allow funding → CD 1-2.",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_332f",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_332f",
+            "2020": "CC20_332f",
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Abortion battery — total ban",
+          "directionality": "Agree → CD 4-5.",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_335",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_335",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Gay-marriage / same-sex-couple item",
+          "directionality": "Allow / support → CD 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_322a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_322a",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "LGBT-related items in 2018+ cycles",
+          "directionality": "Pro-rights → CD 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_322b",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_322b",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "LGBT-related items in 2018+ cycles",
+          "directionality": "Pro-rights → CD 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_322c",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_322c",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "LGBT-related items in 2018+ cycles",
+          "directionality": "Pro-rights → CD 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        }
+      ]
+    },
+    {
+      "target": "CU",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_331_1",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_1",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 1 (per A2 spec) — DACA / pathway",
+          "directionality": "Pluralist answer → CU 4-5; restrictionist → CU 1-2.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_2",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_2",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 2",
+          "directionality": "Same; verify codebook polarity.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_3",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_3",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 3",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_4",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_4",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 4",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_5",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_5",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 5",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_6",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_6",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 6",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_7",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_7",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 7",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_8",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_8",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration battery item 8 (varies; e.g., English official language)",
+          "directionality": "Same; one item may be `English-only` which inverts polarity.",
+          "cycles_with_match": [
+            2016
+          ]
+        }
+      ]
+    },
+    {
+      "target": "MOR",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_331_3",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_3",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "Refugee item inside immigration battery (where present)",
+          "directionality": "Welcome refugees → MOR 4-5 (universal circle).",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_5",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_5",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "Muslim-related item in some cycles' immigration battery",
+          "directionality": "Anti-Muslim ban → MOR 4-5.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "foreign_aid_*",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Sporadic foreign-aid items",
+          "directionality": "Support aid → MOR 4-5.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "PRO",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_307",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_307",
+            "2020": "CC20_307",
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Approve/disapprove of how Congress is doing — institutional-trust proxy",
+          "directionality": "Reject institutions → PRO 1-2.",
+          "cycles_with_match": [
+            2016,
+            2020
+          ]
+        },
+        {
+          "column": "CC{Y2}_322",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Election-integrity items in 2020+",
+          "directionality": "Reject election legitimacy → PRO 1-2.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_421",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Voter-ID / ballot-access items",
+          "directionality": "Restrict → PRO 4-5 (rules-prefer).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_309a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Confidence-in-government items",
+          "directionality": "High confidence → PRO 4-5.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "COM",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_compromise",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Sporadic 'politicians should compromise' items in 2016/2020 (column name varies)",
+          "directionality": "Pro-compromise → COM 4-5.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_315",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Where present, a fight-vs-compromise item",
+          "directionality": "Pro-compromise → COM 4-5.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "ZS",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "economy_retro",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "Pessimistic economic framing correlates with zero-sum lens (weak)",
+          "directionality": "Worse-economy → ZS 4-5 (zero-sum).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_330a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_330a",
+            "2020": "CC20_330a",
+            "2024": "CC24_330a"
+          },
+          "strength": "weak",
+          "rationale": "Trade items in some cycles ('other countries gain at our expense')",
+          "directionality": "Trade-zero-sum answer → ZS 4-5.",
+          "cycles_with_match": [
+            2016,
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "CC{Y2}_321",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Immigration-takes-jobs framing where present",
+          "directionality": "Takes-jobs → ZS 4-5.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "ONT_H",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_authoritarian_1",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Feldman-Stenner child-rearing battery is rare in CCES; mostly ANES",
+          "directionality": "Verify item exists; default ANES path.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_authoritarian_2",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Same",
+          "directionality": "Same.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_authoritarian_3",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Same",
+          "directionality": "Same.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_authoritarian_4",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Same",
+          "directionality": "Same.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "ONT_H_proxy_unavailable",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "not_usable",
+          "rationale": "CCES does not ship the Feldman-Stenner authoritarianism battery in standard form; mapping must wait for ANES integration",
+          "directionality": "n/a",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "ONT_S",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "pew_govrun",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "'Government for the few or for all' — system-trust proxy",
+          "directionality": "For-all answer → ONT_S 4-5 (high systemic trust).",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_309a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Trust-in-government items where present",
+          "directionality": "Trust answer → ONT_S 4-5.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "trust_*",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Various 'trust in [institution]' items — sporadic",
+          "directionality": "High trust → ONT_S 4-5.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "EPS",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "newsint",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": "newsint",
+            "2016": "newsint",
+            "2020": "newsint",
+            "2024": "newsint"
+          },
+          "strength": "weak",
+          "rationale": "News-interest level — doesn't directly probe epistemic style but provides a weak engagement-adjacent prior",
+          "directionality": "n/a — fallback prior near-uniform is appropriate.",
+          "cycles_with_match": [
+            2012,
+            2016,
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "media_news_*",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "News-source items where present (which outlets respondent trusts) — partial signal",
+          "directionality": "Source pattern → empiricist/intuitionist split; needs prototype calibration.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_300_1",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_300_1",
+            "2020": "CC20_300_1",
+            "2024": "CC24_300_1"
+          },
+          "strength": "weak",
+          "rationale": "Where a 'science-of-X' or 'experts' item exists (rare in CCES standard)",
+          "directionality": "Pro-science → empiricist.",
+          "cycles_with_match": [
+            2016,
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "EPS_proxy_unavailable",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "not_usable",
+          "rationale": "CCES does not directly probe epistemic-style category; surveys would need an EPS-prototype battery to discriminate cleanly",
+          "directionality": "n/a",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "AES",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "AES_proxy_unavailable",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "not_usable",
+          "rationale": "Surveys do not directly probe aesthetic-style category. Acknowledged in the spec as inherently fallback for the v0/v1 mapper — would need a deliberately-designed AES battery (statesman vs technocrat vs pastoral vs authentic vs fighter vs visionary cues) that does not currently exist in CCES.",
+          "directionality": "n/a",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "moralBoundaries.national",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_331_1",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_1",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration restrictiveness composite — direct national-boundary signal",
+          "directionality": "Restrictive → high salience.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_2",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_2",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Immigration restrictiveness composite",
+          "directionality": "Restrictive → high salience.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_5",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_5",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "strong",
+          "rationale": "Anti-Muslim-ban → low salience; pro-ban → high salience",
+          "directionality": "Restrictive → high salience.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_331_8",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_331_8",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "English-only-language item where present — national-identity signal",
+          "directionality": "English-only → high salience.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_322_pride",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "proxy",
+          "rationale": "American-pride / national-identity items where present",
+          "directionality": "Strong-pride → high salience.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "moralBoundaries.ethnic_racial",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_440a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": "CC20_440a",
+            "2024": "CC24_440a"
+          },
+          "strength": "proxy",
+          "rationale": "Race-policy / race-relations items in 2020+ cycles (BLM-era)",
+          "directionality": "Race-conscious → high salience.",
+          "cycles_with_match": [
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "CC{Y2}_440b",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": "CC20_440b",
+            "2024": "CC24_440b"
+          },
+          "strength": "proxy",
+          "rationale": "Race-policy items",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "CC{Y2}_440c",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": "CC20_440c",
+            "2024": "CC24_440c"
+          },
+          "strength": "proxy",
+          "rationale": "Race-policy items",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2020,
+            2024
+          ]
+        },
+        {
+          "column": "CC{Y2}_aff_action",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Affirmative-action items where present (column name varies by cycle)",
+          "directionality": "Pro-AA → high salience for race-conscious respondents.",
+          "cycles_with_match": []
+        }
+      ]
+    },
+    {
+      "target": "moralBoundaries.gender",
+      "blocked": true,
+      "candidates": [
+        {
+          "column": "CC{Y2}_335",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_335",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Gay-marriage / same-sex item — gender-adjacent",
+          "directionality": "Salience proxy via opinion intensity.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_322a",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": "CC16_322a",
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "LGBTQ items in 2018+",
+          "directionality": "Same.",
+          "cycles_with_match": [
+            2016
+          ]
+        },
+        {
+          "column": "CC{Y2}_metoo",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Sporadic Me Too / sexual-harassment items in 2018+ (column name varies)",
+          "directionality": "Engaged → high salience.",
+          "cycles_with_match": []
+        },
+        {
+          "column": "CC{Y2}_337_g",
+          "resolved_columns_per_year": {
+            "2008": null,
+            "2012": null,
+            "2016": null,
+            "2020": null,
+            "2024": null
+          },
+          "strength": "weak",
+          "rationale": "Equal-pay / women-in-workforce items where present",
+          "directionality": "Engaged → high salience.",
+          "cycles_with_match": []
+        }
+      ]
+    }
+  ],
+  "forbidden_columns": [
+    {
+      "pattern": "/^CC\\d{2}_410[a-z]?$/",
+      "reason": "Presidential vote choice (modern cycle convention CC{Y2}_410[a]) — would create vote-prediction circularity",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [
+          "CC16_410a",
+          "CC16_410b"
+        ],
+        "2020": [
+          "CC20_410"
+        ],
+        "2024": [
+          "CC24_410"
+        ]
+      }
+    },
+    {
+      "pattern": "CC410",
+      "reason": "Presidential vote choice (2008 V###-era column)",
+      "matches_per_year": {
+        "2008": [
+          "CC410"
+        ],
+        "2012": [],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "CC410a",
+      "reason": "Presidential vote choice (legacy column)",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [
+          "CC410a"
+        ],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "/^CC\\d{2}_41[1-3][a-z]?$/",
+      "reason": "House / Senate vote choice (CC{Y2}_411 / 412 / 413) — same circularity",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [
+          "CC16_411",
+          "CC16_412",
+          "CC16_413a",
+          "CC16_413b",
+          "CC16_413c",
+          "CC16_413d"
+        ],
+        "2020": [
+          "CC20_411",
+          "CC20_411b",
+          "CC20_412",
+          "CC20_413"
+        ],
+        "2024": [
+          "CC24_411",
+          "CC24_411b",
+          "CC24_412",
+          "CC24_413"
+        ]
+      }
+    },
+    {
+      "pattern": "/^CC\\d{2}_3(20|30)[a-z]?$/",
+      "reason": "Candidate feeling thermometer batteries (CC{Y2}_320*, CC{Y2}_330*) — vote-affect circularity for position nodes",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [
+          "CC16_320a",
+          "CC16_320b",
+          "CC16_320c",
+          "CC16_320d",
+          "CC16_320e",
+          "CC16_320f",
+          "CC16_320g",
+          "CC16_320h",
+          "CC16_330a",
+          "CC16_330b",
+          "CC16_330d",
+          "CC16_330e"
+        ],
+        "2020": [
+          "CC20_320a",
+          "CC20_320b",
+          "CC20_320c",
+          "CC20_320d",
+          "CC20_320e",
+          "CC20_320f",
+          "CC20_320g",
+          "CC20_320h",
+          "CC20_330a",
+          "CC20_330b",
+          "CC20_330c"
+        ],
+        "2024": [
+          "CC24_330a",
+          "CC24_330b",
+          "CC24_330c",
+          "CC24_330d",
+          "CC24_330e",
+          "CC24_330f",
+          "CC24_330g",
+          "CC24_330h",
+          "CC24_330i",
+          "CC24_330j",
+          "CC24_330l"
+        ]
+      }
+    },
+    {
+      "pattern": "CC{Y2}_310",
+      "reason": "Candidate evaluations / approval — vote-affect adjacent",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "intent_turnout_self",
+      "reason": "Pre-election turnout intent — engagement-only input; forbidden as a position-node feature",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "voted_turnout_self",
+      "reason": "Self-reported turnout — engagement-only input; forbidden for position nodes",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "CL_E2016GVM",
+      "reason": "Validated turnout — engagement-only input; forbidden for position nodes (would cross-contaminate vote-prediction backtest)",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [
+          "CL_E2016GVM"
+        ],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "CL_2020gvm",
+      "reason": "Validated turnout — engagement-only input; forbidden for position nodes",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [],
+        "2016": [],
+        "2020": [
+          "CL_2020gvm"
+        ],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "vote_gen08",
+      "reason": "Validated turnout — engagement-only input; forbidden for position nodes",
+      "matches_per_year": {
+        "2008": [
+          "vote_gen08"
+        ],
+        "2012": [],
+        "2016": [],
+        "2020": [],
+        "2024": []
+      }
+    },
+    {
+      "pattern": "pid7",
+      "reason": "Party ID 7-pt — allowed only as `partyIdDerived: true` input to `moralBoundaries.political_camp` salience per the mapper's design; FORBIDDEN as input to MAT/CD/CU/MOR/PRO/COM/ZS/ONT_H/ONT_S core position nodes (would make vote-prediction circular)",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [
+          "pid7"
+        ],
+        "2016": [
+          "pid7"
+        ],
+        "2020": [
+          "pid7"
+        ],
+        "2024": [
+          "pid7"
+        ]
+      }
+    },
+    {
+      "pattern": "pid3",
+      "reason": "Party ID 3-pt — same restriction as pid7",
+      "matches_per_year": {
+        "2008": [],
+        "2012": [
+          "pid3"
+        ],
+        "2016": [
+          "pid3"
+        ],
+        "2020": [
+          "pid3"
+        ],
+        "2024": [
+          "pid3"
+        ]
+      }
+    }
+  ],
+  "v0_1_implementation_priority_list": [
+    {
+      "rank": 1,
+      "target": "CD",
+      "reason": "Abortion battery (CC{Y2}_332a-f) is well-covered in 2012/2016/2020/2024 with stable directionality across cycles. Direct issue-attitude alignment with PRISM cultural-direction. Low circularity risk.",
+      "required_columns_template": [
+        "CC{Y2}_332a",
+        "CC{Y2}_332b",
+        "CC{Y2}_332c",
+        "CC{Y2}_332d",
+        "CC{Y2}_332e",
+        "CC{Y2}_332f"
+      ],
+      "cycles_well_covered": [
+        2012,
+        2016,
+        2020,
+        2024
+      ],
+      "sequencing_note": "Ship first because the abortion battery's polarity is the most stable across cycles. Will move CD off uniform-prior fallback to ~5-6 real-signal targets per row. Cross-cycle holdout possible (4 cycles × 6 items).",
+      "column_presence_by_year": {
+        "CC{Y2}_332a": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        },
+        "CC{Y2}_332b": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        },
+        "CC{Y2}_332c": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        },
+        "CC{Y2}_332d": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        },
+        "CC{Y2}_332e": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        },
+        "CC{Y2}_332f": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": false
+        }
+      },
+      "cycles_actually_fully_covered": [
+        2016,
+        2020
+      ],
+      "cycles_partially_covered": []
+    },
+    {
+      "rank": 2,
+      "target": "CU",
+      "reason": "Immigration battery (CC{Y2}_331_1..8) is the next-most-covered standard battery. Direct issue-attitude alignment with cultural-uniformity. Mostly stable polarity (one English-only item may flip).",
+      "required_columns_template": [
+        "CC{Y2}_331_1",
+        "CC{Y2}_331_2",
+        "CC{Y2}_331_3",
+        "CC{Y2}_331_4",
+        "CC{Y2}_331_5",
+        "CC{Y2}_331_6",
+        "CC{Y2}_331_7",
+        "CC{Y2}_331_8"
+      ],
+      "cycles_well_covered": [
+        2012,
+        2016,
+        2020,
+        2024
+      ],
+      "sequencing_note": "Ship together with target #4 (moralBoundaries.national) because both consume the same battery — saves one column-resolver pass.",
+      "column_presence_by_year": {
+        "CC{Y2}_331_1": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_2": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_3": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_4": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_5": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_6": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_7": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_8": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        }
+      },
+      "cycles_actually_fully_covered": [
+        2016
+      ],
+      "cycles_partially_covered": []
+    },
+    {
+      "rank": 3,
+      "target": "MAT",
+      "reason": "Federal-spending battery (CC{Y2}_337_*) + ACA item (CC{Y2}_351I) + minimum-wage item (CC{Y2}_351K) provide direct issue-attitude alignment with material orientation. Already-mapped weak proxies (faminc, union, investor, no_healthins) can be dropped to secondary support.",
+      "required_columns_template": [
+        "CC{Y2}_337_1",
+        "CC{Y2}_337_2",
+        "CC{Y2}_337_3",
+        "CC{Y2}_337_4",
+        "CC{Y2}_337_5",
+        "CC{Y2}_351I",
+        "CC{Y2}_351K"
+      ],
+      "cycles_well_covered": [
+        2016,
+        2020
+      ],
+      "sequencing_note": "Verify column presence per cycle — the spec lists 2016 as the canonical cycle; 2020 likely has a similar battery, 2012/2024 may use different stems. Expect partial coverage outside 2016/2020 and document the per-cycle gap.",
+      "column_presence_by_year": {
+        "CC{Y2}_337_1": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_337_2": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_337_3": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_337_4": {
+          "2008": false,
+          "2012": false,
+          "2016": false,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_337_5": {
+          "2008": false,
+          "2012": false,
+          "2016": false,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_351I": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_351K": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        }
+      },
+      "cycles_actually_fully_covered": [],
+      "cycles_partially_covered": [
+        2016
+      ]
+    },
+    {
+      "rank": 4,
+      "target": "moralBoundaries.national",
+      "reason": "Same immigration battery as CU but used as a salience composite rather than a position decoder. Co-shipping with CU is efficient. The political_camp boundary is already the only `partyIdDerived: true` channel; this fills another always-fallback boundary slot.",
+      "required_columns_template": [
+        "CC{Y2}_331_1",
+        "CC{Y2}_331_2",
+        "CC{Y2}_331_5",
+        "CC{Y2}_331_8"
+      ],
+      "cycles_well_covered": [
+        2012,
+        2016,
+        2020,
+        2024
+      ],
+      "sequencing_note": "Ship with #2. Salience composite = `count of restrictionist answers + intensity`. Document that respondents at extreme-pluralist (CU 4-5) also get high national-boundary salience — the boundary measures *engagement with* the dimension, not direction on it.",
+      "column_presence_by_year": {
+        "CC{Y2}_331_1": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_2": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_5": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        },
+        "CC{Y2}_331_8": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": false,
+          "2024": false
+        }
+      },
+      "cycles_actually_fully_covered": [
+        2016
+      ],
+      "cycles_partially_covered": []
+    },
+    {
+      "rank": 5,
+      "target": "ZS",
+      "reason": "Trade items (CC{Y2}_330a where present) + immigration-takes-jobs items provide a narrow but unambiguous zero-sum signal in 2016/2020. Lower priority because items are sparser; ship as a stretch goal alongside #1-#4.",
+      "required_columns_template": [
+        "CC{Y2}_330a",
+        "CC{Y2}_321"
+      ],
+      "cycles_well_covered": [
+        2016,
+        2020
+      ],
+      "sequencing_note": "Optional in v0.1. If column presence checks fail in 2012/2024, document and skip those years rather than block the rollout.",
+      "column_presence_by_year": {
+        "CC{Y2}_330a": {
+          "2008": false,
+          "2012": false,
+          "2016": true,
+          "2020": true,
+          "2024": true
+        },
+        "CC{Y2}_321": {
+          "2008": false,
+          "2012": false,
+          "2016": false,
+          "2020": false,
+          "2024": false
+        }
+      },
+      "cycles_actually_fully_covered": [],
+      "cycles_partially_covered": [
+        2016,
+        2020,
+        2024
+      ]
+    }
+  ],
+  "notes": {
+    "year_2008_caveat": "2008 uses opaque V### column naming (legacy YouGov scheme). The candidate dictionary's `CC{Y2}_*` patterns therefore expand to `CC08_*` which are absent. 2008 needs a separate per-year resolver pass driven by `data/cces2008/codebook-extracted.txt` to surface candidate columns.",
+    "AES_acknowledged_fallback": "moralBoundaries-adjacent / AES is documented in the survey-to-prism-v0 spec as inherently fallback (surveys do not directly probe aesthetic preference). v0.1 priority correctly omits AES.",
+    "EPS_partial_signal": "EPS would benefit from a deliberately-designed prototype battery; standard CCES news-source items provide only weak proxy signal.",
+    "ONT_H_anes_path": "ONT_H requires the Feldman-Stenner authoritarianism child-rearing battery, which CCES does not ship in standard form. Mapping requires ANES integration (out of v0.1 scope)."
+  }
+}
