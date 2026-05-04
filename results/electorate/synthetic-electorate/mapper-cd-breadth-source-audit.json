@@ -1,0 +1,240 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper v0.2 prep",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Identify safe LGBTQ / gender / rights items to broaden CD-position signal beyond the abortion battery already covered in mapper-v01-source-directionality-audit.{md,json}.",
+  "sister_audit": "mapper-v01-source-directionality-audit.{md,json}",
+  "codebooks_consulted": [
+    "data/cces2016/hcbk0006.htm + hcbkfx0.htm (CCES 2016 HTML codebook)",
+    "data/cces2020/CES20_Common_pre_qx.pdf (CES 2020 pre-wave question text)",
+    "data/cces2024/CES_2024_GUIDE_vv.pdf (CCES 2024 guide, extracted via pdftotext)",
+    "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv header"
+  ],
+  "explicitly_not_in_this_audit": [
+    "No mapper logic modifications.",
+    "No vote-choice columns (CC*_410 etc.).",
+    "No candidate feeling thermometers (CC*_320 series).",
+    "No turnout questions or validated voter file fields.",
+    "No pid7 fields.",
+    "No demographic items where respondent answers about themselves (sexuality, transgender) — strata, not policy positions.",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits.",
+    "No raw-data downloads."
+  ],
+  "summary": {
+    "totalColumnsAudited": 8,
+    "shipReady": 6,
+    "shipReducedWeight": 1,
+    "holdForCdBreadth": 1,
+    "byCycle": {
+      "2016": { "audited": 1, "shipReady": 1, "reduced": 0, "hold": 0 },
+      "2020": { "audited": 3, "shipReady": 2, "reduced": 1, "hold": 0 },
+      "2024": { "audited": 4, "shipReady": 3, "reduced": 0, "hold": 1 }
+    }
+  },
+  "items": [
+    {
+      "variable": "CC16_335",
+      "year": 2016,
+      "label": "Gay Marriage",
+      "question_wording": "Do you favor or oppose allowing gays and lesbians to marry legally? (inferred from variable label + empirical 65/35 Favor/Oppose split; PDF not cached locally)",
+      "codes": { "1": "Favor", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "empirical_distribution_2016": "65.1% Favor, 34.9% Oppose (N=64,125 of 64,600)",
+      "target_node": "CD",
+      "target_role": "position",
+      "direction": "Favor → CD low; Oppose → CD high",
+      "confidence": "high",
+      "cross_loads": ["moralBoundaries.religious (light)"],
+      "v01_cd_breadth_weight": 1.0,
+      "ship_ready_v01": true,
+      "notes": "Cleanest single-item LGBTQ-rights signal for 2016."
+    },
+    {
+      "variable": "CC20_350a",
+      "year": 2020,
+      "label": "Anti-discrimination amendment",
+      "question_wording": "Amend federal laws to prohibit discrimination on the basis of gender identity and sexual orientation.",
+      "battery_prompt": "Over the past two years, Congress voted on many issues. Do you support each of the following proposals?",
+      "codes": { "1": "Favor", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+      "target_nodes": ["CD/position (primary)", "moralBoundaries.gender (secondary)"],
+      "direction": "Favor → CD low + gender-salience high; Oppose → CD high",
+      "confidence": "high",
+      "cross_loads": ["moralBoundaries.gender (intentional)"],
+      "v01_cd_breadth_weight": 1.0,
+      "ship_ready_v01": true,
+      "previously_audited_in": "mapper-v01-source-directionality-audit.json (Pass 2)"
+    },
+    {
+      "variable": "CC20_350d",
+      "year": 2020,
+      "label": "Equal pay",
+      "question_wording": "Require equal pay for women and men who are doing similar jobs and have similar qualifications.",
+      "codes": { "1": "Favor", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+      "target_nodes": ["CD/position (light)", "moralBoundaries.gender"],
+      "direction": "Favor → CD low (light); gender-salience high",
+      "confidence": "medium",
+      "cross_loads": ["moralBoundaries.gender (primary load — stronger signal for gender-boundary than CD)"],
+      "v01_cd_breadth_weight": 0.5,
+      "ship_ready_v01": "with_reduced_weight",
+      "reason_for_reduced_weight": "Compromise framing — broadly popular even with conservatives (~75-80% Favor); weak CD discriminator. Stronger as a gender-boundary signal than as a CD signal.",
+      "previously_audited_in": "mapper-v01-source-directionality-audit.json (Pass 2)"
+    },
+    {
+      "variable": "CC20_355d",
+      "year": 2020,
+      "label": "Ban Transgender People in the Military",
+      "question_wording": "Ban Transgender People in the Military.",
+      "battery_prompt": "For each of the following tell us whether you support or oppose these decisions.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+      "target_nodes": ["CD/position (primary)", "moralBoundaries.gender (secondary)", "moralBoundaries.national (light, military framing)"],
+      "direction": "Support → CD high + gender-salience high; Oppose → CD low",
+      "confidence": "high",
+      "cross_loads": ["moralBoundaries.gender", "moralBoundaries.national (light)"],
+      "v01_cd_breadth_weight": 1.0,
+      "ship_ready_v01": true,
+      "newly_identified": true,
+      "notes": "Cleanest 2020 transgender-policy signal. Replaces the absent same-sex-marriage direct framing post-Obergefell."
+    },
+    {
+      "variable": "CC24_340a",
+      "year": 2024,
+      "label": "Contraceptives access bill",
+      "question_wording": "Prohibit government restrictions on the provision of, and access to, contraceptives.",
+      "battery_prompt": "Do you support or oppose each of the following bills before Congress?",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "target_role": "position",
+      "direction": "Support → CD low; Oppose → CD high",
+      "confidence": "high",
+      "cross_loads": ["moralBoundaries.religious (light)"],
+      "v01_cd_breadth_weight": 1.0,
+      "ship_ready_v01": true,
+      "newly_identified": true,
+      "notes": "Post-Dobbs salience; first cross-cycle contraceptives item in the audited bank."
+    },
+    {
+      "variable": "CC24_340b",
+      "year": 2024,
+      "label": "Abortion access bill",
+      "question_wording": "Prohibit government restrictions on the provision of, and access to, abortion services.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "target_role": "position",
+      "direction": "Support → CD low; Oppose → CD high",
+      "confidence": "high",
+      "v01_cd_breadth_weight": 0,
+      "ship_ready_v01": false,
+      "ship_decision": "hold_for_cd_breadth",
+      "reason_for_hold": "Duplicates the abortion battery (CC24_324a..d) CD signal. Including in CD-breadth composite alongside abortion battery would over-weight the abortion axis vs other CD dimensions.",
+      "alternative_use": "Confirmation item — compute correlation between CC24_324a Support rate and CC24_340b Support rate as a sanity check. Large divergence indicates respondent confusion or routing issue."
+    },
+    {
+      "variable": "CC24_340c",
+      "year": 2024,
+      "label": "Same-sex + interracial marriage federal recognition",
+      "question_wording": "Require that all federal agencies recognize same-sex marriages and interracial marriages.",
+      "context": "Refers to the Respect for Marriage Act (signed into law 2022); item asks about codification effect.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_nodes": ["CD/position (primary)", "moralBoundaries.gender (light)"],
+      "direction": "Support → CD low; Oppose → CD high",
+      "confidence": "high",
+      "cross_loads": ["moralBoundaries.religious (light)", "moralBoundaries.ethnic_racial (light, interracial component)"],
+      "v01_cd_breadth_weight": 1.0,
+      "ship_ready_v01": true,
+      "newly_identified": true,
+      "notes": "Direct successor to CC16_335's role. Cross-cycle parallel: 2016 CC16_335 → 2020 CC20_350a (anti-discrimination framing) → 2024 CC24_340c (federal recognition framing)."
+    },
+    {
+      "variable": "CC24_324d",
+      "year": 2024,
+      "label": "Expand access to abortion",
+      "question_wording": "Expand access to abortion, including making it more affordable, broadening the types of providers who can offer care, and protecting access to abortion clinics.",
+      "battery_prompt": "On the topic of abortion, do you support or oppose each of the following proposals?",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "target_role": "position",
+      "direction": "Support → CD low; Oppose → CD high",
+      "confidence": "high",
+      "v01_cd_breadth_weight": 1.0,
+      "ship_role": "within_abortion_battery_composite",
+      "ship_ready_v01": true,
+      "previously_audited_in": "mapper-v01-source-directionality-audit.json (Pass 2 cross-cycle table)",
+      "notes": "Direction is OPPOSITE of CC24_324b/c (which are restrictions). Adds a 4th datapoint to the abortion battery that pulls in the progressive direction. Ships within the abortion composite, not as separate CD-breadth signal."
+    }
+  ],
+  "items_considered_and_rejected": [
+    { "variable": "sexuality (2016+)", "reason": "Demographic stratum (respondent's own orientation), not a policy position. Use only for Identity-Primary overlay." },
+    { "variable": "transgender (2020+)", "reason": "Demographic stratum (respondent identifies as trans), not a policy position." },
+    { "variable": "commonweight_vv_lgbt (2016)", "reason": "Survey weight column; not an item." },
+    { "variable": "CC16_301n 'Most Important Problem - Gay marriage'", "reason": "Salience proxy at most, not a position item." },
+    { "variable": "CC20_355a (Withdraw Paris Agreement)", "reason": "Climate/environment, not CD." },
+    { "variable": "CC20_355b (Withdraw TPP)", "reason": "Trade/MAT, not CD." },
+    { "variable": "CC20_355c (Repeal Clean Power Plant)", "reason": "Environment, not CD." },
+    { "variable": "CC20_355e (food stamp work requirement)", "reason": "MAT-restriction, not CD." },
+    { "variable": "CC24_321 grid (gun control items)", "reason": "PRO/COM/CD-light cross-load — not pure CD. Worth a separate PRO breadth audit." },
+    { "variable": "CC24_326 grid (environment items)", "reason": "Environmental/MAT, not CD." },
+    { "variable": "CC24_340d (Ban TikTok)", "reason": "National/CU, not CD." },
+    { "variable": "CC24_340e (Renew 9/11 surveillance)", "reason": "PRO/civil liberties, not CD." },
+    { "variable": "CC24_340f (Deny asylum at border)", "reason": "CU/national, already in immigration battery." },
+    { "variable": "CC24_341 grid (tax rate items)", "reason": "MAT, not CD." }
+  ],
+  "v02_cd_composite_per_cycle": {
+    "2016": {
+      "abortion_battery": "CC16_332a (1.0×) + CC16_332c (1.0×) + CC16_332e (1.0×) + CC16_332f (1.0×) + CC16_332d (0.5×)",
+      "lgbtq_breadth_added": "CC16_335 (1.0×)",
+      "total_full_weight_items": 6,
+      "total_reduced_weight_items": 1
+    },
+    "2020": {
+      "abortion_battery": "CC20_332a (1.0×) + CC20_332c (1.0×) + CC20_332e (1.0×) + CC20_332f (1.0×) + CC20_332d (0.5×)",
+      "lgbtq_gender_breadth_added": "CC20_350a (1.0×) + CC20_355d (1.0×) + CC20_350d (0.5×)",
+      "total_full_weight_items": 7,
+      "total_reduced_weight_items": 2
+    },
+    "2024": {
+      "abortion_battery": "CC24_324a (1.0×) + CC24_324c (1.0×) + CC24_324d (1.0×) [CC24_324b held — analogous to 2016 332b ambiguity]",
+      "lgbtq_reproductive_breadth_added": "CC24_340a (1.0×) + CC24_340c (1.0×)",
+      "abortion_axis_duplicate_held": "CC24_340b (held to avoid double-counting abortion vs other CD dimensions)",
+      "total_full_weight_items": 5
+    }
+  },
+  "cross_cycle_consistency": {
+    "same_sex_marriage_direct_framing": {
+      "2016": "CC16_335 (binary Favor/Oppose)",
+      "2020": "CC20_350a (anti-discrimination amendment — different mechanism after Obergefell)",
+      "2024": "CC24_340c (Respect for Marriage Act federal-recognition codification)",
+      "note": "Conceptually parallel but not identical mechanisms. All ship-ready at weight 1.0 in their respective cycles."
+    },
+    "transgender_policy": {
+      "2016": null,
+      "2020": "CC20_355d (military ban)",
+      "2024": null,
+      "note": "No 2024 direct trans-policy item. Gender-identity load comes only from CC20_350a coattail effect, which doesn't extend to 2024."
+    },
+    "contraceptives": {
+      "2016": null,
+      "2020": null,
+      "2024": "CC24_340a (post-Dobbs new salience)",
+      "note": "First cross-cycle contraceptives item in audited bank."
+    },
+    "abortion": {
+      "2016": "CC16_332a..f (already audited)",
+      "2020": "CC20_332a..g (already audited)",
+      "2024": "CC24_324a..d (already audited; new 'Expand access' item adds progressive datapoint)"
+    }
+  },
+  "recommended_next_audits": [
+    "CC24_321 gun-control battery — PRO/COM-breadth focus (not pure CD).",
+    "CC*_300 series 'Most Important Problem' multi-select items — candidates for moralBoundaries.gender salience derivation.",
+    "Other 2016 CC16_350 / CC16_351 items not yet audited — may contain LGBTQ-rights bills.",
+    "ANES VCF876/VCF877 gay rights items — for any future ANES-fed mapper path."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-cd-breadth-source-audit.md",
+    "results/electorate/synthetic-electorate/mapper-cd-breadth-source-audit.json"
+  ],
+  "terminology": "moralBoundaries.gender is the canonical compound moral-circle boundary per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — not surfaced by any item audited here. Legacy code identifiers (CC16_*, CC20_*, CC24_*) appear only as CCES variable names.",
+  "revision_history": [
+    { "date": "2026-05-04", "description": "Initial CD-breadth audit covering 8 columns across 2016/2020/2024 LGBTQ + gender + rights items." }
+  ]
+}
