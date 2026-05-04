@@ -312,6 +312,127 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
 }
 
 /**
+ * MAT (material orientation) — third real-signal core position target
+ * shipped in mapper v0.1C. Year-gated to 2016 only because the 2016
+ * economic battery is the audited one; CC20_350* items (DACA / Kavanaugh /
+ * impeachment / etc.) are a different question family and CC16_351I has
+ * no direct 2020 equivalent (per the extended directionality audit).
+ *
+ * Items shipped (per the directionality audit's MAT table):
+ *   - `CC16_337_2` "Cut Domestic Spending" (3-way ranking) → **rank-first
+ *     = MAT high (free-market)**, **rank-third = MAT low**, weight 0.5×
+ *     (audit: ⚠ Ship reduced — direction correct but the basket bundles
+ *     welfare with research/agriculture).
+ *   - `CC16_337_3` "Raise Taxes" (3-way ranking) → **rank-first = MAT low
+ *     (redistributionist)**, **rank-third = MAT high**, weight 1.0×
+ *     (audit: ✅ Ship — cleanest of the three Q337 items).
+ *   - `CC16_351I` "Repeal Affordable Care Act" (For / Against) → **For = MAT
+ *     high (cut-entitlement)**, **Against = MAT low**, weight 1.0× (audit:
+ *     ✅ Ship — direction unambiguous).
+ *   - `CC16_351K` "Raise the federal minimum wage" (For / Against;
+ *     codebook-verified via cross-cycle inference per audit §9 — the
+ *     CC16_351 series mirrors specific Congressional roll-calls and the
+ *     2014–2016 minimum-wage debate centered on the $10.10 increase) →
+ *     **For = MAT low (pro-redistribution)**, **Against = MAT high**,
+ *     weight 1.0× (audit: ✅ Ship contingent on wording → confirmed).
+ *
+ * `CC16_337_1` ("Cut Defense Spending") is **explicitly excluded** per the
+ * audit — its strongest load is foreign-policy / national-priority, not
+ * MAT, and using it would attribute non-economic preferences to MAT.
+ *
+ * Coding:
+ *   - 337 ranks: `1` = Ranked first (most preferred), `2` = Ranked second,
+ *     `3` = Ranked third (least preferred). `8` skipped, `9` not asked,
+ *     `.` missing.
+ *   - 351 binary: `1` = For, `2` = Against. Same skip codes.
+ *
+ * Algorithm: each item produces a direction ∈ {−1, 0, +1} (rank 2 produces
+ * 0 — neutral middle), multiplied by item polarity (the sign that maps
+ * support / rank-first to "MAT high"). The weighted sum / weighted total
+ * gives `net ∈ [−1, +1]` where + = free-market and − = redistributionist.
+ * Position = 3 + 2 × net. Posterior is a discrete-Gaussian over {1..5}
+ * with σ inverse to total weight collected.
+ *
+ * **Runtime sanity check (audit §9 recommendation)**: this v0.1 mapper
+ * does NOT auto-flip CC16_351K direction at runtime even if the For-share
+ * looks anomalous — it relies on the codebook-verified wording. A future
+ * For-share audit can flag the column upstream rather than silently
+ * inverting downstream.
+ *
+ * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
+ * no `pid7`, no turnout fields. Only the four `CC16_337_2/_3 / CC16_351I/K`
+ * columns are read.
+ */
+function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
+  if (r.year !== 2016) {
+    return fallbackContinuous(`v0.1C MAT: economic-battery decoder gated to 2016 (audited); year ${r.year} deferred until per-cycle codebook verification`);
+  }
+
+  // For each item, polarity is the sign s such that "rank-first / Support"
+  // maps to (s × +1). Direction is computed as polarity × item-signal,
+  // where item-signal is +1 / 0 / −1 for ranks (rank-first / mid / rank-third)
+  // or +1 / −1 for binary (Support / Oppose).
+  type Item = { col: string; kind: "rank"; polarity: 1 | -1; weight: number }
+            | { col: string; kind: "binary"; polarity: 1 | -1; weight: number };
+  const items: Item[] = [
+    { col: "CC16_337_2", kind: "rank",   polarity:  1, weight: 0.5 }, // rank-first cut-domestic = MAT high
+    { col: "CC16_337_3", kind: "rank",   polarity: -1, weight: 1.0 }, // rank-first raise-taxes = MAT low
+    { col: "CC16_351I", kind: "binary",  polarity:  1, weight: 1.0 }, // For repeal ACA = MAT high
+    { col: "CC16_351K", kind: "binary",  polarity: -1, weight: 1.0 }, // For raise min wage = MAT low
+  ];
+
+  let weightedDirectionSum = 0;
+  let totalWeight = 0;
+  let answered = 0;
+  const usedVars: string[] = [];
+  for (const it of items) {
+    const raw = parseCodedNumber(r.rawVarPayload[it.col]);
+    if (raw === null) continue;
+    let signal = 0;
+    if (it.kind === "rank") {
+      if (raw === 1) signal = 1;
+      else if (raw === 2) signal = 0;
+      else if (raw === 3) signal = -1;
+      else continue; // 8, 9, etc. → drop
+    } else {
+      if (raw === 1) signal = 1;       // For / Support
+      else if (raw === 2) signal = -1; // Against / Oppose
+      else continue;
+    }
+    weightedDirectionSum += it.polarity * signal * it.weight;
+    totalWeight += it.weight;
+    answered++;
+    usedVars.push(it.col);
+  }
+
+  if (totalWeight === 0) {
+    return fallbackContinuous("v0.1C MAT: respondent answered 0/4 economic-battery items");
+  }
+
+  const net = weightedDirectionSum / totalWeight; // [-1, +1] (- = redistributionist, + = free-market)
+  const pos = 3 + 2 * net;                         // MAT high (5) = free-market; MAT low (1) = redistributionist
+  const sigma = Math.max(0.6, 1.4 - 0.25 * totalWeight); // 1.27 at weight=0.5; 0.6 at weight=3.2+
+
+  const intensity = Math.abs(net); // 0..1
+  const salScore = Math.min(3, 0.5 + intensity * 1.5 + (answered - 1) * 0.1);
+  const salPosterior = salienceToDist(salScore);
+
+  const uncertainty: Uncertainty = totalWeight >= 2.0 ? "low" : totalWeight >= 1.0 ? "medium" : "high";
+
+  return {
+    posPosterior: positionPosteriorFromMean(pos, sigma),
+    salPosterior,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty,
+      notes: `v0.1C MAT: ${answered}/4 economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
+    },
+  };
+}
+
+/**
  * CU (cultural uniformity / pluralism) — second real-signal core position
  * target shipped in mapper v0.1B. Year-gated to 2016 only because the
  * directionality audit at `results/electorate/synthetic-electorate/
@@ -716,7 +837,7 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   // position decoder (CC{Y2}_332a-f abortion battery, year-gated to
   // 2016/2020). Other continuous nodes remain fallback pending per-cycle
   // codebook verification of their candidate batteries.
-  const MAT   = fallbackContinuous("v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)");
+  const MAT   = deriveMAT(r);
   const CD    = deriveCD(r);
   const CU    = deriveCU(r);
   const MOR   = fallbackContinuous("v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)");
