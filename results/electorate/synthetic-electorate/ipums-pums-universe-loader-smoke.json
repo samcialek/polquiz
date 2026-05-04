@@ -1,0 +1,348 @@
+{
+  "schema_version": "v0",
+  "generator": "src/electorate/ipumsPumsUniverseLoaderSmoke.ts",
+  "runAt": "2026-05-04T14:37:07.277Z",
+  "fixture_size": {
+    "perCycle": 8,
+    "totalCycles": 5
+  },
+  "invariants": {
+    "allEmittedValid": true,
+    "eligibleMixExercisedAllCycles": true,
+    "under18SkipExercisedAllCycles": true,
+    "nonStateSkipExercisedAllCycles": true,
+    "determinismHolds": true,
+    "revalidationClean": true,
+    "spotChecksAllPass": true
+  },
+  "spotChecks": [
+    {
+      "input": "RACE=1",
+      "expected": "white",
+      "actual": "white",
+      "pass": true
+    },
+    {
+      "input": "RACE=2",
+      "expected": "black",
+      "actual": "black",
+      "pass": true
+    },
+    {
+      "input": "RACE=3",
+      "expected": "amerindian",
+      "actual": "amerindian",
+      "pass": true
+    },
+    {
+      "input": "RACE=4",
+      "expected": "asian",
+      "actual": "asian",
+      "pass": true
+    },
+    {
+      "input": "RACE=5",
+      "expected": "asian",
+      "actual": "asian",
+      "pass": true
+    },
+    {
+      "input": "RACE=6",
+      "expected": "asian",
+      "actual": "asian",
+      "pass": true
+    },
+    {
+      "input": "RACE=7",
+      "expected": "other_single",
+      "actual": "other_single",
+      "pass": true
+    },
+    {
+      "input": "RACE=8",
+      "expected": "two_or_more",
+      "actual": "two_or_more",
+      "pass": true
+    },
+    {
+      "input": "RACE=9",
+      "expected": "two_or_more",
+      "actual": "two_or_more",
+      "pass": true
+    },
+    {
+      "input": "RACE=6, RACED=685",
+      "expected": "nhpi",
+      "actual": "nhpi",
+      "pass": true
+    },
+    {
+      "input": "HISPAN=0",
+      "expected": "false",
+      "actual": "false",
+      "pass": true
+    },
+    {
+      "input": "HISPAN=1",
+      "expected": "true",
+      "actual": "true",
+      "pass": true
+    },
+    {
+      "input": "HISPAN=4",
+      "expected": "true",
+      "actual": "true",
+      "pass": true
+    },
+    {
+      "input": "EDUC=0",
+      "expected": "less_than_hs",
+      "actual": "less_than_hs",
+      "pass": true
+    },
+    {
+      "input": "EDUC=3",
+      "expected": "less_than_hs",
+      "actual": "less_than_hs",
+      "pass": true
+    },
+    {
+      "input": "EDUC=5",
+      "expected": "less_than_hs",
+      "actual": "less_than_hs",
+      "pass": true
+    },
+    {
+      "input": "EDUC=6",
+      "expected": "hs_grad",
+      "actual": "hs_grad",
+      "pass": true
+    },
+    {
+      "input": "EDUC=7",
+      "expected": "some_college",
+      "actual": "some_college",
+      "pass": true
+    },
+    {
+      "input": "EDUC=8",
+      "expected": "some_college",
+      "actual": "some_college",
+      "pass": true
+    },
+    {
+      "input": "EDUC=9",
+      "expected": "bachelor",
+      "actual": "bachelor",
+      "pass": true
+    },
+    {
+      "input": "EDUC=10",
+      "expected": "graduate",
+      "actual": "graduate",
+      "pass": true
+    },
+    {
+      "input": "EDUC=11",
+      "expected": "graduate",
+      "actual": "graduate",
+      "pass": true
+    },
+    {
+      "input": "EDUC=6, EDUCD=60",
+      "expected": "less_than_hs",
+      "actual": "less_than_hs",
+      "pass": true
+    },
+    {
+      "input": "EDUC=6, EDUCD=63",
+      "expected": "hs_grad",
+      "actual": "hs_grad",
+      "pass": true
+    },
+    {
+      "input": "CITIZEN=1",
+      "expected": "us_born",
+      "actual": "us_born",
+      "pass": true
+    },
+    {
+      "input": "CITIZEN=2",
+      "expected": "us_territory",
+      "actual": "us_territory",
+      "pass": true
+    },
+    {
+      "input": "CITIZEN=3",
+      "expected": "us_born",
+      "actual": "us_born",
+      "pass": true
+    },
+    {
+      "input": "CITIZEN=4",
+      "expected": "us_naturalized",
+      "actual": "us_naturalized",
+      "pass": true
+    },
+    {
+      "input": "CITIZEN=5",
+      "expected": "non_citizen",
+      "actual": "non_citizen",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=0",
+      "expected": "<25k",
+      "actual": "<25k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=24999",
+      "expected": "<25k",
+      "actual": "<25k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=25000",
+      "expected": "25-50k",
+      "actual": "25-50k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=49999",
+      "expected": "25-50k",
+      "actual": "25-50k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=50000",
+      "expected": "50-75k",
+      "actual": "50-75k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=75000",
+      "expected": "75-100k",
+      "actual": "75-100k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=100000",
+      "expected": "100-150k",
+      "actual": "100-150k",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=150000",
+      "expected": "150k+",
+      "actual": "150k+",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=9999999",
+      "expected": "null",
+      "actual": "null",
+      "pass": true
+    },
+    {
+      "input": "HHINCOME=60000, GQ=3",
+      "expected": "null",
+      "actual": "null",
+      "pass": true
+    },
+    {
+      "input": "SEX=1",
+      "expected": "male",
+      "actual": "male",
+      "pass": true
+    },
+    {
+      "input": "SEX=2",
+      "expected": "female",
+      "actual": "female",
+      "pass": true
+    }
+  ],
+  "reports": [
+    {
+      "cycle": 2008,
+      "inputRows": 8,
+      "emittedRows": 6,
+      "eligibleRows": 5,
+      "skipBreakdown": {
+        "age_below_18": 1,
+        "non_state_statefip": 1
+      },
+      "weightedTotalEmitted": 868.8,
+      "weightedVepEligible": 701.8000000000001,
+      "vepEligibleShare": 0.8077808471454881,
+      "validationErrors": 0,
+      "groupQuartersRowsEmitted": 1,
+      "nhpiRefinedRowsEmitted": 0
+    },
+    {
+      "cycle": 2012,
+      "inputRows": 8,
+      "emittedRows": 6,
+      "eligibleRows": 5,
+      "skipBreakdown": {
+        "age_below_18": 1,
+        "non_state_statefip": 1
+      },
+      "weightedTotalEmitted": 809,
+      "weightedVepEligible": 713.6,
+      "vepEligibleShare": 0.8820766378244747,
+      "validationErrors": 0,
+      "groupQuartersRowsEmitted": 0,
+      "nhpiRefinedRowsEmitted": 0
+    },
+    {
+      "cycle": 2016,
+      "inputRows": 9,
+      "emittedRows": 7,
+      "eligibleRows": 6,
+      "skipBreakdown": {
+        "age_below_18": 1,
+        "non_state_statefip": 1
+      },
+      "weightedTotalEmitted": 994.7,
+      "weightedVepEligible": 838.2,
+      "vepEligibleShare": 0.8426661304916055,
+      "validationErrors": 0,
+      "groupQuartersRowsEmitted": 1,
+      "nhpiRefinedRowsEmitted": 1
+    },
+    {
+      "cycle": 2020,
+      "inputRows": 9,
+      "emittedRows": 7,
+      "eligibleRows": 6,
+      "skipBreakdown": {
+        "age_below_18": 1,
+        "non_state_statefip": 1
+      },
+      "weightedTotalEmitted": 930.6000000000001,
+      "weightedVepEligible": 779.3000000000001,
+      "vepEligibleShare": 0.8374167203954438,
+      "validationErrors": 0,
+      "groupQuartersRowsEmitted": 1,
+      "nhpiRefinedRowsEmitted": 0
+    },
+    {
+      "cycle": 2024,
+      "inputRows": 8,
+      "emittedRows": 6,
+      "eligibleRows": 5,
+      "skipBreakdown": {
+        "age_below_18": 1,
+        "non_state_statefip": 1
+      },
+      "weightedTotalEmitted": 827.4,
+      "weightedVepEligible": 735.5,
+      "vepEligibleShare": 0.8889291757312062,
+      "validationErrors": 0,
+      "groupQuartersRowsEmitted": 0,
+      "nhpiRefinedRowsEmitted": 0
+    }
+  ]
+}
