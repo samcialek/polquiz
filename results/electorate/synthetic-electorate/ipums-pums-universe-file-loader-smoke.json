@@ -1,0 +1,72 @@
+{
+  "schema_version": "v0",
+  "generator": "src/electorate/ipumsPumsUniverseFileLoaderSmoke.ts",
+  "runAt": "2026-05-04T15:01:19.351Z",
+  "fixture": {
+    "header": [
+      "YEAR",
+      "SAMPLE",
+      "SERIAL",
+      "PERNUM",
+      "STATEFIP",
+      "PUMA",
+      "AGE",
+      "SEX",
+      "RACE",
+      "RACED",
+      "HISPAN",
+      "EDUC",
+      "EDUCD",
+      "HHINCOME",
+      "CITIZEN",
+      "PERWT",
+      "GQ",
+      "REPWTP1",
+      "REPWTP2",
+      "REPWTP3",
+      "REPWTP4",
+      "EXTRA_COL"
+    ],
+    "rowCount": 10,
+    "formats": [
+      "TSV",
+      "CSV"
+    ],
+    "tempDir": "C:\\Users\\Sam\\AppData\\Local\\Temp\\pums-fileloader-smoke-BtEn4i"
+  },
+  "stats": {
+    "rowsRead": 10,
+    "rowsEmitted": 6,
+    "rowsSkipped": 4,
+    "skipBreakdown": {
+      "age_below_18": 1,
+      "non_state_statefip": 1,
+      "weight_missing_or_nonpositive": 1,
+      "missing_required_field": 1,
+      "validation_failed": 0
+    },
+    "weightedTotalEmitted": 854.6999999999999,
+    "weightedVepEligible": 687.7
+  },
+  "invariants": {
+    "tsvDeterministic": true,
+    "csvMatchesTsv": true,
+    "skipBreakdownMatches": true,
+    "replicateWeightAssemblyCorrect": true,
+    "nhpiRefinement": true,
+    "groupQuartersIncomeNull": true,
+    "nonCitizenEmittedIneligible": true,
+    "csvQuotingRoundTrips": true,
+    "streamYieldCountMatches": true,
+    "inMemoryMatchesDisk": true,
+    "revalidationClean": true,
+    "headerResolverHandlesUnrecognizedAndSparseRepwtp": true
+  },
+  "expectedSkips": {
+    "age_below_18": 1,
+    "non_state_statefip": 1,
+    "weight_missing_or_nonpositive": 1,
+    "missing_required_field": 1,
+    "validation_failed": 0
+  }
+}
