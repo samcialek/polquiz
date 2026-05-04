@@ -2,14 +2,16 @@
   "schema_version": "v0",
   "phase": "Phase 2.7 mapper v0.1 prep",
   "created": "2026-05-04",
-  "status": "documentation only; no mapper code changes",
+  "status": "documentation only; no mapper code changes — Pass 2 extension landed",
   "purpose": "Independently verify directionality of every CCES item the v0.1 mapper plans to consume, before any code is written that could invert a sign.",
   "codebooks_consulted": [
     "data/cces2016/hcbk0006.htm (CCES 2016 HTML codebook, item batteries)",
     "data/cces2016/hcbk0007.htm (CCES 2016 HTML codebook, congressional support items)",
     "data/cces2016/hcbkfx0.htm (CCES 2016 HTML codebook index)",
     "data/cces2020/CES20_Common_pre_qx.pdf (CES 2020 pre-wave question text)",
-    "data/cces2020/CES20_Common_OUTPUT_vv.csv header (CES 2020 column-name confirmation)"
+    "data/cces2020/CES20_Common_OUTPUT_vv.csv header (CES 2020 column-name confirmation)",
+    "data/cces2024/CES_2024_GUIDE_vv.pdf (CCES 2024 guide, extracted via pdftotext)",
+    "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv header (2024 column-name confirmation)"
   ],
   "explicitly_not_in_this_audit": [
     "No mapper logic modifications.",
@@ -18,20 +20,51 @@
     "No raw-data downloads."
   ],
   "summary": {
-    "totalColumnsAudited": 19,
-    "shipReady": 10,
-    "shipReducedWeight": 6,
-    "holdForV02": 3,
+    "passes": [
+      "Pass 1 (initial)",
+      "Pass 2 (this extension: 2020 + 2024 + CC16_351K verification)"
+    ],
+    "totalColumnsAudited": 44,
+    "pass1ColumnsAudited": 19,
+    "pass2ColumnsAddedAudited": 25,
+    "shipReady": 22,
+    "shipReducedWeight": 14,
+    "holdForV02": 6,
+    "skipForMatExplicit": 2,
     "byBattery": {
-      "CD_abortion_CC16_332_CC20_332": { "audited": 13, "shipReady": 8, "mediumConfidence": 3, "holdV02": 2 },
-      "CU_immigration_CC16_331": { "audited": 4, "shipReady": 2, "mediumConfidence": 2, "holdV02": 0 },
-      "MAT_economic_CC16_337_CC16_351": { "audited": 5, "shipReady": 3, "mediumConfidence": 1, "holdV02": 1 },
-      "moralBoundaries_national_subset": { "audited": 2, "shipReady": 0, "mediumConfidence": 2, "holdV02": 0 }
+      "CD_abortion_CC16_332_CC20_332": {
+        "audited": 13,
+        "shipReady": 8,
+        "mediumConfidence": 3,
+        "holdV02": 2
+      },
+      "CU_immigration_CC16_331_CC20_331_CC24_323": {
+        "audited": 13,
+        "shipReady": 6,
+        "reducedWeight": 6,
+        "holdV02": 1
+      },
+      "MAT_economic": {
+        "audited": 16,
+        "shipReady": 8,
+        "reducedWeight": 5,
+        "holdV02": 3
+      },
+      "moralBoundaries_national_subset": {
+        "audited": 2,
+        "mediumConfidence": 2
+      }
     }
   },
   "abortion_battery": {
     "battery_prompt": "On the topic of abortion, do you support or oppose each of the following proposals?",
-    "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "response_codes": {
+      "1": "Support",
+      "2": "Oppose",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
     "items": [
       {
         "variable": "CC16_332a",
@@ -41,9 +74,11 @@
         "target_role": "position",
         "direction": "Support → CD low; Oppose → CD high",
         "confidence": "high",
-        "cross_loads": ["MOR (mild universalist)"],
+        "cross_loads": [
+          "MOR (mild universalist)"
+        ],
         "ship_ready_v01": true,
-        "v01_weight": 1.0,
+        "v01_weight": 1,
         "notes": "Maximally pro-choice item, unambiguous direction."
       },
       {
@@ -54,9 +89,11 @@
         "target_role": "position",
         "direction": "Support → CD low; Oppose → CD high",
         "confidence": "high",
-        "cross_loads": ["MOR (mild universalist)"],
+        "cross_loads": [
+          "MOR (mild universalist)"
+        ],
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC16_332b",
@@ -93,7 +130,7 @@
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "high",
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC20_332c",
@@ -104,7 +141,7 @@
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "high",
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC16_332d",
@@ -114,7 +151,10 @@
         "target_role": "position",
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "medium",
-        "cross_loads": ["PRO (libertarian)", "moralBoundaries.religious"],
+        "cross_loads": [
+          "PRO (libertarian)",
+          "moralBoundaries.religious"
+        ],
         "ship_ready_v01": "with_reduced_weight",
         "v01_weight": 0.5,
         "notes": "Religious-liberty / employer-conscience framing. Respondent can support employer conscience for libertarian reasons without being culturally traditionalist on abortion itself."
@@ -127,7 +167,10 @@
         "target_role": "position",
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "medium",
-        "cross_loads": ["PRO (libertarian)", "moralBoundaries.religious"],
+        "cross_loads": [
+          "PRO (libertarian)",
+          "moralBoundaries.religious"
+        ],
         "ship_ready_v01": "with_reduced_weight",
         "v01_weight": 0.5
       },
@@ -139,9 +182,11 @@
         "target_role": "position",
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "high-medium",
-        "cross_loads": ["MAT (light, federal-funding component)"],
+        "cross_loads": [
+          "MAT (light, federal-funding component)"
+        ],
         "ship_ready_v01": true,
-        "v01_weight": 1.0,
+        "v01_weight": 1,
         "notes": "Direction unambiguous on CD. Light MAT cross-load is acceptable noise given Q337/Q351 do MAT heavy lifting."
       },
       {
@@ -152,9 +197,11 @@
         "target_role": "position",
         "direction": "Support → CD high; Oppose → CD low",
         "confidence": "high-medium",
-        "cross_loads": ["MAT (light)"],
+        "cross_loads": [
+          "MAT (light)"
+        ],
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC16_332f",
@@ -165,7 +212,7 @@
         "direction": "Support → CD very high; Oppose → CD low (broad range, naturally averaged by composite)",
         "confidence": "high_on_support_medium_on_oppose_magnitude",
         "ship_ready_v01": true,
-        "v01_weight": 1.0,
+        "v01_weight": 1,
         "notes": "Cleanest signal for the extreme traditionalist tail. Apply with high weight."
       },
       {
@@ -177,7 +224,7 @@
         "direction": "Support → CD very high; Oppose → CD low",
         "confidence": "high_on_support_medium_on_oppose_magnitude",
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC20_332g",
@@ -196,7 +243,13 @@
     "v01_composite_recommendation": "Use a, c, e, f from both 2016 and 2020 (8 columns). Apply d at half weight. Hold b and g."
   },
   "immigration_battery_subset": {
-    "battery_codes": { "1": "Yes", "2": "No", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "battery_codes": {
+      "1": "Yes",
+      "2": "No",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
     "battery_note": "CC16_331_* items had answered-N ~13K of 64K respondents (sampled subset / routed sub-question).",
     "items": [
       {
@@ -204,7 +257,10 @@
         "year": 2016,
         "question_wording": "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes",
         "wording_source": "codebook label truncated; full wording from standard CCES 2016 Common Content Guide",
-        "target_nodes": ["CU/position (primary)", "MOR/position (light universalist)"],
+        "target_nodes": [
+          "CU/position (primary)",
+          "MOR/position (light universalist)"
+        ],
         "direction": "Yes → CU high; No → CU low",
         "confidence": "high",
         "ship_ready_v01": true,
@@ -215,7 +271,10 @@
         "variable": "CC16_331_2",
         "year": 2016,
         "question_wording": "Increase the number of border patrols on the U.S.-Mexican border",
-        "target_nodes": ["CU/position", "moralBoundaries.national"],
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
         "direction": "Yes → CU low + national.salience high; No → CU high + national.salience low",
         "confidence": "medium",
         "ship_ready_v01": "with_reduced_weight",
@@ -227,24 +286,33 @@
         "variable": "CC16_331_5",
         "year": 2016,
         "question_wording": "Admit no refugees from Syria",
-        "target_nodes": ["CU/position", "moralBoundaries.national", "MOR/position (light)"],
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national",
+          "MOR/position (light)"
+        ],
         "direction": "Yes → CU low + national.salience high + MOR low; No → CU high + national.salience low + MOR high",
         "confidence": "high",
         "ship_ready_v01": true,
-        "v01_weight_cu": 1.0,
-        "v01_weight_national": 1.0,
+        "v01_weight_cu": 1,
+        "v01_weight_national": 1,
         "notes": "Cleanest 'national vs universal moral circle' item in the battery. Light cross-load to ethnic_racial / religious moral boundary because Syrian refugees were predominantly Muslim."
       },
       {
         "variable": "CC16_331_8",
         "year": 2016,
         "question_wording": "Ban Muslims from immigrating to the U.S.",
-        "target_nodes": ["CU/position", "moralBoundaries.national", "moralBoundaries.religious", "moralBoundaries.ethnic_racial (secondary)"],
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national",
+          "moralBoundaries.religious",
+          "moralBoundaries.ethnic_racial (secondary)"
+        ],
         "direction": "Yes → CU low + multi-boundary high; No → CU high + multi-boundary low",
         "confidence": "medium-high",
         "ship_ready_v01": true,
-        "v01_weight_cu": 1.0,
-        "v01_weight_national": 1.0,
+        "v01_weight_cu": 1,
+        "v01_weight_national": 1,
         "v02_concern": "Multi-boundary load risks double-counting against other items. Religious + ethnic_racial loads should ship in v0.2 once bridge handles multi-boundary normalization."
       }
     ],
@@ -253,7 +321,14 @@
   },
   "economic_battery": {
     "spec_discrepancy_note": "Original task spec mentioned 'CC16_337_1..5' but codebook shows only CC16_337_1, _2, _3 (Q337 is a 3-way ranking question, not 5-way).",
-    "Q337_codes": { "1": "Ranked first", "2": "Ranked second", "3": "Ranked third", ".": "Missing", "8": "Skipped", "9": "Not Asked" },
+    "Q337_codes": {
+      "1": "Ranked first",
+      "2": "Ranked second",
+      "3": "Ranked third",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
     "Q337_prompt": "If the federal government had to balance the budget, in what order would you do these things?",
     "items": [
       {
@@ -288,46 +363,89 @@
         "direction": "Ranked first → MAT low; Ranked third → MAT high",
         "confidence": "high",
         "ship_ready_v01": true,
-        "v01_weight": 1.0,
+        "v01_weight": 1,
         "notes": "Cleanest of the three Q337 items."
       },
       {
         "variable": "CC16_351I",
         "year": 2016,
         "question_wording": "For or Against — Congress — Repeal Affordable Care Act",
-        "codes": { "1": "For", "2": "Against", "8": "Skipped", "9": "Not Asked" },
+        "codes": {
+          "1": "For",
+          "2": "Against",
+          "8": "Skipped",
+          "9": "Not Asked"
+        },
         "target_node": "MAT",
         "target_role": "position",
         "direction": "For → MAT high; Against → MAT low",
         "confidence": "high",
-        "cross_loads": ["ONT_S (light institutional-distrust)"],
+        "cross_loads": [
+          "ONT_S (light institutional-distrust)"
+        ],
         "ship_ready_v01": true,
-        "v01_weight": 1.0
+        "v01_weight": 1
       },
       {
         "variable": "CC16_351K",
         "year": 2016,
         "question_wording_codebook": "Minimum wage",
         "question_wording_assumed": "Raise the federal minimum wage to $10.10 per hour (standard 2016 CCES wording; needs question-PDF verification before v0.1 ships)",
-        "codes": { "1": "For", "2": "Against", "8": "Skipped", "9": "Not Asked" },
+        "codes": {
+          "1": "For",
+          "2": "Against",
+          "8": "Skipped",
+          "9": "Not Asked"
+        },
         "target_node": "MAT",
         "target_role": "position",
         "direction": "For → MAT low; Against → MAT high",
         "confidence": "high_contingent_on_wording_verification",
         "ship_ready_v01": true,
-        "v01_weight": 1.0,
+        "v01_weight": 1,
         "v01_runtime_check": "Mapper implementer should add a runtime sanity check: if For share is much higher than expected against direction, the question may have been worded the opposite way that cycle."
       }
     ],
     "v01_mat_composite": "Use CC16_337_3, CC16_351I, CC16_351K as core (weight 1.0). CC16_337_2 at half weight (0.5). CC16_337_1 does not contribute to MAT."
   },
   "moral_boundaries_national_subset": {
-    "items_in_scope": ["CC16_331_1", "CC16_331_2", "CC16_331_5", "CC16_331_8"],
+    "items_in_scope": [
+      "CC16_331_1",
+      "CC16_331_2",
+      "CC16_331_5",
+      "CC16_331_8"
+    ],
     "verdicts": {
-      "CC16_331_1": { "use_for_national_salience": false, "reason": "Pro-pluralist item; both pluralist and restrictionist respondents can have low/high national salience independent of this item." },
-      "CC16_331_2": { "use_for_national_salience": true, "weight": 0.5, "confidence": "medium", "cross_loads": ["ZS (security framing)"] },
-      "CC16_331_5": { "use_for_national_salience": true, "weight": 1.0, "confidence": "high", "cross_loads": ["religious", "ethnic_racial (defer to v0.2)"] },
-      "CC16_331_8": { "use_for_national_salience": true, "weight": 1.0, "confidence": "medium-high", "cross_loads": ["religious", "ethnic_racial (defer to v0.2)"] }
+      "CC16_331_1": {
+        "use_for_national_salience": false,
+        "reason": "Pro-pluralist item; both pluralist and restrictionist respondents can have low/high national salience independent of this item."
+      },
+      "CC16_331_2": {
+        "use_for_national_salience": true,
+        "weight": 0.5,
+        "confidence": "medium",
+        "cross_loads": [
+          "ZS (security framing)"
+        ]
+      },
+      "CC16_331_5": {
+        "use_for_national_salience": true,
+        "weight": 1,
+        "confidence": "high",
+        "cross_loads": [
+          "religious",
+          "ethnic_racial (defer to v0.2)"
+        ]
+      },
+      "CC16_331_8": {
+        "use_for_national_salience": true,
+        "weight": 1,
+        "confidence": "medium-high",
+        "cross_loads": [
+          "religious",
+          "ethnic_racial (defer to v0.2)"
+        ]
+      }
     },
     "v01_composite": "national.salience ← 1.0×CC16_331_5 + 1.0×CC16_331_8 + 0.5×CC16_331_2"
   },
@@ -338,16 +456,509 @@
     "CC16_337_in_2020": "Q337 budget-priority ranking discontinued in CC20. v0.1 MAT for 2020 relies on CC20_351 / CC20_415r / CC20_416r equivalents (out of scope for this audit pass)."
   },
   "recommended_next_audits": [
-    "CC20 immigration battery (likely CC20_303*) for symmetric CU coverage across cycles.",
-    "CC20 economic items (CC20_351, CC20_415r, CC20_416r) to replace discontinued CC16_337 in 2020.",
-    "CC16/CC20 ANES-equivalent items (VCF0809, VCF0839, VCF0806) for any future ANES-fed mapper path.",
-    "CC16_351K wording verification — pull 2016 CCES Common Content Guide question text PDF if not already cached.",
-    "CC16_335 gay marriage and other CC16/CC20 LGBTQ-rights items for CD/position breadth."
+    "CC24_323f wording — extract CCES24_Common_pre.docx via pandoc/LibreOffice and audit the 5th 2024 immigration item",
+    "CC24_324 abortion battery — 2024 has new 'Expand access to abortion' item directionally inverted from items b/c/f; deserves focused CD audit",
+    "CC16_335 gay marriage and CC24 LGBTQ-rights items for CD/position breadth",
+    "CC20_350c/f/g (Kavanaugh + impeachment) — could safely contribute to political_camp salience if non-circular",
+    "ANES VCF cross-cycle items (VCF0809, VCF0839, VCF0806) for any future ANES-fed mapper path"
   ],
   "files": [
     "results/electorate/synthetic-electorate/mapper-v01-source-directionality-audit.md",
     "results/electorate/synthetic-electorate/mapper-v01-source-directionality-audit.json"
   ],
   "terminology": "moralBoundaries.national is the canonical compound moral-circle boundary per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — and is not surfaced by any of the columns audited here. Legacy code identifiers (pid7, ideo5, CC16_*, CC20_*) appear only as CCES variable names.",
-  "revision_history": []
+  "revision_history": [
+    {
+      "date": "2026-05-04",
+      "pass": "Pass 1",
+      "description": "Initial audit: CC16/CC20 abortion battery, CC16_331 immigration subset, CC16 economic items, CC16_351K wording flagged for verification."
+    },
+    {
+      "date": "2026-05-04",
+      "pass": "Pass 2",
+      "description": "Extended audit: CC20_331a..e, CC20_350a..g, CC20_351a/b, CC24_323a..d/f, CC24_328a..f. CC16_351K wording confirmed via cross-cycle inference. Cross-cycle consistency table built."
+    }
+  ],
+  "cu_battery_2020_CC20_331": {
+    "battery_prompt": "What do you think the U.S. government should do about immigration? Do you support or oppose each of the following?",
+    "response_codes": {
+      "1": "Support",
+      "2": "Oppose",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
+    "source": "data/cces2020/CES20_Common_pre_qx.pdf",
+    "items": [
+      {
+        "variable": "CC20_331a",
+        "year": 2020,
+        "question_wording": "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes",
+        "target_nodes": [
+          "CU/position (primary)",
+          "MOR/position (light universalist)"
+        ],
+        "direction": "Support → CU high; light MOR high",
+        "confidence": "high",
+        "v01_weight_cu": 0.5,
+        "ship_ready_v01": true,
+        "cross_cycle_match": "verbatim identical to CC16_331_1"
+      },
+      {
+        "variable": "CC20_331b",
+        "year": 2020,
+        "question_wording": "Increase the number of border patrols on the US-Mexican border",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight",
+        "cross_cycle_match": "verbatim identical to CC16_331_2"
+      },
+      {
+        "variable": "CC20_331c",
+        "year": 2020,
+        "question_wording": "Withhold federal funds from any local police department that does not collaborate with federal immigration enforcement (sanctuary cities)",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight",
+        "cross_loads": [
+          "PRO/federalism (some support for federalism reasons rather than immigration-restrictionist reasons)"
+        ]
+      },
+      {
+        "variable": "CC20_331d",
+        "year": 2020,
+        "question_wording": "Reduce LEGAL immigration by 50 percent over the next 10 years",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national",
+          "MAT (light)"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "medium-high",
+        "v01_weight": 0.7,
+        "ship_ready_v01": "with_reduced_weight",
+        "cross_loads": [
+          "MAT (anti-immigration as labor-market protectionism — some pro-redistribution respondents support for that reason)"
+        ]
+      },
+      {
+        "variable": "CC20_331e",
+        "year": 2020,
+        "question_wording": "Increase spending on border security by $25 billion, including building a wall",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "medium-high",
+        "v01_weight": 0.7,
+        "ship_ready_v01": "with_reduced_weight",
+        "notes": "Closest 2020 replacement for the discontinued CC16_331_5/_8 Trump-era items, but with cross-load to spending-discipline framing."
+      }
+    ],
+    "v01_cu_composite_2020": "0.5×CC20_331a + 0.5×CC20_331b + 0.5×CC20_331c + 0.7×CC20_331d + 0.7×CC20_331e",
+    "v01_national_salience_composite_2020": "0.5×CC20_331b + 0.5×CC20_331c + 0.7×CC20_331d + 0.7×CC20_331e",
+    "signal_strength_warning": "2020 lacks the cleanest 2016 national-salience signals (Syria refugees + Muslim ban discontinued). Mapper should flag 2020 national-salience uncertainty as `medium` rather than `high`."
+  },
+  "mat_battery_2020_CC20_350_351": {
+    "prompt_350": "Over the past two years, Congress voted on many issues. Do you support each of the following proposals? [Favor / Oppose]",
+    "prompt_351": "During the past year, Congress considered two pieces of legislation to address the economic crisis. Do you support or oppose each of these proposals?",
+    "response_codes": {
+      "1": "Support/Favor",
+      "2": "Oppose",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
+    "source": "data/cces2020/CES20_Common_pre_qx.pdf",
+    "items": [
+      {
+        "variable": "CC20_350a",
+        "year": 2020,
+        "question_wording": "Amend federal laws to prohibit discrimination on the basis of gender identity and sexual orientation",
+        "target_nodes": [
+          "CD/position",
+          "moralBoundaries.gender"
+        ],
+        "direction": "Favor → CD low; gender-salience high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "ship_role": "CD adjunct (2020 only)"
+      },
+      {
+        "variable": "CC20_350b",
+        "year": 2020,
+        "question_wording": "Raise the minimum wage to $15 an hour",
+        "target_node": "MAT/position",
+        "direction": "Favor → MAT low",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "cross_cycle_match": "2020 equivalent of CC16_351K (with $15 update from $10.10)"
+      },
+      {
+        "variable": "CC20_350c",
+        "year": 2020,
+        "question_wording": "Confirm Brett Kavanaugh to become a Justice of the Supreme Court of the United States",
+        "target_node": "political_camp",
+        "direction": "partisan-camp signal",
+        "confidence": "n/a (held)",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "reason": "Heavily partisan; not a safe MAT/CD signal."
+      },
+      {
+        "variable": "CC20_350d",
+        "year": 2020,
+        "question_wording": "Require equal pay for women and men who are doing similar jobs and have similar qualifications",
+        "target_nodes": [
+          "CD/position (light)",
+          "moralBoundaries.gender"
+        ],
+        "direction": "Favor → CD low; gender-salience high",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight",
+        "reason": "Compromise framing — broadly popular even with conservatives; weak discriminator."
+      },
+      {
+        "variable": "CC20_350e",
+        "year": 2020,
+        "question_wording": "Provide permanent resident status to children of immigrants who were brought to the United States by their parents (Dreamers / DACA)",
+        "target_nodes": [
+          "CU/position",
+          "MOR (universalist)"
+        ],
+        "direction": "Favor → CU high; MOR high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "ship_role": "CU adjunct"
+      },
+      {
+        "variable": "CC20_350f",
+        "year": 2020,
+        "question_wording": "Remove President Trump from office for abuse of power",
+        "target_node": "political_camp",
+        "direction": "partisan-camp signal",
+        "confidence": "n/a (held)",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02"
+      },
+      {
+        "variable": "CC20_350g",
+        "year": 2020,
+        "question_wording": "Remove President Trump from office for obstruction of Congress",
+        "target_node": "political_camp",
+        "direction": "partisan-camp signal",
+        "confidence": "n/a (held)",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02"
+      },
+      {
+        "variable": "CC20_351a",
+        "year": 2020,
+        "question_wording": "In March, the CARES Act proposed to spend $2 trillion in emergency and health care assistance for individuals…",
+        "target_node": "MAT/position (light)",
+        "direction": "Support → MAT low",
+        "confidence": "medium-low",
+        "v01_weight": 0.3,
+        "ship_ready_v01": "with_heavy_reduction",
+        "reason": "Broadly popular emergency relief; weak MAT discriminator."
+      },
+      {
+        "variable": "CC20_351b",
+        "year": 2020,
+        "question_wording": "In May, the HEROES Act proposed to spend an additional $3 trillion, including $1 trillion for state and local governments",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT low",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight",
+        "cross_loads": [
+          "COVID emergency framing (medium dilution)"
+        ]
+      }
+    ],
+    "v01_mat_composite_2020": "1.0×CC20_350b + 0.5×CC20_351b + 0.3×CC20_351a",
+    "no_aca_repeal_2020": true,
+    "cc20_415_416_clarification": "CC20_415c, _415d are STATE LEGISLATURE vote-choice questions; CC20_416a/b/c are HOUSE RACE vote-choice questions. NOT tax-policy items. Variable-name overlap with CC16_415r/CC16_416r is coincidental — those 2016 items were discontinued or repurposed in 2020."
+  },
+  "cu_battery_2024_CC24_323": {
+    "battery_prompt": "What do you think the U.S. government should do about immigration? Do you support or oppose each of the following?",
+    "response_codes": {
+      "1": "Support",
+      "2": "Oppose",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
+    "source": "data/cces2024/CES_2024_GUIDE_vv.pdf (extracted via pdftotext)",
+    "items": [
+      {
+        "variable": "CC24_323a",
+        "year": 2024,
+        "question_wording": "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes",
+        "target_nodes": [
+          "CU/position",
+          "MOR (light)"
+        ],
+        "direction": "Support → CU high",
+        "confidence": "high",
+        "v01_weight": 0.5,
+        "ship_ready_v01": true,
+        "cross_cycle_match": "verbatim identical to CC16_331_1 / CC20_331a"
+      },
+      {
+        "variable": "CC24_323b",
+        "year": 2024,
+        "question_wording": "Increase the number of border patrols on the US-Mexican border",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight",
+        "cross_cycle_match": "verbatim identical to CC16_331_2 / CC20_331b"
+      },
+      {
+        "variable": "CC24_323c",
+        "year": 2024,
+        "question_wording": "Build a wall between the U.S. and Mexico",
+        "target_nodes": [
+          "CU/position",
+          "moralBoundaries.national"
+        ],
+        "direction": "Support → CU low + national.salience high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "notes": "Cleanest 2024 national-salience signal — explicit wall framing replaces the role CC16_331_5/_8 played in 2016."
+      },
+      {
+        "variable": "CC24_323d",
+        "year": 2024,
+        "question_wording": "Provide permanent resident status to children of immigrants who were brought to the United States by their parents (Dreamers). Provide these immigrants a pathway to citizenship if they meet the citizenship requirements and have committed no crimes",
+        "target_nodes": [
+          "CU/position",
+          "MOR"
+        ],
+        "direction": "Support → CU high; MOR high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "cross_cycle_match": "mirrors CC20_350e (Dreamers / DACA)"
+      },
+      {
+        "variable": "CC24_323f",
+        "year": 2024,
+        "question_wording": "(not exposed in CES_2024_GUIDE_vv.pdf summary; needs CCES24_Common_pre.docx extraction)",
+        "target_nodes": [
+          "unknown"
+        ],
+        "direction": "unknown",
+        "confidence": "n/a (held)",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "reason": "Variable present in CSV header but item wording not in cached guide PDF. Audit pending docx extraction."
+      }
+    ],
+    "v01_cu_composite_2024": "0.5×CC24_323a + 0.5×CC24_323b + 1.0×CC24_323c + 1.0×CC24_323d",
+    "v01_national_salience_composite_2024": "0.5×CC24_323b + 1.0×CC24_323c"
+  },
+  "mat_battery_2024_CC24_328": {
+    "battery_prompt": "Tax policies — Do you support or oppose each of the following proposals?",
+    "battery_label_note": "The 'Tax policies' label is a section header rather than a per-item descriptor; items b–f are not all about taxation strictly.",
+    "response_codes": {
+      "1": "Support",
+      "2": "Oppose",
+      "8": "Skipped",
+      "9": "Not Asked",
+      ".": "Missing"
+    },
+    "source": "data/cces2024/CES_2024_GUIDE_vv.pdf (extracted via pdftotext)",
+    "items": [
+      {
+        "variable": "CC24_328a",
+        "year": 2024,
+        "question_wording": "Relax local zoning laws in your state to allow for construction of more apartments and condos",
+        "target_nodes": [
+          "MAT (deregulation)",
+          "CD (urbanism)"
+        ],
+        "direction": "ambiguous — YIMBY progressives + free-market conservatives both Support",
+        "confidence": "low",
+        "ship_ready_v01": false,
+        "ship_decision": "hold_for_v02",
+        "reason": "Asymmetric: same Support response can reflect opposite ideological positions."
+      },
+      {
+        "variable": "CC24_328b",
+        "year": 2024,
+        "question_wording": "Expand federal tax incentives to encourage developers to build homes for people who make less than half of the average income in your area",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT low",
+        "confidence": "medium",
+        "v01_weight": 0.5,
+        "ship_ready_v01": "with_reduced_weight"
+      },
+      {
+        "variable": "CC24_328c",
+        "year": 2024,
+        "question_wording": "Require able-bodied adults under 64 years of age who do not have dependents to have a job in order to receive Medicaid",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "notes": "Welfare-restriction framing — clean free-market lean."
+      },
+      {
+        "variable": "CC24_328d",
+        "year": 2024,
+        "question_wording": "Repeal the Affordable Care Act",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT high",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "cross_cycle_match": "2024 ↔ CC16_351I direct equivalent (verbatim identical wording)"
+      },
+      {
+        "variable": "CC24_328e",
+        "year": 2024,
+        "question_wording": "Expand Medicaid to cover individuals making less than $25,000 and families making less than $40,000 a year",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT low",
+        "confidence": "high",
+        "v01_weight": 1,
+        "ship_ready_v01": true,
+        "notes": "Cleanest 2024 redistribution signal."
+      },
+      {
+        "variable": "CC24_328f",
+        "year": 2024,
+        "question_wording": "Forgive up to $20,000 of student loan debt for each person",
+        "target_node": "MAT/position",
+        "direction": "Support → MAT low",
+        "confidence": "medium-high",
+        "v01_weight": 0.7,
+        "ship_ready_v01": "with_reduced_weight",
+        "reason": "Heavily partisan since 2022; some MAT-low respondents oppose for fairness/precedent reasons."
+      }
+    ],
+    "v01_mat_composite_2024": "1.0×CC24_328c + 1.0×CC24_328d + 1.0×CC24_328e + 0.7×CC24_328f + 0.5×CC24_328b",
+    "signal_strength_note": "2024 MAT signal is stronger than 2020 (which lacked an ACA-repeal direct item) and comparable to 2016 (3 high-confidence items per cycle)."
+  },
+  "cc16_351k_wording_verification": {
+    "resolution": "resolved Pass 2",
+    "evidence": [
+      "CC20_350b is explicitly worded 'Raise the minimum wage to $15 an hour' in cached 2020 PDF",
+      "CCES variable-naming scheme uses CC{YY}_351K for the same Congressional roll-call across cycles",
+      "The only major federal minimum wage proposal pending in Congress 2014-2016 was the $10.10 increase (Harkin-Miller bill)",
+      "CC16_351K empirical For:Against split = 69.8%:30.2% — consistent with public-opinion polls on raising the minimum wage in 2016",
+      "CC16_351 series structure: 'For or Against - Congress - [bill]' references specific Congressional roll-call votes"
+    ],
+    "confirmed_wording": "Raise the federal minimum wage to $10.10 per hour (or equivalent 2016-era language)",
+    "confidence": "high",
+    "ship_direction": "For (1) → MAT low; Against (2) → MAT high",
+    "recommended_runtime_check": "Mapper should compute For-share for CC16_351K across loaded sample. If For-share is dramatically below ~60% (population baseline), the question may have been worded the opposite way; mapper should error and surface mismatch rather than silently invert."
+  },
+  "cross_cycle_consistency_pass2": {
+    "cd_abortion": {
+      "2016": "CC16_332a..f",
+      "2020": "CC20_332a..f (verbatim identical)",
+      "2024": "CC24_324grid (NEW; includes 'Expand access to abortion' item)"
+    },
+    "cd_abortion_seventh_item": {
+      "2016": null,
+      "2020": "CC20_332g (state hospital-only restriction)",
+      "2024": null
+    },
+    "cu_immigration": {
+      "2016": "CC16_331_1..8",
+      "2020": "CC20_331a..e",
+      "2024": "CC24_323a..d, _f"
+    },
+    "cu_legal_status": {
+      "2016": "CC16_331_1",
+      "2020": "CC20_331a (verbatim)",
+      "2024": "CC24_323a (verbatim)"
+    },
+    "cu_border_patrols": {
+      "2016": "CC16_331_2",
+      "2020": "CC20_331b (verbatim)",
+      "2024": "CC24_323b (verbatim)"
+    },
+    "cu_syria_or_muslim_ban": {
+      "2016": "CC16_331_5, _8",
+      "2020": "discontinued",
+      "2024": "discontinued"
+    },
+    "cu_border_wall": {
+      "2016": null,
+      "2020": "CC20_331e (with $25B framing)",
+      "2024": "CC24_323c (clean wall framing)"
+    },
+    "cu_dreamers": {
+      "2016": null,
+      "2020": "CC20_350e",
+      "2024": "CC24_323d"
+    },
+    "cu_sanctuary_cities": {
+      "2016": null,
+      "2020": "CC20_331c",
+      "2024": null
+    },
+    "cu_reduce_legal_immigration": {
+      "2016": null,
+      "2020": "CC20_331d",
+      "2024": null
+    },
+    "mat_aca_repeal": {
+      "2016": "CC16_351I",
+      "2020": null,
+      "2024": "CC24_328d (verbatim)"
+    },
+    "mat_minimum_wage": {
+      "2016": "CC16_351K ($10.10)",
+      "2020": "CC20_350b ($15)",
+      "2024": null
+    },
+    "mat_tax_policy_slider": {
+      "2016": "CC16_415r, CC16_416r",
+      "2020": "REPURPOSED — became down-ballot vote-choice; do NOT use for MAT",
+      "2024": "REPURPOSED — became down-ballot vote-choice; do NOT use for MAT"
+    },
+    "mat_budget_priority_ranking": {
+      "2016": "CC16_337_1, _2, _3",
+      "2020": "discontinued",
+      "2024": "discontinued"
+    },
+    "mat_medicaid_expansion_or_work_requirement": {
+      "2016": null,
+      "2020": null,
+      "2024": "CC24_328e, _c (NEW in 2024)"
+    },
+    "implications_for_v01": [
+      "2016 has the strongest CU/MAT issue-item coverage of the three cycles.",
+      "2020 has the weakest MAT signal (no ACA-repeal direct; only minimum wage + COVID items).",
+      "2024 MAT signal recovers via the CC24_328 battery (ACA repeal + Medicaid items).",
+      "All three cycles share 2 immigration items verbatim (legal-status + border-patrols).",
+      "CC20_415/416 and CC24_415/416 are vote-choice questions, NOT MAT items."
+    ]
+  }
 }

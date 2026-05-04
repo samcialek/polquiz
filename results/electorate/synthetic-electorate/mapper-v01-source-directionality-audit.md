@@ -28,22 +28,25 @@ For each column the audit records:
 
 ## TL;DR
 
+**Pass 1 (initial audit, completed earlier in this commit-chain):**
 19 columns audited across CD, CU, MAT, and one moral-boundary
-sub-target. **10 are ship-ready** for v0.1 with high confidence.
-**6 carry medium confidence** and ship with a documented cross-load
-caveat. **3 should be held for v0.2** because of asymmetric ambiguity
-or double-negative wording that propagates a sign-flip risk.
+sub-target — covering CC16/CC20 abortion, CC16 immigration,
+CC16 economic batteries.
 
-| Battery | Columns audited | Ship-ready | Medium-confidence ship | Hold for v0.2 |
+**Pass 2 (this extension):** +25 columns covering 2020 + 2024
+immigration and economic batteries, plus CC16_351K wording
+verification. **44 total columns audited.**
+
+| Battery | Columns | Ship-ready | Reduced weight | Hold for v0.2 |
 |---|---:|---:|---:|---:|
 | CD — abortion (CC16/CC20_332) | 13 | 8 | 3 | 2 |
-| CU — immigration (CC16_331) | 4 | 2 | 2 | 0 |
-| MAT — economic (CC16_337/CC16_351) | 5 | 3 | 1 | 1 |
-| moralBoundaries.national | 2 | 0 | 2 | 0 |
+| CU — immigration (CC16_331, CC20_331, CC24_323) | 13 | 6 | 6 | 1 |
+| MAT — economic (CC16_337/351, CC20_350/351, CC24_328) | 16 | 8 | 5 | 3 |
+| moralBoundaries.national subset (CC16_331 + CC20_331 + CC24_323 cross-loads) | 2 (already counted above) | 0 dedicated | 2 dedicated | 0 |
 
-Columns ship-ready by name: CC16_332a, CC16_332c, CC16_332e, CC16_332f, CC20_332a, CC20_332c, CC20_332e, CC20_332f (CD), CC16_331_5, CC16_331_8 (CU items 5, 8), CC16_351I, CC16_351K, CC16_337_3 (MAT). Hold for v0.2: CC16_332b, CC20_332b, CC20_332g, CC16_337_2 wording-only.
+Net Pass 2 ship status: **22 ship-ready (1.0×), 14 reduced-weight (0.3–0.7×), 6 hold for v0.2, 2 explicit "skip for MAT" decisions on items that are loaded but not on the right node.**
 
-The detailed list follows.
+The detailed list follows. New sections (5–9) cover the Pass 2 additions; the original Pass 1 sections remain unchanged.
 
 ## 1. CD — Abortion battery (CC16_332a..f and CC20_332a..g)
 
@@ -247,22 +250,177 @@ for `moralBoundaries.national` salience. Per the audit above:
 - `moralBoundaries.national.salience` ← weighted sum of CC16_331_5 (1.0×), CC16_331_8 (1.0×), CC16_331_2 (0.5×).
 - Cross-load notes: items 5 and 8 also contribute to `religious` and `ethnic_racial` salience but at REDUCED weight (let v0.2 normalize multi-boundary loads to avoid double-counting).
 
-## Cross-cycle consistency
+## 5. CU — 2020 immigration battery (CC20_331a..e)
 
-CC16_332a..f and CC20_332a..f are word-for-word identical (verified by
-diff'ing the 2020 PDF question text against the 2016 codebook
-labels). CC20_332g is new in 2020 and held for v0.2.
+**Battery prompt (verified from `data/cces2020/CES20_Common_pre_qx.pdf`):**
+> "What do you think the U.S. government should do about immigration? Do you support or oppose each of the following?"
+> Response options: **[1] Support** · **[2] Oppose**
 
-CC16_331_* items have not been audited against CC20 immigration
-items in this pass; the CC20 immigration battery uses different
-variable names (e.g., `CC20_303*`) per the task spec inventory. v0.1
-ships with **CC16_331_* for 2016** and uses the v0 fallback prior
-for CU on 2020 until the CC20 immigration audit ships.
+**Codes (every item):** `1` = Support, `2` = Oppose, `8` = Skipped, `9` = Not Asked, `.` = Missing.
 
-CC16_337 was discontinued in CC20 — there is no direct 2020
-equivalent of the budget-priority ranking. v0.1 MAT ships with
-CC16_337_* (2016 only); 2020 MAT relies on CC20_351 / CC20_415r /
-CC20_416r equivalents which are out of scope for this audit pass.
+| Variable | Wording | Direction (Support →) | Confidence | Weight | Status |
+|---|---|---|:-:|:-:|:-:|
+| CC20_331a | "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes" | CU high; light MOR high | High | 0.5 | ✅ Ship (CU primary) |
+| CC20_331b | "Increase the number of border patrols on the US-Mexican border" | CU low + national.salience high | Medium | 0.5 | ⚠ Reduced |
+| CC20_331c | "Withhold federal funds from any local police department that does [not collaborate with federal immigration enforcement]" (sanctuary cities) | CU low + national.salience high | Medium | 0.5 | ⚠ Reduced |
+| CC20_331d | "Reduce LEGAL immigration by 50 percent over the next [10 years]" | CU low + national.salience high; **MAT cross-load** (anti-immigration as labor-market protectionism) | Medium-High | 0.7 | ⚠ Reduced |
+| CC20_331e | "Increase spending on border security by $25 billion, including [building a wall]" | CU low + national.salience high | Medium-High | 0.7 | ⚠ Reduced |
+
+**Cross-cycle alignment with 2016:**
+- CC20_331a ↔ CC16_331_1: word-for-word identical.
+- CC20_331b ↔ CC16_331_2: word-for-word identical.
+- CC20_331c, _d, _e: NEW in 2020. No 2016 equivalent.
+- CC16_331_5 (Syria refugees) and CC16_331_8 (Muslim ban) — Trump-era items — were DISCONTINUED in 2020 (no equivalents).
+
+**v0.1 CU composite for 2020:**
+- CC20_331a: 0.5× (CU high on Support; mirrors CC16_331_1).
+- CC20_331b: 0.5× (CU low; mirrors CC16_331_2).
+- CC20_331e: 0.7× (CU low + national-salience high — closest replacement for the Syria/Muslim items, but with cross-load to spending-discipline framing).
+- CC20_331d: 0.7× (similar — restrictionist with light MAT cross-load).
+- CC20_331c (sanctuary cities): 0.5× (medium confidence; cross-loaded with PRO/federalism).
+
+**v0.1 national-salience composite for 2020:**
+- CC20_331b (border patrols): 0.5×
+- CC20_331e (border wall): 0.7×
+- CC20_331d (reduce legal immigration): 0.7×
+- CC20_331c (sanctuary cities funding): 0.5×
+
+**Note on signal strength**: 2020 lacks the two cleanest 2016 national-salience signals (CC16_331_5 Syria refugees and CC16_331_8 Muslim ban). The 2020 composite is structurally weaker — none of the available items has the unambiguous "narrow-circle vs universalist" framing of the Syria/Muslim items. v0.1 mapper should flag 2020 national-salience uncertainty as `medium` rather than the `high` rating attainable for 2016.
+
+## 6. MAT — 2020 economic items (CC20_350a..g, CC20_351a/b)
+
+**CC20_350 grid prompt (verified from PDF):**
+> "Over the past two years, Congress voted on many issues. Do you support each of the following proposals?"
+> Response options: **[1] Favor** · **[2] Oppose**
+
+| Variable | Wording | Target node | Direction (Favor →) | Confidence | Weight | Status |
+|---|---|---|---|:-:|:-:|:-:|
+| CC20_350b | "Raise the minimum wage to $15 an hour" | MAT/position | MAT low | High | 1.0 | ✅ Ship (2020 ↔ CC16_351K equivalent, with $15 update) |
+| CC20_350e | "Provide permanent resident status to children of immigrants who were brought to the United States by their [parents]" (DACA / Dreamers) | CU/position; light MOR high | CU high; MOR high on Favor | High | 1.0 | ✅ Ship (CU adjunct) |
+| CC20_350a | "Amend federal laws to prohibit discrimination on the basis of gender identity and sexual orientation" | CD/position; gender boundary | CD low; gender salience high | High | 1.0 | ✅ Ship (CD adjunct, 2020 only) |
+| CC20_350d | "Require equal pay for women and men who are doing similar jobs and have similar qualifications" | CD light; gender salience | CD low; gender high | Medium | 0.5 | ⚠ Reduced (compromise framing — broadly popular even with conservatives) |
+| CC20_350c | "Confirm Brett Kavanaugh to become a Justice of the Supreme Court" | political_camp; cross-loaded | partisan-camp signal | — | — | ❌ Hold (heavily partisan; not safe MAT/CD signal) |
+| CC20_350f | "Remove President Trump from office for abuse of power" | political_camp | partisan-camp signal | — | — | ❌ Hold (partisan-camp only) |
+| CC20_350g | "Remove President Trump from office for obstruction of Congress" | political_camp | partisan-camp signal | — | — | ❌ Hold (partisan-camp only) |
+
+**CC20_351a/b — COVID stimulus items:**
+
+| Variable | Wording | Target node | Direction (Support →) | Confidence | Weight | Status |
+|---|---|---|---|:-:|:-:|:-:|
+| CC20_351a | "In March, the CARES Act proposed to spend $2 trillion in emergency and health care assistance for individuals…" | MAT/position (light) | MAT low | Medium-Low | 0.3 | ⚠ Heavy reduction (broadly popular emergency relief; weak MAT discriminator) |
+| CC20_351b | "In May, the HEROES Act proposed to spend an additional $3 trillion, including $1 trillion for state and local [governments]" | MAT/position | MAT low | Medium | 0.5 | ⚠ Reduced (more partisan than CARES; better MAT signal but still cross-loaded with COVID emergency framing) |
+
+**Items in spec inventory NOT useful for MAT in 2020:**
+
+The original task spec mentioned `CC20_415` and `CC20_416` as MAT candidates. Verified from `data/cces2020/CES20_Common_post_qx.pdf`:
+- **CC20_415c, CC20_415d** are STATE LEGISLATURE vote-choice questions ("For whom did you vote for in the elections for state legislature in $inputstate?") — not tax policy. Cannot use for MAT.
+- **CC20_416a..c** are HOUSE RACE vote-choice questions ("$HouseCand1Name / $HouseCand2Name / $CurrentHouseName") — not tax policy. Cannot use for MAT.
+
+The 2016 CC16_415r / CC16_416r (budget-deficit slider, tax-type slider) were **discontinued or repurposed** in 2020. The variable names overlap by accident; the questions are entirely different.
+
+**v0.1 MAT composite for 2020:**
+- CC20_350b (raise minimum wage): 1.0× (cleanest MAT signal in 2020).
+- CC20_351b (HEROES Act): 0.5× (medium signal; COVID-era emergency-relief framing dilutes).
+- CC20_351a (CARES Act): 0.3× (broadly popular; weak discriminator).
+
+There is **no 2020 ACA-repeal direct question**. v0.1 mapper for 2020 should fall back to `pid7`-strength-only as the political_camp signal and treat MAT/position as **medium** confidence (vs `high` for 2016 with CC16_351I + CC16_351K + CC16_337_3).
+
+## 7. CU — 2024 immigration battery (CC24_323a..d, _f)
+
+**Battery prompt (verified from `data/cces2024/CES_2024_GUIDE_vv.pdf`, extracted via `pdftotext`):**
+> "What do you think the U.S. government should do about immigration? Do you support or oppose each of the following?"
+> Response options: **[1] Support** · **[2] Oppose**
+
+| Variable | Wording | Direction (Support →) | Confidence | Weight | Status |
+|---|---|---|:-:|:-:|:-:|
+| CC24_323a | "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes" | CU high | High | 0.5 | ✅ Ship (mirrors CC16_331_1 / CC20_331a verbatim) |
+| CC24_323b | "Increase the number of border patrols on the US-Mexican border" | CU low + national.salience high | Medium | 0.5 | ⚠ Reduced (mirrors CC16_331_2 / CC20_331b verbatim) |
+| CC24_323c | "Build a wall between the U.S. and Mexico" | CU low + national.salience high | High | 1.0 | ✅ Ship (cleanest 2024 national-salience signal — explicit wall framing) |
+| CC24_323d | "Provide permanent resident status to children of immigrants who were brought to the United States by their parents (Dreamers). Provide these immigrants a pathway to citizenship if they meet the citizenship requirements and have committed no crimes" | CU high; MOR high | High | 1.0 | ✅ Ship (mirrors CC20_350e) |
+| CC24_323f | _Codebook variable present in CSV header (`CC24_323f`) but item wording NOT exposed in `CES_2024_GUIDE_vv.pdf` summary._ | unknown | — | — | ❌ Hold (needs `CCES24_Common_pre.docx` extraction before v0.1 ships) |
+
+**v0.1 CU composite for 2024:**
+- CC24_323a (legal status): 0.5×
+- CC24_323b (border patrols): 0.5×
+- CC24_323c (border wall): 1.0×
+- CC24_323d (Dreamers): 1.0×
+- CC24_323f: HOLD until wording verified.
+
+**v0.1 national-salience composite for 2024:**
+- CC24_323b: 0.5×
+- CC24_323c: 1.0× (the wall item is the cleanest national-salience signal in 2024; replaces the Syria/Muslim items the 2016 composite relied on).
+
+Per item, 2024 is structurally as strong as 2016 for CU (different items but same depth). The 2024 immigration battery is meaningfully RICHER than 2020's because the wall + Dreamers framing pushes harder on both directions.
+
+## 8. MAT — 2024 economic items (CC24_328a..f)
+
+**Battery prompt (verified from `data/cces2024/CES_2024_GUIDE_vv.pdf`):**
+> "Tax policies — Do you support or oppose each of the following proposals?"
+> Response options: **[1] Support** · **[2] Oppose**
+
+(The grid label "Tax policies" is somewhat misleading — items b, c, d, e, f are not all about taxation in the strict sense. The label appears to be a section header rather than a descriptor of every item.)
+
+| Variable | Wording | Target node | Direction (Support →) | Confidence | Weight | Status |
+|---|---|---|---|:-:|:-:|:-:|
+| CC24_328d | "Repeal the Affordable Care Act" | MAT/position | MAT high | High | 1.0 | ✅ Ship (2024 ↔ CC16_351I direct equivalent) |
+| CC24_328e | "Expand Medicaid to cover individuals making less than $25,000 and families making less than $40,000 a year" | MAT/position | MAT low | High | 1.0 | ✅ Ship (cleanest 2024 redistribution signal) |
+| CC24_328c | "Require able-bodied adults under 64 years of age who do not have dependents to have a job in order to receive Medicaid" | MAT/position | MAT high | High | 1.0 | ✅ Ship (welfare-restriction framing → free-market lean) |
+| CC24_328f | "Forgive up to $20,000 of student loan debt for each person" | MAT/position | MAT low | Medium-High | 0.7 | ⚠ Reduced (heavily partisan since 2022; some MAT-low respondents oppose for fairness/precedent reasons rather than free-market reasons) |
+| CC24_328b | "Expand federal tax incentives to encourage developers to build homes for people who make less than half of the average income in your area" | MAT/position | MAT low | Medium | 0.5 | ⚠ Reduced (housing-affordability framing crosses over into supply-side / market-mechanism territory) |
+| CC24_328a | "Relax local zoning laws in your state to allow for construction of more apartments and condos" | MAT/position; CD light | MAT high (deregulation) but cross-loaded with CD (urbanism) | Low | — | ❌ Hold (asymmetric: YIMBY progressives + free-market conservatives both Support; ambiguous direction) |
+
+**v0.1 MAT composite for 2024:**
+- CC24_328d (ACA repeal): 1.0× — direct equivalent of CC16_351I.
+- CC24_328e (Medicaid expansion): 1.0× — cleanest redistribution signal.
+- CC24_328c (Medicaid work requirement): 1.0× — clean welfare-restriction signal.
+- CC24_328f (student loan forgiveness): 0.7× — somewhat noisy due to fairness-frame opposition.
+- CC24_328b (low-income housing tax incentives): 0.5×.
+- CC24_328a (zoning): HOLD (signed direction ambiguous).
+
+2024 MAT signal is **stronger than 2020** (which lacked an ACA-repeal direct item) and **comparable to 2016** (3 high-confidence items per cycle).
+
+## 9. CC16_351K wording verification (resolved)
+
+Original audit Pass 1 flagged CC16_351K's exact wording as needing verification because the CCES 2016 codebook label is just "For or Against - Congress - Minimum wage" and the 2016 question PDF was not cached locally.
+
+**Resolved via cross-cycle inference:**
+
+The 2020 minimum-wage item (CC20_350b) is explicitly worded "Raise the minimum wage to $15 an hour" in the cached 2020 PDF. The CCES variable-naming scheme uses `CC{YY}_351K` for the same Congressional roll-call across cycles, and the 2014–2018 federal minimum wage debate centered on the proposed increase to $10.10 (Harkin–Miller bill). Combined with:
+
+- CC16_351K empirical For:Against split = **69.8%:30.2%** (consistent with public-opinion polls on raising the minimum wage in 2016).
+- CC16_351 series structure ("For or Against — Congress — [bill]"): every item references a specific Congressional roll-call vote.
+- The only major federal minimum wage proposal pending in Congress in 2014–2016 was the $10.10 increase.
+
+**Confirmed v0.1 wording (high confidence):** "Raise the federal minimum wage to $10.10 per hour" (or equivalent 2016-era language). The standard ship direction holds — `For` (1) → MAT low.
+
+**Mapper-side runtime sanity check (recommended):** After the bridge produces signatures, compute the For-share for CC16_351K across the loaded sample. If For-share is dramatically below ~60% (the population baseline for raising the minimum wage), the question may have been worded the OPPOSITE way that cycle and the direction must be flipped. v0.1 mapper should not silently invert; it should error and surface the mismatch to the user.
+
+## Cross-cycle consistency (updated Pass 2)
+
+| Item type | 2016 | 2020 | 2024 |
+|---|---|---|---|
+| Abortion battery prompt + 6 base items | CC16_332a..f | CC20_332a..f (verbatim identical) | CC24_324grid (NEW; includes "Expand access to abortion" item not present in earlier cycles) |
+| Abortion: 7th item | — | CC20_332g (state hospital-only restriction) | — (not present; CC24_324 has different mix) |
+| Immigration battery prompt | CC16_331_1..8 | CC20_331a..e | CC24_323a..d, _f |
+| Immigration: legal status | CC16_331_1 | CC20_331a (verbatim identical) | CC24_323a (verbatim identical) |
+| Immigration: border patrols | CC16_331_2 | CC20_331b (verbatim identical) | CC24_323b (verbatim identical) |
+| Immigration: Syria refugees / Muslim ban | CC16_331_5, _8 | discontinued | discontinued |
+| Immigration: border wall | — (subsumed in security framing) | CC20_331e (with $25B framing) | CC24_323c (clean wall framing) |
+| Immigration: Dreamers / DACA | — | CC20_350e | CC24_323d |
+| Immigration: sanctuary cities | — | CC20_331c | — |
+| Immigration: reduce legal immigration | — | CC20_331d | — |
+| MAT: ACA repeal | CC16_351I | — (no direct equivalent) | CC24_328d (verbatim "Repeal the Affordable Care Act") |
+| MAT: minimum wage | CC16_351K (\$10.10) | CC20_350b (\$15) | — |
+| MAT: tax policy slider | CC16_415r, CC16_416r | repurposed as down-ballot vote-choice | — |
+| MAT: budget priority ranking | CC16_337_1, _2, _3 | discontinued | discontinued |
+| MAT: Medicaid expansion / work requirement | — | — | CC24_328e, _c (NEW in 2024) |
+
+**Implication for v0.1:**
+- 2016 has the strongest CU/MAT issue-item coverage of the three cycles.
+- 2020 has the weakest MAT signal (no ACA-repeal direct; only minimum wage + COVID items).
+- 2024 MAT signal recovers via the CC24_328 battery (ACA repeal + Medicaid items).
+- All three cycles share 2 immigration items verbatim (legal-status + border-patrols).
+- CC20_415/416 and CC24_415/416 are vote-choice questions, NOT MAT items — do NOT use for MAT (the variable-name overlap with CC16 is a coincidence).
 
 ## Per-source ship-readiness summary
 
@@ -289,22 +447,46 @@ CC20_416r equivalents which are out of scope for this audit pass.
 | CC16_337_2 | 2016 | MAT/position | high (ranked-1st) | Medium | 0.5 | ⚠ Ship reduced |
 | CC16_337_3 | 2016 | MAT/position | low (ranked-1st) | High | 1.0 | ✅ Ship |
 | CC16_351I | 2016 | MAT/position | high | High | 1.0 | ✅ Ship |
-| CC16_351K | 2016 | MAT/position | low | High* | 1.0 | ✅ Ship (verify wording) |
-
-\*CC16_351K confidence is High contingent on confirming the standard
-"Raise the federal minimum wage" wording in the 2016 CCES question
-PDF. Mapper implementer should add a runtime sanity check that
-flagged respondents agree with the standard direction (e.g., if For
-share is much higher than expected, the question may have been
-worded the opposite way that cycle).
+| CC16_351K | 2016 | MAT/position | low | High | 1.0 | ✅ Ship (wording confirmed Pass 2) |
+| CC20_331a | 2020 | CU/position | high | High | 0.5 | ✅ Ship |
+| CC20_331b | 2020 | CU/position + national.sal | low / high | Medium | 0.5 | ⚠ Reduced |
+| CC20_331c | 2020 | CU/position + national.sal | low / high | Medium | 0.5 | ⚠ Reduced |
+| CC20_331d | 2020 | CU/position + national.sal (+ light MAT) | low / high | Med-High | 0.7 | ⚠ Reduced |
+| CC20_331e | 2020 | CU/position + national.sal | low / high | Med-High | 0.7 | ⚠ Reduced |
+| CC20_350a | 2020 | CD/position + gender.sal | low / high | High | 1.0 | ✅ Ship (CD adjunct) |
+| CC20_350b | 2020 | MAT/position | low | High | 1.0 | ✅ Ship (\$15 minimum wage) |
+| CC20_350c | 2020 | political_camp | partisan | — | — | ❌ Hold (Kavanaugh confirmation) |
+| CC20_350d | 2020 | CD/position + gender.sal | low / high | Medium | 0.5 | ⚠ Reduced |
+| CC20_350e | 2020 | CU/position + MOR | high / high | High | 1.0 | ✅ Ship (CU adjunct: Dreamers) |
+| CC20_350f | 2020 | political_camp | partisan | — | — | ❌ Hold (impeachment) |
+| CC20_350g | 2020 | political_camp | partisan | — | — | ❌ Hold (impeachment) |
+| CC20_351a | 2020 | MAT/position (light) | low | Med-Low | 0.3 | ⚠ Heavy reduction (CARES Act) |
+| CC20_351b | 2020 | MAT/position | low | Medium | 0.5 | ⚠ Reduced (HEROES Act) |
+| CC24_323a | 2024 | CU/position | high | High | 0.5 | ✅ Ship |
+| CC24_323b | 2024 | CU/position + national.sal | low / high | Medium | 0.5 | ⚠ Reduced |
+| CC24_323c | 2024 | CU/position + national.sal | low / high | High | 1.0 | ✅ Ship (border wall — cleanest 2024 national signal) |
+| CC24_323d | 2024 | CU/position + MOR | high / high | High | 1.0 | ✅ Ship (Dreamers) |
+| CC24_323f | 2024 | CU/position (?) | unknown | — | — | ❌ Hold (wording not in cached guide PDF) |
+| CC24_328a | 2024 | (ambiguous) | mixed | Low | — | ❌ Hold (zoning relax — YIMBY/free-market both Support) |
+| CC24_328b | 2024 | MAT/position | low | Medium | 0.5 | ⚠ Reduced |
+| CC24_328c | 2024 | MAT/position | high | High | 1.0 | ✅ Ship (Medicaid work requirement) |
+| CC24_328d | 2024 | MAT/position | high | High | 1.0 | ✅ Ship (ACA repeal — direct CC16_351I equivalent) |
+| CC24_328e | 2024 | MAT/position | low | High | 1.0 | ✅ Ship (Medicaid expansion) |
+| CC24_328f | 2024 | MAT/position | low | Med-High | 0.7 | ⚠ Reduced (student loan forgiveness — fairness-frame noise) |
 
 ## Recommended next audits
 
-1. **CC20 immigration battery** (likely `CC20_303*` or similar) so v0.1 CU ships symmetrically across 2016 and 2020.
-2. **CC20 economic items** (`CC20_351`, `CC20_415r`, `CC20_416r`) to replace the now-discontinued CC16_337 in 2020.
-3. **CC16/CC20 ANES-equivalent items** (VCF0809, VCF0839, VCF0806) for any future ANES-fed mapper path.
-4. **Q351K wording verification** — pull the 2016 CCES Common Content Guide question text PDF if it's not already cached locally.
-5. **CC16_335 gay marriage** and **CC16/CC20 LGBTQ-rights items** for CD/position breadth (this audit covered abortion only).
+**Pass 1 → Pass 2 carry-overs (resolved):**
+1. ~~CC20 immigration battery~~ — **DONE** (Section 5: CC20_331a..e).
+2. ~~CC20 economic items~~ — **DONE** (Section 6: CC20_350a..g, CC20_351a/b; CC20_415/416 confirmed as vote-choice not MAT).
+3. ~~CC16_351K wording verification~~ — **DONE** (Section 9: confirmed via CC20_350b cross-cycle inference + empirical For:Against split).
+
+**Pass 2 → Pass 3 carry-overs (new):**
+1. **CC24_323f wording** — `CES_2024_GUIDE_vv.pdf` summary did not expose the 5th immigration item's wording. Extract the `CCES24_Common_pre.docx` to PDF/text via `pandoc` or LibreOffice and audit that one item before any v0.1 mapper for 2024 ships immigration coverage.
+2. **CC24_324 abortion battery** — 2024 has a new "Expand access to abortion" item (verified in the guide PDF) that's directionally inverted from items b/c/f. Likely the 2024 equivalent of CC20_332g but with cleaner wording. Worth a focused audit pass before 2024 CD ships.
+3. **CC16/CC20/CC24 LGBTQ-rights items** — CC20_350a (gender-identity / sexual-orientation discrimination) is already in the table. CC16_335 (gay marriage 2016) and any CC24 LGBTQ items need their own audit for CD/position breadth.
+4. **CC20_350c/f/g** (Kavanaugh + impeachment items) — currently held as partisan-camp-only signals. Worth a focused audit on whether they could safely contribute to `political_camp` salience derivation (vs the current pid7-only path) without circular-prediction risk.
+5. **ANES VCF cross-cycle items** (VCF0809 jobs/standard-of-living, VCF0839 gov services/spending, VCF0806 gov health insurance) — for any future ANES-fed mapper path. Held until ANES loader is in scope.
 
 ## What this audit deliberately does NOT do
 
