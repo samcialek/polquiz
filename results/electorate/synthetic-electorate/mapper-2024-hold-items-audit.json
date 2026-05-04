@@ -1,0 +1,274 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper v0.1F / v0.1G prep — 2024 hold resolution",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Resolve the four 2024-specific items that were on hold or under-documented in prior audits: CC24_323f wording, CC24_324 abortion battery directionality, CC24_340a/b/c code maps + CC24_340b hold confirmation, CC24_328 MAT code maps.",
+  "codebooks_consulted": [
+    "data/cces2024/CCES24_Common_pre.docx (extracted via `pandoc -f docx -t plain`)",
+    "data/cces2024/CES_2024_GUIDE_vv.pdf (re-confirmed via pdftotext)",
+    "data/cces2024/CCES24_Common_OUTPUT_vv_topost_final.csv header (column-name verification)"
+  ],
+  "explicitly_not_in_this_audit": [
+    "No mapper logic modifications.",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits.",
+    "No raw-data downloads.",
+    "No edits to generated smoke outputs."
+  ],
+  "headline_finding": {
+    "name": "CC24_323f is NOT a 2024 immigration item",
+    "verified_battery": "CC24_328grid (Tax policies)",
+    "exact_wording": "Forgive up to $20,000 of student loan debt for each person",
+    "evidence": "Docx layout: row appears between CC24_328e and the next page break inside the CC24_328grid block; CSV header position is between CC24_328e and CC24_330a, NOT adjacent to CC24_323a..d.",
+    "explanation": "YouGov / Qualtrics survey-design carryover: the variable was placeholder-named CC24_323f during script authoring and never renamed when reassigned to the tax-policies grid.",
+    "correction_to_prior_audits": [
+      "mapper-v01-source-directionality-audit.json (Pass 2): held CC24_323f pending docx — RESOLVED here.",
+      "mapper-cd-breadth-source-audit.json: not affected (CD-breadth audit didn't include CC24_323f)."
+    ]
+  },
+  "universal_code_map_2024": {
+    "1": "Support",
+    "2": "Oppose",
+    "8": "Skipped",
+    "9": "Not Asked",
+    ".": "Missing (CCES convention)"
+  },
+  "battery_prompts_2024": {
+    "CC24_323grid": "What do you think the U.S. government should do about immigration? Do you support or oppose each of the following?",
+    "CC24_324grid": "On the topic of abortion, do you support or oppose each of the following proposals?",
+    "CC24_328grid": "(Tax policies battery — implicit prompt; same Support/Oppose response set)",
+    "CC24_340grid": "Do you support or oppose each of the following bills before Congress?"
+  },
+  "items": [
+    {
+      "section": "1_cc24_323f_resolution",
+      "variable": "CC24_323f",
+      "year": 2024,
+      "exact_wording": "Forgive up to $20,000 of student loan debt for each person",
+      "battery_membership": "CC24_328grid (Tax policies) — NOT CC24_323grid",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "MAT",
+      "target_role": "position",
+      "direction": "Support → MAT low (pro-redistribution); Oppose → MAT high",
+      "cross_loads": ["generational fairness frame; some MAT-low respondents oppose for fairness/precedent reasons"],
+      "confidence": "medium-high",
+      "weight": 0.7,
+      "ship_status": "ship_with_reduced_weight",
+      "cu_composite_inclusion": false,
+      "implementation_note": "Mapper v0.1F/0.1G must read column 'CC24_323f' (with literal 323f suffix) and route to MAT composite alongside CC24_328a..e. Variable-name pattern is the sole gotcha; value semantics identical to rest of CC24_328 battery.",
+      "prior_status_corrected": "Pass 2 audit held the column pending docx — now resolved as MAT, not CU."
+    },
+    {
+      "section": "2_cc24_324_abortion_battery",
+      "variable": "CC24_324a",
+      "year": 2024,
+      "exact_wording": "Always allow a woman the right to obtain an abortion as a matter of choice",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD low (progressive)",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "2_cc24_324_abortion_battery",
+      "variable": "CC24_324b",
+      "year": 2024,
+      "exact_wording": "Permit abortion only in case of rape, incest or when the woman's life is in danger",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction_intended": "Support → CD high (with same Pass-1 ambiguity as CC16/CC20_332b — Oppose can mean 'too restrictive' OR 'not restrictive enough')",
+      "confidence": "medium-low",
+      "weight": 0,
+      "ship_status": "hold_for_v02",
+      "v02_mitigation": "Code Oppose conditional on CC24_324c (total ban) response — same mechanic as 2016/2020 332b."
+    },
+    {
+      "section": "2_cc24_324_abortion_battery",
+      "variable": "CC24_324c",
+      "year": 2024,
+      "exact_wording": "Make abortions illegal in all circumstances",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD high (extreme traditionalist)",
+      "confidence": "high_on_support_medium_on_oppose_magnitude",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "2_cc24_324_abortion_battery",
+      "variable": "CC24_324d",
+      "year": 2024,
+      "exact_wording": "Expand access to abortion, including making it more affordable, broadening the types of providers who can offer care, and protecting access to abortion clinics",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD low (progressive)",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "3_cc24_340_congress_bills",
+      "variable": "CC24_340a",
+      "year": 2024,
+      "exact_wording": "Prohibit government restrictions on the provision of, and access to, contraceptives.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD low",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "3_cc24_340_congress_bills",
+      "variable": "CC24_340b",
+      "year": 2024,
+      "exact_wording": "Prohibit government restrictions on the provision of, and access to, abortion services.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD low",
+      "confidence": "high",
+      "weight": 0,
+      "ship_status": "hold_for_cd_breadth_double_counting",
+      "hold_reason": "Wording explicitly mirrors CC24_324a + CC24_324d; including in CD composite alongside abortion battery would over-weight abortion axis vs contraceptives (CC24_340a) and same-sex marriage (CC24_340c).",
+      "alternative_use": "Sanity check: weighted For-share for CC24_340b vs average For-share across CC24_324a + CC24_324d. Divergence > ~3pp flags potential routing/skip issue or respondent confusion. Surfaces to data-quality stats block, not composite."
+    },
+    {
+      "section": "3_cc24_340_congress_bills",
+      "variable": "CC24_340c",
+      "year": 2024,
+      "exact_wording": "Require that all federal agencies recognize same-sex marriages and interracial marriages.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "CD",
+      "direction": "Support → CD low",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "4_cc24_328_mat_battery",
+      "variable": "CC24_328a",
+      "year": 2024,
+      "exact_wording": "Relax local zoning laws in your state to allow for construction of more apartments and condos.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_nodes": ["MAT (deregulation)", "CD (urbanism)"],
+      "direction": "ambiguous — YIMBY progressives + free-market conservatives both Support",
+      "confidence": "low",
+      "weight": 0,
+      "ship_status": "hold_for_v02"
+    },
+    {
+      "section": "4_cc24_328_mat_battery",
+      "variable": "CC24_328b",
+      "year": 2024,
+      "exact_wording": "Expand federal tax incentives to encourage developers to build homes for people who make less than half of the average income in your area",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "MAT",
+      "direction": "Support → MAT low",
+      "confidence": "medium",
+      "weight": 0.5,
+      "ship_status": "ship_with_reduced_weight"
+    },
+    {
+      "section": "4_cc24_328_mat_battery",
+      "variable": "CC24_328c",
+      "year": 2024,
+      "exact_wording": "Require able-bodied adults under 64 years of age who do not have dependents to have a job in order to receive Medicaid.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "MAT",
+      "direction": "Support → MAT high (welfare-restriction)",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    },
+    {
+      "section": "4_cc24_328_mat_battery",
+      "variable": "CC24_328d",
+      "year": 2024,
+      "exact_wording": "Repeal the Affordable Care Act",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "MAT",
+      "direction": "Support → MAT high",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship",
+      "cross_cycle_match": "verbatim equivalent to CC16_351I"
+    },
+    {
+      "section": "4_cc24_328_mat_battery",
+      "variable": "CC24_328e",
+      "year": 2024,
+      "exact_wording": "Expand Medicaid to cover individuals making less than $25,000 and families making less than $40,000 a year.",
+      "codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+      "target_node": "MAT",
+      "direction": "Support → MAT low",
+      "confidence": "high",
+      "weight": 1.0,
+      "ship_status": "ship"
+    }
+  ],
+  "cc24_324_abortion_battery_thinness": {
+    "items_present_2024": ["a", "b", "c", "d"],
+    "items_missing_vs_2016_2020": [
+      "20-week prohibition (CC16/CC20_332c — present 2016/2020, absent 2024)",
+      "Employer conscience (CC16/CC20_332d — present 2016/2020, absent 2024)",
+      "Hyde Amendment / federal funding (CC16/CC20_332e — present 2016/2020, absent 2024)",
+      "State hospital-only restriction (CC20_332g — 2020 only)"
+    ],
+    "implication": "2024 abortion-battery CD signal has 3 ship-ready items (a, c, d) vs 4 from 2016/2020 (a, c, e, f). CD-breadth items CC24_340a + CC24_340c partially compensate, but the 2024 abortion-axis CD signal alone is structurally weaker."
+  },
+  "v01_2024_composite_after_pass3": {
+    "CD_position": {
+      "items_at_full_weight": ["CC24_324a", "CC24_324c", "CC24_324d", "CC24_340a", "CC24_340c"],
+      "items_held": ["CC24_324b (asymmetric ambiguity)", "CC24_340b (abortion-axis double-counting)"],
+      "total_weight_points": 5.0
+    },
+    "CU_position": {
+      "items": [
+        { "var": "CC24_323a", "weight": 0.5 },
+        { "var": "CC24_323b", "weight": 0.5 },
+        { "var": "CC24_323c", "weight": 1.0 },
+        { "var": "CC24_323d", "weight": 1.0 }
+      ],
+      "total_weight_points": 3.0,
+      "note": "CC24_323f explicitly NOT in CU composite."
+    },
+    "moralBoundaries_national": {
+      "items": [
+        { "var": "CC24_323b", "weight": 0.5 },
+        { "var": "CC24_323c", "weight": 1.0 }
+      ],
+      "total_weight_points": 1.5
+    },
+    "MAT_position": {
+      "items_at_full_weight": ["CC24_328c", "CC24_328d", "CC24_328e"],
+      "items_at_reduced_weight": [
+        { "var": "CC24_323f", "weight": 0.7, "note": "resolved Pass 3 — student loan forgiveness" },
+        { "var": "CC24_328b", "weight": 0.5 }
+      ],
+      "items_held": ["CC24_328a (direction ambiguity)"],
+      "total_weight_points": 4.2,
+      "note": "Resolution of CC24_323f means 2024 MAT now has 5 contributing items, structurally at par with 2016 and stronger than 2020."
+    }
+  },
+  "implementation_notes_for_v01F_v01G": [
+    "Column 'CC24_323f' belongs to MAT composite, NOT CU. Critical resolver-table entry.",
+    "CC24_340b is read but not routed into CD composite — used only for data-quality consistency check vs CC24_324a + CC24_324d.",
+    "CC24_324b is held entirely (asymmetric ambiguity).",
+    "CC24_328a is held entirely (direction ambiguity).",
+    "All other CC24_3* items in scope share universal Support/Oppose code map (1=Support, 2=Oppose, 8=Skipped, 9=Not Asked, .=Missing)."
+  ],
+  "remaining_holds_after_pass3": [
+    { "variable": "CC24_324b", "reason": "asymmetric Oppose ambiguity (mirrors CC16/CC20_332b)", "v02_mitigation": "joint-condition on CC24_324c response" },
+    { "variable": "CC24_328a", "reason": "direction ambiguity — YIMBY progressives + free-market conservatives both Support", "v02_mitigation": "potentially split into MAT vs CD load via interaction with respondent's MAT and CD answers; needs joint-modeling" },
+    { "variable": "CC24_340b", "reason": "abortion-axis double-counting with CC24_324a/d", "v02_mitigation": "use as confirmation-only signal indefinitely; do not include in primary composite" }
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-2024-hold-items-audit.md",
+    "results/electorate/synthetic-electorate/mapper-2024-hold-items-audit.json"
+  ],
+  "terminology": "moralBoundaries.national is the canonical compound moral-circle boundary per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — not surfaced by any item audited here. Legacy code identifiers (CC24_*) appear only as CCES variable names.",
+  "revision_history": [
+    { "date": "2026-05-04", "description": "Pass 3: docx-extracted CC24_323f wording (resolved as student-loan MAT item, NOT immigration); confirmed CC24_324a..d directions; confirmed CC24_340a/b/c codes; confirmed CC24_328a..e codes." }
+  ]
+}
