@@ -433,54 +433,112 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
 }
 
 /**
- * CU (cultural uniformity / pluralism) — second real-signal core position
- * target shipped in mapper v0.1B. Year-gated to 2016 only because the
- * directionality audit at `results/electorate/synthetic-electorate/
- * mapper-v01-source-directionality-audit.md` only verified the
- * `CC16_331_*` immigration battery; the analogous 2020 stem (`CC20_303*`)
- * is not yet audited.
+ * Per-year polarity table for the immigration battery. Polarity convention:
+ *   +1 = "Yes / Support is restrictionist (CU low; high national-boundary
+ *        salience)"
+ *   −1 = "Yes / Support is pluralist (CU high; low national-boundary
+ *        salience)"
+ * Each item carries the audit-recommended weight.
  *
- * Items shipped (per the audit's confidence column):
- *   - `CC16_331_1` "Grant legal status to long-term illegal immigrants who
- *     paid taxes & no felony" → **Yes = pluralist (CU high)**, weight 0.5×
- *     (audit: ✅ Ship reduced — clean direction but the only progressive
- *     item, so reduced-weight to avoid over-flipping the polarity).
- *   - `CC16_331_2` "Increase border patrols" → **Yes = restrictionist
- *     (CU low)**, weight 0.5× (audit: ⚠ Ship reduced — direction clean but
- *     cross-loaded with security/crime framing).
- *   - `CC16_331_5` "Admit no refugees from Syria" → **Yes = restrictionist
- *     (CU low)**, weight 1.0× (audit: ✅ Ship — cleanest item).
- *   - `CC16_331_8` "Ban Muslims from immigrating" → **Yes = restrictionist
- *     (CU low)**, weight 1.0× (audit: ✅ Ship — direction unambiguous).
+ * 2016 items (Pass-1 audit): CC16_331_{1,2,5,8} — items _5 (Syria refugees)
+ * and _8 (Muslim ban) are the cleanest national-circle items the battery
+ * has, hence weight 1.0×. _1 / _2 ship reduced at 0.5×.
  *
- * Coding (CCES standard): `1` = Yes, `2` = No, `8` = Skipped, `9` = Not
- * Asked, `.` = missing. Skipped / NotAsked / missing are dropped.
+ * 2020 items (Pass-2 audit, §5): CC20_331a..e — _a/_b mirror CC16_331_1/_2
+ * verbatim and ship at 0.5×. _c (sanctuary cities), _d (reduce legal
+ * immigration), _e (border-wall spending) are NEW in 2020. The two
+ * cleanest 2016 items (_5, _8) were discontinued in 2020, so the strongest
+ * 2020 items (_d, _e) ship at 0.7× — strictly weaker than the 1.0× ceiling
+ * the audit reserves for the 2016 _5/_8 pair. The audit explicitly notes:
+ * "v0.1 mapper should flag 2020 national-salience uncertainty as `medium`
+ * rather than the `high` rating attainable for 2016."
+ */
+type ImmigrationItem = { col: string; polarity: 1 | -1; weight: number };
+
+function immigrationItemsForCU(year: number): ImmigrationItem[] | null {
+  if (year === 2016) {
+    return [
+      // CC16_331_1 "Grant legal status to long-term illegal immigrants" → Yes = pluralist
+      { col: "CC16_331_1", polarity: -1, weight: 0.5 },
+      // CC16_331_2 "Increase border patrols" → Yes = restrictionist
+      { col: "CC16_331_2", polarity:  1, weight: 0.5 },
+      // CC16_331_5 "Admit no refugees from Syria" → Yes = restrictionist (audit: cleanest item)
+      { col: "CC16_331_5", polarity:  1, weight: 1.0 },
+      // CC16_331_8 "Ban Muslims from immigrating" → Yes = restrictionist
+      { col: "CC16_331_8", polarity:  1, weight: 1.0 },
+    ];
+  }
+  if (year === 2020) {
+    return [
+      // CC20_331a "Grant legal status..." (verbatim CC16_331_1) → Support = pluralist
+      { col: "CC20_331a", polarity: -1, weight: 0.5 },
+      // CC20_331b "Increase border patrols" (verbatim CC16_331_2) → Support = restrictionist
+      { col: "CC20_331b", polarity:  1, weight: 0.5 },
+      // CC20_331c "Withhold federal funds from sanctuary-cities police" → Support = restrictionist
+      { col: "CC20_331c", polarity:  1, weight: 0.5 },
+      // CC20_331d "Reduce LEGAL immigration by 50% over the next [10 years]" → Support = restrictionist
+      { col: "CC20_331d", polarity:  1, weight: 0.7 },
+      // CC20_331e "Increase spending on border security by $25B incl. building a wall" → Support = restrictionist
+      { col: "CC20_331e", polarity:  1, weight: 0.7 },
+    ];
+  }
+  return null;
+}
+
+/**
+ * Items used for `moralBoundaries.national` salience. Item 1 / 1a (legal
+ * status) is **excluded for both cycles** per the Pass-1 audit (pluralist
+ * and restrictionist responses are both compatible with high or low
+ * national-boundary salience independent of that item).
+ *
+ * 2016 ships items {2, 5, 8}; 2020 ships items {b, c, d, e} per the
+ * Pass-2 audit's national-salience composite (§5).
+ */
+function immigrationItemsForNational(year: number): ImmigrationItem[] | null {
+  if (year === 2016) {
+    return [
+      { col: "CC16_331_2", polarity: 1, weight: 0.5 },
+      { col: "CC16_331_5", polarity: 1, weight: 1.0 },
+      { col: "CC16_331_8", polarity: 1, weight: 1.0 },
+    ];
+  }
+  if (year === 2020) {
+    return [
+      { col: "CC20_331b", polarity: 1, weight: 0.5 },
+      { col: "CC20_331c", polarity: 1, weight: 0.5 },
+      { col: "CC20_331d", polarity: 1, weight: 0.7 },
+      { col: "CC20_331e", polarity: 1, weight: 0.7 },
+    ];
+  }
+  return null;
+}
+
+/**
+ * CU (cultural uniformity / pluralism) — real-signal core position target
+ * for 2016 (mapper v0.1B) and 2020 (extended in v0.1D).
+ *
+ * Coding (CCES standard, identical across cycles): `1` = Yes / Support,
+ * `2` = No / Oppose, `8` = Skipped, `9` = Not Asked, `.` = missing.
  *
  * Algorithm: weighted sum of signed direction votes (+1 = restrictionist,
- * −1 = pluralist) divided by the answered total weight gives `net` ∈
- * [−1, +1]. Position = 3 − 2 × net (linear from net=−1 → CU 5 [pluralist]
- * to net=+1 → CU 1 [restrictionist]).
- *
- * Posterior is a discrete-Gaussian over {1..5} with `σ` inverse to total
- * weight collected. Salience = breadth-bonus + intensity. Uncertainty
- * gates on total weight (≥ 1.5 → low; ≥ 0.5 → medium; otherwise no signal,
- * fallback).
+ * −1 = pluralist; per `immigrationItemsForCU`) divided by answered total
+ * weight gives `net ∈ [−1, +1]`. Position = `3 − 2 × net` (pluralist net=−1
+ * → CU 5; restrictionist net=+1 → CU 1). Posterior is a discrete-Gaussian
+ * over {1..5} with σ inverse to total weight collected. Salience =
+ * breadth-bonus + intensity. Uncertainty gates on total weight (≥ 1.5 →
+ * low; ≥ 0.5 → medium; otherwise no signal, fallback).
  *
  * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
- * no `pid7`, no turnout fields. Only the four `CC16_331_*` columns are
- * read.
+ * no `pid7`, no turnout fields. Only the year's CC*_331* columns are read.
+ *
+ * **2024 deferred**: `CC24_323*` is audited (§7) but ships in a separate
+ * mapper revision; this function still returns fallback for 2024.
  */
 function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
-  if (r.year !== 2016) {
-    return fallbackContinuous(`v0.1B CU: immigration-battery decoder gated to 2016 (audited); year ${r.year} deferred`);
+  const items = immigrationItemsForCU(r.year);
+  if (!items) {
+    return fallbackContinuous(`v0.1B/D CU: immigration-battery decoder gated to 2016/2020 (audited); year ${r.year} deferred`);
   }
-  // polarity: +1 = "Yes is restrictionist (CU low)"; -1 = "Yes is pluralist (CU high)".
-  const items: Array<{ col: string; polarity: 1 | -1; weight: number }> = [
-    { col: "CC16_331_1", polarity: -1, weight: 0.5 },
-    { col: "CC16_331_2", polarity:  1, weight: 0.5 },
-    { col: "CC16_331_5", polarity:  1, weight: 1.0 },
-    { col: "CC16_331_8", polarity:  1, weight: 1.0 },
-  ];
   let signedSum = 0;
   let totalWeight = 0;
   let answered = 0;
@@ -500,7 +558,7 @@ function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
     }
   }
   if (totalWeight === 0) {
-    return fallbackContinuous("v0.1B CU: respondent answered 0/4 immigration-battery items");
+    return fallbackContinuous(`v0.1B/D CU: respondent answered 0/${items.length} immigration-battery items`);
   }
   const net = signedSum / totalWeight; // [-1, +1]
   const pos = 3 - 2 * net;              // pluralist (net=-1) → CU 5; restrictionist (net=+1) → CU 1
@@ -520,7 +578,7 @@ function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       vars: usedVars,
       partyIdDerived: false,
       uncertainty,
-      notes: `v0.1B CU: ${answered}/4 immigration-battery items, totalWeight=${totalWeight.toFixed(1)} (− pluralist, + restrictionist); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
+      notes: `v0.1B/D CU (${r.year}): ${answered}/${items.length} immigration-battery items, totalWeight=${totalWeight.toFixed(1)} (− pluralist, + restrictionist); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
     },
   };
 }
@@ -616,39 +674,41 @@ function derivePoliticalCampBoundary(payload: Record<string, string>): MoralBoun
 }
 
 /**
- * `moralBoundaries.national` salience from the CC16_331 immigration
- * battery — shipped together with CU in mapper v0.1B.
+ * `moralBoundaries.national` salience from the immigration battery —
+ * shipped together with CU in mapper v0.1B (2016) and v0.1D (2020).
  *
- * Per the directionality audit, the 4 immigration items load on the
- * national boundary asymmetrically: a "Yes" answer to a restrictionist
- * item signals high engagement with the national-identity frame; a "No"
- * signals the respondent is NOT gating policy through that frame
- * (universalist or other consideration). The audit's explicit
- * recommendation: ship the salience composite from items 5, 8 (1.0×) and
- * 2 (0.5×). **Item 1 (legal-status pluralist) is excluded** — both
- * pluralist and restrictionist responses are compatible with high or
- * low national salience independently of that item.
+ * Per the directionality audit, the immigration items load on the
+ * national boundary asymmetrically: a "Yes / Support" answer to a
+ * restrictionist item signals high engagement with the national-identity
+ * frame; a "No / Oppose" signals the respondent is NOT gating policy
+ * through that frame (universalist or other consideration). Per the
+ * audit's national-salience composite (Pass 1 §4 / Pass 2 §5), the legal-
+ * status item (CC16_331_1 / CC20_331a) is **excluded for both cycles** —
+ * both pluralist and restrictionist responses are compatible with high
+ * or low national salience independently of that item.
  *
- * Coding: 1=Yes, 2=No, 8=Skipped, 9=Not Asked, "."=missing.
+ * Items per cycle (see `immigrationItemsForNational`):
+ *   - 2016: CC16_331_{2, 5, 8} at weights 0.5 / 1.0 / 1.0.
+ *   - 2020: CC20_331{b, c, d, e} at weights 0.5 / 0.5 / 0.7 / 0.7. The
+ *     two cleanest 2016 narrow-circle items (Syria refugees, Muslim ban)
+ *     were discontinued; the audit explicitly downgrades 2020 national
+ *     salience uncertainty to **`medium`** as a ceiling — even with
+ *     full data the structurally weaker items don't earn a `low`
+ *     uncertainty rating. v0.1D enforces this cap.
  *
- * Algorithm: yes_share = (Σ weight where answer = Yes) / (Σ weight
+ * Coding: 1=Yes/Support, 2=No/Oppose, 8=Skipped, 9=Not Asked, "."=missing.
+ *
+ * Algorithm: yes_share = (Σ weight where answer = Yes/Support) / (Σ weight
  * answered). Salience = 0.3 + 2.2 × yes_share (range [0.3, 2.5]). Cross-
- * loads on `religious` / `ethnic_racial` from items 5 / 8 are NOT applied
- * in v0.1B per the audit's "v0.2 normalize multi-boundary loads to avoid
+ * loads on `religious` / `ethnic_racial` from CC16_331_5/8 are NOT applied
+ * per the audit's "v0.2 normalize multi-boundary loads to avoid
  * double-counting" deferral.
- *
- * Year-gated to 2016 only — the analogous 2020 immigration battery is not
- * yet audited.
  */
 function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
-  if (r.year !== 2016) {
-    return fallbackBoundary(`v0.1B national: immigration-battery decoder gated to 2016 (audited); year ${r.year} deferred`);
+  const items = immigrationItemsForNational(r.year);
+  if (!items) {
+    return fallbackBoundary(`v0.1B/D national: immigration-battery decoder gated to 2016/2020 (audited); year ${r.year} deferred`);
   }
-  const items: Array<{ col: string; weight: number }> = [
-    { col: "CC16_331_2", weight: 0.5 },
-    { col: "CC16_331_5", weight: 1.0 },
-    { col: "CC16_331_8", weight: 1.0 },
-  ];
   let yesWeight = 0;
   let totalWeight = 0;
   let answered = 0;
@@ -667,11 +727,22 @@ function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry
     }
   }
   if (totalWeight === 0) {
-    return fallbackBoundary("v0.1B national: respondent answered 0/3 immigration-battery items");
+    return fallbackBoundary(`v0.1B/D national: respondent answered 0/${items.length} immigration-battery items`);
   }
   const yesShare = yesWeight / totalWeight; // [0, 1]
   const salience = 0.3 + 2.2 * yesShare;     // [0.3, 2.5]
-  const uncertainty: Uncertainty = totalWeight >= 1.5 ? "low" : totalWeight >= 0.5 ? "medium" : "high";
+
+  // Uncertainty thresholds. 2016 can earn `low` with the cleanest items;
+  // 2020 is capped at `medium` per the audit's explicit downgrade
+  // (CC20 lacks the Syria / Muslim narrow-circle items the 2016 composite
+  // relied on for "high" rating).
+  let uncertainty: Uncertainty;
+  if (r.year === 2016) {
+    uncertainty = totalWeight >= 1.5 ? "low" : totalWeight >= 0.5 ? "medium" : "high";
+  } else {
+    // r.year === 2020 (only other supported cycle here)
+    uncertainty = totalWeight >= 0.5 ? "medium" : "high";
+  }
   return {
     salience,
     provenance: {
@@ -679,7 +750,7 @@ function deriveNationalBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry
       vars: usedVars,
       partyIdDerived: false,
       uncertainty,
-      notes: `v0.1B national: ${answered}/3 items (CC16_331_{2,5,8}); yes_share=${yesShare.toFixed(2)} → salience=${salience.toFixed(2)}; cross-loads on religious/ethnic_racial deferred to v0.2 per audit`,
+      notes: `v0.1B/D national (${r.year}): ${answered}/${items.length} items; yes_share=${yesShare.toFixed(2)} → salience=${salience.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium (audit §5: 2020 lacks Syria/Muslim narrow-circle items)" : ""}; multi-boundary cross-loads deferred to v0.2 per audit`,
     },
   };
 }

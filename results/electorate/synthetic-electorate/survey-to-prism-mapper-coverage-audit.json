@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T16:14:52.598Z",
+  "run_at": "2026-05-04T16:43:48.297Z",
   "phase": "2.7.7 — survey-to-PRISM mapper coverage audit (read-only diagnostic)",
   "config": {
     "sample_row_limit_per_year": 5000,
@@ -2174,8 +2174,8 @@
       "total_weight": 4463.53307731566,
       "per_row_target_count": 20,
       "aggregate_provenance": {
-        "weighted_mean_real_signal_per_row": 6.911322185601602,
-        "weighted_mean_fallback_per_row": 13.08867781439847,
+        "weighted_mean_real_signal_per_row": 8.92179962119214,
+        "weighted_mean_fallback_per_row": 11.078200378807932,
         "weighted_mean_party_id_derived_per_row": 1.961751207405605
       },
       "per_target": [
@@ -2257,33 +2257,43 @@
           "target_name": "CU",
           "target_kind": "continuous",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 99.94562894669396,
+          "weighted_fallback_pct": 0.05437105330603944,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
-            "low": 0,
-            "medium": 0,
-            "high": 100
+            "low": 99.80474916879162,
+            "medium": 0.14087977790233822,
+            "high": 0.05437105330603944
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 1.002496218845144,
+          "top_source_fields": [
+            {
+              "field": "CC20_331c",
+              "weighted_use_pct": 99.71279053469993
+            },
+            {
+              "field": "CC20_331a",
+              "weighted_use_pct": 99.59362281575498
+            },
+            {
+              "field": "CC20_331e",
+              "weighted_use_pct": 99.58851591825267
+            }
+          ],
           "marginal_summary": {
             "weighted_avg_distribution": [
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012,
-              0.2000000000000012
+              0.24166684543551872,
+              0.20177560260526964,
+              0.12296825672633716,
+              0.18041517221036632,
+              0.25317412302251197
             ],
-            "spread": 0,
-            "weighted_mean": 3.0000000000000084,
-            "weighted_sd": 8.437694987151194e-15
+            "spread": 0.1302058662961748,
+            "weighted_mean": 3.0016541247791007,
+            "weighted_sd": 1.4490866053874216
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "MOR",
@@ -2577,26 +2587,36 @@
           "target_name": "moralBoundaries.national",
           "target_kind": "moral_boundary",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 0,
-          "weighted_fallback_pct": 100,
+          "weighted_real_signal_pct": 99.94562894669396,
+          "weighted_fallback_pct": 0.05437105330603944,
           "weighted_party_id_derived_pct": 0,
           "uncertainty_weighted_share": {
             "low": 0,
-            "medium": 0,
-            "high": 100
+            "medium": 99.94562894669396,
+            "high": 0.05437105330603944
           },
-          "mean_uncertainty_score": 3,
-          "top_source_fields": [],
+          "mean_uncertainty_score": 2.0005437105330603,
+          "top_source_fields": [
+            {
+              "field": "CC20_331c",
+              "weighted_use_pct": 99.71279053469993
+            },
+            {
+              "field": "CC20_331e",
+              "weighted_use_pct": 99.58851591825267
+            },
+            {
+              "field": "CC20_331b",
+              "weighted_use_pct": 99.56284593357243
+            }
+          ],
           "marginal_summary": {
-            "weighted_mean": 1,
-            "weighted_sd": 0,
-            "distance_from_fallback_default": 0
+            "weighted_mean": 1.4532292551402715,
+            "weighted_sd": 0.91446796904764,
+            "distance_from_fallback_default": 0.45322925514027146
           },
-          "near_uniform_or_fallback": true,
-          "blocker_reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
-          ]
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
         },
         {
           "target_name": "moralBoundaries.ethnic_racial",
@@ -2764,20 +2784,20 @@
           "target_name": "moralBoundaries.intensity",
           "target_kind": "intensity",
           "rows_observed": 5000,
-          "weighted_real_signal_pct": 98.84351433433845,
-          "weighted_fallback_pct": 1.1564856656616034,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
           "weighted_party_id_derived_pct": 98.08756037028024,
           "uncertainty_weighted_share": {
-            "low": 0,
-            "medium": 98.84351433433845,
-            "high": 1.1564856656616034
+            "low": 94.13549672942591,
+            "medium": 5.8645032705743585,
+            "high": 0
           },
-          "mean_uncertainty_score": 2.0115648566566167,
+          "mean_uncertainty_score": 1.0586450327057462,
           "top_source_fields": [],
           "marginal_summary": {
-            "weighted_mean": 1.753380600373887,
-            "weighted_sd": 0.38748391336373833,
-            "distance_from_fallback_default": 0.753380600373887
+            "weighted_mean": 1.856314947193415,
+            "weighted_sd": 0.3518993347629566,
+            "distance_from_fallback_default": 0.856314947193415
           },
           "near_uniform_or_fallback": false,
           "blocker_reasons": []
@@ -2786,13 +2806,6 @@
       "signature_blockers": [
         {
           "target": "MAT",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
-          ]
-        },
-        {
-          "target": "CU",
           "reasons": [
             "real-signal coverage 0.0% < 25%",
             "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
@@ -2851,13 +2864,6 @@
           "reasons": [
             "real-signal coverage 0.0% < 25%",
             "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
-          ]
-        },
-        {
-          "target": "moralBoundaries.national",
-          "reasons": [
-            "real-signal coverage 0.0% < 25%",
-            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
           ]
         },
         {
