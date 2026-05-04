@@ -1,0 +1,3566 @@
+{
+  "schema_version": "v0.1",
+  "run_at": "2026-05-04T14:45:14.571Z",
+  "phase": "2.7.7 — survey-to-PRISM mapper coverage audit (read-only diagnostic)",
+  "config": {
+    "sample_row_limit_per_year": 5000,
+    "near_uniform_spread_threshold": 0.005,
+    "engagement_fallback_default": 5,
+    "engagement_fallback_tolerance": 0.5,
+    "boundary_fallback_default": 1,
+    "boundary_fallback_tolerance": 0.1,
+    "real_signal_blocker_threshold": 0.25
+  },
+  "description": "Read-only diagnostic of the survey-to-PRISM mapper. Per-target weighted real-signal vs fallback coverage, top source columns, near-uniform/near-fallback flagging, and signature-blocker labels. The mapper is NOT modified by this audit.",
+  "vote_choice_scrub_spy": {
+    "total_signatures_checked": 25000,
+    "total_byte_identical_after_scrub": 25000,
+    "all_byte_identical": true,
+    "note": "Vote-choice (voteChoiceObserved + turnoutObserved) is excluded from the fingerprint comparison since the mapper deliberately carries those two fields through unchanged for downstream backtest evaluators. Equality of the rest of the signature confirms the mapper does not read voteChoiceObserved."
+  },
+  "years_loaded": [
+    2008,
+    2012,
+    2016,
+    2020,
+    2024
+  ],
+  "years_skipped": [],
+  "audits": [
+    {
+      "year": 2008,
+      "rows_mapped": 5000,
+      "total_weight": 4054.9170059002217,
+      "per_row_target_count": 20,
+      "aggregate_provenance": {
+        "weighted_mean_real_signal_per_row": 1,
+        "weighted_mean_fallback_per_row": 18.999999999999524,
+        "weighted_mean_party_id_derived_per_row": 0
+      },
+      "per_target": [
+        {
+          "target_name": "MAT",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CD",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CU",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "MOR",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "PRO",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "COM",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ZS",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_H",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_S",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162,
+              0.20000000000000162
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999734,
+            "weighted_sd": 2.6645352591003684e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "EPS",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000162,
+              0.299999999999993,
+              0.10000000000000081,
+              0.1499999999999965,
+              0.1499999999999965,
+              0.10000000000000081
+            ],
+            "spread": 0.19999999999999218
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target_name": "AES",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.166666666666665,
+              0.166666666666665,
+              0.166666666666665,
+              0.166666666666665,
+              0.166666666666665,
+              0.166666666666665
+            ],
+            "spread": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "engagement",
+          "target_kind": "engagement",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 100,
+            "medium": 0,
+            "high": 0
+          },
+          "mean_uncertainty_score": 1,
+          "top_source_fields": [
+            {
+              "field": "turnoutValidated",
+              "weighted_use_pct": 100
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 5.639689858170627,
+            "weighted_sd": 1.506967802001064,
+            "distance_from_fallback_default": 0.6396898581706267
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.national",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ethnic_racial",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.religious",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.class",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ideological",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.gender",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.political_camp",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.intensity",
+          "target_kind": "intensity",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean intensity ≈ fallback default 1 (mean=1.000)"
+          ]
+        }
+      ],
+      "signature_blockers": [
+        {
+          "target": "MAT",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CD",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CU",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "MOR",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "PRO",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "COM",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ZS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_H",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_S",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "EPS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target": "AES",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.national",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ethnic_racial",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.religious",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.class",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ideological",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.gender",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.political_camp",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.intensity",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean intensity ≈ fallback default 1 (mean=1.000)"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2012,
+      "rows_mapped": 5000,
+      "total_weight": 3475.8179240139416,
+      "per_row_target_count": 20,
+      "aggregate_provenance": {
+        "weighted_mean_real_signal_per_row": 5.9324673948374995,
+        "weighted_mean_fallback_per_row": 14.067532605162532,
+        "weighted_mean_party_id_derived_per_row": 1.9667716155373092
+      },
+      "per_target": [
+        {
+          "target_name": "MAT",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CD",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CU",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "MOR",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "PRO",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "COM",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ZS",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_H",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_S",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962,
+              0.19999999999999962
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999916,
+            "weighted_sd": 8.437694987151169e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "EPS",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.19999999999999962,
+              0.2999999999999989,
+              0.09999999999999981,
+              0.14999999999999944,
+              0.14999999999999944,
+              0.09999999999999981
+            ],
+            "spread": 0.19999999999999907
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target_name": "AES",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.1666666666666661,
+              0.1666666666666661,
+              0.1666666666666661,
+              0.1666666666666661,
+              0.1666666666666661,
+              0.1666666666666661
+            ],
+            "spread": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "engagement",
+          "target_kind": "engagement",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.73458665960739,
+          "weighted_fallback_pct": 0.2654133403926381,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 99.73458665960739,
+            "high": 0.2654133403926381
+          },
+          "mean_uncertainty_score": 2.002654133403927,
+          "top_source_fields": [
+            {
+              "field": "newsint",
+              "weighted_use_pct": 99.31267321653934
+            },
+            {
+              "field": "turnoutObserved",
+              "weighted_use_pct": 85.68508868788975
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 7.81426802745138,
+            "weighted_sd": 1.4023382628890328,
+            "distance_from_fallback_default": 2.81426802745138
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.national",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ethnic_racial",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.religious",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.92351907219205,
+          "weighted_fallback_pct": 0.07648092780798602,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.99070634385633,
+            "high": 1.009293656143749
+          },
+          "mean_uncertainty_score": 2.010092936561439,
+          "top_source_fields": [
+            {
+              "field": "pew_bornagain",
+              "weighted_use_pct": 99.91961672733665
+            },
+            {
+              "field": "pew_churatd",
+              "weighted_use_pct": 98.99460868871172
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.2736270325272927,
+            "weighted_sd": 0.7291157682398175,
+            "distance_from_fallback_default": 0.2736270325272927
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.class",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.53388519165028,
+          "weighted_fallback_pct": 0.4661148083497273,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [
+            {
+              "field": "union",
+              "weighted_use_pct": 99.53388519165028
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.0148310105926666,
+            "weighted_sd": 0.31859651395084515,
+            "distance_from_fallback_default": 0.01483101059266656
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.ideological",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 96.16670993671713,
+          "weighted_fallback_pct": 3.833290063282915,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 96.16670993671713,
+            "high": 3.833290063282915
+          },
+          "mean_uncertainty_score": 2.03833290063283,
+          "top_source_fields": [
+            {
+              "field": "ideo5",
+              "weighted_use_pct": 96.16670993671713
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.311717758621701,
+            "weighted_sd": 0.6365515338465562,
+            "distance_from_fallback_default": 0.31171775862170104
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.gender",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.political_camp",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.33940231615783,
+          "weighted_fallback_pct": 1.660597683842247,
+          "weighted_party_id_derived_pct": 98.33940231615783,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.33940231615783,
+            "high": 1.660597683842247
+          },
+          "mean_uncertainty_score": 2.016605976838424,
+          "top_source_fields": [
+            {
+              "field": "pid7",
+              "weighted_use_pct": 98.33940231615783
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.7484564387234167,
+            "weighted_sd": 0.7157198984484889,
+            "distance_from_fallback_default": 0.7484564387234167
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.intensity",
+          "target_kind": "intensity",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.54863630742669,
+          "weighted_fallback_pct": 0.45136369257334635,
+          "weighted_party_id_derived_pct": 98.33775923757308,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 99.54863630742669,
+            "high": 0.45136369257334635
+          },
+          "mean_uncertainty_score": 2.004513636925734,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1.7142616776820834,
+            "weighted_sd": 0.3715392311453286,
+            "distance_from_fallback_default": 0.7142616776820834
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        }
+      ],
+      "signature_blockers": [
+        {
+          "target": "MAT",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CD",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CU",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "MOR",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "PRO",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "COM",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ZS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_H",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_S",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "EPS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target": "AES",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.national",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ethnic_racial",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.gender",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "rows_mapped": 5000,
+      "total_weight": 4037.813513065154,
+      "per_row_target_count": 20,
+      "aggregate_provenance": {
+        "weighted_mean_real_signal_per_row": 5.924488505683852,
+        "weighted_mean_fallback_per_row": 14.075511494316101,
+        "weighted_mean_party_id_derived_per_row": 1.9609423780898383
+      },
+      "per_target": [
+        {
+          "target_name": "MAT",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CD",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CU",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "MOR",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "PRO",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "COM",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ZS",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_H",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_S",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004,
+              0.20000000000000004
+            ],
+            "spread": 0,
+            "weighted_mean": 2.9999999999999947,
+            "weighted_sd": 5.329070518200748e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "EPS",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.20000000000000004,
+              0.2999999999999988,
+              0.10000000000000002,
+              0.1499999999999994,
+              0.1499999999999994,
+              0.10000000000000002
+            ],
+            "spread": 0.1999999999999988
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target_name": "AES",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.16666666666666632,
+              0.16666666666666632,
+              0.16666666666666632,
+              0.16666666666666632,
+              0.16666666666666632,
+              0.16666666666666632
+            ],
+            "spread": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "engagement",
+          "target_kind": "engagement",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.90862003676291,
+          "weighted_fallback_pct": 0.09137996323712198,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 63.98860370500383,
+            "medium": 35.9200163317591,
+            "high": 0.09137996323712198
+          },
+          "mean_uncertainty_score": 1.361027762582334,
+          "top_source_fields": [
+            {
+              "field": "newsint",
+              "weighted_use_pct": 99.874109448343
+            },
+            {
+              "field": "turnoutValidated",
+              "weighted_use_pct": 63.98860370500383
+            },
+            {
+              "field": "turnoutObserved",
+              "weighted_use_pct": 24.46171131311266
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 8.380679119235065,
+            "weighted_sd": 1.6067720950304478,
+            "distance_from_fallback_default": 3.380679119235065
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.national",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ethnic_racial",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.religious",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.96829711756257,
+          "weighted_fallback_pct": 0.031702882437434014,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 99.20457442045256,
+            "high": 0.7954255795473995
+          },
+          "mean_uncertainty_score": 2.007954255795473,
+          "top_source_fields": [
+            {
+              "field": "pew_bornagain",
+              "weighted_use_pct": 99.96829711756257
+            },
+            {
+              "field": "pew_churatd",
+              "weighted_use_pct": 99.20457442045256
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.189427070396618,
+            "weighted_sd": 0.7039322508646277,
+            "distance_from_fallback_default": 0.1894270703966181
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.class",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.91348860782824,
+          "weighted_fallback_pct": 0.0865113921717482,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [
+            {
+              "field": "union",
+              "weighted_use_pct": 99.91348860782824
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 0.9996025842619047,
+            "weighted_sd": 0.31506511901004297,
+            "distance_from_fallback_default": 0.00039741573809526365
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.ideological",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 95.44535914191908,
+          "weighted_fallback_pct": 4.554640858080896,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 95.44535914191908,
+            "high": 4.554640858080896
+          },
+          "mean_uncertainty_score": 2.0455464085808086,
+          "top_source_fields": [
+            {
+              "field": "ideo5",
+              "weighted_use_pct": 95.44535914191908
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.2528764238441965,
+            "weighted_sd": 0.6689944249780904,
+            "distance_from_fallback_default": 0.2528764238441965
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.gender",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.political_camp",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.06463082527962,
+          "weighted_fallback_pct": 1.9353691747203579,
+          "weighted_party_id_derived_pct": 98.06463082527962,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.06463082527962,
+            "high": 1.9353691747203579
+          },
+          "mean_uncertainty_score": 2.0193536917472032,
+          "top_source_fields": [
+            {
+              "field": "pid7",
+              "weighted_use_pct": 98.06463082527962
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.7106348975502947,
+            "weighted_sd": 0.7519724639811552,
+            "distance_from_fallback_default": 0.7106348975502947
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.intensity",
+          "target_kind": "intensity",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.14845483903329,
+          "weighted_fallback_pct": 0.8515451609666422,
+          "weighted_party_id_derived_pct": 98.02960698370426,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 99.14845483903329,
+            "high": 0.8515451609666422
+          },
+          "mean_uncertainty_score": 2.0085154516096653,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1.6858203830264606,
+            "weighted_sd": 0.3785151236521555,
+            "distance_from_fallback_default": 0.6858203830264606
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        }
+      ],
+      "signature_blockers": [
+        {
+          "target": "MAT",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CD",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CU",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "MOR",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "PRO",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "COM",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ZS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_H",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_S",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "EPS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target": "AES",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.national",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ethnic_racial",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.gender",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "rows_mapped": 5000,
+      "total_weight": 4463.53307731566,
+      "per_row_target_count": 20,
+      "aggregate_provenance": {
+        "weighted_mean_real_signal_per_row": 5.911764704174374,
+        "weighted_mean_fallback_per_row": 14.088235295825637,
+        "weighted_mean_party_id_derived_per_row": 1.961751207405605
+      },
+      "per_target": [
+        {
+          "target_name": "MAT",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CD",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CU",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "MOR",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "PRO",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "COM",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ZS",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_H",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_S",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012,
+              0.2000000000000012
+            ],
+            "spread": 0,
+            "weighted_mean": 3.0000000000000084,
+            "weighted_sd": 8.437694987151194e-15
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "EPS",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000012,
+              0.30000000000000154,
+              0.1000000000000006,
+              0.15000000000000077,
+              0.15000000000000077,
+              0.1000000000000006
+            ],
+            "spread": 0.20000000000000095
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target_name": "AES",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.16666666666666724,
+              0.16666666666666724,
+              0.16666666666666724,
+              0.16666666666666724,
+              0.16666666666666724,
+              0.16666666666666724
+            ],
+            "spread": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "engagement",
+          "target_kind": "engagement",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.32694034271218,
+          "weighted_fallback_pct": 0.6730596572878786,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 74.86067015557856,
+            "medium": 24.466270187133897,
+            "high": 0.6730596572878786
+          },
+          "mean_uncertainty_score": 1.2581238950170999,
+          "top_source_fields": [
+            {
+              "field": "newsint",
+              "weighted_use_pct": 98.51800901059384
+            },
+            {
+              "field": "turnoutValidated",
+              "weighted_use_pct": 74.86067015557856
+            },
+            {
+              "field": "turnoutObserved",
+              "weighted_use_pct": 12.026326385863188
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 8.237336027708606,
+            "weighted_sd": 1.814486497717598,
+            "distance_from_fallback_default": 3.237336027708606
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.national",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ethnic_racial",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.religious",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.12272823227046,
+            "high": 1.8772717677295727
+          },
+          "mean_uncertainty_score": 2.018772717677296,
+          "top_source_fields": [
+            {
+              "field": "pew_bornagain",
+              "weighted_use_pct": 100
+            },
+            {
+              "field": "pew_churatd",
+              "weighted_use_pct": 98.12272823227046
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.206915293557153,
+            "weighted_sd": 0.7312972161877473,
+            "distance_from_fallback_default": 0.206915293557153
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.class",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [
+            {
+              "field": "union",
+              "weighted_use_pct": 100
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 0.9807427351313248,
+            "weighted_sd": 0.303786458743463,
+            "distance_from_fallback_default": 0.019257264868675184
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.ideological",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 94.91845537010502,
+          "weighted_fallback_pct": 5.08154462989522,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 94.91845537010502,
+            "high": 5.08154462989522
+          },
+          "mean_uncertainty_score": 2.050815446298957,
+          "top_source_fields": [
+            {
+              "field": "ideo5",
+              "weighted_use_pct": 94.91845537010502
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.4718919323817512,
+            "weighted_sd": 0.7606106852079029,
+            "distance_from_fallback_default": 0.4718919323817512
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.gender",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.political_camp",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.08756037028024,
+          "weighted_fallback_pct": 1.9124396297197537,
+          "weighted_party_id_derived_pct": 98.08756037028024,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.08756037028024,
+            "high": 1.9124396297197537
+          },
+          "mean_uncertainty_score": 2.0191243962971974,
+          "top_source_fields": [
+            {
+              "field": "pid7",
+              "weighted_use_pct": 98.08756037028024
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.816223644090933,
+            "weighted_sd": 0.7479467261234238,
+            "distance_from_fallback_default": 0.816223644090933
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.intensity",
+          "target_kind": "intensity",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.84351433433845,
+          "weighted_fallback_pct": 1.1564856656616034,
+          "weighted_party_id_derived_pct": 98.08756037028024,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.84351433433845,
+            "high": 1.1564856656616034
+          },
+          "mean_uncertainty_score": 2.0115648566566167,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1.753380600373887,
+            "weighted_sd": 0.38748391336373833,
+            "distance_from_fallback_default": 0.753380600373887
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        }
+      ],
+      "signature_blockers": [
+        {
+          "target": "MAT",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CD",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CU",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "MOR",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "PRO",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "COM",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ZS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_H",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_S",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "EPS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target": "AES",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.national",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ethnic_racial",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.gender",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "rows_mapped": 5000,
+      "total_weight": 5827.819631002991,
+      "per_row_target_count": 20,
+      "aggregate_provenance": {
+        "weighted_mean_real_signal_per_row": 5.88740431615589,
+        "weighted_mean_fallback_per_row": 14.112595683844154,
+        "weighted_mean_party_id_derived_per_row": 1.9578994908261096
+      },
+      "per_target": [
+        {
+          "target_name": "MAT",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CD",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "CU",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "MOR",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "PRO",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "COM",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ZS",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_H",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "ONT_S",
+          "target_kind": "continuous",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005,
+              0.2000000000000005
+            ],
+            "spread": 0,
+            "weighted_mean": 2.99999999999999,
+            "weighted_sd": 1.0214051826551465e-14
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "EPS",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.2000000000000005,
+              0.2999999999999998,
+              0.10000000000000026,
+              0.1499999999999999,
+              0.1499999999999999,
+              0.10000000000000026
+            ],
+            "spread": 0.19999999999999957
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target_name": "AES",
+          "target_kind": "categorical",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_avg_distribution": [
+              0.16666666666666738,
+              0.16666666666666738,
+              0.16666666666666738,
+              0.16666666666666738,
+              0.16666666666666738,
+              0.16666666666666738
+            ],
+            "spread": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target_name": "engagement",
+          "target_kind": "engagement",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.87981121158916,
+          "weighted_fallback_pct": 1.1201887884108348,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.87981121158916,
+            "high": 1.1201887884108348
+          },
+          "mean_uncertainty_score": 2.0112018878841083,
+          "top_source_fields": [
+            {
+              "field": "newsint",
+              "weighted_use_pct": 98.57403813445639
+            },
+            {
+              "field": "turnoutObserved",
+              "weighted_use_pct": 78.78116621326508
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 7.0318536379507215,
+            "weighted_sd": 1.8674452290947308,
+            "distance_from_fallback_default": 2.0318536379507215
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.national",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.ethnic_racial",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.religious",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 100,
+          "weighted_fallback_pct": 0,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.42073071239675,
+            "high": 1.5792692876032985
+          },
+          "mean_uncertainty_score": 2.0157926928760337,
+          "top_source_fields": [
+            {
+              "field": "pew_bornagain",
+              "weighted_use_pct": 100
+            },
+            {
+              "field": "pew_churatd",
+              "weighted_use_pct": 98.42073071239675
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.1589573358588694,
+            "weighted_sd": 0.7143396177558461,
+            "distance_from_fallback_default": 0.1589573358588694
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.class",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 99.98466080605793,
+          "weighted_fallback_pct": 0.015339193942065453,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [
+            {
+              "field": "union",
+              "weighted_use_pct": 99.98466080605793
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 0.9257912659912755,
+            "weighted_sd": 0.2643005514864479,
+            "distance_from_fallback_default": 0.07420873400872452
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.ideological",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 93.11191598527097,
+          "weighted_fallback_pct": 6.888084014729055,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 93.11191598527097,
+            "high": 6.888084014729055
+          },
+          "mean_uncertainty_score": 2.068880840147291,
+          "top_source_fields": [
+            {
+              "field": "ideo5",
+              "weighted_use_pct": 93.11191598527097
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.3737802892387867,
+            "weighted_sd": 0.7653941136309889,
+            "distance_from_fallback_default": 0.3737802892387867
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.gender",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 0,
+          "weighted_fallback_pct": 100,
+          "weighted_party_id_derived_pct": 0,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 0,
+            "high": 100
+          },
+          "mean_uncertainty_score": 3.0000000000000004,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1,
+            "weighted_sd": 0,
+            "distance_from_fallback_default": 0
+          },
+          "near_uniform_or_fallback": true,
+          "blocker_reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target_name": "moralBoundaries.political_camp",
+          "target_kind": "moral_boundary",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 97.89497454130547,
+          "weighted_fallback_pct": 2.1050254586945822,
+          "weighted_party_id_derived_pct": 97.89497454130547,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 97.89497454130547,
+            "high": 2.1050254586945822
+          },
+          "mean_uncertainty_score": 2.021050254586947,
+          "top_source_fields": [
+            {
+              "field": "pid7",
+              "weighted_use_pct": 97.89497454130547
+            }
+          ],
+          "marginal_summary": {
+            "weighted_mean": 1.7852729084951975,
+            "weighted_sd": 0.7414645545954844,
+            "distance_from_fallback_default": 0.7852729084951975
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        },
+        {
+          "target_name": "moralBoundaries.intensity",
+          "target_kind": "intensity",
+          "rows_observed": 5000,
+          "weighted_real_signal_pct": 98.86906907136718,
+          "weighted_fallback_pct": 1.1309309286328235,
+          "weighted_party_id_derived_pct": 97.89497454130547,
+          "uncertainty_weighted_share": {
+            "low": 0,
+            "medium": 98.86906907136718,
+            "high": 1.1309309286328235
+          },
+          "mean_uncertainty_score": 2.011309309286328,
+          "top_source_fields": [],
+          "marginal_summary": {
+            "weighted_mean": 1.7183994190702794,
+            "weighted_sd": 0.3864216947263819,
+            "distance_from_fallback_default": 0.7183994190702794
+          },
+          "near_uniform_or_fallback": false,
+          "blocker_reasons": []
+        }
+      ],
+      "signature_blockers": [
+        {
+          "target": "MAT",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CD",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "CU",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "MOR",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "PRO",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "COM",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ZS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_H",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "ONT_S",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "EPS",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%"
+          ]
+        },
+        {
+          "target": "AES",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted 6-bin distribution indistinguishable from uniform [1/6 × 6] (spread=0.00e+0)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.national",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.ethnic_racial",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        },
+        {
+          "target": "moralBoundaries.gender",
+          "reasons": [
+            "real-signal coverage 0.0% < 25%",
+            "weighted mean salience ≈ boundary fallback default 1 (mean=1.000, sd=0.000)"
+          ]
+        }
+      ]
+    }
+  ]
+}
