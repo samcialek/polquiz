@@ -1,0 +1,221 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper hard-node source resolution",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Determine which remaining blocked PRISM nodes can be responsibly mapped from CCES alone, which require ANES, and which are inherent fallbacks.",
+  "coverage_baseline": "results/electorate/synthetic-electorate/survey-to-prism-mapper-coverage-audit.{md,json} (Phase 2.7.7) — confirms all 10 audited nodes at 0% real-signal coverage across all 5 cycles.",
+  "codebooks_consulted": [
+    "data/cces2016/hcbk*.htm + hcbkfx0.htm",
+    "data/cces2020/CES20_Common_pre_qx.pdf (extracted)",
+    "data/cces2024/CCES24_Common_pre.docx (extracted via pandoc)",
+    "data/cces2024/CES_2024_GUIDE_vv.pdf (extracted)",
+    "data/cces*/<cycle>_Common_OUTPUT_*.csv headers (column-name verification)"
+  ],
+  "explicitly_not_in_this_audit": [
+    "No mapper logic modifications.",
+    "No ANES loader implementation.",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits.",
+    "No raw-data downloads."
+  ],
+  "forbidden_universal_inputs": [
+    "Vote-choice columns (CC*_410*)",
+    "Candidate feeling thermometers (CC*_320* series)",
+    "pid7 for any core PRISM position node — only allowed as flagged signal for moralBoundaries.political_camp",
+    "Validated turnout (CL_*, vv_turnout_*)",
+    "Predicted-vote outputs from any model",
+    "Self-reported election-eve vote intent",
+    "Partisan-camp-loaded items (Kavanaugh confirmation, Trump impeachment, ACB confirmation) for PRO/ONT_S — would inject political_camp circularity"
+  ],
+  "summary": {
+    "totalNodesAudited": 10,
+    "mapInV01": 3,
+    "deferToV02": 3,
+    "requireAnes": 4,
+    "inherentFallback": 1,
+    "v01_target_x_cycle_cells_moving_to_covered": [
+      "ZS (2020): 0% → 90+%",
+      "ZS (2016): 0% → ~60%",
+      "ZS (2024): 0% → ~60%",
+      "moralBoundaries.ethnic_racial (2020): 0% → 90+%",
+      "moralBoundaries.gender (2020): 0% → 90+%",
+      "moralBoundaries.gender (2024): 0% → ~50% (single-item)"
+    ]
+  },
+  "nodes": [
+    {
+      "node": "MOR",
+      "definition": "Moral circle: 1=narrow/in-group, 5=universal",
+      "cces_candidates": [
+        { "var": "CC16_331_5", "cycle": 2016, "current_routing": "CU primary + light MOR cross-load", "promotion_potential": "high" },
+        { "var": "CC20_350e", "cycle": 2020, "current_routing": "CU primary + light MOR", "promotion_potential": "high" },
+        { "var": "CC24_323d", "cycle": 2024, "current_routing": "CU primary + light MOR", "promotion_potential": "high" }
+      ],
+      "verdict": "Light cross-load already in CU composite",
+      "recommendation": "defer_to_v02",
+      "v02_path": "Composite-design: lift existing CU-item cross-loads to a primary MOR composite. Data already in mapper; just routing work.",
+      "anes_alternative": "VCF0830 + foreign-aid items + thermometer-differential signal",
+      "confidence": "medium-high"
+    },
+    {
+      "node": "PRO",
+      "definition": "Proceduralism: 1=results, 5=rules bind every side",
+      "cces_candidates_examined_and_rejected": [
+        { "var": "CC20_350c", "reason": "Kavanaugh — heavily partisan-camp; forbidden" },
+        { "var": "CC20_350f/g", "reason": "Trump impeachment — heavily partisan-camp; forbidden" },
+        { "var": "CC24_356", "reason": "ACB confirmation — heavily partisan-camp; forbidden" },
+        { "var": "CC20_355d", "reason": "Trans-military ban — primary load CD; PRO cross-load too weak" },
+        { "var": "CC24_340e", "reason": "9/11 surveillance — single item with partisan-asymmetric direction; weak" }
+      ],
+      "verdict": "No clean CCES PRO signal; every candidate cross-loads with political_camp",
+      "recommendation": "require_anes",
+      "anes_path": "VCF0604 trust in government + 2020+ democracy-norms battery",
+      "v01_v02_status": "Continue uniform fallback prior; flag PRO as known-weak in mapper provenance"
+    },
+    {
+      "node": "COM",
+      "definition": "Compromise tolerance: 1=principled/no-deals, 5=pro-compromise dealmaker",
+      "cces_candidates": "None found in any per-year CCES file",
+      "verdict": "CCES has no compromise-Likert items",
+      "recommendation": "require_anes",
+      "anes_path": "Direct ANES item: 'Do you think it is more important that political leaders compromise to get things done, or stand up for their principles?' (2016, 2020 ANES)",
+      "v01_v02_status": "Continue uniform fallback prior"
+    },
+    {
+      "node": "ZS",
+      "definition": "Zero-sum: 1=positive-sum, 5=zero-sum/their gain is our loss",
+      "cces_candidates": [
+        { "var": "CC20_303", "cycle": 2020, "wording": "income change past year", "direction": "Decreased → ZS high (mild)", "v01_weight": 0.3 },
+        { "var": "CC24_303", "cycle": 2024, "wording": "prices change past year", "direction": "Increased → ZS high (mild)", "v01_weight": 0.3 },
+        { "var": "CC20_355b", "cycle": 2020, "wording": "Withdraw TPP", "direction": "Support → ZS high (trade-as-zero-sum)", "v01_weight": 0.5 },
+        { "var": "CC20_331d", "cycle": 2020, "wording": "Reduce legal immigration 50%", "direction": "Support → ZS high (light cross-load)", "v01_weight": 0.3 },
+        { "var": "CC16_337_3", "cycle": 2016, "wording": "Raise taxes ranked first", "direction": "very light ZS-low cross-load", "v01_weight": 0.2 }
+      ],
+      "verdict": "Light, derivable from existing items via multi-item averaging",
+      "recommendation": "map_in_v01",
+      "v01_composite": {
+        "2016": "very-light cross-load only; near fallback",
+        "2020": "0.3×CC20_303 + 0.5×CC20_355b + 0.3×CC20_331d (already routed CU; light cross-load)",
+        "2024": "0.3×CC24_303 + light cross-load from CC24_341 tax items"
+      },
+      "confidence": "low-medium",
+      "uncertainty_flag": "ZS marked medium uncertainty in mapper provenance; full coverage requires ANES (V202233 immigration-takes-jobs in 2020)",
+      "v02_path": "Add ANES VCF cumulative items for stronger primary signal"
+    },
+    {
+      "node": "ONT_H",
+      "definition": "Human malleability: 1=fixed by nature, 5=shaped by environment",
+      "cces_candidates": "Effectively none — CCES per-year batteries do not contain Feldman-Stenner authoritarian-parenting items, child-rearing values items, or any direct nature-vs-nurture probe",
+      "verdict": "ONT_H is structurally CCES-blocked",
+      "recommendation": "require_anes",
+      "anes_path": "Feldman-Stenner authoritarian-parenting battery (V162267-V162272 in 2016; equivalent in 2020) — independence vs respect for elders, curiosity vs good manners, etc.",
+      "v01_v02_status": "Continue uniform fallback prior; cleanest 'ANES-only' node in the audit"
+    },
+    {
+      "node": "ONT_S",
+      "definition": "System ontology / institutional trust: 1=rigged, 5=institutions can produce good change",
+      "cces_candidates": [
+        { "var": "CC20_307", "cycle": 2020, "wording": "Do the police make you feel safe?", "verdict": "weak proxy; primary load is moralBoundaries.ethnic_racial" },
+        { "var": "CC20_334", "cycle": 2020, "wording": "police-reform battery", "verdict": "weak proxy; primary load is racial/justice-reform" },
+        { "var": "approval_pres / approval_court (cumulative file)", "verdict": "partisan situational confound — co-partisan administration boosts in-party trust artificially" }
+      ],
+      "verdict": "CCES has weak indirect proxies; the cleanest signal is ANES-only",
+      "recommendation": "require_anes",
+      "anes_path": "VCF0604 'How much of the time do you trust the government in Washington to do what is right?' + trust-in-courts + trust-in-science items",
+      "v02_optional_cces_proxy": "CC20_307 + CC20_334 (2020-only) at very low weight as backstop until ANES loader lands"
+    },
+    {
+      "node": "EPS",
+      "definition": "Epistemic style: categorical 6-cat (empiricist/institutionalist/traditionalist/intuitionist/autonomous/nihilist)",
+      "cces_candidates": [
+        { "var": "newsint", "verdict": "already used for engagement; salience proxy at most, not category" },
+        { "var": "media_trust / science_trust", "verdict": "NOT present in CCES per-year files" }
+      ],
+      "verdict": "CCES is structurally insufficient for 6-cat distribution",
+      "recommendation": "require_anes",
+      "anes_path": "science-trust + media-trust + journalism-trust + religious-authority-trust items → probability distribution over 6 categories",
+      "v01_v02_status": "Continue spec broad prior [0.20, 0.30, 0.10, 0.15, 0.15, 0.10] (institutionalist + empiricist weighted)"
+    },
+    {
+      "node": "AES",
+      "definition": "Aesthetic style: categorical 6-cat (statesman/technocrat/pastoral/authentic/fighter/visionary)",
+      "cces_candidates": "None — surveys do not directly probe aesthetic preference",
+      "adjacent_items_forbidden": ["candidate feeling thermometers (vote-prediction circularity)"],
+      "verdict": "Per ADR-003, AES is archetype-label flavor and not load-bearing for vote prediction",
+      "recommendation": "inherent_fallback",
+      "v01_v02_v03_status": "Continue uniform [1/6 × 6] distribution. Do not change unless a non-circular AES proxy is identified."
+    },
+    {
+      "node": "moralBoundaries.ethnic_racial",
+      "definition": "0-3 salience scalar; ethnic/racial identity structure of political reasoning",
+      "cces_candidates": [
+        { "var": "CC20_307", "cycle": 2020, "verdict": "race-conditional proxy: non-white respondents who feel unsafe → ethnic_racial high" },
+        { "var": "CC20_334a-h (police-reform battery)", "cycle": 2020, "verdict": "post-George-Floyd race-loaded indirectly; reform-Support correlates with race-conscious framing" },
+        { "var": "race + race-policy interactions", "verdict": "demographic stratum × policy answers; needs joint modeling" },
+        { "var": "CC24_340c", "cycle": 2024, "verdict": "interracial marriage component; light ethnic_racial cross-load (already CD primary)" }
+      ],
+      "verdict": "2020 has the strongest CCES signal (post-George-Floyd context); other cycles need ANES",
+      "recommendation_per_cycle": {
+        "2008": "defer_to_v02 (ANES VCF0830 needed)",
+        "2012": "defer_to_v02 (ANES VCF0830 needed)",
+        "2016": "defer_to_v02 (ANES VCF0830 needed)",
+        "2020": "map_in_v01 (CC20_334 composite)",
+        "2024": "defer_to_v02 (no direct CCES item)"
+      },
+      "v01_2020_composite": "0.5×CC20_334d + 0.5×CC20_334a + 0.3×CC20_334e + 0.5×CC20_307 (race-conditional)",
+      "confidence_2020": "medium",
+      "v02_validation_required": "Re-validate 2020 directionality against ANES once available; the post-George-Floyd context made these items unusually salient"
+    },
+    {
+      "node": "moralBoundaries.gender",
+      "definition": "0-3 salience scalar; gender identity structure of political reasoning",
+      "cces_candidates_already_in_mapper": [
+        { "var": "CC20_350a", "cycle": 2020, "current_routing": "CD primary + gender cross-load", "promote": true },
+        { "var": "CC20_350d", "cycle": 2020, "current_routing": "CD light + gender cross-load (gender-load is stronger than CD)", "promote": true },
+        { "var": "CC20_355d", "cycle": 2020, "current_routing": "CD primary + gender + national", "promote": true },
+        { "var": "CC24_340c", "cycle": 2024, "current_routing": "CD primary + gender (light)", "promote": true }
+      ],
+      "verdict": "Data already in mapper as cross-loads; just needs primary routing for gender-salience composite",
+      "recommendation": "map_in_v01",
+      "v01_composite_per_cycle": {
+        "2008": "fallback (no items)",
+        "2012": "fallback (no items)",
+        "2016": "fallback (no items)",
+        "2020": "1.0×CC20_350a + 1.0×CC20_355d + 0.5×CC20_350d",
+        "2024": "0.5×CC24_340c (single weak item)"
+      },
+      "confidence_per_cycle": {
+        "2008": "low (fallback)",
+        "2012": "low (fallback)",
+        "2016": "low (fallback)",
+        "2020": "high (3 items)",
+        "2024": "medium (1 item)"
+      }
+    }
+  ],
+  "summary_by_recommendation": {
+    "map_in_v01": ["ZS", "moralBoundaries.ethnic_racial (2020)", "moralBoundaries.gender (2020/2024)"],
+    "defer_to_v02": ["MOR", "PRO (composite-only path)", "moralBoundaries.ethnic_racial (2008/2012/2016/2024)"],
+    "require_anes": ["COM", "ONT_H", "ONT_S", "EPS"],
+    "inherent_fallback": ["AES"]
+  },
+  "implementation_impact_v01": {
+    "expected_target_x_cycle_cells_lifted": 6,
+    "structural_anes_blocked_remaining": 4,
+    "blocker_count_after_v01": "10 → 4 (still blocked: PRO, COM, ONT_H, EPS — all ANES-required)"
+  },
+  "remaining_anes_dependent_nodes_after_v01": [
+    { "node": "PRO", "anes_item": "VCF0604 + democracy-norms battery", "blocked_until": "ANES loader implementation" },
+    { "node": "COM", "anes_item": "Direct compromise Likert", "blocked_until": "ANES loader" },
+    { "node": "ONT_H", "anes_item": "Feldman-Stenner V162267-V162272", "blocked_until": "ANES loader" },
+    { "node": "EPS", "anes_item": "science/media/journalism/religious-authority trust battery", "blocked_until": "ANES loader" }
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-hard-node-source-audit.md",
+    "results/electorate/synthetic-electorate/mapper-hard-node-source-audit.json"
+  ],
+  "terminology": "moralBoundaries.ethnic_racial, moralBoundaries.gender, moralBoundaries.political_camp are the canonical compound moral-circle boundaries per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — not surfaced by any item audited here. Legacy code identifiers (pid7, ideo5, CC*_*, VCF0604 etc.) appear only as CCES / ANES variable names.",
+  "revision_history": [
+    { "date": "2026-05-04", "description": "Initial audit of 10 hard-node CCES sources. 3 mappable in v0.1, 3 deferred to v0.2 with composite-design work, 4 require ANES, 1 inherent fallback (AES)." }
+  ]
+}
