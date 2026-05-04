@@ -4517,24 +4517,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (desc) desc.querySelectorAll('.desc-word').forEach(w => w.classList.add('shown'));
       }, 3900);
 
-      // Phase 6: profile expands at t=5.65s.
+      // v27.31 — profile / map / footer now uncollapse on scroll-into-view
+      // instead of on timer. After the archetype + elections cinematic intro
+      // settles (~5s), the page sits with these sections still collapsed
+      // until the user actually scrolls down to them, at which point each
+      // section animates open via the existing cine-collapsed transition.
       const profileSection = document.getElementById('profile-section');
-      setTimeout(() => {
-        if (profileSection) profileSection.classList.remove('cine-collapsed');
-      }, 5650);
-
-      // Phase 7: map expands at t=6.75s (redraws 1s after).
       const mapSection = document.getElementById('map-section');
-      setTimeout(() => {
-        if (mapSection) mapSection.classList.remove('cine-collapsed');
-        setTimeout(() => window.dispatchEvent(new Event('resize')), 1000);
-      }, 6750);
-
-      // Phase 8: footer expands at t=7.9s.
       const footerSection = document.getElementById('footer-section');
-      setTimeout(() => {
-        if (footerSection) footerSection.classList.remove('cine-collapsed');
-      }, 7900);
+      const scrollUncollapse = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.remove('cine-collapsed');
+          scrollUncollapse.unobserve(entry.target);
+          // Map needs a resize tick after expansion so its SVG reflows to its
+          // newly non-zero container.
+          if (entry.target.id === 'map-section') {
+            setTimeout(() => window.dispatchEvent(new Event('resize')), 1000);
+          }
+        }
+      }, {
+        // Section's top must reach the upper ~85% of the viewport before the
+        // animation fires — gives a clear "scrolled into view" trigger.
+        threshold: 0.05,
+        rootMargin: '0px 0px -15% 0px',
+      });
+      if (profileSection) scrollUncollapse.observe(profileSection);
+      if (mapSection)     scrollUncollapse.observe(mapSection);
+      if (footerSection)  scrollUncollapse.observe(footerSection);
 
       // Reduced-motion fast path: skip stages, just show everything.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
