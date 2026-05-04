@@ -1,0 +1,1804 @@
+{
+  "schema_version": "v0",
+  "generator": "src/electorate/ipumsPumsExtractPreflightSmoke.ts",
+  "runAt": "2026-05-04T15:09:41.885Z",
+  "scenarios": [
+    {
+      "name": "complete_tsv",
+      "description": "All required + recommended columns + 80 REPWTP → pass clean",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "repwtp.isFull80",
+          "ok": true
+        },
+        {
+          "label": "repwtp.countPresent === 80",
+          "ok": true
+        },
+        {
+          "label": "no recommended missing",
+          "ok": true
+        },
+        {
+          "label": "no unknown columns",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4",
+          "REPWTP5",
+          "REPWTP6",
+          "REPWTP7",
+          "REPWTP8",
+          "REPWTP9",
+          "REPWTP10",
+          "REPWTP11",
+          "REPWTP12",
+          "REPWTP13",
+          "REPWTP14",
+          "REPWTP15",
+          "REPWTP16",
+          "REPWTP17",
+          "REPWTP18",
+          "REPWTP19",
+          "REPWTP20",
+          "REPWTP21",
+          "REPWTP22",
+          "REPWTP23",
+          "REPWTP24",
+          "REPWTP25",
+          "REPWTP26",
+          "REPWTP27",
+          "REPWTP28",
+          "REPWTP29",
+          "REPWTP30",
+          "REPWTP31",
+          "REPWTP32",
+          "REPWTP33",
+          "REPWTP34",
+          "REPWTP35",
+          "REPWTP36",
+          "REPWTP37",
+          "REPWTP38",
+          "REPWTP39",
+          "REPWTP40",
+          "REPWTP41",
+          "REPWTP42",
+          "REPWTP43",
+          "REPWTP44",
+          "REPWTP45",
+          "REPWTP46",
+          "REPWTP47",
+          "REPWTP48",
+          "REPWTP49",
+          "REPWTP50",
+          "REPWTP51",
+          "REPWTP52",
+          "REPWTP53",
+          "REPWTP54",
+          "REPWTP55",
+          "REPWTP56",
+          "REPWTP57",
+          "REPWTP58",
+          "REPWTP59",
+          "REPWTP60",
+          "REPWTP61",
+          "REPWTP62",
+          "REPWTP63",
+          "REPWTP64",
+          "REPWTP65",
+          "REPWTP66",
+          "REPWTP67",
+          "REPWTP68",
+          "REPWTP69",
+          "REPWTP70",
+          "REPWTP71",
+          "REPWTP72",
+          "REPWTP73",
+          "REPWTP74",
+          "REPWTP75",
+          "REPWTP76",
+          "REPWTP77",
+          "REPWTP78",
+          "REPWTP79",
+          "REPWTP80"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 80,
+          "minIndex": 1,
+          "maxIndex": 80,
+          "gaps": [],
+          "isFull80": true
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 2,
+          "parseSuccessCount": 2,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "complete_csv",
+      "description": "Same as complete_tsv but CSV format",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "delimiter is ,",
+          "ok": true
+        },
+        {
+          "label": "repwtp.isFull80",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": ",",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4",
+          "REPWTP5",
+          "REPWTP6",
+          "REPWTP7",
+          "REPWTP8",
+          "REPWTP9",
+          "REPWTP10",
+          "REPWTP11",
+          "REPWTP12",
+          "REPWTP13",
+          "REPWTP14",
+          "REPWTP15",
+          "REPWTP16",
+          "REPWTP17",
+          "REPWTP18",
+          "REPWTP19",
+          "REPWTP20",
+          "REPWTP21",
+          "REPWTP22",
+          "REPWTP23",
+          "REPWTP24",
+          "REPWTP25",
+          "REPWTP26",
+          "REPWTP27",
+          "REPWTP28",
+          "REPWTP29",
+          "REPWTP30",
+          "REPWTP31",
+          "REPWTP32",
+          "REPWTP33",
+          "REPWTP34",
+          "REPWTP35",
+          "REPWTP36",
+          "REPWTP37",
+          "REPWTP38",
+          "REPWTP39",
+          "REPWTP40",
+          "REPWTP41",
+          "REPWTP42",
+          "REPWTP43",
+          "REPWTP44",
+          "REPWTP45",
+          "REPWTP46",
+          "REPWTP47",
+          "REPWTP48",
+          "REPWTP49",
+          "REPWTP50",
+          "REPWTP51",
+          "REPWTP52",
+          "REPWTP53",
+          "REPWTP54",
+          "REPWTP55",
+          "REPWTP56",
+          "REPWTP57",
+          "REPWTP58",
+          "REPWTP59",
+          "REPWTP60",
+          "REPWTP61",
+          "REPWTP62",
+          "REPWTP63",
+          "REPWTP64",
+          "REPWTP65",
+          "REPWTP66",
+          "REPWTP67",
+          "REPWTP68",
+          "REPWTP69",
+          "REPWTP70",
+          "REPWTP71",
+          "REPWTP72",
+          "REPWTP73",
+          "REPWTP74",
+          "REPWTP75",
+          "REPWTP76",
+          "REPWTP77",
+          "REPWTP78",
+          "REPWTP79",
+          "REPWTP80"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 80,
+          "minIndex": 1,
+          "maxIndex": 80,
+          "gaps": [],
+          "isFull80": true
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 2,
+          "parseSuccessCount": 2,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "missing_required",
+      "description": "Drop PERWT and AGE → fail with required_columns_missing",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "PERWT in requiredMissing",
+          "ok": true
+        },
+        {
+          "label": "AGE in requiredMissing",
+          "ok": true
+        },
+        {
+          "label": "errors mention PERWT",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": false,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN"
+          ],
+          "requiredMissing": [
+            "AGE",
+            "PERWT"
+          ],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 4,
+          "minIndex": 1,
+          "maxIndex": 4,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 0,
+          "parseFailureCount": 1,
+          "parseFailures": [
+            {
+              "rowIndex": 1,
+              "reason": "header_missing_AGE"
+            }
+          ],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=4, minIndex=1, maxIndex=4, gaps=0"
+        ],
+        "errors": [
+          "required_columns_missing: AGE,PERWT",
+          "no_sample_rows_parsed_cleanly"
+        ]
+      }
+    },
+    {
+      "name": "sparse_repwtp",
+      "description": "Only REPWTP1, REPWTP3, REPWTP10 → pass + sparse warning",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "countPresent === 3",
+          "ok": true
+        },
+        {
+          "label": "minIndex === 1",
+          "ok": true
+        },
+        {
+          "label": "maxIndex === 10",
+          "ok": true
+        },
+        {
+          "label": "gaps include 2 and 4..9",
+          "ok": true
+        },
+        {
+          "label": "isFull80 false",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP3",
+          "REPWTP10"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 3,
+          "minIndex": 1,
+          "maxIndex": 10,
+          "gaps": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=3, minIndex=1, maxIndex=10, gaps=7"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "no_repwtp",
+      "description": "Zero REPWTP columns → fail with no_repwtp_columns_present",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "countPresent === 0",
+          "ok": true
+        },
+        {
+          "label": "isFull80 false",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": false,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 0,
+          "minIndex": null,
+          "maxIndex": null,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [],
+        "errors": [
+          "no_repwtp_columns_present"
+        ]
+      }
+    },
+    {
+      "name": "unknown_extra",
+      "description": "Header carries an extra column → pass + unknown warning",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "MYSTERY_FIELD in unknownColumns",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4",
+          "MYSTERY_FIELD"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": [
+            "MYSTERY_FIELD"
+          ]
+        },
+        "repwtp": {
+          "countPresent": 4,
+          "minIndex": 1,
+          "maxIndex": 4,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=4, minIndex=1, maxIndex=4, gaps=0",
+          "unknown_columns_in_header: MYSTERY_FIELD"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "delimiter_sniff",
+      "description": "TSV via in-memory content (no filePath/extension hint) → sniffed automatically",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "delimiter sniffed to \\t",
+          "ok": true
+        },
+        {
+          "label": "delimiterDetected true",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": true,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 4,
+          "minIndex": 1,
+          "maxIndex": 4,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=4, minIndex=1, maxIndex=4, gaps=0"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "bad_sample_row",
+      "description": "Row with non-numeric AGE → parseFailure flagged",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "rowsSampled === 2",
+          "ok": true
+        },
+        {
+          "label": "parseSuccessCount === 1",
+          "ok": true
+        },
+        {
+          "label": "parseFailureCount === 1",
+          "ok": true
+        },
+        {
+          "label": "first failure reason mentions AGE",
+          "ok": true
+        },
+        {
+          "label": "AGE finiteCount === 1",
+          "ok": true
+        },
+        {
+          "label": "AGE nullOrNonNumericCount === 1",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 4,
+          "minIndex": 1,
+          "maxIndex": 4,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 2,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 1,
+          "parseFailures": [
+            {
+              "rowIndex": 2,
+              "reason": "AGE_not_finite_number"
+            }
+          ],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 1
+            },
+            "SEX": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 2,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=4, minIndex=1, maxIndex=4, gaps=0",
+          "some_sample_rows_failed_parse: 1/2"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "empty_input",
+      "description": "No header → pass=false with empty_or_unreadable_input",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "header empty",
+          "ok": true
+        },
+        {
+          "label": "rowsSampled === 0",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": false,
+        "source": "memory",
+        "delimiter": ",",
+        "delimiterDetected": true,
+        "header": [],
+        "columns": {
+          "requiredPresent": [],
+          "requiredMissing": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "recommendedPresent": [],
+          "recommendedMissing": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 0,
+          "minIndex": null,
+          "maxIndex": null,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 0,
+          "parseSuccessCount": 0,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {}
+        },
+        "warnings": [],
+        "errors": [
+          "empty_or_unreadable_input"
+        ]
+      }
+    },
+    {
+      "name": "recommended_only_missing",
+      "description": "Drop RACED, EDUCD, GQ, MIGSP1 → pass + recommended warning",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "all 4 recommended missing",
+          "ok": true
+        },
+        {
+          "label": "all required present",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "HISPAN",
+          "EDUC",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [],
+          "recommendedMissing": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 4,
+          "minIndex": 1,
+          "maxIndex": 4,
+          "gaps": [],
+          "isFull80": false
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 1,
+          "parseSuccessCount": 1,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 1,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "repwtp_not_full_80: countPresent=4, minIndex=1, maxIndex=4, gaps=0",
+          "recommended_columns_missing: RACED,EDUCD,GQ,MIGSP1"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "zero_data_rows",
+      "description": "Header only, no data rows → pass + no_data_rows_observed warning",
+      "pass": true,
+      "passOk": true,
+      "errorsOk": true,
+      "warningsOk": true,
+      "customAssertionsAllOk": true,
+      "customAssertionResults": [
+        {
+          "label": "rowsSampled === 0",
+          "ok": true
+        },
+        {
+          "label": "parseSuccessCount === 0",
+          "ok": true
+        }
+      ],
+      "report": {
+        "pass": true,
+        "source": "memory",
+        "delimiter": "\t",
+        "delimiterDetected": false,
+        "header": [
+          "YEAR",
+          "SAMPLE",
+          "SERIAL",
+          "PERNUM",
+          "STATEFIP",
+          "PUMA",
+          "AGE",
+          "SEX",
+          "RACE",
+          "RACED",
+          "HISPAN",
+          "EDUC",
+          "EDUCD",
+          "HHINCOME",
+          "CITIZEN",
+          "PERWT",
+          "GQ",
+          "MIGSP1",
+          "REPWTP1",
+          "REPWTP2",
+          "REPWTP3",
+          "REPWTP4",
+          "REPWTP5",
+          "REPWTP6",
+          "REPWTP7",
+          "REPWTP8",
+          "REPWTP9",
+          "REPWTP10",
+          "REPWTP11",
+          "REPWTP12",
+          "REPWTP13",
+          "REPWTP14",
+          "REPWTP15",
+          "REPWTP16",
+          "REPWTP17",
+          "REPWTP18",
+          "REPWTP19",
+          "REPWTP20",
+          "REPWTP21",
+          "REPWTP22",
+          "REPWTP23",
+          "REPWTP24",
+          "REPWTP25",
+          "REPWTP26",
+          "REPWTP27",
+          "REPWTP28",
+          "REPWTP29",
+          "REPWTP30",
+          "REPWTP31",
+          "REPWTP32",
+          "REPWTP33",
+          "REPWTP34",
+          "REPWTP35",
+          "REPWTP36",
+          "REPWTP37",
+          "REPWTP38",
+          "REPWTP39",
+          "REPWTP40",
+          "REPWTP41",
+          "REPWTP42",
+          "REPWTP43",
+          "REPWTP44",
+          "REPWTP45",
+          "REPWTP46",
+          "REPWTP47",
+          "REPWTP48",
+          "REPWTP49",
+          "REPWTP50",
+          "REPWTP51",
+          "REPWTP52",
+          "REPWTP53",
+          "REPWTP54",
+          "REPWTP55",
+          "REPWTP56",
+          "REPWTP57",
+          "REPWTP58",
+          "REPWTP59",
+          "REPWTP60",
+          "REPWTP61",
+          "REPWTP62",
+          "REPWTP63",
+          "REPWTP64",
+          "REPWTP65",
+          "REPWTP66",
+          "REPWTP67",
+          "REPWTP68",
+          "REPWTP69",
+          "REPWTP70",
+          "REPWTP71",
+          "REPWTP72",
+          "REPWTP73",
+          "REPWTP74",
+          "REPWTP75",
+          "REPWTP76",
+          "REPWTP77",
+          "REPWTP78",
+          "REPWTP79",
+          "REPWTP80"
+        ],
+        "columns": {
+          "requiredPresent": [
+            "YEAR",
+            "SAMPLE",
+            "SERIAL",
+            "PERNUM",
+            "STATEFIP",
+            "PUMA",
+            "AGE",
+            "SEX",
+            "RACE",
+            "HISPAN",
+            "EDUC",
+            "HHINCOME",
+            "CITIZEN",
+            "PERWT"
+          ],
+          "requiredMissing": [],
+          "recommendedPresent": [
+            "RACED",
+            "EDUCD",
+            "GQ",
+            "MIGSP1"
+          ],
+          "recommendedMissing": [],
+          "unknownColumns": []
+        },
+        "repwtp": {
+          "countPresent": 80,
+          "minIndex": 1,
+          "maxIndex": 80,
+          "gaps": [],
+          "isFull80": true
+        },
+        "sample": {
+          "rowsRequested": 10,
+          "rowsSampled": 0,
+          "parseSuccessCount": 0,
+          "parseFailureCount": 0,
+          "parseFailures": [],
+          "numericFieldChecks": {
+            "YEAR": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "SERIAL": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "PERNUM": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "STATEFIP": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "AGE": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "SEX": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "RACE": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "HISPAN": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "EDUC": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "HHINCOME": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "CITIZEN": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            },
+            "PERWT": {
+              "finiteCount": 0,
+              "nullOrNonNumericCount": 0
+            }
+          }
+        },
+        "warnings": [
+          "no_data_rows_observed"
+        ],
+        "errors": []
+      }
+    }
+  ],
+  "diskRoundTrip": {
+    "equivalent": true
+  },
+  "overall": {
+    "scenariosPassed": 11,
+    "scenariosTotal": 11,
+    "allPassed": true
+  }
+}
