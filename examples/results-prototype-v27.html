@@ -396,10 +396,12 @@
     }
     .ed-cluster-mid { display: flex; flex-direction: column; gap: 0.35rem; }
     .ed-cluster-bar {
-      position: relative; height: 14px;
+      position: relative;
+      /* height is set inline by JS to encode importance (weight share). */
       background: rgba(255,255,255,0.04);
       border-radius: 3px; overflow: hidden;
       border: 1px solid rgba(255,255,255,0.06);
+      transition: height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .ed-cluster-bar-fill {
       position: absolute; top: 0; bottom: 0; left: 0;
@@ -2593,18 +2595,22 @@ document.addEventListener('DOMContentLoaded', () => {
           // bd.rows for math + hover use only; the rendered output is 4
           // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
           const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq, bd.sumWeight);
-          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar = how far apart you and the candidate are on this cluster's dimensions (0 = perfect match, ~4 = max gap). Internal segments show which dimensions drove it. <strong>Weight %</strong> on the right = how much of your political activation lives in this cluster (does not depend on the candidate). The engine's actual values-distance combines both: salience × gap². Hover any row for the full math.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by weight</span></div>`;
+          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar <strong>width</strong> = mismatch with this candidate on the cluster's dimensions (0 = perfect match, ~4 = max). Bar <strong>height</strong> = importance — how much of your political activation lives in this cluster. Internal segments show which dimensions drove the mismatch. The engine's actual values-distance combines both: importance × mismatch². Hover any row for the full math.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by importance</span></div>`;
           const sortedClusters = clusterRows.slice().sort((a, b) => b.weightShare - a.weightShare);
           bdBody += `<div class="ed-cluster-list">`;
           // Max distance for normalizing fill width — cap at 4 (typical pos² scale).
           const maxScaleDist = 4;
+          // v27.29: 2D bar encoding — width = mismatch, height = importance
+          // (weight share). Bar area roughly correlates with engine
+          // contribution; each axis answers a separate question.
+          const maxWeightShare = Math.max(0.001, ...sortedClusters.map(c => c.weightShare));
           sortedClusters.forEach(c => {
-            // v27.28: right column shows pure salience-share (weight) not the
-            // engine's combined contribution share. Engine share kept in hover.
             const weightPct = (c.weightShare * 100).toFixed(0);
             const enginePct = (c.share * 100).toFixed(0);
             const fillPct = Math.min(100, (c.distance / maxScaleDist) * 100);
-            const barPx = Math.max(8, c.weightShare * 100 * 0.7);
+            // Bar height encodes importance: dominant cluster gets the full
+            // 24px; others scale proportionally down to a 6px floor.
+            const barHeightPx = Math.round(6 + (c.weightShare / maxWeightShare) * 18);
             const contribCls = c.weightShare > 0.30 ? 'ed-contrib high' : 'ed-contrib';
             // Driver names for the subline (1-3 dimensions max, names only — no codings).
             const driverNames = c.memberDistances.map(m => m.name);
@@ -2623,26 +2629,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 segs += `<div class="ed-cluster-seg" style="width:${segPct.toFixed(2)}%" title="${m.name} · ${(m.contribution / c.contribution * 100).toFixed(0)}% of ${c.id}"></div>`;
               }
             }
-            // v27.27: drop the coarse close/moderate/far + consistent/mixed
-            // labels. Bar fill width already encodes the magnitude visually;
-            // adding a numeric distance value gives precision when two bars
-            // look similar. Spread is visible from internal segments (a
-            // single dominant segment = "concentrated"; even segments =
-            // "diffuse"). Word labels were obscuring rather than clarifying.
+            // v27.29: numeric label uses "mismatch" instead of "gap" — the
+            // word "gap" implied a distance to bridge; "mismatch" is honestly
+            // about how-different-you-are without normative weight.
             const distText = c.contribution > 0
-              ? `gap ${c.distance.toFixed(2)}`
+              ? `mismatch ${c.distance.toFixed(2)}`
               : 'no contribution';
-            // Hover tip — plain-language definition + decomposed math + drivers.
             const hoverTip = c.weight > 0
-              ? `${c.definition}\n\nWeight: ${weightPct}% of your activation lives in this cluster (era-multiplier-adjusted, candidate-independent).\nGap: ${c.distance.toFixed(2)} on the 0–4 position scale.\nEngine's actual contribution to values-distance: ${enginePct}% (combines weight × gap²).\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
+              ? `${c.definition}\n\nImportance: ${weightPct}% of your activation lives in this cluster (era-multiplier-adjusted, candidate-independent).\nMismatch: ${c.distance.toFixed(2)} on the 0–4 position scale.\nEngine's actual contribution to values-distance: ${enginePct}% (combines importance × mismatch²).\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
               : `${c.definition}\n\nThis cluster carries no salience for you in this election. It cannot contribute to candidate distance.`;
             bdBody += `<div class="ed-cluster-row" title="${hoverTip.replace(/"/g, '&quot;')}">`;
             bdBody += `  <div class="ed-cluster-name">${c.name}<span class="ed-cluster-sub">${c.subline}</span><span class="ed-cluster-drivers">${driverList}</span></div>`;
             bdBody += `  <div class="ed-cluster-mid">`;
-            bdBody += `    <div class="ed-cluster-bar"><div class="ed-cluster-bar-fill" style="width:${fillPct.toFixed(1)}%">${segs}</div></div>`;
+            bdBody += `    <div class="ed-cluster-bar" style="height:${barHeightPx}px;"><div class="ed-cluster-bar-fill" style="width:${fillPct.toFixed(1)}%">${segs}</div></div>`;
             bdBody += `    <div class="ed-cluster-meta"><span class="ed-cluster-dist-label">${distText}</span></div>`;
             bdBody += `  </div>`;
-            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${weightPct}%</span><span class="ed-contrib-bar" style="width:${barPx.toFixed(0)}px"></span></div>`;
+            // v27.29: dropped the small ed-contrib-bar — bar height already
+            // encodes importance. Only the percentage text remains.
+            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${weightPct}%</span></div>`;
             bdBody += `</div>`;
           });
           bdBody += `</div>`;
