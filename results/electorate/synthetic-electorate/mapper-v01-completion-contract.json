@@ -1,0 +1,208 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper v0.1 completion contract",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Define what 'done' means for CCES-only mapper v0.1. Synthesizes prior audit chain into a single ship-readiness specification.",
+  "source_audits_synthesized": [
+    "results/electorate/synthetic-electorate/survey-to-prism-mapper-coverage-audit.{md,json} — current real-signal coverage state",
+    "results/electorate/synthetic-electorate/mapper-v01-source-directionality-audit.{md,json} — Pass 1+2 directionality",
+    "results/electorate/synthetic-electorate/mapper-cd-breadth-source-audit.{md,json} — LGBTQ + gender + rights items",
+    "results/electorate/synthetic-electorate/mapper-2024-hold-items-audit.{md,json} — 2024 hold-item resolution",
+    "results/electorate/synthetic-electorate/mapper-hard-node-source-audit.{md,json} — per-node source viability",
+    "results/electorate/synthetic-electorate/mapper-zs-boundary-implementation-spec.{md,json} — ZS + boundary composites"
+  ],
+  "scope_v01": {
+    "data_source": "CES/CCES per-year microdata via cesBacktestLoader.ts only",
+    "out_of_scope_paths": ["ANES", "IPUMS/PUMS universe", "commercial voter files"],
+    "cycles_in_scope": [2008, 2012, 2016, 2020, 2024],
+    "target_node_set_count": 20,
+    "target_node_set": [
+      "MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S",
+      "EPS", "AES",
+      "engagement",
+      "moralBoundaries.national", "moralBoundaries.ethnic_racial", "moralBoundaries.religious",
+      "moralBoundaries.class", "moralBoundaries.ideological", "moralBoundaries.gender",
+      "moralBoundaries.political_camp", "moralBoundaries.intensity"
+    ]
+  },
+  "coverage_classification": {
+    "covered": "≥ 1 audited CCES column delivers per-respondent signal at ≥ 0.5 weight; provenance.real_signal=true; weighted real-signal share ≥ 90%",
+    "reduced": "Audited column(s) present but weighted total ≤ 0.5 OR uncertainty class is high; real_signal=true but posterior near-uniform; ≥ 50% real-signal share",
+    "explicit_fallback": "No safe CCES path OR only path is forbidden; real_signal=false; not a bug",
+    "anes_required": "Non-CCES survey source has canonical item; real_signal=false until ANES loader ships; not a v0.1 bug"
+  },
+  "coverage_matrix_target_v01": {
+    "MAT":                      { "2008": "resolver_pending", "2012": "resolver_pending", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "CD":                       { "2008": "resolver_pending", "2012": "resolver_pending", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "CU":                       { "2008": "resolver_pending", "2012": "resolver_pending", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "MOR":                      { "2008": "anes_required", "2012": "anes_required", "2016": "v02_composite_promotion", "2020": "v02_composite_promotion", "2024": "v02_composite_promotion" },
+    "PRO":                      { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "anes_required", "2024": "anes_required" },
+    "COM":                      { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "anes_required", "2024": "anes_required" },
+    "ZS":                       { "2008": "explicit_fallback", "2012": "resolver_pending", "2016": "near_fallback", "2020": "covered", "2024": "covered" },
+    "ONT_H":                    { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "anes_required", "2024": "anes_required" },
+    "ONT_S":                    { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "anes_required", "2024": "anes_required" },
+    "EPS":                      { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "anes_required", "2024": "anes_required" },
+    "AES":                      { "2008": "inherent_fallback", "2012": "inherent_fallback", "2016": "inherent_fallback", "2020": "inherent_fallback", "2024": "inherent_fallback" },
+    "engagement":               { "2008": "covered", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.national": { "2008": "resolver_pending", "2012": "resolver_pending", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.ethnic_racial": { "2008": "anes_required", "2012": "anes_required", "2016": "anes_required", "2020": "covered", "2024": "anes_required" },
+    "moralBoundaries.religious": { "2008": "resolver_pending", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.class":    { "2008": "resolver_pending", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.ideological": { "2008": "resolver_pending", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.gender":   { "2008": "explicit_fallback", "2012": "explicit_fallback", "2016": "explicit_fallback", "2020": "covered", "2024": "reduced" },
+    "moralBoundaries.political_camp": { "2008": "resolver_pending", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" },
+    "moralBoundaries.intensity": { "2008": "explicit_fallback", "2012": "covered", "2016": "covered", "2020": "covered", "2024": "covered" }
+  },
+  "explicit_fallback_nodes": {
+    "PRO": { "fallback": "uniform Dist5", "reason": "Every CCES candidate is partisan-camp-loaded → forbidden as PRO input" },
+    "COM": { "fallback": "uniform Dist5", "reason": "No CCES item exists; ANES has direct compromise Likert" },
+    "ONT_H": { "fallback": "uniform Dist5", "reason": "CCES has no Feldman-Stenner / nature-vs-nurture probe" },
+    "ONT_S": { "fallback": "uniform Dist5", "reason": "CCES proxies are partisan-confounded; clean signal is ANES-only" },
+    "EPS": { "fallback": "broad prior [0.20, 0.30, 0.10, 0.15, 0.15, 0.10]", "reason": "CCES has no media-trust / science-trust battery" },
+    "AES": { "fallback": "uniform Dist6", "reason": "Inherent fallback — no survey item exists; all proxies circular per ADR-003" },
+    "MOR_2008_2012": { "fallback": "uniform Dist5", "reason": "No 2008/2012 immigration items in existing resolver" },
+    "MOR_2016_2020_2024": { "fallback": "uniform Dist5 (until v0.2)", "reason": "Composite-design work pending: lift existing CU-item cross-loads to primary MOR routing" },
+    "moralBoundaries.gender_2008_2012_2016": { "fallback": "salience = 1.0", "reason": "No gender-policy items in 2008/2012/2016 CCES per-year files" },
+    "moralBoundaries.ethnic_racial_non_2020": { "fallback": "salience = 1.0", "reason": "Other cycles lack post-George-Floyd context for police-reform items; need ANES VCF0830" }
+  },
+  "anes_required_nodes": [
+    { "node": "PRO", "anes_item": "VCF0604 trust in government + 2020+ democracy-norms battery", "reason": "Every CCES PRO candidate cross-loads with political_camp" },
+    { "node": "COM", "anes_item": "ANES 2016/2020 'Do you think it is more important that political leaders compromise to get things done, or stand up for their principles?'", "reason": "CCES has no compromise-Likert items" },
+    { "node": "ONT_H", "anes_item": "Feldman-Stenner authoritarian-parenting battery (V162267-V162272 in 2016)", "reason": "CCES per-year batteries do not contain nature-vs-nurture probes" },
+    { "node": "ONT_S", "anes_item": "VCF0604 + trust-in-courts + trust-in-science items", "reason": "CCES per-year files lack approval items; cumulative-file approvals are partisan-confounded" },
+    { "node": "EPS", "anes_item": "Science-trust + media-trust + journalism-trust + religious-authority-trust battery", "reason": "CCES newsint is engagement signal only, not category distribution" },
+    { "node": "moralBoundaries.ethnic_racial (2008/2012/2016/2024)", "anes_item": "VCF0830 (aid to Black Americans) + Black/white feeling thermometer differential", "reason": "Only 2020 has a CCES proxy via post-George-Floyd CC20_334 battery" }
+  ],
+  "resolver_carry_overs": {
+    "scope": "Out of scope for v0.1 completion contract; documented to avoid conflation with mapper bugs",
+    "2008": {
+      "issue": "V### opaque variable names (V100, V201, etc.) require per-cycle resolver entries distinct from standard pid7/ideo5 names used 2012+",
+      "estimated_lift_if_resolved": "11 of 20 cells from fallback to covered",
+      "owner": "v0.1F or later"
+    },
+    "2012": {
+      "issue": "Standard column names exist but CC12 issue-item batteries (CC12_332 abortion, CC12_331 immigration) not yet wired into resolver",
+      "estimated_lift_if_resolved": "7 of 20 cells",
+      "owner": "v0.1F or later"
+    }
+  },
+  "acceptance_gates": [
+    {
+      "gate": 1,
+      "name": "Provenance correctness per node × cycle",
+      "rules": [
+        "real_signal flag matches contract table for every (target × cycle)",
+        "Covered cells: weighted real-signal share ≥ 90%",
+        "Reduced cells: weighted real-signal share ≥ 50% AND uncertainty ≥ medium",
+        "Fallback / ANES / inherent cells: weighted fallback share ≥ 95% AND real_signal: false for all rows"
+      ]
+    },
+    {
+      "gate": 2,
+      "name": "Vote-choice scrubbing spy",
+      "rules": [
+        "Mapper produces byte-identical signatures when voteChoiceObserved scrubbed to 'Unknown' for every respondent",
+        "Any divergence → fail"
+      ]
+    },
+    {
+      "gate": 3,
+      "name": "pid7 routing isolation",
+      "rules": [
+        "pid7 may contribute only to moralBoundaries.political_camp salience",
+        "All other targets must produce identical output when pid7 scrubbed to 4 (Independent)",
+        "Any divergence → fail"
+      ]
+    },
+    {
+      "gate": 4,
+      "name": "Forbidden-input scrub",
+      "scrubbed_columns": ["CC*_410* (vote choice)", "CC*_320* (candidate thermometers)", "CL_*", "vv_turnout_*", "election-eve vote intent"],
+      "rules": ["Each scrubbed to neutral; non-political_camp output must remain byte-identical"]
+    },
+    {
+      "gate": 5,
+      "name": "Direction-correctness sanity",
+      "rules": [
+        "For 2016/2020 cycles using observed vote choice as PARTITION (not as input):",
+        "D-leaning respondents: avg MAT < 3.0 AND avg CD < 3.0",
+        "R-leaning respondents: avg MAT > 3.0 AND avg CD > 3.0",
+        "Directional gap D vs R: ≥ 0.5 pos-units on each of MAT, CD"
+      ],
+      "circularity_note": "Vote choice is used for partition only; mapper independently verified (Gate 2) not to read voteChoiceObserved."
+    },
+    {
+      "gate": 6,
+      "name": "Distribution invariants",
+      "rules": [
+        "All position distributions sum to 1 within ±1e-6",
+        "All categorical distributions sum to 1",
+        "All salience values in [0, 3]",
+        "engagement value in [0, 10]",
+        "provenance.uncertainty ∈ {low, medium, high} for every target"
+      ]
+    },
+    {
+      "gate": 7,
+      "name": "Cycle 2008/2012 acceptance",
+      "rules": [
+        "engagement provenance real_signal: true for every row",
+        "Every other target: real_signal: false with documented reason in provenance.notes"
+      ]
+    }
+  ],
+  "required_final_artifacts": {
+    "mapper_source": "src/electorate/surveyToPrismMapper.ts",
+    "mapper_smoke_source": "src/electorate/surveyToPrismMapperSmoke.ts",
+    "coverage_smoke_source": "src/electorate/syntheticElectorateAggregateSmoke.ts (or equivalent)",
+    "completion_smoke_source": "src/electorate/mapperV01CompletionSmoke.ts (NEW — Terminal 2 to add; runs all 7 gates; produces single JSON with v01_complete: boolean)",
+    "coverage_smoke_output": "results/electorate/synthetic-electorate/survey-to-prism-mapper-coverage-audit.json (refreshed after v0.1 lands)",
+    "completion_smoke_output_json": "results/electorate/synthetic-electorate/mapper-v01-completion-smoke.json",
+    "completion_smoke_output_md": "results/electorate/synthetic-electorate/mapper-v01-completion-smoke.md",
+    "this_contract": "results/electorate/synthetic-electorate/mapper-v01-completion-contract.{md,json}"
+  },
+  "v01_ship_criteria": [
+    "Completion smoke (Gates 1-7) passes with v01_complete: true",
+    "Coverage matrix in this contract matches smoke's reported coverage exactly",
+    "Vote-choice scrub spy + pid7 isolation invariants preserved across all 5 cycles",
+    "Every explicit-fallback node has reason documented in mapper provenance notes (e.g. 'PRO: ANES-required (VCF0604)')",
+    "mapper-v01-completion-smoke.{json,md} artifacts committed"
+  ],
+  "post_v01_freeze": {
+    "policy": "Mapper is frozen for v0.1 after ship; subsequent changes route through versioned milestones",
+    "milestones": {
+      "v0.1F": "ZS + boundary composites going live (per mapper-zs-boundary-implementation-spec.md)",
+      "v0.2": "MOR composite-promotion + ANES path",
+      "v0.3": "ANES nodes landing (PRO, COM, ONT_H, ONT_S, EPS)"
+    }
+  },
+  "raw_data_acquisition_blockers": [
+    {
+      "blocker": "IPUMS/PUMS universe loader",
+      "scope": "Real PUMS extracts (~12 GB across 5 cycles) gated behind acquisition checklist in ipums-pums-extract-manifest.md",
+      "impact_on_v01_mapper": "NONE — mapper is independent of universe loader; can ship v0.1-complete without IPUMS path",
+      "impact_on_downstream": "Bridge / aggregate / vote prediction phases that consume mapper output ARE gated on this"
+    },
+    {
+      "blocker": "ANES loader",
+      "scope": "ANES microdata loader unimplemented",
+      "impact_on_v01_mapper": "5 nodes (PRO, COM, ONT_H, ONT_S, EPS) ship as explicit fallbacks",
+      "v02_unblock_path": "Implement ANES loader; add per-target ANES routing"
+    },
+    {
+      "blocker": "CES Cumulative file integration",
+      "scope": "Cumulative file (weight_cumulative, economy_retro etc.) locally cached but not wired into per-year resolver",
+      "impact_on_v01_mapper": "NONE — v0.1F enhancement (could strengthen 2016 ZS from near-fallback to medium)",
+      "owner": "v0.1F or later"
+    }
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-v01-completion-contract.md",
+    "results/electorate/synthetic-electorate/mapper-v01-completion-contract.json"
+  ],
+  "terminology": "moralBoundaries.* and engagement are canonical per ADR-006/ADR canon. Engagement is a separate 1D continuous scalar. Legacy code identifiers (pid7, ideo5, CC*_*, VCF0604, V###) appear only as CCES / ANES variable names.",
+  "revision_history": [
+    { "date": "2026-05-04", "description": "Initial v0.1 completion contract synthesizing prior audit chain. 7 acceptance gates, coverage matrix for 20×5 = 100 (target × cycle) cells, ANES-required vs explicit-fallback vs inherent-fallback classifications." }
+  ]
+}
