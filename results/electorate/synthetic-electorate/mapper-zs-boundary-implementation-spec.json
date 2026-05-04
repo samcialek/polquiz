@@ -1,0 +1,356 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper v0.1 implementation spec — ZS + boundary nodes",
+  "created": "2026-05-04",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Concrete implementation spec for ZS, moralBoundaries.ethnic_racial, and moralBoundaries.gender composites — exact columns, wording, codes, directionality, weights per cycle.",
+  "source_audit": "results/electorate/synthetic-electorate/mapper-hard-node-source-audit.{md,json} (Phase 2.7.8)",
+  "codebooks_consulted": [
+    "data/cces2016/hcbk0006.htm",
+    "data/cces2020/CES20_Common_pre_qx.pdf (extracted via pdftotext)",
+    "data/cces2024/CCES24_Common_pre.docx (extracted via pandoc)",
+    "data/cces2024/CES_2024_GUIDE_vv.pdf"
+  ],
+  "explicitly_not_in_this_spec": [
+    "No mapper logic modifications.",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits.",
+    "No raw-data downloads.",
+    "No edits to generated smoke outputs."
+  ],
+  "forbidden_universal_inputs": [
+    "Vote-choice columns (CC*_410*)",
+    "Candidate feeling thermometers (CC*_320* series)",
+    "pid7 for any core PRISM position node",
+    "Validated turnout (CL_*, vv_turnout_*)",
+    "Predicted-vote outputs from any model",
+    "Self-reported election-eve vote intent",
+    "Partisan-camp-loaded items (Kavanaugh, ACB, Trump impeachment) for any non-political_camp target"
+  ],
+  "summary": {
+    "totalCompositesSpecified": 6,
+    "byTarget": {
+      "ZS": { "cycles": [2016, 2020, 2024], "fullConfidenceCycles": [2020], "reducedCycles": [2016, 2024] },
+      "moralBoundaries.ethnic_racial": { "cycles": [2020], "fullConfidenceCycles": [2020], "deferredCycles": [2008, 2012, 2016, 2024] },
+      "moralBoundaries.gender": { "cycles": [2020, 2024], "fullConfidenceCycles": [2020], "reducedCycles": [2024], "fallbackCycles": [2008, 2012, 2016] }
+    }
+  },
+  "zs_composite": {
+    "scale": "1=positive-sum, 5=zero-sum",
+    "implementation_rule": "Each item maps to a per-respondent signal in [-1, +1]; -1 → ZS-low, +1 → ZS-high. Composite = weighted average of per-item signals; converted to peaked posPosterior over 1-5 ZS scale via mapper distribution helper.",
+    "2016": {
+      "items": [
+        {
+          "variable": "CC16_337_3",
+          "battery": "CC16_337 (3-way budget priority ranking)",
+          "battery_prompt": "If the federal government had to balance the budget, in what order would you do these things?",
+          "exact_wording": "Raise Taxes",
+          "response_codes": { "1": "Ranked first", "2": "Ranked second", "3": "Ranked third", ".": "missing", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Ranked first → very light ZS-low; Ranked third → light ZS-high",
+          "signal_fn": "ranked_first_to_zs_low",
+          "weight": 0.2,
+          "uncertainty": "high",
+          "v01_safety": "near_fallback",
+          "circularity_risk": "none"
+        }
+      ],
+      "total_weight": 0.2,
+      "verdict": "Single weak item only — 2016 ZS effectively remains at fallback prior with tiny directional nudge",
+      "v02_path": "Add ANES VCF cumulative items"
+    },
+    "2020": {
+      "items": [
+        {
+          "variable": "CC20_303",
+          "exact_wording": "OVER THE PAST YEAR, has your household's annual income...?",
+          "response_codes": { "1": "Increased a lot", "2": "Increased somewhat", "3": "Stayed about the same", "4": "Decreased somewhat", "5": "Decreased a lot", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Decrease (4-5) → ZS high; Increase (1-2) → ZS low; 3 → neutral",
+          "signal_fn": "income_decrease_to_zs_high",
+          "signal_formula": "(response_value - 3) / 2 clipped to [-1, +1]",
+          "weight": 0.3,
+          "uncertainty": "low-medium",
+          "v01_safety": "ship",
+          "circularity_risk": "none"
+        },
+        {
+          "variable": "CC20_355b",
+          "battery": "CC20_355",
+          "battery_prompt": "For each of the following tell us whether you support or oppose these decisions",
+          "exact_wording": "Withdraw the United States from the Trans-Pacific Partnership trade agreement, a free trade agreement that included the U.S., Japan, China, Australia, New Zealand, Canada, Chile, others.",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ZS high (trade-as-zero-sum); Oppose → ZS low",
+          "signal_fn": "support_to_zs_high",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "ship",
+          "cross_loads": ["moralBoundaries.national (light, not double-counted)"],
+          "circularity_risk": "none"
+        },
+        {
+          "variable": "CC20_331d",
+          "battery": "CC20_331 immigration",
+          "exact_wording": "Reduce LEGAL immigration by 50 percent over the next 10 years",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ZS high (anti-immigration as labor-market protectionism)",
+          "signal_fn": "support_to_zs_high",
+          "weight": 0.3,
+          "uncertainty": "medium",
+          "v01_safety": "ship",
+          "cross_loads": ["CU primary + mB.national primary; ZS is secondary cross-load"],
+          "circularity_risk": "none"
+        }
+      ],
+      "total_weight": 1.1,
+      "verdict": "Pass v0.1 threshold; mapper flag uncertainty `medium`"
+    },
+    "2024": {
+      "items": [
+        {
+          "variable": "CC24_303",
+          "exact_wording": "OVER THE PAST YEAR, have the prices of everyday goods and services...?",
+          "response_codes": { "1": "Increased a lot", "2": "Increased somewhat", "3": "Stayed about the same", "4": "Decreased somewhat", "5": "Decreased a lot", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Increase (1-2) → ZS high (cost-of-living up); Decrease (4-5) → ZS low",
+          "signal_fn": "price_increase_to_zs_high",
+          "signal_formula": "(3 - response_value) / 2 clipped to [-1, +1]",
+          "weight": 0.5,
+          "uncertainty": "low-medium",
+          "v01_safety": "ship",
+          "implementation_critical_note": "CC20_303 (income) and CC24_303 (prices) have OPPOSITE direction signs because the question subjects are different. Mapper resolver MUST NOT share a single transform between the two columns.",
+          "circularity_risk": "none"
+        },
+        {
+          "variable": "CC24_341a",
+          "exact_wording": "Extend the tax cuts enacted in 2017, which reduced individual and corporate income tax rates and limited deductions on mortgage interest and state and local taxes",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Mid (anti-tax-cut Republicans + anti-tax-cut progressives both Oppose for opposite reasons)",
+          "weight": 0,
+          "v01_safety": "do_not_use",
+          "reason_skipped": "Direction-ambiguous on ZS (opposite reasons converge to same answer)"
+        },
+        {
+          "variable": "CC24_341b",
+          "exact_wording": "Raise the corporate income tax rate from 21 percent to 28 percent",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → light ZS-low (positive-sum redistribution framing)",
+          "signal_fn": "support_to_zs_low_light",
+          "weight": 0.1,
+          "uncertainty": "high",
+          "v01_safety": "very_light_cross_load_only",
+          "reason_low_weight": "Primary load is MAT; ZS is incidental and double-counts MAT routing if weighted heavily"
+        },
+        {
+          "variable": "CC24_341c",
+          "exact_wording": "Allow tax rates on those earning $400,000 or more a year to rise to 35 percent",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → light ZS-low",
+          "signal_fn": "support_to_zs_low_light",
+          "weight": 0.1,
+          "uncertainty": "high",
+          "v01_safety": "very_light_cross_load_only"
+        },
+        {
+          "variable": "CC24_341d",
+          "exact_wording": "Spend $150 billion a year for 8 years on construction and repair of roads and bridges, rail, public transit, airports, water systems, broadband internet, and electric grid",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → light ZS-low (infrastructure as positive-sum public good)",
+          "signal_fn": "support_to_zs_low_light",
+          "weight": 0.1,
+          "uncertainty": "high",
+          "v01_safety": "very_light_cross_load_only"
+        }
+      ],
+      "total_weight": 0.8,
+      "verdict": "Lower than 2020; mapper flag uncertainty `medium`. Single primary item drives most signal."
+    }
+  },
+  "ethnic_racial_composite": {
+    "scale": "0-3 salience scalar (one-sided; cannot push salience below baseline)",
+    "v01_cycles": [2020],
+    "deferred_cycles": [2008, 2012, 2016, 2024],
+    "deferred_reason": "Other cycles lack post-George-Floyd context for police-reform items; need ANES VCF0830 for primary signal",
+    "2020": {
+      "items": [
+        {
+          "variable": "CC20_307",
+          "exact_wording": "Do the police make you feel...?",
+          "response_codes": { "1": "Mostly safe", "2": "Somewhat safe", "3": "Somewhat unsafe", "4": "Mostly unsafe", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Race-conditional. For non-white respondents: 3-4 → ethnic_racial salience high. For white respondents: largely uninformative.",
+          "signal_fn": "race_conditional_unsafe_to_high",
+          "signal_formula": "if respondent.race in {black, asian, amerindian, other_single, two_or_more} OR respondent.hispanic: signal = max(0, (response_value - 2) / 2); else: signal = 0",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "ship",
+          "implementation_critical_note": "RACE-CONDITIONAL gating required. White-respondent answers do not contribute. Mapper resolver must read respondent.race field and gate the item appropriately.",
+          "circularity_risk": "none (race demographic is not pid7 or vote-related)"
+        },
+        {
+          "variable": "CC20_334a",
+          "battery": "CC20_334",
+          "battery_prompt": "Do you support or oppose each of the following proposals?",
+          "exact_wording": "Eliminate mandatory minimum sentences for non-violent drug offenders.",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ethnic_racial salience high (criminal-justice-reform framing has explicit racial-disparity component); Oppose → 0",
+          "signal_fn": "support_one_sided",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "ship",
+          "cross_loads": ["Light CD (criminal-justice reform); composite handles each target separately"]
+        },
+        {
+          "variable": "CC20_334d",
+          "exact_wording": "Decrease the number of police on the street by 10 percent, and increase funding for other public services",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ethnic_racial salience high (post-George-Floyd defund framing); Oppose → 0",
+          "signal_fn": "support_one_sided",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "ship",
+          "notes": "Cleanest 2020 race-conscious-reform item"
+        },
+        {
+          "variable": "CC20_334e",
+          "exact_wording": "Ban the use of choke holds by police",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ethnic_racial salience high; broadly popular ~70%+",
+          "signal_fn": "support_one_sided_half",
+          "weight": 0.3,
+          "uncertainty": "high",
+          "v01_safety": "reduced",
+          "reason_reduced": "Broadly popular across all races; weak discriminator"
+        },
+        {
+          "variable": "CC20_334f",
+          "exact_wording": "Create a national registry of police who have been investigated for or disciplined for misconduct.",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Support → ethnic_racial salience high",
+          "signal_fn": "support_one_sided",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "ship"
+        }
+      ],
+      "items_excluded": [
+        { "var": "CC20_334b", "reason": "Body cameras — universally popular ~95%; zero discriminator" },
+        { "var": "CC20_334c", "reason": "Increase police 10% — direction inverts to anti-reform" },
+        { "var": "CC20_334g", "reason": "End DOD military equipment — anti-militarism / PRO cross-load too strong" },
+        { "var": "CC20_334h", "reason": "Allow suits against police — civil-liberty / PRO cross-load too strong" }
+      ],
+      "total_weight": 2.3,
+      "composite_formula": "ethnic_racial_signal = (0.5×CC20_307 + 0.5×CC20_334a + 0.5×CC20_334d + 0.3×CC20_334e + 0.5×CC20_334f) / 2.3",
+      "salience_scalar_formula": "salience = 1.0 + 2.0 × signal (range [1.0, 3.0])",
+      "v02_validation_required": "Re-validate 2020 directionality against ANES once available; post-George-Floyd context made these items unusually salient"
+    }
+  },
+  "gender_composite": {
+    "scale": "0-3 salience scalar (one-sided; cannot push salience below baseline)",
+    "v01_cycles": [2020, 2024],
+    "fallback_cycles": [2008, 2012, 2016],
+    "fallback_reason": "No CCES per-year items audited support v0.1 gender-salience composite for older cycles",
+    "2020": {
+      "items": [
+        {
+          "variable": "CC20_350a",
+          "battery": "CC20_350",
+          "battery_prompt": "Over the past two years, Congress voted on many issues. Do you support each of the following proposals? [Favor / Oppose]",
+          "exact_wording": "Amend federal laws to prohibit discrimination on the basis of gender identity and sexual orientation.",
+          "response_codes": { "1": "Favor", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Favor → gender salience high; Oppose → near-fallback (one-sided)",
+          "signal_fn": "favor_one_sided",
+          "weight": 1.0,
+          "uncertainty": "low",
+          "v01_safety": "ship",
+          "cross_loads": ["CD primary (already routed); gender is parallel routing not cross-load"]
+        },
+        {
+          "variable": "CC20_350d",
+          "exact_wording": "Require equal pay for women and men who are doing similar jobs and have similar qualifications.",
+          "response_codes": { "1": "Favor", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Favor → gender salience high (one-sided, half-strength because broad consensus ~80% Favor)",
+          "signal_fn": "favor_one_sided_half",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "reduced",
+          "notes": "Gender-load is STRONGER than CD-load per prior audit; CD composite uses at 0.5×, gender composite uses at 0.5× independently — not double-counting because composites are per-target"
+        },
+        {
+          "variable": "CC20_355d",
+          "battery": "CC20_355",
+          "exact_wording": "Ban Transgender People in the Military",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "DIRECTION-AGNOSTIC: Support OR Oppose → gender salience high (any non-neutral answer); missing/skipped → 0",
+          "signal_fn": "any_response_direction_agnostic",
+          "weight": 1.0,
+          "uncertainty": "low",
+          "v01_safety": "ship",
+          "implementation_critical_note": "Both anti-trans and pro-trans respondents show high gender salience — only apolitical respondents push salience low. Use direction-agnostic transform: |response_value - neutral|, NOT signed direction."
+        }
+      ],
+      "total_weight": 2.5,
+      "composite_formula": "gender_signal = (1.0×CC20_350a_one_sided + 0.5×CC20_350d_one_sided + 1.0×CC20_355d_direction_agnostic) / 2.5",
+      "salience_scalar_formula": "salience = 1.0 + 2.0 × signal (range [1.0, 3.0])"
+    },
+    "2024": {
+      "items": [
+        {
+          "variable": "CC24_340c",
+          "battery": "CC24_340grid",
+          "battery_prompt": "Do you support or oppose each of the following bills before Congress?",
+          "exact_wording": "Require that all federal agencies recognize same-sex marriages and interracial marriages.",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+          "direction": "Support → gender salience high (one-sided, mirrors CC20_350a; reduced strength because more about marriage equality than gender identity per se)",
+          "signal_fn": "support_one_sided_seven_tenths",
+          "weight": 0.5,
+          "uncertainty": "medium",
+          "v01_safety": "reduced",
+          "cross_loads": ["CD primary (already routed); ethnic_racial light (interracial marriage component)"]
+        },
+        {
+          "variable": "CC24_323d",
+          "battery": "CC24_323grid immigration",
+          "exact_wording": "Provide permanent resident status to children of immigrants who were brought to the United States by their parents (also known as Dreamers). Provide these immigrants a pathway to citizenship if they meet the citizenship requirements and have committed no crimes",
+          "response_codes": { "1": "Support", "2": "Oppose", "8": "Skipped", "9": "Not Asked" },
+          "direction": "Light universalist signal, not gender-specific; marginal gender contribution only",
+          "signal_fn": "support_one_sided_two_tenths",
+          "weight": 0.2,
+          "uncertainty": "high",
+          "v01_safety": "marginal",
+          "notes": "Included only because 2024 has so few gender items; primary loads are CU + MOR, gender is minor"
+        }
+      ],
+      "total_weight": 0.7,
+      "composite_formula": "gender_signal_2024 = (0.5×CC24_340c + 0.2×CC24_323d) / 0.7",
+      "salience_scalar_formula": "salience = 1.0 + 2.0 × signal (range [1.0, 3.0])",
+      "verdict": "Single primary-item composite; mapper flag uncertainty `medium`"
+    }
+  },
+  "resolver_signal_fn_contract": {
+    "ranked_first_to_zs_low": "rank 1 → -0.5; rank 2 → 0; rank 3 → +0.5; missing → 0",
+    "income_decrease_to_zs_high": "(response_value - 3) / 2 clipped to [-1, +1]; missing → 0",
+    "price_increase_to_zs_high": "(3 - response_value) / 2 clipped to [-1, +1]; missing → 0",
+    "support_to_zs_high": "Support → +1.0; Oppose → -1.0; missing → 0",
+    "support_to_zs_low_light": "Support → -0.5; Oppose → 0 (one-sided light)",
+    "race_conditional_unsafe_to_high": "if respondent.race ∈ non-white set OR respondent.hispanic: max(0, (response_value - 2) / 2); else 0",
+    "support_one_sided": "Support → +1.0; else 0",
+    "support_one_sided_half": "Support → +0.5; else 0",
+    "support_one_sided_seven_tenths": "Support → +0.7; else 0",
+    "support_one_sided_two_tenths": "Support → +0.2; else 0",
+    "favor_one_sided": "Favor → +1.0; else 0",
+    "favor_one_sided_half": "Favor → +0.5; else 0",
+    "any_response_direction_agnostic": "Support OR Oppose → +1.0; missing/skipped → 0"
+  },
+  "projected_v01_coverage_lift": [
+    { "target": "ZS", "cycle": 2016, "current": "0%", "projected": "~30% (near-fallback flagged)" },
+    { "target": "ZS", "cycle": 2020, "current": "0%", "projected": "90+%" },
+    { "target": "ZS", "cycle": 2024, "current": "0%", "projected": "90+%" },
+    { "target": "moralBoundaries.ethnic_racial", "cycle": 2020, "current": "0%", "projected": "90+%" },
+    { "target": "moralBoundaries.gender", "cycle": 2020, "current": "0%", "projected": "90+%" },
+    { "target": "moralBoundaries.gender", "cycle": 2024, "current": "0%", "projected": "~50% (single-item)" }
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-zs-boundary-implementation-spec.md",
+    "results/electorate/synthetic-electorate/mapper-zs-boundary-implementation-spec.json"
+  ],
+  "terminology": "moralBoundaries.ethnic_racial and moralBoundaries.gender are canonical compound moral-circle boundaries per ADR-006. Engagement is referenced only as a downstream concern — separate 1D continuous scalar per ADR canon — not surfaced by any item specified here. Legacy code identifiers (CC*_*, pid7, ideo5) appear only as CCES variable names.",
+  "revision_history": [
+    { "date": "2026-05-04", "description": "Initial implementation spec for ZS, mB.ethnic_racial (2020 only), mB.gender (2020 + 2024) v0.1 composites." }
+  ]
+}
