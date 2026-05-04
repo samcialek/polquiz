@@ -181,11 +181,133 @@ function fallbackContinuous(notes?: string): ContinuousNodeSignature {
   };
 }
 
+/**
+ * Build a 5-bin position posterior peaked at `mean` (continuous in [1, 5])
+ * with discrete-Gaussian shape and width `sigma` (in position units). Used
+ * by the v0.1A+ issue-item decoders to translate a derived position
+ * estimate into the canonical PosDist5 shape.
+ */
+function positionPosteriorFromMean(mean: number, sigma: number): PosDist5 {
+  const w: number[] = [];
+  for (let i = 1; i <= 5; i++) {
+    const d = i - mean;
+    w.push(Math.exp(-(d * d) / (2 * sigma * sigma)));
+  }
+  let s = 0;
+  for (const v of w) s += v;
+  return [w[0]! / s, w[1]! / s, w[2]! / s, w[3]! / s, w[4]! / s];
+}
+
 /** Boundary fallback (salience 1.0, high uncertainty per spec). */
 function fallbackBoundary(notes?: string): MoralBoundaryEntry {
   return {
     salience: 1.0,
     provenance: { source: "fallback", vars: [], partyIdDerived: false, uncertainty: "high", notes },
+  };
+}
+
+/**
+ * CD (cultural direction) — first real-signal core-position target shipped
+ * in mapper v0.1A. Year-gated to 2016 and 2020 because those are the
+ * cycles whose codebooks have been verified to use the CC{Y2}_332 stem
+ * with identical wording for items a–f.
+ *
+ * Item polarity (verified from data/cces2016/hcbk0006.htm and
+ * data/cces2020/CES20_Common_pre_qx.pdf):
+ *   - 332a "Always allow abortion as a matter of choice"  → support = progressive (CD low)
+ *   - 332b "Permit only in case of rape/incest/life"      → support = traditionalist (this is a *restriction*)
+ *   - 332c "Prohibit after 20th week"                     → support = traditionalist
+ *   - 332d "Allow employers to decline coverage"          → support = traditionalist
+ *   - 332e "Prohibit federal funding for abortion"        → support = traditionalist
+ *   - 332f "Make abortions illegal in all circumstances"  → support = traditionalist
+ *
+ * Coding (CCES standard, identical 2016/2020): `1` = Support, `2` = Oppose,
+ * `8` = Skipped, `9` = Not Asked, `.` = missing. Skipped / NotAsked /
+ * missing are dropped from the running tally.
+ *
+ * Algorithm: count traditionalist signals (T) and progressive signals (P)
+ * across answered items. Net = (T − P) / answered, in [-1, +1]. Position =
+ * 3 + 2 × net (linear map to [1, 5]). Posterior is a discrete-Gaussian over
+ * positions {1..5} centered at `pos` with width inverse to answered count.
+ *
+ * Salience: intensity (|net|) + small bonus for answer breadth. Uncertainty
+ * gates on answered count (≥ 4 → low; 2-3 → medium; 1 → high).
+ *
+ * **2020-only column CC20_332g** ("Prohibit states from requiring abortions
+ * only at hospitals") has no 2016 counterpart and a more nuanced polarity
+ * (anti-restriction = pro-availability). v0.1A excludes 332g to keep the
+ * polarity table identical across both shipped cycles.
+ *
+ * Forbidden inputs (verified by inspection): no `voteChoiceObserved`, no
+ * candidate thermometers, no `pid7`, no turnout fields. Only the six
+ * `CC{Y2}_332*` columns are read.
+ */
+function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
+  if (r.year !== 2016 && r.year !== 2020) {
+    return fallbackContinuous(`v0.1A CD: abortion-battery decoder gated to 2016/2020 (codebook-verified); year ${r.year} deferred until per-cycle codebook verification`);
+  }
+  const y2 = String(r.year).slice(-2);
+  const items: Array<{ col: string; supportIs: "progressive" | "traditionalist" }> = [
+    { col: `CC${y2}_332a`, supportIs: "progressive" },
+    { col: `CC${y2}_332b`, supportIs: "traditionalist" },
+    { col: `CC${y2}_332c`, supportIs: "traditionalist" },
+    { col: `CC${y2}_332d`, supportIs: "traditionalist" },
+    { col: `CC${y2}_332e`, supportIs: "traditionalist" },
+    { col: `CC${y2}_332f`, supportIs: "traditionalist" },
+  ];
+
+  let progressiveSignals = 0;
+  let traditionalistSignals = 0;
+  let answered = 0;
+  const usedVars: string[] = [];
+  for (const it of items) {
+    const raw = parseCodedNumber(r.rawVarPayload[it.col]);
+    if (raw === 1) {
+      // Support
+      if (it.supportIs === "progressive") progressiveSignals++;
+      else traditionalistSignals++;
+      answered++;
+      usedVars.push(it.col);
+    } else if (raw === 2) {
+      // Oppose
+      if (it.supportIs === "progressive") traditionalistSignals++;
+      else progressiveSignals++;
+      answered++;
+      usedVars.push(it.col);
+    }
+    // 8 / 9 / "." / "" / "NA" → drop silently
+  }
+
+  if (answered === 0) {
+    return fallbackContinuous("v0.1A CD: respondent answered 0/6 abortion-battery items");
+  }
+
+  // Net score in [-1, +1]: − = progressive, + = traditionalist.
+  const net = (traditionalistSignals - progressiveSignals) / answered;
+  // Linear map to PRISM CD position [1, 5].
+  const pos = 3 + 2 * net;
+  // Width inverse to answered count: 1 item → ~1.25, 6 items → ~0.6.
+  const sigma = Math.max(0.6, 1.4 - 0.15 * answered);
+  const posPosterior = positionPosteriorFromMean(pos, sigma);
+
+  // Salience: intensity (|net|) is the primary signal. Add a small breadth
+  // bonus so respondents engaging with more items get higher salience.
+  const intensity = Math.abs(net); // 0..1
+  const salScore = Math.min(3, 0.5 + intensity * 1.5 + (answered - 1) * 0.1);
+  const salPosterior = salienceToDist(salScore);
+
+  const uncertainty: Uncertainty = answered >= 4 ? "low" : answered >= 2 ? "medium" : "high";
+
+  return {
+    posPosterior,
+    salPosterior,
+    provenance: {
+      source: "real_signal",
+      vars: usedVars,
+      partyIdDerived: false,
+      uncertainty,
+      notes: `v0.1A CD: ${answered}/6 abortion-battery items (− progressive, + traditionalist); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}`,
+    },
   };
 }
 
@@ -428,9 +550,12 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   // Engagement.
   const engagement = deriveEngagement(r);
 
-  // Continuous nodes (all fallback in v0 — issue-item decoders deferred to v1).
+  // Continuous nodes. CD ships in v0.1A as the first real-signal core
+  // position decoder (CC{Y2}_332a-f abortion battery, year-gated to
+  // 2016/2020). Other continuous nodes remain fallback pending per-cycle
+  // codebook verification of their candidate batteries.
   const MAT   = fallbackContinuous("v0: ideological position from issue items deferred (CC*_337_*, CC*_415r etc.)");
-  const CD    = fallbackContinuous("v0: ideological position from issue items deferred (abortion / LGBT / religion items)");
+  const CD    = deriveCD(r);
   const CU    = fallbackContinuous("v0: ideological position from issue items deferred (immigration battery)");
   const MOR   = fallbackContinuous("v0: universal-moral-circle position from issue items deferred (refugees, foreign aid)");
   const PRO   = fallbackContinuous("v0: PRO low survey coverage; fallback per spec");
