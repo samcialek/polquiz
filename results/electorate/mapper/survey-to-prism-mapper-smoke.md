@@ -1,6 +1,6 @@
 # Survey-to-PRISM mapper v0 — smoke summary
 
-**Run at:** 2026-05-04T17:50:30.017Z
+**Run at:** 2026-05-04T18:18:05.588Z
 **Years:** 2008, 2012, 2016, 2020, 2024
 **Sample size per year:** up to 200 respondents
 
@@ -14,7 +14,7 @@ Each respondent's mapper output was verified against `validateSignature` (every 
 | 2012 | 200 | 0 | 29.3% | ✅ |
 | 2016 | 200 | 0 | 49.5% | ✅ |
 | 2020 | 200 | 0 | 49.6% | ✅ |
-| 2024 | 200 | 0 | 29.6% | ✅ |
+| 2024 | 200 | 0 | 39.6% | ✅ |
 
 ## Per-target real-signal coverage by year
 
@@ -24,7 +24,7 @@ Coverage = share of mapped respondents whose target came from a real survey colu
 |---|---|---|---|---|---|
 | MAT | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% |
 | CD | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% |
-| CU | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% |
+| CU | 0.0% | 0.0% | 100.0% | 100.0% | 100.0% |
 | MOR | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | PRO | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | COM | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
@@ -33,7 +33,7 @@ Coverage = share of mapped respondents whose target came from a real survey colu
 | ONT_S | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | EPS | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | AES | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
-| mb.national | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% |
+| mb.national | 0.0% | 0.0% | 100.0% | 100.0% | 100.0% |
 | mb.ethnic_racial | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 | mb.religious | 0.0% | 99.5% | 99.5% | 100.0% | 100.0% |
 | mb.class | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
