@@ -2585,7 +2585,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // bd.rows for math + hover use only; the rendered output is 4
           // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
           const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq);
-          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Distance broken down by cluster — rolls up the per-dimension math without exposing individual codings.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
+          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar = salience-weighted distance for that cluster (0 = perfect match, ~4 = max gap on the 1–5 pos scale). Internal segments show which dimensions drove it. % on the right is the cluster's share of total values-distance.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
           const sortedClusters = clusterRows.slice().sort((a, b) => b.contribution - a.contribution);
           bdBody += `<div class="ed-cluster-list">`;
           // Max distance for normalizing fill width — cap at 4 (typical pos² scale).
@@ -2612,20 +2612,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 segs += `<div class="ed-cluster-seg" style="width:${segPct.toFixed(2)}%" title="${m.name} · ${(m.contribution / c.contribution * 100).toFixed(0)}% of ${c.id}"></div>`;
               }
             }
-            // Distance + spread labels.
-            const labels = [];
-            if (c.contribution > 0) labels.push(c.distLabel);
-            if (c.spreadLabel) labels.push(c.spreadLabel);
-            const labelLine = labels.length ? labels.join(' · ') : 'no contribution';
+            // v27.27: drop the coarse close/moderate/far + consistent/mixed
+            // labels. Bar fill width already encodes the magnitude visually;
+            // adding a numeric distance value gives precision when two bars
+            // look similar. Spread is visible from internal segments (a
+            // single dominant segment = "concentrated"; even segments =
+            // "diffuse"). Word labels were obscuring rather than clarifying.
+            const distText = c.contribution > 0
+              ? `gap ${c.distance.toFixed(2)}`
+              : 'no contribution';
             // Hover tip — plain-language definition + math + drivers (names only).
             const hoverTip = c.contribution > 0
-              ? `${c.definition}\n\nContribution: ${c.contribution.toFixed(2)} / ${bd.sumWeightedSq.toFixed(2)} = ${sharePct}% impact\nWeighted distance: ${c.distance.toFixed(2)}\nDrivers (by contribution): ${driverNames.join(', ')}`
+              ? `${c.definition}\n\nWeighted distance (RMS): ${c.distance.toFixed(2)} on the 0–4 pos scale.\nThis cluster contributes ${c.contribution.toFixed(2)} of ${bd.sumWeightedSq.toFixed(2)} total = ${sharePct}% impact.\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
               : `${c.definition}\n\nNo contribution from this cluster on this candidate.`;
             bdBody += `<div class="ed-cluster-row" title="${hoverTip.replace(/"/g, '&quot;')}">`;
             bdBody += `  <div class="ed-cluster-name">${c.name}<span class="ed-cluster-sub">${c.subline}</span><span class="ed-cluster-drivers">${driverList}</span></div>`;
             bdBody += `  <div class="ed-cluster-mid">`;
             bdBody += `    <div class="ed-cluster-bar"><div class="ed-cluster-bar-fill" style="width:${fillPct.toFixed(1)}%">${segs}</div></div>`;
-            bdBody += `    <div class="ed-cluster-meta"><span class="ed-cluster-dist-label">${labelLine}</span></div>`;
+            bdBody += `    <div class="ed-cluster-meta"><span class="ed-cluster-dist-label">${distText}</span></div>`;
             bdBody += `  </div>`;
             bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${sharePct}%</span><span class="ed-contrib-bar" style="width:${barPx.toFixed(0)}px"></span></div>`;
             bdBody += `</div>`;
@@ -2662,61 +2666,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       html += sectionWrap('breakdown', `Your distance · ${focusScore.name}`, bdBody, `final ${focusScore.distance.toFixed(2)}`);
 
-      // ── Section: full signature table — you vs every candidate ───────
-      // Continuous nodes only (12). For each row: your pos + each candidate's
-      // pos. Cells get .close/.far tinting based on absolute diff from you.
-      // Activated nodes get a ●/●● marker on the node label.
-      const sigBody = (() => {
-        if (!candProfilesAll || candProfilesAll.length === 0) {
-          return `<div class="ed-empty-note">Candidate profiles missing for this election.</div>`;
-        }
-        // Header row — thumbnails for each candidate column.
-        let h = `<table class="ed-sig-table"><thead><tr>`;
-        h += `<th style="text-align:left;">Node</th>`;
-        h += `<th class="sig-you-col">You</th>`;
-        ranked.forEach(c => {
-          const partyCls = partyToUiDot(c.party);
-          const url = getPhoto(c.name, year);
-          const initial = (c.name || '?').replace(/^[A-Z]\.\s*/, '').charAt(0).toUpperCase() || '?';
-          const thumbInner = url
-            ? `<img src="${url}" alt="${escapeAttr(c.name)}" loading="lazy" onerror="this.style.display='none'">`
-            : `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:rgba(255,255,255,0.85);font-weight:700;font-size:0.85rem;">${initial}</span>`;
-          h += `<th class="sig-cand-col ${partyCls}"><span class="sig-cand-thumb">${thumbInner}</span><span class="sig-cand-label">${c.name}</span></th>`;
-        });
-        h += `</tr></thead><tbody>`;
-        // Body rows — one per continuous node.
-        BREAKDOWN_NODES.forEach(node => {
-          const meta = NODE_META[node] || { name: node, cluster: '' };
-          const isSuper = era.super_activated.has(node);
-          const isAct = era.activated.has(node) && !isSuper;
-          const rowCls = isSuper ? 'super-act-row' : (isAct ? 'act-row' : '');
-          const sEntry = sig[node];
-          const yourPosStr = sEntry ? sEntry.pos.toFixed(1) : '—';
-          h += `<tr class="${rowCls}">`;
-          h += `  <td class="sig-node">${meta.name}<span class="sig-node-cluster">${meta.cluster}</span></td>`;
-          h += `  <td class="sig-cell you-col">${yourPosStr}</td>`;
-          ranked.forEach(c => {
-            const profile = candProfilesAll.find(cc => cc.name === c.name);
-            if (!profile || profile[node] == null) {
-              h += `<td class="sig-cell">—</td>`;
-            } else {
-              const candPos = profile[node];
-              const diff = sEntry ? Math.abs(sEntry.pos - candPos) : null;
-              const cls = diff != null ? closenessClass(diff) : '';
-              h += `<td class="sig-cell ${cls}">${candPos}</td>`;
-            }
-          });
-          h += `</tr>`;
-        });
-        h += `</tbody></table>`;
-        h += `<div class="ed-sig-table-legend">`;
-        h += `  <span><span class="leg-swatch close"></span>within 1.0 of you</span>`;
-        h += `  <span><span class="leg-swatch far"></span>2.5+ away</span>`;
-        h += `  <span><span class="leg-swatch act" style="background:#ffd86b;"></span>● activated · ●● super-activated</span>`;
-        h += `</div>`;
-        return h;
-      })();
-      html += sectionWrap('signatures', 'Full signature table — all candidates', sigBody);
+      // v27.27: full signature table removed — exposing every candidate's
+      // 1-5 coding on every node invites debate over individual codings,
+      // which is exactly what the cluster rollup was meant to avoid.
 
       html += `</div>`; // /.ed-body
 
