@@ -2380,7 +2380,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //   clusterImpactShare  = clusterContribution / totalContribution
     //   spread              = weighted std-dev of member √(contribution/weight)
     //                         used only to label "consistent" / "mixed" — never as a score.
-    function aggregateClusters(rows, totalContribution) {
+    function aggregateClusters(rows, totalContribution, totalWeight) {
       const out = [];
       for (const cl of IMPACT_CLUSTERS) {
         const memberRows = rows.filter(r => clusterOf(r.node) === cl.id);
@@ -2395,7 +2395,13 @@ document.addEventListener('DOMContentLoaded', () => {
           memberDistances.push({ name: memMeta.name, node: r.node, dist: memDist, weight: r.weight, contribution: r.contribution });
         }
         const cDist = cWeight > 0 ? Math.sqrt(cContrib / cWeight) : 0;
-        const cShare = totalContribution > 0 ? cContrib / totalContribution : 0;
+        // v27.28: decompose impact into two orthogonal metrics —
+        //   weightShare    = clusterWeight / totalWeight (pure salience-mass; no
+        //                    position-gap; doesn't change per candidate)
+        //   contribShare   = clusterContribution / totalContribution (engine's
+        //                    actual driver = salience × gap²; kept for hover)
+        const cWeightShare  = totalWeight > 0 ? cWeight / totalWeight : 0;
+        const cShare        = totalContribution > 0 ? cContrib / totalContribution : 0;
         // weighted std-dev of member distances
         let spread = 0;
         if (cWeight > 0 && memberDistances.length >= 2) {
@@ -2420,7 +2426,9 @@ document.addEventListener('DOMContentLoaded', () => {
           id: cl.id, name: cl.name, subline: cl.subline, definition: cl.definition,
           memberDistances,
           contribution: cContrib, weight: cWeight,
-          distance: cDist, share: cShare,
+          distance: cDist,
+          weightShare: cWeightShare,    // pure salience-mass share (NEW; primary display metric)
+          share: cShare,                // engine contribution share (kept for hover)
           spread, distLabel, spreadLabel,
         });
       }
@@ -2584,17 +2592,20 @@ document.addEventListener('DOMContentLoaded', () => {
           // v27.26 — Phase A cluster rollup. Per-node rows are kept inside
           // bd.rows for math + hover use only; the rendered output is 4
           // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
-          const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq);
-          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar = salience-weighted distance for that cluster (0 = perfect match, ~4 = max gap on the 1–5 pos scale). Internal segments show which dimensions drove it. % on the right is the cluster's share of total values-distance.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by impact</span></div>`;
-          const sortedClusters = clusterRows.slice().sort((a, b) => b.contribution - a.contribution);
+          const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq, bd.sumWeight);
+          bdBody += `<div class="ed-legend"><span style="color:#aaa;font-size:0.72rem;">Bar = how far apart you and the candidate are on this cluster's dimensions (0 = perfect match, ~4 = max gap). Internal segments show which dimensions drove it. <strong>Weight %</strong> on the right = how much of your political activation lives in this cluster (does not depend on the candidate). The engine's actual values-distance combines both: salience × gap². Hover any row for the full math.</span><span style="margin-left:auto;color:#777;font-size:0.72rem;">sorted by weight</span></div>`;
+          const sortedClusters = clusterRows.slice().sort((a, b) => b.weightShare - a.weightShare);
           bdBody += `<div class="ed-cluster-list">`;
           // Max distance for normalizing fill width — cap at 4 (typical pos² scale).
           const maxScaleDist = 4;
           sortedClusters.forEach(c => {
-            const sharePct = (c.share * 100).toFixed(0);
+            // v27.28: right column shows pure salience-share (weight) not the
+            // engine's combined contribution share. Engine share kept in hover.
+            const weightPct = (c.weightShare * 100).toFixed(0);
+            const enginePct = (c.share * 100).toFixed(0);
             const fillPct = Math.min(100, (c.distance / maxScaleDist) * 100);
-            const barPx = Math.max(8, c.share * 100 * 0.7);
-            const contribCls = c.share > 0.30 ? 'ed-contrib high' : 'ed-contrib';
+            const barPx = Math.max(8, c.weightShare * 100 * 0.7);
+            const contribCls = c.weightShare > 0.30 ? 'ed-contrib high' : 'ed-contrib';
             // Driver names for the subline (1-3 dimensions max, names only — no codings).
             const driverNames = c.memberDistances.map(m => m.name);
             const driverList = driverNames.length === 0
@@ -2621,17 +2632,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const distText = c.contribution > 0
               ? `gap ${c.distance.toFixed(2)}`
               : 'no contribution';
-            // Hover tip — plain-language definition + math + drivers (names only).
-            const hoverTip = c.contribution > 0
-              ? `${c.definition}\n\nWeighted distance (RMS): ${c.distance.toFixed(2)} on the 0–4 pos scale.\nThis cluster contributes ${c.contribution.toFixed(2)} of ${bd.sumWeightedSq.toFixed(2)} total = ${sharePct}% impact.\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
-              : `${c.definition}\n\nNo contribution from this cluster on this candidate.`;
+            // Hover tip — plain-language definition + decomposed math + drivers.
+            const hoverTip = c.weight > 0
+              ? `${c.definition}\n\nWeight: ${weightPct}% of your activation lives in this cluster (era-multiplier-adjusted, candidate-independent).\nGap: ${c.distance.toFixed(2)} on the 0–4 position scale.\nEngine's actual contribution to values-distance: ${enginePct}% (combines weight × gap²).\nDimensions, sorted by contribution: ${driverNames.join(', ')}.`
+              : `${c.definition}\n\nThis cluster carries no salience for you in this election. It cannot contribute to candidate distance.`;
             bdBody += `<div class="ed-cluster-row" title="${hoverTip.replace(/"/g, '&quot;')}">`;
             bdBody += `  <div class="ed-cluster-name">${c.name}<span class="ed-cluster-sub">${c.subline}</span><span class="ed-cluster-drivers">${driverList}</span></div>`;
             bdBody += `  <div class="ed-cluster-mid">`;
             bdBody += `    <div class="ed-cluster-bar"><div class="ed-cluster-bar-fill" style="width:${fillPct.toFixed(1)}%">${segs}</div></div>`;
             bdBody += `    <div class="ed-cluster-meta"><span class="ed-cluster-dist-label">${distText}</span></div>`;
             bdBody += `  </div>`;
-            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${sharePct}%</span><span class="ed-contrib-bar" style="width:${barPx.toFixed(0)}px"></span></div>`;
+            bdBody += `  <div class="${contribCls}"><span class="ed-contrib-share">${weightPct}%</span><span class="ed-contrib-bar" style="width:${barPx.toFixed(0)}px"></span></div>`;
             bdBody += `</div>`;
           });
           bdBody += `</div>`;
