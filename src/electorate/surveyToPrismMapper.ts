@@ -368,20 +368,57 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
       { col: "CC20_351a", kind: "binary", polarity: -1, weight: 0.3 },
     ];
   }
+  if (year === 2024) {
+    return [
+      // CC24_328d "Repeal the Affordable Care Act" — Support = MAT high
+      // (2024 ↔ CC16_351I direct equivalent; audit: ✅ Ship, High confidence)
+      { col: "CC24_328d", kind: "binary", polarity:  1, weight: 1.0 },
+      // CC24_328e "Expand Medicaid (<$25K individuals / <$40K families)" — Support = MAT low
+      // (audit: ✅ Ship — cleanest 2024 redistribution signal)
+      { col: "CC24_328e", kind: "binary", polarity: -1, weight: 1.0 },
+      // CC24_328c "Medicaid work requirement (able-bodied <64, no dependents)" — Support = MAT high
+      // (audit: ✅ Ship — clean welfare-restriction framing → free-market lean)
+      { col: "CC24_328c", kind: "binary", polarity:  1, weight: 1.0 },
+      // CC24_323f "Forgive up to $20,000 of student loan debt" — Support = MAT low
+      // (Pass-3 hold-items audit §1 resolved: column name carries inherited
+      // `_323f` suffix from upstream survey-design re-use, but the docx
+      // layout proves it sits in the CC24_328 Tax-policies grid between
+      // _328e and _330a. Routed to MAT here, NEVER to the immigration
+      // composite. Weight 0.7× per audit's medium-high confidence rating
+      // — heavily partisan since 2022, with some MAT-low respondents
+      // opposing for fairness/precedent reasons rather than free-market
+      // reasons.)
+      { col: "CC24_323f", kind: "binary", polarity: -1, weight: 0.7 },
+      // CC24_328b "Tax incentives for low-income housing developers" — Support = MAT low
+      // (audit: ⚠ Reduced — housing-affordability framing crosses over
+      // into supply-side / market-mechanism territory)
+      { col: "CC24_328b", kind: "binary", polarity: -1, weight: 0.5 },
+      // CC24_328a "Relax local zoning laws" is EXPLICITLY EXCLUDED — audit: ❌ Hold
+      // (asymmetric direction: YIMBY progressives + free-market conservatives
+      // both Support; signed direction ambiguous)
+    ];
+  }
   return null;
 }
 
 /**
- * MAT (material orientation) — real-signal core position target shipped in
- * mapper v0.1C (2016) and extended in v0.1D-MAT (2020).
+ * MAT (material orientation) — real-signal core position target shipped
+ * across 2016 (v0.1C), 2020 (v0.1E), and 2024 (v0.1G).
  *
  * Coding:
- *   - 337 ranks: `1` = Ranked first (most preferred), `2` = Ranked second
- *     (middle), `3` = Ranked third (least preferred). `8` skipped, `9` not
- *     asked, `.` missing.
- *   - 351 binary: `1` = For / Favor / Support, `2` = Against / Oppose.
- *     Same skip codes.
+ *   - 337 ranks (2016): `1` = Ranked first (most preferred), `2` = Ranked
+ *     second (middle), `3` = Ranked third (least preferred). `8` skipped,
+ *     `9` not asked, `.` missing.
+ *   - 351 binary (2016 / 2020): `1` = For / Favor / Support, `2` =
+ *     Against / Oppose. Same skip codes.
  *   - 350 binary (2020 grid): `1` = Favor, `2` = Oppose. Same skip codes.
+ *   - 328 binary (2024 grid): `1` = Support, `2` = Oppose. Same skip codes.
+ *   - **`CC24_323f`** (binary, 2024 only) carries an inherited
+ *     `_323f` column-name suffix from upstream survey-design re-use, but
+ *     the Pass-3 docx-extraction audit confirmed it sits inside the
+ *     `CC24_328grid` (Tax policies) battery as the student-loan-
+ *     forgiveness item. Same coding as 328 binaries; routed to MAT here
+ *     and NEVER to the immigration composite.
  *
  * Algorithm: each item produces a signal ∈ {−1, 0, +1} (rank 2 produces 0
  * — neutral middle), multiplied by item polarity. The weighted sum /
@@ -389,11 +426,14 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
  * − = redistributionist. Position = 3 + 2 × net. Posterior is a discrete-
  * Gaussian over {1..5} with σ inverse to total weight collected.
  *
- * Uncertainty: ≥ 2.0 → low, ≥ 1.0 → medium, < 1.0 → high. The 2020
- * battery's max total weight (1.8) sits below the `low` threshold by
- * construction, so 2020 MAT is capped at `medium` even with full data —
- * which matches the audit's explicit "medium confidence (vs `high` for
- * 2016)" recommendation.
+ * Uncertainty: ≥ 2.0 → low, ≥ 1.0 → medium, < 1.0 → high. Per-cycle
+ * implications:
+ *   - 2016 max weight = 3.5 → can earn `low`.
+ *   - 2020 max weight = 1.8 → capped at `medium` by construction, matching
+ *     the audit's explicit "medium confidence (vs `high` for 2016)".
+ *   - 2024 max weight = 4.2 → can earn `low`; the audit notes 2024 MAT is
+ *     "comparable to 2016 (3 high-confidence items per cycle)" with extra
+ *     reduced-weight items pushing total weight even higher.
  *
  * **Runtime sanity check (audit §9 recommendation)**: this v0.1 mapper
  * does NOT auto-flip CC16_351K direction at runtime even if the For-share
@@ -402,16 +442,17 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
  * inverting downstream.
  *
  * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
- * no `pid7`, no turnout fields. Only the year's `CC*_337_*` /
- * `CC*_351{I,K,a,b}` / `CC20_350b` columns are read.
+ * no `pid7`, no turnout fields. Only the year's `CC16_337_*` /
+ * `CC16_351{I,K}` / `CC20_350b` / `CC20_351{a,b}` / `CC24_328{c,d,e,b}` /
+ * `CC24_323f` columns are read.
  *
- * **2024 deferred**: `CC24_328{c,d,e,f,b}` is audited (§8) but ships in a
- * separate mapper revision; this function still returns fallback for 2024.
+ * **`CC24_328a` (zoning) is explicitly excluded** per audit §8 — direction
+ * ambiguous: YIMBY progressives + free-market conservatives both Support.
  */
 function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = economicItemsForYear(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year ${r.year} deferred`);
   }
 
   let weightedDirectionSum = 0;
@@ -439,7 +480,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   }
 
   if (totalWeight === 0) {
-    return fallbackContinuous(`v0.1C/E MAT: respondent answered 0/${items.length} economic-battery items`);
+    return fallbackContinuous(`v0.1C/E/G MAT: respondent answered 0/${items.length} economic-battery items`);
   }
 
   const net = weightedDirectionSum / totalWeight; // [-1, +1] (- = redistributionist, + = free-market)
@@ -460,7 +501,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       vars: usedVars,
       partyIdDerived: false,
       uncertainty,
-      notes: `v0.1C/E MAT (${r.year}): ${answered}/${items.length} economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)" : ""}`,
+      notes: `v0.1C/E/G MAT (${r.year}): ${answered}/${items.length} economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)" : ""}`,
     },
   };
 }

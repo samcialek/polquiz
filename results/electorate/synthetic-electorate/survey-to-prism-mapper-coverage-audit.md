@@ -1,6 +1,6 @@
 # Survey-to-PRISM Mapper Coverage Audit (Phase 2.7.7)
 
-**Run at:** 2026-05-04T18:18:21.298Z
+**Run at:** 2026-05-04T19:07:57.840Z
 **Sample row limit per year:** 5000
 **Status:** Read-only diagnostic. The mapper is **NOT** modified by this audit.
 
@@ -34,13 +34,13 @@ Per target the audit reports:
 | 2012 | 5000 | 5.93 | 14.07 | 1.97 |
 | 2016 | 5000 | 9.93 | 10.07 | 1.96 |
 | 2020 | 5000 | 9.92 | 10.08 | 1.96 |
-| 2024 | 5000 | 7.90 | 12.10 | 1.96 |
+| 2024 | 5000 | 8.90 | 11.10 | 1.96 |
 
 ## Cross-year per-target real-signal coverage (weighted %)
 
 | Target | Kind | 2008 | 2012 | 2016 | 2020 | 2024 | Mean | Blocker years |
 |---|---|---:|---:|---:|---:|---:|---:|---|
-| `MAT` | continuous | 0.0 | 0.0 | 100.0 | 100.0 | 0.0 | 40.0 | 2008, 2012, 2024 |
+| `MAT` | continuous | 0.0 | 0.0 | 100.0 | 100.0 | 100.0 | 60.0 | 2008, 2012 |
 | `CD` | continuous | 0.0 | 0.0 | 100.0 | 100.0 | 0.0 | 40.0 | 2008, 2012, 2024 |
 | `CU` | continuous | 0.0 | 0.0 | 100.0 | 99.9 | 100.0 | 60.0 | 2008, 2012 |
 | `MOR` | continuous | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2008, 2012, 2016, 2020, 2024 |
@@ -253,14 +253,14 @@ Per target the audit reports:
 ## 2024
 
 - Rows mapped: **5000**; total weight: **5828**
-- Per row (weighted mean): real-signal targets **7.90 / 20**; fallback **12.10 / 20**; party-ID-derived **1.96 / 20**
-- Signature blockers: **12 / 20** (`MAT`, `CD`, `MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
+- Per row (weighted mean): real-signal targets **8.90 / 20**; fallback **11.10 / 20**; party-ID-derived **1.96 / 20**
+- Signature blockers: **11 / 20** (`CD`, `MOR`, `PRO`, `COM`, `ZS`, `ONT_H`, `ONT_S`, `EPS`, `AES`, `moralBoundaries.ethnic_racial`, `moralBoundaries.gender`)
 
 ### Per-target coverage
 
 | Target | Kind | Real-signal % | Fallback % | Party-ID % | Mean uncertainty | Top source fields | Marginal summary | Blocker |
 |---|---|---:|---:|---:|---:|---|---|:--:|
-| `MAT` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
+| `MAT` | continuous | 100.0 | 0.0 | 0.0 | 1.00 | `CC24_323f` (100%), `CC24_328d` (100%), `CC24_328c` (100%) | dist=[0.264, 0.277, 0.220, 0.152, 0.086], spread=1.91e-1, mean_pos=2.52 | ✓ |
 | `CD` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
 | `CU` | continuous | 100.0 | 0.0 | 0.0 | 1.00 | `CC24_323a` (100%), `CC24_323b` (100%), `CC24_323c` (100%) | dist=[0.206, 0.165, 0.197, 0.222, 0.210], spread=5.74e-2, mean_pos=3.06 | ✓ |
 | `MOR` | continuous | 0.0 | 100.0 | 0.0 | 3.00 | — | dist=[0.200, 0.200, 0.200, 0.200, 0.200], spread=0.00e+0, mean_pos=3.00 | ✗ |
@@ -283,7 +283,6 @@ Per target the audit reports:
 
 ### Signature blockers detail
 
-- **`MAT`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`CD`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`MOR`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)
 - **`PRO`** — real-signal coverage 0.0% < 25%; weighted marginal indistinguishable from uniform [0.2,0.2,0.2,0.2,0.2] (spread=0.00e+0)

@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T18:18:05.585Z",
+  "runAt": "2026-05-04T19:07:43.754Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -143,7 +143,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2008 deferred"
+            "notes": "v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year 2008 deferred"
           }
         },
         "CD": {
@@ -607,7 +607,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2012 deferred"
+            "notes": "v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year 2012 deferred"
           }
         },
         "CD": {
@@ -1082,7 +1082,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1C/E MAT (2016): 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
+            "notes": "v0.1C/E/G MAT (2016): 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
           }
         },
         "CD": {
@@ -1571,7 +1571,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "medium",
-            "notes": "v0.1C/E MAT (2020): 3/3 economic-battery items, totalWeight=1.8 (− redistributionist, + free-market); net=0.11 → pos=3.22, salience=0.87; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)"
+            "notes": "v0.1C/E/G MAT (2020): 3/3 economic-battery items, totalWeight=1.8 (− redistributionist, + free-market); net=0.11 → pos=3.22, salience=0.87; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)"
           }
         },
         "CD": {
@@ -1931,9 +1931,9 @@
       "validationErrors": [],
       "perNodeCoverage": {
         "MAT": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 199,
+          "fallbackCount": 1,
+          "realSignalShare": 0.995
         },
         "CD": {
           "realSignalCount": 0,
@@ -2029,9 +2029,9 @@
         "realSignalShare": 1
       },
       "meanCoverage": {
-        "realSignalCount": 1586,
-        "fallbackCount": 2414,
-        "realSignalShare": 0.3965
+        "realSignalCount": 1785,
+        "fallbackCount": 2215,
+        "realSignalShare": 0.44625
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -2045,24 +2045,30 @@
         "turnoutObserved": true,
         "MAT": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.7979433133704712,
+            0.19896892766800126,
+            0.003084785125316566,
+            0.0000029736579799110315,
+            1.7823112690523987e-10
           ],
           "salPosterior": [
-            0.3,
-            0.45,
+            0.05,
             0.2,
-            0.05
+            0.4,
+            0.35
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC24_328d",
+              "CC24_328e",
+              "CC24_328c",
+              "CC24_323f",
+              "CC24_328b"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0.1C/E MAT: economic-battery decoder gated to 2016/2020 (audited); year 2024 deferred"
+            "uncertainty": "low",
+            "notes": "v0.1C/E/G MAT (2024): 5/5 economic-battery items, totalWeight=4.2 (− redistributionist, + free-market); net=-1.00 → pos=1.00, salience=2.40"
           }
         },
         "CD": {
@@ -2398,8 +2404,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 8,
-          "fallbackCount": 12,
+          "realSignalCount": 9,
+          "fallbackCount": 11,
           "totalTargets": 20
         }
       }

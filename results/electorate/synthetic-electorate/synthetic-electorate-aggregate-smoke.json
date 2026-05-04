@@ -1,6 +1,6 @@
 {
   "schema_version": "v0.1",
-  "run_at": "2026-05-04T18:18:34.759Z",
+  "run_at": "2026-05-04T19:08:11.554Z",
   "phase": "2.7.6 — synthetic electorate aggregate harness (mock universe)",
   "mock_disclaimer": "MOCK CONTRACT-TEST CELLS — not real population data; do not aggregate or interpret demographically.",
   "pipeline": {
@@ -1713,12 +1713,12 @@
         "weight_max": 1500,
         "position_node_marginals": {
           "MAT": {
-            "mean": 3,
-            "sd": 0,
-            "p10": 3,
-            "p50": 3,
-            "p90": 3,
-            "mean_salience": 1
+            "mean": 2.5053824545377523,
+            "sd": 1.2404388745880937,
+            "p10": 1.2051474196054985,
+            "p50": 2.1423799730098985,
+            "p90": 4.794852580394501,
+            "mean_salience": 1.6540574282147316
           },
           "CD": {
             "mean": 3,
@@ -1826,39 +1826,39 @@
         "low_order_joints": {
           "MAT_x_CD": [
             [
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001
+              0.06275405911057617,
+              0.06275405911057617,
+              0.06275405911057617,
+              0.06275405911057617,
+              0.06275405911057617
             ],
             [
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001
+              0.04503762687518134,
+              0.04503762687518134,
+              0.04503762687518134,
+              0.04503762687518134,
+              0.04503762687518134
             ],
             [
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001
+              0.0418170856006459,
+              0.0418170856006459,
+              0.0418170856006459,
+              0.0418170856006459,
+              0.0418170856006459
             ],
             [
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001
+              0.029160220823308873,
+              0.029160220823308873,
+              0.029160220823308873,
+              0.029160220823308873,
+              0.029160220823308873
             ],
             [
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001,
-              0.04000000000000001
+              0.02123100759028773,
+              0.02123100759028773,
+              0.02123100759028773,
+              0.02123100759028773,
+              0.02123100759028773
             ]
           ],
           "CD_x_CU": [
@@ -1946,7 +1946,7 @@
               "group": "CA",
               "row_count": 5,
               "total_weight": 6300,
-              "MAT_mean": 3,
+              "MAT_mean": 2.6410294839210993,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 8.26
@@ -1955,7 +1955,7 @@
               "group": "FL",
               "row_count": 5,
               "total_weight": 7500,
-              "MAT_mean": 3,
+              "MAT_mean": 3.26663197512098,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.96
@@ -1964,7 +1964,7 @@
               "group": "GA",
               "row_count": 5,
               "total_weight": 4250,
-              "MAT_mean": 3,
+              "MAT_mean": 2.2250361532573817,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.62
@@ -1973,7 +1973,7 @@
               "group": "NY",
               "row_count": 5,
               "total_weight": 5400,
-              "MAT_mean": 3,
+              "MAT_mean": 2.059671188736185,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.56
@@ -1982,7 +1982,7 @@
               "group": "OH",
               "row_count": 5,
               "total_weight": 6100,
-              "MAT_mean": 3,
+              "MAT_mean": 2.110534962444179,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.8
@@ -1991,7 +1991,7 @@
               "group": "PA",
               "row_count": 5,
               "total_weight": 5650,
-              "MAT_mean": 3,
+              "MAT_mean": 3.0202310025150068,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.66
@@ -2000,7 +2000,7 @@
               "group": "TX",
               "row_count": 5,
               "total_weight": 4850,
-              "MAT_mean": 3,
+              "MAT_mean": 1.7907515951522017,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.7
@@ -2011,7 +2011,7 @@
               "group": "18-24",
               "row_count": 10,
               "total_weight": 9100,
-              "MAT_mean": 3,
+              "MAT_mean": 1.993576800860665,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.662637362637363
@@ -2020,7 +2020,7 @@
               "group": "35-44",
               "row_count": 10,
               "total_weight": 11950,
-              "MAT_mean": 3,
+              "MAT_mean": 2.820317231206085,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.503514644351465
@@ -2029,7 +2029,7 @@
               "group": "55-64",
               "row_count": 10,
               "total_weight": 11500,
-              "MAT_mean": 3,
+              "MAT_mean": 2.086651103485643,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.687304347826087
@@ -2038,7 +2038,7 @@
               "group": "65-74",
               "row_count": 5,
               "total_weight": 7500,
-              "MAT_mean": 3,
+              "MAT_mean": 3.26663197512098,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 6.96
@@ -2049,7 +2049,7 @@
               "group": "black",
               "row_count": 10,
               "total_weight": 9650,
-              "MAT_mean": 3,
+              "MAT_mean": 2.1325003181885256,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.146010362694301
@@ -2058,7 +2058,7 @@
               "group": "hispanic",
               "row_count": 10,
               "total_weight": 11150,
-              "MAT_mean": 3,
+              "MAT_mean": 2.2711776668332826,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.581434977578476
@@ -2067,7 +2067,7 @@
               "group": "white",
               "row_count": 15,
               "total_weight": 19250,
-              "MAT_mean": 3,
+              "MAT_mean": 2.8279640648585267,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.1381298701298705
@@ -2078,7 +2078,7 @@
               "group": "female",
               "row_count": 15,
               "total_weight": 16350,
-              "MAT_mean": 3,
+              "MAT_mean": 1.9988766315946838,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.394434250764526
@@ -2087,7 +2087,7 @@
               "group": "male",
               "row_count": 20,
               "total_weight": 23700,
-              "MAT_mean": 3,
+              "MAT_mean": 2.85480735770734,
               "CD_mean": 3,
               "MOR_mean": 3,
               "engagement_mean": 7.173080168776371
