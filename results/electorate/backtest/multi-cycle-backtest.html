@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRISM 5-Cycle Backtest Dashboard</title>
+<style>
+:root {
+  --bg: #f7f7f4;
+  --paper: #ffffff;
+  --ink: #202422;
+  --muted: #5f6862;
+  --line: #d9ddd6;
+  --line-strong: #b6beb5;
+  --teal: #227c70;
+  --coral: #bd5742;
+  --gold: #b7791f;
+  --violet: #6a5b8f;
+  --shadow: 0 12px 32px rgba(32, 36, 34, 0.06);
+  --radius: 8px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; padding: 24px; }
+h1 { margin: 0 0 8px 0; font-size: 28px; font-weight: 600; }
+h2 { margin: 0 0 12px 0; font-size: 20px; font-weight: 600; }
+h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.container { max-width: 1280px; margin: 0 auto; }
+.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+.muted { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.summary, .cycle { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 24px; }
+.cycle h2 { color: var(--teal); }
+.cycle-meta { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+.cycle-meta .dot { margin: 0 8px; color: var(--line-strong); }
+.dir.ok { color: var(--teal); font-weight: 600; }
+.dir.warn { color: var(--coral); font-weight: 600; }
+.banner { padding: 10px 14px; border-radius: 6px; margin-bottom: 12px; font-size: 13px; line-height: 1.45; }
+.banner.warn { background: #f4ded9; color: #7a3027; border-left: 3px solid var(--coral); }
+.banner.mid { background: #f4e6c8; color: #5f4810; border-left: 3px solid var(--gold); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.panel { background: #fafaf7; border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th { text-align: left; font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--line); padding: 6px 4px; }
+td { padding: 4px; border-bottom: 1px solid var(--line); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.sumtable td.gap { font-variant-numeric: tabular-nums; color: var(--muted); }
+.sumtable .win-ok { color: var(--teal); font-weight: 600; text-align: center; }
+.sumtable .win-bad { color: var(--coral); font-weight: 600; text-align: center; }
+.kv { margin-bottom: 8px; }
+.kv .gap { font-variant-numeric: tabular-nums; color: var(--muted); }
+.cov-svg { vertical-align: middle; }
+.vio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.vio-cell { padding: 6px; border: 1px solid var(--line); border-radius: 4px; background: white; }
+.vio-label { font-size: 12px; font-weight: 600; }
+.vio-sub { font-weight: 400; color: var(--muted); margin-left: 4px; font-size: 11px; }
+.vio-num { font-size: 11px; color: var(--muted); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.arc .rank { color: var(--muted); width: 22px; text-align: right; }
+.arc { font-size: 12px; }
+.caveats { background: #f4e6c8; border-left: 3px solid var(--gold); padding: 14px 16px; border-radius: 6px; margin: 16px 0; font-size: 13px; line-height: 1.55; }
+.caveats h3 { color: #5f4810; margin-bottom: 6px; }
+.caveats li { margin-bottom: 4px; }
+nav.toc { font-size: 13px; padding: 8px 12px; background: #ecefeb; border-radius: 6px; display: inline-block; margin-bottom: 16px; }
+nav.toc a { color: var(--teal); margin-right: 12px; text-decoration: none; }
+nav.toc a:hover { text-decoration: underline; }
+</style>
+</head><body>
+<div class="container">
+  <h1>PRISM 5-Cycle Backtest Dashboard</h1>
+  <div class="subtitle">CCES microdata → surveyToPrismMapper (point estimate) → predictVote → weighted aggregate. Compared against FEC popular-vote totals.</div>
+
+  <nav class="toc">Jump to: <a href="#y2008">2008</a> <a href="#y2012">2012</a> <a href="#y2016">2016</a> <a href="#y2020">2020</a> <a href="#y2024">2024</a></nav>
+
+  
+  <section class="summary">
+    <h2>Summary — predicted vs actual, all 5 cycles</h2>
+    <table class="sumtable">
+      <thead><tr>
+        <th>Year</th><th>n (wt)</th><th>Coverage</th>
+        <th>Pred D</th><th>Actual D</th>
+        <th>Pred R</th><th>Actual R</th>
+        <th>Gap D</th><th>Gap R</th>
+        <th>|avg|</th>
+        <th>Winner</th>
+      </tr></thead>
+      <tbody><tr>
+      <td><a href="#y2008">2008</a></td>
+      <td class="num">0.03M</td>
+      <td class="num">0%</td>
+      <td class="num">100.0%</td>
+      <td class="num">52.9%</td>
+      <td class="num">0.0%</td>
+      <td class="num">45.6%</td>
+      <td class="num gap">+47.1pp</td>
+      <td class="num gap">-45.6pp</td>
+      <td class="num">31.38pp</td>
+      <td class="win-ok">✓</td>
+    </tr><tr>
+      <td><a href="#y2012">2012</a></td>
+      <td class="num">0.05M</td>
+      <td class="num">9%</td>
+      <td class="num">78.3%</td>
+      <td class="num">51.1%</td>
+      <td class="num">21.7%</td>
+      <td class="num">47.2%</td>
+      <td class="num gap">+27.2pp</td>
+      <td class="num gap">-25.5pp</td>
+      <td class="num">18.13pp</td>
+      <td class="win-ok">✓</td>
+    </tr><tr>
+      <td><a href="#y2016">2016</a></td>
+      <td class="num">0.06M</td>
+      <td class="num">36%</td>
+      <td class="num">58.3%</td>
+      <td class="num">48.2%</td>
+      <td class="num">38.8%</td>
+      <td class="num">46.1%</td>
+      <td class="num gap">+10.1pp</td>
+      <td class="num gap">-7.3pp</td>
+      <td class="num">6.73pp</td>
+      <td class="win-ok">✓</td>
+    </tr><tr>
+      <td><a href="#y2020">2020</a></td>
+      <td class="num">0.07M</td>
+      <td class="num">36%</td>
+      <td class="num">73.9%</td>
+      <td class="num">51.3%</td>
+      <td class="num">26.1%</td>
+      <td class="num">46.9%</td>
+      <td class="num gap">+22.6pp</td>
+      <td class="num gap">-20.8pp</td>
+      <td class="num">15.08pp</td>
+      <td class="win-ok">✓</td>
+    </tr><tr>
+      <td><a href="#y2024">2024</a></td>
+      <td class="num">0.07M</td>
+      <td class="num">36%</td>
+      <td class="num">65.8%</td>
+      <td class="num">48.3%</td>
+      <td class="num">34.2%</td>
+      <td class="num">49.8%</td>
+      <td class="num gap">+17.4pp</td>
+      <td class="num gap">-15.6pp</td>
+      <td class="num">11.62pp</td>
+      <td class="win-bad">✗</td>
+    </tr></tbody>
+    </table>
+    <div class="muted">Generated 2026-05-05T17:55:07.063Z • 35.5s pipeline runtime</div>
+  </section>
+
+  <div class="caveats">
+    <h3>How to read these gaps</h3>
+    <ul>
+      <li><strong>2008 (~5% mapper coverage):</strong> all node positions fall back to uniform priors. Predictions reflect the population center distance to each candidate, not modelled vote choice. The 31pp gap is a coverage-gap demonstration.</li>
+      <li><strong>2012 (~20% mapper coverage, MAT only):</strong> economic-axis signal only; cultural / moral / system axes are fallback. Directional read at best.</li>
+      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Two systematic biases visible at the model layer (separable from coverage):
+        <ul style="margin-top: 4px;">
+          <li>Pre-existing model D-bias of ~11pp on 2020 archetype-centroid baseline (<code>voteModelSmoke</code>): centrist policy positions sit closer to D candidate profiles than to recent R candidates (especially Trump's CD/CU/MOR positioning).</li>
+          <li>Thin-coverage shrinkage adds another ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
+          <li><strong>partyID is not passed to the predictor</strong> in this run — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route many cross-pressured voters to vote with their party despite issue-distance.</li>
+        </ul>
+      </li>
+      <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline.</li>
+    </ul>
+  </div>
+
+  <a id="y2008"></a>
+  <section class="cycle">
+    <h2>2008 — Obama (D) vs McCain (R)</h2>
+    <div class="cycle-meta"><span>n = 32,800 respondents</span><span class="dot">•</span><span>real-signal coverage 0.0%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 31.38pp</span></div>
+    <div class="banner warn"><strong>Coverage caveat:</strong> &lt;15% of node-targets carry real CCES signal for 2008. Predictions are dominated by fallback priors and reflect the population center, not modelled vote choice. The gap below is a coverage-gap demonstration, not a model-accuracy result.</div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Predicted vs Actual (shares of voters)</h3>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="224" height="12" fill="#3057a3" opacity="0.45"/><text x="283" y="16" font-size="10" fill="#5f6862">100.0% pred</text><rect x="56" y="20" width="118.5632" height="12" fill="#3057a3"/><text x="177.5632" y="30" font-size="10" fill="#5f6862">52.9% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="0" height="12" fill="#bd5742" opacity="0.45"/><text x="59" y="48" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="52" width="102.256" height="12" fill="#bd5742"/><text x="161.256" y="62" font-size="10" fill="#5f6862">45.6% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.180799999999998" height="12" fill="#6a5b8f"/><text x="62.1808" y="94" font-size="10" fill="#5f6862">1.4% actual</text></svg>
+        <table class="kv">
+          <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
+          <tr><td>D</td><td>100.0%</td><td>52.9%</td><td class="gap">+47.1pp</td></tr>
+          <tr><td>R</td><td>0.0%</td><td>45.6%</td><td class="gap">-45.6pp</td></tr>
+          <tr><td>Other</td><td>0.0%</td><td>1.4%</td><td class="gap">-1.4pp</td></tr>
+        </table>
+        <table class="kv">
+          <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
+          <tr><td>D</td><td>100.0%</td><td>32.6%</td><td class="gap">+67.4pp</td></tr>
+          <tr><td>R</td><td>0.0%</td><td>28.1%</td><td class="gap">-28.1pp</td></tr>
+          <tr><td>Abstain</td><td>0.0%</td><td>38.4%</td><td class="gap">-38.4pp</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>Mapper coverage (real_signal % per target)</h3>
+        <table class="cov">
+          <thead><tr><th>Target</th><th>Coverage</th><th class="num">%</th></tr></thead>
+          <tbody><tr><td>MAT</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>CD</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>CU</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>MOR</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>PRO</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>COM</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ZS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_H</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_S</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>EPS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>AES</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Continuous node distributions (weighted, 1–5 scale)</h3>
+      <div class="vio-grid"><div class="vio-cell"><div class="vio-label">MAT <span class="vio-sub">Material</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">CD <span class="vio-sub">Cultural Direction</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">CU <span class="vio-sub">Cultural Uniformity</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">MOR <span class="vio-sub">Moral Circle</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">PRO <span class="vio-sub">Proceduralism</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">COM <span class="vio-sub">Compromise</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ZS <span class="vio-sub">Zero-Sum</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_H <span class="vio-sub">Hierarchy</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_S <span class="vio-sub">System Ontology</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>EPS (Epistemic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="24.666666666664618" width="36.666666666666664" height="37.33333333333538" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">empi</text><text x="23.333333333333332" y="22.666666666664618" font-size="8" fill="#202422" text-anchor="middle">20</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">inst</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">30</text><rect x="82.33333333333333" y="43.333333333332305" width="36.666666666666664" height="18.66666666666769" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">trad</text><text x="100.66666666666666" y="41.333333333332305" font-size="8" fill="#202422" text-anchor="middle">10</text><rect x="121" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">intu</text><text x="139.33333333333334" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="159.66666666666666" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auto</text><text x="178" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="198.33333333333331" y="43.333333333332305" width="36.666666666666664" height="18.66666666666769" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">nihi</text><text x="216.66666666666666" y="41.333333333332305" font-size="8" fill="#202422" text-anchor="middle">10</text></svg>
+        <div class="muted">Mean salience 1.00</div>
+      </div>
+      <div class="panel">
+        <h3>AES (Aesthetic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">stat</text><text x="23.333333333333332" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">tech</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="82.33333333333333" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">past</text><text x="100.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="121" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auth</text><text x="139.33333333333334" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="159.66666666666666" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">figh</text><text x="178" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="198.33333333333331" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">visi</text><text x="216.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text></svg>
+        <div class="muted">Mean salience 0.47</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="157.42857142857144" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="206.57142857142858" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text></svg>
+      <div class="muted">Aggregate intensity mean 1.00</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Engagement distribution</h3>
+        <table class="kv">
+          <thead><tr><th>Bucket</th><th>Share</th></tr></thead>
+          <tbody>
+    <tr><td>apolitical</td><td class="num">0.0%</td></tr>
+    <tr><td>casual</td><td class="num">38.1%</td></tr>
+    <tr><td>engaged</td><td class="num">61.9%</td></tr>
+    <tr><td>highly engaged</td><td class="num">0.0%</td></tr>
+  </tbody>
+        </table>
+        <div class="muted">Mean engagement 5.17 (0–10 scale)</div>
+      </div>
+      <div class="panel">
+        <h3>Top archetypes by weight (nearest-archetype assignment)</h3>
+        <table class="arc">
+          <thead><tr><th></th><th>Archetype</th><th class="num">Share</th></tr></thead>
+          <tbody><tr><td class="rank">1</td><td><strong>141</strong> Black Voter</td><td class="num">100.0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+<a id="y2012"></a>
+  <section class="cycle">
+    <h2>2012 — Obama (D) vs Romney (R)</h2>
+    <div class="cycle-meta"><span>n = 54,535 respondents</span><span class="dot">•</span><span>real-signal coverage 9.1%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 18.13pp</span></div>
+    <div class="banner warn"><strong>Coverage caveat:</strong> &lt;15% of node-targets carry real CCES signal for 2012. Predictions are dominated by fallback priors and reflect the population center, not modelled vote choice. The gap below is a coverage-gap demonstration, not a model-accuracy result.</div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Predicted vs Actual (shares of voters)</h3>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="175.2829536787661" height="12" fill="#3057a3" opacity="0.45"/><text x="234.2829536787661" y="16" font-size="10" fill="#5f6862">78.3% pred</text><rect x="56" y="20" width="114.37440000000001" height="12" fill="#3057a3"/><text x="173.3744" y="30" font-size="10" fill="#5f6862">51.1% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="48.7170463212339" height="12" fill="#bd5742" opacity="0.45"/><text x="107.71704632123391" y="48" font-size="10" fill="#5f6862">21.7% pred</text><rect x="56" y="52" width="105.728" height="12" fill="#bd5742"/><text x="164.728" y="62" font-size="10" fill="#5f6862">47.2% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.8975999999999935" height="12" fill="#6a5b8f"/><text x="62.8976" y="94" font-size="10" fill="#5f6862">1.7% actual</text></svg>
+        <table class="kv">
+          <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
+          <tr><td>D</td><td>78.3%</td><td>51.1%</td><td class="gap">+27.2pp</td></tr>
+          <tr><td>R</td><td>21.7%</td><td>47.2%</td><td class="gap">-25.5pp</td></tr>
+          <tr><td>Other</td><td>0.0%</td><td>1.7%</td><td class="gap">-1.7pp</td></tr>
+        </table>
+        <table class="kv">
+          <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
+          <tr><td>D</td><td>78.3%</td><td>29.6%</td><td class="gap">+48.6pp</td></tr>
+          <tr><td>R</td><td>21.7%</td><td>27.4%</td><td class="gap">-5.6pp</td></tr>
+          <tr><td>Abstain</td><td>0.0%</td><td>42.0%</td><td class="gap">-42.0pp</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>Mapper coverage (real_signal % per target)</h3>
+        <table class="cov">
+          <thead><tr><th>Target</th><th>Coverage</th><th class="num">%</th></tr></thead>
+          <tbody><tr><td>MAT</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CD</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>CU</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>MOR</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>PRO</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>COM</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ZS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_H</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_S</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>EPS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>AES</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Continuous node distributions (weighted, 1–5 scale)</h3>
+      <div class="vio-grid"><div class="vio-cell"><div class="vio-label">MAT <span class="vio-sub">Material</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="89.08400222701701" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="27.94076961918037" y="11" width="41.6091726984383" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="46.61488243923371" y1="11" x2="46.61488243923371" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.70</text>
+  </svg><div class="vio-num">μ 2.57 ± 1.12</div></div><div class="vio-cell"><div class="vio-label">CD <span class="vio-sub">Cultural Direction</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">CU <span class="vio-sub">Cultural Uniformity</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">MOR <span class="vio-sub">Moral Circle</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">PRO <span class="vio-sub">Proceduralism</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">COM <span class="vio-sub">Compromise</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ZS <span class="vio-sub">Zero-Sum</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_H <span class="vio-sub">Hierarchy</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_S <span class="vio-sub">System Ontology</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>EPS (Epistemic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="24.66666666666653" width="36.666666666666664" height="37.33333333333347" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">empi</text><text x="23.333333333333332" y="22.66666666666653" font-size="8" fill="#202422" text-anchor="middle">20</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">inst</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">30</text><rect x="82.33333333333333" y="43.333333333333265" width="36.666666666666664" height="18.666666666666735" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">trad</text><text x="100.66666666666666" y="41.333333333333265" font-size="8" fill="#202422" text-anchor="middle">10</text><rect x="121" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">intu</text><text x="139.33333333333334" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="159.66666666666666" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auto</text><text x="178" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="198.33333333333331" y="43.333333333333265" width="36.666666666666664" height="18.666666666666735" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">nihi</text><text x="216.66666666666666" y="41.333333333333265" font-size="8" fill="#202422" text-anchor="middle">10</text></svg>
+        <div class="muted">Mean salience 1.00</div>
+      </div>
+      <div class="panel">
+        <h3>AES (Aesthetic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">stat</text><text x="23.333333333333332" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">tech</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="82.33333333333333" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">past</text><text x="100.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="121" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auth</text><text x="139.33333333333334" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="159.66666666666666" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">figh</text><text x="178" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="198.33333333333331" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">visi</text><text x="216.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text></svg>
+        <div class="muted">Mean salience 0.47</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="26.702949625704214" width="45.142857142857146" height="15.297050374295786" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="24.702949625704214" font-size="8" fill="#202422" text-anchor="middle">1.27</text><rect x="157.42857142857144" y="30.428233829648256" width="45.142857142857146" height="11.571766170351742" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.428233829648256" font-size="8" fill="#202422" text-anchor="middle">0.96</text><rect x="206.57142857142858" y="27.323331214301717" width="45.142857142857146" height="14.676668785698281" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="25.323331214301717" font-size="8" fill="#202422" text-anchor="middle">1.22</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="21.549266878246208" width="45.142857142857146" height="20.450733121753792" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.549266878246208" font-size="8" fill="#202422" text-anchor="middle">1.70</text></svg>
+      <div class="muted">Aggregate intensity mean 1.68</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Engagement distribution</h3>
+        <table class="kv">
+          <thead><tr><th>Bucket</th><th>Share</th></tr></thead>
+          <tbody>
+    <tr><td>apolitical</td><td class="num">0.0%</td></tr>
+    <tr><td>casual</td><td class="num">13.5%</td></tr>
+    <tr><td>engaged</td><td class="num">41.1%</td></tr>
+    <tr><td>highly engaged</td><td class="num">45.4%</td></tr>
+  </tbody>
+        </table>
+        <div class="muted">Mean engagement 7.05 (0–10 scale)</div>
+      </div>
+      <div class="panel">
+        <h3>Top archetypes by weight (nearest-archetype assignment)</h3>
+        <table class="arc">
+          <thead><tr><th></th><th>Archetype</th><th class="num">Share</th></tr></thead>
+          <tbody><tr><td class="rank">1</td><td><strong>141</strong> Black Voter</td><td class="num">70.8%</td></tr><tr><td class="rank">2</td><td><strong>043</strong> Quiet Egalitarian</td><td class="num">17.2%</td></tr><tr><td class="rank">3</td><td><strong>042</strong> Localist Progressive</td><td class="num">12.0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+<a id="y2016"></a>
+  <section class="cycle">
+    <h2>2016 — H. Clinton (D) vs Trump (R)</h2>
+    <div class="cycle-meta"><span>n = 64,600 respondents</span><span class="dot">•</span><span>real-signal coverage 36.2%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 6.73pp</span></div>
+    <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 36% of node-targets carry real CCES signal for 2016. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Predicted vs Actual (shares of voters)</h3>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="130.53420289669137" height="12" fill="#3057a3" opacity="0.45"/><text x="189.53420289669137" y="16" font-size="10" fill="#5f6862">58.3% pred</text><rect x="56" y="20" width="107.92320000000001" height="12" fill="#3057a3"/><text x="166.9232" y="30" font-size="10" fill="#5f6862">48.2% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="86.91539079822422" height="12" fill="#bd5742" opacity="0.45"/><text x="145.91539079822422" y="48" font-size="10" fill="#5f6862">38.8% pred</text><rect x="56" y="52" width="103.24159999999999" height="12" fill="#bd5742"/><text x="162.2416" y="62" font-size="10" fill="#5f6862">46.1% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="6.550406305084419" height="12" fill="#6a5b8f" opacity="0.45"/><text x="65.55040630508442" y="80" font-size="10" fill="#5f6862">2.9% pred</text><rect x="56" y="84" width="12.835200000000004" height="12" fill="#6a5b8f"/><text x="71.8352" y="94" font-size="10" fill="#5f6862">5.7% actual</text></svg>
+        <table class="kv">
+          <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
+          <tr><td>D</td><td>58.3%</td><td>48.2%</td><td class="gap">+10.1pp</td></tr>
+          <tr><td>R</td><td>38.8%</td><td>46.1%</td><td class="gap">-7.3pp</td></tr>
+          <tr><td>Other</td><td>2.9%</td><td>5.7%</td><td class="gap">-2.8pp</td></tr>
+        </table>
+        <table class="kv">
+          <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
+          <tr><td>D</td><td>56.4%</td><td>28.5%</td><td class="gap">+27.9pp</td></tr>
+          <tr><td>R</td><td>37.6%</td><td>27.3%</td><td class="gap">+10.3pp</td></tr>
+          <tr><td>Abstain</td><td>3.2%</td><td>40.8%</td><td class="gap">-37.6pp</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>Mapper coverage (real_signal % per target)</h3>
+        <table class="cov">
+          <thead><tr><th>Target</th><th>Coverage</th><th class="num">%</th></tr></thead>
+          <tbody><tr><td>MAT</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CD</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CU</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>MOR</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>PRO</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>COM</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ZS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="78" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">98%</td></tr><tr><td>ONT_H</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_S</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>EPS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>AES</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Continuous node distributions (weighted, 1–5 scale)</h3>
+      <div class="vio-grid"><div class="vio-cell"><div class="vio-label">MAT <span class="vio-sub">Material</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="26.068979657135912" y1="20" x2="95.9310203428641" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="42.56116941971281" y="11" width="36.87766116057439" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="54.93631939376781" y1="11" x2="54.93631939376781" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.60</text>
+  </svg><div class="vio-num">μ 3.00 ± 1.16</div></div><div class="vio-cell"><div class="vio-label">CD <span class="vio-sub">Cultural Direction</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="89.08400222701701" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="32.915997772982976" y="11" width="56.16800445403403" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.68</text>
+  </svg><div class="vio-num">μ 2.82 ± 1.18</div></div><div class="vio-cell"><div class="vio-label">CU <span class="vio-sub">Cultural Uniformity</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="30.84838949607468" y1="20" x2="91.15161050392533" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="30.84838949607468" y="11" width="60.303221007850645" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.57</text>
+  </svg><div class="vio-num">μ 3.14 ± 1.15</div></div><div class="vio-cell"><div class="vio-label">MOR <span class="vio-sub">Moral Circle</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">PRO <span class="vio-sub">Proceduralism</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">COM <span class="vio-sub">Compromise</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ZS <span class="vio-sub">Zero-Sum</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="46.80452394596166" y1="20" x2="75.19547605403835" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="14.195476054038352" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.32</text>
+  </svg><div class="vio-num">μ 3.13 ± 0.51</div></div><div class="vio-cell"><div class="vio-label">ONT_H <span class="vio-sub">Hierarchy</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_S <span class="vio-sub">System Ontology</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>EPS (Epistemic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="24.66666666666667" width="36.666666666666664" height="37.33333333333333" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">empi</text><text x="23.333333333333332" y="22.66666666666667" font-size="8" fill="#202422" text-anchor="middle">20</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">inst</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">30</text><rect x="82.33333333333333" y="43.333333333333336" width="36.666666666666664" height="18.666666666666664" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">trad</text><text x="100.66666666666666" y="41.333333333333336" font-size="8" fill="#202422" text-anchor="middle">10</text><rect x="121" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">intu</text><text x="139.33333333333334" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="159.66666666666666" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auto</text><text x="178" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="198.33333333333331" y="43.333333333333336" width="36.666666666666664" height="18.666666666666664" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">nihi</text><text x="216.66666666666666" y="41.333333333333336" font-size="8" fill="#202422" text-anchor="middle">10</text></svg>
+        <div class="muted">Mean salience 1.00</div>
+      </div>
+      <div class="panel">
+        <h3>AES (Aesthetic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">stat</text><text x="23.333333333333332" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">tech</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="82.33333333333333" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">past</text><text x="100.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="121" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auth</text><text x="139.33333333333334" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="159.66666666666666" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">figh</text><text x="178" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="198.33333333333331" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">visi</text><text x="216.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text></svg>
+        <div class="muted">Mean salience 0.47</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="25.823824334801376" width="45.142857142857146" height="16.176175665198624" fill="#b7791f" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="23.823824334801376" font-size="8" fill="#202422" text-anchor="middle">1.35</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="27.157795290935034" width="45.142857142857146" height="14.842204709064967" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="25.157795290935034" font-size="8" fill="#202422" text-anchor="middle">1.24</text><rect x="157.42857142857144" y="30.4624408919451" width="45.142857142857146" height="11.537559108054902" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.4624408919451" font-size="8" fill="#202422" text-anchor="middle">0.96</text><rect x="206.57142857142858" y="27.21433981266952" width="45.142857142857146" height="14.785660187330478" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="25.21433981266952" font-size="8" fill="#202422" text-anchor="middle">1.23</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="21.147821870744206" width="45.142857142857146" height="20.852178129255794" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.147821870744206" font-size="8" fill="#202422" text-anchor="middle">1.74</text></svg>
+      <div class="muted">Aggregate intensity mean 1.83</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Engagement distribution</h3>
+        <table class="kv">
+          <thead><tr><th>Bucket</th><th>Share</th></tr></thead>
+          <tbody>
+    <tr><td>apolitical</td><td class="num">0.0%</td></tr>
+    <tr><td>casual</td><td class="num">12.8%</td></tr>
+    <tr><td>engaged</td><td class="num">25.1%</td></tr>
+    <tr><td>highly engaged</td><td class="num">62.0%</td></tr>
+  </tbody>
+        </table>
+        <div class="muted">Mean engagement 7.59 (0–10 scale)</div>
+      </div>
+      <div class="panel">
+        <h3>Top archetypes by weight (nearest-archetype assignment)</h3>
+        <table class="arc">
+          <thead><tr><th></th><th>Archetype</th><th class="num">Share</th></tr></thead>
+          <tbody><tr><td class="rank">1</td><td><strong>141</strong> Black Voter</td><td class="num">34.7%</td></tr><tr><td class="rank">2</td><td><strong>002</strong> Independent Social Democrat</td><td class="num">11.9%</td></tr><tr><td class="rank">3</td><td><strong>042</strong> Localist Progressive</td><td class="num">7.6%</td></tr><tr><td class="rank">4</td><td><strong>112</strong> Engaged Cosmopolitan</td><td class="num">6.9%</td></tr><tr><td class="rank">5</td><td><strong>050</strong> Traditionalist Moralist</td><td class="num">6.0%</td></tr><tr><td class="rank">6</td><td><strong>076</strong> Fiscal Gradualist</td><td class="num">6.0%</td></tr><tr><td class="rank">7</td><td><strong>137</strong> Moral Crusader</td><td class="num">5.7%</td></tr><tr><td class="rank">8</td><td><strong>043</strong> Quiet Egalitarian</td><td class="num">5.5%</td></tr><tr><td class="rank">9</td><td><strong>078</strong> Meritocratic Conservative</td><td class="num">5.4%</td></tr><tr><td class="rank">10</td><td><strong>136</strong> Aspirational Traditionalist</td><td class="num">2.9%</td></tr><tr><td class="rank">11</td><td><strong>073</strong> Civic Traditionalist</td><td class="num">1.9%</td></tr><tr><td class="rank">12</td><td><strong>139</strong> Civic Assimilationist</td><td class="num">1.6%</td></tr><tr><td class="rank">13</td><td><strong>129</strong> Loyal Republican</td><td class="num">1.0%</td></tr><tr><td class="rank">14</td><td><strong>128</strong> Loyal Democrat</td><td class="num">0.8%</td></tr><tr><td class="rank">15</td><td><strong>049</strong> Moral Egalitarian</td><td class="num">0.6%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+<a id="y2020"></a>
+  <section class="cycle">
+    <h2>2020 — Biden (D) vs Trump (R)</h2>
+    <div class="cycle-meta"><span>n = 61,000 respondents</span><span class="dot">•</span><span>real-signal coverage 36.4%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 15.08pp</span></div>
+    <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 36% of node-targets carry real CCES signal for 2020. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Predicted vs Actual (shares of voters)</h3>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="165.59387993104505" height="12" fill="#3057a3" opacity="0.45"/><text x="224.59387993104505" y="16" font-size="10" fill="#5f6862">73.9% pred</text><rect x="56" y="20" width="114.9344" height="12" fill="#3057a3"/><text x="173.93439999999998" y="30" font-size="10" fill="#5f6862">51.3% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="58.40612006895495" height="12" fill="#bd5742" opacity="0.45"/><text x="117.40612006895495" y="48" font-size="10" fill="#5f6862">26.1% pred</text><rect x="56" y="52" width="104.96640000000001" height="12" fill="#bd5742"/><text x="163.96640000000002" y="62" font-size="10" fill="#5f6862">46.9% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="4.099199999999996" height="12" fill="#6a5b8f"/><text x="63.099199999999996" y="94" font-size="10" fill="#5f6862">1.8% actual</text></svg>
+        <table class="kv">
+          <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
+          <tr><td>D</td><td>73.9%</td><td>51.3%</td><td class="gap">+22.6pp</td></tr>
+          <tr><td>R</td><td>26.1%</td><td>46.9%</td><td class="gap">-20.8pp</td></tr>
+          <tr><td>Other</td><td>0.0%</td><td>1.8%</td><td class="gap">-1.8pp</td></tr>
+        </table>
+        <table class="kv">
+          <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
+          <tr><td>D</td><td>69.9%</td><td>33.6%</td><td class="gap">+36.3pp</td></tr>
+          <tr><td>R</td><td>24.6%</td><td>30.7%</td><td class="gap">-6.0pp</td></tr>
+          <tr><td>Abstain</td><td>5.5%</td><td>34.6%</td><td class="gap">-29.1pp</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>Mapper coverage (real_signal % per target)</h3>
+        <table class="cov">
+          <thead><tr><th>Target</th><th>Coverage</th><th class="num">%</th></tr></thead>
+          <tbody><tr><td>MAT</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CD</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CU</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>MOR</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>PRO</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>COM</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ZS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>ONT_H</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_S</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>EPS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>AES</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Continuous node distributions (weighted, 1–5 scale)</h3>
+      <div class="vio-grid"><div class="vio-cell"><div class="vio-label">MAT <span class="vio-sub">Material</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="28.348762861299875" y1="20" x2="85.54425638506328" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="28.348762861299875" y="11" width="37.15971942676025" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="28.348762861299875" y1="11" x2="28.348762861299875" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.64</text>
+  </svg><div class="vio-num">μ 2.29 ± 1.09</div></div><div class="vio-cell"><div class="vio-label">CD <span class="vio-sub">Cultural Direction</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="89.08400222701701" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="32.915997772982976" y="11" width="56.16800445403403" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.71</text>
+  </svg><div class="vio-num">μ 2.78 ± 1.24</div></div><div class="vio-cell"><div class="vio-label">CU <span class="vio-sub">Cultural Uniformity</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="99.58933047848177" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="33.36859029029978" y="11" width="66.22074018818199" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="68.34559393587524" y1="11" x2="68.34559393587524" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.73</text>
+  </svg><div class="vio-num">μ 3.22 ± 1.35</div></div><div class="vio-cell"><div class="vio-label">MOR <span class="vio-sub">Moral Circle</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">PRO <span class="vio-sub">Proceduralism</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">COM <span class="vio-sub">Compromise</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ZS <span class="vio-sub">Zero-Sum</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="34.726179613976" y1="20" x2="87.27382038602398" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="34.726179613976" y="11" width="43.933341319059394" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="53.65605224607804" y1="11" x2="53.65605224607804" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.40</text>
+  </svg><div class="vio-num">μ 2.78 ± 0.99</div></div><div class="vio-cell"><div class="vio-label">ONT_H <span class="vio-sub">Hierarchy</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_S <span class="vio-sub">System Ontology</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>EPS (Epistemic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="24.666666666666906" width="36.666666666666664" height="37.333333333333094" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">empi</text><text x="23.333333333333332" y="22.666666666666906" font-size="8" fill="#202422" text-anchor="middle">20</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">inst</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">30</text><rect x="82.33333333333333" y="43.33333333333346" width="36.666666666666664" height="18.666666666666547" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">trad</text><text x="100.66666666666666" y="41.33333333333346" font-size="8" fill="#202422" text-anchor="middle">10</text><rect x="121" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">intu</text><text x="139.33333333333334" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="159.66666666666666" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auto</text><text x="178" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="198.33333333333331" y="43.33333333333346" width="36.666666666666664" height="18.666666666666547" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">nihi</text><text x="216.66666666666666" y="41.33333333333346" font-size="8" fill="#202422" text-anchor="middle">10</text></svg>
+        <div class="muted">Mean salience 1.00</div>
+      </div>
+      <div class="panel">
+        <h3>AES (Aesthetic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">stat</text><text x="23.333333333333332" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">tech</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="82.33333333333333" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">past</text><text x="100.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="121" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auth</text><text x="139.33333333333334" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="159.66666666666666" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">figh</text><text x="178" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="198.33333333333331" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">visi</text><text x="216.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text></svg>
+        <div class="muted">Mean salience 0.47</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="26.107981133709835" width="45.142857142857146" height="15.892018866290165" fill="#b7791f" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="24.107981133709835" font-size="8" fill="#202422" text-anchor="middle">1.32</text><rect x="59.142857142857146" y="19.762592086285316" width="45.142857142857146" height="22.237407913714684" fill="#bd5742" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="17.762592086285316" font-size="8" fill="#202422" text-anchor="middle">1.85</text><rect x="108.28571428571429" y="27.32051850161482" width="45.142857142857146" height="14.67948149838518" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="25.32051850161482" font-size="8" fill="#202422" text-anchor="middle">1.22</text><rect x="157.42857142857144" y="30.682415043434947" width="45.142857142857146" height="11.317584956565053" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.682415043434947" font-size="8" fill="#202422" text-anchor="middle">0.94</text><rect x="206.57142857142858" y="25.351522403699118" width="45.142857142857146" height="16.648477596300882" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="23.351522403699118" font-size="8" fill="#202422" text-anchor="middle">1.39</text><rect x="255.71428571428572" y="11.19151779920001" width="45.142857142857146" height="30.80848220079999" fill="#bd5742" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="9.19151779920001" font-size="8" fill="#202422" text-anchor="middle">2.57</text><rect x="304.8571428571429" y="21.156626255218928" width="45.142857142857146" height="20.843373744781072" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.156626255218928" font-size="8" fill="#202422" text-anchor="middle">1.74</text></svg>
+      <div class="muted">Aggregate intensity mean 2.24</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Engagement distribution</h3>
+        <table class="kv">
+          <thead><tr><th>Bucket</th><th>Share</th></tr></thead>
+          <tbody>
+    <tr><td>apolitical</td><td class="num">0.0%</td></tr>
+    <tr><td>casual</td><td class="num">15.3%</td></tr>
+    <tr><td>engaged</td><td class="num">25.3%</td></tr>
+    <tr><td>highly engaged</td><td class="num">59.4%</td></tr>
+  </tbody>
+        </table>
+        <div class="muted">Mean engagement 7.43 (0–10 scale)</div>
+      </div>
+      <div class="panel">
+        <h3>Top archetypes by weight (nearest-archetype assignment)</h3>
+        <table class="arc">
+          <thead><tr><th></th><th>Archetype</th><th class="num">Share</th></tr></thead>
+          <tbody><tr><td class="rank">1</td><td><strong>002</strong> Independent Social Democrat</td><td class="num">20.2%</td></tr><tr><td class="rank">2</td><td><strong>043</strong> Quiet Egalitarian</td><td class="num">17.5%</td></tr><tr><td class="rank">3</td><td><strong>141</strong> Black Voter</td><td class="num">15.2%</td></tr><tr><td class="rank">4</td><td><strong>050</strong> Traditionalist Moralist</td><td class="num">8.9%</td></tr><tr><td class="rank">5</td><td><strong>137</strong> Moral Crusader</td><td class="num">7.8%</td></tr><tr><td class="rank">6</td><td><strong>042</strong> Localist Progressive</td><td class="num">4.4%</td></tr><tr><td class="rank">7</td><td><strong>046</strong> Pastoral Leftist</td><td class="num">2.9%</td></tr><tr><td class="rank">8</td><td><strong>056</strong> Institutional Leftist</td><td class="num">2.8%</td></tr><tr><td class="rank">9</td><td><strong>112</strong> Engaged Cosmopolitan</td><td class="num">2.0%</td></tr><tr><td class="rank">10</td><td><strong>083</strong> Closed Traditionalist</td><td class="num">1.8%</td></tr><tr><td class="rank">11</td><td><strong>073</strong> Civic Traditionalist</td><td class="num">1.8%</td></tr><tr><td class="rank">12</td><td><strong>014</strong> Activist Progressive</td><td class="num">1.7%</td></tr><tr><td class="rank">13</td><td><strong>124</strong> Latent Alarmist</td><td class="num">1.6%</td></tr><tr><td class="rank">14</td><td><strong>136</strong> Aspirational Traditionalist</td><td class="num">1.5%</td></tr><tr><td class="rank">15</td><td><strong>139</strong> Civic Assimilationist</td><td class="num">1.4%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+<a id="y2024"></a>
+  <section class="cycle">
+    <h2>2024 — Harris (D) vs Trump (R)</h2>
+    <div class="cycle-meta"><span>n = 60,000 respondents</span><span class="dot">•</span><span>real-signal coverage 36.4%</span><span class="dot">•</span><span class="dir warn">✗ wrong winner</span><span class="dot">•</span><span>|gap voters| 11.62pp</span></div>
+    <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 36% of node-targets carry real CCES signal for 2024. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Predicted vs Actual (shares of voters)</h3>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="147.28543147969086" height="12" fill="#3057a3" opacity="0.45"/><text x="206.28543147969086" y="16" font-size="10" fill="#5f6862">65.8% pred</text><rect x="56" y="20" width="108.2368" height="12" fill="#3057a3"/><text x="167.23680000000002" y="30" font-size="10" fill="#5f6862">48.3% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="76.71456852030913" height="12" fill="#bd5742" opacity="0.45"/><text x="135.71456852030911" y="48" font-size="10" fill="#5f6862">34.2% pred</text><rect x="56" y="52" width="111.55199999999999" height="12" fill="#bd5742"/><text x="170.552" y="62" font-size="10" fill="#5f6862">49.8% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="4.211199999999984" height="12" fill="#6a5b8f"/><text x="63.211199999999984" y="94" font-size="10" fill="#5f6862">1.9% actual</text></svg>
+        <table class="kv">
+          <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
+          <tr><td>D</td><td>65.8%</td><td>48.3%</td><td class="gap">+17.4pp</td></tr>
+          <tr><td>R</td><td>34.2%</td><td>49.8%</td><td class="gap">-15.6pp</td></tr>
+          <tr><td>Other</td><td>0.0%</td><td>1.9%</td><td class="gap">-1.9pp</td></tr>
+        </table>
+        <table class="kv">
+          <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
+          <tr><td>D</td><td>64.9%</td><td>30.8%</td><td class="gap">+34.1pp</td></tr>
+          <tr><td>R</td><td>33.8%</td><td>31.7%</td><td class="gap">+2.1pp</td></tr>
+          <tr><td>Abstain</td><td>1.3%</td><td>36.3%</td><td class="gap">-35.0pp</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>Mapper coverage (real_signal % per target)</h3>
+        <table class="cov">
+          <thead><tr><th>Target</th><th>Coverage</th><th class="num">%</th></tr></thead>
+          <tbody><tr><td>MAT</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CD</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>CU</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>MOR</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>PRO</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>COM</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ZS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="80" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">100%</td></tr><tr><td>ONT_H</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>ONT_S</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>EPS</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr><tr><td>AES</td><td><svg width="80" height="12" class="cov-svg"><rect width="80" height="12" fill="#e8eae3" rx="2"/><rect width="0" height="12" fill="#227c70" rx="2"/></svg></td><td class="num">0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Continuous node distributions (weighted, 1–5 scale)</h3>
+      <div class="vio-grid"><div class="vio-cell"><div class="vio-label">MAT <span class="vio-sub">Material</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="83.35964152317482" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="29.29221379187557" y="11" width="39.84121564560628" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="42.56116941971282" y1="11" x2="42.56116941971282" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.59</text>
+  </svg><div class="vio-num">μ 2.50 ± 1.12</div></div><div class="vio-cell"><div class="vio-label">CD <span class="vio-sub">Cultural Direction</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="23.295272409100715" y1="20" x2="86.24993767369665" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="23.295272409100715" y="11" width="46.27721934725092" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="35.75006232630335" y1="11" x2="35.75006232630335" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.72</text>
+  </svg><div class="vio-num">μ 2.34 ± 1.12</div></div><div class="vio-cell"><div class="vio-label">CU <span class="vio-sub">Cultural Uniformity</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="22.41066952151822" y1="20" x2="99.58933047848177" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="46.61488243923371" y="11" width="42.4691197877833" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#bd5742" text-anchor="end">sal 1.71</text>
+  </svg><div class="vio-num">μ 3.14 ± 1.31</div></div><div class="vio-cell"><div class="vio-label">MOR <span class="vio-sub">Moral Circle</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">PRO <span class="vio-sub">Proceduralism</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">COM <span class="vio-sub">Compromise</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ZS <span class="vio-sub">Zero-Sum</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="56.331741150788645" y1="20" x2="80.54239164815627" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="65.66825884921136" y="11" width="12.972042583804523" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="76.65034546149082" y1="11" x2="76.65034546149082" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#b7791f" text-anchor="end">sal 1.31</text>
+  </svg><div class="vio-num">μ 3.50 ± 0.45</div></div><div class="vio-cell"><div class="vio-label">ONT_H <span class="vio-sub">Hierarchy</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div><div class="vio-cell"><div class="vio-label">ONT_S <span class="vio-sub">System Ontology</span></div><svg width="110" height="60" class="vio">
+    <line x1="18" y1="20" x2="104" y2="20" stroke="#d9ddd6" stroke-width="1"/>
+    <line x1="18" y1="18" x2="18" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="18" x2="61" y2="22" stroke="#b6beb5" stroke-dasharray="2,2"/>
+    <line x1="104" y1="18" x2="104" y2="22" stroke="#5f6862"/>
+    <line x1="61" y1="20" x2="61" y2="20" stroke="#5f6862" stroke-width="1"/>
+    <rect x="61" y="11" width="0" height="18" fill="#dcefeb" stroke="#227c70" stroke-width="1"/>
+    <line x1="61" y1="11" x2="61" y2="29" stroke="#227c70" stroke-width="2"/>
+    <text x="18" y="57" font-size="9" fill="#5f6862">1</text>
+    <text x="59" y="57" font-size="9" fill="#5f6862">3</text>
+    <text x="101" y="57" font-size="9" fill="#5f6862">5</text>
+    <text x="104" y="11" font-size="9" fill="#5f6862" text-anchor="end">sal 1.00</text>
+  </svg><div class="vio-num">μ 3.00 ± 0.00</div></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>EPS (Epistemic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="24.66666666666569" width="36.666666666666664" height="37.33333333333431" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">empi</text><text x="23.333333333333332" y="22.66666666666569" font-size="8" fill="#202422" text-anchor="middle">20</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">inst</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">30</text><rect x="82.33333333333333" y="43.333333333332845" width="36.666666666666664" height="18.666666666667155" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">trad</text><text x="100.66666666666666" y="41.333333333332845" font-size="8" fill="#202422" text-anchor="middle">10</text><rect x="121" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">intu</text><text x="139.33333333333334" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="159.66666666666666" y="34" width="36.666666666666664" height="28" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auto</text><text x="178" y="32" font-size="8" fill="#202422" text-anchor="middle">15</text><rect x="198.33333333333331" y="43.333333333332845" width="36.666666666666664" height="18.666666666667155" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">nihi</text><text x="216.66666666666666" y="41.333333333332845" font-size="8" fill="#202422" text-anchor="middle">10</text></svg>
+        <div class="muted">Mean salience 1.00</div>
+      </div>
+      <div class="panel">
+        <h3>AES (Aesthetic style, weighted distribution)</h3>
+        <svg width="240" height="80" class="cats"><rect x="5" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="23.333333333333332" y="74" font-size="8" fill="#5f6862" text-anchor="middle">stat</text><text x="23.333333333333332" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="43.666666666666664" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="62" y="74" font-size="8" fill="#5f6862" text-anchor="middle">tech</text><text x="62" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="82.33333333333333" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="100.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">past</text><text x="100.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="121" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="139.33333333333334" y="74" font-size="8" fill="#5f6862" text-anchor="middle">auth</text><text x="139.33333333333334" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="159.66666666666666" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="178" y="74" font-size="8" fill="#5f6862" text-anchor="middle">figh</text><text x="178" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text><rect x="198.33333333333331" y="6" width="36.666666666666664" height="56" fill="#6a5b8f" rx="1"/><text x="216.66666666666666" y="74" font-size="8" fill="#5f6862" text-anchor="middle">visi</text><text x="216.66666666666666" y="4" font-size="8" fill="#202422" text-anchor="middle">17</text></svg>
+        <div class="muted">Mean salience 0.47</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="22.273522449119625" width="45.142857142857146" height="19.726477550880375" fill="#bd5742" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="20.273522449119625" font-size="8" fill="#202422" text-anchor="middle">1.64</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="27.75007567910704" width="45.142857142857146" height="14.24992432089296" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="25.75007567910704" font-size="8" fill="#202422" text-anchor="middle">1.19</text><rect x="157.42857142857144" y="30.79136349594077" width="45.142857142857146" height="11.208636504059227" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.79136349594077" font-size="8" fill="#202422" text-anchor="middle">0.93</text><rect x="206.57142857142858" y="25.491425637178786" width="45.142857142857146" height="16.508574362821214" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="23.491425637178786" font-size="8" fill="#202422" text-anchor="middle">1.38</text><rect x="255.71428571428572" y="21.289142660492537" width="45.142857142857146" height="20.710857339507463" fill="#bd5742" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="19.289142660492537" font-size="8" fill="#202422" text-anchor="middle">1.73</text><rect x="304.8571428571429" y="20.810569096791557" width="45.142857142857146" height="21.189430903208443" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="18.810569096791557" font-size="8" fill="#202422" text-anchor="middle">1.77</text></svg>
+      <div class="muted">Aggregate intensity mean 1.99</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Engagement distribution</h3>
+        <table class="kv">
+          <thead><tr><th>Bucket</th><th>Share</th></tr></thead>
+          <tbody>
+    <tr><td>apolitical</td><td class="num">0.1%</td></tr>
+    <tr><td>casual</td><td class="num">16.1%</td></tr>
+    <tr><td>engaged</td><td class="num">41.3%</td></tr>
+    <tr><td>highly engaged</td><td class="num">42.5%</td></tr>
+  </tbody>
+        </table>
+        <div class="muted">Mean engagement 6.89 (0–10 scale)</div>
+      </div>
+      <div class="panel">
+        <h3>Top archetypes by weight (nearest-archetype assignment)</h3>
+        <table class="arc">
+          <thead><tr><th></th><th>Archetype</th><th class="num">Share</th></tr></thead>
+          <tbody><tr><td class="rank">1</td><td><strong>141</strong> Black Voter</td><td class="num">28.6%</td></tr><tr><td class="rank">2</td><td><strong>002</strong> Independent Social Democrat</td><td class="num">14.1%</td></tr><tr><td class="rank">3</td><td><strong>112</strong> Engaged Cosmopolitan</td><td class="num">9.2%</td></tr><tr><td class="rank">4</td><td><strong>042</strong> Localist Progressive</td><td class="num">8.3%</td></tr><tr><td class="rank">5</td><td><strong>043</strong> Quiet Egalitarian</td><td class="num">8.0%</td></tr><tr><td class="rank">6</td><td><strong>137</strong> Moral Crusader</td><td class="num">7.6%</td></tr><tr><td class="rank">7</td><td><strong>128</strong> Loyal Democrat</td><td class="num">5.2%</td></tr><tr><td class="rank">8</td><td><strong>076</strong> Fiscal Gradualist</td><td class="num">4.9%</td></tr><tr><td class="rank">9</td><td><strong>050</strong> Traditionalist Moralist</td><td class="num">4.8%</td></tr><tr><td class="rank">10</td><td><strong>014</strong> Activist Progressive</td><td class="num">3.0%</td></tr><tr><td class="rank">11</td><td><strong>073</strong> Civic Traditionalist</td><td class="num">1.7%</td></tr><tr><td class="rank">12</td><td><strong>124</strong> Latent Alarmist</td><td class="num">1.3%</td></tr><tr><td class="rank">13</td><td><strong>010</strong> Bread-and-Butter Progressive</td><td class="num">0.5%</td></tr><tr><td class="rank">14</td><td><strong>136</strong> Aspirational Traditionalist</td><td class="num">0.5%</td></tr><tr><td class="rank">15</td><td><strong>081</strong> Heritage Guardian</td><td class="num">0.5%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="muted" style="margin-top: 32px; text-align: center;">
+    Pipeline: <code>multiCycleBacktest.ts</code> → <code>cces2BacktestRunner.ts</code> → <code>backtestDashboardRenderer.ts</code><br>
+    Decisions: signature representation = posterior point estimate (E[posDist], E[salDist]); partyID passed = false; anchorDist passed = false.
+  </div>
+</div>
+</body></html>

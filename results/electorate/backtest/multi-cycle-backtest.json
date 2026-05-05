@@ -1,0 +1,1848 @@
+{
+  "schema_version": "v0.1",
+  "generated_at": "2026-05-05T17:55:07.063Z",
+  "elapsed_ms": 35547,
+  "pipeline": "cesBacktestLoader → surveyToPrismMapper (point estimate) → predictVote → weighted aggregate",
+  "decisions": {
+    "signature_representation": "posterior point estimate (E[posDist], E[salDist])",
+    "vote_denominator": "both shares-of-voters and shares-of-electorate reported",
+    "partyID_passed_to_predictor": false,
+    "anchorDist_passed_to_predictor": false
+  },
+  "cycles": [
+    {
+      "year": 2008,
+      "rowsProcessed": 32800,
+      "totalWeight": 32799.99999999798,
+      "predicted": {
+        "weightedCounts": {
+          "D": 32799.99999999798,
+          "R": 0,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0
+        },
+        "sharesOfElectorate": {
+          "D": 1,
+          "R": 0,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0
+        },
+        "sharesOfVoters": {
+          "D": 1,
+          "R": 0,
+          "T": 0,
+          "O": 0
+        }
+      },
+      "actual": {
+        "sharesOfElectorate": {
+          "D": 0.3258,
+          "R": 0.281,
+          "Other": 0.0088,
+          "Abstain": 0.3844
+        },
+        "sharesOfVoters": {
+          "D": 0.5293,
+          "R": 0.4565,
+          "Other": 0.01419999999999999
+        },
+        "candidates": {
+          "d": "Obama",
+          "r": "McCain"
+        }
+      },
+      "gaps": {
+        "sharesOfVoters": {
+          "D": 0.4707,
+          "R": -0.4565,
+          "Other": -0.01419999999999999,
+          "absMean": 0.3138
+        },
+        "sharesOfElectorate": {
+          "D": 0.6742,
+          "R": -0.281,
+          "Other": -0.0088,
+          "Abstain": -0.3844,
+          "absMean": 0.3371
+        }
+      },
+      "coverage": {
+        "perNode": {
+          "MAT": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "CD": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "CU": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "MOR": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "PRO": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "COM": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "ZS": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "ONT_H": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "ONT_S": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "EPS": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "AES": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          }
+        },
+        "perBoundary": {
+          "national": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "ethnic_racial": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "religious": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "class": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "ideological": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "gender": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          },
+          "political_camp": {
+            "realSignal": 0,
+            "fallback": 32800,
+            "total": 32800
+          }
+        },
+        "engagement": {
+          "realSignal": 32800,
+          "fallback": 0
+        }
+      },
+      "continuousMarginals": {
+        "MAT": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "CD": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "CU": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "MOR": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "PRO": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "COM": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ZS": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_H": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_S": {
+          "posMean": 3.000000000000403,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        }
+      },
+      "categoricalMarginals": {
+        "EPS": {
+          "distribution": [
+            0.2000000000000296,
+            0.3000000000000279,
+            0.1000000000000148,
+            0.15000000000001396,
+            0.15000000000001396,
+            0.1000000000000148
+          ],
+          "salMean": 1
+        },
+        "AES": {
+          "distribution": [
+            0.1666666666666855,
+            0.1666666666666855,
+            0.1666666666666855,
+            0.1666666666666855,
+            0.1666666666666855,
+            0.1666666666666855
+          ],
+          "salMean": 0.47000000000006625
+        }
+      },
+      "boundaryMarginals": {
+        "national": {
+          "salMean": 1
+        },
+        "ethnic_racial": {
+          "salMean": 1
+        },
+        "religious": {
+          "salMean": 1
+        },
+        "class": {
+          "salMean": 1
+        },
+        "ideological": {
+          "salMean": 1
+        },
+        "gender": {
+          "salMean": 1
+        },
+        "political_camp": {
+          "salMean": 1
+        }
+      },
+      "intensityMean": 1,
+      "engagement": {
+        "apolitical": 0,
+        "casual": 0.38113537057185115,
+        "engaged": 0.6188646294282156,
+        "highly_engaged": 0,
+        "mean": 5.1660262029990385
+      },
+      "topArchetypes": [
+        {
+          "id": "141",
+          "name": "Black Voter",
+          "weight": 32799.99999999798,
+          "share": 1
+        }
+      ]
+    },
+    {
+      "year": 2012,
+      "rowsProcessed": 54535,
+      "totalWeight": 52869.67966523333,
+      "predicted": {
+        "weightedCounts": {
+          "D": 41370.94630131024,
+          "R": 11498.381702352424,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0.3516615708618208
+        },
+        "sharesOfElectorate": {
+          "D": 0.7825079811957976,
+          "R": 0.217485367325077,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0.000006651479129219513
+        },
+        "sharesOfVoters": {
+          "D": 0.78251318606592,
+          "R": 0.21748681393407993,
+          "T": 0,
+          "O": 0
+        }
+      },
+      "actual": {
+        "sharesOfElectorate": {
+          "D": 0.2963,
+          "R": 0.2739,
+          "Other": 0.0101,
+          "Abstain": 0.4197
+        },
+        "sharesOfVoters": {
+          "D": 0.5106,
+          "R": 0.472,
+          "Other": 0.01739999999999997
+        },
+        "candidates": {
+          "d": "Obama",
+          "r": "Romney"
+        }
+      },
+      "gaps": {
+        "sharesOfVoters": {
+          "D": 0.27191318606591997,
+          "R": -0.25451318606592005,
+          "Other": -0.01739999999999997,
+          "absMean": 0.18127545737728
+        },
+        "sharesOfElectorate": {
+          "D": 0.48620798119579756,
+          "R": -0.05641463267492297,
+          "Other": -0.0101,
+          "Abstain": -0.4196933485208708,
+          "absMean": 0.24310399059789783
+        }
+      },
+      "coverage": {
+        "perNode": {
+          "MAT": {
+            "realSignal": 54490,
+            "fallback": 45,
+            "total": 54535
+          },
+          "CD": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "CU": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "MOR": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "PRO": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "COM": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "ZS": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "ONT_H": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "ONT_S": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "EPS": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "AES": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          }
+        },
+        "perBoundary": {
+          "national": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "ethnic_racial": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "religious": {
+            "realSignal": 54494,
+            "fallback": 41,
+            "total": 54535
+          },
+          "class": {
+            "realSignal": 54281,
+            "fallback": 254,
+            "total": 54535
+          },
+          "ideological": {
+            "realSignal": 50564,
+            "fallback": 3971,
+            "total": 54535
+          },
+          "gender": {
+            "realSignal": 0,
+            "fallback": 54535,
+            "total": 54535
+          },
+          "political_camp": {
+            "realSignal": 52052,
+            "fallback": 2483,
+            "total": 54535
+          }
+        },
+        "engagement": {
+          "realSignal": 53723,
+          "fallback": 812
+        }
+      },
+      "continuousMarginals": {
+        "MAT": {
+          "posMean": 2.572787601061391,
+          "posSd": 1.1213317756182826,
+          "posP10": 1.2051474196054985,
+          "posP25": 1.4623613776362963,
+          "posP50": 2.3309247646155216,
+          "posP75": 3.3976717357031943,
+          "posP90": 4.3062326617217215,
+          "salMean": 1.6954626238640798
+        },
+        "CD": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "CU": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "MOR": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "PRO": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "COM": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ZS": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_H": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_S": {
+          "posMean": 3.000000000000023,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        }
+      },
+      "categoricalMarginals": {
+        "EPS": {
+          "distribution": [
+            0.2000000000000002,
+            0.29999999999999916,
+            0.1000000000000001,
+            0.14999999999999958,
+            0.14999999999999958,
+            0.1000000000000001
+          ],
+          "salMean": 1
+        },
+        "AES": {
+          "distribution": [
+            0.16666666666666669,
+            0.16666666666666669,
+            0.16666666666666669,
+            0.16666666666666669,
+            0.16666666666666669,
+            0.16666666666666669
+          ],
+          "salMean": 0.4700000000000016
+        }
+      },
+      "boundaryMarginals": {
+        "national": {
+          "salMean": 1
+        },
+        "ethnic_racial": {
+          "salMean": 1
+        },
+        "religious": {
+          "salMean": 1.2747541978579822
+        },
+        "class": {
+          "salMean": 0.9643138475293118
+        },
+        "ideological": {
+          "salMean": 1.2230557321415234
+        },
+        "gender": {
+          "salMean": 1
+        },
+        "political_camp": {
+          "salMean": 1.7042277601461493
+        }
+      },
+      "intensityMean": 1.6788570339948485,
+      "engagement": {
+        "apolitical": 0.00007243635475890789,
+        "casual": 0.1345468959660058,
+        "engaged": 0.4112442106899233,
+        "highly_engaged": 0.45413645698931515,
+        "mean": 7.053085083739391
+      },
+      "topArchetypes": [
+        {
+          "id": "141",
+          "name": "Black Voter",
+          "weight": 37432.58143820383,
+          "share": 0.7080160438879903
+        },
+        {
+          "id": "043",
+          "name": "Quiet Egalitarian",
+          "weight": 9072.779794306134,
+          "share": 0.1716064831819346
+        },
+        {
+          "id": "042",
+          "name": "Localist Progressive",
+          "weight": 6364.3184327238,
+          "share": 0.12037747293008329
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "rowsProcessed": 64600,
+      "totalWeight": 64317.21486984039,
+      "predicted": {
+        "weightedCounts": {
+          "D": 36278.262663434834,
+          "R": 24155.65657813495,
+          "T": 1820.4988057892033,
+          "O": 0,
+          "Abstain": 2062.796822481706
+        },
+        "sharesOfElectorate": {
+          "D": 0.5640521396464638,
+          "R": 0.375570624863329,
+          "T": 0.02830500060478942,
+          "O": 0,
+          "Abstain": 0.03207223488542244
+        },
+        "sharesOfVoters": {
+          "D": 0.5827419772173722,
+          "R": 0.3880151374920724,
+          "T": 0.02924288529055544,
+          "O": 0
+        }
+      },
+      "actual": {
+        "sharesOfElectorate": {
+          "D": 0.2854,
+          "R": 0.2729,
+          "Other": 0.0339,
+          "Abstain": 0.4078
+        },
+        "sharesOfVoters": {
+          "D": 0.4818,
+          "R": 0.4609,
+          "Other": 0.05730000000000002
+        },
+        "candidates": {
+          "d": "H. Clinton",
+          "r": "Trump"
+        }
+      },
+      "gaps": {
+        "sharesOfVoters": {
+          "D": 0.10094197721737219,
+          "R": -0.07288486250792758,
+          "Other": -0.028057114709444577,
+          "absMean": 0.06729465147824812
+        },
+        "sharesOfElectorate": {
+          "D": 0.27865213964646385,
+          "R": 0.10267062486332901,
+          "Other": -0.005594999395210579,
+          "Abstain": -0.37572776511457756,
+          "absMean": 0.19066138225489526
+        }
+      },
+      "coverage": {
+        "perNode": {
+          "MAT": {
+            "realSignal": 64598,
+            "fallback": 2,
+            "total": 64600
+          },
+          "CD": {
+            "realSignal": 64587,
+            "fallback": 13,
+            "total": 64600
+          },
+          "CU": {
+            "realSignal": 64600,
+            "fallback": 0,
+            "total": 64600
+          },
+          "MOR": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "PRO": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "COM": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "ZS": {
+            "realSignal": 63123,
+            "fallback": 1477,
+            "total": 64600
+          },
+          "ONT_H": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "ONT_S": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "EPS": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "AES": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          }
+        },
+        "perBoundary": {
+          "national": {
+            "realSignal": 64600,
+            "fallback": 0,
+            "total": 64600
+          },
+          "ethnic_racial": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "religious": {
+            "realSignal": 64595,
+            "fallback": 5,
+            "total": 64600
+          },
+          "class": {
+            "realSignal": 64462,
+            "fallback": 138,
+            "total": 64600
+          },
+          "ideological": {
+            "realSignal": 59815,
+            "fallback": 4785,
+            "total": 64600
+          },
+          "gender": {
+            "realSignal": 0,
+            "fallback": 64600,
+            "total": 64600
+          },
+          "political_camp": {
+            "realSignal": 62479,
+            "fallback": 2121,
+            "total": 64600
+          }
+        },
+        "engagement": {
+          "realSignal": 63432,
+          "fallback": 1168
+        }
+      },
+      "continuousMarginals": {
+        "MAT": {
+          "posMean": 2.9984357642841966,
+          "posSd": 1.1583845147518634,
+          "posP10": 1.3753013794016704,
+          "posP25": 2.142379973009898,
+          "posP50": 2.7179683438961773,
+          "posP75": 3.8576200269901024,
+          "posP90": 4.6246986205983305,
+          "salMean": 1.5984745353220404
+        },
+        "CD": {
+          "posMean": 2.815694558626881,
+          "posSd": 1.1834265711247232,
+          "posP10": 1.2051474196054985,
+          "posP25": 1.693767338278278,
+          "posP50": 3,
+          "posP75": 4.3062326617217215,
+          "posP90": 4.3062326617217215,
+          "salMean": 1.679843847901797
+        },
+        "CU": {
+          "posMean": 3.1409828384235325,
+          "posSd": 1.1474986531930425,
+          "posP10": 1.597599511445334,
+          "posP25": 1.597599511445334,
+          "posP50": 3,
+          "posP75": 4.402400488554666,
+          "posP90": 4.402400488554666,
+          "salMean": 1.5698983081711337
+        },
+        "MOR": {
+          "posMean": 3.0000000000000466,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "PRO": {
+          "posMean": 3.0000000000000466,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "COM": {
+          "posMean": 3.0000000000000466,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ZS": {
+          "posMean": 3.1331867684899066,
+          "posSd": 0.5144575114708417,
+          "posP10": 2.3397452998121704,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3.6602547001878305,
+          "posP90": 3.6602547001878305,
+          "salMean": 1.3239065735222337
+        },
+        "ONT_H": {
+          "posMean": 3.0000000000000466,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_S": {
+          "posMean": 3.0000000000000466,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        }
+      },
+      "categoricalMarginals": {
+        "EPS": {
+          "distribution": [
+            0.1999999999999996,
+            0.29999999999999943,
+            0.0999999999999998,
+            0.14999999999999972,
+            0.14999999999999972,
+            0.0999999999999998
+          ],
+          "salMean": 1
+        },
+        "AES": {
+          "distribution": [
+            0.16666666666666402,
+            0.16666666666666402,
+            0.16666666666666402,
+            0.16666666666666402,
+            0.16666666666666402,
+            0.16666666666666402
+          ],
+          "salMean": 0.47000000000000514
+        }
+      },
+      "boundaryMarginals": {
+        "national": {
+          "salMean": 1.348014638766552
+        },
+        "ethnic_racial": {
+          "salMean": 1
+        },
+        "religious": {
+          "salMean": 1.2368503924220806
+        },
+        "class": {
+          "salMean": 0.9614632590045752
+        },
+        "ideological": {
+          "salMean": 1.2321383489442066
+        },
+        "gender": {
+          "salMean": 1
+        },
+        "political_camp": {
+          "salMean": 1.737681510771316
+        }
+      },
+      "intensityMean": 1.8317177805816167,
+      "engagement": {
+        "apolitical": 0.00004397745204265329,
+        "casual": 0.12815111177832741,
+        "engaged": 0.25136423418368237,
+        "highly_engaged": 0.6204406765859525,
+        "mean": 7.589814844746597
+      },
+      "topArchetypes": [
+        {
+          "id": "141",
+          "name": "Black Voter",
+          "weight": 22349.898513441844,
+          "share": 0.3474948123713322
+        },
+        {
+          "id": "002",
+          "name": "Independent Social Democrat",
+          "weight": 7646.431239830877,
+          "share": 0.11888623061967254
+        },
+        {
+          "id": "042",
+          "name": "Localist Progressive",
+          "weight": 4908.428132619724,
+          "share": 0.07631593100778658
+        },
+        {
+          "id": "112",
+          "name": "Engaged Cosmopolitan",
+          "weight": 4464.984538514351,
+          "share": 0.06942129797675785
+        },
+        {
+          "id": "050",
+          "name": "Traditionalist Moralist",
+          "weight": 3879.8478105095664,
+          "share": 0.06032362903712896
+        },
+        {
+          "id": "076",
+          "name": "Fiscal Gradualist",
+          "weight": 3834.8413924356664,
+          "share": 0.05962387208768735
+        },
+        {
+          "id": "137",
+          "name": "Moral Crusader",
+          "weight": 3677.252050010736,
+          "share": 0.05717368293158279
+        },
+        {
+          "id": "043",
+          "name": "Quiet Egalitarian",
+          "weight": 3537.8979111808117,
+          "share": 0.05500701357079132
+        },
+        {
+          "id": "078",
+          "name": "Meritocratic Conservative",
+          "weight": 3460.2776799279613,
+          "share": 0.05380017911115355
+        },
+        {
+          "id": "136",
+          "name": "Aspirational Traditionalist",
+          "weight": 1892.1596387056688,
+          "share": 0.029419178714981016
+        },
+        {
+          "id": "073",
+          "name": "Civic Traditionalist",
+          "weight": 1196.6479471535115,
+          "share": 0.018605406803997717
+        },
+        {
+          "id": "139",
+          "name": "Civic Assimilationist",
+          "weight": 1027.0446232996514,
+          "share": 0.01596842502241578
+        },
+        {
+          "id": "129",
+          "name": "Loyal Republican",
+          "weight": 674.4766841854591,
+          "share": 0.010486720943225024
+        },
+        {
+          "id": "128",
+          "name": "Loyal Democrat",
+          "weight": 488.71177397528953,
+          "share": 0.007598459836364216
+        },
+        {
+          "id": "049",
+          "name": "Moral Egalitarian",
+          "weight": 380.73583043937055,
+          "share": 0.005919656676830158
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "rowsProcessed": 61000,
+      "totalWeight": 68042.87700722224,
+      "predicted": {
+        "weightedCounts": {
+          "D": 47528.024945176454,
+          "R": 16763.466939383183,
+          "T": 0,
+          "O": 0,
+          "Abstain": 3751.3851226629663
+        },
+        "sharesOfElectorate": {
+          "D": 0.6985011074727442,
+          "R": 0.24636622783607265,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0.05513266469118854
+        },
+        "sharesOfVoters": {
+          "D": 0.7392583925493083,
+          "R": 0.26074160745069175,
+          "T": 0,
+          "O": 0
+        }
+      },
+      "actual": {
+        "sharesOfElectorate": {
+          "D": 0.3357,
+          "R": 0.3066,
+          "Other": 0.012,
+          "Abstain": 0.3457
+        },
+        "sharesOfVoters": {
+          "D": 0.5131,
+          "R": 0.4686,
+          "Other": 0.018299999999999983
+        },
+        "candidates": {
+          "d": "Biden",
+          "r": "Trump"
+        }
+      },
+      "gaps": {
+        "sharesOfVoters": {
+          "D": 0.22615839254930825,
+          "R": -0.20785839254930827,
+          "Other": -0.018299999999999983,
+          "absMean": 0.15077226169953883
+        },
+        "sharesOfElectorate": {
+          "D": 0.3628011074727442,
+          "R": -0.060233772163927335,
+          "Other": -0.012,
+          "Abstain": -0.29056733530881146,
+          "absMean": 0.18140055373637076
+        }
+      },
+      "coverage": {
+        "perNode": {
+          "MAT": {
+            "realSignal": 61000,
+            "fallback": 0,
+            "total": 61000
+          },
+          "CD": {
+            "realSignal": 60996,
+            "fallback": 4,
+            "total": 61000
+          },
+          "CU": {
+            "realSignal": 60989,
+            "fallback": 11,
+            "total": 61000
+          },
+          "MOR": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "PRO": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "COM": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "ZS": {
+            "realSignal": 61000,
+            "fallback": 0,
+            "total": 61000
+          },
+          "ONT_H": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "ONT_S": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "EPS": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          },
+          "AES": {
+            "realSignal": 0,
+            "fallback": 61000,
+            "total": 61000
+          }
+        },
+        "perBoundary": {
+          "national": {
+            "realSignal": 60989,
+            "fallback": 11,
+            "total": 61000
+          },
+          "ethnic_racial": {
+            "realSignal": 60994,
+            "fallback": 6,
+            "total": 61000
+          },
+          "religious": {
+            "realSignal": 60996,
+            "fallback": 4,
+            "total": 61000
+          },
+          "class": {
+            "realSignal": 60928,
+            "fallback": 72,
+            "total": 61000
+          },
+          "ideological": {
+            "realSignal": 56208,
+            "fallback": 4792,
+            "total": 61000
+          },
+          "gender": {
+            "realSignal": 60999,
+            "fallback": 1,
+            "total": 61000
+          },
+          "political_camp": {
+            "realSignal": 58631,
+            "fallback": 2369,
+            "total": 61000
+          }
+        },
+        "engagement": {
+          "realSignal": 59625,
+          "fallback": 1375
+        }
+      },
+      "continuousMarginals": {
+        "MAT": {
+          "posMean": 2.289477851655925,
+          "posSd": 1.0942478987238375,
+          "posP10": 1.4813378075023198,
+          "posP25": 1.4813378075023198,
+          "posP50": 1.4813378075023198,
+          "posP75": 3.2096968506074472,
+          "posP90": 4.1415933202355015,
+          "salMean": 1.6412872849804643
+        },
+        "CD": {
+          "posMean": 2.778162029094677,
+          "posSd": 1.235002092544516,
+          "posP10": 1.2051474196054985,
+          "posP25": 1.693767338278278,
+          "posP50": 3,
+          "posP75": 4.3062326617217215,
+          "posP90": 4.3062326617217215,
+          "salMean": 1.7141235212838914
+        },
+        "CU": {
+          "posMean": 3.221354898025667,
+          "posSd": 1.3486250632429726,
+          "posP10": 1.2051474196054985,
+          "posP25": 1.714818153037199,
+          "posP50": 3.341655531901174,
+          "posP75": 4.794852580394501,
+          "posP90": 4.794852580394501,
+          "salMean": 1.7302436830027397
+        },
+        "MOR": {
+          "posMean": 3.000000000000071,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "PRO": {
+          "posMean": 3.000000000000071,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "COM": {
+          "posMean": 3.000000000000071,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ZS": {
+          "posMean": 2.7780363886307087,
+          "posSd": 0.9863340141371127,
+          "posP10": 1.7779618425105117,
+          "posP25": 1.7779618425105117,
+          "posP50": 2.658421034701304,
+          "posP75": 3.821373066652809,
+          "posP90": 4.222038157489488,
+          "salMean": 1.3991917383280084
+        },
+        "ONT_H": {
+          "posMean": 3.000000000000071,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_S": {
+          "posMean": 3.000000000000071,
+          "posSd": 0,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        }
+      },
+      "categoricalMarginals": {
+        "EPS": {
+          "distribution": [
+            0.19999999999999923,
+            0.30000000000000077,
+            0.09999999999999962,
+            0.15000000000000038,
+            0.15000000000000038,
+            0.09999999999999962
+          ],
+          "salMean": 1
+        },
+        "AES": {
+          "distribution": [
+            0.1666666666666684,
+            0.1666666666666684,
+            0.1666666666666684,
+            0.1666666666666684,
+            0.1666666666666684,
+            0.1666666666666684
+          ],
+          "salMean": 0.4700000000000009
+        }
+      },
+      "boundaryMarginals": {
+        "national": {
+          "salMean": 1.3243349055241804
+        },
+        "ethnic_racial": {
+          "salMean": 1.8531173261428902
+        },
+        "religious": {
+          "salMean": 1.2232901248654315
+        },
+        "class": {
+          "salMean": 0.9431320797137545
+        },
+        "ideological": {
+          "salMean": 1.3873731330250734
+        },
+        "gender": {
+          "salMean": 2.5673735167333325
+        },
+        "political_camp": {
+          "salMean": 1.7369478120650894
+        }
+      },
+      "intensityMean": 2.2419828646429534,
+      "engagement": {
+        "apolitical": 0.00009215273939638023,
+        "casual": 0.1526798354079255,
+        "engaged": 0.2531327932681843,
+        "highly_engaged": 0.5940952185844979,
+        "mean": 7.4265806250739015
+      },
+      "topArchetypes": [
+        {
+          "id": "002",
+          "name": "Independent Social Democrat",
+          "weight": 13760.262706019206,
+          "share": 0.20222928998958492
+        },
+        {
+          "id": "043",
+          "name": "Quiet Egalitarian",
+          "weight": 11917.607200904173,
+          "share": 0.17514849055602408
+        },
+        {
+          "id": "141",
+          "name": "Black Voter",
+          "weight": 10343.286520693131,
+          "share": 0.15201130486583142
+        },
+        {
+          "id": "050",
+          "name": "Traditionalist Moralist",
+          "weight": 6026.798798241822,
+          "share": 0.08857354455488592
+        },
+        {
+          "id": "137",
+          "name": "Moral Crusader",
+          "weight": 5340.260157757641,
+          "share": 0.07848375013876635
+        },
+        {
+          "id": "042",
+          "name": "Localist Progressive",
+          "weight": 2984.0365041926584,
+          "share": 0.04385523710109914
+        },
+        {
+          "id": "046",
+          "name": "Pastoral Leftist",
+          "weight": 2002.6248904378433,
+          "share": 0.029431807979331617
+        },
+        {
+          "id": "056",
+          "name": "Institutional Leftist",
+          "weight": 1913.8250216768847,
+          "share": 0.02812675045286146
+        },
+        {
+          "id": "112",
+          "name": "Engaged Cosmopolitan",
+          "weight": 1344.7729270518175,
+          "share": 0.019763610626121527
+        },
+        {
+          "id": "083",
+          "name": "Closed Traditionalist",
+          "weight": 1248.64984766091,
+          "share": 0.018350926688893168
+        },
+        {
+          "id": "073",
+          "name": "Civic Traditionalist",
+          "weight": 1216.071102592241,
+          "share": 0.01787212939957204
+        },
+        {
+          "id": "014",
+          "name": "Activist Progressive",
+          "weight": 1188.2464104760672,
+          "share": 0.017463200598498266
+        },
+        {
+          "id": "124",
+          "name": "Latent Alarmist",
+          "weight": 1081.5472207577384,
+          "share": 0.015895083634440386
+        },
+        {
+          "id": "136",
+          "name": "Aspirational Traditionalist",
+          "weight": 1008.9381184277112,
+          "share": 0.014827975576644415
+        },
+        {
+          "id": "139",
+          "name": "Civic Assimilationist",
+          "weight": 974.1011280141703,
+          "share": 0.01431598972381454
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "rowsProcessed": 60000,
+      "totalWeight": 65600.5735961888,
+      "predicted": {
+        "weightedCounts": {
+          "D": 42570.89101854753,
+          "R": 22173.323615264006,
+          "T": 0,
+          "O": 0,
+          "Abstain": 856.3589623777173
+        },
+        "sharesOfElectorate": {
+          "D": 0.6489408351914285,
+          "R": 0.338005026476662,
+          "T": 0,
+          "O": 0,
+          "Abstain": 0.013054138331916494
+        },
+        "sharesOfVoters": {
+          "D": 0.6575242476771913,
+          "R": 0.34247575232280864,
+          "T": 0,
+          "O": 0
+        }
+      },
+      "actual": {
+        "sharesOfElectorate": {
+          "D": 0.3077,
+          "R": 0.3171,
+          "Other": 0.012,
+          "Abstain": 0.3633
+        },
+        "sharesOfVoters": {
+          "D": 0.4832,
+          "R": 0.498,
+          "Other": 0.018799999999999928
+        },
+        "candidates": {
+          "d": "Harris",
+          "r": "Trump"
+        }
+      },
+      "gaps": {
+        "sharesOfVoters": {
+          "D": 0.1743242476771913,
+          "R": -0.15552424767719136,
+          "Other": -0.018799999999999928,
+          "absMean": 0.11621616511812753
+        },
+        "sharesOfElectorate": {
+          "D": 0.34124083519142856,
+          "R": 0.02090502647666198,
+          "Other": -0.012,
+          "Abstain": -0.3502458616680835,
+          "absMean": 0.18109793083404352
+        }
+      },
+      "coverage": {
+        "perNode": {
+          "MAT": {
+            "realSignal": 59995,
+            "fallback": 5,
+            "total": 60000
+          },
+          "CD": {
+            "realSignal": 60000,
+            "fallback": 0,
+            "total": 60000
+          },
+          "CU": {
+            "realSignal": 60000,
+            "fallback": 0,
+            "total": 60000
+          },
+          "MOR": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "PRO": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "COM": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "ZS": {
+            "realSignal": 59999,
+            "fallback": 1,
+            "total": 60000
+          },
+          "ONT_H": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "ONT_S": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "EPS": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "AES": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          }
+        },
+        "perBoundary": {
+          "national": {
+            "realSignal": 60000,
+            "fallback": 0,
+            "total": 60000
+          },
+          "ethnic_racial": {
+            "realSignal": 0,
+            "fallback": 60000,
+            "total": 60000
+          },
+          "religious": {
+            "realSignal": 59999,
+            "fallback": 1,
+            "total": 60000
+          },
+          "class": {
+            "realSignal": 59958,
+            "fallback": 42,
+            "total": 60000
+          },
+          "ideological": {
+            "realSignal": 56384,
+            "fallback": 3616,
+            "total": 60000
+          },
+          "gender": {
+            "realSignal": 60000,
+            "fallback": 0,
+            "total": 60000
+          },
+          "political_camp": {
+            "realSignal": 58738,
+            "fallback": 1262,
+            "total": 60000
+          }
+        },
+        "engagement": {
+          "realSignal": 58850,
+          "fallback": 1150
+        }
+      },
+      "continuousMarginals": {
+        "MAT": {
+          "posMean": 2.4989573737812507,
+          "posSd": 1.1211817709298202,
+          "posP10": 1.2051474196054985,
+          "posP25": 1.5252192461337475,
+          "posP50": 2.1423799730098985,
+          "posP75": 3.3782990436038074,
+          "posP90": 4.039983326659294,
+          "salMean": 1.5893572640049702
+        },
+        "CD": {
+          "posMean": 2.3358635621173502,
+          "posSd": 1.1229073179203282,
+          "posP10": 1.2462917399581728,
+          "posP25": 1.2462917399581728,
+          "posP50": 1.8255842942466676,
+          "posP75": 3.398720546807053,
+          "posP90": 4.174415705753333,
+          "salMean": 1.7210965853635996
+        },
+        "CU": {
+          "posMean": 3.1382440888465784,
+          "posSd": 1.3125989190290637,
+          "posP10": 1.2051474196054985,
+          "posP25": 2.3309247646155216,
+          "posP50": 3,
+          "posP75": 4.3062326617217215,
+          "posP90": 4.794852580394501,
+          "salMean": 1.7067073190137907
+        },
+        "MOR": {
+          "posMean": 2.9999999999999853,
+          "posSd": 4.7309720118008686e-7,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "PRO": {
+          "posMean": 2.9999999999999853,
+          "posSd": 4.7309720118008686e-7,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "COM": {
+          "posMean": 2.9999999999999853,
+          "posSd": 4.7309720118008686e-7,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ZS": {
+          "posMean": 3.504102930698835,
+          "posSd": 0.4517618368084495,
+          "posP10": 2.78287168143203,
+          "posP25": 3.21712831856797,
+          "posP50": 3.7279230447205034,
+          "posP75": 3.820479136419343,
+          "posP90": 3.9089484487514543,
+          "salMean": 1.309327849173159
+        },
+        "ONT_H": {
+          "posMean": 2.9999999999999853,
+          "posSd": 4.7309720118008686e-7,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        },
+        "ONT_S": {
+          "posMean": 2.9999999999999853,
+          "posSd": 4.7309720118008686e-7,
+          "posP10": 3,
+          "posP25": 3,
+          "posP50": 3,
+          "posP75": 3,
+          "posP90": 3,
+          "salMean": 1
+        }
+      },
+      "categoricalMarginals": {
+        "EPS": {
+          "distribution": [
+            0.2000000000000064,
+            0.30000000000000177,
+            0.1000000000000032,
+            0.15000000000000088,
+            0.15000000000000088,
+            0.1000000000000032
+          ],
+          "salMean": 1
+        },
+        "AES": {
+          "distribution": [
+            0.16666666666666802,
+            0.16666666666666802,
+            0.16666666666666802,
+            0.16666666666666802,
+            0.16666666666666802,
+            0.16666666666666802
+          ],
+          "salMean": 0.47000000000001024
+        }
+      },
+      "boundaryMarginals": {
+        "national": {
+          "salMean": 1.6438731292400313
+        },
+        "ethnic_racial": {
+          "salMean": 1
+        },
+        "religious": {
+          "salMean": 1.1874936934077467
+        },
+        "class": {
+          "salMean": 0.9340530420049354
+        },
+        "ideological": {
+          "salMean": 1.3757145302351013
+        },
+        "gender": {
+          "salMean": 1.7259047782922887
+        },
+        "political_camp": {
+          "salMean": 1.7657859086007037
+        }
+      },
+      "intensityMean": 1.9852182446400057,
+      "engagement": {
+        "apolitical": 0.0006439664136563991,
+        "casual": 0.16103143134295464,
+        "engaged": 0.41346598556737557,
+        "highly_engaged": 0.4248586166760157,
+        "mean": 6.886825316072034
+      },
+      "topArchetypes": [
+        {
+          "id": "141",
+          "name": "Black Voter",
+          "weight": 18746.807153002384,
+          "share": 0.2857720005376831
+        },
+        {
+          "id": "002",
+          "name": "Independent Social Democrat",
+          "weight": 9258.317830213453,
+          "share": 0.14113165971998962
+        },
+        {
+          "id": "112",
+          "name": "Engaged Cosmopolitan",
+          "weight": 6060.20308950478,
+          "share": 0.09238033689779902
+        },
+        {
+          "id": "042",
+          "name": "Localist Progressive",
+          "weight": 5456.244923040007,
+          "share": 0.08317373803202537
+        },
+        {
+          "id": "043",
+          "name": "Quiet Egalitarian",
+          "weight": 5274.575652863535,
+          "share": 0.08040441361582808
+        },
+        {
+          "id": "137",
+          "name": "Moral Crusader",
+          "weight": 4975.667361165202,
+          "share": 0.07584792462019378
+        },
+        {
+          "id": "128",
+          "name": "Loyal Democrat",
+          "weight": 3413.576149480424,
+          "share": 0.052035766798215054
+        },
+        {
+          "id": "076",
+          "name": "Fiscal Gradualist",
+          "weight": 3199.8200530746126,
+          "share": 0.04877731821022542
+        },
+        {
+          "id": "050",
+          "name": "Traditionalist Moralist",
+          "weight": 3125.9439377276867,
+          "share": 0.04765116776218699
+        },
+        {
+          "id": "014",
+          "name": "Activist Progressive",
+          "weight": 1976.160750932534,
+          "share": 0.030124138290268596
+        },
+        {
+          "id": "073",
+          "name": "Civic Traditionalist",
+          "weight": 1100.9516947039463,
+          "share": 0.016782653479235864
+        },
+        {
+          "id": "124",
+          "name": "Latent Alarmist",
+          "weight": 874.2331232458405,
+          "share": 0.01332660791393798
+        },
+        {
+          "id": "010",
+          "name": "Bread-and-Butter Progressive",
+          "weight": 332.8958818332124,
+          "share": 0.005074587973611143
+        },
+        {
+          "id": "136",
+          "name": "Aspirational Traditionalist",
+          "weight": 319.81190207204565,
+          "share": 0.004875138806570219
+        },
+        {
+          "id": "081",
+          "name": "Heritage Guardian",
+          "weight": 314.6226147082318,
+          "share": 0.004796034507943852
+        }
+      ]
+    }
+  ]
+}
