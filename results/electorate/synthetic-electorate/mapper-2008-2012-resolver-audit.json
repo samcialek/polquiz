@@ -1,0 +1,296 @@
+{
+  "schema_version": "v0",
+  "phase": "Phase 2.7 mapper 2008/2012 resolver audit",
+  "created": "2026-05-05",
+  "status": "documentation only; no mapper code changes",
+  "purpose": "Decode the 2012 and 2008 codebooks, identify safe items per PRISM target, and produce resolver-table snippets ready for mechanical wiring.",
+  "completion_contract_link": "results/electorate/synthetic-electorate/mapper-v01-completion-contract.{md,json} — flagged 2008/2012 as resolver carry-over",
+  "codebooks_consulted": [
+    "data/cces2012/cces_guide_2012.pdf (extracted via pdftotext)",
+    "data/cces2012/CCES12_Common_VV.tab header (column-name verification)",
+    "data/cces2008/codebook-extracted.txt (locally pre-extracted)",
+    "data/cces2008/cces_2008_common.tab header (column-name verification)"
+  ],
+  "explicitly_not_in_this_audit": [
+    "No mapper logic modifications",
+    "No engine / selector / topK / browser / dist / output / live-data / candidate / era-context edits",
+    "No raw-data downloads",
+    "No edits to generated smoke outputs"
+  ],
+  "forbidden_universal_inputs": [
+    "Vote-choice columns (CC410a 2012 / CC403 / CC410 2008)",
+    "Candidate feeling thermometers",
+    "Validated-turnout fields (for position nodes)",
+    "pid7 / CC307a (only as flagged signal for moralBoundaries.political_camp)",
+    "Partisan-camp-loaded items (per v0.1 contract)"
+  ],
+  "sequencing_recommendation": "2012 first (modern-CCES-style names, direct cross-cycle parallels with 2016+), 2008 second (CC*** + V### archaeology). 2008 has NO immigration items — CU/national stays at fallback regardless.",
+  "summary": {
+    "currently_fallback_cells": { "2012": 8, "2008": 15 },
+    "after_resolver_covered": { "2012": 7, "2008": 6 },
+    "after_resolver_reduced": { "2012": 1, "2008": 4 },
+    "after_resolver_stays_fallback": { "2012": 0, "2008": 5 },
+    "new_signal_fns_required": 7,
+    "reusable_signal_fns": 6
+  },
+  "universal_code_maps": {
+    "support_oppose_2way": { "1": "Support / Favor", "2": "Oppose", "3": "Not Sure (2008 only)", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "yes_no_multiselect": { "1": "Yes", "2": "No", "8": "Skipped", "9": "Not Asked", ".": "Missing" },
+    "likert_4pt": { "1": "strongest pro-restriction / strongly support", "2": "somewhat", "3": "somewhat opposite", "4": "strongest pro-permission / strongly oppose", "8": "Skipped", "9": "Not Asked" },
+    "likert_5pt_jobs_env": { "1": "environment-strong", "2": "environment-somewhat", "3": "about same", "4": "jobs-somewhat", "5": "jobs-strong", "8": "Skipped", "9": "Not Asked" },
+    "econ_retro_5pt": { "1": "much better", "2": "better", "3": "stayed same", "4": "worse", "5": "much worse" }
+  },
+  "section_2012": {
+    "items": [
+      { "section": "CD", "variable": "CC324", "exact_wording": "Which one of the opinions on this page best agrees with your view on abortion?", "code_pattern": "likert_4pt (1=never permitted, 4=personal choice)", "target": "CD/position", "polarity": "1 → CD high, 4 → CD low (linear monotonic)", "signal_fn": "cc324_abortion_likert_4pt", "weight": 1.5, "uncertainty": "low", "v01F_safety": "ship", "circularity_risk": "none", "empirical_distribution": "5684 / 14146 / 7174 / 27111 / 420 skipped" },
+      { "section": "CD", "variable": "CC326", "exact_wording": "Do you favor or oppose allowing gays and lesbians to marry legally?", "code_pattern": "support_oppose_2way (1=Favor, 2=Oppose)", "target": "CD/position + moralBoundaries.gender (cross-load)", "polarity": "Favor → CD low; Oppose → CD high", "signal_fn_cd": "support_to_cd_low", "signal_fn_gender": "favor_one_sided", "weight_cd": 1.0, "weight_gender": 1.0, "uncertainty": "low", "v01F_safety": "ship", "circularity_risk": "none" },
+      { "section": "CD", "variable": "CC332E", "exact_wording": "Birth Control Exemption. A Bill to let employers and insurers refuse to cover birth control and other health services that violate their religious beliefs.", "code_pattern": "support_oppose_2way", "target": "CD/position + light moralBoundaries.religious", "polarity": "Support → CD high (employer-religious-conscience); Oppose → CD low", "signal_fn": "support_to_cd_high", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship_reduced", "reason_reduced": "Religious-liberty cross-load mirrors CC16_332d employer-conscience reduced-weight rationale" },
+      { "section": "CD", "variable": "CC332J", "exact_wording": "End Don't Ask, Don't Tell. Would allow gays to serve openly in the armed services.", "code_pattern": "support_oppose_2way", "target": "CD/position + moralBoundaries.gender (direction-agnostic)", "polarity": "Support → CD low; Oppose → CD high", "signal_fn_cd": "support_to_cd_low", "signal_fn_gender": "any_response_direction_agnostic", "weight_cd": 1.0, "weight_gender": 1.0, "uncertainty": "low", "v01F_safety": "ship", "empirical_distribution": "36353 / oppose+skipped 17336 / 780 (8)" },
+
+      { "section": "CU_immigration_battery", "variable": "CC322_1", "exact_wording": "Grant legal status to all illegal immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes", "code_pattern": "yes_no_multiselect", "target": "CU/position", "polarity": "Yes → CU high (pluralist)", "signal_fn": "yes_to_cu_high", "weight": 0.5, "uncertainty": "low", "v01F_safety": "ship", "verbatim_match_2016": "CC16_331_1" },
+      { "section": "CU_immigration_battery", "variable": "CC322_2", "exact_wording": "Increase the number of border patrols on the US-Mexican border", "code_pattern": "yes_no_multiselect", "target": "CU/position + moralBoundaries.national", "polarity": "Yes → CU low + national.salience high", "signal_fn_cu": "yes_to_cu_low", "signal_fn_national": "yes_one_sided", "weight_cu": 0.5, "weight_national": 0.5, "uncertainty": "medium", "v01F_safety": "ship", "verbatim_match_2016": "CC16_331_2" },
+      { "section": "CU_immigration_battery", "variable": "CC322_3", "exact_wording": "Allow police to question anyone they think may be in the country illegally", "code_pattern": "yes_no_multiselect", "target": "CU/position", "polarity": "Yes → CU low; light ethnic_racial cross-load", "signal_fn": "yes_to_cu_low", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship_reduced" },
+      { "section": "CU_immigration_battery", "variable": "CC322_4", "exact_wording": "Fine US businesses that hire illegal immigrants", "code_pattern": "yes_no_multiselect", "target": "CU/position", "polarity": "Yes → CU low (mixed; some pro-business R Oppose, some pro-labor D Support)", "signal_fn": "yes_to_cu_low", "weight": 0.3, "uncertainty": "medium", "v01F_safety": "ship_reduced" },
+      { "section": "CU_immigration_battery", "variable": "CC322_5", "exact_wording": "Prohibit illegal immigrants from using emergency hospital care and public schools", "code_pattern": "yes_no_multiselect", "target": "CU/position + moralBoundaries.national + light MOR", "polarity": "Yes → CU low + national.salience high + MOR low (narrow circle)", "signal_fn_cu": "yes_to_cu_low", "signal_fn_national": "yes_one_sided", "weight_cu": 0.7, "weight_national": 0.7, "uncertainty": "medium", "v01F_safety": "ship" },
+      { "section": "CU_immigration_battery", "variable": "CC322_6", "exact_wording": "Deny automatic citizenship to American-born children of illegal immigrants", "code_pattern": "yes_no_multiselect", "target": "CU/position + moralBoundaries.national", "polarity": "Yes → CU low + national.salience VERY high", "signal_fn_cu": "yes_to_cu_low", "signal_fn_national": "yes_one_sided", "weight_cu": 0.7, "weight_national": 1.0, "uncertainty": "low", "v01F_safety": "ship", "notes": "Cleanest national-circle marker in any audited cycle" },
+
+      { "section": "MAT", "variable": "CC332A", "exact_wording": "2011 House Budget Plan (Ryan). The Budget plan would cut Medicare and Medicaid by 42%. Would reduce debt by 16% by 2020.", "code_pattern": "support_oppose_2way", "target": "MAT/position", "polarity": "Support → MAT high (small-government / cut social spending)", "signal_fn": "support_to_mat_high", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship" },
+      { "section": "MAT", "variable": "CC332B", "exact_wording": "Simpson-Bowles Budget Plan. Plan would make 15% cuts across the board in Social Security, Medicare, Medicaid, and Defense, as well as other programs.", "code_pattern": "support_oppose_2way", "target": "MAT/position", "polarity": "Support → MAT high; mixed because cuts include Defense (some progressive Support)", "signal_fn": "support_to_mat_high", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship_reduced" },
+      { "section": "MAT", "variable": "CC332D", "exact_wording": "The Tax Hike Prevention Act. Would extend Bush-era tax cuts for all individuals, regardless of income.", "code_pattern": "support_oppose_2way", "target": "MAT/position", "polarity": "Support → MAT high (preserve Bush tax cuts)", "signal_fn": "support_to_mat_high", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship" },
+      { "section": "MAT", "variable": "CC332G", "exact_wording": "Repeal Affordable Care Act. Would repeal the Affordable Care Act.", "code_pattern": "support_oppose_2way", "target": "MAT/position", "polarity": "Support → MAT high (anti-government healthcare)", "signal_fn": "support_to_mat_high", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship", "verbatim_match_other_cycles": "CC16_351I, CC24_328d" },
+      { "section": "MAT", "variable": "CC332I", "exact_wording": "Affordable Care Act of 2010. Requires all Americans to obtain health insurance. Allows people to keep current provider. Sets up health insurance option for those without coverage. Increases taxes on those making more than $280,000 a year.", "code_pattern": "support_oppose_2way", "target": "MAT/position", "polarity": "INVERSE of CC332G — Support → MAT low (pro-government healthcare); Oppose → MAT high", "signal_fn": "support_to_mat_low", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship", "implementation_critical_note": "CC332G repeals ACA; CC332I passes ACA. Composite must NOT route them with the same signal_fn." },
+
+      { "section": "ZS", "variable": "CC325", "exact_wording": "Some people think it is important to protect the environment even if it costs some jobs or otherwise reduces our standard of living. Other people think that protecting the environment is not as important as maintaining jobs and our standard of living. Which is closer to the way you feel?", "code_pattern": "likert_5pt_jobs_env", "target": "ZS/position + light ONT_S", "polarity": "1 → ZS low; 5 → ZS high", "signal_fn": "jobs_env_5pt_to_zs_high", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship" },
+      { "section": "ZS", "variable": "CC332F", "exact_wording": "U.S.-Korea Free Trade Agreement. Would remove tariffs on imports and exports between South Korea and the U.S.", "code_pattern": "support_oppose_2way", "target": "ZS/position", "polarity": "Support → ZS low (trade as positive-sum); Oppose → ZS high", "signal_fn": "support_to_zs_low", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship" },
+      { "section": "ZS", "variable": "CC302", "exact_wording": "Would you say that OVER THE PAST YEAR the nation's economy has...?", "code_pattern": "econ_retro_5pt", "target": "ZS/position (light)", "polarity": "5 (much worse) → ZS high; 1 (much better) → ZS low", "signal_fn": "econ_retro_5pt_to_zs_high", "weight": 0.3, "uncertainty": "medium", "v01F_safety": "ship" }
+    ],
+    "items_rejected": [
+      { "var": "CC332C", "reason": "Direction-ambiguous (Middle Class Tax Cut Act extending Bush cuts < $200K — both progressives preserving and conservatives extending Support)" },
+      { "var": "CC332H", "reason": "Keystone Pipeline — environment / ONT_S cross-load; not pure MAT or ZS" },
+      { "var": "CC305-CC306, CC307-CC307a", "reason": "Party ID variants — usable only for moralBoundaries.political_camp via existing pid7 wiring" },
+      { "var": "CC410a", "reason": "FORBIDDEN — post-wave president vote choice" }
+    ],
+    "composites": {
+      "CD": "(1.5×CC324 + 1.0×CC326 + 0.5×CC332E + 1.0×CC332J) / 4.0",
+      "CU": "(0.5×CC322_1 + 0.5×CC322_2 + 0.5×CC322_3 + 0.3×CC322_4 + 0.7×CC322_5 + 0.7×CC322_6) / 3.2",
+      "national_salience": "(0.5×CC322_2 + 0.7×CC322_5 + 1.0×CC322_6) / 2.2",
+      "MAT": "(1.0×CC332A + 0.5×CC332B + 1.0×CC332D + 1.0×CC332G − 1.0×CC332I) / 4.5",
+      "ZS": "(0.5×CC325 + 0.5×CC332F + 0.3×CC302) / 1.3",
+      "gender_salience": "(1.0×CC326 + 1.0×CC332J) / 2.0"
+    }
+  },
+  "section_2008": {
+    "no_immigration_items": "2008 has NO immigration policy items in common content (only demographic 'are you an immigrant'). CU + national.salience stay at fallback regardless of resolver work.",
+    "items": [
+      { "section": "CD", "variable": "CC310", "exact_wording": "Which one of the opinions on this page best agrees with your view on abortion?", "code_pattern": "likert_4pt (identical to CC324 in 2012)", "target": "CD/position", "polarity": "1 → CD high, 4 → CD low", "signal_fn": "cc324_abortion_likert_4pt", "weight": 1.5, "uncertainty": "low", "v01F_safety": "ship", "empirical_distribution": "4796 / 9533 / 4710 / 13595 / 166 skipped" },
+      { "section": "CD", "variable": "CC316c", "exact_wording": "Stem Cell Research (federal funding expansion)", "code_pattern": "support_oppose_2way (with Not Sure=3)", "target": "CD/position", "polarity": "Support → CD low (progressive bioethics); Oppose → CD high", "signal_fn": "support_to_cd_low_with_not_sure_neutral", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship_reduced" },
+      { "section": "CD", "variable": "CC316f", "exact_wording": "Constitutional Amendment banning Gay Marriage", "code_pattern": "support_oppose_2way (with Not Sure=3)", "target": "CD/position + moralBoundaries.gender", "polarity": "Support → CD HIGH (banning marriage = traditionalist); Oppose → CD low. INVERTED relative to CC326 in 2012 (which asks 'favor allowing').", "signal_fn_cd": "support_to_cd_high_with_not_sure_neutral", "signal_fn_gender": "any_response_direction_agnostic_with_not_sure_neutral", "weight_cd": 1.0, "weight_gender": 1.0, "uncertainty": "low", "v01F_safety": "ship", "implementation_critical_note": "CC316f and CC326 have OPPOSITE direction signs. Mapper resolver must NOT share a signal_fn between them." },
+
+      { "section": "MAT", "variable": "CC312", "exact_wording": "A proposal has been made that would allow people to put a portion of their Social Security payroll taxes into personal retirement accounts that would be invested in private stocks and bonds. Do you favor or oppose this idea?", "code_pattern": "likert_4pt (1=Strongly support, 4=Strongly oppose)", "target": "MAT/position", "polarity": "1 → MAT high (privatization); 4 → MAT low", "signal_fn": "support_oppose_4pt_to_mat_high", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship" },
+      { "section": "MAT", "variable": "CC316b", "exact_wording": "Increase Minimum Wage from $5.15 to $7.25", "code_pattern": "support_oppose_2way (with Not Sure=3)", "target": "MAT/position", "polarity": "Support → MAT low; Oppose → MAT high", "signal_fn": "support_to_mat_low_with_not_sure_neutral", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship", "verbatim_match": "CC16_351K, CC20_350b" },
+      { "section": "MAT", "variable": "CC316e", "exact_wording": "Health Insurance Program for Children (S-CHIP expansion)", "code_pattern": "support_oppose_2way (with Not Sure=3)", "target": "MAT/position", "polarity": "Support → MAT low (pro-government healthcare expansion)", "signal_fn": "support_to_mat_low_with_not_sure_neutral", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship" },
+      { "section": "MAT", "variable": "CC316g", "exact_wording": "Federal assistance for homeowners facing foreclosure and large lending institutions at risk of failing", "code_pattern": "support_oppose_2way (with Not Sure=3)", "target": "MAT/position", "polarity": "Support → MAT low (pro-intervention)", "signal_fn": "support_to_mat_low_with_not_sure_neutral", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship_reduced", "reason_reduced": "Mixed: some Support for institutional stability, not necessarily pro-redistribution" },
+
+      { "section": "ZS", "variable": "CC311", "exact_wording": "Some people think it is important to protect the environment even if it costs some jobs... (verbatim identical to CC325 in 2012)", "code_pattern": "likert_5pt_jobs_env", "target": "ZS/position + light ONT_S", "polarity": "1 → ZS low; 5 → ZS high", "signal_fn": "jobs_env_5pt_to_zs_high", "weight": 0.5, "uncertainty": "medium", "v01F_safety": "ship" },
+      { "section": "ZS", "variable": "CC316h", "exact_wording": "Extend the North American Free trade Agreement (NAFTA) to include Peru and Columbia", "code_pattern": "support_oppose_2way (with Not Sure=3; HIGH Not-Sure rate ~30%)", "target": "ZS/position", "polarity": "Support → ZS low; Oppose → ZS high", "signal_fn": "support_to_zs_low_with_not_sure_neutral", "weight": 0.3, "uncertainty": "medium", "v01F_safety": "ship_reduced", "reason_reduced": "High Not-Sure share dilutes signal" },
+      { "section": "ZS", "variable": "CC302", "exact_wording": "Would you say that OVER THE PAST YEAR the nation's economy has...? (same wording / codes as 2012 CC302)", "code_pattern": "econ_retro_5pt", "target": "ZS/position (light)", "polarity": "5 → ZS high; 1 → ZS low", "signal_fn": "econ_retro_5pt_to_zs_high", "weight": 0.3, "uncertainty": "medium", "v01F_safety": "ship" },
+
+      { "section": "ethnic_racial", "variable": "CC313", "exact_wording": "Affirmative action programs give preference to racial minorities and to women in employment and college admissions in order to correct for discrimination. Do you support or oppose affirmative action?", "code_pattern": "likert_4pt", "target": "moralBoundaries.ethnic_racial (light, one-sided) + light moralBoundaries.gender", "polarity": "Strongly support → ethnic_racial high salience (one-sided); opposing AA does NOT push ethnic_racial low", "signal_fn": "cc313_aa_one_sided", "weight": 0.5, "uncertainty": "high", "v01F_safety": "ship_reduced", "empirical_distribution": "3791 / 8883 / 8123 / 11820 / 183 skipped" },
+
+      { "section": "ideological_salience", "variable": "CC317a", "exact_wording": "The scales below represent the ideological spectrum from very liberal (0) to very conservative (100). (Self-placement)", "code_pattern": "0-100 numeric", "target": "moralBoundaries.ideological", "polarity": "Salience strength via distance from center (50)", "signal_fn": "ideo_strength_0_100", "weight": 1.0, "uncertainty": "medium", "v01F_safety": "ship", "notes": "Direct 2008 equivalent of ideo5 strength used in modern cycles" },
+
+      { "section": "religious_salience", "variable": "V215", "exact_wording": "Born Again (Pew version)", "code_pattern": "yes_no_multiselect", "target": "moralBoundaries.religious", "polarity": "Yes → religious salience high", "signal_fn": "pew_bornagain_to_relig_high", "weight": 0.5, "uncertainty": "low", "v01F_safety": "ship", "notes": "Direct 2008 equivalent of pew_bornagain in modern cycles" },
+      { "section": "religious_salience", "variable": "V216", "exact_wording": "Importance of religion (Pew version)", "code_pattern": "likert_4pt (Very important → Not important)", "target": "moralBoundaries.religious", "polarity": "1 (Very important) → religious salience high", "signal_fn": "relig_imp_4pt_to_high", "weight": 0.7, "uncertainty": "low", "v01F_safety": "ship" },
+      { "section": "religious_salience", "variable": "V217", "exact_wording": "Church attendance (Pew version)", "code_pattern": "ordinal_6pt (More than once a week → Never)", "target": "moralBoundaries.religious", "polarity": "1 (More than once a week) → religious salience high", "signal_fn": "church_attend_6pt_to_high", "weight": 0.7, "uncertainty": "low", "v01F_safety": "ship", "notes": "Direct 2008 equivalent of pew_churatd" },
+
+      { "section": "political_camp_salience", "variable": "CC307a", "exact_wording": "Pre Election 7 point Party ID", "code_pattern": "ordinal_7pt (1=Strong Dem → 7=Strong Rep, 4=Indep)", "target": "moralBoundaries.political_camp", "polarity": "Salience strength via distance from center (4)", "signal_fn": "pid7_strength_distance_from_center", "weight": 1.0, "uncertainty": "low", "v01F_safety": "ship", "partyIdDerived": true, "notes": "Direct 2008 equivalent of pid7 in modern cycles" }
+    ],
+    "items_rejected": [
+      { "var": "CC316a", "reason": "Withdraw Troops Iraq — foreign-policy / national-security framing; not a clean PRISM-target signal" },
+      { "var": "CC316d", "reason": "Eavesdrop overseas without court order — clean PRO low on Support, BUT PRO is structurally ANES-required per hard-node audit; single-cycle item too thin to base PRO composite on. Defer to v0.1G as 'PRO 2008-only experimental'." },
+      { "var": "CC316i", "reason": "Bank Bailout — mixed (Support for stability vs Oppose for moral hazard); weak MAT/ZS" },
+      { "var": "CC410", "reason": "FORBIDDEN — post-wave vote choice" },
+      { "var": "CC317b-m", "reason": "Ideology placement of others (parties, candidates) — close to candidate thermometer territory; potentially circular for vote prediction" }
+    ],
+    "composites": {
+      "CD": "(1.5×CC310 + 1.0×CC316f + 0.5×CC316c) / 3.0",
+      "MAT": "(1.0×CC312 − 1.0×CC316b − 1.0×CC316e − 0.5×CC316g) / 3.5",
+      "ZS": "(0.5×CC311 + 0.3×CC316h + 0.3×CC302) / 1.1",
+      "gender_salience": "1.0×CC316f / 1.0",
+      "ethnic_racial": "0.5×CC313 / 0.5 (single-item, one-sided)",
+      "ideological_salience": "1.0×CC317a / 1.0",
+      "religious_salience": "(0.5×V215 + 0.7×V216 + 0.7×V217) / 1.9"
+    }
+  },
+  "resolver_table_2008_snippet": {
+    "CD_position": [
+      { "var": "CC310", "weight": 1.5, "signal_fn": "cc324_abortion_likert_4pt" },
+      { "var": "CC316f", "weight": 1.0, "signal_fn": "support_to_cd_high_with_not_sure_neutral" },
+      { "var": "CC316c", "weight": 0.5, "signal_fn": "support_to_cd_low_with_not_sure_neutral" }
+    ],
+    "MAT_position": [
+      { "var": "CC312", "weight": 1.0, "signal_fn": "support_oppose_4pt_to_mat_high" },
+      { "var": "CC316b", "weight": 1.0, "signal_fn": "support_to_mat_low_with_not_sure_neutral" },
+      { "var": "CC316e", "weight": 1.0, "signal_fn": "support_to_mat_low_with_not_sure_neutral" },
+      { "var": "CC316g", "weight": 0.5, "signal_fn": "support_to_mat_low_with_not_sure_neutral" }
+    ],
+    "ZS_proxy": [
+      { "var": "CC311", "weight": 0.5, "signal_fn": "jobs_env_5pt_to_zs_high" },
+      { "var": "CC316h", "weight": 0.3, "signal_fn": "support_to_zs_low_with_not_sure_neutral" },
+      { "var": "CC302", "weight": 0.3, "signal_fn": "econ_retro_5pt_to_zs_high" }
+    ],
+    "gender_proxy": [{ "var": "CC316f", "weight": 1.0, "signal_fn": "any_response_direction_agnostic_with_not_sure_neutral" }],
+    "ethnic_racial_proxy": [{ "var": "CC313", "weight": 0.5, "signal_fn": "cc313_aa_one_sided" }],
+    "ideological_salience": [{ "var": "CC317a", "weight": 1.0, "signal_fn": "ideo_strength_0_100" }],
+    "religious_salience": [
+      { "var": "V215", "weight": 0.5, "signal_fn": "pew_bornagain_to_relig_high" },
+      { "var": "V216", "weight": 0.7, "signal_fn": "relig_imp_4pt_to_high" },
+      { "var": "V217", "weight": 0.7, "signal_fn": "church_attend_6pt_to_high" }
+    ],
+    "political_camp_salience": [{ "var": "CC307a", "weight": 1.0, "signal_fn": "pid7_strength_distance_from_center", "partyIdDerived": true }],
+    "CU_position": null,
+    "national_salience": null,
+    "PRO_position": null,
+    "COM_position": null,
+    "ONT_H_position": null,
+    "ONT_S_position": null,
+    "EPS_distribution": null,
+    "AES_distribution": null,
+    "MOR_position": null
+  },
+  "resolver_table_2012_snippet": {
+    "CD_position": [
+      { "var": "CC324", "weight": 1.5, "signal_fn": "cc324_abortion_likert_4pt" },
+      { "var": "CC326", "weight": 1.0, "signal_fn": "support_to_cd_low" },
+      { "var": "CC332E", "weight": 0.5, "signal_fn": "support_to_cd_high" },
+      { "var": "CC332J", "weight": 1.0, "signal_fn": "support_to_cd_low" }
+    ],
+    "CU_position": [
+      { "var": "CC322_1", "weight": 0.5, "signal_fn": "yes_to_cu_high" },
+      { "var": "CC322_2", "weight": 0.5, "signal_fn": "yes_to_cu_low" },
+      { "var": "CC322_3", "weight": 0.5, "signal_fn": "yes_to_cu_low" },
+      { "var": "CC322_4", "weight": 0.3, "signal_fn": "yes_to_cu_low" },
+      { "var": "CC322_5", "weight": 0.7, "signal_fn": "yes_to_cu_low" },
+      { "var": "CC322_6", "weight": 0.7, "signal_fn": "yes_to_cu_low" }
+    ],
+    "national_salience": [
+      { "var": "CC322_2", "weight": 0.5, "signal_fn": "yes_one_sided" },
+      { "var": "CC322_5", "weight": 0.7, "signal_fn": "yes_one_sided" },
+      { "var": "CC322_6", "weight": 1.0, "signal_fn": "yes_one_sided" }
+    ],
+    "MAT_position": [
+      { "var": "CC332A", "weight": 1.0, "signal_fn": "support_to_mat_high" },
+      { "var": "CC332B", "weight": 0.5, "signal_fn": "support_to_mat_high" },
+      { "var": "CC332D", "weight": 1.0, "signal_fn": "support_to_mat_high" },
+      { "var": "CC332G", "weight": 1.0, "signal_fn": "support_to_mat_high" },
+      { "var": "CC332I", "weight": 1.0, "signal_fn": "support_to_mat_low" }
+    ],
+    "ZS_proxy": [
+      { "var": "CC325", "weight": 0.5, "signal_fn": "jobs_env_5pt_to_zs_high" },
+      { "var": "CC332F", "weight": 0.5, "signal_fn": "support_to_zs_low" },
+      { "var": "CC302", "weight": 0.3, "signal_fn": "econ_retro_5pt_to_zs_high" }
+    ],
+    "gender_proxy": [
+      { "var": "CC326", "weight": 1.0, "signal_fn": "favor_one_sided" },
+      { "var": "CC332J", "weight": 1.0, "signal_fn": "any_response_direction_agnostic" }
+    ],
+    "ethnic_racial_proxy": null,
+    "PRO_position": null,
+    "COM_position": null,
+    "ONT_H_position": null,
+    "ONT_S_position": null,
+    "EPS_distribution": null,
+    "AES_distribution": null,
+    "MOR_position": null
+  },
+  "new_signal_fns_required": [
+    { "name": "cc324_abortion_likert_4pt", "definition": "(2.5 - response_value) / 1.5 clipped to [-1, +1]; missing → 0; reusable across CC310 and CC324" },
+    { "name": "support_to_cd_low_with_not_sure_neutral", "definition": "Support → -1.0; Oppose → +1.0; Not Sure (3) → 0; missing → 0" },
+    { "name": "support_to_cd_high_with_not_sure_neutral", "definition": "mirror of above (sign-flipped)" },
+    { "name": "support_oppose_4pt_to_mat_high", "definition": "(2.5 - response_value) / 1.5 for 4-pt Likert (1=strong support, 4=strong oppose)" },
+    { "name": "support_to_mat_low_with_not_sure_neutral", "definition": "Support → -1.0; Oppose → +1.0; Not Sure → 0" },
+    { "name": "jobs_env_5pt_to_zs_high", "definition": "(response_value - 3) / 2 for 5-pt Likert with 1=env, 5=jobs" },
+    { "name": "cc313_aa_one_sided", "definition": "max(0, (2.5 - response_value) / 1.5) — only AA-Support contributes; one-sided" },
+    { "name": "yes_to_cu_high", "definition": "Yes → +1.0 (CU high); No → -1.0; missing → 0" },
+    { "name": "yes_to_cu_low", "definition": "Yes → -1.0 (CU low); No → +1.0; missing → 0" }
+  ],
+  "reusable_signal_fns_from_v01F_spec": [
+    "support_to_zs_low (ZS-boundary spec)",
+    "support_to_zs_high",
+    "favor_one_sided",
+    "any_response_direction_agnostic",
+    "yes_one_sided",
+    "support_to_mat_high (extension of existing economic patterns)",
+    "ideo_strength_0_100 (extension of modern ideo5 strength)",
+    "pid7_strength_distance_from_center (existing)",
+    "pew_bornagain_to_relig_high (existing)",
+    "relig_imp_4pt_to_high (existing)",
+    "church_attend_6pt_to_high (existing)"
+  ],
+  "coverage_projection": {
+    "current_state_source": "results/electorate/synthetic-electorate/survey-to-prism-mapper-coverage-audit.json (HEAD f1a4c90)",
+    "2008": {
+      "MAT": "0% → 70%+",
+      "CD": "0% → 90%+",
+      "CU": "0% → stays 0% (no immigration items)",
+      "MOR": "0% → 0% (v0.2 composite-promotion deferred)",
+      "PRO": "0% → 0% (ANES-required)",
+      "COM": "0% → 0% (ANES-required)",
+      "ZS": "0% → 50%+",
+      "ONT_H": "0% → 0% (ANES-required)",
+      "ONT_S": "0% → 0% (ANES-required)",
+      "EPS": "0% → 0% (ANES-required)",
+      "AES": "0% → 0% (inherent fallback)",
+      "engagement": "100% (no change)",
+      "moralBoundaries.national": "0% → stays 0%",
+      "moralBoundaries.ethnic_racial": "0% → 50% (CC313 single item, reduced)",
+      "moralBoundaries.religious": "0% → 90%+ (V215/V216/V217 alias)",
+      "moralBoundaries.class": "0% → 0% (no `union` standard column verified for 2008)",
+      "moralBoundaries.ideological": "0% → 90%+ (CC317a alias)",
+      "moralBoundaries.gender": "0% → 50% (CC316f single item)",
+      "moralBoundaries.political_camp": "0% → 90%+ (CC307a alias)",
+      "moralBoundaries.intensity": "0% → derived"
+    },
+    "2012": {
+      "MAT": "0% → 90%+",
+      "CD": "0% → 90%+",
+      "CU": "0% → 90%+",
+      "MOR": "0% → 0% (v0.2)",
+      "PRO": "0% → 0% (ANES-required)",
+      "COM": "0% → 0% (ANES-required)",
+      "ZS": "0% → 70%+",
+      "ONT_H": "0% → 0% (ANES-required)",
+      "ONT_S": "0% → 0% (ANES-required)",
+      "EPS": "0% → 0% (ANES-required)",
+      "AES": "0% → 0% (inherent fallback)",
+      "engagement": "100% (no change)",
+      "moralBoundaries.national": "0% → 90%+",
+      "moralBoundaries.ethnic_racial": "0% → 0% (no AA item in 2012 audited)",
+      "moralBoundaries.religious": "already 100% via pew_*",
+      "moralBoundaries.class": "already 100% via union/union_hh",
+      "moralBoundaries.ideological": "already ~95% via ideo5",
+      "moralBoundaries.gender": "0% → 60% (CC326 + CC332J)",
+      "moralBoundaries.political_camp": "already ~98% via pid7",
+      "moralBoundaries.intensity": "already 100%"
+    },
+    "net_new_cells_lifted": {
+      "2008": 8,
+      "2012": 6
+    }
+  },
+  "implementation_order_recommendation": [
+    "1. 2012 resolver block first (~14 items across 6 composites; column names align with standard CCES naming the loader already reads). Expected smoke pass: MAT/CD/CU/national/gender/ZS for 2012 lift to 90%+.",
+    "2. 2008 issue items second (CC310, CC312, CC316b-i — 9 items across 4 composites). MAT/CD/ZS/gender lift.",
+    "3. 2008 boundary aliases third (V215/V216/V217 → religious; CC307a → political_camp; CC317a → ideological). Column-name aliasing layer, not new signal_fn.",
+    "4. 2008 ethnic_racial single-item proxy fourth (CC313). Lower priority because reduced-confidence even with resolver.",
+    "Each step ships independently; no dependency chain."
+  ],
+  "files": [
+    "results/electorate/synthetic-electorate/mapper-2008-2012-resolver-audit.md",
+    "results/electorate/synthetic-electorate/mapper-2008-2012-resolver-audit.json"
+  ],
+  "terminology": "moralBoundaries.* and engagement are canonical per ADR-006/ADR canon. Engagement is referenced as a separate 1D continuous scalar. Legacy code identifiers (pid7, ideo5, CC*_*, V###, pew_*) appear only as CCES variable names.",
+  "revision_history": [
+    { "date": "2026-05-05", "description": "Initial 2008/2012 resolver audit. 23 items spec'd across both cycles, 7 new signal_fn types required, 14 (target × cycle) cells projected to lift from blocker to covered/reduced after wiring." }
+  ]
+}
