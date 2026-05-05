@@ -2685,15 +2685,22 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(c => c.weight > 0 || c.distance > 0)
         .sort((a, b) => b.weightShare - a.weightShare);
 
-      // Bar widths are proportional to gap and together fill innerW exactly.
-      // A floor of 0.05-units-of-gap is added per bar so a true zero-gap
-      // cluster still renders as a thin sliver rather than disappearing.
+      // v27.38 — Fixed gap scale (was: per-candidate normalized to fill
+      // innerW). Previously a cluster gap of 0.5 on a closely-aligned
+      // candidate rendered the same width as a 2.0 gap on a strongly-
+      // disagreed one because both were dominant in their respective charts.
+      // Now bar width = gap × PIXELS_PER_GAP, where the scale is fixed
+      // so 1.0 unit of gap is the same number of pixels for every
+      // candidate in every election. Sum-of-gaps = 10 fills the chart
+      // (typical worst-case respondent vs strong-disagree candidate);
+      // closely-aligned candidates render narrow bars with empty space on
+      // the right; the rare extreme overflow simply clips at the SVG edge.
+      const PIXELS_PER_GAP = innerW / 10;
       const gapFloor = 0.05;
       const adjustedGaps = orderedRows.map(c => Math.max(gapFloor, c.distance));
-      const totalGap = adjustedGaps.reduce((s, g) => s + g, 0) || 1;
-      const widths = adjustedGaps.map(g => (g / totalGap) * innerW);
+      const widths = adjustedGaps.map(g => g * PIXELS_PER_GAP);
 
-      let out = `<div class="ed-cluster-chart-legend">The area of each block represents the size of the difference between you and this candidate on that cluster. Hover a block for the dominant difference in plain English.</div>`;
+      let out = `<div class="ed-cluster-chart-legend">The area of each block represents the size of the difference between you and this candidate on that cluster. The width scale is fixed across candidates — a closely-aligned candidate shows narrow bars; a strongly-disagreed candidate shows wide ones. Hover for the dominant difference in plain English.</div>`;
       let svg = `<svg class="ed-cluster-chart" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">`;
       // Y-axis grid lines + tick labels.
       const yTickStep = Y_DOMAIN <= 0.6 ? 0.1 : Y_DOMAIN <= 0.8 ? 0.2 : 0.25;
