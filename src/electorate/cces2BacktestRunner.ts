@@ -42,6 +42,7 @@ import { ELECTIONS } from "../historical/candidates.js";
 import { getContext } from "../historical/contexts.js";
 import { predictVote } from "../historical/respondentVoteChoice.js";
 import { ARCHETYPES } from "../config/archetypes.js";
+import { loadTurnoutModel, predictTurnoutProbability, type TurnoutLookup } from "./turnoutModel.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────
 
@@ -53,6 +54,14 @@ export interface CycleBacktestOptions {
   rowLimit?: number | null;
   /** Override the default file path for this cycle. */
   filePath?: string;
+  /**
+   * If supplied, gates each respondent's vote/abstain via the demographic
+   * turnout model (Phase B' calibration). Each respondent contributes
+   * `weight × p_turnout` to the nearest candidate's bucket and
+   * `weight × (1 − p_turnout)` to Abstain. When omitted, falls back to
+   * the engine's engagement-based clearing-bar abstain (legacy v0 path).
+   */
+  turnoutModel?: TurnoutLookup | null;
 }
 
 export interface CycleBacktestResult {
@@ -340,7 +349,16 @@ export async function runCycleBacktest(
 
     const w = r.weight;
     totalWeight += w;
-    if (prediction.decision === "abstain") {
+    if (opts.turnoutModel) {
+      // Phase B' — demographic turnout model gates abstention via expected
+      // value. predictVote.decision (engagement-based) is intentionally
+      // overridden here; the engagement signal leaked validated turnout in
+      // 2008 and was uncalibrated otherwise. See `turnout-calibration-audit`.
+      const tp = predictTurnoutProbability(r.demographics, r.year, opts.turnoutModel);
+      const bucket = partyBucket(prediction.nearest.party);
+      weightedCounts[bucket] += w * tp.probability;
+      weightedCounts.Abstain += w * (1 - tp.probability);
+    } else if (prediction.decision === "abstain") {
       weightedCounts.Abstain += w;
     } else {
       const bucket = partyBucket(prediction.nearest.party);

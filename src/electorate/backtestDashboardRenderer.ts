@@ -425,20 +425,20 @@ nav.toc a:hover { text-decoration: underline; }
   ${summary}
 
   <div class="caveats">
-    <h3>How to read these gaps — vote share is a turnout-conditional comparison</h3>
-    <p style="margin: 6px 0;"><strong>Important:</strong> the "Pred D / Actual D" headline columns are <em>shares among those who voted</em> on each side — but the two voter pools are not the same population. The model abstains 0–5.5% of respondents across all cycles; reality abstains <strong>35–42%</strong>. So the predicted D-share is effectively the D-lean of the entire CCES sample, while the actual D-share is the D-lean of the ~60% of eligible adults who actually showed up. Real voters are a higher-engagement, higher-information slice of the electorate — and that slice differs systematically from the full sample. The abstention-model gap (the rightmost group in the summary table) is the load-bearing untreated bias.</p>
+    <h3>How to read these gaps</h3>
+    <p style="margin: 6px 0;"><strong>Phase B' calibration applied:</strong> abstention is now driven by a demographic turnout model (age × education × race lookup, trained from CCES 2008's clean validated turnout). Each respondent contributes <code>weight × p_turnout</code> to the nearest candidate's bucket and <code>weight × (1 − p_turnout)</code> to Abstain — expected-value aggregation. The per-cycle predicted abstention rate now lands within 5pp of FEC actuals across all cycles (was 0–5%; reality is 35–42%).</p>
+    <p style="margin: 6px 0;"><strong>The "Pred D / Actual D" columns are shares among those who voted</strong> on each side. The two voter pools are now closer in size, but still differ in composition: the predicted pool is sampled by demographic turnout probability; the actual pool is filtered by real individual decisions including civic interest, registration status, and circumstantial factors not captured in demographics alone.</p>
     <ul>
-      <li><strong>Abstention model is uncalibrated.</strong> The <code>predictVote</code> clearing-bar buckets (apolitical/casual/engaged/highly-engaged) plus the mapper's engagement-from-newsint-and-turnout signal together yield a near-zero abstain rate in every cycle. This is the single biggest separable error. A calibrated abstention layer would shrink the predicted voter pool to ~the same size as the actual voter pool, and the in-pool D/R gap would re-baseline.</li>
-      <li><strong>2008 (~5% mapper coverage):</strong> all node positions fall back to uniform priors. Predictions reflect the population center distance to each candidate, not modelled vote choice. The 31pp gap is a coverage-gap demonstration.</li>
-      <li><strong>2012 (~20% mapper coverage, MAT only):</strong> economic-axis signal only; cultural / moral / system axes are fallback. Directional read at best.</li>
-      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Three additive biases visible at the model layer:
+      <li><strong>2008 (~5% mapper coverage):</strong> abstention rate now matches FEC at 38.2% vs 38.4% (was 0.0%), but the 100% D / 0% R split persists. Cause: with no real mapper signal, every respondent has the same population-center signature, and <code>predictVote</code> deterministically routes that signature to Obama. Demographic abstention removes 38% of respondents from the voter pool, but the remaining 62% still all vote D. <strong>2008 D/R needs the 2008 mapper coverage push (Phase D), not abstention calibration.</strong></li>
+      <li><strong>2012 (~20% mapper coverage, MAT only):</strong> abstention 36.9% vs 42.0%; D/R gap 17.7pp. MAT alone discriminates a small fraction of voters. CD/CU/MOR/ZS still need wiring.</li>
+      <li><strong>2016 / 2020 / 2024:</strong> abstention now within 4pp of actual. D/R gaps remain in the 6–13pp range from three additive biases at the vote-prediction layer:
         <ul style="margin-top: 4px;">
           <li>Pre-existing model D-bias of ~11pp on 2020 archetype-centroid baseline (<code>voteModelSmoke</code>): centrist policy positions sit closer to D candidate profiles than to recent R candidates (especially Trump's CD/CU/MOR positioning).</li>
-          <li>Thin-coverage shrinkage adds ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
-          <li><strong>partyID is not passed to the predictor</strong> — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route cross-pressured voters back to their party despite issue-distance.</li>
+          <li>Thin-coverage shrinkage: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
+          <li><strong>partyID is not passed to the predictor</strong> — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route cross-pressured voters back to their party despite issue-distance. Best single lever for closing the remaining D/R gap on the 2016+ cycles.</li>
         </ul>
       </li>
-      <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline.</li>
+      <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline; not changed by abstention calibration.</li>
     </ul>
   </div>
 

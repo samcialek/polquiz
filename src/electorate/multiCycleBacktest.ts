@@ -13,6 +13,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { runCycleBacktest, type CycleBacktestResult } from "./cces2BacktestRunner.js";
+import { loadTurnoutModel } from "./turnoutModel.js";
 
 const YEARS = [2008, 2012, 2016, 2020, 2024];
 const BENCHMARKS_PATH = "results/electorate/backtest/benchmarks-2008-2024.json";
@@ -23,12 +24,16 @@ async function main() {
   const benchmarks = JSON.parse(fs.readFileSync(BENCHMARKS_PATH, "utf8"));
   const startedAt = new Date().toISOString();
 
+  // Load the demographic turnout model (Phase B'). Trained from CCES 2008.
+  const turnoutModel = loadTurnoutModel();
+  console.log(`Loaded turnout model trained from ${turnoutModel.trained_from.year} (n=${turnoutModel.trained_from.n_respondents}, base rate ${(turnoutModel.trained_from.weighted_turnout_rate*100).toFixed(1)}%)`);
+
   const cycles: CycleBacktestResult[] = [];
   const totalT0 = Date.now();
   for (const year of YEARS) {
     const t0 = Date.now();
     process.stdout.write(`${year}: loading + mapping + predicting ... `);
-    const result = await runCycleBacktest(year, benchmarks, { rowLimit: null });
+    const result = await runCycleBacktest(year, benchmarks, { rowLimit: null, turnoutModel });
     const elapsed = Date.now() - t0;
     cycles.push(result);
     const v = result.predicted.sharesOfVoters;
@@ -47,6 +52,7 @@ async function main() {
       vote_denominator: "both shares-of-voters and shares-of-electorate reported",
       partyID_passed_to_predictor: false,
       anchorDist_passed_to_predictor: false,
+      turnout_model: `Phase B' demographic lookup trained from ${turnoutModel.trained_from.year} (age × education × race; expected-value aggregation per respondent)`,
     },
     cycles,
   };
