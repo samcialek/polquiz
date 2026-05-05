@@ -2562,13 +2562,15 @@ document.addEventListener('DOMContentLoaded', () => {
           // bars — they're meant to touch like a stacked-band chart.
           svg += `<rect x="${rectX.toFixed(1)}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" fill="${fill}" fill-opacity="0.88" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>`;
         }
-        if (rectH > 12 && c.weight > 0 && rectW >= 36) {
-          svg += `<text x="${cx.toFixed(1)}" y="${(rectY - 6).toFixed(1)}" class="ed-tile-gap" text-anchor="middle">gap ${c.distance.toFixed(1)}</text>`;
+        // Cluster name below baseline only if the bar is wide enough to fit
+        // it comfortably. Otherwise the label hides and the user can read it
+        // off the hover tooltip. Estimate ~10px per char for 12px Space
+        // Grotesk bold with 0.08em letter-spacing, plus an 8px breathing
+        // buffer. Driver list needs more room and stays gated at 80px.
+        const nameWidth = c.name.length * 10 + 8;
+        if (rectW >= nameWidth) {
+          svg += `<text x="${cx.toFixed(1)}" y="${(baselineY + 18).toFixed(1)}" class="ed-tile-name" text-anchor="middle">${c.name}</text>`;
         }
-        // Cluster name + drivers below baseline. If the bar is too narrow
-        // to fit the cluster name centered above its slot, the labels still
-        // render — they may be cramped, but the order matches the bars.
-        svg += `<text x="${cx.toFixed(1)}" y="${(baselineY + 18).toFixed(1)}" class="ed-tile-name" text-anchor="middle">${c.name}</text>`;
         if (rectW >= 80) {
           svg += `<text x="${cx.toFixed(1)}" y="${(baselineY + 32).toFixed(1)}" class="ed-tile-driver" text-anchor="middle">${driverList}</text>`;
         }
