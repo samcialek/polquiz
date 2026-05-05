@@ -605,7 +605,10 @@
 
     /* SECTION 4: PROFILE */
     #profile-section { padding: 1.25rem 0 0.5rem; }
-    #profile-section .container { max-width: 100%; padding: 0 0.5rem; }
+    /* v27.44 — shift the entire profile-by-cluster-emphasis section ~50px
+       to the right so the donut + drill column read as a more centered
+       layout block on wide screens. Other sections unaffected. */
+    #profile-section .container { max-width: 100%; padding: 0 0.5rem 0 50px; }
     .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
     .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
     .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.12em; color: #333; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
@@ -866,12 +869,10 @@
     .cluster-overview .donut-wedge:hover { opacity: 1 !important; }
     .cluster-overview .donut-wedge.active { stroke: var(--ink); stroke-width: 3; }
     .donut-hint { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: #777; text-align: center; font-style: italic; }
-    .cluster-drill-tagline {
-      display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-      color: #444; line-height: 1.5; margin: 0 0 1.25rem;
-      padding-bottom: 0.85rem; border-bottom: 1.5px solid rgba(0,0,0,0.08);
-      font-style: italic;
-    }
+    /* v27.44 — italicized cluster-drill tagline removed per design. The
+       cluster header (ENDS / MEANS / etc.) already conveys what the cluster
+       is; restating the constituent dimensions added redundant prose. */
+    .cluster-drill-tagline { display: none; }
     .cluster-drill { display: block; }
     .cluster-panel { display: none; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -4410,10 +4411,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Non-SELF: height scales with salience, opacity fades with low salience.
         const isSelf = d.isSelf;
         // v27 — Compact: barH range 8-22 px. Salience reads, but rows stay tight.
-        const barH = isSelf ? 14 : Math.round(8 + d.sal * 14);
+        // v27.44 — bigger bars and a more pronounced salience differential.
+        // Old: 8 + sal*14 (range 8–22, ratio 2.75x). New: 12 + sal*30 (range
+        // 12–42, ratio 3.5x). Salience now drives a much more visible
+        // height contrast between high-salience and low-salience dimensions.
+        // Opacity range widened from 0.65–1.00 to 0.55–1.00 for the same
+        // reason — low-salience rows fade more, high-salience rows pop.
+        const barH = isSelf ? 18 : Math.round(12 + d.sal * 30);
         const row = document.createElement('div');
         row.className = 'node-row';
-        row.style.opacity = isSelf ? 1 : (0.65 + d.sal * 0.35);
+        row.style.opacity = isSelf ? 1 : (0.55 + d.sal * 0.45);
         row.style.gridTemplateColumns = '170px 1fr 50px';
 
         // v22: rich floating tooltip — definition, low/high pole meanings,
