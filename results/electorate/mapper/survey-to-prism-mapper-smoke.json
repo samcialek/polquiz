@@ -1,7 +1,7 @@
 {
   "schema_version": "v0",
   "generator": "src/electorate/surveyToPrismMapperSmoke.ts",
-  "runAt": "2026-05-04T22:40:27.752Z",
+  "runAt": "2026-05-05T15:19:45.865Z",
   "rowLimitPerYear": 200,
   "reports": [
     {
@@ -143,7 +143,7 @@
             "vars": [],
             "partyIdDerived": false,
             "uncertainty": "high",
-            "notes": "v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year 2008 deferred"
+            "notes": "v0.1C/E/G/I MAT: economic-battery decoder gated to 2012/2016/2020/2024 (audited); year 2008 deferred"
           }
         },
         "CD": {
@@ -476,9 +476,9 @@
       "validationErrors": [],
       "perNodeCoverage": {
         "MAT": {
-          "realSignalCount": 0,
-          "fallbackCount": 200,
-          "realSignalShare": 0
+          "realSignalCount": 200,
+          "fallbackCount": 0,
+          "realSignalShare": 1
         },
         "CD": {
           "realSignalCount": 0,
@@ -574,9 +574,9 @@
         "realSignalShare": 1
       },
       "meanCoverage": {
-        "realSignalCount": 1172,
-        "fallbackCount": 2828,
-        "realSignalShare": 0.293
+        "realSignalCount": 1372,
+        "fallbackCount": 2628,
+        "realSignalShare": 0.343
       },
       "voteChoiceContractCheck": {
         "passed": true,
@@ -590,24 +590,31 @@
         "turnoutObserved": null,
         "MAT": {
           "posPosterior": [
-            0.2,
-            0.2,
-            0.2,
-            0.2,
-            0.2
+            0.00022335919441509832,
+            0.0437636564575665,
+            0.5331504804926054,
+            0.4038428971612355,
+            0.019019606694177606
           ],
           "salPosterior": [
-            0.3,
-            0.45,
             0.2,
-            0.05
+            0.3,
+            0.3,
+            0.2
           ],
           "provenance": {
-            "source": "fallback",
-            "vars": [],
+            "source": "real_signal",
+            "vars": [
+              "CC332A",
+              "CC332B",
+              "CC332D",
+              "CC332G",
+              "CC332I",
+              "CC329"
+            ],
             "partyIdDerived": false,
-            "uncertainty": "high",
-            "notes": "v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year 2012 deferred"
+            "uncertainty": "low",
+            "notes": "v0.1C/E/G/I MAT (2012): 6/7 economic-battery items, totalWeight=5.0 (− redistributionist, + free-market); net=0.20 → pos=3.40, salience=1.30"
           }
         },
         "CD": {
@@ -932,8 +939,8 @@
           }
         },
         "coverage": {
-          "realSignalCount": 5,
-          "fallbackCount": 15,
+          "realSignalCount": 6,
+          "fallbackCount": 14,
           "totalTargets": 20
         }
       }
@@ -1082,7 +1089,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1C/E/G MAT (2016): 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
+            "notes": "v0.1C/E/G/I MAT (2016): 4/4 economic-battery items, totalWeight=3.5 (− redistributionist, + free-market); net=-0.14 → pos=2.71, salience=1.01"
           }
         },
         "CD": {
@@ -1573,7 +1580,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "medium",
-            "notes": "v0.1C/E/G MAT (2020): 3/3 economic-battery items, totalWeight=1.8 (− redistributionist, + free-market); net=0.11 → pos=3.22, salience=0.87; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)"
+            "notes": "v0.1C/E/G/I MAT (2020): 3/3 economic-battery items, totalWeight=1.8 (− redistributionist, + free-market); net=0.11 → pos=3.22, salience=0.87; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)"
           }
         },
         "CD": {
@@ -2083,7 +2090,7 @@
             ],
             "partyIdDerived": false,
             "uncertainty": "low",
-            "notes": "v0.1C/E/G MAT (2024): 5/5 economic-battery items, totalWeight=4.2 (− redistributionist, + free-market); net=-1.00 → pos=1.00, salience=2.40"
+            "notes": "v0.1C/E/G/I MAT (2024): 5/5 economic-battery items, totalWeight=4.2 (− redistributionist, + free-market); net=-1.00 → pos=1.00, salience=2.40"
           }
         },
         "CD": {

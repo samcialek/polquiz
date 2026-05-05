@@ -380,9 +380,43 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
  */
 type EconomicItem =
   | { col: string; kind: "rank";   polarity: 1 | -1; weight: number }
-  | { col: string; kind: "binary"; polarity: 1 | -1; weight: number };
+  | { col: string; kind: "binary"; polarity: 1 | -1; weight: number }
+  | { col: string; kind: "fc3";    polarity: 1 | -1; weight: number };
 
 function economicItemsForYear(year: number): EconomicItem[] | null {
+  if (year === 2012) {
+    // 2012 MAT composite per `mapper-2008-2012-resolver-audit.md` §A.3
+    // (commit e613727) and `mapper-2012-cc328-cc329-supplement.md`
+    // (commit b149e93). Wired after empirical verification passed
+    // (cces2012MarginalsSmoke; ACA inversion 101.5%, CC328 valid 98.5%,
+    // CC329/CC328 ratio 99.6%).
+    //
+    // Two question constructs: CC332* roll-call binaries (Support/Oppose),
+    // and CC328/CC329 3-way forced-choice (1=Cut Defense, 2=Cut Domestic,
+    // 3=Raise Taxes). The fc3 kind treats Cut Defense as MAT-ambiguous
+    // (abstain) and uses polarity to flip MOST vs LEAST direction.
+    return [
+      // CC332A "Ryan Budget Bill" (Medicare/Medicaid 42% cut) — Support = MAT high
+      { col: "CC332A", kind: "binary", polarity:  1, weight: 1.0 },
+      // CC332B "Simpson-Bowles Budget Plan" — Support = MAT high (mixed framing; defense + entitlement cuts)
+      { col: "CC332B", kind: "binary", polarity:  1, weight: 0.5 },
+      // CC332D "Tax Hike Prevention Act" (extend Bush cuts for all) — Support = MAT high
+      { col: "CC332D", kind: "binary", polarity:  1, weight: 1.0 },
+      // CC332G "Repeal Affordable Care Act" — Support = MAT high
+      { col: "CC332G", kind: "binary", polarity:  1, weight: 1.0 },
+      // CC332I "Affordable Care Act of 2010 (PASS)" — Support = MAT low (INVERSE of CC332G)
+      { col: "CC332I", kind: "binary", polarity: -1, weight: 1.0 },
+      // CC328 "Balanced Budget Pref 1" (forced-choice MOST). polarity:+1.
+      // 1=Cut Defense (abstain), 2=Cut Domestic (MAT high), 3=Raise Taxes (MAT low).
+      { col: "CC328",  kind: "fc3",    polarity:  1, weight: 1.0 },
+      // CC329 "Fiscal Preference #2" (forced-choice LEAST). polarity:-1
+      // (LEAST inverts MOST direction): Cut Domestic LEAST → MAT low,
+      // Raise Taxes LEAST → MAT high. Half-weight per supplement §2:
+      // partially duplicates CC328 except when CC328=Cut Defense (~41%
+      // of respondents), where CC329 carries the only MAT signal.
+      { col: "CC329",  kind: "fc3",    polarity: -1, weight: 0.5 },
+    ];
+  }
   if (year === 2016) {
     return [
       // CC16_337_2 "Cut Domestic Spending" — rank-first = MAT high (free-market)
@@ -445,7 +479,7 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
 
 /**
  * MAT (material orientation) — real-signal core position target shipped
- * across 2016 (v0.1C), 2020 (v0.1E), and 2024 (v0.1G).
+ * across 2012 (v0.1I), 2016 (v0.1C), 2020 (v0.1E), and 2024 (v0.1G).
  *
  * Coding:
  *   - 337 ranks (2016): `1` = Ranked first (most preferred), `2` = Ranked
@@ -494,7 +528,7 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
 function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = economicItemsForYear(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1C/E/G MAT: economic-battery decoder gated to 2016/2020/2024 (audited); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1C/E/G/I MAT: economic-battery decoder gated to 2012/2016/2020/2024 (audited); year ${r.year} deferred`);
   }
 
   let weightedDirectionSum = 0;
@@ -510,10 +544,21 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       else if (raw === 2) signal = 0;
       else if (raw === 3) signal = -1;
       else continue; // 8, 9, etc. → drop
-    } else {
+    } else if (it.kind === "binary") {
       if (raw === 1) signal = 1;       // For / Favor / Support
       else if (raw === 2) signal = -1; // Against / Oppose
       else continue;
+    } else if (it.kind === "fc3") {
+      // 3-way forced-choice (CCES12 CC328 MOST + CC329 LEAST):
+      // 1 = Cut Defense — MAT-ambiguous → abstain
+      // 2 = Cut Domestic — base direction +1; flipped to -1 by polarity:-1 for LEAST
+      // 3 = Raise Taxes — base direction -1; flipped to +1 by polarity:-1 for LEAST
+      if (raw === 1) continue;
+      else if (raw === 2) signal = 1;
+      else if (raw === 3) signal = -1;
+      else continue;
+    } else {
+      continue;
     }
     weightedDirectionSum += it.polarity * signal * it.weight;
     totalWeight += it.weight;
@@ -522,7 +567,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   }
 
   if (totalWeight === 0) {
-    return fallbackContinuous(`v0.1C/E/G MAT: respondent answered 0/${items.length} economic-battery items`);
+    return fallbackContinuous(`v0.1C/E/G/I MAT: respondent answered 0/${items.length} economic-battery items`);
   }
 
   const net = weightedDirectionSum / totalWeight; // [-1, +1] (- = redistributionist, + = free-market)
@@ -543,7 +588,7 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       vars: usedVars,
       partyIdDerived: false,
       uncertainty,
-      notes: `v0.1C/E/G MAT (${r.year}): ${answered}/${items.length} economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)" : ""}`,
+      notes: `v0.1C/E/G/I MAT (${r.year}): ${answered}/${items.length} economic-battery items, totalWeight=${totalWeight.toFixed(1)} (− redistributionist, + free-market); net=${net.toFixed(2)} → pos=${pos.toFixed(2)}, salience=${salScore.toFixed(2)}${r.year === 2020 ? "; uncertainty capped at medium by construction (max weight=1.8 < 2.0; audit §6: 2020 lacks ACA-repeal item)" : ""}`,
     },
   };
 }

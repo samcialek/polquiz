@@ -1,0 +1,305 @@
+{
+  "doc": "cces2012-marginals-verify",
+  "generated_at": "2026-05-05T15:17:55.338Z",
+  "file_path": "data/cces2012/CCES12_Common_VV.tab",
+  "rows_loaded": 54535,
+  "rows_skipped": 0,
+  "warn_threshold_pp": 3,
+  "stop_threshold_pp": 6,
+  "columns": [
+    {
+      "var": "CC332A",
+      "construct": "Ryan Budget Bill",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 18.7,
+        "oppose_pct": 81.3,
+        "valid_n": 53240
+      },
+      "expected": {
+        "support_pct": 18.7
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332B",
+      "construct": "Simpson-Bowles Budget Plan",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 48.7,
+        "oppose_pct": 51.3,
+        "valid_n": 53657
+      },
+      "expected": {
+        "support_pct": 48.7
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332D",
+      "construct": "Tax Hike Prevention Act",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 26.7,
+        "oppose_pct": 73.3,
+        "valid_n": 51755
+      },
+      "expected": {
+        "support_pct": 26.7
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332E",
+      "construct": "Birth Control Exemption",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 39.2,
+        "oppose_pct": 60.8,
+        "valid_n": 53340
+      },
+      "expected": {
+        "support_pct": 39.2
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332F",
+      "construct": "US-Korea FTA",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 50.9,
+        "oppose_pct": 49.1,
+        "valid_n": 52265
+      },
+      "expected": {
+        "support_pct": 50.9
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332G",
+      "construct": "Repeal Affordable Care Act",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 44.6,
+        "oppose_pct": 55.4,
+        "valid_n": 52172
+      },
+      "expected": {
+        "support_pct": 44.6
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332H",
+      "construct": "Keystone Pipeline",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 73.4,
+        "oppose_pct": 26.6,
+        "valid_n": 48758
+      },
+      "expected": {
+        "support_pct": 73.4
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332I",
+      "construct": "Affordable Care Act of 2010 (PASS)",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 56.9,
+        "oppose_pct": 43.1,
+        "valid_n": 53766
+      },
+      "expected": {
+        "support_pct": 56.9
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC332J",
+      "construct": "End Don't Ask Don't Tell",
+      "kind": "binary",
+      "observed": {
+        "support_pct": 67.7,
+        "oppose_pct": 32.3,
+        "valid_n": 53689
+      },
+      "expected": {
+        "support_pct": 67.7
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC328",
+      "construct": "Balanced Budget MOST",
+      "kind": "fc3",
+      "observed": {
+        "defense_pct": 40.6,
+        "domestic_pct": 38.8,
+        "taxes_pct": 20.6,
+        "valid_n": 53739
+      },
+      "expected": {
+        "defense_pct": 40.6,
+        "domestic_pct": 38.8,
+        "taxes_pct": 20.6
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC329",
+      "construct": "Balanced Budget LEAST",
+      "kind": "fc3",
+      "observed": {
+        "defense_pct": 19.6,
+        "domestic_pct": 35.8,
+        "taxes_pct": 44.6,
+        "valid_n": 53499
+      },
+      "expected": {
+        "defense_pct": 19.6,
+        "domestic_pct": 35.8,
+        "taxes_pct": 44.6
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC324",
+      "construct": "Abortion 4-pt Likert (1=never .. 4=always)",
+      "kind": "likert4",
+      "observed": {
+        "code1_pct": 10.5,
+        "code2_pct": 26.1,
+        "code3_pct": 13.3,
+        "code4_pct": 50.1,
+        "valid_n": 54115
+      },
+      "expected": {
+        "code1_pct": 10.5,
+        "code2_pct": 26.1,
+        "code3_pct": 13.3,
+        "code4_pct": 50.1
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC326",
+      "construct": "Gay Marriage (binary in 2012; no Not Sure code)",
+      "kind": "favor_oppose_notsure",
+      "observed": {
+        "favor_pct": 52.1,
+        "oppose_pct": 47.9,
+        "notsure_pct": 0,
+        "valid_n": 53942
+      },
+      "expected": {
+        "favor_pct": 52.1,
+        "oppose_pct": 47.9,
+        "notsure_pct": 0
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC325",
+      "construct": "Jobs vs Environment 5-pt",
+      "kind": "likert5",
+      "observed": {
+        "code1_pct": 12.1,
+        "code2_pct": 17.7,
+        "code3_pct": 31.7,
+        "code4_pct": 24.6,
+        "code5_pct": 14,
+        "valid_n": 54300
+      },
+      "expected": {
+        "code1_pct": 12.1,
+        "code2_pct": 17.7,
+        "code3_pct": 31.7,
+        "code4_pct": 24.6,
+        "code5_pct": 14
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    },
+    {
+      "var": "CC302",
+      "construct": "Economic retrospective 5-pt (1=much better .. 5=much worse)",
+      "kind": "likert5",
+      "observed": {
+        "code1_pct": 3.2,
+        "code2_pct": 29.5,
+        "code3_pct": 24.3,
+        "code4_pct": 25.7,
+        "code5_pct": 17.3,
+        "valid_n": 53837
+      },
+      "expected": {
+        "code1_pct": 3.2,
+        "code2_pct": 29.5,
+        "code3_pct": 24.3,
+        "code4_pct": 25.7,
+        "code5_pct": 17.3
+      },
+      "abs_deviation_pp": 0,
+      "flag": "ok"
+    }
+  ],
+  "crosschecks": [
+    {
+      "name": "ACA inversion: pct_support(CC332G) + pct_support(CC332I) near 100",
+      "observed": 101.5,
+      "expected_range": [
+        85,
+        115
+      ],
+      "flag": "ok",
+      "notes": "CC332G repeals ACA; CC332I passes ACA. Same construct, opposite direction. If both run high or both low, one is mis-decoded."
+    },
+    {
+      "name": "CC328 valid-response rate >= 60%",
+      "observed": 98.5,
+      "expected_range": [
+        60,
+        100
+      ],
+      "flag": "ok",
+      "notes": "If significantly below 70%, missing-value sentinel may be mis-coded (8/9/'.' leaking into value pool)."
+    },
+    {
+      "name": "CC329 valid-N / CC328 valid-N ratio",
+      "observed": 99.6,
+      "expected_range": [
+        85,
+        105
+      ],
+      "flag": "ok",
+      "notes": "CC329 is conditional on CC328 being answered. Ratio should be near 100% (mild attrition between MOST and LEAST is normal)."
+    }
+  ],
+  "summary": {
+    "ok_count": 15,
+    "warn_count": 0,
+    "stop_count": 0,
+    "crosscheck_ok": 3,
+    "crosscheck_warn": 0,
+    "crosscheck_stop": 0,
+    "overall_flag": "ok"
+  }
+}
