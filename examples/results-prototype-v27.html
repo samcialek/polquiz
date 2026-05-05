@@ -2150,11 +2150,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const definingYears = findDefiningElections(rawPredsByYear);
-    // v27.43 — strategic detection now requires the respondent's signature
-    // and the per-year candidate profiles so the candidate-only winner can
-    // be re-scored without era activations.
-    const sigForStrategic = getRespondentSignatureForBreakdown();
-    const strategicYears = findStrategicElections(rawPredsByYear, candidatesProfiles, sigForStrategic);
+    // v27.45 — strategic detection deferred. The new logic calls
+    // computeBreakdown, which depends on BREAKDOWN_NODES + SAL_POWER
+    // declared further down in this script block. Running it here put
+    // those constants in the temporal dead zone. Initialize as an empty
+    // Set; the actual detection runs after computeBreakdown's declaration
+    // (search for "v27.45 deferred strategic detection"). The outline
+    // class is applied via setTimeout ~2.1s into the cascade animation,
+    // long after the deferred detection completes.
+    const strategicYears = new Set();
     const greatEra = findBestAlignedUsEra(alignments);
 
     // v13: collect cell refs for the post-cascade emphasis pass; don't apply
@@ -2493,6 +2497,23 @@ document.addEventListener('DOMContentLoaded', () => {
         r.barPct = (r.contribution / maxContrib) * 100;
       }
       return { rows, ideological, sumWeightedSq, sumWeight };
+    }
+
+    // v27.45 deferred strategic detection. Runs synchronously now that
+    // BREAKDOWN_NODES, SAL_POWER, and computeBreakdown are all initialized.
+    // Mutates the previously-declared (empty) strategicYears Set in place
+    // and pushes matching cells into v13StrategicCells so the cascade
+    // animation's class-application step finds them. The setTimeout that
+    // applies the .strategic class doesn't fire until ~2.1s into the
+    // cascade, so this synchronous detection completes well in time.
+    {
+      const sigForStrategic = getRespondentSignatureForBreakdown();
+      const detected = findStrategicElections(rawPredsByYear, candidatesProfiles, sigForStrategic);
+      detected.forEach(y => {
+        strategicYears.add(y);
+        const cell = grid.querySelector(`.election-cell[data-year="${y}"]`);
+        if (cell && !v13StrategicCells.includes(cell)) v13StrategicCells.push(cell);
+      });
     }
 
     // v27.37 — JS port of the engine's non-ideological component math
