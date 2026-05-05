@@ -964,7 +964,9 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.25);
       opacity: 0;
       transition: opacity 0.14s;
-      z-index: 1000;
+      /* v27.42: election-detail sleeve sits at z-index 1501, so rich
+         tooltips triggered inside it must render above the sleeve. */
+      z-index: 3000;
     }
     #info-tip.show { opacity: 1; }
     #info-tip .tt-title { font-weight: 700; font-size: 0.92rem; color: #fff; margin-bottom: 0.35rem; letter-spacing: 0.01em; }
@@ -2744,7 +2746,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rectH > 0.5) {
           // No rounded corners and no horizontal stroke between adjacent
           // bars — they're meant to touch like a stacked-band chart.
-          svg += `<rect x="${rectX.toFixed(1)}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" fill="${fill}" fill-opacity="0.88" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>`;
+          svg += `<rect class="ed-cluster-bar" data-cluster-id="${c.id}" x="${rectX.toFixed(1)}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" fill="${fill}" fill-opacity="0.88" stroke="rgba(255,255,255,0.18)" stroke-width="1" style="cursor:help"/>`;
         }
         // Cluster name below baseline only if the bar is wide enough to fit
         // it comfortably. Otherwise the label hides and the user can read it
@@ -3067,16 +3069,15 @@ document.addEventListener('DOMContentLoaded', () => {
           if (newFocus && newFocus !== focus) openElectionDetail(year, newFocus);
         });
       });
-      // v27.41 — Defense-in-depth tooltip binding for cluster bars.
+      // v27.42 — Defense-in-depth tooltip binding for cluster bars.
       // Bind on three targets per cluster: the parent <g.ed-cluster-tile>,
       // the transparent <rect.ed-cluster-hit>, and the visible bar <rect>.
       // Belt-and-suspenders so SVG-event quirks in any one path can't kill
-      // the hover. Console-logs the count of bound targets so we can tell
-      // from devtools whether the loop ran and how many it hit.
+      // the hover.
       if (Array.isArray(clusterRowsForTooltips)) {
         const tiles = detailPanel.querySelectorAll('.ed-cluster-tile');
         const hits  = detailPanel.querySelectorAll('.ed-cluster-hit');
-        console.log('[v27.41 cluster-tooltips] tiles:', tiles.length, 'hits:', hits.length, 'rows:', clusterRowsForTooltips.length);
+        const bars  = detailPanel.querySelectorAll('.ed-cluster-bar');
         const bindRow = (el) => {
           if (!el) return;
           const clusterId = el.getAttribute('data-cluster-id');
@@ -3088,8 +3089,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         tiles.forEach(bindRow);
         hits.forEach(bindRow);
-      } else {
-        console.log('[v27.41 cluster-tooltips] clusterRowsForTooltips not an array:', clusterRowsForTooltips);
+        bars.forEach(bindRow);
       }
       // Section-head clicks → toggle that section.
       detailPanel.querySelectorAll('.ed-section-head').forEach(head => {
