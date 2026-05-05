@@ -582,6 +582,18 @@
       font-size: 0.78rem; color: #888; margin-top: 0.5rem;
       line-height: 1.55; font-style: italic;
     }
+    /* v27.37 — concrete election-day factor list. Replaces the generic
+       "modifiers applied AFTER the values distance" boilerplate. */
+    .ed-modifiers .ed-mod-factors { margin-top: 0.7rem; padding-top: 0.55rem; border-top: 1px solid #333; }
+    .ed-modifiers .ed-mod-factors-head {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;
+      color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem;
+    }
+    .ed-modifiers .ed-mod-factors-list { list-style: none; padding: 0; margin: 0; }
+    .ed-modifiers .ed-mod-factors-list li {
+      font-size: 0.82rem; color: #c5c5c5; line-height: 1.55; padding: 0.18rem 0;
+    }
+    .ed-modifiers .ed-mod-factors-list li strong { color: #fff; font-weight: 600; }
     .ed-empty-note { color: #888; font-size: 0.88rem; font-style: italic; padding: 0.7rem 0; }
 
     /* Narrow-viewport fallback — let the panel become full-width on small screens. */
@@ -1667,7 +1679,7 @@ document.addEventListener('DOMContentLoaded', () => {
   archetypeId = String(archetypeId).padStart(3, '0');
 
   try {
-    const [archetypesData, electionsData, alignmentsData, regimesData, candidatesProfiles, eraActivations] = await Promise.all([
+    const [archetypesData, electionsData, alignmentsData, regimesData, candidatesProfiles, eraActivations, nonIdeoData] = await Promise.all([
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/alignments.json?v=2026-04-29b`).then(r => r.json()),
@@ -1681,6 +1693,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // hover tooltip + grid still work if either file is missing.
       fetch(`${DATA_BASE}/candidates-profiles.json`).then(r => r.json()).catch(() => ({})),
       fetch(`${DATA_BASE}/era-activations.json`).then(r => r.json()).catch(() => ({})),
+      // v27.37 — non-ideological factor breakdown. Loaded so the modifier
+      // panel can name which candidate each economic / charisma / incumbency
+      // factor advantages, in plain English, instead of just a scalar total.
+      fetch(`${DATA_BASE}/non-ideological-data.json`).then(r => r.json()).catch(() => null),
     ]);
 
     const archetype = archetypesData.find(a => a.id === archetypeId);
@@ -2444,6 +2460,83 @@ document.addEventListener('DOMContentLoaded', () => {
       return { rows, ideological, sumWeightedSq, sumWeight };
     }
 
+    // v27.37 — JS port of the engine's non-ideological component math
+    // (src/historical/non-ideological-modifiers.ts). Used to surface plain-
+    // English election-day factors in the modifier panel — what is at play
+    // and which candidate it advantages — instead of the boilerplate text.
+    const NONIDEO_MAJOR_PARTIES = ['Democratic','Republican','Whig','Federalist','Democratic-Republican','National Republican'];
+    const NONIDEO_NAME_OVERRIDES = { 'H. Wallace_1948': 'HWallace_1948' };
+    function nonIdeoCanonicalKey(name, year) {
+      const raw = `${name}_${year}`;
+      return NONIDEO_NAME_OVERRIDES[raw] ?? raw;
+    }
+    function nonIdeoEconomicComponent(rawEcon, candParty, incumbentParty) {
+      if (incumbentParty == null) return 0;
+      const base = 0.5 * rawEcon;
+      if (candParty === incumbentParty) return base;
+      const candIsMajor = NONIDEO_MAJOR_PARTIES.includes(candParty);
+      const incumbIsMajor = NONIDEO_MAJOR_PARTIES.includes(incumbentParty);
+      if (!candIsMajor || !incumbIsMajor) return 0;
+      return -base;
+    }
+    // v27.37 — Build the plain-English election-day factor list. One line per
+    // factor that's actually doing work in this election; each line names the
+    // candidate(s) the advantage flows to. Returns [] when nonIdeoData
+    // didn't load or the year/candidate isn't keyed in the data file.
+    function buildElectionFactors(year, allCandsInYear, nonIdeoData) {
+      const out = [];
+      if (!nonIdeoData || !nonIdeoData.elections) return out;
+      const election = nonIdeoData.elections[String(year)];
+      if (!election) return out;
+
+      // Economic factor — magnitude-gated so trace-level signals don't
+      // generate a line. Direction depends on incumbent_party + raw_econ.
+      if (election.incumbent_party && Math.abs(election.raw_econ) >= 0.2) {
+        const phrase =
+          election.raw_econ >  0.5 ? 'Strong economy' :
+          election.raw_econ >  0   ? 'Modestly positive economy' :
+          election.raw_econ > -0.5 ? 'Modestly weak economy' :
+                                    'Weak economy';
+        const incumbents = allCandsInYear.filter(c => c.party === election.incumbent_party);
+        const challengers = allCandsInYear.filter(c =>
+          c.party !== election.incumbent_party &&
+          NONIDEO_MAJOR_PARTIES.includes(c.party) &&
+          NONIDEO_MAJOR_PARTIES.includes(election.incumbent_party));
+        const incumbentName = incumbents.length ? incumbents.map(c => c.name).join(', ') : null;
+        const challengerName = challengers.length ? challengers.map(c => c.name).join(', ') : null;
+        if (election.raw_econ > 0 && incumbentName) {
+          out.push(`<strong>${phrase}</strong> — advantages the incumbent ${election.incumbent_party} (${incumbentName}).`);
+        } else if (election.raw_econ < 0) {
+          if (incumbentName && challengerName) {
+            out.push(`<strong>${phrase}</strong> — disadvantages the incumbent ${election.incumbent_party} (${incumbentName}); advantages the major-party challenger${challengers.length > 1 ? 's' : ''} (${challengerName}).`);
+          } else if (incumbentName) {
+            out.push(`<strong>${phrase}</strong> — disadvantages the incumbent ${election.incumbent_party} (${incumbentName}).`);
+          }
+        }
+      }
+
+      // Per-candidate factors: incumbency + charisma. Gated to avoid
+      // repeating "average charisma — no effect" lines for every name.
+      for (const c of allCandsInYear) {
+        const candKey = nonIdeoCanonicalKey(c.name, year);
+        const candData = nonIdeoData.candidates && nonIdeoData.candidates[candKey];
+        if (!candData) continue;
+        if (candData.is_incumbent_person) {
+          out.push(`<strong>${c.name}</strong> is the sitting president — incumbency advantage to ${c.name}.`);
+        }
+        if (candData.charisma >= 4.5) {
+          out.push(`<strong>${c.name}</strong> has standout charisma — advantage to ${c.name}.`);
+        } else if (candData.charisma >= 4) {
+          out.push(`<strong>${c.name}</strong> has above-average charisma — advantage to ${c.name}.`);
+        } else if (candData.charisma <= 1.5) {
+          out.push(`<strong>${c.name}</strong> has limited charisma — drag on ${c.name}.`);
+        } else if (candData.charisma <= 2) {
+          out.push(`<strong>${c.name}</strong> has below-average charisma — drag on ${c.name}.`);
+        }
+      }
+      return out;
+    }
+
     // v27.36 — Build a rich-tooltip HTML payload for one cluster bar.
     //   • desc lists the cluster's constituent nodes by name (no codings, no
     //     numbers) so the user can see which dimensions are inside it.
@@ -2797,11 +2890,31 @@ document.addEventListener('DOMContentLoaded', () => {
       html += sectionWrap('matchup', 'The matchup', matchupBody, `${ranked.length} candidate${ranked.length === 1 ? '' : 's'}`);
 
       // ── Section: per-node breakdown for focused candidate ────────────
+      // v27.37 — distance labels reframed.
+      //   Candidate-only distance: how you'd consider this candidate in a
+      //   vacuum. No era activations, no moral-floor, no non-ideological
+      //   factors, no party-loyalty / negative-partisanship multipliers.
+      //   Recomputed here by calling computeBreakdown with an empty era set
+      //   and year=0 (so styleEraMult also returns 1.0). Falls back to the
+      //   engine's baseIdeologicalDistance when the candidate profile isn't
+      //   loaded (era-adjusted; less precise but still no modifiers).
+      //   Election-day distance: the engine's full ballot distance, with
+      //   everything applied.
+      let candidateOnlyDistance = focusScore.baseIdeologicalDistance != null
+        ? focusScore.baseIdeologicalDistance
+        : focusScore.distance;
+      if (focusProfile) {
+        const noEra = { super_activated: new Set(), activated: new Set() };
+        const candOnlyBd = computeBreakdown(focusProfile, noEra, sig, 0);
+        if (candOnlyBd && candOnlyBd.ideological != null) {
+          candidateOnlyDistance = candOnlyBd.ideological;
+        }
+      }
       let bdBody = `<div class="ed-focus-header">`;
       bdBody += `  <div class="ed-focus-name">Your distance from ${focusScore.name}</div>`;
       bdBody += `  <div class="ed-focus-stat">`;
-      bdBody += `    <span title="Profile distance — pure weighted-RMS distance from your cluster positions to the candidate's. No moral-floor / economy / partisan modifiers yet.">Profile distance<span class="ed-stat-value">${focusScore.baseIdeologicalDistance != null ? focusScore.baseIdeologicalDistance.toFixed(2) : focusScore.distance.toFixed(2)}</span></span>`;
-      bdBody += `    <span title="Ballot distance — what comes out after moral-floor penalty, non-ideological factors (economy / charisma / incumbency), party-loyalty multiplier, and negative-partisanship multiplier are applied. The actual number the engine decides on.">Ballot distance<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
+      bdBody += `    <span title="Candidate-only distance — how you'd consider this candidate in a vacuum. Pure position differences, with all era activations off and no election-day modifiers.">Candidate-only distance<span class="ed-stat-value">${candidateOnlyDistance.toFixed(2)}</span></span>`;
+      bdBody += `    <span title="Election-day distance — the full distance after era activations, moral-floor penalty, economic / charisma / incumbency factors, party-loyalty, and negative-partisanship are applied. The actual number the engine decides on.">Election-day distance<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
       bdBody += `  </div>`;
       bdBody += `</div>`;
       // v27.35 — hoisted so the post-render tooltip binding can look up rows.
@@ -2895,7 +3008,20 @@ document.addEventListener('DOMContentLoaded', () => {
           bdBody += `<div class="ed-modifiers">`;
           bdBody += `  <div style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">Modifiers applied to values distance</div>`;
           bdBody += mods.join('');
-          bdBody += `  <div class="ed-mod-note">The cluster breakdown above shows values-only contributions, rolled up from the underlying per-dimension Euclidean distance math. Modifiers below are applied AFTER the values distance to produce the final ballot-distance.</div>`;
+          // v27.37 — replace the generic "modifiers applied AFTER values"
+          // boilerplate with a concrete plain-English list of the actual
+          // election-day factors at play and which candidate each one
+          // advantages. Only renders when nonIdeoData is loaded and there's
+          // at least one factor doing meaningful work in this election.
+          const electionFactors = buildElectionFactors(year, ranked, nonIdeoData);
+          if (electionFactors.length > 0) {
+            bdBody += `<div class="ed-mod-factors">`;
+            bdBody += `  <div class="ed-mod-factors-head">Election-day factors at play</div>`;
+            bdBody += `  <ul class="ed-mod-factors-list">`;
+            electionFactors.forEach(f => { bdBody += `<li>${f}</li>`; });
+            bdBody += `  </ul>`;
+            bdBody += `</div>`;
+          }
           bdBody += `</div>`;
         }
         // v27.26 — engagement footer note. ENG controls the vote/abstain
