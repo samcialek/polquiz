@@ -2700,7 +2700,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const adjustedGaps = orderedRows.map(c => Math.max(gapFloor, c.distance));
       const widths = adjustedGaps.map(g => g * PIXELS_PER_GAP);
 
-      let out = `<div class="ed-cluster-chart-legend">The area of each block represents the size of the difference between you and this candidate on that cluster. The width scale is fixed across candidates — a closely-aligned candidate shows narrow bars; a strongly-disagreed candidate shows wide ones. Hover for the dominant difference in plain English.</div>`;
+      let out = `<div class="ed-cluster-chart-legend">The area of each block represents the size of the difference between you and this candidate on that cluster. The width scale is your aggregate position difference in that category, while the height is the importance of category to your vote.</div>`;
       let svg = `<svg class="ed-cluster-chart" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">`;
       // Y-axis grid lines + tick labels.
       const yTickStep = Y_DOMAIN <= 0.6 ? 0.1 : Y_DOMAIN <= 0.8 ? 0.2 : 0.25;
@@ -2733,6 +2733,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // just carries data-cluster-id so the binding loop knows which cluster
         // row to look up. No <title> element — the rich tooltip replaces it.
         svg += `<g class="ed-cluster-tile" data-cluster-id="${c.id}">`;
+        // v27.39 — transparent hit zone covering the full vertical slot
+        // (chart height + 40px below baseline for the labels). Without this,
+        // narrow bars (small gap or low importance) were unhoverable: an SVG
+        // <g> only has hit area where its visible children render, so a 3px-
+        // wide bar with no label below it gave the user nothing to point at.
+        // Bars touch each other, so adjacent hit zones don't overlap.
+        svg += `<rect x="${rectX.toFixed(1)}" y="${M.top}" width="${rectW.toFixed(1)}" height="${(innerH + 40).toFixed(1)}" fill="transparent" pointer-events="all"/>`;
         if (rectH > 0.5) {
           // No rounded corners and no horizontal stroke between adjacent
           // bars — they're meant to touch like a stacked-band chart.
