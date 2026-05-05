@@ -2740,7 +2740,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // is more reliable across browsers than relying on <g> mouseenter
         // bubbling from descendants. The rect spans the full vertical slot
         // (chart + 40px label area) so even narrow bars are hoverable.
-        svg += `<rect class="ed-cluster-hit" data-cluster-id="${c.id}" x="${rectX.toFixed(1)}" y="${M.top}" width="${rectW.toFixed(1)}" height="${(innerH + 40).toFixed(1)}" fill="transparent" pointer-events="all"/>`;
+        svg += `<rect class="ed-cluster-hit" data-cluster-id="${c.id}" x="${rectX.toFixed(1)}" y="${M.top}" width="${rectW.toFixed(1)}" height="${(innerH + 40).toFixed(1)}" fill="rgba(0,0,0,0.001)" pointer-events="all" style="cursor:help"/>`;
         if (rectH > 0.5) {
           // No rounded corners and no horizontal stroke between adjacent
           // bars — they're meant to touch like a stacked-band chart.
@@ -3067,20 +3067,29 @@ document.addEventListener('DOMContentLoaded', () => {
           if (newFocus && newFocus !== focus) openElectionDetail(year, newFocus);
         });
       });
-      // v27.40 — Rich tooltips on cluster bars. Attach directly to the
-      // transparent hit-zone <rect> (.ed-cluster-hit) rather than the parent
-      // <g> — more reliable across browsers than waiting for <g> mouseenter
-      // to fire from descendant events. getAttribute beats element.dataset
-      // for SVG: dataset support on SVGElement landed late in some engines.
+      // v27.41 — Defense-in-depth tooltip binding for cluster bars.
+      // Bind on three targets per cluster: the parent <g.ed-cluster-tile>,
+      // the transparent <rect.ed-cluster-hit>, and the visible bar <rect>.
+      // Belt-and-suspenders so SVG-event quirks in any one path can't kill
+      // the hover. Console-logs the count of bound targets so we can tell
+      // from devtools whether the loop ran and how many it hit.
       if (Array.isArray(clusterRowsForTooltips)) {
-        const hits = detailPanel.querySelectorAll('.ed-cluster-hit');
-        hits.forEach(hit => {
-          const clusterId = hit.getAttribute('data-cluster-id');
+        const tiles = detailPanel.querySelectorAll('.ed-cluster-tile');
+        const hits  = detailPanel.querySelectorAll('.ed-cluster-hit');
+        console.log('[v27.41 cluster-tooltips] tiles:', tiles.length, 'hits:', hits.length, 'rows:', clusterRowsForTooltips.length);
+        const bindRow = (el) => {
+          if (!el) return;
+          const clusterId = el.getAttribute('data-cluster-id');
+          if (!clusterId) return;
           const row = clusterRowsForTooltips.find(c => c.id === clusterId);
           if (!row) return;
           const tipHtml = buildClusterDifferenceTip(row, focusScore.name);
-          attachTip(hit, tipHtml);
-        });
+          attachTip(el, tipHtml);
+        };
+        tiles.forEach(bindRow);
+        hits.forEach(bindRow);
+      } else {
+        console.log('[v27.41 cluster-tooltips] clusterRowsForTooltips not an array:', clusterRowsForTooltips);
       }
       // Section-head clicks → toggle that section.
       detailPanel.querySelectorAll('.ed-section-head').forEach(head => {
