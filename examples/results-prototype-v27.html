@@ -2255,6 +2255,21 @@ document.addEventListener('DOMContentLoaded', () => {
       ZS:    { name: 'Zero-Sum',          cluster: 'REALITY', low: 'Everyone can win',          high: 'One side wins' },
       ONT_H: { name: 'Human Malleability',cluster: 'REALITY', low: 'Character is fixed',        high: 'Shaped by environment' },
     };
+    // Plain-English direction phrases used in cluster-bar tooltips. lo = the
+    // respondent sits below the candidate on this node (closer to the low
+    // pole); hi = above. No numbers — just direction. Keeps the bars from
+    // becoming an audit grid for individual-axis codings.
+    const NODE_GAP_PHRASES = {
+      MAT:   { lo: 'more economically egalitarian',                              hi: 'more pro-market' },
+      CD:    { lo: 'more open to cultural change',                               hi: 'more drawn to preserving cultural tradition' },
+      CU:    { lo: 'more inclined toward a single shared way of life',           hi: 'more pluralist about ways of life' },
+      MOR:   { lo: 'more focused on your own community',                         hi: 'more universalist about who counts morally' },
+      PRO:   { lo: 'more willing to bend rules to get results',                  hi: 'more committed to following the rules' },
+      COM:   { lo: 'more principle-driven',                                      hi: 'more willing to cut a deal' },
+      ONT_S: { lo: 'more skeptical that institutions can produce good change',   hi: 'more hopeful that institutions can produce good change' },
+      ZS:    { lo: 'more inclined to see politics as positive-sum',              hi: 'more inclined to see politics as zero-sum' },
+      ONT_H: { lo: 'more inclined to see character as fixed',                    hi: 'more inclined to see character as shaped by environment' },
+    };
     // v27.22: BREAKDOWN_NODES mirrors engine SCORING_NODES (respondentVoteChoice.ts
     // line 197). PF / TRB / ENG removed — engine excludes them from candidate-
     // distance computation. EPS / AES land in Phase 2 (v27.24) as separate
@@ -2427,6 +2442,62 @@ document.addEventListener('DOMContentLoaded', () => {
       return { rows, ideological, sumWeightedSq, sumWeight };
     }
 
+    // v27.35 — Plain-English magnitude word used in cluster tooltips. The
+    // input `dist` is the dominant member's per-node position gap (0–4). The
+    // word is the only quantitative cue the tooltip exposes; numbers stay out
+    // of the tooltip body by design.
+    function magnitudeWord(dist) {
+      if (dist >= 1.5) return 'A substantial difference';
+      if (dist >= 0.7) return 'A moderate difference';
+      if (dist >= 0.25) return 'A small difference';
+      return 'You align closely';
+    }
+    // v27.35 — Build a rich-tooltip HTML payload for one cluster bar. Picks
+    // the dominant contributor (memberDistances[0], already sorted by
+    // contribution desc) and writes a plain-English direction sentence:
+    // "<magnitude>: you're <phrase> than <candidate>." For categorical
+    // members (EPS/AES) names the style mismatch instead of a pole direction.
+    function buildClusterDifferenceTip(c, candidateName) {
+      if (!c) return '';
+      const desc = c.definition || '';
+      if (!c.weight || c.weight === 0 || !c.memberDistances || c.memberDistances.length === 0) {
+        return buildTip({
+          title: c.name,
+          desc,
+          interp: 'This cluster carries no weight in your activation pattern for this election.',
+        });
+      }
+      const dom = c.memberDistances[0];
+      let interp;
+      if (dom.rowType === 'continuous') {
+        const phraseMap = NODE_GAP_PHRASES[dom.node];
+        if (!phraseMap || dom.yourPos == null || dom.candPos == null) {
+          interp = `Driven mainly by ${dom.name}.`;
+        } else if (dom.dist < 0.25) {
+          interp = `You align closely with ${candidateName} here — no substantial direction to call out.`;
+        } else {
+          const dir = dom.yourPos < dom.candPos ? 'lo' : 'hi';
+          const phrase = phraseMap[dir];
+          interp = `${magnitudeWord(dom.dist)}: you're ${phrase} than ${candidateName}.`;
+        }
+      } else if (dom.rowType === 'categorical') {
+        const styleLabel = dom.node === 'EPS' ? 'epistemic style' : 'aesthetic style';
+        if (dom.yourTopCat && dom.candCat && dom.yourTopCat !== dom.candCat) {
+          const mag = dom.matchMass != null && dom.matchMass < 0.3 ? 'A substantial difference' : 'A moderate difference';
+          interp = `${mag} in ${styleLabel}: you lean ${String(dom.yourTopCat).toLowerCase()}, while ${candidateName} reads as ${String(dom.candCat).toLowerCase()}.`;
+        } else {
+          interp = `Your ${styleLabel} aligns with ${candidateName}'s.`;
+        }
+      } else {
+        interp = `Driven mainly by ${dom.name}.`;
+      }
+      return buildTip({
+        title: c.name,
+        desc,
+        interp,
+      });
+    }
+
     // v27.26 — Phase A: aggregate per-node breakdown rows into 4 cluster
     // rows. Identical contribution numbers; presentation-only rollup.
     //   clusterContribution = Σ contribution[n]
@@ -2447,7 +2518,16 @@ document.addEventListener('DOMContentLoaded', () => {
           cWeight += r.weight;
           const memDist = Math.sqrt(r.contribution / r.weight);
           const memMeta = NODE_META[r.node] || CAT_NODE_META[r.node] || { name: r.node };
-          memberDistances.push({ name: memMeta.name, node: r.node, dist: memDist, weight: r.weight, contribution: r.contribution });
+          memberDistances.push({
+            name: memMeta.name, node: r.node,
+            dist: memDist, weight: r.weight, contribution: r.contribution,
+            // Pass through fields the cluster tooltip needs to write a plain-
+            // English direction phrase. Continuous: yourPos/candPos for direction.
+            // Categorical: yourTopCat/candCat/matchMass for style-mismatch phrasing.
+            rowType: r.rowType,
+            yourPos: r.yourPos, candPos: r.candPos,
+            yourTopCat: r.yourTopCat, candCat: r.candCat, matchMass: r.matchMass,
+          });
         }
         const cDist = cWeight > 0 ? Math.sqrt(cContrib / cWeight) : 0;
         // v27.28: decompose impact into two orthogonal metrics —
@@ -2522,7 +2602,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalGap = adjustedGaps.reduce((s, g) => s + g, 0) || 1;
       const widths = adjustedGaps.map(g => (g / totalGap) * innerW);
 
-      let out = `<div class="ed-cluster-chart-legend">Bars are ordered by <strong>importance</strong> (tallest leftmost). Bar <strong>height</strong> = % of your activation in that cluster. Bar <strong>width</strong> = gap with this candidate, scaled proportionally so a gap of 1.0 is twice as wide as a gap of 0.5 within this chart. Hover for the full math.</div>`;
+      let out = `<div class="ed-cluster-chart-legend">The area of each block represents the size of the difference between you and this candidate on that cluster. Hover a block for the dominant difference in plain English.</div>`;
       let svg = `<svg class="ed-cluster-chart" viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">`;
       // Y-axis grid lines + tick labels.
       const yTickStep = Y_DOMAIN <= 0.6 ? 0.1 : Y_DOMAIN <= 0.8 ? 0.2 : 0.25;
@@ -2551,12 +2631,10 @@ document.addEventListener('DOMContentLoaded', () => {
           : driverNames.length <= 3
             ? driverNames.join(' · ')
             : driverNames.slice(0, 3).join(' · ') + ` +${driverNames.length - 3}`;
-        const hoverTip = c.weight > 0
-          ? `${c.definition}\n\nImportance: ${(c.weightShare*100).toFixed(0)}% of your activation lives in this cluster (era-adjusted, candidate-independent).\nGap: ${c.distance.toFixed(2)} on the 0–4 position scale.\nContribution to ballot distance: ${(c.share*100).toFixed(0)}% (importance × gap²).\nDimensions: ${driverNames.join(', ')}.`
-          : `${c.definition}\n\nThis cluster carries no salience for you in this election.`;
-        const tipAttr = hoverTip.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        svg += `<g class="ed-cluster-tile">`;
-        svg += `<title>${tipAttr}</title>`;
+        // Rich-tooltip data is bound post-render via attachTip; the SVG group
+        // just carries data-cluster-id so the binding loop knows which cluster
+        // row to look up. No <title> element — the rich tooltip replaces it.
+        svg += `<g class="ed-cluster-tile" data-cluster-id="${c.id}">`;
         if (rectH > 0.5) {
           // No rounded corners and no horizontal stroke between adjacent
           // bars — they're meant to touch like a stacked-band chart.
@@ -2728,6 +2806,8 @@ document.addEventListener('DOMContentLoaded', () => {
       bdBody += `    <span title="Ballot distance — what comes out after moral-floor penalty, non-ideological factors (economy / charisma / incumbency), party-loyalty multiplier, and negative-partisanship multiplier are applied. The actual number the engine decides on.">Ballot distance<span class="ed-stat-value">${focusScore.distance.toFixed(2)}</span></span>`;
       bdBody += `  </div>`;
       bdBody += `</div>`;
+      // v27.35 — hoisted so the post-render tooltip binding can look up rows.
+      let clusterRowsForTooltips = null;
       if (!focusProfile) {
         bdBody += `<div class="ed-empty-note">Per-node breakdown unavailable — candidate profile data not loaded for this election.</div>`;
       } else {
@@ -2739,6 +2819,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // bd.rows for math + hover use only; the rendered output is 4
           // cluster rows (ENDS / MEANS / REALITY / IDENTITY).
           const clusterRows = aggregateClusters(bd.rows, bd.sumWeightedSq, bd.sumWeight);
+          clusterRowsForTooltips = clusterRows;
           // v27.30: replaced the row breakdown with a 2D scatter chart.
           // X = position gap, Y = importance, rectangle area ≈ contribution.
           bdBody += renderClusterChart(clusterRows, bd);
@@ -2847,6 +2928,19 @@ document.addEventListener('DOMContentLoaded', () => {
           if (newFocus && newFocus !== focus) openElectionDetail(year, newFocus);
         });
       });
+      // v27.35 — Rich tooltips on cluster bars. The bar group carries
+      // data-cluster-id; we look up the matching row in clusterRowsForTooltips
+      // (hoisted out of the if/else above) and attach a plain-English
+      // direction sentence via attachTip → #info-tip floating panel.
+      if (Array.isArray(clusterRowsForTooltips)) {
+        detailPanel.querySelectorAll('.ed-cluster-tile').forEach(tile => {
+          const clusterId = tile.dataset.clusterId;
+          const row = clusterRowsForTooltips.find(c => c.id === clusterId);
+          if (!row) return;
+          const tipHtml = buildClusterDifferenceTip(row, focusScore.name);
+          attachTip(tile, tipHtml);
+        });
+      }
       // Section-head clicks → toggle that section.
       detailPanel.querySelectorAll('.ed-section-head').forEach(head => {
         head.addEventListener('click', () => {
