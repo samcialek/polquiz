@@ -50,7 +50,7 @@ async function main() {
     decisions: {
       signature_representation: "posterior point estimate (E[posDist], E[salDist])",
       vote_denominator: "both shares-of-voters and shares-of-electorate reported",
-      partyID_passed_to_predictor: false,
+      partyID_passed_to_predictor: true,
       anchorDist_passed_to_predictor: false,
       turnout_model: `Phase B' demographic lookup trained from ${turnoutModel.trained_from.year} (age × education × race; expected-value aggregation per respondent)`,
     },

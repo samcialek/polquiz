@@ -245,9 +245,39 @@ function fallbackBoundary(notes?: string): MoralBoundaryEntry {
  * Universal coding (all four `CC24_*grid` batteries): `1` = Support, `2` =
  * Oppose, `8` = Skipped, `9` = Not Asked, `.` = missing.
  */
-type CdItem = { col: string; supportIs: "progressive" | "traditionalist"; weight: number };
+type CdItem =
+  | { col: string; kind?: "binary"; supportIs: "progressive" | "traditionalist"; weight: number }
+  | { col: string; kind: "likert4_progressive_high"; weight: number }
+  | { col: string; kind: "likert4_traditionalist_high"; weight: number };
 
 function cdItemsForYear(year: number): CdItem[] | null {
+  if (year === 2008) {
+    // 2008 CD per `mapper-2008-2012-resolver-audit.md` §B.1 (commit e613727).
+    // CC310 abortion 4-pt Likert: same wording + codes as CC324 in 2012;
+    // 1=never permit (most traditionalist), 4=always personal choice.
+    // CC316f gay marriage BAN: 1=Support a constitutional ban (TRADITIONALIST,
+    // INVERTED direction vs CC326 which asks Favor SSM). 2=Oppose ban.
+    // 3=Not Sure (treated as missing — see binary loop).
+    // CC316c is excluded for now — needs explicit codebook re-verification.
+    return [
+      { col: "CC310",  kind: "likert4_progressive_high", weight: 1.5 },
+      { col: "CC316f", supportIs: "traditionalist",      weight: 1.0 },
+    ];
+  }
+  if (year === 2012) {
+    // 2012 CD per `mapper-2008-2012-resolver-audit.md` (commit e613727).
+    // CC324 abortion 4-pt Likert: 1=never permit (most traditionalist) ..
+    // 4=always personal choice (most progressive). Maps to "progressive_high".
+    // CC326 gay marriage binary: 1=Favor (progressive), 2=Oppose. (Note CCES12
+    // CC326 has no Not Sure code — 3-way option appeared in later cycles.)
+    // CC332J End Don't Ask Don't Tell binary: 1=Support (progressive),
+    // 2=Oppose. Same coding convention as the CC332* roll-call battery.
+    return [
+      { col: "CC324",  kind: "likert4_progressive_high",        weight: 1.5 },
+      { col: "CC326",  supportIs: "progressive",                weight: 1.0 },
+      { col: "CC332J", supportIs: "progressive",                weight: 1.0 },
+    ];
+  }
   if (year === 2016 || year === 2020) {
     const y2 = String(year).slice(-2);
     return [
@@ -303,7 +333,7 @@ function cdItemsForYear(year: number): CdItem[] | null {
 function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = cdItemsForYear(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1A/H CD: cultural-direction decoder gated to 2016/2020/2024 (codebook-verified); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1A/H/J/K CD: cultural-direction decoder gated to 2008/2012/2016/2020/2024 (codebook-verified); year ${r.year} deferred`);
   }
 
   let weightedDirectionSum = 0;
@@ -314,9 +344,28 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
     const raw = parseCodedNumber(r.rawVarPayload[it.col]);
     if (raw === null) continue;
     let sign = 0;
-    if (raw === 1) sign = it.supportIs === "progressive" ? -1 : 1;
-    else if (raw === 2) sign = it.supportIs === "progressive" ? 1 : -1;
-    else continue; // 8 / 9 / "." / "" / "NA"
+    const kind = (it as any).kind ?? "binary";
+    if (kind === "likert4_progressive_high") {
+      // 4-pt Likert where code 4 = most progressive, code 1 = most traditionalist.
+      // Maps to sign in [-1, +1] where + = traditionalist direction.
+      if (raw === 1) sign = 1;
+      else if (raw === 2) sign = 0.33;
+      else if (raw === 3) sign = -0.33;
+      else if (raw === 4) sign = -1;
+      else continue;
+    } else if (kind === "likert4_traditionalist_high") {
+      // Inverse: code 4 = most traditionalist.
+      if (raw === 1) sign = -1;
+      else if (raw === 2) sign = -0.33;
+      else if (raw === 3) sign = 0.33;
+      else if (raw === 4) sign = 1;
+      else continue;
+    } else {
+      // Binary: 1 = Support, 2 = Oppose.
+      if (raw === 1) sign = (it as any).supportIs === "progressive" ? -1 : 1;
+      else if (raw === 2) sign = (it as any).supportIs === "progressive" ? 1 : -1;
+      else continue; // 8 / 9 / "." / "" / "NA"
+    }
     weightedDirectionSum += sign * it.weight;
     totalWeight += it.weight;
     answered++;
@@ -379,11 +428,28 @@ function deriveCD(r: WeightedSurveyRespondent): ContinuousNodeSignature {
  *     signals; NOT safe MAT/CD signals (audit: ❌ Hold).
  */
 type EconomicItem =
-  | { col: string; kind: "rank";   polarity: 1 | -1; weight: number }
-  | { col: string; kind: "binary"; polarity: 1 | -1; weight: number }
-  | { col: string; kind: "fc3";    polarity: 1 | -1; weight: number };
+  | { col: string; kind: "rank";    polarity: 1 | -1; weight: number }
+  | { col: string; kind: "binary";  polarity: 1 | -1; weight: number }
+  | { col: string; kind: "fc3";     polarity: 1 | -1; weight: number }
+  | { col: string; kind: "likert4"; polarity: 1 | -1; weight: number };
 
 function economicItemsForYear(year: number): EconomicItem[] | null {
+  if (year === 2008) {
+    // 2008 MAT per `mapper-2008-2012-resolver-audit.md` §B.2 (commit e613727).
+    // CC312 is a 4-pt support-strength Likert on Social Security private accounts
+    //   (1=strong support, 4=strong oppose). Support → MAT high (free-market).
+    // CC316b/e/g are binary Support/Oppose roll-call votes (3=Not Sure → missing
+    //   per binary handler). Polarities per audit:
+    //   - CC316b: Support = MAT low (universal healthcare-style item)
+    //   - CC316e: Support = MAT low (financial regulation / pro-government)
+    //   - CC316g: Support = MAT low (gov't intervention) — half weight per audit
+    return [
+      { col: "CC312",  kind: "likert4", polarity:  1, weight: 1.0 },
+      { col: "CC316b", kind: "binary",  polarity: -1, weight: 1.0 },
+      { col: "CC316e", kind: "binary",  polarity: -1, weight: 1.0 },
+      { col: "CC316g", kind: "binary",  polarity: -1, weight: 0.5 },
+    ];
+  }
   if (year === 2012) {
     // 2012 MAT composite per `mapper-2008-2012-resolver-audit.md` §A.3
     // (commit e613727) and `mapper-2012-cc328-cc329-supplement.md`
@@ -528,7 +594,7 @@ function economicItemsForYear(year: number): EconomicItem[] | null {
 function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = economicItemsForYear(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1C/E/G/I MAT: economic-battery decoder gated to 2012/2016/2020/2024 (audited); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1C/E/G/I/K MAT: economic-battery decoder gated to 2008/2012/2016/2020/2024 (audited); year ${r.year} deferred`);
   }
 
   let weightedDirectionSum = 0;
@@ -556,6 +622,15 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
       if (raw === 1) continue;
       else if (raw === 2) signal = 1;
       else if (raw === 3) signal = -1;
+      else continue;
+    } else if (it.kind === "likert4") {
+      // 4-pt support-strength Likert (CCES2008 CC312-style): 1 = strong-Support,
+      // 4 = strong-Oppose. polarity:+1 means Support pushes MAT high.
+      // Treat 5/6/8/9 as missing.
+      if (raw === 1) signal = 1;
+      else if (raw === 2) signal = 0.33;
+      else if (raw === 3) signal = -0.33;
+      else if (raw === 4) signal = -1;
       else continue;
     } else {
       continue;
@@ -631,6 +706,25 @@ function deriveMAT(r: WeightedSurveyRespondent): ContinuousNodeSignature {
 type ImmigrationItem = { col: string; polarity: 1 | -1; weight: number };
 
 function immigrationItemsForCU(year: number): ImmigrationItem[] | null {
+  if (year === 2012) {
+    // 2012 CU per `mapper-2008-2012-resolver-audit.md` (commit e613727).
+    // CC322_1..6 immigration battery, all binary 1=Support / 2=Oppose.
+    // Polarities mirror the 2016 CC16_331 battery's structure:
+    //   _1 grant legal status to long-term workers     → Support = pluralist
+    //   _2 increase border patrols                     → Support = restrictionist
+    //   _3 allow police to question suspected illegals → Support = restrictionist
+    //   _4 fine US businesses hiring illegals          → Support = restrictionist (mild)
+    //   _5 admit refugees from civil war               → Support = pluralist
+    //   _6 deny birthright citizenship to children     → Support = restrictionist
+    return [
+      { col: "CC322_1", polarity: -1, weight: 0.7 },
+      { col: "CC322_2", polarity:  1, weight: 0.5 },
+      { col: "CC322_3", polarity:  1, weight: 0.7 },
+      { col: "CC322_4", polarity:  1, weight: 0.3 },
+      { col: "CC322_5", polarity: -1, weight: 0.7 },
+      { col: "CC322_6", polarity:  1, weight: 0.7 },
+    ];
+  }
   if (year === 2016) {
     return [
       // CC16_331_1 "Grant legal status to long-term illegal immigrants" → Yes = pluralist
@@ -690,6 +784,19 @@ function immigrationItemsForCU(year: number): ImmigrationItem[] | null {
  * played in 2016.
  */
 function immigrationItemsForNational(year: number): ImmigrationItem[] | null {
+  if (year === 2012) {
+    // 2012 mB.national salience: same battery as CU but only the items that
+    // are unambiguous national-boundary signals. Per Pass-1 audit convention,
+    // Item _1 (legal status / pathway) is excluded across all cycles. The
+    // remaining clean items: _2 (border patrols), _3 (police question), _6
+    // (deny birthright). _4 (fine businesses) and _5 (refugees) are weaker
+    // and excluded here.
+    return [
+      { col: "CC322_2", polarity: 1, weight: 0.5 },
+      { col: "CC322_3", polarity: 1, weight: 0.7 },
+      { col: "CC322_6", polarity: 1, weight: 0.7 },
+    ];
+  }
   if (year === 2016) {
     return [
       { col: "CC16_331_2", polarity: 1, weight: 0.5 },
@@ -741,7 +848,7 @@ function immigrationItemsForNational(year: number): ImmigrationItem[] | null {
 function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = immigrationItemsForCU(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1B/D/F CU: immigration-battery decoder gated to 2016/2020/2024 (audited); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1B/D/F/J CU: immigration-battery decoder gated to 2012/2016/2020/2024 (audited); year ${r.year} deferred`);
   }
   let signedSum = 0;
   let totalWeight = 0;
@@ -997,10 +1104,37 @@ type ZsItemKind =
   | "income_decrease_to_zs_high"    // CC20_303: signal = clip((v−3)/2, [−1, +1])
   | "price_increase_to_zs_high"     // CC24_303: signal = clip((3−v)/2, [−1, +1]) — INVERTED
   | "support_to_zs_high"            // CC20_355b, CC20_331d: Support → +1.0; Oppose → −1.0
-  | "support_to_zs_low_light";      // CC24_341{b,c,d}: Support → −0.5; Oppose → 0 (one-sided)
+  | "support_to_zs_low"             // CC332F (US-Korea FTA): Support → −1.0; Oppose → +1.0
+  | "support_to_zs_low_light"       // CC24_341{b,c,d}: Support → −0.5; Oppose → 0 (one-sided)
+  | "jobs_env_5pt_to_zs_high"       // CC325/CC311: 1=env-most-important..5=jobs-most-important; clip((v−3)/2)
+  | "econ_retro_5pt_to_zs_high";    // CC302: 1=much better .. 5=much worse; clip((v−3)/2)
 type ZsItem = { col: string; kind: ZsItemKind; weight: number };
 
 function zsItemsForYear(year: number): ZsItem[] | null {
+  if (year === 2008) {
+    // 2008 ZS per `mapper-2008-2012-resolver-audit.md` §B.3 (commit e613727).
+    return [
+      // CC311 jobs-vs-environment 5-pt: verbatim same wording as CC325 in 2012,
+      //   identical 1=env-most-important..5=jobs-most-important coding.
+      { col: "CC311", kind: "jobs_env_5pt_to_zs_high", weight: 0.5 },
+      // CC316h Extend NAFTA to Peru and Colombia: Support = positive-sum/free-trade → ZS low.
+      // (Same direction convention as CC332F US-Korea FTA in 2012.)
+      { col: "CC316h", kind: "support_to_zs_low",      weight: 0.5 },
+      // CC302 econ-retrospective 5-pt: same column name + coding as 2012.
+      { col: "CC302", kind: "econ_retro_5pt_to_zs_high", weight: 0.3 },
+    ];
+  }
+  if (year === 2012) {
+    // 2012 ZS per `mapper-2008-2012-resolver-audit.md` (commit e613727).
+    return [
+      // CC325 jobs-vs-environment 5-pt: 5=jobs-most-important = scarcity/tradeoff framing → ZS high
+      { col: "CC325",  kind: "jobs_env_5pt_to_zs_high", weight: 0.5 },
+      // CC332F US-Korea FTA: Support = positive-sum / mutual-gains framing → ZS low
+      { col: "CC332F", kind: "support_to_zs_low",       weight: 0.5 },
+      // CC302 econ-retrospective 5-pt: 5=much-worse = competitive-scarcity framing → ZS high
+      { col: "CC302",  kind: "econ_retro_5pt_to_zs_high", weight: 0.3 },
+    ];
+  }
   if (year === 2016) {
     return [
       { col: "CC16_337_3", kind: "rank_first_to_zs_low", weight: 0.2 },
@@ -1061,7 +1195,7 @@ function zsItemsForYear(year: number): ZsItem[] | null {
 function deriveZS(r: WeightedSurveyRespondent): ContinuousNodeSignature {
   const items = zsItemsForYear(r.year);
   if (!items) {
-    return fallbackContinuous(`v0.1J ZS: zero-sum decoder gated to 2016/2020/2024 (audited); year ${r.year} deferred`);
+    return fallbackContinuous(`v0.1J/K ZS: zero-sum decoder gated to 2008/2012/2016/2020/2024 (audited); year ${r.year} deferred`);
   }
 
   let weightedDirectionSum = 0;
@@ -1095,10 +1229,25 @@ function deriveZS(r: WeightedSurveyRespondent): ContinuousNodeSignature {
         else if (raw === 2) signal = -1.0;
         else signal = null;
         break;
+      case "support_to_zs_low":
+        if (raw === 1) signal = -1.0;
+        else if (raw === 2) signal = 1.0;
+        else signal = null;
+        break;
       case "support_to_zs_low_light":
         if (raw === 1) signal = -0.5;
         else if (raw === 2) signal = 0;
         else signal = null;
+        break;
+      case "jobs_env_5pt_to_zs_high":
+        if (raw >= 1 && raw <= 5) {
+          signal = Math.max(-1, Math.min(1, (raw - 3) / 2));
+        }
+        break;
+      case "econ_retro_5pt_to_zs_high":
+        if (raw >= 1 && raw <= 5) {
+          signal = Math.max(-1, Math.min(1, (raw - 3) / 2));
+        }
         break;
     }
     if (signal === null) continue;

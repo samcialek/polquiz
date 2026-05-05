@@ -43,6 +43,7 @@ import { getContext } from "../historical/contexts.js";
 import { predictVote } from "../historical/respondentVoteChoice.js";
 import { ARCHETYPES } from "../config/archetypes.js";
 import { loadTurnoutModel, predictTurnoutProbability, type TurnoutLookup } from "./turnoutModel.js";
+import type { PartyID } from "../types.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────
 
@@ -197,6 +198,30 @@ function partyBucket(party: string): Party {
   return "O";
 }
 
+/**
+ * CCES `pid7` → engine `PartyID`. Standard mapping used across all cycles
+ * (CCES has used the same 7-point + skip coding since 2008):
+ *   1 strong D / 2 not-very D / 3 lean D       → "D"
+ *   4 independent / no lean                    → "I"
+ *   5 lean R / 6 not-very R / 7 strong R       → "R"
+ *   8 not sure, missing, blank                 → null (pass nothing)
+ *
+ * Treating leaners as their leaning party is the political-science
+ * standard (leaners vote like partisans). Returning null skips the
+ * partisan-loyalty multiplier in `predictVote` for that respondent.
+ */
+function partyIDFromPid7(rawPid7: string | undefined): PartyID | null {
+  if (rawPid7 === undefined) return null;
+  const trimmed = rawPid7.trim();
+  if (trimmed === "" || trimmed === "." || trimmed === "NA") return null;
+  const n = Number(trimmed);
+  if (!Number.isFinite(n)) return null;
+  if (n >= 1 && n <= 3) return "D";
+  if (n === 4) return "I";
+  if (n >= 5 && n <= 7) return "R";
+  return null;
+}
+
 /** Pick the dominant continuous node (by salience) — for predictVote weighting. */
 function dominantContinuousNode(sig: NodeSignature): string | null {
   let best: string | null = null;
@@ -334,12 +359,13 @@ export async function runCycleBacktest(
     const engLevel = engagementLevelFromValue(sig.engagement.value);
     const dominant = dominantContinuousNode(nodeSig);
 
+    const partyID = partyIDFromPid7(r.rawVarPayload["pid7"]);
     const prediction = predictVote(
       nodeSig,
       candidates,
       ctx,
       engLevel,
-      null,                     // partyID — intentionally null (mapper-only path)
+      partyID,                  // pid7 → PartyID; activates partisan-loyalty multiplier
       null,                     // anchorDist
       null,                     // negativeParties
       false,                    // strategicVoting
