@@ -478,3 +478,54 @@ export interface RespondentState {
   /** Per-question ratio-boost multipliers applied via applyRatioBoost. */
   ratioBoosts?: Record<string, number>;
 }
+
+// ─── ADR-007 — Moral Circle Affinity (additive scaffolding) ────────────────
+// Pure data-shape additions. No engine, selector, mapper, archetype, or
+// candidate-distance code reads or writes these types until Stage F cutover.
+// See `results/architecture/ADR-007-explicit-moral-circle-affinity.md`.
+
+/**
+ * Eight scoped moral-circle affinities. Universal concern is stored separately
+ * as `universalAffinity` and is the baseline; scoped values are not "one of
+ * nine" — they are eight in-group magnitudes compared against the universal
+ * baseline to derive excess.
+ */
+export type MoralCircleScope =
+  | "national"
+  | "religious"
+  | "ethnic_racial"
+  | "class"
+  | "gender"
+  | "sexual"
+  | "ideological"
+  | "political_camp";
+
+/** Raw scoped-affinity map. `null` = "not meaningful to me", not zero. */
+export type MoralCircleScopedAffinities = Record<MoralCircleScope, number | null>;
+
+/** Derived per-scope excess map. Always numeric (`null` collapses to 0). */
+export type MoralCircleExcessAffinities = Record<MoralCircleScope, number>;
+
+/** Raw input prior to derivation. The 9 stored numbers per ADR-007. */
+export interface MoralCircleAffinityInput {
+  /** 0..100 baseline moral concern for any human being. */
+  universalAffinity: number;
+  scopedAffinities: MoralCircleScopedAffinities;
+}
+
+/**
+ * Full derived moral-circle affinity object. `scopedAffinities` retains raw
+ * values (including `null`) for diagnostics; `excessAffinities` and
+ * `activeBoundaries` are the active-signal layer.
+ */
+export interface MoralCircleAffinity {
+  universalAffinity: number;
+  scopedAffinities: MoralCircleScopedAffinities;
+  excessAffinities: MoralCircleExcessAffinities;
+  /** Mathematical activation: scopes where excess > 0. */
+  activeBoundaries: MoralCircleScope[];
+  /** L2-norm intensity normalized to [0, 1]; saturates at one fully-loaded boundary. */
+  intensity01: number;
+  /** intensity01 × 3, for compatibility with existing 0..3 salience surfaces. */
+  intensity03: number;
+}
