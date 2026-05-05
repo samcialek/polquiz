@@ -605,10 +605,9 @@
 
     /* SECTION 4: PROFILE */
     #profile-section { padding: 1.25rem 0 0.5rem; }
-    /* v27.44 — shift the entire profile-by-cluster-emphasis section ~50px
-       to the right so the donut + drill column read as a more centered
-       layout block on wide screens. Other sections unaffected. */
-    #profile-section .container { max-width: 100%; padding: 0 0.5rem 0 50px; }
+    /* v27.46 — additional ~50px right shift (now 100px total) so the
+       profile section reads visually centered on wide screens. */
+    #profile-section .container { max-width: 100%; padding: 0 0.5rem 0 100px; }
     .nodes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
     .node-cluster { background: var(--cream); color: var(--ink); padding: 2rem 2.25rem; border: 1.5px solid rgba(0,0,0,0.08); border-radius: 0; margin: -0.75px; }
     .cluster-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.12em; color: #333; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1.5px solid rgba(0,0,0,0.08); }
@@ -859,7 +858,10 @@
        map section now starts at the bottom of the panel, not the bottom of
        the donut. min-height keeps short panels from causing the donut to
        overflow into the map section. */
-    .profile-flex { position: relative; padding: 1rem 0 0.5rem 510px; min-height: 500px; }
+    /* v27.46 — donut sits at left:0 with width 500px; drill content starts
+       at 580px so there's a real ~80px gap between the donut and the bar
+       chart instead of the prior ~10px. */
+    .profile-flex { position: relative; padding: 1rem 0 0.5rem 580px; min-height: 500px; }
     .profile-donut-col { position: absolute; top: 1rem; left: 0; width: 500px; padding-left: 0.5rem; }
     .profile-drill-col { min-width: 0; }
     .cluster-overview { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
@@ -4577,7 +4579,11 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             const arcAntiCats = (archetype.nodes && archetype.nodes[cn.code] && archetype.nodes[cn.code].antiCats) || [];
             const labels = cn.categories.map(s => s.charAt(0).toUpperCase() + s.slice(1));
-            row.appendChild(renderCatList(probs, arcAntiCats, labels, clusterColors[clusterName], cn.name));
+            // v27.46 — switch AES/EPS from horizontal leaderboard back to
+            // vertical bars per design. The vertical renderer only labels
+            // the top-positive and top-negative columns so labels don't
+            // overlap with six tightly-packed columns.
+            row.appendChild(renderCatVerticalBars(probs, arcAntiCats, labels, clusterColors[clusterName]));
           }
 
           block.appendChild(row);
