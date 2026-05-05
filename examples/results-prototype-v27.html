@@ -2273,23 +2273,34 @@ document.addEventListener('DOMContentLoaded', () => {
       ZS:    { name: 'Zero-Sum',          cluster: 'REALITY', low: 'Everyone can win',          high: 'One side wins' },
       ONT_H: { name: 'Human Malleability',cluster: 'REALITY', low: 'Character is fixed',        high: 'Shaped by environment' },
     };
-    // Plain-English direction phrases used in cluster-bar tooltips. domain is
-    // the area of politics the node is about; lo / hi are stance phrases for
-    // each pole, qualified with left-wing / right-wing where the node has a
-    // natural political loading (MAT, CD, CU, ONT_H). Phrasing is the contextual
-    // "the right-wing version of being assimilationist" register, not the bare
-    // "you're left-wing" register.
+    // v27.42 — pole phrases now bare adjectival form (no leading "the", no
+    // trailing "view"). The sentence-level wording is composed by
+    // positionBand() below using each side's ABSOLUTE position on the 1–5
+    // scale. Previously a centrist like Lincoln 1860 (MAT=3) was mislabeled
+    // "right-wing market" whenever the respondent sat at MAT<3, because the
+    // code only looked at relative direction.
     const NODE_GAP_PHRASES = {
-      MAT:   { domain: 'economics',                    lo: 'the left-wing redistributive view',    hi: 'the right-wing market view' },
-      CD:    { domain: 'cultural change',              lo: 'the progressive view',                 hi: 'the conservative view' },
-      CU:    { domain: 'cultural unity',               lo: 'the right-wing assimilationist view',  hi: 'the left-wing pluralist view' },
-      MOR:   { domain: 'the moral circle',             lo: 'the in-group view',                    hi: 'the universalist view' },
-      PRO:   { domain: 'rules vs. results',            lo: 'the results-first stance',             hi: 'the rules-first stance' },
-      COM:   { domain: 'compromise',                   lo: 'the principled stance',                hi: 'the deal-making stance' },
-      ONT_S: { domain: 'institutions',                 lo: 'the institution-skeptical view',       hi: 'the institutionalist view' },
-      ZS:    { domain: 'whether politics is zero-sum', lo: 'the positive-sum view',                hi: 'the zero-sum view' },
-      ONT_H: { domain: 'human nature',                 lo: 'the essentialist view',                hi: 'the environmentalist view' },
+      MAT:   { domain: 'economics',                    lo: 'left-wing redistributive',     hi: 'right-wing market' },
+      CD:    { domain: 'cultural change',              lo: 'progressive',                   hi: 'conservative' },
+      CU:    { domain: 'cultural unity',               lo: 'right-wing assimilationist',    hi: 'left-wing pluralist' },
+      MOR:   { domain: 'the moral circle',             lo: 'in-group-focused',              hi: 'universalist' },
+      PRO:   { domain: 'rules vs. results',            lo: 'results-first',                 hi: 'rules-first' },
+      COM:   { domain: 'compromise',                   lo: 'principle-driven',              hi: 'deal-making' },
+      ONT_S: { domain: 'institutions',                 lo: 'institution-skeptical',         hi: 'institutionalist' },
+      ZS:    { domain: 'whether politics is zero-sum', lo: 'positive-sum',                  hi: 'zero-sum' },
+      ONT_H: { domain: 'human nature',                 lo: 'essentialist',                  hi: 'environmentalist' },
     };
+    // Absolute-position band → noun phrase. 1.7 / 2.5 / 3.5 / 4.3 are the
+    // band breakpoints on the 1–5 archetype scale. The middle band is
+    // "moderate stance" so a centrist candidate is never labeled as a pole
+    // just because the respondent sits to one side of them.
+    function positionBand(pos, phrase) {
+      if (pos < 1.7)  return `a strongly ${phrase.lo} view`;
+      if (pos < 2.5)  return `a ${phrase.lo} view`;
+      if (pos < 3.5)  return `a moderate stance`;
+      if (pos <= 4.3) return `a ${phrase.hi} view`;
+      return `a strongly ${phrase.hi} view`;
+    }
     // v27.22: BREAKDOWN_NODES mirrors engine SCORING_NODES (respondentVoteChoice.ts
     // line 197). PF / TRB / ENG removed — engine excludes them from candidate-
     // distance computation. EPS / AES land in Phase 2 (v27.24) as separate
@@ -2568,10 +2579,21 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (dom.dist < 0.25) {
             interp = `On ${phrase.domain}, you and ${candidateName} take similar positions.`;
           } else {
-            const youLow = dom.yourPos < dom.candPos;
-            const yourPhrase = youLow ? phrase.lo : phrase.hi;
-            const theirPhrase = youLow ? phrase.hi : phrase.lo;
-            interp = `On ${phrase.domain}, you take ${yourPhrase}, while ${candidateName} takes ${theirPhrase}.`;
+            // v27.42 — describe each side by its ABSOLUTE position on the
+            // 1–5 scale, not by which one is higher than the other. Moderate
+            // candidates (pos 2.5–3.5) read as "a moderate stance" instead of
+            // being forced into a left/right pole label by direction.
+            const yourBand  = positionBand(dom.yourPos, phrase);
+            const theirBand = positionBand(dom.candPos, phrase);
+            if (yourBand === theirBand) {
+              // Both fall in the same band but with a non-trivial gap. Use
+              // a comparative phrasing instead of restating the band twice.
+              const youLow = dom.yourPos < dom.candPos;
+              const moreSide = youLow ? phrase.lo : phrase.hi;
+              interp = `On ${phrase.domain}, you and ${candidateName} are close, though you lean somewhat more ${moreSide}.`;
+            } else {
+              interp = `On ${phrase.domain}, you take ${yourBand}, while ${candidateName} takes ${theirBand}.`;
+            }
           }
         } else if (dom.rowType === 'categorical') {
           const styleLabel = dom.node === 'EPS' ? 'epistemic style' : 'aesthetic style';
