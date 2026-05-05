@@ -302,6 +302,9 @@ function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elaps
     const winnerPred = pv.D > pv.R ? "D" : "R";
     const winnerActual = av.D > av.R ? "D" : "R";
     const cls = winnerPred === winnerActual ? "win-ok" : "win-bad";
+    const predAbstain = c.predicted.sharesOfElectorate.Abstain;
+    const actualAbstain = c.actual.sharesOfElectorate.Abstain;
+    const abstainGap = predAbstain - actualAbstain;
     return `<tr>
       <td><a href="#y${c.year}">${c.year}</a></td>
       <td class="num">${(c.totalWeight/1e6).toFixed(2)}M</td>
@@ -313,6 +316,9 @@ function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elaps
       <td class="num gap">${ppSigned(c.gaps.sharesOfVoters.D)}</td>
       <td class="num gap">${ppSigned(c.gaps.sharesOfVoters.R)}</td>
       <td class="num">${(c.gaps.sharesOfVoters.absMean*100).toFixed(2)}pp</td>
+      <td class="num">${pp(predAbstain)}</td>
+      <td class="num">${pp(actualAbstain)}</td>
+      <td class="num gap" style="color:${Math.abs(abstainGap) > 0.20 ? '#bd5742' : '#5f6862'}">${ppSigned(abstainGap)}</td>
       <td class="${cls}">${winnerPred === winnerActual ? "✓" : "✗"}</td>
     </tr>`;
   }).join("");
@@ -322,11 +328,17 @@ function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elaps
     <h2>Summary — predicted vs actual, all 5 cycles</h2>
     <table class="sumtable">
       <thead><tr>
+        <th colspan="3"></th>
+        <th colspan="5" class="grouphead">Vote shares <em>among those who voted</em></th>
+        <th colspan="3" class="grouphead">Abstain shares <em>of electorate</em></th>
+        <th></th>
+      </tr><tr>
         <th>Year</th><th>n (wt)</th><th>Coverage</th>
         <th>Pred D</th><th>Actual D</th>
         <th>Pred R</th><th>Actual R</th>
         <th>Gap D</th><th>Gap R</th>
         <th>|avg|</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
         <th>Winner</th>
       </tr></thead>
       <tbody>${rows}</tbody>
@@ -383,6 +395,7 @@ th { text-align: left; font-weight: 500; color: var(--muted); border-bottom: 1px
 td { padding: 4px; border-bottom: 1px solid var(--line); }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .sumtable td.gap { font-variant-numeric: tabular-nums; color: var(--muted); }
+.sumtable .grouphead { background: #ecefeb; color: #5f4810; font-style: italic; font-weight: 500; text-align: center; border-bottom: 1px solid var(--line-strong); }
 .sumtable .win-ok { color: var(--teal); font-weight: 600; text-align: center; }
 .sumtable .win-bad { color: var(--coral); font-weight: 600; text-align: center; }
 .kv { margin-bottom: 8px; }
@@ -412,15 +425,17 @@ nav.toc a:hover { text-decoration: underline; }
   ${summary}
 
   <div class="caveats">
-    <h3>How to read these gaps</h3>
+    <h3>How to read these gaps — vote share is a turnout-conditional comparison</h3>
+    <p style="margin: 6px 0;"><strong>Important:</strong> the "Pred D / Actual D" headline columns are <em>shares among those who voted</em> on each side — but the two voter pools are not the same population. The model abstains 0–5.5% of respondents across all cycles; reality abstains <strong>35–42%</strong>. So the predicted D-share is effectively the D-lean of the entire CCES sample, while the actual D-share is the D-lean of the ~60% of eligible adults who actually showed up. Real voters are a higher-engagement, higher-information slice of the electorate — and that slice differs systematically from the full sample. The abstention-model gap (the rightmost group in the summary table) is the load-bearing untreated bias.</p>
     <ul>
+      <li><strong>Abstention model is uncalibrated.</strong> The <code>predictVote</code> clearing-bar buckets (apolitical/casual/engaged/highly-engaged) plus the mapper's engagement-from-newsint-and-turnout signal together yield a near-zero abstain rate in every cycle. This is the single biggest separable error. A calibrated abstention layer would shrink the predicted voter pool to ~the same size as the actual voter pool, and the in-pool D/R gap would re-baseline.</li>
       <li><strong>2008 (~5% mapper coverage):</strong> all node positions fall back to uniform priors. Predictions reflect the population center distance to each candidate, not modelled vote choice. The 31pp gap is a coverage-gap demonstration.</li>
       <li><strong>2012 (~20% mapper coverage, MAT only):</strong> economic-axis signal only; cultural / moral / system axes are fallback. Directional read at best.</li>
-      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Two systematic biases visible at the model layer (separable from coverage):
+      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Three additive biases visible at the model layer:
         <ul style="margin-top: 4px;">
           <li>Pre-existing model D-bias of ~11pp on 2020 archetype-centroid baseline (<code>voteModelSmoke</code>): centrist policy positions sit closer to D candidate profiles than to recent R candidates (especially Trump's CD/CU/MOR positioning).</li>
-          <li>Thin-coverage shrinkage adds another ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
-          <li><strong>partyID is not passed to the predictor</strong> in this run — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route many cross-pressured voters to vote with their party despite issue-distance.</li>
+          <li>Thin-coverage shrinkage adds ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
+          <li><strong>partyID is not passed to the predictor</strong> — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route cross-pressured voters back to their party despite issue-distance.</li>
         </ul>
       </li>
       <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline.</li>

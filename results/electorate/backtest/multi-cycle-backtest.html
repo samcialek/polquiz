@@ -42,6 +42,7 @@ th { text-align: left; font-weight: 500; color: var(--muted); border-bottom: 1px
 td { padding: 4px; border-bottom: 1px solid var(--line); }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .sumtable td.gap { font-variant-numeric: tabular-nums; color: var(--muted); }
+.sumtable .grouphead { background: #ecefeb; color: #5f4810; font-style: italic; font-weight: 500; text-align: center; border-bottom: 1px solid var(--line-strong); }
 .sumtable .win-ok { color: var(--teal); font-weight: 600; text-align: center; }
 .sumtable .win-bad { color: var(--coral); font-weight: 600; text-align: center; }
 .kv { margin-bottom: 8px; }
@@ -73,11 +74,17 @@ nav.toc a:hover { text-decoration: underline; }
     <h2>Summary — predicted vs actual, all 5 cycles</h2>
     <table class="sumtable">
       <thead><tr>
+        <th colspan="3"></th>
+        <th colspan="5" class="grouphead">Vote shares <em>among those who voted</em></th>
+        <th colspan="3" class="grouphead">Abstain shares <em>of electorate</em></th>
+        <th></th>
+      </tr><tr>
         <th>Year</th><th>n (wt)</th><th>Coverage</th>
         <th>Pred D</th><th>Actual D</th>
         <th>Pred R</th><th>Actual R</th>
         <th>Gap D</th><th>Gap R</th>
         <th>|avg|</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
         <th>Winner</th>
       </tr></thead>
       <tbody><tr>
@@ -91,6 +98,9 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+47.1pp</td>
       <td class="num gap">-45.6pp</td>
       <td class="num">31.38pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">38.4%</td>
+      <td class="num gap" style="color:#bd5742">-38.4pp</td>
       <td class="win-ok">✓</td>
     </tr><tr>
       <td><a href="#y2012">2012</a></td>
@@ -103,6 +113,9 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+27.2pp</td>
       <td class="num gap">-25.5pp</td>
       <td class="num">18.13pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">42.0%</td>
+      <td class="num gap" style="color:#bd5742">-42.0pp</td>
       <td class="win-ok">✓</td>
     </tr><tr>
       <td><a href="#y2016">2016</a></td>
@@ -115,6 +128,9 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+10.1pp</td>
       <td class="num gap">-7.3pp</td>
       <td class="num">6.73pp</td>
+      <td class="num">3.2%</td>
+      <td class="num">40.8%</td>
+      <td class="num gap" style="color:#bd5742">-37.6pp</td>
       <td class="win-ok">✓</td>
     </tr><tr>
       <td><a href="#y2020">2020</a></td>
@@ -127,6 +143,9 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+22.6pp</td>
       <td class="num gap">-20.8pp</td>
       <td class="num">15.08pp</td>
+      <td class="num">5.5%</td>
+      <td class="num">34.6%</td>
+      <td class="num gap" style="color:#bd5742">-29.1pp</td>
       <td class="win-ok">✓</td>
     </tr><tr>
       <td><a href="#y2024">2024</a></td>
@@ -139,6 +158,9 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+17.4pp</td>
       <td class="num gap">-15.6pp</td>
       <td class="num">11.62pp</td>
+      <td class="num">1.3%</td>
+      <td class="num">36.3%</td>
+      <td class="num gap" style="color:#bd5742">-35.0pp</td>
       <td class="win-bad">✗</td>
     </tr></tbody>
     </table>
@@ -146,15 +168,17 @@ nav.toc a:hover { text-decoration: underline; }
   </section>
 
   <div class="caveats">
-    <h3>How to read these gaps</h3>
+    <h3>How to read these gaps — vote share is a turnout-conditional comparison</h3>
+    <p style="margin: 6px 0;"><strong>Important:</strong> the "Pred D / Actual D" headline columns are <em>shares among those who voted</em> on each side — but the two voter pools are not the same population. The model abstains 0–5.5% of respondents across all cycles; reality abstains <strong>35–42%</strong>. So the predicted D-share is effectively the D-lean of the entire CCES sample, while the actual D-share is the D-lean of the ~60% of eligible adults who actually showed up. Real voters are a higher-engagement, higher-information slice of the electorate — and that slice differs systematically from the full sample. The abstention-model gap (the rightmost group in the summary table) is the load-bearing untreated bias.</p>
     <ul>
+      <li><strong>Abstention model is uncalibrated.</strong> The <code>predictVote</code> clearing-bar buckets (apolitical/casual/engaged/highly-engaged) plus the mapper's engagement-from-newsint-and-turnout signal together yield a near-zero abstain rate in every cycle. This is the single biggest separable error. A calibrated abstention layer would shrink the predicted voter pool to ~the same size as the actual voter pool, and the in-pool D/R gap would re-baseline.</li>
       <li><strong>2008 (~5% mapper coverage):</strong> all node positions fall back to uniform priors. Predictions reflect the population center distance to each candidate, not modelled vote choice. The 31pp gap is a coverage-gap demonstration.</li>
       <li><strong>2012 (~20% mapper coverage, MAT only):</strong> economic-axis signal only; cultural / moral / system axes are fallback. Directional read at best.</li>
-      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Two systematic biases visible at the model layer (separable from coverage):
+      <li><strong>2016 / 2020 / 2024:</strong> meaningful coverage. Three additive biases visible at the model layer:
         <ul style="margin-top: 4px;">
           <li>Pre-existing model D-bias of ~11pp on 2020 archetype-centroid baseline (<code>voteModelSmoke</code>): centrist policy positions sit closer to D candidate profiles than to recent R candidates (especially Trump's CD/CU/MOR positioning).</li>
-          <li>Thin-coverage shrinkage adds another ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
-          <li><strong>partyID is not passed to the predictor</strong> in this run — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route many cross-pressured voters to vote with their party despite issue-distance.</li>
+          <li>Thin-coverage shrinkage adds ~10pp: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
+          <li><strong>partyID is not passed to the predictor</strong> — <code>partisanLoyaltyMultiplier</code> (post-1932 modifier) defaults to 1.0×, removing the partisan-loyalty pull that would route cross-pressured voters back to their party despite issue-distance.</li>
         </ul>
       </li>
       <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline.</li>
