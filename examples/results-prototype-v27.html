@@ -2733,13 +2733,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // just carries data-cluster-id so the binding loop knows which cluster
         // row to look up. No <title> element — the rich tooltip replaces it.
         svg += `<g class="ed-cluster-tile" data-cluster-id="${c.id}">`;
-        // v27.39 — transparent hit zone covering the full vertical slot
-        // (chart height + 40px below baseline for the labels). Without this,
-        // narrow bars (small gap or low importance) were unhoverable: an SVG
-        // <g> only has hit area where its visible children render, so a 3px-
-        // wide bar with no label below it gave the user nothing to point at.
-        // Bars touch each other, so adjacent hit zones don't overlap.
-        svg += `<rect x="${rectX.toFixed(1)}" y="${M.top}" width="${rectW.toFixed(1)}" height="${(innerH + 40).toFixed(1)}" fill="transparent" pointer-events="all"/>`;
+        // v27.40 — hover hit zone. Carries class="ed-cluster-hit" + the
+        // data-cluster-id so the post-render binding loop attaches the
+        // tooltip directly to this rect rather than the parent <g>.
+        // Attaching to a real <rect> with explicit pointer-events="all"
+        // is more reliable across browsers than relying on <g> mouseenter
+        // bubbling from descendants. The rect spans the full vertical slot
+        // (chart + 40px label area) so even narrow bars are hoverable.
+        svg += `<rect class="ed-cluster-hit" data-cluster-id="${c.id}" x="${rectX.toFixed(1)}" y="${M.top}" width="${rectW.toFixed(1)}" height="${(innerH + 40).toFixed(1)}" fill="transparent" pointer-events="all"/>`;
         if (rectH > 0.5) {
           // No rounded corners and no horizontal stroke between adjacent
           // bars — they're meant to touch like a stacked-band chart.
@@ -3066,17 +3067,19 @@ document.addEventListener('DOMContentLoaded', () => {
           if (newFocus && newFocus !== focus) openElectionDetail(year, newFocus);
         });
       });
-      // v27.35 — Rich tooltips on cluster bars. The bar group carries
-      // data-cluster-id; we look up the matching row in clusterRowsForTooltips
-      // (hoisted out of the if/else above) and attach a plain-English
-      // direction sentence via attachTip → #info-tip floating panel.
+      // v27.40 — Rich tooltips on cluster bars. Attach directly to the
+      // transparent hit-zone <rect> (.ed-cluster-hit) rather than the parent
+      // <g> — more reliable across browsers than waiting for <g> mouseenter
+      // to fire from descendant events. getAttribute beats element.dataset
+      // for SVG: dataset support on SVGElement landed late in some engines.
       if (Array.isArray(clusterRowsForTooltips)) {
-        detailPanel.querySelectorAll('.ed-cluster-tile').forEach(tile => {
-          const clusterId = tile.dataset.clusterId;
+        const hits = detailPanel.querySelectorAll('.ed-cluster-hit');
+        hits.forEach(hit => {
+          const clusterId = hit.getAttribute('data-cluster-id');
           const row = clusterRowsForTooltips.find(c => c.id === clusterId);
           if (!row) return;
           const tipHtml = buildClusterDifferenceTip(row, focusScore.name);
-          attachTip(tile, tipHtml);
+          attachTip(hit, tipHtml);
         });
       }
       // Section-head clicks → toggle that section.
