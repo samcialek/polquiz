@@ -1,0 +1,173 @@
+{
+  "schema_version": "v0",
+  "adr": "ADR-007",
+  "title": "Explicit Moral Circle Affinity Model",
+  "date": "2026-05-05",
+  "status": "accepted_for_staged_additive_migration",
+  "supersedes_where_conflicting": [
+    "ADR-006-mor-trb-collapse"
+  ],
+  "model": {
+    "stored_values_count": 9,
+    "raw_scale": "0..100",
+    "universal": {
+      "field": "universalAffinity",
+      "meaning": "baseline moral concern for any human being"
+    },
+    "scopes": [
+      "national",
+      "religious",
+      "ethnic_racial",
+      "class",
+      "gender",
+      "sexual",
+      "ideological",
+      "political_camp"
+    ],
+    "scoped_value_type": "number_0_100_or_null",
+    "null_meaning": "not meaningful / not applicable for this respondent",
+    "excess_formula": "max(0, scopedAffinity - universalAffinity)",
+    "active_boundary_formula": "excessAffinity > 0",
+    "reporting_active_threshold_points": 5,
+    "intensity_formula": {
+      "type": "L2_norm",
+      "raw": "sqrt(sum(excessAffinity[group]^2))",
+      "intensity01": "min(1, raw / 100)",
+      "intensity03": "3 * intensity01"
+    }
+  },
+  "storage_policy": {
+    "store_all_raw_values": true,
+    "derive_excess_separately": true,
+    "do_not_discard_scoped_values_below_universal": true,
+    "legacy_numeric_coercion_for_null": "universalAffinity"
+  },
+  "battery": {
+    "shape": "split",
+    "part_a": {
+      "target": "universalAffinity",
+      "prompt_concept": "How much moral concern should politics give to any human being, regardless of where they live or which group they belong to?",
+      "response": "0..100 slider"
+    },
+    "part_b": {
+      "target": "eight scoped affinities",
+      "response": "same 0..100 scale plus not meaningful option",
+      "scopes": [
+        "people in my country",
+        "people who share my religious tradition or sacred worldview",
+        "people who share my racial or ethnic background or status",
+        "people in my economic class or material situation",
+        "people who share my gender position or gender-linked identity",
+        "people who share my sexuality or family-life orientation",
+        "people who share my core ideology or values",
+        "people on my political side, party, movement, or camp"
+      ]
+    },
+    "satisficing_flags": [
+      "all_equal",
+      "low_variance",
+      "round_number_straightline",
+      "all_high_no_excess",
+      "too_fast"
+    ]
+  },
+  "priors_policy": {
+    "direct_battery_max_weight": 1.0,
+    "q60_identity_ranking_max_weight": 0.35,
+    "q102_membership_criteria_max_weight": 0.25,
+    "legacy_pf_max_weight": 0.25,
+    "legacy_trb_clear_scope_max_weight": 0.25,
+    "legacy_trb_anchor_clear_scope_max_weight": 0.3,
+    "policy_proxy_max_weight": 0.1,
+    "policy_proxy_default": "validation_only",
+    "q103_universalAffinity_weight": 0,
+    "q103_note": "issue salience screener, not universal moral concern"
+  },
+  "legacy_conversion": {
+    "scale_helpers": {
+      "pos15ToAffinity100": "round(((expectedPos - 1) / 4) * 100)",
+      "salience03ToAffinity100": "round((expectedSalience / 3) * 100)"
+    },
+    "trb_anchor_mapping": {
+      "national": "national",
+      "religious": "religious",
+      "ethnic_racial": "ethnic_racial",
+      "class": "class",
+      "gender": "gender",
+      "sexual": "sexual",
+      "ideological": "ideological",
+      "global": "weak universalAffinity prior; no scoped excess",
+      "mixed_none": "universal/no-excess prior; suppresses scoped excess from that item"
+    },
+    "trb_without_anchor": "generic boundary intensity only; do not assign scope without per-question review",
+    "pf_mapping": "primarily low-weight political_camp scoped affinity prior",
+    "party_label_policy": "party labels identify direction/membership, not magnitude"
+  },
+  "identity_primary_seed_rule": {
+    "eligible_for_boundary_overlay": [
+      "excessAffinities[group] >= 20",
+      "scopedAffinities[group] >= 70",
+      "universalAffinity <= 75",
+      "intensity03 >= 1.2"
+    ],
+    "requires_calibration_before_cutover": true,
+    "overlay_scope_map": {
+      "Black voter": "ethnic_racial plus matching membership label",
+      "White grievance voter": "ethnic_racial plus matching membership label and grievance evidence",
+      "Evangelical voter": "religious plus matching membership label",
+      "LGBTQ voter": "sexual plus matching membership label",
+      "Feminist voter": "gender plus matching membership label or feminist-policy evidence",
+      "Male grievance voter": "gender plus matching membership label and grievance evidence"
+    }
+  },
+  "era_activation_migration": {
+    "do_not_regenerate_era_activations_json": true,
+    "legacy_MOR_temporary_mapping": "moral-circle breadth / universal-affinity emphasis",
+    "specific_scoped_era_activation": "requires deliberate human edit pass or versioned companion map"
+  },
+  "phase27_transition": {
+    "emit_legacy_shape_unchanged": true,
+    "new_shape_additive_optional": true,
+    "no_phase27_field_removal": true,
+    "pause_old_salience_only_boundary_expansion": true
+  },
+  "stages": [
+    {
+      "id": "A",
+      "name": "Spec",
+      "description": "ADR and JSON mirror only; no code changes"
+    },
+    {
+      "id": "B",
+      "name": "Additive Types and Helpers",
+      "description": "types and pure helpers only; no engine cutover"
+    },
+    {
+      "id": "C",
+      "name": "Additive Question Spec",
+      "description": "calibration battery spec or disabled/additive definitions"
+    },
+    {
+      "id": "D",
+      "name": "Legacy Conversion Helpers",
+      "description": "pure conversion helpers from PF/TRB/TRB_ANCHOR to low-weight priors"
+    },
+    {
+      "id": "E",
+      "name": "Smoke / Audit Harness",
+      "description": "prove formulas, null behavior, Q103 exclusion, and legacy-output preservation"
+    },
+    {
+      "id": "F",
+      "name": "Engine Cutover",
+      "description": "out of scope until Terminal 1 review of B-E"
+    }
+  ],
+  "non_goals": [
+    "regenerate archetypes",
+    "auto-edit era-activations.json",
+    "immediate engine/scoring cutover",
+    "remove legacy fields in Phase 2.7 outputs",
+    "use vote choice, candidate thermometers, or downstream prediction outputs"
+  ]
+}

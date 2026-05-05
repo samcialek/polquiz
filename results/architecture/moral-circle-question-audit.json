@@ -1,0 +1,4652 @@
+{
+  "summary": {
+    "schema_version": "v0",
+    "created": "2026-05-05",
+    "source_files": [
+      "src/config/questions.representative.ts",
+      "src/config/questions.full.ts",
+      "src/types.ts",
+      "src/config/categories.ts"
+    ],
+    "uniqueQuestionsAudited": 99,
+    "representativeQuestions": 96,
+    "fullQuestions": 64,
+    "moralCircleRelevantQuestions": 42,
+    "usableExistingSignalQuestions": 12,
+    "weakOrProxySignalQuestions": 21,
+    "notRelevantQuestions": 66,
+    "currentImplementationDrift": [
+      "src/types.ts currently defines MorBoundaryId as seven categories, not universal + eight scoped affinities.",
+      "src/config/categories.ts says universalism is encoded as low across all seven boundaries plus high intensity. The new model says universal is an explicit baseline, not absence of boundaries.",
+      "sexual is currently folded into gender. The new model needs sexual as its own scoped affinity if kept conceptually distinct.",
+      "political_tribe naming should be normalized to political_camp or another canonical term before new work starts.",
+      "Question evidence maps currently use MOR, PF, TRB, and TRB_ANCHOR. None directly emit universalAffinity, scopedAffinity, or excessAffinity."
+    ]
+  },
+  "proposed_model": {
+    "universalAffinity": "baseline moral concern for humans in general, explicit scalar in [0,1]",
+    "scopedAffinities": {
+      "national": "affinity toward this narrower group in [0,1]",
+      "religious": "affinity toward this narrower group in [0,1]",
+      "ethnic_racial": "affinity toward this narrower group in [0,1]",
+      "class": "affinity toward this narrower group in [0,1]",
+      "gender": "affinity toward this narrower group in [0,1]",
+      "sexual": "affinity toward this narrower group in [0,1]",
+      "ideological": "affinity toward this narrower group in [0,1]",
+      "political_camp": "affinity toward this narrower group in [0,1]"
+    },
+    "excessRule": "excessAffinity[group] = max(0, scopedAffinity[group] - universalAffinity)",
+    "activeBoundaryRule": "group is active only when excessAffinity[group] > 0"
+  },
+  "categorySummaries": {
+    "universal": {
+      "evidence": [
+        {
+          "id": 8,
+          "promptShort": "domestic_vs_abroad_lives",
+          "strength": "strong",
+          "evidenceType": "policy_scope_proxy",
+          "note": "domestic vs abroad lives; strongest existing universal-vs-national moral-scope item"
+        },
+        {
+          "id": 213,
+          "promptShort": "equal_standing_within_polity",
+          "strength": "strong",
+          "evidenceType": "equal_standing_proxy",
+          "note": "equal standing inside polity; good for within-polity universal floor but not all-human baseline"
+        },
+        {
+          "id": 103,
+          "promptShort": "issue_salience_screener",
+          "strength": "medium",
+          "evidenceType": "salience_screener",
+          "note": "directly names moral scope but asks issue priority rather than affinity"
+        },
+        {
+          "id": 93,
+          "promptShort": "priority_sort_opener",
+          "strength": "medium",
+          "evidenceType": "pole_battery",
+          "note": "MOR pole battery; useful but legacy continuous-node framing"
+        },
+        {
+          "id": 203,
+          "promptShort": "military_intervention",
+          "strength": "medium",
+          "evidenceType": "international_policy_proxy",
+          "note": "military intervention scope; confounded with realism/security"
+        },
+        {
+          "id": 204,
+          "promptShort": "international_engagement",
+          "strength": "medium",
+          "evidenceType": "international_policy_proxy",
+          "note": "international engagement; confounded with institutions and strategy"
+        },
+        {
+          "id": 6,
+          "promptShort": "national_priorities_bundle",
+          "strength": "weak",
+          "evidenceType": "priority_bundle",
+          "note": "planet/future and fairness options imply broad scope but not direct affinity"
+        },
+        {
+          "id": 43,
+          "promptShort": "veil_of_ignorance_society_choice",
+          "strength": "weak",
+          "evidenceType": "veil_proxy",
+          "note": "veil-of-ignorance item implies impartiality, not affinity magnitude"
+        },
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "weak",
+          "evidenceType": "identity_anchor",
+          "note": "global_citizen option is identity/scope cue, not universal moral floor"
+        }
+      ],
+      "gap": "No clean direct universalAffinity item asks baseline concern for any human stranger. Existing MOR items are policy-scope or issue-salience proxies."
+    },
+    "national": {
+      "evidence": [
+        {
+          "id": 51,
+          "promptShort": "immigration_national_identity_salience",
+          "strength": "strong",
+          "evidenceType": "direct_salience",
+          "note": "immigration-national-identity salience slider"
+        },
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "national identity ranking"
+        },
+        {
+          "id": 102,
+          "promptShort": "membership_criteria_priority_sort",
+          "strength": "strong",
+          "evidenceType": "membership_criteria",
+          "note": "national membership criteria priority sort"
+        },
+        {
+          "id": 201,
+          "promptShort": "patriotism_institutional_trust",
+          "strength": "medium",
+          "evidenceType": "national_identification",
+          "note": "patriotism/institutional trust, mixes pride with trust"
+        },
+        {
+          "id": 204,
+          "promptShort": "international_engagement",
+          "strength": "medium",
+          "evidenceType": "national_orientation",
+          "note": "international engagement with home-focus option"
+        },
+        {
+          "id": 205,
+          "promptShort": "trade_nationalism",
+          "strength": "medium",
+          "evidenceType": "policy_proxy",
+          "note": "trade nationalism, confounded with economics"
+        },
+        {
+          "id": 63,
+          "promptShort": "best_worst_battery",
+          "strength": "medium",
+          "evidenceType": "best_worst_anchor",
+          "note": "national_strength item"
+        },
+        {
+          "id": 6,
+          "promptShort": "national_priorities_bundle",
+          "strength": "weak",
+          "evidenceType": "priority_bundle",
+          "note": "national strength option"
+        }
+      ],
+      "gap": "Good existing evidence, but it measures identity importance and membership criteria more than affinity above universal."
+    },
+    "religious": {
+      "evidence": [
+        {
+          "id": 54,
+          "promptShort": "religion_in_upbringing",
+          "strength": "strong",
+          "evidenceType": "membership_background",
+          "note": "religion in upbringing; membership/context not affinity"
+        },
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "religious identity ranking"
+        },
+        {
+          "id": 102,
+          "promptShort": "membership_criteria_priority_sort",
+          "strength": "medium",
+          "evidenceType": "membership_criteria",
+          "note": "religious heritage as national belonging criterion"
+        },
+        {
+          "id": 206,
+          "promptShort": "religion_in_public_life",
+          "strength": "medium",
+          "evidenceType": "public_life_proxy",
+          "note": "religion in public life; position and epistemic cross-load"
+        },
+        {
+          "id": 63,
+          "promptShort": "best_worst_battery",
+          "strength": "weak",
+          "evidenceType": "best_worst_anchor",
+          "note": "community/tradition items can imply religious boundary but not direct"
+        }
+      ],
+      "gap": "Has membership/background and public-life items; lacks a clean 'my religious in-group receives extra moral weight' item."
+    },
+    "ethnic_racial": {
+      "evidence": [
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "ethnic/racial identity ranking"
+        },
+        {
+          "id": 14,
+          "promptShort": "university_admissions_approach",
+          "strength": "weak",
+          "evidenceType": "policy_proxy",
+          "note": "admissions approach; issue proxy not own-group affinity"
+        },
+        {
+          "id": 15,
+          "promptShort": "inequality_causes_allocation",
+          "strength": "weak",
+          "evidenceType": "causal_proxy",
+          "note": "discrimination attribution; structural view not affinity"
+        },
+        {
+          "id": 213,
+          "promptShort": "equal_standing_within_polity",
+          "strength": "weak",
+          "evidenceType": "equal_standing_proxy",
+          "note": "universal equal standing can constrain ethnic/racial excess but does not identify own-group affinity"
+        }
+      ],
+      "gap": "Only one strong direct identity-priority item. Direct own-group affinity is missing; most existing evidence is policy/structural proxy."
+    },
+    "class": {
+      "evidence": [
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "class identity ranking"
+        },
+        {
+          "id": 15,
+          "promptShort": "inequality_causes_allocation",
+          "strength": "medium",
+          "evidenceType": "structural_proxy",
+          "note": "inequality cause allocation"
+        },
+        {
+          "id": 17,
+          "promptShort": "ceo_worker_pay_ratio",
+          "strength": "medium",
+          "evidenceType": "policy_proxy",
+          "note": "CEO/worker pay ratio"
+        },
+        {
+          "id": 27,
+          "promptShort": "welfare_error_tradeoff",
+          "strength": "medium",
+          "evidenceType": "deservingness_proxy",
+          "note": "welfare error tradeoff"
+        },
+        {
+          "id": 29,
+          "promptShort": "factory_closure_causes_ranking",
+          "strength": "medium",
+          "evidenceType": "causal_proxy",
+          "note": "factory-closure causes"
+        },
+        {
+          "id": 13,
+          "promptShort": "preferred_top_marginal_tax_rate",
+          "strength": "weak",
+          "evidenceType": "policy_proxy",
+          "note": "preferred top marginal tax rate"
+        },
+        {
+          "id": 103,
+          "promptShort": "issue_salience_screener",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "economic policy priority, not class affinity"
+        }
+      ],
+      "gap": "Several policy/deservingness proxies plus one identity-priority item. Direct class in-group affinity is missing."
+    },
+    "gender": {
+      "evidence": [
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "gender identity ranking"
+        },
+        {
+          "id": 103,
+          "promptShort": "issue_salience_screener",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "social-direction priority mentions gender identity but not gender-group affinity"
+        }
+      ],
+      "gap": "Sparse. Direct identity-priority exists, but no direct gender in-group affinity above universal."
+    },
+    "sexual": {
+      "evidence": [
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "sexual identity ranking"
+        },
+        {
+          "id": 103,
+          "promptShort": "issue_salience_screener",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "social-direction priority mentions LGBTQ rights but not sexual-group affinity"
+        }
+      ],
+      "gap": "Sparse and currently folded into gender in ADR-006. Needs separate category if the new architecture keeps sexual distinct."
+    },
+    "ideological": {
+      "evidence": [
+        {
+          "id": 60,
+          "promptShort": "politically_important_identities",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "ideological identity ranking"
+        },
+        {
+          "id": 35,
+          "promptShort": "percent_groups_want_best_share_values",
+          "strength": "medium",
+          "evidenceType": "shared_values_proxy",
+          "note": "how many groups want best/share values"
+        },
+        {
+          "id": 39,
+          "promptShort": "opponent_model_allocation",
+          "strength": "medium",
+          "evidenceType": "outgroup_model",
+          "note": "opponent model allocation"
+        },
+        {
+          "id": 63,
+          "promptShort": "best_worst_battery",
+          "strength": "medium",
+          "evidenceType": "best_worst_anchor",
+          "note": "individual freedom/fairness/tradition values anchors"
+        },
+        {
+          "id": 81,
+          "promptShort": "party_vs_cause_loyalty",
+          "strength": "medium",
+          "evidenceType": "cause_vs_party",
+          "note": "cause loyalty can separate ideology from party"
+        },
+        {
+          "id": 99,
+          "promptShort": "cross_partisan_priority_sort",
+          "strength": "medium",
+          "evidenceType": "cross_camp_tolerance",
+          "note": "cross-party closeness tolerance implies ideological/camp boundary"
+        },
+        {
+          "id": 200,
+          "promptShort": "party_identification",
+          "strength": "weak",
+          "evidenceType": "party_label",
+          "note": "party ID labels may proxy ideological camp but should not define it"
+        }
+      ],
+      "gap": "Moderate evidence from identity ranking, opponent modeling, and cause-vs-party items. Needs cleaner separation from political_camp."
+    },
+    "political_camp": {
+      "evidence": [
+        {
+          "id": 200,
+          "promptShort": "party_identification",
+          "strength": "strong",
+          "evidenceType": "party_label",
+          "note": "party identification label; label only, not intensity"
+        },
+        {
+          "id": 2,
+          "promptShort": "political_identity_centrality",
+          "strength": "strong",
+          "evidenceType": "centrality_proxy",
+          "note": "politics identity centrality; intensity not direction"
+        },
+        {
+          "id": 40,
+          "promptShort": "opponents_matter_to_identity",
+          "strength": "strong",
+          "evidenceType": "opponent_identity",
+          "note": "opponents matter to identity"
+        },
+        {
+          "id": 42,
+          "promptShort": "close_friends_voted_differently",
+          "strength": "strong",
+          "evidenceType": "network_homophily",
+          "note": "close friends voted differently"
+        },
+        {
+          "id": 81,
+          "promptShort": "party_vs_cause_loyalty",
+          "strength": "strong",
+          "evidenceType": "party_vs_cause",
+          "note": "party/cause loyalty"
+        },
+        {
+          "id": 87,
+          "promptShort": "family_cross_partisan_marriage",
+          "strength": "strong",
+          "evidenceType": "family_boundary",
+          "note": "cross-camp family marriage reaction"
+        },
+        {
+          "id": 97,
+          "promptShort": "political_thought_frequency",
+          "strength": "medium",
+          "evidenceType": "thought_frequency",
+          "note": "political thought frequency; intensity proxy"
+        },
+        {
+          "id": 98,
+          "promptShort": "group_solidarity_feeling",
+          "strength": "medium",
+          "evidenceType": "solidarity_proxy",
+          "note": "group solidarity feeling, ambiguous group object"
+        },
+        {
+          "id": 99,
+          "promptShort": "cross_partisan_priority_sort",
+          "strength": "medium",
+          "evidenceType": "cross_camp_tolerance",
+          "note": "priority sort over relationship closeness"
+        },
+        {
+          "id": 201,
+          "promptShort": "patriotism_institutional_trust",
+          "strength": "weak",
+          "evidenceType": "national_camp_crossload",
+          "note": "patriotism/trust may cross-load with camp"
+        }
+      ],
+      "gap": "Strongest existing coverage, but much of it measures heat/intensity rather than affinity direction. Must not dominate the whole moral-circle construct."
+    }
+  },
+  "allQuestions": [
+    {
+      "id": 1,
+      "promptShort": "political_content_frequency",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "behavior_frequency"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ENG"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 2,
+      "promptShort": "political_identity_centrality",
+      "stage": "fixed12",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "direct_centrality"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "identity_activation"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ENG",
+          "PF"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "centrality_proxy",
+          "note": "politics identity centrality; intensity not direction"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 3,
+      "promptShort": "cultural_social_placement",
+      "stage": "fixed12",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "direct_placement"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 4,
+      "promptShort": "cultural_social_salience",
+      "stage": "fixed12",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.9,
+          "touchType": "direct_salience"
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.45,
+          "touchType": "boundary_salience"
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.2,
+          "touchType": "values_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "CU",
+          "MOR"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 5,
+      "promptShort": "engagement_motivations_top2",
+      "stage": "screen20",
+      "uiType": "multi",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.2,
+          "touchType": "motive_salience"
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "weight": 0.2,
+          "touchType": "motive_salience"
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.2,
+          "touchType": "motive_salience"
+        },
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "motive_activation"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "motive_activation"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "motive_activation"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "motive_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "ENG",
+          "MOR",
+          "PF",
+          "PRO",
+          "TRB"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 6,
+      "promptShort": "national_priorities_bundle",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.65,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.4,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.3,
+          "touchType": "policy_bundle_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "MAT",
+          "MOR",
+          "ONT_H",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "weak",
+          "evidenceType": "priority_bundle",
+          "note": "planet/future and fairness options imply broad scope but not direct affinity"
+        },
+        {
+          "category": "national",
+          "strength": "weak",
+          "evidenceType": "priority_bundle",
+          "note": "national strength option"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 7,
+      "promptShort": "coalition_vs_principle",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "principle_tradeoff"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "stage": "screen20",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "moral_scope_tradeoff"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MOR"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "strong",
+          "evidenceType": "policy_scope_proxy",
+          "note": "domestic vs abroad lives; strongest existing universal-vs-national moral-scope item"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 9,
+      "promptShort": "politics_at_social_gatherings",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "social_behavior"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.45,
+          "touchType": "social_behavior"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "ENG"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 10,
+      "promptShort": "climate_energy_bundle",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "policy_bundle"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT",
+          "ONT_S"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 11,
+      "promptShort": "nyt_headline_click",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.95,
+          "touchType": "taste_proxy"
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.45,
+          "touchType": "style_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 12,
+      "promptShort": "guess_top_marginal_tax_rate",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.35,
+          "touchType": "factual_calibration"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 13,
+      "promptShort": "preferred_top_marginal_tax_rate",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.92,
+          "touchType": "policy_preference"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "class",
+          "strength": "weak",
+          "evidenceType": "policy_proxy",
+          "note": "preferred top marginal tax rate"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 14,
+      "promptShort": "university_admissions_approach",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.65,
+          "touchType": "fairness_design"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "fairness_design"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT",
+          "MOR"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ethnic_racial",
+          "strength": "weak",
+          "evidenceType": "policy_proxy",
+          "note": "admissions approach; issue proxy not own-group affinity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 15,
+      "promptShort": "inequality_causes_allocation",
+      "stage": "fixed12",
+      "uiType": "allocation",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "causal_allocation"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "allocation_shape"
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.55,
+          "touchType": "derived_allocation_concentration"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "MAT"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ethnic_racial",
+          "strength": "weak",
+          "evidenceType": "causal_proxy",
+          "note": "discrimination attribution; structural view not affinity"
+        },
+        {
+          "category": "class",
+          "strength": "medium",
+          "evidenceType": "structural_proxy",
+          "note": "inequality cause allocation"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 16,
+      "promptShort": "criminal_justice_bundle",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "policy_bundle"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "policy_bundle"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 17,
+      "promptShort": "ceo_worker_pay_ratio",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "fairness_threshold"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "class",
+          "strength": "medium",
+          "evidenceType": "policy_proxy",
+          "note": "CEO/worker pay ratio"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 18,
+      "promptShort": "human_improvement_capacity",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "malleability_capacity"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 19,
+      "promptShort": "human_progress_salience",
+      "stage": "screen20",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "direct_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 20,
+      "promptShort": "bad_outcomes_blame_allocation",
+      "stage": "fixed12",
+      "uiType": "allocation",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "conflict_attribution"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "motive_model"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "allocation_shape"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "derived_allocation_concentration"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "ONT_H",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 21,
+      "promptShort": "controversial_speaker",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "rights_tradeoff"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "civic_balance"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 22,
+      "promptShort": "source_trust_conflict",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.92,
+          "touchType": "tie_breaker_authority"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 23,
+      "promptShort": "who_should_shape_a_law",
+      "stage": "fixed12",
+      "uiType": "ranking",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.7,
+          "touchType": "authority_ranking"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "governance_priority"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PRO"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 24,
+      "promptShort": "child_traits",
+      "stage": "screen20",
+      "uiType": "pairwise",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.35,
+          "touchType": "socialization_style"
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.3,
+          "touchType": "socialization_style"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.1,
+          "touchType": "human_nature_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H"
+        ],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 25,
+      "promptShort": "criminal_trial_error_tradeoff",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.75,
+          "touchType": "error_asymmetry"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.7,
+          "touchType": "error_asymmetry_ratio"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.12,
+          "touchType": "human_motive_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MOR",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 27,
+      "promptShort": "welfare_error_tradeoff",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.72,
+          "touchType": "error_asymmetry"
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.65,
+          "touchType": "error_asymmetry_ratio"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.22,
+          "touchType": "error_asymmetry"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.24,
+          "touchType": "deservingness_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT",
+          "MOR",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "class",
+          "strength": "medium",
+          "evidenceType": "deservingness_proxy",
+          "note": "welfare error tradeoff"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 28,
+      "promptShort": "mask_mandate_acceptability",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "public_health_authority"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "collective_uniformity"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 29,
+      "promptShort": "factory_closure_causes_ranking",
+      "stage": "stage2",
+      "uiType": "ranking",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "economic_attribution"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "economic_attribution"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "trade_protectionism"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "MAT",
+          "ONT_S"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "class",
+          "strength": "medium",
+          "evidenceType": "causal_proxy",
+          "note": "factory-closure causes"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 30,
+      "promptShort": "information_control_error_tradeoff",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.72,
+          "touchType": "speech_harm_tradeoff"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.65,
+          "touchType": "speech_harm_ratio"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "truth_authority_proxy"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.12,
+          "touchType": "pluralism_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "PRO"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 31,
+      "promptShort": "trade_liberalization_effects",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "macro_sum_view"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "macro_sum_view"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.45,
+          "touchType": "systems_view"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_S",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 33,
+      "promptShort": "immigration_enforcement_error_tradeoff",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.62,
+          "touchType": "boundary_error_asymmetry"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.55,
+          "touchType": "boundary_error_asymmetry_ratio"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.22,
+          "touchType": "boundary_error_asymmetry"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.12,
+          "touchType": "boundary_error_asymmetry"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 34,
+      "promptShort": "threats_to_america_external_internal",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "threat_bundle"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "threat_bundle"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "TRB",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 35,
+      "promptShort": "percent_groups_want_best_share_values",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "outgroup_trust_estimate"
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "outgroup_trust_estimate"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "TRB",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ideological",
+          "strength": "medium",
+          "evidenceType": "shared_values_proxy",
+          "note": "how many groups want best/share values"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 36,
+      "promptShort": "fda_speed_vs_safety",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.65,
+          "touchType": "error_asymmetry"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "expertise_risk_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PRO"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 37,
+      "promptShort": "stupid_workplace_rule_response",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "rule_response"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "rule_response"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 38,
+      "promptShort": "rules_procedures_matter_salience",
+      "stage": "screen20",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "direct_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 39,
+      "promptShort": "opponent_model_allocation",
+      "stage": "screen20",
+      "uiType": "allocation",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.75,
+          "touchType": "outgroup_model"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.45,
+          "touchType": "outgroup_model"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "malleability_proxy"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "allocation_shape_epistemic"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "ONT_H",
+          "TRB"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ideological",
+          "strength": "medium",
+          "evidenceType": "outgroup_model",
+          "note": "opponent model allocation"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 40,
+      "promptShort": "opponents_matter_to_identity",
+      "stage": "fixed12",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.65,
+          "touchType": "opponent_identity_activation"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "opponent_identity_activation"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PF",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "opponent_identity",
+          "note": "opponents matter to identity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 41,
+      "promptShort": "election_access_vs_security",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "error_asymmetry"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "partisan_fairness_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PRO",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 42,
+      "promptShort": "close_friends_voted_differently",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "network_homophily"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "network_homophily",
+          "note": "close friends voted differently"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 43,
+      "promptShort": "veil_of_ignorance_society_choice",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "distributive_choice"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "weak",
+          "evidenceType": "veil_proxy",
+          "note": "veil-of-ignorance item implies impartiality, not affinity magnitude"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 44,
+      "promptShort": "views_changed_in_10_years",
+      "stage": "stage3",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.18,
+          "touchType": "identity_rigidity_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PF"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 47,
+      "promptShort": "political_conflict_with_close_others",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "interpersonal_conflict"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 48,
+      "promptShort": "improvement_mechanism",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "malleability_mechanism"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "malleability_mechanism"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "malleability_mechanism"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "malleability_mechanism"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "MAT",
+          "ONT_H",
+          "ONT_S"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 49,
+      "promptShort": "social_progress_salience",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "direct_salience"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.2,
+          "touchType": "progress_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H",
+          "ONT_S"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 50,
+      "promptShort": "integration_expectations_rewrite",
+      "stage": "stage2",
+      "uiType": "ranking",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.75,
+          "touchType": "membership_expectation"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "membership_expectation"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "economic_membership_expectation"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "CU",
+          "MAT"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "stage": "screen20",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.9,
+          "touchType": "direct_salience"
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.25,
+          "touchType": "direct_salience"
+        },
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "weight": 0.25,
+          "touchType": "nationality_anchor"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "CU"
+        ],
+        "categorical": [],
+        "trbAnchor": [
+          "ethnic_racial",
+          "global",
+          "ideological",
+          "mixed_none",
+          "national",
+          "religious"
+        ]
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "national",
+          "strength": "strong",
+          "evidenceType": "direct_salience",
+          "note": "immigration-national-identity salience slider"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 52,
+      "promptShort": "political_membership_criterion_rewrite",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "membership_boundary"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "membership_boundary"
+        },
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "weight": 0.25,
+          "touchType": "nationality_anchor"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 54,
+      "promptShort": "religion_in_upbringing",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "religious",
+          "strength": "strong",
+          "evidenceType": "membership_background",
+          "note": "religion in upbringing; membership/context not affinity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 55,
+      "promptShort": "what_changed_your_mind",
+      "stage": "screen20",
+      "uiType": "multi",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.95,
+          "touchType": "updating_channel"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 56,
+      "promptShort": "effective_leader_style",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.92,
+          "touchType": "leader_style"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 59,
+      "promptShort": "what_matters_more_in_leader",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.45,
+          "touchType": "leader_evaluation"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "leader_evaluation"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 60,
+      "promptShort": "politically_important_identities",
+      "stage": "screen20",
+      "uiType": "priority_sort",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "weight": 0.95,
+          "touchType": "identity_ranking"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": [
+          "class",
+          "ethnic_racial",
+          "gender",
+          "global",
+          "ideological",
+          "national",
+          "religious",
+          "sexual"
+        ]
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "weak",
+          "evidenceType": "identity_anchor",
+          "note": "global_citizen option is identity/scope cue, not universal moral floor"
+        },
+        {
+          "category": "national",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "national identity ranking"
+        },
+        {
+          "category": "religious",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "religious identity ranking"
+        },
+        {
+          "category": "ethnic_racial",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "ethnic/racial identity ranking"
+        },
+        {
+          "category": "class",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "class identity ranking"
+        },
+        {
+          "category": "gender",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "gender identity ranking"
+        },
+        {
+          "category": "sexual",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "sexual identity ranking"
+        },
+        {
+          "category": "ideological",
+          "strength": "strong",
+          "evidenceType": "identity_priority",
+          "note": "ideological identity ranking"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 61,
+      "promptShort": "political_pitch_resonance",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.82,
+          "touchType": "rhetorical_preference"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.3,
+          "touchType": "rhetorical_preference"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 62,
+      "promptShort": "movement_aesthetics_reaction",
+      "stage": "screen20",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.88,
+          "touchType": "movement_style"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 63,
+      "promptShort": "best_worst_battery",
+      "stage": "screen20",
+      "uiType": "best_worst",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.38,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.34,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.12,
+          "touchType": "best_worst_asymmetric"
+        },
+        {
+          "node": "TRB_ANCHOR",
+          "role": "anchor",
+          "weight": 0.18,
+          "touchType": "best_worst_asymmetric"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "CU",
+          "MAT",
+          "MOR",
+          "PRO",
+          "TRB",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": [
+          "class",
+          "ethnic_racial",
+          "ideological",
+          "mixed_none",
+          "national",
+          "religious"
+        ]
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "national",
+          "strength": "medium",
+          "evidenceType": "best_worst_anchor",
+          "note": "national_strength item"
+        },
+        {
+          "category": "religious",
+          "strength": "weak",
+          "evidenceType": "best_worst_anchor",
+          "note": "community/tradition items can imply religious boundary but not direct"
+        },
+        {
+          "category": "ideological",
+          "strength": "medium",
+          "evidenceType": "best_worst_anchor",
+          "note": "individual freedom/fairness/tradition values anchors"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 64,
+      "promptShort": "political_frustration",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "grievance_proxy"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "grievance_proxy"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "grievance_proxy"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "grievance_proxy"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "frustration_intensity"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "ENG",
+          "MAT",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 66,
+      "promptShort": "community_fund_allocation",
+      "stage": "stage2",
+      "uiType": "allocation",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.75,
+          "touchType": "value_allocation"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "governance_allocation"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "economic_proxy"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "governance_allocation"
+        },
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.35,
+          "touchType": "civic_style_allocation"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "MAT",
+          "PRO"
+        ],
+        "categorical": [
+          "AES"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 69,
+      "promptShort": "common_ground_salience",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "COM",
+          "role": "salience",
+          "weight": 0.9,
+          "touchType": "direct_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 71,
+      "promptShort": "rhetoric_style_importance",
+      "stage": "stage2",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "salience",
+          "weight": 0.9,
+          "touchType": "direct_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 76,
+      "promptShort": "success_attribution",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "causal_attribution"
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "distributional_worldview"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "checkbox_salience"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 77,
+      "promptShort": "decision_making_style",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.95,
+          "touchType": "decision_style"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 78,
+      "promptShort": "speaker_appeal",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.88,
+          "touchType": "rhetorical_preference"
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "weight": 0.4,
+          "touchType": "rhetorical_preference"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.15,
+          "touchType": "style_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 79,
+      "promptShort": "expert_disagreement_reaction",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts",
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.92,
+          "touchType": "epistemic_response"
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "weight": 0.4,
+          "touchType": "epistemic_response"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "epistemic_withdrawal"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ENG"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 80,
+      "promptShort": "political_attention_style",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.full.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ENG",
+          "role": "salience",
+          "weight": 0.7,
+          "touchType": "attention_behavior"
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "weight": 0.65,
+          "touchType": "attention_behavior"
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "weight": 0.55,
+          "touchType": "attention_behavior"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 81,
+      "promptShort": "party_vs_cause_loyalty",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.92,
+          "touchType": "identity_loyalty"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.18,
+          "touchType": "activation_proxy"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.1,
+          "touchType": "camp_attachment"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ENG",
+          "PF",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ideological",
+          "strength": "medium",
+          "evidenceType": "cause_vs_party",
+          "note": "cause loyalty can separate ideology from party"
+        },
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "party_vs_cause",
+          "note": "party/cause loyalty"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 82,
+      "promptShort": "openness_assimilation_closure",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.9,
+          "touchType": "cultural_direction"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.88,
+          "touchType": "cultural_uniformity"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.24,
+          "touchType": "moral_scope"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.08,
+          "touchType": "economics_signal"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "CU",
+          "MAT",
+          "MOR"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 83,
+      "promptShort": "broken_politics_diagnosis",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "mobilization_style"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.45,
+          "touchType": "camp_attachment"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "cultural_direction"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "cultural_uniformity"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "compromise_signal"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "CU",
+          "ENG",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": true,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 84,
+      "promptShort": "institutions_harden_into_domination",
+      "stage": "stage3",
+      "uiType": "slider",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.6,
+          "touchType": "zero_sum_institutions"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.6,
+          "touchType": "zero_sum_institutions"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "hierarchy_trust"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "compromise_signal"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "procedural_trust"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.3,
+          "touchType": "institutional_nihilism"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "ONT_H",
+          "PRO",
+          "ZS"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 85,
+      "promptShort": "institutional_legitimacy_source",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.88,
+          "touchType": "procedural_legitimacy"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "cultural_direction"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.08,
+          "touchType": "compromise_signal"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.2,
+          "touchType": "legitimacy_authority"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "PRO"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 87,
+      "promptShort": "family_cross_partisan_marriage",
+      "stage": "stage3",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.88,
+          "touchType": "identity_fusion_affective"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.22,
+          "touchType": "camp_attachment"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "PF",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "family_boundary",
+          "note": "cross-camp family marriage reaction"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 89,
+      "promptShort": "epistemic_style_battery",
+      "stage": "fixed12",
+      "uiType": "best_worst",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.85,
+          "touchType": "epistemic_style_pick"
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "weight": 0.55,
+          "touchType": "epistemic_style_pick"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 93,
+      "promptShort": "priority_sort_opener",
+      "stage": "fixed12",
+      "uiType": "priority_sort",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "weight": 0.85,
+          "touchType": "priority_sort_pole_battery"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "priority_sort_pole_battery"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "CU",
+          "MAT",
+          "MOR",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "medium",
+          "evidenceType": "pole_battery",
+          "note": "MOR pole battery; useful but legacy continuous-node framing"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 97,
+      "promptShort": "political_thought_frequency",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PF",
+          "role": "position",
+          "weight": 0.7,
+          "touchType": "thought_frequency_proxy"
+        },
+        {
+          "node": "ENG",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "thought_frequency_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ENG",
+          "PF"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "medium",
+          "evidenceType": "thought_frequency",
+          "note": "political thought frequency; intensity proxy"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 98,
+      "promptShort": "group_solidarity_feeling",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "group_solidarity"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "in_group_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MOR",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "political_camp",
+          "strength": "medium",
+          "evidenceType": "solidarity_proxy",
+          "note": "group solidarity feeling, ambiguous group object"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 99,
+      "promptShort": "cross_partisan_priority_sort",
+      "stage": "fixed12",
+      "uiType": "priority_sort",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "cross_partisan_tolerance"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ideological",
+          "strength": "medium",
+          "evidenceType": "cross_camp_tolerance",
+          "note": "cross-party closeness tolerance implies ideological/camp boundary"
+        },
+        {
+          "category": "political_camp",
+          "strength": "medium",
+          "evidenceType": "cross_camp_tolerance",
+          "note": "priority sort over relationship closeness"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 100,
+      "promptShort": "leader_conjoint",
+      "stage": "fixed12",
+      "uiType": "conjoint",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 101,
+      "promptShort": "cultural_social_placement_dual",
+      "stage": "fixed12",
+      "uiType": "dual_axis",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.8,
+          "touchType": "dual_axis_cd"
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.75,
+          "touchType": "dual_axis_cd"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "stage": "fixed12",
+      "uiType": "priority_sort",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "membership_criteria"
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.8,
+          "touchType": "membership_criteria"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "national",
+          "strength": "strong",
+          "evidenceType": "membership_criteria",
+          "note": "national membership criteria priority sort"
+        },
+        {
+          "category": "religious",
+          "strength": "medium",
+          "evidenceType": "membership_criteria",
+          "note": "religious heritage as national belonging criterion"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 103,
+      "promptShort": "issue_salience_screener",
+      "stage": "fixed12",
+      "uiType": "priority_sort",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "CD",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "CU",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "PRO",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "COM",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "EPS",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "weight": 0.95,
+          "touchType": "salience_screener"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "COM",
+          "CU",
+          "MAT",
+          "MOR",
+          "ONT_H",
+          "ONT_S",
+          "PRO",
+          "ZS"
+        ],
+        "categorical": [
+          "AES",
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "medium",
+          "evidenceType": "salience_screener",
+          "note": "directly names moral scope but asks issue priority rather than affinity"
+        },
+        {
+          "category": "class",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "economic policy priority, not class affinity"
+        },
+        {
+          "category": "gender",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "social-direction priority mentions gender identity but not gender-group affinity"
+        },
+        {
+          "category": "sexual",
+          "strength": "weak",
+          "evidenceType": "salience_screener",
+          "note": "social-direction priority mentions LGBTQ rights but not sexual-group affinity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 200,
+      "promptShort": "party_identification",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "ideological",
+          "strength": "weak",
+          "evidenceType": "party_label",
+          "note": "party ID labels may proxy ideological camp but should not define it"
+        },
+        {
+          "category": "political_camp",
+          "strength": "strong",
+          "evidenceType": "party_label",
+          "note": "party identification label; label only, not intensity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 201,
+      "promptShort": "patriotism_institutional_trust",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "current_institutional_confidence"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.15,
+          "touchType": "current_institutional_confidence"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "national_identification"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_S",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "national",
+          "strength": "medium",
+          "evidenceType": "national_identification",
+          "note": "patriotism/institutional trust, mixes pride with trust"
+        },
+        {
+          "category": "political_camp",
+          "strength": "weak",
+          "evidenceType": "national_camp_crossload",
+          "note": "patriotism/trust may cross-load with camp"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 202,
+      "promptShort": "state_scope_preference",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "state_scope"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "state_capacity"
+        },
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "institutional_importance"
+        },
+        {
+          "node": "COM",
+          "role": "position",
+          "weight": 0.15,
+          "touchType": "pragmatism_proxy"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "COM",
+          "MAT",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 203,
+      "promptShort": "military_intervention",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "interventionism"
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "interventionism"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "interventionism"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MOR",
+          "ONT_H",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "medium",
+          "evidenceType": "international_policy_proxy",
+          "note": "military intervention scope; confounded with realism/security"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 204,
+      "promptShort": "international_engagement",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "international_orientation"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "moral_scope_global"
+        },
+        {
+          "node": "TRB",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "national_identification"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "MOR",
+          "TRB"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "medium",
+          "evidenceType": "international_policy_proxy",
+          "note": "international engagement; confounded with institutions and strategy"
+        },
+        {
+          "category": "national",
+          "strength": "medium",
+          "evidenceType": "national_orientation",
+          "note": "international engagement with home-focus option"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 205,
+      "promptShort": "trade_nationalism",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.35,
+          "touchType": "trade_economics"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.1,
+          "touchType": "economic_nationalism"
+        },
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "trade_zero_sum"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "MAT",
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "national",
+          "strength": "medium",
+          "evidenceType": "policy_proxy",
+          "note": "trade nationalism, confounded with economics"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 206,
+      "promptShort": "religion_in_public_life",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "CD",
+          "role": "position",
+          "weight": 0.4,
+          "touchType": "religion_traditionalism"
+        },
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "religion_morality"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "religion_neutrality"
+        },
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.3,
+          "touchType": "religion_epistemic"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CD",
+          "MOR",
+          "PRO"
+        ],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "religious",
+          "strength": "medium",
+          "evidenceType": "public_life_proxy",
+          "note": "religion in public life; position and epistemic cross-load"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "weak_or_proxy_signal"
+    },
+    {
+      "id": 207,
+      "promptShort": "emergency_powers",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.65,
+          "touchType": "constitutional_restraint"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "trust_concentrated_power"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 208,
+      "promptShort": "courts_vs_majority",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.55,
+          "touchType": "judicial_review"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "trust_majority"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 209,
+      "promptShort": "zero_sum_economics_view",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ZS",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "zero_sum_direct"
+        },
+        {
+          "node": "ZS",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "zero_sum_direct"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ZS"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 210,
+      "promptShort": "human_malleability_view",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "malleability_direct"
+        },
+        {
+          "node": "ONT_H",
+          "role": "salience",
+          "weight": 0.4,
+          "touchType": "malleability_direct"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 211,
+      "promptShort": "strategic_voting",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 212,
+      "promptShort": "negative_partisanship",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 213,
+      "promptShort": "equal_standing_within_polity",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "MOR",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "within_polity_universalism"
+        },
+        {
+          "node": "MOR",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "within_polity_universalism"
+        },
+        {
+          "node": "CU",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "within_polity_pluralism"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "rights_proceduralism"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "CU",
+          "MOR",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [
+        {
+          "category": "universal",
+          "strength": "strong",
+          "evidenceType": "equal_standing_proxy",
+          "note": "equal standing inside polity; good for within-polity universal floor but not all-human baseline"
+        },
+        {
+          "category": "ethnic_racial",
+          "strength": "weak",
+          "evidenceType": "equal_standing_proxy",
+          "note": "universal equal standing can constrain ethnic/racial excess but does not identify own-group affinity"
+        }
+      ],
+      "currentMoralRelevant": true,
+      "gapClass": "usable_existing_signal"
+    },
+    {
+      "id": 214,
+      "promptShort": "institutions_foundational",
+      "stage": "fixed12",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "institutional_essentialism"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "institutional_essentialism"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "rule_of_law_normative"
+        },
+        {
+          "node": "ONT_H",
+          "role": "position",
+          "weight": 0.1,
+          "touchType": "trust_in_concentrated_authority"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "ONT_H",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 215,
+      "promptShort": "theory_of_change_progress",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "theory_of_change"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.55,
+          "touchType": "theory_of_change"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "policy_lever"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.2,
+          "touchType": "process_vs_movement"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 216,
+      "promptShort": "strengthen_democracy_priority",
+      "stage": "stage2",
+      "uiType": "single_choice",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "ONT_S",
+          "role": "position",
+          "weight": 0.85,
+          "touchType": "institutional_strengthening"
+        },
+        {
+          "node": "ONT_S",
+          "role": "salience",
+          "weight": 0.5,
+          "touchType": "institutional_strengthening"
+        },
+        {
+          "node": "MAT",
+          "role": "position",
+          "weight": 0.25,
+          "touchType": "state_scope_implication"
+        },
+        {
+          "node": "PRO",
+          "role": "position",
+          "weight": 0.3,
+          "touchType": "process_vs_populist"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [
+          "MAT",
+          "ONT_S",
+          "PRO"
+        ],
+        "categorical": [],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 217,
+      "promptShort": "epistemic_style_ranking",
+      "stage": "fixed12",
+      "uiType": "ranking",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "EPS",
+          "role": "category",
+          "weight": 0.95,
+          "touchType": "direct_epistemic_rank"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "EPS"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    },
+    {
+      "id": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "stage": "fixed12",
+      "uiType": "best_worst",
+      "sourceFiles": [
+        "questions.representative.ts"
+      ],
+      "currentTouches": [
+        {
+          "node": "AES",
+          "role": "category",
+          "weight": 0.95,
+          "touchType": "direct_aesthetic_maxdiff"
+        },
+        {
+          "node": "AES",
+          "role": "salience",
+          "weight": 0.35,
+          "touchType": "direct_aesthetic_maxdiff"
+        }
+      ],
+      "currentEvidence": {
+        "continuous": [],
+        "categorical": [
+          "AES"
+        ],
+        "trbAnchor": []
+      },
+      "proposedMoralCircleUse": [],
+      "currentMoralRelevant": false,
+      "gapClass": "not_moral_circle_relevant"
+    }
+  ]
+}
