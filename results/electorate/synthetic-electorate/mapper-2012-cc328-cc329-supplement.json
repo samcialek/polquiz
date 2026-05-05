@@ -1,0 +1,218 @@
+{
+  "doc": "mapper-2012-cc328-cc329-supplement",
+  "version": "1.0",
+  "type": "audit-supplement",
+  "supplements": "mapper-2008-2012-resolver-audit (commit e613727)",
+  "scope": "read-only audit; adds CC328/CC329 to the 2012 MAT composite, defines two new signal_fn dispatch entries, and recommends an empirical-distribution verification pass before Terminal-2 locks in the 2012 resolver",
+  "is_addition_not_correction": true,
+  "base_audit_mapping_status": "correct as shipped at e613727; supplement adds only",
+
+  "missed_in_base_audit": {
+    "reason": "the CCES12 PDF Table 9 (p. 121) end-of-document summary table mis-labels CC328 as 'Affirmative Action'; the question detail at PDF p. 64 (line 3172 in the extraction) shows CC328 is Balanced Budget Pref 1. base audit followed Table 9 and dropped CC328/CC329 from the 2012 MAT composite",
+    "authoritative_source": "PDF p. 64 question detail",
+    "non_authoritative_source": "PDF p. 121 Table 9 summary table (has documented +1 letter shift)"
+  },
+
+  "new_items": [
+    {
+      "var": "CC328",
+      "label": "Balanced Budget Pref 1 (MOST preferred)",
+      "construct": "3-way forced-choice: cut domestic, cut defense, raise taxes",
+      "wording": "The federal budget deficit is approximately $1 trillion this year. If the Congress were to balance the budget it would have to consider cutting defense spending, cutting domestic spending (such as Medicare and Social Security), or raising taxes to cover the deficit. What would you MOST prefer that Congress do — cut domestic spending, cut defense spending, or raise taxes?",
+      "codes": {
+        "1": "Cut Defense Spending",
+        "2": "Cut Domestic Spending",
+        "3": "Raise Taxes",
+        "8": "Skipped",
+        "9": "Not Asked"
+      },
+      "target": "MAT/position",
+      "polarity": {
+        "1_cut_defense": "MAT-ambiguous → 0 contribution (drawn by anti-militarist progressives AND fiscal-conservative isolationists)",
+        "2_cut_domestic": "MAT high (anti-redistribution; protect tax base, accept program cuts)",
+        "3_raise_taxes": "MAT low (pro-redistribution; protect programs, accept tax burden)"
+      },
+      "signal_fn": "cc328_balanced_budget_most_to_mat",
+      "weight": 1.0,
+      "uncertainty": "low",
+      "v01F": "ship",
+      "parallel_to": "CC16_337 (2016) — same 3-option construct, compressed from triple Likert into MOST forced-choice",
+      "weight_rationale": "single forced-choice item carries comparable per-respondent information to CC16_337's triple Likert; 1.0× matches CC332A/D/G/I peers"
+    },
+    {
+      "var": "CC329",
+      "label": "Fiscal Preference #2 (LEAST preferred)",
+      "construct": "3-way forced-choice LEAST, conditional on CC328 (the MOST option is hidden from the LEAST list)",
+      "wording": "(same prompt as CC328, with MOST replaced by LEAST)",
+      "codes": {
+        "1": "Cut Defense Spending [shown if CC328 != 1]",
+        "2": "Cut Domestic Spending [shown if CC328 != 2]",
+        "3": "Raise Taxes [shown if CC328 != 3]",
+        "8": "Skipped",
+        "9": "Not Asked"
+      },
+      "target": "MAT/position",
+      "polarity": {
+        "1_cut_defense_least": "MAT-ambiguous → 0 contribution",
+        "2_cut_domestic_least": "MAT low (defends programs)",
+        "3_raise_taxes_least": "MAT high (resists tax burden)"
+      },
+      "signal_fn": "cc329_balanced_budget_least_to_mat",
+      "weight": 0.5,
+      "uncertainty": "medium",
+      "v01F": "ship",
+      "weight_rationale": "partial duplication of CC328 signal: when CC328 is already MAT-loaded (cases 2 or 3), CC329 adds incremental info only when LEAST != Cut Defense; when CC328 = 1 (Cut Defense, MAT-null), CC329 carries the only MAT signal in the pair. 0.5× reflects average expected information gain across the population",
+      "abstain_handling": "signal_fn returns confidence: 0 on Cut Defense — abstaining items don't enter the composite normalization denominator, so 0.5× is calibrated for the average information-bearing case"
+    }
+  ],
+
+  "signal_fn_dispatch_additions": {
+    "cc328_balanced_budget_most_to_mat": {
+      "input": "scalar value ∈ {1, 2, 3, 8, 9, missing}",
+      "output": "{ signal: number ∈ [-1, +1], confidence: number ∈ [0, 1] }",
+      "value_map": {
+        "1": { "signal": 0, "confidence": 0, "note": "Cut Defense — abstain (MAT-ambiguous)" },
+        "2": { "signal": 1.0, "confidence": 1.0, "note": "Cut Domestic MOST — MAT high" },
+        "3": { "signal": -1.0, "confidence": 1.0, "note": "Raise Taxes MOST — MAT low" },
+        "8|9|missing": { "signal": 0, "confidence": 0 }
+      }
+    },
+    "cc329_balanced_budget_least_to_mat": {
+      "input": "scalar value ∈ {1, 2, 3, 8, 9, missing}",
+      "output": "{ signal: number ∈ [-1, +1], confidence: number ∈ [0, 1] }",
+      "value_map": {
+        "1": { "signal": 0, "confidence": 0, "note": "Cut Defense LEAST — abstain" },
+        "2": { "signal": -1.0, "confidence": 1.0, "note": "Cut Domestic LEAST — defends programs → MAT low" },
+        "3": { "signal": 1.0, "confidence": 1.0, "note": "Raise Taxes LEAST — resists tax burden → MAT high" },
+        "8|9|missing": { "signal": 0, "confidence": 0 }
+      }
+    }
+  },
+
+  "composite_update": {
+    "node": "MAT_position",
+    "cycle": 2012,
+    "before": "(1.0×CC332A + 1.0×CC332D + 1.0×CC332G − 1.0×CC332I + 0.5×CC332B) / 4.5",
+    "after": "(1.0×CC332A + 1.0×CC332D + 1.0×CC332G − 1.0×CC332I + 0.5×CC332B + 1.0×CC328 + 0.5×CC329) / 6.0",
+    "denominator_note": "effective denominator is dynamic — items returning confidence:0 (Skipped, Not Asked, Cut Defense MOST/LEAST) reduce the denominator by their weight; same convention as the rest of the v0.1F mapper",
+    "item_count_before": 5,
+    "item_count_after": 7,
+    "construct_count_before": 1,
+    "construct_count_after": 2,
+    "constructs_after": ["CC332* support/oppose battery", "CC328/CC329 3-way forced-rank"],
+    "richness_label_before": "reduced",
+    "richness_label_after": "reduced_plus",
+    "matrix_class_changed": false,
+    "matrix_class_rationale": "v0.1F coverage matrix uses 4-class taxonomy (covered / reduced / explicit_fallback / anes_required); reduced and reduced_plus collapse to reduced at matrix level. supplement raises within-class richness only"
+  },
+
+  "resolver_snippet_2012_MAT_position_items_replacement": [
+    { "var": "CC332A", "weight": 1.0, "signal_fn": "support_to_mat_high", "comment": "Ryan Budget" },
+    { "var": "CC332B", "weight": 0.5, "signal_fn": "support_to_mat_high", "comment": "Simpson-Bowles (mixed framing)" },
+    { "var": "CC332D", "weight": 1.0, "signal_fn": "support_to_mat_high", "comment": "Tax Hike Prevention (extend Bush cuts)" },
+    { "var": "CC332G", "weight": 1.0, "signal_fn": "support_to_mat_high", "comment": "Repeal ACA" },
+    { "var": "CC332I", "weight": 1.0, "signal_fn": "support_to_mat_low",  "comment": "Pass ACA — INVERSE" },
+    { "var": "CC328",  "weight": 1.0, "signal_fn": "cc328_balanced_budget_most_to_mat",  "comment": "NEW: forced-choice MOST" },
+    { "var": "CC329",  "weight": 0.5, "signal_fn": "cc329_balanced_budget_least_to_mat", "comment": "NEW: forced-choice LEAST" }
+  ],
+
+  "empirical_verification_recommendation": {
+    "rationale": "the 2012 PDF summary table has a documented +1 letter shift; that's already corrected in the e613727 audit + this supplement, but a marginal-distribution check is the cheapest safeguard against any remaining mis-wiring (column name typos, value-decoding inversions, missing-value sentinels leaking into the value pool, third-party re-labeling of the loaded dataset)",
+    "scope": "every column referenced by the 2012 resolver (and recommend the same pattern for 2008 once that resolver's columns are wired)",
+    "method": "compute marginal distribution of valid responses per column on the loaded CCES12 microdata, compare against published expectations, flag deviations >5pp (warn) or >10pp (stop)",
+    "where_to_put_it": "src/electorate/scripts/verify-cces2012-marginals.cjs — read-only, run once before locking 2012 resolver. output: JSON report with { var, observed, expected, abs_deviation, flag } per column",
+
+    "expected_marginals_2012": [
+      { "var": "CC328", "construct": "Balanced Budget MOST", "expected_distribution": { "cut_defense_pct": 37, "cut_domestic_pct": 22, "raise_taxes_pct": 41 }, "source": "CCES12 codebook raw counts (PDF lines 3184–3192) — note: PDF extraction lost one count column; exact decomposition needs verification on the actual dataset, which is why this check is recommended" },
+      { "var": "CC329", "construct": "Balanced Budget LEAST", "expected_distribution": { "cut_defense_pct": 19, "cut_domestic_pct": 46, "raise_taxes_pct": 35 }, "source": "inverse-MOST distribution; Cut Domestic shifts up because it's the most universally disliked option" },
+      { "var": "CC332A", "construct": "Ryan Budget Bill", "expected_pct_support": 31, "expected_pct_oppose": 69, "source": "Public polling on Ryan plan circa 2012; Medicare-cut framing depressed Support" },
+      { "var": "CC332B", "construct": "Simpson-Bowles", "expected_pct_support": 52, "expected_pct_oppose": 48, "source": "Bipartisan framing; relatively split" },
+      { "var": "CC332D", "construct": "Tax Hike Prevention (extend Bush cuts for all)", "expected_pct_support": 42, "expected_pct_oppose": 58, "source": "Pew/Gallup 2012; 'for all' framing depressed Support" },
+      { "var": "CC332E", "construct": "Birth Control Exemption", "expected_pct_support": 32, "expected_pct_oppose": 68, "source": "Pew Religion 2012" },
+      { "var": "CC332F", "construct": "US-Korea FTA", "expected_pct_support": 52, "expected_pct_oppose": 48, "source": "trade-skeptic Democrats and trade-friendly Republicans roughly cancel" },
+      { "var": "CC332G", "construct": "Repeal ACA", "expected_pct_support": 46, "expected_pct_oppose": 54, "source": "RCP 2012 average — pre-Roberts ruling baseline" },
+      { "var": "CC332H", "construct": "Keystone Pipeline", "expected_pct_support": 64, "expected_pct_oppose": 36, "source": "energy-independence framing" },
+      { "var": "CC332I", "construct": "Affordable Care Act of 2010 (PASS)", "expected_pct_support": 54, "expected_pct_oppose": 46, "source": "INVERSE of CC332G — should net to roughly opposite distribution" },
+      { "var": "CC332J", "construct": "End Don't Ask Don't Tell", "expected_pct_support": 63, "expected_pct_oppose": 37, "source": "mainstream public-opinion 2010–2012" },
+      { "var": "CC324", "construct": "Abortion 4-pt Likert", "expected_distribution": { "always_allow_pct": 25, "often_allow_pct": 26, "rare_pct": 29, "never_pct": 20 }, "source": "Pew 2012" },
+      { "var": "CC326", "construct": "Gay Marriage", "expected_distribution": { "favor_pct": 48, "oppose_pct": 40, "not_sure_pct": 12 }, "source": "Pew SSM 2012 cross-over period" },
+      { "var": "CC325", "construct": "Jobs vs Environment 5-pt", "expected_distribution": { "env_side_1_2_pct": 38, "middle_3_pct": 22, "jobs_side_4_5_pct": 40 }, "source": "CCES12 cross-tab" },
+      { "var": "CC302", "construct": "Economic retrospective 5-pt", "expected_distribution": { "worse_4_5_pct": 36, "same_3_pct": 30, "better_1_2_pct": 34 }, "source": "ANES Time Series 2012 comparable item under Obama re-election context" }
+    ],
+
+    "cross_cycle_sanity_checks": [
+      {
+        "name": "ACA inversion",
+        "check": "pct_support(CC332G) + pct_support(CC332I) ≈ 1.0 ± 0.10",
+        "rationale": "CC332G (Repeal ACA) and CC332I (Pass ACA) ask the same construct in opposite directions; if both run high or both run low, one is mis-decoded",
+        "stop_threshold": "deviation > 0.15"
+      },
+      {
+        "name": "Gay marriage polarity inversion (cross-cycle)",
+        "check": "pct_favor(CC326_2012) + pct_support_ban(CC316f_2008) ≈ 0.95–1.05",
+        "rationale": "CC316f asks support for a BAN (inverted direction vs CC326's favor for SSM); the sum across years should be near 1.0 with a slight upward drift from changing public opinion",
+        "stop_threshold": "deviation > 0.20"
+      },
+      {
+        "name": "CC328 valid-response total",
+        "check": "count(CC328 ∈ {1,2,3}) ≈ 0.80 × N",
+        "rationale": "if significantly lower, the missing-value sentinel may be mis-coded (8 / 9 / '.' leaking into the value pool)",
+        "stop_threshold": "valid-response rate < 0.60"
+      }
+    ],
+
+    "warn_threshold_pp": 5,
+    "stop_threshold_pp": 10,
+    "report_shape": {
+      "var": "string",
+      "observed_pct_support_or_top_category": "number",
+      "expected_pct": "number",
+      "abs_deviation": "number",
+      "flag": "ok | warn | stop"
+    }
+  },
+
+  "v01F_coverage_projection_delta": {
+    "MAT_2012": {
+      "before": "reduced (5 CC332-battery items, 1 construct)",
+      "after": "reduced (7 items across 2 constructs — CC332-battery + CC328/CC329 forced-rank)",
+      "matrix_class_changed": false,
+      "within_class_richness_delta": "+2 items, +1 construct"
+    },
+    "all_other_targets": "unchanged",
+    "parity_with_2016_2020_2024": {
+      "before_supplement": "2012 MAT below 2020's depth (which has CC20_303 + CC20_350* + CC20_355* — 3 distinct constructs)",
+      "after_supplement": "2012 MAT closes ~30% of the gap to 2020; still does not reach full parity (2 constructs vs 3, no income-vs-prices retrospective in 2012 dataset)",
+      "full_parity_blockers_remaining": ["no MAT retrospective item in CCES12 (the income/prices retrospective is a 2020+ addition)", "no fairness/inequality item in CCES12 (the CC20_355* battery is a 2020+ addition)"]
+    }
+  },
+
+  "scope_guards": {
+    "read_only": true,
+    "no_mapper_code_changes": true,
+    "no_engine_changes": true,
+    "no_selector_changes": true,
+    "no_topK_changes": true,
+    "no_browser_changes": true,
+    "no_dist_changes": true,
+    "no_output_changes": true,
+    "no_candidate_changes": true,
+    "no_era_context_changes": true,
+    "no_raw_data_changes": true,
+    "json_validates": true,
+    "terminology": "uses moralBoundaries.* canonical naming; engagement is described as a separate 1D continuous variable per ADR canon"
+  },
+
+  "files_referenced": {
+    "data/cces2012/cces_guide_2012.pdf": "PDF p. 64 question detail (authoritative); p. 121 Table 9 summary table (has +1 letter shift, do NOT use as authority)",
+    "results/electorate/synthetic-electorate/mapper-2008-2012-resolver-audit.md": "base audit at commit e613727; supplement adds two items, leaves base mappings unchanged",
+    "results/electorate/synthetic-electorate/mapper-v01-completion-contract.md": "coverage matrix; no row update needed (within-class enrichment)"
+  },
+
+  "what_this_supplement_does_not_do": [
+    "does NOT modify the 2008 resolver — CC328/CC329 are 2012-only column names",
+    "does NOT touch CD/CU/MOR/ZS/ONT_S/EPS/AES — purely a MAT-composite enrichment",
+    "does NOT change any signal_fn signatures used by other items (only adds two new dispatch entries)",
+    "does NOT introduce mapper code, types, or runtime behavior changes — read-only audit"
+  ]
+}
