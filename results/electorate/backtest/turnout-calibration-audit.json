@@ -1,0 +1,842 @@
+{
+  "generated_at": "2026-05-05T18:48:03.621Z",
+  "cycles": [
+    {
+      "year": 2008,
+      "rowsLoaded": 32800,
+      "validatedSubsetN": 32800,
+      "weightedTurnoutRateValidated": 0.6188646294282156,
+      "fecActualTurnoutRate": 0.6156,
+      "byEngagementBucket": {
+        "apolitical": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "casual": {
+          "weightedN": 12501.240154755948,
+          "weightedVoted": 0,
+          "rawN": 10565,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "engaged": {
+          "weightedN": 20298.75984524422,
+          "weightedVoted": 20298.75984524422,
+          "rawN": 22235,
+          "rawVoted": 22235,
+          "rate": 1
+        },
+        "highly-engaged": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEngagementValue": [
+        {
+          "minIncl": 0,
+          "maxExcl": 2,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 2,
+          "maxExcl": 4,
+          "n": 10565,
+          "rate": 0
+        },
+        {
+          "minIncl": 4,
+          "maxExcl": 6,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 6,
+          "maxExcl": 8,
+          "n": 22235,
+          "rate": 1
+        },
+        {
+          "minIncl": 8,
+          "maxExcl": 10,
+          "n": 0,
+          "rate": 0
+        }
+      ],
+      "byNearestDistanceQuintile": [
+        {
+          "minIncl": 0,
+          "maxExcl": 1.0116544507316807,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 1.0116544507316807,
+          "maxExcl": 1.0116544507316807,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 1.0116544507316807,
+          "maxExcl": 1.0116544507316807,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 1.0116544507316807,
+          "maxExcl": 1.0116544507316807,
+          "n": 0,
+          "rate": 0
+        },
+        {
+          "minIncl": 1.0116544507316807,
+          "maxExcl": null,
+          "n": 32800,
+          "rate": 0.6188646294282156
+        }
+      ],
+      "byAge": {
+        "18-29": {
+          "weightedN": 8003.444994196557,
+          "weightedVoted": 3874.6714001198466,
+          "rawN": 5761,
+          "rawVoted": 3059,
+          "rate": 0.4841254488447714
+        },
+        "30-44": {
+          "weightedN": 8336.877102989989,
+          "weightedVoted": 5055.374459766833,
+          "rawN": 8278,
+          "rawVoted": 5403,
+          "rate": 0.6063870676411606
+        },
+        "45-64": {
+          "weightedN": 11665.861827062574,
+          "weightedVoted": 7723.092363040306,
+          "rawN": 13264,
+          "rawVoted": 9393,
+          "rate": 0.6620250160278948
+        },
+        "65+": {
+          "weightedN": 4793.816075750919,
+          "weightedVoted": 3645.6216223171255,
+          "rawN": 5497,
+          "rawVoted": 4380,
+          "rate": 0.7604842498564286
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEducation": {
+        "HS or less": {
+          "weightedN": 14714.696629873399,
+          "weightedVoted": 7874.049335222266,
+          "rawN": 12571,
+          "rawVoted": 7745,
+          "rate": 0.5351146226988175
+        },
+        "Some college": {
+          "weightedN": 9994.93678766649,
+          "weightedVoted": 6644.099035550339,
+          "rawN": 10168,
+          "rawVoted": 7109,
+          "rate": 0.6647464788120518
+        },
+        "College": {
+          "weightedN": 5303.085179310273,
+          "weightedVoted": 3774.2840414988186,
+          "rawN": 6799,
+          "rawVoted": 4984,
+          "rate": 0.7117147686452413
+        },
+        "Post-grad": {
+          "weightedN": 2787.281403149973,
+          "weightedVoted": 2006.3274329727822,
+          "rawN": 3262,
+          "rawVoted": 2397,
+          "rate": 0.7198151685385565
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byRace": {
+        "White": {
+          "weightedN": 24189.87998040918,
+          "weightedVoted": 15582.129221690784,
+          "rawN": 26971,
+          "rawVoted": 18779,
+          "rate": 0.6441590133688297
+        },
+        "Black": {
+          "weightedN": 3877.477220499524,
+          "weightedVoted": 2299.3769036172557,
+          "rawN": 2000,
+          "rawVoted": 1235,
+          "rate": 0.5930084879572893
+        },
+        "Hispanic": {
+          "weightedN": 2871.520563382807,
+          "weightedVoted": 1436.398770659768,
+          "rawN": 2000,
+          "rawVoted": 1138,
+          "rate": 0.5002223522187187
+        },
+        "Asian": {
+          "weightedN": 513.2747547846271,
+          "weightedVoted": 196.8459497300425,
+          "rawN": 446,
+          "rawVoted": 201,
+          "rate": 0.3835098997078867
+        },
+        "Other": {
+          "weightedN": 1347.847480923124,
+          "weightedVoted": 784.0089995470549,
+          "rawN": 1383,
+          "rawVoted": 882,
+          "rate": 0.5816748635462055
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEngagementCoverage": {
+        "real_signal": {
+          "weightedN": 32799.99999999798,
+          "weightedVoted": 20298.75984524422,
+          "rawN": 32800,
+          "rawVoted": 22235,
+          "rate": 0.6188646294282156
+        },
+        "fallback": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byMapperCoverage": {
+        "0-25%": {
+          "weightedN": 32799.99999999798,
+          "weightedVoted": 20298.75984524422,
+          "rawN": 32800,
+          "rawVoted": 22235,
+          "rate": 0.6188646294282156
+        },
+        "25-50%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "50-75%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "75-100%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "confusionMatrix": {
+        "predicted_vote_actually_voted": 22235,
+        "predicted_vote_actually_abstained": 10565,
+        "predicted_abstain_actually_voted": 0,
+        "predicted_abstain_actually_abstained": 0
+      },
+      "confusionMatrixWeighted": {
+        "predicted_vote_actually_voted": 20298.75984524422,
+        "predicted_vote_actually_abstained": 12501.240154755948,
+        "predicted_abstain_actually_voted": 0,
+        "predicted_abstain_actually_abstained": 0
+      },
+      "predictedAbstainRateWeighted": 0,
+      "actualAbstainRateWeighted": 0.38113537057178437
+    },
+    {
+      "year": 2016,
+      "rowsLoaded": 64600,
+      "validatedSubsetN": 49615,
+      "weightedTurnoutRateValidated": 0.998515650499836,
+      "fecActualTurnoutRate": 0.6024,
+      "byEngagementBucket": {
+        "apolitical": {
+          "weightedN": 2.828507232455433,
+          "weightedVoted": 0,
+          "rawN": 7,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "casual": {
+          "weightedN": 2164.6601965836717,
+          "weightedVoted": 2133.508993598491,
+          "rawN": 2001,
+          "rawVoted": 1954,
+          "rate": 0.9856091949053508
+        },
+        "engaged": {
+          "weightedN": 10160.336543034091,
+          "weightedVoted": 10121.781858066302,
+          "rawN": 10665,
+          "rawVoted": 10601,
+          "rate": 0.9962053732369504
+        },
+        "highly-engaged": {
+          "weightedN": 36538.29097267231,
+          "weightedVoted": 36538.29097267231,
+          "rawN": 36942,
+          "rawVoted": 36942,
+          "rate": 1
+        }
+      },
+      "byEngagementValue": [
+        {
+          "minIncl": 0,
+          "maxExcl": 2,
+          "n": 7,
+          "rate": 0
+        },
+        {
+          "minIncl": 2,
+          "maxExcl": 4,
+          "n": 609,
+          "rate": 0.9581309888334619
+        },
+        {
+          "minIncl": 4,
+          "maxExcl": 6,
+          "n": 3430,
+          "rate": 0.9921930952330476
+        },
+        {
+          "minIncl": 6,
+          "maxExcl": 8,
+          "n": 8627,
+          "rate": 0.9984412696742764
+        },
+        {
+          "minIncl": 8,
+          "maxExcl": 10,
+          "n": 36942,
+          "rate": 1
+        }
+      ],
+      "byNearestDistanceQuintile": [
+        {
+          "minIncl": 0,
+          "maxExcl": 0.9932045257808011,
+          "n": 9733,
+          "rate": 0.9994207620166867
+        },
+        {
+          "minIncl": 0.9932045257808011,
+          "maxExcl": 1.0665157164008716,
+          "n": 10863,
+          "rate": 0.9995519836978791
+        },
+        {
+          "minIncl": 1.0665157164008716,
+          "maxExcl": 1.2131413567261522,
+          "n": 10314,
+          "rate": 0.9975298238465946
+        },
+        {
+          "minIncl": 1.2131413567261522,
+          "maxExcl": 1.3662364723341005,
+          "n": 9307,
+          "rate": 0.9982392703129416
+        },
+        {
+          "minIncl": 1.3662364723341005,
+          "maxExcl": null,
+          "n": 9398,
+          "rate": 0.9978366654877884
+        }
+      ],
+      "byAge": {
+        "18-29": {
+          "weightedN": 9982.180089154299,
+          "weightedVoted": 9957.222516921132,
+          "rawN": 6153,
+          "rawVoted": 6132,
+          "rate": 0.9974997874201565
+        },
+        "30-44": {
+          "weightedN": 11848.968670568685,
+          "weightedVoted": 11833.065755301446,
+          "rawN": 11693,
+          "rawVoted": 11660,
+          "rate": 0.998657865025271
+        },
+        "45-64": {
+          "weightedN": 17630.69654593056,
+          "weightedVoted": 17609.065576383957,
+          "rawN": 20967,
+          "rawVoted": 20918,
+          "rate": 0.9987731074895282
+        },
+        "65+": {
+          "weightedN": 9404.270913869088,
+          "weightedVoted": 9394.227975730677,
+          "rawN": 10802,
+          "rawVoted": 10787,
+          "rate": 0.9989320875344414
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEducation": {
+        "HS or less": {
+          "weightedN": 18983.33099369817,
+          "weightedVoted": 18942.053234035648,
+          "rawN": 11962,
+          "rawVoted": 11925,
+          "rate": 0.997825578678672
+        },
+        "Some college": {
+          "weightedN": 16356.642704823653,
+          "weightedVoted": 16339.177299475195,
+          "rawN": 18023,
+          "rawVoted": 17984,
+          "rate": 0.9989322133115186
+        },
+        "College": {
+          "weightedN": 8747.287125558965,
+          "weightedVoted": 8738.852519083863,
+          "rawN": 12251,
+          "rawVoted": 12225,
+          "rate": 0.9990357460142748
+        },
+        "Post-grad": {
+          "weightedN": 4778.855395441622,
+          "weightedVoted": 4773.498771742291,
+          "rawN": 7379,
+          "rawVoted": 7363,
+          "rate": 0.9988790990193089
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byRace": {
+        "White": {
+          "weightedN": 35133.45622832899,
+          "weightedVoted": 35105.276056695075,
+          "rawN": 36260,
+          "rawVoted": 36206,
+          "rate": 0.9991979106339332
+        },
+        "Black": {
+          "weightedN": 6242.138957437406,
+          "weightedVoted": 6232.8188953854415,
+          "rawN": 5349,
+          "rawVoted": 5334,
+          "rate": 0.9985069121152998
+        },
+        "Hispanic": {
+          "weightedN": 4559.203148687149,
+          "weightedVoted": 4533.266040129872,
+          "rawN": 4911,
+          "rawVoted": 4880,
+          "rate": 0.9943110434627713
+        },
+        "Asian": {
+          "weightedN": 1213.7374051474317,
+          "weightedVoted": 1211.6055384078613,
+          "rawN": 1298,
+          "rawVoted": 1291,
+          "rate": 0.9982435519161483
+        },
+        "Other": {
+          "weightedN": 1717.5804799215048,
+          "weightedVoted": 1710.6152937188235,
+          "rawN": 1797,
+          "rawVoted": 1786,
+          "rate": 0.9959447686532863
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEngagementCoverage": {
+        "real_signal": {
+          "weightedN": 48866.11621952264,
+          "weightedVoted": 48793.58182433724,
+          "rawN": 49615,
+          "rawVoted": 49497,
+          "rate": 0.998515650499836
+        },
+        "fallback": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byMapperCoverage": {
+        "0-25%": {
+          "weightedN": 3.725964721667319,
+          "weightedVoted": 3.725964721667319,
+          "rawN": 3,
+          "rawVoted": 3,
+          "rate": 1
+        },
+        "25-50%": {
+          "weightedN": 48862.39025480097,
+          "weightedVoted": 48789.85585961557,
+          "rawN": 49612,
+          "rawVoted": 49494,
+          "rate": 0.9985155373118842
+        },
+        "50-75%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "75-100%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "confusionMatrix": {
+        "predicted_vote_actually_voted": 48992,
+        "predicted_vote_actually_abstained": 101,
+        "predicted_abstain_actually_voted": 505,
+        "predicted_abstain_actually_abstained": 17
+      },
+      "confusionMatrixWeighted": {
+        "predicted_vote_actually_voted": 48261.81337133455,
+        "predicted_vote_actually_abstained": 58.46428187827266,
+        "predicted_abstain_actually_voted": 531.768453002683,
+        "predicted_abstain_actually_abstained": 14.070113307142854
+      },
+      "predictedAbstainRateWeighted": 0.011170082841405684,
+      "actualAbstainRateWeighted": 0.0014843495001639617
+    },
+    {
+      "year": 2020,
+      "rowsLoaded": 61000,
+      "validatedSubsetN": 48864,
+      "weightedTurnoutRateValidated": 0.9973386357947044,
+      "fecActualTurnoutRate": 0.6661,
+      "byEngagementBucket": {
+        "apolitical": {
+          "weightedN": 6.2703375126265035,
+          "weightedVoted": 0,
+          "rawN": 9,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "casual": {
+          "weightedN": 2293.7747756839526,
+          "weightedVoted": 2217.541457080152,
+          "rawN": 1973,
+          "rawVoted": 1949,
+          "rate": 0.9667651247140996
+        },
+        "engaged": {
+          "weightedN": 9091.110669331207,
+          "weightedVoted": 9044.679444624036,
+          "rawN": 7848,
+          "rawVoted": 7806,
+          "rate": 0.9948926785300496
+        },
+        "highly-engaged": {
+          "weightedN": 37055.75748362872,
+          "weightedVoted": 37055.75748362872,
+          "rawN": 39034,
+          "rawVoted": 39034,
+          "rate": 1
+        }
+      },
+      "byEngagementValue": [
+        {
+          "minIncl": 0,
+          "maxExcl": 2,
+          "n": 9,
+          "rate": 0
+        },
+        {
+          "minIncl": 2,
+          "maxExcl": 4,
+          "n": 472,
+          "rate": 0.8837634561737905
+        },
+        {
+          "minIncl": 4,
+          "maxExcl": 6,
+          "n": 2859,
+          "rate": 0.99424006915721
+        },
+        {
+          "minIncl": 6,
+          "maxExcl": 8,
+          "n": 6490,
+          "rate": 0.9963304607151943
+        },
+        {
+          "minIncl": 8,
+          "maxExcl": 10,
+          "n": 39034,
+          "rate": 1
+        }
+      ],
+      "byNearestDistanceQuintile": [
+        {
+          "minIncl": 0,
+          "maxExcl": 1.1684326563457068,
+          "n": 11739,
+          "rate": 0.998408810044674
+        },
+        {
+          "minIncl": 1.1684326563457068,
+          "maxExcl": 1.221152548568769,
+          "n": 10770,
+          "rate": 0.9973532885844894
+        },
+        {
+          "minIncl": 1.221152548568769,
+          "maxExcl": 1.3111706611587632,
+          "n": 9277,
+          "rate": 0.997142537980708
+        },
+        {
+          "minIncl": 1.3111706611587632,
+          "maxExcl": 1.4567913856947177,
+          "n": 8687,
+          "rate": 0.9974807537991713
+        },
+        {
+          "minIncl": 1.4567913856947177,
+          "maxExcl": null,
+          "n": 8391,
+          "rate": 0.9963078181689058
+        }
+      ],
+      "byAge": {
+        "18-29": {
+          "weightedN": 9974.832105780624,
+          "weightedVoted": 9909.784273944628,
+          "rawN": 6381,
+          "rawVoted": 6364,
+          "rate": 0.9934788043401452
+        },
+        "30-44": {
+          "weightedN": 11959.194752377722,
+          "weightedVoted": 11923.139612733588,
+          "rawN": 11548,
+          "rawVoted": 11522,
+          "rate": 0.9969851532322471
+        },
+        "45-64": {
+          "weightedN": 15487.801452120626,
+          "weightedVoted": 15471.946426609005,
+          "rawN": 18706,
+          "rawVoted": 18681,
+          "rate": 0.9989762894649292
+        },
+        "65+": {
+          "weightedN": 11025.084955877472,
+          "weightedVoted": 11013.108072045634,
+          "rawN": 12229,
+          "rawVoted": 12222,
+          "rate": 0.9989136697014337
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEducation": {
+        "HS or less": {
+          "weightedN": 15128.877337141977,
+          "weightedVoted": 15079.370150581943,
+          "rawN": 12019,
+          "rawVoted": 11994,
+          "rate": 0.9967276364625884
+        },
+        "Some college": {
+          "weightedN": 14668.988843993991,
+          "weightedVoted": 14633.49854131834,
+          "rawN": 16161,
+          "rawVoted": 16136,
+          "rate": 0.9975805897016424
+        },
+        "College": {
+          "weightedN": 11917.599509142881,
+          "weightedVoted": 11886.306818709401,
+          "rawN": 12809,
+          "rawVoted": 12794,
+          "rate": 0.9973742455089657
+        },
+        "Post-grad": {
+          "weightedN": 6731.44757587757,
+          "weightedVoted": 6718.802874723147,
+          "rawN": 7875,
+          "rawVoted": 7865,
+          "rate": 0.9981215480010963
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byRace": {
+        "White": {
+          "weightedN": 33293.38208798939,
+          "weightedVoted": 33250.13903211339,
+          "rawN": 36203,
+          "rawVoted": 36173,
+          "rate": 0.9987011516053936
+        },
+        "Black": {
+          "weightedN": 6097.62934430194,
+          "weightedVoted": 6084.18389946441,
+          "rawN": 4715,
+          "rawVoted": 4701,
+          "rate": 0.9977949717704481
+        },
+        "Hispanic": {
+          "weightedN": 5874.958351534455,
+          "weightedVoted": 5831.133635881735,
+          "rawN": 4746,
+          "rawVoted": 4732,
+          "rate": 0.992540421049747
+        },
+        "Asian": {
+          "weightedN": 1874.4061871570036,
+          "weightedVoted": 1868.3039998567792,
+          "rawN": 1270,
+          "rawVoted": 1265,
+          "rate": 0.9967444690793089
+        },
+        "Other": {
+          "weightedN": 1306.5372951734162,
+          "weightedVoted": 1284.217818016294,
+          "rawN": 1930,
+          "rawVoted": 1918,
+          "rate": 0.9829170761220714
+        },
+        "Unknown": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byEngagementCoverage": {
+        "real_signal": {
+          "weightedN": 48446.91326615643,
+          "weightedVoted": 48317.97838533282,
+          "rawN": 48864,
+          "rawVoted": 48789,
+          "rate": 0.9973386357947044
+        },
+        "fallback": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "byMapperCoverage": {
+        "0-25%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "25-50%": {
+          "weightedN": 48446.91326615643,
+          "weightedVoted": 48317.97838533282,
+          "rawN": 48864,
+          "rawVoted": 48789,
+          "rate": 0.9973386357947044
+        },
+        "50-75%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        },
+        "75-100%": {
+          "weightedN": 0,
+          "weightedVoted": 0,
+          "rawN": 0,
+          "rawVoted": 0,
+          "rate": 0
+        }
+      },
+      "confusionMatrix": {
+        "predicted_vote_actually_voted": 47912,
+        "predicted_vote_actually_abstained": 56,
+        "predicted_abstain_actually_voted": 877,
+        "predicted_abstain_actually_abstained": 19
+      },
+      "confusionMatrixWeighted": {
+        "predicted_vote_actually_voted": 47308.55761935032,
+        "predicted_vote_actually_abstained": 94.69614679703673,
+        "predicted_abstain_actually_voted": 1009.4207659825234,
+        "predicted_abstain_actually_abstained": 34.23873402655588
+      },
+      "predictedAbstainRateWeighted": 0.021542332207532995,
+      "actualAbstainRateWeighted": 0.0026613642052956132
+    }
+  ]
+}
