@@ -2102,17 +2102,34 @@ document.addEventListener('DOMContentLoaded', () => {
       return new Set(candidates.slice(0, 3).map(c => c.year));
     }
 
-    // Vote-choice modifier reroutes — elections where the modeled decision is
-    // an actual vote AND the modeled ballot differs from the values-closest
-    // candidate. Modifiers can include party loyalty, strategic voting, and
-    // non-ideological election factors. Skips abstain years (no meaningful
-    // reroute when the decision is to not vote at all).
-    function findStrategicElections(predsByYear) {
+    // v27.43 — gold outline now flags elections where the election-day
+    // winner (full distance with era activations + all modifiers) is NOT the
+    // same as the candidate-only winner (intrinsic, era-multipliers off, no
+    // modifiers). Captures both era-context reroutes and modifier reroutes,
+    // matching the "Candidate-only / Election-day" framing introduced in
+    // v27.37. Skips abstain years (no meaningful comparison when the
+    // decision is to not vote at all).
+    function findStrategicElections(predsByYear, candProfiles, sig) {
       const out = new Set();
-      for (const [year, p] of Object.entries(predsByYear)) {
+      if (!sig || !candProfiles) return out;
+      const noEra = { super_activated: new Set(), activated: new Set() };
+      for (const [yearStr, p] of Object.entries(predsByYear)) {
         if (!p || p.decision !== 'vote') continue;
-        if (!p.nearest || !p.nearestByValues) continue;
-        if (p.nearest.name !== p.nearestByValues.name) out.add(+year);
+        if (!p.nearest) continue;
+        const profiles = candProfiles[String(yearStr)];
+        if (!Array.isArray(profiles) || profiles.length === 0) continue;
+        // Re-score every candidate at year=0 with no era activations so the
+        // "candidate-only" winner reflects pure position differences.
+        let bestName = null;
+        let bestDist = Infinity;
+        for (const cand of profiles) {
+          const bd = computeBreakdown(cand, noEra, sig, 0);
+          if (bd && bd.ideological != null && bd.ideological < bestDist) {
+            bestDist = bd.ideological;
+            bestName = cand.name;
+          }
+        }
+        if (bestName && bestName !== p.nearest.name) out.add(+yearStr);
       }
       return out;
     }
@@ -2132,7 +2149,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const definingYears = findDefiningElections(rawPredsByYear);
-    const strategicYears = findStrategicElections(rawPredsByYear);
+    // v27.43 — strategic detection now requires the respondent's signature
+    // and the per-year candidate profiles so the candidate-only winner can
+    // be re-scored without era activations.
+    const sigForStrategic = getRespondentSignatureForBreakdown();
+    const strategicYears = findStrategicElections(rawPredsByYear, candidatesProfiles, sigForStrategic);
     const greatEra = findBestAlignedUsEra(alignments);
 
     // v13: collect cell refs for the post-cascade emphasis pass; don't apply
@@ -2187,7 +2208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.push(`<span class="leg-item" title="largest margin between your first and second choice"><span class="leg-swatch defining"></span>The elections that define you</span>`);
       }
       if (strategicYears.size > 0) {
-        items.push(`<span class="leg-item" title="vote-choice modifiers (party loyalty, strategic voting, non-ideological factors) routed your ballot off your closest match by values"><span class="leg-swatch strategic"></span>Ballot differs from values match</span>`);
+        items.push(`<span class="leg-item" title="The election-day winner (with era activations and all modifiers applied) is not the same candidate as the candidate-only winner (intrinsic position match, era off). Cycle context — what the election was about, plus party loyalty / non-ideological factors — moved your closest pick."><span class="leg-swatch strategic"></span>Election-day winner ≠ candidate-only winner</span>`);
       }
       legend.innerHTML = items.join('');
     })();
