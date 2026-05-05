@@ -902,12 +902,19 @@ function deriveCU(r: WeightedSurveyRespondent): ContinuousNodeSignature {
  * 8/9/skipped values are treated as missing for that variable; if neither
  * variable is usable, fall back to salience 1.0 with high uncertainty.
  */
-function deriveReligiousBoundary(payload: Record<string, string>): MoralBoundaryEntry {
-  const ch = parseCodedNumber(payload["pew_churatd"]);
-  const ba = parseCodedNumber(payload["pew_bornagain"]);
+function deriveReligiousBoundary(payload: Record<string, string>, year?: number): MoralBoundaryEntry {
+  // 2008 uses Pew-version V-prefix columns; 2012+ standardized on pew_churatd /
+  // pew_bornagain. V216 (importance-of-religion 4-pt) is a 2008-only signal
+  // not present in modern cycles; folded in here as additional evidence.
+  // Per ADR-007, this is future moralCircleAffinity:religious prior evidence.
+  const isCces2008 = year === 2008;
+  const ch = parseCodedNumber(payload[isCces2008 ? "V217" : "pew_churatd"]);
+  const ba = parseCodedNumber(payload[isCces2008 ? "V215" : "pew_bornagain"]);
+  const imp = isCces2008 ? parseCodedNumber(payload["V216"]) : null;
   const usableCh = ch !== null && ch >= 1 && ch <= 6;
   const usableBa = ba === 1 || ba === 2;
-  if (!usableCh && !usableBa) return fallbackBoundary("pew_churatd / pew_bornagain missing");
+  const usableImp = imp !== null && imp >= 1 && imp <= 4;
+  if (!usableCh && !usableBa && !usableImp) return fallbackBoundary(isCces2008 ? "V215/V216/V217 missing" : "pew_churatd / pew_bornagain missing");
   // Map church attendance to salience component in [0, 2.5].
   let score = 0;
   let weight = 0;
@@ -922,10 +929,18 @@ function deriveReligiousBoundary(payload: Record<string, string>): MoralBoundary
     score += ba === 1 ? 2.6 : 0.8;
     weight += 1;
   }
+  if (usableImp) {
+    // V216 importance-of-religion (2008-only): 1=very important → 2.5;
+    // 2=somewhat important → 1.6; 3=not too important → 0.8;
+    // 4=not at all important → 0.2.
+    score += imp === 1 ? 2.5 : imp === 2 ? 1.6 : imp === 3 ? 0.8 : 0.2;
+    weight += 1;
+  }
   const salience = Math.max(0, Math.min(3, weight > 0 ? score / weight : 1.0));
   const vars: string[] = [];
-  if (usableCh) vars.push("pew_churatd");
-  if (usableBa) vars.push("pew_bornagain");
+  if (usableCh) vars.push(isCces2008 ? "V217" : "pew_churatd");
+  if (usableBa) vars.push(isCces2008 ? "V215" : "pew_bornagain");
+  if (usableImp) vars.push("V216");
   const uncertainty: Uncertainty = vars.length >= 2 ? "medium" : "high";
   return {
     salience,
@@ -967,16 +982,22 @@ function deriveIdeologicalBoundary(payload: Record<string, string>): MoralBounda
  * FLAGGED `partyIdDerived: true` so downstream code can exclude this
  * boundary from vote-prediction inputs to avoid circularity.
  */
-function derivePoliticalCampBoundary(payload: Record<string, string>): MoralBoundaryEntry {
-  const pid = parseCodedNumber(payload["pid7"]);
-  if (pid === null || pid < 1 || pid > 7) return fallbackBoundary("pid7 missing or skipped");
+function derivePoliticalCampBoundary(payload: Record<string, string>, year?: number): MoralBoundaryEntry {
+  // CCES 2008 stores 7-point party ID under CC307a; 2012+ uses pid7. Same
+  // 1..7 coding semantics, so the salience compute is identical once the
+  // column name is resolved. Per ADR-007, this is future
+  // moralCircleAffinity:political_camp prior evidence (flagged as
+  // partyIdDerived:true so downstream consumers can avoid circularity).
+  const col = year === 2008 ? "CC307a" : "pid7";
+  const pid = parseCodedNumber(payload[col]);
+  if (pid === null || pid < 1 || pid > 7) return fallbackBoundary(`${col} missing or skipped`);
   const strength = Math.abs(pid - 4) / 3;         // 0..1
   const salience = 0.5 + strength * 2.0;          // 0.5..2.5
   return {
     salience,
     provenance: {
       source: "real_signal",
-      vars: ["pid7"],
+      vars: [col],
       partyIdDerived: true,
       uncertainty: "medium",
       notes: "party-ID derived; flagged for circularity exclusion in vote-prediction",
@@ -1335,10 +1356,37 @@ function deriveZS(r: WeightedSurveyRespondent): ContinuousNodeSignature {
  * gate on CC20_307).
  */
 function deriveEthnicRacialBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
-  if (r.year !== 2020) {
-    return fallbackBoundary(`v0.1I ethnic_racial: race-policy battery decoder gated to 2020 only (audit §2.1: 2008/2012/2016/2024 lack clean CCES race-policy items; defer to v0.2 with ANES VCF0830)`);
-  }
   const payload = r.rawVarPayload;
+
+  // 2008: CC313 affirmative action 4-pt Likert (1=strongly support .. 4=strongly
+  // oppose). Per ADR-007, this is future moralCircleAffinity:ethnic_racial
+  // prior evidence. Direction-agnostic salience: extreme positions (1 or 4)
+  // load high; middle (2 or 3) load lower. Mirrors the CC20_355d-style
+  // direction-agnostic logic used for gender 2020.
+  if (r.year === 2008) {
+    const v = parseCodedNumber(payload["CC313"]);
+    if (v === null || v < 1 || v > 4) {
+      return fallbackBoundary("v0.1L ethnic_racial 2008: CC313 missing or skipped");
+    }
+    // 1 or 4 (strong) → 2.4; 2 or 3 (moderate) → 1.4
+    const salience = (v === 1 || v === 4) ? 2.4 : 1.4;
+    return {
+      salience,
+      provenance: {
+        source: "real_signal",
+        vars: ["CC313"],
+        partyIdDerived: false,
+        uncertainty: "medium",
+        notes: `v0.1L ethnic_racial 2008: CC313 affirmative-action 4-pt Likert; direction-agnostic salience (extremes load high, middles low)`,
+      },
+    };
+  }
+
+  // 2012/2016/2024 lack clean CCES race-policy items per audit §2.1; deferred
+  // to v0.2 with ANES VCF0830. Currently fallback for those cycles.
+  if (r.year !== 2020) {
+    return fallbackBoundary(`v0.1I ethnic_racial: race-policy battery decoder gated to 2008/2020 only (2012/2016/2024 deferred per audit §2.1)`);
+  }
 
   // Race-conditional gate. Non-white = race ≠ 1 (white) OR hispanic flag = 1.
   const race = parseCodedNumber(payload["race"]);
@@ -1455,10 +1503,71 @@ function deriveEthnicRacialBoundary(r: WeightedSurveyRespondent): MoralBoundaryE
  * `CC24_340c`, `CC24_323d`.
  */
 function deriveGenderBoundary(r: WeightedSurveyRespondent): MoralBoundaryEntry {
-  if (r.year !== 2020 && r.year !== 2024) {
-    return fallbackBoundary(`v0.1I gender: gender-policy battery decoder gated to 2020/2024 (audited); year ${r.year} deferred to v0.2 with ANES gender items`);
-  }
   const payload = r.rawVarPayload;
+
+  // 2008: CC316f gay-marriage-ban roll call. Direction-agnostic — both
+  // Support (constitutional ban) and Oppose load high gender salience; Not
+  // Sure (3) loads moderate. Per ADR-007, this is future
+  // moralCircleAffinity:gender prior evidence. Cleanest 2008 gender-loading
+  // signal in the codebook.
+  if (r.year === 2008) {
+    const v = parseCodedNumber(payload["CC316f"]);
+    if (v === 1 || v === 2) {
+      return {
+        salience: 2.0,
+        provenance: {
+          source: "real_signal",
+          vars: ["CC316f"],
+          partyIdDerived: false,
+          uncertainty: "high",
+          notes: `v0.1L gender 2008: CC316f SSM-ban roll call; direction-agnostic salience (Support and Oppose both load high)`,
+        },
+      };
+    }
+    if (v === 3) {
+      return {
+        salience: 1.2,
+        provenance: { source: "real_signal", vars: ["CC316f"], partyIdDerived: false, uncertainty: "high", notes: "v0.1L gender 2008: CC316f = Not Sure" },
+      };
+    }
+    return fallbackBoundary("v0.1L gender 2008: CC316f missing");
+  }
+
+  // 2012: CC326 (gay marriage Favor/Oppose) + CC332J (DADT Support/Oppose).
+  // Both direction-agnostic per the 2020 CC20_355d precedent. Per ADR-007,
+  // future moralCircleAffinity:gender prior evidence.
+  if (r.year === 2012) {
+    const cc326 = parseCodedNumber(payload["CC326"]);
+    const cc332j = parseCodedNumber(payload["CC332J"]);
+    const usable326 = cc326 === 1 || cc326 === 2;
+    const usable332j = cc332j === 1 || cc332j === 2;
+    if (!usable326 && !usable332j) {
+      return fallbackBoundary("v0.1L gender 2012: CC326 + CC332J both missing");
+    }
+    let signal = 0;
+    let denom = 0;
+    if (usable326) { signal += 1.0; denom += 1.0; }
+    if (usable332j) { signal += 1.0; denom += 1.0; }
+    const score = denom > 0 ? signal / denom : 0;
+    const salience = Math.min(3.0, 1.0 + 1.5 * score);
+    const vars: string[] = [];
+    if (usable326) vars.push("CC326");
+    if (usable332j) vars.push("CC332J");
+    return {
+      salience,
+      provenance: {
+        source: "real_signal",
+        vars,
+        partyIdDerived: false,
+        uncertainty: vars.length >= 2 ? "medium" : "high",
+        notes: `v0.1L gender 2012: ${vars.length}/2 items (CC326 SSM Favor/Oppose, CC332J End DADT Support/Oppose); direction-agnostic salience`,
+      },
+    };
+  }
+
+  if (r.year !== 2020 && r.year !== 2024) {
+    return fallbackBoundary(`v0.1I gender: gender-policy battery decoder gated to 2008/2012/2020/2024 (audited); year ${r.year} deferred to v0.2 with ANES gender items`);
+  }
 
   let numerator = 0;
   let denominator: number;
@@ -1647,9 +1756,9 @@ export function mapSurveyToPrism(r: WeightedSurveyRespondent): SurveyPrismSignat
   const payload = r.rawVarPayload;
 
   // Compound moral-circle module.
-  const religious = deriveReligiousBoundary(payload);
+  const religious = deriveReligiousBoundary(payload, r.year);
   const ideological = deriveIdeologicalBoundary(payload);
-  const political_camp = derivePoliticalCampBoundary(payload);
+  const political_camp = derivePoliticalCampBoundary(payload, r.year);
   const class_ = deriveClassBoundary(payload);
   const national = deriveNationalBoundary(r);
   const ethnic_racial = deriveEthnicRacialBoundary(r);

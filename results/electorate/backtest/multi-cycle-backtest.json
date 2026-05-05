@@ -1,7 +1,7 @@
 {
   "schema_version": "v0.1",
-  "generated_at": "2026-05-05T19:39:17.342Z",
-  "elapsed_ms": 33820,
+  "generated_at": "2026-05-05T19:44:08.211Z",
+  "elapsed_ms": 32840,
   "pipeline": "cesBacktestLoader → surveyToPrismMapper (point estimate) → predictVote → weighted aggregate",
   "decisions": {
     "signature_representation": "posterior point estimate (E[posDist], E[salDist])",
@@ -17,22 +17,22 @@
       "totalWeight": 32799.99999999798,
       "predicted": {
         "weightedCounts": {
-          "D": 14191.17592153196,
-          "R": 6089.466233581919,
+          "D": 14343.353224934423,
+          "R": 5937.288930179467,
           "T": 0,
           "O": 0,
           "Abstain": 12519.3578448856
         },
         "sharesOfElectorate": {
-          "D": 0.43265780248575714,
-          "R": 0.18565445834092362,
+          "D": 0.4372973544187594,
+          "R": 0.18101490640792173,
           "T": 0,
           "O": 0,
           "Abstain": 0.381687739173365
         },
         "sharesOfVoters": {
-          "D": 0.6997399694246652,
-          "R": 0.30026003057533496,
+          "D": 0.7072435436329445,
+          "R": 0.29275645636705555,
           "T": 0,
           "O": 0
         }
@@ -56,17 +56,17 @@
       },
       "gaps": {
         "sharesOfVoters": {
-          "D": 0.17043996942466522,
-          "R": -0.15623996942466506,
+          "D": 0.1779435436329445,
+          "R": -0.16374354363294447,
           "Other": -0.01419999999999999,
-          "absMean": 0.11362664628311009
+          "absMean": 0.11862902908862966
         },
         "sharesOfElectorate": {
-          "D": 0.10685780248575716,
-          "R": -0.09534554165907641,
+          "D": 0.11149735441875941,
+          "R": -0.0999850935920783,
           "Other": -0.0088,
           "Abstain": -0.0027122608266350046,
-          "absMean": 0.053428901242867144
+          "absMean": 0.05574867720936818
         }
       },
       "coverage": {
@@ -134,13 +134,13 @@
             "total": 32800
           },
           "ethnic_racial": {
-            "realSignal": 0,
-            "fallback": 32800,
+            "realSignal": 32617,
+            "fallback": 183,
             "total": 32800
           },
           "religious": {
-            "realSignal": 0,
-            "fallback": 32800,
+            "realSignal": 32797,
+            "fallback": 3,
             "total": 32800
           },
           "class": {
@@ -154,13 +154,13 @@
             "total": 32800
           },
           "gender": {
-            "realSignal": 0,
-            "fallback": 32800,
+            "realSignal": 32714,
+            "fallback": 86,
             "total": 32800
           },
           "political_camp": {
-            "realSignal": 0,
-            "fallback": 32800,
+            "realSignal": 31853,
+            "fallback": 947,
             "total": 32800
           }
         },
@@ -290,10 +290,10 @@
           "salMean": 1
         },
         "ethnic_racial": {
-          "salMean": 1
+          "salMean": 1.8494209457954542
         },
         "religious": {
-          "salMean": 1
+          "salMean": 1.4351464991474006
         },
         "class": {
           "salMean": 1
@@ -302,13 +302,13 @@
           "salMean": 1
         },
         "gender": {
-          "salMean": 1
+          "salMean": 1.8954630978142033
         },
         "political_camp": {
-          "salMean": 1
+          "salMean": 1.8176642704192116
         }
       },
-      "intensityMean": 1,
+      "intensityMean": 1.9664598128486153,
       "engagement": {
         "apolitical": 0,
         "casual": 0.38113537057185115,
@@ -429,22 +429,22 @@
       "totalWeight": 52869.67966523333,
       "predicted": {
         "weightedCounts": {
-          "D": 23870.37092155386,
-          "R": 9471.477993486933,
+          "D": 23959.503783829605,
+          "R": 9382.34513121118,
           "T": 0,
           "O": 0,
           "Abstain": 19527.830750192687
         },
         "sharesOfElectorate": {
-          "D": 0.45149452526853157,
-          "R": 0.1791476334537979,
+          "D": 0.45318042279694726,
+          "R": 0.17746173592538206,
           "T": 0,
           "O": 0,
           "Abstain": 0.36935784127767335
         },
         "sharesOfVoters": {
-          "D": 0.7159282312861099,
-          "R": 0.28407176871389,
+          "D": 0.7186015342124976,
+          "R": 0.28139846578750244,
           "T": 0,
           "O": 0
         }
@@ -468,17 +468,17 @@
       },
       "gaps": {
         "sharesOfVoters": {
-          "D": 0.20532823128610989,
-          "R": -0.18792823128610997,
+          "D": 0.20800153421249756,
+          "R": -0.19060153421249754,
           "Other": -0.01739999999999997,
-          "absMean": 0.13688548752407328
+          "absMean": 0.13866768947499836
         },
         "sharesOfElectorate": {
-          "D": 0.15519452526853156,
-          "R": -0.09475236654620209,
+          "D": 0.15688042279694725,
+          "R": -0.09643826407461792,
           "Other": -0.0101,
           "Abstain": -0.05034215872232667,
-          "absMean": 0.07759726263426509
+          "absMean": 0.07844021139847296
         }
       },
       "coverage": {
@@ -566,8 +566,8 @@
             "total": 54535
           },
           "gender": {
-            "realSignal": 0,
-            "fallback": 54535,
+            "realSignal": 54398,
+            "fallback": 137,
             "total": 54535
           },
           "political_camp": {
@@ -714,13 +714,13 @@
           "salMean": 1.2230557321415234
         },
         "gender": {
-          "salMean": 1
+          "salMean": 2.4959200317255164
         },
         "political_camp": {
           "salMean": 1.7042277601461493
         }
       },
-      "intensityMean": 1.7565876078304254,
+      "intensityMean": 2.065248826913326,
       "engagement": {
         "apolitical": 0.00007243635475890789,
         "casual": 0.1345468959660058,

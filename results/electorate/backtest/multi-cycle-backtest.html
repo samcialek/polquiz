@@ -91,13 +91,13 @@ nav.toc a:hover { text-decoration: underline; }
       <td><a href="#y2008">2008</a></td>
       <td class="num">0.03M</td>
       <td class="num">27%</td>
-      <td class="num">70.0%</td>
+      <td class="num">70.7%</td>
       <td class="num">52.9%</td>
-      <td class="num">30.0%</td>
+      <td class="num">29.3%</td>
       <td class="num">45.6%</td>
-      <td class="num gap">+17.0pp</td>
-      <td class="num gap">-15.6pp</td>
-      <td class="num">11.36pp</td>
+      <td class="num gap">+17.8pp</td>
+      <td class="num gap">-16.4pp</td>
+      <td class="num">11.86pp</td>
       <td class="num">38.2%</td>
       <td class="num">38.4%</td>
       <td class="num gap" style="color:#5f6862">-0.3pp</td>
@@ -106,13 +106,13 @@ nav.toc a:hover { text-decoration: underline; }
       <td><a href="#y2012">2012</a></td>
       <td class="num">0.05M</td>
       <td class="num">36%</td>
-      <td class="num">71.6%</td>
+      <td class="num">71.9%</td>
       <td class="num">51.1%</td>
-      <td class="num">28.4%</td>
+      <td class="num">28.1%</td>
       <td class="num">47.2%</td>
-      <td class="num gap">+20.5pp</td>
-      <td class="num gap">-18.8pp</td>
-      <td class="num">13.69pp</td>
+      <td class="num gap">+20.8pp</td>
+      <td class="num gap">-19.1pp</td>
+      <td class="num">13.87pp</td>
       <td class="num">36.9%</td>
       <td class="num">42.0%</td>
       <td class="num gap" style="color:#5f6862">-5.0pp</td>
@@ -164,7 +164,7 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="win-bad">✗</td>
     </tr></tbody>
     </table>
-    <div class="muted">Generated 2026-05-05T19:39:17.342Z • 33.8s pipeline runtime</div>
+    <div class="muted">Generated 2026-05-05T19:44:08.211Z • 32.8s pipeline runtime</div>
   </section>
 
   <div class="caveats">
@@ -184,7 +184,7 @@ nav.toc a:hover { text-decoration: underline; }
           <li>Pre-existing model D-bias of ~11pp on 2020 archetype-centroid baseline (<code>voteModelSmoke</code>): centrist policy positions sit closer to D candidate profiles than to recent R candidates (especially Trump's CD/CU/MOR positioning).</li>
           <li>Thin-coverage shrinkage: respondents with mostly-fallback signatures land at the population center, which is closer to D issue positions.</li>
           <li><strong>partyID IS now passed</strong> via pid7 → PartyID translation; the partisan-loyalty multiplier is on. CCES pid7 distribution skews D in modern cycles, so partyID amplifies the survey's D-skew somewhat — which is an honest reflection of the survey weights, not a bug. Net 2020/2024 gap improved 3pp / 1.6pp from this lever; 2016 gap shifted +1pp (CCES16 pid7 pool more D-tilted than the 2016 vote split).</li>
-          <li><strong>moralBoundaries module not yet wired for backtest scoring path</strong> — the runner passes morState through to predictVote, but mB salience for ethnic_racial / religious / class is at fallback for 2008/2012 (and partially for 2024). This is the next significant lever and the natural Phase E.</li>
+          <li><strong>moralBoundaries — Phase E compatibility pass landed.</strong> 2008 now has real_signal on religious (V215/V216/V217), political_camp (CC307a), ethnic_racial (CC313 affirmative-action 4-pt direction-agnostic), and gender (CC316f SSM-ban direction-agnostic). 2012 has real_signal on gender (CC326 + CC332J direction-agnostic) on top of the existing pid7-derived political_camp and pew_*-derived religious. Each source documented inline as future moralCircleAffinity prior evidence per ADR-007. 2008/2012 nudged +0.5pp / +0.2pp worse on D/R gap from this pass — expected: we added real boundary signal where it had been fallback, but the engine's existing moral-floor-penalty / boundary-distance weights were tuned on archetype centroids and don't yet know how to weight the new CCES signal well. The boundaries are now plumbed through <code>morState</code> and ready for the moralCircleAffinity engine cutover (ADR-007), which is the next consumer that will turn this signal into in-pool D/R gap reduction.</li>
         </ul>
       </li>
       <li><strong>Directionality:</strong> the model gets 4/5 winners right. 2024 (Trump win) is incorrectly predicted as D — same finding as the archetype-centroid baseline; not changed by abstention calibration.</li>
@@ -194,23 +194,23 @@ nav.toc a:hover { text-decoration: underline; }
   <a id="y2008"></a>
   <section class="cycle">
     <h2>2008 — Obama (D) vs McCain (R)</h2>
-    <div class="cycle-meta"><span>n = 32,800 respondents</span><span class="dot">•</span><span>real-signal coverage 27.3%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 11.36pp</span></div>
+    <div class="cycle-meta"><span>n = 32,800 respondents</span><span class="dot">•</span><span>real-signal coverage 27.3%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 11.86pp</span></div>
     <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 27% of node-targets carry real CCES signal for 2008. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
 
     <div class="grid-2">
       <div class="panel">
         <h3>Predicted vs Actual (shares of voters)</h3>
-        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="156.741753151125" height="12" fill="#3057a3" opacity="0.45"/><text x="215.741753151125" y="16" font-size="10" fill="#5f6862">70.0% pred</text><rect x="56" y="20" width="118.5632" height="12" fill="#3057a3"/><text x="177.5632" y="30" font-size="10" fill="#5f6862">52.9% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="67.25824684887503" height="12" fill="#bd5742" opacity="0.45"/><text x="126.25824684887503" y="48" font-size="10" fill="#5f6862">30.0% pred</text><rect x="56" y="52" width="102.256" height="12" fill="#bd5742"/><text x="161.256" y="62" font-size="10" fill="#5f6862">45.6% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.180799999999998" height="12" fill="#6a5b8f"/><text x="62.1808" y="94" font-size="10" fill="#5f6862">1.4% actual</text></svg>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="158.42255377377955" height="12" fill="#3057a3" opacity="0.45"/><text x="217.42255377377955" y="16" font-size="10" fill="#5f6862">70.7% pred</text><rect x="56" y="20" width="118.5632" height="12" fill="#3057a3"/><text x="177.5632" y="30" font-size="10" fill="#5f6862">52.9% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="65.57744622622045" height="12" fill="#bd5742" opacity="0.45"/><text x="124.57744622622045" y="48" font-size="10" fill="#5f6862">29.3% pred</text><rect x="56" y="52" width="102.256" height="12" fill="#bd5742"/><text x="161.256" y="62" font-size="10" fill="#5f6862">45.6% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.180799999999998" height="12" fill="#6a5b8f"/><text x="62.1808" y="94" font-size="10" fill="#5f6862">1.4% actual</text></svg>
         <table class="kv">
           <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
-          <tr><td>D</td><td>70.0%</td><td>52.9%</td><td class="gap">+17.0pp</td></tr>
-          <tr><td>R</td><td>30.0%</td><td>45.6%</td><td class="gap">-15.6pp</td></tr>
+          <tr><td>D</td><td>70.7%</td><td>52.9%</td><td class="gap">+17.8pp</td></tr>
+          <tr><td>R</td><td>29.3%</td><td>45.6%</td><td class="gap">-16.4pp</td></tr>
           <tr><td>Other</td><td>0.0%</td><td>1.4%</td><td class="gap">-1.4pp</td></tr>
         </table>
         <table class="kv">
           <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
-          <tr><td>D</td><td>43.3%</td><td>32.6%</td><td class="gap">+10.7pp</td></tr>
-          <tr><td>R</td><td>18.6%</td><td>28.1%</td><td class="gap">-9.5pp</td></tr>
+          <tr><td>D</td><td>43.7%</td><td>32.6%</td><td class="gap">+11.1pp</td></tr>
+          <tr><td>R</td><td>18.1%</td><td>28.1%</td><td class="gap">-10.0pp</td></tr>
           <tr><td>Abstain</td><td>38.2%</td><td>38.4%</td><td class="gap">-0.3pp</td></tr>
         </table>
       </div>
@@ -352,8 +352,8 @@ nav.toc a:hover { text-decoration: underline; }
 
     <div class="panel">
       <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
-      <svg width="360" height="60" class="bnd"><rect x="10" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="157.42857142857144" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="206.57142857142858" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text></svg>
-      <div class="muted">Aggregate intensity mean 1.00</div>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="59.142857142857146" y="19.80694865045455" width="45.142857142857146" height="22.19305134954545" fill="#bd5742" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="17.80694865045455" font-size="8" fill="#202422" text-anchor="middle">1.85</text><rect x="108.28571428571429" y="24.778242010231192" width="45.142857142857146" height="17.221757989768808" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="22.778242010231192" font-size="8" fill="#202422" text-anchor="middle">1.44</text><rect x="157.42857142857144" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="206.57142857142858" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="255.71428571428572" y="19.25444282622956" width="45.142857142857146" height="22.74555717377044" fill="#bd5742" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="17.25444282622956" font-size="8" fill="#202422" text-anchor="middle">1.90</text><rect x="304.8571428571429" y="20.18802875496946" width="45.142857142857146" height="21.81197124503054" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="18.18802875496946" font-size="8" fill="#202422" text-anchor="middle">1.82</text></svg>
+      <div class="muted">Aggregate intensity mean 1.97</div>
     </div>
 
     <div class="panel">
@@ -396,23 +396,23 @@ nav.toc a:hover { text-decoration: underline; }
 <a id="y2012"></a>
   <section class="cycle">
     <h2>2012 — Obama (D) vs Romney (R)</h2>
-    <div class="cycle-meta"><span>n = 54,535 respondents</span><span class="dot">•</span><span>real-signal coverage 36.4%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 13.69pp</span></div>
+    <div class="cycle-meta"><span>n = 54,535 respondents</span><span class="dot">•</span><span>real-signal coverage 36.4%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 13.87pp</span></div>
     <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 36% of node-targets carry real CCES signal for 2012. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
 
     <div class="grid-2">
       <div class="panel">
         <h3>Predicted vs Actual (shares of voters)</h3>
-        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="160.36792380808862" height="12" fill="#3057a3" opacity="0.45"/><text x="219.36792380808862" y="16" font-size="10" fill="#5f6862">71.6% pred</text><rect x="56" y="20" width="114.37440000000001" height="12" fill="#3057a3"/><text x="173.3744" y="30" font-size="10" fill="#5f6862">51.1% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="63.63207619191136" height="12" fill="#bd5742" opacity="0.45"/><text x="122.63207619191135" y="48" font-size="10" fill="#5f6862">28.4% pred</text><rect x="56" y="52" width="105.728" height="12" fill="#bd5742"/><text x="164.728" y="62" font-size="10" fill="#5f6862">47.2% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.8975999999999935" height="12" fill="#6a5b8f"/><text x="62.8976" y="94" font-size="10" fill="#5f6862">1.7% actual</text></svg>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="160.96674366359946" height="12" fill="#3057a3" opacity="0.45"/><text x="219.96674366359946" y="16" font-size="10" fill="#5f6862">71.9% pred</text><rect x="56" y="20" width="114.37440000000001" height="12" fill="#3057a3"/><text x="173.3744" y="30" font-size="10" fill="#5f6862">51.1% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="63.03325633640055" height="12" fill="#bd5742" opacity="0.45"/><text x="122.03325633640054" y="48" font-size="10" fill="#5f6862">28.1% pred</text><rect x="56" y="52" width="105.728" height="12" fill="#bd5742"/><text x="164.728" y="62" font-size="10" fill="#5f6862">47.2% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.8975999999999935" height="12" fill="#6a5b8f"/><text x="62.8976" y="94" font-size="10" fill="#5f6862">1.7% actual</text></svg>
         <table class="kv">
           <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
-          <tr><td>D</td><td>71.6%</td><td>51.1%</td><td class="gap">+20.5pp</td></tr>
-          <tr><td>R</td><td>28.4%</td><td>47.2%</td><td class="gap">-18.8pp</td></tr>
+          <tr><td>D</td><td>71.9%</td><td>51.1%</td><td class="gap">+20.8pp</td></tr>
+          <tr><td>R</td><td>28.1%</td><td>47.2%</td><td class="gap">-19.1pp</td></tr>
           <tr><td>Other</td><td>0.0%</td><td>1.7%</td><td class="gap">-1.7pp</td></tr>
         </table>
         <table class="kv">
           <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
-          <tr><td>D</td><td>45.1%</td><td>29.6%</td><td class="gap">+15.5pp</td></tr>
-          <tr><td>R</td><td>17.9%</td><td>27.4%</td><td class="gap">-9.5pp</td></tr>
+          <tr><td>D</td><td>45.3%</td><td>29.6%</td><td class="gap">+15.7pp</td></tr>
+          <tr><td>R</td><td>17.7%</td><td>27.4%</td><td class="gap">-9.6pp</td></tr>
           <tr><td>Abstain</td><td>36.9%</td><td>42.0%</td><td class="gap">-5.0pp</td></tr>
         </table>
       </div>
@@ -554,8 +554,8 @@ nav.toc a:hover { text-decoration: underline; }
 
     <div class="panel">
       <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
-      <svg width="360" height="60" class="bnd"><rect x="10" y="27.605133175687712" width="45.142857142857146" height="14.394866824312288" fill="#b7791f" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="25.605133175687712" font-size="8" fill="#202422" text-anchor="middle">1.20</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="26.702949625704214" width="45.142857142857146" height="15.297050374295786" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="24.702949625704214" font-size="8" fill="#202422" text-anchor="middle">1.27</text><rect x="157.42857142857144" y="30.428233829648256" width="45.142857142857146" height="11.571766170351742" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.428233829648256" font-size="8" fill="#202422" text-anchor="middle">0.96</text><rect x="206.57142857142858" y="27.323331214301717" width="45.142857142857146" height="14.676668785698281" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="25.323331214301717" font-size="8" fill="#202422" text-anchor="middle">1.22</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="21.549266878246208" width="45.142857142857146" height="20.450733121753792" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.549266878246208" font-size="8" fill="#202422" text-anchor="middle">1.70</text></svg>
-      <div class="muted">Aggregate intensity mean 1.76</div>
+      <svg width="360" height="60" class="bnd"><rect x="10" y="27.605133175687712" width="45.142857142857146" height="14.394866824312288" fill="#b7791f" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="25.605133175687712" font-size="8" fill="#202422" text-anchor="middle">1.20</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="26.702949625704214" width="45.142857142857146" height="15.297050374295786" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="24.702949625704214" font-size="8" fill="#202422" text-anchor="middle">1.27</text><rect x="157.42857142857144" y="30.428233829648256" width="45.142857142857146" height="11.571766170351742" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.428233829648256" font-size="8" fill="#202422" text-anchor="middle">0.96</text><rect x="206.57142857142858" y="27.323331214301717" width="45.142857142857146" height="14.676668785698281" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="25.323331214301717" font-size="8" fill="#202422" text-anchor="middle">1.22</text><rect x="255.71428571428572" y="12.048959619293804" width="45.142857142857146" height="29.951040380706196" fill="#bd5742" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="10.048959619293804" font-size="8" fill="#202422" text-anchor="middle">2.50</text><rect x="304.8571428571429" y="21.549266878246208" width="45.142857142857146" height="20.450733121753792" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.549266878246208" font-size="8" fill="#202422" text-anchor="middle">1.70</text></svg>
+      <div class="muted">Aggregate intensity mean 2.07</div>
     </div>
 
     <div class="panel">
