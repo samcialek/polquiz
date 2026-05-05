@@ -91,13 +91,13 @@ nav.toc a:hover { text-decoration: underline; }
       <td><a href="#y2008">2008</a></td>
       <td class="num">0.03M</td>
       <td class="num">27%</td>
-      <td class="num">71.2%</td>
+      <td class="num">70.0%</td>
       <td class="num">52.9%</td>
-      <td class="num">28.8%</td>
+      <td class="num">30.0%</td>
       <td class="num">45.6%</td>
-      <td class="num gap">+18.3pp</td>
-      <td class="num gap">-16.8pp</td>
-      <td class="num">12.17pp</td>
+      <td class="num gap">+17.0pp</td>
+      <td class="num gap">-15.6pp</td>
+      <td class="num">11.36pp</td>
       <td class="num">38.2%</td>
       <td class="num">38.4%</td>
       <td class="num gap" style="color:#5f6862">-0.3pp</td>
@@ -164,12 +164,17 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="win-bad">✗</td>
     </tr></tbody>
     </table>
-    <div class="muted">Generated 2026-05-05T19:25:25.100Z • 31.2s pipeline runtime</div>
+    <div class="muted">Generated 2026-05-05T19:39:17.342Z • 33.8s pipeline runtime</div>
   </section>
 
   <div class="caveats">
     <h3>How to read these gaps</h3>
-    <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline is now: CCES → mapper (with CD/CU/MAT/ZS wired for all 5 cycles) → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. All five cycles now have non-fallback signal on the four core continuous nodes that matter for the partisan vote (MAT, CD, CU, ZS); 2008 no longer collapses to a deterministic 100/0 D/R split.</p>
+    <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline: CCES → mapper → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. Per-cycle real-signal coverage on the four core continuous-position nodes:</p>
+    <ul style="margin: 4px 0 12px 18px; font-size: 13px;">
+      <li><strong>2008:</strong> MAT / CD / ZS real signal; <strong>CU stays fallback</strong> — the CCES 2008 wave shipped no immigration-battery items, so cultural-uniformity / pluralism cannot be measured from this dataset. Structural data gap, not a wiring oversight.</li>
+      <li><strong>2012 / 2016 / 2020 / 2024:</strong> MAT / CD / CU / ZS all real signal.</li>
+    </ul>
+    <p style="margin: 6px 0;">2008 no longer collapses to the deterministic 100/0 D/R split observed at runner v0.</p>
     <p style="margin: 6px 0;"><strong>The "Pred D / Actual D" columns are shares among those who voted</strong> on each side. With abstention calibrated, the two voter pools are now of comparable size (~60% of electorate on both sides). Composition still differs: the predicted pool is sampled by demographic turnout probability; the actual pool filters by real individual decisions including civic interest, registration status, and circumstantial factors not captured in demographics alone.</p>
     <ul>
       <li><strong>2008:</strong> avg gap 12.2pp (was 31.4pp at runner v0). The 100/0 D/R blowout is gone — wired CC310 (abortion), CC316f (gay marriage ban — INVERTED direction vs SSM-favor framing), CC312/CC316b/CC316e/CC316g (MAT), CC311/CC316h/CC302 (ZS). 2008 still has no immigration items in CCES — CU stays fallback, structural data gap.</li>
@@ -189,23 +194,23 @@ nav.toc a:hover { text-decoration: underline; }
   <a id="y2008"></a>
   <section class="cycle">
     <h2>2008 — Obama (D) vs McCain (R)</h2>
-    <div class="cycle-meta"><span>n = 32,800 respondents</span><span class="dot">•</span><span>real-signal coverage 27.3%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 12.17pp</span></div>
+    <div class="cycle-meta"><span>n = 32,800 respondents</span><span class="dot">•</span><span>real-signal coverage 27.3%</span><span class="dot">•</span><span class="dir ok">✓ correct winner</span><span class="dot">•</span><span>|gap voters| 11.36pp</span></div>
     <div class="banner mid"><strong>Reduced-coverage caveat:</strong> 27% of node-targets carry real CCES signal for 2008. Expect rough directional accuracy at best; magnitude predictions are unreliable.</div>
 
     <div class="grid-2">
       <div class="panel">
         <h3>Predicted vs Actual (shares of voters)</h3>
-        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="159.45019817890605" height="12" fill="#3057a3" opacity="0.45"/><text x="218.45019817890605" y="16" font-size="10" fill="#5f6862">71.2% pred</text><rect x="56" y="20" width="118.5632" height="12" fill="#3057a3"/><text x="177.5632" y="30" font-size="10" fill="#5f6862">52.9% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="64.54980182109395" height="12" fill="#bd5742" opacity="0.45"/><text x="123.54980182109395" y="48" font-size="10" fill="#5f6862">28.8% pred</text><rect x="56" y="52" width="102.256" height="12" fill="#bd5742"/><text x="161.256" y="62" font-size="10" fill="#5f6862">45.6% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.180799999999998" height="12" fill="#6a5b8f"/><text x="62.1808" y="94" font-size="10" fill="#5f6862">1.4% actual</text></svg>
+        <svg width="340" height="90" class="pa"><text x="52" y="27" font-size="11" fill="#202422" text-anchor="end">D</text><rect x="56" y="6" width="156.741753151125" height="12" fill="#3057a3" opacity="0.45"/><text x="215.741753151125" y="16" font-size="10" fill="#5f6862">70.0% pred</text><rect x="56" y="20" width="118.5632" height="12" fill="#3057a3"/><text x="177.5632" y="30" font-size="10" fill="#5f6862">52.9% actual</text><text x="52" y="59" font-size="11" fill="#202422" text-anchor="end">R</text><rect x="56" y="38" width="67.25824684887503" height="12" fill="#bd5742" opacity="0.45"/><text x="126.25824684887503" y="48" font-size="10" fill="#5f6862">30.0% pred</text><rect x="56" y="52" width="102.256" height="12" fill="#bd5742"/><text x="161.256" y="62" font-size="10" fill="#5f6862">45.6% actual</text><text x="52" y="91" font-size="11" fill="#202422" text-anchor="end">Other</text><rect x="56" y="70" width="0" height="12" fill="#6a5b8f" opacity="0.45"/><text x="59" y="80" font-size="10" fill="#5f6862">0.0% pred</text><rect x="56" y="84" width="3.180799999999998" height="12" fill="#6a5b8f"/><text x="62.1808" y="94" font-size="10" fill="#5f6862">1.4% actual</text></svg>
         <table class="kv">
           <tr><th></th><th>Pred</th><th>Actual</th><th>Gap</th></tr>
-          <tr><td>D</td><td>71.2%</td><td>52.9%</td><td class="gap">+18.3pp</td></tr>
-          <tr><td>R</td><td>28.8%</td><td>45.6%</td><td class="gap">-16.8pp</td></tr>
+          <tr><td>D</td><td>70.0%</td><td>52.9%</td><td class="gap">+17.0pp</td></tr>
+          <tr><td>R</td><td>30.0%</td><td>45.6%</td><td class="gap">-15.6pp</td></tr>
           <tr><td>Other</td><td>0.0%</td><td>1.4%</td><td class="gap">-1.4pp</td></tr>
         </table>
         <table class="kv">
           <tr><th colspan="4">Shares of electorate (incl. abstain)</th></tr>
-          <tr><td>D</td><td>44.0%</td><td>32.6%</td><td class="gap">+11.4pp</td></tr>
-          <tr><td>R</td><td>17.8%</td><td>28.1%</td><td class="gap">-10.3pp</td></tr>
+          <tr><td>D</td><td>43.3%</td><td>32.6%</td><td class="gap">+10.7pp</td></tr>
+          <tr><td>R</td><td>18.6%</td><td>28.1%</td><td class="gap">-9.5pp</td></tr>
           <tr><td>Abstain</td><td>38.2%</td><td>38.4%</td><td class="gap">-0.3pp</td></tr>
         </table>
       </div>
@@ -349,6 +354,20 @@ nav.toc a:hover { text-decoration: underline; }
       <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
       <svg width="360" height="60" class="bnd"><rect x="10" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="157.42857142857144" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="206.57142857142858" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text></svg>
       <div class="muted">Aggregate intensity mean 1.00</div>
+    </div>
+
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">47.5%</td><td class="num">14,659</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">11.9%</td><td class="num">3,253</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">35.9%</td><td class="num">13,941</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">4.7%</td><td class="num">947</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
     </div>
 
     <div class="grid-2">
@@ -539,6 +558,20 @@ nav.toc a:hover { text-decoration: underline; }
       <div class="muted">Aggregate intensity mean 1.76</div>
     </div>
 
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">49.3%</td><td class="num">25,295</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">13.8%</td><td class="num">6,205</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">35.0%</td><td class="num">20,552</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">1.9%</td><td class="num">2,483</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
+    </div>
+
     <div class="grid-2">
       <div class="panel">
         <h3>Engagement distribution</h3>
@@ -725,6 +758,20 @@ nav.toc a:hover { text-decoration: underline; }
       <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
       <svg width="360" height="60" class="bnd"><rect x="10" y="25.823824334801376" width="45.142857142857146" height="16.176175665198624" fill="#b7791f" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="23.823824334801376" font-size="8" fill="#202422" text-anchor="middle">1.35</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="27.157795290935034" width="45.142857142857146" height="14.842204709064967" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="25.157795290935034" font-size="8" fill="#202422" text-anchor="middle">1.24</text><rect x="157.42857142857144" y="30.4624408919451" width="45.142857142857146" height="11.537559108054902" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.4624408919451" font-size="8" fill="#202422" text-anchor="middle">0.96</text><rect x="206.57142857142858" y="27.21433981266952" width="45.142857142857146" height="14.785660187330478" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="25.21433981266952" font-size="8" fill="#202422" text-anchor="middle">1.23</text><rect x="255.71428571428572" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="304.8571428571429" y="21.147821870744206" width="45.142857142857146" height="20.852178129255794" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="19.147821870744206" font-size="8" fill="#202422" text-anchor="middle">1.74</text></svg>
       <div class="muted">Aggregate intensity mean 1.83</div>
+    </div>
+
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">46.0%</td><td class="num">31,139</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">15.4%</td><td class="num">10,493</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">35.0%</td><td class="num">20,847</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">3.6%</td><td class="num">2,121</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
     </div>
 
     <div class="grid-2">
@@ -915,6 +962,20 @@ nav.toc a:hover { text-decoration: underline; }
       <div class="muted">Aggregate intensity mean 2.24</div>
     </div>
 
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">42.1%</td><td class="num">29,355</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">15.3%</td><td class="num">8,862</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">36.8%</td><td class="num">20,414</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">5.9%</td><td class="num">2,369</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
+    </div>
+
     <div class="grid-2">
       <div class="panel">
         <h3>Engagement distribution</h3>
@@ -1101,6 +1162,20 @@ nav.toc a:hover { text-decoration: underline; }
       <h3>Moral-boundary salience (weighted means, 0–3 scale)</h3>
       <svg width="360" height="60" class="bnd"><rect x="10" y="22.273522449119625" width="45.142857142857146" height="19.726477550880375" fill="#bd5742" rx="2"/><text x="32.57142857142857" y="56" font-size="9" fill="#5f6862" text-anchor="middle">National</text><text x="32.57142857142857" y="20.273522449119625" font-size="8" fill="#202422" text-anchor="middle">1.64</text><rect x="59.142857142857146" y="30" width="45.142857142857146" height="12" fill="#227c70" rx="2"/><text x="81.71428571428572" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ethnic/R</text><text x="81.71428571428572" y="28" font-size="8" fill="#202422" text-anchor="middle">1.00</text><rect x="108.28571428571429" y="27.75007567910704" width="45.142857142857146" height="14.24992432089296" fill="#b7791f" rx="2"/><text x="130.85714285714286" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Religiou</text><text x="130.85714285714286" y="25.75007567910704" font-size="8" fill="#202422" text-anchor="middle">1.19</text><rect x="157.42857142857144" y="30.79136349594077" width="45.142857142857146" height="11.208636504059227" fill="#227c70" rx="2"/><text x="180.00000000000003" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Class</text><text x="180.00000000000003" y="28.79136349594077" font-size="8" fill="#202422" text-anchor="middle">0.93</text><rect x="206.57142857142858" y="25.491425637178786" width="45.142857142857146" height="16.508574362821214" fill="#b7791f" rx="2"/><text x="229.14285714285717" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Ideologi</text><text x="229.14285714285717" y="23.491425637178786" font-size="8" fill="#202422" text-anchor="middle">1.38</text><rect x="255.71428571428572" y="21.289142660492537" width="45.142857142857146" height="20.710857339507463" fill="#bd5742" rx="2"/><text x="278.2857142857143" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Gender</text><text x="278.2857142857143" y="19.289142660492537" font-size="8" fill="#202422" text-anchor="middle">1.73</text><rect x="304.8571428571429" y="20.810569096791557" width="45.142857142857146" height="21.189430903208443" fill="#bd5742" rx="2"/><text x="327.42857142857144" y="56" font-size="9" fill="#5f6862" text-anchor="middle">Politica</text><text x="327.42857142857144" y="18.810569096791557" font-size="8" fill="#202422" text-anchor="middle">1.77</text></svg>
       <div class="muted">Aggregate intensity mean 1.99</div>
+    </div>
+
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">43.5%</td><td class="num">29,486</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">14.8%</td><td class="num">7,891</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">38.5%</td><td class="num">21,361</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">3.3%</td><td class="num">1,262</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
     </div>
 
     <div class="grid-2">

@@ -18,9 +18,31 @@
  *      distance on continuous nodes. Used only for the "top archetypes" panel,
  *      NOT for the vote prediction (which uses the raw respondent signature).
  *
- * Forbidden inputs: no `voteChoiceObserved`, no candidate thermometers,
- * no party-ID for vote prediction (mapper already scrubs these). Observed
- * vote-choice is carried through only for downstream comparison.
+ * Inputs intentionally passed to `predictVote` (the engine treats these as
+ * legitimate political signals, not vote-choice leaks):
+ *   - `partyID`: derived from the respondent's CCES `pid7` self-ID via the
+ *     `partyIDFromPid7` translator below. The CCES `pid7` column is the
+ *     respondent's *self-reported* party identification on a 7-point scale
+ *     (1=strong-D … 7=strong-R, 4=independent). The engine consumes it via
+ *     `partisanLoyaltyMultiplier` (post-1932 modifier) — this is *not*
+ *     observed vote choice; it's the same partisan-fusion / political-camp
+ *     signal already used by the mapper for `moralBoundaries.political_camp`
+ *     salience, just routed to the engine in addition to the mapper.
+ *   - `morBoundariesState`: compound moral-circle module per ADR-006. Loaded
+ *     from the mapper's `moralBoundaries` field and translated by
+ *     `morStateFromMapper` (mapper uses `political_camp`; engine uses
+ *     `political_tribe` — same semantics, name-shim only).
+ *
+ * Forbidden inputs (still scrubbed):
+ *   - `voteChoiceObserved` is NEVER read for prediction. It is passed
+ *     through the mapper output for downstream backtest comparison ONLY.
+ *   - Candidate thermometers (CC*_410a feeling thermometers etc.) are
+ *     never read by the mapper or runner.
+ *   - Validated turnout (`CL_E2016GVM`, `CL_2020gvm`, `vote_gen08`) is
+ *     never used to inform vote prediction. The mapper's engagement
+ *     formula does currently boost off `turnoutValidated` — that is a
+ *     known leak (Phase B'' deferred cleanup) but does NOT enter
+ *     vote-choice scoring downstream.
  */
 
 import type { ContinuousNodeId, NodeStatus } from "../types.js";
@@ -110,6 +132,17 @@ export interface CycleBacktestResult {
   };
 
   topArchetypes: Array<{ id: string; name: string; weight: number; share: number }>;
+
+  /**
+   * pid7 coverage — weighted shares of D / I / R / null routed to
+   * predictVote.partyID. Confirms whether partyID is reaching the
+   * engine before the partyID delta on a given cycle is interpretable.
+   * `null` means pid7 was missing / 8=Not Sure / out of range.
+   */
+  pid7Coverage: {
+    weighted: { D: number; I: number; R: number; null: number };
+    raw_n: { D: number; I: number; R: number; null: number };
+  };
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────
@@ -199,12 +232,23 @@ function partyBucket(party: string): Party {
 }
 
 /**
- * CCES `pid7` → engine `PartyID`. Standard mapping used across all cycles
- * (CCES has used the same 7-point + skip coding since 2008):
+ * Per-cycle column name for the 7-point party-ID variable. CCES 2012+
+ * standardized on `pid7`; CCES 2008 used `CC307a` (Pre-Election 7-point
+ * Party ID, coded from branching questions in CC307). Both columns share
+ * the same 7-point coding for values 1..7; 2008 uses 8=Not Sure /
+ * 98=Skipped / 99=Not Asked, while 2012+ uses 8=Not Sure / blank=missing.
+ * The translator below treats anything outside 1..7 as null.
+ */
+function pid7ColumnForYear(year: number): string {
+  return year === 2008 ? "CC307a" : "pid7";
+}
+
+/**
+ * CCES 7-point party-ID → engine `PartyID`. Standard mapping:
  *   1 strong D / 2 not-very D / 3 lean D       → "D"
  *   4 independent / no lean                    → "I"
  *   5 lean R / 6 not-very R / 7 strong R       → "R"
- *   8 not sure, missing, blank                 → null (pass nothing)
+ *   8 not sure, 98/99 skip-codes, missing      → null (pass nothing)
  *
  * Treating leaners as their leaning party is the political-science
  * standard (leaners vote like partisans). Returning null skips the
@@ -352,6 +396,10 @@ export async function runCycleBacktest(
 
   const archetypeWeights: Record<string, number> = {};
 
+  // pid7 coverage tally.
+  const pidWeighted = { D: 0, I: 0, R: 0, "null": 0 };
+  const pidRaw = { D: 0, I: 0, R: 0, "null": 0 };
+
   for (const r of respondents) {
     const sig = mapSurveyToPrism(r);
     const nodeSig = signatureToNodeSig(sig);
@@ -359,7 +407,10 @@ export async function runCycleBacktest(
     const engLevel = engagementLevelFromValue(sig.engagement.value);
     const dominant = dominantContinuousNode(nodeSig);
 
-    const partyID = partyIDFromPid7(r.rawVarPayload["pid7"]);
+    const partyID = partyIDFromPid7(r.rawVarPayload[pid7ColumnForYear(r.year)]);
+    const pidKey = (partyID === "D" || partyID === "I" || partyID === "R") ? partyID : "null";
+    pidWeighted[pidKey] += r.weight;
+    pidRaw[pidKey] += 1;
     const prediction = predictVote(
       nodeSig,
       candidates,
@@ -560,5 +611,11 @@ export async function runCycleBacktest(
       mean: statsSummary(engStats).mean,
     },
     topArchetypes,
+    pid7Coverage: {
+      weighted: totalWeight > 0
+        ? { D: pidWeighted.D / totalWeight, I: pidWeighted.I / totalWeight, R: pidWeighted.R / totalWeight, "null": pidWeighted["null"] / totalWeight }
+        : { D: 0, I: 0, R: 0, "null": 0 },
+      raw_n: { ...pidRaw },
+    },
   };
 }

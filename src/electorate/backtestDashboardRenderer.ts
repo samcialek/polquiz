@@ -272,6 +272,20 @@ function renderCycle(c: CycleBacktestResult): string {
       <div class="muted">Aggregate intensity mean ${fixed(c.intensityMean)}</div>
     </div>
 
+    <div class="panel">
+      <h3>pid7 coverage (weighted shares — confirms partyID is reaching the engine)</h3>
+      <table class="kv">
+        <thead><tr><th>Bucket</th><th class="num">Weighted share</th><th class="num">Raw n</th></tr></thead>
+        <tbody>
+          <tr><td>D (pid7 1–3)</td><td class="num">${pp(c.pid7Coverage.weighted.D)}</td><td class="num">${c.pid7Coverage.raw_n.D.toLocaleString()}</td></tr>
+          <tr><td>I (pid7 4)</td><td class="num">${pp(c.pid7Coverage.weighted.I)}</td><td class="num">${c.pid7Coverage.raw_n.I.toLocaleString()}</td></tr>
+          <tr><td>R (pid7 5–7)</td><td class="num">${pp(c.pid7Coverage.weighted.R)}</td><td class="num">${c.pid7Coverage.raw_n.R.toLocaleString()}</td></tr>
+          <tr><td>null (pid7 missing / 8 / out of range)</td><td class="num">${pp(c.pid7Coverage.weighted["null"])}</td><td class="num">${c.pid7Coverage.raw_n["null"].toLocaleString()}</td></tr>
+        </tbody>
+      </table>
+      <div class="muted">If D + I + R is below ~80% weighted, partyID is mostly null and the partyID delta on this cycle is not interpretable.</div>
+    </div>
+
     <div class="grid-2">
       <div class="panel">
         <h3>Engagement distribution</h3>
@@ -426,7 +440,12 @@ nav.toc a:hover { text-decoration: underline; }
 
   <div class="caveats">
     <h3>How to read these gaps</h3>
-    <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline is now: CCES → mapper (with CD/CU/MAT/ZS wired for all 5 cycles) → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. All five cycles now have non-fallback signal on the four core continuous nodes that matter for the partisan vote (MAT, CD, CU, ZS); 2008 no longer collapses to a deterministic 100/0 D/R split.</p>
+    <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline: CCES → mapper → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. Per-cycle real-signal coverage on the four core continuous-position nodes:</p>
+    <ul style="margin: 4px 0 12px 18px; font-size: 13px;">
+      <li><strong>2008:</strong> MAT / CD / ZS real signal; <strong>CU stays fallback</strong> — the CCES 2008 wave shipped no immigration-battery items, so cultural-uniformity / pluralism cannot be measured from this dataset. Structural data gap, not a wiring oversight.</li>
+      <li><strong>2012 / 2016 / 2020 / 2024:</strong> MAT / CD / CU / ZS all real signal.</li>
+    </ul>
+    <p style="margin: 6px 0;">2008 no longer collapses to the deterministic 100/0 D/R split observed at runner v0.</p>
     <p style="margin: 6px 0;"><strong>The "Pred D / Actual D" columns are shares among those who voted</strong> on each side. With abstention calibrated, the two voter pools are now of comparable size (~60% of electorate on both sides). Composition still differs: the predicted pool is sampled by demographic turnout probability; the actual pool filters by real individual decisions including civic interest, registration status, and circumstantial factors not captured in demographics alone.</p>
     <ul>
       <li><strong>2008:</strong> avg gap 12.2pp (was 31.4pp at runner v0). The 100/0 D/R blowout is gone — wired CC310 (abortion), CC316f (gay marriage ban — INVERTED direction vs SSM-favor framing), CC312/CC316b/CC316e/CC316g (MAT), CC311/CC316h/CC302 (ZS). 2008 still has no immigration items in CCES — CU stays fallback, structural data gap.</li>
