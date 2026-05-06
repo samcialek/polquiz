@@ -1666,51 +1666,39 @@ function deriveClassBoundary(payload: Record<string, string>): MoralBoundaryEntr
 }
 
 /**
- * Engagement scalar 0..10 from validated turnout + self-report turnout +
- * `newsint` (1=most of time, 2=some of time, 3=now and then, 4=hardly,
- * 7=don't know, 8/9=skipped).
+ * Engagement scalar 0..10 from `newsint` (CCES "How much of the time do
+ * you pay attention to politics and current affairs?": 1=most of time,
+ * 2=some of time, 3=now and then, 4=hardly, 7=don't know, 8/9=skipped).
  *
- * Validated turnout dominates when present (turnoutValidated === true).
- * Self-reported turnout contributes a smaller bump. newsint provides the
- * always-on scalar component.
+ * **Phase B'' de-leak (2026-05-06):** the previous version of this function
+ * boosted engagement based on `turnoutValidated` / `turnoutObserved`,
+ * which made engagement essentially a turnout-flag-in-disguise on cycles
+ * with clean validated turnout (CCES 2008). The Phase A diagnostic showed
+ * the resulting engagement bucket collapsed to a binary 0%/100% turnout
+ * split — confirming the leak. Removing those branches makes engagement
+ * an *independent* signal usable as a feature in any future turnout-
+ * prediction layer (Phase B' demographic model already runs without it;
+ * an upgrade that adds engagement as a co-feature can do so safely now).
+ *
+ * Trade-off: average engagement coverage drops because newsint is the
+ * sole real-signal input. Cycles with no newsint column (verified
+ * present in 2008/2012/2016/2020/2024 standard CCES content) fall back.
  */
 function deriveEngagement(r: WeightedSurveyRespondent): { value: number; provenance: NodeProvenance } {
   const ni = parseCodedNumber(r.rawVarPayload["newsint"]);
   const usableNi = ni !== null && ni >= 1 && ni <= 4;
-  const vars: string[] = [];
-  let base = 5.0;
-  let uncertainty: Uncertainty = "high";
-
-  if (usableNi) {
-    // 1→8.0, 2→6.5, 3→4.5, 4→2.5
-    base = ni === 1 ? 8.0 : ni === 2 ? 6.5 : ni === 3 ? 4.5 : 2.5;
-    vars.push("newsint");
-    uncertainty = "medium";
+  if (!usableNi) {
+    return {
+      value: 5.0,
+      provenance: { source: "fallback", vars: [], partyIdDerived: false, uncertainty: "high", notes: "no newsint signal (turnout-derived boosts removed in Phase B'' de-leak)" },
+    };
   }
-  if (r.turnoutValidated && r.turnoutObserved === true) {
-    base += 1.5;
-    vars.push("turnoutValidated");
-    uncertainty = "low";
-  } else if (r.turnoutValidated && r.turnoutObserved === false) {
-    base -= 2.0;
-    vars.push("turnoutValidated");
-    uncertainty = "low";
-  } else if (r.turnoutObserved === true) {
-    base += 0.7;
-    vars.push("turnoutObserved");
-    if (uncertainty === "high") uncertainty = "medium";
-  } else if (r.turnoutObserved === false) {
-    base -= 1.2;
-    vars.push("turnoutObserved");
-    if (uncertainty === "high") uncertainty = "medium";
-  }
-
-  const value = Math.max(0, Math.min(10, base));
+  // newsint code mapping: 1 (most) → 8.0; 2 (some) → 6.5; 3 (now and then) → 4.5;
+  // 4 (hardly) → 2.5. Same bucket midpoints used pre-de-leak.
+  const value = ni === 1 ? 8.0 : ni === 2 ? 6.5 : ni === 3 ? 4.5 : 2.5;
   return {
     value,
-    provenance: vars.length === 0
-      ? { source: "fallback", vars: [], partyIdDerived: false, uncertainty: "high", notes: "no newsint or turnout signal" }
-      : { source: "real_signal", vars, partyIdDerived: false, uncertainty },
+    provenance: { source: "real_signal", vars: ["newsint"], partyIdDerived: false, uncertainty: "medium" },
   };
 }
 

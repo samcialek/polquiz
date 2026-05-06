@@ -1,7 +1,7 @@
 {
   "schema_version": "v0.1",
-  "generated_at": "2026-05-05T19:44:08.211Z",
-  "elapsed_ms": 32840,
+  "generated_at": "2026-05-06T13:49:49.790Z",
+  "elapsed_ms": 30777,
   "pipeline": "cesBacktestLoader → surveyToPrismMapper (point estimate) → predictVote → weighted aggregate",
   "decisions": {
     "signature_representation": "posterior point estimate (E[posDist], E[salDist])",
@@ -165,8 +165,8 @@
           }
         },
         "engagement": {
-          "realSignal": 32800,
-          "fallback": 0
+          "realSignal": 0,
+          "fallback": 32800
         }
       },
       "continuousMarginals": {
@@ -311,10 +311,10 @@
       "intensityMean": 1.9664598128486153,
       "engagement": {
         "apolitical": 0,
-        "casual": 0.38113537057185115,
-        "engaged": 0.6188646294282156,
+        "casual": 0,
+        "engaged": 1,
         "highly_engaged": 0,
-        "mean": 5.1660262029990385
+        "mean": 5.000000000000619
       },
       "topArchetypes": [
         {
@@ -577,8 +577,8 @@
           }
         },
         "engagement": {
-          "realSignal": 53723,
-          "fallback": 812
+          "realSignal": 53308,
+          "fallback": 1227
         }
       },
       "continuousMarginals": {
@@ -722,11 +722,11 @@
       },
       "intensityMean": 2.065248826913326,
       "engagement": {
-        "apolitical": 0.00007243635475890789,
-        "casual": 0.1345468959660058,
-        "engaged": 0.4112442106899233,
-        "highly_engaged": 0.45413645698931515,
-        "mean": 7.053085083739391
+        "apolitical": 0,
+        "casual": 0.22562471865932318,
+        "engaged": 0.31998216541834545,
+        "highly_engaged": 0.45439311592233267,
+        "mean": 6.5465408402547185
       },
       "topArchetypes": [
         {
@@ -989,8 +989,8 @@
           }
         },
         "engagement": {
-          "realSignal": 63432,
-          "fallback": 1168
+          "realSignal": 62756,
+          "fallback": 1844
         }
       },
       "continuousMarginals": {
@@ -1134,11 +1134,11 @@
       },
       "intensityMean": 1.8317177805816167,
       "engagement": {
-        "apolitical": 0.00004397745204265329,
-        "casual": 0.12815111177832741,
-        "engaged": 0.25136423418368237,
-        "highly_engaged": 0.6204406765859525,
-        "mean": 7.589814844746597
+        "apolitical": 0,
+        "casual": 0.20213625081640654,
+        "engaged": 0.31651832040623445,
+        "highly_engaged": 0.4813454287773644,
+        "mean": 6.648901020485982
       },
       "topArchetypes": [
         {
@@ -1401,8 +1401,8 @@
           }
         },
         "engagement": {
-          "realSignal": 59625,
-          "fallback": 1375
+          "realSignal": 58915,
+          "fallback": 2085
         }
       },
       "continuousMarginals": {
@@ -1546,11 +1546,11 @@
       },
       "intensityMean": 2.2419828646429534,
       "engagement": {
-        "apolitical": 0.00009215273939638023,
-        "casual": 0.1526798354079255,
-        "engaged": 0.2531327932681843,
-        "highly_engaged": 0.5940952185844979,
-        "mean": 7.4265806250739015
+        "apolitical": 0,
+        "casual": 0.22431040411837788,
+        "engaged": 0.3196229679325002,
+        "highly_engaged": 0.45606662794912883,
+        "mean": 6.483579018572783
       },
       "topArchetypes": [
         {
@@ -1813,8 +1813,8 @@
           }
         },
         "engagement": {
-          "realSignal": 58850,
-          "fallback": 1150
+          "realSignal": 58522,
+          "fallback": 1478
         }
       },
       "continuousMarginals": {
@@ -1958,11 +1958,11 @@
       },
       "intensityMean": 1.9852182446400057,
       "engagement": {
-        "apolitical": 0.0006439664136563991,
-        "casual": 0.16103143134295464,
-        "engaged": 0.41346598556737557,
-        "highly_engaged": 0.4248586166760157,
-        "mean": 6.886825316072034
+        "apolitical": 0,
+        "casual": 0.24940528352155894,
+        "engaged": 0.3231117105007584,
+        "highly_engaged": 0.4274830059776866,
+        "mean": 6.400199516084756
       },
       "topArchetypes": [
         {
