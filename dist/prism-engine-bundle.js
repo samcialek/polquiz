@@ -8852,6 +8852,30 @@ var PrismEngine = (() => {
     }
     return false;
   }
+  var MORAL_CIRCLE_SCOPE_QUESTION_MAP = {
+    232: "national",
+    233: "religious",
+    234: "ethnic_racial",
+    235: "class",
+    236: "gender",
+    237: "sexual",
+    238: "ideological",
+    239: "political_camp"
+  };
+  function passesMoralCircleScopeGate(state, q) {
+    const scope = MORAL_CIRCLE_SCOPE_QUESTION_MAP[q.id];
+    if (!scope) return true;
+    const aff = state.moralCircle?.affinity;
+    if (!aff) return true;
+    const universal = aff.universalAffinity;
+    const scoped = aff.scopedAffinities[scope];
+    if (scoped === null || scoped === void 0) {
+      if (universal >= 80) return false;
+      return true;
+    }
+    if (scoped + 5 <= universal) return false;
+    return true;
+  }
   function selectNextQuestionEIG(state, available, questionsById) {
     const baseEligible = available.filter(
       (q) => !(q.id in state.answers) && isQuestionEligible(state, q)
@@ -8859,7 +8883,7 @@ var PrismEngine = (() => {
     if (!baseEligible.length) return null;
     const topK = new Set(getTopSalientNodes(state));
     const eligible = baseEligible.filter(
-      (q) => passesSalienceFloorGate(state, q) && passesTouchCapFilter(state, q, questionsById, topK)
+      (q) => passesSalienceFloorGate(state, q) && passesTouchCapFilter(state, q, questionsById, topK) && passesMoralCircleScopeGate(state, q)
     );
     if (!eligible.length) return null;
     const FORCED_COVERAGE_PROBES = [
