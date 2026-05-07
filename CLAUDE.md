@@ -35,13 +35,17 @@ Organized into clusters. Moral circle is a compound module (universal baseline +
 | ONT_H | Human Malleability | continuous | 1-5 |
 | ONT_S | System Ontology | continuous | 1-5 |
 
-### IDENTITY — Moral Circle Module (ADR-007)
-A compound module of **9 stored numbers** plus derived active-signal fields:
+### IDENTITY — Moral Circle Module (ADR-007, revised 2026-05-07)
+A compound module of **7 stored numbers** plus derived active-signal fields:
 - `universalAffinity` (0–100) — baseline moral concern for any human being.
-- 8 scoped affinities (0–100, or null for "not meaningful to me"): `national`, `religious`, `ethnic_racial`, `class`, `gender`, `sexual`, `ideological`, `political_camp`.
+- 6 scoped affinities (0–100, or null for "not meaningful to me"): `national`, `religious`, `ethnic_racial`, `class`, `gender`, `ideological`.
 - Derived: `excessAffinity[g] = max(0, scopedAffinity[g] − universalAffinity)`. Only excess drives matching, IDP routing, and candidate compare.
 - A scope is **active** only when its scopedAffinity exceeds the universal baseline. A respondent with high universal and high scoped on a single group has zero excess — same caring level, no in-group bias.
 - Membership is a separate axis (`Membership` interface). Affinity says "this scope is morally loaded for me"; membership says which concrete in-group within that scope. Identical excess routes to opposite IDP archetypes when membership differs.
+
+**Scope-set revision (2026-05-07):** the original 8-scope set was reduced to 6.
+- `sexual` dropped — folded into `gender`. LGBTQ Voter (archetype 144) routes via gender excess + `demo_lgbtq=yes` lock-and-key (legacy ADR-006 approach).
+- `political_camp` merged into `ideological`. Both captured the same partisan-in-group dimension; the broader name (`ideological`) survives.
 
 ### SELF — Engagement
 | Node | Full Name | Type | Scale |
@@ -73,7 +77,7 @@ At the **archetype level**, each archetype is defined by its position (pos 1-5) 
 - **Live quiz bank**: representative bank now includes the moral-circle calibration battery (Q230 universal_baseline_humanity, Q231 universal_baseline_stranger, Q232–Q239 8 scoped affinity probes) plus existing ~74 belief-axis questions. Live browser quiz adaptively selects ~22–35 per respondent (`shouldStopEIG`, `selectorEIG.ts`). Selector skips Q232-Q239 scope probes when universalAffinity is high enough that the scope can't realistically produce excess.
 - **6 EPS categories**, **6 AES categories**
 - **6 identity-primary archetypes** (IDs 141-146: Black Voter, White Grievance, Evangelical, LGBTQ, Feminist, Male Grievance). IDP gate uses ADR-007 thresholds: `excess[scope] >= 20 && scoped >= 70 && universal <= 75 && intensity03 >= 1.2`.
-- **8 moral-circle scoped affinities** (national, religious, ethnic_racial, class, gender, sexual, ideological, political_camp) + universal baseline = 9 stored numbers per respondent.
+- **6 moral-circle scoped affinities** (national, religious, ethnic_racial, class, gender, ideological) + universal baseline = 7 stored numbers per respondent. Reduced from 8 scopes on 2026-05-07: `sexual` folded into `gender`; `political_camp` merged into `ideological`.
 - **TRB anchor (legacy 9-category)**: still present (`national, ideological, religious, class, ethnic_racial, gender, sexual, global, mixed_none`) for ADR-006 fallback paths. Superseded by moralCircle scopedAffinities.
 
 ## Selector / EIG Testing Split

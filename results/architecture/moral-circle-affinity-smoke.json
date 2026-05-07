@@ -1,8 +1,8 @@
 {
   "adr": "ADR-007",
   "stage": "B-E (additive scaffolding)",
-  "generatedAt": "2026-05-07T19:36:05.270Z",
-  "scopeCount": 8,
+  "generatedAt": "2026-05-07T23:16:18.419Z",
+  "scopeCount": 6,
   "reportingThreshold": 5,
   "priorCaps": {
     "direct_battery": 1,
@@ -19,9 +19,9 @@
   "failed": 0,
   "cases": [
     {
-      "name": "9_stored_values_present",
+      "name": "7_stored_values_present",
       "passed": true,
-      "detail": "universal + 8 scoped = 9 stored values"
+      "detail": "universal + 6 scoped = 7 stored values"
     },
     {
       "name": "excess_formula_and_active_set",
@@ -36,7 +36,7 @@
     {
       "name": "null_scoped_zero_excess_and_legacy_coercion",
       "passed": true,
-      "detail": "null→excess=0; coerced religious/sexual=70/70 (universal=70); gender raw passes through 90"
+      "detail": "null→excess=0; coerced religious/class=70/70 (universal=70); gender raw passes through 90"
     },
     {
       "name": "l2_intensity_math",
@@ -64,14 +64,14 @@
       "detail": "cap=0 allowed=false rejection=no_route"
     },
     {
-      "name": "pf_political_camp_with_cap",
+      "name": "pf_ideological_with_cap",
       "passed": true,
       "detail": "noSal value=75 weight=0.25; withSal value=84 weight=0.25; overcap clamp=0.25"
     },
     {
       "name": "trb_anchor_scoped_routing",
       "passed": true,
-      "detail": "religious(2.4)→religious val=80 w=0.3; ethnic_only→ethnic_racial w=0.12 (anchor-only cap < full); sexual(3)→100"
+      "detail": "religious(2.4)→religious val=80 w=0.3; ethnic_only→ethnic_racial w=0.12 (anchor-only cap < full); sexual(legacy)→gender val=100"
     },
     {
       "name": "trb_global_and_mixed_none_universal_only",
@@ -111,12 +111,12 @@
     {
       "name": "legacy_morBoundaryId_unchanged",
       "passed": true,
-      "detail": "legacy MorBoundaryId still has 7 entries incl political_tribe; new MoralCircleScope has 8 (separate, additive)"
+      "detail": "legacy MorBoundaryId still has 7 entries incl political_tribe; new MoralCircleScope has 6 (separate, additive)"
     },
     {
       "name": "battery_spec_shape",
       "passed": true,
-      "detail": "version=v0 A.target=universalAffinity B.rows=8 not_meaningful=not_meaningful_to_me"
+      "detail": "version=v0 A.target=universalAffinity B.rows=6 not_meaningful=not_meaningful_to_me"
     },
     {
       "name": "derive_clamps_inputs",
@@ -126,7 +126,7 @@
     {
       "name": "validation_missing_scope_key_fails",
       "passed": true,
-      "detail": "issues=scopedAffinities.political_camp: missing required scope key (incomplete 9-value storage shape)"
+      "detail": "issues=scopedAffinities.ideological: missing required scope key (incomplete 9-value storage shape)"
     },
     {
       "name": "validation_explicit_null_passes",
@@ -141,7 +141,7 @@
     {
       "name": "_echo_workorder_canonical_case",
       "passed": true,
-      "detail": "excess={\"national\":20,\"religious\":0,\"ethnic_racial\":0,\"class\":0,\"gender\":0,\"sexual\":0,\"ideological\":20,\"political_camp\":0} active=national,ideological l2=28.2843 i01=0.2828"
+      "detail": "excess={\"national\":20,\"religious\":0,\"ethnic_racial\":0,\"class\":0,\"gender\":0,\"ideological\":20} active=national,ideological l2=28.2843 i01=0.2828"
     }
   ]
 }

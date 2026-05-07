@@ -104,20 +104,12 @@ const SCOPED_ROW_LABELS: Record<MoralCircleScope, { rowLabel: string; shortLabel
     shortLabel: "economic class",
   },
   gender: {
-    rowLabel: "People who share my gender position or gender-linked identity.",
+    rowLabel: "People who share my gender or gender-linked identity (including LGBTQ status).",
     shortLabel: "gender group",
   },
-  sexual: {
-    rowLabel: "People who share my sexuality or family-life orientation.",
-    shortLabel: "sexuality / family-life",
-  },
   ideological: {
-    rowLabel: "People who share my core ideology or values.",
-    shortLabel: "ideological cohort",
-  },
-  political_camp: {
-    rowLabel: "People on my political side, party, movement, or camp.",
-    shortLabel: "political camp",
+    rowLabel: "People who share my core ideology, values, or political side.",
+    shortLabel: "ideological / political cohort",
   },
 };
 

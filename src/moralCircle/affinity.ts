@@ -18,16 +18,14 @@ import type {
   MoralCircleAffinity,
 } from "../types.js";
 
-/** Canonical scope ordering. The 8 scoped affinities. */
+/** Canonical scope ordering. The 6 scoped affinities. */
 export const MORAL_CIRCLE_SCOPES: readonly MoralCircleScope[] = [
   "national",
   "religious",
   "ethnic_racial",
   "class",
   "gender",
-  "sexual",
   "ideological",
-  "political_camp",
 ] as const;
 
 /** Practical activation threshold (points of excess) for UI/reporting/resolver gating. */

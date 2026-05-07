@@ -85,7 +85,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
   return out;
 }
 
-// ─── Case 1: 9 stored values ───────────────────────────────────────────────
+// ─── Case 1: 7 stored values (universal + 6 scopes; 6-scope revision) ──────
 
 {
   const input: MoralCircleAffinityInput = {
@@ -96,8 +96,8 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
   const scopedKeys = Object.keys(aff.scopedAffinities);
   const allScopesPresent = MORAL_CIRCLE_SCOPES.every((s) => s in aff.scopedAffinities);
   check(
-    "9_stored_values_present",
-    typeof aff.universalAffinity === "number" && allScopesPresent && scopedKeys.length === 8,
+    "7_stored_values_present",
+    typeof aff.universalAffinity === "number" && allScopesPresent && scopedKeys.length === 6,
     `universal + ${scopedKeys.length} scoped = ${1 + scopedKeys.length} stored values`,
   );
 }
@@ -113,9 +113,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       religious: 50,
       class: 40,
       gender: 30,
-      sexual: 20,
       ethnic_racial: 10,
-      political_camp: 0,
     }),
   };
   const aff = deriveMoralCircleAffinity(input);
@@ -143,9 +141,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 10,
       class: 50,
       gender: 60,
-      sexual: 20,
       ideological: 75,
-      political_camp: 40,
     }),
   };
   const aff = deriveMoralCircleAffinity(input);
@@ -164,27 +160,27 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
     universalAffinity: 70,
     scopedAffinities: fullScoped({
       religious: null,
-      sexual: null,
+      class: null,
       gender: 90, // active
     }),
   };
   const aff = deriveMoralCircleAffinity(input);
   const religiousExcess = aff.excessAffinities.religious;
-  const sexualExcess = aff.excessAffinities.sexual;
+  const classExcess = aff.excessAffinities.class;
   const genderExcess = aff.excessAffinities.gender;
   // legacy coercion: null should coerce to universalAffinity (70), not 0
   const coercedReligious = coerceScopedAffinityForLegacy(aff.scopedAffinities.religious, aff.universalAffinity);
-  const coercedSexual = coerceScopedAffinityForLegacy(aff.scopedAffinities.sexual, aff.universalAffinity);
+  const coercedClass = coerceScopedAffinityForLegacy(aff.scopedAffinities.class, aff.universalAffinity);
   const coercedGender = coerceScopedAffinityForLegacy(aff.scopedAffinities.gender, aff.universalAffinity);
   check(
     "null_scoped_zero_excess_and_legacy_coercion",
     religiousExcess === 0 &&
-      sexualExcess === 0 &&
+      classExcess === 0 &&
       genderExcess === 20 &&
       coercedReligious === 70 &&
-      coercedSexual === 70 &&
+      coercedClass === 70 &&
       coercedGender === 90,
-    `null→excess=0; coerced religious/sexual=${coercedReligious}/${coercedSexual} (universal=70); gender raw passes through ${coercedGender}`,
+    `null→excess=0; coerced religious/class=${coercedReligious}/${coercedClass} (universal=70); gender raw passes through ${coercedGender}`,
   );
 }
 
@@ -258,9 +254,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: null,
       class: 50,
       gender: 50,
-      sexual: 50,
       ideological: 50,
-      political_camp: 50,
     } as MoralCircleScopedAffinities,
   });
   const out_of_range_caught =
@@ -309,7 +303,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
   );
 }
 
-// ─── Case 10: PF → political_camp respects cap ─────────────────────────────
+// ─── Case 10: PF → ideological respects cap (was political_camp pre-merge) ─
 
 {
   const noSal = convertLegacyPfToPoliticalCampPrior({ expectedPosition15: 4 });
@@ -317,26 +311,27 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
   const overcap = convertLegacyPfToPoliticalCampPrior({ expectedPosition15: 4, sourceWeight: 5.0 });
   const ok =
     noSal.kind === "scoped" &&
-    noSal.scope === "political_camp" &&
+    noSal.scope === "ideological" &&
     noSal.value === pos15ToAffinity100(4) &&
     noSal.weight <= MORAL_CIRCLE_PRIOR_CAPS.legacy_pf &&
     withSal.kind === "scoped" &&
-    withSal.scope === "political_camp" &&
+    withSal.scope === "ideological" &&
     withSal.weight <= MORAL_CIRCLE_PRIOR_CAPS.legacy_pf &&
     overcap.kind === "scoped" &&
     overcap.weight === MORAL_CIRCLE_PRIOR_CAPS.legacy_pf;
   check(
-    "pf_political_camp_with_cap",
+    "pf_ideological_with_cap",
     ok,
     `noSal value=${noSal.kind === "scoped" ? noSal.value : "?"} weight=${noSal.weight}; withSal value=${withSal.kind === "scoped" ? withSal.value : "?"} weight=${withSal.weight}; overcap clamp=${overcap.weight}`,
   );
 }
 
-// ─── Case 11: TRB anchor scoped routing ────────────────────────────────────
+// ─── Case 11: TRB anchor scoped routing (sexual folds into gender) ─────────
 
 {
   const religious = convertLegacyTrbAnchorToMoralCirclePrior({ anchor: "religious", expectedSalience03: 2.4 });
   const ethnicAnchorOnly = convertLegacyTrbAnchorToMoralCirclePrior({ anchor: "ethnic_racial" });
+  // Legacy `sexual` anchor folds to `gender` scope under the 6-scope model.
   const sexual = convertLegacyTrbAnchorToMoralCirclePrior({ anchor: "sexual", expectedSalience03: 3 });
   const ok =
     religious.kind === "scoped" &&
@@ -347,12 +342,12 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
     // anchor-only must be capped at less than full scope cap
     ethnicAnchorOnly.weight < MORAL_CIRCLE_PRIOR_CAPS.legacy_trb_anchor_clear_scope &&
     sexual.kind === "scoped" &&
-    sexual.scope === "sexual" &&
+    sexual.scope === "gender" &&
     sexual.value === salience03ToAffinity100(3);
   check(
     "trb_anchor_scoped_routing",
     ok,
-    `religious(2.4)→${religious.kind === "scoped" ? religious.scope : "?"} val=${religious.kind === "scoped" ? religious.value : "?"} w=${religious.kind === "scoped" ? religious.weight : "?"}; ethnic_only→${ethnicAnchorOnly.kind === "scoped" ? ethnicAnchorOnly.scope : "?"} w=${ethnicAnchorOnly.kind === "scoped" ? ethnicAnchorOnly.weight : "?"} (anchor-only cap < full); sexual(3)→${sexual.kind === "scoped" ? sexual.value : "?"}`,
+    `religious(2.4)→${religious.kind === "scoped" ? religious.scope : "?"} val=${religious.kind === "scoped" ? religious.value : "?"} w=${religious.kind === "scoped" ? religious.weight : "?"}; ethnic_only→${ethnicAnchorOnly.kind === "scoped" ? ethnicAnchorOnly.scope : "?"} w=${ethnicAnchorOnly.kind === "scoped" ? ethnicAnchorOnly.weight : "?"} (anchor-only cap < full); sexual(legacy)→${sexual.kind === "scoped" ? sexual.scope : "?"} val=${sexual.kind === "scoped" ? sexual.value : "?"}`,
   );
 }
 
@@ -434,9 +429,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 50,
       class: 50,
       gender: 50,
-      sexual: 50,
       ideological: 50,
-      political_camp: 50,
     }),
   });
   check(
@@ -457,9 +450,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 65,
       class: 80,
       gender: 70,
-      sexual: 65,
       ideological: 78,
-      political_camp: 70,
     }),
   });
   check(
@@ -480,9 +471,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 30,
       class: 60,
       gender: 45,
-      sexual: 40,
       ideological: 70,
-      political_camp: 55,
     }),
     responseTimeMs: 1500,
   });
@@ -494,9 +483,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 30,
       class: 60,
       gender: 45,
-      sexual: 40,
       ideological: 70,
-      political_camp: 55,
     }),
     responseTimeMs: 30000,
   });
@@ -560,9 +547,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       ethnic_racial: 50,
       class: 50,
       gender: 50,
-      sexual: 50,
       ideological: 50,
-      political_camp: 50,
     },
   });
   check(
@@ -583,20 +568,19 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
     ethnic_racial: 20,
     class: 50,
     gender: 50,
-    sexual: 30,
-    ideological: 60,
-    // political_camp deliberately omitted
+    // ideological deliberately omitted (was political_camp pre-revision; now
+    // ideological is the merged scope name).
   } as unknown as MoralCircleScopedAffinities;
   const issues = validateMoralCircleAffinityInput({
     universalAffinity: 50,
     scopedAffinities: partialScoped,
   });
-  const missingPoliticalCamp = issues.some(
-    (i) => i.field === "scopedAffinities.political_camp" && /missing required/.test(i.message),
+  const missingIdeological = issues.some(
+    (i) => i.field === "scopedAffinities.ideological" && /missing required/.test(i.message),
   );
   check(
     "validation_missing_scope_key_fails",
-    missingPoliticalCamp,
+    missingIdeological,
     `issues=${issues.map((i) => `${i.field}: ${i.message}`).join(" | ")}`,
   );
 }
@@ -610,9 +594,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
     ethnic_racial: null,
     class: 50,
     gender: null,
-    sexual: null,
     ideological: 60,
-    political_camp: 40,
   };
   const issues = validateMoralCircleAffinityInput({
     universalAffinity: 70,
@@ -634,9 +616,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
     ethnic_racial: null,
     class: null,
     gender: null,
-    sexual: null,
     ideological: null,
-    political_camp: null,
   };
   const flags = detectMoralCircleSatisficingFlags({
     universalAffinity: 90,
@@ -661,9 +641,7 @@ function fullScoped(values: Partial<MoralCircleScopedAffinities>): MoralCircleSc
       religious: 50,
       class: 40,
       gender: 30,
-      sexual: 20,
       ethnic_racial: 10,
-      political_camp: 0,
     }),
   };
   const aff = deriveMoralCircleAffinity(input);

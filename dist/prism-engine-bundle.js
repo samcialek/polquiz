@@ -60,7 +60,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "002",
@@ -79,7 +79,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "003",
@@ -98,7 +98,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "004",
@@ -119,7 +119,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 12, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 50 } }
     },
     {
       id: "005",
@@ -142,7 +142,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "006",
@@ -163,7 +163,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "007",
@@ -184,7 +184,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "008",
@@ -206,7 +206,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "010",
@@ -228,7 +228,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.12, religious: 0.1, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 19, religious: 10, ethnic_racial: 12, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 19, religious: 10, ethnic_racial: 12, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "011",
@@ -247,7 +247,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 26, political_camp: 25 } }
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } }
     },
     {
       id: "012",
@@ -274,7 +274,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, sexual: 10, ideological: 48, political_camp: 25 } }
+      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 48 } }
     },
     {
       id: "013",
@@ -293,7 +293,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 76, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 10, political_camp: 25 } }
+      moralCircle: { universalAffinity: 76, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 25 } }
     },
     {
       id: "014",
@@ -318,7 +318,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 10, political_camp: 25 } }
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 25 } }
     },
     {
       id: "015",
@@ -337,7 +337,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 57, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 62, gender: 9, sexual: 9, ideological: 26, political_camp: 25 } }
+      moralCircle: { universalAffinity: 57, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 62, gender: 9, ideological: 26 } }
     },
     {
       id: "016",
@@ -356,7 +356,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.34, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, sexual: 10, ideological: 34, political_camp: 25 } }
+      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 34 } }
     },
     {
       id: "017",
@@ -383,7 +383,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 26, political_camp: 25 } }
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } }
     },
     // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
@@ -405,7 +405,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 16, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
@@ -431,7 +431,7 @@ var PrismEngine = (() => {
         // blend pastoral+plainspoken
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 16, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
@@ -461,7 +461,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "022",
@@ -480,7 +480,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
@@ -505,7 +505,7 @@ var PrismEngine = (() => {
         // raised sal 1→2
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "024",
@@ -529,7 +529,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
@@ -553,7 +553,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "026",
@@ -572,7 +572,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "027",
@@ -595,7 +595,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "028",
@@ -619,7 +619,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "029",
@@ -638,7 +638,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "031",
@@ -665,7 +665,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "032",
@@ -691,7 +691,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "033",
@@ -710,7 +710,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 50 } }
     },
     // {
     // id: "034",
@@ -751,7 +751,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 75 } }
     },
     {
       id: "036",
@@ -770,7 +770,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "037",
@@ -789,7 +789,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "039",
@@ -810,7 +810,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "040",
@@ -829,7 +829,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "042",
@@ -850,7 +850,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "043",
@@ -871,7 +871,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
     },
     {
       id: "045",
@@ -892,7 +892,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.15, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 15, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 15, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "046",
@@ -913,7 +913,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     // {
     // id: "047",
@@ -956,7 +956,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.34, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 66, scopedAffinities: { national: 5, religious: 34, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 12, political_camp: 25 } }
+      moralCircle: { universalAffinity: 66, scopedAffinities: { national: 5, religious: 34, ethnic_racial: 5, class: 48, gender: 9, ideological: 25 } }
     },
     {
       id: "049",
@@ -977,7 +977,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "050",
@@ -996,7 +996,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "051",
@@ -1015,7 +1015,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
     },
     {
       id: "053",
@@ -1034,7 +1034,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "054",
@@ -1054,7 +1054,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "056",
@@ -1082,7 +1082,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
     },
     {
       id: "057",
@@ -1101,7 +1101,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "059",
@@ -1121,7 +1121,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "060",
@@ -1143,7 +1143,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "061",
@@ -1162,7 +1162,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "062",
@@ -1181,7 +1181,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "063",
@@ -1200,7 +1200,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
     // {
@@ -1248,7 +1248,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "067",
@@ -1272,7 +1272,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 11, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "069",
@@ -1291,7 +1291,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "070",
@@ -1319,7 +1319,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "071",
@@ -1343,7 +1343,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 24, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "072",
@@ -1369,7 +1369,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.2, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 20, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 20, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "073",
@@ -1391,7 +1391,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.11, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 11, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 11, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "074",
@@ -1410,7 +1410,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "076",
@@ -1429,7 +1429,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.18, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 18, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 18, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "077",
@@ -1448,7 +1448,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.19, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 19, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "078",
@@ -1467,7 +1467,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "079",
@@ -1494,7 +1494,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
     },
     // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
@@ -1523,7 +1523,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 81, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 75 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 81, class: 5, gender: 10, ideological: 75 } }
     },
     {
       id: "082",
@@ -1545,7 +1545,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 48, ethnic_racial: 36, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 48, ethnic_racial: 36, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "083",
@@ -1571,7 +1571,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "084",
@@ -1593,7 +1593,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 34, scopedAffinities: { national: 95, religious: 91, ethnic_racial: 67, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 75 } }
+      moralCircle: { universalAffinity: 34, scopedAffinities: { national: 95, religious: 91, ethnic_racial: 67, class: 5, gender: 10, ideological: 75 } }
     },
     {
       id: "085",
@@ -1615,7 +1615,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.26, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 24, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "086",
@@ -1639,7 +1639,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 36, religious: 38, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 36, religious: 38, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "087",
@@ -1661,7 +1661,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "088",
@@ -1686,7 +1686,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 22, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 22, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "089",
@@ -1710,7 +1710,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 38, ethnic_racial: 36, class: 5, gender: 12, sexual: 12, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 38, ethnic_racial: 36, class: 5, gender: 12, ideological: 75 } }
     },
     {
       id: "090",
@@ -1731,7 +1731,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.53, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 53, class: 5, gender: 12, sexual: 12, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 53, class: 5, gender: 12, ideological: 75 } }
     },
     {
       id: "091",
@@ -1750,7 +1750,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.19, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 29, ethnic_racial: 19, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 29, ethnic_racial: 19, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "092",
@@ -1769,7 +1769,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 48, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 48, class: 5, gender: 10, ideological: 100 } }
     },
     {
       id: "094",
@@ -1796,7 +1796,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "095",
@@ -1815,7 +1815,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "097",
@@ -1834,7 +1834,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
     },
     {
       id: "098",
@@ -1853,7 +1853,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.16, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 16, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 16, class: 5, gender: 6, ideological: 25 } }
     },
     {
       id: "099",
@@ -1872,7 +1872,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.38, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 63, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 38, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
+      moralCircle: { universalAffinity: 63, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 38, gender: 7, ideological: 50 } }
     },
     {
       id: "100",
@@ -1891,7 +1891,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.72, ideological: 0.76, gender: 0.19, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 100, class: 72, gender: 19, sexual: 19, ideological: 76, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 100, class: 72, gender: 19, ideological: 100 } }
     },
     {
       id: "101",
@@ -1910,7 +1910,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 26, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 26, class: 5, gender: 7, ideological: 100 } }
     },
     {
       id: "103",
@@ -1929,7 +1929,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 47, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 37, class: 41, gender: 9, sexual: 9, ideological: 48, political_camp: 75 } }
+      moralCircle: { universalAffinity: 47, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 37, class: 41, gender: 9, ideological: 75 } }
     },
     {
       id: "104",
@@ -1948,7 +1948,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 41, ethnic_racial: 26, class: 5, gender: 9, sexual: 9, ideological: 48, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 41, ethnic_racial: 26, class: 5, gender: 9, ideological: 100 } }
     },
     {
       id: "105",
@@ -1967,7 +1967,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.76, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 76, class: 5, gender: 10, sexual: 10, ideological: 62, political_camp: 75 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 76, class: 5, gender: 10, ideological: 75 } }
     },
     {
       id: "106",
@@ -1986,7 +1986,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
       },
       morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 58, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 58, class: 5, gender: 9, ideological: 100 } }
     },
     {
       id: "107",
@@ -2007,7 +2007,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 22, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 22, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } }
     },
     {
       id: "108",
@@ -2026,7 +2026,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.55, 0.2, 0.05], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
     },
     {
       id: "109",
@@ -2045,7 +2045,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 25 } }
     },
     {
       id: "110",
@@ -2064,7 +2064,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } }
     },
     {
       id: "111",
@@ -2083,7 +2083,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "112",
@@ -2102,7 +2102,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "113",
@@ -2123,7 +2123,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.1, 0.75, 0.07], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 12, class: 5, gender: 6, ideological: 25 } }
     },
     {
       id: "114",
@@ -2142,7 +2142,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.7, 0.15], sal: 2 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 3 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
     },
     {
       id: "115",
@@ -2163,7 +2163,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "116",
@@ -2183,7 +2183,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "117",
@@ -2202,7 +2202,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "118",
@@ -2221,7 +2221,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
     },
     {
       id: "119",
@@ -2240,7 +2240,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "120",
@@ -2259,7 +2259,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
     },
     {
       id: "121",
@@ -2278,7 +2278,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "122",
@@ -2298,7 +2298,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "124",
@@ -2317,7 +2317,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "125",
@@ -2336,7 +2336,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
     },
     {
       id: "126",
@@ -2355,7 +2355,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } }
     },
     {
       id: "127",
@@ -2374,7 +2374,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 95, religious: 34, ethnic_racial: 5, class: 5, gender: 10, sexual: 10, ideological: 62, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 95, religious: 34, ethnic_racial: 5, class: 5, gender: 10, ideological: 100 } }
     },
     {
       id: "128",
@@ -2393,7 +2393,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 41, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 41, gender: 9, ideological: 75 } }
     },
     {
       id: "129",
@@ -2414,7 +2414,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } }
     },
     // MERGED into Duty Voter (ID 131) — 2026-04-01
     // {
@@ -2456,7 +2456,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "132",
@@ -2475,7 +2475,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 23, religious: 5, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 23, religious: 5, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } }
     },
     {
       id: "134",
@@ -2515,7 +2515,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.35, 0.2, 0.05, 0.1, 0.2, 0.1], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
     {
@@ -2541,7 +2541,7 @@ var PrismEngine = (() => {
         // FIX: Disruptive = visionary, not statesman
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
     },
     {
       id: "136",
@@ -2563,7 +2563,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.26, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 9, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 9, class: 5, gender: 6, ideological: 25 } }
     },
     {
       id: "137",
@@ -2584,7 +2584,7 @@ var PrismEngine = (() => {
         // Prophetic visionary
       },
       morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 66, religious: 41, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 66, religious: 41, ethnic_racial: 5, class: 5, gender: 9, ideological: 75 } }
     },
     {
       id: "138",
@@ -2605,7 +2605,7 @@ var PrismEngine = (() => {
         // Experiential
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 92, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 0 } }
+      moralCircle: { universalAffinity: 92, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 12 } }
     },
     {
       id: "139",
@@ -2625,7 +2625,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
       },
       morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.12, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } }
     },
     {
       id: "140",
@@ -2652,7 +2652,7 @@ var PrismEngine = (() => {
         // Systematic
       },
       morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
     },
     // ═══════════════════════════════════════════════════════════════════════════
     // Identity-Primary Archetypes (141–146)
@@ -2692,7 +2692,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.35, ethnic_racial: 0.9, religious: 0.3, class: 0.4, ideological: 0.3, gender: 0.15, political_tribe: 0.65 }, intensity: 3 },
-      moralCircle: { universalAffinity: 45, scopedAffinities: { national: 35, religious: 35, ethnic_racial: 85, class: 50, gender: 30, sexual: 25, ideological: 50, political_camp: 60 } }
+      moralCircle: { universalAffinity: 45, scopedAffinities: { national: 35, religious: 35, ethnic_racial: 85, class: 50, gender: 30, ideological: 60 } }
     },
     {
       id: "142",
@@ -2711,7 +2711,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.65, ethnic_racial: 0.9, religious: 0.35, class: 0.3, ideological: 0.4, gender: 0.3, political_tribe: 0.7 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 75, religious: 50, ethnic_racial: 80, class: 45, gender: 35, sexual: 20, ideological: 55, political_camp: 55 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 75, religious: 50, ethnic_racial: 80, class: 45, gender: 35, ideological: 55 } }
     },
     {
       id: "143",
@@ -2730,7 +2730,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.85, class: 0.15, ideological: 0.4, gender: 0.3, political_tribe: 0.6 }, intensity: 3 },
-      moralCircle: { universalAffinity: 35, scopedAffinities: { national: 60, religious: 90, ethnic_racial: 30, class: 30, gender: 35, sexual: 15, ideological: 55, political_camp: 50 } }
+      moralCircle: { universalAffinity: 35, scopedAffinities: { national: 60, religious: 90, ethnic_racial: 30, class: 30, gender: 35, ideological: 55 } }
     },
     {
       id: "144",
@@ -2749,7 +2749,11 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.2, religious: 0.1, class: 0.2, ideological: 0.45, gender: 0.9, political_tribe: 0.55 }, intensity: 3 },
-      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 20, ethnic_racial: 35, class: 45, gender: 65, sexual: 85, ideological: 60, political_camp: 55 } }
+      // 6-scope LGBTQ Voter profile (2026-05-07): original `sexual: 85` was the
+      // primary IDP gate signal under the 8-scope model. With sexual folded into
+      // gender, gender takes that load (was 65 + 85 sexual → 85 merged).
+      // Routing: gender excess + demo_lgbtq=yes → LGBTQ Voter.
+      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 20, ethnic_racial: 35, class: 45, gender: 85, ideological: 60 } }
     },
     {
       id: "145",
@@ -2768,7 +2772,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.25, religious: 0.1, class: 0.3, ideological: 0.5, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
-      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 25, ethnic_racial: 40, class: 50, gender: 85, sexual: 55, ideological: 65, political_camp: 50 } }
+      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 25, ethnic_racial: 40, class: 50, gender: 85, ideological: 65 } }
     },
     {
       id: "146",
@@ -2787,7 +2791,7 @@ var PrismEngine = (() => {
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
       },
       morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.4, religious: 0.25, class: 0.25, ideological: 0.45, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 60, religious: 35, ethnic_racial: 45, class: 50, gender: 80, sexual: 30, ideological: 55, political_camp: 50 } }
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 60, religious: 35, ethnic_racial: 45, class: 50, gender: 80, ideological: 55 } }
     }
   ];
 
@@ -3178,13 +3182,16 @@ var PrismEngine = (() => {
         // Each highly-ranked identity boosts the matching scoped affinity to
         // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
         // Battery B scale). Below-the-fold ranks get no scoped evidence.
+        // Per 2026-05-07 6-scope revision: sexual_identity row folded into
+        // gender_identity (legacy `sexual` anchor → gender scope; LGBTQ Voter
+        // routes via gender excess + demo_lgbtq).
         national_identity: { trbAnchor: { national: 1 }, moralCircle: { scopedAffinities: { national: 70 } } },
         ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
         religious_identity: { trbAnchor: { religious: 1 }, moralCircle: { scopedAffinities: { religious: 70 } } },
         class_identity: { trbAnchor: { class: 1 }, moralCircle: { scopedAffinities: { class: 70 } } },
         ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
         gender_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
-        sexual_identity: { trbAnchor: { sexual: 1 }, moralCircle: { scopedAffinities: { sexual: 70 } } },
+        sexual_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
         // global_citizen: universalist signal — boosts universalAffinity
         // rather than any scoped affinity.
         global_citizen: { trbAnchor: { global: 1 }, moralCircle: { universal: 75 } }
@@ -7135,12 +7142,14 @@ var PrismEngine = (() => {
         much_more: { moralCircle: { scopedAffinities: { class: 90 } } }
       }
     },
+    // Q236 — gender scope (now includes sexuality/LGBTQ identity per the
+    // 6-scope model; LGBTQ Voter routes via gender excess + demo_lgbtq).
     {
       id: 236,
       stage: "stage2",
       section: "V",
       promptShort: "scoped_affinity_gender",
-      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender?",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender or gender-linked identity (including LGBTQ status)?",
       uiType: "single_choice",
       quality: 0.95,
       rewriteNeeded: false,
@@ -7155,32 +7164,16 @@ var PrismEngine = (() => {
         much_more: { moralCircle: { scopedAffinities: { gender: 90 } } }
       }
     },
-    {
-      id: 237,
-      stage: "stage2",
-      section: "V",
-      promptShort: "scoped_affinity_sexual",
-      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your sexuality or family-life orientation?",
-      uiType: "single_choice",
-      quality: 0.95,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
-      ],
-      optionEvidence: {
-        not_meaningful: { moralCircle: { scopedAffinities: { sexual: null } } },
-        less_than: { moralCircle: { scopedAffinities: { sexual: 30 } } },
-        about_same: { moralCircle: { scopedAffinities: { sexual: 50 } } },
-        somewhat_more: { moralCircle: { scopedAffinities: { sexual: 70 } } },
-        much_more: { moralCircle: { scopedAffinities: { sexual: 90 } } }
-      }
-    },
+    // Q238 — ideological scope (merged: ideology + political-side; the broader
+    // name survives since "I share their values" subsumes "I share their party").
+    // Q237 (sexual) and Q239 (political_camp) dropped per 2026-05-07 6-scope
+    // revision.
     {
       id: 238,
       stage: "stage2",
       section: "V",
       promptShort: "scoped_affinity_ideological",
-      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology or values?",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology, values, or political side?",
       uiType: "single_choice",
       quality: 0.95,
       rewriteNeeded: false,
@@ -7193,26 +7186,6 @@ var PrismEngine = (() => {
         about_same: { moralCircle: { scopedAffinities: { ideological: 50 } } },
         somewhat_more: { moralCircle: { scopedAffinities: { ideological: 70 } } },
         much_more: { moralCircle: { scopedAffinities: { ideological: 90 } } }
-      }
-    },
-    {
-      id: 239,
-      stage: "stage2",
-      section: "V",
-      promptShort: "scoped_affinity_political_camp",
-      promptFull: "Compared with people in general, how much extra moral concern do you feel for people on your political side, party, movement, or camp?",
-      uiType: "single_choice",
-      quality: 0.95,
-      rewriteNeeded: false,
-      touchProfile: [
-        { node: "PF", kind: "continuous", role: "position", weight: 0.1, touchType: "political_camp_legacy_proxy" }
-      ],
-      optionEvidence: {
-        not_meaningful: { moralCircle: { scopedAffinities: { political_camp: null } } },
-        less_than: { moralCircle: { scopedAffinities: { political_camp: 30 } } },
-        about_same: { moralCircle: { scopedAffinities: { political_camp: 50 } } },
-        somewhat_more: { moralCircle: { scopedAffinities: { political_camp: 70 } } },
-        much_more: { moralCircle: { scopedAffinities: { political_camp: 90 } } }
       }
     }
   ];
@@ -7396,9 +7369,7 @@ var PrismEngine = (() => {
     "ethnic_racial",
     "class",
     "gender",
-    "sexual",
-    "ideological",
-    "political_camp"
+    "ideological"
   ];
   function moralCircleDistance(state, archetype) {
     const uDiff = Math.abs(state.universalAffinity - archetype.universalAffinity) / 100;
@@ -7743,9 +7714,7 @@ var PrismEngine = (() => {
       "ethnic_racial",
       "class",
       "gender",
-      "sexual",
-      "ideological",
-      "political_camp"
+      "ideological"
     ];
     const scopedAffinities = {};
     for (const scope of SCOPES) {
@@ -8402,7 +8371,7 @@ var PrismEngine = (() => {
       const respIntensity03 = state.moralCircle.affinity.intensity03;
       let archSumSq = 0;
       const archMc = archetype.moralCircle;
-      for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "sexual", "ideological", "political_camp"]) {
+      for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "ideological"]) {
         const v = archMc.scopedAffinities[scope];
         if (v === null || v === void 0) continue;
         const e = Math.max(0, v - archMc.universalAffinity);
@@ -8858,9 +8827,9 @@ var PrismEngine = (() => {
     234: "ethnic_racial",
     235: "class",
     236: "gender",
-    237: "sexual",
-    238: "ideological",
-    239: "political_camp"
+    // Q237 (sexual) and Q239 (political_camp) removed in 2026-05-07 6-scope
+    // revision. sexual folded into gender; political_camp merged into ideological.
+    238: "ideological"
   };
   function passesMoralCircleScopeGate(state, q) {
     const scope = MORAL_CIRCLE_SCOPE_QUESTION_MAP[q.id];
@@ -9049,9 +9018,7 @@ var PrismEngine = (() => {
     "ethnic_racial",
     "class",
     "gender",
-    "sexual",
-    "ideological",
-    "political_camp"
+    "ideological"
   ];
   function topExcessScope(affinity) {
     let best = null;
@@ -9095,11 +9062,6 @@ var PrismEngine = (() => {
         return "ideological";
       case "gender":
         return "gender";
-      case "sexual":
-        return "gender";
-      // legacy collapsed; new path uses scopedAnchor
-      case "political_camp":
-        return "political_tribe";
     }
   }
   function resolveIdentityPrimary(state, engagementLabel, demographics) {
@@ -9309,28 +9271,6 @@ var PrismEngine = (() => {
       };
     }
     const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
-    if (topScope === "sexual") {
-      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
-      if (lgbtq === "yes") {
-        return {
-          state: stateLabel,
-          label: "LGBTQ Voter",
-          confidence: passedActive ? "high" : "medium",
-          anchor: scopeToLegacyAnchor(topScope),
-          scopedAnchor: topScope,
-          reasonCodes: ["sexual_scope_excess", "lgbtq_demographic_match"],
-          gate
-        };
-      }
-      return {
-        state: "unresolved",
-        confidence: "low",
-        anchor: scopeToLegacyAnchor(topScope),
-        scopedAnchor: topScope,
-        reasonCodes: ["sexual_scope_excess", "missing_lgbtq_demographic"],
-        gate
-      };
-    }
     if (topScope === "ethnic_racial") {
       const race = typeof demographics?.demo_ethnicity === "string" ? demographics.demo_ethnicity : "";
       if (race === "black") {
@@ -12800,7 +12740,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - patrician, fireside chats, gravitas,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
@@ -12836,7 +12776,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Authentic - outsider, plain-spoken,
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
       }
     ]
   };
@@ -12876,7 +12816,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - commander-in-chief gravitas,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
@@ -12914,7 +12854,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - efficient manager image,
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.29, class: 0.05, ideological: 0.31, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 31, political_camp: 100 } }
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 43, class: 5, gender: 7, ideological: 100 } }
       }
     ]
   };
@@ -12954,7 +12894,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - "Give 'em hell Harry",
         morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } }
       },
       {
         name: "Dewey",
@@ -12989,7 +12929,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - dignified, above-the-fray,
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 12, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 12, class: 5, gender: 7, ideological: 75 } }
       },
       {
         name: "Thurmond",
@@ -13024,7 +12964,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - insurgent, defiant,
         morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
-        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 100, class: 5, gender: 19, sexual: 19, ideological: 34, political_camp: 50 } }
+        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 100, class: 5, gender: 19, ideological: 50 } }
       },
       {
         // Henry A. Wallace - Progressive Party (2.4%)
@@ -13068,7 +13008,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - "Century of the Common Man," prophetic rhetoric,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 },
-        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 26, political_camp: 0 } }
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 26 } }
       }
     ]
   };
@@ -13108,7 +13048,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - supreme commander, gravitas,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } }
       },
       {
         name: "Stevenson",
@@ -13148,7 +13088,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - eloquent idealist,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } }
       }
     ]
   };
@@ -13188,7 +13128,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - beloved grandfather-commander,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1.5 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } }
       },
       {
         // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
@@ -13225,7 +13165,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - nuclear test ban, "New America",
         morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } }
       }
     ]
   };
@@ -13265,7 +13205,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - projected elegance and gravitas,
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.5, class: 0.25, ideological: 0.35, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 50, ethnic_racial: 20, class: 25, gender: 10, sexual: 10, ideological: 35, political_camp: 50 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 50, ethnic_racial: 20, class: 25, gender: 10, ideological: 50 } },
         morMembership: { ethnic_racial: "white", religious: "Catholic", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
@@ -13301,7 +13241,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - tried to project gravitas (less successfully),
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
       }
     ]
   };
@@ -13341,7 +13281,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman (with pastoral southern touches),
         morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 29, religious: 5, ethnic_racial: 5, class: 62, gender: 10, sexual: 10, ideological: 43, political_camp: 100 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 29, religious: 5, ethnic_racial: 5, class: 62, gender: 10, ideological: 100 } }
       },
       {
         name: "Goldwater",
@@ -13376,7 +13316,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Authentic - spoke his mind regardless of consequences,
         morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 38, religious: 29, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 38, religious: 29, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } }
       }
     ]
   };
@@ -13416,7 +13356,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - projected authority,
         morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 44, religious: 26, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 44, religious: 26, ethnic_racial: 5, class: 5, gender: 9, ideological: 75 } }
       },
       {
         name: "Humphrey",
@@ -13451,7 +13391,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - idealistic rhetoric,
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } }
       },
       {
         // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
@@ -13492,7 +13432,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - combative, defiant,
         morBoundaries: { boundaries: { national: 0.6, ethnic_racial: 0.85, religious: 0.3, class: 0.2, ideological: 0.3, gender: 0.1, political_tribe: 0.7 }, intensity: 3 },
-        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 60, religious: 30, ethnic_racial: 85, class: 20, gender: 10, sexual: 10, ideological: 30, political_camp: 70 } },
+        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 60, religious: 30, ethnic_racial: 85, class: 20, gender: 10, ideological: 70 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "third" }
       }
     ]
@@ -13538,7 +13478,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - presidential, "peace with honor",
         morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, ideological: 75 } }
       },
       {
         name: "McGovern",
@@ -13580,7 +13520,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - idealistic moral appeal,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 50 } }
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 50 } }
       }
     ]
   };
@@ -13620,7 +13560,7 @@ var PrismEngine = (() => {
         AES: 2,
         // Pastoral - peanut farmer, small-town authenticity,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 29, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 29, gender: 7, ideological: 50 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
@@ -13656,7 +13596,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - steady, presidential,
         morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 20, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 100 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 20, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 100 } }
       }
     ]
   };
@@ -13696,7 +13636,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - "morning in America," transformative optimism,
         morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.2, ideological: 0.5, gender: 0.15, political_tribe: 0.6 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 20, gender: 15, sexual: 15, ideological: 50, political_camp: 60 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 20, gender: 15, ideological: 60 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" }
       },
       {
@@ -13732,7 +13672,7 @@ var PrismEngine = (() => {
         AES: 2,
         // Pastoral - but less effective,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 29, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 29, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
@@ -13768,7 +13708,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - intellectual, professorial,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
       }
     ]
   };
@@ -13808,7 +13748,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - peak "morning in America",
         morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.15, ideological: 0.5, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 15, gender: 15, sexual: 15, ideological: 50, political_camp: 65 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 15, gender: 15, ideological: 65 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" }
       },
       {
@@ -13849,7 +13789,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - tried to project gravitas but lacked charisma,
         morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } }
       }
     ]
   };
@@ -13889,7 +13829,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - patrician dignity,
         morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
@@ -13931,7 +13871,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - "competence not ideology",
         morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 75 } }
       }
     ]
   };
@@ -13971,7 +13911,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Authentic - "I feel your pain," personal connection,
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" }
       },
       {
@@ -14007,7 +13947,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - "résumé candidate",
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
@@ -14043,7 +13983,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - businessman with spreadsheets,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1.5 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 0 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, ideological: 7 } }
       }
     ]
   };
@@ -14083,7 +14023,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - presidential incumbent,
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" }
       },
       {
@@ -14119,7 +14059,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - WWII hero, tried for gravitas,
         morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 31, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 31, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 100 } }
       },
       {
         // Ross Perot - Reform Party (8.4%)
@@ -14158,7 +14098,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - businessman with spreadsheets,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 0 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, ideological: 7 } }
       }
     ]
   };
@@ -14198,7 +14138,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - wonkish, "lockbox",
         morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 75 } }
       },
       {
         name: "Bush",
@@ -14233,7 +14173,7 @@ var PrismEngine = (() => {
         AES: 2,
         // Pastoral - ranch, folksy, "guy you'd have a beer with",
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
@@ -14279,7 +14219,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Plainspoken - rumpled, sincere, no polish, refuses political theater,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
       }
     ]
   };
@@ -14319,7 +14259,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - "reporting for duty," patrician,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } }
       },
       {
         name: "Bush",
@@ -14354,7 +14294,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - war president, "bring 'em on",
         morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 16, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 16, class: 5, gender: 9, ideological: 100 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
@@ -14395,7 +14335,7 @@ var PrismEngine = (() => {
         AES: 5,
         // Visionary - "yes we can," transformative rhetoric,
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.15, class: 0.2, ideological: 0.4, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 20, class: 20, gender: 10, sexual: 10, ideological: 40, political_camp: 50 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 20, class: 20, gender: 10, ideological: 50 } },
         morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
@@ -14431,7 +14371,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Authentic - straight talk, personal honor,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } }
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } }
       }
     ]
   };
@@ -14476,7 +14416,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - presidential, above the fray,
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.25, religious: 0.15, class: 0.3, ideological: 0.45, gender: 0.15, political_tribe: 0.55 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 25, class: 30, gender: 15, sexual: 15, ideological: 45, political_camp: 55 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 25, class: 30, gender: 15, ideological: 55 } },
         morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
@@ -14515,7 +14455,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - business turnaround specialist,
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         morMembership: { ethnic_racial: "white", religious: "Mormon", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
@@ -14556,7 +14496,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - "counterpuncher," combative, dominant,
         morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.2, class: 0.15, ideological: 0.4, gender: 0.2, political_tribe: 0.85 }, intensity: 3 },
-        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 85, religious: 20, ethnic_racial: 60, class: 15, gender: 20, sexual: 20, ideological: 40, political_camp: 85 } },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 85, religious: 20, ethnic_racial: 60, class: 15, gender: 20, ideological: 85 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
@@ -14598,7 +14538,7 @@ var PrismEngine = (() => {
         AES: 0,
         // Statesman - projected competence, gravitas,
         morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.3, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.5, political_tribe: 0.7 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 30, class: 30, gender: 50, sexual: 50, ideological: 45, political_camp: 70 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 30, class: 30, gender: 50, ideological: 70 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" }
       },
       {
@@ -14634,7 +14574,7 @@ var PrismEngine = (() => {
         AES: 3,
         // Authentic - unpolished, mountain climber, casual,
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 0.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
       }
     ]
   };
@@ -14674,7 +14614,7 @@ var PrismEngine = (() => {
         AES: 2,
         // Pastoral - "Scranton Joe," empathy, personal loss,
         morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.2, religious: 0.2, class: 0.3, ideological: 0.4, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 45, religious: 20, ethnic_racial: 20, class: 30, gender: 15, sexual: 15, ideological: 40, political_camp: 65 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 45, religious: 20, ethnic_racial: 20, class: 30, gender: 15, ideological: 65 } },
         morMembership: { ethnic_racial: "white", religious: "Catholic", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
@@ -14710,7 +14650,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - "counterpuncher," grievance,
         morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.25, class: 0.15, ideological: 0.45, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 25, ethnic_racial: 60, class: 15, gender: 20, sexual: 20, ideological: 45, political_camp: 95 } },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 25, ethnic_racial: 60, class: 15, gender: 20, ideological: 95 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
@@ -14751,7 +14691,7 @@ var PrismEngine = (() => {
         AES: 4,
         // Fighter - "I am your retribution",
         morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.3, class: 0.2, ideological: 0.5, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
-        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 30, ethnic_racial: 60, class: 20, gender: 20, sexual: 20, ideological: 50, political_camp: 95 } },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 30, ethnic_racial: 60, class: 20, gender: 20, ideological: 95 } },
         morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
@@ -14787,7 +14727,7 @@ var PrismEngine = (() => {
         AES: 1,
         // Technocrat - policy-focused,
         morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.4, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.45, political_tribe: 0.65 }, intensity: 2.5 },
-        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 40, class: 30, gender: 45, sexual: 45, ideological: 45, political_camp: 65 } },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 40, class: 30, gender: 45, ideological: 65 } },
         morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" }
       }
     ]
@@ -17181,11 +17121,11 @@ var PrismEngine = (() => {
   }
   function pfEquivalentFromMoralCircle(affinity) {
     if (!affinity) return null;
-    const camp = affinity.scopedAffinities.political_camp;
-    if (camp === null || camp === void 0) return null;
-    const campN = Math.max(0, Math.min(100, camp)) / 100;
+    const ideo = affinity.scopedAffinities.ideological;
+    if (ideo === null || ideo === void 0) return null;
+    const ideoN = Math.max(0, Math.min(100, ideo)) / 100;
     const intensityFactor = Math.max(0, Math.min(1, affinity.intensity03 / 3));
-    return 1 + 4 * campN * intensityFactor;
+    return 1 + 4 * ideoN * intensityFactor;
   }
   function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
     if (electionYear < 1932) return 1;

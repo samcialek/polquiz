@@ -529,10 +529,16 @@ export interface RespondentState {
 // See `results/architecture/ADR-007-explicit-moral-circle-affinity.md`.
 
 /**
- * Eight scoped moral-circle affinities. Universal concern is stored separately
- * as `universalAffinity` and is the baseline; scoped values are not "one of
- * nine" — they are eight in-group magnitudes compared against the universal
- * baseline to derive excess.
+ * Six scoped moral-circle affinities. Universal concern is stored separately
+ * as `universalAffinity` and is the baseline; scoped values are six in-group
+ * magnitudes compared against the universal baseline to derive excess.
+ *
+ * Revision (2026-05-07): scope set reduced from 8 to 6.
+ *   - `sexual` dropped — folded back into `gender`. LGBTQ Voter routes via
+ *     gender excess + `demo_lgbtq` membership lock-and-key.
+ *   - `political_camp` merged into `ideological`. Both captured the same
+ *     partisan-in-group dimension; the broader name (`ideological`) survives
+ *     since "I share their values" subsumes "I share their party."
  */
 export type MoralCircleScope =
   | "national"
@@ -540,9 +546,7 @@ export type MoralCircleScope =
   | "ethnic_racial"
   | "class"
   | "gender"
-  | "sexual"
-  | "ideological"
-  | "political_camp";
+  | "ideological";
 
 /** Raw scoped-affinity map. `null` = "not meaningful to me", not zero. */
 export type MoralCircleScopedAffinities = Record<MoralCircleScope, number | null>;
@@ -639,7 +643,10 @@ export interface Membership {
   religious?: string | null;
   class?: string | null;
   gender?: string | null;
-  /** LGBTQ / family-life identity. New in ADR-007 (was `demo_lgbtq` only). */
-  sexual?: string | null;
+  /**
+   * Party-ID label. Field name retained for terminology consistency with
+   * external systems (Q200 party metadata). Maps onto the `ideological`
+   * scope under the merged 6-scope model.
+   */
   political_camp?: "D" | "R" | "independent" | "third" | "none" | string | null;
 }

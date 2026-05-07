@@ -394,7 +394,7 @@ function clamp01(x: number): number {
 
 const MORAL_CIRCLE_SCOPES_ORDER: readonly MoralCircleScope[] = [
   "national", "religious", "ethnic_racial", "class",
-  "gender", "sexual", "ideological", "political_camp",
+  "gender", "ideological",
 ] as const;
 
 /**

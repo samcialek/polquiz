@@ -36,12 +36,11 @@ function makeState(anchor: AnchorKind): RespondentState {
     ethnic_racial: anchor === "ethnic_racial" ? 90 : 25,
     class: 30,
     gender: 25,
-    sexual: 20,
     ideological: 35,
-    political_camp: 40,
   };
   // Compute excess and intensity inline to materialize a valid affinity.
-  const SCOPES = ["national","religious","ethnic_racial","class","gender","sexual","ideological","political_camp"] as const;
+  // 6-scope model (2026-05-07): sexual + political_camp removed.
+  const SCOPES = ["national","religious","ethnic_racial","class","gender","ideological"] as const;
   const excess = {} as Record<typeof SCOPES[number], number>;
   let sumSq = 0;
   for (const s of SCOPES) {

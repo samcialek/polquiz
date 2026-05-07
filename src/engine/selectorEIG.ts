@@ -396,15 +396,15 @@ function passesSalienceFloorGate(
 // (excess = max(0, scoped - universal); if universal is 90, only a "much_more"
 // answer at 90 even reaches zero excess). Skipping these saves quiz time for
 // universalist respondents — typical case for high-universal users.
-const MORAL_CIRCLE_SCOPE_QUESTION_MAP: Record<number, "national" | "religious" | "ethnic_racial" | "class" | "gender" | "sexual" | "ideological" | "political_camp"> = {
+const MORAL_CIRCLE_SCOPE_QUESTION_MAP: Record<number, "national" | "religious" | "ethnic_racial" | "class" | "gender" | "ideological"> = {
   232: "national",
   233: "religious",
   234: "ethnic_racial",
   235: "class",
   236: "gender",
-  237: "sexual",
+  // Q237 (sexual) and Q239 (political_camp) removed in 2026-05-07 6-scope
+  // revision. sexual folded into gender; political_camp merged into ideological.
   238: "ideological",
-  239: "political_camp",
 };
 
 /**

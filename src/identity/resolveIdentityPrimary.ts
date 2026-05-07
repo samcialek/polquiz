@@ -76,7 +76,7 @@ function expectedContinuous(state: RespondentState, nodeId: "ZS" | "CD" | "ONT_S
 
 const MORAL_CIRCLE_SCOPES_ORDER: readonly MoralCircleScope[] = [
   "national", "religious", "ethnic_racial", "class",
-  "gender", "sexual", "ideological", "political_camp",
+  "gender", "ideological",
 ] as const;
 
 /**
@@ -126,8 +126,6 @@ function scopeToLegacyAnchor(scope: MoralCircleScope): MorBoundaryId {
     case "class":          return "class";
     case "ideological":    return "ideological";
     case "gender":         return "gender";
-    case "sexual":         return "gender"; // legacy collapsed; new path uses scopedAnchor
-    case "political_camp": return "political_tribe";
   }
 }
 
@@ -409,30 +407,6 @@ function resolveViaMoralCircle(
   }
 
   const stateLabel: IdentityPrimaryState = passedDominant ? "dominant" : passedActive ? "active" : "latent";
-
-  // ── sexual scope → LGBTQ Voter (ADR-007: distinct from gender) ──────────
-  if (topScope === "sexual") {
-    const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
-    if (lgbtq === "yes") {
-      return {
-        state: stateLabel,
-        label: "LGBTQ Voter",
-        confidence: passedActive ? "high" : "medium",
-        anchor: scopeToLegacyAnchor(topScope),
-        scopedAnchor: topScope,
-        reasonCodes: ["sexual_scope_excess", "lgbtq_demographic_match"],
-        gate,
-      };
-    }
-    return {
-      state: "unresolved",
-      confidence: "low",
-      anchor: scopeToLegacyAnchor(topScope),
-      scopedAnchor: topScope,
-      reasonCodes: ["sexual_scope_excess", "missing_lgbtq_demographic"],
-      gate,
-    };
-  }
 
   // ── ethnic_racial → Black or White Grievance ────────────────────────────
   if (topScope === "ethnic_racial") {

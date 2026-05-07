@@ -121,13 +121,15 @@ export type MoralCircleLegacyPriorContribution =
 
 // ─── TRB_ANCHOR → moral-circle prior ───────────────────────────────────────
 
+// 6-scope mapping: legacy `sexual` anchor folds into `gender` (LGBTQ Voter
+// routes via gender excess + demo_lgbtq under the merged scope set).
 const TRB_ANCHOR_TO_SCOPE: Partial<Record<TrbAnchor, MoralCircleScope>> = {
   national: "national",
   religious: "religious",
   ethnic_racial: "ethnic_racial",
   class: "class",
   gender: "gender",
-  sexual: "sexual",
+  sexual: "gender",
   ideological: "ideological",
 };
 
@@ -247,12 +249,16 @@ export interface ConvertPfInput {
 }
 
 /**
- * Convert legacy PF (continuous position 1..5, optional salience 0..3) to a
- * `political_camp` scoped prior. ADR-007 §"PF to political_camp":
- *   politicalCampPrior = pos15ToAffinity100(pos)
- *   if salience known:  0.65 × pos-mapped + 0.35 × sal-mapped
+ * Convert legacy PF (continuous position 1..5, optional salience 0..3) to an
+ * `ideological` scoped prior. Originally routed to `political_camp`; under the
+ * 2026-05-07 6-scope revision, political_camp folded into ideological.
+ *
+ *   ideologicalPrior = pos15ToAffinity100(pos)
+ *   if salience known: 0.65 × pos-mapped + 0.35 × sal-mapped
  *
  * Cap at MORAL_CIRCLE_PRIOR_CAPS.legacy_pf (0.25).
+ *
+ * Function name retained for API stability; semantics route to ideological.
  */
 export function convertLegacyPfToPoliticalCampPrior(
   input: ConvertPfInput,
@@ -262,7 +268,7 @@ export function convertLegacyPfToPoliticalCampPrior(
 
   const posPart = pos15ToAffinity100(input.expectedPosition15);
   let value = posPart;
-  let note = `PF pos=${input.expectedPosition15} → political_camp prior (pos-only)`;
+  let note = `PF pos=${input.expectedPosition15} → ideological prior (pos-only; legacy political_camp folded into ideological per 2026-05-07 6-scope merge)`;
 
   if (
     typeof input.expectedSalience03 === "number" &&
@@ -270,12 +276,12 @@ export function convertLegacyPfToPoliticalCampPrior(
   ) {
     const salPart = salience03ToAffinity100(input.expectedSalience03);
     value = Math.round(0.65 * posPart + 0.35 * salPart);
-    note = `PF pos=${input.expectedPosition15} sal=${input.expectedSalience03} → political_camp prior (0.65 pos / 0.35 sal blend)`;
+    note = `PF pos=${input.expectedPosition15} sal=${input.expectedSalience03} → ideological prior (0.65 pos / 0.35 sal blend)`;
   }
 
   return {
     kind: "scoped",
-    scope: "political_camp",
+    scope: "ideological",
     value: clampAffinity100(value),
     weight: effectiveWeight,
     note,
@@ -320,7 +326,8 @@ export function listTrbAnchorScopeRoutes(): Array<{ anchor: TrbAnchor; scope: Mo
     { anchor: "ethnic_racial", scope: "ethnic_racial", semantic: "scoped" },
     { anchor: "class", scope: "class", semantic: "scoped" },
     { anchor: "gender", scope: "gender", semantic: "scoped" },
-    { anchor: "sexual", scope: "sexual", semantic: "scoped" },
+    // Legacy `sexual` anchor folds into `gender` under the 6-scope model.
+    { anchor: "sexual", scope: "gender", semantic: "scoped" },
     { anchor: "ideological", scope: "ideological", semantic: "scoped" },
     { anchor: "global", scope: null, semantic: "universal" },
     { anchor: "mixed_none", scope: null, semantic: "universal_no_excess" },

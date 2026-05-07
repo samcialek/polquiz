@@ -155,7 +155,7 @@ export function archetypeDistance(
     // vs universalAffinity (we don't store intensity03 on archetype templates).
     let archSumSq = 0;
     const archMc = archetype.moralCircle!;
-    for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "sexual", "ideological", "political_camp"] as const) {
+    for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "ideological"] as const) {
       const v = archMc.scopedAffinities[scope];
       if (v === null || v === undefined) continue;
       const e = Math.max(0, v - archMc.universalAffinity);

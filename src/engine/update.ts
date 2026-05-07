@@ -472,7 +472,7 @@ function materializeAffinityFromAccumulator(
 
   const SCOPES = [
     "national", "religious", "ethnic_racial", "class",
-    "gender", "sexual", "ideological", "political_camp",
+    "gender", "ideological",
   ] as const;
 
   const scopedAffinities = {} as import("../types.js").MoralCircleScopedAffinities;

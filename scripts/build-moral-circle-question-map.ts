@@ -29,9 +29,7 @@ const SCOPE_KEYS = [
   "ethnic_racial",
   "class",
   "gender",
-  "sexual",
   "ideological",
-  "political_camp",
 ] as const;
 type ScopeKey = typeof SCOPE_KEYS[number];
 
@@ -41,10 +39,8 @@ const SCOPE_LABELS: Record<ScopeKey, string> = {
   religious: "Religious",
   ethnic_racial: "Ethnic / Racial",
   class: "Class",
-  gender: "Gender",
-  sexual: "Sexual",
-  ideological: "Ideological",
-  political_camp: "Political Camp",
+  gender: "Gender / sexuality",
+  ideological: "Ideological / political",
 };
 
 interface ScopeContribution {

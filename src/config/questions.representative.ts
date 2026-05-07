@@ -346,13 +346,16 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       // Each highly-ranked identity boosts the matching scoped affinity to
       // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
       // Battery B scale). Below-the-fold ranks get no scoped evidence.
+      // Per 2026-05-07 6-scope revision: sexual_identity row folded into
+      // gender_identity (legacy `sexual` anchor → gender scope; LGBTQ Voter
+      // routes via gender excess + demo_lgbtq).
       national_identity:    { trbAnchor: { national: 1 },    moralCircle: { scopedAffinities: { national: 70 } } },
       ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
       religious_identity:   { trbAnchor: { religious: 1 },   moralCircle: { scopedAffinities: { religious: 70 } } },
       class_identity:       { trbAnchor: { class: 1 },       moralCircle: { scopedAffinities: { class: 70 } } },
       ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
       gender_identity:      { trbAnchor: { gender: 1 },      moralCircle: { scopedAffinities: { gender: 70 } } },
-      sexual_identity:      { trbAnchor: { sexual: 1 },      moralCircle: { scopedAffinities: { sexual: 70 } } },
+      sexual_identity:      { trbAnchor: { gender: 1 },      moralCircle: { scopedAffinities: { gender: 70 } } },
       // global_citizen: universalist signal — boosts universalAffinity
       // rather than any scoped affinity.
       global_citizen:       { trbAnchor: { global: 1 },      moralCircle: { universal: 75 } }
@@ -4787,13 +4790,15 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     },
   },
 
+  // Q236 — gender scope (now includes sexuality/LGBTQ identity per the
+  // 6-scope model; LGBTQ Voter routes via gender excess + demo_lgbtq).
   {
     id: 236,
     stage: "stage2",
     section: "V",
     promptShort: "scoped_affinity_gender",
     promptFull:
-      "Compared with people in general, how much extra moral concern do you feel for people who share your gender?",
+      "Compared with people in general, how much extra moral concern do you feel for people who share your gender or gender-linked identity (including LGBTQ status)?",
     uiType: "single_choice",
     quality: 0.95,
     rewriteNeeded: false,
@@ -4809,35 +4814,17 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     },
   },
 
-  {
-    id: 237,
-    stage: "stage2",
-    section: "V",
-    promptShort: "scoped_affinity_sexual",
-    promptFull:
-      "Compared with people in general, how much extra moral concern do you feel for people who share your sexuality or family-life orientation?",
-    uiType: "single_choice",
-    quality: 0.95,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
-    ],
-    optionEvidence: {
-      not_meaningful: { moralCircle: { scopedAffinities: { sexual: null } } },
-      less_than:      { moralCircle: { scopedAffinities: { sexual: 30 } } },
-      about_same:     { moralCircle: { scopedAffinities: { sexual: 50 } } },
-      somewhat_more:  { moralCircle: { scopedAffinities: { sexual: 70 } } },
-      much_more:      { moralCircle: { scopedAffinities: { sexual: 90 } } },
-    },
-  },
-
+  // Q238 — ideological scope (merged: ideology + political-side; the broader
+  // name survives since "I share their values" subsumes "I share their party").
+  // Q237 (sexual) and Q239 (political_camp) dropped per 2026-05-07 6-scope
+  // revision.
   {
     id: 238,
     stage: "stage2",
     section: "V",
     promptShort: "scoped_affinity_ideological",
     promptFull:
-      "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology or values?",
+      "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology, values, or political side?",
     uiType: "single_choice",
     quality: 0.95,
     rewriteNeeded: false,
@@ -4850,28 +4837,6 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       about_same:     { moralCircle: { scopedAffinities: { ideological: 50 } } },
       somewhat_more:  { moralCircle: { scopedAffinities: { ideological: 70 } } },
       much_more:      { moralCircle: { scopedAffinities: { ideological: 90 } } },
-    },
-  },
-
-  {
-    id: 239,
-    stage: "stage2",
-    section: "V",
-    promptShort: "scoped_affinity_political_camp",
-    promptFull:
-      "Compared with people in general, how much extra moral concern do you feel for people on your political side, party, movement, or camp?",
-    uiType: "single_choice",
-    quality: 0.95,
-    rewriteNeeded: false,
-    touchProfile: [
-      { node: "PF", kind: "continuous", role: "position", weight: 0.10, touchType: "political_camp_legacy_proxy" },
-    ],
-    optionEvidence: {
-      not_meaningful: { moralCircle: { scopedAffinities: { political_camp: null } } },
-      less_than:      { moralCircle: { scopedAffinities: { political_camp: 30 } } },
-      about_same:     { moralCircle: { scopedAffinities: { political_camp: 50 } } },
-      somewhat_more:  { moralCircle: { scopedAffinities: { political_camp: 70 } } },
-      much_more:      { moralCircle: { scopedAffinities: { political_camp: 90 } } },
     },
   },
 ];

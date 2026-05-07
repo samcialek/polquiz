@@ -174,11 +174,13 @@ function pfEquivalentFromMoralCircle(
   affinity: import("../types.js").MoralCircleAffinity | null | undefined,
 ): number | null {
   if (!affinity) return null;
-  const camp = affinity.scopedAffinities.political_camp;
-  if (camp === null || camp === undefined) return null;
-  const campN = Math.max(0, Math.min(100, camp)) / 100; // ∈ [0, 1]
+  // 2026-05-07 6-scope merge: political_camp folded into ideological. PF
+  // partisan-loyalty proxy now reads ideological affinity.
+  const ideo = affinity.scopedAffinities.ideological;
+  if (ideo === null || ideo === undefined) return null;
+  const ideoN = Math.max(0, Math.min(100, ideo)) / 100; // ∈ [0, 1]
   const intensityFactor = Math.max(0, Math.min(1, affinity.intensity03 / 3));
-  return 1 + 4 * campN * intensityFactor; // ∈ [1, 5]
+  return 1 + 4 * ideoN * intensityFactor; // ∈ [1, 5]
 }
 
 function partisanLoyaltyMultiplier(
