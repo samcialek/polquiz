@@ -1,0 +1,63 @@
+{
+  "schema_version": "v3",
+  "doc": "moral-circle-full-implementation-plan",
+  "title": "Moral Circle — Full Implementation Plan (direct rewire)",
+  "status": "approved_in_execution",
+  "approved": "2026-05-07",
+  "mode": "one_focused_push_no_internal_reviews",
+  "authority": "results/architecture/ADR-007-explicit-moral-circle-affinity.md",
+  "out_of_scope": [
+    "electorate_mapper",
+    "phase_27_contract",
+    "synthetic_electorate_outputs",
+    "global_map_alignment",
+    "era_activations_json_edits",
+    "archetype_renaming"
+  ],
+  "confirmed_answers": {
+    "Q1_review_cadence": "no_internal_reviews_single_end_surface",
+    "Q2_political_tribe_rename": "rename_to_political_camp",
+    "Q4_morBoundaries_lifecycle": "strip_entirely_no_derivation_kept",
+    "Q5_era_activations": "do_not_apply_to_moral_circle_no_edits",
+    "Q6_scale_helpers": "keep_linear_v0",
+    "Q7_selector_placement": "T2_chooses_separate_moralCircleSelector_module"
+  },
+  "conceptual_model": {
+    "scopes": ["national", "religious", "ethnic_racial", "class", "gender", "sexual", "ideological", "political_camp"],
+    "stored_numbers_per_subject": 9,
+    "active_signal_formula": "excess[g] = max(0, scoped[g] - universal)",
+    "storage_policy": "all_9_raw_values_retained_null_means_not_meaningful",
+    "active_signal_consumers": ["scoring", "idp_routing", "candidate_matching"],
+    "demographic_membership_independent_axis": true,
+    "quiz_start_state": "moralCircle.affinity = null (no zero default)"
+  },
+  "sub_tasks": [
+    {"id": "T0", "name": "baseline_tag_and_plan_freeze"},
+    {"id": "T1", "name": "types_and_state_shape", "files": ["src/types.ts", "src/moralCircle/affinity.ts"]},
+    {"id": "T2", "name": "archetype_templates", "files": ["src/config/archetypes.ts"], "count": 124},
+    {"id": "T3", "name": "question_banks_rewrite_plus_battery", "files": ["src/config/questions.full.ts", "src/config/questions.representative.ts"]},
+    {"id": "T4", "name": "engine_evidence_consumer_and_bridge_removal", "files": ["src/engine/update.ts", "src/engine/math.ts"]},
+    {"id": "T5", "name": "selector_heuristic", "files": ["src/engine/moralCircleSelector.ts (new)"]},
+    {"id": "T6", "name": "idp_cutover", "files": ["src/identity/resolveIdentityPrimary.ts"]},
+    {"id": "T7", "name": "scoring_cutover", "files": ["src/engine/archetypeDistance.ts"]},
+    {"id": "T8", "name": "candidate_profiles", "files": ["src/historical/candidates.ts", "src/test/candidateMoralCircleSmoke.ts (new)"]},
+    {"id": "T9", "name": "vote_prediction_cutover", "files": ["src/historical/respondentVoteChoice.ts"]},
+    {"id": "T10", "name": "browser_api_cleanup", "files": ["src/browser/api.ts"]},
+    {"id": "T11", "name": "rendering_cutover", "files": ["results-live.html"]},
+    {"id": "T12", "name": "claudemd_and_test_updates", "files": ["CLAUDE.md", "src/test/*"]}
+  ],
+  "no_go_criteria": [
+    "eval_harness_top1_drops_more_than_2pp",
+    "persona_replay_wrong_direction_verdict_on_known_nodes",
+    "identity_primary_smoke_fails_on_known_correct_resolution",
+    "historical_sanity_10_of_11_regresses",
+    "Q103_universalAffinity_prior_nonzero",
+    "moralCircle_affinity_defaulted_to_nonnull_at_start",
+    "sexual_folded_back_into_gender",
+    "political_camp_treated_as_whole_module",
+    "engagement_treated_as_moral_circle_intensity",
+    "archetype_ids_or_names_changed",
+    "electorate_or_phase_27_or_global_alignment_touched",
+    "era_activations_json_modified"
+  ]
+}
