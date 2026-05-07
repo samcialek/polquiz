@@ -557,14 +557,31 @@ export interface MoralCircleAffinity {
 }
 
 /**
+ * Internal running-average accumulator for moral-circle evidence. Per-scope
+ * counts let us track how many times each component has been touched, so
+ * downstream consumers can distinguish well-measured scopes from sparsely-
+ * touched ones. Not exposed in the public API; engine-internal.
+ */
+export interface MoralCircleAffinityAccumulator {
+  universalSum: number;
+  universalCount: number;
+  scopedSums: Partial<Record<MoralCircleScope, number>>;
+  scopedCounts: Partial<Record<MoralCircleScope, number>>;
+}
+
+/**
  * Per-respondent moral-circle state container. `affinity` is `null` at quiz
  * start (no zero-default — "unmeasured" must not look like "no baseline
  * concern for humans"). Materialized once the first moral-circle evidence
  * lands; consumers must guard against the `null` case.
+ *
+ * `accumulator` holds the per-component running totals; `affinity` is
+ * recomputed from the accumulator on each touch.
  */
 export interface MoralCircleAffinityState {
   affinity: MoralCircleAffinity | null;
   touchCount: number;
+  accumulator: MoralCircleAffinityAccumulator;
 }
 
 /**

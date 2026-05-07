@@ -408,6 +408,110 @@ function applyOptionEvidence(state: RespondentState, evidence: OptionEvidence | 
     // 6.E.2b bridge: mirror anchor signals into morBoundaries.
     mirrorAnchorToBoundaries(state, evidence.trbAnchor, 1.0);
   }
+
+  // ADR-007 — native moralCircle evidence consumer (T4). Aggregates per-option
+  // universal/scoped magnitudes into state.moralCircle via running average.
+  // Materializes state.moralCircle.affinity on first touch (was null at init).
+  if (evidence.moralCircle) {
+    applyMoralCircleEvidence(state, evidence.moralCircle);
+  }
+}
+
+/**
+ * ADR-007 §"Active Boundary Rule" + §"Intensity Formula".
+ *
+ * Aggregates per-option moral-circle evidence into `state.moralCircle` via
+ * running averages (sum/count per component). Recomputes the derived
+ * `affinity` snapshot on each touch.
+ *
+ * Materialization: if `state.moralCircle.affinity` is null at first touch,
+ * we initialize all 9 affinity components with sensible defaults (universal
+ * defaults to 50 — neutral baseline, NOT zero — and scopes default to null
+ * meaning "not yet measured"). The `accumulator` only records actual
+ * evidence, so unmeasured scopes stay null in the materialized affinity.
+ */
+function applyMoralCircleEvidence(
+  state: RespondentState,
+  ev: NonNullable<OptionEvidence["moralCircle"]>,
+): void {
+  if (!state.moralCircle) return;
+  const acc = state.moralCircle.accumulator;
+
+  if (typeof ev.universal === "number" && Number.isFinite(ev.universal)) {
+    const v = Math.max(0, Math.min(100, ev.universal));
+    acc.universalSum += v;
+    acc.universalCount += 1;
+  }
+
+  if (ev.scopedAffinities) {
+    for (const [scope, raw] of Object.entries(ev.scopedAffinities)) {
+      if (raw === null || raw === undefined) continue; // null = "not meaningful for this option"
+      if (typeof raw !== "number" || !Number.isFinite(raw)) continue;
+      const v = Math.max(0, Math.min(100, raw));
+      const key = scope as keyof typeof acc.scopedSums;
+      acc.scopedSums[key] = (acc.scopedSums[key] ?? 0) + v;
+      acc.scopedCounts[key] = (acc.scopedCounts[key] ?? 0) + 1;
+    }
+  }
+
+  state.moralCircle.touchCount += 1;
+  state.moralCircle.affinity = materializeAffinityFromAccumulator(acc);
+}
+
+/**
+ * Compute the current `MoralCircleAffinity` snapshot from the running-average
+ * accumulator. Universal defaults to 50 (neutral baseline) when not yet
+ * measured. Scopes that haven't been touched stay `null` ("not meaningful /
+ * not yet measured" — preserves ADR-007 storage policy).
+ */
+function materializeAffinityFromAccumulator(
+  acc: import("../types.js").MoralCircleAffinityAccumulator,
+): import("../types.js").MoralCircleAffinity {
+  const universalAffinity =
+    acc.universalCount > 0 ? acc.universalSum / acc.universalCount : 50;
+
+  const SCOPES = [
+    "national", "religious", "ethnic_racial", "class",
+    "gender", "sexual", "ideological", "political_camp",
+  ] as const;
+
+  const scopedAffinities = {} as import("../types.js").MoralCircleScopedAffinities;
+  for (const scope of SCOPES) {
+    const cnt = acc.scopedCounts[scope] ?? 0;
+    if (cnt > 0) {
+      scopedAffinities[scope] = (acc.scopedSums[scope] ?? 0) / cnt;
+    } else {
+      scopedAffinities[scope] = null;
+    }
+  }
+
+  // Derive excess and intensity inline (avoids importing affinity.ts here;
+  // matches the pure-helper math from src/moralCircle/affinity.ts).
+  const excessAffinities = {} as import("../types.js").MoralCircleExcessAffinities;
+  let sumSq = 0;
+  for (const scope of SCOPES) {
+    const raw = scopedAffinities[scope];
+    if (raw === null) {
+      excessAffinities[scope] = 0;
+      continue;
+    }
+    const e = Math.max(0, raw - universalAffinity);
+    excessAffinities[scope] = e;
+    sumSq += e * e;
+  }
+  const l2 = Math.sqrt(sumSq);
+  const intensity01 = Math.min(1, l2 / 100);
+  const intensity03 = 3 * intensity01;
+  const activeBoundaries = SCOPES.filter(s => excessAffinities[s] > 0);
+
+  return {
+    universalAffinity,
+    scopedAffinities,
+    excessAffinities,
+    activeBoundaries: [...activeBoundaries],
+    intensity01,
+    intensity03,
+  };
 }
 
 function partyIdFromAnswer(optionKey: string): PartyID | null {
