@@ -1,6 +1,6 @@
 # Moral Circle Affinity Smoke (ADR-007, Stages B–E)
 
-**Generated:** 2026-05-05T18:09:04.644Z
+**Generated:** 2026-05-07T17:50:32.265Z
 
 **Result:** 25 / 25 passed.
 
