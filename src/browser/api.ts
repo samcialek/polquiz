@@ -973,6 +973,23 @@ export function getRespondentState(): Record<string, unknown> | null {
       }
     : null;
 
+  // ADR-007 — moral-circle module exposure. When affinity is materialized
+  // (after at least one moralCircle evidence touch), expose universal,
+  // scoped, excess, active boundaries, and intensity so the results page
+  // can render the new module display.
+  const mc = _state.moralCircle?.affinity ?? null;
+  const moralCircle = mc
+    ? {
+        universalAffinity: mc.universalAffinity,
+        scopedAffinities: { ...mc.scopedAffinities },
+        excessAffinities: { ...mc.excessAffinities },
+        activeBoundaries: [...mc.activeBoundaries],
+        intensity01: mc.intensity01,
+        intensity03: mc.intensity03,
+        touchCount: _state.moralCircle?.touchCount ?? 0,
+      }
+    : null;
+
   return {
     continuous,
     categorical,
@@ -981,6 +998,8 @@ export function getRespondentState(): Record<string, unknown> | null {
       touches: _state.trbAnchor.touches,
     },
     morBoundaries,
+    moralCircle,
+    membership: _state.membership ? { ..._state.membership } : null,
     partyID: _state.partyID ?? null,
     strategicVoting: _state.strategicVoting ?? false,
     negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],

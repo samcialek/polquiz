@@ -51,17 +51,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
     },
     {
       id: "002",
@@ -71,17 +70,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "003",
@@ -91,17 +89,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "004",
@@ -113,17 +110,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 12, political_camp: 50 } }
     },
     {
       id: "005",
@@ -137,17 +133,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "006",
@@ -157,7 +152,6 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
@@ -165,11 +159,11 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
         // raised sal 1→2 (discriminator vs Social Stabilizer)
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "007",
@@ -181,17 +175,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
     },
     {
       id: "008",
@@ -204,17 +197,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "010",
@@ -227,17 +219,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.12, religious: 0.1, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 19, religious: 10, ethnic_racial: 12, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "011",
@@ -247,17 +238,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 26, political_camp: 25 } }
     },
     {
       id: "012",
@@ -275,17 +265,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, sexual: 10, ideological: 48, political_camp: 25 } }
     },
     {
       id: "013",
@@ -295,17 +284,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 76, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 10, political_camp: 25 } }
     },
     {
       id: "014",
@@ -321,17 +309,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 10, political_camp: 25 } }
     },
     {
       id: "015",
@@ -341,17 +328,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 57, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 62, gender: 9, sexual: 9, ideological: 26, political_camp: 25 } }
     },
     {
       id: "016",
@@ -361,17 +347,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.34, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, sexual: 10, ideological: 34, political_camp: 25 } }
     },
     {
       id: "017",
@@ -388,18 +373,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         // 1→4 audit Phase 6: humans reshaped by economic structure
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, sexual: 7, ideological: 26, political_camp: 25 } }
     },
     // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
@@ -412,17 +396,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2, anti: "low" },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 16, political_camp: 25 } }
     },
     {
       // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
@@ -434,7 +417,6 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // kept 019's stronger anti-proceduralism
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
@@ -444,14 +426,12 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         // 019's optimism
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2, anti: "high" },
-        // kept 020's stronger anti-partisan
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
-        // kept 020's anti-tribal
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.4, 0.38, 0.04, 0.08], sal: 2 }
         // blend pastoral+plainspoken
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 16, political_camp: 25 } }
     },
     {
       // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
@@ -469,8 +449,6 @@ var PrismEngine = (() => {
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         // cosmopolitanism is core
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        // moral universalism is core
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         // procedural (from 023/025)
         COM: { kind: "continuous", pos: 2, sal: 2 },
@@ -479,12 +457,11 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         // 3→4 audit Phase 4: institutional-internationalist anchor
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
-        // anti-tribalism is core
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "022",
@@ -494,17 +471,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
@@ -518,20 +494,18 @@ var PrismEngine = (() => {
         // added anti:low — not redistributionist
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         // added anti:low — strongly optimistic
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
-        // raised sal 2→3
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
         // raised sal 1→2
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
     },
     {
       id: "024",
@@ -545,18 +519,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 5, sal: 3 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         // 3→4 audit Phase 4: institutional-internationalist anchor
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
     },
     {
       // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
@@ -569,19 +542,18 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         // raised sal 2→3: system critique is core
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         // raised sal 1→2
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "026",
@@ -591,17 +563,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "027",
@@ -615,17 +586,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "028",
@@ -639,18 +609,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
         // 3→4 audit Phase 4: institutional-internationalist anchor
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "029",
@@ -660,17 +629,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
     },
     {
       id: "031",
@@ -687,18 +655,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         // 1→4 audit Phase 4: institutional climate-care, not eco-anarchism
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 25 } }
     },
     {
       id: "032",
@@ -714,19 +681,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         // 3→5 sal 1→2 audit Phase 4: Hamilton-anchor for institutional capacity belief
-        PF: { kind: "continuous", pos: 3, anti: "high" },
-        // Fixed: sal 0→1 (can't have anti on sal=0)
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "033",
@@ -736,17 +701,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 3 },
-        PF: { kind: "continuous", pos: 3, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     // {
     // id: "034",
@@ -778,17 +742,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "036",
@@ -798,17 +761,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "037",
@@ -818,17 +780,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "039",
@@ -840,17 +801,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "040",
@@ -860,17 +820,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "042",
@@ -882,17 +841,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "043",
@@ -904,17 +862,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "045",
@@ -926,17 +883,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.15, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 15, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "046",
@@ -948,17 +904,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     // {
     // id: "047",
@@ -992,17 +947,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.34, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 66, scopedAffinities: { national: 5, religious: 34, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 12, political_camp: 25 } }
     },
     {
       id: "049",
@@ -1014,17 +968,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "050",
@@ -1034,17 +987,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "051",
@@ -1054,17 +1006,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "053",
@@ -1074,17 +1025,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "054",
@@ -1094,18 +1044,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 3 },
         // Fixed: Moderate = high compromise
         ZS: { kind: "continuous", pos: 1, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "056",
@@ -1124,17 +1073,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 3 },
         PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "057",
@@ -1144,17 +1092,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "059",
@@ -1165,17 +1112,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "060",
@@ -1188,17 +1134,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "061",
@@ -1208,17 +1153,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "062",
@@ -1228,17 +1172,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "063",
@@ -1248,17 +1191,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
     // {
@@ -1296,18 +1238,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 3 },
         // 1→3 audit Phase 6: outcome-focused, not anti-procedural
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "067",
@@ -1321,18 +1262,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 3 },
         // 1→3 audit Phase 6: bureaucracy-skeptical, not anti-procedural
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 11, political_camp: 50 } }
     },
     {
       id: "069",
@@ -1342,17 +1282,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 50 } }
     },
     {
       id: "070",
@@ -1371,17 +1310,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 3 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "071",
@@ -1396,17 +1334,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 24, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "072",
@@ -1423,18 +1360,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
-        // 5→3 audit Phase 4: practiced scope is narrower than rhetorical universalism (also dropped anti:low)
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.2, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 20, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "073",
@@ -1447,17 +1382,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.11, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 11, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "074",
@@ -1467,17 +1401,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "076",
@@ -1487,17 +1420,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.18, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 18, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "077",
@@ -1507,17 +1439,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.19, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 19, political_camp: 75 } }
     },
     {
       id: "078",
@@ -1527,17 +1458,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "079",
@@ -1554,18 +1484,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 5, sal: 2 },
         // 1→5 audit Phase 4: developmentalist = institutional capacity belief
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
@@ -1585,17 +1514,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 81, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 75 } }
     },
     {
       id: "082",
@@ -1608,17 +1536,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 48, ethnic_racial: 36, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "083",
@@ -1635,18 +1562,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        // 4→2 audit Phase 4: closure = narrow practiced scope
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "084",
@@ -1659,17 +1584,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 34, scopedAffinities: { national: 95, religious: 91, ethnic_racial: 67, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 75 } }
     },
     {
       id: "085",
@@ -1682,17 +1606,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.26, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 24, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "086",
@@ -1707,17 +1630,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 36, religious: 38, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "087",
@@ -1730,17 +1652,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "088",
@@ -1756,17 +1677,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 22, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "089",
@@ -1781,17 +1701,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 38, ethnic_racial: 36, class: 5, gender: 12, sexual: 12, ideological: 24, political_camp: 75 } }
     },
     {
       id: "090",
@@ -1801,7 +1720,6 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 5, sal: 3 },
@@ -1809,11 +1727,11 @@ var PrismEngine = (() => {
         ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         // Hobbesian: humans are NOT perfectible
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.53, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 53, class: 5, gender: 12, sexual: 12, ideological: 24, political_camp: 75 } }
     },
     {
       id: "091",
@@ -1823,17 +1741,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.19, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 29, ethnic_racial: 19, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "092",
@@ -1843,17 +1760,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 1 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 48, class: 5, gender: 10, sexual: 10, ideological: 43, political_camp: 100 } }
     },
     {
       id: "094",
@@ -1870,18 +1786,17 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         // 1→4 audit Phase 4: name says state-institutional, must match
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 75 } }
     },
     {
       id: "095",
@@ -1891,17 +1806,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 75 } }
     },
     {
       id: "097",
@@ -1911,17 +1825,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2 },
-        MOR: { kind: "continuous", pos: 1, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 1 },
         COM: { kind: "continuous", pos: 4, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
     },
     {
       id: "098",
@@ -1931,17 +1844,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 5, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.16, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 16, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "099",
@@ -1951,17 +1863,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.38, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 63, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 38, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
     },
     {
       id: "100",
@@ -1971,17 +1882,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.72, ideological: 0.76, gender: 0.19, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 100, class: 72, gender: 19, sexual: 19, ideological: 76, political_camp: 100 } }
     },
     {
       id: "101",
@@ -1991,17 +1901,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 26, class: 5, gender: 7, sexual: 7, ideological: 34, political_camp: 100 } }
     },
     {
       id: "103",
@@ -2011,17 +1920,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 47, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 37, class: 41, gender: 9, sexual: 9, ideological: 48, political_camp: 75 } }
     },
     {
       id: "104",
@@ -2031,17 +1939,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 41, ethnic_racial: 26, class: 5, gender: 9, sexual: 9, ideological: 48, political_camp: 100 } }
     },
     {
       id: "105",
@@ -2051,17 +1958,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.76, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 76, class: 5, gender: 10, sexual: 10, ideological: 62, political_camp: 75 } }
     },
     {
       id: "106",
@@ -2071,17 +1977,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 58, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
     },
     {
       id: "107",
@@ -2093,17 +1998,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 22, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
     },
     {
       id: "108",
@@ -2113,17 +2017,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PF: { kind: "continuous", pos: 1, anti: "high" },
-        TRB: { kind: "continuous", pos: 1, anti: "high" },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.15, 0.6], sal: 2, antiCats: [1] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.55, 0.2, 0.05], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1 },
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
     },
     {
       id: "109",
@@ -2133,17 +2036,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 3, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 25 } }
     },
     {
       id: "110",
@@ -2153,17 +2055,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-        PF: { kind: "continuous", pos: 2, anti: "high" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
     },
     {
       id: "111",
@@ -2173,17 +2074,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        MOR: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "112",
@@ -2193,17 +2093,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
         COM: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "113",
@@ -2215,17 +2114,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.05, 0.03, 0.07, 0.18, 0.12, 0.55], sal: 2, antiCats: [0, 1] },
         AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.1, 0.75, 0.07], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 25 } }
     },
     {
       id: "114",
@@ -2235,17 +2133,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        PF: { kind: "continuous", pos: 1, anti: "high" },
-        TRB: { kind: "continuous", pos: 1, anti: "high" },
         EPS: { kind: "categorical", probs: [0.03, 0.03, 0.03, 0.08, 0.1, 0.73], sal: 3, antiCats: [0, 1, 2] },
         AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.7, 0.15], sal: 2 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 3 },
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
     },
     {
       id: "115",
@@ -2256,18 +2153,17 @@ var PrismEngine = (() => {
         // raised sal 0→1 (discriminator vs Ecological Localist)
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
         // raised sal 0→1 (discriminator vs Ecological Localist)
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "116",
@@ -2278,17 +2174,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 2 },
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "117",
@@ -2298,17 +2193,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 5, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
         ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "118",
@@ -2318,17 +2212,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "119",
@@ -2338,17 +2231,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "120",
@@ -2358,17 +2250,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         CU: { kind: "continuous", pos: 3, sal: 3 },
-        MOR: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
         PRO: { kind: "continuous", pos: 3, sal: 1 },
         COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 2, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "121",
@@ -2378,17 +2269,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 2 },
         CD: { kind: "continuous", pos: 3, sal: 2 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 3, sal: 3 },
         PRO: { kind: "continuous", pos: 4, sal: 3 },
         COM: { kind: "continuous", pos: 3, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "122",
@@ -2399,17 +2289,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "124",
@@ -2419,17 +2308,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "125",
@@ -2439,17 +2327,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
-        MOR: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
         PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
         ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 4, anti: "low" },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
     },
     {
       id: "126",
@@ -2459,17 +2346,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 2, sal: 1 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 3, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
     },
     {
       id: "127",
@@ -2479,17 +2365,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 5, anti: "low" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 95, religious: 34, ethnic_racial: 5, class: 5, gender: 10, sexual: 10, ideological: 62, political_camp: 100 } }
     },
     {
       id: "128",
@@ -2499,18 +2384,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 2, sal: 1 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        // Fixed: Loyal = high PF
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 41, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
     },
     {
       id: "129",
@@ -2522,17 +2405,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 2, sal: 1 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
     },
     // MERGED into Duty Voter (ID 131) — 2026-04-01
     // {
@@ -2565,17 +2447,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 3, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         COM: { kind: "continuous", pos: 2, sal: 2 },
         ZS: { kind: "continuous", pos: 3, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2, anti: "high" },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "132",
@@ -2585,17 +2466,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PF: { kind: "continuous", pos: 5, anti: "low" },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 23, religious: 5, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
     },
     {
       id: "134",
@@ -2623,7 +2503,6 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 3, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
@@ -2632,11 +2511,11 @@ var PrismEngine = (() => {
         // (FDR/Biden/Obama tradition) believe state programs effectively deliver
         // healthcare/education/redistribution. High institutional capacity belief.
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 3 },
         EPS: { kind: "categorical", probs: [0.3, 0.4, 0.05, 0.1, 0.1, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.35, 0.2, 0.05, 0.1, 0.2, 0.1], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
     {
@@ -2651,20 +2530,18 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 5, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 5, sal: 2 },
-        // FIX: Cosmopolitan = wide moral circle (was 1)
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         // 1→3 audit Phase 6: bureaucracy-skeptical, not rule-breaking
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 1 },
-        TRB: { kind: "continuous", pos: 1 },
         EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
         // FIX: Disruptive = visionary, not statesman
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
     },
     {
       id: "136",
@@ -2676,19 +2553,17 @@ var PrismEngine = (() => {
         // FIX: Traditionalist = culturally conservative (was 2)
         CU: { kind: "continuous", pos: 2, sal: 2 },
         // FIX: Traditionalist = assimilationist (was 4)
-        MOR: { kind: "continuous", pos: 2, sal: 2 },
-        // FIX: Traditionalist = particularist (was 5/sal3)
         PRO: { kind: "continuous", pos: 3, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 4, sal: 2 },
         // Aspirational = optimistic (was 3/sal1)
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 2 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
         AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.26, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 9, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
     },
     {
       id: "137",
@@ -2698,19 +2573,18 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 1 },
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 2, sal: 1 },
-        MOR: { kind: "continuous", pos: 5, sal: 3 },
         PRO: { kind: "continuous", pos: 2, sal: 2 },
         COM: { kind: "continuous", pos: 2, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 2, sal: 1 },
         ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        PF: { kind: "continuous", pos: 4 },
-        TRB: { kind: "continuous", pos: 4 },
         EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
         // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
         // Prophetic visionary
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 3 },
+      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 66, religious: 41, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
     },
     {
       id: "138",
@@ -2720,20 +2594,18 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 1 },
         CD: { kind: "continuous", pos: 2, sal: 1 },
         CU: { kind: "continuous", pos: 4, sal: 1 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
-        // FIX: Holistic = broad concern (was 2/sal1)
         PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
         COM: { kind: "continuous", pos: 1, sal: 1 },
         ZS: { kind: "continuous", pos: 4, sal: 2 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 1 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
         // FIX: Holistic = intuitionist+autonomous, not nihilist
         AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
         // Experiential
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0 }, intensity: 2 },
+      moralCircle: { universalAffinity: 92, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 12, political_camp: 0 } }
     },
     {
       id: "139",
@@ -2744,17 +2616,16 @@ var PrismEngine = (() => {
         CD: { kind: "continuous", pos: 4, sal: 2 },
         CU: { kind: "continuous", pos: 1, sal: 3 },
         // FIX: Assimilationist = CU=1, not CU=5 (was 5/sal2)
-        MOR: { kind: "continuous", pos: 3, sal: 1 },
         PRO: { kind: "continuous", pos: 4, sal: 2 },
         COM: { kind: "continuous", pos: 3, sal: 1 },
         ZS: { kind: "continuous", pos: 2, sal: 1 },
         ONT_H: { kind: "continuous", pos: 3, sal: 1 },
         ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        PF: { kind: "continuous", pos: 3 },
-        TRB: { kind: "continuous", pos: 2 },
         EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
         AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.12, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 12, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 50 } }
     },
     {
       id: "140",
@@ -2769,21 +2640,19 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 4, sal: 2 },
         CD: { kind: "continuous", pos: 1, sal: 2 },
         CU: { kind: "continuous", pos: 5, sal: 2 },
-        MOR: { kind: "continuous", pos: 4, sal: 2 },
-        // FIX: Green = wide moral concern (was 2/sal1)
         PRO: { kind: "continuous", pos: 5, sal: 2 },
         COM: { kind: "continuous", pos: 4, sal: 2 },
         ZS: { kind: "continuous", pos: 1, sal: 1 },
         ONT_H: { kind: "continuous", pos: 5, sal: 2 },
         ONT_S: { kind: "continuous", pos: 4, sal: 2 },
         // 1→4 audit Phase 4: market-mechanism reform = institutional capacity belief
-        PF: { kind: "continuous", pos: 1 },
-        TRB: { kind: "continuous", pos: 1 },
         EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
         // Empiricist
         AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
         // Systematic
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
     },
     // ═══════════════════════════════════════════════════════════════════════════
     // Identity-Primary Archetypes (141–146)
@@ -2814,17 +2683,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.35, ethnic_racial: 0.9, religious: 0.3, class: 0.4, ideological: 0.3, gender: 0.15, political_tribe: 0.65 }, intensity: 3 },
+      moralCircle: { universalAffinity: 45, scopedAffinities: { national: 35, religious: 35, ethnic_racial: 85, class: 50, gender: 30, sexual: 25, ideological: 50, political_camp: 60 } }
     },
     {
       id: "142",
@@ -2834,17 +2702,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.65, ethnic_racial: 0.9, religious: 0.35, class: 0.3, ideological: 0.4, gender: 0.3, political_tribe: 0.7 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 75, religious: 50, ethnic_racial: 80, class: 45, gender: 35, sexual: 20, ideological: 55, political_camp: 55 } }
     },
     {
       id: "143",
@@ -2854,17 +2721,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.85, class: 0.15, ideological: 0.4, gender: 0.3, political_tribe: 0.6 }, intensity: 3 },
+      moralCircle: { universalAffinity: 35, scopedAffinities: { national: 60, religious: 90, ethnic_racial: 30, class: 30, gender: 35, sexual: 15, ideological: 55, political_camp: 50 } }
     },
     {
       id: "144",
@@ -2874,17 +2740,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.2, religious: 0.1, class: 0.2, ideological: 0.45, gender: 0.9, political_tribe: 0.55 }, intensity: 3 },
+      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 20, ethnic_racial: 35, class: 45, gender: 65, sexual: 85, ideological: 60, political_camp: 55 } }
     },
     {
       id: "145",
@@ -2894,17 +2759,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.25, religious: 0.1, class: 0.3, ideological: 0.5, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
+      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 25, ethnic_racial: 40, class: 50, gender: 85, sexual: 55, ideological: 65, political_camp: 50 } }
     },
     {
       id: "146",
@@ -2914,17 +2778,16 @@ var PrismEngine = (() => {
         MAT: { kind: "continuous", pos: 3, sal: 0 },
         CD: { kind: "continuous", pos: 3, sal: 0 },
         CU: { kind: "continuous", pos: 3, sal: 0 },
-        MOR: { kind: "continuous", pos: 3, sal: 0 },
         PRO: { kind: "continuous", pos: 3, sal: 0 },
         COM: { kind: "continuous", pos: 3, sal: 0 },
         ZS: { kind: "continuous", pos: 3, sal: 0 },
         ONT_H: { kind: "continuous", pos: 3, sal: 0 },
         ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        PF: { kind: "continuous", pos: 5 },
-        TRB: { kind: "continuous", pos: 5 },
         EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      }
+      },
+      morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.4, religious: 0.25, class: 0.25, ideological: 0.45, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
+      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 60, religious: 35, ethnic_racial: 45, class: 50, gender: 80, sexual: 30, ideological: 55, political_camp: 50 } }
     }
   ];
 
@@ -3077,11 +2940,12 @@ var PrismEngine = (() => {
       // trust. A respondent who attributes inequality to structural causes
       // typically wants stronger institutions to address it, not weaker ones.
       // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+      // ZS/position and EPS/category rows dropped 2026-05-03 per question-information
+      // audit: allocationMap has no ZS or EPS entries in any bucket, so the engine
+      // never updated either node from this question.
       touchProfile: [
         { node: "MAT", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "inequality_worldview" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "allocation_shape" },
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
         { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
@@ -3105,11 +2969,12 @@ var PrismEngine = (() => {
       // matter and could work better. This is a ZS / ONT_H probe (zero-sum
       // worldview + view of human nature), not an institutional-trust probe.
       // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+      // EPS/category row dropped 2026-05-03 per question-information audit:
+      // allocationMap has no EPS entries in any bucket.
       touchProfile: [
         { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.3, touchType: "allocation_shape" },
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
         { node: "ZS", kind: "continuous", role: "salience", weight: 0.5, touchType: "derived_allocation_concentration" }
       ],
       allocationMap: {
@@ -3239,12 +3104,13 @@ var PrismEngine = (() => {
       // - self_interest = rational actors, low malleability. Kept at -0.5 ONT_H.
       // - bad_motives = fixed in bad faith, very low malleability. Kept -0.8.
       // - legitimate_values = good-faith disagreement. Kept at 0 ONT_H.
+      // ZS/position and MOR/position rows dropped 2026-05-03 per question-information
+      // audit: allocationMap has no ZS or MOR entries in any bucket. EPS/category
+      // retained — `misinformed` bucket has explicit categorical EPS distribution.
       touchProfile: [
         { node: "TRB", kind: "continuous", role: "position", weight: 0.75, touchType: "outgroup_model" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "outgroup_model" },
         { node: "ONT_H", kind: "continuous", role: "position", weight: 0.3, touchType: "malleability_proxy" },
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.35, touchType: "outgroup_model" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "opponent_moral_scope" },
         { node: "EPS", kind: "categorical", role: "category", weight: 0.2, touchType: "allocation_shape_epistemic" }
       ],
       allocationMap: {
@@ -3302,22 +3168,26 @@ var PrismEngine = (() => {
       quality: 0.96,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.4, touchType: "identity_pattern" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "identity_pattern" },
-        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "identity_pattern" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "identity_pattern" },
-        { node: "MAT", kind: "continuous", role: "position", weight: 0.1, touchType: "identity_pattern" },
+        // ADR-007 (T3): Q60 emits both legacy trbAnchor (for the ADR-006
+        // fallback path) AND new moralCircle scoped evidence. When a user
+        // ranks an identity highly, we infer above-baseline scoped affinity
+        // for that group. global_citizen flips to universalAffinity.
         { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
       ],
       rankingMap: {
-        national_identity: { trbAnchor: { national: 1 } },
-        ideological_identity: { trbAnchor: { ideological: 1 } },
-        religious_identity: { trbAnchor: { religious: 1 } },
-        class_identity: { trbAnchor: { class: 1 } },
-        ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
-        gender_identity: { trbAnchor: { gender: 1 } },
-        sexual_identity: { trbAnchor: { sexual: 1 } },
-        global_citizen: { trbAnchor: { global: 1 } }
+        // Each highly-ranked identity boosts the matching scoped affinity to
+        // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
+        // Battery B scale). Below-the-fold ranks get no scoped evidence.
+        national_identity: { trbAnchor: { national: 1 }, moralCircle: { scopedAffinities: { national: 70 } } },
+        ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
+        religious_identity: { trbAnchor: { religious: 1 }, moralCircle: { scopedAffinities: { religious: 70 } } },
+        class_identity: { trbAnchor: { class: 1 }, moralCircle: { scopedAffinities: { class: 70 } } },
+        ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+        gender_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
+        sexual_identity: { trbAnchor: { sexual: 1 }, moralCircle: { scopedAffinities: { sexual: 70 } } },
+        // global_citizen: universalist signal — boosts universalAffinity
+        // rather than any scoped affinity.
+        global_citizen: { trbAnchor: { global: 1 }, moralCircle: { universal: 75 } }
       }
     },
     // =========================================================================
@@ -3366,6 +3236,8 @@ var PrismEngine = (() => {
       }
     },
     // Q8 — domestic_vs_abroad_lives (slider)
+    // High score = "all human lives matter equally" (universalist).
+    // Low score = "domestic lives matter more than foreign lives" (national in-group preference).
     {
       id: 8,
       stage: "screen20",
@@ -3375,14 +3247,16 @@ var PrismEngine = (() => {
       quality: 0.89,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.9, touchType: "moral_scope_tradeoff" }
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.3, touchType: "moral_scope_tradeoff_legacy_proxy" }
       ],
       sliderMap: {
-        "0-20": { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
-        "21-40": { continuous: { MOR: { pos: [0.25, 0.4, 0.22, 0.1, 0.03] } } },
-        "41-60": { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } } },
-        "61-80": { continuous: { MOR: { pos: [0.03, 0.1, 0.22, 0.4, 0.25] } } },
-        "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } } }
+        // ADR-007 (T3): each bucket emits direct moralCircle universal vs national
+        // contrast, with weak legacy MOR pos kept for ADR-006 fallback.
+        "0-20": { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } }, moralCircle: { universal: 25, scopedAffinities: { national: 75 } } },
+        "21-40": { continuous: { MOR: { pos: [0.25, 0.4, 0.22, 0.1, 0.03] } }, moralCircle: { universal: 40, scopedAffinities: { national: 65 } } },
+        "41-60": { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } }, moralCircle: { universal: 55 } },
+        "61-80": { continuous: { MOR: { pos: [0.03, 0.1, 0.22, 0.4, 0.25] } }, moralCircle: { universal: 75 } },
+        "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } }, moralCircle: { universal: 90 } }
       }
     },
     // Q12 — guess_top_marginal_tax_rate (slider)
@@ -4765,8 +4639,11 @@ var PrismEngine = (() => {
         "follow_money_breaks_tie"
       ],
       touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" },
-        { node: "EPS", kind: "categorical", role: "salience", weight: 0.4, touchType: "tie_breaker_authority" }
+        // EPS/salience row dropped 2026-05-03 per question-information audit:
+        // Q22 single_choice has no strengthFollowUp and no per-option .sal arrays,
+        // so the engine never updated EPS salience from this question. EPS salience
+        // is supplied by Q103 (issue salience screener) and Q89 (best_worst battery).
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" }
       ],
       optionEvidence: {
         // Expert consensus wins when claims conflict → institutionalist
@@ -5028,7 +4905,6 @@ var PrismEngine = (() => {
         { node: "PRO", kind: "continuous", role: "position", weight: 0.6, touchType: "governance_allocation" },
         { node: "MAT", kind: "continuous", role: "position", weight: 0.2, touchType: "economic_proxy" },
         { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "governance_allocation" },
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.1, touchType: "allocation_shape_epistemic" },
         { node: "AES", kind: "categorical", role: "category", weight: 0.35, touchType: "civic_style_allocation" }
       ],
       allocationMap: {
@@ -5096,9 +4972,14 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.93,
       rewriteNeeded: false,
+      // AES/category row dropped 2026-05-03 per question-information audit:
+      // the only option that referenced AES (`gut_feeling`) used
+      // `AES_PROTOTYPES.plainspoken` which is undefined (no such category — the
+      // 6 AES categories are statesman/technocrat/pastoral/authentic/fighter/
+      // visionary). Engine never updated AES from this question. Orphan reference
+      // in `gut_feeling.categorical.AES` is silently no-op at runtime.
       touchProfile: [
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" },
-        { node: "AES", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" }
       ],
       optionEvidence: {
         research_data: {
@@ -6011,13 +5892,9 @@ var PrismEngine = (() => {
         // CU low when marked Essential. Lowering position weight lets Q102
         // contribute mostly salience evidence without dominating CU position.
         { node: "CU", kind: "continuous", role: "position", weight: 0.3, touchType: "membership_criteria" },
-        { node: "CU", kind: "continuous", role: "salience", weight: 0.8, touchType: "membership_criteria" },
-        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_scope" },
-        { node: "TRB", kind: "continuous", role: "position", weight: 0.2, touchType: "membership_boundary" },
-        { node: "CD", kind: "continuous", role: "position", weight: 0.15, touchType: "membership_boundary" },
-        { node: "MAT", kind: "continuous", role: "position", weight: 0.1, touchType: "economic_membership" },
-        { node: "ZS", kind: "continuous", role: "position", weight: 0.1, touchType: "economic_membership" },
-        { node: "PRO", kind: "continuous", role: "position", weight: 0.15, touchType: "civic_membership" }
+        { node: "CU", kind: "continuous", role: "salience", weight: 0.8, touchType: "membership_criteria" }
+        // Other continuous position touches removed 2026-05-02: rankingMap only
+        // carries CU evidence, so MOR/TRB/CD/MAT/ZS/PRO rows were hollow.
       ],
       rankingMap: {
         // Civic-membership likelihoods recalibrated 2026-04-25 per ADR-009.
@@ -6035,14 +5912,20 @@ var PrismEngine = (() => {
         //   language (speak_lang) → mild CU low (~2.5): functional civic
         //     requirement, slightly assimilationist but not strongly
         //   cultural / economic → mild low (already-existing, kept)
-        born_here: { continuous: { CU: { pos: [0.5, 0.3, 0.12, 0.06, 0.02] } } },
-        speak_lang: { continuous: { CU: { pos: [0.2, 0.32, 0.3, 0.12, 0.06] } } },
-        shared_values: { continuous: { CU: { pos: [0.1, 0.22, 0.4, 0.2, 0.08] } } },
-        civic_part: { continuous: { CU: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] } } },
-        cultural: { continuous: { CU: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] } } },
-        ancestry: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } } },
-        religion: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } } },
-        economic: { continuous: { CU: { pos: [0.2, 0.3, 0.32, 0.12, 0.06] } } }
+        //
+        // ADR-007 (T3): items also emit moralCircle scoped evidence on the
+        // matching membership-gatekeeping axis. Birth/ancestry/cultural items
+        // → national scoped affinity. Religion item → religious scoped.
+        // Civic items (shared_values, civic_part) → universal (civic
+        // universalism within polity, not ethnic).
+        born_here: { continuous: { CU: { pos: [0.5, 0.3, 0.12, 0.06, 0.02] } }, moralCircle: { scopedAffinities: { national: 75 } } },
+        speak_lang: { continuous: { CU: { pos: [0.2, 0.32, 0.3, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 60 } } },
+        shared_values: { continuous: { CU: { pos: [0.1, 0.22, 0.4, 0.2, 0.08] } }, moralCircle: { universal: 65 } },
+        civic_part: { continuous: { CU: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] } }, moralCircle: { universal: 65 } },
+        cultural: { continuous: { CU: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] } }, moralCircle: { scopedAffinities: { national: 65 } } },
+        ancestry: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { national: 80 } } },
+        religion: { continuous: { CU: { pos: [0.55, 0.25, 0.1, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { religious: 75, national: 60 } } },
+        economic: { continuous: { CU: { pos: [0.2, 0.3, 0.32, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 55 } } }
       }
     },
     // Q103 — Issue Salience Screener (pre-quiz rule-out pass).
@@ -6804,7 +6687,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.02, 0.05, 0.13, 0.3, 0.5], sal: [0.02, 0.1, 0.3, 0.58] },
             CU: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] },
             PRO: { pos: [0.05, 0.15, 0.25, 0.3, 0.25] }
-          }
+          },
+          moralCircle: { universal: 85 }
         },
         // "Important but one issue among many; matters when it's directly happening"
         important_one_of_many: {
@@ -6812,7 +6696,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.05, 0.13, 0.27, 0.35, 0.2], sal: [0.1, 0.25, 0.4, 0.25] },
             CU: { pos: [0.08, 0.2, 0.4, 0.22, 0.1] },
             PRO: { pos: [0.1, 0.2, 0.4, 0.2, 0.1] }
-          }
+          },
+          moralCircle: { universal: 70 }
         },
         // "Important in extreme cases but I focus on broader policy"
         depends_on_situation: {
@@ -6820,7 +6705,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.1, 0.25, 0.4, 0.18, 0.07], sal: [0.2, 0.35, 0.3, 0.15] },
             CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
             PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
-          }
+          },
+          moralCircle: { universal: 55 }
         },
         // "Some differentiation is part of stable political order; perfect equality isn't always the goal"
         some_differentiation_acceptable: {
@@ -6828,7 +6714,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.3, 0.35, 0.22, 0.1, 0.03], sal: [0.2, 0.35, 0.3, 0.15] },
             CU: { pos: [0.3, 0.35, 0.22, 0.1, 0.03] },
             PRO: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] }
-          }
+          },
+          moralCircle: { universal: 35 }
         },
         // "Different groups have different roles; that's how polities work"
         natural_hierarchy: {
@@ -6836,7 +6723,8 @@ var PrismEngine = (() => {
             MOR: { pos: [0.55, 0.28, 0.1, 0.05, 0.02], sal: [0.05, 0.2, 0.4, 0.35] },
             CU: { pos: [0.55, 0.28, 0.1, 0.05, 0.02] },
             PRO: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
-          }
+          },
+          moralCircle: { universal: 20 }
         }
       }
     },
@@ -7097,6 +6985,235 @@ var PrismEngine = (() => {
           }
         }
       }
+    },
+    // =========================================================================
+    // ADR-007 — Moral Circle Calibration Battery (T3)
+    //
+    // Battery A: two universal-baseline items. Both feed
+    //            moralCircle.universal directly. Engine averages contributions.
+    // Battery B: eight scoped-affinity single_choice questions, one per scope.
+    //            Each emits moralCircle.scopedAffinities[scope].
+    //
+    // Per ADR-007 §"Calibration Battery", this is the PRIMARY source for
+    // moral-circle evidence. Existing questions (Q60, Q102, etc.) provide
+    // weaker priors only.
+    //
+    // Battery B option mapping (5-level comparative scale):
+    //   not_meaningful  -> null (scope drops out for this respondent)
+    //   less_than       -> 30   (below typical universal; almost never makes excess)
+    //   about_same      -> 50   (matches universal; no excess)
+    //   somewhat_more   -> 70   (small excess for typical universal users)
+    //   much_more       -> 90   (large excess; clearly active boundary)
+    //
+    // Active boundary only emerges when scoped > universal. Most respondents
+    // will have 0-2 active scopes after derivation.
+    // =========================================================================
+    // Q-A1: universal_baseline_humanity
+    {
+      id: 230,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "universal_baseline_humanity",
+      promptFull: "How much moral concern do you feel for any human being, simply because they are human?",
+      uiType: "slider",
+      quality: 0.98,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.1, touchType: "universal_baseline_legacy_proxy" }
+      ],
+      sliderMap: {
+        "0-20": { moralCircle: { universal: 10 } },
+        "21-40": { moralCircle: { universal: 30 } },
+        "41-60": { moralCircle: { universal: 50 } },
+        "61-80": { moralCircle: { universal: 75 } },
+        "81-100": { moralCircle: { universal: 95 } }
+      }
+    },
+    // Q-A2: universal_baseline_stranger
+    {
+      id: 231,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "universal_baseline_stranger",
+      promptFull: "When a stranger is suffering, how much does that matter to you even if they share none of your identities, beliefs, nationality, or politics?",
+      uiType: "slider",
+      quality: 0.97,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.1, touchType: "universal_baseline_legacy_proxy" }
+      ],
+      sliderMap: {
+        "0-20": { moralCircle: { universal: 10 } },
+        "21-40": { moralCircle: { universal: 30 } },
+        "41-60": { moralCircle: { universal: 50 } },
+        "61-80": { moralCircle: { universal: 75 } },
+        "81-100": { moralCircle: { universal: 95 } }
+      }
+    },
+    // Battery B — scoped affinity per scope (8 questions, 5 options each).
+    // Same prompt skeleton; only the in-group label differs.
+    // Comparative scale: not_meaningful / less_than / about_same / somewhat_more / much_more
+    // Active excess emerges only on "somewhat_more" (70) and "much_more" (90)
+    // when universal is moderate; only "much_more" creates excess for high-universal users.
+    {
+      id: 232,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_national",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people in your country?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { national: null } } },
+        less_than: { moralCircle: { scopedAffinities: { national: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { national: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { national: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { national: 90 } } }
+      }
+    },
+    {
+      id: 233,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_religious",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your religious tradition or sacred worldview?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { religious: null } } },
+        less_than: { moralCircle: { scopedAffinities: { religious: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { religious: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { religious: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { religious: 90 } } }
+      }
+    },
+    {
+      id: 234,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_ethnic_racial",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your racial or ethnic background?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { ethnic_racial: null } } },
+        less_than: { moralCircle: { scopedAffinities: { ethnic_racial: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { ethnic_racial: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { ethnic_racial: 90 } } }
+      }
+    },
+    {
+      id: 235,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_class",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people in your economic class or material situation?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { class: null } } },
+        less_than: { moralCircle: { scopedAffinities: { class: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { class: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { class: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { class: 90 } } }
+      }
+    },
+    {
+      id: 236,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_gender",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { gender: null } } },
+        less_than: { moralCircle: { scopedAffinities: { gender: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { gender: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { gender: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { gender: 90 } } }
+      }
+    },
+    {
+      id: 237,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_sexual",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your sexuality or family-life orientation?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { sexual: null } } },
+        less_than: { moralCircle: { scopedAffinities: { sexual: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { sexual: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { sexual: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { sexual: 90 } } }
+      }
+    },
+    {
+      id: 238,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_ideological",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology or values?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { ideological: null } } },
+        less_than: { moralCircle: { scopedAffinities: { ideological: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { ideological: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { ideological: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { ideological: 90 } } }
+      }
+    },
+    {
+      id: 239,
+      stage: "stage2",
+      section: "V",
+      promptShort: "scoped_affinity_political_camp",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people on your political side, party, movement, or camp?",
+      uiType: "single_choice",
+      quality: 0.95,
+      rewriteNeeded: false,
+      touchProfile: [
+        { node: "PF", kind: "continuous", role: "position", weight: 0.1, touchType: "political_camp_legacy_proxy" }
+      ],
+      optionEvidence: {
+        not_meaningful: { moralCircle: { scopedAffinities: { political_camp: null } } },
+        less_than: { moralCircle: { scopedAffinities: { political_camp: 30 } } },
+        about_same: { moralCircle: { scopedAffinities: { political_camp: 50 } } },
+        somewhat_more: { moralCircle: { scopedAffinities: { political_camp: 70 } } },
+        much_more: { moralCircle: { scopedAffinities: { political_camp: 90 } } }
+      }
     }
   ];
 
@@ -7162,6 +7279,161 @@ var PrismEngine = (() => {
     }
     return normalize(updated);
   }
+  var MOR_BOUNDARY_ORDER = [
+    "national",
+    "ethnic_racial",
+    "religious",
+    "class",
+    "ideological",
+    "gender",
+    "political_tribe"
+  ];
+  function mkInitialMorBoundaries() {
+    return {
+      boundaries: {
+        national: 0.5,
+        ethnic_racial: 0.5,
+        religious: 0.5,
+        class: 0.5,
+        ideological: 0.5,
+        gender: 0.5,
+        political_tribe: 0.5
+      },
+      intensity: 0,
+      touches: {},
+      touchTypes: /* @__PURE__ */ new Set(),
+      status: "unknown"
+    };
+  }
+  function addToMorBoundary(current, target, mix) {
+    const t = clamp01(target);
+    const m = clamp01(mix);
+    const updated = current * (1 - m) + t * m;
+    return clamp01(updated);
+  }
+  function bumpMorIntensity(current, target, mix) {
+    const t = Math.max(0, Math.min(3, target));
+    const m = clamp01(mix);
+    const updated = current * (1 - m) + t * m;
+    return Math.max(0, Math.min(3, updated));
+  }
+  function boundaryLoad(b) {
+    return Math.max(
+      b.national,
+      b.ethnic_racial,
+      b.religious,
+      b.class,
+      b.ideological,
+      b.gender,
+      b.political_tribe
+    );
+  }
+  function assertBoundariesValid(b, label) {
+    for (const key of MOR_BOUNDARY_ORDER) {
+      const v = b[key];
+      if (typeof v !== "number" || !Number.isFinite(v) || v < 0 || v > 1) {
+        throw new Error(
+          `${label}: morBoundaries.${key} invalid (got ${String(v)}); must be a finite number in [0, 1]`
+        );
+      }
+    }
+  }
+  function assertIntensityValid(i, label) {
+    if (typeof i !== "number" || !Number.isFinite(i) || i < 0 || i > 3) {
+      throw new Error(
+        `${label}: intensity invalid (got ${String(i)}); must be a finite number in [0, 3]`
+      );
+    }
+  }
+  function morModuleDistance(respondent, target, weights = {}) {
+    if (!respondent) {
+      throw new Error("morModuleDistance: respondent.morBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
+    }
+    if (!target) {
+      throw new Error("morModuleDistance: target.morBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
+    }
+    assertBoundariesValid(respondent.boundaries, "morModuleDistance respondent");
+    assertBoundariesValid(target.boundaries, "morModuleDistance target");
+    assertIntensityValid(respondent.intensity, "morModuleDistance respondent");
+    assertIntensityValid(target.intensity, "morModuleDistance target");
+    const wB = weights.boundary ?? 0.7;
+    const wI = weights.intensity ?? 0.3;
+    const rb = respondent.boundaries;
+    const tb = target.boundaries;
+    let sumSq = 0;
+    for (const key of MOR_BOUNDARY_ORDER) {
+      const d = rb[key] - tb[key];
+      sumSq += d * d;
+    }
+    const boundaryDist = Math.sqrt(sumSq / MOR_BOUNDARY_ORDER.length);
+    const intensityDist = Math.abs(respondent.intensity - target.intensity) / 3;
+    return wB * boundaryDist + wI * intensityDist;
+  }
+  function morTargetVectorDistance(respondentBoundaries, targetBoundaries) {
+    if (!respondentBoundaries) {
+      throw new Error("morTargetVectorDistance: respondentBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
+    }
+    if (!targetBoundaries) {
+      throw new Error("morTargetVectorDistance: targetBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
+    }
+    assertBoundariesValid(respondentBoundaries, "morTargetVectorDistance respondent");
+    assertBoundariesValid(targetBoundaries, "morTargetVectorDistance target");
+    let sumSq = 0;
+    for (const key of MOR_BOUNDARY_ORDER) {
+      const d = respondentBoundaries[key] - targetBoundaries[key];
+      sumSq += d * d;
+    }
+    return Math.sqrt(sumSq / MOR_BOUNDARY_ORDER.length);
+  }
+  function clamp01(x) {
+    if (x < 0) return 0;
+    if (x > 1) return 1;
+    return x;
+  }
+  var MORAL_CIRCLE_SCOPES_ORDER = [
+    "national",
+    "religious",
+    "ethnic_racial",
+    "class",
+    "gender",
+    "sexual",
+    "ideological",
+    "political_camp"
+  ];
+  function moralCircleDistance(state, archetype) {
+    const uDiff = Math.abs(state.universalAffinity - archetype.universalAffinity) / 100;
+    let sumSq = 0;
+    let pairCount = 0;
+    for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+      const archScoped = archetype.scopedAffinities[scope];
+      if (archScoped === null || archScoped === void 0) continue;
+      const archExcess = Math.max(0, archScoped - archetype.universalAffinity);
+      const stateExcess = state.excessAffinities[scope] ?? 0;
+      const d = archExcess - stateExcess;
+      sumSq += d * d;
+      pairCount += 1;
+    }
+    const maxL2 = Math.sqrt(pairCount * 100 * 100);
+    const excessDist = maxL2 > 0 ? Math.sqrt(sumSq) / maxL2 : 0;
+    const stateActive = new Set(state.activeBoundaries);
+    const archActive = /* @__PURE__ */ new Set();
+    for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+      const archScoped = archetype.scopedAffinities[scope];
+      if (archScoped === null || archScoped === void 0) continue;
+      if (archScoped > archetype.universalAffinity) archActive.add(scope);
+    }
+    let intersect = 0;
+    let union = 0;
+    for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+      const inS = stateActive.has(scope);
+      const inA = archActive.has(scope);
+      if (inS && inA) intersect++;
+      if (inS || inA) union++;
+    }
+    const jaccardMiss = union === 0 ? 0 : 1 - intersect / union;
+    const blended = uDiff * 0.4 + excessDist * 0.4 + jaccardMiss * 0.2;
+    return clamp01(blended);
+  }
 
   // src/config/normalization.ts
   var NODE_NORM_FACTORS = {
@@ -7196,6 +7468,140 @@ var PrismEngine = (() => {
   };
 
   // src/engine/update.ts
+  var BRIDGE_MOR_MIX = 0.06;
+  var BRIDGE_TRB_MIX = 0.1;
+  var BRIDGE_PF_MIX_BD = 0.1;
+  var BRIDGE_PF_MIX_INT = 0.06;
+  var BRIDGE_MOR_SAL_MIX = 0.1;
+  var BRIDGE_GLOBAL_BD_MIX = 0.1;
+  var BRIDGE_GLOBAL_BD_TARGET = 0.15;
+  var BRIDGE_INT_TARGET = 2.5;
+  var BRIDGE_BD_TARGET = 0.8;
+  function anchorToBoundary(anchor) {
+    switch (anchor) {
+      case "national":
+        return "national";
+      case "ethnic_racial":
+        return "ethnic_racial";
+      case "religious":
+        return "religious";
+      case "class":
+        return "class";
+      case "ideological":
+        return "ideological";
+      case "gender":
+        return "gender";
+      case "sexual":
+        return "gender";
+      // collapsed per resolver design
+      case "global":
+        return null;
+      case "mixed_none":
+        return null;
+      default:
+        return null;
+    }
+  }
+  function mirrorMorPosToBoundaries(state, nodeId, posDist, weight = 1) {
+    if (!state.morBoundaries || !posDist || posDist.length !== 5) return;
+    const sum = posDist.reduce((a, b) => a + b, 0);
+    if (sum <= 0) return;
+    const meanPos = posDist[0] / sum * 1 + posDist[1] / sum * 2 + posDist[2] / sum * 3 + posDist[3] / sum * 4 + posDist[4] / sum * 5;
+    const w = Math.max(0, Math.min(1, weight));
+    if (nodeId === "MOR") {
+      const target = Math.max(0, Math.min(1, 1 - (meanPos - 1) / 4));
+      const mix = BRIDGE_MOR_MIX * w;
+      for (const k of MOR_BOUNDARY_ORDER) {
+        state.morBoundaries.boundaries[k] = addToMorBoundary(
+          state.morBoundaries.boundaries[k],
+          target,
+          mix
+        );
+      }
+    } else if (nodeId === "TRB") {
+      const target = (meanPos - 1) / 4 * 3;
+      state.morBoundaries.intensity = bumpMorIntensity(
+        state.morBoundaries.intensity,
+        target,
+        BRIDGE_TRB_MIX * w
+      );
+    } else {
+      const targetBd = Math.max(0, Math.min(1, (meanPos - 1) / 4));
+      const targetInt = (meanPos - 1) / 4 * 3;
+      state.morBoundaries.boundaries.political_tribe = addToMorBoundary(
+        state.morBoundaries.boundaries.political_tribe,
+        targetBd,
+        BRIDGE_PF_MIX_BD * w
+      );
+      state.morBoundaries.intensity = bumpMorIntensity(
+        state.morBoundaries.intensity,
+        targetInt,
+        BRIDGE_PF_MIX_INT * w
+      );
+    }
+  }
+  function mirrorMorSalToIntensity(state, salDist, weight = 1) {
+    if (!state.morBoundaries || !salDist || salDist.length !== 4) return;
+    const sum = salDist.reduce((a, b) => a + b, 0);
+    if (sum <= 0) return;
+    const expectedSal3 = salDist[0] / sum * 0 + salDist[1] / sum * 1 + salDist[2] / sum * 2 + salDist[3] / sum * 3;
+    const w = Math.max(0, Math.min(1, weight));
+    state.morBoundaries.intensity = bumpMorIntensity(
+      state.morBoundaries.intensity,
+      expectedSal3,
+      BRIDGE_MOR_SAL_MIX * w
+    );
+  }
+  function mirrorMorSignalToBoundaries(state, nodeId, signal, weight = 1) {
+    if (!state.morBoundaries || !Number.isFinite(signal)) return;
+    const peak = Math.max(1, Math.min(5, 3 + signal * 2));
+    const sigma = 0.8;
+    const raw = [1, 2, 3, 4, 5].map(
+      (i) => Math.exp(-0.5 * ((i - peak) / sigma) ** 2)
+    );
+    mirrorMorPosToBoundaries(state, nodeId, raw, weight);
+  }
+  function mirrorAnchorToBoundaries(state, signals, weight = 1) {
+    if (!state.morBoundaries || !signals) return;
+    const w = Math.max(0, Math.min(1, weight));
+    for (const [anchor, raw] of Object.entries(signals)) {
+      if (raw === void 0 || raw <= 0) continue;
+      const mag = Math.abs(raw);
+      if (anchor === "global") {
+        const bdMix = Math.min(0.3, (0.05 + mag * 0.1) * w) * (BRIDGE_GLOBAL_BD_MIX / 0.1);
+        for (const k of MOR_BOUNDARY_ORDER) {
+          state.morBoundaries.boundaries[k] = addToMorBoundary(
+            state.morBoundaries.boundaries[k],
+            BRIDGE_GLOBAL_BD_TARGET,
+            bdMix
+          );
+        }
+        const intMix2 = Math.min(0.2, (0.04 + mag * 0.06) * w);
+        state.morBoundaries.intensity = bumpMorIntensity(
+          state.morBoundaries.intensity,
+          BRIDGE_INT_TARGET,
+          intMix2
+        );
+        continue;
+      }
+      if (anchor === "mixed_none") continue;
+      const key = anchorToBoundary(anchor);
+      if (key) {
+        const mix = Math.min(0.3, (0.05 + mag * 0.1) * w);
+        state.morBoundaries.boundaries[key] = addToMorBoundary(
+          state.morBoundaries.boundaries[key],
+          BRIDGE_BD_TARGET,
+          mix
+        );
+      }
+      const intMix = Math.min(0.2, (0.04 + mag * 0.06) * w);
+      state.morBoundaries.intensity = bumpMorIntensity(
+        state.morBoundaries.intensity,
+        BRIDGE_INT_TARGET,
+        intMix
+      );
+    }
+  }
   var RANK_SAL = [
     [0.05, 0.15, 0.3, 0.5],
     // rank 1 (most important)
@@ -7254,6 +7660,9 @@ var PrismEngine = (() => {
       if (touch.kind === "continuous" && touch.node in state.continuous) {
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
+        if (touch.node === "MOR") {
+          mirrorMorSalToIntensity(state, EXTREMITY_SAL, 1);
+        }
       } else if (touch.kind === "categorical" && touch.node in state.categorical) {
         const node = state.categorical[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, EXTREMITY_SAL);
@@ -7281,6 +7690,12 @@ var PrismEngine = (() => {
         const node = state.continuous[nodeId];
         if (upd?.pos) node.posDist = multiplyAndNormalize(node.posDist, upd.pos);
         if (upd?.sal) node.salDist = multiplyAndNormalize(node.salDist, upd.sal);
+        if (upd?.pos && (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF")) {
+          mirrorMorPosToBoundaries(state, nodeId, upd.pos, 1);
+        }
+        if (upd?.sal && nodeId === "MOR") {
+          mirrorMorSalToIntensity(state, upd.sal, 1);
+        }
       }
     }
     if (evidence.categorical) {
@@ -7293,7 +7708,78 @@ var PrismEngine = (() => {
     if (evidence.trbAnchor) {
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, evidence.trbAnchor);
       state.trbAnchor.touches += 1;
+      mirrorAnchorToBoundaries(state, evidence.trbAnchor, 1);
     }
+    if (evidence.moralCircle) {
+      applyMoralCircleEvidence(state, evidence.moralCircle);
+    }
+  }
+  function applyMoralCircleEvidence(state, ev) {
+    if (!state.moralCircle) return;
+    const acc = state.moralCircle.accumulator;
+    if (typeof ev.universal === "number" && Number.isFinite(ev.universal)) {
+      const v = Math.max(0, Math.min(100, ev.universal));
+      acc.universalSum += v;
+      acc.universalCount += 1;
+    }
+    if (ev.scopedAffinities) {
+      for (const [scope, raw] of Object.entries(ev.scopedAffinities)) {
+        if (raw === null || raw === void 0) continue;
+        if (typeof raw !== "number" || !Number.isFinite(raw)) continue;
+        const v = Math.max(0, Math.min(100, raw));
+        const key = scope;
+        acc.scopedSums[key] = (acc.scopedSums[key] ?? 0) + v;
+        acc.scopedCounts[key] = (acc.scopedCounts[key] ?? 0) + 1;
+      }
+    }
+    state.moralCircle.touchCount += 1;
+    state.moralCircle.affinity = materializeAffinityFromAccumulator(acc);
+  }
+  function materializeAffinityFromAccumulator(acc) {
+    const universalAffinity = acc.universalCount > 0 ? acc.universalSum / acc.universalCount : 50;
+    const SCOPES = [
+      "national",
+      "religious",
+      "ethnic_racial",
+      "class",
+      "gender",
+      "sexual",
+      "ideological",
+      "political_camp"
+    ];
+    const scopedAffinities = {};
+    for (const scope of SCOPES) {
+      const cnt = acc.scopedCounts[scope] ?? 0;
+      if (cnt > 0) {
+        scopedAffinities[scope] = (acc.scopedSums[scope] ?? 0) / cnt;
+      } else {
+        scopedAffinities[scope] = null;
+      }
+    }
+    const excessAffinities = {};
+    let sumSq = 0;
+    for (const scope of SCOPES) {
+      const raw = scopedAffinities[scope];
+      if (raw === null) {
+        excessAffinities[scope] = 0;
+        continue;
+      }
+      const e = Math.max(0, raw - universalAffinity);
+      excessAffinities[scope] = e;
+      sumSq += e * e;
+    }
+    const l2 = Math.sqrt(sumSq);
+    const intensity01 = Math.min(1, l2 / 100);
+    const intensity03 = 3 * intensity01;
+    const activeBoundaries = SCOPES.filter((s) => excessAffinities[s] > 0);
+    return {
+      universalAffinity,
+      scopedAffinities,
+      excessAffinities,
+      activeBoundaries: [...activeBoundaries],
+      intensity01,
+      intensity03
+    };
   }
   function partyIdFromAnswer(optionKey) {
     switch (optionKey) {
@@ -7398,6 +7884,9 @@ var PrismEngine = (() => {
           const current = node.posDist;
           const bump = current.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * share * (i + 1 - 3)));
           node.posDist = normalize(bump);
+          if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+            mirrorMorSignalToBoundaries(state, nodeId, (signal ?? 0) * normFactor, share);
+          }
         }
       }
       if (map.categorical) {
@@ -7416,6 +7905,7 @@ var PrismEngine = (() => {
         }
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
+        mirrorAnchorToBoundaries(state, scaled, 1);
       }
     }
     const salienceTouches = q.touchProfile.filter((t) => t.role === "salience");
@@ -7427,6 +7917,7 @@ var PrismEngine = (() => {
       if (touch.kind === "continuous") {
         const node = state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+        if (touch.node === "MOR") mirrorMorSalToIntensity(state, salLikelihood, 1);
       } else if (touch.kind === "categorical") {
         const node = state.categorical[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -7454,6 +7945,12 @@ var PrismEngine = (() => {
           if (salLikelihood) {
             node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
           }
+          if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+            mirrorMorSignalToBoundaries(state, nodeId, sig * normFactor, rankWeight);
+          }
+          if (nodeId === "MOR" && salLikelihood) {
+            mirrorMorSalToIntensity(state, salLikelihood, rankWeight);
+          }
         }
       }
       if (map.categorical) {
@@ -7475,6 +7972,19 @@ var PrismEngine = (() => {
         }
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
+        mirrorAnchorToBoundaries(state, scaled, 1);
+      }
+      if (map.moralCircle && rankWeight > 0) {
+        const scaled = {};
+        if (typeof map.moralCircle.universal === "number") {
+          scaled.universal = map.moralCircle.universal;
+        }
+        if (map.moralCircle.scopedAffinities) {
+          scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+        }
+        if (rankWeight >= 0.2) {
+          applyMoralCircleEvidence(state, scaled);
+        }
       }
     });
   }
@@ -7513,7 +8023,9 @@ var PrismEngine = (() => {
     for (const [nodeId, buckets] of continuousBuckets) {
       const node = state.continuous[nodeId];
       if (!node) continue;
-      node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+      const sal = resolveSal(buckets);
+      node.salDist = multiplyAndNormalize(node.salDist, sal);
+      if (nodeId === "MOR") mirrorMorSalToIntensity(state, sal, 1);
     }
     for (const [nodeId, buckets] of categoricalBuckets) {
       const node = state.categorical[nodeId];
@@ -7553,6 +8065,9 @@ var PrismEngine = (() => {
         const tNorm = target.map((p) => p / tSum);
         const mixed = node.posDist.map((v, i) => v * (1 - w) + tNorm[i] * w);
         node.posDist = normalize(mixed);
+        if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+          mirrorMorPosToBoundaries(state, nodeId, tNorm, w);
+        }
       }
     }
     let anchorApplied = false;
@@ -7561,6 +8076,7 @@ var PrismEngine = (() => {
       const map = q.rankingMap[item];
       if (!map?.trbAnchor) continue;
       state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+      mirrorAnchorToBoundaries(state, map.trbAnchor, 1);
       anchorApplied = true;
     }
     if (anchorApplied) state.trbAnchor.touches += 1;
@@ -7605,7 +8121,9 @@ var PrismEngine = (() => {
     for (const [nodeId, buckets] of continuousBuckets) {
       const node = state.continuous[nodeId];
       if (!node) continue;
-      node.salDist = multiplyAndNormalize(node.salDist, resolveSal(buckets));
+      const sal = resolveSal(buckets);
+      node.salDist = multiplyAndNormalize(node.salDist, sal);
+      if (nodeId === "MOR") mirrorMorSalToIntensity(state, sal, 1);
     }
     for (const [nodeId, buckets] of categoricalBuckets) {
       const node = state.categorical[nodeId];
@@ -7680,6 +8198,9 @@ var PrismEngine = (() => {
         const target = raw.map((p) => p / rawSum);
         const mixed = node.posDist.map((v, i) => v * (1 - w) + target[i] * w);
         node.posDist = normalize(mixed);
+        if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+          mirrorMorPosToBoundaries(state, nodeId, target, w);
+        }
       }
     }
   }
@@ -7702,7 +8223,14 @@ var PrismEngine = (() => {
     const normTarget = raw.map((v) => v / rawSum);
     const mixed = node.posDist.map((v, i) => v * (1 - DUAL_AXIS_POS_MIX) + (normTarget[i] ?? 0) * DUAL_AXIS_POS_MIX);
     node.posDist = normalize(mixed);
-    node.salDist = multiplyAndNormalize(node.salDist, dualAxisYtoSal(y));
+    const dualSal = dualAxisYtoSal(y);
+    node.salDist = multiplyAndNormalize(node.salDist, dualSal);
+    if (map.node === "MOR" || map.node === "TRB" || map.node === "PF") {
+      mirrorMorPosToBoundaries(state, map.node, normTarget, DUAL_AXIS_POS_MIX);
+    }
+    if (map.node === "MOR") {
+      mirrorMorSalToIntensity(state, dualSal, 1);
+    }
   }
   function applyPairwiseAnswer(state, q, answers) {
     state.answers[q.id] = answers;
@@ -7717,6 +8245,9 @@ var PrismEngine = (() => {
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
           const bump = node.posDist.map((p, i) => p * Math.exp((signal ?? 0) * normFactor * (i + 1 - 3)));
           node.posDist = normalize(bump);
+          if (nodeId === "MOR" || nodeId === "TRB" || nodeId === "PF") {
+            mirrorMorSignalToBoundaries(state, nodeId, (signal ?? 0) * normFactor, 1);
+          }
         }
       }
       if (map.categorical) {
@@ -7738,15 +8269,13 @@ var PrismEngine = (() => {
     103,
     // issue salience screener — global salience router (priorityBattery)
     97,
-    // political thought frequency — PF / ENG activation
-    1,
-    // political content frequency — ENG activation reinforcement
+    // political thought frequency — PF / ENG position
     60,
     // politically important identities — TRB anchor
     89,
     // epistemic style battery — EPS category + salience
     22,
-    // source trust conflict — EPS tie-breaker
+    // source trust conflict — EPS tie-breaker (load-bearing for top-1)
     218,
     // aesthetic style ranking — AES category + salience
     211,
@@ -7825,10 +8354,14 @@ var PrismEngine = (() => {
   var _config = { ...DEFAULT_CONFIG };
 
   // src/engine/archetypeDistance.ts
+  var MOR_MODULE_LEGACY = ["MOR", "TRB", "PF"];
   function archetypeDistance(state, archetype) {
     let totalDist = 0;
     let totalWeight = 0;
+    const useMoralCircle = !!state.moralCircle?.affinity && !!archetype.moralCircle;
+    const useMorModule = !useMoralCircle && !!state.morBoundaries && !!archetype.morBoundaries;
     for (const nodeId of CONTINUOUS_NODES) {
+      if ((useMoralCircle || useMorModule) && MOR_MODULE_LEGACY.includes(nodeId)) continue;
       const template = archetype.nodes[nodeId];
       if (!template || template.kind !== "continuous") continue;
       const nodeState = state.continuous[nodeId];
@@ -7862,6 +8395,34 @@ var PrismEngine = (() => {
         nodeWeight = archSalWeight * respondentSalWeight;
         nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
       }
+      totalDist += nodeDist * nodeWeight;
+      totalWeight += nodeWeight;
+    }
+    if (useMoralCircle) {
+      const respIntensity03 = state.moralCircle.affinity.intensity03;
+      let archSumSq = 0;
+      const archMc = archetype.moralCircle;
+      for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "sexual", "ideological", "political_camp"]) {
+        const v = archMc.scopedAffinities[scope];
+        if (v === null || v === void 0) continue;
+        const e = Math.max(0, v - archMc.universalAffinity);
+        archSumSq += e * e;
+      }
+      const archIntensity03 = 3 * Math.min(1, Math.sqrt(archSumSq) / 100);
+      const archSalWeight = 0.5 + archIntensity03 * 0.5;
+      const respondentSalWeight = 0.5 + respIntensity03 * 0.25;
+      const nodeWeight = archSalWeight * respondentSalWeight;
+      const nodeDist = moralCircleDistance(state.moralCircle.affinity, archMc);
+      totalDist += nodeDist * nodeWeight;
+      totalWeight += nodeWeight;
+    }
+    if (useMorModule) {
+      const archIntensity = archetype.morBoundaries.intensity;
+      const respIntensity = state.morBoundaries.intensity;
+      const archSalWeight = 0.5 + archIntensity * 0.5;
+      const respondentSalWeight = 0.5 + respIntensity * 0.25;
+      const nodeWeight = archSalWeight * respondentSalWeight;
+      const nodeDist = morModuleDistance(state.morBoundaries, archetype.morBoundaries);
       totalDist += nodeDist * nodeWeight;
       totalWeight += nodeWeight;
     }
@@ -7902,17 +8463,7 @@ var PrismEngine = (() => {
     }
     let finalDist = totalWeight > 0 ? totalDist / totalWeight : 0;
     if (archetype.centristAnchor) {
-      const nonSelfNodes = [
-        "MAT",
-        "CD",
-        "CU",
-        "MOR",
-        "PRO",
-        "COM",
-        "ZS",
-        "ONT_H",
-        "ONT_S"
-      ];
+      const nonSelfNodes = state.morBoundaries ? ["MAT", "CD", "CU", "PRO", "COM", "ZS", "ONT_H", "ONT_S"] : ["MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S"];
       let highSalCount = 0;
       for (const nid of nonSelfNodes) {
         const ns = state.continuous[nid];
@@ -7925,6 +8476,11 @@ var PrismEngine = (() => {
         if (!ns) continue;
         const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
         if (userSal >= 2) highSalCount++;
+      }
+      if (state.moralCircle?.affinity && state.moralCircle.affinity.intensity03 >= 2) {
+        highSalCount++;
+      } else if (state.morBoundaries && state.morBoundaries.intensity >= 2) {
+        highSalCount++;
       }
       if (highSalCount >= 3) {
         const penaltyMult = Math.min(1.5, 1 + 0.1 * (highSalCount - 2));
@@ -8039,6 +8595,15 @@ var PrismEngine = (() => {
     const needsDrill = topKNodesStillNeedingDrill(state, topK, questionsById);
     if (needsDrill.length === 0) return null;
     const needsDrillSet = new Set(needsDrill);
+    if (needsDrillSet.has("CD")) {
+      const q3 = available.find((q) => q.id === 3);
+      if (q3) {
+        const hasCleanCdPositionTouch = q3.touchProfile?.some(
+          (tp) => tp.node === "CD" && tp.role === "position" && tp.weight >= MEANINGFUL_POSITION_WEIGHT
+        );
+        if (hasCleanCdPositionTouch) return q3;
+      }
+    }
     const candidates = [];
     for (const q of available) {
       const tps = q.touchProfile ?? [];
@@ -8440,76 +9005,152 @@ var PrismEngine = (() => {
   }
 
   // src/identity/resolveIdentityPrimary.ts
-  var TRB_ANCHOR_ORDER2 = [
-    "national",
-    "ideological",
-    "religious",
-    "class",
-    "ethnic_racial",
-    "gender",
-    "sexual",
-    "global",
-    "mixed_none"
-  ];
+  var LATENT_INTENSITY = 1.5;
+  var LATENT_LOAD = 0.45;
+  var ACTIVE_INTENSITY = 2.25;
+  var ACTIVE_LOAD = 0.65;
+  var ADR007_EXCESS_THRESHOLD = 20;
+  var ADR007_SCOPED_THRESHOLD = 70;
+  var ADR007_UNIVERSAL_CEILING = 75;
+  var ADR007_INTENSITY03_THRESHOLD = 1.2;
+  var ADR007_INTENSITY03_DOMINANT = 2.25;
   function expectedContinuous(state, nodeId) {
     const node = state.continuous[nodeId];
     if (!node) return 3;
     return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
   }
-  function topAnchor(state) {
-    const dist = state.trbAnchor?.dist;
-    if (!dist || dist.length !== TRB_ANCHOR_ORDER2.length) return "mixed_none";
-    let bestIdx = 0;
-    for (let i = 1; i < dist.length; i++) {
-      if (dist[i] > dist[bestIdx]) bestIdx = i;
+  var MORAL_CIRCLE_SCOPES_ORDER2 = [
+    "national",
+    "religious",
+    "ethnic_racial",
+    "class",
+    "gender",
+    "sexual",
+    "ideological",
+    "political_camp"
+  ];
+  function topExcessScope(affinity) {
+    let best = null;
+    let bestVal = 0;
+    for (const scope of MORAL_CIRCLE_SCOPES_ORDER2) {
+      const e = affinity.excessAffinities[scope] ?? 0;
+      if (e > bestVal) {
+        bestVal = e;
+        best = scope;
+      }
     }
-    return TRB_ANCHOR_ORDER2[bestIdx];
+    return best;
+  }
+  function topBoundary(state) {
+    const mb = state.morBoundaries;
+    if (!mb) return null;
+    let bestKey = MOR_BOUNDARY_ORDER[0];
+    let bestVal = mb.boundaries[bestKey];
+    let allEqual = true;
+    for (const k of MOR_BOUNDARY_ORDER) {
+      const v = mb.boundaries[k];
+      if (v !== bestVal) allEqual = false;
+      if (v > bestVal) {
+        bestVal = v;
+        bestKey = k;
+      }
+    }
+    return allEqual ? null : bestKey;
+  }
+  function scopeToLegacyAnchor(scope) {
+    switch (scope) {
+      case "national":
+        return "national";
+      case "religious":
+        return "religious";
+      case "ethnic_racial":
+        return "ethnic_racial";
+      case "class":
+        return "class";
+      case "ideological":
+        return "ideological";
+      case "gender":
+        return "gender";
+      case "sexual":
+        return "gender";
+      // legacy collapsed; new path uses scopedAnchor
+      case "political_camp":
+        return "political_tribe";
+    }
   }
   function resolveIdentityPrimary(state, engagementLabel, demographics) {
-    const trb = expectedContinuous(state, "TRB");
-    const pf = expectedContinuous(state, "PF");
-    const zs = expectedContinuous(state, "ZS");
-    const cd = expectedContinuous(state, "CD");
-    const onts = expectedContinuous(state, "ONT_S");
-    const mor = expectedContinuous(state, "MOR");
-    const anchor = topAnchor(state);
     const engagementActive = engagementLabel.level === "engaged" || engagementLabel.level === "highly-engaged";
     const engagementDominant = engagementLabel.level === "highly-engaged";
-    const passedLatent = trb >= 3 && pf >= 3;
-    const passedActive = trb >= 4 && pf >= 4 && engagementActive;
-    const passedDominant = trb >= 4 && pf >= 4 && engagementDominant;
+    if (state.moralCircle?.affinity) {
+      return resolveViaMoralCircle(
+        state,
+        state.moralCircle.affinity,
+        engagementLabel,
+        engagementActive,
+        engagementDominant,
+        demographics
+      );
+    }
+    const mb = state.morBoundaries;
+    const intensity = mb?.intensity ?? 0;
+    const load = mb ? boundaryLoad(mb.boundaries) : 0;
+    const anchorTop = topBoundary(state);
+    const passedLatent = intensity >= LATENT_INTENSITY && load >= LATENT_LOAD;
+    const passedActive = intensity >= ACTIVE_INTENSITY && load >= ACTIVE_LOAD && engagementActive;
+    const passedDominant = intensity >= ACTIVE_INTENSITY && load >= ACTIVE_LOAD && engagementDominant;
     const gate = {
-      trb,
-      pf,
+      intensity,
+      load,
       engagementLevel: engagementLabel.level,
       passedLatent,
       passedActive,
       passedDominant
     };
-    if (!passedLatent) {
-      return { state: "none", anchor, reasonCodes: ["gate_not_met"], gate };
+    if (!passedLatent || !anchorTop) {
+      return {
+        state: "none",
+        anchor: anchorTop ?? void 0,
+        reasonCodes: anchorTop ? ["gate_not_met"] : ["module_uninitialized_or_uniform"],
+        gate
+      };
     }
     const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
-    if (anchor === "ethnic_racial") {
+    if (anchorTop === "gender") {
+      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+      if (lgbtq === "yes") {
+        return {
+          state: stateLabel,
+          label: "LGBTQ Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor: anchorTop,
+          reasonCodes: ["gender_anchor", "lgbtq_demographic_match", "legacy_path"],
+          gate
+        };
+      }
+    }
+    if (anchorTop === "ethnic_racial") {
       const race = typeof demographics?.demo_ethnicity === "string" ? demographics.demo_ethnicity : "";
       if (race === "black") {
         return {
           state: stateLabel,
           label: "Black Voter",
           confidence: passedActive ? "high" : "medium",
-          anchor,
+          anchor: anchorTop,
           reasonCodes: ["racial_anchor", "black_demographic_match"],
           gate
         };
       }
       if (race === "white") {
+        const zs = expectedContinuous(state, "ZS");
+        const cd = expectedContinuous(state, "CD");
+        const onts = expectedContinuous(state, "ONT_S");
         const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
         if (grievanceSignals >= 2) {
           return {
             state: stateLabel,
             label: "White Grievance Voter",
             confidence: grievanceSignals === 3 ? "high" : "medium",
-            anchor,
+            anchor: anchorTop,
             reasonCodes: ["racial_anchor", "white_demographic_match", "status_threat_pattern"],
             gate
           };
@@ -8517,7 +9158,7 @@ var PrismEngine = (() => {
         return {
           state: "unresolved",
           confidence: "low",
-          anchor,
+          anchor: anchorTop,
           reasonCodes: ["racial_anchor", "white_demographic_match", "insufficient_grievance_signal"],
           gate
         };
@@ -8525,19 +9166,19 @@ var PrismEngine = (() => {
       return {
         state: "unresolved",
         confidence: "low",
-        anchor,
+        anchor: anchorTop,
         reasonCodes: ["racial_anchor", "missing_or_nonresolving_race_demographic"],
         gate
       };
     }
-    if (anchor === "religious") {
+    if (anchorTop === "religious") {
       const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
       if (religion === "christian") {
         return {
           state: stateLabel,
           label: "Evangelical Voter",
           confidence: passedActive ? "medium" : "low",
-          anchor,
+          anchor: anchorTop,
           reasonCodes: ["religious_anchor", "christian_demographic_match"],
           gate
         };
@@ -8545,33 +9186,17 @@ var PrismEngine = (() => {
       return {
         state: "unresolved",
         confidence: "low",
-        anchor,
+        anchor: anchorTop,
         reasonCodes: ["religious_anchor", "missing_or_non_evangelical_religion_detail"],
         gate
       };
     }
-    if (anchor === "sexual") {
-      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
-      if (lgbtq === "yes") {
-        return {
-          state: stateLabel,
-          label: "LGBTQ Voter",
-          confidence: passedActive ? "high" : "medium",
-          anchor,
-          reasonCodes: ["sexual_anchor", "lgbtq_demographic_match"],
-          gate
-        };
-      }
-      return {
-        state: "unresolved",
-        confidence: "low",
-        anchor,
-        reasonCodes: ["sexual_anchor", "missing_or_non_lgbtq_demographic"],
-        gate
-      };
-    }
-    if (anchor === "gender") {
+    if (anchorTop === "gender") {
       const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
+      const cd = expectedContinuous(state, "CD");
+      const mor = expectedContinuous(state, "MOR");
+      const onts = expectedContinuous(state, "ONT_S");
+      const zs = expectedContinuous(state, "ZS");
       if (gender === "female") {
         const feministSignals = Number(cd <= 2.5) + Number(mor >= 3.5) + Number(onts >= 3.5);
         if (feministSignals >= 2) {
@@ -8579,7 +9204,7 @@ var PrismEngine = (() => {
             state: stateLabel,
             label: "Feminist Voter",
             confidence: feministSignals === 3 ? "high" : "medium",
-            anchor,
+            anchor: anchorTop,
             reasonCodes: ["gender_anchor", "female_demographic_match", "progressive_gender_pattern"],
             gate
           };
@@ -8587,7 +9212,7 @@ var PrismEngine = (() => {
         return {
           state: "unresolved",
           confidence: "low",
-          anchor,
+          anchor: anchorTop,
           reasonCodes: ["gender_anchor", "female_demographic_match", "insufficient_feminist_signal"],
           gate
         };
@@ -8599,7 +9224,7 @@ var PrismEngine = (() => {
             state: stateLabel,
             label: "Male Grievance Voter",
             confidence: grievanceSignals === 3 ? "high" : "medium",
-            anchor,
+            anchor: anchorTop,
             reasonCodes: ["gender_anchor", "male_demographic_match", "status_threat_pattern"],
             gate
           };
@@ -8607,7 +9232,7 @@ var PrismEngine = (() => {
         return {
           state: "unresolved",
           confidence: "low",
-          anchor,
+          anchor: anchorTop,
           reasonCodes: ["gender_anchor", "male_demographic_match", "insufficient_grievance_signal"],
           gate
         };
@@ -8615,7 +9240,7 @@ var PrismEngine = (() => {
       return {
         state: "unresolved",
         confidence: "low",
-        anchor,
+        anchor: anchorTop,
         reasonCodes: ["gender_anchor", "missing_or_nonresolving_gender_demographic"],
         gate
       };
@@ -8623,8 +9248,210 @@ var PrismEngine = (() => {
     return {
       state: "unresolved",
       confidence: "low",
-      anchor,
+      anchor: anchorTop,
       reasonCodes: ["identity_pattern_detected_but_anchor_not_yet_resolvable"],
+      gate
+    };
+  }
+  function resolveViaMoralCircle(state, affinity, engagementLabel, engagementActive, engagementDominant, demographics) {
+    const intensity03 = affinity.intensity03;
+    const maxScoped = Math.max(
+      0,
+      ...MORAL_CIRCLE_SCOPES_ORDER2.map((s) => affinity.scopedAffinities[s] ?? 0)
+    );
+    const load = maxScoped / 100;
+    const topScope = topExcessScope(affinity);
+    const topExcess = topScope ? affinity.excessAffinities[topScope] ?? 0 : 0;
+    const topScoped = topScope ? affinity.scopedAffinities[topScope] ?? 0 : 0;
+    const baseGate = topExcess >= ADR007_EXCESS_THRESHOLD && topScoped >= ADR007_SCOPED_THRESHOLD && affinity.universalAffinity <= ADR007_UNIVERSAL_CEILING && intensity03 >= ADR007_INTENSITY03_THRESHOLD;
+    const passedLatent = baseGate;
+    const passedActive = baseGate && engagementActive;
+    const passedDominant = baseGate && engagementDominant && intensity03 >= ADR007_INTENSITY03_DOMINANT;
+    const gate = {
+      intensity: intensity03,
+      load,
+      engagementLevel: engagementLabel.level,
+      passedLatent,
+      passedActive,
+      passedDominant
+    };
+    if (!passedLatent || !topScope) {
+      return {
+        state: "none",
+        anchor: topScope ? scopeToLegacyAnchor(topScope) : void 0,
+        scopedAnchor: topScope ?? void 0,
+        reasonCodes: topScope ? ["gate_not_met"] : ["affinity_uniform_or_below_universal"],
+        gate
+      };
+    }
+    const stateLabel = passedDominant ? "dominant" : passedActive ? "active" : "latent";
+    if (topScope === "sexual") {
+      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+      if (lgbtq === "yes") {
+        return {
+          state: stateLabel,
+          label: "LGBTQ Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["sexual_scope_excess", "lgbtq_demographic_match"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["sexual_scope_excess", "missing_lgbtq_demographic"],
+        gate
+      };
+    }
+    if (topScope === "ethnic_racial") {
+      const race = typeof demographics?.demo_ethnicity === "string" ? demographics.demo_ethnicity : "";
+      if (race === "black") {
+        return {
+          state: stateLabel,
+          label: "Black Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["ethnic_racial_scope_excess", "black_demographic_match"],
+          gate
+        };
+      }
+      if (race === "white") {
+        const zs = expectedContinuous(state, "ZS");
+        const cd = expectedContinuous(state, "CD");
+        const onts = expectedContinuous(state, "ONT_S");
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "White Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor: scopeToLegacyAnchor(topScope),
+            scopedAnchor: topScope,
+            reasonCodes: ["ethnic_racial_scope_excess", "white_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["ethnic_racial_scope_excess", "white_demographic_match", "insufficient_grievance_signal"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["ethnic_racial_scope_excess", "missing_or_nonresolving_race_demographic"],
+        gate
+      };
+    }
+    if (topScope === "religious") {
+      const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
+      if (religion === "christian") {
+        return {
+          state: stateLabel,
+          label: "Evangelical Voter",
+          confidence: passedActive ? "medium" : "low",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["religious_scope_excess", "christian_demographic_match"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["religious_scope_excess", "missing_or_non_evangelical_religion_detail"],
+        gate
+      };
+    }
+    if (topScope === "gender") {
+      const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+      if (lgbtq === "yes") {
+        return {
+          state: stateLabel,
+          label: "LGBTQ Voter",
+          confidence: passedActive ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["gender_scope_excess", "lgbtq_demographic_match"],
+          gate
+        };
+      }
+      const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
+      const cd = expectedContinuous(state, "CD");
+      const onts = expectedContinuous(state, "ONT_S");
+      const zs = expectedContinuous(state, "ZS");
+      if (gender === "female") {
+        const feministSignals = Number(cd <= 2.5) + Number(affinity.universalAffinity >= 60) + Number(onts >= 3.5);
+        if (feministSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Feminist Voter",
+            confidence: feministSignals === 3 ? "high" : "medium",
+            anchor: scopeToLegacyAnchor(topScope),
+            scopedAnchor: topScope,
+            reasonCodes: ["gender_scope_excess", "female_demographic_match", "progressive_gender_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["gender_scope_excess", "female_demographic_match", "insufficient_feminist_signal"],
+          gate
+        };
+      }
+      if (gender === "male") {
+        const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+        if (grievanceSignals >= 2) {
+          return {
+            state: stateLabel,
+            label: "Male Grievance Voter",
+            confidence: grievanceSignals === 3 ? "high" : "medium",
+            anchor: scopeToLegacyAnchor(topScope),
+            scopedAnchor: topScope,
+            reasonCodes: ["gender_scope_excess", "male_demographic_match", "status_threat_pattern"],
+            gate
+          };
+        }
+        return {
+          state: "unresolved",
+          confidence: "low",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["gender_scope_excess", "male_demographic_match", "insufficient_grievance_signal"],
+          gate
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["gender_scope_excess", "missing_or_nonresolving_gender_demographic"],
+        gate
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor: scopeToLegacyAnchor(topScope),
+      scopedAnchor: topScope,
+      reasonCodes: ["scope_excess_detected_no_idp_overlay_defined"],
       gate
     };
   }
@@ -8731,8 +9558,9 @@ var PrismEngine = (() => {
         // Maximum - accepted the call
         EPS: 1,
         // Institutionalist - building institutions
-        AES: 0
-        // Statesman - Cincinnatus
+        AES: 0,
+        // Statesman - Cincinnatus,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 }
       }
     ]
   };
@@ -8756,7 +9584,8 @@ var PrismEngine = (() => {
         TRB: 1,
         ENG: 4,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 }
       }
     ]
   };
@@ -8793,8 +9622,9 @@ var PrismEngine = (() => {
         // Engaged
         EPS: 1,
         // Institutionalist - government as stabilizer
-        AES: 0
-        // Statesman - gravitas, learning
+        AES: 0,
+        // Statesman - gravitas, learning,
+        morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Jefferson",
@@ -8833,8 +9663,9 @@ var PrismEngine = (() => {
         // Engaged
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary
+        AES: 5,
+        // Visionary,
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -8876,8 +9707,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary
+        AES: 5,
+        // Visionary,
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Adams",
@@ -8912,8 +9744,9 @@ var PrismEngine = (() => {
         // Engaged but aloof
         EPS: 1,
         // Institutionalist
-        AES: 0
-        // Statesman
+        AES: 0,
+        // Statesman,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -8945,7 +9778,8 @@ var PrismEngine = (() => {
         TRB: 3,
         ENG: 5,
         EPS: 0,
-        AES: 5
+        AES: 5,
+        morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         // Pinckney 1804 MOR 1→2 (Phase 6, 2026-04-27). Federalist elite-favoring
@@ -8966,7 +9800,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 3,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9008,8 +9843,9 @@ var PrismEngine = (() => {
         // Engaged
         EPS: 0,
         // Empiricist - political theorist
-        AES: 1
-        // Technocrat - policy wonk of his era
+        AES: 1,
+        // Technocrat - policy wonk of his era,
+        morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Pinckney",
@@ -9028,7 +9864,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 3,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9056,7 +9893,8 @@ var PrismEngine = (() => {
         TRB: 3,
         ENG: 5,
         EPS: 0,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Clinton",
@@ -9075,7 +9913,8 @@ var PrismEngine = (() => {
         TRB: 3,
         ENG: 4,
         EPS: 1,
-        AES: 1
+        AES: 1,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 }
       }
     ]
   };
@@ -9104,7 +9943,8 @@ var PrismEngine = (() => {
         TRB: 2,
         ENG: 4,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 }
       },
       {
         // King 1816 MOR 1→2 (Phase 6, 2026-04-27). Final Federalist nominee;
@@ -9125,7 +9965,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 3,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.62, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9153,7 +9994,8 @@ var PrismEngine = (() => {
         TRB: 1,
         ENG: 3,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0.25 }, intensity: 1 }
       }
     ]
   };
@@ -9190,8 +10032,9 @@ var PrismEngine = (() => {
         // Engaged
         EPS: 1,
         // Institutionalist
-        AES: 1
-        // Technocrat
+        AES: 1,
+        // Technocrat,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Jackson",
@@ -9223,8 +10066,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 3,
         // Intuitionist - gut instinct
-        AES: 4
-        // Fighter - Old Hickory
+        AES: 4,
+        // Fighter - Old Hickory,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.26, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 }
       },
       {
         name: "Crawford",
@@ -9245,7 +10089,8 @@ var PrismEngine = (() => {
         TRB: 3,
         ENG: 3,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Clay",
@@ -9277,8 +10122,9 @@ var PrismEngine = (() => {
         // Maximum
         EPS: 1,
         // Institutionalist
-        AES: 0
-        // Statesman
+        AES: 0,
+        // Statesman,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9306,7 +10152,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 5,
         EPS: 3,
-        AES: 4
+        AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Adams",
@@ -9325,7 +10172,8 @@ var PrismEngine = (() => {
         TRB: 2,
         ENG: 3,
         EPS: 1,
-        AES: 1
+        AES: 1,
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9352,7 +10200,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 5,
         EPS: 3,
-        AES: 4
+        AES: 4,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Clay",
@@ -9376,7 +10225,8 @@ var PrismEngine = (() => {
         TRB: 2,
         ENG: 5,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 }
       },
       {
         // William Wirt - Anti-Masonic Party (7.8%)
@@ -9412,8 +10262,9 @@ var PrismEngine = (() => {
         // Engaged reform movement
         EPS: 1,
         // Institutionalist - fix corrupted institutions
-        AES: 0
-        // Statesman - former Attorney General
+        AES: 0,
+        // Statesman - former Attorney General,
+        morBoundaries: { boundaries: { national: 0.34, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 }
       }
     ]
   };
@@ -9454,8 +10305,9 @@ var PrismEngine = (() => {
         // Maximum
         EPS: 1,
         // Institutionalist - party builder
-        AES: 1
-        // Technocrat - operator/fixer
+        AES: 1,
+        // Technocrat - operator/fixer,
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Harrison",
@@ -9474,7 +10326,8 @@ var PrismEngine = (() => {
         TRB: 2,
         ENG: 3,
         EPS: 2,
-        AES: 3
+        AES: 3,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.29, religious: 0.26, class: 0.05, ideological: 0.11, gender: 0.09, political_tribe: 0.25 }, intensity: 1 }
       }
     ]
   };
@@ -9511,8 +10364,9 @@ var PrismEngine = (() => {
         // Maximum - massive campaign
         EPS: 3,
         // Intuitionist - ran on image not policy
-        AES: 3
-        // Authentic - "log cabin" common man image
+        AES: 3,
+        // Authentic - "log cabin" common man image,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Van Buren",
@@ -9544,7 +10398,8 @@ var PrismEngine = (() => {
         TRB: 4,
         ENG: 5,
         EPS: 1,
-        AES: 1
+        AES: 1,
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -9584,8 +10439,9 @@ var PrismEngine = (() => {
         // Maximum - energized dark horse
         EPS: 3,
         // Intuitionist
-        AES: 4
-        // Fighter - aggressive expansionist
+        AES: 4,
+        // Fighter - aggressive expansionist,
+        morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.19, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Clay",
@@ -9606,7 +10462,8 @@ var PrismEngine = (() => {
         TRB: 2,
         ENG: 5,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -9643,8 +10500,9 @@ var PrismEngine = (() => {
         // Moderate - reluctant candidate
         EPS: 3,
         // Intuitionist - military man
-        AES: 0
-        // Statesman - war hero
+        AES: 0,
+        // Statesman - war hero,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0 }, intensity: 1.5 }
       },
       {
         // Cass full-row recalibration (Phase 1 of audit, 2026-04-26).
@@ -9671,7 +10529,8 @@ var PrismEngine = (() => {
         TRB: 5,
         ENG: 4,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.19, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Van Buren",
@@ -9703,8 +10562,9 @@ var PrismEngine = (() => {
         // Maximum - came out of retirement
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary - moral crusade
+        AES: 5,
+        // Visionary - moral crusade,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 }
       }
     ]
   };
@@ -9741,8 +10601,9 @@ var PrismEngine = (() => {
         // Engaged
         EPS: 1,
         // Institutionalist
-        AES: 3
-        // Authentic - "handsome Frank," young, vigorous
+        AES: 3,
+        // Authentic - "handsome Frank," young, vigorous,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Scott 1852 MOR 1→2 (Phase 6, 2026-04-27). Whig elite/Northern-establishment
@@ -9763,7 +10624,8 @@ var PrismEngine = (() => {
         TRB: 1,
         ENG: 2,
         EPS: 1,
-        AES: 0
+        AES: 0,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0.25 }, intensity: 0.75 }
       }
     ]
   };
@@ -9821,8 +10683,9 @@ var PrismEngine = (() => {
         // Engaged - career diplomat/politician, but "Old Buck" was cautious
         EPS: 1,
         // Institutionalist - trusted constitutional framework, legal precedent
-        AES: 0
-        // Statesman - elder diplomat, gravitas, experienced hand
+        AES: 0,
+        // Statesman - elder diplomat, gravitas, experienced hand,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Fremont",
@@ -9854,8 +10717,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 3,
         // Intuitionist
-        AES: 5
-        // Visionary
+        AES: 5,
+        // Visionary,
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Fillmore",
@@ -9888,8 +10752,9 @@ var PrismEngine = (() => {
         // Engaged - ex-president running again on nativist platform
         EPS: 2,
         // Traditionalist - "the way things were" before immigrant wave
-        AES: 0
-        // Statesman - ex-president, tried to project elder authority
+        AES: 0,
+        // Statesman - ex-president, tried to project elder authority,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.15, gender: 0.19, political_tribe: 0.25 }, intensity: 3 }
       }
     ]
   };
@@ -9926,8 +10791,10 @@ var PrismEngine = (() => {
         // Maximum engagement - historic stakes, tireless campaigner (through surrogates)
         EPS: 0,
         // Empiricist - lawyer, logical reasoning, Lincoln-Douglas debates
-        AES: 3
-        // Authentic - "Rail-Splitter," log cabin, self-made man
+        AES: 3,
+        // Authentic - "Rail-Splitter," log cabin, self-made man,
+        morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.55, religious: 0.4, class: 0.2, ideological: 0.5, gender: 0.1, political_tribe: 0.5 }, intensity: 3 },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "R" }
       },
       {
         name: "Douglas",
@@ -9959,8 +10826,9 @@ var PrismEngine = (() => {
         // Maximum engagement - campaigned nationally even when cause was lost
         EPS: 1,
         // Institutionalist - trusted democratic process, popular sovereignty
-        AES: 4
-        // Fighter - "Little Giant," combative debater, tireless campaigner
+        AES: 4,
+        // Fighter - "Little Giant," combative debater, tireless campaigner,
+        morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Breckinridge",
@@ -9993,8 +10861,9 @@ var PrismEngine = (() => {
         // Maximum engagement - existential stakes for slavery, secession looming
         EPS: 2,
         // Traditionalist - "peculiar institution" as tradition, ancestral ways
-        AES: 0
-        // Statesman - Vice President, senior Southern dignitary
+        AES: 0,
+        // Statesman - Vice President, senior Southern dignitary,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 }
       },
       {
         name: "Bell",
@@ -10027,8 +10896,9 @@ var PrismEngine = (() => {
         // Low — ran as calming presence
         EPS: 1,
         // Institutionalist - trusted constitutional framework above all
-        AES: 0
-        // Statesman - elder Whig, dignified, above-the-fray
+        AES: 0,
+        // Statesman - elder Whig, dignified, above-the-fray,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 0.75 }
       }
     ]
   };
@@ -10071,8 +10941,10 @@ var PrismEngine = (() => {
         // Maximum engagement - wartime president, existential stakes
         EPS: 0,
         // Empiricist - lawyer, logical, adapted strategy to evidence
-        AES: 5
-        // Visionary - Gettysburg Address, "new birth of freedom," transformative
+        AES: 5,
+        // Visionary - Gettysburg Address, "new birth of freedom," transformative,
+        morBoundaries: { boundaries: { national: 0.9, ethnic_racial: 0.6, religious: 0.4, class: 0.2, ideological: 0.55, gender: 0.1, political_tribe: 0.55 }, intensity: 3 },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "R" }
       },
       {
         // McClellan 1864 platform-vs-persona correction (Phase 6, 2026-04-27).
@@ -10115,8 +10987,9 @@ var PrismEngine = (() => {
         // Engaged - but ran cautious campaign, let party do the work
         EPS: 1,
         // Institutionalist - military man, trusted hierarchy and order
-        AES: 0
-        // Statesman - "Young Napoleon," military prestige, gravitas
+        AES: 0,
+        // Statesman - "Young Napoleon," military prestige, gravitas,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -10153,8 +11026,9 @@ var PrismEngine = (() => {
         // Engaged - but quiet, let reputation speak, not a campaigner
         EPS: 0,
         // Empiricist - military pragmatist, evidence and results over theory
-        AES: 3
-        // Authentic - plain-spoken, simple, honest soldier
+        AES: 3,
+        // Authentic - plain-spoken, simple, honest soldier,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Seymour",
@@ -10186,8 +11060,9 @@ var PrismEngine = (() => {
         // Moderate engagement - reluctant candidate, lackluster campaign
         EPS: 2,
         // Traditionalist - antebellum order was correct, restore it
-        AES: 0
-        // Statesman - governor, tried for dignified image
+        AES: 0,
+        // Statesman - governor, tried for dignified image,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.19, political_tribe: 0.75 }, intensity: 3 }
       }
     ]
   };
@@ -10224,8 +11099,9 @@ var PrismEngine = (() => {
         // Engaged - incumbent seeking reelection
         EPS: 0,
         // Empiricist - military results-oriented pragmatist
-        AES: 3
-        // Authentic - plain soldier, unpretentious, honest reputation (despite scandals)
+        AES: 3,
+        // Authentic - plain soldier, unpretentious, honest reputation (despite scandals),
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Greeley",
@@ -10258,8 +11134,9 @@ var PrismEngine = (() => {
         // Maximum engagement - crusading editor, tireless campaigner (died from it)
         EPS: 0,
         // Empiricist - journalist, investigative editor, reform through information
-        AES: 5
-        // Visionary - utopian reformer, reconciliation crusade, eccentric idealist
+        AES: 5,
+        // Visionary - utopian reformer, reconciliation crusade, eccentric idealist,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 2 }
       }
     ]
   };
@@ -10296,8 +11173,9 @@ var PrismEngine = (() => {
         // Moderate — quiet campaign
         EPS: 0,
         // Empiricist - lawyer, evidence-based, reform-minded
-        AES: 0
-        // Statesman - dignified governor, reformer, integrity
+        AES: 0,
+        // Statesman - dignified governor, reformer, integrity,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Tilden",
@@ -10329,8 +11207,9 @@ var PrismEngine = (() => {
         // Engaged - but accepted stolen election gracefully
         EPS: 0,
         // Empiricist - lawyer, prosecutor, evidence-based reform
-        AES: 1
-        // Technocrat - reform manager, prosecutorial efficiency
+        AES: 1,
+        // Technocrat - reform manager, prosecutorial efficiency,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -10367,8 +11246,9 @@ var PrismEngine = (() => {
         // Engaged - skilled campaigner, front-porch campaign
         EPS: 0,
         // Empiricist - scholar, intellectual, evidence-based
-        AES: 0
-        // Statesman - classical orator, gravitas, self-made dignity
+        AES: 0,
+        // Statesman - classical orator, gravitas, self-made dignity,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         // Hancock 1880 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -10408,8 +11288,9 @@ var PrismEngine = (() => {
         // Moderate
         EPS: 1,
         // Institutionalist - military hierarchy, institutional framework
-        AES: 0
-        // Statesman - "Hancock the Superb," military prestige
+        AES: 0,
+        // Statesman - "Hancock the Superb," military prestige,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -10446,8 +11327,9 @@ var PrismEngine = (() => {
         // Engaged - but projected competence, not passion
         EPS: 0,
         // Empiricist - lawyer, evidence-based, practical reform
-        AES: 3
-        // Authentic - owned scandal, "tell the truth," plain-spoken integrity
+        AES: 3,
+        // Authentic - owned scandal, "tell the truth," plain-spoken integrity,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 }
       },
       {
         name: "Blaine",
@@ -10479,8 +11361,9 @@ var PrismEngine = (() => {
         // Maximum engagement - charismatic, tireless campaigner
         EPS: 3,
         // Intuitionist - gut politician, instinctive, charismatic appeal
-        AES: 4
-        // Fighter - "Plumed Knight," combative, charismatic warrior
+        AES: 4,
+        // Fighter - "Plumed Knight," combative, charismatic warrior,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -10517,8 +11400,9 @@ var PrismEngine = (() => {
         // Moderate engagement - front-porch campaign, not dynamic
         EPS: 1,
         // Institutionalist - lawyer, senator, institutional man
-        AES: 0
-        // Statesman - dignified, reserved, presidential grandson
+        AES: 0,
+        // Statesman - dignified, reserved, presidential grandson,
+        morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Cleveland",
@@ -10550,8 +11434,9 @@ var PrismEngine = (() => {
         // Moderate engagement - honest but boring, not a dynamic campaigner
         EPS: 0,
         // Empiricist - evidence-based tariff argument, economist's logic
-        AES: 1
-        // Technocrat - devoted State of Union to policy substance, wonkish
+        AES: 1,
+        // Technocrat - devoted State of Union to policy substance, wonkish,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -10601,8 +11486,9 @@ var PrismEngine = (() => {
         // Engaged - ran three times, serious about governance
         EPS: 1,
         // Institutionalist - trusted existing institutions, just wanted them honest
-        AES: 0
-        // Statesman - dignified, serious, "public office is a public trust"
+        AES: 0,
+        // Statesman - dignified, serious, "public office is a public trust",
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Harrison",
@@ -10634,8 +11520,9 @@ var PrismEngine = (() => {
         // Moderate - stiff campaigner, let surrogates do the work
         EPS: 1,
         // Institutionalist - formal legalist, trusted party machinery
-        AES: 0
-        // Statesman - dignified, formal, presidential bearing (if cold)
+        AES: 0,
+        // Statesman - dignified, formal, presidential bearing (if cold),
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Weaver",
@@ -10675,8 +11562,9 @@ var PrismEngine = (() => {
         // Maximum engagement - launched third party, barnstormed the country
         EPS: 3,
         // Intuitionist - populist gut-level politics, "the people know"
-        AES: 4
-        // Fighter - insurgent crusader, combative populist
+        AES: 4,
+        // Fighter - insurgent crusader, combative populist,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.05, religious: 0.53, class: 0.72, ideological: 0.34, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -10713,8 +11601,9 @@ var PrismEngine = (() => {
         // Moderate — front-porch
         EPS: 1,
         // Institutionalist - trusted established financial institutions, gold standard
-        AES: 0
-        // Statesman - dignified front-porch campaign, presidential calm
+        AES: 0,
+        // Statesman - dignified front-porch campaign, presidential calm,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Bryan",
@@ -10754,8 +11643,9 @@ var PrismEngine = (() => {
         // Maximum engagement - 18,000 miles of barnstorming, first modern campaign
         EPS: 2,
         // Traditionalist - biblical, providential democracy, agrarian inherited virtue (per rubric)
-        AES: 5
-        // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory
+        AES: 5,
+        // Visionary - "Cross of Gold," messianic rhetoric, prophetic oratory,
+        morBoundaries: { boundaries: { national: 0.72, ethnic_racial: 0.38, religious: 0.91, class: 0.72, ideological: 0.48, gender: 0.1, political_tribe: 0.5 }, intensity: 3 }
       }
     ]
   };
@@ -10792,8 +11682,9 @@ var PrismEngine = (() => {
         // Engaged - wartime president, seeking second term
         EPS: 1,
         // Institutionalist - established order, gold standard, institutional governance
-        AES: 0
-        // Statesman - incumbent president, wartime gravitas
+        AES: 0,
+        // Statesman - incumbent president, wartime gravitas,
+        morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Bryan",
@@ -10828,8 +11719,9 @@ var PrismEngine = (() => {
         // Maximum engagement - another massive barnstorming campaign
         EPS: 2,
         // Traditionalist - same biblical / providential democracy frame as 1896
-        AES: 5
-        // Visionary - anti-imperialist crusade layered onto populist economics
+        AES: 5,
+        // Visionary - anti-imperialist crusade layered onto populist economics,
+        morBoundaries: { boundaries: { national: 0.57, ethnic_racial: 0.05, religious: 0.72, class: 0.72, ideological: 0.76, gender: 0.1, political_tribe: 0.75 }, intensity: 3 }
       },
       {
         // Eugene V. Debs - Socialist Party (2.8%)
@@ -10864,8 +11756,9 @@ var PrismEngine = (() => {
         // Maximum engagement - tireless organizer
         EPS: 0,
         // Empiricist - studied labor conditions, data on exploitation
-        AES: 5
-        // Visionary - prophetic socialist rhetoric
+        AES: 5,
+        // Visionary - prophetic socialist rhetoric,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -10902,8 +11795,9 @@ var PrismEngine = (() => {
         // Maximum engagement - boundless energy, "bully pulpit," transformed presidency
         EPS: 0,
         // Empiricist - naturalist, historian, read voraciously, evidence-based reform
-        AES: 3
-        // Authentic - cowboy, Rough Rider, utterly genuine, force of personality
+        AES: 3,
+        // Authentic - cowboy, Rough Rider, utterly genuine, force of personality,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Parker",
@@ -10935,8 +11829,9 @@ var PrismEngine = (() => {
         // Extremely low engagement — one of the worst campaigns in history
         EPS: 1,
         // Institutionalist - judge, trusted courts and legal institutions
-        AES: 0
-        // Statesman - judicial dignity, understated (to a fault)
+        AES: 0,
+        // Statesman - judicial dignity, understated (to a fault),
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Eugene V. Debs - Socialist Party (3.0%)
@@ -10971,8 +11866,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary
+        AES: 5,
+        // Visionary,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -11009,8 +11905,9 @@ var PrismEngine = (() => {
         // Moderate - reluctant campaigner, would rather have been on the bench
         EPS: 1,
         // Institutionalist - trusted courts, legal process, established institutions
-        AES: 0
-        // Statesman - dignified, judicial bearing, presidential gravitas
+        AES: 0,
+        // Statesman - dignified, judicial bearing, presidential gravitas,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Bryan",
@@ -11047,8 +11944,9 @@ var PrismEngine = (() => {
         // Maximum engagement - another barnstorming campaign, tireless
         EPS: 2,
         // Traditionalist - biblical / providential democracy / agrarian inherited virtue (per rubric)
-        AES: 2
-        // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity)
+        AES: 2,
+        // Pastoral - "Great Commoner" salt-of-earth framing (rubric year-specificity),
+        morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.55, class: 0.55, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Eugene V. Debs - Socialist Party (2.8%)
@@ -11083,8 +11981,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary
+        AES: 5,
+        // Visionary,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -11121,8 +12020,9 @@ var PrismEngine = (() => {
         // Maximum engagement - academic turned passionate campaigner
         EPS: 0,
         // Empiricist - political scientist, professor, studied government systematically
-        AES: 5
-        // Visionary - "New Freedom," moral crusade rhetoric, professor-prophet
+        AES: 5,
+        // Visionary - "New Freedom," moral crusade rhetoric, professor-prophet,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Roosevelt",
@@ -11161,8 +12061,9 @@ var PrismEngine = (() => {
         // Maximum engagement - shot during campaign, gave speech anyway, boundless energy
         EPS: 0,
         // Empiricist - naturalist, historian, evidence-driven reform agenda
-        AES: 4
-        // Fighter - "Bull Moose," shot and kept speaking, combative reformer
+        AES: 4,
+        // Fighter - "Bull Moose," shot and kept speaking, combative reformer,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0 }, intensity: 2.25 }
       },
       {
         name: "Taft",
@@ -11194,8 +12095,9 @@ var PrismEngine = (() => {
         // Moderate - defensive campaign, dispirited, knew he'd lose
         EPS: 1,
         // Institutionalist - trusted courts above all else
-        AES: 0
-        // Statesman - judicial dignity, but failed to project leadership
+        AES: 0,
+        // Statesman - judicial dignity, but failed to project leadership,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Eugene V. Debs - Socialist Party (6.0%)
@@ -11230,8 +12132,9 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary - "while there is a lower class, I am in it"
+        AES: 5,
+        // Visionary - "while there is a lower class, I am in it",
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -11268,8 +12171,9 @@ var PrismEngine = (() => {
         // Maximum engagement - aggressive legislative agenda, seeking reelection
         EPS: 0,
         // Empiricist - political scientist, studied government, evidence-based reform
-        AES: 0
-        // Statesman - incumbent president, "above politics" neutrality posture
+        AES: 0,
+        // Statesman - incumbent president, "above politics" neutrality posture,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "Hughes",
@@ -11301,8 +12205,9 @@ var PrismEngine = (() => {
         // Moderate — stiff campaigner
         EPS: 1,
         // Institutionalist - Supreme Court justice, trusted legal institutions
-        AES: 0
-        // Statesman - judicial dignity, presidential bearing, but aloof
+        AES: 0,
+        // Statesman - judicial dignity, presidential bearing, but aloof,
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.76, religious: 0.41, class: 0.05, ideological: 0.44, gender: 0.16, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Allan L. Benson - Socialist Party (3.2%)
@@ -11338,8 +12243,9 @@ var PrismEngine = (() => {
         // Moderate - journalist, not mass organizer
         EPS: 0,
         // Empiricist - journalist, studied issues
-        AES: 5
-        // Visionary - anti-war idealism
+        AES: 5,
+        // Visionary - anti-war idealism,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.37, gender: 0.09, political_tribe: 0 }, intensity: 2.25 }
       }
     ]
   };
@@ -11387,8 +12293,9 @@ var PrismEngine = (() => {
         // Moderate — front porch calm
         EPS: 2,
         // Traditionalist - "return to normalcy" = traditional ways are best
-        AES: 2
-        // Pastoral - small-town Ohio, Main Street, folksy newspaper editor
+        AES: 2,
+        // Pastoral - small-town Ohio, Main Street, folksy newspaper editor,
+        morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         // Cox 1920 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -11428,8 +12335,9 @@ var PrismEngine = (() => {
         // Maximum
         EPS: 1,
         // Institutionalist - trusted League, government machinery
-        AES: 0
-        // Statesman - projected Wilsonian gravitas and internationalism
+        AES: 0,
+        // Statesman - projected Wilsonian gravitas and internationalism,
+        morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.05, religious: 0.05, class: 0.53, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 }
       },
       {
         // Eugene V. Debs - Socialist Party (3.4%)
@@ -11465,8 +12373,9 @@ var PrismEngine = (() => {
         // Maximum engagement - ran from prison cell
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary - ultimate martyr-prophet figure
+        AES: 5,
+        // Visionary - ultimate martyr-prophet figure,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0 }, intensity: 3 }
       }
     ]
   };
@@ -11503,8 +12412,9 @@ var PrismEngine = (() => {
         // Moderate
         EPS: 2,
         // Traditionalist - inherited wisdom, Puritan tradition, established ways
-        AES: 0
-        // Statesman - dignified, austere, presidential reserve
+        AES: 0,
+        // Statesman - dignified, austere, presidential reserve,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 }
       },
       {
         // Davis 1924 — "push extreme" loser-coding artifact corrected (Phase 4,
@@ -11545,8 +12455,9 @@ var PrismEngine = (() => {
         // Moderate — lackluster campaign
         EPS: 1,
         // Institutionalist - trusted courts, legal process, institutions
-        AES: 0
-        // Statesman - dignified lawyer, understated
+        AES: 0,
+        // Statesman - dignified lawyer, understated,
+        morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       },
       {
         name: "La Follette",
@@ -11589,8 +12500,9 @@ var PrismEngine = (() => {
         // Maximum engagement - lifelong crusader, launched entire third party
         EPS: 0,
         // Empiricist - investigated corporate corruption, data-driven muckraker
-        AES: 4
-        // Fighter - "Fighting Bob," combative, insurgent champion of the people
+        AES: 4,
+        // Fighter - "Fighting Bob," combative, insurgent champion of the people,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.26, gender: 0.09, political_tribe: 0 }, intensity: 2.25 }
       }
     ]
   };
@@ -11627,8 +12539,9 @@ var PrismEngine = (() => {
         // Engaged - ambitious, ran on competence and vision
         EPS: 0,
         // Empiricist - engineer, data-driven, technocratic problem-solver
-        AES: 1
-        // Technocrat - "The Great Engineer," efficiency and expertise
+        AES: 1,
+        // Technocrat - "The Great Engineer," efficiency and expertise,
+        morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       },
       {
         name: "Smith",
@@ -11660,8 +12573,9 @@ var PrismEngine = (() => {
         // Maximum engagement - barnstorming campaigner, passionate
         EPS: 3,
         // Intuitionist - street-smart, gut-level populist, not academic
-        AES: 3
-        // Authentic - Lower East Side accent, brown derby, "the real article"
+        AES: 3,
+        // Authentic - Lower East Side accent, brown derby, "the real article",
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 }
       }
     ]
   };
@@ -11698,8 +12612,10 @@ var PrismEngine = (() => {
         // Maximum engagement - energetic campaigning despite disability
         EPS: 1,
         // Institutionalist - brain trust, government expertise, bold institutions
-        AES: 5
-        // Visionary - "New Deal," transformative rhetoric, "happy days are here again"
+        AES: 5,
+        // Visionary - "New Deal," transformative rhetoric, "happy days are here again",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
         name: "Hoover",
@@ -11731,8 +12647,9 @@ var PrismEngine = (() => {
         // Moderate engagement - defensive, beleaguered campaign
         EPS: 0,
         // Empiricist - engineer, but data contradicted his optimism
-        AES: 1
-        // Technocrat - still projected managerial competence, but hollow
+        AES: 1,
+        // Technocrat - still projected managerial competence, but hollow,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -11769,8 +12686,10 @@ var PrismEngine = (() => {
         // Maximum engagement - barnstorming incumbent, massive rallies
         EPS: 1,
         // Institutionalist - brain trust, government agencies, new institutions
-        AES: 4
-        // Fighter - "I welcome their hatred," combative populist champion
+        AES: 4,
+        // Fighter - "I welcome their hatred," combative populist champion,
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
         name: "Landon",
@@ -11806,8 +12725,9 @@ var PrismEngine = (() => {
         // Low — outmatched by FDR
         EPS: 0,
         // Empiricist - businessman, practical, fiscal prudence
-        AES: 2
-        // Pastoral - "the Kansas Coolidge," folksy midwestern governor
+        AES: 2,
+        // Pastoral - "the Kansas Coolidge," folksy midwestern governor,
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 }
       }
     ]
   };
@@ -11853,8 +12773,11 @@ var PrismEngine = (() => {
         // Maximum engagement - sought unprecedented third term
         EPS: 1,
         // Institutionalist - trusted government machinery
-        AES: 0
-        // Statesman - patrician, fireside chats, gravitas
+        AES: 0,
+        // Statesman - patrician, fireside chats, gravitas,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
         name: "Willkie",
@@ -11886,8 +12809,10 @@ var PrismEngine = (() => {
         // Energetic campaign
         EPS: 0,
         // Empiricist - business pragmatist
-        AES: 3
-        // Authentic - outsider, plain-spoken
+        AES: 3,
+        // Authentic - outsider, plain-spoken,
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
       }
     ]
   };
@@ -11924,8 +12849,11 @@ var PrismEngine = (() => {
         // Maximum - fourth-term bid during world war
         EPS: 1,
         // Institutionalist
-        AES: 0
-        // Statesman - commander-in-chief gravitas
+        AES: 0,
+        // Statesman - commander-in-chief gravitas,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
         // Dewey 1944 MOR 1→2 (Phase 6, 2026-04-27). Establishment-Republican
@@ -11959,8 +12887,10 @@ var PrismEngine = (() => {
         // Lower — cautious campaign
         EPS: 0,
         // Empiricist - prosecutor, facts-based
-        AES: 1
-        // Technocrat - efficient manager image
+        AES: 1,
+        // Technocrat - efficient manager image,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.29, class: 0.05, ideological: 0.31, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 43, class: 5, gender: 7, sexual: 7, ideological: 31, political_camp: 100 } }
       }
     ]
   };
@@ -11997,8 +12927,10 @@ var PrismEngine = (() => {
         // Maximum engagement - whistle-stop tour, never-give-up
         EPS: 1,
         // Institutionalist - trusted government, Truman Doctrine
-        AES: 4
-        // Fighter - "Give 'em hell Harry"
+        AES: 4,
+        // Fighter - "Give 'em hell Harry",
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
       },
       {
         name: "Dewey",
@@ -12030,8 +12962,10 @@ var PrismEngine = (() => {
         // Lower engagement - overconfident, coasted
         EPS: 0,
         // Empiricist - technocratic
-        AES: 0
-        // Statesman - dignified, above-the-fray
+        AES: 0,
+        // Statesman - dignified, above-the-fray,
+        morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 12, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
       },
       {
         name: "Thurmond",
@@ -12063,8 +12997,10 @@ var PrismEngine = (() => {
         // Maximum engagement - launched entire party over civil rights
         EPS: 2,
         // Traditionalist - "way things have always been"
-        AES: 4
-        // Fighter - insurgent, defiant
+        AES: 4,
+        // Fighter - insurgent, defiant,
+        morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
+        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 100, class: 5, gender: 19, sexual: 19, ideological: 34, political_camp: 50 } }
       },
       {
         // Henry A. Wallace - Progressive Party (2.4%)
@@ -12105,8 +13041,10 @@ var PrismEngine = (() => {
         // Maximum engagement - launched third party, toured extensively
         EPS: 0,
         // Empiricist - former Sec. of Agriculture, scientific farmer, data-driven
-        AES: 5
-        // Visionary - "Century of the Common Man," prophetic rhetoric
+        AES: 5,
+        // Visionary - "Century of the Common Man," prophetic rhetoric,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 },
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 26, political_camp: 0 } }
       }
     ]
   };
@@ -12143,8 +13081,10 @@ var PrismEngine = (() => {
         // Maximum engagement - running for president is maximum engagement
         EPS: 0,
         // Empiricist - military planning, evidence-based
-        AES: 0
-        // Statesman - supreme commander, gravitas
+        AES: 0,
+        // Statesman - supreme commander, gravitas,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } }
       },
       {
         name: "Stevenson",
@@ -12181,8 +13121,10 @@ var PrismEngine = (() => {
         // Engaged but "egghead" aloofness
         EPS: 0,
         // Empiricist - "the thinking man's candidate"
-        AES: 5
-        // Visionary - eloquent idealist
+        AES: 5,
+        // Visionary - eloquent idealist,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
       }
     ]
   };
@@ -12219,8 +13161,10 @@ var PrismEngine = (() => {
         // Engaged incumbent
         EPS: 0,
         // Empiricist - military planning background
-        AES: 0
-        // Statesman - beloved grandfather-commander
+        AES: 0,
+        // Statesman - beloved grandfather-commander,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 25 } }
       },
       {
         // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
@@ -12254,8 +13198,10 @@ var PrismEngine = (() => {
         // Maximum engagement - fighting harder second time
         EPS: 0,
         // Empiricist
-        AES: 5
-        // Visionary - nuclear test ban, "New America"
+        AES: 5,
+        // Visionary - nuclear test ban, "New America",
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
       }
     ]
   };
@@ -12292,8 +13238,11 @@ var PrismEngine = (() => {
         // Politics as calling - "ask what you can do for your country"
         EPS: 1,
         // Institutionalist - trusted expertise and government
-        AES: 0
-        // Statesman - projected elegance and gravitas
+        AES: 0,
+        // Statesman - projected elegance and gravitas,
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.5, class: 0.25, ideological: 0.35, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 50, ethnic_racial: 20, class: 25, gender: 10, sexual: 10, ideological: 35, political_camp: 50 } },
+        morMembership: { ethnic_racial: "white", religious: "Catholic", class: "upper", gender: "male", political_tribe: "D" }
       },
       {
         name: "Nixon",
@@ -12325,8 +13274,10 @@ var PrismEngine = (() => {
         // Career politician, deeply engaged
         EPS: 1,
         // Institutionalist - government experience
-        AES: 0
-        // Statesman - tried to project gravitas (less successfully)
+        AES: 0,
+        // Statesman - tried to project gravitas (less successfully),
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
       }
     ]
   };
@@ -12363,8 +13314,10 @@ var PrismEngine = (() => {
         // Politics was his life
         EPS: 1,
         // Institutionalist - trusted government machinery
-        AES: 0
-        // Statesman (with pastoral southern touches)
+        AES: 0,
+        // Statesman (with pastoral southern touches),
+        morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 29, religious: 5, ethnic_racial: 5, class: 62, gender: 10, sexual: 10, ideological: 43, political_camp: 100 } }
       },
       {
         name: "Goldwater",
@@ -12396,8 +13349,10 @@ var PrismEngine = (() => {
         // Deeply engaged - movement conservative
         EPS: 4,
         // Autonomous - principled first-principles reasoning
-        AES: 3
-        // Authentic - spoke his mind regardless of consequences
+        AES: 3,
+        // Authentic - spoke his mind regardless of consequences,
+        morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 38, religious: 29, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 19, political_camp: 50 } }
       }
     ]
   };
@@ -12434,8 +13389,10 @@ var PrismEngine = (() => {
         // Career politician
         EPS: 1,
         // Institutionalist - worked the system
-        AES: 0
-        // Statesman - projected authority
+        AES: 0,
+        // Statesman - projected authority,
+        morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 44, religious: 26, ethnic_racial: 5, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
       },
       {
         name: "Humphrey",
@@ -12467,8 +13424,10 @@ var PrismEngine = (() => {
         // Lifelong politician
         EPS: 1,
         // Institutionalist
-        AES: 5
-        // Visionary - idealistic rhetoric
+        AES: 5,
+        // Visionary - idealistic rhetoric,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
       },
       {
         // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
@@ -12506,8 +13465,11 @@ var PrismEngine = (() => {
         // Deeply politically engaged
         EPS: 3,
         // Intuitionist - gut-level politics
-        AES: 4
-        // Fighter - combative, defiant
+        AES: 4,
+        // Fighter - combative, defiant,
+        morBoundaries: { boundaries: { national: 0.6, ethnic_racial: 0.85, religious: 0.3, class: 0.2, ideological: 0.3, gender: 0.1, political_tribe: 0.7 }, intensity: 3 },
+        moralCircle: { universalAffinity: 20, scopedAffinities: { national: 60, religious: 30, ethnic_racial: 85, class: 20, gender: 10, sexual: 10, ideological: 30, political_camp: 70 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "third" }
       }
     ]
   };
@@ -12549,8 +13511,10 @@ var PrismEngine = (() => {
         // Career politician
         EPS: 0,
         // Empiricist as president - data-driven détente
-        AES: 0
-        // Statesman - presidential, "peace with honor"
+        AES: 0,
+        // Statesman - presidential, "peace with honor",
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } }
       },
       {
         name: "McGovern",
@@ -12589,8 +13553,10 @@ var PrismEngine = (() => {
         // Deeply engaged - movement politics
         EPS: 0,
         // Empiricist - professor, policy wonk
-        AES: 5
-        // Visionary - idealistic moral appeal
+        AES: 5,
+        // Visionary - idealistic moral appeal,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 11, political_camp: 50 } }
       }
     ]
   };
@@ -12627,8 +13593,11 @@ var PrismEngine = (() => {
         // Engaged but projected citizen-politician
         EPS: 3,
         // Intuitionist - moral/faith-based reasoning
-        AES: 2
-        // Pastoral - peanut farmer, small-town authenticity
+        AES: 2,
+        // Pastoral - peanut farmer, small-town authenticity,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 29, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
         name: "Ford",
@@ -12660,8 +13629,10 @@ var PrismEngine = (() => {
         // Lower — uninspiring campaigner
         EPS: 1,
         // Institutionalist - congressional creature
-        AES: 0
-        // Statesman - steady, presidential
+        AES: 0,
+        // Statesman - steady, presidential,
+        morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 20, religious: 12, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 15, political_camp: 100 } }
       }
     ]
   };
@@ -12698,8 +13669,11 @@ var PrismEngine = (() => {
         // Deeply engaged - movement leader
         EPS: 3,
         // Intuitionist - gut conviction, moral clarity
-        AES: 5
-        // Visionary - "morning in America," transformative optimism
+        AES: 5,
+        // Visionary - "morning in America," transformative optimism,
+        morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.2, ideological: 0.5, gender: 0.15, political_tribe: 0.6 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 20, gender: 15, sexual: 15, ideological: 50, political_camp: 60 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" }
       },
       {
         name: "Carter",
@@ -12731,8 +13705,11 @@ var PrismEngine = (() => {
         // Engaged but exhausted
         EPS: 0,
         // Empiricist - engineer's mindset, detail-oriented
-        AES: 2
-        // Pastoral - but less effective
+        AES: 2,
+        // Pastoral - but less effective,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 29, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
         name: "Anderson",
@@ -12764,8 +13741,10 @@ var PrismEngine = (() => {
         // Engaged - ran despite impossible odds
         EPS: 0,
         // Empiricist - policy wonk
-        AES: 1
-        // Technocrat - intellectual, professorial
+        AES: 1,
+        // Technocrat - intellectual, professorial,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
       }
     ]
   };
@@ -12802,8 +13781,11 @@ var PrismEngine = (() => {
         // Maximum engagement - dominant president
         EPS: 3,
         // Intuitionist - gut conviction, moral clarity
-        AES: 5
-        // Visionary - peak "morning in America"
+        AES: 5,
+        // Visionary - peak "morning in America",
+        morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.15, ideological: 0.5, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 15, gender: 15, sexual: 15, ideological: 50, political_camp: 65 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" }
       },
       {
         name: "Mondale",
@@ -12840,8 +13822,10 @@ var PrismEngine = (() => {
         // Career politician
         EPS: 1,
         // Institutionalist - establishment
-        AES: 0
-        // Statesman - tried to project gravitas but lacked charisma
+        AES: 0,
+        // Statesman - tried to project gravitas but lacked charisma,
+        morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } }
       }
     ]
   };
@@ -12878,8 +13862,11 @@ var PrismEngine = (() => {
         // Career public servant
         EPS: 1,
         // Institutionalist - foreign policy establishment
-        AES: 0
-        // Statesman - patrician dignity
+        AES: 0,
+        // Statesman - patrician dignity,
+        morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
         // Dukakis 1988 — MOR 1→4 (Phase 4, 2026-04-26). MOR-as-CD-content
@@ -12917,8 +13904,10 @@ var PrismEngine = (() => {
         // Engaged - governor/manager
         EPS: 0,
         // Empiricist - data-driven, technocratic
-        AES: 1
-        // Technocrat - "competence not ideology"
+        AES: 1,
+        // Technocrat - "competence not ideology",
+        morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 19, gender: 6, sexual: 6, ideological: 15, political_camp: 75 } }
       }
     ]
   };
@@ -12955,8 +13944,11 @@ var PrismEngine = (() => {
         // Maximum political animal
         EPS: 0,
         // Empiricist - policy wonk, "putting people first"
-        AES: 3
-        // Authentic - "I feel your pain," personal connection
+        AES: 3,
+        // Authentic - "I feel your pain," personal connection,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" }
       },
       {
         name: "Bush",
@@ -12988,8 +13980,11 @@ var PrismEngine = (() => {
         // Career public servant
         EPS: 1,
         // Institutionalist
-        AES: 0
-        // Statesman - "résumé candidate"
+        AES: 0,
+        // Statesman - "résumé candidate",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
         name: "Perot",
@@ -13021,8 +14016,10 @@ var PrismEngine = (() => {
         // Engaged - ran despite no political background
         EPS: 0,
         // Empiricist - charts and graphs, data-driven
-        AES: 1
-        // Technocrat - businessman with spreadsheets
+        AES: 1,
+        // Technocrat - businessman with spreadsheets,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 0 } }
       }
     ]
   };
@@ -13059,8 +14056,11 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 0,
         // Empiricist - "what works"
-        AES: 0
-        // Statesman - presidential incumbent
+        AES: 0,
+        // Statesman - presidential incumbent,
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" }
       },
       {
         name: "Dole",
@@ -13092,8 +14092,10 @@ var PrismEngine = (() => {
         // Career politician
         EPS: 1,
         // Institutionalist - Senate creature
-        AES: 0
-        // Statesman - WWII hero, tried for gravitas
+        AES: 0,
+        // Statesman - WWII hero, tried for gravitas,
+        morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 31, religious: 19, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
       },
       {
         // Ross Perot - Reform Party (8.4%)
@@ -13129,8 +14131,10 @@ var PrismEngine = (() => {
         // Less engaged than 1992 - less novelty, excluded from debates
         EPS: 0,
         // Empiricist - charts, data, infomercials
-        AES: 1
-        // Technocrat - businessman with spreadsheets
+        AES: 1,
+        // Technocrat - businessman with spreadsheets,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, sexual: 6, ideological: 7, political_camp: 0 } }
       }
     ]
   };
@@ -13167,8 +14171,10 @@ var PrismEngine = (() => {
         // Career politician
         EPS: 0,
         // Empiricist - data, science, climate expertise
-        AES: 1
-        // Technocrat - wonkish, "lockbox"
+        AES: 1,
+        // Technocrat - wonkish, "lockbox",
+        morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } }
       },
       {
         name: "Bush",
@@ -13200,8 +14206,11 @@ var PrismEngine = (() => {
         // Projected citizen-politician - rancher, not career pol
         EPS: 3,
         // Intuitionist - "gut" decision-maker, faith-based
-        AES: 2
-        // Pastoral - ranch, folksy, "guy you'd have a beer with"
+        AES: 2,
+        // Pastoral - ranch, folksy, "guy you'd have a beer with",
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
         name: "Nader",
@@ -13243,8 +14252,10 @@ var PrismEngine = (() => {
         // Maximum engagement - decades of tireless activism, consumer crusader
         EPS: 0,
         // Empiricist - data on corporate malfeasance, safety research, evidence-driven
-        AES: 3
-        // Plainspoken - rumpled, sincere, no polish, refuses political theater
+        AES: 3,
+        // Plainspoken - rumpled, sincere, no polish, refuses political theater,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
       }
     ]
   };
@@ -13281,8 +14292,10 @@ var PrismEngine = (() => {
         // Maximum engagement - war hero running against wartime president
         EPS: 0,
         // Empiricist - nuanced, "intellectual"
-        AES: 0
-        // Statesman - "reporting for duty," patrician
+        AES: 0,
+        // Statesman - "reporting for duty," patrician,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, sexual: 7, ideological: 24, political_camp: 100 } }
       },
       {
         name: "Bush",
@@ -13314,8 +14327,11 @@ var PrismEngine = (() => {
         // War president - maximum engagement
         EPS: 3,
         // Intuitionist - gut decisions, faith-based
-        AES: 4
-        // Fighter - war president, "bring 'em on"
+        AES: 4,
+        // Fighter - war president, "bring 'em on",
+        morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 16, class: 5, gender: 9, sexual: 9, ideological: 34, political_camp: 100 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
   };
@@ -13352,8 +14368,11 @@ var PrismEngine = (() => {
         // Maximum engagement - movement-building
         EPS: 0,
         // Empiricist - "what works," pragmatic progressive
-        AES: 5
-        // Visionary - "yes we can," transformative rhetoric
+        AES: 5,
+        // Visionary - "yes we can," transformative rhetoric,
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.15, class: 0.2, ideological: 0.4, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 20, class: 20, gender: 10, sexual: 10, ideological: 40, political_camp: 50 } },
+        morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
         name: "McCain",
@@ -13385,8 +14404,10 @@ var PrismEngine = (() => {
         // Career senator, war hero - deeply engaged
         EPS: 1,
         // Institutionalist - Senate creature
-        AES: 3
-        // Authentic - straight talk, personal honor
+        AES: 3,
+        // Authentic - straight talk, personal honor,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 10, political_camp: 50 } }
       }
     ]
   };
@@ -13428,8 +14449,11 @@ var PrismEngine = (() => {
         // Maximum engagement - incumbent running
         EPS: 0,
         // Empiricist - data-driven governance
-        AES: 0
-        // Statesman - presidential, above the fray
+        AES: 0,
+        // Statesman - presidential, above the fray,
+        morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.25, religious: 0.15, class: 0.3, ideological: 0.45, gender: 0.15, political_tribe: 0.55 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 25, class: 30, gender: 15, sexual: 15, ideological: 45, political_camp: 55 } },
+        morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
         name: "Romney",
@@ -13464,8 +14488,11 @@ var PrismEngine = (() => {
         // Engaged - but projected competent manager
         EPS: 0,
         // Empiricist - consulting/business background
-        AES: 1
-        // Technocrat - business turnaround specialist
+        AES: 1,
+        // Technocrat - business turnaround specialist,
+        morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, sexual: 7, ideological: 24, political_camp: 75 } },
+        morMembership: { ethnic_racial: "white", religious: "Mormon", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
   };
@@ -13502,8 +14529,11 @@ var PrismEngine = (() => {
         // Maximum engagement - rallies, constant media
         EPS: 3,
         // Intuitionist - gut instinct, "I have a feeling"
-        AES: 4
-        // Fighter - "counterpuncher," combative, dominant
+        AES: 4,
+        // Fighter - "counterpuncher," combative, dominant,
+        morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.2, class: 0.15, ideological: 0.4, gender: 0.2, political_tribe: 0.85 }, intensity: 3 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 85, religious: 20, ethnic_racial: 60, class: 15, gender: 20, sexual: 20, ideological: 40, political_camp: 85 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
         // H. Clinton 2016 — MOR 2→4 (Phase 4, 2026-04-26). Same MOR-as-CD-
@@ -13541,8 +14571,11 @@ var PrismEngine = (() => {
         // Career politician - maximum engagement
         EPS: 0,
         // Empiricist - policy wonk, detailed plans
-        AES: 0
-        // Statesman - projected competence, gravitas
+        AES: 0,
+        // Statesman - projected competence, gravitas,
+        morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.3, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.5, political_tribe: 0.7 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 30, class: 30, gender: 50, sexual: 50, ideological: 45, political_camp: 70 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" }
       },
       {
         name: "Johnson",
@@ -13574,8 +14607,10 @@ var PrismEngine = (() => {
         // Low engagement - "what is Aleppo?", barely campaigned seriously
         EPS: 0,
         // Empiricist - pragmatic, evidence-based governor
-        AES: 3
-        // Authentic - unpolished, mountain climber, casual
+        AES: 3,
+        // Authentic - unpolished, mountain climber, casual,
+        morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 0.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, sexual: 5, ideological: 5, political_camp: 0 } }
       }
     ]
   };
@@ -13612,8 +14647,11 @@ var PrismEngine = (() => {
         // Engaged - but projected calm
         EPS: 1,
         // Institutionalist - "trust the institutions"
-        AES: 2
-        // Pastoral - "Scranton Joe," empathy, personal loss
+        AES: 2,
+        // Pastoral - "Scranton Joe," empathy, personal loss,
+        morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.2, religious: 0.2, class: 0.3, ideological: 0.4, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 45, religious: 20, ethnic_racial: 20, class: 30, gender: 15, sexual: 15, ideological: 40, political_camp: 65 } },
+        morMembership: { ethnic_racial: "white", religious: "Catholic", class: "middle", gender: "male", political_tribe: "D" }
       },
       {
         name: "Trump",
@@ -13645,8 +14683,11 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 3,
         // Intuitionist - gut politics
-        AES: 4
-        // Fighter - "counterpuncher," grievance
+        AES: 4,
+        // Fighter - "counterpuncher," grievance,
+        morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.25, class: 0.15, ideological: 0.45, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 25, ethnic_racial: 60, class: 15, gender: 20, sexual: 20, ideological: 45, political_camp: 95 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       }
     ]
   };
@@ -13683,8 +14724,11 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 3,
         // Intuitionist
-        AES: 4
-        // Fighter - "I am your retribution"
+        AES: 4,
+        // Fighter - "I am your retribution",
+        morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.3, class: 0.2, ideological: 0.5, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+        moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 30, ethnic_racial: 60, class: 20, gender: 20, sexual: 20, ideological: 50, political_camp: 95 } },
+        morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" }
       },
       {
         name: "Harris",
@@ -13716,8 +14760,11 @@ var PrismEngine = (() => {
         // Maximum engagement
         EPS: 1,
         // Institutionalist - prosecutor, DA, AG
-        AES: 1
-        // Technocrat - policy-focused
+        AES: 1,
+        // Technocrat - policy-focused,
+        morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.4, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.45, political_tribe: 0.65 }, intensity: 2.5 },
+        moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 40, class: 30, gender: 45, sexual: 45, ideological: 45, political_camp: 65 } },
+        morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" }
       }
     ]
   };
@@ -13762,7 +14809,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["PRO", "ONT_H", "COM"],
       secondaryAxis: ["MAT", "ONT_S", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+      dormant: ["CD", "CU", "MOR", "ZS"],
       description: "Can a republic work? Procedural legitimacy and institutional design are everything"
     },
     candidateActivations: [
@@ -13777,14 +14824,14 @@ var PrismEngine = (() => {
     year: 1792,
     zeitgeist: {
       era: "founding",
-      nodeWeights: { PRO: 2, MAT: 1.5, PF: 1.3, COM: 1.5 },
+      nodeWeights: { PRO: 2, MAT: 1.5, MOR: 1.3, COM: 1.5 },
       intensity: 0.9,
       description: "Washington reelected; Hamilton vs Jefferson factions crystallizing beneath the surface"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "MAT", "COM"],
-      secondaryAxis: ["ONT_H", "ONT_S", "PF", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "TRB"],
+      secondaryAxis: ["ONT_H", "ONT_S", "MOR", "ENG"],
+      dormant: ["CD", "CU", "ZS"],
       description: "Hamilton's financial program divides elites; tariffs and the national bank are contested"
     },
     candidateActivations: [
@@ -13799,14 +14846,14 @@ var PrismEngine = (() => {
     year: 1796,
     zeitgeist: {
       era: "founding",
-      nodeWeights: { PRO: 1.8, MAT: 1.5, CD: 1.3, PF: 1.2 },
+      nodeWeights: { PRO: 1.8, MAT: 1.5, CD: 1.3, MOR: 1.2 },
       intensity: 1,
       description: "First contested election; Jay Treaty anger; institutional stability matters most"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "MAT", "CD"],
-      secondaryAxis: ["PF", "COM", "ENG"],
-      dormant: ["MOR", "CU", "ZS", "ONT_S", "TRB", "ONT_H"],
+      secondaryAxis: ["MOR", "COM", "ENG"],
+      dormant: ["CU", "ZS", "ONT_S", "ONT_H"],
       description: "Can the republic hold? Proceduralism and commerce vs agrarian populism"
     },
     candidateActivations: [
@@ -13827,20 +14874,20 @@ var PrismEngine = (() => {
     year: 1800,
     zeitgeist: {
       era: "founding",
-      nodeWeights: { PF: 2, ONT_S: 4, CD: 1.8, MAT: 1.5, TRB: 1.5, CU: 1.5 },
+      nodeWeights: { MOR: 2, ONT_S: 4, CD: 1.8, MAT: 1.5, CU: 1.5 },
       intensity: 1.5,
       description: "Alien & Sedition Acts; partisan warfare; both sides fear the republic will die if they lose"
     },
     issueLandscape: {
-      primaryAxis: ["PF", "ONT_S", "CD"],
-      secondaryAxis: ["MAT", "CU", "TRB", "ONT_H"],
-      dormant: ["MOR", "PRO", "COM", "ZS", "ENG"],
+      primaryAxis: ["MOR", "ONT_S", "CD"],
+      secondaryAxis: ["MAT", "CU", "ONT_H"],
+      dormant: ["PRO", "COM", "ZS", "ENG"],
       description: "Liberty vs order; Sedition Acts make free speech THE issue; existential partisan conflict"
     },
     candidateActivations: [
       {
         candidateName: "Jefferson",
-        activationNodes: { ONT_S: 5.5, CU: 1.5, ONT_H: 1.3, PF: 1.3 },
+        activationNodes: { ONT_S: 5.5, CU: 1.5, ONT_H: 1.3, MOR: 1.3 },
         novelty: 1.5,
         threatActivation: { CD: 1.5, PRO: 1.3 }
       },
@@ -13856,14 +14903,14 @@ var PrismEngine = (() => {
     year: 1804,
     zeitgeist: {
       era: "founding",
-      nodeWeights: { ONT_H: 1.5, MAT: 1.3, PF: 0.7 },
+      nodeWeights: { ONT_H: 1.5, MAT: 1.3, MOR: 0.7 },
       intensity: 0.8,
       description: "Louisiana Purchase vindicates Jefferson; national optimism; Federalists crumbling"
     },
     issueLandscape: {
       primaryAxis: ["ONT_H", "MAT", "CU"],
       secondaryAxis: ["CD", "PRO", "ONT_S", "ENG"],
-      dormant: ["MOR", "COM", "ZS", "PF", "TRB"],
+      dormant: ["MOR", "COM", "ZS"],
       description: "Expansion and prosperity dominate; opposition party has no compelling counter-narrative"
     },
     candidateActivations: [
@@ -13890,7 +14937,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "ZS", "ONT_S"],
       secondaryAxis: ["CU", "PRO", "CD", "ENG"],
-      dormant: ["MOR", "COM", "ONT_H", "PF", "TRB"],
+      dormant: ["MOR", "COM", "ONT_H"],
       description: "Trade embargo splits the country; economic pain vs national honor against Britain"
     },
     candidateActivations: [
@@ -13911,20 +14958,20 @@ var PrismEngine = (() => {
     year: 1812,
     zeitgeist: {
       era: "founding",
-      nodeWeights: { ZS: 2.5, TRB: 2, ONT_S: 5.8, ENG: 1.5, MAT: 1.3 },
+      nodeWeights: { ZS: 2.5, MOR: 2, ONT_S: 5.8, ENG: 1.5, MAT: 1.3 },
       intensity: 1.3,
       description: "Nation at war with Britain; security and national survival dominate the election"
     },
     issueLandscape: {
-      primaryAxis: ["ZS", "TRB", "ONT_S"],
-      secondaryAxis: ["MAT", "ENG", "PRO", "PF"],
-      dormant: ["CD", "CU", "MOR", "COM", "ONT_H"],
+      primaryAxis: ["ZS", "MOR", "ONT_S"],
+      secondaryAxis: ["MAT", "ENG", "PRO"],
+      dormant: ["CD", "CU", "COM", "ONT_H"],
       description: "War hawks vs peace faction; national honor and security override all other concerns"
     },
     candidateActivations: [
       {
         candidateName: "Madison",
-        activationNodes: { ZS: 1.5, TRB: 1.3, ENG: 1.3 },
+        activationNodes: { ZS: 1.5, MOR: 1.3, ENG: 1.3 },
         novelty: 1,
         threatActivation: { ONT_S: 5.3 }
       },
@@ -13940,14 +14987,14 @@ var PrismEngine = (() => {
     year: 1816,
     zeitgeist: {
       era: "good-feelings",
-      nodeWeights: { COM: 1.5, ONT_H: 1.5, PF: 0.5, TRB: 0.5 },
+      nodeWeights: { COM: 1.5, ONT_H: 1.5, MOR: 0.5 },
       intensity: 0.7,
       description: "Post-war nationalism; Federalists irrelevant; one-party era beginning"
     },
     issueLandscape: {
       primaryAxis: ["COM", "ONT_H", "MAT"],
       secondaryAxis: ["PRO", "ONT_S", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+      dormant: ["CD", "CU", "MOR", "ZS"],
       description: "National unity and internal improvements; partisan conflict dormant"
     },
     candidateActivations: [
@@ -13967,14 +15014,14 @@ var PrismEngine = (() => {
     year: 1820,
     zeitgeist: {
       era: "good-feelings",
-      nodeWeights: { COM: 1.8, ONT_H: 1.5, PF: 0.5, TRB: 0.5, ZS: 0.5 },
+      nodeWeights: { COM: 1.8, ONT_H: 1.5, MOR: 0.5, ZS: 0.5 },
       intensity: 0.7,
       description: "Peak national unity; Monroe Doctrine era; Missouri Compromise foreshadows trouble"
     },
     issueLandscape: {
       primaryAxis: ["COM", "ONT_H", "PRO"],
       secondaryAxis: ["MAT", "ONT_S", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "PF", "TRB"],
+      dormant: ["CD", "CU", "MOR", "ZS"],
       description: "Virtually no contest; national consensus on internal improvements and expansion"
     },
     candidateActivations: [
@@ -13989,14 +15036,14 @@ var PrismEngine = (() => {
     year: 1824,
     zeitgeist: {
       era: "good-feelings",
-      nodeWeights: { PF: 1.8, TRB: 1.5, ONT_S: 5.5, MAT: 1.5, ENG: 1.3 },
+      nodeWeights: { MOR: 1.8, ONT_S: 5.5, MAT: 1.5, ENG: 1.3 },
       intensity: 1.2,
       description: "One-party system fracturing; 4-way race driven by personality and regional identity"
     },
     issueLandscape: {
-      primaryAxis: ["MAT", "TRB", "ONT_S"],
-      secondaryAxis: ["PRO", "PF", "COM", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "ONT_H"],
+      primaryAxis: ["MAT", "MOR", "ONT_S"],
+      secondaryAxis: ["PRO", "COM", "ENG"],
+      dormant: ["CD", "CU", "ZS", "ONT_H"],
       description: "American System vs agrarian populism; regional blocs and personal factions replace parties"
     },
     candidateActivations: [
@@ -14007,13 +15054,13 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Jackson",
-        activationNodes: { TRB: 1.5, ONT_S: 5.5, ENG: 1.5 },
+        activationNodes: { MOR: 1.5, ONT_S: 5.5, ENG: 1.5 },
         novelty: 1.5,
         threatActivation: { PRO: 1.3, COM: 1.2 }
       },
       {
         candidateName: "Crawford",
-        activationNodes: { PF: 1.3, PRO: 1.2 },
+        activationNodes: { MOR: 1.3, PRO: 1.2 },
         novelty: 0.8
       },
       {
@@ -14027,20 +15074,20 @@ var PrismEngine = (() => {
     year: 1828,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { TRB: 2, ONT_S: 4, PF: 2, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
+      nodeWeights: { MOR: 2, ONT_S: 4, ENG: 1.8, MAT: 1.5, ONT_H: 1.3 },
       intensity: 1.3,
       description: "Mass democracy arrives; common man vs establishment; 'corrupt bargain' revenge"
     },
     issueLandscape: {
-      primaryAxis: ["TRB", "ONT_S", "PF"],
+      primaryAxis: ["MOR", "ONT_S"],
       secondaryAxis: ["MAT", "ENG", "ONT_H", "PRO"],
-      dormant: ["CD", "CU", "MOR", "ZS", "COM"],
+      dormant: ["CD", "CU", "ZS", "COM"],
       description: "Populism vs elitism; Jackson channels rage of the common man against Adams aristocracy"
     },
     candidateActivations: [
       {
         candidateName: "Jackson",
-        activationNodes: { TRB: 1.8, ONT_S: 5.5, ENG: 1.5, PF: 1.3 },
+        activationNodes: { MOR: 1.8, ONT_S: 5.5, ENG: 1.5 },
         novelty: 1.8,
         threatActivation: { PRO: 1.5, COM: 1.3 }
       },
@@ -14048,7 +15095,7 @@ var PrismEngine = (() => {
         candidateName: "Adams",
         activationNodes: { PRO: 1.3, MAT: 1.2 },
         novelty: 0.8,
-        threatActivation: { ONT_S: 5.3, TRB: 1.3 }
+        threatActivation: { ONT_S: 5.3, MOR: 1.3 }
       }
     ]
   };
@@ -14056,20 +15103,20 @@ var PrismEngine = (() => {
     year: 1832,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { MAT: 2.5, ONT_S: 4, TRB: 1.8, PF: 1.8, PRO: 1.5 },
+      nodeWeights: { MAT: 2.5, ONT_S: 4, MOR: 1.8, PRO: 1.5 },
       intensity: 1.3,
       description: "Bank War dominates; Jackson vetoes BUS; nullification crisis challenges federal authority"
     },
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "PRO"],
-      secondaryAxis: ["TRB", "PF", "ENG", "COM"],
-      dormant: ["CD", "CU", "MOR", "ZS", "ONT_H"],
+      secondaryAxis: ["MOR", "ENG", "COM"],
+      dormant: ["CD", "CU", "ZS", "ONT_H"],
       description: "National Bank is THE issue; executive power vs congressional prerogative; state vs federal"
     },
     candidateActivations: [
       {
         candidateName: "Jackson",
-        activationNodes: { MAT: 1.5, ONT_S: 5.5, TRB: 1.3, ENG: 1.3 },
+        activationNodes: { MAT: 1.5, ONT_S: 5.5, MOR: 1.3, ENG: 1.3 },
         novelty: 1.3,
         threatActivation: { PRO: 1.5, COM: 1.3 }
       },
@@ -14077,7 +15124,7 @@ var PrismEngine = (() => {
         candidateName: "Clay",
         activationNodes: { MAT: 1.5, PRO: 1.5, COM: 1.3 },
         novelty: 1,
-        threatActivation: { ONT_S: 5.3, TRB: 1.2 }
+        threatActivation: { ONT_S: 5.3, MOR: 1.2 }
       }
     ]
   };
@@ -14085,20 +15132,20 @@ var PrismEngine = (() => {
     year: 1836,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { PF: 2, TRB: 1.8, COM: 1.3 },
+      nodeWeights: { MOR: 2, COM: 1.3 },
       intensity: 1,
       description: "Jacksonian succession; party machine vs scattered Whig opposition"
     },
     issueLandscape: {
-      primaryAxis: ["PF", "TRB", "COM"],
+      primaryAxis: ["MOR", "COM"],
       secondaryAxis: ["MAT", "PRO", "ENG"],
-      dormant: ["CD", "CU", "MOR", "ZS", "ONT_H", "ONT_S"],
+      dormant: ["CD", "CU", "ZS", "ONT_H", "ONT_S"],
       description: "Party loyalty and coalition management dominate; VB inherits Jackson's machine"
     },
     candidateActivations: [
       {
         candidateName: "Van Buren",
-        activationNodes: { PF: 1.8, TRB: 1.5, COM: 1.3 },
+        activationNodes: { MOR: 1.8, COM: 1.3 },
         novelty: 1.2
       },
       {
@@ -14112,26 +15159,26 @@ var PrismEngine = (() => {
     year: 1840,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { MAT: 2.5, ONT_S: 4.5, TRB: 2, ENG: 2, ZS: 1.5 },
+      nodeWeights: { MAT: 2.5, ONT_S: 4.5, MOR: 2, ENG: 2, ZS: 1.5 },
       intensity: 1.3,
       description: "Depression of 1837 devastates the country; first mass-spectacle campaign; record turnout"
     },
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "ENG"],
-      secondaryAxis: ["TRB", "ZS", "COM"],
-      dormant: ["CD", "CU", "MOR", "PRO", "ONT_H", "PF"],
+      secondaryAxis: ["MOR", "ZS", "COM"],
+      dormant: ["CD", "CU", "PRO", "ONT_H"],
       description: "Economic catastrophe drives everything; 'log cabin and hard cider' populism vs incumbent blame"
     },
     candidateActivations: [
       {
         candidateName: "Harrison",
-        activationNodes: { ONT_S: 5.5, TRB: 1.5, ENG: 1.5, MAT: 1.3 },
+        activationNodes: { ONT_S: 5.5, MOR: 1.5, ENG: 1.5, MAT: 1.3 },
         novelty: 1.3,
         threatActivation: { MAT: 1.3 }
       },
       {
         candidateName: "Van Buren",
-        activationNodes: { PF: 1.3, COM: 1.2 },
+        activationNodes: { MOR: 1.3, COM: 1.2 },
         novelty: 0.8,
         threatActivation: { ONT_S: 5.5, MAT: 1.3 }
       }
@@ -14141,20 +15188,20 @@ var PrismEngine = (() => {
     year: 1844,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { TRB: 2.5, ZS: 2, ENG: 1.5 },
+      nodeWeights: { MOR: 2.5, ZS: 2, ENG: 1.5 },
       intensity: 1.2,
       description: "Manifest Destiny fever; Texas annexation; expansionist energy vs cautious establishment"
     },
     issueLandscape: {
-      primaryAxis: ["TRB", "ZS", "ENG"],
-      secondaryAxis: ["MAT", "PF", "ONT_S"],
-      dormant: ["CD", "CU", "MOR", "PRO", "COM", "ONT_H"],
+      primaryAxis: ["MOR", "ZS", "ENG"],
+      secondaryAxis: ["MAT", "ONT_S"],
+      dormant: ["CD", "CU", "PRO", "COM", "ONT_H"],
       description: "Expansion and national destiny dominate; Texas and Oregon questions split along sectional lines"
     },
     candidateActivations: [
       {
         candidateName: "Polk",
-        activationNodes: { TRB: 1.8, ZS: 1.5, ENG: 1.5 },
+        activationNodes: { MOR: 1.8, ZS: 1.5, ENG: 1.5 },
         novelty: 1.5
       },
       {
@@ -14169,32 +15216,32 @@ var PrismEngine = (() => {
     year: 1848,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { MOR: 2, TRB: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.3 },
+      nodeWeights: { MOR: 2, CU: 1.5, ONT_S: 5.5, ZS: 1.3 },
       intensity: 1.2,
       description: "Mexican War conquered new territory; slavery expansion is now unavoidable; Free Soil revolt"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "TRB", "ONT_S"],
-      secondaryAxis: ["CU", "ZS", "PF", "ENG"],
+      primaryAxis: ["MOR", "ONT_S"],
+      secondaryAxis: ["CU", "ZS", "ENG"],
       dormant: ["MAT", "CD", "PRO", "COM", "ONT_H"],
       description: "Wilmot Proviso and slavery in the territories; Free Soil movement fractures both parties"
     },
     candidateActivations: [
       {
         candidateName: "Taylor",
-        activationNodes: { COM: 1.3, TRB: 1.2 },
+        activationNodes: { COM: 1.3, MOR: 1.2 },
         novelty: 1
       },
       {
         candidateName: "Cass",
-        activationNodes: { PF: 1.3, TRB: 1.3 },
+        activationNodes: { MOR: 1.3 },
         novelty: 0.8
       },
       {
         candidateName: "Van Buren",
         activationNodes: { MOR: 1.8, ONT_S: 5.5, ENG: 1.3, CU: 1.3 },
         novelty: 1.3,
-        threatActivation: { TRB: 1.3, PF: 1.2 }
+        threatActivation: { MOR: 1.3 }
       }
     ]
   };
@@ -14202,20 +15249,20 @@ var PrismEngine = (() => {
     year: 1852,
     zeitgeist: {
       era: "jacksonian",
-      nodeWeights: { MOR: 1.8, COM: 1.5, PF: 1.5, TRB: 1.5, ONT_S: 5.3 },
+      nodeWeights: { MOR: 1.8, COM: 1.5, ONT_S: 5.3 },
       intensity: 1,
       description: "Compromise of 1850 bought time but satisfied nobody; Fugitive Slave Act enrages North; Whig party fracturing"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "COM", "PF"],
-      secondaryAxis: ["TRB", "ONT_S", "CD", "ENG"],
+      primaryAxis: ["MOR", "COM"],
+      secondaryAxis: ["ONT_S", "CD", "ENG"],
       dormant: ["MAT", "CU", "PRO", "ZS", "ONT_H"],
       description: "Slavery and the Compromise dominate; both parties claim to be unionist; Whigs have no clear identity"
     },
     candidateActivations: [
       {
         candidateName: "Pierce",
-        activationNodes: { PF: 1.3, COM: 1.3, TRB: 1.2 },
+        activationNodes: { MOR: 1.3, COM: 1.3 },
         novelty: 1
       },
       {
@@ -14250,20 +15297,20 @@ var PrismEngine = (() => {
     year: 1856,
     zeitgeist: {
       era: "sectional",
-      nodeWeights: { MOR: 1.8, TRB: 1.8, CD: 1.5, CU: 1.5, ONT_S: 5.5, COM: 1.3 },
+      nodeWeights: { MOR: 1.8, CD: 1.5, CU: 1.5, ONT_S: 5.5, COM: 1.3 },
       intensity: 1.3,
       description: "Bleeding Kansas; slavery expansion fracturing the party system"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "TRB", "CD"],
+      primaryAxis: ["MOR", "CD"],
       secondaryAxis: ["CU", "ONT_S", "COM", "PRO", "ZS"],
-      dormant: ["MAT", "ONT_H", "PF", "ENG"],
+      dormant: ["MAT", "ONT_H", "ENG"],
       description: "Slavery in territories dominates; nativism a secondary current; economics irrelevant"
     },
     candidateActivations: [
       {
         candidateName: "Buchanan",
-        activationNodes: { COM: 1.4, PRO: 1.3, PF: 1.2 },
+        activationNodes: { COM: 1.4, PRO: 1.3, MOR: 1.2 },
         novelty: 1,
         threatActivation: { ONT_S: 5.2 }
       },
@@ -14271,11 +15318,11 @@ var PrismEngine = (() => {
         candidateName: "Fremont",
         activationNodes: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 },
         novelty: 1.5,
-        threatActivation: { TRB: 1.5, CD: 1.4 }
+        threatActivation: { MOR: 1.5, CD: 1.4 }
       },
       {
         candidateName: "Fillmore",
-        activationNodes: { CD: 1.5, TRB: 1.5, ZS: 1.3 },
+        activationNodes: { CD: 1.5, MOR: 1.5, ZS: 1.3 },
         novelty: 0.8,
         threatActivation: { CU: 1.3 }
       }
@@ -14285,14 +15332,14 @@ var PrismEngine = (() => {
     year: 1860,
     zeitgeist: {
       era: "sectional",
-      nodeWeights: { MOR: 2, TRB: 2, ONT_S: 4, CD: 1.8, CU: 1.5, ZS: 1.5 },
+      nodeWeights: { MOR: 2, ONT_S: 4, CD: 1.8, CU: 1.5, ZS: 1.5 },
       intensity: 1.5,
       description: "Nation fracturing over slavery; secession looming; existential stakes"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "TRB", "ONT_S"],
+      primaryAxis: ["MOR", "ONT_S"],
       secondaryAxis: ["CD", "CU", "PRO", "ZS"],
-      dormant: ["MAT", "COM", "ONT_H", "PF", "ENG"],
+      dormant: ["MAT", "COM", "ONT_H", "ENG"],
       description: "Slavery expansion is THE issue; economic policy irrelevant; party system shattering"
     },
     candidateActivations: [
@@ -14300,7 +15347,7 @@ var PrismEngine = (() => {
         candidateName: "Lincoln",
         activationNodes: { MOR: 1.5, CU: 1.3, PRO: 1.2 },
         novelty: 1.8,
-        threatActivation: { TRB: 1.5, CD: 1.3 }
+        threatActivation: { MOR: 1.5, CD: 1.3 }
       },
       {
         candidateName: "Douglas",
@@ -14309,7 +15356,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Breckinridge",
-        activationNodes: { TRB: 1.8, CD: 1.5, ZS: 1.3 },
+        activationNodes: { MOR: 1.8, CD: 1.5, ZS: 1.3 },
         novelty: 1.2,
         threatActivation: { MOR: 1.4, CU: 1.3 }
       },
@@ -14324,14 +15371,14 @@ var PrismEngine = (() => {
     year: 1864,
     zeitgeist: {
       era: "civil-war",
-      nodeWeights: { MOR: 2.5, ZS: 2, TRB: 2, ONT_S: 4, ENG: 1.8, CD: 1.5 },
+      nodeWeights: { MOR: 2.5, ZS: 2, ONT_S: 4, ENG: 1.8, CD: 1.5 },
       intensity: 1.5,
       description: "Civil War raging; emancipation now a war aim; Union survival at stake"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "ZS", "TRB"],
+      primaryAxis: ["MOR", "ZS"],
       secondaryAxis: ["ONT_S", "CD", "ENG", "PRO"],
-      dormant: ["MAT", "CU", "COM", "ONT_H", "PF"],
+      dormant: ["MAT", "CU", "COM", "ONT_H"],
       description: "War vs. peace; emancipation vs. restoration; total commitment vs. negotiation"
     },
     candidateActivations: [
@@ -14339,7 +15386,7 @@ var PrismEngine = (() => {
         candidateName: "Lincoln",
         activationNodes: { MOR: 1.8, ENG: 1.5, ONT_S: 5.4, CU: 1.3 },
         novelty: 1.5,
-        threatActivation: { ZS: 1.3, TRB: 1.3 }
+        threatActivation: { ZS: 1.3, MOR: 1.3 }
       },
       {
         candidateName: "McClellan",
@@ -14353,14 +15400,14 @@ var PrismEngine = (() => {
     year: 1868,
     zeitgeist: {
       era: "civil-war",
-      nodeWeights: { MOR: 2, TRB: 2, CD: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.5 },
+      nodeWeights: { MOR: 2, CD: 1.8, CU: 1.5, ONT_S: 5.5, ZS: 1.5 },
       intensity: 1.3,
       description: "Reconstruction underway; 14th Amendment; KKK violence; freedmen's rights contested"
     },
     issueLandscape: {
-      primaryAxis: ["MOR", "TRB", "CD"],
+      primaryAxis: ["MOR", "CD"],
       secondaryAxis: ["CU", "ONT_S", "ZS", "PRO"],
-      dormant: ["MAT", "COM", "ONT_H", "PF", "ENG"],
+      dormant: ["MAT", "COM", "ONT_H", "ENG"],
       description: "Reconstruction and Black rights dominate; racial hierarchy vs. equal citizenship"
     },
     candidateActivations: [
@@ -14368,11 +15415,11 @@ var PrismEngine = (() => {
         candidateName: "Grant",
         activationNodes: { MOR: 1.4, PRO: 1.3, CU: 1.3 },
         novelty: 1.5,
-        threatActivation: { TRB: 1.2 }
+        threatActivation: { MOR: 1.2 }
       },
       {
         candidateName: "Seymour",
-        activationNodes: { TRB: 1.6, CD: 1.5, ZS: 1.4 },
+        activationNodes: { MOR: 1.6, CD: 1.5, ZS: 1.4 },
         novelty: 0.8,
         threatActivation: { MOR: 1.5, CU: 1.4, ONT_S: 5.3 }
       }
@@ -14382,20 +15429,20 @@ var PrismEngine = (() => {
     year: 1872,
     zeitgeist: {
       era: "reconstruction",
-      nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 5.3, COM: 1.3, PF: 0.7 },
+      nodeWeights: { PRO: 1.5, MOR: 1.3, ONT_S: 5.3, COM: 1.3 },
       intensity: 0.9,
       description: "Reconstruction fatigue; corruption scandals; Liberal Republican revolt"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "COM", "ONT_S"],
-      secondaryAxis: ["MOR", "CD", "CU", "PF"],
-      dormant: ["MAT", "ZS", "ONT_H", "TRB", "ENG"],
+      secondaryAxis: ["MOR", "CD", "CU"],
+      dormant: ["MAT", "ZS", "ONT_H", "ENG"],
       description: "Corruption vs. clean government; reconciliation vs. continued Reconstruction"
     },
     candidateActivations: [
       {
         candidateName: "Grant",
-        activationNodes: { MOR: 1.3, TRB: 1.2, PF: 1.3 },
+        activationNodes: { MOR: 1.3 },
         novelty: 1
       },
       {
@@ -14410,20 +15457,20 @@ var PrismEngine = (() => {
     year: 1876,
     zeitgeist: {
       era: "reconstruction",
-      nodeWeights: { PRO: 1.8, ONT_S: 5.5, MOR: 1.3, COM: 1.3, PF: 1.3 },
+      nodeWeights: { PRO: 1.8, ONT_S: 5.5, MOR: 1.3, COM: 1.3 },
       intensity: 1.2,
       description: "Reconstruction winding down; Grant scandals; reform movement ascendant"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "ONT_S", "MOR"],
-      secondaryAxis: ["COM", "CD", "PF", "TRB"],
+      secondaryAxis: ["COM", "CD"],
       dormant: ["MAT", "CU", "ZS", "ONT_H", "ENG"],
       description: "Clean government vs. corruption; Reconstruction's fate decided behind closed doors"
     },
     candidateActivations: [
       {
         candidateName: "Hayes",
-        activationNodes: { PRO: 1.4, PF: 1.3, COM: 1.2 },
+        activationNodes: { PRO: 1.4, MOR: 1.3, COM: 1.2 },
         novelty: 1
       },
       {
@@ -14438,14 +15485,14 @@ var PrismEngine = (() => {
     year: 1880,
     zeitgeist: {
       era: "gilded",
-      nodeWeights: { PRO: 2, MAT: 1.5, PF: 1.5, MOR: 0.3, CD: 0.3, CU: 0.3 },
+      nodeWeights: { PRO: 2, MAT: 1.5, MOR: 1.5, CD: 0.3, CU: 0.3 },
       intensity: 0.8,
       description: "Post-Reconstruction calm; patronage politics; tariff debate; low-stakes"
     },
     issueLandscape: {
-      primaryAxis: ["PRO", "MAT", "PF"],
-      secondaryAxis: ["COM", "TRB", "ONT_S"],
-      dormant: ["CD", "CU", "MOR", "ZS", "ONT_H", "ENG"],
+      primaryAxis: ["PRO", "MAT", "MOR"],
+      secondaryAxis: ["COM", "ONT_S"],
+      dormant: ["CD", "CU", "ZS", "ONT_H", "ENG"],
       description: "Civil service reform and tariff; moral questions of Reconstruction era fading"
     },
     candidateActivations: [
@@ -14456,7 +15503,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Hancock",
-        activationNodes: { COM: 1.2, PF: 1.1 },
+        activationNodes: { COM: 1.2, MOR: 1.1 },
         novelty: 1
       }
     ]
@@ -14465,14 +15512,14 @@ var PrismEngine = (() => {
     year: 1884,
     zeitgeist: {
       era: "gilded",
-      nodeWeights: { PRO: 1.8, PF: 1.3, MAT: 1.2, MOR: 0.6, CD: 0.6 },
+      nodeWeights: { PRO: 1.8, MOR: 1.3, MAT: 1.2, CD: 0.6 },
       intensity: 1,
       description: "Corruption vs. reform; Mugwump revolt; character matters more than policy"
     },
     issueLandscape: {
-      primaryAxis: ["PRO", "PF", "COM"],
-      secondaryAxis: ["MAT", "TRB", "CD"],
-      dormant: ["CU", "MOR", "ZS", "ONT_H", "ONT_S", "ENG"],
+      primaryAxis: ["PRO", "MOR", "COM"],
+      secondaryAxis: ["MAT", "CD"],
+      dormant: ["CU", "ZS", "ONT_H", "ONT_S", "ENG"],
       description: "Personal integrity and clean government dominate; tariff secondary; moral questions dormant"
     },
     candidateActivations: [
@@ -14483,7 +15530,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Blaine",
-        activationNodes: { PF: 1.4, TRB: 1.3, ENG: 1.3 },
+        activationNodes: { MOR: 1.4, ENG: 1.3 },
         novelty: 1,
         threatActivation: { PRO: 1.4 }
       }
@@ -14493,20 +15540,20 @@ var PrismEngine = (() => {
     year: 1888,
     zeitgeist: {
       era: "gilded",
-      nodeWeights: { MAT: 1.5, PRO: 1.3, PF: 1.3, MOR: 0.5, CD: 0.5 },
+      nodeWeights: { MAT: 1.5, PRO: 1.3, MOR: 1.3, CD: 0.5 },
       intensity: 0.8,
       description: "Tariff is THE issue; patronage politics; honest but boring"
     },
     issueLandscape: {
-      primaryAxis: ["MAT", "PRO", "PF"],
-      secondaryAxis: ["COM", "CU", "TRB"],
-      dormant: ["CD", "MOR", "ZS", "ONT_H", "ONT_S", "ENG"],
+      primaryAxis: ["MAT", "PRO", "MOR"],
+      secondaryAxis: ["COM", "CU"],
+      dormant: ["CD", "ZS", "ONT_H", "ONT_S", "ENG"],
       description: "Tariff reduction vs. protection; party organization and patronage; low moral stakes"
     },
     candidateActivations: [
       {
         candidateName: "Harrison",
-        activationNodes: { MAT: 1.3, PF: 1.3, TRB: 1.2 },
+        activationNodes: { MAT: 1.3, MOR: 1.3 },
         novelty: 1
       },
       {
@@ -14520,14 +15567,14 @@ var PrismEngine = (() => {
     year: 1892,
     zeitgeist: {
       era: "gilded",
-      nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, TRB: 1.5, ENG: 1.3, MOR: 0.6 },
+      nodeWeights: { MAT: 1.8, ONT_S: 5.8, ZS: 1.5, MOR: 1.5, ENG: 1.3 },
       intensity: 1.1,
       description: "Agrarian revolt; Homestead Strike; Populist insurgency; economic anxiety rising"
     },
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "ZS"],
-      secondaryAxis: ["TRB", "ENG", "PF", "COM"],
-      dormant: ["CD", "CU", "MOR", "PRO", "ONT_H"],
+      secondaryAxis: ["MOR", "ENG", "COM"],
+      dormant: ["CD", "CU", "PRO", "ONT_H"],
       description: "Economic class conflict erupting; gold vs. silver nascent; Populist third force"
     },
     candidateActivations: [
@@ -14538,12 +15585,12 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Harrison",
-        activationNodes: { MAT: 1.2, PF: 1.3 },
+        activationNodes: { MAT: 1.2, MOR: 1.3 },
         novelty: 0.8
       },
       {
         candidateName: "Weaver",
-        activationNodes: { ONT_S: 5.6, ZS: 1.5, TRB: 1.5, MAT: 1.4, ENG: 1.4 },
+        activationNodes: { ONT_S: 5.6, ZS: 1.5, MOR: 1.5, MAT: 1.4, ENG: 1.4 },
         novelty: 1.5,
         threatActivation: { MAT: 1.3, ONT_S: 5.3 }
       }
@@ -14553,26 +15600,26 @@ var PrismEngine = (() => {
     year: 1896,
     zeitgeist: {
       era: "progressive",
-      nodeWeights: { MAT: 2, PRO: 1.5, PF: 1.5 },
+      nodeWeights: { MAT: 2, PRO: 1.5, MOR: 1.5 },
       intensity: 1.2,
       description: "Realignment: gold vs. silver; industrial capitalism vs. agrarian populism; Panic of 1893 aftermath"
     },
     issueLandscape: {
-      primaryAxis: ["MAT", "PRO", "PF"],
+      primaryAxis: ["MAT", "PRO", "MOR"],
       secondaryAxis: ["ONT_S", "CD", "COM"],
-      dormant: ["CU", "MOR", "ZS", "TRB", "ONT_H", "ENG"],
+      dormant: ["CU", "ZS", "ONT_H", "ENG"],
       description: "Economic policy dominates; McKinley's 'full dinner pail' vs Bryan's silver populism"
     },
     candidateActivations: [
       {
         candidateName: "McKinley",
-        activationNodes: { MAT: 1.5, PRO: 1.5, PF: 1.3, COM: 1.3 },
+        activationNodes: { MAT: 1.5, PRO: 1.5, MOR: 1.3, COM: 1.3 },
         novelty: 1.2,
         threatActivation: { ONT_S: 5.3 }
       },
       {
         candidateName: "Bryan",
-        activationNodes: { ONT_S: 5.3, TRB: 1.2 },
+        activationNodes: { ONT_S: 5.3, MOR: 1.2 },
         novelty: 1.3
       }
     ]
@@ -14587,19 +15634,19 @@ var PrismEngine = (() => {
     },
     issueLandscape: {
       primaryAxis: ["MAT", "CU", "MOR"],
-      secondaryAxis: ["ZS", "TRB", "CD", "ENG"],
-      dormant: ["PRO", "COM", "ONT_H", "ONT_S", "PF"],
+      secondaryAxis: ["ZS", "CD", "ENG"],
+      dormant: ["PRO", "COM", "ONT_H", "ONT_S"],
       description: "Imperialism (Philippines) joins economic debate; prosperity vs. populism rematch"
     },
     candidateActivations: [
       {
         candidateName: "McKinley",
-        activationNodes: { MAT: 1.3, CU: 1.2, PF: 1.2 },
+        activationNodes: { MAT: 1.3, CU: 1.2, MOR: 1.2 },
         novelty: 1
       },
       {
         candidateName: "Bryan",
-        activationNodes: { MOR: 1.4, CU: 1.3, ZS: 1.3, TRB: 1.3, ENG: 1.3 },
+        activationNodes: { MOR: 1.4, CU: 1.3, ZS: 1.3, ENG: 1.3 },
         novelty: 1,
         threatActivation: { MAT: 1.3 }
       }
@@ -14616,7 +15663,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["ONT_S", "MAT", "MOR"],
       secondaryAxis: ["ONT_H", "CU", "ENG", "ZS"],
-      dormant: ["CD", "PRO", "COM", "PF", "TRB"],
+      dormant: ["CD", "PRO", "COM"],
       description: "Trust regulation and corporate power; role of government in economy; cultural issues quiet"
     },
     candidateActivations: [
@@ -14636,14 +15683,14 @@ var PrismEngine = (() => {
     year: 1908,
     zeitgeist: {
       era: "progressive",
-      nodeWeights: { ONT_S: 5.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, TRB: 0.6 },
+      nodeWeights: { ONT_S: 5.5, MAT: 1.5, PRO: 1.3, ONT_H: 1.3, MOR: 0.6 },
       intensity: 0.9,
       description: "Progressive reforms mainstreaming; TR's heir vs. the Great Commoner; reform consensus"
     },
     issueLandscape: {
       primaryAxis: ["ONT_S", "MAT", "PRO"],
       secondaryAxis: ["ONT_H", "MOR", "COM", "ENG"],
-      dormant: ["CD", "CU", "ZS", "PF", "TRB"],
+      dormant: ["CD", "CU", "ZS"],
       description: "Degree of Progressive reform; railroad regulation; income tax; direct democracy"
     },
     candidateActivations: [
@@ -14663,14 +15710,14 @@ var PrismEngine = (() => {
     year: 1912,
     zeitgeist: {
       era: "progressive",
-      nodeWeights: { ONT_S: 4, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, PF: 1.5, ENG: 1.5 },
+      nodeWeights: { ONT_S: 4, MAT: 1.8, ONT_H: 1.8, MOR: 1.5, ENG: 1.5 },
       intensity: 1.3,
       description: "Peak Progressive era; three-way reform debate; party system fracturing; high engagement"
     },
     issueLandscape: {
       primaryAxis: ["ONT_S", "MAT", "ONT_H"],
-      secondaryAxis: ["MOR", "PF", "ENG", "PRO"],
-      dormant: ["CD", "CU", "ZS", "COM", "TRB"],
+      secondaryAxis: ["MOR", "ENG", "PRO"],
+      dormant: ["CD", "CU", "ZS", "COM"],
       description: "How to reform capitalism: break trusts, regulate trusts, or leave courts in charge"
     },
     candidateActivations: [
@@ -14683,11 +15730,11 @@ var PrismEngine = (() => {
         candidateName: "Roosevelt",
         activationNodes: { ONT_S: 5.6, MOR: 1.6, ONT_H: 1.5, ENG: 1.5, MAT: 1.3 },
         novelty: 1.5,
-        threatActivation: { PRO: 1.3, PF: 1.3 }
+        threatActivation: { PRO: 1.3, MOR: 1.3 }
       },
       {
         candidateName: "Taft",
-        activationNodes: { PRO: 1.4, PF: 1.3 },
+        activationNodes: { PRO: 1.4, MOR: 1.3 },
         novelty: 0.8
       }
     ]
@@ -14696,14 +15743,14 @@ var PrismEngine = (() => {
     year: 1916,
     zeitgeist: {
       era: "progressive",
-      nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, TRB: 1.3, ONT_S: 5.3 },
+      nodeWeights: { ZS: 1.8, CU: 1.5, MAT: 1.5, MOR: 1.3, ONT_S: 5.3 },
       intensity: 1.2,
       description: "European war looming; neutrality vs. preparedness; Progressive legislation at home"
     },
     issueLandscape: {
       primaryAxis: ["ZS", "CU", "MAT"],
-      secondaryAxis: ["TRB", "ONT_S", "PRO", "MOR"],
-      dormant: ["CD", "COM", "ONT_H", "PF", "ENG"],
+      secondaryAxis: ["MOR", "ONT_S", "PRO"],
+      dormant: ["CD", "COM", "ONT_H", "ENG"],
       description: "War and peace dominate; Progressive reforms continue; party reunification for GOP"
     },
     candidateActivations: [
@@ -14711,11 +15758,11 @@ var PrismEngine = (() => {
         candidateName: "Wilson",
         activationNodes: { MAT: 1.3, MOR: 1.3, CU: 1.2, ONT_S: 5.2 },
         novelty: 1,
-        threatActivation: { ZS: 1.3, TRB: 1.2 }
+        threatActivation: { ZS: 1.3, MOR: 1.2 }
       },
       {
         candidateName: "Hughes",
-        activationNodes: { PRO: 1.3, ZS: 1.2, PF: 1.3 },
+        activationNodes: { PRO: 1.3, ZS: 1.2, MOR: 1.3 },
         novelty: 1,
         threatActivation: { CU: 1.2 }
       }
@@ -14752,7 +15799,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["COM", "PRO", "MAT"],
       secondaryAxis: ["CD", "ONT_S"],
-      dormant: ["CU", "MOR", "ZS", "ONT_H", "PF", "TRB", "ENG"],
+      dormant: ["CU", "MOR", "ZS", "ONT_H", "ENG"],
       description: "Normalcy vs reform; voters exhausted; compromise and stability win"
     },
     candidateActivations: [
@@ -14772,14 +15819,14 @@ var PrismEngine = (() => {
     year: 1924,
     zeitgeist: {
       era: "normalcy",
-      nodeWeights: { MAT: 1.3, ONT_S: 5.4, PF: 0.7 },
+      nodeWeights: { MAT: 1.3, ONT_S: 5.4, MOR: 0.7 },
       intensity: 0.8,
       description: "Prosperity + KKK controversy + Progressive insurgency fragmenting politics"
     },
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "CD"],
       secondaryAxis: ["MOR", "PRO", "COM", "CU"],
-      dormant: ["ZS", "ONT_H", "PF", "TRB", "ENG"],
+      dormant: ["ZS", "ONT_H", "ENG"],
       description: "Business prosperity vs. anti-monopoly reform; KKK and cultural identity simmer"
     },
     candidateActivations: [
@@ -14795,7 +15842,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "La Follette",
-        activationNodes: { MAT: 1.5, ONT_S: 5.6, COM: 0.7, PF: 0.7 },
+        activationNodes: { MAT: 1.5, ONT_S: 5.6, COM: 0.7, MOR: 0.7 },
         novelty: 1.5,
         threatActivation: { MAT: 1.3, ONT_S: 5.3 }
       }
@@ -14805,14 +15852,14 @@ var PrismEngine = (() => {
     year: 1928,
     zeitgeist: {
       era: "normalcy",
-      nodeWeights: { CD: 1.8, TRB: 1.5, MOR: 1.4 },
+      nodeWeights: { CD: 1.8, MOR: 1.5 },
       intensity: 0.9,
       description: "Peak 1920s prosperity but deep urban-rural cultural divide over religion and prohibition"
     },
     issueLandscape: {
-      primaryAxis: ["CD", "TRB", "MOR"],
+      primaryAxis: ["CD", "MOR"],
       secondaryAxis: ["MAT", "CU", "PRO", "ONT_H"],
-      dormant: ["COM", "ZS", "ONT_S", "PF", "ENG"],
+      dormant: ["COM", "ZS", "ONT_S", "ENG"],
       description: "Catholic candidate triggers cultural identity war; economy is background consensus"
     },
     candidateActivations: [
@@ -14823,9 +15870,9 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Smith",
-        activationNodes: { CD: 1.4, TRB: 1.5, CU: 1.3 },
+        activationNodes: { CD: 1.4, MOR: 1.5, CU: 1.3 },
         novelty: 1.4,
-        threatActivation: { CD: 1.5, TRB: 1.4, MOR: 1.3 }
+        threatActivation: { CD: 1.5, MOR: 1.4 }
       }
     ]
   };
@@ -14840,7 +15887,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "ONT_H"],
       secondaryAxis: ["ZS", "PRO", "COM", "ENG"],
-      dormant: ["CD", "CU", "MOR", "PF", "TRB"],
+      dormant: ["CD", "CU", "MOR"],
       description: "Depression is THE issue; economic philosophy and systemic failure dominate everything"
     },
     candidateActivations: [
@@ -14862,20 +15909,20 @@ var PrismEngine = (() => {
     year: 1936,
     zeitgeist: {
       era: "new-deal",
-      nodeWeights: { MAT: 2.2, ONT_S: 5.8, TRB: 1.5, PF: 1.5 },
+      nodeWeights: { MAT: 2.2, ONT_S: 5.8, MOR: 1.5 },
       intensity: 1.3,
       description: "New Deal as referendum; labor vs. business class warfare; party realignment solidifying"
     },
     issueLandscape: {
-      primaryAxis: ["MAT", "ONT_S", "TRB"],
-      secondaryAxis: ["PF", "ZS", "ONT_H", "PRO"],
-      dormant: ["CD", "CU", "MOR", "COM", "ENG"],
+      primaryAxis: ["MAT", "ONT_S", "MOR"],
+      secondaryAxis: ["ZS", "ONT_H", "PRO"],
+      dormant: ["CD", "CU", "COM", "ENG"],
       description: "Pure economics and class: New Deal populism vs. free enterprise; labor vs. business"
     },
     candidateActivations: [
       {
         candidateName: "Roosevelt",
-        activationNodes: { MAT: 1.5, ONT_S: 5.4, TRB: 1.4, ENG: 1.3 },
+        activationNodes: { MAT: 1.5, ONT_S: 5.4, MOR: 1.4, ENG: 1.3 },
         novelty: 1.5
       },
       {
@@ -14896,7 +15943,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["CU", "PRO", "ZS"],
       secondaryAxis: ["MAT", "ONT_S", "MOR", "COM"],
-      dormant: ["CD", "ONT_H", "PF", "TRB", "ENG"],
+      dormant: ["CD", "ONT_H", "ENG"],
       description: "Interventionism vs. isolation + third-term norm-breaking; New Deal fading as issue"
     },
     candidateActivations: [
@@ -14918,20 +15965,20 @@ var PrismEngine = (() => {
     year: 1944,
     zeitgeist: {
       era: "new-deal",
-      nodeWeights: { CU: 2, ZS: 1.5, TRB: 1.5, ENG: 1.3 },
+      nodeWeights: { CU: 2, ZS: 1.5, MOR: 1.5, ENG: 1.3 },
       intensity: 1.3,
       description: "World War raging; D-Day; national unity but war fatigue setting in"
     },
     issueLandscape: {
-      primaryAxis: ["CU", "ZS", "TRB"],
-      secondaryAxis: ["MAT", "PRO", "MOR", "ENG"],
-      dormant: ["CD", "COM", "ONT_H", "ONT_S", "PF"],
+      primaryAxis: ["CU", "ZS", "MOR"],
+      secondaryAxis: ["MAT", "PRO", "ENG"],
+      dormant: ["CD", "COM", "ONT_H", "ONT_S"],
       description: "War leadership dominates; 'don't change horses midstream' vs. four-term fatigue"
     },
     candidateActivations: [
       {
         candidateName: "Roosevelt",
-        activationNodes: { CU: 1.4, TRB: 1.3, ENG: 1.2 },
+        activationNodes: { CU: 1.4, MOR: 1.3, ENG: 1.2 },
         novelty: 1
       },
       {
@@ -14945,13 +15992,13 @@ var PrismEngine = (() => {
     year: 1948,
     zeitgeist: {
       era: "new-deal",
-      nodeWeights: { CD: 1.6, MOR: 1.5, TRB: 1.8, CU: 1.4, PF: 1.4 },
+      nodeWeights: { CD: 1.6, MOR: 1.8, CU: 1.4 },
       intensity: 1.2,
       description: "Cold War begins; civil rights emerging; Dixiecrat revolt fractures New Deal coalition"
     },
     issueLandscape: {
-      primaryAxis: ["CD", "TRB", "MOR"],
-      secondaryAxis: ["CU", "MAT", "PF", "ZS"],
+      primaryAxis: ["CD", "MOR"],
+      secondaryAxis: ["CU", "MAT", "ZS"],
       dormant: ["PRO", "COM", "ONT_H", "ONT_S", "ENG"],
       description: "Civil rights vs. segregation fractures the Democratic Party; Cold War as backdrop"
     },
@@ -14968,9 +16015,9 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Thurmond",
-        activationNodes: { CD: 1.6, TRB: 1.8, MOR: 1.4 },
+        activationNodes: { CD: 1.6, MOR: 1.8 },
         novelty: 1.3,
-        threatActivation: { CD: 1.5, MOR: 1.5, TRB: 1.3 }
+        threatActivation: { CD: 1.5, MOR: 1.5 }
       }
     ]
   };
@@ -14978,14 +16025,14 @@ var PrismEngine = (() => {
     year: 1952,
     zeitgeist: {
       era: "consensus",
-      nodeWeights: { ZS: 1.6, CU: 1.4, TRB: 1.3, ONT_S: 5.2 },
+      nodeWeights: { ZS: 1.6, CU: 1.4, MOR: 1.3, ONT_S: 5.2 },
       intensity: 1.1,
       description: "Korean War stalemate; McCarthyism; Cold War anxiety; desire for steady leadership"
     },
     issueLandscape: {
-      primaryAxis: ["ZS", "CU", "TRB"],
+      primaryAxis: ["ZS", "CU", "MOR"],
       secondaryAxis: ["MAT", "PRO", "ONT_S", "CD"],
-      dormant: ["MOR", "COM", "ONT_H", "PF", "ENG"],
+      dormant: ["COM", "ONT_H", "ENG"],
       description: "Cold War security + Korea dominate; communism fear; first TV campaign era"
     },
     candidateActivations: [
@@ -15012,7 +16059,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["CU", "ZS", "PRO"],
       secondaryAxis: ["MAT", "CD", "ONT_H"],
-      dormant: ["MOR", "COM", "ONT_S", "PF", "TRB", "ENG"],
+      dormant: ["MOR", "COM", "ONT_S", "ENG"],
       description: "Foreign crises reinforce Ike's commander image; domestic consensus; boring election"
     },
     candidateActivations: [
@@ -15032,14 +16079,14 @@ var PrismEngine = (() => {
     year: 1960,
     zeitgeist: {
       era: "consensus",
-      nodeWeights: { CU: 1.5, ZS: 1.4, CD: 1.3, TRB: 1.3 },
+      nodeWeights: { CU: 1.5, ZS: 1.4, CD: 1.3, MOR: 1.3 },
       intensity: 1.1,
       description: "Cold War missile gap; TV debates transform politics; Catholic question resurfaces"
     },
     issueLandscape: {
       primaryAxis: ["CU", "ZS", "CD"],
-      secondaryAxis: ["TRB", "MAT", "ONT_H", "ENG"],
-      dormant: ["MOR", "PRO", "COM", "ONT_S", "PF"],
+      secondaryAxis: ["MOR", "MAT", "ONT_H", "ENG"],
+      dormant: ["PRO", "COM", "ONT_S"],
       description: "Cold War competition + generational change; Catholic identity as cultural flashpoint"
     },
     candidateActivations: [
@@ -15047,7 +16094,7 @@ var PrismEngine = (() => {
         candidateName: "Kennedy",
         activationNodes: { CU: 1.3, ONT_H: 1.4, ENG: 1.4, CD: 1.2 },
         novelty: 1.5,
-        threatActivation: { CD: 1.3, TRB: 1.2 }
+        threatActivation: { CD: 1.3, MOR: 1.2 }
       },
       {
         candidateName: "Nixon",
@@ -15067,7 +16114,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["CD", "MOR", "MAT"],
       secondaryAxis: ["ONT_S", "COM", "PRO", "ZS"],
-      dormant: ["CU", "ONT_H", "PF", "TRB", "ENG"],
+      dormant: ["CU", "ONT_H", "ENG"],
       description: "Civil rights + Great Society vs. anti-government conservatism; first modern ideological election"
     },
     candidateActivations: [
@@ -15088,20 +16135,20 @@ var PrismEngine = (() => {
     year: 1968,
     zeitgeist: {
       era: "upheaval",
-      nodeWeights: { CD: 2, ONT_S: 4, TRB: 1.8, ZS: 1.8 },
+      nodeWeights: { CD: 2, ONT_S: 4, MOR: 1.8, ZS: 1.8 },
       intensity: 1.4,
       description: "Vietnam, MLK/RFK assassinated, riots, convention chaos; nation coming apart"
     },
     issueLandscape: {
       primaryAxis: ["CD", "ONT_S", "ZS"],
-      secondaryAxis: ["TRB", "ENG", "PF"],
-      dormant: ["MAT", "CU", "MOR", "PRO", "COM", "ONT_H"],
+      secondaryAxis: ["MOR", "ENG"],
+      dormant: ["MAT", "CU", "PRO", "COM", "ONT_H"],
       description: "Law and order vs chaos; cultural backlash dominates; progressive idealism suppressed"
     },
     candidateActivations: [
       {
         candidateName: "Nixon",
-        activationNodes: { CD: 1.6, ZS: 1.5, TRB: 1.4, ONT_S: 5.3 },
+        activationNodes: { CD: 1.6, ZS: 1.5, MOR: 1.4, ONT_S: 5.3 },
         novelty: 1.3,
         threatActivation: { ONT_S: 5.3 }
       },
@@ -15112,7 +16159,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Wallace",
-        activationNodes: { CD: 1.5, TRB: 1.5 },
+        activationNodes: { CD: 1.5, MOR: 1.5 },
         novelty: 1.3
       }
     ]
@@ -15121,27 +16168,27 @@ var PrismEngine = (() => {
     year: 1972,
     zeitgeist: {
       era: "upheaval",
-      nodeWeights: { CD: 1.8, CU: 1.5, MOR: 1.5, TRB: 1.4 },
+      nodeWeights: { CD: 1.8, CU: 1.5, MOR: 1.5 },
       intensity: 1.1,
       description: "Vietnam winding down but cultural revolution deepens; New Left vs. Silent Majority"
     },
     issueLandscape: {
       primaryAxis: ["CD", "CU", "MOR"],
-      secondaryAxis: ["TRB", "MAT", "ONT_S", "ZS"],
-      dormant: ["PRO", "COM", "ONT_H", "PF", "ENG"],
+      secondaryAxis: ["MAT", "ONT_S", "ZS"],
+      dormant: ["PRO", "COM", "ONT_H", "ENG"],
       description: "Cultural identity war: counterculture vs. traditional America; Vietnam as cultural proxy"
     },
     candidateActivations: [
       {
         candidateName: "Nixon",
-        activationNodes: { CD: 1.3, TRB: 1.3, COM: 1.2 },
+        activationNodes: { CD: 1.3, MOR: 1.3, COM: 1.2 },
         novelty: 1
       },
       {
         candidateName: "McGovern",
         activationNodes: { CU: 1.5, MOR: 1.4, ONT_S: 5.4, ONT_H: 1.3 },
         novelty: 1.3,
-        threatActivation: { CD: 1.5, MOR: 1.4, TRB: 1.3 }
+        threatActivation: { CD: 1.5, MOR: 1.4 }
       }
     ]
   };
@@ -15149,20 +16196,20 @@ var PrismEngine = (() => {
     year: 1976,
     zeitgeist: {
       era: "upheaval",
-      nodeWeights: { PRO: 2, ONT_S: 5.6, PF: 1.3 },
+      nodeWeights: { PRO: 2, ONT_S: 5.6, MOR: 1.3 },
       intensity: 1.1,
       description: "Post-Watergate crisis of trust; voters want honesty and procedural integrity"
     },
     issueLandscape: {
-      primaryAxis: ["PRO", "ONT_S", "PF"],
+      primaryAxis: ["PRO", "ONT_S", "MOR"],
       secondaryAxis: ["MAT", "COM", "CD", "ENG"],
-      dormant: ["CU", "MOR", "ZS", "ONT_H", "TRB"],
+      dormant: ["CU", "ZS", "ONT_H"],
       description: "Integrity and institutional trust dominate; process and character over policy"
     },
     candidateActivations: [
       {
         candidateName: "Carter",
-        activationNodes: { PRO: 1.5, ONT_S: 5.3, PF: 0.7 },
+        activationNodes: { PRO: 1.5, ONT_S: 5.3, MOR: 0.7 },
         novelty: 1.3
       },
       {
@@ -15184,7 +16231,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "ZS"],
       secondaryAxis: ["CU", "CD", "ENG", "ONT_H"],
-      dormant: ["MOR", "PRO", "COM", "PF", "TRB"],
+      dormant: ["MOR", "PRO", "COM"],
       description: "Economic crisis + global humiliation; 'are you better off?' frames everything"
     },
     candidateActivations: [
@@ -15202,7 +16249,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Anderson",
-        activationNodes: { PF: 0.7, PRO: 1.3, COM: 1.2 },
+        activationNodes: { MOR: 0.7, PRO: 1.3, COM: 1.2 },
         novelty: 1.1
       }
     ]
@@ -15218,7 +16265,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_H", "ZS"],
       secondaryAxis: ["CU", "CD", "ONT_S"],
-      dormant: ["MOR", "PRO", "COM", "PF", "TRB", "ENG"],
+      dormant: ["MOR", "PRO", "COM", "ENG"],
       description: "Economic optimism vs. sacrifice; Cold War strength; prosperity election"
     },
     candidateActivations: [
@@ -15245,7 +16292,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["CD", "MAT", "MOR"],
       secondaryAxis: ["CU", "PRO", "ZS"],
-      dormant: ["COM", "ONT_H", "ONT_S", "PF", "TRB", "ENG"],
+      dormant: ["COM", "ONT_H", "ONT_S", "ENG"],
       description: "Willie Horton and culture wedges; 'L-word' liberalism vs. Reagan continuity"
     },
     candidateActivations: [
@@ -15266,14 +16313,14 @@ var PrismEngine = (() => {
     year: 1992,
     zeitgeist: {
       era: "reagan",
-      nodeWeights: { MAT: 1.8, ONT_S: 5.5, PF: 0.7, CU: 1.3 },
+      nodeWeights: { MAT: 1.8, ONT_S: 5.5, MOR: 0.7, CU: 1.3 },
       intensity: 1.1,
       description: "Recession, end of Cold War identity vacuum, generational change; Perot disruption"
     },
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "CU"],
       secondaryAxis: ["CD", "COM", "ZS", "ENG"],
-      dormant: ["MOR", "PRO", "ONT_H", "PF", "TRB"],
+      dormant: ["MOR", "PRO", "ONT_H"],
       description: "'It's the economy, stupid' + trade/globalization + generational change; Cold War over"
     },
     candidateActivations: [
@@ -15289,7 +16336,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Perot",
-        activationNodes: { MAT: 1.3, ONT_S: 5.5, PF: 0.6, ZS: 1.4 },
+        activationNodes: { MAT: 1.3, ONT_S: 5.5, MOR: 0.6, ZS: 1.4 },
         novelty: 1.5,
         threatActivation: { ONT_S: 5.2 }
       }
@@ -15306,7 +16353,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "CD", "COM"],
       secondaryAxis: ["CU", "PRO", "ONT_H"],
-      dormant: ["MOR", "ZS", "ONT_S", "PF", "TRB", "ENG"],
+      dormant: ["MOR", "ZS", "ONT_S", "ENG"],
       description: "Prosperity and centrism; Dole struggles for traction; 'bridge to 21st century'"
     },
     candidateActivations: [
@@ -15333,7 +16380,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "CD", "MOR"],
       secondaryAxis: ["PRO", "COM", "CU", "ONT_H"],
-      dormant: ["ZS", "ONT_S", "PF", "TRB", "ENG"],
+      dormant: ["ZS", "ONT_S", "ENG"],
       description: "Dueling centrisms; emerging culture war on values; policy wonk vs. likability"
     },
     candidateActivations: [
@@ -15353,14 +16400,14 @@ var PrismEngine = (() => {
     year: 2004,
     zeitgeist: {
       era: "third-way",
-      nodeWeights: { ZS: 2, TRB: 1.8, CD: 1.5, CU: 1.4, ENG: 1.3 },
+      nodeWeights: { ZS: 2, MOR: 1.8, CD: 1.5, CU: 1.4, ENG: 1.3 },
       intensity: 1.3,
       description: "Post-9/11 security election; Iraq War divides; 'with us or against us' framing"
     },
     issueLandscape: {
-      primaryAxis: ["ZS", "TRB", "CU"],
-      secondaryAxis: ["CD", "PRO", "MOR", "ENG"],
-      dormant: ["MAT", "COM", "ONT_H", "ONT_S", "PF"],
+      primaryAxis: ["ZS", "MOR", "CU"],
+      secondaryAxis: ["CD", "PRO", "ENG"],
+      dormant: ["MAT", "COM", "ONT_H", "ONT_S"],
       description: "Security dominates: Iraq, terrorism, patriotism; gay marriage as wedge; faith vs. nuance"
     },
     candidateActivations: [
@@ -15371,7 +16418,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Bush",
-        activationNodes: { ZS: 1.5, TRB: 1.4, CD: 1.3, ENG: 1.3 },
+        activationNodes: { ZS: 1.5, MOR: 1.4, CD: 1.3, ENG: 1.3 },
         novelty: 1,
         threatActivation: { CU: 1.3, PRO: 1.2 }
       }
@@ -15388,7 +16435,7 @@ var PrismEngine = (() => {
     issueLandscape: {
       primaryAxis: ["MAT", "ONT_S", "ONT_H"],
       secondaryAxis: ["ENG", "CU", "ZS", "CD"],
-      dormant: ["MOR", "PRO", "COM", "PF", "TRB"],
+      dormant: ["MOR", "PRO", "COM"],
       description: "Economic collapse is THE issue; systemic failure; generational/racial transformation"
     },
     candidateActivations: [
@@ -15408,20 +16455,20 @@ var PrismEngine = (() => {
     year: 2012,
     zeitgeist: {
       era: "polarization",
-      nodeWeights: { MAT: 1.5, ONT_S: 5.4, PF: 1.3, TRB: 1.3 },
+      nodeWeights: { MAT: 1.5, ONT_S: 5.4, MOR: 1.3 },
       intensity: 1,
       description: "Slow recovery; ACA as lightning rod; growing polarization; '47%' crystallizes class divide"
     },
     issueLandscape: {
-      primaryAxis: ["MAT", "ONT_S", "PF"],
-      secondaryAxis: ["CD", "TRB", "MOR", "COM"],
+      primaryAxis: ["MAT", "ONT_S", "MOR"],
+      secondaryAxis: ["CD", "COM"],
       dormant: ["CU", "PRO", "ZS", "ONT_H", "ENG"],
       description: "Role of government in recovery; class divide; partisan identity sharpens"
     },
     candidateActivations: [
       {
         candidateName: "Obama",
-        activationNodes: { MAT: 1.3, CD: 1.2, PF: 1.3, TRB: 1.2 },
+        activationNodes: { MAT: 1.3, CD: 1.2, MOR: 1.3 },
         novelty: 1.1
       },
       {
@@ -15436,20 +16483,20 @@ var PrismEngine = (() => {
     year: 2016,
     zeitgeist: {
       era: "polarization",
-      nodeWeights: { CD: 2, TRB: 2, ONT_S: 5.8, ZS: 1.6, PF: 1.4, ENG: 1.4 },
+      nodeWeights: { CD: 2, MOR: 2, ONT_S: 5.8, ZS: 1.6, ENG: 1.4 },
       intensity: 1.4,
       description: "Populist revolt; cultural backlash; institutional distrust; realignment-level disruption"
     },
     issueLandscape: {
-      primaryAxis: ["CD", "TRB", "ONT_S"],
-      secondaryAxis: ["ZS", "MAT", "PF", "ENG"],
-      dormant: ["CU", "MOR", "PRO", "COM", "ONT_H"],
+      primaryAxis: ["CD", "MOR", "ONT_S"],
+      secondaryAxis: ["ZS", "MAT", "ENG"],
+      dormant: ["CU", "PRO", "COM", "ONT_H"],
       description: "Cultural identity and system legitimacy; populism vs. establishment; 'drain the swamp'"
     },
     candidateActivations: [
       {
         candidateName: "Trump",
-        activationNodes: { CD: 1.6, TRB: 1.6, ONT_S: 5.5, ZS: 1.5, ENG: 1.4 },
+        activationNodes: { CD: 1.6, MOR: 1.6, ONT_S: 5.5, ZS: 1.5, ENG: 1.4 },
         novelty: 1.8,
         threatActivation: { CD: 1.5, PRO: 1.5, MOR: 1.3, ONT_S: 5.3 }
       },
@@ -15457,7 +16504,7 @@ var PrismEngine = (() => {
         candidateName: "Clinton",
         activationNodes: { PRO: 1.3, CU: 1.2, MAT: 1.2 },
         novelty: 1.2,
-        threatActivation: { CD: 1.3, TRB: 1.2 }
+        threatActivation: { CD: 1.3, MOR: 1.2 }
       }
     ]
   };
@@ -15465,14 +16512,14 @@ var PrismEngine = (() => {
     year: 2020,
     zeitgeist: {
       era: "polarization",
-      nodeWeights: { CD: 2, ONT_S: 4, PRO: 1.8, TRB: 1.8, MOR: 1.5, ENG: 1.5 },
+      nodeWeights: { CD: 2, ONT_S: 4, PRO: 1.8, MOR: 1.8, ENG: 1.5 },
       intensity: 1.5,
       description: "COVID pandemic + racial justice protests + democratic norms crisis; existential framing on both sides"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "ONT_S", "CD"],
-      secondaryAxis: ["TRB", "MOR", "MAT", "ENG"],
-      dormant: ["CU", "ZS", "COM", "ONT_H", "PF"],
+      secondaryAxis: ["MOR", "MAT", "ENG"],
+      dormant: ["CU", "ZS", "COM", "ONT_H"],
       description: "Democracy and norms vs. system overhaul; pandemic response; racial justice; unprecedented mobilization"
     },
     candidateActivations: [
@@ -15484,7 +16531,7 @@ var PrismEngine = (() => {
       },
       {
         candidateName: "Trump",
-        activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, ENG: 1.4 },
+        activationNodes: { CD: 1.5, MOR: 1.6, ONT_S: 5.5, ENG: 1.4 },
         novelty: 1.2,
         threatActivation: { PRO: 1.6, MOR: 1.4, CD: 1.5, ONT_S: 5.4 }
       }
@@ -15494,20 +16541,20 @@ var PrismEngine = (() => {
     year: 2024,
     zeitgeist: {
       era: "polarization",
-      nodeWeights: { PRO: 1.8, CD: 1.8, TRB: 1.8, ONT_S: 5.6, MAT: 1.5, ENG: 1.5 },
+      nodeWeights: { PRO: 1.8, CD: 1.8, MOR: 1.8, ONT_S: 5.6, MAT: 1.5, ENG: 1.5 },
       intensity: 1.4,
       description: "Post-January 6 democracy fears + inflation + historic candidates on both sides; existential framing"
     },
     issueLandscape: {
       primaryAxis: ["PRO", "CD", "MAT"],
-      secondaryAxis: ["TRB", "ONT_S", "MOR", "ENG"],
-      dormant: ["CU", "ZS", "COM", "ONT_H", "PF"],
+      secondaryAxis: ["MOR", "ONT_S", "ENG"],
+      dormant: ["CU", "ZS", "COM", "ONT_H"],
       description: "Democracy vs. authoritarianism framing + economy/inflation + cultural identity war"
     },
     candidateActivations: [
       {
         candidateName: "Trump",
-        activationNodes: { CD: 1.5, TRB: 1.6, ONT_S: 5.5, MAT: 1.3, ENG: 1.4 },
+        activationNodes: { CD: 1.5, MOR: 1.6, ONT_S: 5.5, MAT: 1.3, ENG: 1.4 },
         novelty: 1.3,
         threatActivation: { PRO: 1.7, MOR: 1.4, CD: 1.4, ONT_S: 5.4 }
       },
@@ -15515,7 +16562,7 @@ var PrismEngine = (() => {
         candidateName: "Harris",
         activationNodes: { PRO: 1.4, MOR: 1.3, CD: 1.3, ENG: 1.3 },
         novelty: 1.4,
-        threatActivation: { CD: 1.4, TRB: 1.3 }
+        threatActivation: { CD: 1.4, MOR: 1.3 }
       }
     ]
   };
@@ -16068,7 +17115,7 @@ var PrismEngine = (() => {
     "Perot_1996": "class",
     "Anderson_1980": "ideological"
   };
-  var TRB_ANCHOR_ORDER3 = [
+  var TRB_ANCHOR_ORDER2 = [
     "national",
     "ideological",
     "religious",
@@ -16087,7 +17134,7 @@ var PrismEngine = (() => {
     if (!anchorDist) return { contribution: 0, weight: 0 };
     const anchor = getCandidateAnchor(cand);
     if (!anchor) return { contribution: 0, weight: 0 };
-    const idx = TRB_ANCHOR_ORDER3.indexOf(anchor);
+    const idx = TRB_ANCHOR_ORDER2.indexOf(anchor);
     if (idx < 0) return { contribution: 0, weight: 0 };
     const userMass = anchorDist[idx] ?? 0;
     const baseSal = 0.7;
@@ -16101,6 +17148,20 @@ var PrismEngine = (() => {
     if (party === "Republican" || party === "National Republican" || party === "Federalist" || party === "Whig") return "R";
     if (party === "Independent" || party === "American Independent" || party === "Libertarian" || party === "Green") return "T";
     return "O";
+  }
+  function pfEquivalentFromMorBoundaries(state) {
+    if (!state) return null;
+    const pt = state.boundaries.political_tribe;
+    const intensityFactor = state.intensity / 3;
+    return 1 + 4 * pt * intensityFactor;
+  }
+  function pfEquivalentFromMoralCircle(affinity) {
+    if (!affinity) return null;
+    const camp = affinity.scopedAffinities.political_camp;
+    if (camp === null || camp === void 0) return null;
+    const campN = Math.max(0, Math.min(100, camp)) / 100;
+    const intensityFactor = Math.max(0, Math.min(1, affinity.intensity03 / 3));
+    return 1 + 4 * campN * intensityFactor;
   }
   function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
     if (electionYear < 1932) return 1;
@@ -16123,6 +17184,7 @@ var PrismEngine = (() => {
     "ONT_H",
     "ONT_S"
   ];
+  var MOR_MODULE_LEGACY_NODES = ["MOR"];
   var CLEARING_BAR = {
     "apolitical": 0.95,
     "casual": 1.4,
@@ -16159,17 +17221,28 @@ var PrismEngine = (() => {
     1964: "civil rights and segregation",
     1968: "segregation and civil rights backlash"
   };
-  function clamp01(x) {
+  function clamp012(x) {
     return Math.max(0, Math.min(1, x));
   }
-  function moralFloorPenalty(sig, cand, year) {
+  function moralFloorPenalty(sig, cand, year, morBoundariesState) {
     const reason = RIGHTS_VETO_CONTEXTS[year];
     if (!reason) return { penalty: 0 };
+    if (morBoundariesState && cand.morBoundaries) {
+      const userLoad = boundaryLoad(morBoundariesState.boundaries);
+      const userIntensity = morBoundariesState.intensity;
+      const candLoad = boundaryLoad(cand.morBoundaries.boundaries);
+      if (candLoad < 0.6 || userLoad > 0.4 || userIntensity < 1.5) return { penalty: 0 };
+      const universalismStrength = clamp012((0.4 - userLoad) / 0.4);
+      const intensityStrength = clamp012((userIntensity - 1.5) / 1.5);
+      const severity2 = candLoad >= 0.85 ? 0.2 : 0;
+      const penalty2 = 0.25 + 0.25 * universalismStrength + 0.25 * intensityStrength + severity2;
+      return { penalty: penalty2, reason };
+    }
     if (cand.MOR > 2) return { penalty: 0 };
     const mor = sig.MOR;
     if (!mor || mor.pos < 3.5 || mor.sal < 1.5) return { penalty: 0 };
-    const posStrength = clamp01((mor.pos - 3.5) / 1.5);
-    const salStrength = clamp01((mor.sal - 1.5) / 1.5);
+    const posStrength = clamp012((mor.pos - 3.5) / 1.5);
+    const salStrength = clamp012((mor.sal - 1.5) / 1.5);
     const severity = cand.MOR <= 1 ? 0.2 : 0;
     const penalty = 0.25 + 0.25 * posStrength + 0.25 * salStrength + severity;
     return { penalty, reason };
@@ -16185,10 +17258,12 @@ var PrismEngine = (() => {
     const diff2 = (1 - alignment) * 4;
     return { contribution: effectiveSal * diff2, weight: effectiveSal };
   }
-  function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode) {
+  function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState) {
     let weightedSumSq = 0;
     let totalWeight = 0;
+    const useMorModule = !!morBoundariesState && !!cand.morBoundaries;
     for (const node of SCORING_NODES2) {
+      if (useMorModule && MOR_MODULE_LEGACY_NODES.includes(node)) continue;
       const entry = sig[node];
       if (!entry) continue;
       const candPos = cand[node];
@@ -16212,7 +17287,21 @@ var PrismEngine = (() => {
       weightedSumSq += r.contribution;
       totalWeight += r.weight;
     }
-    if (anchorDist) {
+    if (useMorModule) {
+      const respBd = morBoundariesState.boundaries;
+      const candBd = cand.morBoundaries.boundaries;
+      const vd = morTargetVectorDistance(respBd, candBd);
+      const diff = vd * 4;
+      const intensity = morBoundariesState.intensity;
+      const eraMult = getActivationMultiplier(ctx.year, "MOR");
+      const rawSal = intensity * eraMult;
+      let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+      if (dominantNode === "MOR" || dominantNode === "TRB" || dominantNode === "PF") {
+        effectiveSal *= 1.5;
+      }
+      weightedSumSq += effectiveSal * diff * diff;
+      totalWeight += effectiveSal;
+    } else if (anchorDist) {
       const r = anchorDistanceContribution(cand, anchorDist);
       weightedSumSq += r.contribution;
       totalWeight += r.weight;
@@ -16220,11 +17309,13 @@ var PrismEngine = (() => {
     const ideological = totalWeight > 0 ? Math.sqrt(weightedSumSq / totalWeight) : 4;
     return ideological;
   }
-  function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode) {
-    const pfPos = sig.PF?.pos ?? null;
+  function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode, morBoundariesState, moralCircleAffinity) {
+    const pfFromMc = pfEquivalentFromMoralCircle(moralCircleAffinity);
+    const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
+    const pfPos = pfFromMc ?? pfFromMor ?? sig.PF?.pos ?? null;
     const scored = candidates.map((c) => {
-      const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode);
-      const moralFloor = moralFloorPenalty(sig, c, ctx.year);
+      const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
+      const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
       const valuesDist = baseValuesDist + moralFloor.penalty;
       const nonIdeologicalModifier = NONIDEO_ENABLED ? getNonIdeologicalModifier(
         ctx.year,
@@ -16305,6 +17396,7 @@ var PrismEngine = (() => {
       if (touch.kind === "continuous" && touch.node in _state.continuous) {
         const node = _state.continuous[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
+        if (touch.node === "MOR") mirrorMorSalToIntensity(_state, salLikelihood, 1);
       } else if (touch.kind === "categorical" && touch.node in _state.categorical) {
         const node = _state.categorical[touch.node];
         node.salDist = multiplyAndNormalize(node.salDist, salLikelihood);
@@ -16352,6 +17444,37 @@ var PrismEngine = (() => {
         status: src.status
       };
     }
+    if (state.morBoundaries) {
+      copy.morBoundaries = {
+        boundaries: { ...state.morBoundaries.boundaries },
+        intensity: state.morBoundaries.intensity,
+        touches: { ...state.morBoundaries.touches },
+        touchTypes: new Set(state.morBoundaries.touchTypes),
+        status: state.morBoundaries.status
+      };
+    }
+    if (state.moralCircle) {
+      copy.moralCircle = {
+        affinity: state.moralCircle.affinity ? {
+          universalAffinity: state.moralCircle.affinity.universalAffinity,
+          scopedAffinities: { ...state.moralCircle.affinity.scopedAffinities },
+          excessAffinities: { ...state.moralCircle.affinity.excessAffinities },
+          activeBoundaries: [...state.moralCircle.affinity.activeBoundaries],
+          intensity01: state.moralCircle.affinity.intensity01,
+          intensity03: state.moralCircle.affinity.intensity03
+        } : null,
+        touchCount: state.moralCircle.touchCount,
+        accumulator: {
+          universalSum: state.moralCircle.accumulator.universalSum,
+          universalCount: state.moralCircle.accumulator.universalCount,
+          scopedSums: { ...state.moralCircle.accumulator.scopedSums },
+          scopedCounts: { ...state.moralCircle.accumulator.scopedCounts }
+        }
+      };
+    }
+    if (state.membership) {
+      copy.membership = { ...state.membership };
+    }
     return copy;
   }
   function createInitialState() {
@@ -16383,6 +17506,28 @@ var PrismEngine = (() => {
         dist: [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9],
         touches: 0
       },
+      // 6.E.2b: initialize the compound moral-circle module per ADR-006.
+      // Triggers archetypeDistance.ts's per-archetype gate to switch to the
+      // morModule branch — the bridge in update.ts (committed in this same PR)
+      // mirrors every legacy MOR/TRB/PF/trbAnchor write into this field so the
+      // module ends the quiz meaningfully shifted from {boundaries: 0.5,
+      // intensity: 0} rather than near-neutral.
+      morBoundaries: mkInitialMorBoundaries(),
+      // ADR-007 — moralCircleAffinity initialization (T10).
+      // affinity stays null until first moralCircle evidence; no zero-default
+      // (universalAffinity=0 would be a positive moral claim). Accumulator
+      // tracks per-component running totals.
+      moralCircle: {
+        affinity: null,
+        touchCount: 0,
+        accumulator: {
+          universalSum: 0,
+          universalCount: 0,
+          scopedSums: {},
+          scopedCounts: {}
+        }
+      },
+      membership: {},
       archetypeDistances: {},
       currentLeader: void 0,
       consecutiveLeadCount: 0
@@ -16727,6 +17872,33 @@ var PrismEngine = (() => {
       const salience = node.salDist.reduce((sum, p, i) => sum + p * i, 0);
       categorical[nodeId] = { catDist: [...node.catDist], salience, touches: node.touches };
     }
+    const mb = _state.morBoundaries;
+    let boundaryLoad2 = 0;
+    if (mb) {
+      for (const k of MOR_BOUNDARY_ORDER) {
+        if (mb.boundaries[k] > boundaryLoad2) boundaryLoad2 = mb.boundaries[k];
+      }
+    }
+    const morBoundaries = mb ? {
+      boundaries: { ...mb.boundaries },
+      intensity: mb.intensity,
+      boundaryLoad: boundaryLoad2,
+      universalismScore: mb.intensity * (1 - boundaryLoad2),
+      boundednessScore: mb.intensity * boundaryLoad2,
+      touches: { ...mb.touches },
+      touchTypeCount: mb.touchTypes.size,
+      status: mb.status
+    } : null;
+    const mc = _state.moralCircle?.affinity ?? null;
+    const moralCircle = mc ? {
+      universalAffinity: mc.universalAffinity,
+      scopedAffinities: { ...mc.scopedAffinities },
+      excessAffinities: { ...mc.excessAffinities },
+      activeBoundaries: [...mc.activeBoundaries],
+      intensity01: mc.intensity01,
+      intensity03: mc.intensity03,
+      touchCount: _state.moralCircle?.touchCount ?? 0
+    } : null;
     return {
       continuous,
       categorical,
@@ -16734,6 +17906,9 @@ var PrismEngine = (() => {
         dist: [..._state.trbAnchor.dist],
         touches: _state.trbAnchor.touches
       },
+      morBoundaries,
+      moralCircle,
+      membership: _state.membership ? { ..._state.membership } : null,
       partyID: _state.partyID ?? null,
       strategicVoting: _state.strategicVoting ?? false,
       negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],
@@ -16766,7 +17941,8 @@ var PrismEngine = (() => {
         _state.trbAnchor.dist,
         _state.negativeParties ?? null,
         _state.strategicVoting ?? false,
-        _state.dominantNode ?? null
+        _state.dominantNode ?? null,
+        _state.morBoundaries ?? null
       ));
     }
     return out;

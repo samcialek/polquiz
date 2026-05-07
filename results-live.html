@@ -1741,6 +1741,99 @@ document.addEventListener('DOMContentLoaded', () => {
       nodesGrid.appendChild(block);
     });
 
+    // ── Moral Circle module (ADR-007) ─────────────────────────────────────
+    // Renders the new universal-baseline + scoped-affinity module when the
+    // respondent's moralCircle.affinity has been materialized. Falls back
+    // silently when the field is absent (legacy sessions / pre-T3 dumps).
+    const mc = respondentState && respondentState.moralCircle;
+    if (mc && typeof mc.universalAffinity === 'number') {
+      const SCOPE_LABELS = {
+        national: 'People in your country',
+        religious: 'People who share your religion',
+        ethnic_racial: 'People who share your ethnicity or race',
+        class: 'People in your economic class',
+        gender: 'People who share your gender',
+        sexual: 'People who share your sexuality',
+        ideological: 'People who share your ideology',
+        political_camp: 'People on your political side',
+      };
+      const REPORT_THRESHOLD = 5;
+
+      const mcBlock = document.createElement('div');
+      mcBlock.className = 'node-cluster';
+      mcBlock.innerHTML = `<div class="cluster-title" style="border-bottom-color:${clusterColors['SELF']};"><span style="color:var(--ink);">MORAL CIRCLE — Who Counts Morally</span></div>`;
+
+      const uPct = Math.max(0, Math.min(100, mc.universalAffinity));
+      const universalRow = document.createElement('div');
+      universalRow.className = 'node-row';
+      universalRow.style.gridTemplateColumns = '170px 1fr 50px';
+      universalRow.innerHTML = `
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:#333;font-weight:600;">Universal baseline</div>
+        <div class="node-bar-wrap">
+          <div class="node-bar-track" style="position:relative;height:18px;background:#f0f0f0;border-radius:4px;overflow:hidden;">
+            <div style="position:absolute;left:0;top:0;height:100%;width:${uPct}%;background:${clusterColors['SELF']};"></div>
+          </div>
+          <div class="node-poles" style="display:flex;justify-content:space-between;font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#777;margin-top:2px;"><span>Narrow concern</span><span>Concern for any human</span></div>
+        </div>
+        <div class="node-value">${Math.round(uPct)}</div>`;
+      mcBlock.appendChild(universalRow);
+
+      // Active scopes — only show scopes whose excess >= REPORT_THRESHOLD.
+      const activeScopes = (mc.activeBoundaries || [])
+        .map(scope => ({ scope, excess: (mc.excessAffinities && mc.excessAffinities[scope]) || 0, scoped: (mc.scopedAffinities && mc.scopedAffinities[scope]) }))
+        .filter(s => s.excess >= REPORT_THRESHOLD)
+        .sort((a, b) => b.excess - a.excess);
+
+      if (activeScopes.length === 0) {
+        const noneRow = document.createElement('div');
+        noneRow.className = 'node-row';
+        noneRow.style.gridTemplateColumns = '170px 1fr 50px';
+        noneRow.style.opacity = 0.7;
+        noneRow.innerHTML = `
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:#555;font-weight:600;">In-group preferences</div>
+          <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;color:#555;font-style:italic;">No groups receive extra moral weight above your universal baseline — politically universalist profile.</div></div>
+          <div class="node-value">—</div>`;
+        mcBlock.appendChild(noneRow);
+      } else {
+        activeScopes.forEach(s => {
+          const excessPct = Math.max(0, Math.min(100, s.excess));
+          const scopedPct = typeof s.scoped === 'number' ? Math.max(0, Math.min(100, s.scoped)) : null;
+          const row = document.createElement('div');
+          row.className = 'node-row';
+          row.style.gridTemplateColumns = '170px 1fr 50px';
+          const label = SCOPE_LABELS[s.scope] || s.scope;
+          row.innerHTML = `
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:#333;font-weight:600;">${label}</div>
+            <div class="node-bar-wrap">
+              <div class="node-bar-track" style="position:relative;height:14px;background:#f0f0f0;border-radius:4px;overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;height:100%;width:${excessPct}%;background:${clusterColors['SELF']};opacity:0.85;"></div>
+              </div>
+              <div class="node-poles" style="display:flex;justify-content:space-between;font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#777;margin-top:2px;"><span>+${Math.round(excessPct)} above universal</span>${scopedPct !== null ? `<span>raw: ${Math.round(scopedPct)} / 100</span>` : ''}</div>
+            </div>
+            <div class="node-value">+${Math.round(excessPct)}</div>`;
+          mcBlock.appendChild(row);
+        });
+      }
+
+      // Intensity summary
+      const intensitySummary = document.createElement('div');
+      intensitySummary.className = 'node-row';
+      intensitySummary.style.gridTemplateColumns = '170px 1fr 50px';
+      intensitySummary.style.opacity = 0.85;
+      const i03 = typeof mc.intensity03 === 'number' ? mc.intensity03 : 0;
+      const intensityWord = i03 >= 2.25 ? 'high — strong in-group moral activation'
+        : i03 >= 1.5 ? 'moderate — some in-group activation'
+        : i03 >= 0.75 ? 'low — mostly universalist'
+        : 'very low — broadly universalist';
+      intensitySummary.innerHTML = `
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:#555;font-weight:600;">Boundary intensity</div>
+        <div class="node-bar-wrap"><div style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:#555;">${i03.toFixed(2)} / 3 — ${intensityWord}</div></div>
+        <div class="node-value">${i03.toFixed(1)}</div>`;
+      mcBlock.appendChild(intensitySummary);
+
+      nodesGrid.appendChild(mcBlock);
+    }
+
     // Show results, hide loading
     document.getElementById('loading').style.display = 'none';
     document.getElementById('results').style.display = 'block';
