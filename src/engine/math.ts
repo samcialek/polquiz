@@ -5,6 +5,9 @@ import type {
   MorBoundaryId,
   MorBoundariesNodeState,
   ArchetypeMorBoundaries,
+  MoralCircleAffinity,
+  ArchetypeMoralCircle,
+  MoralCircleScope,
 } from "../types.js";
 
 /**
@@ -385,4 +388,81 @@ function clamp01(x: number): number {
   if (x < 0) return 0;
   if (x > 1) return 1;
   return x;
+}
+
+// ─── ADR-007 — moralCircleDistance (T7) ────────────────────────────────────
+
+const MORAL_CIRCLE_SCOPES_ORDER: readonly MoralCircleScope[] = [
+  "national", "religious", "ethnic_racial", "class",
+  "gender", "sexual", "ideological", "political_camp",
+] as const;
+
+/**
+ * Distance between a respondent's moral-circle affinity and an archetype's
+ * profile. Per ADR-007 §"Candidate Matching Direction":
+ *
+ *   - universalAffinity scalar diff (normalized to [0, 1])
+ *   - excessAffinities vector L2 distance (normalized to [0, 1])
+ *   - dominant active-boundary overlap (Jaccard miss, [0, 1])
+ *
+ * Components blended with fixed weights. Output range [0, 1]; lower = better
+ * match.
+ *
+ * `political_camp` is one scope among 8; not weighted differently here.
+ *
+ * If the archetype's `scopedAffinities[g]` is `null`, that scope is skipped
+ * for the excess-vector distance (treated as "archetype is agnostic on this
+ * scope"). Same for the respondent side: `null` scoped → excess 0 → no
+ * contribution.
+ */
+export function moralCircleDistance(
+  state: MoralCircleAffinity,
+  archetype: ArchetypeMoralCircle,
+): number {
+  // Component 1: universal scalar diff
+  const uDiff = Math.abs(state.universalAffinity - archetype.universalAffinity) / 100;
+
+  // Component 2: excess-vector L2 distance.
+  // Compute archetype's excess vector inline (not pre-derived on archetype).
+  let sumSq = 0;
+  let pairCount = 0;
+  for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+    const archScoped = archetype.scopedAffinities[scope];
+    if (archScoped === null || archScoped === undefined) continue;
+    const archExcess = Math.max(0, archScoped - archetype.universalAffinity);
+    const stateExcess = state.excessAffinities[scope] ?? 0;
+    const d = archExcess - stateExcess;
+    sumSq += d * d;
+    pairCount += 1;
+  }
+  // Max possible L2 with all 8 scopes maxed at excess 100 = sqrt(8 * 100^2) = ~282.84
+  // Normalize by max possible for the actual paired scopes.
+  const maxL2 = Math.sqrt(pairCount * 100 * 100);
+  const excessDist = maxL2 > 0 ? Math.sqrt(sumSq) / maxL2 : 0;
+
+  // Component 3: dominant active-boundary overlap (Jaccard miss).
+  // State's active boundaries vs archetype's active boundaries (excess > 0).
+  const stateActive = new Set(state.activeBoundaries);
+  const archActive = new Set<MoralCircleScope>();
+  for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+    const archScoped = archetype.scopedAffinities[scope];
+    if (archScoped === null || archScoped === undefined) continue;
+    if (archScoped > archetype.universalAffinity) archActive.add(scope);
+  }
+  let intersect = 0;
+  let union = 0;
+  for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+    const inS = stateActive.has(scope);
+    const inA = archActive.has(scope);
+    if (inS && inA) intersect++;
+    if (inS || inA) union++;
+  }
+  // Jaccard miss = 1 - (intersect / union); when both sets empty, miss = 0.
+  const jaccardMiss = union === 0 ? 0 : 1 - intersect / union;
+
+  // Weighted blend. Universal carries the heaviest weight because it's the
+  // baseline structural fact about the respondent; excess vector and active
+  // overlap are the activation signals on top.
+  const blended = uDiff * 0.40 + excessDist * 0.40 + jaccardMiss * 0.20;
+  return clamp01(blended);
 }
