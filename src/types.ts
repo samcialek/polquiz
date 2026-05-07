@@ -289,6 +289,8 @@ export interface AllocationBucketMap {
   continuous?: Partial<Record<ContinuousNodeId, number>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
   trbAnchor?: Partial<Record<TrbAnchor, number>>;
+  /** ADR-007 (T3): moral-circle contribution per allocation bucket. */
+  moralCircle?: OptionEvidenceMoralCircle;
 }
 
 export interface RankingItemMap {
@@ -304,11 +306,15 @@ export interface RankingItemMap {
   continuous?: Partial<Record<ContinuousNodeId, number | OptionEvidenceContinuous>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
   trbAnchor?: Partial<Record<TrbAnchor, number>>;
+  /** ADR-007 (T3): moral-circle contribution per ranking item. */
+  moralCircle?: OptionEvidenceMoralCircle;
 }
 
 export interface PairOptionMap {
   continuous?: Partial<Record<ContinuousNodeId, number>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
+  /** ADR-007 (T3): moral-circle contribution per pairwise option. */
+  moralCircle?: OptionEvidenceMoralCircle;
 }
 
 /**

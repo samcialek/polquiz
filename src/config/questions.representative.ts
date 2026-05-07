@@ -336,20 +336,26 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.96,
     rewriteNeeded: false,
     touchProfile: [
-      // Continuous position touches removed 2026-05-02: rankingMap carries
-      // TRB_ANCHOR evidence only, so the old TRB/MOR/CU/CD/MAT rows inflated
-      // coverage counters without moving posteriors.
+      // ADR-007 (T3): Q60 emits both legacy trbAnchor (for the ADR-006
+      // fallback path) AND new moralCircle scoped evidence. When a user
+      // ranks an identity highly, we infer above-baseline scoped affinity
+      // for that group. global_citizen flips to universalAffinity.
       { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
     ],
     rankingMap: {
-      national_identity: { trbAnchor: { national: 1 } },
-      ideological_identity: { trbAnchor: { ideological: 1 } },
-      religious_identity: { trbAnchor: { religious: 1 } },
-      class_identity: { trbAnchor: { class: 1 } },
-      ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
-      gender_identity: { trbAnchor: { gender: 1 } },
-      sexual_identity: { trbAnchor: { sexual: 1 } },
-      global_citizen: { trbAnchor: { global: 1 } }
+      // Each highly-ranked identity boosts the matching scoped affinity to
+      // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
+      // Battery B scale). Below-the-fold ranks get no scoped evidence.
+      national_identity:    { trbAnchor: { national: 1 },    moralCircle: { scopedAffinities: { national: 70 } } },
+      ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
+      religious_identity:   { trbAnchor: { religious: 1 },   moralCircle: { scopedAffinities: { religious: 70 } } },
+      class_identity:       { trbAnchor: { class: 1 },       moralCircle: { scopedAffinities: { class: 70 } } },
+      ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+      gender_identity:      { trbAnchor: { gender: 1 },      moralCircle: { scopedAffinities: { gender: 70 } } },
+      sexual_identity:      { trbAnchor: { sexual: 1 },      moralCircle: { scopedAffinities: { sexual: 70 } } },
+      // global_citizen: universalist signal — boosts universalAffinity
+      // rather than any scoped affinity.
+      global_citizen:       { trbAnchor: { global: 1 },      moralCircle: { universal: 75 } }
     }
   },
 
@@ -402,6 +408,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
 
   // Q8 — domestic_vs_abroad_lives (slider)
+  // High score = "all human lives matter equally" (universalist).
+  // Low score = "domestic lives matter more than foreign lives" (national in-group preference).
   {
     id: 8,
     stage: "screen20",
@@ -411,14 +419,16 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     quality: 0.89,
     rewriteNeeded: false,
     touchProfile: [
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.90, touchType: "moral_scope_tradeoff" }
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.30, touchType: "moral_scope_tradeoff_legacy_proxy" }
     ],
     sliderMap: {
-      "0-20":   { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
-      "21-40":  { continuous: { MOR: { pos: [0.25, 0.40, 0.22, 0.10, 0.03] } } },
-      "41-60":  { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } } },
-      "61-80":  { continuous: { MOR: { pos: [0.03, 0.10, 0.22, 0.40, 0.25] } } },
-      "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } } }
+      // ADR-007 (T3): each bucket emits direct moralCircle universal vs national
+      // contrast, with weak legacy MOR pos kept for ADR-006 fallback.
+      "0-20":   { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } }, moralCircle: { universal: 25, scopedAffinities: { national: 75 } } },
+      "21-40":  { continuous: { MOR: { pos: [0.25, 0.40, 0.22, 0.10, 0.03] } }, moralCircle: { universal: 40, scopedAffinities: { national: 65 } } },
+      "41-60":  { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } }, moralCircle: { universal: 55 } },
+      "61-80":  { continuous: { MOR: { pos: [0.03, 0.10, 0.22, 0.40, 0.25] } }, moralCircle: { universal: 75 } },
+      "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } }, moralCircle: { universal: 90 } }
     }
   },
 
@@ -3513,14 +3523,20 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       //   language (speak_lang) → mild CU low (~2.5): functional civic
       //     requirement, slightly assimilationist but not strongly
       //   cultural / economic → mild low (already-existing, kept)
-      born_here:     { continuous: { CU: { pos: [0.50, 0.30, 0.12, 0.06, 0.02] } } },
-      speak_lang:    { continuous: { CU: { pos: [0.20, 0.32, 0.30, 0.12, 0.06] } } },
-      shared_values: { continuous: { CU: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] } } },
-      civic_part:    { continuous: { CU: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] } } },
-      cultural:      { continuous: { CU: { pos: [0.30, 0.32, 0.22, 0.10, 0.06] } } },
-      ancestry:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
-      religion:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
-      economic:      { continuous: { CU: { pos: [0.20, 0.30, 0.32, 0.12, 0.06] } } }
+      //
+      // ADR-007 (T3): items also emit moralCircle scoped evidence on the
+      // matching membership-gatekeeping axis. Birth/ancestry/cultural items
+      // → national scoped affinity. Religion item → religious scoped.
+      // Civic items (shared_values, civic_part) → universal (civic
+      // universalism within polity, not ethnic).
+      born_here:     { continuous: { CU: { pos: [0.50, 0.30, 0.12, 0.06, 0.02] } }, moralCircle: { scopedAffinities: { national: 75 } } },
+      speak_lang:    { continuous: { CU: { pos: [0.20, 0.32, 0.30, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 60 } } },
+      shared_values: { continuous: { CU: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] } }, moralCircle: { universal: 65 } },
+      civic_part:    { continuous: { CU: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] } }, moralCircle: { universal: 65 } },
+      cultural:      { continuous: { CU: { pos: [0.30, 0.32, 0.22, 0.10, 0.06] } }, moralCircle: { scopedAffinities: { national: 65 } } },
+      ancestry:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { national: 80 } } },
+      religion:      { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { religious: 75, national: 60 } } },
+      economic:      { continuous: { CU: { pos: [0.20, 0.30, 0.32, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 55 } } }
     }
   },
 
@@ -4298,7 +4314,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MOR: { pos: [0.02, 0.05, 0.13, 0.30, 0.50], sal: [0.02, 0.10, 0.30, 0.58] },
           CU:  { pos: [0.05, 0.15, 0.30, 0.30, 0.20] },
           PRO: { pos: [0.05, 0.15, 0.25, 0.30, 0.25] }
-        }
+        },
+        moralCircle: { universal: 85 }
       },
       // "Important but one issue among many; matters when it's directly happening"
       important_one_of_many: {
@@ -4306,7 +4323,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MOR: { pos: [0.05, 0.13, 0.27, 0.35, 0.20], sal: [0.10, 0.25, 0.40, 0.25] },
           CU:  { pos: [0.08, 0.20, 0.40, 0.22, 0.10] },
           PRO: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-        }
+        },
+        moralCircle: { universal: 70 }
       },
       // "Important in extreme cases but I focus on broader policy"
       depends_on_situation: {
@@ -4314,7 +4332,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MOR: { pos: [0.10, 0.25, 0.40, 0.18, 0.07], sal: [0.20, 0.35, 0.30, 0.15] },
           CU:  { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
           PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
-        }
+        },
+        moralCircle: { universal: 55 }
       },
       // "Some differentiation is part of stable political order; perfect equality isn't always the goal"
       some_differentiation_acceptable: {
@@ -4322,7 +4341,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MOR: { pos: [0.30, 0.35, 0.22, 0.10, 0.03], sal: [0.20, 0.35, 0.30, 0.15] },
           CU:  { pos: [0.30, 0.35, 0.22, 0.10, 0.03] },
           PRO: { pos: [0.20, 0.30, 0.30, 0.15, 0.05] }
-        }
+        },
+        moralCircle: { universal: 35 }
       },
       // "Different groups have different roles; that's how polities work"
       natural_hierarchy: {
@@ -4330,7 +4350,8 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
           MOR: { pos: [0.55, 0.28, 0.10, 0.05, 0.02], sal: [0.05, 0.20, 0.40, 0.35] },
           CU:  { pos: [0.55, 0.28, 0.10, 0.05, 0.02] },
           PRO: { pos: [0.30, 0.30, 0.22, 0.12, 0.06] }
-        }
+        },
+        moralCircle: { universal: 20 }
       }
     }
   },
@@ -4601,5 +4622,256 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
         }
       }
     }
-  }
+  },
+
+  // =========================================================================
+  // ADR-007 — Moral Circle Calibration Battery (T3)
+  //
+  // Battery A: two universal-baseline items. Both feed
+  //            moralCircle.universal directly. Engine averages contributions.
+  // Battery B: eight scoped-affinity single_choice questions, one per scope.
+  //            Each emits moralCircle.scopedAffinities[scope].
+  //
+  // Per ADR-007 §"Calibration Battery", this is the PRIMARY source for
+  // moral-circle evidence. Existing questions (Q60, Q102, etc.) provide
+  // weaker priors only.
+  //
+  // Battery B option mapping (5-level comparative scale):
+  //   not_meaningful  -> null (scope drops out for this respondent)
+  //   less_than       -> 30   (below typical universal; almost never makes excess)
+  //   about_same      -> 50   (matches universal; no excess)
+  //   somewhat_more   -> 70   (small excess for typical universal users)
+  //   much_more       -> 90   (large excess; clearly active boundary)
+  //
+  // Active boundary only emerges when scoped > universal. Most respondents
+  // will have 0-2 active scopes after derivation.
+  // =========================================================================
+
+  // Q-A1: universal_baseline_humanity
+  {
+    id: 230,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "universal_baseline_humanity",
+    promptFull:
+      "How much moral concern do you feel for any human being, simply because they are human?",
+    uiType: "slider",
+    quality: 0.98,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+    ],
+    sliderMap: {
+      "0-20":   { moralCircle: { universal: 10 } },
+      "21-40":  { moralCircle: { universal: 30 } },
+      "41-60":  { moralCircle: { universal: 50 } },
+      "61-80":  { moralCircle: { universal: 75 } },
+      "81-100": { moralCircle: { universal: 95 } },
+    },
+  },
+
+  // Q-A2: universal_baseline_stranger
+  {
+    id: 231,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "universal_baseline_stranger",
+    promptFull:
+      "When a stranger is suffering, how much does that matter to you even if they share none of your identities, beliefs, nationality, or politics?",
+    uiType: "slider",
+    quality: 0.97,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+    ],
+    sliderMap: {
+      "0-20":   { moralCircle: { universal: 10 } },
+      "21-40":  { moralCircle: { universal: 30 } },
+      "41-60":  { moralCircle: { universal: 50 } },
+      "61-80":  { moralCircle: { universal: 75 } },
+      "81-100": { moralCircle: { universal: 95 } },
+    },
+  },
+
+  // Battery B — scoped affinity per scope (8 questions, 5 options each).
+  // Same prompt skeleton; only the in-group label differs.
+  // Comparative scale: not_meaningful / less_than / about_same / somewhat_more / much_more
+  // Active excess emerges only on "somewhat_more" (70) and "much_more" (90)
+  // when universal is moderate; only "much_more" creates excess for high-universal users.
+
+  {
+    id: 232,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_national",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people in your country?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { national: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { national: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { national: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { national: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { national: 90 } } },
+    },
+  },
+
+  {
+    id: 233,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_religious",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people who share your religious tradition or sacred worldview?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { religious: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { religious: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { religious: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { religious: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { religious: 90 } } },
+    },
+  },
+
+  {
+    id: 234,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_ethnic_racial",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people who share your racial or ethnic background?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { ethnic_racial: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { ethnic_racial: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { ethnic_racial: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { ethnic_racial: 90 } } },
+    },
+  },
+
+  {
+    id: 235,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_class",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people in your economic class or material situation?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { class: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { class: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { class: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { class: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { class: 90 } } },
+    },
+  },
+
+  {
+    id: 236,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_gender",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people who share your gender?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { gender: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { gender: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { gender: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { gender: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { gender: 90 } } },
+    },
+  },
+
+  {
+    id: 237,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_sexual",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people who share your sexuality or family-life orientation?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { sexual: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { sexual: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { sexual: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { sexual: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { sexual: 90 } } },
+    },
+  },
+
+  {
+    id: 238,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_ideological",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology or values?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { ideological: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { ideological: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { ideological: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { ideological: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { ideological: 90 } } },
+    },
+  },
+
+  {
+    id: 239,
+    stage: "stage2",
+    section: "V",
+    promptShort: "scoped_affinity_political_camp",
+    promptFull:
+      "Compared with people in general, how much extra moral concern do you feel for people on your political side, party, movement, or camp?",
+    uiType: "single_choice",
+    quality: 0.95,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "PF", kind: "continuous", role: "position", weight: 0.10, touchType: "political_camp_legacy_proxy" },
+    ],
+    optionEvidence: {
+      not_meaningful: { moralCircle: { scopedAffinities: { political_camp: null } } },
+      less_than:      { moralCircle: { scopedAffinities: { political_camp: 30 } } },
+      about_same:     { moralCircle: { scopedAffinities: { political_camp: 50 } } },
+      somewhat_more:  { moralCircle: { scopedAffinities: { political_camp: 70 } } },
+      much_more:      { moralCircle: { scopedAffinities: { political_camp: 90 } } },
+    },
+  },
 ];

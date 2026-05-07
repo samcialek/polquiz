@@ -782,6 +782,25 @@ export function applyRankingAnswer(
       // 6.E.2b bridge: mirror anchor signals into morBoundaries (already rank-scaled).
       mirrorAnchorToBoundaries(state, scaled, 1.0);
     }
+
+    // ADR-007 (T3): apply per-item moralCircle evidence, rank-scaled.
+    // Top-ranked items contribute fully; below-the-fold contribute nothing.
+    if (map.moralCircle && rankWeight > 0) {
+      const scaled: typeof map.moralCircle = {};
+      if (typeof map.moralCircle.universal === "number") {
+        // Scale toward the universal value: contribution magnitude proportional
+        // to rankWeight. We send the value as-is but the running average will
+        // weight it by touchCount; this is a v0 approximation.
+        scaled.universal = map.moralCircle.universal;
+      }
+      if (map.moralCircle.scopedAffinities) {
+        scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+      }
+      // Only emit if rankWeight is meaningful (>0.2 ≈ ranks 1-4 of 6).
+      if (rankWeight >= 0.2) {
+        applyMoralCircleEvidence(state, scaled);
+      }
+    }
   });
 }
 
