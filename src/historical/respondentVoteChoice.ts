@@ -162,6 +162,25 @@ function pfEquivalentFromMorBoundaries(
   return 1 + 4 * pt * intensityFactor; // ∈ [1, 5]
 }
 
+/**
+ * ADR-007 (T9): derive a 1..5 PF-equivalent from moralCircle affinity.
+ * High political_camp scoped affinity + high intensity03 = strong
+ * partisan in-group identity. Read with `state.moralCircle.affinity` —
+ * returns null when affinity isn't materialized yet.
+ *
+ *   politicalCampScoped (0..100) · intensity03Factor (0..1) → pfEquiv (1..5)
+ */
+function pfEquivalentFromMoralCircle(
+  affinity: import("../types.js").MoralCircleAffinity | null | undefined,
+): number | null {
+  if (!affinity) return null;
+  const camp = affinity.scopedAffinities.political_camp;
+  if (camp === null || camp === undefined) return null;
+  const campN = Math.max(0, Math.min(100, camp)) / 100; // ∈ [0, 1]
+  const intensityFactor = Math.max(0, Math.min(1, affinity.intensity03 / 3));
+  return 1 + 4 * campN * intensityFactor; // ∈ [1, 5]
+}
+
 function partisanLoyaltyMultiplier(
   candidateParty: string,
   respondentParty: PartyID | null | undefined,
@@ -490,12 +509,14 @@ export function predictVote(
   strategicVoting?: boolean,
   dominantNode?: string | null,
   morBoundariesState?: MorBoundariesNodeState | null,
+  moralCircleAffinity?: import("../types.js").MoralCircleAffinity | null,
 ): ElectionPrediction {
-  // 6.E.3a: prefer PF-equivalent derived from morBoundaries when present;
-  // fall back to legacy sig.PF.pos for callers that haven't wired the
-  // module through. Same per-call gating pattern as the scorer.
+  // ADR-007 (T9): prefer PF-equivalent derived from moralCircle affinity
+  // (political_camp scoped × intensity03). Falls back to ADR-006
+  // morBoundaries-derived PF, then to legacy sig.PF.pos.
+  const pfFromMc = pfEquivalentFromMoralCircle(moralCircleAffinity);
   const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
-  const pfPos = pfFromMor ?? sig.PF?.pos ?? null;
+  const pfPos = pfFromMc ?? pfFromMor ?? sig.PF?.pos ?? null;
   const scored: CandidateScore[] = candidates.map(c => {
     const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
     const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
