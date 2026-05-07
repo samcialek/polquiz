@@ -1,16 +1,17 @@
 # CLAUDE.md — PRISM Quiz Engine
 
 ## What This Project Is
-The PRISM (Political Refraction and Identity Spectrum Model) quiz engine assigns users one of **118 political archetypes** based on their responses to ~55–65 dynamically selected questions drawn from a ~74-question representative bank. The quiz uses Bayesian posterior updating across 14 latent nodes to narrow down which archetype best fits the respondent. This includes 6 **identity-primary archetypes** (Black Voter, White Grievance Voter, Evangelical Voter, LGBTQ Voter, Feminist Voter, Male Grievance Voter) — full archetypes activated when tribalism and political fusion dominate the respondent's profile.
+The PRISM (Political Refraction and Identity Spectrum Model) quiz engine assigns users one of **121 active political archetypes** (124 stored entries; 3 deactivated kept for ID stability) based on their responses to dynamically selected questions. The quiz uses Bayesian posterior updating across 8 belief axes + 2 categorical nodes + a moral-circle module + an engagement scalar to narrow down which archetype best fits the respondent. This includes 6 **identity-primary archetypes** (Black Voter, White Grievance Voter, Evangelical Voter, LGBTQ Voter, Feminist Voter, Male Grievance Voter) — full archetypes activated when scoped moral-circle excess affinity exceeds the universal baseline AND demographic membership matches.
 
 ## Architecture
 - **5 endogenous layers** with 3 exogenous refraction layers between them
-- The quiz operates at **Layer 3: Political Disposition** (the 14 nodes below)
+- The quiz operates at **Layer 3: Political Disposition**
 - Layers 1-2 are latent (innate temperament → crystallized personality)
 - Layer 4 is output (political behavior / vote choice)
 
-## The 14 Nodes (Layer 3)
-Organized into 4 clusters:
+## The 11 Functional Nodes + Moral Circle Module + Engagement (post-ADR-007)
+
+Organized into clusters. Moral circle is a compound module (universal baseline + 8 scoped affinities) per ADR-007, not a single 1-5 node.
 
 ### ENDS — What you want
 | Node | Full Name | Type | Scale |
@@ -18,7 +19,6 @@ Organized into 4 clusters:
 | MAT | Material Orientation | continuous | 1-5 |
 | CD | Cultural Direction | continuous | 1-5 |
 | CU | Cultural Uniformity | continuous | 1-5 |
-| MOR | Moral Circle | continuous | 1-5 |
 
 ### MEANS — How you pursue it
 | Node | Full Name | Type | Scale |
@@ -32,15 +32,27 @@ Organized into 4 clusters:
 | Node | Full Name | Type | Scale |
 |------|-----------|------|-------|
 | ZS | Zero-Sum Orientation | continuous | 1-5 |
-| ONT_H | Hierarchy Orientation | continuous | 1-5 |
+| ONT_H | Human Malleability | continuous | 1-5 |
 | ONT_S | System Ontology | continuous | 1-5 |
 
-### SELF — Your political identity
+### IDENTITY — Moral Circle Module (ADR-007)
+A compound module of **9 stored numbers** plus derived active-signal fields:
+- `universalAffinity` (0–100) — baseline moral concern for any human being.
+- 8 scoped affinities (0–100, or null for "not meaningful to me"): `national`, `religious`, `ethnic_racial`, `class`, `gender`, `sexual`, `ideological`, `political_camp`.
+- Derived: `excessAffinity[g] = max(0, scopedAffinity[g] − universalAffinity)`. Only excess drives matching, IDP routing, and candidate compare.
+- A scope is **active** only when its scopedAffinity exceeds the universal baseline. A respondent with high universal and high scoped on a single group has zero excess — same caring level, no in-group bias.
+- Membership is a separate axis (`Membership` interface). Affinity says "this scope is morally loaded for me"; membership says which concrete in-group within that scope. Identical excess routes to opposite IDP archetypes when membership differs.
+
+### SELF — Engagement
 | Node | Full Name | Type | Scale |
 |------|-----------|------|-------|
-| PF | Political Fusion | continuous | 1-5 |
-| TRB | Tribe | continuous | 1-5 |
 | ENG | Engagement Level | continuous | 1-5 |
+
+Engagement is salience-only per ADR-005 (position IS activation). Never compared to candidates; governs participation/abstention.
+
+### Legacy nodes (deprecated, scheduled for removal)
+- `MOR`, `TRB`, `PF` — superseded by the moral-circle module above per ADR-007. Still present in `ContinuousNodeId` and various data files during the transition; readers fall back when `state.moralCircle.affinity` is null.
+- `morBoundaries` (ADR-006) — superseded by `moralCircle` per ADR-007. Same status.
 
 ## Position vs. Salience — Two Independent Dimensions
 Every person has both a **position** and a **salience** on each node:
@@ -56,13 +68,13 @@ At the **question level**, touch targets have a `role` field:
 At the **archetype level**, each archetype is defined by its position (pos 1-5) and salience (sal 0-3) on each node, plus optional anti-positions. Categorical nodes use probability distributions over their 6 categories. The engine matches a respondent to archetypes using both dimensions.
 
 ## Key Numbers — DO NOT CHANGE
-- **118 active archetypes** (+3 deactivated with prior=0 kept in array for ID stability: 019, 023, 025). 112 base archetypes + 6 identity-primary archetypes (IDs 141-146). Priors are uniform at 1/118. History: 132 → 124 → 122 → 115 → 118 (added identity-primary archetypes).
-- **14 nodes** (12 continuous + 2 categorical)
-- **4 clusters** (ENDS, MEANS, REALITY, SELF)
-- **~74 representative questions** (71 in full bank); the live browser quiz adaptively selects ~22–35 per respondent (`shouldStopEIG`, `selectorEIG.ts`). Eval / test / diagnostic harnesses use a separate stop rule (`shouldStop`, `stopRule.ts`, HARD_CAP=55). See *Selector / EIG Testing Split* below.
+- **121 active archetypes + 3 deactivated = 124 stored entries** (deactivated kept for ID stability: 019, 023, 025). 115 base archetypes + 6 identity-primary archetypes (IDs 141-146). Priors are uniform at 1/121. History: 132 → 124 → 122 → 115 → 118 → 121 (added identity-primary archetypes; expanded for nihilist EPS coverage). Verify count via `grep -cE "^\s+id:" src/config/archetypes.ts`.
+- **11 functional nodes + moral-circle module + engagement** (8 continuous belief axes + 2 categorical + moral-circle compound module + ENG salience-only). Legacy MOR/TRB/PF still in `ContinuousNodeId` during transition; superseded by moral-circle module per ADR-007.
+- **Live quiz bank**: representative bank now includes the moral-circle calibration battery (Q230 universal_baseline_humanity, Q231 universal_baseline_stranger, Q232–Q239 8 scoped affinity probes) plus existing ~74 belief-axis questions. Live browser quiz adaptively selects ~22–35 per respondent (`shouldStopEIG`, `selectorEIG.ts`). Selector skips Q232-Q239 scope probes when universalAffinity is high enough that the scope can't realistically produce excess.
 - **6 EPS categories**, **6 AES categories**
-- **6 identity-primary archetypes** (IDs 141-146: Black Voter, White Grievance, Evangelical, LGBTQ, Feminist, Male Grievance)
-- **9 TRB anchor categories** (national, ideological, religious, class, ethnic_racial, gender, sexual, global, mixed_none) — see TRB Anchor section below. Earlier "7 anchor" references in this repo are drift from an older version.
+- **6 identity-primary archetypes** (IDs 141-146: Black Voter, White Grievance, Evangelical, LGBTQ, Feminist, Male Grievance). IDP gate uses ADR-007 thresholds: `excess[scope] >= 20 && scoped >= 70 && universal <= 75 && intensity03 >= 1.2`.
+- **8 moral-circle scoped affinities** (national, religious, ethnic_racial, class, gender, sexual, ideological, political_camp) + universal baseline = 9 stored numbers per respondent.
+- **TRB anchor (legacy 9-category)**: still present (`national, ideological, religious, class, ethnic_racial, gender, sexual, global, mixed_none`) for ADR-006 fallback paths. Superseded by moralCircle scopedAffinities.
 
 ## Selector / EIG Testing Split
 
@@ -169,5 +181,6 @@ Full ADRs in `results/architecture/`.
 - **ADR-001 — scoring layer. SUPERSEDED** by ADR-003 on 2026-04-17. Proposed a Euclidean winner-take-all scorer on the premise that per-archetype priors were load-bearing. Diagnostic 1 rejected that premise: priors were always uniform in the codebase and cancel under softmax normalization. See `results/architecture/ADR-001-scoring-layer.md` (superseded).
 - **ADR-002 — ENG migration.** In effect. ENG left archetype signatures and became a separate participation/abstention module in `src/engine/engagementLabel.ts`. Output surfaces as a dual label `<archetype>, <engagement level>`. See `results/architecture/ADR-002-eng-migration.md`.
 - **ADR-003 — rollback of ADR-001 scoring layer.** In effect. Scoring restored to the pre-Phase-3 weighted scalar scorer at `src/engine/archetypeDistance.ts`; the Phase-3 Euclidean WTA is preserved as evidence at `src/engine/archetypeDistanceWTA.ts`. Post-rollback top-1: 105/121 = 86.8% (`results/phase3/regression-post-rollback.md`). Selector + stop-rule rework, ENG migration, hollow-touch drops, signature-distance family detection, and engagementLabel module are all **retained**. `prior` and `trbAnchorPrior` fields stay dead — not reinstated. See `results/architecture/ADR-003-rollback-scoring.md`.
+- **ADR-007 — explicit moral-circle affinity model.** In effect. Replaces the legacy `MOR` continuous node, the `TRB`/`PF` SELF-cluster nodes, and the ADR-006 `morBoundaries` 7-tuple with a 9-stored-number compound module: `universalAffinity` (baseline) + 8 `scopedAffinities` (national, religious, ethnic_racial, class, gender, sexual, ideological, political_camp). Active signal = `excess[g] = max(0, scoped[g] − universal)`. Membership is a separate axis. New calibration battery (Q230–Q239) added to the live bank. Engine, scoring, IDP resolver, archetype templates (124 entries), candidate profiles (52 entries), and vote-prediction all wired through. Legacy MOR/TRB/PF/morBoundaries fields retained as deprecated fallback paths during the transition; full removal is a follow-up. See `results/architecture/ADR-007-explicit-moral-circle-affinity.md` and `results/architecture/moral-circle-full-implementation-plan.md`.
 
 Six-stage rollout sequence: `results/architecture/roadmap.md` (Stage 2 completed as rollback).

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Moral Circle — Question Coverage Map</title>
+<style>
+  body { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; margin: 24px; color: #222; background: #fafbfc; }
+  h1 { margin: 0 0 4px 0; font-size: 20px; }
+  .subtitle { color: #666; margin: 0 0 20px 0; font-size: 13px; max-width: 900px; line-height: 1.5; }
+  .legend { display: flex; gap: 16px; margin: 14px 0 22px 0; align-items: center; font-size: 12px; }
+  .legend-grad { width: 200px; height: 14px; border: 1px solid #aaa; background: linear-gradient(to right, rgba(91, 154, 160, 0.2), rgba(91, 154, 160, 0.85)); }
+  table { border-collapse: separate; border-spacing: 0; font-size: 12px; }
+  th, td { padding: 6px 8px; border: 1px solid #d4dde4; vertical-align: middle; }
+  thead th { background: #f3f6f9; text-align: center; font-weight: 600; }
+  th.scope-universal { background: #e6f0ff; min-width: 90px; }
+  th.scope-scoped { background: #f8f1ff; min-width: 90px; }
+  .scope-count { font-size: 10px; color: #666; font-weight: 400; margin-top: 2px; }
+  td.row-label { text-align: left; max-width: 380px; background: #fff; }
+  td.row-label .qid { font-size: 12px; font-weight: 700; color: #1a4480; display: inline-block; margin-right: 6px; }
+  td.row-label .prompt { display: inline; font-size: 12px; color: #333; font-weight: 600; }
+  td.row-label .meta { font-size: 10px; color: #777; margin-top: 2px; }
+  td.row-label .prompt-full { font-size: 11px; color: #555; margin-top: 4px; line-height: 1.45; font-style: italic; }
+  td.cell { text-align: center; font-size: 11px; font-weight: 600; color: #1a3a3d; }
+  td.cell.empty { background: #fff; color: #ccc; }
+  .summary { margin-top: 28px; max-width: 900px; }
+  .summary h2 { font-size: 15px; margin: 0 0 8px 0; }
+  .summary p { line-height: 1.5; color: #333; }
+</style>
+</head>
+<body>
+
+<h1>Moral Circle — Question Coverage Map</h1>
+<p class="subtitle">
+  Maps each question in the live representative bank to the moral-circle scopes it emits evidence for.
+  Cell value = the highest magnitude (0–100) any option/bucket/item in that question pushes onto the scope.
+  Empty cell = the question doesn't touch that scope. The scope <strong>universal</strong> is the baseline;
+  the eight scoped affinities are <strong>active</strong> only when a respondent's value exceeds their universal baseline.
+</p>
+
+<div class="legend">
+  <span>Magnitude:</span>
+  <div class="legend-grad"></div>
+  <span>0 → 100</span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="row-label" style="text-align:left; min-width: 320px;">Question</th>
+      <th class="scope-universal"><div class="scope-name">Universal</div><div class="scope-count">6</div></th><th class="scope-scoped"><div class="scope-name">National</div><div class="scope-count">4</div></th><th class="scope-scoped"><div class="scope-name">Religious</div><div class="scope-count">3</div></th><th class="scope-scoped"><div class="scope-name">Ethnic / Racial</div><div class="scope-count">2</div></th><th class="scope-scoped"><div class="scope-name">Class</div><div class="scope-count">2</div></th><th class="scope-scoped"><div class="scope-name">Gender</div><div class="scope-count">2</div></th><th class="scope-scoped"><div class="scope-name">Sexual</div><div class="scope-count">2</div></th><th class="scope-scoped"><div class="scope-name">Ideological</div><div class="scope-count">2</div></th><th class="scope-scoped"><div class="scope-name">Political Camp</div><div class="scope-count">1</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="row-label">
+        <div class="qid">Q8</div>
+        <div class="prompt">domestic_vs_abroad_lives</div>
+        <div class="meta">slider · screen20</div>
+        
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (5 options)">90</td><td class="cell" style="background:rgba(91, 154, 160, 0.688);" title="max 75 / 100 (2 options)">75</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q60</div>
+        <div class="prompt">politically_important_identities</div>
+        <div class="meta">priority_sort · screen20</div>
+        
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.688);" title="max 75 / 100">75</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell" style="background:rgba(91, 154, 160, 0.655);" title="max 70 / 100">70</td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q102</div>
+        <div class="prompt">membership_criteria_priority_sort</div>
+        <div class="meta">priority_sort · fixed12</div>
+        
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.623);" title="max 65 / 100 (2 options)">65</td><td class="cell" style="background:rgba(91, 154, 160, 0.720);" title="max 80 / 100 (6 options)">80</td><td class="cell" style="background:rgba(91, 154, 160, 0.688);" title="max 75 / 100">75</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q213</div>
+        <div class="prompt">equal_standing_within_polity</div>
+        <div class="meta">single_choice · fixed12</div>
+        <div class="prompt-full">When citizens, legal residents, minorities, or other groups living under the country&#39;s laws are denied equal moral or legal standing, how central is fixing that to your politics?</div>
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.752);" title="max 85 / 100 (5 options)">85</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q230</div>
+        <div class="prompt">universal_baseline_humanity</div>
+        <div class="meta">slider · fixed12</div>
+        <div class="prompt-full">How much moral concern do you feel for any human being, simply because they are human?</div>
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.817);" title="max 95 / 100 (5 options)">95</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q231</div>
+        <div class="prompt">universal_baseline_stranger</div>
+        <div class="meta">slider · fixed12</div>
+        <div class="prompt-full">When a stranger is suffering, how much does that matter to you even if they share none of your identities, beliefs, nationality, or politics?</div>
+      </td>
+      <td class="cell" style="background:rgba(91, 154, 160, 0.817);" title="max 95 / 100 (5 options)">95</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q232</div>
+        <div class="prompt">scoped_affinity_national</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people in your country?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q233</div>
+        <div class="prompt">scoped_affinity_religious</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people who share your religious tradition or sacred worldview?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q234</div>
+        <div class="prompt">scoped_affinity_ethnic_racial</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people who share your racial or ethnic background?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q235</div>
+        <div class="prompt">scoped_affinity_class</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people in your economic class or material situation?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q236</div>
+        <div class="prompt">scoped_affinity_gender</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people who share your gender?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q237</div>
+        <div class="prompt">scoped_affinity_sexual</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people who share your sexuality or family-life orientation?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q238</div>
+        <div class="prompt">scoped_affinity_ideological</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people who share your core ideology or values?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td><td class="cell empty"></td>
+    </tr>
+<tr>
+      <td class="row-label">
+        <div class="qid">Q239</div>
+        <div class="prompt">scoped_affinity_political_camp</div>
+        <div class="meta">single_choice · stage2</div>
+        <div class="prompt-full">Compared with people in general, how much extra moral concern do you feel for people on your political side, party, movement, or camp?</div>
+      </td>
+      <td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell empty"></td><td class="cell" style="background:rgba(91, 154, 160, 0.785);" title="max 90 / 100 (4 options)">90</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="summary">
+  <h2>Reading the map</h2>
+  <p>
+    Battery A (Q230, Q231) is the primary source for <strong>universal</strong>: each slider bucket emits a single universal value.
+    Battery B (Q232–Q239) gives one column its own dedicated probe — each scoped question emits magnitudes 30/50/70/90 on its target scope per option.
+    A few legacy questions (Q60 identity ranking, Q102 membership criteria, Q8 domestic-vs-abroad, Q213 equal-standing) emit lighter signal across multiple scopes.
+  </p>
+</div>
+
+</body>
+</html>

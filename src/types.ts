@@ -1,14 +1,26 @@
+/**
+ * Continuous belief-axis nodes plus engagement.
+ *
+ * `MOR`, `PF`, `TRB` are @deprecated per ADR-007 — superseded by the
+ * compound moral-circle module (`state.moralCircle.affinity`). They remain
+ * in this union during the transition so engine fallback paths still
+ * compile; full removal lands in a follow-up cleanup pass once all
+ * consumers (electorate, eval, diagnostics) are migrated.
+ */
 export type ContinuousNodeId =
   | "MAT"
   | "CD"
   | "CU"
+  /** @deprecated ADR-007 — use `state.moralCircle.affinity.universalAffinity`. */
   | "MOR"
   | "PRO"
   | "COM"
   | "ZS"
   | "ONT_H"
   | "ONT_S"
+  /** @deprecated ADR-007 — use `state.moralCircle.affinity.scopedAffinities.political_camp`. */
   | "PF"
+  /** @deprecated ADR-007 — use `state.moralCircle.affinity.scopedAffinities.<scope>`. */
   | "TRB"
   | "ENG";
 
