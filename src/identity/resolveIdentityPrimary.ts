@@ -1,4 +1,9 @@
-import type { RespondentState, MorBoundaryId } from "../types.js";
+import type {
+  RespondentState,
+  MorBoundaryId,
+  MoralCircleScope,
+  MoralCircleAffinity,
+} from "../types.js";
 import type { EngagementLabel } from "../engine/engagementLabel.js";
 import { MOR_BOUNDARY_ORDER, boundaryLoad } from "../engine/math.js";
 
@@ -18,17 +23,21 @@ export interface IdentityPrimaryResult {
   label?: IdentityPrimaryLabel;
   confidence?: IdentityPrimaryConfidence;
   /**
-   * Top morBoundary by score (per ADR-006 PR 6.E.2b). Replaces the legacy
-   * TrbAnchor field — boundary keys are a strict subset and `sexual` is
-   * collapsed into `gender` (LGBTQ Voter routes via `demo_lgbtq` before
-   * the gender split). Field name retained for downstream compatibility.
+   * Top scoped affinity (post-ADR-007). Stored as `MorBoundaryId` for legacy
+   * downstream compatibility — the new `MoralCircleScope` strict superset
+   * adds `sexual` and renames `political_tribe` → `political_camp`. When a
+   * MoralCircleScope value is reported here, `sexual` is mapped to `gender`
+   * for callers that still expect the legacy 7-key shape; full path uses
+   * the new scope label via the `scopedAnchor` field.
    */
   anchor?: MorBoundaryId;
+  /** ADR-007 scoped anchor (post-T6). Distinct from legacy `anchor` field. */
+  scopedAnchor?: MoralCircleScope;
   reasonCodes: string[];
   gate: {
-    /** Compound moral-circle module intensity (0..3). */
+    /** Moral-circle intensity (0..3). */
     intensity: number;
-    /** Compound moral-circle module load = max(boundaries) (0..1). */
+    /** Moral-circle load — derived from max(scopedAffinity / 100) under ADR-007 path; legacy max(boundaries) under fallback. */
     load: number;
     engagementLevel: EngagementLabel["level"];
     passedLatent: boolean;
@@ -45,11 +54,19 @@ export interface IdentityPrimaryDemographics {
   [key: string]: unknown;
 }
 
-// Activation thresholds locked in the 6.E preflight.
+// Activation thresholds locked in the 6.E preflight (ADR-006 fallback path).
 const LATENT_INTENSITY   = 1.5;
 const LATENT_LOAD        = 0.45;
 const ACTIVE_INTENSITY   = 2.25;
 const ACTIVE_LOAD        = 0.65;
+
+// ADR-007 §"Identity-Primary Resolver Migration" seed thresholds (T6).
+// Calibration target: should not regress on existing correct IDP resolutions.
+const ADR007_EXCESS_THRESHOLD       = 20;
+const ADR007_SCOPED_THRESHOLD       = 70;
+const ADR007_UNIVERSAL_CEILING      = 75;
+const ADR007_INTENSITY03_THRESHOLD  = 1.2;
+const ADR007_INTENSITY03_DOMINANT   = 2.25;
 
 function expectedContinuous(state: RespondentState, nodeId: "ZS" | "CD" | "ONT_S" | "MOR"): number {
   const node = state.continuous[nodeId];
@@ -57,10 +74,31 @@ function expectedContinuous(state: RespondentState, nodeId: "ZS" | "CD" | "ONT_S
   return node.posDist.reduce((sum, p, i) => sum + p * (i + 1), 0);
 }
 
+const MORAL_CIRCLE_SCOPES_ORDER: readonly MoralCircleScope[] = [
+  "national", "religious", "ethnic_racial", "class",
+  "gender", "sexual", "ideological", "political_camp",
+] as const;
+
 /**
- * Top boundary by score from the compound moral-circle module. Returns null
- * if the module is missing or all boundaries equal (init state). Ties are
- * resolved by `MOR_BOUNDARY_ORDER` precedence.
+ * Top scoped affinity by excess (ADR-007 path). Returns null if the
+ * affinity hasn't materialized or no scope has positive excess.
+ */
+function topExcessScope(affinity: MoralCircleAffinity): MoralCircleScope | null {
+  let best: MoralCircleScope | null = null;
+  let bestVal = 0;
+  for (const scope of MORAL_CIRCLE_SCOPES_ORDER) {
+    const e = affinity.excessAffinities[scope] ?? 0;
+    if (e > bestVal) {
+      bestVal = e;
+      best = scope;
+    }
+  }
+  return best;
+}
+
+/**
+ * Top boundary by score from the legacy ADR-006 module (fallback when
+ * state.moralCircle.affinity is null). Removed in T12.
  */
 function topBoundary(state: RespondentState): MorBoundaryId | null {
   const mb = state.morBoundaries;
@@ -79,30 +117,65 @@ function topBoundary(state: RespondentState): MorBoundaryId | null {
   return allEqual ? null : bestKey;
 }
 
+/** ADR-007 scope → legacy MorBoundaryId for downstream compatibility. */
+function scopeToLegacyAnchor(scope: MoralCircleScope): MorBoundaryId {
+  switch (scope) {
+    case "national":       return "national";
+    case "religious":      return "religious";
+    case "ethnic_racial":  return "ethnic_racial";
+    case "class":          return "class";
+    case "ideological":    return "ideological";
+    case "gender":         return "gender";
+    case "sexual":         return "gender"; // legacy collapsed; new path uses scopedAnchor
+    case "political_camp": return "political_tribe";
+  }
+}
+
 /**
- * Resolve the identity-primary overlay (ADR-006 PR 6.E.2b cutover). Reads
- * the compound moral-circle module instead of the legacy TRB / PF / trbAnchor
- * triad. Activation gates use intensity + boundary-load thresholds locked
- * in the 6.E preflight; the routing logic collapses the `sexual` anchor
- * into `gender` and dispatches LGBTQ Voter via `demo_lgbtq` before the
- * gender-split routing.
+ * Resolve the identity-primary overlay (ADR-007 §"Identity-Primary Resolver
+ * Migration", T6 cutover).
+ *
+ * ADR-007 path (preferred): when `state.moralCircle.affinity` is materialized,
+ * gate on excess affinity per ADR-007 seed thresholds:
+ *   excess[g] >= 20  AND  scoped[g] >= 70  AND  universal <= 75  AND  intensity03 >= 1.2
+ * Top scoped excess scope drives routing. `sexual` excess routes LGBTQ Voter
+ * directly (no more sexual→gender collapse + demo_lgbtq override).
+ *
+ * ADR-006 fallback: when `state.moralCircle.affinity` is null (pre-T3
+ * question rewire), use legacy morBoundaries gate. This fallback path is
+ * removed in T12.
+ *
+ * Engagement gates from ADR-002 unchanged in either path.
  */
 export function resolveIdentityPrimary(
   state: RespondentState,
   engagementLabel: EngagementLabel,
   demographics?: IdentityPrimaryDemographics | null,
 ): IdentityPrimaryResult {
-  const mb = state.morBoundaries;
-  const intensity = mb?.intensity ?? 0;
-  const load = mb ? boundaryLoad(mb.boundaries) : 0;
-  const anchorTop = topBoundary(state);
-
   // ENG leaves archetype signatures under ADR-002; engagement gating runs on
   // the standalone EngagementLabel the caller computed from state.
   const engagementActive =
     engagementLabel.level === "engaged" ||
     engagementLabel.level === "highly-engaged";
   const engagementDominant = engagementLabel.level === "highly-engaged";
+
+  // ── ADR-007 path: prefer when affinity is materialized ──────────────────
+  if (state.moralCircle?.affinity) {
+    return resolveViaMoralCircle(
+      state,
+      state.moralCircle.affinity,
+      engagementLabel,
+      engagementActive,
+      engagementDominant,
+      demographics,
+    );
+  }
+
+  // ── ADR-006 fallback (removed in T12) ───────────────────────────────────
+  const mb = state.morBoundaries;
+  const intensity = mb?.intensity ?? 0;
+  const load = mb ? boundaryLoad(mb.boundaries) : 0;
+  const anchorTop = topBoundary(state);
 
   const passedLatent   = intensity >= LATENT_INTENSITY && load >= LATENT_LOAD;
   const passedActive   = intensity >= ACTIVE_INTENSITY && load >= ACTIVE_LOAD && engagementActive;
@@ -132,11 +205,7 @@ export function resolveIdentityPrimary(
       ? "active"
       : "latent";
 
-  // ── Pre-gender LGBTQ check (replaces the legacy `sexual` anchor case) ──
-  // The 6.E.2b design collapses `sexual` into the `gender` boundary. To keep
-  // LGBTQ Voter resolvable, we route it via `demo_lgbtq` BEFORE the gender
-  // split: if the respondent's top boundary is `gender` AND demo_lgbtq is
-  // confirmed, classify as LGBTQ Voter regardless of demo_gender.
+  // Pre-gender LGBTQ check (legacy fallback only)
   if (anchorTop === "gender") {
     const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
     if (lgbtq === "yes") {
@@ -145,7 +214,7 @@ export function resolveIdentityPrimary(
         label: "LGBTQ Voter",
         confidence: passedActive ? "high" : "medium",
         anchor: anchorTop,
-        reasonCodes: ["gender_anchor", "lgbtq_demographic_match"],
+        reasonCodes: ["gender_anchor", "lgbtq_demographic_match", "legacy_path"],
         gate,
       };
     }
@@ -278,6 +347,254 @@ export function resolveIdentityPrimary(
     confidence: "low",
     anchor: anchorTop,
     reasonCodes: ["identity_pattern_detected_but_anchor_not_yet_resolvable"],
+    gate,
+  };
+}
+
+// ─── ADR-007 path (T6) ─────────────────────────────────────────────────────
+
+/**
+ * ADR-007 §"Identity-Primary Resolver Migration" — gate on excess affinity
+ * thresholds and route by top excess scope. Demographic membership matching
+ * is unchanged from the ADR-006 path (uses MorMembership / demographics).
+ */
+function resolveViaMoralCircle(
+  state: RespondentState,
+  affinity: MoralCircleAffinity,
+  engagementLabel: EngagementLabel,
+  engagementActive: boolean,
+  engagementDominant: boolean,
+  demographics?: IdentityPrimaryDemographics | null,
+): IdentityPrimaryResult {
+  const intensity03 = affinity.intensity03;
+  // Load proxy: max scoped affinity (0..100) / 100, comparable to legacy 0..1 scale.
+  const maxScoped = Math.max(
+    0,
+    ...MORAL_CIRCLE_SCOPES_ORDER.map(s => affinity.scopedAffinities[s] ?? 0),
+  );
+  const load = maxScoped / 100;
+
+  const topScope = topExcessScope(affinity);
+  const topExcess = topScope ? affinity.excessAffinities[topScope] ?? 0 : 0;
+  const topScoped = topScope ? affinity.scopedAffinities[topScope] ?? 0 : 0;
+
+  // ADR-007 gate: excess >= 20 AND scoped >= 70 AND universal <= 75 AND intensity03 >= 1.2
+  const baseGate =
+    topExcess >= ADR007_EXCESS_THRESHOLD &&
+    topScoped >= ADR007_SCOPED_THRESHOLD &&
+    affinity.universalAffinity <= ADR007_UNIVERSAL_CEILING &&
+    intensity03 >= ADR007_INTENSITY03_THRESHOLD;
+
+  const passedLatent   = baseGate;
+  const passedActive   = baseGate && engagementActive;
+  const passedDominant = baseGate && engagementDominant && intensity03 >= ADR007_INTENSITY03_DOMINANT;
+
+  const gate = {
+    intensity: intensity03,
+    load,
+    engagementLevel: engagementLabel.level,
+    passedLatent,
+    passedActive,
+    passedDominant,
+  };
+
+  if (!passedLatent || !topScope) {
+    return {
+      state: "none",
+      anchor: topScope ? scopeToLegacyAnchor(topScope) : undefined,
+      scopedAnchor: topScope ?? undefined,
+      reasonCodes: topScope ? ["gate_not_met"] : ["affinity_uniform_or_below_universal"],
+      gate,
+    };
+  }
+
+  const stateLabel: IdentityPrimaryState = passedDominant ? "dominant" : passedActive ? "active" : "latent";
+
+  // ── sexual scope → LGBTQ Voter (ADR-007: distinct from gender) ──────────
+  if (topScope === "sexual") {
+    const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+    if (lgbtq === "yes") {
+      return {
+        state: stateLabel,
+        label: "LGBTQ Voter",
+        confidence: passedActive ? "high" : "medium",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["sexual_scope_excess", "lgbtq_demographic_match"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor: scopeToLegacyAnchor(topScope),
+      scopedAnchor: topScope,
+      reasonCodes: ["sexual_scope_excess", "missing_lgbtq_demographic"],
+      gate,
+    };
+  }
+
+  // ── ethnic_racial → Black or White Grievance ────────────────────────────
+  if (topScope === "ethnic_racial") {
+    const race = typeof demographics?.demo_ethnicity === "string" ? demographics.demo_ethnicity : "";
+    if (race === "black") {
+      return {
+        state: stateLabel,
+        label: "Black Voter",
+        confidence: passedActive ? "high" : "medium",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["ethnic_racial_scope_excess", "black_demographic_match"],
+        gate,
+      };
+    }
+    if (race === "white") {
+      const zs = expectedContinuous(state, "ZS");
+      const cd = expectedContinuous(state, "CD");
+      const onts = expectedContinuous(state, "ONT_S");
+      const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+      if (grievanceSignals >= 2) {
+        return {
+          state: stateLabel,
+          label: "White Grievance Voter",
+          confidence: grievanceSignals === 3 ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["ethnic_racial_scope_excess", "white_demographic_match", "status_threat_pattern"],
+          gate,
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["ethnic_racial_scope_excess", "white_demographic_match", "insufficient_grievance_signal"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor: scopeToLegacyAnchor(topScope),
+      scopedAnchor: topScope,
+      reasonCodes: ["ethnic_racial_scope_excess", "missing_or_nonresolving_race_demographic"],
+      gate,
+    };
+  }
+
+  // ── religious → Evangelical ─────────────────────────────────────────────
+  if (topScope === "religious") {
+    const religion = typeof demographics?.demo_religion === "string" ? demographics.demo_religion : "";
+    if (religion === "christian") {
+      return {
+        state: stateLabel,
+        label: "Evangelical Voter",
+        confidence: passedActive ? "medium" : "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["religious_scope_excess", "christian_demographic_match"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor: scopeToLegacyAnchor(topScope),
+      scopedAnchor: topScope,
+      reasonCodes: ["religious_scope_excess", "missing_or_non_evangelical_religion_detail"],
+      gate,
+    };
+  }
+
+  // ── gender → Feminist (female + signals) or Male Grievance (male + signals)
+  // sexual case already handled above. demo_lgbtq=yes here would mean a
+  // person whose gender excess outweighs their sexual excess; treat as LGBTQ
+  // Voter still since the lock-and-key on lgbtq is decisive.
+  if (topScope === "gender") {
+    const lgbtq = typeof demographics?.demo_lgbtq === "string" ? demographics.demo_lgbtq : "";
+    if (lgbtq === "yes") {
+      return {
+        state: stateLabel,
+        label: "LGBTQ Voter",
+        confidence: passedActive ? "high" : "medium",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["gender_scope_excess", "lgbtq_demographic_match"],
+        gate,
+      };
+    }
+    const gender = typeof demographics?.demo_gender === "string" ? demographics.demo_gender : "";
+    const cd = expectedContinuous(state, "CD");
+    const onts = expectedContinuous(state, "ONT_S");
+    const zs = expectedContinuous(state, "ZS");
+    if (gender === "female") {
+      // Feminist signal: progressive cultural direction, high ONT_S, high
+      // universal-aware moral circle (universalAffinity reads from the new
+      // module). Adapted from ADR-006 path which used MOR pos.
+      const feministSignals =
+        Number(cd <= 2.5) +
+        Number(affinity.universalAffinity >= 60) +
+        Number(onts >= 3.5);
+      if (feministSignals >= 2) {
+        return {
+          state: stateLabel,
+          label: "Feminist Voter",
+          confidence: feministSignals === 3 ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["gender_scope_excess", "female_demographic_match", "progressive_gender_pattern"],
+          gate,
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["gender_scope_excess", "female_demographic_match", "insufficient_feminist_signal"],
+        gate,
+      };
+    }
+    if (gender === "male") {
+      const grievanceSignals = Number(zs >= 3.5) + Number(cd >= 3.5) + Number(onts <= 2.5);
+      if (grievanceSignals >= 2) {
+        return {
+          state: stateLabel,
+          label: "Male Grievance Voter",
+          confidence: grievanceSignals === 3 ? "high" : "medium",
+          anchor: scopeToLegacyAnchor(topScope),
+          scopedAnchor: topScope,
+          reasonCodes: ["gender_scope_excess", "male_demographic_match", "status_threat_pattern"],
+          gate,
+        };
+      }
+      return {
+        state: "unresolved",
+        confidence: "low",
+        anchor: scopeToLegacyAnchor(topScope),
+        scopedAnchor: topScope,
+        reasonCodes: ["gender_scope_excess", "male_demographic_match", "insufficient_grievance_signal"],
+        gate,
+      };
+    }
+    return {
+      state: "unresolved",
+      confidence: "low",
+      anchor: scopeToLegacyAnchor(topScope),
+      scopedAnchor: topScope,
+      reasonCodes: ["gender_scope_excess", "missing_or_nonresolving_gender_demographic"],
+      gate,
+    };
+  }
+
+  // national / class / ideological / political_camp — no IDP overlay defined.
+  return {
+    state: "unresolved",
+    confidence: "low",
+    anchor: scopeToLegacyAnchor(topScope),
+    scopedAnchor: topScope,
+    reasonCodes: ["scope_excess_detected_no_idp_overlay_defined"],
     gate,
   };
 }
