@@ -879,7 +879,12 @@
        cluster header (ENDS / MEANS / etc.) already conveys what the cluster
        is; restating the constituent dimensions added redundant prose. */
     .cluster-drill-tagline { display: none; }
-    .cluster-drill { display: block; }
+    /* 2026-05-08: pin the drill column min-height so switching between
+       cluster panels (IDENTITY contains a tall sunburst, others are shorter
+       node lists) doesn't reflow page vertically. The IDENTITY panel with
+       sunburst is the tallest at ~620px; pin to that so the section stays
+       a constant height regardless of which cluster is selected. */
+    .cluster-drill { display: block; min-height: 620px; }
     .cluster-panel { display: none; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -4724,11 +4729,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const lx = rMid * Math.cos(aMid);
         const ly = rMid * Math.sin(aMid);
 
-        // Approximate text width: Space Grotesk 16px bold with 0.14em letter-
-        // spacing. Per character ≈ 11.5px (8.5px glyph + ~2.2px tracking).
-        // Plus 8px breathing room on each side so labels don't kiss the edges.
-        const charPx = 11.5;
-        const padPx = 16;
+        // 2026-05-08: per-cluster label font sizing. IDENTITY and REALITY are
+        // 8 chars (longest); ENDS is 4 and MEANS is 5. Shrinking the long
+        // labels by 2px makes them fit in narrower wedges without affecting
+        // the short ones' readability. Per-char width is approximated as
+        // 0.72×fontSize for Space Grotesk bold with 0.14em letter-spacing.
+        const labelFontSize = (cn === 'IDENTITY' || cn === 'REALITY') ? 13 : 16;
+        const charPx = labelFontSize * 0.72;
+        const padPx = 14;
         const textWidthPx = cn.length * charPx + padPx;
         // Inner-edge arc length is the conservative measure of available
         // horizontal space at the label's vertical position.
@@ -4741,7 +4749,7 @@ document.addEventListener('DOMContentLoaded', () => {
           labelEl.setAttribute('y', (ly - 4).toFixed(2));
           labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
           labelEl.setAttribute('font-weight', '700');
-          labelEl.setAttribute('font-size', '16');
+          labelEl.setAttribute('font-size', String(labelFontSize));
           labelEl.setAttribute('letter-spacing', '0.14em');
           labelEl.setAttribute('fill', '#1a1a1a');
           labelEl.setAttribute('text-anchor', 'middle');
