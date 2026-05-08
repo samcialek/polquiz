@@ -65,7 +65,8 @@ import { getContext } from "../historical/contexts.js";
 import { predictVote } from "../historical/respondentVoteChoice.js";
 import { ARCHETYPES } from "../config/archetypes.js";
 import { loadTurnoutModel, predictTurnoutProbability, type TurnoutLookup } from "./turnoutModel.js";
-import type { PartyID } from "../types.js";
+import type { PartyID, MoralCircleAffinity, MoralCircleScopedAffinities } from "../types.js";
+import { deriveMoralCircleAffinity } from "../moralCircle/affinity.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────
 
@@ -200,6 +201,61 @@ function engagementLevelFromValue(v: number): EngagementLevel {
   if (v < 5.0) return "casual";
   if (v < 7.5) return "engaged";
   return "highly-engaged";
+}
+
+/**
+ * Build a per-respondent ADR-007 `MoralCircleAffinity` from the existing
+ * mapper output. Mapping rules:
+ *   - `universalAffinity` ← legacy MOR continuous position (1=parochial,
+ *     5=universalist) projected onto 0..100. The legacy MOR scale measures
+ *     exactly what `universalAffinity` is supposed to capture, so it's the
+ *     least-bad standing-in until the calibration battery (T3) lands in
+ *     the live quiz and produces direct measurements.
+ *   - `scopedAffinities.<scope>` ← mapper boundary salience (0..3) projected
+ *     onto 0..100, clamped. The mapper's `political_camp` boundary maps to
+ *     the canonical merged `ideological` scope per the 2026-05-07 8→6
+ *     revision. (The mapper still emits `political_camp` separately; we
+ *     fold it into `ideological` here by taking the max of the two so the
+ *     stronger of the two political-in-group signals dominates.)
+ *
+ * Fallback boundaries (provenance.source !== "real_signal") collapse to
+ * null = "not meaningful to me". Per ADR-007, null derives 0 excess —
+ * NOT silent coercion to universal.
+ */
+function moralCircleAffinityFromMapper(s: SurveyPrismSignature): MoralCircleAffinity {
+  const morPos = expectedPos5(s.MOR.posPosterior); // 1..5
+  const universalAffinity = Math.round(((morPos - 1) / 4) * 100);
+
+  const mb = s.moralBoundaries;
+  const sal3to100 = (sal: number) => Math.max(0, Math.min(100, Math.round((sal / 3) * 100)));
+  const ideologicalRaw = mb.ideological.provenance.source === "real_signal"
+    ? sal3to100(mb.ideological.salience)
+    : null;
+  const politicalCampRaw = mb.political_camp.provenance.source === "real_signal"
+    ? sal3to100(mb.political_camp.salience)
+    : null;
+  // Merge per 2026-05-07: the canonical `ideological` scope absorbed
+  // `political_camp`. Take the max so a respondent with strong
+  // political-camp loading isn't washed out by a weak ideological loading.
+  let ideologicalMerged: number | null = null;
+  if (ideologicalRaw !== null && politicalCampRaw !== null) {
+    ideologicalMerged = Math.max(ideologicalRaw, politicalCampRaw);
+  } else if (ideologicalRaw !== null) {
+    ideologicalMerged = ideologicalRaw;
+  } else if (politicalCampRaw !== null) {
+    ideologicalMerged = politicalCampRaw;
+  }
+
+  const scopedAffinities: MoralCircleScopedAffinities = {
+    national:      mb.national.provenance.source      === "real_signal" ? sal3to100(mb.national.salience)      : null,
+    religious:     mb.religious.provenance.source     === "real_signal" ? sal3to100(mb.religious.salience)     : null,
+    ethnic_racial: mb.ethnic_racial.provenance.source === "real_signal" ? sal3to100(mb.ethnic_racial.salience) : null,
+    class:         mb.class.provenance.source         === "real_signal" ? sal3to100(mb.class.salience)         : null,
+    gender:        mb.gender.provenance.source        === "real_signal" ? sal3to100(mb.gender.salience)        : null,
+    ideological:   ideologicalMerged,
+  };
+
+  return deriveMoralCircleAffinity({ universalAffinity, scopedAffinities });
 }
 
 /** Mapper boundaries → MorBoundariesNodeState (engine field-name shim). */
@@ -411,6 +467,7 @@ export async function runCycleBacktest(
     const pidKey = (partyID === "D" || partyID === "I" || partyID === "R") ? partyID : "null";
     pidWeighted[pidKey] += r.weight;
     pidRaw[pidKey] += 1;
+    const moralCircleAffinity = moralCircleAffinityFromMapper(sig);
     const prediction = predictVote(
       nodeSig,
       candidates,
@@ -422,6 +479,7 @@ export async function runCycleBacktest(
       false,                    // strategicVoting
       dominant,
       morState,
+      moralCircleAffinity,      // ADR-007 T9: PF-equivalent path (and Step 5 ideologicalDistance contribution)
     );
 
     const w = r.weight;

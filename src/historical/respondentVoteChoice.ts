@@ -27,7 +27,7 @@ import type {
 } from "../types.js";
 import { getActivationMultiplier } from "./era-activations.js";
 import { getNonIdeologicalModifier, historicalToCanonical } from "./non-ideological-modifiers.js";
-import { morTargetVectorDistance, boundaryLoad } from "../engine/math.js";
+import { morTargetVectorDistance, boundaryLoad, moralCircleDistance } from "../engine/math.js";
 
 // Candidate-side TRB anchor encoding (P3.2, ADR-009). Each anchor predicts
 // different identity-driven appeal:
@@ -404,20 +404,31 @@ function ideologicalDistance(
   anchorDist?: TrbAnchorDist | null,
   dominantNode?: string | null,
   morBoundariesState?: MorBoundariesNodeState | null,
+  moralCircleAffinity?: import("../types.js").MoralCircleAffinity | null,
 ): number {
   let weightedSumSq = 0;
   let totalWeight = 0;
 
+  // ADR-007 Step 5: when both respondent and candidate carry moralCircle
+  // affinity, prefer the explicit-affinity geometry over the legacy
+  // boundary-vector geometry. Per ADR §"Candidate Matching Direction":
+  // moralCircleDistance blends universal-affinity scalar diff (0.40) +
+  // excess-vector L2 (0.40) + active-boundary Jaccard miss (0.20) — this
+  // captures "universalist with national lean" differently from
+  // "low-baseline with national strength", which the legacy
+  // morTargetVectorDistance cannot. Falls back to the ADR-006 morModule
+  // branch when either side lacks the new field.
+  const useMoralCircle = !!moralCircleAffinity && !!cand.moralCircle;
   // 6.E.3a per-call gate: when both respondent and candidate carry
   // morBoundaries, drop legacy MOR + skip the trbAnchor side-channel and
   // fold both into one morModule contribution computed below. Otherwise
   // (legacy state or candidate without the field) the old per-node MOR +
   // trbAnchor contributions still fire — protects callers that build
   // signatures by hand and don't initialize morBoundaries.
-  const useMorModule = !!morBoundariesState && !!cand.morBoundaries;
+  const useMorModule = !useMoralCircle && !!morBoundariesState && !!cand.morBoundaries;
 
   for (const node of SCORING_NODES) {
-    if (useMorModule && (MOR_MODULE_LEGACY_NODES as string[]).includes(node)) continue;
+    if ((useMorModule || useMoralCircle) && (MOR_MODULE_LEGACY_NODES as string[]).includes(node)) continue;
     const entry = sig[node];
     if (!entry) continue;
 
@@ -473,7 +484,25 @@ function ideologicalDistance(
   // respondent appearing to "match" any national-anchored candidate
   // regardless of membership), which is exactly the failure mode caught
   // on 6.E.3a review (Sam, 2026-04-30).
-  if (useMorModule) {
+  if (useMoralCircle) {
+    // ADR-007 Step 5: explicit-affinity geometry. moralCircleDistance
+    // returns ∈ [0, 1] (universal 0.40 + excess L2 0.40 + Jaccard 0.20),
+    // same range as morTargetVectorDistance. Map to pos² 0..16 scale via
+    // ×4 like the morModule branch. Salience-equivalent uses
+    // intensity03 (the moralCircle-side equivalent of morBoundariesState
+    // intensity), with the same era-multiplier proxy via "MOR".
+    const dist01 = moralCircleDistance(moralCircleAffinity!, cand.moralCircle!);
+    const diff = dist01 * 4;
+    const intensity03 = moralCircleAffinity!.intensity03;
+    const eraMult = getActivationMultiplier(ctx.year, "MOR");
+    const rawSal = intensity03 * eraMult;
+    let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+    if (dominantNode === "MOR" || dominantNode === "TRB" || dominantNode === "PF") {
+      effectiveSal *= 1.5;
+    }
+    weightedSumSq += effectiveSal * diff * diff;
+    totalWeight += effectiveSal;
+  } else if (useMorModule) {
     const respBd = morBoundariesState!.boundaries;
     const candBd = cand.morBoundaries!.boundaries;
     const vd = morTargetVectorDistance(respBd, candBd);
@@ -520,7 +549,7 @@ export function predictVote(
   const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
   const pfPos = pfFromMc ?? pfFromMor ?? sig.PF?.pos ?? null;
   const scored: CandidateScore[] = candidates.map(c => {
-    const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
+    const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState, moralCircleAffinity);
     const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
     const valuesDist = baseValuesDist + moralFloor.penalty;
     const nonIdeologicalModifier = NONIDEO_ENABLED
