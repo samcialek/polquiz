@@ -5025,57 +5025,36 @@ var PrismEngine = (() => {
     // Q78 — Speaker Appeal (AES authentic coverage)
     // Behavioral framing ("would you show up?") reveals aesthetic preference
     // without asking respondents to self-classify their communication style.
+    // Q78 speaker_appeal — converted from single_choice to best_worst (pick
+    // 2 most compelling, 2 least compelling) on 2026-05-08 per Sam's
+    // observation that picking ONE max throws away signal. With best/worst,
+    // each respondent gives 4 distinct AES-prototype data points (positive on
+    // top picks, negative on bottom picks) instead of 1.
+    //
+    // The "I don't really care" option (dont_care_style) is dropped — best_worst
+    // already encodes low AES salience naturally when the respondent's picks
+    // don't cluster on a coherent style.
     {
       id: 78,
       stage: "stage2",
       section: "V",
       promptShort: "speaker_appeal",
-      uiType: "single_choice",
-      quality: 0.92,
+      uiType: "best_worst",
+      bwMaxPicks: 2,
+      quality: 0.94,
       rewriteNeeded: false,
       touchProfile: [
-        { node: "AES", kind: "categorical", role: "category", weight: 0.88, touchType: "rhetorical_preference" },
-        { node: "AES", kind: "categorical", role: "salience", weight: 0.4, touchType: "rhetorical_preference" },
+        { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "rhetorical_maxdiff" },
+        { node: "AES", kind: "categorical", role: "salience", weight: 0.45, touchType: "rhetorical_maxdiff" },
         { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
       ],
-      optionEvidence: {
-        bridge_builder: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.statesman, sal: [0.1, 0.2, 0.35, 0.35] }
-          }
-        },
-        deep_expertise: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.technocrat, sal: [0.12, 0.23, 0.33, 0.32] }
-          }
-        },
-        community_voice: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.pastoral, sal: [0.1, 0.2, 0.35, 0.35] }
-          }
-        },
-        says_what_they_think: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.plainspoken, sal: [0.08, 0.15, 0.32, 0.45] },
-            EPS: { cat: EPS_PROTOTYPES.intuitionist }
-          }
-        },
-        calls_out_power: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.fighter, sal: [0.05, 0.12, 0.3, 0.53] }
-          }
-        },
-        big_picture: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.visionary, sal: [0.08, 0.15, 0.32, 0.45] }
-          }
-        },
-        // "I don't really care how politicians present themselves"
-        dont_care_style: {
-          categorical: {
-            AES: { cat: AES_PROTOTYPES.technocrat, sal: [0.55, 0.28, 0.12, 0.05] }
-          }
-        }
+      rankingMap: {
+        bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
+        deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
+        community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
+        says_what_they_think: { categorical: { AES: AES_PROTOTYPES.plainspoken, EPS: EPS_PROTOTYPES.intuitionist } },
+        calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
+        big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
       }
     },
     // Q79 — Expert Disagreement (EPS nihilist dedicated)
