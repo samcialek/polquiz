@@ -3182,16 +3182,14 @@ var PrismEngine = (() => {
         // Each highly-ranked identity boosts the matching scoped affinity to
         // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
         // Battery B scale). Below-the-fold ranks get no scoped evidence.
-        // Per 2026-05-07 6-scope revision: sexual_identity row folded into
-        // gender_identity (legacy `sexual` anchor → gender scope; LGBTQ Voter
-        // routes via gender excess + demo_lgbtq).
+        // Per 2026-05-08: sexual_identity row dropped per Sam — we don't
+        // probe sexual identity separately under the 6-scope model.
         national_identity: { trbAnchor: { national: 1 }, moralCircle: { scopedAffinities: { national: 70 } } },
         ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
         religious_identity: { trbAnchor: { religious: 1 }, moralCircle: { scopedAffinities: { religious: 70 } } },
         class_identity: { trbAnchor: { class: 1 }, moralCircle: { scopedAffinities: { class: 70 } } },
         ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
         gender_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
-        sexual_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
         // global_citizen: universalist signal — boosts universalAffinity
         // rather than any scoped affinity.
         global_citizen: { trbAnchor: { global: 1 }, moralCircle: { universal: 75 } }

@@ -4659,18 +4659,98 @@ document.addEventListener('DOMContentLoaded', () => {
       clusterPanels[clusterName] = panel;
     });
 
-    // v10: cluster-emphasis donut, normalized to 100%.
+    // 2026-05-08: cluster emphasis is computed from live respondent state.
+    // Per cluster, sum (gap × salience) over each constituent node, where:
+    //   gap     = how far the position is from neutral (0..1)
+    //   salience = how much the node matters to this respondent (0..1)
+    // For the IDENTITY cluster, the moral-circle module contributes via
+    // intensity03 × mean(activeExcess), and ENG (engagement) contributes via
+    // its position-as-activation (ADR-005). Sample data is kept as a
+    // fallback for archetype-only demos / legacy sessions.
     (function buildClusterDonut() {
       const CLUSTER_EMPHASIS_SAMPLES = {
         '056': { ENDS: 0.55, MEANS: 0.78, REALITY: 0.58, IDENTITY: 0.62 },
         '011': { ENDS: 0.78, MEANS: 0.42, REALITY: 0.65, IDENTITY: 0.88 },
         '088': { ENDS: 0.62, MEANS: 0.38, REALITY: 0.40, IDENTITY: 0.55 },
         '001': { ENDS: 0.70, MEANS: 0.80, REALITY: 0.55, IDENTITY: 0.45 },
-        // v27.6 — demo: ENDS-dominant individual, IDENTITY only 10%.
         '134': { ENDS: 0.50, MEANS: 0.25, REALITY: 0.15, IDENTITY: 0.10 },
       };
       const CLUSTER_EMPHASIS_DEFAULT = { ENDS: 0.55, MEANS: 0.55, REALITY: 0.5, IDENTITY: 0.5 };
-      const emphasisRaw = CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT;
+
+      // Cluster → constituent nodes. Mirrors nodeLabels.
+      const CLUSTER_NODES = {
+        ENDS:    { continuous: ['MAT', 'CD', 'CU'],         categorical: [] },
+        MEANS:   { continuous: ['PRO', 'COM'],              categorical: ['EPS', 'AES'] },
+        REALITY: { continuous: ['ZS', 'ONT_H', 'ONT_S'],    categorical: [] },
+        IDENTITY:{ continuous: ['ENG'],                     categorical: [] },
+      };
+
+      function computeLiveEmphasis(rs) {
+        if (!rs || !rs.continuous) return null;
+        const raw = {};
+        for (const cn of clusterOrder) {
+          let sum = 0;
+          let count = 0;
+          for (const nid of CLUSTER_NODES[cn].continuous) {
+            const n = rs.continuous[nid];
+            if (!n) continue;
+            const isSelf = (nid === 'ENG' || nid === 'PF' || nid === 'TRB');
+            // SELF-cluster nodes (ENG): position IS activation per ADR-005.
+            // Treat gap = (pos - 1) / 4, salience = same (so contribution = gap²).
+            if (isSelf) {
+              const pos = (n.expectedPos != null) ? n.expectedPos : 3;
+              const g = Math.max(0, Math.min(1, (pos - 1) / 4));
+              sum += g * g;
+              count += 1;
+              continue;
+            }
+            // Non-SELF: gap from neutral × salience.
+            const pos = (n.expectedPos != null) ? n.expectedPos : 3;
+            const sal = (n.salience != null) ? n.salience / 3 : 0.5;
+            const g = Math.abs(pos - 3) / 2;
+            sum += Math.max(0, Math.min(1, g)) * Math.max(0, Math.min(1, sal));
+            count += 1;
+          }
+          for (const nid of CLUSTER_NODES[cn].categorical) {
+            const n = rs.categorical && rs.categorical[nid];
+            if (!n || !Array.isArray(n.catDist)) continue;
+            const maxP = Math.max.apply(null, n.catDist);
+            const g = Math.max(0, Math.min(1, (maxP - 1/6) / (5/6))); // 0..1
+            const sal = (n.salience != null) ? n.salience / 3 : 0.5;
+            sum += g * Math.max(0, Math.min(1, sal));
+            count += 1;
+          }
+          // IDENTITY cluster also gets a contribution from the moral-circle
+          // module: intensity03 × mean(activeExcess/100). When the module
+          // is materialized, this is a real signal anchored in 8+ questions
+          // (Battery A + B + Q60 + Q102 + Q8 + Q213 priors). When null, the
+          // cluster falls back to ENG alone.
+          if (cn === 'IDENTITY' && rs.moralCircle && rs.moralCircle.affinity) {
+            const aff = rs.moralCircle.affinity;
+            const ints = (aff.intensity03 != null) ? aff.intensity03 / 3 : 0;
+            // Mean active excess as a 0..1 signal; null/undefined excess = 0.
+            const scopes = ['national','religious','ethnic_racial','class','gender','ideological'];
+            let exSum = 0, exN = 0;
+            for (const s of scopes) {
+              const ex = aff.excessAffinities && aff.excessAffinities[s];
+              if (ex != null) { exSum += ex; exN += 1; }
+            }
+            const meanEx = exN > 0 ? (exSum / exN) / 100 : 0;
+            // Weight moral-circle contribution heavier than a single node
+            // (it represents 6 scopes + universal — the IDENTITY cluster's
+            // primary signal). Multiplier of 3 = "3 nodes' worth."
+            sum += ints * Math.max(meanEx, 0.15) * 3;
+            count += 3;
+          }
+          raw[cn] = count > 0 ? sum / count : 0;
+        }
+        return raw;
+      }
+
+      const liveRaw = computeLiveEmphasis(respondentState);
+      const emphasisRaw = liveRaw && Object.values(liveRaw).some(v => v > 0)
+        ? liveRaw
+        : (CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT);
       // Normalize so the four wedges sum to 100%.
       const totalRaw = clusterOrder.reduce((s, k) => s + (emphasisRaw[k] || 0), 0);
       const emphasis = {};
