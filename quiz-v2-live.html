@@ -3131,10 +3131,13 @@ function finishResults() {
         }
     }
 
-    // Redirect to results page. If a friend prediction is staged in
-    // localStorage (set by predict.html), append ?compare=1 so results-live.html
-    // routes to the friend-vs-user comparison view instead of standard results.
-    let resultsUrl = 'results-live.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
+    // Redirect to results page. The canonical prototype is
+    // examples/results-prototype-v27.html (the iteration with the
+    // moral-circle sunburst); results-live.html is the older minimal page.
+    // If a friend prediction is staged in localStorage (set by predict.html),
+    // append ?compare=1 so the results page routes to the friend-vs-user
+    // comparison view instead of standard results.
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
