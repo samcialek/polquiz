@@ -132,29 +132,30 @@ function anchorDistanceContribution(
 // Party-mapping function below handles historical parties (Democratic-Republican
 // counts as 'D' for early-19th-century Jeffersonian Democrats; Whig and
 // National Republican count as the proto-Republican coalition).
-// Default 1.00 (was 0.40 pre-2026-05-08). 2.5× bump from the CCES
-// calibration sweep — the dominant lever in the 18-config grid. At
-// PARTY_LOYALTY_BASE=0.40, cross-pressured partisans (R-leaners on
-// centrist policy positions, D-leaners on the same) drifted toward
-// whichever candidate was issue-closer, which on a CCES-weighted sample
-// systematically over-weights D because population-center policy
-// positions are closer to D candidates than to recent R candidates.
-// At 1.00, PF=5 partisans face a 2.0× distance multiplier to out-of-
-// party candidates (was 1.4×), pulling cross-pressured voters back to
-// their party. Closes ~1pp of the 5-cycle avg gap on its own; combines
-// with SALIENCE_POWER=1.5 for the full 1.37pp improvement.
+// Default 3.00 (was 1.00 post-Round-1, was 0.40 pre-2026-05-08). Round-2
+// sweep on 4-way TV distance pushed this to 3.0 (was at the upper edge
+// of the grid; consider extending if Round-3 lands).
 //
-// Live-quiz behavioral effect: strong partisan respondents are routed
-// to their party's nearest candidate even when issue distance favors
-// the other party. This is closer to observed real-world partisan
-// behavior; the prior 0.40 value was tuned against archetype-centroid
-// distance distributions that don't reflect CCES-population partisan
-// pull.
+// At 3.0, PF=5 strong partisans face a 1 + 3.0 = 4.0× distance multiplier
+// to out-of-party candidates (was 2.0× at loyalty=1.0, 1.4× at loyalty=0.4
+// pre-refit). PF=3 (moderate partisans) face 1 + 3.0 × 0.6 = 2.8× — also
+// strong. This is empirically what CCES partisan vote-choice patterns
+// require: the population-center policy positions on which the model's
+// issue-distance compute operates are systematically closer to D
+// candidates, so without a strong loyalty multiplier the issue-distance
+// term routes most voters to D regardless of their pid7 self-ID.
+//
+// Live-quiz behavioral consequence: strong partisans are now routed to
+// their party even when issue distance moderately favors the other party.
+// This is closer to observed real-world partisan behavior — the
+// "I disagree with my party on X but I still vote for them" pattern —
+// than the previous values, which were tuned against archetype-centroid
+// distance distributions rather than CCES populations.
 const PARTY_LOYALTY_BASE = (() => {
   const env = process.env.PRISM_PARTY_LOYALTY_BASE;
-  if (env === undefined) return 1.00;
+  if (env === undefined) return 3.00;
   const n = Number(env);
-  return Number.isFinite(n) && n >= 0 ? n : 1.00;
+  return Number.isFinite(n) && n >= 0 ? n : 3.00;
 })();
 
 function candidatePartyToCanonical(party: string): "D" | "R" | "T" | "O" {
@@ -315,19 +316,17 @@ export interface ElectionPrediction {
 // weight that matches real single-issue behavior. SALIENCE_POWER=2 squares
 // the weight, so sal=3 issues dominate (9× vs 1×) while sal=0 still drops
 // cleanly to zero contribution.
-// Default 1.5 (was 2.0 pre-2026-05-08). Lowered from squared to ^1.5 by the
-// CCES calibration sweep (`respondent-vote-choice-calibration.{md,json}`):
-// at SALIENCE_POWER=2, high-salience nodes that happen to lean D dominated
-// the distance compute and amplified the systematic D-over-prediction; at
-// 1.5 the contribution stays peaked but doesn't fully square out lower-
-// salience nodes. Best 18-config grid result combined this with PARTY_
-// LOYALTY_BASE=1.00 for an avg-gap drop from 9.79pp → 8.42pp across 5
-// cycles. Env override still available for future sweeps.
+// Default 1.3 (was 1.5 post-Round-1, was 2.0 pre-2026-05-08). Tightened
+// further by the Round-2 sweep (2026-05-09) which optimized on the proper
+// 4-way TV distance metric instead of the 3-way shares-of-voters absMean.
+// Lower exponent damps high-salience nodes from dominating; combined with
+// PARTY_LOYALTY_BASE=3.0 for an avg-gap drop from 9.20pp TV → 6.85pp TV
+// and plurality match 2/5 → 4/5.
 const SALIENCE_POWER = (() => {
   const env = process.env.PRISM_SALIENCE_POWER;
-  if (env === undefined) return 1.5;
+  if (env === undefined) return 1.3;
   const n = Number(env);
-  return Number.isFinite(n) && n > 0 ? n : 1.5;
+  return Number.isFinite(n) && n > 0 ? n : 1.3;
 })();
 
 // Categorical-node (EPS/AES) weight in the vote-distance metric. Per ADR-009

@@ -44,11 +44,19 @@ interface SweepConfig {
   catBase: number;
 }
 
-// Grid: 3 × 3 × 2 = 18 configs. ~35s per run × 18 = ~10 minutes wallclock.
+// Round 2 — extended grid (2026-05-09). The first sweep capped PARTY_LOYALTY
+// at 1.0 and that value won at the edge of the grid; extending up to 3.0 to
+// find the true optimum. CATEGORICAL_BASE_SALIENCE didn't move things last
+// round so it's pinned at 0.6 to halve the search. Optimization target also
+// switched from sharesOfVoters.absMean to fourWayElectorateTVDistance per
+// the dashboard reframe — this is the honest metric (abstain in the
+// denominator).
+//
+// Grid: 3 × 6 × 1 = 18 configs. ~35s per run × 18 = ~10 minutes wallclock.
 const GRID: SweepConfig[] = [];
-for (const salPower of [1.5, 2.0, 2.5]) {
-  for (const partyLoyalty of [0.40, 0.70, 1.00]) {
-    for (const catBase of [0.40, 0.60]) {
+for (const salPower of [1.3, 1.5, 1.8]) {
+  for (const partyLoyalty of [1.0, 1.3, 1.6, 2.0, 2.5, 3.0]) {
+    for (const catBase of [0.6]) {
       GRID.push({ salPower, partyLoyalty, catBase });
     }
   }
@@ -60,17 +68,21 @@ interface CycleResult {
   actualD: number;
   predR: number;
   actualR: number;
-  gap: number;
+  votersGap: number;            // 3-way shares-of-voters absMean (legacy metric)
+  fourWayTV: number;             // 4-way share-of-electorate TV distance (honest metric)
   predAbstain: number;
   actualAbstain: number;
+  pluralityMatch: boolean;
 }
 
 interface ConfigResult {
   config: SweepConfig;
   cycles: CycleResult[];
-  avgGap: number;
-  worstGap: number;
+  avgVotersGap: number;          // legacy aggregate
+  avgFourWayTV: number;          // optimization target
+  worstFourWayTV: number;
   winnersCorrect: number;
+  pluralityHits: number;          // 4-way plurality match count
 }
 
 function runConfig(cfg: SweepConfig): ConfigResult {
@@ -96,16 +108,20 @@ function runConfig(cfg: SweepConfig): ConfigResult {
     actualD: c.actual.sharesOfVoters.D,
     predR: c.predicted.sharesOfVoters.R,
     actualR: c.actual.sharesOfVoters.R,
-    gap: c.gaps.sharesOfVoters.absMean,
+    votersGap: c.gaps.sharesOfVoters.absMean,
+    fourWayTV: c.gaps.fourWayElectorateTVDistance,
     predAbstain: c.predicted.sharesOfElectorate.Abstain,
     actualAbstain: c.actual.sharesOfElectorate.Abstain,
+    pluralityMatch: c.pluralityMatch,
   }));
-  const avgGap = cycles.reduce((s, c) => s + c.gap, 0) / cycles.length;
-  const worstGap = Math.max(...cycles.map(c => c.gap));
+  const avgVotersGap = cycles.reduce((s, c) => s + c.votersGap, 0) / cycles.length;
+  const avgFourWayTV = cycles.reduce((s, c) => s + c.fourWayTV, 0) / cycles.length;
+  const worstFourWayTV = Math.max(...cycles.map(c => c.fourWayTV));
   const winnersCorrect = cycles.filter(c =>
     (c.predD > c.predR) === (c.actualD > c.actualR)
   ).length;
-  return { config: cfg, cycles, avgGap, worstGap, winnersCorrect };
+  const pluralityHits = cycles.filter(c => c.pluralityMatch).length;
+  return { config: cfg, cycles, avgVotersGap, avgFourWayTV, worstFourWayTV, winnersCorrect, pluralityHits };
 }
 
 async function main() {
@@ -117,25 +133,28 @@ async function main() {
     const t0 = Date.now();
     process.stdout.write(`[${i + 1}/${GRID.length}] sal=${cfg.salPower} loyalty=${cfg.partyLoyalty} catBase=${cfg.catBase} ... `);
     const r = runConfig(cfg);
-    process.stdout.write(`avg=${(r.avgGap * 100).toFixed(2)}pp worst=${(r.worstGap * 100).toFixed(2)}pp winners=${r.winnersCorrect}/5 (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`);
+    process.stdout.write(`TV=${(r.avgFourWayTV * 100).toFixed(2)}pp worstTV=${(r.worstFourWayTV * 100).toFixed(2)}pp plur=${r.pluralityHits}/5 winners=${r.winnersCorrect}/5 (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`);
     results.push(r);
   }
   const totalElapsed = Date.now() - totalT0;
   console.log(`\nTotal: ${(totalElapsed / 1000 / 60).toFixed(1)} min`);
 
-  // Sort by avg gap.
-  results.sort((a, b) => a.avgGap - b.avgGap);
+  // Sort by avg 4-way TV distance (the honest metric).
+  results.sort((a, b) => a.avgFourWayTV - b.avgFourWayTV);
+  // Current defaults (post-Round-1 refit) are sal=1.5, loyalty=1.0, catBase=0.6.
   const baseline = results.find(r =>
-    r.config.salPower === 2.0 && r.config.partyLoyalty === 0.40 && r.config.catBase === 0.60
+    r.config.salPower === 1.5 && r.config.partyLoyalty === 1.00 && r.config.catBase === 0.60
   );
   const best = results[0]!;
 
-  console.log(`\n=== TOP 5 CONFIGS BY AVG GAP ===`);
+  console.log(`\n=== TOP 5 CONFIGS BY 4-WAY TV DISTANCE ===`);
   for (const r of results.slice(0, 5)) {
-    console.log(`  sal=${r.config.salPower} loyalty=${r.config.partyLoyalty} catBase=${r.config.catBase}: avg=${(r.avgGap*100).toFixed(2)}pp worst=${(r.worstGap*100).toFixed(2)}pp winners=${r.winnersCorrect}/5`);
+    console.log(`  sal=${r.config.salPower} loyalty=${r.config.partyLoyalty} catBase=${r.config.catBase}: TV=${(r.avgFourWayTV*100).toFixed(2)}pp worstTV=${(r.worstFourWayTV*100).toFixed(2)}pp plurality=${r.pluralityHits}/5 winners=${r.winnersCorrect}/5`);
   }
-  console.log(`\nBASELINE (current defaults): avg=${(baseline!.avgGap*100).toFixed(2)}pp winners=${baseline!.winnersCorrect}/5`);
-  console.log(`BEST CONFIG:                  avg=${(best.avgGap*100).toFixed(2)}pp winners=${best.winnersCorrect}/5  Δ=${((best.avgGap - baseline!.avgGap) * 100).toFixed(2)}pp`);
+  if (baseline) {
+    console.log(`\nBASELINE (post-Round-1 defaults sal=1.5 loyalty=1.0): TV=${(baseline.avgFourWayTV*100).toFixed(2)}pp plurality=${baseline.pluralityHits}/5`);
+  }
+  console.log(`BEST CONFIG:                                          TV=${(best.avgFourWayTV*100).toFixed(2)}pp plurality=${best.pluralityHits}/5  Δ=${baseline ? ((best.avgFourWayTV - baseline.avgFourWayTV) * 100).toFixed(2) + "pp" : "n/a"}`);
 
   // Write JSON + MD.
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -143,7 +162,8 @@ async function main() {
     generated_at: startedAt,
     elapsed_ms: totalElapsed,
     grid_size: GRID.length,
-    baseline_config: { salPower: 2.0, partyLoyalty: 0.40, catBase: 0.60 },
+    optimization_target: "fourWayElectorateTVDistance",
+    baseline_config: { salPower: 1.5, partyLoyalty: 1.00, catBase: 0.60 },
     results,
   }, null, 2));
 
@@ -152,25 +172,29 @@ async function main() {
   md.push("");
   md.push(`Generated ${startedAt}; ${(totalElapsed / 1000 / 60).toFixed(1)} min wallclock; ${GRID.length} configs.`);
   md.push("");
-  md.push(`**Baseline (current defaults):** sal=2.0 / loyalty=0.40 / catBase=0.60 → avg gap ${(baseline!.avgGap * 100).toFixed(2)}pp, winners ${baseline!.winnersCorrect}/5`);
+  md.push(`**Optimization target:** average 4-way TV distance over {D, R, Other, Abstain} share-of-electorate.`);
   md.push("");
-  md.push(`**Best config:** sal=${best.config.salPower} / loyalty=${best.config.partyLoyalty} / catBase=${best.config.catBase} → avg gap ${(best.avgGap * 100).toFixed(2)}pp, winners ${best.winnersCorrect}/5 (Δ ${((best.avgGap - baseline!.avgGap) * 100).toFixed(2)}pp)`);
+  if (baseline) {
+    md.push(`**Baseline (post-Round-1 defaults):** sal=1.5 / loyalty=1.0 / catBase=0.6 → TV ${(baseline.avgFourWayTV * 100).toFixed(2)}pp, plurality ${baseline.pluralityHits}/5, winners ${baseline.winnersCorrect}/5`);
+    md.push("");
+  }
+  md.push(`**Best config:** sal=${best.config.salPower} / loyalty=${best.config.partyLoyalty} / catBase=${best.config.catBase} → TV ${(best.avgFourWayTV * 100).toFixed(2)}pp, plurality ${best.pluralityHits}/5, winners ${best.winnersCorrect}/5 ${baseline ? `(Δ ${((best.avgFourWayTV - baseline.avgFourWayTV) * 100).toFixed(2)}pp TV)` : ""}`);
   md.push("");
-  md.push("## All configs sorted by avg gap");
+  md.push("## All configs sorted by 4-way TV distance");
   md.push("");
-  md.push("| sal | loyalty | catBase | 2008 | 2012 | 2016 | 2020 | 2024 | avg | worst | winners |");
-  md.push("|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|");
+  md.push("| sal | loyalty | catBase | 2008 | 2012 | 2016 | 2020 | 2024 | avg TV | worst | plurality | winners |");
+  md.push("|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|");
   for (const r of results) {
-    const cells = r.cycles.map(c => `${(c.gap*100).toFixed(1)}`).join(" | ");
-    md.push(`| ${r.config.salPower} | ${r.config.partyLoyalty} | ${r.config.catBase} | ${cells} | **${(r.avgGap*100).toFixed(2)}** | ${(r.worstGap*100).toFixed(2)} | ${r.winnersCorrect}/5 |`);
+    const cells = r.cycles.map(c => `${(c.fourWayTV*100).toFixed(1)}`).join(" | ");
+    md.push(`| ${r.config.salPower} | ${r.config.partyLoyalty} | ${r.config.catBase} | ${cells} | **${(r.avgFourWayTV*100).toFixed(2)}** | ${(r.worstFourWayTV*100).toFixed(2)} | ${r.pluralityHits}/5 | ${r.winnersCorrect}/5 |`);
   }
   md.push("");
-  md.push("## Per-cycle predicted-D for the best config");
+  md.push("## Per-cycle for the best config");
   md.push("");
-  md.push("| Year | Pred D | Actual D | Pred R | Actual R | gap | Pred Abst | Actual Abst |");
-  md.push("|---|---:|---:|---:|---:|---:|---:|---:|");
+  md.push("| Year | Pred D | Actual D | Pred R | Actual R | TV | Pred Abst | Actual Abst | Plurality |");
+  md.push("|---|---:|---:|---:|---:|---:|---:|---:|:---|");
   for (const c of best.cycles) {
-    md.push(`| ${c.year} | ${(c.predD*100).toFixed(1)}% | ${(c.actualD*100).toFixed(1)}% | ${(c.predR*100).toFixed(1)}% | ${(c.actualR*100).toFixed(1)}% | ${(c.gap*100).toFixed(2)}pp | ${(c.predAbstain*100).toFixed(1)}% | ${(c.actualAbstain*100).toFixed(1)}% |`);
+    md.push(`| ${c.year} | ${(c.predD*100).toFixed(1)}% | ${(c.actualD*100).toFixed(1)}% | ${(c.predR*100).toFixed(1)}% | ${(c.actualR*100).toFixed(1)}% | ${(c.fourWayTV*100).toFixed(2)}pp | ${(c.predAbstain*100).toFixed(1)}% | ${(c.actualAbstain*100).toFixed(1)}% | ${c.pluralityMatch ? "✓" : "✗"} |`);
   }
   md.push("");
   fs.writeFileSync(OUT_MD, md.join("\n"));

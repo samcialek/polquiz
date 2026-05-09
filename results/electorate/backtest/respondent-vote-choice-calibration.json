@@ -1,13 +1,1198 @@
 {
-  "generated_at": "2026-05-08T21:28:14.359Z",
-  "elapsed_ms": 587005,
+  "generated_at": "2026-05-09T04:24:18.931Z",
+  "elapsed_ms": 621562,
   "grid_size": 18,
+  "optimization_target": "fourWayElectorateTVDistance",
   "baseline_config": {
-    "salPower": 2,
-    "partyLoyalty": 0.4,
+    "salPower": 1.5,
+    "partyLoyalty": 1,
     "catBase": 0.6
   },
   "results": [
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6052214648990553,
+          "actualD": 0.5293,
+          "predR": 0.3947785351009446,
+          "actualR": 0.4565,
+          "votersGap": 0.05061430993270355,
+          "fourWayTV": 0.048415852262548326,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2012,
+          "predD": 0.6305638575017588,
+          "actualD": 0.5106,
+          "predR": 0.36943614249824125,
+          "actualR": 0.472,
+          "votersGap": 0.07997590500117248,
+          "fourWayTV": 0.1013601523071869,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5729488201097364,
+          "actualD": 0.4818,
+          "predR": 0.4160925211149659,
+          "actualR": 0.4609,
+          "votersGap": 0.06076588007315751,
+          "fourWayTV": 0.06662326906263949,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5834983198731164,
+          "actualD": 0.5131,
+          "predR": 0.41650168012688354,
+          "actualR": 0.4686,
+          "votersGap": 0.04693221324874428,
+          "fourWayTV": 0.06272591124347696,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5673837844660369,
+          "actualD": 0.4832,
+          "predR": 0.4326162155339631,
+          "actualR": 0.498,
+          "votersGap": 0.05612252297735789,
+          "fourWayTV": 0.06324859432040905,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.058882166246627135,
+      "avgFourWayTV": 0.06847475583925215,
+      "worstFourWayTV": 0.1013601523071869,
+      "winnersCorrect": 4,
+      "pluralityHits": 4
+    },
+    {
+      "config": {
+        "salPower": 1.5,
+        "partyLoyalty": 3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6142431330810005,
+          "actualD": 0.5293,
+          "predR": 0.38575686691899946,
+          "actualR": 0.4565,
+          "votersGap": 0.056628755387333696,
+          "fourWayTV": 0.05399406031255491,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2012,
+          "predD": 0.6380285603040776,
+          "actualD": 0.5106,
+          "predR": 0.3619714396959225,
+          "actualR": 0.472,
+          "votersGap": 0.08495237353605167,
+          "fourWayTV": 0.10606770859666177,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5733714238773163,
+          "actualD": 0.4818,
+          "predR": 0.41539127394311254,
+          "actualR": 0.4609,
+          "votersGap": 0.061047615918210875,
+          "fourWayTV": 0.06688291940933751,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5847610675081587,
+          "actualD": 0.5131,
+          "predR": 0.41523893249184124,
+          "actualR": 0.4686,
+          "votersGap": 0.04777404500543916,
+          "fourWayTV": 0.06350166897955015,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5673784748577859,
+          "actualD": 0.4832,
+          "predR": 0.4326215251422141,
+          "actualR": 0.498,
+          "votersGap": 0.05611898323852391,
+          "fourWayTV": 0.06324533207251812,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06130435461711187,
+      "avgFourWayTV": 0.0707383378741245,
+      "worstFourWayTV": 0.10606770859666177,
+      "winnersCorrect": 4,
+      "pluralityHits": 4
+    },
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 2.5,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.614750945513043,
+          "actualD": 0.5293,
+          "predR": 0.385249054486957,
+          "actualR": 0.4565,
+          "votersGap": 0.05696729700869533,
+          "fourWayTV": 0.05430804696548701,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2012,
+          "predD": 0.6386338992196893,
+          "actualD": 0.5106,
+          "predR": 0.36136610078031084,
+          "actualR": 0.472,
+          "votersGap": 0.0853559328131261,
+          "fourWayTV": 0.10644946083716174,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5770259359870558,
+          "actualD": 0.4818,
+          "predR": 0.4118856656818829,
+          "actualR": 0.4609,
+          "votersGap": 0.06348395732470387,
+          "fourWayTV": 0.06912827406327171,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5910399896459588,
+          "actualD": 0.5131,
+          "predR": 0.4089600103540412,
+          "actualR": 0.4686,
+          "votersGap": 0.05195999309730587,
+          "fourWayTV": 0.06735906873816178,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.571110803916449,
+          "actualD": 0.4832,
+          "predR": 0.4288891960835509,
+          "actualR": 0.498,
+          "votersGap": 0.05860720261096599,
+          "fourWayTV": 0.06553849232548509,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06327487657095943,
+      "avgFourWayTV": 0.07255666858591346,
+      "worstFourWayTV": 0.10644946083716174,
+      "winnersCorrect": 4,
+      "pluralityHits": 4
+    },
+    {
+      "config": {
+        "salPower": 1.8,
+        "partyLoyalty": 3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.627835736492356,
+          "actualD": 0.5293,
+          "predR": 0.37216426350764403,
+          "actualR": 0.4565,
+          "votersGap": 0.065690490994904,
+          "fourWayTV": 0.06239853365835042,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6467860888192704,
+          "actualD": 0.5106,
+          "predR": 0.35321391118072964,
+          "actualR": 0.472,
+          "votersGap": 0.09079072587951353,
+          "fourWayTV": 0.11159057528455535,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5730549193166087,
+          "actualD": 0.4818,
+          "predR": 0.4148214100207329,
+          "actualR": 0.4609,
+          "votersGap": 0.06083661287773912,
+          "fourWayTV": 0.06668845706606541,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5870822316179442,
+          "actualD": 0.5131,
+          "predR": 0.41291776838205596,
+          "actualR": 0.4686,
+          "votersGap": 0.049321487745296065,
+          "fourWayTV": 0.06492765542758744,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.56867308005524,
+          "actualD": 0.4832,
+          "predR": 0.43132691994475997,
+          "actualR": 0.498,
+          "votersGap": 0.05698205337015997,
+          "fourWayTV": 0.06404074349938449,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06472427417352253,
+      "avgFourWayTV": 0.07392919298718861,
+      "worstFourWayTV": 0.11159057528455535,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.5,
+        "partyLoyalty": 2.5,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6240178397729074,
+          "actualD": 0.5293,
+          "predR": 0.37598216022709263,
+          "actualR": 0.4565,
+          "votersGap": 0.06314522651527159,
+          "fourWayTV": 0.06003788130614547,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6447527635627903,
+          "actualD": 0.5106,
+          "predR": 0.35524723643720985,
+          "actualR": 0.472,
+          "votersGap": 0.08943517570852678,
+          "fourWayTV": 0.11030827465542407,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.576002056328446,
+          "actualD": 0.4818,
+          "predR": 0.4125963209674698,
+          "actualR": 0.4609,
+          "votersGap": 0.06280137088563065,
+          "fourWayTV": 0.06849919612140326,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5920497139913508,
+          "actualD": 0.5131,
+          "predR": 0.4079502860086493,
+          "actualR": 0.4686,
+          "votersGap": 0.05263314266090049,
+          "fourWayTV": 0.06797938387517094,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5707981789607236,
+          "actualD": 0.4832,
+          "predR": 0.4292018210392764,
+          "actualR": 0.498,
+          "votersGap": 0.0583987859738157,
+          "fourWayTV": 0.06534641410534767,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06528274034882904,
+      "avgFourWayTV": 0.07443423001269829,
+      "worstFourWayTV": 0.11030827465542407,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.8,
+        "partyLoyalty": 2.5,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6378359897728657,
+          "actualD": 0.5293,
+          "predR": 0.3621640102271343,
+          "actualR": 0.4565,
+          "votersGap": 0.0723573265152438,
+          "fourWayTV": 0.06858181287306186,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6520406167471974,
+          "actualD": 0.5106,
+          "predR": 0.3479593832528026,
+          "actualR": 0.472,
+          "votersGap": 0.09429374449813155,
+          "fourWayTV": 0.11490430212009006,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5744863103648198,
+          "actualD": 0.4818,
+          "predR": 0.4130497759604953,
+          "actualR": 0.4609,
+          "votersGap": 0.061790873576546564,
+          "fourWayTV": 0.06756791250503777,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.5940964033042305,
+          "actualD": 0.5131,
+          "predR": 0.4059035966957695,
+          "actualR": 0.4686,
+          "votersGap": 0.05399760220282035,
+          "fourWayTV": 0.06923674918217598,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5707136704018159,
+          "actualD": 0.4832,
+          "predR": 0.42928632959818414,
+          "actualR": 0.498,
+          "votersGap": 0.05834244693454388,
+          "fourWayTV": 0.0652944916555109,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06815639874545723,
+      "avgFourWayTV": 0.07711705366717532,
+      "worstFourWayTV": 0.11490430212009006,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 2,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.626400352574679,
+          "actualD": 0.5293,
+          "predR": 0.3735996474253211,
+          "actualR": 0.4565,
+          "votersGap": 0.06473356838311929,
+          "fourWayTV": 0.06151101818305729,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6467367678162963,
+          "actualD": 0.5106,
+          "predR": 0.35326323218370365,
+          "actualR": 0.472,
+          "votersGap": 0.09075784521086418,
+          "fourWayTV": 0.11155947138076946,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5811693683966186,
+          "actualD": 0.4818,
+          "predR": 0.40739566256810206,
+          "actualR": 0.4609,
+          "votersGap": 0.06624624559774568,
+          "fourWayTV": 0.07167402434804411,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6012550053426433,
+          "actualD": 0.5131,
+          "predR": 0.39874499465735663,
+          "actualR": 0.4686,
+          "votersGap": 0.05877000356176223,
+          "fourWayTV": 0.073634572434153,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5750996749004316,
+          "actualD": 0.4832,
+          "predR": 0.4249003250995684,
+          "actualR": 0.498,
+          "votersGap": 0.061266449933621035,
+          "fourWayTV": 0.06798927312506392,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.06835482253742248,
+      "avgFourWayTV": 0.07727367189421755,
+      "worstFourWayTV": 0.11155947138076946,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.5,
+        "partyLoyalty": 2,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6361306218481966,
+          "actualD": 0.5293,
+          "predR": 0.36386937815180337,
+          "actualR": 0.4565,
+          "votersGap": 0.07122041456546441,
+          "fourWayTV": 0.06752736297601844,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6516986339939237,
+          "actualD": 0.5106,
+          "predR": 0.3483013660060763,
+          "actualR": 0.472,
+          "votersGap": 0.09406575599594909,
+          "fourWayTV": 0.11468863337831979,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5797475254374296,
+          "actualD": 0.4818,
+          "predR": 0.4085532823861892,
+          "actualR": 0.4609,
+          "votersGap": 0.06529835029161969,
+          "fourWayTV": 0.07080043531352698,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6027062796869737,
+          "actualD": 0.5131,
+          "predR": 0.3972937203130263,
+          "actualR": 0.4686,
+          "votersGap": 0.05973751979131579,
+          "fourWayTV": 0.07452614987095502,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5753218081215141,
+          "actualD": 0.4832,
+          "predR": 0.4246781918784858,
+          "actualR": 0.498,
+          "votersGap": 0.06141453874767607,
+          "fourWayTV": 0.06812575280449301,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07034731587840501,
+      "avgFourWayTV": 0.07913366686866265,
+      "worstFourWayTV": 0.11468863337831979,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.8,
+        "partyLoyalty": 2,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6513214678921722,
+          "actualD": 0.5293,
+          "predR": 0.34867853210782784,
+          "actualR": 0.4565,
+          "votersGap": 0.08134764526144811,
+          "fourWayTV": 0.07692004933733891,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6585343052865444,
+          "actualD": 0.5106,
+          "predR": 0.3414656947134557,
+          "actualR": 0.472,
+          "votersGap": 0.09862287019102954,
+          "fourWayTV": 0.1189994958786144,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5757842476786931,
+          "actualD": 0.4818,
+          "predR": 0.41107732730131286,
+          "actualR": 0.4609,
+          "votersGap": 0.06265616511912868,
+          "fourWayTV": 0.06836537315113964,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6046245471903827,
+          "actualD": 0.5131,
+          "predR": 0.3953754528096173,
+          "actualR": 0.4686,
+          "votersGap": 0.06101636479358848,
+          "fourWayTV": 0.07570462038583156,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5742452271387524,
+          "actualD": 0.4832,
+          "predR": 0.4257547728612475,
+          "actualR": 0.498,
+          "votersGap": 0.06069681809250158,
+          "fourWayTV": 0.06746429646450641,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07286797269153929,
+      "avgFourWayTV": 0.08149076704348618,
+      "worstFourWayTV": 0.1189994958786144,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 1.6,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.639441938354681,
+          "actualD": 0.5293,
+          "predR": 0.3605580616453191,
+          "actualR": 0.4565,
+          "votersGap": 0.07342795890312064,
+          "fourWayTV": 0.06957479057145544,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.654013468899418,
+          "actualD": 0.5106,
+          "predR": 0.34598653110058186,
+          "actualR": 0.472,
+          "votersGap": 0.09560897926627869,
+          "fourWayTV": 0.11614846586020654,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5839450896813193,
+          "actualD": 0.4818,
+          "predR": 0.40414900486141864,
+          "actualR": 0.4609,
+          "votersGap": 0.06809672645421287,
+          "fourWayTV": 0.07337944452930911,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6127902982162404,
+          "actualD": 0.5131,
+          "predR": 0.3872097017837597,
+          "actualR": 0.4686,
+          "votersGap": 0.06646019881082692,
+          "fourWayTV": 0.08072117662665515,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.580135430835904,
+          "actualD": 0.4832,
+          "predR": 0.41986456916409587,
+          "actualR": 0.498,
+          "votersGap": 0.06462362055726935,
+          "fourWayTV": 0.07108326488553438,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07364349679834169,
+      "avgFourWayTV": 0.08218142849463213,
+      "worstFourWayTV": 0.11614846586020654,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.5,
+        "partyLoyalty": 1.6,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6494115450258979,
+          "actualD": 0.5293,
+          "predR": 0.35058845497410207,
+          "actualR": 0.4565,
+          "votersGap": 0.08007436335059863,
+          "fourWayTV": 0.07573912061188832,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6582785331593601,
+          "actualD": 0.5106,
+          "predR": 0.34172146684063986,
+          "actualR": 0.472,
+          "votersGap": 0.09845235543957338,
+          "fourWayTV": 0.11883819519218601,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5798352728598671,
+          "actualD": 0.4818,
+          "predR": 0.4078831229520894,
+          "actualR": 0.4609,
+          "votersGap": 0.06535684857324477,
+          "fourWayTV": 0.07085434786804173,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6144566789675541,
+          "actualD": 0.5131,
+          "predR": 0.385543321032446,
+          "actualR": 0.4686,
+          "votersGap": 0.06757111931170269,
+          "fourWayTV": 0.08174490276416782,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5788114108103962,
+          "actualD": 0.4832,
+          "predR": 0.42118858918960383,
+          "actualR": 0.498,
+          "votersGap": 0.0637409405402641,
+          "fourWayTV": 0.07026978085213181,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.0750391254430767,
+      "avgFourWayTV": 0.08348926945768315,
+      "worstFourWayTV": 0.11883819519218601,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.8,
+        "partyLoyalty": 1.6,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6604191592466405,
+          "actualD": 0.5293,
+          "predR": 0.3395808407533594,
+          "actualR": 0.4565,
+          "votersGap": 0.08741277283109371,
+          "fourWayTV": 0.08254526344702351,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6637706469326023,
+          "actualD": 0.5106,
+          "predR": 0.33622935306739754,
+          "actualR": 0.472,
+          "votersGap": 0.1021137646217349,
+          "fourWayTV": 0.12230175367809212,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5753901257315468,
+          "actualD": 0.4818,
+          "predR": 0.41079893508662524,
+          "actualR": 0.4609,
+          "votersGap": 0.06239341715436451,
+          "fourWayTV": 0.06812322220959972,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6166800915120152,
+          "actualD": 0.5131,
+          "predR": 0.38331990848798475,
+          "actualR": 0.4686,
+          "votersGap": 0.06905339434134349,
+          "fourWayTV": 0.08311083641075129,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5798222339547934,
+          "actualD": 0.4832,
+          "predR": 0.4201777660452065,
+          "actualR": 0.498,
+          "votersGap": 0.06441482263652892,
+          "fourWayTV": 0.07089083527179252,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07707763431701312,
+      "avgFourWayTV": 0.08539438220345183,
+      "worstFourWayTV": 0.12230175367809212,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 1.3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6505934598743854,
+          "actualD": 0.5293,
+          "predR": 0.3494065401256146,
+          "actualR": 0.4565,
+          "votersGap": 0.08086230658292361,
+          "fourWayTV": 0.07646991305396121,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6601226148587834,
+          "actualD": 0.5106,
+          "predR": 0.3398773851412166,
+          "actualR": 0.472,
+          "votersGap": 0.0996817432391889,
+          "fourWayTV": 0.12000115085597066,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5848179667295017,
+          "actualD": 0.4818,
+          "predR": 0.4030062693413122,
+          "actualR": 0.4609,
+          "votersGap": 0.06867864448633443,
+          "fourWayTV": 0.07391574554120761,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.624207881802883,
+          "actualD": 0.5131,
+          "predR": 0.375792118197117,
+          "actualR": 0.4686,
+          "votersGap": 0.074071921201922,
+          "fourWayTV": 0.08773546716959779,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.585504253356877,
+          "actualD": 0.4832,
+          "predR": 0.4144957466431231,
+          "actualR": 0.498,
+          "votersGap": 0.06820283557125124,
+          "fourWayTV": 0.07438189429811318,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07829949021632403,
+      "avgFourWayTV": 0.08650083418377008,
+      "worstFourWayTV": 0.12000115085597066,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.5,
+        "partyLoyalty": 1.3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6581716334143102,
+          "actualD": 0.5293,
+          "predR": 0.3418283665856898,
+          "actualR": 0.4565,
+          "votersGap": 0.08591442227620678,
+          "fourWayTV": 0.081155590668369,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6635912369351722,
+          "actualD": 0.5106,
+          "predR": 0.33640876306482786,
+          "actualR": 0.472,
+          "votersGap": 0.1019941579567814,
+          "fourWayTV": 0.12218861017001634,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5806973448706555,
+          "actualD": 0.4818,
+          "predR": 0.4062734146166411,
+          "actualR": 0.4609,
+          "votersGap": 0.06593156324710363,
+          "fourWayTV": 0.07138401019869624,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6257160684471688,
+          "actualD": 0.5131,
+          "predR": 0.37428393155283135,
+          "actualR": 0.4686,
+          "votersGap": 0.07507737896477913,
+          "fourWayTV": 0.08866200816977768,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5847824323365474,
+          "actualD": 0.4832,
+          "predR": 0.41521756766345264,
+          "actualR": 0.498,
+          "votersGap": 0.06772162155769822,
+          "fourWayTV": 0.07393840412145422,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.07932782880051384,
+      "avgFourWayTV": 0.08746572466566269,
+      "worstFourWayTV": 0.12218861017001634,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.8,
+        "partyLoyalty": 1.3,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6674821848777531,
+          "actualD": 0.5293,
+          "predR": 0.33251781512224693,
+          "actualR": 0.4565,
+          "votersGap": 0.09212145658516874,
+          "fourWayTV": 0.08691241879327342,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.6686866334579936,
+          "actualD": 0.5106,
+          "predR": 0.33131336654200627,
+          "actualR": 0.472,
+          "votersGap": 0.10539108897199574,
+          "fourWayTV": 0.12540198203271474,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5776606842450756,
+          "actualD": 0.4818,
+          "predR": 0.4076088357919387,
+          "actualR": 0.4609,
+          "votersGap": 0.06390712283005033,
+          "fourWayTV": 0.06951826728601215,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6276069751659381,
+          "actualD": 0.5131,
+          "predR": 0.3723930248340619,
+          "actualR": 0.4686,
+          "votersGap": 0.07633798344395874,
+          "fourWayTV": 0.08982366983088147,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2024,
+          "predD": 0.5864000780040394,
+          "actualD": 0.4832,
+          "predR": 0.41359992199596063,
+          "actualR": 0.498,
+          "votersGap": 0.06880005200269289,
+          "fourWayTV": 0.07493229310867167,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.0813115407667733,
+      "avgFourWayTV": 0.0893177262103107,
+      "worstFourWayTV": 0.12540198203271474,
+      "winnersCorrect": 4,
+      "pluralityHits": 3
+    },
+    {
+      "config": {
+        "salPower": 1.3,
+        "partyLoyalty": 1,
+        "catBase": 0.6
+      },
+      "cycles": [
+        {
+          "year": 2008,
+          "predD": 0.6612911001486318,
+          "actualD": 0.5293,
+          "predR": 0.3387088998513682,
+          "actualR": 0.4565,
+          "votersGap": 0.08799406676575454,
+          "fourWayTV": 0.08308439519744092,
+          "predAbstain": 0.381687739173365,
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2012,
+          "predD": 0.666603867706915,
+          "actualD": 0.5106,
+          "predR": 0.3333961322930849,
+          "actualR": 0.472,
+          "votersGap": 0.10400257847127668,
+          "fourWayTV": 0.1240885021433416,
+          "predAbstain": 0.36935784127767335,
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2016,
+          "predD": 0.5841665221782724,
+          "actualD": 0.4818,
+          "predR": 0.402315267911163,
+          "actualR": 0.4609,
+          "votersGap": 0.06824434811884823,
+          "fourWayTV": 0.07351549401351817,
+          "predAbstain": 0.3855938668392465,
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
+        },
+        {
+          "year": 2020,
+          "predD": 0.6372539769275485,
+          "actualD": 0.5131,
+          "predR": 0.3627460230724515,
+          "actualR": 0.4686,
+          "votersGap": 0.08276931795169899,
+          "fourWayTV": 0.09575021923695533,
+          "predAbstain": 0.3856589277657316,
+          "actualAbstain": 0.3457,
+          "pluralityMatch": false
+        },
+        {
+          "year": 2024,
+          "predD": 0.593555421187979,
+          "actualD": 0.4832,
+          "predR": 0.4064445788120211,
+          "actualR": 0.498,
+          "votersGap": 0.07357028079198592,
+          "fourWayTV": 0.0793285690875172,
+          "predAbstain": 0.38559537036418684,
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
+        }
+      ],
+      "avgVotersGap": 0.08331611841991288,
+      "avgFourWayTV": 0.09115343593575465,
+      "worstFourWayTV": 0.1240885021433416,
+      "winnersCorrect": 4,
+      "pluralityHits": 2
+    },
     {
       "config": {
         "salPower": 1.5,
@@ -21,9 +1206,11 @@
           "actualD": 0.5293,
           "predR": 0.33316956264046294,
           "actualR": 0.4565,
-          "gap": 0.09168695823969135,
+          "votersGap": 0.09168695823969135,
+          "fourWayTV": 0.08650943531179708,
           "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
         },
         {
           "year": 2012,
@@ -31,9 +1218,11 @@
           "actualD": 0.5106,
           "predR": 0.33049005260524383,
           "actualR": 0.472,
-          "gap": 0.10593996492983739,
+          "votersGap": 0.10593996492983739,
+          "fourWayTV": 0.1259211985111008,
           "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
         },
         {
           "year": 2016,
@@ -41,9 +1230,11 @@
           "actualD": 0.4818,
           "predR": 0.4036085438125535,
           "actualR": 0.4609,
-          "gap": 0.06686508097813067,
+          "votersGap": 0.06686508097813067,
+          "fourWayTV": 0.07224434872773225,
           "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
         },
         {
           "year": 2020,
@@ -51,9 +1242,11 @@
           "actualD": 0.5131,
           "predR": 0.3620828849452834,
           "actualR": 0.4686,
-          "gap": 0.08321141003647776,
+          "votersGap": 0.08321141003647776,
+          "fourWayTV": 0.09615761222503925,
           "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
+          "actualAbstain": 0.3457,
+          "pluralityMatch": false
         },
         {
           "year": 2024,
@@ -61,1068 +1254,92 @@
           "actualD": 0.4832,
           "predR": 0.4066414443559365,
           "actualR": 0.498,
-          "gap": 0.07343903709604226,
+          "votersGap": 0.07343903709604226,
+          "fourWayTV": 0.07920761398591973,
           "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
         }
       ],
-      "avgGap": 0.08422849025603588,
-      "worstGap": 0.10593996492983739,
-      "winnersCorrect": 4
+      "avgVotersGap": 0.08422849025603588,
+      "avgFourWayTV": 0.09200804175231783,
+      "worstFourWayTV": 0.1259211985111008,
+      "winnersCorrect": 4,
+      "pluralityHits": 2
     },
     {
       "config": {
-        "salPower": 1.5,
-        "partyLoyalty": 1,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.66608694148227,
-          "actualD": 0.5293,
-          "predR": 0.33391305851772995,
-          "actualR": 0.4565,
-          "gap": 0.09119129432151335,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6692230809322562,
-          "actualD": 0.5106,
-          "predR": 0.33077691906774376,
-          "actualR": 0.472,
-          "gap": 0.10574872062150413,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5827274114533773,
-          "actualD": 0.4818,
-          "predR": 0.4024644732268438,
-          "actualR": 0.4609,
-          "gap": 0.06728494096891811,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6394384650290692,
-          "actualD": 0.5131,
-          "predR": 0.3605615349709308,
-          "actualR": 0.4686,
-          "gap": 0.0842256433527128,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.595872677547296,
-          "actualD": 0.4832,
-          "predR": 0.404127322452704,
-          "actualR": 0.498,
-          "gap": 0.07511511836486397,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.08471314352590248,
-      "worstGap": 0.10574872062150413,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
+        "salPower": 1.8,
         "partyLoyalty": 1,
         "catBase": 0.6
       },
       "cycles": [
         {
           "year": 2008,
-          "predD": 0.6781377244224431,
+          "predD": 0.6745513308542629,
           "actualD": 0.5293,
-          "predR": 0.32186227557755687,
+          "predR": 0.3254486691457372,
           "actualR": 0.4565,
-          "gap": 0.0992251496149621,
+          "votersGap": 0.09683422056950856,
+          "fourWayTV": 0.0912833584241229,
           "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
+          "actualAbstain": 0.3844,
+          "pluralityMatch": false
         },
         {
           "year": 2012,
-          "predD": 0.6783929031840955,
+          "predD": 0.6747542917068997,
           "actualD": 0.5106,
-          "predR": 0.3216070968159045,
+          "predR": 0.32524570829310034,
           "actualR": 0.472,
-          "gap": 0.11186193545606364,
+          "votersGap": 0.10943619447126642,
+          "fourWayTV": 0.12922850312919415,
           "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
+          "actualAbstain": 0.4197,
+          "pluralityMatch": false
         },
         {
           "year": 2016,
-          "predD": 0.5801566466133443,
+          "predD": 0.5797489269956481,
           "actualD": 0.4818,
-          "predR": 0.4030993573362967,
+          "predR": 0.4046397838828982,
           "actualR": 0.4609,
-          "gap": 0.06557109774222951,
+          "votersGap": 0.06529928466376535,
+          "fourWayTV": 0.07080129643949247,
           "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
+          "actualAbstain": 0.4078,
+          "pluralityMatch": true
         },
         {
           "year": 2020,
-          "predD": 0.6397345148379909,
+          "predD": 0.6394629747492867,
           "actualD": 0.5131,
-          "predR": 0.360265485162009,
+          "predR": 0.3605370252507133,
           "actualR": 0.4686,
-          "gap": 0.08442300989199397,
+          "votersGap": 0.08424198316619114,
+          "fourWayTV": 0.0971072973273252,
           "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
+          "actualAbstain": 0.3457,
+          "pluralityMatch": false
         },
         {
           "year": 2024,
-          "predD": 0.593958397040122,
+          "predD": 0.5939861862499987,
           "actualD": 0.4832,
-          "predR": 0.4060416029598781,
+          "predR": 0.4060138137500014,
           "actualR": 0.498,
-          "gap": 0.07383893136008125,
+          "votersGap": 0.07385745749999906,
+          "fourWayTV": 0.07959323313590744,
           "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
+          "actualAbstain": 0.3633,
+          "pluralityMatch": true
         }
       ],
-      "avgGap": 0.0869840248130661,
-      "worstGap": 0.11186193545606364,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
-        "partyLoyalty": 1,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6770038867199948,
-          "actualD": 0.5293,
-          "predR": 0.32299611328000527,
-          "actualR": 0.4565,
-          "gap": 0.09846925781332984,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6787921752858623,
-          "actualD": 0.5106,
-          "predR": 0.32120782471413784,
-          "actualR": 0.472,
-          "gap": 0.11212811685724146,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5812646613773788,
-          "actualD": 0.4818,
-          "predR": 0.40107315699563306,
-          "actualR": 0.4609,
-          "gap": 0.06630977425158582,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.639987615116017,
-          "actualD": 0.5131,
-          "predR": 0.36001238488398307,
-          "actualR": 0.4686,
-          "gap": 0.08459174341067797,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.5971971264755679,
-          "actualD": 0.4832,
-          "predR": 0.4028028735244322,
-          "actualR": 0.498,
-          "gap": 0.07599808431704519,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.08749939532997605,
-      "worstGap": 0.11212811685724146,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 1,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6858399313696832,
-          "actualD": 0.5293,
-          "predR": 0.31416006863031665,
-          "actualR": 0.4565,
-          "gap": 0.10435995424645554,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6872546060794726,
-          "actualD": 0.5106,
-          "predR": 0.3127453939205273,
-          "actualR": 0.472,
-          "gap": 0.11776973738631508,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5794582083012075,
-          "actualD": 0.4818,
-          "predR": 0.4043371393706847,
-          "actualR": 0.4609,
-          "gap": 0.06510547220080505,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6396969914085917,
-          "actualD": 0.5131,
-          "predR": 0.3603030085914083,
-          "actualR": 0.4686,
-          "gap": 0.08439799427239447,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.5930721372502311,
-          "actualD": 0.4832,
-          "predR": 0.40692786274976883,
-          "actualR": 0.498,
-          "gap": 0.07324809150015406,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.08897624992122484,
-      "worstGap": 0.11776973738631508,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 1,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6851609826484529,
-          "actualD": 0.5293,
-          "predR": 0.314839017351547,
-          "actualR": 0.4565,
-          "gap": 0.10390732176563532,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6873057572905924,
-          "actualD": 0.5106,
-          "predR": 0.3126942427094076,
-          "actualR": 0.472,
-          "gap": 0.11780383819372824,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5790710604245528,
-          "actualD": 0.4818,
-          "predR": 0.40324401233849066,
-          "actualR": 0.4609,
-          "gap": 0.0648473736163685,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6406032839407355,
-          "actualD": 0.5131,
-          "predR": 0.35939671605926454,
-          "actualR": 0.4686,
-          "gap": 0.08500218929382365,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.5965294568459544,
-          "actualD": 0.4832,
-          "predR": 0.40347054315404557,
-          "actualR": 0.498,
-          "gap": 0.07555297123063624,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.08942273882003839,
-      "worstGap": 0.11780383819372824,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 1.5,
-        "partyLoyalty": 0.7,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6759440099438163,
-          "actualD": 0.5293,
-          "predR": 0.3240559900561837,
-          "actualR": 0.4565,
-          "gap": 0.09776267329587755,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.679215469394041,
-          "actualD": 0.5106,
-          "predR": 0.32078453060595896,
-          "actualR": 0.472,
-          "gap": 0.11241031292936064,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5847496550010276,
-          "actualD": 0.4818,
-          "predR": 0.39815232200169337,
-          "actualR": 0.4609,
-          "gap": 0.06863310333401841,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6536767954035335,
-          "actualD": 0.5131,
-          "predR": 0.34632320459646637,
-          "actualR": 0.4686,
-          "gap": 0.09371786360235572,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.602854989313135,
-          "actualD": 0.4832,
-          "predR": 0.39714501068686503,
-          "actualR": 0.498,
-          "gap": 0.07976999287542329,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09045878920740713,
-      "worstGap": 0.11241031292936064,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 1.5,
-        "partyLoyalty": 0.7,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.674198886643296,
-          "actualD": 0.5293,
-          "predR": 0.325801113356704,
-          "actualR": 0.4565,
-          "gap": 0.09659925776219734,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6788598060678301,
-          "actualD": 0.5106,
-          "predR": 0.3211401939321699,
-          "actualR": 0.472,
-          "gap": 0.11217320404522003,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5853804757915069,
-          "actualD": 0.4818,
-          "predR": 0.3965499931071079,
-          "actualR": 0.4609,
-          "gap": 0.06905365052767128,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6538009314276165,
-          "actualD": 0.5131,
-          "predR": 0.34619906857238336,
-          "actualR": 0.4686,
-          "gap": 0.09380062095174439,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.605090227963619,
-          "actualD": 0.4832,
-          "predR": 0.394909772036381,
-          "actualR": 0.498,
-          "gap": 0.08126015197574597,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09057737705251581,
-      "worstGap": 0.11217320404522003,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
-        "partyLoyalty": 0.7,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6830148092450425,
-          "actualD": 0.5293,
-          "predR": 0.3169851907549575,
-          "actualR": 0.4565,
-          "gap": 0.10247653949669501,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6889928534475688,
-          "actualD": 0.5106,
-          "predR": 0.3110071465524312,
-          "actualR": 0.472,
-          "gap": 0.11892856896504582,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5804335889153879,
-          "actualD": 0.4818,
-          "predR": 0.3974111583923233,
-          "actualR": 0.4609,
-          "gap": 0.0657557259435919,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6533227458811137,
-          "actualD": 0.5131,
-          "predR": 0.34667725411888634,
-          "actualR": 0.4686,
-          "gap": 0.09348183058740912,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6045643520319423,
-          "actualD": 0.4832,
-          "predR": 0.3954356479680578,
-          "actualR": 0.498,
-          "gap": 0.08090956802129479,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09231044660280732,
-      "worstGap": 0.11892856896504582,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
-        "partyLoyalty": 0.7,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6843655503132658,
-          "actualD": 0.5293,
-          "predR": 0.3156344496867342,
-          "actualR": 0.4565,
-          "gap": 0.10337703354217721,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6893068619545734,
-          "actualD": 0.5106,
-          "predR": 0.31069313804542675,
-          "actualR": 0.472,
-          "gap": 0.1191379079697155,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5817908371317159,
-          "actualD": 0.4818,
-          "predR": 0.3975839974379503,
-          "actualR": 0.4609,
-          "gap": 0.06666055808781057,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6542820258807024,
-          "actualD": 0.5131,
-          "predR": 0.34571797411929756,
-          "actualR": 0.4686,
-          "gap": 0.09412135058713494,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6028316738281433,
-          "actualD": 0.4832,
-          "predR": 0.39716832617185677,
-          "actualR": 0.498,
-          "gap": 0.07975444921876214,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09261025988112007,
-      "worstGap": 0.1191379079697155,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 0.7,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6934126711851315,
-          "actualD": 0.5293,
-          "predR": 0.3065873288148685,
-          "actualR": 0.4565,
-          "gap": 0.10940844745675433,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6979025874847706,
-          "actualD": 0.5106,
-          "predR": 0.3020974125152294,
-          "actualR": 0.472,
-          "gap": 0.1248683916565137,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5712267451740803,
-          "actualD": 0.4818,
-          "predR": 0.4084936318301668,
-          "actualR": 0.4609,
-          "gap": 0.05961783011605354,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6535411226020413,
-          "actualD": 0.5131,
-          "predR": 0.3464588773979587,
-          "actualR": 0.4686,
-          "gap": 0.09362741506802753,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6005121961046908,
-          "actualD": 0.4832,
-          "predR": 0.39948780389530925,
-          "actualR": 0.498,
-          "gap": 0.07820813073646048,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09314604300676191,
-      "worstGap": 0.1248683916565137,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 0.7,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.69219391958573,
-          "actualD": 0.5293,
-          "predR": 0.3078060804142701,
-          "actualR": 0.4565,
-          "gap": 0.10859594639048663,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.697938074541281,
-          "actualD": 0.5106,
-          "predR": 0.302061925458719,
-          "actualR": 0.472,
-          "gap": 0.12489204969418728,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5702338231696317,
-          "actualD": 0.4818,
-          "predR": 0.40808977130583174,
-          "actualR": 0.4609,
-          "gap": 0.05895588211308774,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6537611172218399,
-          "actualD": 0.5131,
-          "predR": 0.34623888277816006,
-          "actualR": 0.4686,
-          "gap": 0.09377407814789329,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6025358479520962,
-          "actualD": 0.4832,
-          "predR": 0.3974641520479037,
-          "actualR": 0.498,
-          "gap": 0.07955723196806415,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09315503766274381,
-      "worstGap": 0.12489204969418728,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 1.5,
-        "partyLoyalty": 0.4,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6809378924023152,
-          "actualD": 0.5293,
-          "predR": 0.31906210759768494,
-          "actualR": 0.4565,
-          "gap": 0.10109192826821008,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6929458922022699,
-          "actualD": 0.5106,
-          "predR": 0.30705410779773,
-          "actualR": 0.472,
-          "gap": 0.12156392813484658,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5855394775564238,
-          "actualD": 0.4818,
-          "predR": 0.38960603625304746,
-          "actualR": 0.4609,
-          "gap": 0.06915965170428247,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6725985660949577,
-          "actualD": 0.5131,
-          "predR": 0.32740143390504234,
-          "actualR": 0.4686,
-          "gap": 0.10633237739663846,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.61619832753442,
-          "actualD": 0.4832,
-          "predR": 0.3838016724655799,
-          "actualR": 0.498,
-          "gap": 0.08866555168961336,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.0973626874387182,
-      "worstGap": 0.12156392813484658,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
-        "partyLoyalty": 0.4,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6907637177805191,
-          "actualD": 0.5293,
-          "predR": 0.30923628221948085,
-          "actualR": 0.4565,
-          "gap": 0.1076424785203461,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.7028983506612663,
-          "actualD": 0.5106,
-          "predR": 0.2971016493387338,
-          "actualR": 0.472,
-          "gap": 0.12819890044084412,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5712542178144233,
-          "actualD": 0.4818,
-          "predR": 0.39808141043998374,
-          "actualR": 0.4609,
-          "gap": 0.05963614520961557,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6712755142362047,
-          "actualD": 0.5131,
-          "predR": 0.3287244857637952,
-          "actualR": 0.4686,
-          "gap": 0.1054503428241365,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6123075331421456,
-          "actualD": 0.4832,
-          "predR": 0.3876924668578545,
-          "actualR": 0.498,
-          "gap": 0.08607168876143033,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09739991115127453,
-      "worstGap": 0.12819890044084412,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 0.4,
-        "catBase": 0.4
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6992218332327432,
-          "actualD": 0.5293,
-          "predR": 0.30077816676725677,
-          "actualR": 0.4565,
-          "gap": 0.11328122215516216,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.7097115392935893,
-          "actualD": 0.5106,
-          "predR": 0.29028846070641073,
-          "actualR": 0.472,
-          "gap": 0.13274102619572617,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5620201576731173,
-          "actualD": 0.4818,
-          "predR": 0.4079827476241257,
-          "actualR": 0.4609,
-          "gap": 0.053480105115411534,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6693221204314118,
-          "actualD": 0.5131,
-          "predR": 0.3306778795685882,
-          "actualR": 0.4686,
-          "gap": 0.10414808028760787,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6096604048005427,
-          "actualD": 0.4832,
-          "predR": 0.39033959519945716,
-          "actualR": 0.498,
-          "gap": 0.08430693653369516,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09759147405752057,
-      "worstGap": 0.13274102619572617,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2.5,
-        "partyLoyalty": 0.4,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.7010893168370581,
-          "actualD": 0.5293,
-          "predR": 0.29891068316294184,
-          "actualR": 0.4565,
-          "gap": 0.11452621122470542,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.7100135301903493,
-          "actualD": 0.5106,
-          "predR": 0.28998646980965076,
-          "actualR": 0.472,
-          "gap": 0.1329423534602328,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5620948317158152,
-          "actualD": 0.4818,
-          "predR": 0.4099786108255715,
-          "actualR": 0.4609,
-          "gap": 0.05352988781054343,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6699520417587606,
-          "actualD": 0.5131,
-          "predR": 0.33004795824123945,
-          "actualR": 0.4686,
-          "gap": 0.1045680278391737,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6087968542538905,
-          "actualD": 0.4832,
-          "predR": 0.3912031457461094,
-          "actualR": 0.498,
-          "gap": 0.08373123616926033,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.09785954330078313,
-      "worstGap": 0.1329423534602328,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 1.5,
-        "partyLoyalty": 0.4,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6841295993867355,
-          "actualD": 0.5293,
-          "predR": 0.3158704006132645,
-          "actualR": 0.4565,
-          "gap": 0.10321973292449033,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.6937821094241323,
-          "actualD": 0.5106,
-          "predR": 0.30621789057586773,
-          "actualR": 0.472,
-          "gap": 0.12212140628275482,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5857651395874696,
-          "actualD": 0.4818,
-          "predR": 0.3907590475464235,
-          "actualR": 0.4609,
-          "gap": 0.06931009305831308,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6732334659874869,
-          "actualD": 0.5131,
-          "predR": 0.3267665340125131,
-          "actualR": 0.4686,
-          "gap": 0.10675564399165793,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6152267605401475,
-          "actualD": 0.4832,
-          "predR": 0.3847732394598525,
-          "actualR": 0.498,
-          "gap": 0.0880178403600983,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.0978849433234629,
-      "worstGap": 0.12212140628275482,
-      "winnersCorrect": 4
-    },
-    {
-      "config": {
-        "salPower": 2,
-        "partyLoyalty": 0.4,
-        "catBase": 0.6
-      },
-      "cycles": [
-        {
-          "year": 2008,
-          "predD": 0.6932185453684848,
-          "actualD": 0.5293,
-          "predR": 0.30678145463151507,
-          "actualR": 0.4565,
-          "gap": 0.10927903024565659,
-          "predAbstain": 0.381687739173365,
-          "actualAbstain": 0.3844
-        },
-        {
-          "year": 2012,
-          "predD": 0.7036219657413724,
-          "actualD": 0.5106,
-          "predR": 0.2963780342586275,
-          "actualR": 0.472,
-          "gap": 0.12868131049424825,
-          "predAbstain": 0.36935784127767335,
-          "actualAbstain": 0.4197
-        },
-        {
-          "year": 2016,
-          "predD": 0.5717210066400957,
-          "actualD": 0.4818,
-          "predR": 0.39882362054009823,
-          "actualR": 0.4609,
-          "gap": 0.059947337760063786,
-          "predAbstain": 0.3855938668392465,
-          "actualAbstain": 0.4078
-        },
-        {
-          "year": 2020,
-          "predD": 0.6722775752291812,
-          "actualD": 0.5131,
-          "predR": 0.32772242477081887,
-          "actualR": 0.4686,
-          "gap": 0.10611838348612078,
-          "predAbstain": 0.3856589277657316,
-          "actualAbstain": 0.3457
-        },
-        {
-          "year": 2024,
-          "predD": 0.6116200435973467,
-          "actualD": 0.4832,
-          "predR": 0.3883799564026533,
-          "actualR": 0.498,
-          "gap": 0.08561336239823109,
-          "predAbstain": 0.38559537036418684,
-          "actualAbstain": 0.3633
-        }
-      ],
-      "avgGap": 0.0979278848768641,
-      "worstGap": 0.12868131049424825,
-      "winnersCorrect": 4
+      "avgVotersGap": 0.0859338280741461,
+      "avgFourWayTV": 0.09360273769120843,
+      "worstFourWayTV": 0.12922850312919415,
+      "winnersCorrect": 4,
+      "pluralityHits": 2
     }
   ]
 }
