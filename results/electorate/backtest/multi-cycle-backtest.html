@@ -71,21 +71,120 @@ nav.toc a:hover { text-decoration: underline; }
 
   
   <section class="summary">
-    <h2>Summary — predicted vs actual, all 5 cycles</h2>
-    <table class="sumtable">
+    <h2>Summary — predicted vs actual, 4-way share-of-electorate</h2>
+    <p style="color: #5f6862; font-size: 13px; margin: 0 0 12px 0;">Abstain is a first-class political outcome alongside D / R / Other. Denominator is the full eligible electorate (VEP). <strong>Abstain is the actual plurality in every modern US cycle</strong> — non-voting beats both D and R as the most common decision.</p>
+    <table class="sumtable fourway">
       <thead><tr>
-        <th colspan="3"></th>
-        <th colspan="5" class="grouphead">Vote shares <em>among those who voted</em></th>
-        <th colspan="3" class="grouphead">Abstain shares <em>of electorate</em></th>
+        <th></th>
+        <th colspan="3" class="grouphead">D (% of electorate)</th>
+        <th colspan="3" class="grouphead">R (% of electorate)</th>
+        <th colspan="3" class="grouphead">Other (% of electorate)</th>
+        <th colspan="3" class="grouphead" style="background:#dcefeb">Abstain (% of electorate)</th>
+        <th></th>
         <th></th>
       </tr><tr>
+        <th>Year</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>TV dist</th>
+        <th>Plurality</th>
+      </tr></thead>
+      <tbody><tr>
+      <td><a href="#y2008">2008</a></td>
+      <td class="num">41.2%</td>
+      <td class="num">32.6%</td>
+      <td class="num gap">+8.7pp</td>
+      <td class="num">20.6%</td>
+      <td class="num">28.1%</td>
+      <td class="num gap">-7.5pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">0.9%</td>
+      <td class="num gap">-0.9pp</td>
+      <td class="num"><strong>38.2%</strong></td>
+      <td class="num"><strong>38.4%</strong></td>
+      <td class="num gap">-0.3pp</td>
+      <td class="num">8.65pp</td>
+      <td class="win-bad">✗ D/Abstain</td>
+    </tr><tr>
+      <td><a href="#y2012">2012</a></td>
+      <td class="num">42.2%</td>
+      <td class="num">29.6%</td>
+      <td class="num gap">+12.6pp</td>
+      <td class="num">20.8%</td>
+      <td class="num">27.4%</td>
+      <td class="num gap">-6.5pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">1.0%</td>
+      <td class="num gap">-1.0pp</td>
+      <td class="num"><strong>36.9%</strong></td>
+      <td class="num"><strong>42.0%</strong></td>
+      <td class="num gap">-5.0pp</td>
+      <td class="num">12.59pp</td>
+      <td class="win-bad">✗ D/Abstain</td>
+    </tr><tr>
+      <td><a href="#y2016">2016</a></td>
+      <td class="num">35.8%</td>
+      <td class="num">28.5%</td>
+      <td class="num gap">+7.2pp</td>
+      <td class="num">24.8%</td>
+      <td class="num">27.3%</td>
+      <td class="num gap">-2.5pp</td>
+      <td class="num">0.9%</td>
+      <td class="num">3.4%</td>
+      <td class="num gap">-2.5pp</td>
+      <td class="num"><strong>38.6%</strong></td>
+      <td class="num"><strong>40.8%</strong></td>
+      <td class="num gap">-2.2pp</td>
+      <td class="num">7.22pp</td>
+      <td class="win-ok">✓ Abstain/Abstain</td>
+    </tr><tr>
+      <td><a href="#y2020">2020</a></td>
+      <td class="num">39.2%</td>
+      <td class="num">33.6%</td>
+      <td class="num gap">+5.6pp</td>
+      <td class="num">22.2%</td>
+      <td class="num">30.7%</td>
+      <td class="num gap">-8.4pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">1.2%</td>
+      <td class="num gap">-1.2pp</td>
+      <td class="num"><strong>38.6%</strong></td>
+      <td class="num"><strong>34.6%</strong></td>
+      <td class="num gap">+4.0pp</td>
+      <td class="num">9.62pp</td>
+      <td class="win-bad">✗ D/Abstain</td>
+    </tr><tr>
+      <td><a href="#y2024">2024</a></td>
+      <td class="num">36.5%</td>
+      <td class="num">30.8%</td>
+      <td class="num gap">+5.7pp</td>
+      <td class="num">25.0%</td>
+      <td class="num">31.7%</td>
+      <td class="num gap">-6.7pp</td>
+      <td class="num">0.0%</td>
+      <td class="num">1.2%</td>
+      <td class="num gap">-1.2pp</td>
+      <td class="num"><strong>38.6%</strong></td>
+      <td class="num"><strong>36.3%</strong></td>
+      <td class="num gap">+2.2pp</td>
+      <td class="num">7.92pp</td>
+      <td class="win-ok">✓ Abstain/Abstain</td>
+    </tr></tbody>
+    </table>
+    <div class="muted" style="margin-top: 8px;"><strong>TV dist</strong> = total-variation distance between predicted and actual 4-way distribution = ½ Σ|pred − actual| across the four categories. <strong>Plurality</strong> shows predicted/actual largest category; ✓ = match. Abstain is the actual plurality in 5/5 cycles.</div>
+
+    <h2 style="margin-top: 28px;">Secondary view — vote shares <em>among those who voted</em></h2>
+    <p style="color: #5f6862; font-size: 13px; margin: 0 0 12px 0;">Conditional-on-turnout framing. Useful for direct FEC-share comparison; less honest about the model's full task because abstain is excluded from the denominator.</p>
+    <table class="sumtable">
+      <thead><tr>
         <th>Year</th><th>n (wt)</th><th>Coverage</th>
         <th>Pred D</th><th>Actual D</th>
         <th>Pred R</th><th>Actual R</th>
         <th>Gap D</th><th>Gap R</th>
         <th>|avg|</th>
-        <th>Pred</th><th>Actual</th><th>Gap</th>
-        <th>Winner</th>
+        <th>D-vs-R Winner</th>
       </tr></thead>
       <tbody><tr>
       <td><a href="#y2008">2008</a></td>
@@ -98,10 +197,7 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+13.8pp</td>
       <td class="num gap">-12.3pp</td>
       <td class="num">9.17pp</td>
-      <td class="num">38.2%</td>
-      <td class="num">38.4%</td>
-      <td class="num gap" style="color:#5f6862">-0.3pp</td>
-      <td class="win-ok">✓</td>
+      <td class="win-ok">✓ D</td>
     </tr><tr>
       <td><a href="#y2012">2012</a></td>
       <td class="num">0.05M</td>
@@ -113,10 +209,7 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+15.9pp</td>
       <td class="num gap">-14.2pp</td>
       <td class="num">10.59pp</td>
-      <td class="num">36.9%</td>
-      <td class="num">42.0%</td>
-      <td class="num gap" style="color:#5f6862">-5.0pp</td>
-      <td class="win-ok">✓</td>
+      <td class="win-ok">✓ D</td>
     </tr><tr>
       <td><a href="#y2016">2016</a></td>
       <td class="num">0.06M</td>
@@ -128,10 +221,7 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+10.0pp</td>
       <td class="num gap">-5.7pp</td>
       <td class="num">6.69pp</td>
-      <td class="num">38.6%</td>
-      <td class="num">40.8%</td>
-      <td class="num gap" style="color:#5f6862">-2.2pp</td>
-      <td class="win-ok">✓</td>
+      <td class="win-ok">✓ D</td>
     </tr><tr>
       <td><a href="#y2020">2020</a></td>
       <td class="num">0.07M</td>
@@ -143,10 +233,7 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+12.5pp</td>
       <td class="num gap">-10.7pp</td>
       <td class="num">8.32pp</td>
-      <td class="num">38.6%</td>
-      <td class="num">34.6%</td>
-      <td class="num gap" style="color:#5f6862">+4.0pp</td>
-      <td class="win-ok">✓</td>
+      <td class="win-ok">✓ D</td>
     </tr><tr>
       <td><a href="#y2024">2024</a></td>
       <td class="num">0.07M</td>
@@ -158,17 +245,16 @@ nav.toc a:hover { text-decoration: underline; }
       <td class="num gap">+11.0pp</td>
       <td class="num gap">-9.1pp</td>
       <td class="num">7.34pp</td>
-      <td class="num">38.6%</td>
-      <td class="num">36.3%</td>
-      <td class="num gap" style="color:#5f6862">+2.2pp</td>
-      <td class="win-bad">✗</td>
+      <td class="win-bad">✗ D</td>
     </tr></tbody>
     </table>
-    <div class="muted">Generated 2026-05-09T02:12:01.379Z • 33.8s pipeline runtime</div>
+    <div class="muted">Generated 2026-05-09T02:28:38.141Z • 32.8s pipeline runtime</div>
   </section>
 
   <div class="caveats">
     <h3>How to read these gaps</h3>
+    <p style="margin: 6px 0;"><strong>The 4-way share-of-electorate framing is the honest one.</strong> Abstain is the actual plurality in every modern US cycle — non-voting is the most common political outcome. The conditional-on-turnout framing in the secondary table is useful for direct FEC comparison but excludes abstain from the denominator, which understates what the model is actually being asked to predict (a 4-category distribution over the eligible electorate).</p>
+    <p style="margin: 6px 0;"><strong>Plurality match 2/5</strong> (2016 + 2024 correct; 2008 / 2012 / 2020 wrong). The model under-calls abstain as plurality in those three cycles because its predicted D-share is over-stated by 5–13pp; abstain prediction itself lands within ±5pp of FEC on every cycle. The systematic D-over-prediction is what flips the plurality call.</p>
     <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline: CCES → mapper → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. Per-cycle real-signal coverage on the four core continuous-position nodes:</p>
     <ul style="margin: 4px 0 12px 18px; font-size: 13px;">
       <li><strong>2008:</strong> MAT / CD / ZS real signal; <strong>CU stays fallback</strong> — the CCES 2008 wave shipped no immigration-battery items, so cultural-uniformity / pluralism cannot be measured from this dataset. Structural data gap, not a wiring oversight.</li>

@@ -307,6 +307,39 @@ function renderCycle(c: CycleBacktestResult): string {
 }
 
 function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elapsedMs: number): string {
+  // 4-way share-of-electorate framing — abstain is a first-class political
+  // outcome alongside vote choice, and abstain is the actual plurality in
+  // every modern US cycle.
+  const fourWayRows = cycles.map(c => {
+    const pe = c.predicted.sharesOfElectorate;
+    const ae = c.actual.sharesOfElectorate;
+    const pOther = pe.T + pe.O;
+    const dG = pe.D - ae.D;
+    const rG = pe.R - ae.R;
+    const oG = pOther - ae.Other;
+    const aG = pe.Abstain - ae.Abstain;
+    const tv = c.gaps.fourWayElectorateTVDistance;
+    const pluralityCls = c.pluralityMatch ? "win-ok" : "win-bad";
+    const pluralityIcon = c.pluralityMatch ? "✓" : "✗";
+    return `<tr>
+      <td><a href="#y${c.year}">${c.year}</a></td>
+      <td class="num">${pp(pe.D)}</td>
+      <td class="num">${pp(ae.D)}</td>
+      <td class="num gap">${ppSigned(dG)}</td>
+      <td class="num">${pp(pe.R)}</td>
+      <td class="num">${pp(ae.R)}</td>
+      <td class="num gap">${ppSigned(rG)}</td>
+      <td class="num">${pp(pOther)}</td>
+      <td class="num">${pp(ae.Other)}</td>
+      <td class="num gap">${ppSigned(oG)}</td>
+      <td class="num"><strong>${pp(pe.Abstain)}</strong></td>
+      <td class="num"><strong>${pp(ae.Abstain)}</strong></td>
+      <td class="num gap">${ppSigned(aG)}</td>
+      <td class="num">${(tv * 100).toFixed(2)}pp</td>
+      <td class="${pluralityCls}">${pluralityIcon} ${c.predictedPlurality}/${c.actualPlurality}</td>
+    </tr>`;
+  }).join("");
+
   const rows = cycles.map(c => {
     const pv = c.predicted.sharesOfVoters;
     const av = c.actual.sharesOfVoters;
@@ -316,9 +349,6 @@ function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elaps
     const winnerPred = pv.D > pv.R ? "D" : "R";
     const winnerActual = av.D > av.R ? "D" : "R";
     const cls = winnerPred === winnerActual ? "win-ok" : "win-bad";
-    const predAbstain = c.predicted.sharesOfElectorate.Abstain;
-    const actualAbstain = c.actual.sharesOfElectorate.Abstain;
-    const abstainGap = predAbstain - actualAbstain;
     return `<tr>
       <td><a href="#y${c.year}">${c.year}</a></td>
       <td class="num">${(c.totalWeight/1e6).toFixed(2)}M</td>
@@ -330,30 +360,46 @@ function renderSummary(cycles: CycleBacktestResult[], generatedAt: string, elaps
       <td class="num gap">${ppSigned(c.gaps.sharesOfVoters.D)}</td>
       <td class="num gap">${ppSigned(c.gaps.sharesOfVoters.R)}</td>
       <td class="num">${(c.gaps.sharesOfVoters.absMean*100).toFixed(2)}pp</td>
-      <td class="num">${pp(predAbstain)}</td>
-      <td class="num">${pp(actualAbstain)}</td>
-      <td class="num gap" style="color:${Math.abs(abstainGap) > 0.20 ? '#bd5742' : '#5f6862'}">${ppSigned(abstainGap)}</td>
-      <td class="${cls}">${winnerPred === winnerActual ? "✓" : "✗"}</td>
+      <td class="${cls}">${winnerPred === winnerActual ? "✓" : "✗"} ${winnerPred}</td>
     </tr>`;
   }).join("");
 
   return `
   <section class="summary">
-    <h2>Summary — predicted vs actual, all 5 cycles</h2>
-    <table class="sumtable">
+    <h2>Summary — predicted vs actual, 4-way share-of-electorate</h2>
+    <p style="color: #5f6862; font-size: 13px; margin: 0 0 12px 0;">Abstain is a first-class political outcome alongside D / R / Other. Denominator is the full eligible electorate (VEP). <strong>Abstain is the actual plurality in every modern US cycle</strong> — non-voting beats both D and R as the most common decision.</p>
+    <table class="sumtable fourway">
       <thead><tr>
-        <th colspan="3"></th>
-        <th colspan="5" class="grouphead">Vote shares <em>among those who voted</em></th>
-        <th colspan="3" class="grouphead">Abstain shares <em>of electorate</em></th>
+        <th></th>
+        <th colspan="3" class="grouphead">D (% of electorate)</th>
+        <th colspan="3" class="grouphead">R (% of electorate)</th>
+        <th colspan="3" class="grouphead">Other (% of electorate)</th>
+        <th colspan="3" class="grouphead" style="background:#dcefeb">Abstain (% of electorate)</th>
+        <th></th>
         <th></th>
       </tr><tr>
+        <th>Year</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>Pred</th><th>Actual</th><th>Gap</th>
+        <th>TV dist</th>
+        <th>Plurality</th>
+      </tr></thead>
+      <tbody>${fourWayRows}</tbody>
+    </table>
+    <div class="muted" style="margin-top: 8px;"><strong>TV dist</strong> = total-variation distance between predicted and actual 4-way distribution = ½ Σ|pred − actual| across the four categories. <strong>Plurality</strong> shows predicted/actual largest category; ✓ = match. Abstain is the actual plurality in 5/5 cycles.</div>
+
+    <h2 style="margin-top: 28px;">Secondary view — vote shares <em>among those who voted</em></h2>
+    <p style="color: #5f6862; font-size: 13px; margin: 0 0 12px 0;">Conditional-on-turnout framing. Useful for direct FEC-share comparison; less honest about the model's full task because abstain is excluded from the denominator.</p>
+    <table class="sumtable">
+      <thead><tr>
         <th>Year</th><th>n (wt)</th><th>Coverage</th>
         <th>Pred D</th><th>Actual D</th>
         <th>Pred R</th><th>Actual R</th>
         <th>Gap D</th><th>Gap R</th>
         <th>|avg|</th>
-        <th>Pred</th><th>Actual</th><th>Gap</th>
-        <th>Winner</th>
+        <th>D-vs-R Winner</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>
@@ -440,6 +486,8 @@ nav.toc a:hover { text-decoration: underline; }
 
   <div class="caveats">
     <h3>How to read these gaps</h3>
+    <p style="margin: 6px 0;"><strong>The 4-way share-of-electorate framing is the honest one.</strong> Abstain is the actual plurality in every modern US cycle — non-voting is the most common political outcome. The conditional-on-turnout framing in the secondary table is useful for direct FEC comparison but excludes abstain from the denominator, which understates what the model is actually being asked to predict (a 4-category distribution over the eligible electorate).</p>
+    <p style="margin: 6px 0;"><strong>Plurality match 2/5</strong> (2016 + 2024 correct; 2008 / 2012 / 2020 wrong). The model under-calls abstain as plurality in those three cycles because its predicted D-share is over-stated by 5–13pp; abstain prediction itself lands within ±5pp of FEC on every cycle. The systematic D-over-prediction is what flips the plurality call.</p>
     <p style="margin: 6px 0;"><strong>Phases B' + partyID + 2008/2012 coverage applied.</strong> Pipeline: CCES → mapper → predictVote (with pid7 → partyID multiplier on) → demographic turnout model gates abstention via expected-value aggregation. Per-cycle real-signal coverage on the four core continuous-position nodes:</p>
     <ul style="margin: 4px 0 12px 18px; font-size: 13px;">
       <li><strong>2008:</strong> MAT / CD / ZS real signal; <strong>CU stays fallback</strong> — the CCES 2008 wave shipped no immigration-battery items, so cultural-uniformity / pluralism cannot be measured from this dataset. Structural data gap, not a wiring oversight.</li>

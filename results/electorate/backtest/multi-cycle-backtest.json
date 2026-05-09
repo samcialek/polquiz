@@ -1,7 +1,7 @@
 {
   "schema_version": "v0.1",
-  "generated_at": "2026-05-09T02:12:01.379Z",
-  "elapsed_ms": 33761,
+  "generated_at": "2026-05-09T02:28:38.141Z",
+  "elapsed_ms": 32790,
   "pipeline": "cesBacktestLoader → surveyToPrismMapper (point estimate) → predictVote → weighted aggregate",
   "decisions": {
     "signature_representation": "posterior point estimate (E[posDist], E[salDist])",
@@ -67,8 +67,12 @@
           "Other": -0.0088,
           "Abstain": -0.0027122608266350046,
           "absMean": 0.04325471765589854
-        }
+        },
+        "fourWayElectorateTVDistance": 0.08650943531179708
       },
+      "pluralityMatch": false,
+      "predictedPlurality": "D",
+      "actualPlurality": "Abstain",
       "coverage": {
         "perNode": {
           "MAT": {
@@ -479,8 +483,12 @@
           "Other": -0.0101,
           "Abstain": -0.05034215872232667,
           "absMean": 0.0629605992555504
-        }
+        },
+        "fourWayElectorateTVDistance": 0.1259211985111008
       },
+      "pluralityMatch": false,
+      "predictedPlurality": "D",
+      "actualPlurality": "Abstain",
       "coverage": {
         "perNode": {
           "MAT": {
@@ -891,8 +899,12 @@
           "Other": -0.02511778028149192,
           "Abstain": -0.022206133160753483,
           "absMean": 0.036122174363866125
-        }
+        },
+        "fourWayElectorateTVDistance": 0.07224434872773225
       },
+      "pluralityMatch": true,
+      "predictedPlurality": "Abstain",
+      "actualPlurality": "Abstain",
       "coverage": {
         "perNode": {
           "MAT": {
@@ -1303,8 +1315,12 @@
           "Other": -0.012,
           "Abstain": 0.03995892776573157,
           "absMean": 0.04807880611251963
-        }
+        },
+        "fourWayElectorateTVDistance": 0.09615761222503925
       },
+      "pluralityMatch": false,
+      "predictedPlurality": "D",
+      "actualPlurality": "Abstain",
       "coverage": {
         "perNode": {
           "MAT": {
@@ -1715,8 +1731,12 @@
           "Other": -0.012,
           "Abstain": 0.02229537036418683,
           "absMean": 0.039603806992959865
-        }
+        },
+        "fourWayElectorateTVDistance": 0.07920761398591973
       },
+      "pluralityMatch": true,
+      "predictedPlurality": "Abstain",
+      "actualPlurality": "Abstain",
       "coverage": {
         "perNode": {
           "MAT": {

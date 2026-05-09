@@ -106,7 +106,21 @@ export interface CycleBacktestResult {
   gaps: {
     sharesOfVoters: { D: number; R: number; Other: number; absMean: number };
     sharesOfElectorate: { D: number; R: number; Other: number; Abstain: number; absMean: number };
+    /**
+     * Total variation distance between predicted and actual 4-way share-of-
+     * electorate distribution {D, R, Other, Abstain}. TV = 0.5 × Σ|pred − act|.
+     * This is the natural metric when abstain is treated as a first-class
+     * political outcome alongside vote choice — and abstain IS the actual
+     * plurality in every modern US cycle.
+     */
+    fourWayElectorateTVDistance: number;
   };
+  /** True iff predicted-plurality category equals actual-plurality category. */
+  pluralityMatch: boolean;
+  /** The category with the largest predicted share of electorate. */
+  predictedPlurality: "D" | "R" | "Other" | "Abstain";
+  /** The category with the largest actual share of electorate. */
+  actualPlurality: "D" | "R" | "Other" | "Abstain";
 
   coverage: {
     perNode: Record<string, { realSignal: number; fallback: number; total: number }>;
@@ -595,6 +609,24 @@ export async function runCycleBacktest(
   };
   gapElec.absMean = (Math.abs(gapElec.D) + Math.abs(gapElec.R) + Math.abs(gapElec.Other) + Math.abs(gapElec.Abstain)) / 4;
 
+  // 4-way total variation distance over {D, R, Other, Abstain} share-of-
+  // electorate. TV = 0.5 × Σ|pred − act|; range [0, 1]. Captures distribution
+  // mismatch when abstain is a first-class category.
+  const fourWayElectorateTVDistance = 0.5 * (
+    Math.abs(gapElec.D) + Math.abs(gapElec.R) + Math.abs(gapElec.Other) + Math.abs(gapElec.Abstain)
+  );
+
+  // Plurality interpretation: which of {D, R, Other, Abstain} has the largest
+  // share-of-electorate. In every modern US cycle the actual plurality is
+  // Abstain — non-voting is the most common political outcome.
+  const fourWayPred = { D: sharesElec.D, R: sharesElec.R, Other: predOtherElec, Abstain: sharesElec.Abstain };
+  const fourWayAct = { D: actualSharesElec.D, R: actualSharesElec.R, Other: actualSharesElec.Other, Abstain: actualSharesElec.Abstain };
+  const pluralityOf = (m: Record<string, number>): "D" | "R" | "Other" | "Abstain" =>
+    Object.entries(m).sort((a, b) => b[1] - a[1])[0]![0] as "D" | "R" | "Other" | "Abstain";
+  const predictedPlurality = pluralityOf(fourWayPred);
+  const actualPlurality = pluralityOf(fourWayAct);
+  const pluralityMatch = predictedPlurality === actualPlurality;
+
   // Continuous marginals.
   const continuousMarginals: CycleBacktestResult["continuousMarginals"] = {};
   for (const id of CONTINUOUS_NODES) {
@@ -651,7 +683,11 @@ export async function runCycleBacktest(
     gaps: {
       sharesOfVoters: gapVoters,
       sharesOfElectorate: gapElec,
+      fourWayElectorateTVDistance,
     },
+    pluralityMatch,
+    predictedPlurality,
+    actualPlurality,
     coverage: {
       perNode: perNodeCov,
       perBoundary: perBoundaryCov,
