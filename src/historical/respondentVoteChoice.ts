@@ -132,7 +132,30 @@ function anchorDistanceContribution(
 // Party-mapping function below handles historical parties (Democratic-Republican
 // counts as 'D' for early-19th-century Jeffersonian Democrats; Whig and
 // National Republican count as the proto-Republican coalition).
-const PARTY_LOYALTY_BASE = 0.40;
+// Default 1.00 (was 0.40 pre-2026-05-08). 2.5× bump from the CCES
+// calibration sweep — the dominant lever in the 18-config grid. At
+// PARTY_LOYALTY_BASE=0.40, cross-pressured partisans (R-leaners on
+// centrist policy positions, D-leaners on the same) drifted toward
+// whichever candidate was issue-closer, which on a CCES-weighted sample
+// systematically over-weights D because population-center policy
+// positions are closer to D candidates than to recent R candidates.
+// At 1.00, PF=5 partisans face a 2.0× distance multiplier to out-of-
+// party candidates (was 1.4×), pulling cross-pressured voters back to
+// their party. Closes ~1pp of the 5-cycle avg gap on its own; combines
+// with SALIENCE_POWER=1.5 for the full 1.37pp improvement.
+//
+// Live-quiz behavioral effect: strong partisan respondents are routed
+// to their party's nearest candidate even when issue distance favors
+// the other party. This is closer to observed real-world partisan
+// behavior; the prior 0.40 value was tuned against archetype-centroid
+// distance distributions that don't reflect CCES-population partisan
+// pull.
+const PARTY_LOYALTY_BASE = (() => {
+  const env = process.env.PRISM_PARTY_LOYALTY_BASE;
+  if (env === undefined) return 1.00;
+  const n = Number(env);
+  return Number.isFinite(n) && n >= 0 ? n : 1.00;
+})();
 
 function candidatePartyToCanonical(party: string): "D" | "R" | "T" | "O" {
   // Map historical / third-party labels to a canonical 4-bucket scheme so
@@ -292,7 +315,20 @@ export interface ElectionPrediction {
 // weight that matches real single-issue behavior. SALIENCE_POWER=2 squares
 // the weight, so sal=3 issues dominate (9× vs 1×) while sal=0 still drops
 // cleanly to zero contribution.
-const SALIENCE_POWER = 2;
+// Default 1.5 (was 2.0 pre-2026-05-08). Lowered from squared to ^1.5 by the
+// CCES calibration sweep (`respondent-vote-choice-calibration.{md,json}`):
+// at SALIENCE_POWER=2, high-salience nodes that happen to lean D dominated
+// the distance compute and amplified the systematic D-over-prediction; at
+// 1.5 the contribution stays peaked but doesn't fully square out lower-
+// salience nodes. Best 18-config grid result combined this with PARTY_
+// LOYALTY_BASE=1.00 for an avg-gap drop from 9.79pp → 8.42pp across 5
+// cycles. Env override still available for future sweeps.
+const SALIENCE_POWER = (() => {
+  const env = process.env.PRISM_SALIENCE_POWER;
+  if (env === undefined) return 1.5;
+  const n = Number(env);
+  return Number.isFinite(n) && n > 0 ? n : 1.5;
+})();
 
 // Categorical-node (EPS/AES) weight in the vote-distance metric. Per ADR-009
 // (P3.1), categorical nodes were silently absent from predictVote despite
@@ -305,7 +341,13 @@ const SALIENCE_POWER = 2;
 // charisma), 1980 (Reagan visionary), 2008 (Obama visionary), 2016 (Trump
 // fighter vs Clinton statesman), 2020 (Biden statesman vs Trump fighter),
 // 2024 (Harris statesman vs Trump fighter).
-const CATEGORICAL_BASE_SALIENCE = 0.6; // before pow-2 squaring → effective ≈0.36
+// Env-var override for calibration sweeps. Default 0.6 unchanged at runtime.
+const CATEGORICAL_BASE_SALIENCE = (() => {
+  const env = process.env.PRISM_CATEGORICAL_BASE_SALIENCE;
+  if (env === undefined) return 0.6;
+  const n = Number(env);
+  return Number.isFinite(n) && n >= 0 ? n : 0.6;
+})();
 const STYLE_DRIVEN_ELECTIONS: Record<number, number> = {
   1932: 1.4, 1960: 1.4, 1980: 1.5, 2008: 1.4,
   2016: 2.0, 2020: 1.7, 2024: 1.8,
