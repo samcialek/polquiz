@@ -44,18 +44,16 @@ interface SweepConfig {
   catBase: number;
 }
 
-// Round 2 — extended grid (2026-05-09). The first sweep capped PARTY_LOYALTY
-// at 1.0 and that value won at the edge of the grid; extending up to 3.0 to
-// find the true optimum. CATEGORICAL_BASE_SALIENCE didn't move things last
-// round so it's pinned at 0.6 to halve the search. Optimization target also
-// switched from sharesOfVoters.absMean to fourWayElectorateTVDistance per
-// the dashboard reframe — this is the honest metric (abstain in the
-// denominator).
+// Round 3 — push loyalty above 3.0 (2026-05-09). Round-2 best landed at
+// loyalty=3.0 / salPower=1.3 with TV 6.85pp; loyalty was at the upper grid
+// edge again. Testing {3.0, 3.5, 4.0, 5.0} to see if the optimum is even
+// higher. SALIENCE_POWER stays narrow around the Round-2 winner to focus
+// search on the loyalty axis. Optimization target: fourWayElectorateTVDistance.
 //
-// Grid: 3 × 6 × 1 = 18 configs. ~35s per run × 18 = ~10 minutes wallclock.
+// Grid: 3 × 4 × 1 = 12 configs. ~35s per run × 12 = ~6-7 minutes wallclock.
 const GRID: SweepConfig[] = [];
-for (const salPower of [1.3, 1.5, 1.8]) {
-  for (const partyLoyalty of [1.0, 1.3, 1.6, 2.0, 2.5, 3.0]) {
+for (const salPower of [1.1, 1.3, 1.5]) {
+  for (const partyLoyalty of [3.0, 3.5, 4.0, 5.0]) {
     for (const catBase of [0.6]) {
       GRID.push({ salPower, partyLoyalty, catBase });
     }
@@ -141,9 +139,9 @@ async function main() {
 
   // Sort by avg 4-way TV distance (the honest metric).
   results.sort((a, b) => a.avgFourWayTV - b.avgFourWayTV);
-  // Current defaults (post-Round-1 refit) are sal=1.5, loyalty=1.0, catBase=0.6.
+  // Current defaults (post-Round-2) are sal=1.3, loyalty=3.0, catBase=0.6.
   const baseline = results.find(r =>
-    r.config.salPower === 1.5 && r.config.partyLoyalty === 1.00 && r.config.catBase === 0.60
+    r.config.salPower === 1.3 && r.config.partyLoyalty === 3.00 && r.config.catBase === 0.60
   );
   const best = results[0]!;
 
@@ -163,7 +161,7 @@ async function main() {
     elapsed_ms: totalElapsed,
     grid_size: GRID.length,
     optimization_target: "fourWayElectorateTVDistance",
-    baseline_config: { salPower: 1.5, partyLoyalty: 1.00, catBase: 0.60 },
+    baseline_config: { salPower: 1.3, partyLoyalty: 3.00, catBase: 0.60 },
     results,
   }, null, 2));
 
@@ -175,7 +173,7 @@ async function main() {
   md.push(`**Optimization target:** average 4-way TV distance over {D, R, Other, Abstain} share-of-electorate.`);
   md.push("");
   if (baseline) {
-    md.push(`**Baseline (post-Round-1 defaults):** sal=1.5 / loyalty=1.0 / catBase=0.6 → TV ${(baseline.avgFourWayTV * 100).toFixed(2)}pp, plurality ${baseline.pluralityHits}/5, winners ${baseline.winnersCorrect}/5`);
+    md.push(`**Baseline (post-Round-2 defaults):** sal=1.3 / loyalty=3.0 / catBase=0.6 → TV ${(baseline.avgFourWayTV * 100).toFixed(2)}pp, plurality ${baseline.pluralityHits}/5, winners ${baseline.winnersCorrect}/5`);
     md.push("");
   }
   md.push(`**Best config:** sal=${best.config.salPower} / loyalty=${best.config.partyLoyalty} / catBase=${best.config.catBase} → TV ${(best.avgFourWayTV * 100).toFixed(2)}pp, plurality ${best.pluralityHits}/5, winners ${best.winnersCorrect}/5 ${baseline ? `(Δ ${((best.avgFourWayTV - baseline.avgFourWayTV) * 100).toFixed(2)}pp TV)` : ""}`);

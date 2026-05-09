@@ -132,30 +132,28 @@ function anchorDistanceContribution(
 // Party-mapping function below handles historical parties (Democratic-Republican
 // counts as 'D' for early-19th-century Jeffersonian Democrats; Whig and
 // National Republican count as the proto-Republican coalition).
-// Default 3.00 (was 1.00 post-Round-1, was 0.40 pre-2026-05-08). Round-2
-// sweep on 4-way TV distance pushed this to 3.0 (was at the upper edge
-// of the grid; consider extending if Round-3 lands).
+// Default 5.00 (was 3.00 post-Round-2, 1.00 post-Round-1, 0.40 pre-2026-05-08).
+// Round-3 sweep (2026-05-09) extended loyalty to {3.0, 3.5, 4.0, 5.0} and
+// found the function is monotonically decreasing across that range with
+// diminishing returns. loyalty=5.0 won at the upper grid edge with TV 5.96pp.
 //
-// At 3.0, PF=5 strong partisans face a 1 + 3.0 = 4.0× distance multiplier
-// to out-of-party candidates (was 2.0× at loyalty=1.0, 1.4× at loyalty=0.4
-// pre-refit). PF=3 (moderate partisans) face 1 + 3.0 × 0.6 = 2.8× — also
-// strong. This is empirically what CCES partisan vote-choice patterns
-// require: the population-center policy positions on which the model's
-// issue-distance compute operates are systematically closer to D
-// candidates, so without a strong loyalty multiplier the issue-distance
-// term routes most voters to D regardless of their pid7 self-ID.
+// At 5.0, PF=5 strong partisans face a 1 + 5.0 = 6.0× distance multiplier
+// to out-of-party candidates. PF=3 moderate partisans face 1 + 5.0 × 0.6 = 4.0×.
+// This is effectively near-deterministic partisan vote-routing for strong
+// partisans — moderates still respond to issue-distance differences but
+// with heavy bias toward in-party.
 //
-// Live-quiz behavioral consequence: strong partisans are now routed to
-// their party even when issue distance moderately favors the other party.
-// This is closer to observed real-world partisan behavior — the
-// "I disagree with my party on X but I still vote for them" pattern —
-// than the previous values, which were tuned against archetype-centroid
-// distance distributions rather than CCES populations.
+// Treating this as the calibration ceiling for loyalty. Going higher would
+// shave another ~0.3pp but degrades into "model = pid7 lookup" for
+// partisans, which over-fits the modern partisan-loyalty pattern. Further
+// D/R-gap closure from here requires structural moves (calibration battery,
+// hierarchical Bayesian refit, candidate-profile refresh), not constant
+// tuning.
 const PARTY_LOYALTY_BASE = (() => {
   const env = process.env.PRISM_PARTY_LOYALTY_BASE;
-  if (env === undefined) return 3.00;
+  if (env === undefined) return 5.00;
   const n = Number(env);
-  return Number.isFinite(n) && n >= 0 ? n : 3.00;
+  return Number.isFinite(n) && n >= 0 ? n : 5.00;
 })();
 
 function candidatePartyToCanonical(party: string): "D" | "R" | "T" | "O" {
@@ -316,17 +314,15 @@ export interface ElectionPrediction {
 // weight that matches real single-issue behavior. SALIENCE_POWER=2 squares
 // the weight, so sal=3 issues dominate (9× vs 1×) while sal=0 still drops
 // cleanly to zero contribution.
-// Default 1.3 (was 1.5 post-Round-1, was 2.0 pre-2026-05-08). Tightened
-// further by the Round-2 sweep (2026-05-09) which optimized on the proper
-// 4-way TV distance metric instead of the 3-way shares-of-voters absMean.
-// Lower exponent damps high-salience nodes from dominating; combined with
-// PARTY_LOYALTY_BASE=3.0 for an avg-gap drop from 9.20pp TV → 6.85pp TV
-// and plurality match 2/5 → 4/5.
+// Default 1.1 (was 1.3 post-Round-2, 1.5 post-Round-1, 2.0 pre-2026-05-08).
+// Round-3 sweep (2026-05-09) refined the optimum on the upper-loyalty axis;
+// SALIENCE_POWER showed monotonic but small effect (1.1 < 1.3 < 1.5 in TV).
+// Combined with PARTY_LOYALTY_BASE=5.0 for avg-TV 6.85pp → 5.96pp.
 const SALIENCE_POWER = (() => {
   const env = process.env.PRISM_SALIENCE_POWER;
-  if (env === undefined) return 1.3;
+  if (env === undefined) return 1.1;
   const n = Number(env);
-  return Number.isFinite(n) && n > 0 ? n : 1.3;
+  return Number.isFinite(n) && n > 0 ? n : 1.1;
 })();
 
 // Categorical-node (EPS/AES) weight in the vote-distance metric. Per ADR-009
