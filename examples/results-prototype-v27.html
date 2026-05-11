@@ -1368,6 +1368,22 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+<script>
+// v27.48: Put the core result surfaces before the presidential grid.
+// The election matrix is useful, but when it sits immediately after the
+// archetype header it can make the page read as "only presidents" before
+// users reach the world map and node signatures.
+(function orderPrimaryResultSections() {
+  const root = document.getElementById('results');
+  const elections = document.getElementById('elections-section');
+  const map = document.getElementById('map-section');
+  const profile = document.getElementById('profile-section');
+  if (!root || !elections || !map || !profile) return;
+  root.insertBefore(map, elections);
+  root.insertBefore(profile, elections);
+})();
+</script>
+
 <!-- SECTION 5 (v11: footer below the map) -->
 <section id="footer-section" class="cine-collapsed">
   <div class="container">
