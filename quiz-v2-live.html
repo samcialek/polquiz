@@ -3140,7 +3140,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260511-results-cleanup';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
