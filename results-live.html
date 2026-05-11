@@ -12,6 +12,9 @@
       var target = new URL('examples/results-prototype-v27.html', window.location.href);
       target.search = window.location.search;
       target.hash = window.location.hash;
+      if (!target.searchParams.has('v')) {
+        target.searchParams.set('v', '20260511-results-cleanup');
+      }
       window.location.replace(target.toString());
     })();
   </script>
