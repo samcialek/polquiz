@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="prism-engine-bundle.min.js?v=20260508-donut-live"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260509-q60-anchor-fix"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -3178,6 +3181,18 @@ document.addEventListener('dragover', function(e) {
     container.querySelectorAll('.ranking-item').forEach((item, i) => {
         item.querySelector('.ranking-number').textContent = i + 1;
     });
+});
+
+// Bundle-stamp footer (FIX 6 / 2026-05-09): visibly print BUNDLE_VERSION so a
+// stale browser cache is obvious before the user takes the quiz.
+window.addEventListener('load', () => {
+  try {
+    const v = (window.PrismEngine && window.PrismEngine.BUNDLE_VERSION) || 'unknown';
+    const el = document.createElement('div');
+    el.textContent = 'build: ' + v;
+    el.style.cssText = 'position:fixed;bottom:6px;right:8px;font:10px ui-monospace,Menlo,Consolas,monospace;color:#888;background:rgba(255,255,255,0.7);padding:2px 6px;border-radius:3px;pointer-events:none;z-index:9999;';
+    document.body.appendChild(el);
+  } catch (e) { /* footer is diagnostic only — never block the quiz */ }
 });
 </script>
 

@@ -325,6 +325,8 @@ export interface RankingItemMap {
 export interface PairOptionMap {
   continuous?: Partial<Record<ContinuousNodeId, number>>;
   categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
+  /** Legacy ADR-006 path. Identity-anchor evidence for the chosen option. */
+  trbAnchor?: Partial<Record<TrbAnchor, number>>;
   /** ADR-007 (T3): moral-circle contribution per pairwise option. */
   moralCircle?: OptionEvidenceMoralCircle;
 }

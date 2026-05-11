@@ -28,6 +28,9 @@ const shared = {
   // Replace Node.js process.env references for browser compatibility
   define: {
     "process.env.PRISM_NONIDEO": '"1"',
+    "process.env.PRISM_PARTY_LOYALTY_BASE": '"5"',
+    "process.env.PRISM_SALIENCE_POWER": '"1.1"',
+    "process.env.PRISM_CATEGORICAL_BASE_SALIENCE": '"0.6"',
   },
 };
 

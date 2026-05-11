@@ -235,7 +235,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       independence_vs_elders: {
         independence: {
           continuous: { ONT_H: 0.25 },
-          categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.plainspoken }
+          categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
         },
         respect_for_elders: {
           continuous: { ONT_H: -0.25 },
@@ -2588,7 +2588,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       gut_feeling: {
         categorical: {
           EPS: { cat: EPS_PROTOTYPES.intuitionist },
-          AES: { cat: AES_PROTOTYPES.plainspoken }
+          AES: { cat: AES_PROTOTYPES.authentic }
         }
       },
       own_reasoning: {
@@ -2634,7 +2634,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       bridge_builder:       { categorical: { AES: AES_PROTOTYPES.statesman } },
       deep_expertise:       { categorical: { AES: AES_PROTOTYPES.technocrat } },
       community_voice:      { categorical: { AES: AES_PROTOTYPES.pastoral } },
-      says_what_they_think: { categorical: { AES: AES_PROTOTYPES.plainspoken, EPS: EPS_PROTOTYPES.intuitionist } },
+      says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
       calls_out_power:      { categorical: { AES: AES_PROTOTYPES.fighter } },
       big_picture:          { categorical: { AES: AES_PROTOTYPES.visionary } }
     }
@@ -3392,7 +3392,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       aes_statesman: "Statesman - formal and dignified, measured tone, ceremonial register, presidential bearing",
       aes_technocrat: "Technocrat - precise and analytical, expert-coded delivery, comfortable with technical detail and jargon",
       aes_pastoral: "Pastoral - warm hometown register, regional cadence, family-and-community language, evocative and emotional",
-      aes_plainspoken: "Plainspoken - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
+      aes_authentic: "Authentic - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
       aes_fighter: "Fighter - combative tone, willing to attack opponents directly, confrontational delivery, doesn't soften",
       aes_visionary: "Visionary - lyrical and aspirational, evocative-imagistic rhetoric, paints pictures with words"
     },
@@ -3404,7 +3404,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       aes_statesman:  { categorical: { AES: AES_PROTOTYPES.statesman } },
       aes_technocrat: { categorical: { AES: AES_PROTOTYPES.technocrat } },
       aes_pastoral:   { categorical: { AES: AES_PROTOTYPES.pastoral } },
-      aes_plainspoken:  { categorical: { AES: AES_PROTOTYPES.plainspoken } },
+      aes_authentic:  { categorical: { AES: AES_PROTOTYPES.authentic } },
       aes_fighter:    { categorical: { AES: AES_PROTOTYPES.fighter } },
       aes_visionary:  { categorical: { AES: AES_PROTOTYPES.visionary } }
     }

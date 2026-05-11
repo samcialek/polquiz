@@ -671,6 +671,7 @@ export function applyAllocationAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
+        if (!node || !catDist) continue; // guard: undefined prototype reference
         const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
         const mixWeight = 0.35 * share * normFactor;
         const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
@@ -687,6 +688,19 @@ export function applyAllocationAnswer(
       state.trbAnchor.touches += 1;
       // 6.E.2b bridge: mirror anchor signals into morBoundaries (already share-scaled).
       mirrorAnchorToBoundaries(state, scaled, 1.0);
+    }
+
+    // ADR-007 (2026-05-09): per-bucket moralCircle evidence. Skip negligible
+    // shares (<5%) so allocation noise doesn't pollute the running average.
+    if (map.moralCircle && share >= 0.05) {
+      const scaled: typeof map.moralCircle = {};
+      if (typeof map.moralCircle.universal === "number") {
+        scaled.universal = map.moralCircle.universal;
+      }
+      if (map.moralCircle.scopedAffinities) {
+        scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+      }
+      applyMoralCircleEvidence(state, scaled);
     }
   }
 
@@ -762,6 +776,10 @@ export function applyRankingAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
+        // Defensive: if a question references an undefined prototype
+        // (e.g. AES_PROTOTYPES.<typo>), catDist is undefined. Skip the item
+        // rather than crashing the whole engine on a single bad map entry.
+        if (!node || !catDist) continue;
         const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
         const mixWeight = 0.4 * rankWeight * normFactor;
         const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
@@ -964,6 +982,24 @@ export function applyBestWorstSalience(
     anchorApplied = true;
   }
   if (anchorApplied) state.trbAnchor.touches += 1;
+
+  // ADR-007 (2026-05-09): per-best-item moralCircle evidence. Worst items are
+  // skipped — same logic as the trbAnchor block above: "what I least value"
+  // doesn't cleanly invert into negative scoped affinity. Middle items
+  // contribute nothing.
+  for (const item of allItems) {
+    if (!bestSet.has(item)) continue;
+    const map = q.rankingMap[item];
+    if (!map?.moralCircle) continue;
+    const scaled: typeof map.moralCircle = {};
+    if (typeof map.moralCircle.universal === "number") {
+      scaled.universal = map.moralCircle.universal;
+    }
+    if (map.moralCircle.scopedAffinities) {
+      scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+    }
+    applyMoralCircleEvidence(state, scaled);
+  }
 }
 
 /**
@@ -1178,6 +1214,63 @@ export function applyPrioritySort(
       }
     }
   }
+
+  // ADR-007 (2026-05-09): identity-anchor and moral-circle evidence harvest.
+  // Q60 + Q102 declare trbAnchor and/or moralCircle on rankingMap items, but
+  // the priority-sort handler used to silently drop both. Mirrors the per-item
+  // pattern from applyRankingAnswer with bucket-based weighting:
+  //   supportHigh → full weight  ("this identity is central to my politics")
+  //   supportMid  → half weight  ("I support it but it isn't central")
+  //   opposeHigh  → skip         (same skip rationale as best_worst's `worst`:
+  //                               "I oppose this being central" doesn't cleanly
+  //                               invert to a different anchor)
+  //   neutral     → skip
+  // touches is incremented once per question (matches applyBestWorstSalience),
+  // not once per item.
+  let anchorApplied = false;
+  for (const item of allItems) {
+    const map = q.rankingMap[item];
+    if (!map) continue;
+    const bucket = bucketFor(item);
+    if (bucket === "neutral" || bucket === "opposeHigh") continue;
+    const weight = bucket === "supportHigh" ? 1.0 : 0.5;
+
+    if (map.trbAnchor) {
+      const scaled: Partial<Record<TrbAnchor, number>> = {};
+      for (const [k, v] of Object.entries(map.trbAnchor)) {
+        scaled[k as TrbAnchor] = v * weight;
+      }
+      state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
+      mirrorAnchorToBoundaries(state, scaled, 1.0);
+      anchorApplied = true;
+    }
+
+    if (map.moralCircle) {
+      // Bucket-weighted moral-circle emission. supportHigh emits the declared
+      // value as-is; supportMid blends toward the universal-baseline neutral
+      // point (50) by `weight` so a mid-supported item produces a weaker
+      // signal in the running average than a fully-supported one. Without
+      // this, a single supportMid touch raises a scope's average to the same
+      // level as a single supportHigh touch — which the bucket distinction
+      // is meant to prevent (the trbAnchor branch above already weights this
+      // way; this brings moralCircle into alignment).
+      const NEUTRAL = 50;
+      const scaled: typeof map.moralCircle = {};
+      if (typeof map.moralCircle.universal === "number") {
+        scaled.universal = NEUTRAL + weight * (map.moralCircle.universal - NEUTRAL);
+      }
+      if (map.moralCircle.scopedAffinities) {
+        const out: NonNullable<typeof map.moralCircle.scopedAffinities> = {};
+        for (const [k, v] of Object.entries(map.moralCircle.scopedAffinities)) {
+          if (v === null || v === undefined) continue;
+          out[k as keyof typeof out] = NEUTRAL + weight * (v - NEUTRAL);
+        }
+        scaled.scopedAffinities = out;
+      }
+      applyMoralCircleEvidence(state, scaled);
+    }
+  }
+  if (anchorApplied) state.trbAnchor.touches += 1;
 }
 
 /**
@@ -1264,11 +1357,26 @@ export function applyPairwiseAnswer(
     if (map.categorical) {
       for (const [nodeId, catDist] of Object.entries(map.categorical)) {
         const node = state.categorical[nodeId as CategoricalNodeId];
+        if (!node || !catDist) continue; // guard: undefined prototype reference
         const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
         const mixWeight = 0.4 * normFactor;
         const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
         node.catDist = normalize(mixed as typeof node.catDist);
       }
+    }
+
+    // ADR-007 (2026-05-09): identity-anchor + moral-circle evidence harvest.
+    // The chosen pair-option carries full-weight evidence (no rank/share
+    // attenuation — it's a binary pick). Skipping the unchosen option matches
+    // best_worst's worst-skip rationale: "I picked B over A" doesn't cleanly
+    // invert A's anchor into a different anchor.
+    if (map.trbAnchor) {
+      state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+      state.trbAnchor.touches += 1;
+      mirrorAnchorToBoundaries(state, map.trbAnchor, 1.0);
+    }
+    if (map.moralCircle) {
+      applyMoralCircleEvidence(state, map.moralCircle);
     }
   }
 }

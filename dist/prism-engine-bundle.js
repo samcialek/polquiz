@@ -3071,7 +3071,7 @@ var PrismEngine = (() => {
         independence_vs_elders: {
           independence: {
             continuous: { ONT_H: 0.25 },
-            categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.plainspoken }
+            categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
           },
           respect_for_elders: {
             continuous: { ONT_H: -0.25 },
@@ -5005,7 +5005,7 @@ var PrismEngine = (() => {
         gut_feeling: {
           categorical: {
             EPS: { cat: EPS_PROTOTYPES.intuitionist },
-            AES: { cat: AES_PROTOTYPES.plainspoken }
+            AES: { cat: AES_PROTOTYPES.authentic }
           }
         },
         own_reasoning: {
@@ -5050,7 +5050,7 @@ var PrismEngine = (() => {
         bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
         deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
         community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-        says_what_they_think: { categorical: { AES: AES_PROTOTYPES.plainspoken, EPS: EPS_PROTOTYPES.intuitionist } },
+        says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
         calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
         big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
       }
@@ -5787,7 +5787,7 @@ var PrismEngine = (() => {
         aes_statesman: "Statesman - formal and dignified, measured tone, ceremonial register, presidential bearing",
         aes_technocrat: "Technocrat - precise and analytical, expert-coded delivery, comfortable with technical detail and jargon",
         aes_pastoral: "Pastoral - warm hometown register, regional cadence, family-and-community language, evocative and emotional",
-        aes_plainspoken: "Plainspoken - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
+        aes_authentic: "Authentic - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
         aes_fighter: "Fighter - combative tone, willing to attack opponents directly, confrontational delivery, doesn't soften",
         aes_visionary: "Visionary - lyrical and aspirational, evocative-imagistic rhetoric, paints pictures with words"
       },
@@ -5799,7 +5799,7 @@ var PrismEngine = (() => {
         aes_statesman: { categorical: { AES: AES_PROTOTYPES.statesman } },
         aes_technocrat: { categorical: { AES: AES_PROTOTYPES.technocrat } },
         aes_pastoral: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-        aes_plainspoken: { categorical: { AES: AES_PROTOTYPES.plainspoken } },
+        aes_authentic: { categorical: { AES: AES_PROTOTYPES.authentic } },
         aes_fighter: { categorical: { AES: AES_PROTOTYPES.fighter } },
         aes_visionary: { categorical: { AES: AES_PROTOTYPES.visionary } }
       }
@@ -7838,6 +7838,7 @@ var PrismEngine = (() => {
       if (map.categorical) {
         for (const [nodeId, catDist] of Object.entries(map.categorical)) {
           const node = state.categorical[nodeId];
+          if (!node || !catDist) continue;
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
           const mixWeight = 0.35 * share * normFactor;
           const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
@@ -7852,6 +7853,16 @@ var PrismEngine = (() => {
         state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
         state.trbAnchor.touches += 1;
         mirrorAnchorToBoundaries(state, scaled, 1);
+      }
+      if (map.moralCircle && share >= 0.05) {
+        const scaled = {};
+        if (typeof map.moralCircle.universal === "number") {
+          scaled.universal = map.moralCircle.universal;
+        }
+        if (map.moralCircle.scopedAffinities) {
+          scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+        }
+        applyMoralCircleEvidence(state, scaled);
       }
     }
     const salienceTouches = q.touchProfile.filter((t) => t.role === "salience");
@@ -7902,6 +7913,7 @@ var PrismEngine = (() => {
       if (map.categorical) {
         for (const [nodeId, catDist] of Object.entries(map.categorical)) {
           const node = state.categorical[nodeId];
+          if (!node || !catDist) continue;
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
           const mixWeight = 0.4 * rankWeight * normFactor;
           const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
@@ -8026,6 +8038,19 @@ var PrismEngine = (() => {
       anchorApplied = true;
     }
     if (anchorApplied) state.trbAnchor.touches += 1;
+    for (const item of allItems) {
+      if (!bestSet.has(item)) continue;
+      const map = q.rankingMap[item];
+      if (!map?.moralCircle) continue;
+      const scaled = {};
+      if (typeof map.moralCircle.universal === "number") {
+        scaled.universal = map.moralCircle.universal;
+      }
+      if (map.moralCircle.scopedAffinities) {
+        scaled.scopedAffinities = { ...map.moralCircle.scopedAffinities };
+      }
+      applyMoralCircleEvidence(state, scaled);
+    }
   }
   function applyPrioritySort(state, q, placements, allItems) {
     state.answers[q.id] = {
@@ -8149,6 +8174,40 @@ var PrismEngine = (() => {
         }
       }
     }
+    let anchorApplied = false;
+    for (const item of allItems) {
+      const map = q.rankingMap[item];
+      if (!map) continue;
+      const bucket = bucketFor(item);
+      if (bucket === "neutral" || bucket === "opposeHigh") continue;
+      const weight = bucket === "supportHigh" ? 1 : 0.5;
+      if (map.trbAnchor) {
+        const scaled = {};
+        for (const [k, v] of Object.entries(map.trbAnchor)) {
+          scaled[k] = v * weight;
+        }
+        state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, scaled);
+        mirrorAnchorToBoundaries(state, scaled, 1);
+        anchorApplied = true;
+      }
+      if (map.moralCircle) {
+        const NEUTRAL = 50;
+        const scaled = {};
+        if (typeof map.moralCircle.universal === "number") {
+          scaled.universal = NEUTRAL + weight * (map.moralCircle.universal - NEUTRAL);
+        }
+        if (map.moralCircle.scopedAffinities) {
+          const out = {};
+          for (const [k, v] of Object.entries(map.moralCircle.scopedAffinities)) {
+            if (v === null || v === void 0) continue;
+            out[k] = NEUTRAL + weight * (v - NEUTRAL);
+          }
+          scaled.scopedAffinities = out;
+        }
+        applyMoralCircleEvidence(state, scaled);
+      }
+    }
+    if (anchorApplied) state.trbAnchor.touches += 1;
   }
   function applyDualAxisAnswer(state, q, answer) {
     const x = Math.max(0, Math.min(1, answer.x));
@@ -8199,11 +8258,20 @@ var PrismEngine = (() => {
       if (map.categorical) {
         for (const [nodeId, catDist] of Object.entries(map.categorical)) {
           const node = state.categorical[nodeId];
+          if (!node || !catDist) continue;
           const normFactor = NODE_NORM_FACTORS[nodeId] ?? 1;
           const mixWeight = 0.4 * normFactor;
           const mixed = node.catDist.map((v, i) => v * (1 - mixWeight) + (catDist[i] ?? 0) * mixWeight);
           node.catDist = normalize(mixed);
         }
+      }
+      if (map.trbAnchor) {
+        state.trbAnchor.dist = addToAnchorDist(state.trbAnchor.dist, map.trbAnchor);
+        state.trbAnchor.touches += 1;
+        mirrorAnchorToBoundaries(state, map.trbAnchor, 1);
+      }
+      if (map.moralCircle) {
+        applyMoralCircleEvidence(state, map.moralCircle);
       }
     }
   }
@@ -17083,7 +17151,12 @@ var PrismEngine = (() => {
     const diff2 = (1 - userMass) * 4;
     return { contribution: effectiveSal * diff2, weight: effectiveSal };
   }
-  var PARTY_LOYALTY_BASE = 0.4;
+  var PARTY_LOYALTY_BASE = (() => {
+    const env = "5";
+    if (env === void 0) return 5;
+    const n = Number(env);
+    return Number.isFinite(n) && n >= 0 ? n : 5;
+  })();
   function candidatePartyToCanonical(party) {
     if (party === "Democratic" || party === "Democratic-Republican" || party === "Free Soil" || party === "Dixiecrat") return "D";
     if (party === "Republican" || party === "National Republican" || party === "Federalist" || party === "Whig") return "R";
@@ -17132,8 +17205,18 @@ var PrismEngine = (() => {
     "engaged": 1.7,
     "highly-engaged": 1.85
   };
-  var SALIENCE_POWER = 2;
-  var CATEGORICAL_BASE_SALIENCE = 0.6;
+  var SALIENCE_POWER = (() => {
+    const env = "1.1";
+    if (env === void 0) return 1.1;
+    const n = Number(env);
+    return Number.isFinite(n) && n > 0 ? n : 1.1;
+  })();
+  var CATEGORICAL_BASE_SALIENCE = (() => {
+    const env = "0.6";
+    if (env === void 0) return 0.6;
+    const n = Number(env);
+    return Number.isFinite(n) && n >= 0 ? n : 0.6;
+  })();
   var STYLE_DRIVEN_ELECTIONS = {
     1932: 1.4,
     1960: 1.4,
@@ -17199,12 +17282,13 @@ var PrismEngine = (() => {
     const diff2 = (1 - alignment) * 4;
     return { contribution: effectiveSal * diff2, weight: effectiveSal };
   }
-  function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState) {
+  function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState, moralCircleAffinity) {
     let weightedSumSq = 0;
     let totalWeight = 0;
-    const useMorModule = !!morBoundariesState && !!cand.morBoundaries;
+    const useMoralCircle = !!moralCircleAffinity && !!cand.moralCircle;
+    const useMorModule = !useMoralCircle && !!morBoundariesState && !!cand.morBoundaries;
     for (const node of SCORING_NODES2) {
-      if (useMorModule && MOR_MODULE_LEGACY_NODES.includes(node)) continue;
+      if ((useMorModule || useMoralCircle) && MOR_MODULE_LEGACY_NODES.includes(node)) continue;
       const entry = sig[node];
       if (!entry) continue;
       const candPos = cand[node];
@@ -17228,7 +17312,19 @@ var PrismEngine = (() => {
       weightedSumSq += r.contribution;
       totalWeight += r.weight;
     }
-    if (useMorModule) {
+    if (useMoralCircle) {
+      const dist01 = moralCircleDistance(moralCircleAffinity, cand.moralCircle);
+      const diff = dist01 * 4;
+      const intensity03 = moralCircleAffinity.intensity03;
+      const eraMult = getActivationMultiplier(ctx.year, "MOR");
+      const rawSal = intensity03 * eraMult;
+      let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+      if (dominantNode === "MOR" || dominantNode === "TRB" || dominantNode === "PF") {
+        effectiveSal *= 1.5;
+      }
+      weightedSumSq += effectiveSal * diff * diff;
+      totalWeight += effectiveSal;
+    } else if (useMorModule) {
       const respBd = morBoundariesState.boundaries;
       const candBd = cand.morBoundaries.boundaries;
       const vd = morTargetVectorDistance(respBd, candBd);
@@ -17255,7 +17351,7 @@ var PrismEngine = (() => {
     const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
     const pfPos = pfFromMc ?? pfFromMor ?? sig.PF?.pos ?? null;
     const scored = candidates.map((c) => {
-      const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
+      const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState, moralCircleAffinity);
       const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
       const valuesDist = baseValuesDist + moralFloor.penalty;
       const nonIdeologicalModifier = NONIDEO_ENABLED ? getNonIdeologicalModifier(
@@ -17312,7 +17408,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260429-pr3d-q207-pro";
+  var BUNDLE_VERSION = "20260509-q60-anchor-fix";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
