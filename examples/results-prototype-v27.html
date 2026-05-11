@@ -1368,22 +1368,6 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<script>
-// v27.48: Put the core result surfaces before the presidential grid.
-// The election matrix is useful, but when it sits immediately after the
-// archetype header it can make the page read as "only presidents" before
-// users reach the world map and node signatures.
-(function orderPrimaryResultSections() {
-  const root = document.getElementById('results');
-  const elections = document.getElementById('elections-section');
-  const map = document.getElementById('map-section');
-  const profile = document.getElementById('profile-section');
-  if (!root || !elections || !map || !profile) return;
-  root.insertBefore(map, elections);
-  root.insertBefore(profile, elections);
-})();
-</script>
-
 <!-- SECTION 5 (v11: footer below the map) -->
 <section id="footer-section" class="cine-collapsed">
   <div class="container">
@@ -4600,16 +4584,19 @@ document.addEventListener('DOMContentLoaded', () => {
         block.appendChild(row);
       });
 
-      // v16: AES back in MEANS, EPS in REALITY — both rendered as the new
-      // vertical -3 to +3 affinity/aversion bar chart.
+      // 2026-05-12: collapse EPS/AES from a 6-category leaderboard to a
+      // single closest-match label. The bottom of the leaderboard is not
+      // supported by enough signal (5–6 touches across 6 categories) to
+      // honestly rank low-probability categories, and showing six sorted
+      // bars implied a ranking the engine does not actually have.
+      // AES stays in MEANS, EPS stays in REALITY.
       const catNodesForCluster = clusterName === 'REALITY'
-        ? [{ code: 'EPS', name: 'Epistemics', categories: epsCategories }]
+        ? [{ code: 'EPS', name: 'Closest epistemic style', categories: epsCategories }]
         : clusterName === 'MEANS'
-        ? [{ code: 'AES', name: 'Aesthetics', categories: aesCategories }]
+        ? [{ code: 'AES', name: 'Closest aesthetic style', categories: aesCategories }]
         : [];
       if (catNodesForCluster.length > 0) {
         const catNodes = catNodesForCluster;
-        const baseColor = clusterColors[clusterName];
         catNodes.forEach(cn => {
           const arcNode = archetype.nodes[cn.code];
           if (!arcNode) return;
@@ -4625,13 +4612,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const top = sorted[0];
 
           const row = document.createElement('div');
-          row.className = 'cat-vbar-row';
+          row.className = 'cat-vbar-row cat-closest-match';
           row.style.setProperty('--cat-span', String(Math.max(1, clusterDims.length)));
           row.style.opacity = sal === 0 ? 0.55 : (0.65 + sal * 0.35);
-          const salScale = sal * 3;
-          row.title = sal === 0
-            ? `${cn.name}: no salience (this dimension does not register).`
-            : `${cn.name} · salience ${salScale.toFixed(2)} / 3 · top category: ${top.label} (${(top.prob * 100).toFixed(0)}%)`;
+          row.title = sal === 0 ? '' : `${cn.name}: ${top.label}`;
 
           const nameDiv = document.createElement('div');
           nameDiv.className = 'cat-vbar-name';
@@ -4639,22 +4623,17 @@ document.addEventListener('DOMContentLoaded', () => {
           row.appendChild(nameDiv);
 
           if (sal === 0) {
-            // Empty right column — drop the "no salience" placeholder text.
-            // Hover tooltip on the row still explains the absence.
+            // No salience — leave the value column blank rather than
+            // pretending to identify a closest match from no signal.
             const empty = document.createElement('div');
             empty.style.cssText = 'min-height: 1.5rem;';
             row.appendChild(empty);
           } else {
-            const arcAntiCats = (archetype.nodes && archetype.nodes[cn.code] && archetype.nodes[cn.code].antiCats) || [];
-            const labels = cn.categories.map(s => s.charAt(0).toUpperCase() + s.slice(1));
-            // v27.46 — switch AES/EPS from horizontal leaderboard back to
-            // vertical bars per design. The vertical renderer only labels
-            // the top-positive and top-negative columns so labels don't
-            // overlap with six tightly-packed columns.
-            // 2026-05-08: revert to tighter horizontal cat bars per Sam.
-            // The vertical version (renderCatVerticalBars) was the v21 design;
-            // user prefers the v19/v20 compact horizontal rows.
-            row.appendChild(renderCatHorizontalRows(probs, arcAntiCats, labels, clusterColors[clusterName]));
+            const match = document.createElement('div');
+            match.className = 'cat-closest-match-value';
+            match.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; color: " + clusterColors[clusterName] + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
+            match.textContent = top.label;
+            row.appendChild(match);
           }
 
           block.appendChild(row);
