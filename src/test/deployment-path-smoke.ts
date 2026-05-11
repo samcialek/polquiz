@@ -97,27 +97,83 @@ async function main() {
   }, null, { timeout: 15000 });
   console.log(`  Results page rendered.`);
 
-  // Step 4: Verify key sections exist
+  // Wait for the cluster panels to be populated by buildBreakdown.
+  await page.waitForFunction(() => {
+    const realityPanel = document.querySelector('.cluster-panel[data-cluster="REALITY"]');
+    return !!realityPanel && (realityPanel.textContent ?? "").includes("Closest epistemic style");
+  }, null, { timeout: 15000 });
+
+  // Step 4: Verify key sections + 2026-05-12 cleanup invariants
   const checks = await page.evaluate(() => {
     const text = document.body.textContent ?? "";
+    const resultsEl = document.getElementById("results");
+    const renderedSectionOrder = resultsEl
+      ? Array.from(resultsEl.children)
+          .filter(el => el.tagName.toLowerCase() === "section")
+          .map(el => el.id)
+      : [];
+    const realityPanel = document.querySelector('.cluster-panel[data-cluster="REALITY"]');
+    const meansPanel = document.querySelector('.cluster-panel[data-cluster="MEANS"]');
+    const endsPanel = document.querySelector('.cluster-panel[data-cluster="ENDS"]');
+    const identityPanel = document.querySelector('.cluster-panel[data-cluster="IDENTITY"]');
+    const realityText = (realityPanel?.textContent ?? "");
+    const meansText = (meansPanel?.textContent ?? "");
+    // Old leaderboard signatures we want to be gone.
+    const hasLeaderboardBars = !!document.querySelector(".cat-vbar-bar, .cat-vbar-cols, .cat-vbar-col");
+    // Percent-format inside any cat-vbar-row would indicate leftover %-on-EPS/AES.
+    const catRowsHavePercent = Array.from(document.querySelectorAll(".cat-vbar-row"))
+      .some(r => /\d+\s*%/.test(r.textContent ?? ""));
     return {
       archetypeNameText: (document.getElementById("archetype-name")?.textContent ?? "").trim(),
-      hasElectionsSection: !!document.getElementById("elections-section"),
-      hasArchetypeSection: !!document.getElementById("archetype-section"),
+      renderedSectionOrder,
       hasElectionsText: text.includes("Presidential Elections") || text.includes("1789"),
       sectionCount: document.querySelectorAll("section").length,
+      allFourClustersPresent: !!realityPanel && !!meansPanel && !!endsPanel && !!identityPanel,
+      epsInReality: realityText.includes("Closest epistemic style"),
+      epsNotInMeans: !meansText.includes("Closest epistemic style"),
+      aesInMeans: meansText.includes("Closest aesthetic style"),
+      aesNotInReality: !realityText.includes("Closest aesthetic style"),
+      hasLeaderboardBars,
+      catRowsHavePercent,
+      bodyHasLeastFavorite: /least\s+favorite/i.test(text),
+      bodyHasFavoriteAesthetic: /favorite\s+aesthetic|favorite\s+epistemic/i.test(text),
     };
   });
 
-  console.log(`\n=== Deployment path verification ===`);
-  console.log(`  Archetype name rendered:  ${checks.archetypeNameText ? `OK (${checks.archetypeNameText})` : "FAIL"}`);
-  console.log(`  Elections section node:   ${checks.hasElectionsSection ? "OK" : "FAIL"}`);
-  console.log(`  Archetype section node:   ${checks.hasArchetypeSection ? "OK" : "FAIL"}`);
-  console.log(`  Elections text present:   ${checks.hasElectionsText ? "OK" : "FAIL"}`);
-  console.log(`  Total <section> tags:     ${checks.sectionCount}`);
-  console.log(`  Page errors:              ${errors.length === 0 ? "none" : errors.join("; ")}`);
+  // Section-order check: ignore hidden / empty sections (comparison-section
+  // only shows when a friend-prediction is staged).
+  const visibleOrder = checks.renderedSectionOrder.filter(id => id !== "comparison-section");
+  const expectedOrder = ["archetype-section", "elections-section", "map-section", "profile-section", "footer-section"];
+  const sectionOrderOK = JSON.stringify(visibleOrder) === JSON.stringify(expectedOrder);
 
-  const pass = !!checks.archetypeNameText && checks.hasElectionsSection && checks.hasArchetypeSection && checks.sectionCount >= 3;
+  console.log(`\n=== Deployment path verification ===`);
+  console.log(`  Archetype name rendered:        ${checks.archetypeNameText ? `OK (${checks.archetypeNameText})` : "FAIL"}`);
+  console.log(`  Section order (post-comparison): ${sectionOrderOK ? "OK" : `FAIL — got ${JSON.stringify(visibleOrder)}`}`);
+  console.log(`  Elections text present:         ${checks.hasElectionsText ? "OK" : "FAIL"}`);
+  console.log(`  All 4 cluster panels present:   ${checks.allFourClustersPresent ? "OK" : "FAIL"}`);
+  console.log(`  EPS shown in REALITY panel:     ${checks.epsInReality ? "OK" : "FAIL"}`);
+  console.log(`  EPS NOT in MEANS panel:         ${checks.epsNotInMeans ? "OK" : "FAIL"}`);
+  console.log(`  AES shown in MEANS panel:       ${checks.aesInMeans ? "OK" : "FAIL"}`);
+  console.log(`  AES NOT in REALITY panel:       ${checks.aesNotInReality ? "OK" : "FAIL"}`);
+  console.log(`  Old 6-cat leaderboard gone:     ${!checks.hasLeaderboardBars ? "OK" : "FAIL"}`);
+  console.log(`  No % inside cat-vbar rows:      ${!checks.catRowsHavePercent ? "OK" : "FAIL"}`);
+  console.log(`  No "least favorite" in body:    ${!checks.bodyHasLeastFavorite ? "OK" : "FAIL"}`);
+  console.log(`  No "favorite ___" in body:      ${!checks.bodyHasFavoriteAesthetic ? "OK" : "FAIL"}`);
+  console.log(`  Total <section> tags:           ${checks.sectionCount}`);
+  console.log(`  Page errors:                    ${errors.length === 0 ? "none" : errors.join("; ")}`);
+
+  const pass =
+    !!checks.archetypeNameText &&
+    sectionOrderOK &&
+    checks.hasElectionsText &&
+    checks.allFourClustersPresent &&
+    checks.epsInReality && checks.epsNotInMeans &&
+    checks.aesInMeans && checks.aesNotInReality &&
+    !checks.hasLeaderboardBars &&
+    !checks.catRowsHavePercent &&
+    !checks.bodyHasLeastFavorite &&
+    !checks.bodyHasFavoriteAesthetic &&
+    checks.sectionCount >= 3;
   console.log(`\nResult: ${pass ? "PASS" : "FAIL"}`);
 
   await browser.close();
