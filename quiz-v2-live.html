@@ -1219,7 +1219,7 @@ const Q_TEXT = {
     domestic_vs_abroad_lives: "Your government can fund one program this year. Program A saves an estimated 10 lives in your country. Program B saves an estimated 100 lives in a developing nation. Where should the money go?",
     guess_top_marginal_tax_rate: "What do you think the current top marginal federal income tax rate is?",
     preferred_top_marginal_tax_rate: "What should the top marginal federal income tax rate be?",
-    human_progress_salience: "When you think about the future, how much do you focus on whether humanity as a whole is getting better or worse?",
+    human_progress_salience: "When forming political views, how much weight do you give to whether humans, and human nature, can change?",
     mainstream_media_accuracy_estimate: "Combining the Wall Street Journal, Bloomberg, and New York Times: what percentage of their factual claims do you believe are accurate?",
     percent_groups_want_best_share_values: "Think about people in your country. What percentage of them do you believe genuinely want what is best for the country, even if they disagree with you about how to get there?",
     rules_procedures_matter_salience: "When evaluating a political outcome, how much do you care about whether the right process was followed, independent of the result?",
@@ -1290,7 +1290,7 @@ const Q_TEXT = {
     cross_party_marriage_comfort: "How comfortable would you be if a close family member married someone with very different political views?",
     success_attribution: "When someone achieves great success in life, how much is due to their own effort versus circumstances and luck?",
     decision_making_style: "When making an important political decision, do you rely more on careful analysis or gut instinct?",
-    speaker_appeal: "Which type of political speaker do you find most compelling?",
+    speaker_appeal: "Pick the two types of political speaker you find most compelling, and the two you find least compelling.",
     expert_disagreement_reaction: "When credentialed experts disagree on a policy question, what do you typically conclude?",
     political_attention_style: "When following political news, do you tend to focus on specific issues or the big picture?",
     party_vs_cause_loyalty: "When your political side takes a position you think is wrong, what is your instinct?",
@@ -3134,10 +3134,11 @@ function finishResults() {
         }
     }
 
-    // Redirect to results page. If a friend prediction is staged in
-    // localStorage (set by predict.html), append ?compare=1 so results-live.html
-    // routes to the friend-vs-user comparison view instead of standard results.
-    let resultsUrl = 'results-live.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
+    // Redirect to the current moral-circle results prototype. If a friend
+    // prediction is staged in localStorage (set by predict.html), append
+    // ?compare=1 so the results page routes to the friend-vs-user comparison
+    // view instead of standard results.
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId);
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
