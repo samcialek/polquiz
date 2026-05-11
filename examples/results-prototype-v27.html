@@ -884,8 +884,12 @@
        node lists) doesn't reflow page vertically. The IDENTITY panel with
        sunburst is the tallest at ~620px; pin to that so the section stays
        a constant height regardless of which cluster is selected. */
-    .cluster-drill { display: block; min-height: 620px; }
-    .cluster-panel { display: none; }
+    .cluster-drill { display: block; min-height: 0; }
+    /* v27.47: keep the donut as emphasis summary, but do not hide the
+       underlying node signatures. Earlier v27 builds showed only the active
+       cluster panel, which made the results page look like two-thirds of the
+       profile was missing. */
+    .cluster-panel { display: block; margin-bottom: 1.35rem; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     /* No card / no cell — just open page section. Tightened spacing. */
@@ -1348,12 +1352,12 @@ document.addEventListener('DOMContentLoaded', () => {
      was reordered above the map in v10, restored here per Sam's request). -->
 <section id="profile-section" class="cine-collapsed">
   <div class="container">
-    <div class="section-label">Your Profile · By Cluster Emphasis</div>
+    <div class="section-label">Your Profile · Node Signatures</div>
     <div class="profile-flex">
       <div class="profile-donut-col">
         <div class="cluster-overview">
           <svg id="cluster-donut" viewBox="-180 -180 360 360" width="480" height="480"></svg>
-          <div class="donut-hint">Click a wedge to drill into a cluster</div>
+          <div class="donut-hint">Wedges show cluster emphasis; node signatures are listed at right.</div>
         </div>
       </div>
       <div class="profile-drill-col">
