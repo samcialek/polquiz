@@ -866,17 +866,30 @@
     .profile-drill-col { min-width: 0; }
     .cluster-overview { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .cluster-overview svg { max-width: 100%; height: auto; display: block; }
-    .cluster-overview .donut-wedge { transition: opacity 0.18s, stroke-width 0.18s; cursor: pointer; }
-    .cluster-overview .donut-wedge.dim { opacity: 0.5; }
-    .cluster-overview .donut-wedge:hover { opacity: 1 !important; }
-    .cluster-overview .donut-wedge.active { stroke: var(--ink); stroke-width: 3; }
+    /* 2026-05-08: donut wedges no longer fade when unselected. Unselected =
+       normal saturation (opacity 1, no filter). Selected = intensified
+       saturation via brightness×saturate filter, plus the existing dark stroke.
+       Dropping the .dim half-fade matches the user's request that the cluster
+       palette stay rich; selection should intensify rather than dim peers. */
+    .cluster-overview .donut-wedge { transition: filter 0.18s, stroke-width 0.18s; cursor: pointer; }
+    .cluster-overview .donut-wedge:hover { filter: brightness(1.08) saturate(1.15); }
+    .cluster-overview .donut-wedge.active { stroke: var(--ink); stroke-width: 3; filter: saturate(1.55) brightness(1.05); }
     .donut-hint { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: #777; text-align: center; font-style: italic; }
     /* v27.44 — italicized cluster-drill tagline removed per design. The
        cluster header (ENDS / MEANS / etc.) already conveys what the cluster
        is; restating the constituent dimensions added redundant prose. */
     .cluster-drill-tagline { display: none; }
-    .cluster-drill { display: block; }
-    .cluster-panel { display: none; }
+    /* 2026-05-08: pin the drill column min-height so switching between
+       cluster panels (IDENTITY contains a tall sunburst, others are shorter
+       node lists) doesn't reflow page vertically. The IDENTITY panel with
+       sunburst is the tallest at ~620px; pin to that so the section stays
+       a constant height regardless of which cluster is selected. */
+    .cluster-drill { display: block; min-height: 0; }
+    /* v27.47: keep the donut as emphasis summary, but do not hide the
+       underlying node signatures. Earlier v27 builds showed only the active
+       cluster panel, which made the results page look like two-thirds of the
+       profile was missing. */
+    .cluster-panel { display: block; margin-bottom: 1.35rem; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     /* No card / no cell — just open page section. Tightened spacing. */
@@ -910,11 +923,11 @@
       grid-row: 2 / span var(--cat-span, 1);
       align-self: start;
     }
-    /* Sunburst is the SELF cluster's centerpiece. v27.18: place sunburst
-       in column 1 of the SELF panel and put the ENG row in column 2 next
+    /* Sunburst is the IDENTITY cluster's centerpiece. v27.18: place sunburst
+       in column 1 of the IDENTITY panel and put the ENG row in column 2 next
        to it (instead of stacked above), so the chart no longer wastes
        vertical space and ENG reads as a side-stat card. */
-    .cluster-panel[data-cluster="SELF"] .node-cluster .moral-circle-section {
+    .cluster-panel[data-cluster="IDENTITY"] .node-cluster .moral-circle-section {
       grid-column: 1;
       grid-row: 2;
       justify-self: center;
@@ -922,7 +935,7 @@
       max-width: 560px;
       margin-top: 0;
     }
-    .cluster-panel[data-cluster="SELF"] .node-cluster .node-row {
+    .cluster-panel[data-cluster="IDENTITY"] .node-cluster .node-row {
       grid-column: 2;
       grid-row: 2;
       align-self: start;
@@ -1312,26 +1325,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- SECTION 3 (v10: profile moved above map) -->
-<section id="profile-section" class="cine-collapsed">
-  <div class="container">
-    <div class="section-label">Your Profile · By Cluster Emphasis</div>
-    <div class="profile-flex">
-      <div class="profile-donut-col">
-        <div class="cluster-overview">
-          <svg id="cluster-donut" viewBox="-180 -180 360 360" width="480" height="480"></svg>
-          <div class="donut-hint">Click a wedge to drill into a cluster</div>
-        </div>
-      </div>
-      <div class="profile-drill-col">
-        <div class="cluster-drill-tagline" id="cluster-drill-tagline"></div>
-        <div class="cluster-drill" id="cluster-drill"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4 (v10: map moved to bottom) -->
+<!-- SECTION 3 — World Alignment Map (above profile per 2026-05-08 reorder) -->
 <section id="map-section" class="cine-collapsed">
   <div class="container">
     <div class="section-label">World Alignment Map</div>
@@ -1350,6 +1344,26 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>Opposed (−3)</span>
       <canvas id="legend-gradient" width="120" height="10"></canvas>
       <span>Aligned (+3)</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — Profile by Cluster Emphasis (moved back to bottom 2026-05-08;
+     was reordered above the map in v10, restored here per Sam's request). -->
+<section id="profile-section" class="cine-collapsed">
+  <div class="container">
+    <div class="section-label">Your Profile · Node Signatures</div>
+    <div class="profile-flex">
+      <div class="profile-donut-col">
+        <div class="cluster-overview">
+          <svg id="cluster-donut" viewBox="-180 -180 360 360" width="480" height="480"></svg>
+          <div class="donut-hint">Wedges show cluster emphasis; node signatures are listed at right.</div>
+        </div>
+      </div>
+      <div class="profile-drill-col">
+        <div class="cluster-drill-tagline" id="cluster-drill-tagline"></div>
+        <div class="cluster-drill" id="cluster-drill"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1493,10 +1507,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Node display config — PROTOTYPE cluster reorg.
-  //   ENDS:    MAT, CD, CU                    (MOR moved to SELF)
+  //   ENDS:    MAT, CD, CU                    (MOR moved to IDENTITY)
   //   MEANS:   PRO, COM, ONT_S + AES          (ONT_S in from REALITY)
   //   REALITY: ZS, ONT_H + EPS                (EPS in from MEANS)
-  //   SELF:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
+  //   IDENTITY:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
   const nodeLabels = {
     MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
     CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
@@ -1506,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'MEANS' },
     ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
     ONT_H: { name: 'Human Malleability', low1: 'Character is fixed', high5: 'Character is shaped by environment', cluster: 'REALITY' },
-    ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'SELF' },
+    ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'IDENTITY' },
   };
   // v20: on-brand saturated cluster colors. All four are pulled from the
   // existing CSS palette (--flesh, --third-gold, --fed-purple, --demrep-green
@@ -1515,9 +1529,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ENDS:    '#fa8072', // salmon — what you want, warm, aspirational
     MEANS:   '#DAA520', // gold — how you pursue, valuable / instrumental
     REALITY: '#3D6B7C', // dusty teal-slate — how you see, contemplative
-    SELF:    '#8C7A5B', // warm taupe — who you are, grounded / earthy
+    IDENTITY:    '#8C7A5B', // warm taupe — who you are, grounded / earthy
   };
-  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', SELF: 'SELF — Who You Are' };
+  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', IDENTITY: 'IDENTITY — Who You Are' };
   const epsCategories = ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'];
   const aesCategories = ['statesman','technocrat','pastoral','authentic','fighter','visionary'];
 
@@ -1535,9 +1549,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ZS:  { what: 'Zero-sum orientation — fixed pie or growing pie.', low: 'Everyone can win at the same time.', high: 'My side wins only if the other side loses.', sal: 'Salience: how much zero-sum framing shapes your politics.' },
     ONT_H: { what: 'Human malleability — character fixed or shaped.', low: 'Character is innate and largely fixed.', high: 'Character is shaped by environment.', sal: 'Salience: how much your view of human nature shapes your politics.' },
     ONT_S: { what: 'Institutional effectiveness — can institutions deliver?', low: 'Institutions are rarely the right tool.', high: 'Institutions can produce real, durable change.', sal: 'Salience: how much faith in institutions matters to you.' },
-    PF:  { what: 'Political fusion — politics as identity.', low: 'Politics is just one part of life.', high: 'My side IS who I am.', sal: 'For SELF nodes, position alone encodes activation.' },
-    TRB: { what: 'Tribalism — group loyalty.', low: 'Just a citizen, no special tribe.', high: 'My group comes first.', sal: 'For SELF nodes, position alone encodes activation.' },
-    ENG: { what: 'Engagement — how plugged-in you are.', low: 'Tuned out of politics entirely.', high: 'All in — vote, donate, organize.', sal: 'For SELF nodes, position alone encodes activation.' },
+    PF:  { what: 'Political fusion — politics as identity.', low: 'Politics is just one part of life.', high: 'My side IS who I am.', sal: 'For IDENTITY nodes, position alone encodes activation.' },
+    TRB: { what: 'Tribalism — group loyalty.', low: 'Just a citizen, no special tribe.', high: 'My group comes first.', sal: 'For IDENTITY nodes, position alone encodes activation.' },
+    ENG: { what: 'Engagement — how plugged-in you are.', low: 'Tuned out of politics entirely.', high: 'All in — vote, donate, organize.', sal: 'For IDENTITY nodes, position alone encodes activation.' },
   };
 
   // v22 — floating tooltip system. attachTip(el, htmlContent) replaces the
@@ -1722,7 +1736,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ADR-002: ENG was migrated out of archetype signatures. Inject a default
-    // mid-engagement ENG node ({pos:3, sal:0}) so the SELF-cluster profile
+    // mid-engagement ENG node ({pos:3, sal:0}) so the IDENTITY-cluster profile
     // still shows three rows (PF, TRB, ENG). Real respondent runs override
     // this through respondentState.continuous.ENG via the existing path.
     if (archetype.nodes && !archetype.nodes.ENG) {
@@ -1996,7 +2010,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Render per-node bars, grouped by cluster. Uses the same nodeLabels
       // and clusterColors / clusterLabels defined above for consistency.
       const barsContainer = document.getElementById('cmp-bars');
-      const clusterOrder = ['ENDS','MEANS','REALITY','SELF'];
+      const clusterOrder = ['ENDS','MEANS','REALITY','IDENTITY'];
       clusterOrder.forEach(cluster => {
         const block = document.createElement('div');
         block.className = 'cmp-cluster';
@@ -3657,6 +3671,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7 categories. Each carries (position 0–100, salience 0–3). 50% ring is
     // the in-group/out-group boundary; wedges past it are "in", within are "out".
     // Saturation = salience.
+    // ADR-007 6-scope model (revised 2026-05-07): political_tribe dropped
+    // (merged into ideological); sexual folded into gender. The sunburst
+    // now shows 6 wedges instead of 7. Live data is read from
+    // respondentState.moralCircle.affinity when available; otherwise the
+    // archetype-keyed samples below provide demo / archetype-only fallback.
     const MORAL_CIRCLE_CATEGORIES = [
       { key: 'national',        label: 'National',        color: '#cc7722' },
       { key: 'ethnic_racial',   label: 'Ethnic / Racial', color: '#b8002b' },
@@ -3664,19 +3683,47 @@ document.addEventListener('DOMContentLoaded', () => {
       { key: 'class',           label: 'Class',           color: '#2e8b57' },
       { key: 'ideological',     label: 'Ideological',     color: '#3d8b8b' },
       { key: 'gender',          label: 'Gender',          color: '#fa8072' },
-      { key: 'political_tribe', label: 'Political Tribe', color: '#6A0DAD' },
     ];
-    // 'universal' is a separate dimension from the 7 segments — the baseline
+    // 'universal' is a separate dimension from the 6 segments — the baseline
     // moral concern for human beings as such, regardless of in-group category.
     // Wedges extending past this ring represent in-group preference / bias
     // for that specific segment beyond the universal baseline.
     const MORAL_CIRCLE_SAMPLES = {
-      '056': { universal:70, engagement:4, national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.4}, gender:{position:85,salience:1.8}, political_tribe:{position:30,salience:2.6} },
-      '011': { universal:60, engagement:5, national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:20,salience:3.0}, gender:{position:90,salience:2.4}, political_tribe:{position:80,salience:2.8} },
-      '088': { universal:45, engagement:2, national:{position:80,salience:2.4}, ethnic_racial:{position:55,salience:1.4}, religious:{position:75,salience:2.0}, class:{position:50,salience:0.8}, ideological:{position:50,salience:0.4}, gender:{position:45,salience:0.6}, political_tribe:{position:50,salience:0.6} },
-      '001': { universal:80, engagement:4, national:{position:55,salience:0.6}, ethnic_racial:{position:85,salience:1.6}, religious:{position:60,salience:0.4}, class:{position:70,salience:1.0}, ideological:{position:40,salience:1.8}, gender:{position:90,salience:1.4}, political_tribe:{position:35,salience:2.0} },
+      '056': { universal:70, engagement:4, national:{position:60,salience:0.8}, ethnic_racial:{position:80,salience:1.4}, religious:{position:55,salience:0.4}, class:{position:65,salience:1.2}, ideological:{position:35,salience:2.6}, gender:{position:85,salience:1.8} },
+      '011': { universal:60, engagement:5, national:{position:35,salience:1.6}, ethnic_racial:{position:90,salience:2.2}, religious:{position:25,salience:0.6}, class:{position:95,salience:3.0}, ideological:{position:80,salience:3.0}, gender:{position:90,salience:2.4} },
+      '088': { universal:45, engagement:2, national:{position:80,salience:2.4}, ethnic_racial:{position:55,salience:1.4}, religious:{position:75,salience:2.0}, class:{position:50,salience:0.8}, ideological:{position:50,salience:0.6}, gender:{position:45,salience:0.6} },
+      '001': { universal:80, engagement:4, national:{position:55,salience:0.6}, ethnic_racial:{position:85,salience:1.6}, religious:{position:60,salience:0.4}, class:{position:70,salience:1.0}, ideological:{position:40,salience:2.0}, gender:{position:90,salience:1.4} },
     };
-    const MORAL_CIRCLE_DEFAULT = { universal:55, engagement:3, national:{position:50,salience:1.0}, ethnic_racial:{position:65,salience:1.2}, religious:{position:50,salience:0.8}, class:{position:55,salience:1.0}, ideological:{position:45,salience:1.4}, gender:{position:70,salience:1.0}, political_tribe:{position:40,salience:1.5} };
+    const MORAL_CIRCLE_DEFAULT = { universal:55, engagement:3, national:{position:50,salience:1.0}, ethnic_racial:{position:65,salience:1.2}, religious:{position:50,salience:0.8}, class:{position:55,salience:1.0}, ideological:{position:45,salience:1.5}, gender:{position:70,salience:1.0} };
+
+    /**
+     * Adapter: convert a live respondentState.moralCircle.affinity into the
+     * shape the sunburst expects ({ universal, [scope]: { position, salience } }).
+     * Returns null when affinity isn't materialized — caller falls back to
+     * archetype samples.
+     *
+     * Salience mapping: per-scope salience is derived from excess affinity
+     * (excess = max(0, scoped - universal)). High excess = high salience
+     * (the boundary is morally active for this respondent).
+     *   excess 0   → salience 0.4  (faint, scope below universal)
+     *   excess 25  → salience 1.5  (visible)
+     *   excess 50+ → salience 2.5+ (strong)
+     */
+    function moralCircleFromRespondent(rs) {
+      if (!rs || !rs.moralCircle || !rs.moralCircle.affinity) return null;
+      const aff = rs.moralCircle.affinity;
+      const universal = aff.universalAffinity;
+      const out = { universal, engagement: 3 };
+      MORAL_CIRCLE_CATEGORIES.forEach(cat => {
+        const sa = aff.scopedAffinities ? aff.scopedAffinities[cat.key] : null;
+        const ea = aff.excessAffinities ? aff.excessAffinities[cat.key] : null;
+        const position = (sa === null || sa === undefined) ? universal : sa;
+        const excess = (ea === null || ea === undefined) ? Math.max(0, position - universal) : ea;
+        const salience = Math.min(3, 0.4 + (excess / 100) * 2.6);
+        out[cat.key] = { position, salience };
+      });
+      return out;
+    }
 
     // v4: 3-axis cluster radar — collapses MAT/CD/CU (ENDS) or PRO/COM/ONT_S
     // (MEANS) into a single triangular polygon. Position on each axis is
@@ -4067,8 +4114,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return wrap;
     }
 
-    function renderMoralCircleSunburst(archId) {
-      const data = MORAL_CIRCLE_SAMPLES[archId] || MORAL_CIRCLE_DEFAULT;
+    function renderMoralCircleSunburst(archId, respondentState) {
+      // Prefer live data from the respondent's moralCircle module when
+      // present (post-ADR-007). Fall back to archetype-keyed sample data
+      // for archetype-only demos / legacy sessions.
+      const liveData = moralCircleFromRespondent(respondentState);
+      const data = liveData || MORAL_CIRCLE_SAMPLES[archId] || MORAL_CIRCLE_DEFAULT;
+      const sourceLabel = liveData ? 'live respondent data' : 'archetype baseline';
       const wrap = document.createElement('div');
       wrap.className = 'moral-circle-section';
 
@@ -4080,7 +4132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const universalPct = (data.universal != null ? data.universal : MORAL_CIRCLE_DEFAULT.universal);
       const tagline = document.createElement('div');
       tagline.className = 'moral-circle-tagline';
-      tagline.innerHTML = `In-group inclusion across seven boundaries. The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${universalPct}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
+      tagline.innerHTML = `In-group inclusion across six boundaries (${sourceLabel}). The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${Math.round(universalPct)}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
       const svgWrap = document.createElement('div');
@@ -4277,7 +4329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========== SECTION 4: NODE PROFILE ==========
-    // PROTOTYPE: cluster reorg — MOR moved to SELF as 7-category sunburst,
+    // PROTOTYPE: cluster reorg — MOR moved to IDENTITY as 7-category sunburst,
     // PF/TRB collapsed into MOR.salience, ONT_S to MEANS, EPS to REALITY.
     const nodeData = {};
     // v16: revert to bar rows for every continuous node — ENDS (MAT, CD, CU),
@@ -4286,7 +4338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
     const SELF_CODES = [];
     // 50% interquartile bands now appear on every continuous node.
-    const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','SELF']);
+    const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','IDENTITY']);
 
     // 50% credible interval (interquartile, 25%–75%) from a 5-bucket pmf.
     // v18: posDistStats — q25, median, q75, and mean from a 5-bucket pmf.
@@ -4338,8 +4390,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let pos, sal;
       if (respCont) {
         pos = respCont.expectedPos;
-        // SELF nodes: derive sal from pos directly (they're the same axis).
-        // Non-SELF: use tracked salience.
+        // IDENTITY nodes: derive sal from pos directly (they're the same axis).
+        // Non-IDENTITY: use tracked salience.
         sal = isSelf ? (pos - 1) / 4 : respCont.salience / 3;
       } else {
         pos = arcNode.pos;
@@ -4386,7 +4438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nodeData[code] = { pos10, mean10, sal, cluster: nodeLabels[code].cluster, isSelf, ci10 };
     });
 
-    // Flip: dominant side always on right — but skip flipping for SELF nodes,
+    // Flip: dominant side always on right — but skip flipping for IDENTITY nodes,
     // where the scale is activation level (low = tuned out, high = all in), not
     // a political-direction polarity.
     const displayNodes = continuousNodes.map(code => {
@@ -4410,15 +4462,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // v10: each cluster's content lives in its own .cluster-panel; the donut
     // overview at the top of the profile section toggles which panel is visible.
     const clusterDrill = document.getElementById('cluster-drill');
-    const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'SELF'];
+    const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'IDENTITY'];
     const clusterPanels = {};
 
     clusterOrder.forEach(clusterName => {
       const clusterDims = displayNodes.filter(d => d.cluster === clusterName).sort((a, b) => b.sal - a.sal);
-      // v4: ENDS, MEANS, SELF render via custom paths (cluster radar, cluster
+      // v4: ENDS, MEANS, IDENTITY render via custom paths (cluster radar, cluster
       // radar with AES color, MOR sunburst respectively) — allow them through
       // even when they have no continuous-bar rows.
-      const NEVER_SKIP = new Set(['ENDS','MEANS','SELF']);
+      const NEVER_SKIP = new Set(['ENDS','MEANS','IDENTITY']);
       if (clusterDims.length === 0 && !NEVER_SKIP.has(clusterName)) return;
 
       const block = document.createElement('div');
@@ -4428,10 +4480,10 @@ document.addEventListener('DOMContentLoaded', () => {
       clusterDims.forEach(d => {
         const pct = ((d.pos - 1) / 9) * 100;
         const color = clusterColors[d.cluster];
-        // SELF nodes (PF/TRB/ENG) are one-dimensional per ADR-005 — position IS
+        // IDENTITY nodes (PF/TRB/ENG) are one-dimensional per ADR-005 — position IS
         // activation. Use a fixed bar height so height doesn't redundantly encode
         // the same signal that width already encodes; keep row opacity at full.
-        // Non-SELF: height scales with salience, opacity fades with low salience.
+        // Non-IDENTITY: height scales with salience, opacity fades with low salience.
         const isSelf = d.isSelf;
         // v27 — Compact: barH range 8-22 px. Salience reads, but rows stay tight.
         // v27.44 — bigger bars and a more pronounced salience differential.
@@ -4468,9 +4520,9 @@ document.addEventListener('DOMContentLoaded', () => {
         attachTip(row, tipHtml);
 
         if (d.code === 'ENG') {
-          // v27.18: ENG sits as a side-stat card in the SELF panel column 2.
+          // v27.18: ENG sits as a side-stat card in the IDENTITY panel column 2.
           // Engagement is one-dimensional; render as a label + a single
-          // percentage. v27.33 fix: d.pos for SELF nodes is the pos10 (1–10
+          // percentage. v27.33 fix: d.pos for IDENTITY nodes is the pos10 (1–10
           // scale built by displayNodes), not the raw 1–5 archetype pos.
           // Map 1–10 → 0–100% with (pos − 1) / 9 × 100 — was incorrectly
           // dividing by 4, producing values up to 225%.
@@ -4488,9 +4540,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="node-value" style="color:#bbb;">${d.pos.toFixed(1)}</div>`;
         } else {
           // Emphasize the pole closer to the respondent's position: bold black
-          // on the "your side" pole, dimmer gray on the opposite pole. SELF
+          // on the "your side" pole, dimmer gray on the opposite pole. IDENTITY
           // nodes treat pos>3 as high-pole ("my side matters"/"all in"/etc.),
-          // pos<3 as low-pole. Non-SELF nodes use the pos directly.
+          // pos<3 as low-pole. Non-IDENTITY nodes use the pos directly.
           const lowActive = d.pos < 2.8;
           const highActive = d.pos > 3.2;
           const lowStyle = lowActive
@@ -4583,16 +4635,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // vertical bars per design. The vertical renderer only labels
             // the top-positive and top-negative columns so labels don't
             // overlap with six tightly-packed columns.
-            row.appendChild(renderCatVerticalBars(probs, arcAntiCats, labels, clusterColors[clusterName]));
+            // 2026-05-08: revert to tighter horizontal cat bars per Sam.
+            // The vertical version (renderCatVerticalBars) was the v21 design;
+            // user prefers the v19/v20 compact horizontal rows.
+            row.appendChild(renderCatHorizontalRows(probs, arcAntiCats, labels, clusterColors[clusterName]));
           }
 
           block.appendChild(row);
         });
       }
 
-      // PROTOTYPE: render MOR 7-category sunburst inside the SELF cluster.
-      if (clusterName === 'SELF') {
-        block.appendChild(renderMoralCircleSunburst(archetypeId));
+      // PROTOTYPE: render moral-circle 6-category sunburst inside the IDENTITY cluster.
+      // Prefers live respondentState.moralCircle.affinity when present; falls
+      // back to archetype sample data otherwise.
+      if (clusterName === 'IDENTITY') {
+        block.appendChild(renderMoralCircleSunburst(archetypeId, respondentState));
       }
 
       // v16: ENDS / MEANS rendered as bar rows (above), no cluster radar.
@@ -4606,18 +4663,98 @@ document.addEventListener('DOMContentLoaded', () => {
       clusterPanels[clusterName] = panel;
     });
 
-    // v10: cluster-emphasis donut, normalized to 100%.
+    // 2026-05-08: cluster emphasis is computed from live respondent state.
+    // Per cluster, sum (gap × salience) over each constituent node, where:
+    //   gap     = how far the position is from neutral (0..1)
+    //   salience = how much the node matters to this respondent (0..1)
+    // For the IDENTITY cluster, the moral-circle module contributes via
+    // intensity03 × mean(activeExcess), and ENG (engagement) contributes via
+    // its position-as-activation (ADR-005). Sample data is kept as a
+    // fallback for archetype-only demos / legacy sessions.
     (function buildClusterDonut() {
       const CLUSTER_EMPHASIS_SAMPLES = {
-        '056': { ENDS: 0.55, MEANS: 0.78, REALITY: 0.58, SELF: 0.62 },
-        '011': { ENDS: 0.78, MEANS: 0.42, REALITY: 0.65, SELF: 0.88 },
-        '088': { ENDS: 0.62, MEANS: 0.38, REALITY: 0.40, SELF: 0.55 },
-        '001': { ENDS: 0.70, MEANS: 0.80, REALITY: 0.55, SELF: 0.45 },
-        // v27.6 — demo: ENDS-dominant individual, SELF only 10%.
-        '134': { ENDS: 0.50, MEANS: 0.25, REALITY: 0.15, SELF: 0.10 },
+        '056': { ENDS: 0.55, MEANS: 0.78, REALITY: 0.58, IDENTITY: 0.62 },
+        '011': { ENDS: 0.78, MEANS: 0.42, REALITY: 0.65, IDENTITY: 0.88 },
+        '088': { ENDS: 0.62, MEANS: 0.38, REALITY: 0.40, IDENTITY: 0.55 },
+        '001': { ENDS: 0.70, MEANS: 0.80, REALITY: 0.55, IDENTITY: 0.45 },
+        '134': { ENDS: 0.50, MEANS: 0.25, REALITY: 0.15, IDENTITY: 0.10 },
       };
-      const CLUSTER_EMPHASIS_DEFAULT = { ENDS: 0.55, MEANS: 0.55, REALITY: 0.5, SELF: 0.5 };
-      const emphasisRaw = CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT;
+      const CLUSTER_EMPHASIS_DEFAULT = { ENDS: 0.55, MEANS: 0.55, REALITY: 0.5, IDENTITY: 0.5 };
+
+      // Cluster → constituent nodes. Mirrors nodeLabels.
+      const CLUSTER_NODES = {
+        ENDS:    { continuous: ['MAT', 'CD', 'CU'],         categorical: [] },
+        MEANS:   { continuous: ['PRO', 'COM'],              categorical: ['EPS', 'AES'] },
+        REALITY: { continuous: ['ZS', 'ONT_H', 'ONT_S'],    categorical: [] },
+        IDENTITY:{ continuous: ['ENG'],                     categorical: [] },
+      };
+
+      function computeLiveEmphasis(rs) {
+        if (!rs || !rs.continuous) return null;
+        const raw = {};
+        for (const cn of clusterOrder) {
+          let sum = 0;
+          let count = 0;
+          for (const nid of CLUSTER_NODES[cn].continuous) {
+            const n = rs.continuous[nid];
+            if (!n) continue;
+            const isSelf = (nid === 'ENG' || nid === 'PF' || nid === 'TRB');
+            // SELF-cluster nodes (ENG): position IS activation per ADR-005.
+            // Treat gap = (pos - 1) / 4, salience = same (so contribution = gap²).
+            if (isSelf) {
+              const pos = (n.expectedPos != null) ? n.expectedPos : 3;
+              const g = Math.max(0, Math.min(1, (pos - 1) / 4));
+              sum += g * g;
+              count += 1;
+              continue;
+            }
+            // Non-SELF: gap from neutral × salience.
+            const pos = (n.expectedPos != null) ? n.expectedPos : 3;
+            const sal = (n.salience != null) ? n.salience / 3 : 0.5;
+            const g = Math.abs(pos - 3) / 2;
+            sum += Math.max(0, Math.min(1, g)) * Math.max(0, Math.min(1, sal));
+            count += 1;
+          }
+          for (const nid of CLUSTER_NODES[cn].categorical) {
+            const n = rs.categorical && rs.categorical[nid];
+            if (!n || !Array.isArray(n.catDist)) continue;
+            const maxP = Math.max.apply(null, n.catDist);
+            const g = Math.max(0, Math.min(1, (maxP - 1/6) / (5/6))); // 0..1
+            const sal = (n.salience != null) ? n.salience / 3 : 0.5;
+            sum += g * Math.max(0, Math.min(1, sal));
+            count += 1;
+          }
+          // IDENTITY cluster also gets a contribution from the moral-circle
+          // module: intensity03 × mean(activeExcess/100). When the module
+          // is materialized, this is a real signal anchored in 8+ questions
+          // (Battery A + B + Q60 + Q102 + Q8 + Q213 priors). When null, the
+          // cluster falls back to ENG alone.
+          if (cn === 'IDENTITY' && rs.moralCircle && rs.moralCircle.affinity) {
+            const aff = rs.moralCircle.affinity;
+            const ints = (aff.intensity03 != null) ? aff.intensity03 / 3 : 0;
+            // Mean active excess as a 0..1 signal; null/undefined excess = 0.
+            const scopes = ['national','religious','ethnic_racial','class','gender','ideological'];
+            let exSum = 0, exN = 0;
+            for (const s of scopes) {
+              const ex = aff.excessAffinities && aff.excessAffinities[s];
+              if (ex != null) { exSum += ex; exN += 1; }
+            }
+            const meanEx = exN > 0 ? (exSum / exN) / 100 : 0;
+            // Weight moral-circle contribution heavier than a single node
+            // (it represents 6 scopes + universal — the IDENTITY cluster's
+            // primary signal). Multiplier of 3 = "3 nodes' worth."
+            sum += ints * Math.max(meanEx, 0.15) * 3;
+            count += 3;
+          }
+          raw[cn] = count > 0 ? sum / count : 0;
+        }
+        return raw;
+      }
+
+      const liveRaw = computeLiveEmphasis(respondentState);
+      const emphasisRaw = liveRaw && Object.values(liveRaw).some(v => v > 0)
+        ? liveRaw
+        : (CLUSTER_EMPHASIS_SAMPLES[archetypeId] || CLUSTER_EMPHASIS_DEFAULT);
       // Normalize so the four wedges sum to 100%.
       const totalRaw = clusterOrder.reduce((s, k) => s + (emphasisRaw[k] || 0), 0);
       const emphasis = {};
@@ -4629,7 +4766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ENDS: 'What you want — material, cultural direction, assimilation.',
         MEANS: 'How you pursue it — procedure, compromise, institutions, aesthetic style.',
         REALITY: 'How you see the world — zero-sum, human malleability, epistemics.',
-        SELF: 'Who you are politically — moral circle and engagement.',
+        IDENTITY: 'Who you are politically — moral circle and engagement.',
       };
 
       const ns = 'http://www.w3.org/2000/svg';
@@ -4667,39 +4804,56 @@ document.addEventListener('DOMContentLoaded', () => {
         svg.appendChild(path);
         wedgeEls[cn] = path;
 
-        // Wedge label centered along the arc midline.
+        // Wedge label centered along the arc midline. 2026-05-08: hide both
+        // the cluster name AND the percentage when the wedge is too narrow
+        // to fit the text legibly. Selection still works via clicking the
+        // wedge or via tooltip (the <title> on the path stays).
         const aMid = (a1 + a2) / 2;
         const rMid = (R_OUT + R_IN) / 2;
         const lx = rMid * Math.cos(aMid);
         const ly = rMid * Math.sin(aMid);
-        // v27.17: editorial wedge typography — Space Grotesk uppercase with
-        // letter-spacing to match the page's section labels; bigger now that
-        // the donut has been doubled in size. Mono pct underneath.
-        const labelEl = document.createElementNS(ns, 'text');
-        labelEl.setAttribute('x', lx.toFixed(2));
-        labelEl.setAttribute('y', (ly - 4).toFixed(2));
-        labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
-        labelEl.setAttribute('font-weight', '700');
-        labelEl.setAttribute('font-size', '16');
-        labelEl.setAttribute('letter-spacing', '0.14em');
-        labelEl.setAttribute('fill', '#1a1a1a');
-        labelEl.setAttribute('text-anchor', 'middle');
-        labelEl.setAttribute('dominant-baseline', 'middle');
-        labelEl.style.pointerEvents = 'none';
-        labelEl.textContent = cn;
-        svg.appendChild(labelEl);
 
-        const pctEl = document.createElementNS(ns, 'text');
-        pctEl.setAttribute('x', lx.toFixed(2));
-        pctEl.setAttribute('y', (ly + 16).toFixed(2));
-        pctEl.setAttribute('font-family', "'IBM Plex Mono', monospace");
-        pctEl.setAttribute('font-size', '13');
-        pctEl.setAttribute('font-weight', '600');
-        pctEl.setAttribute('fill', '#333');
-        pctEl.setAttribute('text-anchor', 'middle');
-        pctEl.style.pointerEvents = 'none';
-        pctEl.textContent = `${(e * 100).toFixed(0)}%`;
-        svg.appendChild(pctEl);
+        // 2026-05-08: per-cluster label font sizing. IDENTITY and REALITY are
+        // 8 chars (longest); ENDS is 4 and MEANS is 5. Shrinking the long
+        // labels by 2px makes them fit in narrower wedges without affecting
+        // the short ones' readability. Per-char width is approximated as
+        // 0.72×fontSize for Space Grotesk bold with 0.14em letter-spacing.
+        const labelFontSize = (cn === 'IDENTITY' || cn === 'REALITY') ? 13 : 16;
+        const charPx = labelFontSize * 0.72;
+        const padPx = 14;
+        const textWidthPx = cn.length * charPx + padPx;
+        // Inner-edge arc length is the conservative measure of available
+        // horizontal space at the label's vertical position.
+        const innerArcPx = Math.abs(sweep) * R_IN;
+        const labelFits = innerArcPx >= textWidthPx;
+
+        if (labelFits) {
+          const labelEl = document.createElementNS(ns, 'text');
+          labelEl.setAttribute('x', lx.toFixed(2));
+          labelEl.setAttribute('y', (ly - 4).toFixed(2));
+          labelEl.setAttribute('font-family', "'Space Grotesk', sans-serif");
+          labelEl.setAttribute('font-weight', '700');
+          labelEl.setAttribute('font-size', String(labelFontSize));
+          labelEl.setAttribute('letter-spacing', '0.14em');
+          labelEl.setAttribute('fill', '#1a1a1a');
+          labelEl.setAttribute('text-anchor', 'middle');
+          labelEl.setAttribute('dominant-baseline', 'middle');
+          labelEl.style.pointerEvents = 'none';
+          labelEl.textContent = cn;
+          svg.appendChild(labelEl);
+
+          const pctEl = document.createElementNS(ns, 'text');
+          pctEl.setAttribute('x', lx.toFixed(2));
+          pctEl.setAttribute('y', (ly + 16).toFixed(2));
+          pctEl.setAttribute('font-family', "'IBM Plex Mono', monospace");
+          pctEl.setAttribute('font-size', '13');
+          pctEl.setAttribute('font-weight', '600');
+          pctEl.setAttribute('fill', '#333');
+          pctEl.setAttribute('text-anchor', 'middle');
+          pctEl.style.pointerEvents = 'none';
+          pctEl.textContent = `${(e * 100).toFixed(0)}%`;
+          svg.appendChild(pctEl);
+        }
       });
 
       // v27.17: center hint text removed per design — wedges are obviously
@@ -4712,7 +4866,8 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const k of clusterOrder) {
           if (wedgeEls[k]) {
             wedgeEls[k].classList.toggle('active', k === cn);
-            wedgeEls[k].classList.toggle('dim', k !== cn);
+            // 2026-05-08: dim class no longer applied — unselected wedges
+            // stay at normal saturation; selection intensifies via CSS filter.
           }
           if (clusterPanels[k]) clusterPanels[k].classList.toggle('active', k === cn);
         }
