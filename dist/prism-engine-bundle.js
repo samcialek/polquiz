@@ -17650,7 +17650,14 @@ var PrismEngine = (() => {
     "AES:Statesman|MAT:high|ONT_S:high": "Statesman Institutional Conservative",
     "EPS:Empiricist|MAT:low|ONT_S:high": "Evidence-Based Institutional Leftist",
     "EPS:Empiricist|MAT:high|ONT_S:high": "Evidence-Based Institutional Conservative",
-    "CU:high|MAT:low|MORAL_CIRCLE:universal": "Cosmopolitan Reformer"
+    "CU:high|MAT:low|MORAL_CIRCLE:universal": "Cosmopolitan Reformer",
+    // Expansion pass 2 — three-token iconic mergers
+    "MAT:low|MOR:high|ONT_S:high": "Liberal Internationalist",
+    "MAT:high|CD:high|COM:high": "Continuity Conservative",
+    "COM:low|ONT_S:low|PF:low": "Anarchist",
+    "MAT:low|MOR:high|MORAL_CIRCLE:religious": "Christian Socialist",
+    "AES:Statesman|MAT:low|MOR:high": "FDR-Style Statesman",
+    "MAT:high|EPS:Empiricist|AES:Technocrat": "Neoliberal Wonk"
   };
   var COMPRESSION_TABLE = {
     // Ideology axes (economy × culture)
@@ -17722,7 +17729,52 @@ var PrismEngine = (() => {
     // Engagement modifiers
     "ENG:low|MAT:high": "Quiet-Conservative",
     "ENG:low|CD:low": "Disengaged-Progressive",
-    "ENG:high|PF:high": "Activist-Partisan"
+    "ENG:high|PF:high": "Activist-Partisan",
+    // ──────────────────────────────────────────────────────────────────────
+    // Expansion pass 2 (2026-05-12) — iconic political-identity pairs that
+    // the lexicon-only path was rendering awkwardly. Hyphenated compounds
+    // count as one "word" in the token sequence.
+    // ──────────────────────────────────────────────────────────────────────
+    // Economy × compromise / dealmaker axis
+    "COM:high|MAT:low": "Social-Democrat",
+    "COM:high|MAT:high": "Pragmatic-Conservative",
+    "COM:low|MOR:high": "Doctrinaire-Idealist",
+    "COM:high|ZS:low": "Conciliator",
+    // Economy × moral circle
+    "MAT:high|MOR:high": "Globalist",
+    "MAT:low|MORAL_CIRCLE:religious": "Liberation-Theologian",
+    // Institutional reform / theocrat
+    "MOR:high|ONT_S:high": "Reformer",
+    "MOR:high|PRO:high": "Constitutionalist",
+    "MOR:high|ONT_H:high": "Humanist",
+    "MORAL_CIRCLE:religious|ONT_S:high": "Theocrat",
+    // Conflict-style × moral circle
+    "AES:Fighter|MOR:high": "Crusader",
+    "AES:Fighter|MORAL_CIRCLE:national": "Patriot-Firebrand",
+    "AES:Fighter|MORAL_CIRCLE:religious": "Religious-Firebrand",
+    // Statesman archetypes
+    "AES:Statesman|EPS:Traditionalist": "Old-Guard",
+    "AES:Statesman|EPS:Institutionalist": "Mandarin",
+    "AES:Statesman|MAT:high": "Tory",
+    "AES:Statesman|MOR:high": "Internationalist-Statesman",
+    // Visionary archetypes
+    "AES:Visionary|MAT:high": "Mogul",
+    "AES:Visionary|ONT_S:high": "Institutional-Visionary",
+    "AES:Visionary|EPS:Empiricist": "Tech-Visionary",
+    // Authentic / folk register
+    "AES:Authentic|MAT:low": "Folk-Progressive",
+    "AES:Authentic|MAT:high": "Folk-Conservative",
+    // Engagement-driven activist roles
+    "ENG:high|MAT:low": "Activist-Leftist",
+    "ENG:high|MAT:high": "Activist-Conservative",
+    "ENG:high|CD:low": "Activist-Progressive",
+    // Continuity / cultural axis
+    "CD:high|COM:high": "Continuity-Conservative",
+    "CD:low|MOR:high": "Universalist-Progressive",
+    // Identity-scope × institutional
+    "MORAL_CIRCLE:class|PF:high": "Class-Partisan",
+    "MORAL_CIRCLE:national|PRO:high": "Patriot-Institutionalist",
+    "MORAL_CIRCLE:national|COM:high": "Patriot-Pragmatist"
   };
   var POS_OVERRIDES = {
     // Adjective-leaning continuous-node tokens
@@ -17816,7 +17868,38 @@ var PrismEngine = (() => {
     "Religious-Communitarian": 4,
     "Ethnic-Communitarian": 4,
     "Gender-Identitarian": 4,
-    "Partisan-Communitarian": 4
+    "Partisan-Communitarian": 4,
+    // Expansion pass 2 compressed outputs
+    "Social-Democrat": 4,
+    "Pragmatic-Conservative": 4,
+    "Doctrinaire-Idealist": 4,
+    "Conciliator": 4,
+    "Globalist": 4,
+    "Liberation-Theologian": 4,
+    "Reformer": 4,
+    "Constitutionalist": 4,
+    "Humanist": 4,
+    "Theocrat": 4,
+    "Crusader": 4,
+    "Patriot-Firebrand": 4,
+    "Religious-Firebrand": 4,
+    "Old-Guard": 4,
+    "Mandarin": 4,
+    "Tory": 4,
+    "Internationalist-Statesman": 4,
+    "Mogul": 4,
+    "Institutional-Visionary": 4,
+    "Tech-Visionary": 4,
+    "Folk-Progressive": 4,
+    "Folk-Conservative": 4,
+    "Activist-Leftist": 4,
+    "Activist-Conservative": 4,
+    "Activist-Progressive": 4,
+    "Continuity-Conservative": 4,
+    "Universalist-Progressive": 4,
+    "Class-Partisan": 4,
+    "Patriot-Institutionalist": 4,
+    "Patriot-Pragmatist": 4
   };
   function posRank(token) {
     if (token in POS_OVERRIDES) return POS_OVERRIDES[token];
@@ -17871,7 +17954,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-pos-order";
+  var BUNDLE_VERSION = "20260512-expanded-mergers";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
