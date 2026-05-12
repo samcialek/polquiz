@@ -887,7 +887,7 @@
       text-transform: none;
     }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
-    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
+    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; overflow: visible; }
     .profile-donut-col .moral-circle-section .moral-circle-title,
     .profile-donut-col .moral-circle-section .moral-circle-tagline,
     .profile-donut-col .moral-circle-section .moral-circle-legend { display: none; }
@@ -3798,8 +3798,9 @@ document.addEventListener('DOMContentLoaded', () => {
      *   excess 50+ → salience 2.5+ (strong)
      */
     function moralCircleFromRespondent(rs) {
-      if (!rs || !rs.moralCircle || !rs.moralCircle.affinity) return null;
-      const aff = rs.moralCircle.affinity;
+      if (!rs || !rs.moralCircle) return null;
+      const aff = rs.moralCircle.affinity || rs.moralCircle;
+      if (aff.universalAffinity == null || !aff.scopedAffinities) return null;
       const universal = aff.universalAffinity;
       const out = { universal, engagement: 3 };
       MORAL_CIRCLE_CATEGORIES.forEach(cat => {
@@ -4232,11 +4233,11 @@ document.addEventListener('DOMContentLoaded', () => {
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(ns, 'svg');
-      // 2026-05-12: keep labels closer to the sunburst and give the bottom
-      // label extra breathing room so it does not clip.
-      svg.setAttribute('viewBox', '-320 -255 640 555');
+      // 2026-05-12: keep labels close to the sunburst while giving the bottom
+      // edge enough breathing room for active lower labels and hover scaling.
+      svg.setAttribute('viewBox', '-320 -260 640 610');
       svg.setAttribute('width', '560');
-      svg.setAttribute('height', '500');
+      svg.setAttribute('height', '535');
       svg.setAttribute('xmlns', ns);
 
       const N = MORAL_CIRCLE_CATEGORIES.length;
@@ -4341,18 +4342,8 @@ document.addEventListener('DOMContentLoaded', () => {
       uLabel.setAttribute('font-weight', '600');
       uLabel.setAttribute('fill', '#1a1a1a');
       uLabel.setAttribute('text-anchor', 'middle');
-      // Background rect for legibility — drawn first.
-      const uLabelBg = document.createElementNS(ns, 'rect');
       const universalLabelText = 'Universal';
       const universalMetaText = ` · ${Math.round(universalPct)}%`;
-      const approxW = universalLabelText.length * 12 + universalMetaText.length * 7.2;
-      uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
-      uLabelBg.setAttribute('y', (-universalR - 18).toFixed(2));
-      uLabelBg.setAttribute('width', (approxW + 8).toFixed(2));
-      uLabelBg.setAttribute('height', '26');
-      uLabelBg.setAttribute('fill', 'var(--cream, #FFFEF8)');
-      uLabelBg.setAttribute('opacity', '0.95');
-      svg.appendChild(uLabelBg);
       const uWord = document.createElementNS(ns, 'tspan');
       uWord.setAttribute('font-size', '22');
       uWord.setAttribute('font-weight', '700');
@@ -4794,10 +4785,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Per cluster, sum (gap × salience) over each constituent node, where:
     //   gap     = how far the position is from neutral (0..1)
     //   salience = how much the node matters to this respondent (0..1)
-    // For the IDENTITY cluster, the moral-circle module contributes via
-    // intensity03 × mean(activeExcess), and ENG (engagement) contributes via
-    // its position-as-activation (ADR-005). Sample data is kept as a
-    // fallback for archetype-only demos / legacy sessions.
+    // For the IDENTITY cluster, the moral-circle module contributes via its
+    // own intensity score. ENG remains visible below, but does not inflate
+    // identity emphasis in the donut. Sample data is kept as a fallback for
+    // archetype-only demos / legacy sessions.
     (function buildClusterDonut() {
       const CLUSTER_EMPHASIS_SAMPLES = {
         '056': { ENDS: 0.55, MEANS: 0.78, REALITY: 0.58, IDENTITY: 0.62 },
@@ -4811,9 +4802,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Cluster → constituent nodes. Mirrors nodeLabels.
       const CLUSTER_NODES = {
         ENDS:    { continuous: ['MAT', 'CD', 'CU'],         categorical: [] },
-        MEANS:   { continuous: ['PRO', 'COM'],              categorical: ['EPS', 'AES'] },
-        REALITY: { continuous: ['ZS', 'ONT_H', 'ONT_S'],    categorical: [] },
-        IDENTITY:{ continuous: ['ENG'],                     categorical: [] },
+        MEANS:   { continuous: ['PRO', 'COM'],              categorical: ['AES'] },
+        REALITY: { continuous: ['ZS', 'ONT_H', 'ONT_S'],    categorical: ['EPS'] },
+        IDENTITY:{ continuous: [],                          categorical: [] },
       };
 
       function computeLiveEmphasis(rs) {
@@ -4851,27 +4842,18 @@ document.addEventListener('DOMContentLoaded', () => {
             sum += g * Math.max(0, Math.min(1, sal));
             count += 1;
           }
-          // IDENTITY cluster also gets a contribution from the moral-circle
-          // module: intensity03 × mean(activeExcess/100). When the module
-          // is materialized, this is a real signal anchored in 8+ questions
-          // (Battery A + B + Q60 + Q102 + Q8 + Q213 priors). When null, the
-          // cluster falls back to ENG alone.
-          if (cn === 'IDENTITY' && rs.moralCircle && rs.moralCircle.affinity) {
-            const aff = rs.moralCircle.affinity;
-            const ints = (aff.intensity03 != null) ? aff.intensity03 / 3 : 0;
-            // Mean active excess as a 0..1 signal; null/undefined excess = 0.
-            const scopes = ['national','religious','ethnic_racial','class','gender','ideological'];
-            let exSum = 0, exN = 0;
-            for (const s of scopes) {
-              const ex = aff.excessAffinities && aff.excessAffinities[s];
-              if (ex != null) { exSum += ex; exN += 1; }
+          // IDENTITY gets moral-circle intensity only. ENG is displayed in the
+          // panel, but high engagement is not identity-first politics.
+          if (cn === 'IDENTITY' && rs.moralCircle) {
+            const aff = rs.moralCircle.affinity || rs.moralCircle;
+            const intensity = aff.intensity01 != null
+              ? aff.intensity01
+              : (aff.intensity03 != null ? aff.intensity03 / 3 : 0);
+            const signal = Math.max(0, Math.min(1, intensity || 0));
+            if (signal > 0) {
+              sum += signal;
+              count += 1;
             }
-            const meanEx = exN > 0 ? (exSum / exN) / 100 : 0;
-            // Weight moral-circle contribution heavier than a single node
-            // (it represents 6 scopes + universal — the IDENTITY cluster's
-            // primary signal). Multiplier of 3 = "3 nodes' worth."
-            sum += ints * Math.max(meanEx, 0.15) * 3;
-            count += 3;
           }
           raw[cn] = count > 0 ? sum / count : 0;
         }
