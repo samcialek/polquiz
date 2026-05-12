@@ -4259,7 +4259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // segments do not overclaim salience in the static view.
         const wedgeTip = buildTip({
           title: cat.label,
-          rows: [['Percent', `${d.position}%`]],
+          desc: `${d.position}%`,
         });
         attachTip(path, wedgeTip);
         svg.appendChild(path);
@@ -4340,7 +4340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         t.textContent = cat.label;
         attachTip(t, buildTip({
           title: cat.label,
-          rows: [['Percent', `${d.position}%`]],
+          desc: `${d.position}%`,
         }));
         svg.appendChild(t);
 
@@ -4356,7 +4356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.textContent = d.position + '%';
         attachTip(pct, buildTip({
           title: cat.label,
-          rows: [['Percent', `${d.position}%`]],
+          desc: `${d.position}%`,
         }));
         svg.appendChild(pct);
       });
