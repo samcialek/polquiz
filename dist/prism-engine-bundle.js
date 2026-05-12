@@ -17657,7 +17657,50 @@ var PrismEngine = (() => {
     "COM:low|ONT_S:low|PF:low": "Anarchist",
     "MAT:low|MOR:high|MORAL_CIRCLE:religious": "Christian Socialist",
     "AES:Statesman|MAT:low|MOR:high": "FDR-Style Statesman",
-    "MAT:high|EPS:Empiricist|AES:Technocrat": "Neoliberal Wonk"
+    "MAT:high|EPS:Empiricist|AES:Technocrat": "Neoliberal Wonk",
+    // ──────────────────────────────────────────────────────────────────────
+    // Expansion pass 3 (2026-05-12) — second-opinion review pass.
+    // 47 iconic 2-3 token merger names drawn from established political
+    // vocabulary (classical liberal, neoliberal, anarcho-capitalist, etc.).
+    // ──────────────────────────────────────────────────────────────────────
+    "CD:low|MAT:high|PRO:high": "Classical Liberal",
+    "CD:low|MAT:high|ONT_S:high": "Neoliberal",
+    "CD:low|MAT:high|ONT_S:low": "Anarcho-Capitalist",
+    "MAT:high|ONT_S:low|PRO:low": "Anarcho-Capitalist",
+    "CD:high|MAT:low|MORAL_CIRCLE:national": "National Populist",
+    "CD:high|MAT:low|MORAL_CIRCLE:religious": "Christian Democrat",
+    "CD:high|MAT:low|ONT_S:high": "Paternalist Conservative",
+    "CD:high|MAT:high|MORAL_CIRCLE:national": "National Conservative",
+    "CD:high|CU:low|MORAL_CIRCLE:religious": "Integralist",
+    "CD:low|MAT:low|ONT_S:high": "Bull Moose Progressive",
+    "MAT:low|MORAL_CIRCLE:class|ONT_H:high": "Marxist",
+    "MAT:low|MORAL_CIRCLE:class|ONT_S:low": "Syndicalist",
+    "COM:low|MAT:low|MORAL_CIRCLE:class": "Vanguardist",
+    "COM:low|ENG:high|MAT:low": "Vanguardist",
+    "CD:low|MAT:low|MORAL_CIRCLE:gender": "Socialist Feminist",
+    "CD:low|MORAL_CIRCLE:ethnic_racial|PRO:high": "Civil-Rights Liberal",
+    "CD:low|MAT:high|MORAL_CIRCLE:universal": "Cosmopolitan Liberal",
+    "CD:low|CU:high|MAT:high": "Cosmopolitan Capitalist",
+    "CD:high|MAT:high|PRO:high": "Constitutional Conservative",
+    "CD:high|PF:high|ZS:high": "Culture Warrior",
+    "CD:low|PF:high|ZS:high": "Movement Progressive",
+    "CD:high|MAT:low|PF:high": "Yellow Dog Democrat",
+    "MAT:mid|ONT_S:high|PRO:high": "Good-Government Reformer",
+    "EPS:Institutionalist|ONT_S:high|PRO:high": "Good-Government Reformer",
+    "AES:Pastoral|MAT:low|MOR:high": "Eco-Socialist",
+    "AES:Pastoral|CD:low|MAT:low": "Green Progressive",
+    "AES:Visionary|CD:low|MAT:low": "Utopian Socialist",
+    "AES:Visionary|MAT:high|ONT_S:low": "Techno-Libertarian",
+    "MAT:high|ONT_S:high|PRO:high": "Hamiltonian",
+    "CD:low|COM:high|MAT:high": "Rockefeller Republican",
+    "AES:Visionary|CD:high|MAT:high": "Reaganite",
+    "CD:high|MAT:high|ONT_S:low": "Goldwater Conservative",
+    "CD:high|MORAL_CIRCLE:national|ONT_S:low": "Paleoconservative",
+    "MAT:low|MORAL_CIRCLE:religious|ONT_S:low": "Distributist",
+    "CD:high|COM:high|MAT:low": "One-Nation Conservative",
+    "MAT:low|MORAL_CIRCLE:national|ONT_S:high": "New Dealer",
+    "AES:Fighter|MORAL_CIRCLE:national|ZS:high": "Jacksonian",
+    "EPS:Institutionalist|MAT:high|ONT_S:high": "Hamiltonian"
   };
   var COMPRESSION_TABLE = {
     // Ideology axes (economy × culture)
@@ -17774,7 +17817,104 @@ var PrismEngine = (() => {
     // Identity-scope × institutional
     "MORAL_CIRCLE:class|PF:high": "Class-Partisan",
     "MORAL_CIRCLE:national|PRO:high": "Patriot-Institutionalist",
-    "MORAL_CIRCLE:national|COM:high": "Patriot-Pragmatist"
+    "MORAL_CIRCLE:national|COM:high": "Patriot-Pragmatist",
+    // ──────────────────────────────────────────────────────────────────────
+    // Expansion pass 3 (2026-05-12) — second-opinion review pass.
+    // 62 additional 2-token compressions drawn from established political
+    // vocabulary. Mostly non-collision; where a sig already had an entry
+    // (Heritage Guardian, Tech-Visionary), the original is kept.
+    // ──────────────────────────────────────────────────────────────────────
+    // Civic-republican / civic axes
+    "CU:low|MORAL_CIRCLE:national": "Civic-Republican",
+    "CU:high|MAT:high": "Cosmopolitan Capitalist",
+    // Market / class compressions
+    "MAT:high|COM:low": "Market-Fundamentalist",
+    "MAT:low|ZS:low": "Social Liberal",
+    "MAT:high|MORAL_CIRCLE:class": "Producerist",
+    "MORAL_CIRCLE:class|ZS:high": "Class-Warrior",
+    // Gender / feminism
+    "CD:low|MORAL_CIRCLE:gender": "Feminist",
+    "MAT:low|MORAL_CIRCLE:gender": "Socialist Feminist",
+    "MORAL_CIRCLE:gender|PRO:high": "Rights Feminist",
+    // Ethnic-racial
+    "MORAL_CIRCLE:ethnic_racial|PRO:high": "Civil-Rights Liberal",
+    "CD:low|MORAL_CIRCLE:ethnic_racial": "Civil-Rights Progressive",
+    "CU:high|MORAL_CIRCLE:ethnic_racial": "Multiculturalist",
+    // Religious axes
+    "CD:low|MORAL_CIRCLE:religious": "Religious Progressive",
+    "CU:low|MORAL_CIRCLE:religious": "Confessionalist",
+    "CU:high|MORAL_CIRCLE:religious": "Interfaith-Pluralist",
+    "EPS:Traditionalist|MORAL_CIRCLE:religious": "Confessionalist",
+    "EPS:Traditionalist|MORAL_CIRCLE:national": "National Conservative",
+    // EPS pairings
+    "EPS:Institutionalist|PRO:high": "Legalist",
+    "COM:high|EPS:Institutionalist": "Establishmentarian",
+    "EPS:Empiricist|MAT:high": "Market Wonk",
+    "EPS:Empiricist|PRO:high": "Rule-of-Law Wonk",
+    "EPS:Autonomous|PF:low": "Independent",
+    "EPS:Nihilist|AES:Visionary": "Accelerationist",
+    "EPS:Nihilist|ONT_S:low": "Accelerationist",
+    // AES pairings
+    "AES:Visionary|ONT_H:high": "Futurist",
+    "AES:Technocrat|MAT:low": "Social Planner",
+    "AES:Technocrat|MAT:high": "Market Technocrat",
+    "AES:Pastoral|MAT:low": "Agrarian Populist",
+    "AES:Pastoral|MAT:high": "Agrarian Conservative",
+    "AES:Pastoral|MORAL_CIRCLE:national": "Heartland Populist",
+    "AES:Authentic|MORAL_CIRCLE:national": "Plainspoken Patriot",
+    "AES:Fighter|CD:low": "Progressive Firebrand",
+    "AES:Fighter|MORAL_CIRCLE:gender": "Feminist Firebrand",
+    "AES:Fighter|MORAL_CIRCLE:ethnic_racial": "Civil-Rights Firebrand",
+    "AES:Statesman|CD:low": "Liberal Statesman",
+    // Partisan / movement
+    "PF:high|ZS:high": "Party Warrior",
+    "CD:high|ZS:high": "Culture Warrior",
+    "CD:low|PF:high": "Movement Progressive",
+    "CD:high|PF:high": "Movement Conservative",
+    "PF:low|PRO:high": "Mugwump",
+    // Engagement-activist compressions
+    "ENG:low|PF:low": "Apolitical Voter",
+    "ENG:high|MORAL_CIRCLE:class": "Labor Activist",
+    "ENG:high|MORAL_CIRCLE:religious": "Faith Activist",
+    "ENG:high|MORAL_CIRCLE:ethnic_racial": "Civil-Rights Activist",
+    "ENG:high|MORAL_CIRCLE:national": "Patriot Activist",
+    // Cultural / procedural
+    "CD:low|PRO:high": "Civil-Libertarian",
+    "CD:high|PRO:high": "Constitutional Conservative",
+    "CD:low|COM:low": "Doctrinaire Progressive",
+    "CD:high|COM:low": "Doctrinaire Conservative",
+    "CD:low|COM:high": "Liberal Pragmatist",
+    "COM:high|PF:high": "Party Regular",
+    "COM:low|PF:high": "Party Loyalist",
+    "ENG:high|PRO:high": "Civic Activist",
+    "ENG:high|PRO:low": "Direct-Action Activist",
+    "COM:low|ENG:high": "Movement Activist",
+    "ENG:low|PRO:high": "Civic Bystander",
+    // Tribal / sectarian
+    "TRB:low|ZS:low": "Bridge-Builder",
+    "TRB:high|ZS:high": "Sectarian",
+    "MORAL_CIRCLE:religious|ZS:high": "Sectarian",
+    "MORAL_CIRCLE:religious|TRB:high": "Sectarian",
+    "MORAL_CIRCLE:national|TRB:high": "Ultra-Nationalist",
+    // Autonomous / nihilist
+    "EPS:Autonomous|PRO:low": "Maverick",
+    "AES:Authentic|EPS:Autonomous": "Maverick",
+    "EPS:Nihilist|PF:low": "Alienated Voter",
+    "ENG:low|EPS:Nihilist": "Alienated Bystander",
+    // Statesman variants
+    "AES:Statesman|COM:high": "Consensus Statesman",
+    "AES:Statesman|PRO:high": "Constitutional Statesman",
+    "AES:Statesman|MORAL_CIRCLE:national": "Patriotic Statesman",
+    // Technocrat variants
+    "AES:Technocrat|PRO:high": "Good-Government Technocrat",
+    "AES:Technocrat|COM:high": "Policy Broker",
+    "AES:Technocrat|ZS:low": "Policy Optimizer",
+    // Pastoral / preacher
+    "AES:Pastoral|MORAL_CIRCLE:religious": "Country Preacher",
+    // Intuitionist / moral
+    "EPS:Intuitionist|MOR:high": "Moral Idealist",
+    "CD:high|EPS:Intuitionist": "Moral Traditionalist",
+    "COM:high|EPS:Traditionalist": "Customary Pragmatist"
   };
   var POS_OVERRIDES = {
     // Adjective-leaning continuous-node tokens
@@ -17899,7 +18039,106 @@ var PrismEngine = (() => {
     "Universalist-Progressive": 4,
     "Class-Partisan": 4,
     "Patriot-Institutionalist": 4,
-    "Patriot-Pragmatist": 4
+    "Patriot-Pragmatist": 4,
+    // Expansion pass 3 (second-opinion review)
+    "Classical Liberal": 4,
+    "Neoliberal": 4,
+    "Anarcho-Capitalist": 4,
+    "National Populist": 4,
+    "Christian Democrat": 4,
+    "Paternalist Conservative": 4,
+    "National Conservative": 4,
+    "Integralist": 4,
+    "Bull Moose Progressive": 4,
+    "Marxist": 4,
+    "Syndicalist": 4,
+    "Vanguardist": 4,
+    "Socialist Feminist": 4,
+    "Civil-Rights Liberal": 4,
+    "Cosmopolitan Liberal": 4,
+    "Cosmopolitan Capitalist": 4,
+    "Constitutional Conservative": 4,
+    "Culture Warrior": 4,
+    "Movement Progressive": 4,
+    "Yellow Dog Democrat": 4,
+    "Good-Government Reformer": 4,
+    "Eco-Socialist": 4,
+    "Green Progressive": 4,
+    "Utopian Socialist": 4,
+    "Techno-Libertarian": 4,
+    "Hamiltonian": 4,
+    "Rockefeller Republican": 4,
+    "Reaganite": 4,
+    "Goldwater Conservative": 4,
+    "Paleoconservative": 4,
+    "Distributist": 4,
+    "One-Nation Conservative": 4,
+    "New Dealer": 4,
+    "Jacksonian": 4,
+    // Compression outputs
+    "Civic-Republican": 4,
+    "Market-Fundamentalist": 4,
+    "Social Liberal": 4,
+    "Producerist": 4,
+    "Class-Warrior": 4,
+    "Feminist": 4,
+    "Rights Feminist": 4,
+    "Civil-Rights Progressive": 4,
+    "Multiculturalist": 4,
+    "Religious Progressive": 4,
+    "Confessionalist": 4,
+    "Interfaith-Pluralist": 4,
+    "Legalist": 4,
+    "Establishmentarian": 4,
+    "Market Wonk": 4,
+    "Rule-of-Law Wonk": 4,
+    "Independent": 4,
+    "Accelerationist": 4,
+    "Futurist": 4,
+    "Social Planner": 4,
+    "Market Technocrat": 4,
+    "Agrarian Populist": 4,
+    "Agrarian Conservative": 4,
+    "Heartland Populist": 4,
+    "Plainspoken Patriot": 4,
+    "Progressive Firebrand": 4,
+    "Feminist Firebrand": 4,
+    "Civil-Rights Firebrand": 4,
+    "Liberal Statesman": 4,
+    "Party Warrior": 4,
+    "Movement Conservative": 4,
+    "Mugwump": 4,
+    "Apolitical Voter": 4,
+    "Labor Activist": 4,
+    "Faith Activist": 4,
+    "Civil-Rights Activist": 4,
+    "Patriot Activist": 4,
+    "Civil-Libertarian": 4,
+    "Doctrinaire Progressive": 4,
+    "Doctrinaire Conservative": 4,
+    "Liberal Pragmatist": 4,
+    "Party Regular": 4,
+    "Party Loyalist": 4,
+    "Civic Activist": 4,
+    "Direct-Action Activist": 4,
+    "Movement Activist": 4,
+    "Civic Bystander": 4,
+    "Bridge-Builder": 4,
+    "Sectarian": 4,
+    "Ultra-Nationalist": 4,
+    "Maverick": 4,
+    "Alienated Voter": 4,
+    "Alienated Bystander": 4,
+    "Consensus Statesman": 4,
+    "Constitutional Statesman": 4,
+    "Patriotic Statesman": 4,
+    "Good-Government Technocrat": 4,
+    "Policy Broker": 4,
+    "Policy Optimizer": 4,
+    "Country Preacher": 4,
+    "Moral Idealist": 4,
+    "Moral Traditionalist": 4,
+    "Customary Pragmatist": 4
   };
   function posRank(token) {
     if (token in POS_OVERRIDES) return POS_OVERRIDES[token];
@@ -17992,7 +18231,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-noun-anchor";
+  var BUNDLE_VERSION = "20260512-second-opinion";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
