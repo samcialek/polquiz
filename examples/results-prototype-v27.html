@@ -1735,11 +1735,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const [archetypesData, electionsData, alignmentsData, regimesData, candidatesProfiles, eraActivations, nonIdeoData] = await Promise.all([
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
-      fetch(`${DATA_BASE}/alignments.json?v=2026-04-29b`).then(r => r.json()),
-      // Cache-bust bumped to 2026-04-29b: source now carries 33 new rows
-      // (7 Subset A timeline fixes + 26 HIGH 1776 backfill rows). Both
-      // alignments.json and regimes.json were rebuilt from the updated source.
-      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29b`).then(r => r.json()).catch(() => ({})),
+      fetch(`${DATA_BASE}/alignments.json?v=2026-05-12-map-coverage`).then(r => r.json()),
+      // Cache-bust bumped to 2026-05-12-map-coverage: world-map payload now
+      // carries the restored 69-jurisdiction regime set.
+      fetch(`${DATA_BASE}/regimes.json?v=2026-05-12-map-coverage`).then(r => r.json()).catch(() => ({})),
       // v21.6 click-detail panel: per-candidate node profiles + era-activation
       // multipliers. Used to compute and display the per-node distance
       // breakdown when a user clicks an election cell. Soft-fail to {} so the
@@ -3306,7 +3305,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "democratic people's republic of korea": 'North Korea', 'korea, democratic people\'s republic of': 'North Korea',
       'dprk': 'North Korea',
       'iran, islamic republic of': 'Iran', 'turkiye': 'Turkey',
-      'taiwan, province of china': 'Taiwan', 'viet nam': 'Vietnam',
+      'taiwan, province of china': 'Taiwan', 'republic of china': 'Taiwan', 'roc': 'Taiwan', 'formosa': 'Taiwan', 'viet nam': 'Vietnam',
       'm?ori': 'New Zealand', 'maori': 'New Zealand', 'māori': 'New Zealand',
       'malaya': 'Malaysia', 'federated malay states': 'Malaysia',
       'algiers': 'Algeria', 'tunis': 'Tunisia',
@@ -3344,6 +3343,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'french indo-china': 'Vietnam',
       'united kingdom of great britain and ireland': 'United Kingdom',
       'great britain and ireland': 'United Kingdom',
+      'kingdom of ireland': 'Ireland',
+      'denmark-norway': 'Norway',
+      'sweden-norway': 'Norway',
+      'sweden–norway': 'Norway',
       // v14: Confederate States of America (overlay during 1861-1865 only).
       'confederate states': 'Confederate States of America',
       'confederate states of america': 'Confederate States of America',
