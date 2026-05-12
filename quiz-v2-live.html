@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260509-q60-anchor-fix"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260512-salience-labels"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -3088,6 +3088,19 @@ function finishResults() {
     const results = PrismEngine.getResults();
     const respondentState = PrismEngine.getRespondentState ? PrismEngine.getRespondentState() : null;
 
+    // 2026-05-12: salience-driven label. Composed from the respondent's
+    // top-N salient nodes via the lexicon + a small curated merger table.
+    // Falls back to the engine-matched archetype name if the labeler isn't
+    // exposed (older bundles).
+    let composedLabel = null;
+    try {
+        if (typeof PrismEngine.composeArchetypeLabel === 'function' && respondentState) {
+            composedLabel = PrismEngine.composeArchetypeLabel(respondentState);
+        }
+    } catch (err) {
+        console.warn('composeArchetypeLabel failed', err);
+    }
+
     // Save everything to localStorage for the results page
     const prismResults = {
         runId: runId,
@@ -3096,6 +3109,7 @@ function finishResults() {
         bundleVersion: (PrismEngine && PrismEngine.BUNDLE_VERSION) || null,
         archetypeId: results.match.id,
         archetypeName: results.match.name,
+        composedArchetypeLabel: composedLabel,
         archetypeTier: results.match.tier,
         confidence: results.confidence,
         confidenceBand: results.confidenceBand || null,
@@ -3134,10 +3148,12 @@ function finishResults() {
         }
     }
 
-    // Redirect to the current moral-circle results prototype. If a friend
-    // prediction is staged in localStorage (set by predict.html), append
-    // ?compare=1 so the results page routes to the friend-vs-user comparison
-    // view instead of standard results.
+    // Redirect to results page. The canonical prototype is
+    // examples/results-prototype-v27.html (the iteration with the
+    // moral-circle sunburst); results-live.html is the older minimal page.
+    // If a friend prediction is staged in localStorage (set by predict.html),
+    // append ?compare=1 so the results page routes to the friend-vs-user
+    // comparison view instead of standard results.
     let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260511-results-flow-fix';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
