@@ -866,7 +866,26 @@
     .profile-drill-col { min-width: 0; }
     /* 2026-05-12: moral-circle sunburst moves out of the IDENTITY cluster panel
        and sits directly below the donut in the left column. */
-    .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; justify-content: center; width: 100%; }
+    .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; }
+    .profile-donut-col .moral-circle-cluster-heading {
+      width: 560px;
+      max-width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1.5px solid #8C7A5B;
+      padding-bottom: 0.45rem;
+      margin: 0 0 0.25rem;
+    }
+    .profile-donut-col .moral-circle-cluster-heading .sub {
+      color: #555;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
     .profile-donut-col .moral-circle-section .moral-circle-title,
@@ -935,6 +954,7 @@
       grid-column: 2;
       grid-row: 2;
       align-self: start;
+      display: block;
     }
     /* Sunburst is the IDENTITY cluster's centerpiece. v27.18: place sunburst
        in column 1 of the IDENTITY panel and put the ENG row in column 2 next
@@ -1888,7 +1908,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = document.getElementById('engagement-badge');
       el.textContent = labels[idx];
       el.className = 'engagement-badge ' + classes[idx];
-      el.title = `Engagement level ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
+      el.title = `Engagement ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
     })();
 
     // ── Low-confidence cluster gate (ADR-008). Two-step gate: prefer the
@@ -4154,6 +4174,11 @@ document.addEventListener('DOMContentLoaded', () => {
       tagline.innerHTML = `In-group inclusion across six boundaries (${sourceLabel}). The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${Math.round(universalPct)}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
+      const identityHeading = document.createElement('div');
+      identityHeading.className = 'moral-circle-cluster-heading';
+      identityHeading.innerHTML = `IDENTITY <span class="sub">&mdash; Who You Are</span>`;
+      wrap.appendChild(identityHeading);
+
       const svgWrap = document.createElement('div');
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
@@ -4502,15 +4527,10 @@ document.addEventListener('DOMContentLoaded', () => {
       row.style.setProperty('--cat-span', '1');
       row.title = `Engagement: ${pct}%`;
 
-      const nameDiv = document.createElement('div');
-      nameDiv.className = 'cat-vbar-name';
-      nameDiv.textContent = 'Engagement level';
-      row.appendChild(nameDiv);
-
       const value = document.createElement('div');
       value.className = 'cat-closest-match-value engagement-side-card-value';
       value.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: " + clusterColors.ENDS + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
-      value.textContent = `Engagement · ${pct}%`;
+      value.innerHTML = `<span style="color:var(--ink);">Engagement</span><span style="color:${clusterColors.ENDS};"> &middot; ${pct}%</span>`;
       row.appendChild(value);
 
       attachTip(row, buildTip({
