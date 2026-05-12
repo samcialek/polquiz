@@ -17408,7 +17408,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260509-q60-anchor-fix";
+  var BUNDLE_VERSION = "20260512-salience-labels";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
