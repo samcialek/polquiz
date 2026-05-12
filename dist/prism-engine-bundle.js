@@ -17536,13 +17536,15 @@ var PrismEngine = (() => {
       if (distB !== distA) return distB - distA;
       return a.node.localeCompare(b.node);
     });
+    const candidates = sorted.slice(0, MAX_LABEL_TOKENS);
     const picked = [];
-    for (let i = 0; i < sorted.length && picked.length < MAX_LABEL_TOKENS; i++) {
-      const e = sorted[i];
+    for (let i = 0; i < candidates.length; i++) {
+      const e = candidates[i];
       if (picked.length === 0) {
         picked.push(e);
+      } else if (!e.isCategorical && e.bin === "mid") {
+        continue;
       } else {
-        if (!e.isCategorical && e.bin === "mid") continue;
         picked.push(e);
       }
     }
@@ -18606,7 +18608,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-descriptions";
+  var BUNDLE_VERSION = "20260512-top3-fix";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];

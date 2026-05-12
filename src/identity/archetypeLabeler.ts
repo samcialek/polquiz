@@ -278,10 +278,14 @@ export function tokenizeArchetype(arch: Archetype): TokenEntry[] {
 // ──────────────────────────────────────────────────────────────────────────────
 
 export function selectLabelTokens(entries: TokenEntry[]): TokenEntry[] {
-  // 2026-05-12 (revised): take top-3 by salience descending, with no hard
-  // threshold. Archetype data uses integer sal 1-3, so a 2.5 threshold strands
-  // most archetypes with <2 tokens; respondents with sub-2.5 profiles still
-  // deserve a meaningful label. Mid-drop still applies at rank 2/3.
+  // 2026-05-12 (revised v2 — bug fix): the label is built from the
+  // respondent's TOP-3 MOST SALIENT nodes. If rank-2 or rank-3 landed in the
+  // mid bin, drop that token but DO NOT backfill from rank-4+. Backfilling
+  // pulls in nodes the respondent isn't actually salient on, which produces
+  // misleading labels (e.g., a respondent whose top-3 are ONT_S/MAT/CU-mid
+  // would get MOR from rank-4 inserted, mapping to "Liberal Internationalist"
+  // even though MOR isn't in the top-3 salience set).
+  //
   // Tie-break: continuous tokens by |position-3| (more-extreme first), then
   // categoricals after equal-salience continuous, then alphabetically.
   const sorted = [...entries].sort((a, b) => {
@@ -291,13 +295,17 @@ export function selectLabelTokens(entries: TokenEntry[]): TokenEntry[] {
     if (distB !== distA) return distB - distA;
     return a.node.localeCompare(b.node);
   });
+  // Only consider the top-3 candidates. Mid-drop at rank 2/3 reduces the
+  // emitted token count rather than backfilling from further down.
+  const candidates = sorted.slice(0, MAX_LABEL_TOKENS);
   const picked: TokenEntry[] = [];
-  for (let i = 0; i < sorted.length && picked.length < MAX_LABEL_TOKENS; i++) {
-    const e = sorted[i]!;
+  for (let i = 0; i < candidates.length; i++) {
+    const e = candidates[i]!;
     if (picked.length === 0) {
-      picked.push(e);
+      picked.push(e); // top-1 always emits, even when mid
+    } else if (!e.isCategorical && e.bin === "mid") {
+      continue; // drop mid at rank 2/3 — do not backfill
     } else {
-      if (!e.isCategorical && e.bin === "mid") continue;
       picked.push(e);
     }
   }
