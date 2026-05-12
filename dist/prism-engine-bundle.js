@@ -17579,14 +17579,14 @@ var PrismEngine = (() => {
     const compressed = applyCompression(tokens);
     if (compressed) {
       return {
-        label: reorderByPOS(compressed).map((t) => t.token).join(" "),
-        source: "lexicon",
+        label: ensureNounAnchor(reorderByPOS(compressed)).map((t) => t.token).join(" "),
+        source: "compression",
         signature: fullSig,
         tokensUsed: tokens
       };
     }
     return {
-      label: reorderByPOS(tokens).map((t) => t.token).join(" "),
+      label: ensureNounAnchor(reorderByPOS(tokens)).map((t) => t.token).join(" "),
       source: "lexicon",
       signature: fullSig,
       tokensUsed: tokens
@@ -17908,6 +17908,44 @@ var PrismEngine = (() => {
     if (/(?:al|ed|ous|ic|ive|ory|ish)$/.test(last)) return 0;
     return 3;
   }
+  var ADJECTIVE_NOUN_FORM = {
+    // Continuous lexicon adjectives
+    "Procedural": "Proceduralist",
+    "Pragmatic": "Pragmatist",
+    "Combative": "Combatant",
+    "Practical": "Pragmatist",
+    "Principled": "Idealist",
+    "Detached": "Detached",
+    // Sam: works as standalone
+    "Tempered": "Realist",
+    "Pastoral": "Folk-Voice",
+    "Casual": "Casual Voter",
+    "Mobilized": "Activist",
+    "Tuned-Out": "Bystander",
+    "Tribal": "Tribalist",
+    "Anti-Institutional": "Outsider",
+    "Engaged-Civic": "Engaged-Civic",
+    // Sam: works as compound
+    "Civic": "Civic-Minded Citizen",
+    "Institutional": "Institutionalist",
+    // Categorical adjectives
+    "Autonomous": "Free-Thinker",
+    "Authentic": "Plain-Talker",
+    // Compression outputs that are adjectives
+    "Bureaucratic": "Bureaucrat",
+    "Hobbesian": "Hobbesian-Realist",
+    "Utopian": "Utopian-Idealist",
+    "Class-Conscious": "Class-Activist",
+    "Self-Reliant": "Individualist"
+  };
+  function ensureNounAnchor(tokens) {
+    if (tokens.length === 0) return tokens;
+    const last = tokens[tokens.length - 1];
+    if (posRank(last.token) >= 2) return tokens;
+    const nounForm = ADJECTIVE_NOUN_FORM[last.token];
+    if (!nounForm || nounForm === last.token) return tokens;
+    return [...tokens.slice(0, -1), { ...last, token: nounForm }];
+  }
   function reorderByPOS(tokens) {
     const adjs = [];
     const nouns = [];
@@ -17954,7 +17992,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-expanded-mergers";
+  var BUNDLE_VERSION = "20260512-noun-anchor";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
