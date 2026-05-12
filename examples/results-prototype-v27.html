@@ -4254,25 +4254,14 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('stroke-width', 1);
         path.setAttribute('stroke-opacity', 0.85);
         path.style.cursor = 'help';
-        // Per-wedge floating tooltip via the v22 attachTip system.
-        const diff = d.position - universalPct;
-        const interp = d.position >= universalPct + 5
-          ? `<strong>In-group preference</strong> — ${diff}% above your universal baseline.`
-          : d.position >= universalPct - 5
-            ? `Within ~5% of your universal baseline — neither preferred nor de-prioritized.`
-            : d.position >= 50
-              ? `Inside your moral circle, but ${-diff}% <em>below</em> your universal baseline.`
-              : `Outside your moral circle (${d.position}% inclusion).`;
-        attachTip(path, buildTip({
+        // Every wedge remains visible and hoverable. The chart itself labels
+        // only categories that extend beyond Universal, so below-baseline
+        // segments do not overclaim salience in the static view.
+        const wedgeTip = buildTip({
           title: cat.label,
-          desc: `Inclusion of ${cat.label.toLowerCase()} in your moral circle.`,
-          rows: [
-            ['Inclusion', `${d.position}%`],
-            ['Salience', `${d.salience.toFixed(1)} / 3`],
-            ['Universal baseline', `${universalPct}%`],
-          ],
-          interp,
-        }));
+          rows: [['Percent', `${d.position}%`]],
+        });
+        attachTip(path, wedgeTip);
         svg.appendChild(path);
       });
 
@@ -4330,6 +4319,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Labels — Space Grotesk to match the live profile section.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
+        if (d.position <= universalPct) return;
         const ang = angleForIndex(i);
         const labelR = OUTER + 10;
         const lp = polar(labelR, ang);
@@ -4348,6 +4338,10 @@ document.addEventListener('DOMContentLoaded', () => {
         t.setAttribute('text-anchor', anchor);
         t.setAttribute('dy', dy);
         t.textContent = cat.label;
+        attachTip(t, buildTip({
+          title: cat.label,
+          rows: [['Percent', `${d.position}%`]],
+        }));
         svg.appendChild(t);
 
         const pct = document.createElementNS(ns, 'text');
@@ -4360,6 +4354,10 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.setAttribute('text-anchor', anchor);
         pct.setAttribute('dy', dy + 16);
         pct.textContent = d.position + '%';
+        attachTip(pct, buildTip({
+          title: cat.label,
+          rows: [['Percent', `${d.position}%`]],
+        }));
         svg.appendChild(pct);
       });
 
