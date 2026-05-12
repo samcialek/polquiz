@@ -861,9 +861,17 @@
     /* v27.46 — donut sits at left:0 with width 500px; drill content starts
        at 580px so there's a real ~80px gap between the donut and the bar
        chart instead of the prior ~10px. */
-    .profile-flex { position: relative; padding: 1rem 0 0.5rem 580px; min-height: 500px; }
-    .profile-donut-col { position: absolute; top: 1rem; left: 0; width: 500px; padding-left: 0.5rem; }
+    .profile-flex { position: relative; padding: 1rem 0 0.5rem 660px; min-height: 500px; }
+    .profile-donut-col { position: absolute; top: 1rem; left: 0; width: 580px; padding-left: 0.5rem; }
     .profile-drill-col { min-width: 0; }
+    /* 2026-05-12: moral-circle sunburst moves out of the IDENTITY cluster panel
+       and sits directly below the donut in the left column. */
+    .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; justify-content: center; width: 100%; }
+    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
+    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
+    .profile-donut-col .moral-circle-section .moral-circle-title,
+    .profile-donut-col .moral-circle-section .moral-circle-tagline,
+    .profile-donut-col .moral-circle-section .moral-circle-legend { display: none; }
     .cluster-overview { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .cluster-overview svg { max-width: 100%; height: auto; display: block; }
     /* 2026-05-08: donut wedges no longer fade when unselected. Unselected =
@@ -4631,8 +4639,8 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             const match = document.createElement('div');
             match.className = 'cat-closest-match-value';
-            match.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; color: " + clusterColors[clusterName] + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
-            match.textContent = top.label;
+            match.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: " + clusterColors[clusterName] + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
+            match.textContent = top.label + ' · ' + Math.round(top.prob * 100) + '%';
             row.appendChild(match);
           }
 
@@ -4640,12 +4648,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // PROTOTYPE: render moral-circle 6-category sunburst inside the IDENTITY cluster.
-      // Prefers live respondentState.moralCircle.affinity when present; falls
-      // back to archetype sample data otherwise.
-      if (clusterName === 'IDENTITY') {
-        block.appendChild(renderMoralCircleSunburst(archetypeId, respondentState));
-      }
+      // 2026-05-12: moral-circle no longer lives inside the IDENTITY cluster
+      // panel. It's appended into profile-donut-col below the donut, after the
+      // cluster loop finishes.
 
       // v16: ENDS / MEANS rendered as bar rows (above), no cluster radar.
 
@@ -4657,6 +4662,13 @@ document.addEventListener('DOMContentLoaded', () => {
       clusterDrill.appendChild(panel);
       clusterPanels[clusterName] = panel;
     });
+
+    // 2026-05-12: append moral-circle sunburst into profile-donut-col, below the
+    // donut. Previously rendered inside the IDENTITY cluster panel.
+    const donutCol = document.querySelector('.profile-donut-col');
+    if (donutCol) {
+      donutCol.appendChild(renderMoralCircleSunburst(archetypeId, respondentState));
+    }
 
     // 2026-05-08: cluster emphasis is computed from live respondent state.
     // Per cluster, sum (gap × salience) over each constituent node, where:
