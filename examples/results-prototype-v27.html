@@ -931,6 +931,11 @@
       grid-row: 2 / span var(--cat-span, 1);
       align-self: start;
     }
+    .cluster-panel .node-cluster .engagement-side-card {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+    }
     /* Sunburst is the IDENTITY cluster's centerpiece. v27.18: place sunburst
        in column 1 of the IDENTITY panel and put the ENG row in column 2 next
        to it (instead of stacked above), so the chart no longer wastes
@@ -1518,7 +1523,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //   ENDS:    MAT, CD, CU                    (MOR moved to IDENTITY)
   //   MEANS:   PRO, COM, ONT_S + AES          (ONT_S in from REALITY)
   //   REALITY: ZS, ONT_H + EPS                (EPS in from MEANS)
-  //   IDENTITY:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
+  //   IDENTITY:    MOR (sunburst under donut); ENG is shown beside ENDS
+  //                so it aligns with the compact side summaries.
   const nodeLabels = {
     MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
     CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
@@ -4349,7 +4355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // MEANS (PRO, COM, ONT_S), REALITY (ZS, ONT_H). ENG still lives in the
     // page-header badge per v3.
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
-    const SELF_CODES = [];
+    const SELF_CODES = ['ENG'];
     // 50% interquartile bands now appear on every continuous node.
     const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','IDENTITY']);
 
@@ -4477,13 +4483,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const clusterDrill = document.getElementById('cluster-drill');
     const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'IDENTITY'];
     const clusterPanels = {};
+    const engagementNode = displayNodes.find(d => d.code === 'ENG');
+
+    function renderEngagementSideCard(d) {
+      const pct = Math.round(Math.max(0, Math.min(100, ((d.pos - 1) / 9) * 100)));
+      const row = document.createElement('div');
+      row.className = 'cat-vbar-row cat-closest-match engagement-side-card';
+      row.style.setProperty('--cat-span', '1');
+      row.title = `Engagement: ${pct}%`;
+
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'cat-vbar-name';
+      nameDiv.textContent = 'Engagement';
+      row.appendChild(nameDiv);
+
+      const value = document.createElement('div');
+      value.className = 'cat-closest-match-value engagement-side-card-value';
+      value.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: " + clusterColors.ENDS + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
+      value.textContent = `${pct}%`;
+      row.appendChild(value);
+
+      attachTip(row, buildTip({
+        title: 'Engagement',
+        desc: 'How plugged-in you are.',
+        rows: [['Activation', `${pct}%`]],
+        interp: 'Activation-only node — position is activation level.',
+      }));
+      return row;
+    }
 
     clusterOrder.forEach(clusterName => {
-      const clusterDims = displayNodes.filter(d => d.cluster === clusterName).sort((a, b) => b.sal - a.sal);
+      const clusterDims = displayNodes.filter(d => d.cluster === clusterName && d.code !== 'ENG').sort((a, b) => b.sal - a.sal);
       // v4: ENDS, MEANS, IDENTITY render via custom paths (cluster radar, cluster
       // radar with AES color, MOR sunburst respectively) — allow them through
       // even when they have no continuous-bar rows.
-      const NEVER_SKIP = new Set(['ENDS','MEANS','IDENTITY']);
+      const NEVER_SKIP = new Set(['ENDS','MEANS']);
       if (clusterDims.length === 0 && !NEVER_SKIP.has(clusterName)) return;
 
       const block = document.createElement('div');
@@ -4596,6 +4630,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         block.appendChild(row);
       });
+
+      if (clusterName === 'ENDS' && engagementNode) {
+        block.appendChild(renderEngagementSideCard(engagementNode));
+      }
 
       // 2026-05-12: collapse EPS/AES from a 6-category leaderboard to a
       // single closest-match label. The bottom of the leaderboard is not
