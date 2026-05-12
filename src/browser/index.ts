@@ -19,6 +19,7 @@ export {
   goBack,
   applyRatioBoost,
   getElectionPredictions,
+  composeArchetypeLabel,
   BUNDLE_VERSION,
 } from "./api.js";
 

@@ -25,6 +25,7 @@ var PrismEngine = (() => {
     applyRatioBoost: () => applyRatioBoost,
     attachToExistingQuiz: () => attachToExistingQuiz,
     canGoBack: () => canGoBack,
+    composeArchetypeLabel: () => composeArchetypeLabel,
     getArchetypeCount: () => getArchetypeCount,
     getElectionPredictions: () => getElectionPredictions,
     getIdentityPrimaryResult: () => getIdentityPrimaryResult,
@@ -17405,6 +17406,250 @@ var PrismEngine = (() => {
       valuesDecision: nearestByValues.ideologicalDistance <= clearingBar ? "vote" : "abstain",
       decision: nearest.distance <= clearingBar ? "vote" : "abstain"
     };
+  }
+
+  // src/identity/archetypeLabeler.ts
+  var POSITION_LEXICON = {
+    MAT: { low: "Redistributionist", mid: "Mixed-Economy", high: "Free-Marketeer" },
+    CD: { low: "Progressive", mid: "Hinge", high: "Traditionalist" },
+    CU: { low: "Assimilationist", mid: "Civic-Pluralist", high: "Pluralist" },
+    MOR: { low: "Particularist", mid: "Civic", high: "Universalist" },
+    PRO: { low: "Consequentialist", mid: "Pragmatic", high: "Procedural" },
+    COM: { low: "Principled", mid: "Practical", high: "Dealmaker" },
+    ZS: { low: "Positive-Sum", mid: "Realist", high: "Combative" },
+    ONT_H: { low: "Essentialist", mid: "Tempered", high: "Malleabilist" },
+    ONT_S: { low: "Anti-Institutional", mid: "Reformist", high: "Institutional" },
+    PF: { low: "Detached", mid: "Engaged-Civic", high: "Partisan" },
+    TRB: { low: "Inclusivist", mid: "Civic", high: "Tribal" },
+    ENG: { low: "Tuned-Out", mid: "Casual", high: "All-In" }
+  };
+  var EPS_LEXICON = [
+    "Empiricist",
+    "Institutionalist",
+    "Traditionalist",
+    "Intuitionist",
+    "Autonomous",
+    "Nihilist"
+  ];
+  var AES_LEXICON = [
+    "Statesman",
+    "Technocrat",
+    "Pastoral",
+    "Authentic",
+    "Fighter",
+    "Visionary"
+  ];
+  var MORAL_CIRCLE_SCOPE_LEXICON = {
+    national: "Nationalist",
+    religious: "Religious-Communitarian",
+    ethnic_racial: "Ethnic-Communitarian",
+    class: "Class-Conscious",
+    gender: "Gender-Identitarian",
+    ideological: "Partisan-Communitarian"
+  };
+  var POSITION_LOW_MAX = 2.5;
+  var POSITION_HIGH_MIN = 3.5;
+  var MAX_LABEL_TOKENS = 3;
+  var MORAL_CIRCLE_SCOPE_EXCESS_MIN = 20;
+  var MORAL_CIRCLE_UNIVERSAL_MIN = 70;
+  function continuousBin(pos) {
+    if (pos <= POSITION_LOW_MAX) return "low";
+    if (pos >= POSITION_HIGH_MIN) return "high";
+    return "mid";
+  }
+  function tokenizeRespondent(state) {
+    const entries = [];
+    if (state.continuous) {
+      for (const [node, n] of Object.entries(state.continuous)) {
+        if (!n || typeof n.salience !== "number") continue;
+        if (!(node in POSITION_LEXICON)) continue;
+        const bin = continuousBin(n.expectedPos ?? 3);
+        const lex = POSITION_LEXICON[node];
+        const token = bin === "low" ? lex.low : bin === "high" ? lex.high : lex.mid;
+        entries.push({ node, bin, token, salience: n.salience, isCategorical: false });
+      }
+    }
+    const eps = state.categorical?.EPS;
+    if (eps && Array.isArray(eps.catDist)) {
+      const topIdx = argmax(eps.catDist);
+      if (topIdx >= 0 && topIdx < EPS_LEXICON.length) {
+        entries.push({
+          node: "EPS",
+          bin: EPS_LEXICON[topIdx],
+          token: EPS_LEXICON[topIdx],
+          salience: eps.salience ?? 0,
+          isCategorical: true
+        });
+      }
+    }
+    const aes = state.categorical?.AES;
+    if (aes && Array.isArray(aes.catDist)) {
+      const topIdx = argmax(aes.catDist);
+      if (topIdx >= 0 && topIdx < AES_LEXICON.length) {
+        entries.push({
+          node: "AES",
+          bin: AES_LEXICON[topIdx],
+          token: AES_LEXICON[topIdx],
+          salience: aes.salience ?? 0,
+          isCategorical: true
+        });
+      }
+    }
+    const mc = state.moralCircle;
+    if (mc) {
+      const universal = mc.universalAffinity ?? 50;
+      const scopes = mc.scopedAffinities ? Object.entries(mc.scopedAffinities).filter(([, v]) => typeof v === "number").map(([scope, v]) => ({ scope, excess: Math.max(0, v - universal) })) : [];
+      const maxScope = scopes.length ? scopes.reduce((a, b) => a.excess > b.excess ? a : b) : null;
+      if (maxScope && maxScope.excess >= MORAL_CIRCLE_SCOPE_EXCESS_MIN) {
+        const adj = MORAL_CIRCLE_SCOPE_LEXICON[maxScope.scope];
+        if (adj) {
+          entries.push({
+            node: "MORAL_CIRCLE",
+            bin: maxScope.scope,
+            token: adj,
+            salience: Math.min(3, mc.intensity03 ?? 0),
+            isCategorical: true
+          });
+        }
+      } else if (universal >= MORAL_CIRCLE_UNIVERSAL_MIN) {
+        entries.push({
+          node: "MORAL_CIRCLE",
+          bin: "universal",
+          token: "Universalist",
+          salience: Math.min(3, (universal - 50) / 16.67),
+          // 50→0, 100→3
+          isCategorical: true
+        });
+      }
+    }
+    return entries;
+  }
+  function selectLabelTokens(entries) {
+    const sorted = [...entries].sort((a, b) => {
+      if (b.salience !== a.salience) return b.salience - a.salience;
+      const distA = a.isCategorical ? 0 : Math.abs(positionFromBin(a.bin) - 3);
+      const distB = b.isCategorical ? 0 : Math.abs(positionFromBin(b.bin) - 3);
+      if (distB !== distA) return distB - distA;
+      return a.node.localeCompare(b.node);
+    });
+    const picked = [];
+    for (let i = 0; i < sorted.length && picked.length < MAX_LABEL_TOKENS; i++) {
+      const e = sorted[i];
+      if (picked.length === 0) {
+        picked.push(e);
+      } else {
+        if (!e.isCategorical && e.bin === "mid") continue;
+        picked.push(e);
+      }
+    }
+    return picked;
+  }
+  function positionFromBin(bin) {
+    if (bin === "low") return 1.5;
+    if (bin === "high") return 4.5;
+    if (bin === "mid") return 3;
+    return 3;
+  }
+  function signatureOf(tokens) {
+    return tokens.map((t) => `${t.node}:${t.bin}`).sort().join("|");
+  }
+  function composeLabel(tokens, mergerTable) {
+    if (tokens.length === 0) {
+      return { label: "Civic Generalist", source: "lexicon", signature: "", tokensUsed: [] };
+    }
+    const fullSig = signatureOf(tokens);
+    const lexicon = tokens.map((t) => t.token).join(" ");
+    if (fullSig in mergerTable) {
+      return { label: mergerTable[fullSig], source: "merger-full", signature: fullSig, tokensUsed: tokens };
+    }
+    if (tokens.length === 3) {
+      const top2 = [tokens[0], tokens[1]];
+      const sig2 = signatureOf(top2);
+      if (sig2 in mergerTable) {
+        const merged = mergerTable[sig2];
+        const leftover = tokens[2];
+        return {
+          label: `${leftover.token} ${merged}`,
+          source: "merger-partial",
+          signature: sig2,
+          tokensUsed: tokens
+        };
+      }
+    }
+    return { label: lexicon, source: "lexicon", signature: fullSig, tokensUsed: tokens };
+  }
+  function labelForRespondent(state, mergerTable) {
+    const entries = tokenizeRespondent(state);
+    const tokens = selectLabelTokens(entries);
+    return composeLabel(tokens, mergerTable);
+  }
+  var DEFAULT_MERGER_TABLE = {
+    "MAT:low|ONT_S:high": "Institutional Leftist",
+    "MAT:high|ONT_S:high": "Institutional Conservative",
+    "MAT:low|MORAL_CIRCLE:universal": "Rawlsian Reformer",
+    "MAT:low|MORAL_CIRCLE:class": "Class-War Leftist",
+    "MAT:low|COM:low": "Jacobin Egalitarian",
+    "MAT:low|CD:low|MORAL_CIRCLE:national": "Progressive Civic Nationalist",
+    "MAT:low|CD:low": "Progressive Leftist",
+    "MAT:high|CD:high": "Conservative",
+    "CD:high|MORAL_CIRCLE:national": "Heritage Guardian",
+    "CD:high|MORAL_CIRCLE:religious": "Religious Traditionalist",
+    "MAT:high|CD:high|ZS:high": "Combative Conservative",
+    "MAT:low|ZS:high": "Combative Leftist",
+    "MAT:low|AES:Fighter": "Insurgent Equalizer",
+    "MAT:high|AES:Fighter": "Combative Populist",
+    "CD:high|AES:Fighter": "Heritage Firebrand",
+    "AES:Statesman|ONT_S:high": "Statesman Institutionalist",
+    "AES:Technocrat|ONT_S:high": "Technocratic Optimizer",
+    "AES:Visionary|ONT_S:low": "Visionary Insurgent",
+    "AES:Visionary|MAT:low": "Visionary Progressive",
+    "EPS:Empiricist|ONT_S:high": "Evidence-Based Institutionalist",
+    "EPS:Empiricist|MAT:low": "Evidence-Based Progressive",
+    "EPS:Traditionalist|CD:high": "Civic Traditionalist",
+    "EPS:Intuitionist|AES:Fighter": "Gut-Politics Fighter",
+    "COM:high|ONT_S:high": "Burkean Steward",
+    "COM:low|ONT_S:low": "Disaffected Contrarian",
+    "MAT:low|ONT_H:high": "Constructivist Progressive",
+    "CD:high|ONT_H:low": "Essentialist Traditionalist",
+    "CU:high|MORAL_CIRCLE:universal": "World-Minded Reformer",
+    "CU:high|MOR:high": "Principled Cosmopolitan",
+    "CD:high|CU:low": "Communitarian Traditionalist",
+    "MAT:low|PF:high": "Loyal Democrat",
+    "MAT:high|PF:high": "Loyal Republican",
+    "AES:Fighter|PF:high": "Militant Partisan",
+    "CD:high|ENG:low": "Quiet Traditionalist",
+    "ENG:low|MAT:low": "Comfortable Bystander",
+    "MORAL_CIRCLE:gender": "Identity-Group Activist",
+    "MORAL_CIRCLE:ethnic_racial": "Identity-Group Activist",
+    "CU:high|MAT:low|ONT_S:high": "Institutional Leftist",
+    "MAT:low|ONT_S:high|PRO:high": "Procedural Institutional Leftist",
+    "COM:high|MAT:low|ONT_S:high": "Pragmatic Institutional Leftist",
+    "CD:low|CU:high|MAT:low": "Cosmopolitan Progressive",
+    "CD:low|MAT:low|MOR:high": "Rawlsian Reformer",
+    "CD:high|MAT:high|ONT_S:high": "Institutional Conservative",
+    "CD:high|MAT:high|MORAL_CIRCLE:religious": "Religious Right",
+    "CD:high|CU:low|MORAL_CIRCLE:national": "Heritage Guardian",
+    "MAT:low|ONT_S:high|ZS:low": "Pluralist Structuralist",
+    "CU:high|MAT:low|MOR:high": "Cosmopolitan Reformer",
+    "AES:Fighter|MAT:low|MORAL_CIRCLE:class": "Class-War Fighter",
+    "AES:Statesman|MAT:low|ONT_S:high": "Statesman Institutional Leftist",
+    "AES:Statesman|MAT:high|ONT_S:high": "Statesman Institutional Conservative",
+    "EPS:Empiricist|MAT:low|ONT_S:high": "Evidence-Based Institutional Leftist",
+    "EPS:Empiricist|MAT:high|ONT_S:high": "Evidence-Based Institutional Conservative",
+    "CU:high|MAT:low|MORAL_CIRCLE:universal": "Cosmopolitan Reformer"
+  };
+  function composeArchetypeLabel(state) {
+    return labelForRespondent(state, DEFAULT_MERGER_TABLE).label;
+  }
+  function argmax(arr) {
+    let best = -1, bestV = -Infinity;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > bestV) {
+        bestV = arr[i];
+        best = i;
+      }
+    }
+    return best;
   }
 
   // src/browser/api.ts
