@@ -382,7 +382,19 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
     }
   }
 
-  // Lexicon default: 1-3 fragment composition.
+  // Lexicon path with compression layer: if any pair of tokens has a
+  // compression entry, substitute that pair with one word before joining.
+  const compressed = applyCompression(tokens);
+  if (compressed) {
+    return {
+      label: compressed.map(t => t.token).join(" "),
+      source: "lexicon",
+      signature: fullSig,
+      tokensUsed: tokens,
+    };
+  }
+
+  // Pure lexicon default: 1-3 fragment composition with no compression.
   return { label: lexicon, source: "lexicon", signature: fullSig, tokensUsed: tokens };
 }
 
@@ -466,6 +478,134 @@ export const DEFAULT_MERGER_TABLE: MergerTable = {
   "EPS:Empiricist|MAT:high|ONT_S:high": "Evidence-Based Institutional Conservative",
   "CU:high|MAT:low|MORAL_CIRCLE:universal": "Cosmopolitan Reformer",
 };
+
+/**
+ * Compression table — token PAIR → ONE word.
+ *
+ * Different from the merger table:
+ *   merger:      signature → iconic multi-word name (preserves "Institutional Leftist")
+ *   compression: signature → single-word semantic substitute (combines two ideas)
+ *
+ * Compression runs inside the lexicon path only. If the full signature has a
+ * merger hit, the merger wins. Otherwise the composer scans the token list for
+ * a compressible pair, substitutes with one word, and joins remaining tokens.
+ *
+ * Keep signatures sorted alphabetically (same format as merger table).
+ */
+export const COMPRESSION_TABLE: MergerTable = {
+  // Ideology axes (economy × culture)
+  "CD:low|MAT:low":   "Leftist",
+  "CD:high|MAT:high": "Conservative",
+  "CD:low|MAT:high":  "Libertarian",
+  "CD:high|MAT:low":  "Populist-Left",
+
+  // Economy × moral circle width
+  "MAT:low|MOR:high":  "Internationalist",
+  "MAT:low|MOR:low":   "Class-Particularist",
+  "MAT:high|MOR:low":  "Tribal-Capitalist",
+
+  // Economy × institutions
+  "MAT:high|ONT_S:low":  "Free-Market-Disruptor",
+  "MAT:low|ONT_S:low":   "Anti-Capitalist-Radical",
+
+  // Cultural axes (continuity × pluralism)
+  "CD:high|CU:high": "Conservative-Pluralist",
+  "CD:low|CU:high":  "Cosmopolitan",
+  "CD:high|CU:low":  "Communitarian",
+  "CD:low|CU:low":   "Progressive-Unifier",
+
+  // Cultural × moral circle
+  "CU:high|MOR:low":  "Provincial-Pluralist",
+  "CU:low|MOR:high":  "Civic-Universalist",
+
+  // Process axes (procedure × compromise)
+  "COM:high|PRO:high": "Establishment",
+  "COM:low|PRO:low":   "Insurgent",
+  "COM:high|PRO:low":  "Negotiator",
+  "COM:low|PRO:high":  "Hard-Liner",
+
+  // Process × institutions
+  "ONT_S:high|PRO:high": "Bureaucratic",
+  "ONT_S:low|PRO:low":   "Outsider",
+  "COM:high|ONT_S:high": "Statesman-Style",
+  "COM:low|ONT_S:low":   "Antagonist",
+
+  // Worldview (zero-sum × human nature)
+  "ONT_H:low|ZS:high":   "Hobbesian",
+  "ONT_H:high|ZS:low":   "Utopian",
+  "MOR:high|ZS:low":     "Idealist",
+  "MOR:low|ZS:high":     "Hard-Realist",
+
+  // Worldview × institutions
+  "ONT_H:high|ONT_S:high": "Social-Engineer",
+  "ONT_H:low|ONT_S:low":   "Reactionary",
+  "ONT_S:high|ZS:low":     "Cooperator",
+  "ONT_S:low|ZS:high":     "Cynic",
+
+  // Conflict-style
+  "AES:Fighter|ZS:high":  "Militant",
+  "AES:Fighter|COM:low":  "Combatant",
+  "AES:Fighter|MAT:high": "Populist-Right",
+  "AES:Fighter|CD:high":  "Reactionary-Firebrand",
+
+  // Style × engagement
+  "AES:Statesman|PF:high": "Loyal-Statesman",
+  "AES:Technocrat|EPS:Empiricist": "Wonk",
+  "AES:Visionary|MOR:high": "Prophet",
+  "AES:Pastoral|CD:high":  "Hearth-Conservative",
+  "AES:Authentic|PF:high": "Plain-Partisan",
+
+  // Epistemic × institutions
+  "EPS:Empiricist|ONT_S:high":    "Evidence-Institutionalist",
+  "EPS:Empiricist|ONT_S:low":     "Skeptic",
+  "EPS:Traditionalist|ONT_S:high": "Custom-Institutionalist",
+  "EPS:Intuitionist|ONT_S:low":   "Gut-Outsider",
+  "EPS:Autonomous|MAT:high":      "Self-Reliant",
+  "EPS:Nihilist|ZS:high":         "Cynic",
+
+  // Moral-circle scope compressions
+  "MAT:low|MORAL_CIRCLE:national":  "Civic-Nationalist-Left",
+  "MAT:high|MORAL_CIRCLE:national": "Civic-Nationalist-Right",
+  "MORAL_CIRCLE:national|PF:high":  "Patriot-Partisan",
+  "MORAL_CIRCLE:class|AES:Fighter": "Class-Fighter",
+  "MORAL_CIRCLE:religious|CD:high": "Religious-Conservative",
+  "MORAL_CIRCLE:universal|MAT:low": "Solidarist",
+  "MORAL_CIRCLE:universal|CU:high": "Cosmopolite",
+
+  // Engagement modifiers
+  "ENG:low|MAT:high":  "Quiet-Conservative",
+  "ENG:low|CD:low":    "Disengaged-Progressive",
+  "ENG:high|PF:high":  "Activist-Partisan",
+};
+
+/**
+ * Apply compression to a token list: find the first compressible pair (highest-
+ * salience pair first), substitute the pair with the single word, return new
+ * token-like array. Returns null if no compression applies.
+ */
+function applyCompression(tokens: TokenEntry[]): TokenEntry[] | null {
+  if (tokens.length < 2) return null;
+  // Try every pair, prefer earlier (higher-salience) pairs.
+  for (let i = 0; i < tokens.length; i++) {
+    for (let j = i + 1; j < tokens.length; j++) {
+      const pair = [tokens[i]!, tokens[j]!];
+      const sig = signatureOf(pair);
+      if (sig in COMPRESSION_TABLE) {
+        const compressed: TokenEntry = {
+          node: "_COMPRESSED",
+          bin: sig,
+          token: COMPRESSION_TABLE[sig]!,
+          salience: Math.max(tokens[i]!.salience, tokens[j]!.salience),
+          isCategorical: true,
+        };
+        // Replace tokens[i] and tokens[j] with the compressed entry, preserving rest.
+        const remaining = tokens.filter((_, k) => k !== i && k !== j);
+        return [compressed, ...remaining];
+      }
+    }
+  }
+  return null;
+}
 
 /**
  * Browser-friendly wrapper: takes a respondent state (dump shape) and returns
