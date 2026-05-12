@@ -120,9 +120,13 @@ async function main() {
     const meansText = (meansPanel?.textContent ?? "");
     // Old leaderboard signatures we want to be gone.
     const hasLeaderboardBars = !!document.querySelector(".cat-vbar-bar, .cat-vbar-cols, .cat-vbar-col");
-    // Percent-format inside any cat-vbar-row would indicate leftover %-on-EPS/AES.
-    const catRowsHavePercent = Array.from(document.querySelectorAll(".cat-vbar-row"))
-      .some(r => /\d+\s*%/.test(r.textContent ?? ""));
+    // 2026-05-12: percentage on cat-closest-match values is intentional.
+    // Moral-circle moved from IDENTITY cluster to profile-donut-col.
+    const donutCol = document.querySelector(".profile-donut-col");
+    const moralCircleInDonutCol = !!donutCol && !!donutCol.querySelector(".moral-circle-section");
+    const moralCircleInIdentity = !!identityPanel && !!identityPanel.querySelector(".moral-circle-section");
+    const catMatchValueEls = Array.from(document.querySelectorAll(".cat-closest-match-value"));
+    const catMatchHasPercent = catMatchValueEls.length > 0 && catMatchValueEls.every(el => /\d+\s*%/.test(el.textContent ?? ""));
     return {
       archetypeNameText: (document.getElementById("archetype-name")?.textContent ?? "").trim(),
       renderedSectionOrder,
@@ -134,7 +138,9 @@ async function main() {
       aesInMeans: meansText.includes("Closest aesthetic style"),
       aesNotInReality: !realityText.includes("Closest aesthetic style"),
       hasLeaderboardBars,
-      catRowsHavePercent,
+      moralCircleInDonutCol,
+      moralCircleInIdentity,
+      catMatchHasPercent,
       bodyHasLeastFavorite: /least\s+favorite/i.test(text),
       bodyHasFavoriteAesthetic: /favorite\s+aesthetic|favorite\s+epistemic/i.test(text),
     };
@@ -156,7 +162,9 @@ async function main() {
   console.log(`  AES shown in MEANS panel:       ${checks.aesInMeans ? "OK" : "FAIL"}`);
   console.log(`  AES NOT in REALITY panel:       ${checks.aesNotInReality ? "OK" : "FAIL"}`);
   console.log(`  Old 6-cat leaderboard gone:     ${!checks.hasLeaderboardBars ? "OK" : "FAIL"}`);
-  console.log(`  No % inside cat-vbar rows:      ${!checks.catRowsHavePercent ? "OK" : "FAIL"}`);
+  console.log(`  Moral circle in donut col:      ${checks.moralCircleInDonutCol ? "OK" : "FAIL"}`);
+  console.log(`  Moral circle NOT in IDENTITY:   ${!checks.moralCircleInIdentity ? "OK" : "FAIL"}`);
+  console.log(`  EPS/AES label has %:            ${checks.catMatchHasPercent ? "OK" : "FAIL"}`);
   console.log(`  No "least favorite" in body:    ${!checks.bodyHasLeastFavorite ? "OK" : "FAIL"}`);
   console.log(`  No "favorite ___" in body:      ${!checks.bodyHasFavoriteAesthetic ? "OK" : "FAIL"}`);
   console.log(`  Total <section> tags:           ${checks.sectionCount}`);
@@ -170,7 +178,9 @@ async function main() {
     checks.epsInReality && checks.epsNotInMeans &&
     checks.aesInMeans && checks.aesNotInReality &&
     !checks.hasLeaderboardBars &&
-    !checks.catRowsHavePercent &&
+    checks.moralCircleInDonutCol &&
+    !checks.moralCircleInIdentity &&
+    checks.catMatchHasPercent &&
     !checks.bodyHasLeastFavorite &&
     !checks.bodyHasFavoriteAesthetic &&
     checks.sectionCount >= 3;
