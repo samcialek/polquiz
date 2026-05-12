@@ -62,8 +62,9 @@ import { predictVote, type ElectionPrediction } from "../historical/respondentVo
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260512-second-opinion";
-export { composeArchetypeLabel } from "../identity/archetypeLabeler.js";
+export const BUNDLE_VERSION = "20260512-descriptions";
+export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
+export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 
 // ---------------------------------------------------------------------------
 // Types exposed to the browser consumer

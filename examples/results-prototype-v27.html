@@ -900,6 +900,44 @@
     .cluster-panel { display: block; margin-bottom: 1.35rem; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .cluster-panel .node-row,
+    .cluster-panel .cat-closest-match,
+    .profile-donut-col .moral-circle-section {
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform-origin: left center;
+    }
+    .cluster-panel .node-bar,
+    .cluster-panel .cat-closest-match-value,
+    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg {
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform-origin: left center;
+    }
+    .cluster-panel.active .node-row,
+    .cluster-panel.active .cat-closest-match {
+      transform: translateX(2px);
+    }
+    .cluster-panel.active .node-bar {
+      transform: scaleY(1.12);
+      box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.08);
+    }
+    .cluster-panel.active .cat-closest-match-value {
+      display: inline-block;
+      transform: scale(1.055);
+    }
+    .profile-donut-col .moral-circle-section.identity-donut-active .moral-circle-svg-wrap svg {
+      transform: scale(1.035);
+      filter: saturate(1.08) contrast(1.02);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cluster-panel .node-row,
+      .cluster-panel .cat-closest-match,
+      .cluster-panel .node-bar,
+      .cluster-panel .cat-closest-match-value,
+      .profile-donut-col .moral-circle-section,
+      .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg {
+        transition: none;
+      }
+    }
     /* No card / no cell — just open page section. Tightened spacing. */
     .cluster-panel .node-cluster {
       background: transparent;
@@ -1709,11 +1747,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const [archetypesData, electionsData, alignmentsData, regimesData, candidatesProfiles, eraActivations, nonIdeoData] = await Promise.all([
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
-      fetch(`${DATA_BASE}/alignments.json?v=2026-04-29b`).then(r => r.json()),
-      // Cache-bust bumped to 2026-04-29b: source now carries 33 new rows
-      // (7 Subset A timeline fixes + 26 HIGH 1776 backfill rows). Both
-      // alignments.json and regimes.json were rebuilt from the updated source.
-      fetch(`${DATA_BASE}/regimes.json?v=2026-04-29b`).then(r => r.json()).catch(() => ({})),
+      fetch(`${DATA_BASE}/alignments.json?v=2026-05-12-map-coverage`).then(r => r.json()),
+      // Cache-bust bumped to 2026-05-12-map-coverage: world-map payload now
+      // carries the restored 69-jurisdiction regime set.
+      fetch(`${DATA_BASE}/regimes.json?v=2026-05-12-map-coverage`).then(r => r.json()).catch(() => ({})),
       // v21.6 click-detail panel: per-candidate node profiles + era-activation
       // multipliers. Used to compute and display the per-node distance
       // breakdown when a user clicks an election cell. Soft-fail to {} so the
@@ -1867,8 +1904,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // composedArchetypeLabel into localStorage.
     const storedRes = (typeof readPrismJson === 'function') ? readPrismJson('prism-results') : null;
     const composedLabel = storedRes && storedRes.composedArchetypeLabel;
+    const composedDesc  = storedRes && storedRes.composedArchetypeDescription;
     document.getElementById('archetype-name').textContent = composedLabel || archetype.name;
-    document.getElementById('archetype-desc').textContent = archetype.description || '';
+    // 2026-05-12: prefer the label-matched description pre-computed by the
+    // quiz (LABEL_DESCRIPTIONS lookup + per-atom fallback), so this page
+    // doesn't need to load the engine bundle. Falls back to the static
+    // archetype.description when the quiz didn't write the field.
+    document.getElementById('archetype-desc').textContent = composedDesc || archetype.description || '';
 
     // v3: engagement rendered as a tier-style badge in the archetype card,
     // decoupled from the moral-circle visual. Sample data hardcoded here so
@@ -3280,7 +3322,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "democratic people's republic of korea": 'North Korea', 'korea, democratic people\'s republic of': 'North Korea',
       'dprk': 'North Korea',
       'iran, islamic republic of': 'Iran', 'turkiye': 'Turkey',
-      'taiwan, province of china': 'Taiwan', 'viet nam': 'Vietnam',
+      'taiwan, province of china': 'Taiwan', 'republic of china': 'Taiwan', 'roc': 'Taiwan', 'formosa': 'Taiwan', 'viet nam': 'Vietnam',
       'm?ori': 'New Zealand', 'maori': 'New Zealand', 'māori': 'New Zealand',
       'malaya': 'Malaysia', 'federated malay states': 'Malaysia',
       'algiers': 'Algeria', 'tunis': 'Tunisia',
@@ -3318,6 +3360,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'french indo-china': 'Vietnam',
       'united kingdom of great britain and ireland': 'United Kingdom',
       'great britain and ireland': 'United Kingdom',
+      'kingdom of ireland': 'Ireland',
+      'denmark-norway': 'Norway',
+      'sweden-norway': 'Norway',
+      'sweden–norway': 'Norway',
       // v14: Confederate States of America (overlay during 1861-1865 only).
       'confederate states': 'Confederate States of America',
       'confederate states of america': 'Confederate States of America',
@@ -4875,6 +4921,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let activeCluster = clusterOrder.reduce((a, b) => (emphasis[b] > emphasis[a] ? b : a), clusterOrder[0]);
       function setActive(cn) {
         activeCluster = cn;
+        const identityVisual = document.querySelector('.profile-donut-col .moral-circle-section');
+        if (identityVisual) identityVisual.classList.toggle('identity-donut-active', cn === 'IDENTITY');
         for (const k of clusterOrder) {
           if (wedgeEls[k]) {
             wedgeEls[k].classList.toggle('active', k === cn);

@@ -20,6 +20,10 @@ export {
   applyRatioBoost,
   getElectionPredictions,
   composeArchetypeLabel,
+  composeArchetypeDescription,
+  composeAtomFallback,
+  tokenizeRespondent,
+  LABEL_DESCRIPTIONS,
   BUNDLE_VERSION,
 } from "./api.js";
 
