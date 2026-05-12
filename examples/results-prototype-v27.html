@@ -1930,8 +1930,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // composedArchetypeLabel into localStorage.
     const storedRes = (typeof readPrismJson === 'function') ? readPrismJson('prism-results') : null;
     const composedLabel = storedRes && storedRes.composedArchetypeLabel;
+    const composedDesc  = storedRes && storedRes.composedArchetypeDescription;
     document.getElementById('archetype-name').textContent = composedLabel || archetype.name;
-    document.getElementById('archetype-desc').textContent = archetype.description || '';
+    // Prefer the label-matched description written by the quiz bundle; fall
+    // back to the static archetype description for old/demo runs.
+    document.getElementById('archetype-desc').textContent = composedDesc || archetype.description || '';
 
     // v3: engagement rendered as a tier-style badge in the archetype card,
     // decoupled from the moral-circle visual. Sample data hardcoded here so
