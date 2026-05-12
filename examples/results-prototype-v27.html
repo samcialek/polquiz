@@ -4158,11 +4158,11 @@ document.addEventListener('DOMContentLoaded', () => {
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(ns, 'svg');
-      // v27.16: enlarged viewBox so labels with longer words ("ethnic_racial",
-      // "political_tribe") aren't clipped at the edges. SVG also bigger.
-      svg.setAttribute('viewBox', '-320 -290 640 580');
+      // 2026-05-12: keep labels closer to the sunburst and give the bottom
+      // label extra breathing room so it does not clip.
+      svg.setAttribute('viewBox', '-320 -255 640 555');
       svg.setAttribute('width', '560');
-      svg.setAttribute('height', '510');
+      svg.setAttribute('height', '500');
       svg.setAttribute('xmlns', ns);
 
       const N = MORAL_CIRCLE_CATEGORIES.length;
@@ -4268,40 +4268,50 @@ document.addEventListener('DOMContentLoaded', () => {
       uRing.setAttribute('opacity', 0.85);
       svg.appendChild(uRing);
 
-      // Small "universal · NN%" label on the universal ring,
-      // positioned just above the top of the ring so it sits on the outline.
+      // Larger Universal label on the universal ring, positioned just above
+      // the top of the ring so it sits on the outline.
       const uLabel = document.createElementNS(ns, 'text');
       uLabel.setAttribute('x', 0);
       uLabel.setAttribute('y', (-universalR + 2).toFixed(2));
       uLabel.setAttribute('font-family', "'Space Grotesk', sans-serif");
-      uLabel.setAttribute('font-size', '10');
+      uLabel.setAttribute('font-size', '13');
       uLabel.setAttribute('font-weight', '600');
       uLabel.setAttribute('fill', '#1a1a1a');
       uLabel.setAttribute('text-anchor', 'middle');
       // Background rect for legibility — drawn first.
       const uLabelBg = document.createElementNS(ns, 'rect');
-      const labelText = `universal · ${universalPct}%`;
-      const approxW = labelText.length * 5.6;
+      const universalLabelText = 'Universal';
+      const universalMetaText = ` · ${Math.round(universalPct)}%`;
+      const approxW = universalLabelText.length * 12 + universalMetaText.length * 7.2;
       uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
-      uLabelBg.setAttribute('y', (-universalR - 8).toFixed(2));
+      uLabelBg.setAttribute('y', (-universalR - 18).toFixed(2));
       uLabelBg.setAttribute('width', (approxW + 8).toFixed(2));
-      uLabelBg.setAttribute('height', '12');
+      uLabelBg.setAttribute('height', '26');
       uLabelBg.setAttribute('fill', 'var(--cream, #FFFEF8)');
       uLabelBg.setAttribute('opacity', '0.95');
       svg.appendChild(uLabelBg);
-      uLabel.textContent = labelText;
+      const uWord = document.createElementNS(ns, 'tspan');
+      uWord.setAttribute('font-size', '22');
+      uWord.setAttribute('font-weight', '700');
+      uWord.textContent = universalLabelText;
+      const uMeta = document.createElementNS(ns, 'tspan');
+      uMeta.setAttribute('font-size', '13');
+      uMeta.setAttribute('font-weight', '600');
+      uMeta.textContent = universalMetaText;
+      uLabel.appendChild(uWord);
+      uLabel.appendChild(uMeta);
       svg.appendChild(uLabel);
 
       // Labels — Space Grotesk to match the live profile section.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
         const ang = angleForIndex(i);
-        const labelR = OUTER + 26;
+        const labelR = OUTER + 10;
         const lp = polar(labelR, ang);
         let anchor = 'middle';
         if (lp.x > 30) anchor = 'start';
         else if (lp.x < -30) anchor = 'end';
-        const dy = Math.sin(ang) > 0.4 ? 16 : Math.sin(ang) < -0.4 ? -4 : 5;
+        const dy = Math.sin(ang) > 0.4 ? 10 : Math.sin(ang) < -0.4 ? -2 : 5;
 
         const t = document.createElementNS(ns, 'text');
         t.setAttribute('x', lp.x.toFixed(2));
@@ -4323,7 +4333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.setAttribute('font-weight', '600');
         pct.setAttribute('fill', cat.color);
         pct.setAttribute('text-anchor', anchor);
-        pct.setAttribute('dy', dy + 18);
+        pct.setAttribute('dy', dy + 16);
         pct.textContent = d.position + '%';
         svg.appendChild(pct);
       });
@@ -4494,13 +4504,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const nameDiv = document.createElement('div');
       nameDiv.className = 'cat-vbar-name';
-      nameDiv.textContent = 'Engagement';
+      nameDiv.textContent = 'Engagement level';
       row.appendChild(nameDiv);
 
       const value = document.createElement('div');
       value.className = 'cat-closest-match-value engagement-side-card-value';
       value.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: " + clusterColors.ENDS + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
-      value.textContent = `${pct}%`;
+      value.textContent = `Engagement · ${pct}%`;
       row.appendChild(value);
 
       attachTip(row, buildTip({
