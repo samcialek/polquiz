@@ -332,7 +332,7 @@ export interface MergerTable {
 
 export interface ComposeResult {
   label: string;
-  source: "merger-full" | "merger-partial" | "lexicon";
+  source: "merger-full" | "merger-partial" | "compression" | "lexicon";
   signature: string;
   tokensUsed: TokenEntry[];
 }
@@ -385,20 +385,22 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
   // Lexicon path with compression layer: if any pair of tokens has a
   // compression entry, substitute that pair with one word before joining.
   // POS reorder runs after compression so the final string reads
-  // adjectives-first / noun-last.
+  // adjectives-first / noun-last. Source is tagged "compression" so the CSV
+  // (and downstream tooling) can distinguish a curated single-word
+  // substitution from pure lexicon-only composition.
   const compressed = applyCompression(tokens);
   if (compressed) {
     return {
-      label: reorderByPOS(compressed).map(t => t.token).join(" "),
-      source: "lexicon",
+      label: ensureNounAnchor(reorderByPOS(compressed)).map(t => t.token).join(" "),
+      source: "compression",
       signature: fullSig,
       tokensUsed: tokens,
     };
   }
 
-  // Pure lexicon default: 1-3 fragment composition with POS reorder.
+  // Pure lexicon default: 1-3 fragment composition with POS reorder + noun anchor.
   return {
-    label: reorderByPOS(tokens).map(t => t.token).join(" "),
+    label: ensureNounAnchor(reorderByPOS(tokens)).map(t => t.token).join(" "),
     source: "lexicon",
     signature: fullSig,
     tokensUsed: tokens,
@@ -716,6 +718,57 @@ export function posRank(token: string): number {
   if (/(?:al|ed|ous|ic|ive|ory|ish)$/.test(last)) return 0;
   // Fallback (mid): treat as a soft noun so it ends up in the noun group.
   return 3;
+}
+
+/**
+ * Hard rule (per Sam, 2026-05-12): the LAST word of every label must be a
+ * noun. If a label ends in an adjective (POS ≤ 1) after composition + POS
+ * reorder, substitute that final word with its registered noun form here.
+ * Identity mappings (e.g. "Detached" → "Detached") explicitly say "this adj
+ * is acceptable as a noun-like standalone" — Sam's judgment.
+ */
+const ADJECTIVE_NOUN_FORM: Record<string, string> = {
+  // Continuous lexicon adjectives
+  "Procedural":         "Proceduralist",
+  "Pragmatic":          "Pragmatist",
+  "Combative":          "Combatant",
+  "Practical":          "Pragmatist",
+  "Principled":         "Idealist",
+  "Detached":           "Detached",            // Sam: works as standalone
+  "Tempered":           "Realist",
+  "Pastoral":           "Folk-Voice",
+  "Casual":             "Casual Voter",
+  "Mobilized":          "Activist",
+  "Tuned-Out":          "Bystander",
+  "Tribal":             "Tribalist",
+  "Anti-Institutional": "Outsider",
+  "Engaged-Civic":      "Engaged-Civic",       // Sam: works as compound
+  "Civic":              "Civic-Minded Citizen",
+  "Institutional":      "Institutionalist",
+  // Categorical adjectives
+  "Autonomous":         "Free-Thinker",
+  "Authentic":          "Plain-Talker",
+  // Compression outputs that are adjectives
+  "Bureaucratic":       "Bureaucrat",
+  "Hobbesian":          "Hobbesian-Realist",
+  "Utopian":            "Utopian-Idealist",
+  "Class-Conscious":    "Class-Activist",
+  "Self-Reliant":       "Individualist",
+};
+
+/**
+ * Apply the noun-anchor rule to a token list. If the last token has POS ≤ 1
+ * (adjective-leaning) AND a registered noun form exists, swap the token's
+ * display string with the noun form. No-op when the last token is already a
+ * noun or no substitute is registered.
+ */
+function ensureNounAnchor(tokens: TokenEntry[]): TokenEntry[] {
+  if (tokens.length === 0) return tokens;
+  const last = tokens[tokens.length - 1]!;
+  if (posRank(last.token) >= 2) return tokens;
+  const nounForm = ADJECTIVE_NOUN_FORM[last.token];
+  if (!nounForm || nounForm === last.token) return tokens;
+  return [...tokens.slice(0, -1), { ...last, token: nounForm }];
 }
 
 /**

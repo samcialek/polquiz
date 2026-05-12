@@ -204,6 +204,7 @@ const by2 = sorted.filter(r => r.tokenCount === 2).length;
 const by3 = sorted.filter(r => r.tokenCount === 3).length;
 const mergerFull = sorted.filter(r => r.source === "merger-full").length;
 const mergerPartial = sorted.filter(r => r.source === "merger-partial").length;
+const compression = sorted.filter(r => r.source === "compression").length;
 const lexicon = sorted.filter(r => r.source === "lexicon").length;
 const compressed = sorted.filter(r => r.compressed).length;
 
@@ -214,8 +215,9 @@ console.log(`3-token rows:     ${by3}`);
 console.log(`Total unique:     ${sorted.length}`);
 console.log(`  merger-full:    ${mergerFull}`);
 console.log(`  merger-partial: ${mergerPartial}`);
+console.log(`  compression:    ${compression} (${COMPRESSION_TABLE && Object.keys(COMPRESSION_TABLE).length} compression entries)`);
 console.log(`  lexicon:        ${lexicon}`);
-console.log(`  of which compressed: ${compressed} (${COMPRESSION_TABLE && Object.keys(COMPRESSION_TABLE).length} compression entries)`);
+console.log(`  reorder-only:   ${compressed - compression} (POS-reorder changed string but no compression fired)`);
 console.log(`Wrote ${outPath}`);
 
 // Sample compression hits

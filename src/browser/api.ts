@@ -62,7 +62,7 @@ import { predictVote, type ElectionPrediction } from "../historical/respondentVo
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260512-expanded-mergers";
+export const BUNDLE_VERSION = "20260512-noun-anchor";
 export { composeArchetypeLabel } from "../identity/archetypeLabeler.js";
 
 // ---------------------------------------------------------------------------
