@@ -74,7 +74,7 @@ export const POSITION_LEXICON: Record<string, PoleTokens> = {
   ONT_S: { low: "Anti-Institutional", mid: "Reformist",     high: "Institutional" },
   PF:    { low: "Detached",          mid: "Engaged-Civic",  high: "Partisan" },
   TRB:   { low: "Inclusivist",       mid: "Civic",          high: "Tribal" },
-  ENG:   { low: "Tuned-Out",         mid: "Casual",         high: "All-In" },
+  ENG:   { low: "Tuned-Out",         mid: "Casual",         high: "Mobilized" },
 };
 
 /** EPS categorical labels, indexed 0-5. */
@@ -384,18 +384,25 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
 
   // Lexicon path with compression layer: if any pair of tokens has a
   // compression entry, substitute that pair with one word before joining.
+  // POS reorder runs after compression so the final string reads
+  // adjectives-first / noun-last.
   const compressed = applyCompression(tokens);
   if (compressed) {
     return {
-      label: compressed.map(t => t.token).join(" "),
+      label: reorderByPOS(compressed).map(t => t.token).join(" "),
       source: "lexicon",
       signature: fullSig,
       tokensUsed: tokens,
     };
   }
 
-  // Pure lexicon default: 1-3 fragment composition with no compression.
-  return { label: lexicon, source: "lexicon", signature: fullSig, tokensUsed: tokens };
+  // Pure lexicon default: 1-3 fragment composition with POS reorder.
+  return {
+    label: reorderByPOS(tokens).map(t => t.token).join(" "),
+    source: "lexicon",
+    signature: fullSig,
+    tokensUsed: tokens,
+  };
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -577,6 +584,89 @@ export const COMPRESSION_TABLE: MergerTable = {
   "ENG:low|CD:low":    "Disengaged-Progressive",
   "ENG:high|PF:high":  "Activist-Partisan",
 };
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Part-of-speech tagging for lexicon ordering
+// ──────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Hand-coded POS overrides for tokens where suffix detection is unreliable
+ * (compounds, ambiguous suffixes, common-noun confusions). Anything not in
+ * here falls through to suffix heuristics in posRank().
+ *   0 = pure adjective (Procedural, Combative)
+ *   1 = adjective-leaning (Civic, Institutional)
+ *   3 = noun-leaning (Conservative, Progressive — used both ways)
+ *   4 = strong noun (Consequentialist, Statesman)
+ */
+const POS_OVERRIDES: Record<string, number> = {
+  // Adjective-leaning continuous-node tokens
+  "Procedural": 0, "Pragmatic": 0, "Combative": 0, "Practical": 0,
+  "Principled": 0, "Detached": 0, "Tempered": 0, "Authentic": 0,
+  "Pastoral": 0, "Autonomous": 0, "Casual": 0, "Mobilized": 0,
+  "Tuned-Out": 0, "Tribal": 0, "Anti-Institutional": 0, "Engaged-Civic": 0,
+  "Class-Conscious": 0, "Bureaucratic": 0, "Hobbesian": 0, "Utopian": 0,
+  "Civic": 1, "Institutional": 1,
+  // Hybrid words used as nouns in political-identity context
+  "Progressive": 3, "Conservative": 3, "Liberal": 3, "Cosmopolitan": 3,
+  "Reactionary": 3, "Pluralist": 3, "Realist": 3,
+  // Compound nouns
+  "Mixed-Economy": 3, "Hinge": 4, "Positive-Sum": 2, "Civic-Pluralist": 3,
+  "Free-Marketeer": 4, "Dealmaker": 4,
+  "Civic-Universalist": 4, "Provincial-Pluralist": 3,
+  "Conservative-Pluralist": 3, "Communitarian": 4, "Internationalist": 4,
+  "Populist-Left": 4, "Populist-Right": 4, "Libertarian": 4, "Leftist": 4,
+  "Solidarist": 4, "Cosmopolite": 4, "Class-Particularist": 4,
+  "Tribal-Capitalist": 4, "Free-Market-Disruptor": 4,
+  "Anti-Capitalist-Radical": 4, "Progressive-Unifier": 4,
+  "Establishment": 4, "Insurgent": 4, "Negotiator": 4, "Hard-Liner": 4,
+  "Outsider": 4, "Statesman-Style": 4, "Antagonist": 4,
+  "Idealist": 4, "Hard-Realist": 4, "Social-Engineer": 4, "Cooperator": 4,
+  "Cynic": 4, "Militant": 4, "Combatant": 4, "Reactionary-Firebrand": 4,
+  "Loyal-Statesman": 4, "Wonk": 4, "Prophet": 4, "Hearth-Conservative": 4,
+  "Plain-Partisan": 4, "Evidence-Institutionalist": 4, "Skeptic": 4,
+  "Custom-Institutionalist": 4, "Gut-Outsider": 4, "Self-Reliant": 0,
+  "Civic-Nationalist-Left": 4, "Civic-Nationalist-Right": 4,
+  "Patriot-Partisan": 4, "Class-Fighter": 4, "Religious-Conservative": 4,
+  "Quiet-Conservative": 4, "Disengaged-Progressive": 4, "Activist-Partisan": 4,
+  // Categorical-leaning items
+  "Religious-Communitarian": 4, "Ethnic-Communitarian": 4,
+  "Gender-Identitarian": 4, "Partisan-Communitarian": 4,
+};
+
+export function posRank(token: string): number {
+  if (token in POS_OVERRIDES) return POS_OVERRIDES[token]!;
+  const last = (token.split("-").pop() ?? token).toLowerCase();
+  // Noun suffixes
+  if (/(?:ist|crat|man|ee[rt]|eer|aire|ant|arch|gogue|cyte|naut)$/.test(last)) return 4;
+  // Adjective suffixes
+  if (/(?:al|ed|ous|ic|ive|ory|ish)$/.test(last)) return 0;
+  // Fallback (mid): treat as a soft noun so it ends up in the noun group.
+  return 3;
+}
+
+/**
+ * Reorder tokens so the final label reads adjective-first / noun-last.
+ *   1. Adjectives (POS ≤ 1) come first, in salience-descending order (input
+ *      order is assumed to be salience-desc already).
+ *   2. Nouns (POS ≥ 2) come second, but the MOST salient noun is placed last
+ *      as the grammatical anchor — so "Tribal" (adj) + "Consequentialist"
+ *      (noun) renders as "Tribal Consequentialist", and a triple like
+ *      [Statesman, Universalist, Procedural] in salience-desc renders as
+ *      "Procedural Universalist Statesman" (Procedural adj first, Statesman
+ *      anchored last).
+ */
+function reorderByPOS(tokens: TokenEntry[]): TokenEntry[] {
+  const adjs: TokenEntry[] = [];
+  const nouns: TokenEntry[] = [];
+  for (const t of tokens) {
+    if (posRank(t.token) <= 1) adjs.push(t);
+    else nouns.push(t);
+  }
+  // Reverse nouns so the highest-salience noun (originally first) lands at the
+  // tail — the anchor position.
+  nouns.reverse();
+  return [...adjs, ...nouns];
+}
 
 /**
  * Apply compression to a token list: find the first compressible pair (highest-

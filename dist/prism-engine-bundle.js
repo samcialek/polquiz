@@ -17421,7 +17421,7 @@ var PrismEngine = (() => {
     ONT_S: { low: "Anti-Institutional", mid: "Reformist", high: "Institutional" },
     PF: { low: "Detached", mid: "Engaged-Civic", high: "Partisan" },
     TRB: { low: "Inclusivist", mid: "Civic", high: "Tribal" },
-    ENG: { low: "Tuned-Out", mid: "Casual", high: "All-In" }
+    ENG: { low: "Tuned-Out", mid: "Casual", high: "Mobilized" }
   };
   var EPS_LEXICON = [
     "Empiricist",
@@ -17579,13 +17579,18 @@ var PrismEngine = (() => {
     const compressed = applyCompression(tokens);
     if (compressed) {
       return {
-        label: compressed.map((t) => t.token).join(" "),
+        label: reorderByPOS(compressed).map((t) => t.token).join(" "),
         source: "lexicon",
         signature: fullSig,
         tokensUsed: tokens
       };
     }
-    return { label: lexicon, source: "lexicon", signature: fullSig, tokensUsed: tokens };
+    return {
+      label: reorderByPOS(tokens).map((t) => t.token).join(" "),
+      source: "lexicon",
+      signature: fullSig,
+      tokensUsed: tokens
+    };
   }
   function labelForRespondent(state, mergerTable) {
     const entries = tokenizeRespondent(state);
@@ -17719,6 +17724,117 @@ var PrismEngine = (() => {
     "ENG:low|CD:low": "Disengaged-Progressive",
     "ENG:high|PF:high": "Activist-Partisan"
   };
+  var POS_OVERRIDES = {
+    // Adjective-leaning continuous-node tokens
+    "Procedural": 0,
+    "Pragmatic": 0,
+    "Combative": 0,
+    "Practical": 0,
+    "Principled": 0,
+    "Detached": 0,
+    "Tempered": 0,
+    "Authentic": 0,
+    "Pastoral": 0,
+    "Autonomous": 0,
+    "Casual": 0,
+    "Mobilized": 0,
+    "Tuned-Out": 0,
+    "Tribal": 0,
+    "Anti-Institutional": 0,
+    "Engaged-Civic": 0,
+    "Class-Conscious": 0,
+    "Bureaucratic": 0,
+    "Hobbesian": 0,
+    "Utopian": 0,
+    "Civic": 1,
+    "Institutional": 1,
+    // Hybrid words used as nouns in political-identity context
+    "Progressive": 3,
+    "Conservative": 3,
+    "Liberal": 3,
+    "Cosmopolitan": 3,
+    "Reactionary": 3,
+    "Pluralist": 3,
+    "Realist": 3,
+    // Compound nouns
+    "Mixed-Economy": 3,
+    "Hinge": 4,
+    "Positive-Sum": 2,
+    "Civic-Pluralist": 3,
+    "Free-Marketeer": 4,
+    "Dealmaker": 4,
+    "Civic-Universalist": 4,
+    "Provincial-Pluralist": 3,
+    "Conservative-Pluralist": 3,
+    "Communitarian": 4,
+    "Internationalist": 4,
+    "Populist-Left": 4,
+    "Populist-Right": 4,
+    "Libertarian": 4,
+    "Leftist": 4,
+    "Solidarist": 4,
+    "Cosmopolite": 4,
+    "Class-Particularist": 4,
+    "Tribal-Capitalist": 4,
+    "Free-Market-Disruptor": 4,
+    "Anti-Capitalist-Radical": 4,
+    "Progressive-Unifier": 4,
+    "Establishment": 4,
+    "Insurgent": 4,
+    "Negotiator": 4,
+    "Hard-Liner": 4,
+    "Outsider": 4,
+    "Statesman-Style": 4,
+    "Antagonist": 4,
+    "Idealist": 4,
+    "Hard-Realist": 4,
+    "Social-Engineer": 4,
+    "Cooperator": 4,
+    "Cynic": 4,
+    "Militant": 4,
+    "Combatant": 4,
+    "Reactionary-Firebrand": 4,
+    "Loyal-Statesman": 4,
+    "Wonk": 4,
+    "Prophet": 4,
+    "Hearth-Conservative": 4,
+    "Plain-Partisan": 4,
+    "Evidence-Institutionalist": 4,
+    "Skeptic": 4,
+    "Custom-Institutionalist": 4,
+    "Gut-Outsider": 4,
+    "Self-Reliant": 0,
+    "Civic-Nationalist-Left": 4,
+    "Civic-Nationalist-Right": 4,
+    "Patriot-Partisan": 4,
+    "Class-Fighter": 4,
+    "Religious-Conservative": 4,
+    "Quiet-Conservative": 4,
+    "Disengaged-Progressive": 4,
+    "Activist-Partisan": 4,
+    // Categorical-leaning items
+    "Religious-Communitarian": 4,
+    "Ethnic-Communitarian": 4,
+    "Gender-Identitarian": 4,
+    "Partisan-Communitarian": 4
+  };
+  function posRank(token) {
+    if (token in POS_OVERRIDES) return POS_OVERRIDES[token];
+    const last = (token.split("-").pop() ?? token).toLowerCase();
+    if (/(?:ist|crat|man|ee[rt]|eer|aire|ant|arch|gogue|cyte|naut)$/.test(last)) return 4;
+    if (/(?:al|ed|ous|ic|ive|ory|ish)$/.test(last)) return 0;
+    return 3;
+  }
+  function reorderByPOS(tokens) {
+    const adjs = [];
+    const nouns = [];
+    for (const t of tokens) {
+      if (posRank(t.token) <= 1) adjs.push(t);
+      else nouns.push(t);
+    }
+    nouns.reverse();
+    return [...adjs, ...nouns];
+  }
   function applyCompression(tokens) {
     if (tokens.length < 2) return null;
     for (let i = 0; i < tokens.length; i++) {
@@ -17755,7 +17871,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-compression";
+  var BUNDLE_VERSION = "20260512-pos-order";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
