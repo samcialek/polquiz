@@ -4879,7 +4879,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('results').style.display = 'block';
     document.title = `PRISM Results — ${archetype.name}`;
 
-    // Draw map after results are visible so container has dimensions
+    // 2026-05-11: keep the primary result sections in normal document flow.
+    // The previous scroll-to-uncollapse approach left map/profile/footer at
+    // height 0, which meant users could see only the election grid and had no
+    // scrollable area to trigger the reveal.
+    ['map-section', 'profile-section', 'footer-section'].forEach(id => {
+      const section = document.getElementById(id);
+      if (section) section.classList.remove('cine-collapsed');
+    });
+
+    // Draw map after results and map section are visible so container has dimensions
     drawMap();
 
     // v9 cinematic intro:
