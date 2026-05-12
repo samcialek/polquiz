@@ -866,26 +866,7 @@
     .profile-drill-col { min-width: 0; }
     /* 2026-05-12: moral-circle sunburst moves out of the IDENTITY cluster panel
        and sits directly below the donut in the left column. */
-    .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; }
-    .profile-donut-col .moral-circle-cluster-heading {
-      width: 560px;
-      max-width: 100%;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      border-bottom: 1.5px solid #8C7A5B;
-      padding-bottom: 0.45rem;
-      margin: 0 0 0.25rem;
-    }
-    .profile-donut-col .moral-circle-cluster-heading .sub {
-      color: #555;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: none;
-    }
+    .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; justify-content: center; width: 100%; }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; }
     .profile-donut-col .moral-circle-section .moral-circle-title,
@@ -987,12 +968,6 @@
          huge implicit-grid height under MEANS/REALITY. */
       grid-row: 2 / span var(--cat-span, 1);
       align-self: start;
-    }
-    .cluster-panel .node-cluster .engagement-side-card {
-      grid-column: 2;
-      grid-row: 2;
-      align-self: start;
-      display: block;
     }
     /* Sunburst is the IDENTITY cluster's centerpiece. v27.18: place sunburst
        in column 1 of the IDENTITY panel and put the ENG row in column 2 next
@@ -1581,8 +1556,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   ENDS:    MAT, CD, CU                    (MOR moved to IDENTITY)
   //   MEANS:   PRO, COM, ONT_S + AES          (ONT_S in from REALITY)
   //   REALITY: ZS, ONT_H + EPS                (EPS in from MEANS)
-  //   IDENTITY:    MOR (sunburst under donut); ENG is shown beside ENDS
-  //                so it aligns with the compact side summaries.
+  //   IDENTITY:    MOR (sunburst), ENG            (PF + TRB collapsed into MOR.salience)
   const nodeLabels = {
     MAT: { name: 'Material', low1: 'Share the wealth', high5: 'Let markets work', cluster: 'ENDS' },
     CD: { name: 'Cultural Direction', low1: 'Change with the times', high5: 'Preserve what works', cluster: 'ENDS' },
@@ -1930,8 +1904,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // composedArchetypeLabel into localStorage.
     const storedRes = (typeof readPrismJson === 'function') ? readPrismJson('prism-results') : null;
     const composedLabel = storedRes && storedRes.composedArchetypeLabel;
+    const composedDesc  = storedRes && storedRes.composedArchetypeDescription;
     document.getElementById('archetype-name').textContent = composedLabel || archetype.name;
-    document.getElementById('archetype-desc').textContent = archetype.description || '';
+    // 2026-05-12: prefer the label-matched description pre-computed by the
+    // quiz (LABEL_DESCRIPTIONS lookup + per-atom fallback), so this page
+    // doesn't need to load the engine bundle. Falls back to the static
+    // archetype.description when the quiz didn't write the field.
+    document.getElementById('archetype-desc').textContent = composedDesc || archetype.description || '';
 
     // v3: engagement rendered as a tier-style badge in the archetype card,
     // decoupled from the moral-circle visual. Sample data hardcoded here so
@@ -1945,7 +1924,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = document.getElementById('engagement-badge');
       el.textContent = labels[idx];
       el.className = 'engagement-badge ' + classes[idx];
-      el.title = `Engagement ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
+      el.title = `Engagement level ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
     })();
 
     // ── Low-confidence cluster gate (ADR-008). Two-step gate: prefer the
@@ -4215,20 +4194,15 @@ document.addEventListener('DOMContentLoaded', () => {
       tagline.innerHTML = `In-group inclusion across six boundaries (${sourceLabel}). The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${Math.round(universalPct)}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
-      const identityHeading = document.createElement('div');
-      identityHeading.className = 'moral-circle-cluster-heading';
-      identityHeading.innerHTML = `IDENTITY <span class="sub">&mdash; Who You Are</span>`;
-      wrap.appendChild(identityHeading);
-
       const svgWrap = document.createElement('div');
       svgWrap.className = 'moral-circle-svg-wrap';
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(ns, 'svg');
-      // 2026-05-12: keep labels closer to the sunburst and give the bottom
-      // label extra breathing room so it does not clip.
-      svg.setAttribute('viewBox', '-320 -255 640 555');
+      // v27.16: enlarged viewBox so labels with longer words ("ethnic_racial",
+      // "political_tribe") aren't clipped at the edges. SVG also bigger.
+      svg.setAttribute('viewBox', '-320 -290 640 580');
       svg.setAttribute('width', '560');
-      svg.setAttribute('height', '500');
+      svg.setAttribute('height', '510');
       svg.setAttribute('xmlns', ns);
 
       const N = MORAL_CIRCLE_CATEGORIES.length;
@@ -4295,14 +4269,25 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('stroke-width', 1);
         path.setAttribute('stroke-opacity', 0.85);
         path.style.cursor = 'help';
-        // Every wedge remains visible and hoverable. The chart itself labels
-        // only categories that extend beyond Universal, so below-baseline
-        // segments do not overclaim salience in the static view.
-        const wedgeTip = buildTip({
+        // Per-wedge floating tooltip via the v22 attachTip system.
+        const diff = d.position - universalPct;
+        const interp = d.position >= universalPct + 5
+          ? `<strong>In-group preference</strong> — ${diff}% above your universal baseline.`
+          : d.position >= universalPct - 5
+            ? `Within ~5% of your universal baseline — neither preferred nor de-prioritized.`
+            : d.position >= 50
+              ? `Inside your moral circle, but ${-diff}% <em>below</em> your universal baseline.`
+              : `Outside your moral circle (${d.position}% inclusion).`;
+        attachTip(path, buildTip({
           title: cat.label,
-          desc: `${d.position}%`,
-        });
-        attachTip(path, wedgeTip);
+          desc: `Inclusion of ${cat.label.toLowerCase()} in your moral circle.`,
+          rows: [
+            ['Inclusion', `${d.position}%`],
+            ['Salience', `${d.salience.toFixed(1)} / 3`],
+            ['Universal baseline', `${universalPct}%`],
+          ],
+          interp,
+        }));
         svg.appendChild(path);
       });
 
@@ -4323,51 +4308,40 @@ document.addEventListener('DOMContentLoaded', () => {
       uRing.setAttribute('opacity', 0.85);
       svg.appendChild(uRing);
 
-      // Larger Universal label on the universal ring, positioned just above
-      // the top of the ring so it sits on the outline.
+      // Small "universal · NN%" label on the universal ring,
+      // positioned just above the top of the ring so it sits on the outline.
       const uLabel = document.createElementNS(ns, 'text');
       uLabel.setAttribute('x', 0);
       uLabel.setAttribute('y', (-universalR + 2).toFixed(2));
       uLabel.setAttribute('font-family', "'Space Grotesk', sans-serif");
-      uLabel.setAttribute('font-size', '13');
+      uLabel.setAttribute('font-size', '10');
       uLabel.setAttribute('font-weight', '600');
       uLabel.setAttribute('fill', '#1a1a1a');
       uLabel.setAttribute('text-anchor', 'middle');
       // Background rect for legibility — drawn first.
       const uLabelBg = document.createElementNS(ns, 'rect');
-      const universalLabelText = 'Universal';
-      const universalMetaText = ` · ${Math.round(universalPct)}%`;
-      const approxW = universalLabelText.length * 12 + universalMetaText.length * 7.2;
+      const labelText = `universal · ${universalPct}%`;
+      const approxW = labelText.length * 5.6;
       uLabelBg.setAttribute('x', (-approxW / 2 - 4).toFixed(2));
-      uLabelBg.setAttribute('y', (-universalR - 18).toFixed(2));
+      uLabelBg.setAttribute('y', (-universalR - 8).toFixed(2));
       uLabelBg.setAttribute('width', (approxW + 8).toFixed(2));
-      uLabelBg.setAttribute('height', '26');
+      uLabelBg.setAttribute('height', '12');
       uLabelBg.setAttribute('fill', 'var(--cream, #FFFEF8)');
       uLabelBg.setAttribute('opacity', '0.95');
       svg.appendChild(uLabelBg);
-      const uWord = document.createElementNS(ns, 'tspan');
-      uWord.setAttribute('font-size', '22');
-      uWord.setAttribute('font-weight', '700');
-      uWord.textContent = universalLabelText;
-      const uMeta = document.createElementNS(ns, 'tspan');
-      uMeta.setAttribute('font-size', '13');
-      uMeta.setAttribute('font-weight', '600');
-      uMeta.textContent = universalMetaText;
-      uLabel.appendChild(uWord);
-      uLabel.appendChild(uMeta);
+      uLabel.textContent = labelText;
       svg.appendChild(uLabel);
 
       // Labels — Space Grotesk to match the live profile section.
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
-        if (d.position <= universalPct) return;
         const ang = angleForIndex(i);
-        const labelR = OUTER + 10;
+        const labelR = OUTER + 26;
         const lp = polar(labelR, ang);
         let anchor = 'middle';
         if (lp.x > 30) anchor = 'start';
         else if (lp.x < -30) anchor = 'end';
-        const dy = Math.sin(ang) > 0.4 ? 10 : Math.sin(ang) < -0.4 ? -2 : 5;
+        const dy = Math.sin(ang) > 0.4 ? 16 : Math.sin(ang) < -0.4 ? -4 : 5;
 
         const t = document.createElementNS(ns, 'text');
         t.setAttribute('x', lp.x.toFixed(2));
@@ -4379,10 +4353,6 @@ document.addEventListener('DOMContentLoaded', () => {
         t.setAttribute('text-anchor', anchor);
         t.setAttribute('dy', dy);
         t.textContent = cat.label;
-        attachTip(t, buildTip({
-          title: cat.label,
-          desc: `${d.position}%`,
-        }));
         svg.appendChild(t);
 
         const pct = document.createElementNS(ns, 'text');
@@ -4393,12 +4363,8 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.setAttribute('font-weight', '600');
         pct.setAttribute('fill', cat.color);
         pct.setAttribute('text-anchor', anchor);
-        pct.setAttribute('dy', dy + 16);
+        pct.setAttribute('dy', dy + 18);
         pct.textContent = d.position + '%';
-        attachTip(pct, buildTip({
-          title: cat.label,
-          desc: `${d.position}%`,
-        }));
         svg.appendChild(pct);
       });
 
@@ -4429,7 +4395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // MEANS (PRO, COM, ONT_S), REALITY (ZS, ONT_H). ENG still lives in the
     // page-header badge per v3.
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
-    const SELF_CODES = ['ENG'];
+    const SELF_CODES = [];
     // 50% interquartile bands now appear on every continuous node.
     const CI_CLUSTERS = new Set(['ENDS','MEANS','REALITY','IDENTITY']);
 
@@ -4557,36 +4523,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const clusterDrill = document.getElementById('cluster-drill');
     const clusterOrder = ['ENDS', 'MEANS', 'REALITY', 'IDENTITY'];
     const clusterPanels = {};
-    const engagementNode = displayNodes.find(d => d.code === 'ENG');
-
-    function renderEngagementSideCard(d) {
-      const pct = Math.round(Math.max(0, Math.min(100, ((d.pos - 1) / 9) * 100)));
-      const row = document.createElement('div');
-      row.className = 'cat-vbar-row cat-closest-match engagement-side-card';
-      row.style.setProperty('--cat-span', '1');
-      row.title = `Engagement: ${pct}%`;
-
-      const value = document.createElement('div');
-      value.className = 'cat-closest-match-value engagement-side-card-value';
-      value.style.cssText = "font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: " + clusterColors.ENDS + "; padding: 0.2rem 0 0; letter-spacing: 0.01em;";
-      value.innerHTML = `<span style="color:var(--ink);">Engagement</span><span style="color:${clusterColors.ENDS};"> &middot; ${pct}%</span>`;
-      row.appendChild(value);
-
-      attachTip(row, buildTip({
-        title: 'Engagement',
-        desc: 'How plugged-in you are.',
-        rows: [['Activation', `${pct}%`]],
-        interp: 'Activation-only node — position is activation level.',
-      }));
-      return row;
-    }
 
     clusterOrder.forEach(clusterName => {
-      const clusterDims = displayNodes.filter(d => d.cluster === clusterName && d.code !== 'ENG').sort((a, b) => b.sal - a.sal);
+      const clusterDims = displayNodes.filter(d => d.cluster === clusterName).sort((a, b) => b.sal - a.sal);
       // v4: ENDS, MEANS, IDENTITY render via custom paths (cluster radar, cluster
       // radar with AES color, MOR sunburst respectively) — allow them through
       // even when they have no continuous-bar rows.
-      const NEVER_SKIP = new Set(['ENDS','MEANS']);
+      const NEVER_SKIP = new Set(['ENDS','MEANS','IDENTITY']);
       if (clusterDims.length === 0 && !NEVER_SKIP.has(clusterName)) return;
 
       const block = document.createElement('div');
@@ -4699,10 +4642,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         block.appendChild(row);
       });
-
-      if (clusterName === 'ENDS' && engagementNode) {
-        block.appendChild(renderEngagementSideCard(engagementNode));
-      }
 
       // 2026-05-12: collapse EPS/AES from a 6-category leaderboard to a
       // single closest-match label. The bottom of the leaderboard is not
