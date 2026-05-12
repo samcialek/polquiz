@@ -11,7 +11,10 @@ import { applySingleChoiceAnswer, applyMultiAnswer, applySliderAnswer, applyAllo
 import { multiplyAndNormalize, mkInitialMorBoundaries, MOR_BOUNDARY_ORDER } from "../engine/math.js";
 import { selectNextQuestion, isQuestionEligible } from "../engine/nextQuestion.js";
 import { selectNextQuestionEIG, shouldStopEIG } from "../engine/selectorEIG.js";
-import { shouldStop } from "../engine/stopRule.js";
+// NOTE: the live browser quiz uses shouldStopEIG (entropy-based, MAX=35).
+// `shouldStop` from stopRule.ts is the distance-native rule used by the eval
+// harness and simulation suites — intentionally NOT imported here. See the
+// "Stop rule" note in CLAUDE.md for the eval-vs-live split.
 import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
 import { buildArchetypeFamilies } from "../engine/archetypeFamilies.js";
@@ -30,7 +33,8 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260429-pr3d-q207-pro";
+export const BUNDLE_VERSION = "20260512-second-opinion";
+export { composeArchetypeLabel } from "../identity/archetypeLabeler.js";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
@@ -139,6 +143,33 @@ function deepCopyState(state) {
             status: state.morBoundaries.status,
         };
     }
+    // ADR-007 — deep-copy moralCircle state (T10). Affinity is a frozen
+    // snapshot (immutable structure); accumulator must be deep-copied so
+    // back-navigation doesn't share the running aggregate.
+    if (state.moralCircle) {
+        copy.moralCircle = {
+            affinity: state.moralCircle.affinity
+                ? {
+                    universalAffinity: state.moralCircle.affinity.universalAffinity,
+                    scopedAffinities: { ...state.moralCircle.affinity.scopedAffinities },
+                    excessAffinities: { ...state.moralCircle.affinity.excessAffinities },
+                    activeBoundaries: [...state.moralCircle.affinity.activeBoundaries],
+                    intensity01: state.moralCircle.affinity.intensity01,
+                    intensity03: state.moralCircle.affinity.intensity03,
+                }
+                : null,
+            touchCount: state.moralCircle.touchCount,
+            accumulator: {
+                universalSum: state.moralCircle.accumulator.universalSum,
+                universalCount: state.moralCircle.accumulator.universalCount,
+                scopedSums: { ...state.moralCircle.accumulator.scopedSums },
+                scopedCounts: { ...state.moralCircle.accumulator.scopedCounts },
+            },
+        };
+    }
+    if (state.membership) {
+        copy.membership = { ...state.membership };
+    }
     return copy;
 }
 // ---------------------------------------------------------------------------
@@ -180,6 +211,21 @@ function createInitialState() {
         // module ends the quiz meaningfully shifted from {boundaries: 0.5,
         // intensity: 0} rather than near-neutral.
         morBoundaries: mkInitialMorBoundaries(),
+        // ADR-007 — moralCircleAffinity initialization (T10).
+        // affinity stays null until first moralCircle evidence; no zero-default
+        // (universalAffinity=0 would be a positive moral claim). Accumulator
+        // tracks per-component running totals.
+        moralCircle: {
+            affinity: null,
+            touchCount: 0,
+            accumulator: {
+                universalSum: 0,
+                universalCount: 0,
+                scopedSums: {},
+                scopedCounts: {},
+            },
+        },
+        membership: {},
         archetypeDistances: {},
         currentLeader: undefined,
         consecutiveLeadCount: 0,
@@ -511,8 +557,6 @@ export function isComplete() {
         return false;
     return shouldStopEIG(_state, _questionsById);
 }
-// Retained so diagnostic scripts can still invoke the legacy archetype-gap stop rule.
-void shouldStop;
 /**
  * Get final quiz results.
  * Can be called at any time, but results are most meaningful after isComplete() returns true.
@@ -708,6 +752,22 @@ export function getRespondentState() {
             status: mb.status,
         }
         : null;
+    // ADR-007 — moral-circle module exposure. When affinity is materialized
+    // (after at least one moralCircle evidence touch), expose universal,
+    // scoped, excess, active boundaries, and intensity so the results page
+    // can render the new module display.
+    const mc = _state.moralCircle?.affinity ?? null;
+    const moralCircle = mc
+        ? {
+            universalAffinity: mc.universalAffinity,
+            scopedAffinities: { ...mc.scopedAffinities },
+            excessAffinities: { ...mc.excessAffinities },
+            activeBoundaries: [...mc.activeBoundaries],
+            intensity01: mc.intensity01,
+            intensity03: mc.intensity03,
+            touchCount: _state.moralCircle?.touchCount ?? 0,
+        }
+        : null;
     return {
         continuous,
         categorical,
@@ -716,6 +776,8 @@ export function getRespondentState() {
             touches: _state.trbAnchor.touches,
         },
         morBoundaries,
+        moralCircle,
+        membership: _state.membership ? { ..._state.membership } : null,
         partyID: _state.partyID ?? null,
         strategicVoting: _state.strategicVoting ?? false,
         negativeParties: _state.negativeParties ? [..._state.negativeParties] : [],

@@ -8,7 +8,8 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260429-pr3d-q207-pro";
+export declare const BUNDLE_VERSION = "20260512-second-opinion";
+export { composeArchetypeLabel } from "../identity/archetypeLabeler.js";
 export interface QuizQuestion {
     id: number;
     promptShort: string;
