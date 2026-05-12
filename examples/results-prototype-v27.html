@@ -919,6 +919,44 @@
     .cluster-panel { display: block; margin-bottom: 1.35rem; }
     .cluster-panel.active { display: block; animation: panel-fade 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     @keyframes panel-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .cluster-panel .node-row,
+    .cluster-panel .cat-closest-match,
+    .profile-donut-col .moral-circle-section {
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform-origin: left center;
+    }
+    .cluster-panel .node-bar,
+    .cluster-panel .cat-closest-match-value,
+    .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg {
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform-origin: left center;
+    }
+    .cluster-panel.active .node-row,
+    .cluster-panel.active .cat-closest-match {
+      transform: translateX(2px);
+    }
+    .cluster-panel.active .node-bar {
+      transform: scaleY(1.12);
+      box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.08);
+    }
+    .cluster-panel.active .cat-closest-match-value {
+      display: inline-block;
+      transform: scale(1.055);
+    }
+    .profile-donut-col .moral-circle-section.identity-donut-active .moral-circle-svg-wrap svg {
+      transform: scale(1.035);
+      filter: saturate(1.08) contrast(1.02);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cluster-panel .node-row,
+      .cluster-panel .cat-closest-match,
+      .cluster-panel .node-bar,
+      .cluster-panel .cat-closest-match-value,
+      .profile-donut-col .moral-circle-section,
+      .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg {
+        transition: none;
+      }
+    }
     /* No card / no cell — just open page section. Tightened spacing. */
     .cluster-panel .node-cluster {
       background: transparent;
@@ -4944,6 +4982,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let activeCluster = clusterOrder.reduce((a, b) => (emphasis[b] > emphasis[a] ? b : a), clusterOrder[0]);
       function setActive(cn) {
         activeCluster = cn;
+        const identityVisual = document.querySelector('.profile-donut-col .moral-circle-section');
+        if (identityVisual) identityVisual.classList.toggle('identity-donut-active', cn === 'IDENTITY');
         for (const k of clusterOrder) {
           if (wedgeEls[k]) {
             wedgeEls[k].classList.toggle('active', k === cn);
