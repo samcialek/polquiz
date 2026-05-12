@@ -1955,7 +1955,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // engine's confidenceBand field; fall back to raw confidence < 0.05 only
     // when the band wasn't recorded (older runs / dumps from before the field
     // was added). Both Sam's recorded test cases (0.012, 0.047) gate on.
-    (function renderClusterGate() {
+    //
+    // 2026-05-12: disabled per Sam's request — the page now shows ONE result
+    // (composed label + 3-4 sentence description), not a top-N list. The
+    // function body is kept in place in case the directional-only treatment
+    // is wanted back; just remove the early return.
+    (function renderClusterGate() { return; /* disabled — single-result view */
       let stored = null;
       try {
         const raw = readPrismStorage('prism_results') || readPrismStorage('prism-results');
