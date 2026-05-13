@@ -1926,24 +1926,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // so adding CSA here is enough — the new key lowercases into the table.)
 
     // ========== SECTION 1: ARCHETYPE IDENTITY ==========
-    const tierMap = { T1: 'Tier 1', T2: 'Tier 2', T3: 'Tier 3' };
-    document.getElementById('tier-badge').textContent = tierMap[archetype.tier] || archetype.tier;
-    // 2026-05-12: prefer the salience-driven composed label from the engine.
-    // Falls back to the static archetype.name when older bundles didn't write
-    // composedArchetypeLabel into localStorage. The badge above the headline
-    // always shows the closest centroid (#id + name) so users can see both
-    // the composed profile label AND the centroid the engine matched.
+    // 2026-05-13: 124-centroid system retired from the user surface. The
+    // composed label is the sole identity displayed. The centroid lookup
+    // still runs internally — it's load-bearing for IDP overlay routing
+    // (archetypes 141-146) — but neither the centroid name nor the tier
+    // is rendered. Elections, world-alignment map, donut clusters, and the
+    // moral-circle visual all run off the respondent's own node signature,
+    // so this UI change has no downstream effect.
     const storedRes = (typeof readPrismJson === 'function') ? readPrismJson('prism-results') : null;
     const composedLabel = storedRes && storedRes.composedArchetypeLabel;
     const composedDesc  = storedRes && storedRes.composedArchetypeDescription;
-    const centroidName = (archetype && archetype.name) ? archetype.name.toUpperCase() : '';
-    const labelDiffersFromCentroid = !!(composedLabel && archetype && archetype.name && composedLabel.toUpperCase() !== archetype.name.toUpperCase());
-    document.getElementById('archetype-number').textContent = labelDiffersFromCentroid
-      ? `CLOSEST CENTROID · #${archetypeId} ${centroidName}`
-      : `ARCHETYPE #${archetypeId}`;
+    const archetypeNumberEl = document.getElementById('archetype-number');
+    if (archetypeNumberEl) archetypeNumberEl.style.display = 'none';
+    const tierBadgeEl = document.getElementById('tier-badge');
+    if (tierBadgeEl) tierBadgeEl.style.display = 'none';
     document.getElementById('archetype-name').textContent = composedLabel || archetype.name;
-    // Prefer the label-matched description written by the quiz bundle; fall
-    // back to the static archetype description for old/demo runs.
     document.getElementById('archetype-desc').textContent = composedDesc || archetype.description || '';
 
     // v3: engagement rendered as a tier-style badge in the archetype card,
