@@ -5959,17 +5959,23 @@ var PrismEngine = (() => {
         // "whether/whether" framing, consistent "Noun phrase — subject-matter
         // clause" pattern. Goal is to help the respondent decide salience
         // ("does this area of life matter to me?") rather than position.
+        // 2026-05-13 second pass: headlines audited for pole-bias (Pluralism /
+        // Cooperation / Compromise / Procedure were each leaning toward one
+        // pole and could discourage respondents who lean the other way from
+        // marking the topic as salient). Now each headline names the spectrum,
+        // not a pole. Subtitles slightly more verbose for recognition ("yeah I
+        // do think about that"), 15-19 words each.
         mat: "Economic life \u2014 how wealth is produced, who collects it, and how policy reshapes the distribution.",
-        cd: "Cultural direction \u2014 the pace and shape of change on family, gender, sexuality, marriage, and religion.",
-        cu: "Pluralism \u2014 how a single political community accommodates many ways of life, beliefs, and languages.",
-        mor: "Moral scope \u2014 how wide a circle of obligation reaches, from family and country outward to humanity.",
-        pro: "Procedure \u2014 the weight of fair rules and due process against the urgency of getting things done.",
-        com: "Compromise \u2014 the terms on which political actors give ground, hold the line, or refuse to deal.",
-        zs: "Zero-sum versus positive-sum \u2014 how gains and losses are produced across economic, political, and cultural life.",
-        ont_h: "Human nature \u2014 the relative weight of fixed disposition versus environment and education in shaping character.",
-        ont_s: "Institutions \u2014 the role of formal organizations (laws, courts, agencies, treaties) in stabilizing and improving society.",
-        eps: "Epistemics \u2014 the standards by which political claims earn credibility: evidence, tradition, authority, intuition.",
-        aes: "Political style \u2014 the kind of leadership and rhetorical register that lands in public life."
+        cd: "Direction of the culture \u2014 the pace and shape of change on family, gender, sexuality, marriage, and religion.",
+        cu: "Common culture and difference \u2014 how a single political community accommodates many ways of life and belief, or whether it asks for one shared standard.",
+        mor: "Reach of moral concern \u2014 how wide a circle of obligation reaches: family, country, all of humanity, or somewhere in between.",
+        pro: "Process and outcomes \u2014 the weight of fair rules and due process against the urgency of getting the right result.",
+        com: "Dealmaking and conviction \u2014 the terms on which political actors give ground, hold the line, or refuse to deal.",
+        zs: "Cooperation and conflict \u2014 whether gains in economic, political, and cultural life come from working together or from one side winning at another's expense.",
+        ont_h: "Human nature \u2014 the weight of disposition versus environment and education in shaping people's character.",
+        ont_s: "Institutions \u2014 the role of formal organizations (laws, courts, agencies, treaties) in producing stability, progress, and accountability.",
+        eps: "Evidence and authority \u2014 the standards by which political claims earn credibility: data, tradition, expert opinion, lived experience, gut instinct.",
+        aes: "Political style \u2014 the kind of leadership and rhetorical register that resonates: fighter, statesman, visionary, technocrat, pragmatist."
       },
       // Hard likelihoods on the "neutral" bucket — the whole point of this
       // question. [0.90, 0.08, 0.02, 0.00] drives salDist[0] from uniform 0.25 to
@@ -18712,7 +18718,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q103-rewrite";
+  var BUNDLE_VERSION = "20260513-q103-rewrite-v2";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
