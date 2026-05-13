@@ -2130,7 +2130,7 @@ document.addEventListener('DOMContentLoaded', () => {
           block.appendChild(row);
         });
 
-        // Categorical nodes in this cluster (currently only EPS/AES, both MEANS)
+        // Categorical nodes in this cluster: AES (MEANS) and EPS (REALITY).
         CAT.filter(n => nodeLabels[n] && nodeLabels[n].cluster === cluster).forEach(n => {
           const u = userState.categorical[n];
           const f = friendState.categorical[n];
