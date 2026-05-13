@@ -1501,7 +1501,7 @@ const Q_TEXT = {
     child_traits: "Which trait is more important to teach children?",
     opponent_model_allocation: "What portion of people who vote for the party you oppose fall into each category? (Must sum to 100%)",
     effective_leader_style: "The most effective political leaders are those who:",
-    politically_important_identities: "Which identities shape how you see politics? Sort each one into the column that fits best.",
+    politically_important_identities: "Which of these are central to who you are? Sort each one into the column that fits best.",
     cultural_social_placement: "On social-direction issues — abortion, LGBTQ rights, gender identity, marriage, religious accommodation, and how fast traditions should evolve — where would you place yourself?",
 
     cultural_social_salience: "How much do cultural and social issues matter to you personally, relative to other political concerns?",
@@ -3729,7 +3729,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q60-prompt';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q60-prompt-v2';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
