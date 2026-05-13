@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-q103-prompt"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-q8-q228"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -2124,7 +2124,14 @@ const SLIDER_LABELS = {
     political_identity_centrality: { low: "not central at all - rarely think about politics", high: "core to who I am - politics defines me" },
     cultural_social_placement: { low: "very progressive / open", high: "very conservative / traditional" },
     cultural_social_salience: { low: "not important to me at all", high: "one of my most important concerns" },
+    // domestic_vs_abroad_lives — slider labels retained for legacy/preview paths,
+    // but the live question is now single_choice (3-option) since 2026-05-13.
     domestic_vs_abroad_lives: { low: "program A - save 10 lives domestically", high: "program B - save 100 lives abroad" },
+    // Q230/Q231 slider labels (legacy universal-baseline sliders). Q231 is no
+    // longer in the fixed router (replaced by Q8 binary), but adding labels
+    // here in case either fires via the adaptive selector.
+    universal_baseline_humanity: { low: "not at all", high: "a great deal" },
+    universal_baseline_stranger: { low: "not at all", high: "a great deal" },
     guess_top_marginal_tax_rate: { low: "0%", high: "100%" },
     preferred_top_marginal_tax_rate: { low: "0%", high: "100%" },
     human_progress_salience: { low: "rarely think about it", high: "think about it constantly" },
@@ -3104,6 +3111,19 @@ const PS_LAYOUTS = {
             { uiKey: 'neutral',     engineKey: 'neutral',     title: "Doesn't really<br>register" }
         ],
         poolLabel: "Drag each identity into the column that fits best (or tap an item, then tap a column)."
+    },
+    // Q228 — conditional follow-up to Q8 (fires only when Q8 = clearly_abroad).
+    // 3 buckets capturing residual in-group preferences for self-identified
+    // universalists. Items placed in supportHigh emit scoped:85 + universal:75
+    // (creates small positive excess); supportMid emits half-strength; neutral
+    // emits nothing.
+    remaining_in_group_pull: {
+        buckets: [
+            { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Still pulls<br>at me" },
+            { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "About the same<br>as anyone" },
+            { uiKey: 'neutral',     engineKey: 'neutral',     title: "Doesn't really<br>pull at me" }
+        ],
+        poolLabel: "Drag each group into the column that fits best (or tap an item, then tap a column)."
     }
 };
 const PS_DEFAULT_LAYOUT = {
@@ -3734,7 +3754,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q93-cu-low';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q8-q228';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
