@@ -569,32 +569,18 @@ function showResults(): void {
   const el = document.createElement("div");
   el.className = "prism-results";
 
-  const distances = results.top3.map((r) => r.distance);
-  const dMin = Math.min(...distances);
-  const dMax = Math.max(...distances);
-  const span = dMax - dMin + 1e-6;
-  const matchScore = (d: number) => (dMax - d) / span;
+  // 2026-05-13 centroid rip: results.match/top3/top5/confidence are gone.
+  // The standalone mountQuiz adapter shows a minimal end-of-quiz summary;
+  // the real composed-label display lives in quiz-v2-live.html (which
+  // calls composeArchetypeLabel directly on the respondent state).
+  const engLevel = results.engagement?.level ?? "unknown";
+  const idp = results.identityPrimary?.label;
 
   el.innerHTML = `
-    <h2>Your Political Archetype</h2>
-    <div class="prism-match-name">${results.match.name}</div>
+    <h2>Quiz Complete</h2>
     <div class="prism-confidence">
-      Confidence: ${(results.confidence * 100).toFixed(1)}% |
-      ${results.questionsAnswered} questions answered
-    </div>
-    <div class="prism-top5">
-      <h3>Top 3 Matches</h3>
-      ${results.top3.map((r, i) => `
-        <div class="prism-top5-item">
-          <div>
-            <div class="prism-top5-name">${i + 1}. ${r.name}</div>
-            <div class="prism-top5-bar">
-              <div class="prism-top5-bar-fill" style="width: ${(matchScore(r.distance) * 100).toFixed(1)}%"></div>
-            </div>
-          </div>
-          <div class="prism-top5-score">d=${r.distance.toFixed(2)}</div>
-        </div>
-      `).join("")}
+      ${results.questionsAnswered} questions answered · engagement: ${engLevel}
+      ${idp ? ` · ${idp}` : ""}
     </div>
   `;
 

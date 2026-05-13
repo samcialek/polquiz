@@ -1291,9 +1291,12 @@ function dismissComparison() {
 function buildShareUrl(displayName) {
     const stored = readPrismJson('prism-results');
     if (!stored || !stored.respondentState) return null;
+    // archetypeId is no longer stored (centroid rip 2026-05-13); pass empty
+    // string. The friend-comparison codec field is preserved for backward
+    // compatibility but is no longer load-bearing.
     const encoded = window.PrismShareCodec.encode(
         stored.respondentState,
-        stored.archetypeId,
+        '',
         displayName || ''
     );
     // Build URL relative to whatever directory results-live.html is hosted in.
@@ -1747,12 +1750,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========== LOAD DATA ==========
-  // Get archetype ID from URL or localStorage
+  // 2026-05-13 centroid rip: the live engine no longer emits archetypeId.
+  // Live runs are identified by `?run=`. The archetypeId lookup below is kept
+  // ONLY for the demo path — when someone opens this page without a live
+  // session, we render archetype 134 as a static example so the page is
+  // browsable. Legacy `?id=` and `stored.archetypeId` are still read for
+  // backward compatibility with pre-rip dumps and shared links.
   const params = new URLSearchParams(window.location.search);
   let archetypeId = params.get('id');
   let respondentState = null;
 
-  // Try localStorage for respondent's actual node state
   try {
     const stored = readPrismStorage('prism_results') || readPrismStorage('prism-results');
     if (stored) {
@@ -1763,7 +1770,9 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch(e) {}
 
   if (!archetypeId) {
-    // Demo mode — use archetype 134
+    // Demo mode fallback. Live runs override every centroid-based display via
+    // composedArchetypeLabel + personalAlignments + prism-election-raw, so
+    // this default only governs the no-session preview path.
     archetypeId = '134';
   }
 
@@ -1955,67 +1964,9 @@ document.addEventListener('DOMContentLoaded', () => {
       el.title = `Engagement ${engPos.toFixed(1)} / 5 — ${labels[idx]}`;
     })();
 
-    // ── Low-confidence cluster gate (ADR-008). Two-step gate: prefer the
-    // engine's confidenceBand field; fall back to raw confidence < 0.05 only
-    // when the band wasn't recorded (older runs / dumps from before the field
-    // was added). Both Sam's recorded test cases (0.012, 0.047) gate on.
-    //
-    // 2026-05-12: disabled per Sam's request — the page now shows ONE result
-    // (composed label + 3-4 sentence description), not a top-N list. The
-    // function body is kept in place in case the directional-only treatment
-    // is wanted back; just remove the early return.
-    (function renderClusterGate() { return; /* disabled — single-result view */
-      let stored = null;
-      try {
-        const raw = readPrismStorage('prism_results') || readPrismStorage('prism-results');
-        if (raw) stored = JSON.parse(raw);
-      } catch (e) {}
-      if (!stored) return;
-
-      const band = stored.confidenceBand;
-      const conf = typeof stored.confidence === 'number' ? stored.confidence : null;
-      const gateFires = band ? (band !== 'confident') : (conf !== null && conf < 0.05);
-      if (!gateFires) return;
-
-      const banner = document.getElementById('confidence-cluster-banner');
-      const headline = document.getElementById('confidence-cluster-headline');
-      const body = document.getElementById('confidence-cluster-body');
-      const neighborsEl = document.getElementById('confidence-cluster-neighbors');
-      const footnoteEl = document.getElementById('confidence-cluster-footnote');
-
-      const isUncertain = band === 'uncertain' || (conf !== null && conf < 0.02);
-      headline.textContent = isUncertain
-        ? 'Closest match — but answers split across several archetypes near the top.'
-        : 'Closest match — clustered with several near neighbors.';
-      const confPct = conf !== null ? (conf * 100).toFixed(1) + '%' : '—';
-      body.innerHTML = isUncertain
-        ? `Your responses didn't separate any single archetype from the field. Leader-vs-runner-up margin is <strong>${confPct}</strong>. Treat the headline match as the closest <em>direction</em>, not a definitive label.`
-        : `Your top match is real but the next-closest archetypes are within striking distance. Leader-vs-runner-up margin is <strong>${confPct}</strong>.`;
-
-      // Pick neighbors: leader + the single closest runner-up. PR 5 (2026-04-29)
-      // dropped the prior 5-cap with within-0.05 expansion plus 3-floor — long
-      // neighbor lists made the banner read like the assignment was disputed
-      // when really the gate just signals "treat this as directional." Cap 2
-      // shows the headline match and the closest contender, no more.
-      const top5 = Array.isArray(stored.top5) ? stored.top5 : (Array.isArray(stored.top3) ? stored.top3 : []);
-      const neighbors = top5.slice(0, 2);
-      neighborsEl.innerHTML = '';
-      neighbors.forEach((n, i) => {
-        const row = document.createElement('div');
-        row.style.cssText = 'display:flex;gap:0.6rem;align-items:baseline;font-size:0.84rem;';
-        const lead = neighbors[0].distance;
-        const margin = i === 0 ? '' : `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.72rem;">+${(n.distance - lead).toFixed(3)}</span>`;
-        row.innerHTML = `<span style="color:#888;font-family:ui-monospace,monospace;font-size:0.78rem;">#${i + 1}</span><span style="font-weight:${i === 0 ? '600' : '400'};">${n.id} ${n.name}</span>${margin}`;
-        neighborsEl.appendChild(row);
-      });
-      footnoteEl.textContent = 'Election grid and world-alignment map below render against the closest-match archetype only — read them as directional, not final.';
-
-      banner.style.display = 'block';
-      const note1 = document.getElementById('closest-match-note');
-      const note2 = document.getElementById('closest-match-note-map');
-      if (note1) note1.style.display = 'block';
-      if (note2) note2.style.display = 'block';
-    })();
+    // Confidence-band cluster gate removed 2026-05-13 with the centroid rip.
+    // It read stored.confidenceBand / stored.top5 / stored.confidence — all
+    // gone now. Single-result view is the only mode.
 
 
     // ========== COMPARISON SECTION (Pass B) ==========

@@ -4,7 +4,6 @@
  * Self-contained browser-facing API that wraps the engine.
  * Bundled as an IIFE and exposed as window.PrismEngine.
  */
-import { ARCHETYPES } from "../config/archetypes.js";
 import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";
 import { applySingleChoiceAnswer, applyMultiAnswer, applySliderAnswer, applyAllocationAnswer, applyRankingAnswer, applyPairwiseAnswer, applyBestWorstSalience, applyPrioritySort, applyDualAxisAnswer, mirrorMorSalToIntensity, } from "../engine/update.js";
@@ -15,9 +14,7 @@ import { selectNextQuestionEIG, shouldStopEIG } from "../engine/selectorEIG.js";
 // `shouldStop` from stopRule.ts is the distance-native rule used by the eval
 // harness and simulation suites — intentionally NOT imported here. See the
 // "Stop rule" note in CLAUDE.md for the eval-vs-live split.
-import { archetypeDistance } from "../engine/archetypeDistance.js";
 import { resetSimilarityCache } from "../engine/stopRule.js";
-import { buildArchetypeFamilies } from "../engine/archetypeFamilies.js";
 import { SALIENCE_ROUTER_FIXED } from "../engine/config.js";
 import { getTopSalientNodes, selectTopKDrillQuestion, } from "../engine/topKDrill.js";
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
@@ -33,16 +30,13 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260513-q229-bucket";
+export const BUNDLE_VERSION = "20260513-centroid-rip";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 // ---------------------------------------------------------------------------
 // Internal state
 // ---------------------------------------------------------------------------
 let _state = null;
-let _archetypes = [];
-let _activeArchetypes = [];
-let _familyIndex = null;
 let _questions = [];
 let _questionsById = new Map();
 const _ratioBoosts = new Map();
@@ -99,9 +93,12 @@ function deepCopyState(state) {
             dist: [...state.trbAnchor.dist],
             touches: state.trbAnchor.touches,
         },
-        archetypeDistances: { ...state.archetypeDistances },
-        currentLeader: state.currentLeader,
-        consecutiveLeadCount: state.consecutiveLeadCount,
+        // Centroid posterior fields (archetypeDistances/currentLeader/
+        // consecutiveLeadCount) retained at the type level so RespondentState
+        // contracts still typecheck across legacy eval scripts, but the live
+        // engine no longer populates them (2026-05-13 centroid rip). Leave them
+        // empty in deep copies so back-navigation doesn't fabricate stale state.
+        archetypeDistances: {},
         // Metadata fields written by Q200/Q211/Q212 update hooks. Snapshot must
         // round-trip these or back-navigation will silently drop election-alignment
         // signals that the user already provided.
@@ -227,32 +224,11 @@ function createInitialState() {
             },
         },
         membership: {},
+        // archetypeDistances kept as empty record for type-shape compatibility
+        // with eval/simulation scripts that still read the field. Live engine no
+        // longer populates after 2026-05-13 centroid rip.
         archetypeDistances: {},
-        currentLeader: undefined,
-        consecutiveLeadCount: 0,
     };
-}
-// ---------------------------------------------------------------------------
-// Distance update (Phase 3 Euclidean WTA scorer)
-// ---------------------------------------------------------------------------
-function updateDistances(state, archetypes) {
-    let leaderId;
-    let leaderDist = Infinity;
-    for (const a of archetypes) {
-        const dist = archetypeDistance(state, a);
-        state.archetypeDistances[a.id] = dist;
-        if (dist < leaderDist) {
-            leaderDist = dist;
-            leaderId = a.id;
-        }
-    }
-    if (leaderId === state.currentLeader) {
-        state.consecutiveLeadCount = (state.consecutiveLeadCount ?? 0) + 1;
-    }
-    else {
-        state.currentLeader = leaderId;
-        state.consecutiveLeadCount = 1;
-    }
 }
 // ---------------------------------------------------------------------------
 // Convert internal QuestionDef to browser-friendly QuizQuestion
@@ -327,15 +303,8 @@ function toQuizQuestion(q) {
 // ---------------------------------------------------------------------------
 /**
  * Initialize a new quiz session.
- * Resets all state and loads archetypes + questions.
+ * Resets all state and loads the question bank.
  */
-// Identity-primary archetype IDs (Black Voter, White Grievance Voter,
-// Evangelical Voter, LGBTQ Voter, Feminist Voter, Male Grievance Voter).
-// These are excluded from the base distance match pool so the regular
-// archetype scorer cannot return them — they fire only via
-// resolveIdentityPrimary() when anchor + demographic + tribal/fusion +
-// ideology-thinness gates all pass. See resolveIdentityPrimary.ts.
-const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
 // Metadata-only opener questions. Their evidence is stored directly on
 // state.partyID / strategicVoting / negativeParties via update.ts hooks rather
 // than as touchProfile-driven Bayesian touches, so they have empty touchProfile
@@ -343,9 +312,6 @@ const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"])
 // return them when the fixed-opener index reaches their slot.
 const METADATA_QUESTION_IDS = new Set([200, 211, 212]);
 export function initQuiz() {
-    _archetypes = ARCHETYPES;
-    _activeArchetypes = ARCHETYPES.filter(a => a.active !== false && !IDENTITY_PRIMARY_IDS.has(a.id));
-    _familyIndex = buildArchetypeFamilies(_archetypes);
     _questions = REPRESENTATIVE_QUESTIONS.filter(q => q.touchProfile.length > 0 || METADATA_QUESTION_IDS.has(q.id));
     _questionsById = new Map(_questions.map(q => [q.id, q]));
     resetSimilarityCache();
@@ -503,45 +469,16 @@ export function submitAnswer(questionId, answer) {
             break;
         }
     }
-    // Update distances after each answer
-    updateDistances(_state, _activeArchetypes);
 }
 /**
- * Get current quiz progress.
+ * Get current quiz progress. Centroid-distance-driven `topArchetypes` and
+ * `confidence` fields removed 2026-05-13 with the centroid matcher rip;
+ * estimatedTotal is now a fixed cap of 35 (the EIG stop rule cap).
  */
 export function getProgress() {
     if (!_state)
         throw new Error("Call initQuiz() first");
     const nAnswered = Object.keys(_state.answers).length;
-    const sorted = Object.entries(_state.archetypeDistances)
-        .filter(([, d]) => Number.isFinite(d))
-        .sort((a, b) => a[1] - b[1])
-        .slice(0, 5);
-    const dLeader = sorted[0]?.[1] ?? Infinity;
-    const dSecond = sorted[1]?.[1] ?? Infinity;
-    const gapRatio = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
-        ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
-        : 0;
-    // Estimate total questions for the progress UI. The actual stop rule lives
-    // in selectorEIG.ts and caps the live quiz at 35 questions.
-    let estimatedTotal;
-    if (nAnswered < 20) {
-        estimatedTotal = 27;
-    }
-    else if (dLeader <= 6) {
-        estimatedTotal = Math.max(nAnswered + 2, 25);
-    }
-    else if (dLeader <= 10) {
-        estimatedTotal = Math.max(nAnswered + 4, 28);
-    }
-    else {
-        estimatedTotal = Math.min(35, Math.max(nAnswered + 8, 33));
-    }
-    estimatedTotal = Math.min(35, estimatedTotal);
-    const topArchetypes = sorted.map(([id, distance]) => {
-        const arch = _archetypes.find(a => a.id === id);
-        return { id, name: arch?.name ?? "Unknown", distance };
-    });
     let phase;
     if (nAnswered < 16)
         phase = "salience";
@@ -551,9 +488,7 @@ export function getProgress() {
         phase = "converge";
     return {
         questionsAnswered: nAnswered,
-        estimatedTotal,
-        topArchetypes,
-        confidence: gapRatio,
+        estimatedTotal: 35,
         phase,
     };
 }
@@ -566,80 +501,32 @@ export function isComplete() {
     return shouldStopEIG(_state, _questionsById);
 }
 /**
- * Get final quiz results.
- * Can be called at any time, but results are most meaningful after isComplete() returns true.
+ * Get final quiz results. The 124-centroid Bayesian matcher was retired
+ * 2026-05-13 — `match`, `top3`, `top5`, `confidence`, `confidenceBand`,
+ * `family`, and `diagnostics` are gone. The user-facing identity is the
+ * composed label (consumers call composeArchetypeLabel + the description
+ * helper on respondentState directly). Engagement and the identity-primary
+ * overlay still resolve here.
  */
 export function getResults() {
     if (!_state)
         throw new Error("Call initQuiz() first");
-    const sorted = Object.entries(_state.archetypeDistances)
-        .filter(([, d]) => Number.isFinite(d))
-        .sort((a, b) => a[1] - b[1]);
-    const top5 = sorted.slice(0, 5).map(([id, distance]) => {
-        const arch = _archetypes.find(a => a.id === id);
-        return {
-            id,
-            name: arch.name,
-            tier: arch.tier,
-            distance,
-        };
-    });
-    const top3 = top5.slice(0, 3);
-    // Family detection: runner-up ∈ leader's pre-computed family set
-    let family;
-    if (top3.length >= 2 && _familyIndex) {
-        const leaderId = top3[0].id;
-        const runnerUpId = top3[1].id;
-        const leaderFamily = _familyIndex.familyOf[leaderId];
-        if (leaderFamily && leaderFamily.has(runnerUpId)) {
-            family = {
-                isFamily: true,
-                partnerId: runnerUpId,
-                partnerName: top3[1].name,
-            };
-        }
-    }
-    const dLeader = top3[0]?.distance ?? Infinity;
-    const dSecond = top3[1]?.distance ?? Infinity;
-    const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond)
-        ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader))
-        : 0;
-    const marginToRunnerUp = Number.isFinite(dSecond) ? (dSecond - dLeader) : 0;
-    // Confidence band (ADR-008). Refuse to commit when the matcher has barely
-    // separated the leader from the runner-up.
-    const confidenceBand = confidence >= 0.05 ? "confident" :
-        confidence >= 0.02 ? "cluster" : "uncertain";
-    // Why-this-result diagnostics. Compute per-node distance contributions to
-    // the winning archetype so the results page can explain WHICH dimensions
-    // drove the classification.
-    const diagnostics = computeWinnerDiagnostics(_state, top3[0]?.id);
     const engagement = computeEngagementLabel(_state);
     // Single-issue dominance detection (P3.6, ADR-009). If any non-SELF node's
     // E[sal] is both >= 2.7 AND > 2× the mean of others, flag as dominant.
     // Used by predictVote to amplify that node's contribution 2x — captures
     // voters whose politics is dominated by one issue.
     detectAndStoreDominantNode(_state);
-    // Identity-primary overlay (ADR-006). Resolver gates on TRB/PF, ideology-
-    // thinness, anchor dominance, and demographic confirmation. Returns null
-    // unless all four pass. Base `match` is always populated independently.
+    // Identity-primary overlay (ADR-006/ADR-007). Resolver gates on moral-circle
+    // excess + demographics + engagement. Returns null unless gates pass.
     const identityResult = resolveIdentityPrimary(_state, engagement, _demographics);
     const identityPrimary = identityResult.state === "active" || identityResult.state === "dominant"
         ? identityResult
         : null;
     return {
-        match: top3[0],
-        top3,
-        top5,
         questionsAnswered: Object.keys(_state.answers).length,
-        confidence,
-        confidenceBand,
-        family,
         engagement,
         identityPrimary,
-        diagnostics: {
-            ...diagnostics,
-            marginToRunnerUp,
-        },
     };
 }
 // Single-issue dominance detector (P3.6, ADR-009). Sets state.dominantNode
@@ -670,37 +557,6 @@ function detectAndStoreDominantNode(state) {
     const othersMean = others.reduce((s, e) => s + e.sal, 0) / Math.max(1, others.length);
     state.dominantNode = (top.sal >= 2.7 && top.sal > 2 * othersMean) ? top.nid : null;
 }
-// Per-node contribution analyzer for ADR-008 diagnostics. For each node where
-// the winner archetype is encoded, compute how much that node contributed to
-// the (low) distance score. Nodes with low contribution = pulled toward
-// winner. Nodes with high contribution = pushed away (mismatch).
-function computeWinnerDiagnostics(state, winnerId) {
-    if (!winnerId)
-        return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
-    const arch = _archetypes.find(a => a.id === winnerId);
-    if (!arch)
-        return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
-    const items = [];
-    for (const [nodeId, template] of Object.entries(arch.nodes)) {
-        if (template.kind === "continuous") {
-            const ns = state.continuous[nodeId];
-            if (!ns)
-                continue;
-            const userPos = ns.posDist.reduce((s, p, i) => s + p * (i + 1), 0);
-            const diff = userPos - template.pos;
-            const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
-            const archSal = template.sal ?? 1;
-            const weight = (0.5 + archSal * 0.5) * (0.5 + userSal * 0.25);
-            const contribution = weight * Math.abs(diff);
-            items.push({ node: nodeId, contribution, userPos, archetypePos: template.pos });
-        }
-    }
-    items.sort((a, b) => a.contribution - b.contribution);
-    return {
-        pullingTowardWinner: items.slice(0, 5),
-        pushingAwayFromWinner: items.slice(-5).reverse(),
-    };
-}
 /**
  * Get the full list of question IDs available in the engine.
  */
@@ -712,12 +568,6 @@ export function getQuestionIds() {
  */
 export function getQuestionDef(questionId) {
     return _questionsById.get(questionId);
-}
-/**
- * Get the number of archetypes.
- */
-export function getArchetypeCount() {
-    return _archetypes.length;
 }
 /**
  * Get the respondent's current node state for results display.

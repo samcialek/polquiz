@@ -12,7 +12,6 @@ export {
   isComplete,
   getQuestionIds,
   getQuestionDef,
-  getArchetypeCount,
   getRespondentState,
   getIdentityPrimaryResult,
   canGoBack,
@@ -35,7 +34,6 @@ export {
 export type {
   QuizQuestion,
   QuizProgress,
-  ArchetypeResult,
   QuizResults,
   IdentityPrimaryDemographics,
   IdentityPrimaryResult,

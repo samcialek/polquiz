@@ -8,7 +8,7 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260512-descriptions";
+export declare const BUNDLE_VERSION = "20260513-centroid-rip";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 export interface QuizQuestion {
@@ -54,91 +54,18 @@ export interface QuizQuestion {
 export interface QuizProgress {
     questionsAnswered: number;
     estimatedTotal: number;
-    topArchetypes: Array<{
-        id: string;
-        name: string;
-        distance: number;
-    }>;
-    /** Distance-based confidence proxy: gap_ratio = (d_second - d_leader) / d_leader, clamped [0, 1]. */
-    confidence: number;
     phase: "salience" | "discriminate" | "converge";
 }
-export interface ArchetypeResult {
-    id: string;
-    name: string;
-    tier: string;
-    distance: number;
-}
-export interface FamilyResult {
-    /** True when the runner-up is in the leader's pre-computed family set. */
-    isFamily: boolean;
-    /** ID of the runner-up family member. */
-    partnerId?: string;
-    /** Display name of the runner-up family member. */
-    partnerName?: string;
-}
 export interface QuizResults {
-    /** Base archetype match from policy-based distance scoring (always populated). */
-    match: ArchetypeResult;
-    top3: ArchetypeResult[];
-    /**
-     * Top 5 closest archetypes (superset of top3). Used by the results page's
-     * low-confidence cluster gate (ADR-008): when confidenceBand !== "confident",
-     * the page picks neighbors within +0.05 of the leader's distance, capped at
-     * 5 displayed, floored at the top 3.
-     */
-    top5: ArchetypeResult[];
     questionsAnswered: number;
-    /** Distance-based confidence proxy: gap_ratio between leader and runner-up, clamped [0, 1]. */
-    confidence: number;
-    /**
-     * Confidence band (added 2026-04-24 per ADR-008). The matcher should not
-     * present a single archetype as definitive when the leader-runner-up margin
-     * is tiny. Three bands:
-     *   "confident"  — confidence >= 0.05 (5%+ margin); single archetype headline
-     *   "cluster"    — 0.02 <= confidence < 0.05; show top-3 as a cluster
-     *   "uncertain"  — confidence < 0.02; refuse single label, suggest more
-     *                  questions or present blended top-3
-     */
-    confidenceBand: "confident" | "cluster" | "uncertain";
-    /** Family/subtype info when the runner-up is in the leader's family set. */
-    family?: FamilyResult;
-    /** Engagement label (ADR-002): standalone module derived from ENG state, independent of archetype match. */
+    /** Engagement label (ADR-002): standalone module derived from ENG state. */
     engagement: EngagementLabel;
     /**
-     * Identity-primary overlay (ADR-006): null unless the respondent passed all
-     * four gates — TRB/PF, ideology-thinness, anchor dominance, and demographic
-     * confirmation. When non-null, contains the identity-primary label, state,
-     * and reason codes. The base `match` is always retained — UX layer decides
-     * how to combine them.
+     * Identity-primary overlay (ADR-006/ADR-007): null unless the respondent
+     * passed the moral-circle excess + demographic + engagement gates. When
+     * non-null, contains the identity-primary label, state, and reason codes.
      */
     identityPrimary: IdentityPrimaryResult | null;
-    /**
-     * Why-this-result diagnostics (ADR-008). Per-node contribution to the
-     * winning archetype's distance score: nodes that pulled toward the winner
-     * (negative contributions) vs nodes that pushed away (positive). Plus
-     * margin to runner-up. Surfaced for the results page so the user can see
-     * which dimensions drove the classification.
-     */
-    diagnostics: {
-        /** Top 5 nodes whose contribution to the winner's distance was lowest
-         *  (most-aligned). */
-        pullingTowardWinner: Array<{
-            node: string;
-            contribution: number;
-            userPos: number;
-            archetypePos: number;
-        }>;
-        /** Top 5 nodes whose contribution was highest (most-divergent). */
-        pushingAwayFromWinner: Array<{
-            node: string;
-            contribution: number;
-            userPos: number;
-            archetypePos: number;
-        }>;
-        /** Distance to runner-up minus distance to winner. */
-        marginToRunnerUp: number;
-    };
 }
 export type { IdentityPrimaryDemographics, IdentityPrimaryResult };
 export type { EngagementLabel };
@@ -194,7 +121,9 @@ export declare function submitAnswer(questionId: number, answer: string | number
     opposeHigh: string[];
 }): void;
 /**
- * Get current quiz progress.
+ * Get current quiz progress. Centroid-distance-driven `topArchetypes` and
+ * `confidence` fields removed 2026-05-13 with the centroid matcher rip;
+ * estimatedTotal is now a fixed cap of 35 (the EIG stop rule cap).
  */
 export declare function getProgress(): QuizProgress;
 /**
@@ -202,8 +131,12 @@ export declare function getProgress(): QuizProgress;
  */
 export declare function isComplete(): boolean;
 /**
- * Get final quiz results.
- * Can be called at any time, but results are most meaningful after isComplete() returns true.
+ * Get final quiz results. The 124-centroid Bayesian matcher was retired
+ * 2026-05-13 — `match`, `top3`, `top5`, `confidence`, `confidenceBand`,
+ * `family`, and `diagnostics` are gone. The user-facing identity is the
+ * composed label (consumers call composeArchetypeLabel + the description
+ * helper on respondentState directly). Engagement and the identity-primary
+ * overlay still resolve here.
  */
 export declare function getResults(): QuizResults;
 /**
@@ -214,10 +147,6 @@ export declare function getQuestionIds(): number[];
  * Get the raw internal QuestionDef for a given ID (for advanced use).
  */
 export declare function getQuestionDef(questionId: number): QuestionDef | undefined;
-/**
- * Get the number of archetypes.
- */
-export declare function getArchetypeCount(): number;
 /**
  * Get the respondent's current node state for results display.
  * Returns continuous node expected values and categorical distributions.
