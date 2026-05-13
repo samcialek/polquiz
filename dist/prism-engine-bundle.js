@@ -3245,28 +3245,79 @@ var PrismEngine = (() => {
         "81-100": { continuous: { CD: { sal: [0.02, 0.08, 0.3, 0.6] }, CU: { sal: [0.03, 0.1, 0.32, 0.55] }, MOR: { sal: [0.05, 0.12, 0.35, 0.48] } } }
       }
     },
-    // Q8 — domestic_vs_abroad_lives (slider)
-    // High score = "all human lives matter equally" (universalist).
-    // Low score = "domestic lives matter more than foreign lives" (national in-group preference).
+    // Q8 — domestic_vs_abroad_lives (single_choice, 3 options)
+    // 2026-05-13: converted from 5-bucket slider to 3-option forced trade-off.
+    // The slider's middle three buckets collapsed into "hard_to_say"; the
+    // forced binary at the extremes is honest about the trade-off. Now
+    // serves as the load-bearing universal-baseline probe in UNIVERSAL_SCREENERS
+    // (replacing Q231, which had a social-desirability bias). Picking
+    // "clearly_abroad" triggers Q228 to surface residual in-group preferences.
     {
       id: 8,
-      stage: "screen20",
+      stage: "fixed12",
       section: "I",
       promptShort: "domestic_vs_abroad_lives",
-      uiType: "slider",
-      quality: 0.89,
+      uiType: "single_choice",
+      quality: 0.92,
       rewriteNeeded: false,
+      options: ["clearly_domestic", "hard_to_say", "clearly_abroad"],
+      optionLabels: {
+        clearly_domestic: "Program A \u2014 save 10 lives in your country",
+        hard_to_say: "Hard to say \u2014 I'd want to know more before choosing",
+        clearly_abroad: "Program B \u2014 save 100 lives in a developing nation"
+      },
       touchProfile: [
         { node: "MOR", kind: "continuous", role: "position", weight: 0.3, touchType: "moral_scope_tradeoff_legacy_proxy" }
       ],
-      sliderMap: {
-        // ADR-007 (T3): each bucket emits direct moralCircle universal vs national
-        // contrast, with weak legacy MOR pos kept for ADR-006 fallback.
-        "0-20": { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } }, moralCircle: { universal: 25, scopedAffinities: { national: 75 } } },
-        "21-40": { continuous: { MOR: { pos: [0.25, 0.4, 0.22, 0.1, 0.03] } }, moralCircle: { universal: 40, scopedAffinities: { national: 65 } } },
-        "41-60": { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } }, moralCircle: { universal: 55 } },
-        "61-80": { continuous: { MOR: { pos: [0.03, 0.1, 0.22, 0.4, 0.25] } }, moralCircle: { universal: 75 } },
-        "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } }, moralCircle: { universal: 90 } }
+      optionEvidence: {
+        clearly_domestic: {
+          continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } },
+          moralCircle: { universal: 30, scopedAffinities: { national: 75 } }
+        },
+        hard_to_say: {
+          continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } },
+          moralCircle: { universal: 55 }
+        },
+        clearly_abroad: {
+          continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } },
+          moralCircle: { universal: 90 }
+        }
+      }
+    },
+    // Q228 — remaining_in_group_pull (conditional follow-up to Q8)
+    // 2026-05-13: fires only when Q8 = clearly_abroad. Surfaces residual
+    // in-group preferences from respondents who claimed a wide moral circle.
+    // Each item placed in supportHigh walks back universal slightly (75) AND
+    // pushes the scoped value above the running-average universal (85), which
+    // is enough to register positive excess after engine averaging.
+    {
+      id: 228,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "remaining_in_group_pull",
+      promptFull: "You picked the abroad option just now \u2014 a wide moral circle. Even so, some groups may still pull at you. Sort each by whether you feel extra moral concern for them, beyond what you feel for people in general.",
+      uiType: "priority_sort",
+      quality: 0.92,
+      rewriteNeeded: false,
+      exposeRules: { eligibleIf: ["answered_q8_abroad"] },
+      touchProfile: [
+        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+      ],
+      optionLabels: {
+        ingroup_national: "Fellow citizens of your country",
+        ingroup_religious: "People who share your religious tradition",
+        ingroup_ethnic_racial: "People of your racial or ethnic background",
+        ingroup_class: "People in your economic class",
+        ingroup_gender: "People who share your gender",
+        ingroup_ideological: "People who share your core political values"
+      },
+      rankingMap: {
+        ingroup_national: { moralCircle: { universal: 75, scopedAffinities: { national: 85 } } },
+        ingroup_religious: { moralCircle: { universal: 75, scopedAffinities: { religious: 85 } } },
+        ingroup_ethnic_racial: { moralCircle: { universal: 75, scopedAffinities: { ethnic_racial: 85 } } },
+        ingroup_class: { moralCircle: { universal: 75, scopedAffinities: { class: 85 } } },
+        ingroup_gender: { moralCircle: { universal: 75, scopedAffinities: { gender: 85 } } },
+        ingroup_ideological: { moralCircle: { universal: 75, scopedAffinities: { ideological: 85 } } }
       }
     },
     // Q12 — guess_top_marginal_tax_rate (slider)
@@ -7064,7 +7115,7 @@ var PrismEngine = (() => {
         co_religionist: "Someone from your religious tradition or sacred worldview",
         same_ethnicity: "Someone of your racial or ethnic background",
         same_class: "Someone in your economic class or material situation",
-        same_gender: "Someone of your gender or gender-linked identity (including LGBTQ status)",
+        same_gender: "Someone of your gender",
         shared_politics: "Someone who shares your core political values"
       },
       touchProfile: [
@@ -7214,14 +7265,16 @@ var PrismEngine = (() => {
         much_more: { moralCircle: { scopedAffinities: { class: 90 } } }
       }
     },
-    // Q236 — gender scope (now includes sexuality/LGBTQ identity per the
-    // 6-scope model; LGBTQ Voter routes via gender excess + demo_lgbtq).
+    // Q236 — gender scope. 2026-05-13: dropped the "(including LGBTQ status)"
+    // parenthetical per Sam — the LGBTQ scope of moral circle doesn't exist
+    // as a separate axis. LGBTQ Voter (archetype 144) still routes via the
+    // gender excess + demo_lgbtq lock-and-key in the IDP resolver.
     {
       id: 236,
       stage: "stage2",
       section: "V",
       promptShort: "scoped_affinity_gender",
-      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender or gender-linked identity (including LGBTQ status)?",
+      promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender?",
       uiType: "single_choice",
       quality: 0.95,
       rewriteNeeded: false,
@@ -8410,20 +8463,25 @@ var PrismEngine = (() => {
     // human malleability view — direct ONT_H position read
     214,
     // institutions foundational — direct ONT_S position read
-    // 2026-05-13: moral-circle probes added to the fixed router. The
-    // `stage: "fixed12"` field on these questions is metadata only — the
-    // engine reads this hardcoded list. Without these two entries Q229 and
-    // Q231 only fire adaptively, and the EIG scorer doesn't evaluate
-    // `moralCircle` evidence as a dimension, so they almost never get picked.
-    231,
-    // universal_baseline_stranger — slider, anchors universal baseline
-    //   regardless of Q229 outcome. Sharper than Q230 (stranger framing
-    //   forces the universalist vs particularist read).
+    // 2026-05-13: moral-circle battery. The `stage: "fixed12"` field on
+    // these questions is metadata only — the engine reads this hardcoded
+    // list. The EIG scorer doesn't evaluate moralCircle evidence as a
+    // dimension, so these need to be in the fixed router or they almost
+    // never fire. Q231 (slider universal-baseline) retired in favor of
+    // Q8's forced trade-off, which is less subject to social-desirability
+    // bias and emits both universal AND national scope signal.
+    8,
+    // domestic_vs_abroad_lives — 3-option forced trade-off. Picking
+    //   "clearly_abroad" triggers Q228 below.
+    228,
+    // remaining_in_group_pull — conditional follow-up to Q8. Fires
+    //   only when Q8 = clearly_abroad (via exposeRules.eligibleIf).
+    //   Surfaces residual in-group preferences from universalists
+    //   across all six scopes.
     229
-    // moral_circle_forced_choice — load-bearing in-group probe.
-    //   Emits scoped:80 on in-group pick OR universal:90 on "everyone
-    //   equal." Combined with Q231 above, every run gets a guaranteed
-    //   universal baseline AND a forced moral-circle trade-off.
+    // moral_circle_forced_choice — 8-option in-group probe. Always
+    //   fires regardless of Q8 outcome; provides the cleanest single
+    //   moral-circle signal in the entire battery.
   ];
   var SALIENCE_ROUTER_FIXED = [
     ...CORE_OPENER,
@@ -8659,6 +8717,12 @@ var PrismEngine = (() => {
         const topAnchorProb = Math.max(...state.trbAnchor.dist);
         return state.trbAnchor.touches >= 1 && topAnchorProb < 0.45;
       }
+      // Q228 gate: only fires when Q8's answer is the clearly-universalist
+      // option. Particularist or middle answers reveal in-group preferences
+      // directly from Q8; the follow-up is only needed for those who claimed
+      // universalist views to surface any residual in-group pull.
+      case "answered_q8_abroad":
+        return state.answers[8] === "clearly_abroad";
       default:
         return false;
     }
@@ -18718,7 +18782,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q103-prompt";
+  var BUNDLE_VERSION = "20260513-q8-q228";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
@@ -18984,7 +19048,9 @@ var PrismEngine = (() => {
     for (const nextId of SALIENCE_ROUTER_FIXED) {
       if (nextId in _state.answers) continue;
       const q = _questionsById.get(nextId);
-      if (q) return toQuizQuestion(q);
+      if (!q) continue;
+      if (!isQuestionEligible(_state, q)) continue;
+      return toQuizQuestion(q);
     }
     const available = _questions.filter(
       (q) => !(q.id in _state.answers) && isQuestionEligible(_state, q)

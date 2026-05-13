@@ -68,6 +68,13 @@ function evaluatePredicate(state: RespondentState, predicate: string): boolean {
       return state.trbAnchor.touches >= 1 && topAnchorProb < 0.45;
     }
 
+    // Q228 gate: only fires when Q8's answer is the clearly-universalist
+    // option. Particularist or middle answers reveal in-group preferences
+    // directly from Q8; the follow-up is only needed for those who claimed
+    // universalist views to surface any residual in-group pull.
+    case "answered_q8_abroad":
+      return state.answers[8] === "clearly_abroad";
+
     default:
       // Unknown predicate — fail closed (ineligible)
       return false;

@@ -135,18 +135,22 @@ export const UNIVERSAL_SCREENERS: readonly number[] = [
   209, // zero-sum economics view — direct ZS position read
   210, // human malleability view — direct ONT_H position read
   214, // institutions foundational — direct ONT_S position read
-  // 2026-05-13: moral-circle probes added to the fixed router. The
-  // `stage: "fixed12"` field on these questions is metadata only — the
-  // engine reads this hardcoded list. Without these two entries Q229 and
-  // Q231 only fire adaptively, and the EIG scorer doesn't evaluate
-  // `moralCircle` evidence as a dimension, so they almost never get picked.
-  231, // universal_baseline_stranger — slider, anchors universal baseline
-       //   regardless of Q229 outcome. Sharper than Q230 (stranger framing
-       //   forces the universalist vs particularist read).
-  229, // moral_circle_forced_choice — load-bearing in-group probe.
-       //   Emits scoped:80 on in-group pick OR universal:90 on "everyone
-       //   equal." Combined with Q231 above, every run gets a guaranteed
-       //   universal baseline AND a forced moral-circle trade-off.
+  // 2026-05-13: moral-circle battery. The `stage: "fixed12"` field on
+  // these questions is metadata only — the engine reads this hardcoded
+  // list. The EIG scorer doesn't evaluate moralCircle evidence as a
+  // dimension, so these need to be in the fixed router or they almost
+  // never fire. Q231 (slider universal-baseline) retired in favor of
+  // Q8's forced trade-off, which is less subject to social-desirability
+  // bias and emits both universal AND national scope signal.
+  8,   // domestic_vs_abroad_lives — 3-option forced trade-off. Picking
+       //   "clearly_abroad" triggers Q228 below.
+  228, // remaining_in_group_pull — conditional follow-up to Q8. Fires
+       //   only when Q8 = clearly_abroad (via exposeRules.eligibleIf).
+       //   Surfaces residual in-group preferences from universalists
+       //   across all six scopes.
+  229, // moral_circle_forced_choice — 8-option in-group probe. Always
+       //   fires regardless of Q8 outcome; provides the cleanest single
+       //   moral-circle signal in the entire battery.
 ] as const;
 
 // Combined list — used by getNextQuestion to iterate the fixed front door

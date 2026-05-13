@@ -62,7 +62,7 @@ import { predictVote, type ElectionPrediction } from "../historical/respondentVo
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260513-q103-prompt";
+export const BUNDLE_VERSION = "20260513-q8-q228";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 
@@ -568,10 +568,16 @@ export function getNextQuestion(): QuizQuestion | null {
   // every major node ≥ 1 light position read regardless of salience, so
   // even nodes the respondent doesn't care about have ground truth for
   // archetype distance. See engine/config.ts:SALIENCE_ROUTER_FIXED.
+  //
+  // 2026-05-13: fixed loop now also honors exposeRules.eligibleIf so
+  // conditional questions in the fixed router (e.g., Q228 which only fires
+  // after Q8 = clearly_abroad) get skipped when their predicate is false.
   for (const nextId of SALIENCE_ROUTER_FIXED) {
     if (nextId in _state.answers) continue;
     const q = _questionsById.get(nextId);
-    if (q) return toQuizQuestion(q);
+    if (!q) continue;
+    if (!isQuestionEligible(_state, q)) continue;
+    return toQuizQuestion(q);
   }
 
   // Available pool for Phase 2-3 (already-answered + ineligible filtered out).
