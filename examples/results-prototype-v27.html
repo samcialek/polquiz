@@ -867,24 +867,21 @@
     /* 2026-05-12: moral-circle sunburst moves out of the IDENTITY cluster panel
        and sits directly below the donut in the left column. */
     .profile-donut-col .moral-circle-section { margin-top: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; }
+    /* 2026-05-13: align with .cluster-title so IDENTITY heading matches the
+       ENDS/MEANS/REALITY panel headings. Same family, size, weight, color,
+       letter-spacing, uppercase transform. */
     .profile-donut-col .moral-circle-cluster-heading {
       width: 560px;
       max-width: 100%;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--ink);
+      color: #333;
       border-bottom: 1.5px solid #8C7A5B;
-      padding-bottom: 0.45rem;
-      margin: 0 0 0.25rem;
-    }
-    .profile-donut-col .moral-circle-cluster-heading .sub {
-      color: #555;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: none;
+      padding-bottom: 0.6rem;
+      margin: 0 0 1.5rem;
     }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap { padding: 0; display: flex; justify-content: center; }
     .profile-donut-col .moral-circle-section .moral-circle-svg-wrap svg { max-width: 100%; height: auto; overflow: visible; }
@@ -4233,7 +4230,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const identityHeading = document.createElement('div');
       identityHeading.className = 'moral-circle-cluster-heading';
-      identityHeading.innerHTML = `IDENTITY <span class="sub">&mdash; Who's in Your Circle</span>`;
+      // 2026-05-13: dropped the .sub span so the IDENTITY heading renders in
+      // the same uppercase/letter-spaced/weighted style as the other cluster
+      // panel headings (ENDS, MEANS, REALITY). Mirrors clusterLabels format.
+      identityHeading.innerHTML = `IDENTITY &mdash; Who's in Your Circle`;
       wrap.appendChild(identityHeading);
 
       const svgWrap = document.createElement('div');
