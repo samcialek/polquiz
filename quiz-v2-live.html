@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-q229-bucket"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-centroid-rip"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -3711,28 +3711,20 @@ function finishResults() {
         console.warn('composeArchetypeDescription failed', err);
     }
 
-    // Save everything to localStorage for the results page
+    // Save everything to localStorage for the results page.
+    // 2026-05-13 centroid rip: the 124-archetype Bayesian matcher is gone.
+    // Identity is the composedArchetypeLabel (top-3 salient tokens). Legacy
+    // fields (archetypeId/Name/Tier, top3, top5, confidence, confidenceBand,
+    // family, diagnostics) removed — getResults no longer returns them.
     const prismResults = {
         runId: runId,
         // Stamp from the engine bundle so dump consumers can flag staleness
-        // when engine fixes ship. PR 1 trace-reliability addition.
+        // when engine fixes ship.
         bundleVersion: (PrismEngine && PrismEngine.BUNDLE_VERSION) || null,
-        archetypeId: results.match.id,
-        archetypeName: results.match.name,
         composedArchetypeLabel: composedLabel,
         composedArchetypeDescription: composedDescription,
-        archetypeTier: results.match.tier,
-        confidence: results.confidence,
-        confidenceBand: results.confidenceBand || null,
         questionsAnswered: results.questionsAnswered,
-        top3: results.top3 || null,
-        top5: results.top5 || null,
-        family: results.family || null,
         identityPrimary: results.identityPrimary || null,
-        // Per-node contribution to winner + margin to runner-up. Engine
-        // already computes these via getResults; PR 1 propagates to the dump
-        // so debugging doesn't require reconstructing from pre/post state.
-        diagnostics: results.diagnostics || null,
         engagement: results.engagement || null,
         respondentState: respondentState,
         timestamp: Date.now()
@@ -3765,7 +3757,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-hide-below-universal';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-centroid-rip';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
