@@ -4631,7 +4631,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ['Position', `${d.pos.toFixed(1)} / 10`],
         ];
         if (!isSelf) tipRows.push(['Salience', `${salScale.toFixed(2)} / 3`]);
-        if (d.ci && CI_CLUSTERS.has(d.cluster)) tipRows.push(['50% interval', `${d.ci[0].toFixed(1)}–${d.ci[1].toFixed(1)}`]);
+        // 2026-05-13: 50%-interval row removed from the tooltip per Sam. The
+        // dot-pattern texture on the bar itself still shows the CI visually.
         const interp = isSelf
           ? `Activation-only node — position is activation level.`
           : (desc.low && desc.high ? `Low pole: ${desc.low} · High pole: ${desc.high}` : '')
@@ -4687,12 +4688,11 @@ document.addEventListener('DOMContentLoaded', () => {
           if (d.ci && CI_CLUSTERS.has(d.cluster)) {
             const ciLoPct = ((d.ci[0] - 1) / 9) * 100;
             const ciHiPct = ((d.ci[1] - 1) / 9) * 100;
-            const meanDiff = Math.abs(d.mean - d.pos);
-            const ciTitle = meanDiff > 0.15
-              ? `50% credible interval: ${d.ci[0].toFixed(1)}–${d.ci[1].toFixed(1)}\nMedian: ${d.pos.toFixed(1)} (marker)\nMean: ${d.mean.toFixed(1)} (skew ${(d.mean > d.pos ? '+' : '')}${(d.mean - d.pos).toFixed(1)})`
-              : `50% credible interval: ${d.ci[0].toFixed(1)}–${d.ci[1].toFixed(1)} (median ${d.pos.toFixed(1)})`;
             const ciWidth = Math.max(0, ciHiPct - ciLoPct);
-            ciHtml = `<div class="node-bar-ci-dots" style="left:${ciLoPct}%;width:${ciWidth}%;" title="${ciTitle}"></div>`;
+            // 2026-05-13: ciTitle removed per Sam. The dot pattern itself stays
+            // (visual indication of credible-interval spread) but the hover
+            // text is dropped — the row tooltip carries position + salience.
+            ciHtml = `<div class="node-bar-ci-dots" style="left:${ciLoPct}%;width:${ciWidth}%;"></div>`;
           }
           row.innerHTML = `
             <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--ink);font-weight:600;">${d.name}</div>
