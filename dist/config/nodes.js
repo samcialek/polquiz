@@ -27,12 +27,15 @@ export const NODE_DEFS = [
     { id: "CU", type: "continuous", cluster: "ENDS" },
     { id: "MOR", type: "continuous", cluster: "ENDS" },
     { id: "PRO", type: "continuous", cluster: "MEANS" },
-    { id: "EPS", type: "categorical", cluster: "MEANS" },
     { id: "AES", type: "categorical", cluster: "MEANS" },
     { id: "COM", type: "continuous", cluster: "MEANS" },
     { id: "ZS", type: "continuous", cluster: "REALITY" },
     { id: "ONT_H", type: "continuous", cluster: "REALITY" },
     { id: "ONT_S", type: "continuous", cluster: "REALITY" },
+    // EPS moved from MEANS to REALITY (2026-05-12): epistemic style is closer
+    // to "how you see the world" (what counts as knowledge) than to "how you
+    // pursue your goals." Engine taxonomy aligned with the results dashboard.
+    { id: "EPS", type: "categorical", cluster: "REALITY" },
     { id: "PF", type: "continuous", cluster: "SELF" },
     { id: "TRB", type: "continuous", cluster: "SELF" },
     { id: "ENG", type: "continuous", cluster: "SELF" }

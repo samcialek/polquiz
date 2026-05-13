@@ -24,7 +24,6 @@ Organized into clusters. Moral circle is a compound module (universal baseline +
 | Node | Full Name | Type | Scale |
 |------|-----------|------|-------|
 | PRO | Proceduralism | continuous | 1-5 |
-| EPS | Epistemic Style | categorical | 6 categories: empiricist, institutionalist, traditionalist, intuitionist, autonomous, nihilist |
 | AES | Aesthetic Style | categorical | 6 categories: statesman, technocrat, pastoral, authentic, fighter, visionary |
 | COM | Compromise Tolerance | continuous | 1-5 |
 
@@ -34,6 +33,9 @@ Organized into clusters. Moral circle is a compound module (universal baseline +
 | ZS | Zero-Sum Orientation | continuous | 1-5 |
 | ONT_H | Human Malleability | continuous | 1-5 |
 | ONT_S | System Ontology | continuous | 1-5 |
+| EPS | Epistemic Style | categorical | 6 categories: empiricist, institutionalist, traditionalist, intuitionist, autonomous, nihilist |
+
+(EPS moved from MEANS to REALITY on 2026-05-12 — epistemic style is closer to "what counts as knowledge" than to "how you pursue goals." Engine `nodes.ts` and the results dashboard both reflect this.)
 
 ### IDENTITY — Moral Circle Module (ADR-007, revised 2026-05-07)
 A compound module of **7 stored numbers** plus derived active-signal fields:
@@ -96,8 +98,8 @@ A change can improve eval top-1 while worsening live adaptive behavior, or sharp
 | `src/config/archetypes.ts` | All 115 archetype definitions with node signatures | **CANONICAL — do not regenerate** |
 | `src/config/nodes.ts` | 14 node definitions with cluster assignments | **CANONICAL** |
 | `src/config/categories.ts` | EPS/AES category names, prototypes, cost matrices | **CANONICAL** |
-| `src/config/questions.full.ts` | Full question bank | **CANONICAL** |
-| `src/config/questions.representative.ts` | Representative question subset | **CANONICAL** |
+| `src/config/questions.full.ts` | Full question bank — **METADATA-ONLY** stub catalog. Engine never reads evidence from here. Used only by `src/diagnostics/questionInfo.ts`. | non-canonical |
+| `src/config/questions.representative.ts` | **CANONICAL live-quiz bank.** All evidence maps (rankingMap, sliderMap, optionEvidence, etc.) live here. The live quiz, simulations, and diagnostic harnesses all read from this file. | **CANONICAL** |
 | `src/identity/resolveIdentityPrimary.ts` | Identity Primary overlay resolver | **CANONICAL** |
 | `src/historical/candidates.ts` | 60 US elections (1789–2024) with candidate node profiles | **CANONICAL** |
 | `src/historical/era-activations.json` | Per-year activation tags for US presidential elections | **CANONICAL — do not regenerate** |
