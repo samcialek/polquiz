@@ -5943,7 +5943,7 @@ var PrismEngine = (() => {
       stage: "fixed12",
       section: "I",
       promptShort: "issue_salience_screener",
-      promptFull: "Sort each political topic below by how much it matters to how you see politics. Put topics at the top that feel central to your political identity, in the middle if they matter but aren't central, and at the bottom if they don't really register.",
+      promptFull: "Sort each political topic by how much it enters into your politics. Topics that feel central to your political identity go on the left. Topics you don't consider much go on the right.",
       uiType: "priority_sort",
       priorityBattery: true,
       quality: 0.98,
@@ -18718,7 +18718,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q103-rewrite-v2";
+  var BUNDLE_VERSION = "20260513-q103-prompt";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
