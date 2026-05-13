@@ -3465,18 +3465,21 @@ export const REPRESENTATIVE_QUESTIONS = [
             //   ZS    "Partisan identity..."  → wrong node (PF/TRB territory)
             //   ONT_H "Hierarchy and order..." → mismatch (node scale is human-nature)
             //   CU    "National identity..."   → leaks into TRB anchor
-            // Each label now matches the node's high5/low1 framing in nodes.ts.
-            mat: "Economic policy — taxes, redistribution, jobs, markets, and who gets to share in the gains",
-            cd: "Social direction — reproductive rights, LGBTQ rights, gender identity, marriage, religious accommodation, and whether (and how fast) social conventions should change",
-            cu: "Pluralism — whether different worldviews, religions, languages, lifestyles, and conceptions of a good life should coexist as equals within the country, or whether the country should have one shared standard",
-            mor: "Moral scope — whether obligations stop at family and country, or extend to strangers everywhere",
-            pro: "Rule of law and procedures — whether process binds every side, or results are what matter most",
-            com: "Compromise and dealmaking — whether half a win is worth taking, or some lines you just don't cross",
-            zs: "Zero-sum vs positive-sum — whether systems (economic, political, cultural) usually produce gains by cooperation that benefit everyone, or by competition where one side's gain requires another's loss",
-            ont_h: "Human malleability — whether character and behavior can be substantially reshaped by environment, education, and institutions, or whether human nature is mostly fixed and cultivation can't really change it",
-            ont_s: "Institutions — the importance of strong, accountable institutions (laws, courts, agencies, international bodies) to human progress and a thriving society",
-            eps: "Truth and evidence — what counts as a credible source in political debates",
-            aes: "Leadership style — the kind of leader who appeals (fighter vs. statesman, visionary vs. pragmatist)"
+            // 2026-05-13 rewrite (per Sam): tightened to 14-16 words each, no
+            // "whether/whether" framing, consistent "Noun phrase — subject-matter
+            // clause" pattern. Goal is to help the respondent decide salience
+            // ("does this area of life matter to me?") rather than position.
+            mat: "Economic life — how wealth is produced, who collects it, and how policy reshapes the distribution.",
+            cd: "Cultural direction — the pace and shape of change on family, gender, sexuality, marriage, and religion.",
+            cu: "Pluralism — how a single political community accommodates many ways of life, beliefs, and languages.",
+            mor: "Moral scope — how wide a circle of obligation reaches, from family and country outward to humanity.",
+            pro: "Procedure — the weight of fair rules and due process against the urgency of getting things done.",
+            com: "Compromise — the terms on which political actors give ground, hold the line, or refuse to deal.",
+            zs: "Zero-sum versus positive-sum — how gains and losses are produced across economic, political, and cultural life.",
+            ont_h: "Human nature — the relative weight of fixed disposition versus environment and education in shaping character.",
+            ont_s: "Institutions — the role of formal organizations (laws, courts, agencies, treaties) in stabilizing and improving society.",
+            eps: "Epistemics — the standards by which political claims earn credibility: evidence, tradition, authority, intuition.",
+            aes: "Political style — the kind of leadership and rhetorical register that lands in public life."
         },
         // Hard likelihoods on the "neutral" bucket — the whole point of this
         // question. [0.90, 0.08, 0.02, 0.00] drives salDist[0] from uniform 0.25 to
