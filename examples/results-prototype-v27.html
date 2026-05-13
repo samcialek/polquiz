@@ -2143,18 +2143,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'other';
     }
 
-    // Top-3 elections by margin between first and second choice candidates.
-    // These are your most decisive votes — gold-outlined as "elections that
-    // define you." Single-candidate elections (1820 Monroe unopposed) excluded
-    // because margin is undefined.
+    // Top-3 elections by margin between the abstention bar and the nearest
+    // candidate's distance. Higher score = the bar more decisively cleared,
+    // i.e., the year you'd most clearly vote for someone rather than sit out.
+    // Abstain elections (nearest distance > bar) get a negative score and
+    // naturally rank last, matching Sam's intuition that an election you
+    // abstained from shouldn't "define" you (2026-05-13).
     function findDefiningElections(predsByYear) {
       const candidates = [];
       for (const [year, p] of Object.entries(predsByYear)) {
-        if (!p || !Array.isArray(p.candidates) || p.candidates.length < 2) continue;
-        const sorted = p.candidates.slice().sort((a, b) => a.distance - b.distance);
-        candidates.push({ year: +year, margin: sorted[1].distance - sorted[0].distance });
+        if (!p || !Array.isArray(p.candidates) || p.candidates.length === 0) continue;
+        if (!p.nearest || typeof p.clearingBar !== 'number') continue;
+        const score = p.clearingBar - p.nearest.distance;
+        if (score <= 0) continue;
+        candidates.push({ year: +year, score });
       }
-      candidates.sort((a, b) => b.margin - a.margin);
+      candidates.sort((a, b) => b.score - a.score);
       return new Set(candidates.slice(0, 3).map(c => c.year));
     }
 
