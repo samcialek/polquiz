@@ -1603,7 +1603,7 @@ document.addEventListener('DOMContentLoaded', () => {
     REALITY: '#3D6B7C', // dusty teal-slate — how you see, contemplative
     IDENTITY:    '#8C7A5B', // warm taupe — who you are, grounded / earthy
   };
-  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', IDENTITY: 'IDENTITY — Who You Are' };
+  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', IDENTITY: 'MORAL CIRCLE — Boundary Load' };
   const epsCategories = ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'];
   const aesCategories = ['statesman','technocrat','pastoral','authentic','fighter','visionary'];
 
@@ -2471,8 +2471,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'REALITY',  name: 'REALITY',  subline: 'how you see the world',
         definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, and epistemic style.',
         members: { continuous: ['ZS','ONT_H'], categorical: ['EPS'] } },
-      { id: 'IDENTITY', name: 'IDENTITY', subline: 'who you are politically',
-        definition: 'IDENTITY measures who you are politically — moral circle and moral-boundary loadings.',
+      { id: 'IDENTITY', name: 'MORAL CIRCLE', subline: 'above-universal in-group preference',
+        definition: 'Moral Circle measures preference for specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Wide-circle universalists score near zero — broad concern, not absence of identity.',
         members: { continuous: ['MOR'], categorical: [], morModule: true } },
     ];
     function clusterOf(nodeCode) {
@@ -4226,7 +4226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const identityHeading = document.createElement('div');
       identityHeading.className = 'moral-circle-cluster-heading';
-      identityHeading.innerHTML = `IDENTITY <span class="sub">&mdash; Who You Are</span>`;
+      identityHeading.innerHTML = `MORAL CIRCLE <span class="sub">&mdash; Boundary Load</span>`;
       wrap.appendChild(identityHeading);
 
       const svgWrap = document.createElement('div');
@@ -4875,8 +4875,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ENDS: 'What you want — material, cultural direction, assimilation.',
         MEANS: 'How you pursue it — procedure, compromise, institutions, aesthetic style.',
         REALITY: 'How you see the world — zero-sum, human malleability, epistemics.',
-        IDENTITY: 'Who you are politically — moral circle and engagement.',
+        IDENTITY: 'Moral Circle — boundary load. How much you weight specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Near-zero means a broad moral circle, not absence of identity.',
       };
+      // Short labels rendered inside the donut wedge itself. Internal cluster
+      // IDs (IDENTITY etc.) are kept for routing; user-facing wedge text uses
+      // the shorter name. Tooltip + drill-tagline use the full label.
+      const clusterWedgeNames = {
+        ENDS: 'ENDS', MEANS: 'MEANS', REALITY: 'REALITY', IDENTITY: 'MORAL',
+      };
+      // Raw (un-normalized) IDENTITY emphasis = intensity01 from the moral-
+      // circle module. When this is very low, the normalized wedge will be a
+      // thin sliver and "0%" reads as "no identity." Replace the wedge's
+      // percentage text with a calm "Broad" label so the visual tells the
+      // honest story: wide moral circle, not missing data.
+      const identityRawLow = (liveRaw && liveRaw.IDENTITY != null && liveRaw.IDENTITY < 0.05);
 
       const ns = 'http://www.w3.org/2000/svg';
       const svg = document.getElementById('cluster-donut');
@@ -4908,7 +4920,7 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('class', 'donut-wedge');
         path.dataset.cluster = cn;
         const titleEl = document.createElementNS(ns, 'title');
-        titleEl.textContent = `${cn} — ${(e * 100).toFixed(0)}% of your total emphasis`;
+        titleEl.textContent = `${clusterLabels[cn] || cn} — ${(e * 100).toFixed(0)}% of your total emphasis`;
         path.appendChild(titleEl);
         svg.appendChild(path);
         wedgeEls[cn] = path;
@@ -4922,15 +4934,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const lx = rMid * Math.cos(aMid);
         const ly = rMid * Math.sin(aMid);
 
-        // 2026-05-08: per-cluster label font sizing. IDENTITY and REALITY are
-        // 8 chars (longest); ENDS is 4 and MEANS is 5. Shrinking the long
-        // labels by 2px makes them fit in narrower wedges without affecting
-        // the short ones' readability. Per-char width is approximated as
-        // 0.72×fontSize for Space Grotesk bold with 0.14em letter-spacing.
-        const labelFontSize = (cn === 'IDENTITY' || cn === 'REALITY') ? 13 : 16;
+        // 2026-05-12: wedge text comes from clusterWedgeNames (IDENTITY → "MORAL").
+        // REALITY remains the longest at 7 chars and gets the smaller font; the
+        // others all fit at 16px. Per-char width ~0.72×fontSize for Space Grotesk
+        // bold with 0.14em letter-spacing.
+        const wedgeName = clusterWedgeNames[cn] || cn;
+        const labelFontSize = (cn === 'REALITY') ? 13 : 16;
         const charPx = labelFontSize * 0.72;
         const padPx = 14;
-        const textWidthPx = cn.length * charPx + padPx;
+        const textWidthPx = wedgeName.length * charPx + padPx;
         // Inner-edge arc length is the conservative measure of available
         // horizontal space at the label's vertical position.
         const innerArcPx = Math.abs(sweep) * R_IN;
@@ -4948,7 +4960,7 @@ document.addEventListener('DOMContentLoaded', () => {
           labelEl.setAttribute('text-anchor', 'middle');
           labelEl.setAttribute('dominant-baseline', 'middle');
           labelEl.style.pointerEvents = 'none';
-          labelEl.textContent = cn;
+          labelEl.textContent = wedgeName;
           svg.appendChild(labelEl);
 
           const pctEl = document.createElementNS(ns, 'text');
@@ -4960,7 +4972,12 @@ document.addEventListener('DOMContentLoaded', () => {
           pctEl.setAttribute('fill', '#333');
           pctEl.setAttribute('text-anchor', 'middle');
           pctEl.style.pointerEvents = 'none';
-          pctEl.textContent = `${(e * 100).toFixed(0)}%`;
+          // For IDENTITY/MORAL when raw boundary load is near zero, show a
+          // calm word instead of "0%" — honest reading is "broad moral circle,"
+          // not "no identity."
+          pctEl.textContent = (cn === 'IDENTITY' && identityRawLow)
+            ? 'Broad'
+            : `${(e * 100).toFixed(0)}%`;
           svg.appendChild(pctEl);
         }
       });
