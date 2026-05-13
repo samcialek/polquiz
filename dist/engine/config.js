@@ -89,19 +89,23 @@ export const LEGACY_FIXED_OPENER = [
 // ──────────────────────────────────────────────────────────────────────────────
 //
 // Replaces the 32-question FIXED_OPENER with a two-tier fixed front door
-// (15 questions) followed by salience-gated top-K drilling and EIG-fill.
+// (14 questions) followed by salience-gated top-K drilling and EIG-fill.
 //
 // Design principle: discover what's salient first, then spend question budget
 // on the nodes the respondent actually cares about. Low-salience nodes get one
 // rough position read via universal screeners and nothing further.
 //
-// CORE_OPENER (10) — establish salience for every node, capture metadata.
+// CORE_OPENER (9) — establish salience for every node, capture metadata.
 // UNIVERSAL_SCREENERS (5) — give every major node ≥ 1 light position read,
 //                           even when its salience is zero.
 // After fixed phase, selector enters TOP_K_DRILL → EIG_FILL phases (see
 // browser/api.ts:getNextQuestion + engine/selectorEIG.ts).
 //
 // Items deliberately excluded from fixed and queued as conditional/adaptive:
+//   - Q1 (political_content_frequency): redundant ENG reinforcement; dropped
+//          2026-05-03 per fixed-13/14 matrix (F13-B). Persona-replay top-1/
+//          top-3 fully preserved (66/85), avg Q saved 1.58. ENG position
+//          evidence still arrives via Q97 + dynamic-phase questions.
 //   - Q4 (cultural_social_salience): conditional on uncertain CD/CU/MOR sal.
 //   - Q98 (group_solidarity): adaptive if TRB / identity-primary risk is high.
 //   - Q101 (cultural_social_placement_dual): pending rewrite (omnibus social-
@@ -112,11 +116,10 @@ export const LEGACY_FIXED_OPENER = [
 export const CORE_OPENER = [
     200, // party identification — partyID metadata for election compute
     103, // issue salience screener — global salience router (priorityBattery)
-    97, // political thought frequency — PF / ENG activation
-    1, // political content frequency — ENG activation reinforcement
+    97, // political thought frequency — PF / ENG position
     60, // politically important identities — TRB anchor
     89, // epistemic style battery — EPS category + salience
-    22, // source trust conflict — EPS tie-breaker
+    22, // source trust conflict — EPS tie-breaker (load-bearing for top-1)
     218, // aesthetic style ranking — AES category + salience
     211, // strategic voting — vote-prediction metadata
     212, // negative partisanship — vote-prediction metadata
@@ -128,6 +131,18 @@ export const UNIVERSAL_SCREENERS = [
     209, // zero-sum economics view — direct ZS position read
     210, // human malleability view — direct ONT_H position read
     214, // institutions foundational — direct ONT_S position read
+    // 2026-05-13: moral-circle probes added to the fixed router. The
+    // `stage: "fixed12"` field on these questions is metadata only — the
+    // engine reads this hardcoded list. Without these two entries Q229 and
+    // Q231 only fire adaptively, and the EIG scorer doesn't evaluate
+    // `moralCircle` evidence as a dimension, so they almost never get picked.
+    231, // universal_baseline_stranger — slider, anchors universal baseline
+    //   regardless of Q229 outcome. Sharper than Q230 (stranger framing
+    //   forces the universalist vs particularist read).
+    229, // moral_circle_forced_choice — load-bearing in-group probe.
+    //   Emits scoped:80 on in-group pick OR universal:90 on "everyone
+    //   equal." Combined with Q231 above, every run gets a guaranteed
+    //   universal baseline AND a forced moral-circle trade-off.
 ];
 // Combined list — used by getNextQuestion to iterate the fixed front door
 // in order. CORE first (establish salience + metadata), then UNIVERSAL

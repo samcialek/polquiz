@@ -8399,8 +8399,22 @@ var PrismEngine = (() => {
     // zero-sum economics view — direct ZS position read
     210,
     // human malleability view — direct ONT_H position read
-    214
+    214,
     // institutions foundational — direct ONT_S position read
+    // 2026-05-13: moral-circle probes added to the fixed router. The
+    // `stage: "fixed12"` field on these questions is metadata only — the
+    // engine reads this hardcoded list. Without these two entries Q229 and
+    // Q231 only fire adaptively, and the EIG scorer doesn't evaluate
+    // `moralCircle` evidence as a dimension, so they almost never get picked.
+    231,
+    // universal_baseline_stranger — slider, anchors universal baseline
+    //   regardless of Q229 outcome. Sharper than Q230 (stranger framing
+    //   forces the universalist vs particularist read).
+    229
+    // moral_circle_forced_choice — load-bearing in-group probe.
+    //   Emits scoped:80 on in-group pick OR universal:90 on "everyone
+    //   equal." Combined with Q231 above, every run gets a guaranteed
+    //   universal baseline AND a forced moral-circle trade-off.
   ];
   var SALIENCE_ROUTER_FIXED = [
     ...CORE_OPENER,
@@ -18695,7 +18709,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-mc-wires";
+  var BUNDLE_VERSION = "20260513-mc-fixed-router";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
