@@ -82,7 +82,7 @@ cluster_impact_share[c]    = cluster_contribution[c] / Σ_n contribution[n]   //
 cluster_rms[c]             = sqrt(cluster_contribution[c] / cluster_weight[c])  // optional — comparable to per-node "how big is the gap" in this cluster
 ```
 
-Where node-level contributions for both continuous and categorical (style match) follow the formulas already documented in `scoring-impact-cleanup-plan.md`. EPS contributes to REALITY (moved from MEANS on 2026-05-12 — engine `nodes.ts`, results dashboard, and audit cluster maps all aligned). AES contributes to MEANS.
+Where node-level contributions for both continuous and categorical (style match) follow the formulas already documented in `scoring-impact-cleanup-plan.md`. As of 2026-05-12: EPS contributes to REALITY (epistemic style = how you see the world); ONT_S contributes to MEANS (institutional ontology is strategy-relevant alongside PRO/COM/AES). AES stays in MEANS. Engine `nodes.ts`, results dashboard, and audit cluster maps are all aligned.
 
 Critical detail: the cluster's `effSal`-weighted contribution is what the engine actually uses. Don't show RMS without showing contribution share — RMS hides cluster size and salience differences that drive the actual decision.
 

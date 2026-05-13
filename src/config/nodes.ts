@@ -33,13 +33,16 @@ export const NODE_DEFS: NodeDef[] = [
   { id: "PRO", type: "continuous", cluster: "MEANS" },
   { id: "AES", type: "categorical", cluster: "MEANS" },
   { id: "COM", type: "continuous", cluster: "MEANS" },
+  // ONT_S moved back to MEANS (2026-05-12): institutional ontology ("are
+  // institutions a useful tool?") is closer to "how you act" than to "how
+  // you see the world." Sits with PRO/COM/AES as strategy-relevant nodes.
+  { id: "ONT_S", type: "continuous", cluster: "MEANS" },
 
   { id: "ZS", type: "continuous", cluster: "REALITY" },
   { id: "ONT_H", type: "continuous", cluster: "REALITY" },
-  { id: "ONT_S", type: "continuous", cluster: "REALITY" },
   // EPS moved from MEANS to REALITY (2026-05-12): epistemic style is closer
   // to "how you see the world" (what counts as knowledge) than to "how you
-  // pursue your goals." Engine taxonomy aligned with the results dashboard.
+  // pursue your goals."
   { id: "EPS", type: "categorical", cluster: "REALITY" },
 
   { id: "PF", type: "continuous", cluster: "SELF" },

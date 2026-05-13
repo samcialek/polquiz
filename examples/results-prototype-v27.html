@@ -1593,9 +1593,9 @@ document.addEventListener('DOMContentLoaded', () => {
     CU: { name: 'Assimilation', low1: 'One shared way of life', high5: 'Different ways of life, side by side', cluster: 'ENDS' },
     PRO: { name: 'Procedure', low1: 'Get results, bend rules', high5: 'Follow the rules', cluster: 'MEANS' },
     COM: { name: 'Compromise', low1: 'Stand on principle', high5: 'Cut a deal', cluster: 'MEANS' },
+    ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'MEANS' },
     ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
     ONT_H: { name: 'Human Malleability', low1: 'Character is fixed', high5: 'Character is shaped by environment', cluster: 'REALITY' },
-    ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'REALITY' },
     ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'IDENTITY' },
   };
   // v20: on-brand saturated cluster colors. All four are pulled from the
@@ -1607,7 +1607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     REALITY: '#3D6B7C', // dusty teal-slate — how you see, contemplative
     IDENTITY:    '#8C7A5B', // warm taupe — who you are, grounded / earthy
   };
-  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', IDENTITY: 'MORAL CIRCLE — Boundary Load' };
+  const clusterLabels = { ENDS: 'ENDS — What You Want', MEANS: 'MEANS — How You Get There', REALITY: 'REALITY — How You See the World', IDENTITY: "IDENTITY — Who's in Your Circle" };
   const epsCategories = ['empiricist','institutionalist','traditionalist','intuitionist','autonomous','nihilist'];
   const aesCategories = ['statesman','technocrat','pastoral','authentic','fighter','visionary'];
 
@@ -2405,9 +2405,9 @@ document.addEventListener('DOMContentLoaded', () => {
       MOR:   { name: 'Moral Circle',      cluster: 'IDENTITY', low: 'In-group only',             high: 'Universal' },
       PRO:   { name: 'Procedure',         cluster: 'MEANS',   low: 'Get results, bend rules',   high: 'Follow the rules' },
       COM:   { name: 'Compromise',        cluster: 'MEANS',   low: 'Stand on principle',        high: 'Cut a deal' },
+      ONT_S: { name: 'Institutions',      cluster: 'MEANS',   low: 'Not the right tool',        high: 'Can produce good change' },
       ZS:    { name: 'Zero-Sum',          cluster: 'REALITY', low: 'Everyone can win',          high: 'One side wins' },
       ONT_H: { name: 'Human Malleability',cluster: 'REALITY', low: 'Character is fixed',        high: 'Shaped by environment' },
-      ONT_S: { name: 'Institutions',      cluster: 'REALITY', low: 'Not the right tool',        high: 'Can produce good change' },
     };
     // v27.42 — pole phrases now bare adjectival form (no leading "the", no
     // trailing "view"). The sentence-level wording is composed by
@@ -2475,14 +2475,14 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'ENDS',     name: 'ENDS',     subline: 'what you want',
         definition: 'ENDS measures what you want from politics — material policy, cultural direction, and assimilation.',
         members: { continuous: ['MAT','CD','CU'], categorical: [] } },
-      { id: 'MEANS',    name: 'MEANS',    subline: 'how you pursue it',
-        definition: 'MEANS measures how you pursue your political goals — procedure, compromise, and aesthetic register.',
-        members: { continuous: ['PRO','COM'], categorical: ['AES'] } },
+      { id: 'MEANS',    name: 'MEANS',    subline: 'how you get there',
+        definition: 'MEANS measures how you pursue your political goals — procedure, compromise, institutional ontology, and aesthetic register.',
+        members: { continuous: ['PRO','COM','ONT_S'], categorical: ['AES'] } },
       { id: 'REALITY',  name: 'REALITY',  subline: 'how you see the world',
-        definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, institutional ontology, and epistemic style.',
-        members: { continuous: ['ZS','ONT_H','ONT_S'], categorical: ['EPS'] } },
-      { id: 'IDENTITY', name: 'MORAL CIRCLE', subline: 'above-universal in-group preference',
-        definition: 'Moral Circle measures preference for specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Wide-circle universalists score near zero — broad concern, not absence of identity.',
+        definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, and epistemic style.',
+        members: { continuous: ['ZS','ONT_H'], categorical: ['EPS'] } },
+      { id: 'IDENTITY', name: 'IDENTITY', subline: "who's in your circle",
+        definition: "IDENTITY measures who's in your moral circle — preference for specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Wide-circle universalists score near zero — broad concern, not absence of identity.",
         members: { continuous: ['MOR'], categorical: [], morModule: true } },
     ];
     function clusterOf(nodeCode) {
@@ -4236,7 +4236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const identityHeading = document.createElement('div');
       identityHeading.className = 'moral-circle-cluster-heading';
-      identityHeading.innerHTML = `MORAL CIRCLE <span class="sub">&mdash; Boundary Load</span>`;
+      identityHeading.innerHTML = `IDENTITY <span class="sub">&mdash; Who's in Your Circle</span>`;
       wrap.appendChild(identityHeading);
 
       const svgWrap = document.createElement('div');
@@ -4432,10 +4432,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== SECTION 4: NODE PROFILE ==========
     // PROTOTYPE: cluster reorg — MOR moved to IDENTITY as 7-category sunburst,
-    // PF/TRB collapsed into MOR.salience, ONT_S and EPS both in REALITY.
+    // PF/TRB collapsed into MOR.salience. 2026-05-12: ONT_S in MEANS,
+    // EPS in REALITY.
     const nodeData = {};
     // v16: revert to bar rows for every continuous node — ENDS (MAT, CD, CU),
-    // MEANS (PRO, COM), REALITY (ZS, ONT_H, ONT_S). ENG still lives in the
+    // MEANS (PRO, COM, ONT_S), REALITY (ZS, ONT_H). ENG still lives in the
     // page-header badge per v3.
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
     const SELF_CODES = ['ENG'];
@@ -4814,8 +4815,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Cluster → constituent nodes. Mirrors nodeLabels.
       const CLUSTER_NODES = {
         ENDS:    { continuous: ['MAT', 'CD', 'CU'],         categorical: [] },
-        MEANS:   { continuous: ['PRO', 'COM'],              categorical: ['AES'] },
-        REALITY: { continuous: ['ZS', 'ONT_H', 'ONT_S'],    categorical: ['EPS'] },
+        MEANS:   { continuous: ['PRO', 'COM', 'ONT_S'],     categorical: ['AES'] },
+        REALITY: { continuous: ['ZS', 'ONT_H'],             categorical: ['EPS'] },
         IDENTITY:{ continuous: [],                          categorical: [] },
       };
 
@@ -4885,15 +4886,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const clusterDescriptions = {
         ENDS: 'What you want — material, cultural direction, assimilation.',
-        MEANS: 'How you pursue it — procedure, compromise, institutions, aesthetic style.',
+        MEANS: 'How you get there — procedure, compromise, institutional ontology, aesthetic style.',
         REALITY: 'How you see the world — zero-sum, human malleability, epistemics.',
-        IDENTITY: 'Moral Circle — boundary load. How much you weight specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Near-zero means a broad moral circle, not absence of identity.',
+        IDENTITY: "Who's in your circle. How much you weight specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Near-zero means a broad moral circle, not absence of identity.",
       };
       // Short labels rendered inside the donut wedge itself. Internal cluster
-      // IDs (IDENTITY etc.) are kept for routing; user-facing wedge text uses
-      // the shorter name. Tooltip + drill-tagline use the full label.
+      // IDs are kept for routing; user-facing wedge text uses the same
+      // labels as before now that the IDENTITY name was restored.
       const clusterWedgeNames = {
-        ENDS: 'ENDS', MEANS: 'MEANS', REALITY: 'REALITY', IDENTITY: 'MORAL',
+        ENDS: 'ENDS', MEANS: 'MEANS', REALITY: 'REALITY', IDENTITY: 'IDENTITY',
       };
       // Raw (un-normalized) IDENTITY emphasis = intensity01 from the moral-
       // circle module. When this is very low, the normalized wedge will be a
@@ -4946,12 +4947,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const lx = rMid * Math.cos(aMid);
         const ly = rMid * Math.sin(aMid);
 
-        // 2026-05-12: wedge text comes from clusterWedgeNames (IDENTITY → "MORAL").
-        // REALITY remains the longest at 7 chars and gets the smaller font; the
-        // others all fit at 16px. Per-char width ~0.72×fontSize for Space Grotesk
-        // bold with 0.14em letter-spacing.
+        // 2026-05-12: wedge text comes from clusterWedgeNames. IDENTITY (8 chars)
+        // and REALITY (7 chars) get the smaller 13px font; ENDS (4) and MEANS (5)
+        // fit at 16px. Per-char width ~0.72×fontSize for Space Grotesk bold with
+        // 0.14em letter-spacing.
         const wedgeName = clusterWedgeNames[cn] || cn;
-        const labelFontSize = (cn === 'REALITY') ? 13 : 16;
+        const labelFontSize = (cn === 'REALITY' || cn === 'IDENTITY') ? 13 : 16;
         const charPx = labelFontSize * 0.72;
         const padPx = 14;
         const textWidthPx = wedgeName.length * charPx + padPx;

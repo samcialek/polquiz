@@ -26,8 +26,8 @@ const ANCHOR_KEY = "TRB_ANCHOR";
 
 const CLUSTER_OF: Record<string, string> = {
   MAT: "ENDS", CD: "ENDS", CU: "ENDS", MOR: "ENDS",
-  PRO: "MEANS", AES: "MEANS", COM: "MEANS",
-  ZS: "REALITY", ONT_H: "REALITY", ONT_S: "REALITY", EPS: "REALITY",
+  PRO: "MEANS", AES: "MEANS", COM: "MEANS", ONT_S: "MEANS",
+  ZS: "REALITY", ONT_H: "REALITY", EPS: "REALITY",
   PF: "SELF", TRB: "SELF", ENG: "SELF",
   TRB_ANCHOR: "ANCHOR",
 };

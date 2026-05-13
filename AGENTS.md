@@ -26,16 +26,16 @@ Organized into 4 clusters:
 | PRO | Proceduralism | continuous | 1-5 |
 | AES | Aesthetic Style | categorical | 6 categories: statesman, technocrat, pastoral, authentic, fighter, visionary |
 | COM | Compromise Tolerance | continuous | 1-5 |
+| ONT_S | System Ontology | continuous | 1-5 |
 
 ### REALITY — How you see the world
 | Node | Full Name | Type | Scale |
 |------|-----------|------|-------|
 | ZS | Zero-Sum Orientation | continuous | 1-5 |
 | ONT_H | Hierarchy Orientation | continuous | 1-5 |
-| ONT_S | System Ontology | continuous | 1-5 |
 | EPS | Epistemic Style | categorical | 6 categories: empiricist, institutionalist, traditionalist, intuitionist, autonomous, nihilist |
 
-(EPS moved from MEANS to REALITY on 2026-05-12 — epistemic style is "what counts as knowledge," not "how you pursue goals." Aligned with `src/config/nodes.ts` and `CLAUDE.md`.)
+(2026-05-12: EPS in REALITY — "what counts as knowledge" is how you see the world. ONT_S in MEANS — institutional ontology is strategy-relevant. Aligned with `src/config/nodes.ts` and `CLAUDE.md`.)
 
 ### SELF — Your political identity
 | Node | Full Name | Type | Scale | Dimension |

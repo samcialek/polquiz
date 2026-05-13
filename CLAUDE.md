@@ -26,16 +26,16 @@ Organized into clusters. Moral circle is a compound module (universal baseline +
 | PRO | Proceduralism | continuous | 1-5 |
 | AES | Aesthetic Style | categorical | 6 categories: statesman, technocrat, pastoral, authentic, fighter, visionary |
 | COM | Compromise Tolerance | continuous | 1-5 |
+| ONT_S | System Ontology | continuous | 1-5 |
 
 ### REALITY — How you see the world
 | Node | Full Name | Type | Scale |
 |------|-----------|------|-------|
 | ZS | Zero-Sum Orientation | continuous | 1-5 |
 | ONT_H | Human Malleability | continuous | 1-5 |
-| ONT_S | System Ontology | continuous | 1-5 |
 | EPS | Epistemic Style | categorical | 6 categories: empiricist, institutionalist, traditionalist, intuitionist, autonomous, nihilist |
 
-(EPS moved from MEANS to REALITY on 2026-05-12 — epistemic style is closer to "what counts as knowledge" than to "how you pursue goals." Engine `nodes.ts` and the results dashboard both reflect this.)
+(2026-05-12: EPS moved from MEANS to REALITY — "what counts as knowledge" is closer to how you see the world. ONT_S kept in MEANS — institutional ontology ("are institutions a useful tool?") is strategy-relevant, sitting alongside PRO/COM/AES. Engine `nodes.ts` and the results dashboard both reflect this.)
 
 ### IDENTITY — Moral Circle Module (ADR-007, revised 2026-05-07)
 A compound module of **7 stored numbers** plus derived active-signal fields:
