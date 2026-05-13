@@ -4627,6 +4627,57 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // will have 0-2 active scopes after derivation.
   // =========================================================================
 
+  // Q-A0 (added 2026-05-12): forced-choice moral-circle probe. Hits universal
+  // AND one scoped in a single touch — option 1 ("everyone equal") anchors
+  // universal high with no scoped pull; options 3-8 push the chosen scope to
+  // 80 while dropping universal to 45, forcing excess to fire. fixed12 stage
+  // so it always asks. Designed to give a load-bearing moral-circle signal
+  // even when the adaptive selector skips the rest of the battery.
+  {
+    id: 229,
+    stage: "fixed12",
+    section: "I",
+    promptShort: "moral_circle_forced_choice",
+    promptFull:
+      "You can spend the next hour offering real help to one person you've never met. Whose situation feels closest to a personal duty?",
+    uiType: "single_choice",
+    quality: 0.97,
+    rewriteNeeded: false,
+    options: [
+      "everyone_equal",
+      "stranger_anywhere",
+      "fellow_citizen",
+      "co_religionist",
+      "same_ethnicity",
+      "same_class",
+      "same_gender",
+      "shared_politics",
+    ],
+    optionLabels: {
+      everyone_equal:    "Whoever needs the help most — they all matter the same to me",
+      stranger_anywhere: "A complete stranger, anywhere in the world",
+      fellow_citizen:    "A fellow citizen of your country",
+      co_religionist:    "Someone from your religious tradition or sacred worldview",
+      same_ethnicity:    "Someone of your racial or ethnic background",
+      same_class:        "Someone in your economic class or material situation",
+      same_gender:       "Someone of your gender or gender-linked identity (including LGBTQ status)",
+      shared_politics:   "Someone who shares your core political values",
+    },
+    touchProfile: [
+      { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "universal_baseline_legacy_proxy" },
+    ],
+    optionEvidence: {
+      everyone_equal:    { moralCircle: { universal: 90 } },
+      stranger_anywhere: { moralCircle: { universal: 75 } },
+      fellow_citizen:    { moralCircle: { universal: 45, scopedAffinities: { national:      80 } } },
+      co_religionist:    { moralCircle: { universal: 45, scopedAffinities: { religious:     80 } } },
+      same_ethnicity:    { moralCircle: { universal: 45, scopedAffinities: { ethnic_racial: 80 } } },
+      same_class:        { moralCircle: { universal: 45, scopedAffinities: { class:         80 } } },
+      same_gender:       { moralCircle: { universal: 45, scopedAffinities: { gender:        80 } } },
+      shared_politics:   { moralCircle: { universal: 45, scopedAffinities: { ideological:   80 } } },
+    },
+  },
+
   // Q-A1: universal_baseline_humanity
   {
     id: 230,

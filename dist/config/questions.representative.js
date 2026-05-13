@@ -103,11 +103,12 @@ export const REPRESENTATIVE_QUESTIONS = [
         // trust. A respondent who attributes inequality to structural causes
         // typically wants stronger institutions to address it, not weaker ones.
         // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+        // ZS/position and EPS/category rows dropped 2026-05-03 per question-information
+        // audit: allocationMap has no ZS or EPS entries in any bucket, so the engine
+        // never updated either node from this question.
         touchProfile: [
             { node: "MAT", kind: "continuous", role: "position", weight: 0.85, touchType: "causal_allocation" },
-            { node: "ZS", kind: "continuous", role: "position", weight: 0.15, touchType: "inequality_worldview" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.25, touchType: "allocation_shape" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
             { node: "MAT", kind: "continuous", role: "salience", weight: 0.55, touchType: "derived_allocation_concentration" }
         ],
         allocationMap: {
@@ -131,11 +132,12 @@ export const REPRESENTATIVE_QUESTIONS = [
         // matter and could work better. This is a ZS / ONT_H probe (zero-sum
         // worldview + view of human nature), not an institutional-trust probe.
         // ONT_S is now measured by Q214/Q215/Q216 (normative essentialism) only.
+        // EPS/category row dropped 2026-05-03 per question-information audit:
+        // allocationMap has no EPS entries in any bucket.
         touchProfile: [
             { node: "ZS", kind: "continuous", role: "position", weight: 0.55, touchType: "conflict_attribution" },
             { node: "ONT_H", kind: "continuous", role: "position", weight: 0.25, touchType: "motive_model" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.30, touchType: "allocation_shape" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
             { node: "ZS", kind: "continuous", role: "salience", weight: 0.50, touchType: "derived_allocation_concentration" }
         ],
         allocationMap: {
@@ -228,7 +230,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             independence_vs_elders: {
                 independence: {
                     continuous: { ONT_H: 0.25 },
-                    categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.plainspoken }
+                    categorical: { EPS: EPS_PROTOTYPES.autonomous, AES: AES_PROTOTYPES.authentic }
                 },
                 respect_for_elders: {
                     continuous: { ONT_H: -0.25 },
@@ -265,12 +267,13 @@ export const REPRESENTATIVE_QUESTIONS = [
         // - self_interest = rational actors, low malleability. Kept at -0.5 ONT_H.
         // - bad_motives = fixed in bad faith, very low malleability. Kept -0.8.
         // - legitimate_values = good-faith disagreement. Kept at 0 ONT_H.
+        // ZS/position and MOR/position rows dropped 2026-05-03 per question-information
+        // audit: allocationMap has no ZS or MOR entries in any bucket. EPS/category
+        // retained — `misinformed` bucket has explicit categorical EPS distribution.
         touchProfile: [
             { node: "TRB", kind: "continuous", role: "position", weight: 0.75, touchType: "outgroup_model" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.45, touchType: "outgroup_model" },
             { node: "ONT_H", kind: "continuous", role: "position", weight: 0.30, touchType: "malleability_proxy" },
-            { node: "ZS", kind: "continuous", role: "position", weight: 0.35, touchType: "outgroup_model" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "opponent_moral_scope" },
             { node: "EPS", kind: "categorical", role: "category", weight: 0.20, touchType: "allocation_shape_epistemic" }
         ],
         allocationMap: {
@@ -328,20 +331,27 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.96,
         rewriteNeeded: false,
         touchProfile: [
-            // Continuous position touches removed 2026-05-02: rankingMap carries
-            // TRB_ANCHOR evidence only, so the old TRB/MOR/CU/CD/MAT rows inflated
-            // coverage counters without moving posteriors.
+            // ADR-007 (T3): Q60 emits both legacy trbAnchor (for the ADR-006
+            // fallback path) AND new moralCircle scoped evidence. When a user
+            // ranks an identity highly, we infer above-baseline scoped affinity
+            // for that group. global_citizen flips to universalAffinity.
             { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
         ],
         rankingMap: {
-            national_identity: { trbAnchor: { national: 1 } },
-            ideological_identity: { trbAnchor: { ideological: 1 } },
-            religious_identity: { trbAnchor: { religious: 1 } },
-            class_identity: { trbAnchor: { class: 1 } },
-            ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 } },
-            gender_identity: { trbAnchor: { gender: 1 } },
-            sexual_identity: { trbAnchor: { sexual: 1 } },
-            global_citizen: { trbAnchor: { global: 1 } }
+            // Each highly-ranked identity boosts the matching scoped affinity to
+            // 70 (mid-strong scoped value, comparable to "somewhat_more" on the
+            // Battery B scale). Below-the-fold ranks get no scoped evidence.
+            // Per 2026-05-08: sexual_identity row dropped per Sam — we don't
+            // probe sexual identity separately under the 6-scope model.
+            national_identity: { trbAnchor: { national: 1 }, moralCircle: { scopedAffinities: { national: 70 } } },
+            ideological_identity: { trbAnchor: { ideological: 1 }, moralCircle: { scopedAffinities: { ideological: 70 } } },
+            religious_identity: { trbAnchor: { religious: 1 }, moralCircle: { scopedAffinities: { religious: 70 } } },
+            class_identity: { trbAnchor: { class: 1 }, moralCircle: { scopedAffinities: { class: 70 } } },
+            ethnic_racial_identity: { trbAnchor: { ethnic_racial: 1 }, moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+            gender_identity: { trbAnchor: { gender: 1 }, moralCircle: { scopedAffinities: { gender: 70 } } },
+            // global_citizen: universalist signal — boosts universalAffinity
+            // rather than any scoped affinity.
+            global_citizen: { trbAnchor: { global: 1 }, moralCircle: { universal: 75 } }
         }
     },
     // =========================================================================
@@ -390,6 +400,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         }
     },
     // Q8 — domestic_vs_abroad_lives (slider)
+    // High score = "all human lives matter equally" (universalist).
+    // Low score = "domestic lives matter more than foreign lives" (national in-group preference).
     {
         id: 8,
         stage: "screen20",
@@ -399,14 +411,16 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.89,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.90, touchType: "moral_scope_tradeoff" }
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.30, touchType: "moral_scope_tradeoff_legacy_proxy" }
         ],
         sliderMap: {
-            "0-20": { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } } },
-            "21-40": { continuous: { MOR: { pos: [0.25, 0.40, 0.22, 0.10, 0.03] } } },
-            "41-60": { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } } },
-            "61-80": { continuous: { MOR: { pos: [0.03, 0.10, 0.22, 0.40, 0.25] } } },
-            "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } } }
+            // ADR-007 (T3): each bucket emits direct moralCircle universal vs national
+            // contrast, with weak legacy MOR pos kept for ADR-006 fallback.
+            "0-20": { continuous: { MOR: { pos: [0.55, 0.28, 0.12, 0.04, 0.01] } }, moralCircle: { universal: 25, scopedAffinities: { national: 75 } } },
+            "21-40": { continuous: { MOR: { pos: [0.25, 0.40, 0.22, 0.10, 0.03] } }, moralCircle: { universal: 40, scopedAffinities: { national: 65 } } },
+            "41-60": { continuous: { MOR: { pos: [0.08, 0.18, 0.48, 0.18, 0.08] } }, moralCircle: { universal: 55 } },
+            "61-80": { continuous: { MOR: { pos: [0.03, 0.10, 0.22, 0.40, 0.25] } }, moralCircle: { universal: 75 } },
+            "81-100": { continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } }, moralCircle: { universal: 90 } }
         }
     },
     // Q12 — guess_top_marginal_tax_rate (slider)
@@ -1789,8 +1803,11 @@ export const REPRESENTATIVE_QUESTIONS = [
             "follow_money_breaks_tie",
         ],
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" },
-            { node: "EPS", kind: "categorical", role: "salience", weight: 0.40, touchType: "tie_breaker_authority" }
+            // EPS/salience row dropped 2026-05-03 per question-information audit:
+            // Q22 single_choice has no strengthFollowUp and no per-option .sal arrays,
+            // so the engine never updated EPS salience from this question. EPS salience
+            // is supplied by Q103 (issue salience screener) and Q89 (best_worst battery).
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.92, touchType: "tie_breaker_authority" }
         ],
         optionEvidence: {
             // Expert consensus wins when claims conflict → institutionalist
@@ -2206,6 +2223,9 @@ export const REPRESENTATIVE_QUESTIONS = [
     */ // end Q65-Q68 comment block
     // Q66 — Community Fund Allocation. Re-enabled 2026-04-26 after pattern
     // extraction added COM/EPS/AES signals and pair-level allocation rules.
+    // EPS/category row dropped 2026-05-03 per question-information audit:
+    // allocationMap has no EPS entries (only AES). The "EPS extraction" comment
+    // above predated the actual evidence-map pruning.
     ,
     {
         id: 66,
@@ -2220,7 +2240,6 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "PRO", kind: "continuous", role: "position", weight: 0.60, touchType: "governance_allocation" },
             { node: "MAT", kind: "continuous", role: "position", weight: 0.20, touchType: "economic_proxy" },
             { node: "COM", kind: "continuous", role: "position", weight: 0.35, touchType: "governance_allocation" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.10, touchType: "allocation_shape_epistemic" },
             { node: "AES", kind: "categorical", role: "category", weight: 0.35, touchType: "civic_style_allocation" }
         ],
         allocationMap: {
@@ -2469,9 +2488,14 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.93,
         rewriteNeeded: false,
+        // AES/category row dropped 2026-05-03 per question-information audit:
+        // the only option that referenced AES (`gut_feeling`) used
+        // `AES_PROTOTYPES.plainspoken` which is undefined (no such category — the
+        // 6 AES categories are statesman/technocrat/pastoral/authentic/fighter/
+        // visionary). Engine never updated AES from this question. Orphan reference
+        // in `gut_feeling.categorical.AES` is silently no-op at runtime.
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" },
-            { node: "AES", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" }
         ],
         optionEvidence: {
             research_data: {
@@ -2492,7 +2516,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             gut_feeling: {
                 categorical: {
                     EPS: { cat: EPS_PROTOTYPES.intuitionist },
-                    AES: { cat: AES_PROTOTYPES.plainspoken }
+                    AES: { cat: AES_PROTOTYPES.authentic }
                 }
             },
             own_reasoning: {
@@ -2510,57 +2534,36 @@ export const REPRESENTATIVE_QUESTIONS = [
     // Q78 — Speaker Appeal (AES authentic coverage)
     // Behavioral framing ("would you show up?") reveals aesthetic preference
     // without asking respondents to self-classify their communication style.
+    // Q78 speaker_appeal — converted from single_choice to best_worst (pick
+    // 2 most compelling, 2 least compelling) on 2026-05-08 per Sam's
+    // observation that picking ONE max throws away signal. With best/worst,
+    // each respondent gives 4 distinct AES-prototype data points (positive on
+    // top picks, negative on bottom picks) instead of 1.
+    //
+    // The "I don't really care" option (dont_care_style) is dropped — best_worst
+    // already encodes low AES salience naturally when the respondent's picks
+    // don't cluster on a coherent style.
     {
         id: 78,
         stage: "stage2",
         section: "V",
         promptShort: "speaker_appeal",
-        uiType: "single_choice",
-        quality: 0.92,
+        uiType: "best_worst",
+        bwMaxPicks: 2,
+        quality: 0.94,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "AES", kind: "categorical", role: "category", weight: 0.88, touchType: "rhetorical_preference" },
-            { node: "AES", kind: "categorical", role: "salience", weight: 0.40, touchType: "rhetorical_preference" },
+            { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "rhetorical_maxdiff" },
+            { node: "AES", kind: "categorical", role: "salience", weight: 0.45, touchType: "rhetorical_maxdiff" },
             { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
         ],
-        optionEvidence: {
-            bridge_builder: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.statesman, sal: [0.10, 0.20, 0.35, 0.35] }
-                }
-            },
-            deep_expertise: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.technocrat, sal: [0.12, 0.23, 0.33, 0.32] }
-                }
-            },
-            community_voice: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.pastoral, sal: [0.10, 0.20, 0.35, 0.35] }
-                }
-            },
-            says_what_they_think: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.plainspoken, sal: [0.08, 0.15, 0.32, 0.45] },
-                    EPS: { cat: EPS_PROTOTYPES.intuitionist }
-                }
-            },
-            calls_out_power: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.fighter, sal: [0.05, 0.12, 0.30, 0.53] }
-                }
-            },
-            big_picture: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.visionary, sal: [0.08, 0.15, 0.32, 0.45] }
-                }
-            },
-            // "I don't really care how politicians present themselves"
-            dont_care_style: {
-                categorical: {
-                    AES: { cat: AES_PROTOTYPES.technocrat, sal: [0.55, 0.28, 0.12, 0.05] }
-                }
-            }
+        rankingMap: {
+            bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
+            deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
+            community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
+            says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
+            calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
+            big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
         }
     },
     // Q79 — Expert Disagreement (EPS nihilist dedicated)
@@ -3297,7 +3300,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             aes_statesman: "Statesman - formal and dignified, measured tone, ceremonial register, presidential bearing",
             aes_technocrat: "Technocrat - precise and analytical, expert-coded delivery, comfortable with technical detail and jargon",
             aes_pastoral: "Pastoral - warm hometown register, regional cadence, family-and-community language, evocative and emotional",
-            aes_plainspoken: "Plainspoken - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
+            aes_authentic: "Authentic - direct and casual, unscripted, refuses polish and political theater, talks like a regular person",
             aes_fighter: "Fighter - combative tone, willing to attack opponents directly, confrontational delivery, doesn't soften",
             aes_visionary: "Visionary - lyrical and aspirational, evocative-imagistic rhetoric, paints pictures with words"
         },
@@ -3309,7 +3312,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             aes_statesman: { categorical: { AES: AES_PROTOTYPES.statesman } },
             aes_technocrat: { categorical: { AES: AES_PROTOTYPES.technocrat } },
             aes_pastoral: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-            aes_plainspoken: { categorical: { AES: AES_PROTOTYPES.plainspoken } },
+            aes_authentic: { categorical: { AES: AES_PROTOTYPES.authentic } },
             aes_fighter: { categorical: { AES: AES_PROTOTYPES.fighter } },
             aes_visionary: { categorical: { AES: AES_PROTOTYPES.visionary } }
         }
@@ -3406,14 +3409,20 @@ export const REPRESENTATIVE_QUESTIONS = [
             //   language (speak_lang) → mild CU low (~2.5): functional civic
             //     requirement, slightly assimilationist but not strongly
             //   cultural / economic → mild low (already-existing, kept)
-            born_here: { continuous: { CU: { pos: [0.50, 0.30, 0.12, 0.06, 0.02] } } },
-            speak_lang: { continuous: { CU: { pos: [0.20, 0.32, 0.30, 0.12, 0.06] } } },
-            shared_values: { continuous: { CU: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] } } },
-            civic_part: { continuous: { CU: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] } } },
-            cultural: { continuous: { CU: { pos: [0.30, 0.32, 0.22, 0.10, 0.06] } } },
-            ancestry: { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
-            religion: { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } } },
-            economic: { continuous: { CU: { pos: [0.20, 0.30, 0.32, 0.12, 0.06] } } }
+            //
+            // ADR-007 (T3): items also emit moralCircle scoped evidence on the
+            // matching membership-gatekeeping axis. Birth/ancestry/cultural items
+            // → national scoped affinity. Religion item → religious scoped.
+            // Civic items (shared_values, civic_part) → universal (civic
+            // universalism within polity, not ethnic).
+            born_here: { continuous: { CU: { pos: [0.50, 0.30, 0.12, 0.06, 0.02] } }, moralCircle: { scopedAffinities: { national: 75 } } },
+            speak_lang: { continuous: { CU: { pos: [0.20, 0.32, 0.30, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 60 } } },
+            shared_values: { continuous: { CU: { pos: [0.10, 0.22, 0.40, 0.20, 0.08] } }, moralCircle: { universal: 65 } },
+            civic_part: { continuous: { CU: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] } }, moralCircle: { universal: 65 } },
+            cultural: { continuous: { CU: { pos: [0.30, 0.32, 0.22, 0.10, 0.06] } }, moralCircle: { scopedAffinities: { national: 65 } } },
+            ancestry: { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { national: 80 } } },
+            religion: { continuous: { CU: { pos: [0.55, 0.25, 0.10, 0.06, 0.04] } }, moralCircle: { scopedAffinities: { religious: 75, national: 60 } } },
+            economic: { continuous: { CU: { pos: [0.20, 0.30, 0.32, 0.12, 0.06] } }, moralCircle: { scopedAffinities: { national: 55 } } }
         }
     },
     // Q103 — Issue Salience Screener (pre-quiz rule-out pass).
@@ -4173,7 +4182,8 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.02, 0.05, 0.13, 0.30, 0.50], sal: [0.02, 0.10, 0.30, 0.58] },
                     CU: { pos: [0.05, 0.15, 0.30, 0.30, 0.20] },
                     PRO: { pos: [0.05, 0.15, 0.25, 0.30, 0.25] }
-                }
+                },
+                moralCircle: { universal: 85 }
             },
             // "Important but one issue among many; matters when it's directly happening"
             important_one_of_many: {
@@ -4181,7 +4191,8 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.05, 0.13, 0.27, 0.35, 0.20], sal: [0.10, 0.25, 0.40, 0.25] },
                     CU: { pos: [0.08, 0.20, 0.40, 0.22, 0.10] },
                     PRO: { pos: [0.10, 0.20, 0.40, 0.20, 0.10] }
-                }
+                },
+                moralCircle: { universal: 70 }
             },
             // "Important in extreme cases but I focus on broader policy"
             depends_on_situation: {
@@ -4189,7 +4200,8 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.10, 0.25, 0.40, 0.18, 0.07], sal: [0.20, 0.35, 0.30, 0.15] },
                     CU: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] },
                     PRO: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
-                }
+                },
+                moralCircle: { universal: 55 }
             },
             // "Some differentiation is part of stable political order; perfect equality isn't always the goal"
             some_differentiation_acceptable: {
@@ -4197,7 +4209,8 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.30, 0.35, 0.22, 0.10, 0.03], sal: [0.20, 0.35, 0.30, 0.15] },
                     CU: { pos: [0.30, 0.35, 0.22, 0.10, 0.03] },
                     PRO: { pos: [0.20, 0.30, 0.30, 0.15, 0.05] }
-                }
+                },
+                moralCircle: { universal: 35 }
             },
             // "Different groups have different roles; that's how polities work"
             natural_hierarchy: {
@@ -4205,7 +4218,8 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.55, 0.28, 0.10, 0.05, 0.02], sal: [0.05, 0.20, 0.40, 0.35] },
                     CU: { pos: [0.55, 0.28, 0.10, 0.05, 0.02] },
                     PRO: { pos: [0.30, 0.30, 0.22, 0.12, 0.06] }
-                }
+                },
+                moralCircle: { universal: 20 }
             }
         }
     },
@@ -4470,6 +4484,250 @@ export const REPRESENTATIVE_QUESTIONS = [
                 }
             }
         }
-    }
+    },
+    // =========================================================================
+    // ADR-007 — Moral Circle Calibration Battery (T3)
+    //
+    // Battery A: two universal-baseline items. Both feed
+    //            moralCircle.universal directly. Engine averages contributions.
+    // Battery B: eight scoped-affinity single_choice questions, one per scope.
+    //            Each emits moralCircle.scopedAffinities[scope].
+    //
+    // Per ADR-007 §"Calibration Battery", this is the PRIMARY source for
+    // moral-circle evidence. Existing questions (Q60, Q102, etc.) provide
+    // weaker priors only.
+    //
+    // Battery B option mapping (5-level comparative scale):
+    //   not_meaningful  -> null (scope drops out for this respondent)
+    //   less_than       -> 30   (below typical universal; almost never makes excess)
+    //   about_same      -> 50   (matches universal; no excess)
+    //   somewhat_more   -> 70   (small excess for typical universal users)
+    //   much_more       -> 90   (large excess; clearly active boundary)
+    //
+    // Active boundary only emerges when scoped > universal. Most respondents
+    // will have 0-2 active scopes after derivation.
+    // =========================================================================
+    // Q-A0 (added 2026-05-12): forced-choice moral-circle probe. Hits universal
+    // AND one scoped in a single touch — option 1 ("everyone equal") anchors
+    // universal high with no scoped pull; options 3-8 push the chosen scope to
+    // 80 while dropping universal to 45, forcing excess to fire. fixed12 stage
+    // so it always asks. Designed to give a load-bearing moral-circle signal
+    // even when the adaptive selector skips the rest of the battery.
+    {
+        id: 229,
+        stage: "fixed12",
+        section: "I",
+        promptShort: "moral_circle_forced_choice",
+        promptFull: "You can spend the next hour offering real help to one person you've never met. Whose situation feels closest to a personal duty?",
+        uiType: "single_choice",
+        quality: 0.97,
+        rewriteNeeded: false,
+        options: [
+            "everyone_equal",
+            "stranger_anywhere",
+            "fellow_citizen",
+            "co_religionist",
+            "same_ethnicity",
+            "same_class",
+            "same_gender",
+            "shared_politics",
+        ],
+        optionLabels: {
+            everyone_equal: "Whoever needs the help most — they all matter the same to me",
+            stranger_anywhere: "A complete stranger, anywhere in the world",
+            fellow_citizen: "A fellow citizen of your country",
+            co_religionist: "Someone from your religious tradition or sacred worldview",
+            same_ethnicity: "Someone of your racial or ethnic background",
+            same_class: "Someone in your economic class or material situation",
+            same_gender: "Someone of your gender or gender-linked identity (including LGBTQ status)",
+            shared_politics: "Someone who shares your core political values",
+        },
+        touchProfile: [
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "universal_baseline_legacy_proxy" },
+        ],
+        optionEvidence: {
+            everyone_equal: { moralCircle: { universal: 90 } },
+            stranger_anywhere: { moralCircle: { universal: 75 } },
+            fellow_citizen: { moralCircle: { universal: 45, scopedAffinities: { national: 80 } } },
+            co_religionist: { moralCircle: { universal: 45, scopedAffinities: { religious: 80 } } },
+            same_ethnicity: { moralCircle: { universal: 45, scopedAffinities: { ethnic_racial: 80 } } },
+            same_class: { moralCircle: { universal: 45, scopedAffinities: { class: 80 } } },
+            same_gender: { moralCircle: { universal: 45, scopedAffinities: { gender: 80 } } },
+            shared_politics: { moralCircle: { universal: 45, scopedAffinities: { ideological: 80 } } },
+        },
+    },
+    // Q-A1: universal_baseline_humanity
+    {
+        id: 230,
+        stage: "fixed12",
+        section: "I",
+        promptShort: "universal_baseline_humanity",
+        promptFull: "How much moral concern do you feel for any human being, simply because they are human?",
+        uiType: "slider",
+        quality: 0.98,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+        ],
+        sliderMap: {
+            "0-20": { moralCircle: { universal: 10 } },
+            "21-40": { moralCircle: { universal: 30 } },
+            "41-60": { moralCircle: { universal: 50 } },
+            "61-80": { moralCircle: { universal: 75 } },
+            "81-100": { moralCircle: { universal: 95 } },
+        },
+    },
+    // Q-A2: universal_baseline_stranger
+    {
+        id: 231,
+        stage: "fixed12",
+        section: "I",
+        promptShort: "universal_baseline_stranger",
+        promptFull: "When a stranger is suffering, how much does that matter to you even if they share none of your identities, beliefs, nationality, or politics?",
+        uiType: "slider",
+        quality: 0.97,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+        ],
+        sliderMap: {
+            "0-20": { moralCircle: { universal: 10 } },
+            "21-40": { moralCircle: { universal: 30 } },
+            "41-60": { moralCircle: { universal: 50 } },
+            "61-80": { moralCircle: { universal: 75 } },
+            "81-100": { moralCircle: { universal: 95 } },
+        },
+    },
+    // Battery B — scoped affinity per scope (8 questions, 5 options each).
+    // Same prompt skeleton; only the in-group label differs.
+    // Comparative scale: not_meaningful / less_than / about_same / somewhat_more / much_more
+    // Active excess emerges only on "somewhat_more" (70) and "much_more" (90)
+    // when universal is moderate; only "much_more" creates excess for high-universal users.
+    {
+        id: 232,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_national",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people in your country?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { national: null } } },
+            less_than: { moralCircle: { scopedAffinities: { national: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { national: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { national: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { national: 90 } } },
+        },
+    },
+    {
+        id: 233,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_religious",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your religious tradition or sacred worldview?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { religious: null } } },
+            less_than: { moralCircle: { scopedAffinities: { religious: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { religious: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { religious: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { religious: 90 } } },
+        },
+    },
+    {
+        id: 234,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_ethnic_racial",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your racial or ethnic background?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { ethnic_racial: null } } },
+            less_than: { moralCircle: { scopedAffinities: { ethnic_racial: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { ethnic_racial: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { ethnic_racial: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { ethnic_racial: 90 } } },
+        },
+    },
+    {
+        id: 235,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_class",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people in your economic class or material situation?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { class: null } } },
+            less_than: { moralCircle: { scopedAffinities: { class: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { class: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { class: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { class: 90 } } },
+        },
+    },
+    // Q236 — gender scope (now includes sexuality/LGBTQ identity per the
+    // 6-scope model; LGBTQ Voter routes via gender excess + demo_lgbtq).
+    {
+        id: 236,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_gender",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your gender or gender-linked identity (including LGBTQ status)?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { gender: null } } },
+            less_than: { moralCircle: { scopedAffinities: { gender: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { gender: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { gender: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { gender: 90 } } },
+        },
+    },
+    // Q238 — ideological scope (merged: ideology + political-side; the broader
+    // name survives since "I share their values" subsumes "I share their party").
+    // Q237 (sexual) and Q239 (political_camp) dropped per 2026-05-07 6-scope
+    // revision.
+    {
+        id: 238,
+        stage: "stage2",
+        section: "V",
+        promptShort: "scoped_affinity_ideological",
+        promptFull: "Compared with people in general, how much extra moral concern do you feel for people who share your core ideology, values, or political side?",
+        uiType: "single_choice",
+        quality: 0.95,
+        rewriteNeeded: false,
+        touchProfile: [
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+        ],
+        optionEvidence: {
+            not_meaningful: { moralCircle: { scopedAffinities: { ideological: null } } },
+            less_than: { moralCircle: { scopedAffinities: { ideological: 30 } } },
+            about_same: { moralCircle: { scopedAffinities: { ideological: 50 } } },
+            somewhat_more: { moralCircle: { scopedAffinities: { ideological: 70 } } },
+            much_more: { moralCircle: { scopedAffinities: { ideological: 90 } } },
+        },
+    },
 ];
 //# sourceMappingURL=questions.representative.js.map

@@ -6997,6 +6997,55 @@ var PrismEngine = (() => {
     // Active boundary only emerges when scoped > universal. Most respondents
     // will have 0-2 active scopes after derivation.
     // =========================================================================
+    // Q-A0 (added 2026-05-12): forced-choice moral-circle probe. Hits universal
+    // AND one scoped in a single touch — option 1 ("everyone equal") anchors
+    // universal high with no scoped pull; options 3-8 push the chosen scope to
+    // 80 while dropping universal to 45, forcing excess to fire. fixed12 stage
+    // so it always asks. Designed to give a load-bearing moral-circle signal
+    // even when the adaptive selector skips the rest of the battery.
+    {
+      id: 229,
+      stage: "fixed12",
+      section: "I",
+      promptShort: "moral_circle_forced_choice",
+      promptFull: "You can spend the next hour offering real help to one person you've never met. Whose situation feels closest to a personal duty?",
+      uiType: "single_choice",
+      quality: 0.97,
+      rewriteNeeded: false,
+      options: [
+        "everyone_equal",
+        "stranger_anywhere",
+        "fellow_citizen",
+        "co_religionist",
+        "same_ethnicity",
+        "same_class",
+        "same_gender",
+        "shared_politics"
+      ],
+      optionLabels: {
+        everyone_equal: "Whoever needs the help most \u2014 they all matter the same to me",
+        stranger_anywhere: "A complete stranger, anywhere in the world",
+        fellow_citizen: "A fellow citizen of your country",
+        co_religionist: "Someone from your religious tradition or sacred worldview",
+        same_ethnicity: "Someone of your racial or ethnic background",
+        same_class: "Someone in your economic class or material situation",
+        same_gender: "Someone of your gender or gender-linked identity (including LGBTQ status)",
+        shared_politics: "Someone who shares your core political values"
+      },
+      touchProfile: [
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "universal_baseline_legacy_proxy" }
+      ],
+      optionEvidence: {
+        everyone_equal: { moralCircle: { universal: 90 } },
+        stranger_anywhere: { moralCircle: { universal: 75 } },
+        fellow_citizen: { moralCircle: { universal: 45, scopedAffinities: { national: 80 } } },
+        co_religionist: { moralCircle: { universal: 45, scopedAffinities: { religious: 80 } } },
+        same_ethnicity: { moralCircle: { universal: 45, scopedAffinities: { ethnic_racial: 80 } } },
+        same_class: { moralCircle: { universal: 45, scopedAffinities: { class: 80 } } },
+        same_gender: { moralCircle: { universal: 45, scopedAffinities: { gender: 80 } } },
+        shared_politics: { moralCircle: { universal: 45, scopedAffinities: { ideological: 80 } } }
+      }
+    },
     // Q-A1: universal_baseline_humanity
     {
       id: 230,
@@ -7179,12 +7228,18 @@ var PrismEngine = (() => {
     { id: "CU", type: "continuous", cluster: "ENDS" },
     { id: "MOR", type: "continuous", cluster: "ENDS" },
     { id: "PRO", type: "continuous", cluster: "MEANS" },
-    { id: "EPS", type: "categorical", cluster: "MEANS" },
     { id: "AES", type: "categorical", cluster: "MEANS" },
     { id: "COM", type: "continuous", cluster: "MEANS" },
+    // ONT_S moved back to MEANS (2026-05-12): institutional ontology ("are
+    // institutions a useful tool?") is closer to "how you act" than to "how
+    // you see the world." Sits with PRO/COM/AES as strategy-relevant nodes.
+    { id: "ONT_S", type: "continuous", cluster: "MEANS" },
     { id: "ZS", type: "continuous", cluster: "REALITY" },
     { id: "ONT_H", type: "continuous", cluster: "REALITY" },
-    { id: "ONT_S", type: "continuous", cluster: "REALITY" },
+    // EPS moved from MEANS to REALITY (2026-05-12): epistemic style is closer
+    // to "how you see the world" (what counts as knowledge) than to "how you
+    // pursue your goals."
+    { id: "EPS", type: "categorical", cluster: "REALITY" },
     { id: "PF", type: "continuous", cluster: "SELF" },
     { id: "TRB", type: "continuous", cluster: "SELF" },
     { id: "ENG", type: "continuous", cluster: "SELF" }
@@ -18608,7 +18663,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-top3-fix";
+  var BUNDLE_VERSION = "20260512-q229";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
