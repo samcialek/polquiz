@@ -524,6 +524,8 @@ function partyIdFromAnswer(optionKey: string): PartyID | null {
       return "I";
     case "third":
       return "T";
+    case "other":
+      return "O";
     case "none":
       return "N";
     default:

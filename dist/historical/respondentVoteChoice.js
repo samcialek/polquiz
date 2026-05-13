@@ -16,7 +16,7 @@
  */
 import { getActivationMultiplier } from "./era-activations.js";
 import { getNonIdeologicalModifier, historicalToCanonical } from "./non-ideological-modifiers.js";
-import { morTargetVectorDistance, boundaryLoad } from "../engine/math.js";
+import { morTargetVectorDistance, boundaryLoad, moralCircleDistance } from "../engine/math.js";
 // Candidate-side TRB anchor encoding (P3.2, ADR-009). Each anchor predicts
 // different identity-driven appeal:
 //   national      — appeals to nationalist identity voters
@@ -116,7 +116,30 @@ function anchorDistanceContribution(cand, anchorDist) {
 // Party-mapping function below handles historical parties (Democratic-Republican
 // counts as 'D' for early-19th-century Jeffersonian Democrats; Whig and
 // National Republican count as the proto-Republican coalition).
-const PARTY_LOYALTY_BASE = 0.40;
+// Default 5.00 (was 3.00 post-Round-2, 1.00 post-Round-1, 0.40 pre-2026-05-08).
+// Round-3 sweep (2026-05-09) extended loyalty to {3.0, 3.5, 4.0, 5.0} and
+// found the function is monotonically decreasing across that range with
+// diminishing returns. loyalty=5.0 won at the upper grid edge with TV 5.96pp.
+//
+// At 5.0, PF=5 strong partisans face a 1 + 5.0 = 6.0× distance multiplier
+// to out-of-party candidates. PF=3 moderate partisans face 1 + 5.0 × 0.6 = 4.0×.
+// This is effectively near-deterministic partisan vote-routing for strong
+// partisans — moderates still respond to issue-distance differences but
+// with heavy bias toward in-party.
+//
+// Treating this as the calibration ceiling for loyalty. Going higher would
+// shave another ~0.3pp but degrades into "model = pid7 lookup" for
+// partisans, which over-fits the modern partisan-loyalty pattern. Further
+// D/R-gap closure from here requires structural moves (calibration battery,
+// hierarchical Bayesian refit, candidate-profile refresh), not constant
+// tuning.
+const PARTY_LOYALTY_BASE = (() => {
+    const env = process.env.PRISM_PARTY_LOYALTY_BASE;
+    if (env === undefined)
+        return 5.00;
+    const n = Number(env);
+    return Number.isFinite(n) && n >= 0 ? n : 5.00;
+})();
 function candidatePartyToCanonical(party) {
     // Map historical / third-party labels to a canonical 4-bucket scheme so
     // the partyID multiplier can decide "is this candidate my party or not?"
@@ -145,6 +168,26 @@ function pfEquivalentFromMorBoundaries(state) {
     const intensityFactor = state.intensity / 3; // ∈ [0, 1]
     return 1 + 4 * pt * intensityFactor; // ∈ [1, 5]
 }
+/**
+ * ADR-007 (T9): derive a 1..5 PF-equivalent from moralCircle affinity.
+ * High political_camp scoped affinity + high intensity03 = strong
+ * partisan in-group identity. Read with `state.moralCircle.affinity` —
+ * returns null when affinity isn't materialized yet.
+ *
+ *   politicalCampScoped (0..100) · intensity03Factor (0..1) → pfEquiv (1..5)
+ */
+function pfEquivalentFromMoralCircle(affinity) {
+    if (!affinity)
+        return null;
+    // 2026-05-07 6-scope merge: political_camp folded into ideological. PF
+    // partisan-loyalty proxy now reads ideological affinity.
+    const ideo = affinity.scopedAffinities.ideological;
+    if (ideo === null || ideo === undefined)
+        return null;
+    const ideoN = Math.max(0, Math.min(100, ideo)) / 100; // ∈ [0, 1]
+    const intensityFactor = Math.max(0, Math.min(1, affinity.intensity03 / 3));
+    return 1 + 4 * ideoN * intensityFactor; // ∈ [1, 5]
+}
 function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
     // Era-limit (P3.4): modern Democrat/Republican loyalty doesn't map cleanly
     // backward onto Whigs, Federalists, Free Soilers, Dixiecrats, etc. Pre-1932
@@ -152,7 +195,14 @@ function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, elect
     // ideological distance alone governs.
     if (electionYear < 1932)
         return 1;
-    if (!respondentParty || respondentParty === "I" || respondentParty === "N")
+    // I (Independent), N (Nothing), O (Other) all behave as "no major-party
+    // loyalty": ideological distance alone governs. Only D/R/T carry a loyalty
+    // signal — T (member of a third party) gets a bump toward third-party
+    // candidates (Roosevelt-1912 Progressive, La Follette, Wallace AIP, Perot,
+    // Nader, Anderson) and a small penalty against D/R. O was previously
+    // returning the wrong-party penalty against essentially all candidates
+    // because no candidate's canonical party is "O" — fixed 2026-05-13.
+    if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O")
         return 1;
     const candPartyKey = candidatePartyToCanonical(candidateParty);
     const userPartyKey = respondentParty === "D" ? "D" :
@@ -212,7 +262,17 @@ const CLEARING_BAR = {
 // weight that matches real single-issue behavior. SALIENCE_POWER=2 squares
 // the weight, so sal=3 issues dominate (9× vs 1×) while sal=0 still drops
 // cleanly to zero contribution.
-const SALIENCE_POWER = 2;
+// Default 1.1 (was 1.3 post-Round-2, 1.5 post-Round-1, 2.0 pre-2026-05-08).
+// Round-3 sweep (2026-05-09) refined the optimum on the upper-loyalty axis;
+// SALIENCE_POWER showed monotonic but small effect (1.1 < 1.3 < 1.5 in TV).
+// Combined with PARTY_LOYALTY_BASE=5.0 for avg-TV 6.85pp → 5.96pp.
+const SALIENCE_POWER = (() => {
+    const env = process.env.PRISM_SALIENCE_POWER;
+    if (env === undefined)
+        return 1.1;
+    const n = Number(env);
+    return Number.isFinite(n) && n > 0 ? n : 1.1;
+})();
 // Categorical-node (EPS/AES) weight in the vote-distance metric. Per ADR-009
 // (P3.1), categorical nodes were silently absent from predictVote despite
 // being measured for archetype matching. Modern elections (esp. 2016/2024)
@@ -224,7 +284,14 @@ const SALIENCE_POWER = 2;
 // charisma), 1980 (Reagan visionary), 2008 (Obama visionary), 2016 (Trump
 // fighter vs Clinton statesman), 2020 (Biden statesman vs Trump fighter),
 // 2024 (Harris statesman vs Trump fighter).
-const CATEGORICAL_BASE_SALIENCE = 0.6; // before pow-2 squaring → effective ≈0.36
+// Env-var override for calibration sweeps. Default 0.6 unchanged at runtime.
+const CATEGORICAL_BASE_SALIENCE = (() => {
+    const env = process.env.PRISM_CATEGORICAL_BASE_SALIENCE;
+    if (env === undefined)
+        return 0.6;
+    const n = Number(env);
+    return Number.isFinite(n) && n >= 0 ? n : 0.6;
+})();
 const STYLE_DRIVEN_ELECTIONS = {
     1932: 1.4, 1960: 1.4, 1980: 1.5, 2008: 1.4,
     2016: 2.0, 2020: 1.7, 2024: 1.8,
@@ -303,18 +370,28 @@ function categoricalDistance(cand, cat, nodeName, year) {
     const diff2 = (1 - alignment) * 4; // alignment=1 → diff²=0 ; alignment=0 → diff²=4
     return { contribution: effectiveSal * diff2, weight: effectiveSal };
 }
-function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState) {
+function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBoundariesState, moralCircleAffinity) {
     let weightedSumSq = 0;
     let totalWeight = 0;
+    // ADR-007 Step 5: when both respondent and candidate carry moralCircle
+    // affinity, prefer the explicit-affinity geometry over the legacy
+    // boundary-vector geometry. Per ADR §"Candidate Matching Direction":
+    // moralCircleDistance blends universal-affinity scalar diff (0.40) +
+    // excess-vector L2 (0.40) + active-boundary Jaccard miss (0.20) — this
+    // captures "universalist with national lean" differently from
+    // "low-baseline with national strength", which the legacy
+    // morTargetVectorDistance cannot. Falls back to the ADR-006 morModule
+    // branch when either side lacks the new field.
+    const useMoralCircle = !!moralCircleAffinity && !!cand.moralCircle;
     // 6.E.3a per-call gate: when both respondent and candidate carry
     // morBoundaries, drop legacy MOR + skip the trbAnchor side-channel and
     // fold both into one morModule contribution computed below. Otherwise
     // (legacy state or candidate without the field) the old per-node MOR +
     // trbAnchor contributions still fire — protects callers that build
     // signatures by hand and don't initialize morBoundaries.
-    const useMorModule = !!morBoundariesState && !!cand.morBoundaries;
+    const useMorModule = !useMoralCircle && !!morBoundariesState && !!cand.morBoundaries;
     for (const node of SCORING_NODES) {
-        if (useMorModule && MOR_MODULE_LEGACY_NODES.includes(node))
+        if ((useMorModule || useMoralCircle) && MOR_MODULE_LEGACY_NODES.includes(node))
             continue;
         const entry = sig[node];
         if (!entry)
@@ -369,7 +446,26 @@ function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBounda
     // respondent appearing to "match" any national-anchored candidate
     // regardless of membership), which is exactly the failure mode caught
     // on 6.E.3a review (Sam, 2026-04-30).
-    if (useMorModule) {
+    if (useMoralCircle) {
+        // ADR-007 Step 5: explicit-affinity geometry. moralCircleDistance
+        // returns ∈ [0, 1] (universal 0.40 + excess L2 0.40 + Jaccard 0.20),
+        // same range as morTargetVectorDistance. Map to pos² 0..16 scale via
+        // ×4 like the morModule branch. Salience-equivalent uses
+        // intensity03 (the moralCircle-side equivalent of morBoundariesState
+        // intensity), with the same era-multiplier proxy via "MOR".
+        const dist01 = moralCircleDistance(moralCircleAffinity, cand.moralCircle);
+        const diff = dist01 * 4;
+        const intensity03 = moralCircleAffinity.intensity03;
+        const eraMult = getActivationMultiplier(ctx.year, "MOR");
+        const rawSal = intensity03 * eraMult;
+        let effectiveSal = Math.pow(rawSal, SALIENCE_POWER);
+        if (dominantNode === "MOR" || dominantNode === "TRB" || dominantNode === "PF") {
+            effectiveSal *= 1.5;
+        }
+        weightedSumSq += effectiveSal * diff * diff;
+        totalWeight += effectiveSal;
+    }
+    else if (useMorModule) {
         const respBd = morBoundariesState.boundaries;
         const candBd = cand.morBoundaries.boundaries;
         const vd = morTargetVectorDistance(respBd, candBd);
@@ -395,14 +491,15 @@ function ideologicalDistance(sig, cand, ctx, anchorDist, dominantNode, morBounda
     const ideological = totalWeight > 0 ? Math.sqrt(weightedSumSq / totalWeight) : 4;
     return ideological;
 }
-export function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode, morBoundariesState) {
-    // 6.E.3a: prefer PF-equivalent derived from morBoundaries when present;
-    // fall back to legacy sig.PF.pos for callers that haven't wired the
-    // module through. Same per-call gating pattern as the scorer.
+export function predictVote(sig, candidates, ctx, engagement, partyID, anchorDist, negativeParties, strategicVoting, dominantNode, morBoundariesState, moralCircleAffinity) {
+    // ADR-007 (T9): prefer PF-equivalent derived from moralCircle affinity
+    // (political_camp scoped × intensity03). Falls back to ADR-006
+    // morBoundaries-derived PF, then to legacy sig.PF.pos.
+    const pfFromMc = pfEquivalentFromMoralCircle(moralCircleAffinity);
     const pfFromMor = pfEquivalentFromMorBoundaries(morBoundariesState);
-    const pfPos = pfFromMor ?? sig.PF?.pos ?? null;
+    const pfPos = pfFromMc ?? pfFromMor ?? sig.PF?.pos ?? null;
     const scored = candidates.map(c => {
-        const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState);
+        const baseValuesDist = ideologicalDistance(sig, c, ctx, anchorDist, dominantNode, morBoundariesState, moralCircleAffinity);
         const moralFloor = moralFloorPenalty(sig, c, ctx.year, morBoundariesState);
         const valuesDist = baseValuesDist + moralFloor.penalty;
         const nonIdeologicalModifier = NONIDEO_ENABLED

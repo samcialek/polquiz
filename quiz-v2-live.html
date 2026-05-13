@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-centroid-rip"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-q200-evidence"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -472,6 +472,24 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    /* 2-column variant for Q200 (party identification) and any future
+       single_choice question that wants paired option layout. Marker letters
+       still flow A/B/C/D/E/F so column order reads left-to-right top-to-bottom:
+       A B
+       C D
+       E F
+       Mobile (≤ 560px) falls back to single column for readability. */
+    .mc-options.mc-options-2col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+    @media (max-width: 560px) {
+        .mc-options.mc-options-2col {
+            grid-template-columns: 1fr;
+        }
     }
 
     .mc-option {
@@ -2519,7 +2537,10 @@ function showQuestion() {
 
     const progress = PrismEngine.getProgress();
     const answered = progress.questionsAnswered;
-    const remaining = progress.estimatedTotal - answered;
+    // estimatedTotal is the *typical* length (~32), not a hard cap. If the
+    // EIG selector keeps going (35 cap), clamp remaining to 0 so the counter
+    // reads "~0 remaining" near the end rather than "~-1 remaining".
+    const remaining = Math.max(0, progress.estimatedTotal - answered);
 
     progressEl.textContent = `${answered} answered · ~${remaining} remaining`;
 
@@ -2646,7 +2667,9 @@ function renderMC(q) {
     const mainOpts = opts.filter(o => o !== 'equal_errors');
     const hasEqualErrors = opts.includes('equal_errors');
 
-    let html = '<div class="mc-options">';
+    // 2-column layout for Q200 party identification (6 options paired).
+    const twoCol = q.id === 200;
+    let html = `<div class="mc-options${twoCol ? ' mc-options-2col' : ''}">`;
     mainOpts.forEach((opt, i) => {
         html += `
             <div class="mc-option" onclick="selectMC(this, ${q.id}, '${opt}')">
@@ -3757,7 +3780,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-centroid-rip';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-q200-evidence';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {

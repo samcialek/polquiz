@@ -3392,21 +3392,81 @@ var PrismEngine = (() => {
       stage: "fixed12",
       section: "I",
       promptShort: "party_identification",
+      promptFull: "Which best describes how you think of your political affiliation?",
       uiType: "single_choice",
       quality: 0.99,
       rewriteNeeded: false,
-      options: ["dem", "rep", "ind", "third", "none"],
-      // Q200 touchProfile cleaned 2026-04-25 (ADR-009 / P3.7): the previous
-      // PF salience touch was no-op (SELF-cluster nodes skip salience writes
-      // per ADR-005). Q200 is metadata-only — partyID is captured by the
-      // applySingleChoiceAnswer hook and consumed by predictVote, not by the
-      // Bayesian node state.
-      touchProfile: [],
+      options: ["dem", "rep", "ind", "third", "other", "none"],
+      optionLabels: {
+        dem: "Democrat",
+        rep: "Republican",
+        ind: "Independent",
+        third: "Member of a third party",
+        other: "Other",
+        none: "Nothing"
+      },
+      // 2026-05-13 — Q200 carries weak Bayesian priors on the belief axes that
+      // partisan ID most reliably predicts in US politics (ANES/Pew patterns).
+      // Weight 0.20 per touchType "partisan_prior" — well below the typical
+      // direct-position weight (0.60-0.85), so a heterodox respondent (e.g.,
+      // fiscally-conservative Democrat) easily overrides the prior on Q15.
+      // Independent/Third/Other/Nothing carry no continuous evidence.
+      //
+      // partyID metadata is still captured by the applySingleChoiceAnswer
+      // hook → partyIdFromAnswer and consumed by predictVote.
+      touchProfile: [
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" }
+      ],
       optionEvidence: {
-        dem: {},
-        rep: {},
+        // Mild leans: peak likelihood 0.25 vs lowest 0.14 (~1.8:1 ratio). After
+        // one multiplication from uniform [0.20×5], posterior mean shifts ~0.3
+        // bucket. A direct position question with ~3:1 contrast and weight 0.7
+        // moves the mean further; Q15 alone overpowers this prior.
+        dem: {
+          continuous: {
+            MAT: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (redistributive)
+            CD: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (progressive)
+            CU: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (pluralist)
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (universalist)
+            ZS: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (positive-sum)
+            ONT_S: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (institutions matter)
+            ONT_H: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // lean high (environment shapes)
+          }
+        },
+        rep: {
+          continuous: {
+            MAT: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (market)
+            CD: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (traditional)
+            CU: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (uniformity)
+            MOR: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (bounded circle)
+            ZS: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (zero-sum)
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (suspicious of state)
+            ONT_H: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // lean low (dispositional)
+          }
+        },
         ind: {},
         third: {},
+        other: {},
         none: {}
       }
     },
@@ -5075,6 +5135,8 @@ var PrismEngine = (() => {
         return "I";
       case "third":
         return "T";
+      case "other":
+        return "O";
       case "none":
         return "N";
       default:
@@ -5617,7 +5679,8 @@ var PrismEngine = (() => {
   // src/engine/config.ts
   var CORE_OPENER = [
     200,
-    // party identification — partyID metadata for election compute
+    // party identification — partyID metadata + weak Bayes prior on
+    //   MAT/CD/CU/MOR/ZS/ONT_S/ONT_H (added 2026-05-13).
     103,
     // issue salience screener — global salience router (priorityBattery)
     97,
@@ -5626,8 +5689,14 @@ var PrismEngine = (() => {
     // politically important identities — TRB anchor
     89,
     // epistemic style battery — EPS category + salience
-    22,
-    // source trust conflict — EPS tie-breaker (load-bearing for top-1)
+    // 2026-05-13: Q22 (source_trust_conflict, EPS tie-breaker) removed from
+    //   CORE_OPENER. Q22 was load-bearing for the 124-centroid scorer when
+    //   empiricist-vs-institutionalist on a knife's edge decided one cluster
+    //   vs another. With the centroid rip, EPS only needs an argmax for the
+    //   composed label — Q89 alone gets empiricist to ~37% (winning), and
+    //   Q22 only tightens confidence without changing the winner. Saves 1
+    //   question. Q22 remains in the bank for the EIG selector to pick
+    //   adaptively when EPS is genuinely close.
     218,
     // aesthetic style ranking — AES category + salience
     211,
@@ -14335,7 +14404,7 @@ var PrismEngine = (() => {
   }
   function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
     if (electionYear < 1932) return 1;
-    if (!respondentParty || respondentParty === "I" || respondentParty === "N") return 1;
+    if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O") return 1;
     const candPartyKey = candidatePartyToCanonical(candidateParty);
     const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : respondentParty === "T" ? "T" : "O";
     if (candPartyKey === userPartyKey) return 1;
@@ -15759,7 +15828,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-centroid-rip";
+  var BUNDLE_VERSION = "20260513-q200-evidence";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();
@@ -16079,7 +16148,7 @@ var PrismEngine = (() => {
     else phase = "converge";
     return {
       questionsAnswered: nAnswered,
-      estimatedTotal: 35,
+      estimatedTotal: 32,
       phase
     };
   }

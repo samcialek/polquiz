@@ -216,7 +216,14 @@ function partisanLoyaltyMultiplier(
   // (the New Deal realignment), partisan-loyalty multiplier is disabled and
   // ideological distance alone governs.
   if (electionYear < 1932) return 1;
-  if (!respondentParty || respondentParty === "I" || respondentParty === "N") return 1;
+  // I (Independent), N (Nothing), O (Other) all behave as "no major-party
+  // loyalty": ideological distance alone governs. Only D/R/T carry a loyalty
+  // signal — T (member of a third party) gets a bump toward third-party
+  // candidates (Roosevelt-1912 Progressive, La Follette, Wallace AIP, Perot,
+  // Nader, Anderson) and a small penalty against D/R. O was previously
+  // returning the wrong-party penalty against essentially all candidates
+  // because no candidate's canonical party is "O" — fixed 2026-05-13.
+  if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O") return 1;
   const candPartyKey = candidatePartyToCanonical(candidateParty);
   const userPartyKey =
     respondentParty === "D" ? "D" :

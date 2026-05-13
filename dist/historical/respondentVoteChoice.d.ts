@@ -51,4 +51,4 @@ export interface ElectionPrediction {
     valuesDecision: "vote" | "abstain";
     decision: "vote" | "abstain";
 }
-export declare function predictVote(sig: NodeSignature, candidates: CandidateProfile[], ctx: ElectionContext, engagement: EngagementLevel, partyID?: PartyID | null, anchorDist?: TrbAnchorDist | null, negativeParties?: Set<string> | null, strategicVoting?: boolean, dominantNode?: string | null, morBoundariesState?: MorBoundariesNodeState | null): ElectionPrediction;
+export declare function predictVote(sig: NodeSignature, candidates: CandidateProfile[], ctx: ElectionContext, engagement: EngagementLevel, partyID?: PartyID | null, anchorDist?: TrbAnchorDist | null, negativeParties?: Set<string> | null, strategicVoting?: boolean, dominantNode?: string | null, morBoundariesState?: MorBoundariesNodeState | null, moralCircleAffinity?: import("../types.js").MoralCircleAffinity | null): ElectionPrediction;

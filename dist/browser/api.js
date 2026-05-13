@@ -30,7 +30,7 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260513-centroid-rip";
+export const BUNDLE_VERSION = "20260513-q200-evidence";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 // ---------------------------------------------------------------------------
@@ -471,9 +471,10 @@ export function submitAnswer(questionId, answer) {
     }
 }
 /**
- * Get current quiz progress. Centroid-distance-driven `topArchetypes` and
- * `confidence` fields removed 2026-05-13 with the centroid matcher rip;
- * estimatedTotal is now a fixed cap of 35 (the EIG stop rule cap).
+ * Get current quiz progress. estimatedTotal is the *typical* run length, not
+ * a hard cap — the actual stop rule lives in selectorEIG.ts (hard cap 35).
+ * Display layer should render this with a tilde ("~32 questions") so the
+ * counter reads naturally when a heavier respondent runs to 33-35.
  */
 export function getProgress() {
     if (!_state)
@@ -488,7 +489,7 @@ export function getProgress() {
         phase = "converge";
     return {
         questionsAnswered: nAnswered,
-        estimatedTotal: 35,
+        estimatedTotal: 32,
         phase,
     };
 }

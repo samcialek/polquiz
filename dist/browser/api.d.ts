@@ -8,7 +8,7 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260513-centroid-rip";
+export declare const BUNDLE_VERSION = "20260513-q200-evidence";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 export interface QuizQuestion {
@@ -121,9 +121,10 @@ export declare function submitAnswer(questionId: number, answer: string | number
     opposeHigh: string[];
 }): void;
 /**
- * Get current quiz progress. Centroid-distance-driven `topArchetypes` and
- * `confidence` fields removed 2026-05-13 with the centroid matcher rip;
- * estimatedTotal is now a fixed cap of 35 (the EIG stop rule cap).
+ * Get current quiz progress. estimatedTotal is the *typical* run length, not
+ * a hard cap — the actual stop rule lives in selectorEIG.ts (hard cap 35).
+ * Display layer should render this with a tilde ("~32 questions") so the
+ * counter reads naturally when a heavier respondent runs to 33-35.
  */
 export declare function getProgress(): QuizProgress;
 /**

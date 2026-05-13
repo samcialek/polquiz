@@ -114,12 +114,20 @@ export const LEGACY_FIXED_OPENER = [
 //   - Q201 (patriotism + institutional trust): salience aspect covered by
 //          Q103; institutional-trust position via Q214.
 export const CORE_OPENER = [
-    200, // party identification — partyID metadata for election compute
+    200, // party identification — partyID metadata + weak Bayes prior on
+    //   MAT/CD/CU/MOR/ZS/ONT_S/ONT_H (added 2026-05-13).
     103, // issue salience screener — global salience router (priorityBattery)
     97, // political thought frequency — PF / ENG position
     60, // politically important identities — TRB anchor
     89, // epistemic style battery — EPS category + salience
-    22, // source trust conflict — EPS tie-breaker (load-bearing for top-1)
+    // 2026-05-13: Q22 (source_trust_conflict, EPS tie-breaker) removed from
+    //   CORE_OPENER. Q22 was load-bearing for the 124-centroid scorer when
+    //   empiricist-vs-institutionalist on a knife's edge decided one cluster
+    //   vs another. With the centroid rip, EPS only needs an argmax for the
+    //   composed label — Q89 alone gets empiricist to ~37% (winning), and
+    //   Q22 only tightens confidence without changing the winner. Saves 1
+    //   question. Q22 remains in the bank for the EIG selector to pick
+    //   adaptively when EPS is genuinely close.
     218, // aesthetic style ranking — AES category + salience
     211, // strategic voting — vote-prediction metadata
     212, // negative partisanship — vote-prediction metadata
