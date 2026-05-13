@@ -5196,7 +5196,9 @@ var PrismEngine = (() => {
             CD: { pos: [0.02, 0.05, 0.13, 0.3, 0.5] },
             CU: { pos: [0.5, 0.28, 0.14, 0.05, 0.03] },
             MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] }
-          }
+          },
+          // 2026-05-13: ethnocultural-preservation framing → national in-group preference.
+          moralCircle: { scopedAffinities: { national: 75 } }
         },
         // B: Stay open, but newcomers should adopt common civic culture
         // PR 2 priority 5 rebalance 2026-04-28 — pre-fix likelihoods were
@@ -5222,7 +5224,9 @@ var PrismEngine = (() => {
             CD: { pos: [0.5, 0.3, 0.13, 0.05, 0.02] },
             CU: { pos: [0.03, 0.05, 0.14, 0.28, 0.5] },
             MOR: { pos: [0.05, 0.1, 0.2, 0.3, 0.35] }
-          }
+          },
+          // 2026-05-13: explicit "don't demand convergence" → wide universal scope.
+          moralCircle: { universal: 80 }
         },
         // D: Cultural questions matter less than economic fairness
         // MOR pos=3 (neutral): deflects cultural framing → no MOR signal direction.
@@ -5587,7 +5591,13 @@ var PrismEngine = (() => {
           continuous: {
             TRB: { pos: [0.55, 0.28, 0.12, 0.03, 0.02] },
             MOR: { pos: [0.03, 0.07, 0.2, 0.3, 0.4] }
-          }
+          },
+          // 2026-05-13: explicit "I don't see myself through group identity" →
+          // universal baseline. Only this option emits moralCircle — the in-group
+          // responses (personal_feels / important_care) are scope-agnostic (we don't
+          // know which scope is active without Q60), so they do NOT emit scoped
+          // evidence here.
+          moralCircle: { universal: 80 }
         }
       }
     },
@@ -6201,7 +6211,9 @@ var PrismEngine = (() => {
             MOR: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] },
             ZS: { pos: [0.05, 0.1, 0.2, 0.3, 0.35] },
             ONT_H: { pos: [0.3, 0.3, 0.22, 0.12, 0.06] }
-          }
+          },
+          // 2026-05-13: "American interests/values demand force" → national priority.
+          moralCircle: { scopedAffinities: { national: 70 } }
         },
         // "Lead through alliances and diplomacy; force is a last resort within international institutions"
         alliance_diplomacy: {
@@ -6209,7 +6221,9 @@ var PrismEngine = (() => {
             MOR: { pos: [0.05, 0.12, 0.25, 0.33, 0.25] },
             ZS: { pos: [0.2, 0.3, 0.3, 0.15, 0.05] },
             ONT_H: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
-          }
+          },
+          // 2026-05-13: alliance/institution framing → moderate universalism.
+          moralCircle: { universal: 65 }
         },
         // C and D rewritten 2026-04-25 per user feedback that they overlapped.
         // Now distinguished on the realist-vs-moral axis:
@@ -6237,7 +6251,9 @@ var PrismEngine = (() => {
             // strongly positive-sum (cooperation works)
             ONT_H: { pos: [0.04, 0.12, 0.26, 0.32, 0.26] }
             // optimistic about human nature
-          }
+          },
+          // 2026-05-13: cosmopolitan pacifism → strong universalism.
+          moralCircle: { universal: 80 }
         }
       }
     },
@@ -6263,7 +6279,9 @@ var PrismEngine = (() => {
             CU: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
             MOR: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
             TRB: { pos: [0.3, 0.32, 0.22, 0.1, 0.06] }
-          }
+          },
+          // 2026-05-13: international-institution embrace → universalist scope.
+          moralCircle: { universal: 75 }
         },
         // "Strong alliances yes, but be selective and protect American sovereignty"
         selective_alliance: {
@@ -6279,7 +6297,9 @@ var PrismEngine = (() => {
             CU: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
             MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
             TRB: { pos: [0.04, 0.1, 0.2, 0.32, 0.34] }
-          }
+          },
+          // 2026-05-13: national sovereignty above international institutions → strong national preference.
+          moralCircle: { scopedAffinities: { national: 80 } }
         },
         // "Withdraw from foreign entanglements; focus on home"
         withdraw_focus_home: {
@@ -6287,7 +6307,9 @@ var PrismEngine = (() => {
             CU: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] },
             MOR: { pos: [0.3, 0.3, 0.25, 0.1, 0.05] },
             TRB: { pos: [0.1, 0.18, 0.3, 0.25, 0.17] }
-          }
+          },
+          // 2026-05-13: domestic-first isolationism → mild national preference.
+          moralCircle: { scopedAffinities: { national: 65 } }
         }
       }
     },
@@ -6371,7 +6393,9 @@ var PrismEngine = (() => {
             MOR: { pos: [0.4, 0.3, 0.18, 0.08, 0.04] },
             PRO: { pos: [0.2, 0.25, 0.3, 0.15, 0.1] }
           },
-          categorical: { EPS: { cat: [0.04, 0.06, 0.66, 0.1, 0.1, 0.04] } }
+          categorical: { EPS: { cat: [0.04, 0.06, 0.66, 0.1, 0.1, 0.04] } },
+          // 2026-05-13: religion-in-policy → religious in-group preference.
+          moralCircle: { scopedAffinities: { religious: 80 } }
         },
         // "Religion can inform public values, but laws should serve everyone equally"
         religion_inform: {
@@ -6398,7 +6422,9 @@ var PrismEngine = (() => {
             MOR: { pos: [0.04, 0.1, 0.25, 0.31, 0.3] },
             PRO: { pos: [0.05, 0.15, 0.3, 0.3, 0.2] }
           },
-          categorical: { EPS: { cat: [0.4, 0.2, 0.04, 0.05, 0.2, 0.11] } }
+          categorical: { EPS: { cat: [0.4, 0.2, 0.04, 0.05, 0.2, 0.11] } },
+          // 2026-05-13: strict secular separation → mild universal civic frame.
+          moralCircle: { universal: 65 }
         }
       }
     },
@@ -7035,15 +7061,21 @@ var PrismEngine = (() => {
       touchProfile: [
         { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "universal_baseline_legacy_proxy" }
       ],
+      // 2026-05-13: removed the universal:45 emission that was attached to each
+      // scoped pick. Picking "fellow citizen" tells us about the national scope,
+      // not the respondent's universal baseline. Letting universal be set
+      // independently by Q230/Q231/Q8/Q213 means excess fires only when the
+      // measured universal genuinely sits below the chosen scope. No artificial
+      // medium-bias floor.
       optionEvidence: {
         everyone_equal: { moralCircle: { universal: 90 } },
         stranger_anywhere: { moralCircle: { universal: 75 } },
-        fellow_citizen: { moralCircle: { universal: 45, scopedAffinities: { national: 80 } } },
-        co_religionist: { moralCircle: { universal: 45, scopedAffinities: { religious: 80 } } },
-        same_ethnicity: { moralCircle: { universal: 45, scopedAffinities: { ethnic_racial: 80 } } },
-        same_class: { moralCircle: { universal: 45, scopedAffinities: { class: 80 } } },
-        same_gender: { moralCircle: { universal: 45, scopedAffinities: { gender: 80 } } },
-        shared_politics: { moralCircle: { universal: 45, scopedAffinities: { ideological: 80 } } }
+        fellow_citizen: { moralCircle: { scopedAffinities: { national: 80 } } },
+        co_religionist: { moralCircle: { scopedAffinities: { religious: 80 } } },
+        same_ethnicity: { moralCircle: { scopedAffinities: { ethnic_racial: 80 } } },
+        same_class: { moralCircle: { scopedAffinities: { class: 80 } } },
+        same_gender: { moralCircle: { scopedAffinities: { gender: 80 } } },
+        shared_politics: { moralCircle: { scopedAffinities: { ideological: 80 } } }
       }
     },
     // Q-A1: universal_baseline_humanity
@@ -18663,7 +18695,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260512-q229";
+  var BUNDLE_VERSION = "20260513-mc-wires";
   var _state = null;
   var _archetypes = [];
   var _activeArchetypes = [];
