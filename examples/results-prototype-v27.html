@@ -931,21 +931,25 @@
       transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
       transform-origin: left center;
     }
+    /* 2026-05-12: tripled the emphasis delta per Sam's "200% beyond what it
+       already is" request. translateX 2px → 6px; node-bar scaleY 1.12 → 1.36;
+       cat value 1.055 → 1.165; moral-circle scale 1.035 → 1.105 with stronger
+       saturation/contrast bump. */
     .cluster-panel.active .node-row,
     .cluster-panel.active .cat-closest-match {
-      transform: translateX(2px);
+      transform: translateX(6px);
     }
     .cluster-panel.active .node-bar {
-      transform: scaleY(1.12);
-      box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.08);
+      transform: scaleY(1.36);
+      box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.18);
     }
     .cluster-panel.active .cat-closest-match-value {
       display: inline-block;
-      transform: scale(1.055);
+      transform: scale(1.165);
     }
     .profile-donut-col .moral-circle-section.identity-donut-active .moral-circle-svg-wrap svg {
-      transform: scale(1.035);
-      filter: saturate(1.08) contrast(1.02);
+      transform: scale(1.105);
+      filter: saturate(1.24) contrast(1.06);
     }
     @media (prefers-reduced-motion: reduce) {
       .cluster-panel .node-row,
