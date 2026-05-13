@@ -1589,9 +1589,9 @@ document.addEventListener('DOMContentLoaded', () => {
     CU: { name: 'Assimilation', low1: 'One shared way of life', high5: 'Different ways of life, side by side', cluster: 'ENDS' },
     PRO: { name: 'Procedure', low1: 'Get results, bend rules', high5: 'Follow the rules', cluster: 'MEANS' },
     COM: { name: 'Compromise', low1: 'Stand on principle', high5: 'Cut a deal', cluster: 'MEANS' },
-    ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'MEANS' },
     ZS: { name: 'Zero-Sum', low1: 'Everyone can win', high5: 'One side wins, the other loses', cluster: 'REALITY' },
     ONT_H: { name: 'Human Malleability', low1: 'Character is fixed', high5: 'Character is shaped by environment', cluster: 'REALITY' },
+    ONT_S: { name: 'Institutions', low1: 'Institutions are not the right tool', high5: 'Institutions can produce good change', cluster: 'REALITY' },
     ENG: { name: 'Engagement', low1: 'Tuned out', high5: 'All in', cluster: 'IDENTITY' },
   };
   // v20: on-brand saturated cluster colors. All four are pulled from the
@@ -1924,13 +1924,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========== SECTION 1: ARCHETYPE IDENTITY ==========
     const tierMap = { T1: 'Tier 1', T2: 'Tier 2', T3: 'Tier 3' };
     document.getElementById('tier-badge').textContent = tierMap[archetype.tier] || archetype.tier;
-    document.getElementById('archetype-number').textContent = `ARCHETYPE #${archetypeId}`;
     // 2026-05-12: prefer the salience-driven composed label from the engine.
     // Falls back to the static archetype.name when older bundles didn't write
-    // composedArchetypeLabel into localStorage.
+    // composedArchetypeLabel into localStorage. The badge above the headline
+    // always shows the closest centroid (#id + name) so users can see both
+    // the composed profile label AND the centroid the engine matched.
     const storedRes = (typeof readPrismJson === 'function') ? readPrismJson('prism-results') : null;
     const composedLabel = storedRes && storedRes.composedArchetypeLabel;
     const composedDesc  = storedRes && storedRes.composedArchetypeDescription;
+    const centroidName = (archetype && archetype.name) ? archetype.name.toUpperCase() : '';
+    const labelDiffersFromCentroid = !!(composedLabel && archetype && archetype.name && composedLabel.toUpperCase() !== archetype.name.toUpperCase());
+    document.getElementById('archetype-number').textContent = labelDiffersFromCentroid
+      ? `CLOSEST CENTROID · #${archetypeId} ${centroidName}`
+      : `ARCHETYPE #${archetypeId}`;
     document.getElementById('archetype-name').textContent = composedLabel || archetype.name;
     // Prefer the label-matched description written by the quiz bundle; fall
     // back to the static archetype description for old/demo runs.
@@ -2395,9 +2401,9 @@ document.addEventListener('DOMContentLoaded', () => {
       MOR:   { name: 'Moral Circle',      cluster: 'IDENTITY', low: 'In-group only',             high: 'Universal' },
       PRO:   { name: 'Procedure',         cluster: 'MEANS',   low: 'Get results, bend rules',   high: 'Follow the rules' },
       COM:   { name: 'Compromise',        cluster: 'MEANS',   low: 'Stand on principle',        high: 'Cut a deal' },
-      ONT_S: { name: 'Institutions',      cluster: 'MEANS',   low: 'Not the right tool',        high: 'Can produce good change' },
       ZS:    { name: 'Zero-Sum',          cluster: 'REALITY', low: 'Everyone can win',          high: 'One side wins' },
       ONT_H: { name: 'Human Malleability',cluster: 'REALITY', low: 'Character is fixed',        high: 'Shaped by environment' },
+      ONT_S: { name: 'Institutions',      cluster: 'REALITY', low: 'Not the right tool',        high: 'Can produce good change' },
     };
     // v27.42 — pole phrases now bare adjectival form (no leading "the", no
     // trailing "view"). The sentence-level wording is composed by
@@ -2466,11 +2472,11 @@ document.addEventListener('DOMContentLoaded', () => {
         definition: 'ENDS measures what you want from politics — material policy, cultural direction, and assimilation.',
         members: { continuous: ['MAT','CD','CU'], categorical: [] } },
       { id: 'MEANS',    name: 'MEANS',    subline: 'how you pursue it',
-        definition: 'MEANS measures how you pursue your political goals — procedure, compromise, institutional belief, and aesthetic register.',
-        members: { continuous: ['PRO','COM','ONT_S'], categorical: ['AES'] } },
+        definition: 'MEANS measures how you pursue your political goals — procedure, compromise, and aesthetic register.',
+        members: { continuous: ['PRO','COM'], categorical: ['AES'] } },
       { id: 'REALITY',  name: 'REALITY',  subline: 'how you see the world',
-        definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, and epistemic style.',
-        members: { continuous: ['ZS','ONT_H'], categorical: ['EPS'] } },
+        definition: 'REALITY measures how you see the world — zero-sum framing, human malleability, institutional ontology, and epistemic style.',
+        members: { continuous: ['ZS','ONT_H','ONT_S'], categorical: ['EPS'] } },
       { id: 'IDENTITY', name: 'MORAL CIRCLE', subline: 'above-universal in-group preference',
         definition: 'Moral Circle measures preference for specific in-groups (national, religious, ethnic-racial, class, gender, ideological) above your universal baseline. Wide-circle universalists score near zero — broad concern, not absence of identity.',
         members: { continuous: ['MOR'], categorical: [], morModule: true } },
@@ -4422,10 +4428,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== SECTION 4: NODE PROFILE ==========
     // PROTOTYPE: cluster reorg — MOR moved to IDENTITY as 7-category sunburst,
-    // PF/TRB collapsed into MOR.salience, ONT_S to MEANS, EPS to REALITY.
+    // PF/TRB collapsed into MOR.salience, ONT_S and EPS both in REALITY.
     const nodeData = {};
     // v16: revert to bar rows for every continuous node — ENDS (MAT, CD, CU),
-    // MEANS (PRO, COM, ONT_S), REALITY (ZS, ONT_H). ENG still lives in the
+    // MEANS (PRO, COM), REALITY (ZS, ONT_H, ONT_S). ENG still lives in the
     // page-header badge per v3.
     const continuousNodes = ['MAT','CD','CU','PRO','COM','ZS','ONT_H','ONT_S','ENG'];
     const SELF_CODES = ['ENG'];
