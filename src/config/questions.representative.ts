@@ -3547,9 +3547,9 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     section: "I",
     promptShort: "issue_salience_screener",
     promptFull:
-      "Sort each political topic below by how much it matters to how you see politics. " +
-      "Put topics at the top that feel central to your political identity, in the middle " +
-      "if they matter but aren't central, and at the bottom if they don't really register.",
+      "Sort each political topic by how much it enters into your politics. " +
+      "Topics that feel central to your political identity go on the left. " +
+      "Topics you don't consider much go on the right.",
     uiType: "priority_sort",
     priorityBattery: true,
     quality: 0.98,

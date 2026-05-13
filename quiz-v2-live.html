@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-q103-rewrite-v2"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-q103-prompt"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -3729,7 +3729,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q103-rewrite-v2';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q103-prompt';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
