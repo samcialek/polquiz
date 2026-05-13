@@ -14700,6 +14700,13 @@ var PrismEngine = (() => {
         if (majorWithin) nearest = majorWithin;
       }
     }
+    const loyaltyAbstains = nearest.distance > clearingBar;
+    const ideologyClearWin = nearestByValues.nonIdeologicalAdjustedDistance <= clearingBar * 0.85;
+    let decisionDistance = nearest.distance;
+    if (loyaltyAbstains && ideologyClearWin && nearestByValues !== nearest) {
+      nearest = nearestByValues;
+      decisionDistance = nearestByValues.nonIdeologicalAdjustedDistance;
+    }
     return {
       year: ctx.year,
       candidates: scored,
@@ -14707,7 +14714,7 @@ var PrismEngine = (() => {
       nearestByValues,
       nearest,
       valuesDecision: nearestByValues.ideologicalDistance <= clearingBar ? "vote" : "abstain",
-      decision: nearest.distance <= clearingBar ? "vote" : "abstain"
+      decision: decisionDistance <= clearingBar ? "vote" : "abstain"
     };
   }
 
@@ -15911,7 +15918,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-t-loyalty-fix";
+  var BUNDLE_VERSION = "20260513-cross-pressured-defect";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

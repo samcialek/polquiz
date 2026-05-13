@@ -654,6 +654,27 @@ export function predictVote(
     }
   }
 
+  // Cross-pressured defection (added 2026-05-13 per Sam). A registered D
+  // with hard-right ideology votes Republican (Reagan Democrats, Trump
+  // Democrats), not abstain. Without this, the loyalty multiplier balloons
+  // their distance to the ideologically-closest candidate past the clearing
+  // bar and the model abstains — which then displays as "your nearest =
+  // <opposing party>" because loyalty wins among the remaining candidates.
+  //
+  // Trigger: loyalty-adjusted nearest would abstain, but ideology-only
+  // nearest clears the bar comfortably (≤ 0.85× bar). Defect to ideology.
+  // The 0.85× threshold means "ideology has to be a clear win, not borderline"
+  // — borderline cross-pressured voters legitimately abstain.
+  const loyaltyAbstains = nearest.distance > clearingBar;
+  const ideologyClearWin = nearestByValues.nonIdeologicalAdjustedDistance <= clearingBar * 0.85;
+  let decisionDistance = nearest.distance;
+  if (loyaltyAbstains && ideologyClearWin && nearestByValues !== nearest) {
+    nearest = nearestByValues;
+    // After defection, loyalty no longer applies — they're voting ideology.
+    // The relevant bar check uses the pre-loyalty distance.
+    decisionDistance = nearestByValues.nonIdeologicalAdjustedDistance;
+  }
+
   return {
     year: ctx.year,
     candidates: scored,
@@ -661,6 +682,6 @@ export function predictVote(
     nearestByValues,
     nearest,
     valuesDecision: nearestByValues.ideologicalDistance <= clearingBar ? "vote" : "abstain",
-    decision: nearest.distance <= clearingBar ? "vote" : "abstain",
+    decision: decisionDistance <= clearingBar ? "vote" : "abstain",
   };
 }
