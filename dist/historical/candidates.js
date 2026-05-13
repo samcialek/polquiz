@@ -40,6 +40,7 @@ const election1940 = {
             EPS: 1, // Institutionalist - trusted government machinery
             AES: 0, // Statesman - patrician, fireside chats, gravitas,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
@@ -61,6 +62,7 @@ const election1940 = {
             EPS: 0, // Empiricist - business pragmatist
             AES: 3, // Authentic - outsider, plain-spoken,
             morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         },
     ],
 };
@@ -92,6 +94,7 @@ const election1944 = {
             EPS: 1, // Institutionalist
             AES: 0, // Statesman - commander-in-chief gravitas,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
@@ -115,6 +118,7 @@ const election1944 = {
             EPS: 0, // Empiricist - prosecutor, facts-based
             AES: 1, // Technocrat - efficient manager image,
             morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.29, class: 0.05, ideological: 0.31, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 43, class: 5, gender: 7, ideological: 100 } },
         },
     ],
 };
@@ -148,6 +152,7 @@ const election1948 = {
             EPS: 1, // Institutionalist - trusted government, Truman Doctrine
             AES: 4, // Fighter - "Give 'em hell Harry",
             morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } },
         },
         {
             name: "Dewey",
@@ -168,6 +173,7 @@ const election1948 = {
             EPS: 0, // Empiricist - technocratic
             AES: 0, // Statesman - dignified, above-the-fray,
             morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.12, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 12, class: 5, gender: 7, ideological: 75 } },
         },
         {
             name: "Thurmond",
@@ -188,6 +194,7 @@ const election1948 = {
             EPS: 2, // Traditionalist - "way things have always been"
             AES: 4, // Fighter - insurgent, defiant,
             morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.91, class: 0.05, ideological: 0.34, gender: 0.19, political_tribe: 0.5 }, intensity: 3 },
+            moralCircle: { universalAffinity: 20, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 100, class: 5, gender: 19, ideological: 50 } },
         },
         {
             // Henry A. Wallace - Progressive Party (2.4%)
@@ -217,6 +224,7 @@ const election1948 = {
             EPS: 0, // Empiricist - former Sec. of Agriculture, scientific farmer, data-driven
             AES: 5, // Visionary - "Century of the Common Man," prophetic rhetoric,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.26, gender: 0.07, political_tribe: 0 }, intensity: 2 },
+            moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 26 } },
         },
     ],
 };
@@ -249,6 +257,7 @@ const election1952 = {
             EPS: 0, // Empiricist - military planning, evidence-based
             AES: 0, // Statesman - supreme commander, gravitas,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } },
         },
         {
             name: "Stevenson",
@@ -274,6 +283,7 @@ const election1952 = {
             EPS: 0, // Empiricist - "the thinking man's candidate"
             AES: 5, // Visionary - eloquent idealist,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 90, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
         },
     ],
 };
@@ -306,6 +316,7 @@ const election1956 = {
             EPS: 0, // Empiricist - military planning background
             AES: 0, // Statesman - beloved grandfather-commander,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1.5 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } },
         },
         {
             // Stevenson 1956 MAT 1→2 (Phase 6, 2026-04-27). Same off-by-one fix as
@@ -328,6 +339,7 @@ const election1956 = {
             EPS: 0, // Empiricist
             AES: 5, // Visionary - nuclear test ban, "New America",
             morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 90, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } },
         },
     ],
 };
@@ -361,6 +373,7 @@ const election1960 = {
             EPS: 1, // Institutionalist - trusted expertise and government
             AES: 0, // Statesman - projected elegance and gravitas,
             morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.5, class: 0.25, ideological: 0.35, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 50, ethnic_racial: 20, class: 25, gender: 10, ideological: 50 } },
             morMembership: { ethnic_racial: "white", religious: "Catholic", class: "upper", gender: "male", political_tribe: "D" },
         },
         {
@@ -382,6 +395,7 @@ const election1960 = {
             EPS: 1, // Institutionalist - government experience
             AES: 0, // Statesman - tried to project gravitas (less successfully),
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
         },
     ],
 };
@@ -414,6 +428,7 @@ const election1964 = {
             EPS: 1, // Institutionalist - trusted government machinery
             AES: 0, // Statesman (with pastoral southern touches),
             morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 29, religious: 5, ethnic_racial: 5, class: 62, gender: 10, ideological: 100 } },
         },
         {
             name: "Goldwater",
@@ -434,6 +449,7 @@ const election1964 = {
             EPS: 4, // Autonomous - principled first-principles reasoning
             AES: 3, // Authentic - spoke his mind regardless of consequences,
             morBoundaries: { boundaries: { national: 0.38, ethnic_racial: 0.05, religious: 0.29, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 38, religious: 29, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } },
         },
     ],
 };
@@ -468,6 +484,7 @@ const election1968 = {
             EPS: 1, // Institutionalist - worked the system
             AES: 0, // Statesman - projected authority,
             morBoundaries: { boundaries: { national: 0.44, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 44, religious: 26, ethnic_racial: 5, class: 5, gender: 9, ideological: 75 } },
         },
         {
             name: "Humphrey",
@@ -488,6 +505,7 @@ const election1968 = {
             EPS: 1, // Institutionalist
             AES: 5, // Visionary - idealistic rhetoric,
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
         },
         {
             // Wallace 1968 — MOR INVERSION BUG corrected (Phase 4, 2026-04-26).
@@ -514,6 +532,7 @@ const election1968 = {
             EPS: 3, // Intuitionist - gut-level politics
             AES: 4, // Fighter - combative, defiant,
             morBoundaries: { boundaries: { national: 0.6, ethnic_racial: 0.85, religious: 0.3, class: 0.2, ideological: 0.3, gender: 0.1, political_tribe: 0.7 }, intensity: 3 },
+            moralCircle: { universalAffinity: 20, scopedAffinities: { national: 60, religious: 30, ethnic_racial: 85, class: 20, gender: 10, ideological: 70 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "third" },
         },
     ],
@@ -552,6 +571,7 @@ const election1972 = {
             EPS: 0, // Empiricist as president - data-driven détente
             AES: 0, // Statesman - presidential, "peace with honor",
             morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, ideological: 75 } },
         },
         {
             name: "McGovern",
@@ -579,6 +599,7 @@ const election1972 = {
             EPS: 0, // Empiricist - professor, policy wonk
             AES: 5, // Visionary - idealistic moral appeal,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+            moralCircle: { universalAffinity: 90, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 50 } },
         },
     ],
 };
@@ -611,6 +632,7 @@ const election1976 = {
             EPS: 3, // Intuitionist - moral/faith-based reasoning
             AES: 2, // Pastoral - peanut farmer, small-town authenticity,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 29, gender: 7, ideological: 50 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
@@ -632,6 +654,7 @@ const election1976 = {
             EPS: 1, // Institutionalist - congressional creature
             AES: 0, // Statesman - steady, presidential,
             morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 20, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 100 } },
         },
     ],
 };
@@ -667,6 +690,7 @@ const election1980 = {
             EPS: 3, // Intuitionist - gut conviction, moral clarity
             AES: 5, // Visionary - "morning in America," transformative optimism,
             morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.2, ideological: 0.5, gender: 0.15, political_tribe: 0.6 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 20, gender: 15, ideological: 60 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" },
         },
         {
@@ -688,6 +712,7 @@ const election1980 = {
             EPS: 0, // Empiricist - engineer's mindset, detail-oriented
             AES: 2, // Pastoral - but less effective,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.29, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 29, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
@@ -709,6 +734,7 @@ const election1980 = {
             EPS: 0, // Empiricist - policy wonk
             AES: 1, // Technocrat - intellectual, professorial,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1.5 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
         },
     ],
 };
@@ -741,6 +767,7 @@ const election1984 = {
             EPS: 3, // Intuitionist - gut conviction, moral clarity
             AES: 5, // Visionary - peak "morning in America",
             morBoundaries: { boundaries: { national: 0.7, ethnic_racial: 0.3, religious: 0.5, class: 0.15, ideological: 0.5, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 70, religious: 50, ethnic_racial: 30, class: 15, gender: 15, ideological: 65 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "male", political_tribe: "R" },
         },
         {
@@ -767,6 +794,7 @@ const election1984 = {
             EPS: 1, // Institutionalist - establishment
             AES: 0, // Statesman - tried to project gravitas but lacked charisma,
             morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 100 } },
         },
     ],
 };
@@ -799,6 +827,7 @@ const election1988 = {
             EPS: 1, // Institutionalist - foreign policy establishment
             AES: 0, // Statesman - patrician dignity,
             morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.3, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 30, class: 5, gender: 9, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
@@ -826,6 +855,7 @@ const election1988 = {
             EPS: 0, // Empiricist - data-driven, technocratic
             AES: 1, // Technocrat - "competence not ideology",
             morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 75 } },
         },
     ],
 };
@@ -861,6 +891,7 @@ const election1992 = {
             EPS: 0, // Empiricist - policy wonk, "putting people first"
             AES: 3, // Authentic - "I feel your pain," personal connection,
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" },
         },
         {
@@ -882,6 +913,7 @@ const election1992 = {
             EPS: 1, // Institutionalist
             AES: 0, // Statesman - "résumé candidate",
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
@@ -903,6 +935,7 @@ const election1992 = {
             EPS: 0, // Empiricist - charts and graphs, data-driven
             AES: 1, // Technocrat - businessman with spreadsheets,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1.5 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, ideological: 7 } },
         },
     ],
 };
@@ -935,6 +968,7 @@ const election1996 = {
             EPS: 0, // Empiricist - "what works"
             AES: 0, // Statesman - presidential incumbent,
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "working", gender: "male", political_tribe: "D" },
         },
         {
@@ -956,6 +990,7 @@ const election1996 = {
             EPS: 1, // Institutionalist - Senate creature
             AES: 0, // Statesman - WWII hero, tried for gravitas,
             morBoundaries: { boundaries: { national: 0.31, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 31, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 100 } },
         },
         {
             // Ross Perot - Reform Party (8.4%)
@@ -980,6 +1015,7 @@ const election1996 = {
             EPS: 0, // Empiricist - charts, data, infomercials
             AES: 1, // Technocrat - businessman with spreadsheets,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.1, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0 }, intensity: 1 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 12, religious: 10, ethnic_racial: 5, class: 5, gender: 6, ideological: 7 } },
         },
     ],
 };
@@ -1012,6 +1048,7 @@ const election2000 = {
             EPS: 0, // Empiricist - data, science, climate expertise
             AES: 1, // Technocrat - wonkish, "lockbox",
             morBoundaries: { boundaries: { national: 0.17, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 17, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 75 } },
         },
         {
             name: "Bush",
@@ -1032,6 +1069,7 @@ const election2000 = {
             EPS: 3, // Intuitionist - "gut" decision-maker, faith-based
             AES: 2, // Pastoral - ranch, folksy, "guy you'd have a beer with",
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
@@ -1063,6 +1101,7 @@ const election2000 = {
             EPS: 0, // Empiricist - data on corporate malfeasance, safety research, evidence-driven
             AES: 3, // Plainspoken - rumpled, sincere, no polish, refuses political theater,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
         },
     ],
 };
@@ -1095,6 +1134,7 @@ const election2004 = {
             EPS: 0, // Empiricist - nuanced, "intellectual"
             AES: 0, // Statesman - "reporting for duty," patrician,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
         },
         {
             name: "Bush",
@@ -1115,6 +1155,7 @@ const election2004 = {
             EPS: 3, // Intuitionist - gut decisions, faith-based
             AES: 4, // Fighter - war president, "bring 'em on",
             morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.16, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 16, class: 5, gender: 9, ideological: 100 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
@@ -1148,6 +1189,7 @@ const election2008 = {
             EPS: 0, // Empiricist - "what works," pragmatic progressive
             AES: 5, // Visionary - "yes we can," transformative rhetoric,
             morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.2, religious: 0.15, class: 0.2, ideological: 0.4, gender: 0.1, political_tribe: 0.5 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 20, class: 20, gender: 10, ideological: 50 } },
             morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
@@ -1169,6 +1211,7 @@ const election2008 = {
             EPS: 1, // Institutionalist - Senate creature
             AES: 3, // Authentic - straight talk, personal honor,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.1, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } },
         },
     ],
 };
@@ -1206,6 +1249,7 @@ const election2012 = {
             EPS: 0, // Empiricist - data-driven governance
             AES: 0, // Statesman - presidential, above the fray,
             morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.25, religious: 0.15, class: 0.3, ideological: 0.45, gender: 0.15, political_tribe: 0.55 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 50, religious: 15, ethnic_racial: 25, class: 30, gender: 15, ideological: 55 } },
             morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
@@ -1230,6 +1274,7 @@ const election2012 = {
             EPS: 0, // Empiricist - consulting/business background
             AES: 1, // Technocrat - business turnaround specialist,
             morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
             morMembership: { ethnic_racial: "white", religious: "Mormon", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
@@ -1263,6 +1308,7 @@ const election2016 = {
             EPS: 3, // Intuitionist - gut instinct, "I have a feeling"
             AES: 4, // Fighter - "counterpuncher," combative, dominant,
             morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.2, class: 0.15, ideological: 0.4, gender: 0.2, political_tribe: 0.85 }, intensity: 3 },
+            moralCircle: { universalAffinity: 55, scopedAffinities: { national: 85, religious: 20, ethnic_racial: 60, class: 15, gender: 20, ideological: 85 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
@@ -1290,6 +1336,7 @@ const election2016 = {
             EPS: 0, // Empiricist - policy wonk, detailed plans
             AES: 0, // Statesman - projected competence, gravitas,
             morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.3, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.5, political_tribe: 0.7 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 30, class: 30, gender: 50, ideological: 70 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" },
         },
         {
@@ -1311,6 +1358,7 @@ const election2016 = {
             EPS: 0, // Empiricist - pragmatic, evidence-based governor
             AES: 3, // Authentic - unpolished, mountain climber, casual,
             morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 0.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
         },
     ],
 };
@@ -1343,6 +1391,7 @@ const election2020 = {
             EPS: 1, // Institutionalist - "trust the institutions"
             AES: 2, // Pastoral - "Scranton Joe," empathy, personal loss,
             morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.2, religious: 0.2, class: 0.3, ideological: 0.4, gender: 0.15, political_tribe: 0.65 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 45, religious: 20, ethnic_racial: 20, class: 30, gender: 15, ideological: 65 } },
             morMembership: { ethnic_racial: "white", religious: "Catholic", class: "middle", gender: "male", political_tribe: "D" },
         },
         {
@@ -1364,6 +1413,7 @@ const election2020 = {
             EPS: 3, // Intuitionist - gut politics
             AES: 4, // Fighter - "counterpuncher," grievance,
             morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.25, class: 0.15, ideological: 0.45, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 25, ethnic_racial: 60, class: 15, gender: 20, ideological: 95 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
     ],
@@ -1397,6 +1447,7 @@ const election2024 = {
             EPS: 3, // Intuitionist
             AES: 4, // Fighter - "I am your retribution",
             morBoundaries: { boundaries: { national: 0.85, ethnic_racial: 0.6, religious: 0.3, class: 0.2, ideological: 0.5, gender: 0.2, political_tribe: 0.95 }, intensity: 3 },
+            moralCircle: { universalAffinity: 38, scopedAffinities: { national: 85, religious: 30, ethnic_racial: 60, class: 20, gender: 20, ideological: 95 } },
             morMembership: { ethnic_racial: "white", religious: "Protestant", class: "upper", gender: "male", political_tribe: "R" },
         },
         {
@@ -1418,6 +1469,7 @@ const election2024 = {
             EPS: 1, // Institutionalist - prosecutor, DA, AG
             AES: 1, // Technocrat - policy-focused,
             morBoundaries: { boundaries: { national: 0.4, ethnic_racial: 0.4, religious: 0.1, class: 0.3, ideological: 0.45, gender: 0.45, political_tribe: 0.65 }, intensity: 2.5 },
+            moralCircle: { universalAffinity: 73, scopedAffinities: { national: 40, religious: 10, ethnic_racial: 40, class: 30, gender: 45, ideological: 65 } },
             morMembership: { ethnic_racial: "Black", religious: "Protestant", class: "middle", gender: "female", political_tribe: "D" },
         },
     ],

@@ -14482,10 +14482,10 @@ var PrismEngine = (() => {
     return 1 + 4 * ideoN * intensityFactor;
   }
   function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
-    if (electionYear < 1932) return 1;
-    if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O") return 1;
+    if (electionYear < 1960) return 1;
+    if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O" || respondentParty === "T") return 1;
     const candPartyKey = candidatePartyToCanonical(candidateParty);
-    const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : respondentParty === "T" ? "T" : "O";
+    const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : "O";
     if (candPartyKey === userPartyKey) return 1;
     const pf = Math.max(1, Math.min(5, pfPos ?? 3));
     return 1 + PARTY_LOYALTY_BASE * (pf / 5);
@@ -14716,7 +14716,7 @@ var PrismEngine = (() => {
     MAT: { low: "Redistributionist", mid: "Mixed-Economy", high: "Free-Marketeer" },
     CD: { low: "Progressive", mid: "", high: "Traditionalist" },
     CU: { low: "Assimilationist", mid: "Civic-Pluralist", high: "Pluralist" },
-    MOR: { low: "Particularist", mid: "Civic", high: "Universalist" },
+    MOR: { low: "", mid: "Civic", high: "Universalist" },
     PRO: { low: "Consequentialist", mid: "Pragmatic", high: "Procedural" },
     COM: { low: "Principled", mid: "Practical", high: "Dealmaker" },
     ZS: { low: "Positive-Sum", mid: "Realist", high: "Combative" },
@@ -15911,7 +15911,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-labeler-q78";
+  var BUNDLE_VERSION = "20260513-t-loyalty-fix";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

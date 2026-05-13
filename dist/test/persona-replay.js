@@ -17,10 +17,10 @@ function buildPersona(arch) {
     const persona = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
     for (const [nid, t] of Object.entries(arch.nodes)) {
         if (t.kind === "continuous") {
-            persona.continuous[nid] = { pos: t.pos, sal: t.sal };
+            persona.continuous[nid] = { pos: t.pos, sal: t.sal ?? 0 };
         }
         else {
-            persona.categorical[nid] = { probs: t.probs, sal: t.sal };
+            persona.categorical[nid] = { probs: t.probs, sal: t.sal ?? 0 };
         }
     }
     return persona;
@@ -83,7 +83,8 @@ function scoreBucketMap(map, persona) {
             // Signal is a bump direction (+ pushes high, - pushes low).
             // A signal aligned with target direction (pos > 3 wants positive, pos < 3 wants negative) is good.
             const direction = (t.pos - 3) / 2; // -1 to +1
-            score += signal * direction;
+            const scalar = typeof signal === "number" ? signal : 0;
+            score += scalar * direction;
             count++;
         }
     }
@@ -192,12 +193,54 @@ function decideAnswer(q, qq, persona) {
             return answers;
         }
         case "best_worst": {
-            const items = Object.keys(q.bestWorstMap ?? {});
+            const map = q.bestWorstMap ?? q.rankingMap ?? {};
+            const items = Object.keys(map);
             if (items.length === 0)
                 return { best: "", worst: "" };
-            const scored = items.map(i => ({ i, s: scoreBucketMap(q.bestWorstMap[i], persona) }));
+            const scored = items.map(i => ({ i, s: scoreBucketMap(map[i], persona) }));
             scored.sort((a, b) => b.s - a.s);
             return { best: scored[0].i, worst: scored[scored.length - 1].i };
+        }
+        case "priority_sort": {
+            const items = Object.keys(q.rankingMap ?? {});
+            if (items.length === 0) {
+                return { supportHigh: [], supportMid: [], neutral: [], opposeHigh: [] };
+            }
+            // Score each item by archetype-evidence alignment, then bucket high → low.
+            const scored = items.map(i => ({ i, s: scoreBucketMap(q.rankingMap[i], persona) }));
+            scored.sort((a, b) => b.s - a.s);
+            const n = scored.length;
+            const high = Math.max(1, Math.floor(n * 0.2));
+            const mid = Math.floor(n * 0.3);
+            const low = Math.max(1, Math.floor(n * 0.2));
+            const supportHigh = scored.slice(0, high).map(x => x.i);
+            const supportMid = scored.slice(high, high + mid).map(x => x.i);
+            const opposeHigh = scored.slice(n - low).map(x => x.i);
+            const neutral = scored.slice(high + mid, n - low).map(x => x.i);
+            return { supportHigh, supportMid, neutral, opposeHigh };
+        }
+        case "dual_axis": {
+            if (!q.dualAxisMap)
+                return { x: 0.5, y: 0.5 };
+            const t = persona.continuous[q.dualAxisMap.node];
+            if (!t)
+                return { x: 0.5, y: 0.5 };
+            return { x: (t.pos - 1) / 4, y: t.sal / 3 };
+        }
+        case "conjoint": {
+            const opts = Object.keys(q.optionEvidence ?? {});
+            if (opts.length === 0)
+                return qq.options?.[0] ?? "a";
+            let bestOpt = opts[0];
+            let bestScore = -Infinity;
+            for (const o of opts) {
+                const s = scoreOptionEvidence(q.optionEvidence[o], persona);
+                if (s > bestScore) {
+                    bestScore = s;
+                    bestOpt = o;
+                }
+            }
+            return bestOpt;
         }
         default:
             return qq.options?.[0] ?? "unknown";
@@ -222,25 +265,22 @@ function runPersona(persona) {
         submitAnswer(qq.id, answer);
     }
     const results = getResults();
-    // Compute full posterior ranking to find target rank
-    const ranked = results.top5; // only top5 exposed, so compute rank within top5 or -1
+    // Only top3 exposed in the distance-native results — compute target rank within top3 or -1
+    const ranked = results.top3;
     const targetRank = ranked.findIndex(r => r.id === persona.archId);
-    const targetInTop5 = targetRank >= 0;
-    const targetInTop3 = targetRank >= 0 && targetRank < 3;
+    const targetInTop3 = targetRank >= 0;
     const targetInTop1 = targetRank === 0;
     return {
         archId: persona.archId,
         archName: persona.archName,
         top1Id: results.match.id,
         top1Name: results.match.name,
-        top1Posterior: results.match.posterior,
-        top3: ranked.slice(0, 3).map(r => ({ id: r.id, name: r.name, posterior: r.posterior })),
-        top5: ranked.map(r => ({ id: r.id, name: r.name, posterior: r.posterior })),
+        top1Distance: results.match.distance,
+        top3: ranked.map(r => ({ id: r.id, name: r.name, distance: r.distance })),
         target_in_top1: targetInTop1,
         target_in_top3: targetInTop3,
-        target_in_top5: targetInTop5,
         targetRank: targetRank >= 0 ? targetRank + 1 : -1,
-        targetPosterior: targetRank >= 0 ? (ranked[targetRank]?.posterior ?? 0) : 0,
+        targetDistance: targetRank >= 0 ? (ranked[targetRank]?.distance ?? Infinity) : Infinity,
         questionsAnswered: results.questionsAnswered,
     };
 }
@@ -248,7 +288,7 @@ function runPersona(persona) {
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
-    const active = ARCHETYPES.filter(a => a.prior > 0);
+    const active = ARCHETYPES.filter(a => a.active !== false);
     console.log(`Running ${active.length} personas (one per active archetype)`);
     const results = [];
     let i = 0;
@@ -258,24 +298,22 @@ async function main() {
         const res = runPersona(persona);
         results.push(res);
         if (i % 10 === 0) {
-            console.log(`  ... ${i}/${active.length}  latest: ${arch.id} ${arch.name} → top1=${res.top1Id} ${res.top1Name.slice(0, 28)} (${res.top1Posterior.toFixed(3)})  rank=${res.targetRank}`);
+            console.log(`  ... ${i}/${active.length}  latest: ${arch.id} ${arch.name} → top1=${res.top1Id} ${res.top1Name.slice(0, 28)} (d=${res.top1Distance.toFixed(2)})  rank=${res.targetRank}`);
         }
     }
     // Aggregate stats
     const top1 = results.filter(r => r.target_in_top1).length;
     const top3 = results.filter(r => r.target_in_top3).length;
-    const top5 = results.filter(r => r.target_in_top5).length;
     const avgQ = results.reduce((s, r) => s + r.questionsAnswered, 0) / results.length;
     console.log();
     console.log("=== Recovery Rates ===");
     console.log(`Top-1: ${top1}/${results.length} (${(100 * top1 / results.length).toFixed(1)}%)`);
     console.log(`Top-3: ${top3}/${results.length} (${(100 * top3 / results.length).toFixed(1)}%)`);
-    console.log(`Top-5: ${top5}/${results.length} (${(100 * top5 / results.length).toFixed(1)}%)`);
     console.log(`Avg questions answered: ${avgQ.toFixed(1)}`);
     console.log();
-    // Per-archetype failures (target not in top5)
-    const failures = results.filter(r => !r.target_in_top5);
-    console.log(`=== Personas NOT recovered in top-5 (${failures.length}) ===`);
+    // Per-archetype failures (target not in top3)
+    const failures = results.filter(r => !r.target_in_top3);
+    console.log(`=== Personas NOT recovered in top-3 (${failures.length}) ===`);
     for (const r of failures.slice(0, 30)) {
         console.log(`  ${r.archId} ${r.archName.padEnd(34)} → got ${r.top1Id} ${r.top1Name.slice(0, 28)}`);
     }
@@ -320,7 +358,7 @@ async function main() {
     const outDir = path.join(process.cwd(), "output");
     await fs.mkdir(outDir, { recursive: true });
     await fs.writeFile(path.join(outDir, "persona-replay.json"), JSON.stringify({
-        summary: { top1, top3, top5, total: results.length, avgQuestionsAnswered: avgQ },
+        summary: { top1, top3, total: results.length, avgQuestionsAnswered: avgQ },
         results,
         misassignments: confusionList.map(([pair, n]) => ({ pair, n })),
         attractors: destList,

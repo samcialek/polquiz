@@ -71,15 +71,17 @@ interface PoleTokens {
 //   - ONT_H low "Essentialist" — academic jargon
 //   - TRB low "Inclusivist" — clunky `-ist` on an adjective
 //   - CD mid "Hinge" — too cute, ambiguous
+//   - MOR low "Particularist" — academic jargon (added 2026-05-13)
 // Mergers consuming these bins still produce good labels: "Marxist",
 // "Utopian", "Hobbesian", "Humanist", "Futurist", "Reactionary",
-// "Social-Engineer", "Essentialist Traditionalist", "Constructivist
-// Progressive" all remain reachable via the curated merger table.
+// "Social-Engineer", "Class-Particularist", "Tribal-Capitalist",
+// "Essentialist Traditionalist", "Constructivist Progressive" all remain
+// reachable via the curated merger and compression tables.
 export const POSITION_LEXICON: Record<string, PoleTokens> = {
   MAT:   { low: "Redistributionist", mid: "Mixed-Economy",  high: "Free-Marketeer" },
   CD:    { low: "Progressive",       mid: "",               high: "Traditionalist" },
   CU:    { low: "Assimilationist",   mid: "Civic-Pluralist", high: "Pluralist" },
-  MOR:   { low: "Particularist",     mid: "Civic",          high: "Universalist" },
+  MOR:   { low: "",                  mid: "Civic",          high: "Universalist" },
   PRO:   { low: "Consequentialist",  mid: "Pragmatic",      high: "Procedural" },
   COM:   { low: "Principled",        mid: "Practical",      high: "Dealmaker" },
   ZS:    { low: "Positive-Sum",      mid: "Realist",        high: "Combative" },

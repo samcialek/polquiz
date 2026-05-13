@@ -1,4 +1,19 @@
-export type ContinuousNodeId = "MAT" | "CD" | "CU" | "MOR" | "PRO" | "COM" | "ZS" | "ONT_H" | "ONT_S" | "PF" | "TRB" | "ENG";
+/**
+ * Continuous belief-axis nodes plus engagement.
+ *
+ * `MOR`, `PF`, `TRB` are @deprecated per ADR-007 — superseded by the
+ * compound moral-circle module (`state.moralCircle.affinity`). They remain
+ * in this union during the transition so engine fallback paths still
+ * compile; full removal lands in a follow-up cleanup pass once all
+ * consumers (electorate, eval, diagnostics) are migrated.
+ */
+export type ContinuousNodeId = "MAT" | "CD" | "CU"
+/** @deprecated ADR-007 — use `state.moralCircle.affinity.universalAffinity`. */
+ | "MOR" | "PRO" | "COM" | "ZS" | "ONT_H" | "ONT_S"
+/** @deprecated ADR-007 — use `state.moralCircle.affinity.scopedAffinities.political_camp`. */
+ | "PF"
+/** @deprecated ADR-007 — use `state.moralCircle.affinity.scopedAffinities.<scope>`. */
+ | "TRB" | "ENG";
 export type CategoricalNodeId = "EPS" | "AES";
 export type NodeId = ContinuousNodeId | CategoricalNodeId;
 export type Cluster = "ENDS" | "MEANS" | "REALITY" | "SELF";
@@ -41,14 +56,16 @@ export interface Archetype {
     centristAnchor?: boolean;
     nodes: Partial<Record<NodeId, ArchetypeNodeTemplate>>;
     /**
-     * Compound moral-circle module per ADR-006 (added in PR 6.B as additive).
-     * Replaces the MOR / TRB / PF entries currently in `nodes`. Optional during
-     * the additive transition (PRs 6.B–6.D); becomes required and the legacy
-     * MOR/TRB/PF entries are removed in PR 6.E (engine cutover).
-     *
-     * Currently unused by the engine — runtime cutover lands in PR 6.E.
+     * @deprecated ADR-006 module; superseded by `moralCircle` per ADR-007.
+     * Removed in T12 of the moral-circle full migration.
      */
     morBoundaries?: ArchetypeMorBoundaries;
+    /**
+     * Moral-circle template per ADR-007. Universal baseline + 8 scoped
+     * affinities. Added in T2 of the moral-circle migration; consumed by
+     * `archetypeDistance` in T7 and by `resolveIdentityPrimary` in T6.
+     */
+    moralCircle?: ArchetypeMoralCircle;
 }
 export type QuestionStage = "fixed12" | "screen20" | "stage2" | "stage3";
 export type QuestionUiType = "single_choice" | "slider" | "allocation" | "ranking" | "pairwise" | "best_worst" | "priority_sort" | "dual_axis" | "conjoint" | "multi";
@@ -205,12 +222,21 @@ export type PartyID = "D" | "R" | "I" | "N" | "T" | "O";
 export interface OptionEvidence {
     continuous?: Partial<Record<ContinuousNodeId, OptionEvidenceContinuous>>;
     categorical?: Partial<Record<CategoricalNodeId, OptionEvidenceCategorical>>;
+    /** @deprecated ADR-006; superseded by `moralCircle` per ADR-007. Removed in T12. */
     trbAnchor?: Partial<Record<TrbAnchor, number>>;
+    /**
+     * Per-option moral-circle contribution per ADR-007. Universal and scoped
+     * affinity magnitudes (0..100) the option pushes onto respondent state.
+     * Added in T1 of the moral-circle migration; consumed by `update.ts` in T4.
+     */
+    moralCircle?: OptionEvidenceMoralCircle;
 }
 export interface AllocationBucketMap {
     continuous?: Partial<Record<ContinuousNodeId, number>>;
     categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
     trbAnchor?: Partial<Record<TrbAnchor, number>>;
+    /** ADR-007 (T3): moral-circle contribution per allocation bucket. */
+    moralCircle?: OptionEvidenceMoralCircle;
 }
 export interface RankingItemMap {
     /**
@@ -225,10 +251,16 @@ export interface RankingItemMap {
     continuous?: Partial<Record<ContinuousNodeId, number | OptionEvidenceContinuous>>;
     categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
     trbAnchor?: Partial<Record<TrbAnchor, number>>;
+    /** ADR-007 (T3): moral-circle contribution per ranking item. */
+    moralCircle?: OptionEvidenceMoralCircle;
 }
 export interface PairOptionMap {
     continuous?: Partial<Record<ContinuousNodeId, number>>;
     categorical?: Partial<Record<CategoricalNodeId, CategoricalDist>>;
+    /** Legacy ADR-006 path. Identity-anchor evidence for the chosen option. */
+    trbAnchor?: Partial<Record<TrbAnchor, number>>;
+    /** ADR-007 (T3): moral-circle contribution per pairwise option. */
+    moralCircle?: OptionEvidenceMoralCircle;
 }
 /**
  * Dual-axis evidence. A single gesture on a 2D grid gives x (position) and
@@ -367,6 +399,21 @@ export interface RespondentState {
      * double-count partisanship").
      */
     morMembership?: MorMembership;
+    /**
+     * Moral-circle affinity state per ADR-007. `affinity` starts as `null`
+     * (unmeasured — not zero-default, since universalAffinity=0 would be a
+     * positive moral claim). Materialized once first moral-circle evidence
+     * lands. Consumers must guard against `affinity === null` before reading.
+     * Added in T1 of the moral-circle migration.
+     */
+    moralCircle?: MoralCircleAffinityState;
+    /**
+     * Self-reported group membership per ADR-007. Independent axis from
+     * affinity. Replaces `morMembership` (renamed; `political_tribe` →
+     * `political_camp`; `sexual` field added for LGBTQ identity). Added in
+     * T1; legacy `morMembership` removed in T12.
+     */
+    membership?: Membership;
     /** Euclidean distance from the respondent state to each active archetype. Lower = better match. */
     archetypeDistances: Record<string, number>;
     /** ID of the current leading archetype (lowest distance). */
@@ -383,4 +430,111 @@ export interface RespondentState {
     dominantNode?: string | null;
     /** Per-question ratio-boost multipliers applied via applyRatioBoost. */
     ratioBoosts?: Record<string, number>;
+}
+/**
+ * Six scoped moral-circle affinities. Universal concern is stored separately
+ * as `universalAffinity` and is the baseline; scoped values are six in-group
+ * magnitudes compared against the universal baseline to derive excess.
+ *
+ * Revision (2026-05-07): scope set reduced from 8 to 6.
+ *   - `sexual` dropped — folded back into `gender`. LGBTQ Voter routes via
+ *     gender excess + `demo_lgbtq` membership lock-and-key.
+ *   - `political_camp` merged into `ideological`. Both captured the same
+ *     partisan-in-group dimension; the broader name (`ideological`) survives
+ *     since "I share their values" subsumes "I share their party."
+ */
+export type MoralCircleScope = "national" | "religious" | "ethnic_racial" | "class" | "gender" | "ideological";
+/** Raw scoped-affinity map. `null` = "not meaningful to me", not zero. */
+export type MoralCircleScopedAffinities = Record<MoralCircleScope, number | null>;
+/** Derived per-scope excess map. Always numeric (`null` collapses to 0). */
+export type MoralCircleExcessAffinities = Record<MoralCircleScope, number>;
+/** Raw input prior to derivation. The 9 stored numbers per ADR-007. */
+export interface MoralCircleAffinityInput {
+    /** 0..100 baseline moral concern for any human being. */
+    universalAffinity: number;
+    scopedAffinities: MoralCircleScopedAffinities;
+}
+/**
+ * Full derived moral-circle affinity object. `scopedAffinities` retains raw
+ * values (including `null`) for diagnostics; `excessAffinities` and
+ * `activeBoundaries` are the active-signal layer.
+ */
+export interface MoralCircleAffinity {
+    universalAffinity: number;
+    scopedAffinities: MoralCircleScopedAffinities;
+    excessAffinities: MoralCircleExcessAffinities;
+    /** Mathematical activation: scopes where excess > 0. */
+    activeBoundaries: MoralCircleScope[];
+    /** L2-norm intensity normalized to [0, 1]; saturates at one fully-loaded boundary. */
+    intensity01: number;
+    /** intensity01 × 3, for compatibility with existing 0..3 salience surfaces. */
+    intensity03: number;
+}
+/**
+ * Internal running-average accumulator for moral-circle evidence. Per-scope
+ * counts let us track how many times each component has been touched, so
+ * downstream consumers can distinguish well-measured scopes from sparsely-
+ * touched ones. Not exposed in the public API; engine-internal.
+ */
+export interface MoralCircleAffinityAccumulator {
+    universalSum: number;
+    universalCount: number;
+    scopedSums: Partial<Record<MoralCircleScope, number>>;
+    scopedCounts: Partial<Record<MoralCircleScope, number>>;
+}
+/**
+ * Per-respondent moral-circle state container. `affinity` is `null` at quiz
+ * start (no zero-default — "unmeasured" must not look like "no baseline
+ * concern for humans"). Materialized once the first moral-circle evidence
+ * lands; consumers must guard against the `null` case.
+ *
+ * `accumulator` holds the per-component running totals; `affinity` is
+ * recomputed from the accumulator on each touch.
+ */
+export interface MoralCircleAffinityState {
+    affinity: MoralCircleAffinity | null;
+    touchCount: number;
+    accumulator: MoralCircleAffinityAccumulator;
+}
+/**
+ * Archetype-side moral-circle template. Same 9-number shape as
+ * `MoralCircleAffinityInput`; aliased for documentation. Profiles live in
+ * `src/config/archetypes.ts` per ADR-007.
+ */
+export interface ArchetypeMoralCircle {
+    /** 0..100 baseline moral concern projected by this archetype. */
+    universalAffinity: number;
+    scopedAffinities: MoralCircleScopedAffinities;
+}
+/**
+ * Per-option contribution to moral-circle affinity. Each option in a question
+ * may push universal and/or one or more scoped affinities. Per-option values
+ * are 0..100 magnitudes that the engine aggregates into the respondent's
+ * `state.moralCircle.affinity`. `null` on a scoped contribution means
+ * "this option says this scope is not meaningful for the respondent."
+ */
+export interface OptionEvidenceMoralCircle {
+    universal?: number;
+    scopedAffinities?: Partial<Record<MoralCircleScope, number | null>>;
+}
+/**
+ * Self-reported group membership per ADR-007 §"Identity-Primary Resolver
+ * Migration". Membership is independent of affinity — affinity says "this
+ * scope is morally loaded for me," membership says which concrete in-group
+ * within that scope. `political_camp` carries a party-ID label, not an
+ * activation strength (activation lives in
+ * `state.moralCircle.affinity.scopedAffinities.political_camp`). All fields
+ * optional with `null` allowed for decline-to-state.
+ */
+export interface Membership {
+    ethnic_racial?: string | null;
+    religious?: string | null;
+    class?: string | null;
+    gender?: string | null;
+    /**
+     * Party-ID label. Field name retained for terminology consistency with
+     * external systems (Q200 party metadata). Maps onto the `ideological`
+     * scope under the merged 6-scope model.
+     */
+    political_camp?: "D" | "R" | "independent" | "third" | "none" | string | null;
 }

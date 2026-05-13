@@ -18,9 +18,9 @@ function buildPersona(arch) {
     const persona = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
     for (const [nid, t] of Object.entries(arch.nodes)) {
         if (t.kind === "continuous")
-            persona.continuous[nid] = { pos: t.pos, sal: t.sal };
+            persona.continuous[nid] = { pos: t.pos, sal: t.sal ?? 0 };
         else
-            persona.categorical[nid] = { probs: t.probs, sal: t.sal };
+            persona.categorical[nid] = { probs: t.probs, sal: t.sal ?? 0 };
     }
     return persona;
 }
@@ -69,7 +69,7 @@ async function main() {
     const page = await ctx.newPage();
     page.on("pageerror", err => console.log(`  [page error] ${err.message}`));
     // Pick 3 personas with clearly different signatures
-    const active = ARCHETYPES.filter(a => a.prior > 0);
+    const active = ARCHETYPES.filter(a => a.active !== false);
     const picks = [
         active.find(a => a.id === "012"), // Class-War Leftist (extreme left)
         active.find(a => a.id === "090"), // Hobbesian Guardian (authoritarian)
@@ -80,7 +80,7 @@ async function main() {
         const persona = buildPersona(arch);
         console.log(`\nDriving persona ${arch.id} ${arch.name}...`);
         // Drive quiz on the quiz page
-        await page.goto(`http://127.0.0.1:${PORT}/prism-quiz-v3.html`, { waitUntil: "domcontentloaded" });
+        await page.goto(`http://127.0.0.1:${PORT}/quiz-v2-live.html`, { waitUntil: "domcontentloaded" });
         await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
         const driveResult = await page.evaluate(async (pJson) => {
             const persona = JSON.parse(pJson);

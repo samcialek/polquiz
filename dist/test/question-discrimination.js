@@ -1,3 +1,6 @@
+// @ts-nocheck
+// FROZEN HISTORICAL — pre-Phase-3 question discrimination audit. Inline scorer
+// uses removed `archetype.prior`. Not on the CI path.
 /**
  * Layer 1 — Question Discrimination Audit.
  *

@@ -1,6 +1,6 @@
 import { CONTINUOUS_NODES, CATEGORICAL_NODES, isSelfNode } from "../config/nodes.js";
 import { CATEGORY_COST_MATRIX } from "../config/categories.js";
-import { morModuleDistance } from "./math.js";
+import { morModuleDistance, moralCircleDistance } from "./math.js";
 /**
  * Continuous nodes superseded by the compound MOR_BOUNDARIES module per
  * ADR-006 PR 6.E.2a. When BOTH respondent state and the archetype carry
@@ -55,18 +55,17 @@ function expectedSal(salDist) {
 export function archetypeDistance(state, archetype) {
     let totalDist = 0;
     let totalWeight = 0;
-    // Per-archetype gate: fold MOR/TRB/PF into the compound module when
-    // BOTH sides have the new data. Live api.ts always passes the gate
-    // (every archetype + the api.ts state initializer carry morBoundaries
-    // since 6.E.2b/6.E.4a). If either side lacks it (malformed or
-    // hand-built state from external integrations / dumps / future
-    // codepaths), the morModule term is skipped — and post-6.E.4c the
-    // per-node loop has no MOR/TRB/PF templates to read either. The
-    // fallback is therefore a finite-distance compatibility path, NOT a
-    // faithful legacy MOR/TRB/PF geometry reproduction.
-    const useMorModule = !!state.morBoundaries && !!archetype.morBoundaries;
+    // ADR-007 (T7): prefer moralCircleDistance when both sides have the new
+    // moralCircle field. Falls back to ADR-006 morModule branch when the
+    // respondent state hasn't been touched with moralCircle evidence yet
+    // (state.moralCircle.affinity null) — which is the case until T3 question
+    // rewrite lands. This fallback path goes away in T12.
+    const useMoralCircle = !!state.moralCircle?.affinity && !!archetype.moralCircle;
+    const useMorModule = !useMoralCircle && !!state.morBoundaries && !!archetype.morBoundaries;
     for (const nodeId of CONTINUOUS_NODES) {
-        if (useMorModule && MOR_MODULE_LEGACY.includes(nodeId))
+        // ADR-007 / ADR-006: skip legacy MOR/TRB/PF per-node terms when either
+        // moral-circle module branch is engaged.
+        if ((useMoralCircle || useMorModule) && MOR_MODULE_LEGACY.includes(nodeId))
             continue;
         const template = archetype.nodes[nodeId];
         if (!template || template.kind !== "continuous")
@@ -120,18 +119,40 @@ export function archetypeDistance(state, archetype) {
         totalDist += nodeDist * nodeWeight;
         totalWeight += nodeWeight;
     }
-    // ── MOR_BOUNDARIES module contribution (ADR-006 PR 6.E.2a cutover) ────
-    // One contribution replacing the four legacy fields (MOR continuous +
-    // TRB continuous + PF continuous + TRB_ANCHOR distribution). Weight uses
-    // the standard salience-weighted multiplier pattern, derived from
-    // intensity directly — NOT double-counting intensity inside the boundary
-    // sum (per ADR-006 §"Engine math, archetype matching distance").
+    // ── ADR-007 moralCircle module contribution (T7 cutover) ────────────────
+    // Single contribution replacing the four legacy fields. Weight derived from
+    // the respondent's own intensity03 (analogous to ADR-006 morModule pattern,
+    // but read from the new module).
+    if (useMoralCircle) {
+        const respIntensity03 = state.moralCircle.affinity.intensity03;
+        // Archetype-side intensity: derived inline from its scopedAffinities
+        // vs universalAffinity (we don't store intensity03 on archetype templates).
+        let archSumSq = 0;
+        const archMc = archetype.moralCircle;
+        for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "ideological"]) {
+            const v = archMc.scopedAffinities[scope];
+            if (v === null || v === undefined)
+                continue;
+            const e = Math.max(0, v - archMc.universalAffinity);
+            archSumSq += e * e;
+        }
+        const archIntensity03 = 3 * Math.min(1, Math.sqrt(archSumSq) / 100);
+        // archSalWeight: intensity 0→0.5, 3→2.0  (mirrors sal 0..3 → 0.5..2.0)
+        const archSalWeight = 0.5 + archIntensity03 * 0.5;
+        // respondentSalWeight: intensity 0→0.5, 3→1.25  (mirrors sal 0..3 → 0.5..1.25)
+        const respondentSalWeight = 0.5 + respIntensity03 * 0.25;
+        const nodeWeight = archSalWeight * respondentSalWeight;
+        const nodeDist = moralCircleDistance(state.moralCircle.affinity, archMc);
+        totalDist += nodeDist * nodeWeight;
+        totalWeight += nodeWeight;
+    }
+    // ── MOR_BOUNDARIES module contribution (ADR-006 PR 6.E.2a, defensive
+    // fallback during T1-T7 transition; removed in T12). Only fires when
+    // moralCircle is unavailable.
     if (useMorModule) {
         const archIntensity = archetype.morBoundaries.intensity;
         const respIntensity = state.morBoundaries.intensity;
-        // archSalWeight: intensity 0→0.5, 3→2.0  (mirrors sal 0..3 → 0.5..2.0)
         const archSalWeight = 0.5 + archIntensity * 0.5;
-        // respondentSalWeight: intensity 0→0.5, 3→1.25  (mirrors sal 0..3 → 0.5..1.25)
         const respondentSalWeight = 0.5 + respIntensity * 0.25;
         const nodeWeight = archSalWeight * respondentSalWeight;
         const nodeDist = morModuleDistance(state.morBoundaries, archetype.morBoundaries);
@@ -225,11 +246,14 @@ export function archetypeDistance(state, archetype) {
             if (userSal >= 2.0)
                 highSalCount++;
         }
-        // Compound moral-circle module high-activation check (ADR-006 PR 6.E.2a).
-        // Substitutes for MOR's salience entry above when state.morBoundaries is
-        // present. Intensity scale is 0..3, same as `userSal`, so threshold ≥ 2.0
-        // transfers directly.
-        if (state.morBoundaries && state.morBoundaries.intensity >= 2.0) {
+        // ADR-007 (T7): moralCircle.intensity03 substitutes for MOR's salience
+        // entry. Intensity scale is 0..3, same as `userSal`, so threshold ≥ 2.0
+        // transfers directly. Falls back to ADR-006 morBoundaries when the
+        // moralCircle affinity hasn't materialized yet (pre-T3 question rewire).
+        if (state.moralCircle?.affinity && state.moralCircle.affinity.intensity03 >= 2.0) {
+            highSalCount++;
+        }
+        else if (state.morBoundaries && state.morBoundaries.intensity >= 2.0) {
             highSalCount++;
         }
         if (highSalCount >= 3) {

@@ -47,6 +47,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "002",
@@ -65,6 +66,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "003",
@@ -83,6 +85,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "004",
@@ -103,6 +106,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 50 } },
     },
     {
         id: "005",
@@ -125,6 +129,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "006",
@@ -143,6 +148,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "007",
@@ -163,6 +169,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "008",
@@ -184,6 +191,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "010",
@@ -205,6 +213,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.12, religious: 0.1, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 19, religious: 10, ethnic_racial: 12, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "011",
@@ -223,6 +232,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } },
     },
     {
         id: "012",
@@ -249,6 +259,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 48 } },
     },
     {
         id: "013",
@@ -267,6 +278,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 76, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 25 } },
     },
     {
         id: "014",
@@ -291,6 +303,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 25 } },
     },
     {
         id: "015",
@@ -309,6 +322,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 57, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 62, gender: 9, ideological: 26 } },
     },
     {
         id: "016",
@@ -327,6 +341,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.34, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 34 } },
     },
     {
         id: "017",
@@ -352,6 +367,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } },
     },
     // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
     {
@@ -372,6 +388,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
@@ -392,6 +409,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.40, 0.38, 0.04, 0.08], sal: 2 }, // blend pastoral+plainspoken
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
@@ -417,6 +435,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "022",
@@ -435,6 +454,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
@@ -455,6 +475,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }, // raised sal 1→2
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "024",
@@ -477,6 +498,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
@@ -497,6 +519,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "026",
@@ -515,6 +538,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "027",
@@ -537,6 +561,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "028",
@@ -559,6 +584,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "029",
@@ -577,6 +603,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "031",
@@ -602,6 +629,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "032",
@@ -626,6 +654,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "033",
@@ -644,6 +673,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 50 } },
     },
     // {
     // id: "034",
@@ -684,6 +714,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 75 } },
     },
     {
         id: "036",
@@ -702,6 +733,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "037",
@@ -720,6 +752,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "039",
@@ -740,6 +773,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "040",
@@ -758,6 +792,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "042",
@@ -778,6 +813,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "043",
@@ -798,6 +834,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } },
     },
     {
         id: "045",
@@ -818,6 +855,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.15, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 15, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "046",
@@ -838,6 +876,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     // {
     // id: "047",
@@ -880,6 +919,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.34, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 66, scopedAffinities: { national: 5, religious: 34, ethnic_racial: 5, class: 48, gender: 9, ideological: 25 } },
     },
     {
         id: "049",
@@ -900,6 +940,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "050",
@@ -918,6 +959,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "051",
@@ -936,6 +978,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } },
     },
     {
         id: "053",
@@ -954,6 +997,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "054",
@@ -972,6 +1016,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "056",
@@ -999,6 +1044,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } },
     },
     {
         id: "057",
@@ -1017,6 +1063,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "059",
@@ -1036,6 +1083,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "060",
@@ -1057,6 +1105,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.20, 0.04, 0.06, 0.04, 0.06], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "061",
@@ -1075,6 +1124,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "062",
@@ -1093,6 +1143,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "063",
@@ -1111,6 +1162,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
     // {
@@ -1157,6 +1209,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "067",
@@ -1179,6 +1232,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "069",
@@ -1197,6 +1251,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "070",
@@ -1224,6 +1279,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "071",
@@ -1247,6 +1303,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "072",
@@ -1272,6 +1329,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.2, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 20, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "073",
@@ -1293,6 +1351,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.11, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 11, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "074",
@@ -1311,6 +1370,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "076",
@@ -1329,6 +1389,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.18, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 18, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "077",
@@ -1347,6 +1408,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.19, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "078",
@@ -1365,6 +1427,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "079",
@@ -1390,6 +1453,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.09, 0.06, 0.09, 0.06], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
     },
     // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
     // {
@@ -1418,6 +1482,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 81, class: 5, gender: 10, ideological: 75 } },
     },
     {
         id: "082",
@@ -1439,6 +1504,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 48, ethnic_racial: 36, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "083",
@@ -1464,6 +1530,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "084",
@@ -1485,6 +1552,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 34, scopedAffinities: { national: 95, religious: 91, ethnic_racial: 67, class: 5, gender: 10, ideological: 75 } },
     },
     {
         id: "085",
@@ -1506,6 +1574,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.26, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "086",
@@ -1529,6 +1598,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 36, religious: 38, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "087",
@@ -1550,6 +1620,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "088",
@@ -1574,6 +1645,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 22, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "089",
@@ -1597,6 +1669,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 38, ethnic_racial: 36, class: 5, gender: 12, ideological: 75 } },
     },
     {
         id: "090",
@@ -1615,6 +1688,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.53, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 53, class: 5, gender: 12, ideological: 75 } },
     },
     {
         id: "091",
@@ -1633,6 +1707,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.19, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 29, ethnic_racial: 19, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "092",
@@ -1651,6 +1726,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 48, class: 5, gender: 10, ideological: 100 } },
     },
     {
         id: "094",
@@ -1676,6 +1752,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "095",
@@ -1694,6 +1771,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "097",
@@ -1712,6 +1790,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.04, 0.06, 0.14, 0.06], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } },
     },
     {
         id: "098",
@@ -1730,6 +1809,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.16, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 16, class: 5, gender: 6, ideological: 25 } },
     },
     {
         id: "099",
@@ -1748,6 +1828,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.38, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 63, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 38, gender: 7, ideological: 50 } },
     },
     {
         id: "100",
@@ -1766,6 +1847,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.72, ideological: 0.76, gender: 0.19, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 100, class: 72, gender: 19, ideological: 100 } },
     },
     {
         id: "101",
@@ -1784,6 +1866,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 26, class: 5, gender: 7, ideological: 100 } },
     },
     {
         id: "103",
@@ -1802,6 +1885,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 47, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 37, class: 41, gender: 9, ideological: 75 } },
     },
     {
         id: "104",
@@ -1820,6 +1904,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 41, ethnic_racial: 26, class: 5, gender: 9, ideological: 100 } },
     },
     {
         id: "105",
@@ -1838,6 +1923,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.76, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 76, class: 5, gender: 10, ideological: 75 } },
     },
     {
         id: "106",
@@ -1856,6 +1942,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] },
         },
         morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 58, class: 5, gender: 9, ideological: 100 } },
     },
     {
         id: "107",
@@ -1876,6 +1963,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.60, 0.15, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 22, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } },
     },
     {
         id: "108",
@@ -1894,6 +1982,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.55, 0.20, 0.05], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1 },
+        moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
     },
     {
         id: "109",
@@ -1912,6 +2001,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 25 } },
     },
     {
         id: "110",
@@ -1930,6 +2020,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } },
     },
     {
         id: "111",
@@ -1948,6 +2039,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "112",
@@ -1966,6 +2058,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.70, 0.05, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "113",
@@ -1986,6 +2079,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.10, 0.75, 0.07], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 12, class: 5, gender: 6, ideological: 25 } },
     },
     {
         id: "114",
@@ -2004,6 +2098,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.70, 0.15], sal: 2 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 3 },
+        moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
     },
     {
         id: "115",
@@ -2022,6 +2117,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "116",
@@ -2041,6 +2137,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "117",
@@ -2059,6 +2156,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "118",
@@ -2077,6 +2175,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } },
     },
     {
         id: "119",
@@ -2095,6 +2194,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "120",
@@ -2113,6 +2213,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } },
     },
     {
         id: "121",
@@ -2131,6 +2232,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "122",
@@ -2150,6 +2252,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "124",
@@ -2168,6 +2271,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "125",
@@ -2186,6 +2290,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } },
     },
     {
         id: "126",
@@ -2204,6 +2309,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } },
     },
     {
         id: "127",
@@ -2222,6 +2328,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 95, religious: 34, ethnic_racial: 5, class: 5, gender: 10, ideological: 100 } },
     },
     {
         id: "128",
@@ -2240,6 +2347,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 41, gender: 9, ideological: 75 } },
     },
     {
         id: "129",
@@ -2260,6 +2368,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } },
     },
     // MERGED into Duty Voter (ID 131) — 2026-04-01
     // {
@@ -2301,6 +2410,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "132",
@@ -2319,6 +2429,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 23, religious: 5, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } },
     },
     {
         id: "134",
@@ -2358,6 +2469,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.35, 0.20, 0.05, 0.10, 0.20, 0.10], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } },
     },
     // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
     {
@@ -2381,6 +2493,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.10, 0.05, 0.05, 0.15, 0.60], sal: 1 }, // FIX: Disruptive = visionary, not statesman
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+        moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
     },
     {
         id: "136",
@@ -2399,6 +2512,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.10, 0.10, 0.50, 0.15, 0.05, 0.10], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.26, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
+        moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 9, class: 5, gender: 6, ideological: 25 } },
     },
     {
         id: "137",
@@ -2417,6 +2531,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.10, 0.70], sal: 3 }, // Prophetic visionary
         },
         morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 3 },
+        moralCircle: { universalAffinity: 48, scopedAffinities: { national: 66, religious: 41, ethnic_racial: 5, class: 5, gender: 9, ideological: 75 } },
     },
     {
         id: "138",
@@ -2435,6 +2550,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.05, 0.05, 0.10, 0.60, 0.10, 0.10], sal: 2 }, // Experiential
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0 }, intensity: 2 },
+        moralCircle: { universalAffinity: 92, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 12 } },
     },
     {
         id: "139",
@@ -2453,6 +2569,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.10, 0.50, 0.15, 0.10, 0.10, 0.05], sal: 1 },
         },
         morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.12, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
+        moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } },
     },
     {
         id: "140",
@@ -2476,6 +2593,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [0.10, 0.60, 0.10, 0.05, 0.10, 0.05], sal: 1 }, // Systematic
         },
         morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
+        moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } },
     },
     // ═══════════════════════════════════════════════════════════════════════════
     // Identity-Primary Archetypes (141–146)
@@ -2515,6 +2633,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.35, ethnic_racial: 0.9, religious: 0.3, class: 0.4, ideological: 0.3, gender: 0.15, political_tribe: 0.65 }, intensity: 3 },
+        moralCircle: { universalAffinity: 45, scopedAffinities: { national: 35, religious: 35, ethnic_racial: 85, class: 50, gender: 30, ideological: 60 } },
     },
     {
         id: "142",
@@ -2533,6 +2652,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.65, ethnic_racial: 0.9, religious: 0.35, class: 0.3, ideological: 0.4, gender: 0.3, political_tribe: 0.7 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 75, religious: 50, ethnic_racial: 80, class: 45, gender: 35, ideological: 55 } },
     },
     {
         id: "143",
@@ -2551,6 +2671,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.85, class: 0.15, ideological: 0.4, gender: 0.3, political_tribe: 0.6 }, intensity: 3 },
+        moralCircle: { universalAffinity: 35, scopedAffinities: { national: 60, religious: 90, ethnic_racial: 30, class: 30, gender: 35, ideological: 55 } },
     },
     {
         id: "144",
@@ -2569,6 +2690,11 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.2, religious: 0.1, class: 0.2, ideological: 0.45, gender: 0.9, political_tribe: 0.55 }, intensity: 3 },
+        // 6-scope LGBTQ Voter profile (2026-05-07): original `sexual: 85` was the
+        // primary IDP gate signal under the 8-scope model. With sexual folded into
+        // gender, gender takes that load (was 65 + 85 sexual → 85 merged).
+        // Routing: gender excess + demo_lgbtq=yes → LGBTQ Voter.
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 20, ethnic_racial: 35, class: 45, gender: 85, ideological: 60 } },
     },
     {
         id: "145",
@@ -2587,6 +2713,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.25, religious: 0.1, class: 0.3, ideological: 0.5, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
+        moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 25, ethnic_racial: 40, class: 50, gender: 85, ideological: 65 } },
     },
     {
         id: "146",
@@ -2605,6 +2732,7 @@ export const ARCHETYPES = [
             AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
         },
         morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.4, religious: 0.25, class: 0.25, ideological: 0.45, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
+        moralCircle: { universalAffinity: 30, scopedAffinities: { national: 60, religious: 35, ethnic_racial: 45, class: 50, gender: 80, ideological: 55 } },
     },
 ];
 //# sourceMappingURL=archetypes.js.map

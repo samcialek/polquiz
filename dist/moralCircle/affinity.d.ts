@@ -1,0 +1,78 @@
+/**
+ * ADR-007 — Moral Circle Affinity (additive scaffolding).
+ *
+ * Pure helpers for the explicit moral-circle affinity model. Engine,
+ * selector, mapper, archetype, candidate-distance, identity-primary,
+ * era-activation, and electorate code do NOT call into this module yet.
+ * Stage B per `results/architecture/moral-circle-terminal2-work-order.md`.
+ *
+ * All numeric inputs are 0..100; null scoped affinities mean
+ * "not meaningful to me" (collapse to zero excess).
+ */
+import type { MoralCircleScope, MoralCircleScopedAffinities, MoralCircleExcessAffinities, MoralCircleAffinityInput, MoralCircleAffinity } from "../types.js";
+/** Canonical scope ordering. The 6 scoped affinities. */
+export declare const MORAL_CIRCLE_SCOPES: readonly MoralCircleScope[];
+/** Practical activation threshold (points of excess) for UI/reporting/resolver gating. */
+export declare const MORAL_CIRCLE_REPORT_ACTIVE_THRESHOLD = 5;
+export declare function isMoralCircleScope(value: unknown): value is MoralCircleScope;
+/** Clamp a number to [0, 100]; non-finite → 0. */
+export declare function clampAffinity100(value: number): number;
+/**
+ * For legacy numeric surfaces that cannot accept null. Per ADR-007 §"Raw
+ * Storage vs Active Signal": null scoped → universalAffinity, NOT zero.
+ * Numeric scoped values pass through clamped.
+ */
+export declare function coerceScopedAffinityForLegacy(scoped: number | null, universalAffinity: number): number;
+/**
+ * Per-scope excess: max(0, scoped - universal). null scoped → 0 excess.
+ * Universal is clamped before subtraction; scoped values likewise.
+ */
+export declare function computeExcessAffinities(universalAffinity: number, scopedAffinities: MoralCircleScopedAffinities): MoralCircleExcessAffinities;
+/**
+ * Reporting helper. Returns scopes whose excess passes both the mathematical
+ * activation rule (excess > 0) and the supplied reporting threshold.
+ *
+ *   threshold = 0 → mathematical activation set (any positive excess)
+ *   threshold = 5 → reporting / resolver activation set (ADR-007 default)
+ */
+export declare function getActiveMoralCircleBoundaries(excessAffinities: MoralCircleExcessAffinities, threshold?: number): MoralCircleScope[];
+export interface MoralCircleIntensity {
+    /** Raw L2 norm of excess vector, in 0..100 (saturates higher with multi-loaded). */
+    l2: number;
+    /** L2 norm normalized to [0, 1]; saturates at one fully-loaded boundary. */
+    intensity01: number;
+    /** intensity01 × 3, for compatibility with 0..3 salience surfaces. */
+    intensity03: number;
+}
+/**
+ * Moral-circle intensity per ADR-007 §"Intensity Formula": L2 norm of the
+ * excess-affinity vector, divided by 100 and clamped to 1.
+ *
+ *   l2          = sqrt(Σ excess[g]^2)
+ *   intensity01 = min(1, l2 / 100)
+ *   intensity03 = 3 × intensity01
+ *
+ * The /100 divisor saturates at "one boundary fully maxed" — multi-loaded
+ * profiles cluster at ceiling. This is deliberate per ADR-007.
+ */
+export declare function computeMoralCircleIntensity(excessAffinities: MoralCircleExcessAffinities): MoralCircleIntensity;
+/**
+ * Full derivation pipeline: raw 9 numbers → MoralCircleAffinity object.
+ * `activeBoundaries` uses the mathematical rule (excess > 0).
+ */
+export declare function deriveMoralCircleAffinity(input: MoralCircleAffinityInput): MoralCircleAffinity;
+export interface MoralCircleValidationIssue {
+    field: string;
+    message: string;
+}
+/**
+ * Light-touch validator for input shape. Distinguishes:
+ *   - missing key (incomplete 9-value storage shape) — INVALID
+ *   - explicit `null` ("not meaningful to me")        — VALID
+ *   - explicit `undefined`                            — INVALID
+ *   - finite number in [0, 100]                       — VALID
+ *
+ * Does NOT enforce satisficing rules — those live in the calibration-battery
+ * module.
+ */
+export declare function validateMoralCircleAffinityInput(input: MoralCircleAffinityInput): MoralCircleValidationIssue[];

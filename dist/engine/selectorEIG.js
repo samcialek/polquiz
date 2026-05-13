@@ -337,6 +337,54 @@ function passesSalienceFloorGate(state, q) {
     }
     return false;
 }
+// ─── ADR-007 — Moral-circle scope gate (T5) ────────────────────────────────
+// Maps Battery B scope-probe questions (Q232-Q239) to the scope they probe.
+// Used to skip a scoped follow-up when the respondent's universal score is
+// already so high that the scope is unlikely to produce active excess
+// (excess = max(0, scoped - universal); if universal is 90, only a "much_more"
+// answer at 90 even reaches zero excess). Skipping these saves quiz time for
+// universalist respondents — typical case for high-universal users.
+const MORAL_CIRCLE_SCOPE_QUESTION_MAP = {
+    232: "national",
+    233: "religious",
+    234: "ethnic_racial",
+    235: "class",
+    236: "gender",
+    // Q237 (sexual) and Q239 (political_camp) removed in 2026-05-07 6-scope
+    // revision. sexual folded into gender; political_camp merged into ideological.
+    238: "ideological",
+};
+/**
+ * Skip a scoped Battery B question when its scope is unlikely to produce
+ * active excess given current state. Rules:
+ *  - If universal is unmeasured: keep (need data either way).
+ *  - If scoped is unmeasured AND universal >= 80: skip (high universalist;
+ *    scope very unlikely to exceed).
+ *  - If scoped is known AND scoped + 5 <= universal: skip (already clearly
+ *    below; further evidence won't recover it).
+ *  - Else: keep.
+ */
+function passesMoralCircleScopeGate(state, q) {
+    const scope = MORAL_CIRCLE_SCOPE_QUESTION_MAP[q.id];
+    if (!scope)
+        return true; // not a Battery B scope probe
+    const aff = state.moralCircle?.affinity;
+    if (!aff)
+        return true; // no universal estimate yet → keep
+    const universal = aff.universalAffinity;
+    const scoped = aff.scopedAffinities[scope];
+    if (scoped === null || scoped === undefined) {
+        // Scope not touched. Skip only if universalist enough that excess is
+        // implausible.
+        if (universal >= 80)
+            return false;
+        return true;
+    }
+    // Scope already measured. Skip if clearly below universal.
+    if (scoped + 5 <= universal)
+        return false;
+    return true;
+}
 // ─── Public API ────────────────────────────────────────────────────────────
 export function selectNextQuestionEIG(state, available, questionsById) {
     const baseEligible = available.filter((q) => !(q.id in state.answers) && isQuestionEligible(state, q));
@@ -350,7 +398,8 @@ export function selectNextQuestionEIG(state, available, questionsById) {
     //     all hit nodes that have already reached their cap are skipped.
     const topK = new Set(getTopSalientNodes(state));
     const eligible = baseEligible.filter(q => passesSalienceFloorGate(state, q) &&
-        passesTouchCapFilter(state, q, questionsById, topK));
+        passesTouchCapFilter(state, q, questionsById, topK) &&
+        passesMoralCircleScopeGate(state, q));
     if (!eligible.length)
         return null;
     // PR 3 forced-coverage rules (Q7 pilot 2026-04-29 commit ddcca84 evaluated

@@ -1,7 +1,7 @@
 /**
  * Layer 3 — Browser End-to-End harness (Playwright).
  *
- * Loads prism-quiz-v3.html in a real Chromium browser, drives it via the
+ * Loads quiz-v2-live.html in a real Chromium browser, drives it via the
  * global PrismEngine API using the same deterministic persona decision
  * policy as Layer 2, and verifies:
  *
@@ -27,10 +27,10 @@ function buildPersona(arch) {
     const persona = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
     for (const [nid, t] of Object.entries(arch.nodes)) {
         if (t.kind === "continuous") {
-            persona.continuous[nid] = { pos: t.pos, sal: t.sal };
+            persona.continuous[nid] = { pos: t.pos, sal: t.sal ?? 0 };
         }
         else {
-            persona.categorical[nid] = { probs: t.probs, sal: t.sal };
+            persona.categorical[nid] = { probs: t.probs, sal: t.sal ?? 0 };
         }
     }
     return persona;
@@ -39,7 +39,7 @@ function buildPersona(arch) {
 // Sample selection: diverse archetypes across tiers, clusters, IDs
 // ---------------------------------------------------------------------------
 function pickSamplePersonas(count) {
-    const active = ARCHETYPES.filter(a => a.prior > 0);
+    const active = ARCHETYPES.filter(a => a.active !== false);
     if (count >= active.length)
         return active.map(buildPersona);
     // Pick every Nth archetype to spread across the ID space
@@ -63,7 +63,7 @@ function startServer(rootDir, port) {
             try {
                 let urlPath = (req.url || "/").split("?")[0] || "/";
                 if (urlPath === "/")
-                    urlPath = "/prism-quiz-v3.html";
+                    urlPath = "/quiz-v2-live.html";
                 // Prevent directory traversal
                 const safePath = path.normalize(urlPath).replace(/^[/\\]+/, "");
                 const filePath = path.join(rootDir, safePath);
@@ -308,7 +308,7 @@ async function runPersonaInBrowser(page, persona) {
         const prismResults = {
             archetypeId: results.match.id,
             archetypeName: results.match.name,
-            top5: results.top5,
+            top3: results.top3,
             respondentState,
             questionsAnswered: results.questionsAnswered,
             timestamp: Date.now(),
@@ -318,14 +318,14 @@ async function runPersonaInBrowser(page, persona) {
         return { results, respondentState, shape, hasExpectedPos, hasSalience, hasCatDist };
     }, JSON.stringify(persona));
     // Compute target rank
-    const targetRank = result.results.top5.findIndex(r => r.id === persona.archId);
+    const targetRank = result.results.top3.findIndex(r => r.id === persona.archId);
     return {
         archId: persona.archId,
         archName: persona.archName,
         top1Id: result.results.match.id,
         top1Name: result.results.match.name,
-        top1Posterior: result.results.match.posterior,
-        top5: result.results.top5,
+        top1Distance: result.results.match.distance,
+        top3: result.results.top3,
         targetRank: targetRank >= 0 ? targetRank + 1 : -1,
         questionsAnswered: result.results.questionsAnswered,
         respondentStateShape: result.shape,
@@ -339,7 +339,7 @@ async function runPersonaInBrowser(page, persona) {
 // ---------------------------------------------------------------------------
 const ROOT = path.resolve(process.cwd());
 const PORT = 8723;
-const URL = `http://127.0.0.1:${PORT}/prism-quiz-v3.html`;
+const URL = `http://127.0.0.1:${PORT}/quiz-v2-live.html`;
 const SAMPLE_SIZE = 112;
 async function main() {
     console.log(`Starting static server on ${URL}`);
@@ -367,18 +367,16 @@ async function main() {
         await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
         const res = await runPersonaInBrowser(page, p);
         results.push(res);
-        const rankStr = res.targetRank > 0 ? `rank=${res.targetRank}` : "NOT in top5";
+        const rankStr = res.targetRank > 0 ? `rank=${res.targetRank}` : "NOT in top3";
         console.log(`  [${i + 1}/${personas.length}]  ${p.archId} ${p.archName.slice(0, 30).padEnd(30)} → ${res.top1Id} ${res.top1Name.slice(0, 25).padEnd(25)}  (${rankStr}, ${res.questionsAnswered}q)`);
     }
     // Aggregate
     const top1 = results.filter(r => r.targetRank === 1).length;
     const top3 = results.filter(r => r.targetRank > 0 && r.targetRank <= 3).length;
-    const top5 = results.filter(r => r.targetRank > 0 && r.targetRank <= 5).length;
     const avgQ = results.reduce((s, r) => s + r.questionsAnswered, 0) / results.length;
     console.log(`\n=== Browser E2E Recovery ===`);
     console.log(`Top-1: ${top1}/${results.length} (${(100 * top1 / results.length).toFixed(1)}%)`);
     console.log(`Top-3: ${top3}/${results.length} (${(100 * top3 / results.length).toFixed(1)}%)`);
-    console.log(`Top-5: ${top5}/${results.length} (${(100 * top5 / results.length).toFixed(1)}%)`);
     console.log(`Avg questions: ${avgQ.toFixed(1)}`);
     console.log();
     // Respondent-state shape checks
@@ -393,7 +391,7 @@ async function main() {
     // Per-persona failures
     const failures = results.filter(r => r.targetRank <= 0);
     if (failures.length > 0) {
-        console.log(`=== NOT in top5 (${failures.length}) ===`);
+        console.log(`=== NOT in top3 (${failures.length}) ===`);
         for (const r of failures) {
             console.log(`  ${r.archId} ${r.archName} → ${r.top1Id} ${r.top1Name}`);
         }
@@ -403,7 +401,7 @@ async function main() {
     const outDir = path.join(ROOT, "output");
     await fs.mkdir(outDir, { recursive: true });
     await fs.writeFile(path.join(outDir, "browser-e2e.json"), JSON.stringify({
-        summary: { top1, top3, top5, total: results.length, avgQuestionsAnswered: avgQ, shapeOK },
+        summary: { top1, top3, total: results.length, avgQuestionsAnswered: avgQ, shapeOK },
         results,
     }, null, 2));
     console.log(`Wrote output/browser-e2e.json`);

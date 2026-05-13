@@ -12,9 +12,9 @@ function buildPersona(arch) {
     const p = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
     for (const [nid, t] of Object.entries(arch.nodes)) {
         if (t.kind === "continuous")
-            p.continuous[nid] = { pos: t.pos, sal: t.sal };
+            p.continuous[nid] = { pos: t.pos, sal: t.sal ?? 0 };
         else
-            p.categorical[nid] = { probs: t.probs, sal: t.sal };
+            p.categorical[nid] = { probs: t.probs, sal: t.sal ?? 0 };
     }
     return p;
 }
@@ -26,7 +26,7 @@ function startServer(rootDir, port) {
             try {
                 let urlPath = (req.url || "/").split("?")[0] || "/";
                 if (urlPath === "/")
-                    urlPath = "/prism-quiz-v3.html";
+                    urlPath = "/quiz-v2-live.html";
                 const safePath = path.normalize(urlPath).replace(/^[/\\]+/, "");
                 const filePath = path.join(rootDir, safePath);
                 if (!filePath.startsWith(rootDir)) {
@@ -61,7 +61,7 @@ async function main() {
     const arch = ARCHETYPES.find(a => a.id === "012");
     const persona = buildPersona(arch);
     console.log(`Driving persona ${arch.id} ${arch.name} through quiz...`);
-    await page.goto(`http://127.0.0.1:${PORT}/prism-quiz-v3.html`, { waitUntil: "domcontentloaded" });
+    await page.goto(`http://127.0.0.1:${PORT}/quiz-v2-live.html`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
     await page.evaluate((pJson) => {
         const persona = JSON.parse(pJson);

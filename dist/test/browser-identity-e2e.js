@@ -17,9 +17,9 @@ function buildPersona(arch) {
     const persona = { archId: arch.id, archName: arch.name, continuous: {}, categorical: {} };
     for (const [nid, t] of Object.entries(arch.nodes)) {
         if (t.kind === "continuous")
-            persona.continuous[nid] = { pos: t.pos, sal: t.sal };
+            persona.continuous[nid] = { pos: t.pos, sal: t.sal ?? 0 };
         else
-            persona.categorical[nid] = { probs: t.probs, sal: t.sal };
+            persona.categorical[nid] = { probs: t.probs, sal: t.sal ?? 0 };
     }
     return persona;
 }
@@ -31,7 +31,7 @@ function startServer(rootDir, port) {
             try {
                 let urlPath = (req.url || "/").split("?")[0] || "/";
                 if (urlPath === "/")
-                    urlPath = "/prism-quiz-v3.html";
+                    urlPath = "/quiz-v2-live.html";
                 const safePath = path.normalize(urlPath).replace(/^[/\\]+/, "");
                 const filePath = path.join(rootDir, safePath);
                 if (!filePath.startsWith(rootDir)) {
@@ -56,12 +56,12 @@ function startServer(rootDir, port) {
 }
 // Pick an archetype with strongest TRB/PF/ENG to produce dominant-state triggering
 function pickHighIdentityArchetype() {
-    const active = ARCHETYPES.filter(a => a.prior > 0);
+    const active = ARCHETYPES.filter(a => a.active !== false);
     const best = active
         .map(a => {
-        const trb = a.nodes.TRB && a.nodes.TRB.kind === "continuous" ? (a.nodes.TRB.pos + a.nodes.TRB.sal) : 0;
-        const pf = a.nodes.PF && a.nodes.PF.kind === "continuous" ? (a.nodes.PF.pos + a.nodes.PF.sal) : 0;
-        const eng = a.nodes.ENG && a.nodes.ENG.kind === "continuous" ? (a.nodes.ENG.pos + a.nodes.ENG.sal) : 0;
+        const trb = a.nodes.TRB && a.nodes.TRB.kind === "continuous" ? (a.nodes.TRB.pos + (a.nodes.TRB.sal ?? 0)) : 0;
+        const pf = a.nodes.PF && a.nodes.PF.kind === "continuous" ? (a.nodes.PF.pos + (a.nodes.PF.sal ?? 0)) : 0;
+        const eng = a.nodes.ENG && a.nodes.ENG.kind === "continuous" ? (a.nodes.ENG.pos + (a.nodes.ENG.sal ?? 0)) : 0;
         return { a, score: trb + pf + eng };
     })
         .sort((x, y) => y.score - x.score)[0];
@@ -105,7 +105,7 @@ async function main() {
     console.log(`Base archetype for identity signals: ${baseArchetype.id} ${baseArchetype.name}`);
     console.log(`(TRB=${baseArchetype.nodes.TRB && baseArchetype.nodes.TRB.kind === "continuous" ? baseArchetype.nodes.TRB.pos : "?"}, PF=${baseArchetype.nodes.PF && baseArchetype.nodes.PF.kind === "continuous" ? baseArchetype.nodes.PF.pos : "?"}, ENG=${baseArchetype.nodes.ENG && baseArchetype.nodes.ENG.kind === "continuous" ? baseArchetype.nodes.ENG.pos : "?"})`);
     console.log(`Feminist-pattern base: ${feministBaseArchetype.id} ${feministBaseArchetype.name}`);
-    await page.goto(`http://127.0.0.1:${PORT}/prism-quiz-v3.html`, { waitUntil: "domcontentloaded" });
+    await page.goto(`http://127.0.0.1:${PORT}/quiz-v2-live.html`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
     let pass = 0, fail = 0;
     const details = [];
@@ -140,7 +140,7 @@ async function main() {
             persona.continuous.MAT = { pos: 2, sal: 2 };
         }
         // Reset page state
-        await page.goto(`http://127.0.0.1:${PORT}/prism-quiz-v3.html`, { waitUntil: "domcontentloaded" });
+        await page.goto(`http://127.0.0.1:${PORT}/quiz-v2-live.html`, { waitUntil: "domcontentloaded" });
         await page.waitForFunction(() => typeof window.PrismEngine !== "undefined", null, { timeout: 10000 });
         const result = await page.evaluate(async (payload) => {
             const { personaJson, anchorKey, anchorItems, demographics } = JSON.parse(payload);
@@ -264,7 +264,7 @@ async function main() {
                     }
                     case "ranking": {
                         // If this is Q60 (identity_ranking), force anchorKey item to rank 1
-                        if (q.promptShort === "primary_identity_ranking" || (q.rankingMap && topItem && q.rankingMap[topItem])) {
+                        if (q.promptShort === "primary_identity_ranking" || q.promptShort === "politically_important_identities" || (q.rankingMap && topItem && q.rankingMap[topItem])) {
                             const items = Object.keys(q.rankingMap ?? {});
                             if (items.includes(topItem)) {
                                 const rest = items.filter(x => x !== topItem);

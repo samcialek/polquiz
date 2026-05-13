@@ -48,6 +48,25 @@ export interface CandidateProfile {
         intensity: number;
     };
     /**
+     * ADR-007 candidate-side moralCircle profile (T8). Universal baseline +
+     * 6 scoped affinities (revised 2026-05-07: dropped `sexual` and merged
+     * `political_camp` into `ideological`). Captures the candidate's PUBLIC
+     * CAMPAIGN SIGNAL (which moral in-groups the campaign elevates), not
+     * private psychology. Scoped values on a 0..100 scale. Active boundary
+     * emerges when scoped exceeds universal — same rule as respondent state.
+     */
+    moralCircle?: {
+        universalAffinity: number;
+        scopedAffinities: {
+            national: number;
+            religious: number;
+            ethnic_racial: number;
+            class: number;
+            gender: number;
+            ideological: number;
+        };
+    };
+    /**
      * Optional self-reported group membership per ADR-006. For candidates,
      * this captures the candidate's demographic identity (used by Layer 2
      * lock-and-key in respondentVoteChoice.ts after PR 6.E cutover).

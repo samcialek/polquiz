@@ -1,14 +1,9 @@
-/**
- * PRISM Quiz Engine — Simulation Diagnostic
- *
- * For each of the 124 archetypes, simulates a respondent who answers
- * as that archetype would, runs the full scoring pipeline, and checks
- * if the top-scoring archetype matches the simulated one.
- *
- * Usage:
- *   npx tsx src/test/simulation.ts          # Full run (124 archetypes)
- *   npx tsx src/test/simulation.ts --quick   # Quick run (first 20)
- */
+// @ts-nocheck
+// FROZEN HISTORICAL — pre-Phase-3 simulation under softmax-of-distance scorer
+// with per-archetype priors. Type-checking disabled because the new types
+// removed `archetype.prior` and renamed `state.archetypePosterior` to
+// `state.archetypeDistances`. Kept on disk as a reference baseline; the
+// authoritative current scorer is `src/engine/archetypeDistance.ts`.
 import { ARCHETYPES } from "../config/archetypes.js";
 import { REPRESENTATIVE_QUESTIONS } from "../config/questions.representative.js";
 import { CONTINUOUS_NODES, CATEGORICAL_NODES } from "../config/nodes.js";

@@ -1,4 +1,4 @@
-import type { TrbAnchor, TrbAnchorDist, MorBoundaries, MorBoundaryId, MorBoundariesNodeState, ArchetypeMorBoundaries } from "../types.js";
+import type { TrbAnchor, TrbAnchorDist, MorBoundaries, MorBoundaryId, MorBoundariesNodeState, ArchetypeMorBoundaries, MoralCircleAffinity, ArchetypeMoralCircle } from "../types.js";
 /**
  * Element-wise multiply two probability arrays and renormalize.
  * Used for Bayesian updates: posterior ∝ prior × likelihood.
@@ -140,3 +140,22 @@ export declare function validateMorBoundaries(b: unknown): string | null;
  * scores and the intensity scalar.
  */
 export declare function validateMorBoundariesNodeState(s: unknown): string | null;
+/**
+ * Distance between a respondent's moral-circle affinity and an archetype's
+ * profile. Per ADR-007 §"Candidate Matching Direction":
+ *
+ *   - universalAffinity scalar diff (normalized to [0, 1])
+ *   - excessAffinities vector L2 distance (normalized to [0, 1])
+ *   - dominant active-boundary overlap (Jaccard miss, [0, 1])
+ *
+ * Components blended with fixed weights. Output range [0, 1]; lower = better
+ * match.
+ *
+ * `political_camp` is one scope among 8; not weighted differently here.
+ *
+ * If the archetype's `scopedAffinities[g]` is `null`, that scope is skipped
+ * for the excess-vector distance (treated as "archetype is agnostic on this
+ * scope"). Same for the respondent side: `null` scoped → excess 0 → no
+ * contribution.
+ */
+export declare function moralCircleDistance(state: MoralCircleAffinity, archetype: ArchetypeMoralCircle): number;

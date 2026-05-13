@@ -1,7 +1,7 @@
 /**
  * Layer 3 — Browser End-to-End harness (Playwright).
  *
- * Loads prism-quiz-v3.html in a real Chromium browser, drives it via the
+ * Loads quiz-v2-live.html in a real Chromium browser, drives it via the
  * global PrismEngine API using the same deterministic persona decision
  * policy as Layer 2, and verifies:
  *

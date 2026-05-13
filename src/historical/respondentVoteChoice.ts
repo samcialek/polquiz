@@ -211,24 +211,25 @@ function partisanLoyaltyMultiplier(
   pfPos: number | null | undefined,
   electionYear: number,
 ): number {
-  // Era-limit (P3.4): modern Democrat/Republican loyalty doesn't map cleanly
-  // backward onto Whigs, Federalists, Free Soilers, Dixiecrats, etc. Pre-1932
-  // (the New Deal realignment), partisan-loyalty multiplier is disabled and
-  // ideological distance alone governs.
-  if (electionYear < 1932) return 1;
-  // I (Independent), N (Nothing), O (Other) all behave as "no major-party
-  // loyalty": ideological distance alone governs. Only D/R/T carry a loyalty
-  // signal — T (member of a third party) gets a bump toward third-party
-  // candidates (Roosevelt-1912 Progressive, La Follette, Wallace AIP, Perot,
-  // Nader, Anderson) and a small penalty against D/R. O was previously
-  // returning the wrong-party penalty against essentially all candidates
-  // because no candidate's canonical party is "O" — fixed 2026-05-13.
-  if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O") return 1;
+  // Era-limit (P3.4, revised 2026-05-13 per Sam): modern Democrat/Republican
+  // loyalty doesn't map onto Whigs, Federalists, Free Soilers, Dixiecrats, or
+  // pre-realignment FDR-era voters. Today's party-ID has no bearing on how
+  // someone would have voted in 1860 or 1932 — those coalitions don't exist
+  // anymore. Gated to ≥1960 so JFK is the earliest election where modern
+  // party-loyalty applies.
+  if (electionYear < 1960) return 1;
+  // I (Independent), N (Nothing), O (Other), T (third party) all behave as
+  // "no major-party loyalty": ideological distance alone governs. Only D and
+  // R carry a loyalty signal. T was previously applying the full out-party
+  // penalty against every D and R candidate (because T never matches D or R),
+  // which forced every post-1960 election to abstain for third-party
+  // identifiers despite their actual ideology being close to a major-party
+  // candidate. Fixed 2026-05-13.
+  if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O" || respondentParty === "T") return 1;
   const candPartyKey = candidatePartyToCanonical(candidateParty);
   const userPartyKey =
     respondentParty === "D" ? "D" :
-    respondentParty === "R" ? "R" :
-    respondentParty === "T" ? "T" : "O";
+    respondentParty === "R" ? "R" : "O";
   if (candPartyKey === userPartyKey) return 1;
   const pf = Math.max(1, Math.min(5, pfPos ?? 3));
   // PF=5 → 1.40× distance to other-party candidates; PF=1 → 1.08×.

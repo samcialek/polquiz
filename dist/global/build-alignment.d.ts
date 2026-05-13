@@ -1,8 +1,8 @@
 /**
  * Global Regime Alignment Builder
  *
- * Computes alignment scores for all 130 archetypes against all ~370
- * historical regime periods across 47 jurisdictions (1789-2026).
+ * Computes alignment scores for all active archetypes against all ~500
+ * historical regime periods across 69 jurisdictions (1789-2026+).
  *
  * Formula (adapted from regime-alignment.ts):
  *   distance  = sqrt( Σ(sal_i × (archPos_i - regimePos_i)²) / Σ(sal_i) )
