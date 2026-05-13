@@ -2324,18 +2324,97 @@ var PrismEngine = (() => {
       bwMaxPicks: 2,
       quality: 0.94,
       rewriteNeeded: false,
+      // 2026-05-13 (Sam): each AES prototype option now carries weak continuous
+      // payloads for the belief axes its rhetorical style empirically tracks
+      // with. Each respondent's 4 picks (2 best + 2 worst) now inform 5-7
+      // nodes rather than just AES. Weight 0.20 per side-touch (sub-
+      // MEANINGFUL_POSITION_WEIGHT=0.4, so topKDrill won't treat the node as
+      // drilled). pos shapes are mild leans, peak ratio ~2:1 — easily
+      // overpowered by a single direct position question.
       touchProfile: [
         { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "rhetorical_maxdiff" },
         { node: "AES", kind: "categorical", role: "salience", weight: 0.45, touchType: "rhetorical_maxdiff" },
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" }
       ],
       rankingMap: {
-        bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
-        deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
-        community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-        says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
-        calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
-        big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
+        // bridge_builder (statesman): compromise-friendly, universal-leaning,
+        // process-respecting.
+        bridge_builder: {
+          categorical: { AES: AES_PROTOTYPES.statesman },
+          continuous: {
+            COM: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // high (dealmaking)
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // universal-lean
+            PRO: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // process-oriented
+          }
+        },
+        // deep_expertise (technocrat): expertise + institutions + process.
+        deep_expertise: {
+          categorical: { AES: AES_PROTOTYPES.technocrat, EPS: EPS_PROTOTYPES.empiricist },
+          continuous: {
+            ONT_S: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // institutions matter
+            PRO: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // process-oriented
+          }
+        },
+        // community_voice (pastoral): culturally rooted, in-group focus,
+        // skeptical of distant institutions.
+        community_voice: {
+          categorical: { AES: AES_PROTOTYPES.pastoral },
+          continuous: {
+            CU: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // common-culture lean
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // less institutional
+          }
+        },
+        // says_what_they_think (authentic + intuitionist): anti-compromise,
+        // anti-establishment.
+        says_what_they_think: {
+          categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist },
+          continuous: {
+            COM: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // anti-compromise
+            PRO: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // anti-procedural
+          }
+        },
+        // calls_out_power (fighter): zero-sum view of conflict, action over
+        // process, suspicious of institutions.
+        calls_out_power: {
+          categorical: { AES: AES_PROTOTYPES.fighter },
+          continuous: {
+            ZS: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // zero-sum lean
+            PRO: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // action > process
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // anti-institutional
+          }
+        },
+        // big_picture (visionary): people can change, humanity-wide concern,
+        // positive-sum vision.
+        big_picture: {
+          categorical: { AES: AES_PROTOTYPES.visionary },
+          continuous: {
+            ONT_H: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // environment shapes
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // universal-lean
+            ZS: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // positive-sum
+          }
+        }
       }
     },
     // Q79 — Expert Disagreement (EPS nihilist dedicated)
@@ -14635,16 +14714,16 @@ var PrismEngine = (() => {
   // src/identity/archetypeLabeler.ts
   var POSITION_LEXICON = {
     MAT: { low: "Redistributionist", mid: "Mixed-Economy", high: "Free-Marketeer" },
-    CD: { low: "Progressive", mid: "Hinge", high: "Traditionalist" },
+    CD: { low: "Progressive", mid: "", high: "Traditionalist" },
     CU: { low: "Assimilationist", mid: "Civic-Pluralist", high: "Pluralist" },
     MOR: { low: "Particularist", mid: "Civic", high: "Universalist" },
     PRO: { low: "Consequentialist", mid: "Pragmatic", high: "Procedural" },
     COM: { low: "Principled", mid: "Practical", high: "Dealmaker" },
     ZS: { low: "Positive-Sum", mid: "Realist", high: "Combative" },
-    ONT_H: { low: "Essentialist", mid: "Tempered", high: "Malleabilist" },
+    ONT_H: { low: "", mid: "Tempered", high: "" },
     ONT_S: { low: "Anti-Institutional", mid: "Reformist", high: "Institutional" },
     PF: { low: "Detached", mid: "Engaged-Civic", high: "Partisan" },
-    TRB: { low: "Inclusivist", mid: "Civic", high: "Tribal" },
+    TRB: { low: "", mid: "Civic", high: "Tribal" },
     ENG: { low: "Tuned-Out", mid: "Casual", high: "Mobilized" }
   };
   var EPS_LEXICON = [
@@ -14784,7 +14863,6 @@ var PrismEngine = (() => {
       return { label: "Civic Generalist", source: "lexicon", signature: "", tokensUsed: [] };
     }
     const fullSig = signatureOf(tokens);
-    const lexicon = tokens.map((t) => t.token).join(" ");
     if (fullSig in mergerTable) {
       return { label: mergerTable[fullSig], source: "merger-full", signature: fullSig, tokensUsed: tokens };
     }
@@ -14794,15 +14872,17 @@ var PrismEngine = (() => {
       if (sig2 in mergerTable) {
         const merged = mergerTable[sig2];
         const leftover = tokens[2];
+        const label = leftover.token ? `${leftover.token} ${merged}` : merged;
         return {
-          label: `${leftover.token} ${merged}`,
+          label,
           source: "merger-partial",
           signature: sig2,
           tokensUsed: tokens
         };
       }
     }
-    const compressed = applyCompression(tokens);
+    const emitted = tokens.filter((t) => t.token.length > 0);
+    const compressed = applyCompression(emitted);
     if (compressed) {
       return {
         label: ensureNounAnchor(reorderByPOS(compressed)).map((t) => t.token).join(" "),
@@ -14811,8 +14891,11 @@ var PrismEngine = (() => {
         tokensUsed: tokens
       };
     }
+    if (emitted.length === 0) {
+      return { label: "Civic Generalist", source: "lexicon", signature: fullSig, tokensUsed: tokens };
+    }
     return {
-      label: ensureNounAnchor(reorderByPOS(tokens)).map((t) => t.token).join(" "),
+      label: ensureNounAnchor(reorderByPOS(emitted)).map((t) => t.token).join(" "),
       source: "lexicon",
       signature: fullSig,
       tokensUsed: tokens
@@ -15828,7 +15911,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q200-evidence";
+  var BUNDLE_VERSION = "20260513-labeler-q78";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

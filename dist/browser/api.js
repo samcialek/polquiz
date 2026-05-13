@@ -30,7 +30,7 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260513-q200-evidence";
+export const BUNDLE_VERSION = "20260513-labeler-q78";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 // ---------------------------------------------------------------------------

@@ -8,7 +8,7 @@ import type { QuestionDef } from "../types.js";
 import type { IdentityPrimaryDemographics, IdentityPrimaryResult } from "../identity/resolveIdentityPrimary.js";
 import { type EngagementLabel } from "../engine/engagementLabel.js";
 import { type ElectionPrediction } from "../historical/respondentVoteChoice.js";
-export declare const BUNDLE_VERSION = "20260513-q200-evidence";
+export declare const BUNDLE_VERSION = "20260513-labeler-q78";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 export interface QuizQuestion {

@@ -2603,18 +2603,82 @@ export const REPRESENTATIVE_QUESTIONS = [
         bwMaxPicks: 2,
         quality: 0.94,
         rewriteNeeded: false,
+        // 2026-05-13 (Sam): each AES prototype option now carries weak continuous
+        // payloads for the belief axes its rhetorical style empirically tracks
+        // with. Each respondent's 4 picks (2 best + 2 worst) now inform 5-7
+        // nodes rather than just AES. Weight 0.20 per side-touch (sub-
+        // MEANINGFUL_POSITION_WEIGHT=0.4, so topKDrill won't treat the node as
+        // drilled). pos shapes are mild leans, peak ratio ~2:1 — easily
+        // overpowered by a single direct position question.
         touchProfile: [
             { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "rhetorical_maxdiff" },
             { node: "AES", kind: "categorical", role: "salience", weight: 0.45, touchType: "rhetorical_maxdiff" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" },
+            { node: "COM", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "ONT_S", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "ZS", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" },
+            { node: "CU", kind: "continuous", role: "position", weight: 0.20, touchType: "rhetorical_side_signal" }
         ],
         rankingMap: {
-            bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
-            deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
-            community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-            says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
-            calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
-            big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
+            // bridge_builder (statesman): compromise-friendly, universal-leaning,
+            // process-respecting.
+            bridge_builder: {
+                categorical: { AES: AES_PROTOTYPES.statesman },
+                continuous: {
+                    COM: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // high (dealmaking)
+                    MOR: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // universal-lean
+                    PRO: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // process-oriented
+                },
+            },
+            // deep_expertise (technocrat): expertise + institutions + process.
+            deep_expertise: {
+                categorical: { AES: AES_PROTOTYPES.technocrat, EPS: EPS_PROTOTYPES.empiricist },
+                continuous: {
+                    ONT_S: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // institutions matter
+                    PRO: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // process-oriented
+                },
+            },
+            // community_voice (pastoral): culturally rooted, in-group focus,
+            // skeptical of distant institutions.
+            community_voice: {
+                categorical: { AES: AES_PROTOTYPES.pastoral },
+                continuous: {
+                    CU: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // common-culture lean
+                    ONT_S: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // less institutional
+                },
+            },
+            // says_what_they_think (authentic + intuitionist): anti-compromise,
+            // anti-establishment.
+            says_what_they_think: {
+                categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist },
+                continuous: {
+                    COM: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // anti-compromise
+                    PRO: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // anti-procedural
+                },
+            },
+            // calls_out_power (fighter): zero-sum view of conflict, action over
+            // process, suspicious of institutions.
+            calls_out_power: {
+                categorical: { AES: AES_PROTOTYPES.fighter },
+                continuous: {
+                    ZS: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // zero-sum lean
+                    PRO: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // action > process
+                    ONT_S: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // anti-institutional
+                },
+            },
+            // big_picture (visionary): people can change, humanity-wide concern,
+            // positive-sum vision.
+            big_picture: {
+                categorical: { AES: AES_PROTOTYPES.visionary },
+                continuous: {
+                    ONT_H: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // environment shapes
+                    MOR: { pos: [0.14, 0.16, 0.20, 0.25, 0.25] }, // universal-lean
+                    ZS: { pos: [0.25, 0.25, 0.20, 0.16, 0.14] }, // positive-sum
+                },
+            },
         }
     },
     // Q79 — Expert Disagreement (EPS nihilist dedicated)

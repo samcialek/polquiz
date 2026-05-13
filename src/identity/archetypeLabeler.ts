@@ -62,18 +62,31 @@ interface PoleTokens {
  *   mid  → 2.5 < position < 3.5  (only contributes when top-1 salient)
  *   high → position ≥ 3.5
  */
+// 2026-05-13: certain bin tokens marked with empty string ("") are
+// "merger-only" — they still participate in signature lookups so curated
+// merger entries like "ONT_H:high|ZS:low" → "Utopian" still fire, but if
+// they survive to the raw lexicon/merger-partial join they get filtered out
+// rather than emitted. Reasons (per Sam):
+//   - ONT_H high "Malleabilist" — made-up word, doesn't read
+//   - ONT_H low "Essentialist" — academic jargon
+//   - TRB low "Inclusivist" — clunky `-ist` on an adjective
+//   - CD mid "Hinge" — too cute, ambiguous
+// Mergers consuming these bins still produce good labels: "Marxist",
+// "Utopian", "Hobbesian", "Humanist", "Futurist", "Reactionary",
+// "Social-Engineer", "Essentialist Traditionalist", "Constructivist
+// Progressive" all remain reachable via the curated merger table.
 export const POSITION_LEXICON: Record<string, PoleTokens> = {
   MAT:   { low: "Redistributionist", mid: "Mixed-Economy",  high: "Free-Marketeer" },
-  CD:    { low: "Progressive",       mid: "Hinge",          high: "Traditionalist" },
+  CD:    { low: "Progressive",       mid: "",               high: "Traditionalist" },
   CU:    { low: "Assimilationist",   mid: "Civic-Pluralist", high: "Pluralist" },
   MOR:   { low: "Particularist",     mid: "Civic",          high: "Universalist" },
   PRO:   { low: "Consequentialist",  mid: "Pragmatic",      high: "Procedural" },
   COM:   { low: "Principled",        mid: "Practical",      high: "Dealmaker" },
   ZS:    { low: "Positive-Sum",      mid: "Realist",        high: "Combative" },
-  ONT_H: { low: "Essentialist",      mid: "Tempered",       high: "Malleabilist" },
+  ONT_H: { low: "",                  mid: "Tempered",       high: "" },
   ONT_S: { low: "Anti-Institutional", mid: "Reformist",     high: "Institutional" },
   PF:    { low: "Detached",          mid: "Engaged-Civic",  high: "Partisan" },
-  TRB:   { low: "Inclusivist",       mid: "Civic",          high: "Tribal" },
+  TRB:   { low: "",                  mid: "Civic",          high: "Tribal" },
   ENG:   { low: "Tuned-Out",         mid: "Casual",         high: "Mobilized" },
 };
 
@@ -366,9 +379,10 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
   }
 
   const fullSig = signatureOf(tokens);
-  const lexicon = tokens.map(t => t.token).join(" ");
 
-  // Try the full-signature merger first.
+  // Try the full-signature merger first. Mergers still fire on empty-token
+  // bins (Malleabilist/Essentialist/Inclusivist/Hinge) because signatures
+  // use node:bin, not the displayed token text.
   if (fullSig in mergerTable) {
     return { label: mergerTable[fullSig]!, source: "merger-full", signature: fullSig, tokensUsed: tokens };
   }
@@ -381,8 +395,12 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
     if (sig2 in mergerTable) {
       const merged = mergerTable[sig2]!;
       const leftover = tokens[2]!;
+      // 2026-05-13: when the leftover token is an empty-string "merger-only"
+      // bin (e.g., ONT_H high "Malleabilist"), the merger label stands alone
+      // instead of getting a clunky empty/raw prepend.
+      const label = leftover.token ? `${leftover.token} ${merged}` : merged;
       return {
-        label: `${leftover.token} ${merged}`,
+        label,
         source: "merger-partial",
         signature: sig2,
         tokensUsed: tokens,
@@ -396,7 +414,13 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
   // adjectives-first / noun-last. Source is tagged "compression" so the CSV
   // (and downstream tooling) can distinguish a curated single-word
   // substitution from pure lexicon-only composition.
-  const compressed = applyCompression(tokens);
+  // 2026-05-13: filter out empty-token "merger-only" bins from the final
+  // string. They've already had their shot at the full-sig and top-2 merger
+  // lookups above; if neither matched, we'd rather emit a shorter clean
+  // label than concatenate raw "Malleabilist"-class jargon.
+  const emitted = tokens.filter(t => t.token.length > 0);
+
+  const compressed = applyCompression(emitted);
   if (compressed) {
     return {
       label: ensureNounAnchor(reorderByPOS(compressed)).map(t => t.token).join(" "),
@@ -407,8 +431,13 @@ export function composeLabel(tokens: TokenEntry[], mergerTable: MergerTable): Co
   }
 
   // Pure lexicon default: 1-3 fragment composition with POS reorder + noun anchor.
+  // If every token in the top-3 was a merger-only empty-string bin (extreme
+  // edge case), fall back to a generic label so we never emit an empty string.
+  if (emitted.length === 0) {
+    return { label: "Civic Generalist", source: "lexicon", signature: fullSig, tokensUsed: tokens };
+  }
   return {
-    label: ensureNounAnchor(reorderByPOS(tokens)).map(t => t.token).join(" "),
+    label: ensureNounAnchor(reorderByPOS(emitted)).map(t => t.token).join(" "),
     source: "lexicon",
     signature: fullSig,
     tokensUsed: tokens,
