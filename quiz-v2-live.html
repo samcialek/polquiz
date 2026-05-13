@@ -2074,18 +2074,23 @@ const OPT_LABELS = {
     // both which node matters (salience) and which pole the respondent leans
     // toward (position).
     // Q93 + Q94 — parallel noun-phrase format: [identity label] — [clarifier].
-    mat_low:  "Shared prosperity — tax the wealthy, strong unions, living wages, broad programs, narrow the gap",
-    mat_high: "Free markets — lower taxes and less regulation so the pie grows and people keep what they earn",
+    // 2026-05-13 second pass: stripped partisan vibe-words ("tax the wealthy",
+    // "actually delivers", "for your own team", "across the aisle") and
+    // depersonalized pro_low ("a president who..." → "Decisive action").
+    // Headlines kept; clauses describe the priority rather than argue for it.
+    // cd_low and mor_low intentionally kept at original phrasing per Sam.
+    mat_low:  "Shared prosperity — using taxes, labor protections, and public programs to spread economic gains broadly",
+    mat_high: "Free markets — letting competition, lower taxes, and private enterprise generate growth",
     cd_low:   "Progressive social change — expanding rights, recognition, and inclusion for gender, sexuality, and racial justice",
-    cd_high:  "Traditional values — faith, family, and inherited cultural norms, a way of life tested by time",
+    cd_high:  "Traditional values — preserving inherited norms around family, faith, and cultural continuity",
     cu_low:   "One common culture — newcomers assimilate to a shared language, customs, and civic norms",
-    cu_high:  "Cultural pluralism — many cultures and faiths thriving side by side, treated as equal parts of the whole",
+    cu_high:  "Cultural pluralism — many cultures, languages, and faiths coexisting as equal parts of one society",
     mor_low:  "Family and country first — take care of our own before we worry about strangers abroad",
-    mor_high: "Global solidarity — every person counts the same, help those in need whether they're close or far",
-    pro_low:  "Strong leadership — a president who cuts through red tape, overrules gridlock, and actually delivers",
-    pro_high: "Rule of law — the Constitution and fair process bind every side, no shortcuts for your own team",
-    com_low:  "Principled conviction — some things aren't for sale, hold the line even when it costs politically",
-    com_high: "Pragmatic compromise — meet halfway, find common ground across the aisle, accept partial wins",
+    mor_high: "Global solidarity — every person counts the same, regardless of nationality or distance",
+    pro_low:  "Decisive action — getting results even when process or gridlock would slow things down",
+    pro_high: "Rule of law — fair process and constitutional rules constrain every side equally",
+    com_low:  "Principled conviction — holding the line on what matters, even at political cost",
+    com_high: "Pragmatic compromise — meeting in the middle to take partial wins",
 
     // Q97 — political_thought_frequency (PF scenario)
     rarely_elections:     "Rarely — mostly during election season or big news moments",
@@ -3729,7 +3734,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q60-prompt-v2';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q93-labels';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
