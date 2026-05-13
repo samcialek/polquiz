@@ -2083,7 +2083,7 @@ const OPT_LABELS = {
     mat_high: "Free markets — letting competition, lower taxes, and private enterprise generate growth",
     cd_low:   "Progressive social change — expanding rights, recognition, and inclusion for gender, sexuality, and racial justice",
     cd_high:  "Traditional values — preserving inherited norms around family, faith, and cultural continuity",
-    cu_low:   "One common culture — newcomers assimilate to a shared language, customs, and civic norms",
+    cu_low:   "One common culture — a single shared way of life, with newcomers fitting in or fewer newcomers altogether",
     cu_high:  "Cultural pluralism — many cultures, languages, and faiths coexisting as equal parts of one society",
     mor_low:  "Family and country first — take care of our own before we worry about strangers abroad",
     mor_high: "Global solidarity — every person counts the same, regardless of nationality or distance",
@@ -3734,7 +3734,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q93-labels';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q93-cu-low';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
