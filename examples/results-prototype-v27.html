@@ -4612,15 +4612,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const isSelf = d.isSelf;
         // v27 — Compact: barH range 8-22 px. Salience reads, but rows stay tight.
         // v27.44 — bigger bars and a more pronounced salience differential.
-        // Old: 8 + sal*14 (range 8–22, ratio 2.75x). New: 12 + sal*30 (range
-        // 12–42, ratio 3.5x). Salience now drives a much more visible
-        // height contrast between high-salience and low-salience dimensions.
-        // Opacity range widened from 0.65–1.00 to 0.55–1.00 for the same
-        // reason — low-salience rows fade more, high-salience rows pop.
-        const barH = isSelf ? 18 : Math.round(12 + d.sal * 30);
+        // Old: 8 + sal*14 (range 8–22, ratio 2.75x). v27.44: 12 + sal*30
+        // (range 12–42, ratio 3.5x). 2026-05-12: bumped again per Sam —
+        // "slightly exaggerated." Now 10 + sal*42 (range 10–52, ratio 5.2x).
+        // Salience now drives a much more visible height contrast between
+        // high-salience and low-salience continuous nodes (MAT, CD, CU, PRO,
+        // COM, ONT_S, ONT_H, ZS). Opacity range widened from 0.65–1.00 to
+        // 0.50–1.00 in step with the height contrast.
+        const barH = isSelf ? 18 : Math.round(10 + d.sal * 42);
         const row = document.createElement('div');
         row.className = 'node-row';
-        row.style.opacity = isSelf ? 1 : (0.55 + d.sal * 0.45);
+        row.style.opacity = isSelf ? 1 : (0.50 + d.sal * 0.50);
         row.style.gridTemplateColumns = '170px 1fr 50px';
 
         // v22: rich floating tooltip — definition, low/high pole meanings,
