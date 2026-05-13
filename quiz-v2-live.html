@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-q8-q228"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-q229-bucket"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -3112,11 +3112,22 @@ const PS_LAYOUTS = {
         ],
         poolLabel: "Drag each identity into the column that fits best (or tap an item, then tap a column)."
     },
-    // Q228 — conditional follow-up to Q8 (fires only when Q8 = clearly_abroad).
-    // 3 buckets capturing residual in-group preferences for self-identified
-    // universalists. Items placed in supportHigh emit scoped:85 + universal:75
-    // (creates small positive excess); supportMid emits half-strength; neutral
-    // emits nothing.
+    // Q229 — moral-circle in-group sort (3 buckets). Fires for every
+    // respondent. Items placed in supportHigh emit scoped:95 (real excess
+    // even for universalists); supportMid emits half-strength; neutral
+    // emits nothing. Replaced the prior single_choice version on 2026-05-13.
+    moral_circle_in_group_sort: {
+        buckets: [
+            { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Significant<br>extra concern" },
+            { uiKey: 'supportMid',  engineKey: 'supportMid',  title: "Some<br>extra concern" },
+            { uiKey: 'neutral',     engineKey: 'neutral',     title: "Same as<br>anyone else" }
+        ],
+        poolLabel: "Drag each group into the column that fits best (or tap an item, then tap a column)."
+    },
+    // Q228 (retired 2026-05-13) — conditional follow-up to Q8 that was
+    // superseded by the unconditional Q229 priority-sort above. Layout
+    // kept for the question's eligibility-skipped state, in case Q228
+    // is ever re-added to the router.
     remaining_in_group_pull: {
         buckets: [
             { uiKey: 'supportHigh', engineKey: 'supportHigh', title: "Still pulls<br>at me" },
@@ -3754,7 +3765,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q8-q228';
+    let resultsUrl = 'examples/results-prototype-v27.html?id=' + results.match.id + '&run=' + encodeURIComponent(runId) + '&v=20260513-q229-bucket';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
