@@ -14665,7 +14665,7 @@ var PrismEngine = (() => {
       const nonIdeologicalAdjustedDistance = valuesDist - nonIdeologicalModifier;
       const loyaltyMult = partisanLoyaltyMultiplier(c.party, partyID, pfPos, ctx.year);
       let negPenalty = 1;
-      if (negativeParties) {
+      if (negativeParties && ctx.year >= 1960) {
         const cp = candidatePartyToCanonical(c.party);
         if (cp === "D" && negativeParties.has("D") || cp === "R" && negativeParties.has("R") || cp === "T" && negativeParties.has("T")) {
           negPenalty = 1.8;
@@ -15918,7 +15918,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-cross-pressured-defect";
+  var BUNDLE_VERSION = "20260513-negpartisan-era";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

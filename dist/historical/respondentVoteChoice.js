@@ -510,8 +510,13 @@ export function predictVote(sig, candidates, ctx, engagement, partyID, anchorDis
         const loyaltyMult = partisanLoyaltyMultiplier(c.party, partyID, pfPos, ctx.year);
         // Negative-partisanship hard penalty (P3.3). Multiplies distance by
         // 1.8x for parties the user has flagged as never-vote.
+        //
+        // Era-gated to ≥1960 (added 2026-05-13 per Sam) for the same reason
+        // partisan loyalty is — "never vote R" means modern Republicans, not
+        // Federalists, Whigs, National Republicans, or 1860 Lincoln-era
+        // Republicans. Pre-1960 elections use ideology only.
         let negPenalty = 1.0;
-        if (negativeParties) {
+        if (negativeParties && ctx.year >= 1960) {
             const cp = candidatePartyToCanonical(c.party);
             if ((cp === "D" && negativeParties.has("D")) ||
                 (cp === "R" && negativeParties.has("R")) ||
