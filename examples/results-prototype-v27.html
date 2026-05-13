@@ -4295,6 +4295,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       MORAL_CIRCLE_CATEGORIES.forEach((cat, i) => {
         const d = data[cat.key];
+        // 2026-05-13: scopes that don't extend above the universal ring are
+        // not drawn at all (no fill, no hoverable wedge). The universal ring
+        // is the moral-circle threshold — below-universal categories aren't
+        // in the in-group preference set, so the visual should reflect that.
+        if (d.position <= universalPct) return;
         const angCenter = angleForIndex(i);
         const angStart = angCenter - ANGLE_STEP / 2;
         const angEnd = angCenter + ANGLE_STEP / 2;
@@ -4311,9 +4316,6 @@ document.addEventListener('DOMContentLoaded', () => {
         path.setAttribute('stroke-width', 1);
         path.setAttribute('stroke-opacity', 0.85);
         path.style.cursor = 'help';
-        // Every wedge remains visible and hoverable. The chart itself labels
-        // only categories that extend beyond Universal, so below-baseline
-        // segments do not overclaim salience in the static view.
         const wedgeTip = buildTip({
           title: cat.label,
           desc: `${d.position}%`,
