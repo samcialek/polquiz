@@ -4715,60 +4715,48 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // will have 0-2 active scopes after derivation.
   // =========================================================================
 
-  // Q-A0 (added 2026-05-12): forced-choice moral-circle probe. Hits universal
-  // AND one scoped in a single touch — option 1 ("everyone equal") anchors
-  // universal high with no scoped pull; options 3-8 push the chosen scope to
-  // 80 while dropping universal to 45, forcing excess to fire. fixed12 stage
-  // so it always asks. Designed to give a load-bearing moral-circle signal
-  // even when the adaptive selector skips the rest of the battery.
+  // Q229 — moral-circle in-group importance, 3-bucket priority sort.
+  // 2026-05-13 revision: was single_choice (8 options, one of which was
+  // "everyone equal"). Now 3-bucket sort over 6 in-groups — quantitative
+  // info on ALL six scopes per respondent rather than just the top pick.
+  // Universal anchor is no longer carried here (Q8 + Q213 handle it).
+  // The conditional Q228 is retired in favor of this question, which fires
+  // unconditionally for everyone and serves the same purpose.
+  //
+  // Bucket emissions (after applyPrioritySort weight scaling):
+  //   supportHigh (full weight, 1.0): scoped:95 → real excess even when
+  //     respondent's universal sits at 90 (Q8 clearly_abroad).
+  //   supportMid (half weight, 0.5): scoped:72.5 → meaningful for low/mid
+  //     universal respondents, ~0 excess for universalists.
+  //   neutral / opposeHigh: no emission (skip).
   {
     id: 229,
     stage: "fixed12",
     section: "I",
-    promptShort: "moral_circle_forced_choice",
+    promptShort: "moral_circle_in_group_sort",
     promptFull:
-      "You can spend the next hour offering real help to one person you've never met. Whose situation feels closest to a personal duty?",
-    uiType: "single_choice",
+      "How much extra moral concern do you feel for each of these groups, beyond what you feel for people in general? Sort each into the column that fits best.",
+    uiType: "priority_sort",
     quality: 0.97,
     rewriteNeeded: false,
-    options: [
-      "everyone_equal",
-      "stranger_anywhere",
-      "fellow_citizen",
-      "co_religionist",
-      "same_ethnicity",
-      "same_class",
-      "same_gender",
-      "shared_politics",
-    ],
     optionLabels: {
-      everyone_equal:    "Whoever needs the help most — they all matter the same to me",
-      stranger_anywhere: "A complete stranger, anywhere in the world",
-      fellow_citizen:    "A fellow citizen of your country",
-      co_religionist:    "Someone from your religious tradition or sacred worldview",
-      same_ethnicity:    "Someone of your racial or ethnic background",
-      same_class:        "Someone in your economic class or material situation",
-      same_gender:       "Someone of your gender",
-      shared_politics:   "Someone who shares your core political values",
+      ingroup_national:      "Fellow citizens of your country",
+      ingroup_religious:     "People who share your religious tradition",
+      ingroup_ethnic_racial: "People of your racial or ethnic background",
+      ingroup_class:         "People in your economic class",
+      ingroup_gender:        "People who share your gender",
+      ingroup_ideological:   "People who share your core political values",
     },
     touchProfile: [
-      { node: "MOR", kind: "continuous", role: "position", weight: 0.15, touchType: "universal_baseline_legacy_proxy" },
+      { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
     ],
-    // 2026-05-13: removed the universal:45 emission that was attached to each
-    // scoped pick. Picking "fellow citizen" tells us about the national scope,
-    // not the respondent's universal baseline. Letting universal be set
-    // independently by Q230/Q231/Q8/Q213 means excess fires only when the
-    // measured universal genuinely sits below the chosen scope. No artificial
-    // medium-bias floor.
-    optionEvidence: {
-      everyone_equal:    { moralCircle: { universal: 90 } },
-      stranger_anywhere: { moralCircle: { universal: 75 } },
-      fellow_citizen:    { moralCircle: { scopedAffinities: { national:      80 } } },
-      co_religionist:    { moralCircle: { scopedAffinities: { religious:     80 } } },
-      same_ethnicity:    { moralCircle: { scopedAffinities: { ethnic_racial: 80 } } },
-      same_class:        { moralCircle: { scopedAffinities: { class:         80 } } },
-      same_gender:       { moralCircle: { scopedAffinities: { gender:        80 } } },
-      shared_politics:   { moralCircle: { scopedAffinities: { ideological:   80 } } },
+    rankingMap: {
+      ingroup_national:      { moralCircle: { scopedAffinities: { national:      95 } } },
+      ingroup_religious:     { moralCircle: { scopedAffinities: { religious:     95 } } },
+      ingroup_ethnic_racial: { moralCircle: { scopedAffinities: { ethnic_racial: 95 } } },
+      ingroup_class:         { moralCircle: { scopedAffinities: { class:         95 } } },
+      ingroup_gender:        { moralCircle: { scopedAffinities: { gender:        95 } } },
+      ingroup_ideological:   { moralCircle: { scopedAffinities: { ideological:   95 } } },
     },
   },
 

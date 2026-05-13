@@ -142,15 +142,16 @@ export const UNIVERSAL_SCREENERS: readonly number[] = [
   // never fire. Q231 (slider universal-baseline) retired in favor of
   // Q8's forced trade-off, which is less subject to social-desirability
   // bias and emits both universal AND national scope signal.
-  8,   // domestic_vs_abroad_lives — 3-option forced trade-off. Picking
-       //   "clearly_abroad" triggers Q228 below.
-  228, // remaining_in_group_pull — conditional follow-up to Q8. Fires
-       //   only when Q8 = clearly_abroad (via exposeRules.eligibleIf).
-       //   Surfaces residual in-group preferences from universalists
-       //   across all six scopes.
-  229, // moral_circle_forced_choice — 8-option in-group probe. Always
-       //   fires regardless of Q8 outcome; provides the cleanest single
-       //   moral-circle signal in the entire battery.
+  8,   // domestic_vs_abroad_lives — 3-option forced trade-off, primary
+       //   universal anchor. Replaced Q231 on 2026-05-13.
+  229, // moral_circle_in_group_sort — 3-bucket priority sort over 6
+       //   in-groups (national / religious / ethnic_racial / class /
+       //   gender / ideological). Fires for every respondent. Replaced
+       //   the prior single_choice version on 2026-05-13 to get
+       //   quantitative info on ALL scopes per respondent rather than
+       //   forcing a single pick. Q228 (conditional version of this
+       //   same pattern) was retired the same day; it lives on in the
+       //   question bank but is no longer wired into the fixed router.
 ] as const;
 
 // Combined list — used by getNextQuestion to iterate the fixed front door
