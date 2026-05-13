@@ -4339,11 +4339,14 @@ document.addEventListener('DOMContentLoaded', () => {
       uRing.setAttribute('opacity', 0.85);
       svg.appendChild(uRing);
 
-      // Larger Universal label on the universal ring, positioned just above
-      // the top of the ring so it sits on the outline.
+      // Universal label sits above the universal ring with breathing room
+      // (2026-05-13: raised per Sam — moved from `-universalR + 2` (on the
+      // outline) to `-universalR - 22` (clearly above the ring, in the empty
+      // space above the sunburst). viewBox top is -260, universalR maxes at
+      // 210 → label y maxes at -232, leaving ~28px of margin.
       const uLabel = document.createElementNS(ns, 'text');
       uLabel.setAttribute('x', 0);
-      uLabel.setAttribute('y', (-universalR + 2).toFixed(2));
+      uLabel.setAttribute('y', (-universalR - 22).toFixed(2));
       uLabel.setAttribute('font-family', "'Space Grotesk', sans-serif");
       uLabel.setAttribute('font-size', '13');
       uLabel.setAttribute('font-weight', '600');
