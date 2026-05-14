@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-untruncate-labels"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260514-defining-elections-rewrite"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -415,6 +415,99 @@
         .teaser-cell .cell-initial { font-size: 0.65rem; }
         .teaser-cell .cell-year { font-size: 0.42rem; }
         .teaser-archetype { font-size: 1.15rem; }
+    }
+
+    /* ── Reading section (blog article cards) ─────── */
+    .reading-section {
+        margin-top: 3rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .reading-section-label {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--ink-light);
+    }
+
+    .reading-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 720px;
+    }
+
+    .reading-card {
+        background: var(--white);
+        border: 2.5px solid var(--ink);
+        padding: 1.25rem 1.35rem 1.1rem;
+        box-shadow: 6px 6px 0 var(--pool-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        text-decoration: none;
+        color: var(--ink);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .reading-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 var(--pool-shadow);
+    }
+
+    .reading-card:active {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 var(--pool-shadow);
+    }
+
+    .reading-card-meta {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-faint);
+    }
+
+    .reading-card-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+        color: var(--ink);
+    }
+
+    .reading-card-summary {
+        font-family: 'EB Garamond', Georgia, serif;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: var(--ink-light);
+    }
+
+    .reading-card-cta {
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--flesh);
+        margin-top: auto;
+        padding-top: 0.5rem;
+        border-top: 1px solid #eee;
+    }
+
+    .reading-card-cta::after {
+        content: ' \2192';
+    }
+
+    @media (max-width: 640px) {
+        .reading-grid { grid-template-columns: 1fr; max-width: 480px; }
+        .reading-card { padding: 1rem 1.1rem; box-shadow: 4px 4px 0 var(--pool-shadow); }
     }
 
     /* ── Question card ─────────────────────────────── */
@@ -1473,6 +1566,24 @@
                 </div>
             </div>
             <div class="teaser-footnote">live engine output &mdash; your own pattern is computed when you finish</div>
+        </div>
+
+        <div class="reading-section">
+            <div class="reading-section-label">further reading &middot; matrices of confusion</div>
+            <div class="reading-grid">
+                <a class="reading-card" href="https://matricesofconfusion.com/article_cause_of_our_politics.html" target="_blank" rel="noopener">
+                    <div class="reading-card-meta">essay &middot; feb 2026 &middot; 12 min</div>
+                    <div class="reading-card-title">The Cause of Our Politics</div>
+                    <div class="reading-card-summary">Traditional political compasses measure ideology through stated beliefs, but miss the deeper structures &mdash; temperament, identity, worldview &mdash; that actually produce political behavior. The same policy position can emerge from fundamentally different causal sources, so a meaningful model has to identify the upstream dispositional factors that stay stable even as surface beliefs shift.</div>
+                    <div class="reading-card-cta">read on matrices of confusion</div>
+                </a>
+                <a class="reading-card" href="https://matricesofconfusion.com/article_surface_of_action.html" target="_blank" rel="noopener">
+                    <div class="reading-card-meta">essay &middot; mar 2026 &middot; 13 min</div>
+                    <div class="reading-card-title">Beneath the Surface of Belief</div>
+                    <div class="reading-card-summary">Political beliefs emerge from layered interactions between innate neurology, developmental experience, and environmental conditions &mdash; not from surface opinions alone. Understanding political temperament means mapping those deeper dimensions, since the same underlying structure activates differently depending on which conditions become salient.</div>
+                    <div class="reading-card-cta">read on matrices of confusion</div>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -3778,7 +3889,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-untruncate-labels';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260514-defining-elections-rewrite';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {

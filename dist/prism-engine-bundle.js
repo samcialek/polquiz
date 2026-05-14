@@ -8472,8 +8472,16 @@ var PrismEngine = (() => {
         // Campaign signal still leaned toward equal citizenship / reform Republicanism
         PRO: 5,
         // Maximum proceduralist
-        COM: 5,
-        // Compromiser
+        // COM recalibrated 2026-05-14: 5→4. The COM=5 anchor was driven by the
+        // Compromise of 1877 (a one-time historical act ending Reconstruction),
+        // but Hayes' actual governing record on civil-service reform was
+        // uncompromising — he fought Conkling's spoils-system machine head-on
+        // and lost his own party's nomination over it. COM=4 captures
+        // "willing to deal when necessary" without overstating habitual
+        // compromise. Pre-fix this overpenalized Hayes against Tilden 1876 for
+        // institutionalist respondents.
+        COM: 4,
+        // Deals when necessary, but principled on reform
         ZS: 3,
         // Mixed
         ONT_H: 3,
@@ -9864,10 +9872,19 @@ var PrismEngine = (() => {
         year: 1928,
         MAT: 2,
         // Redistributive lean - pro-labor, urban working class, public works
-        CD: 1,
-        // Maximum cultural openness - wet (anti-Prohibition), Catholic, urban, immigrant
-        CU: 4,
-        // Pluralist - immigrant tolerance, cultural diversity of NYC
+        // CD/CU recalibrated 2026-05-14: original CD=1 ("maximum cultural openness")
+        // imported a modern-liberal frame onto a 1928 wet-Catholic-Tammany figure.
+        // Smith was pluralist on religion and class (urban immigrants, anti-
+        // Prohibition) but was not a sexual/racial/gender reformer in the way
+        // the CD=1 anchor (cf. Obama 2012 CD=2, Trump 2016 CD=5) implies. CU
+        // softened from 4 to 3 for the same reason — immigrant pluralism, not
+        // maximum particularism. Pre-fix this routed redistribution-friendly
+        // moderately-traditional D respondents to Hoover 1928, which the
+        // narrative doesn't support.
+        CD: 2,
+        // Culturally pluralist - urban immigrant, wet, Catholic
+        CU: 3,
+        // Mixed assimilation - "melting pot" NYC ethos, not maximum particularist
         MOR: 4,
         // Wide moral circle - championed workers, immigrants, religious minorities
         PRO: 3,
@@ -15920,7 +15937,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-untruncate-labels";
+  var BUNDLE_VERSION = "20260514-defining-elections-rewrite";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

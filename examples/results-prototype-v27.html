@@ -2143,22 +2143,60 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'other';
     }
 
-    // Top-3 elections by margin between the abstention bar and the nearest
-    // candidate's distance. Higher score = the bar more decisively cleared,
-    // i.e., the year you'd most clearly vote for someone rather than sit out.
-    // Abstain elections (nearest distance > bar) get a negative score and
-    // naturally rank last, matching Sam's intuition that an election you
-    // abstained from shouldn't "define" you (2026-05-13).
+    // Top-3 elections by "decisiveness gap" (2026-05-14 rewrite).
+    //   - VOTE years: gap between the two closest MAJOR-PARTY candidates by
+    //     nonIdeologicalAdjustedDistance (pre-loyalty-multiplier values
+    //     distance). Third-party / independent candidates don't enter the gap
+    //     calculation — the "real choice" is between major-party options.
+    //     Values distance (not post-multiplier `distance`) so post-1960 R
+    //     candidates aren't artificially inflated by a D respondent's loyalty
+    //     multiplier, which would make every modern election look "defining"
+    //     trivially.
+    //   - ABSTAIN years: gap by which the nearest candidate failed the bar
+    //     (nearest.nonIdeologicalAdjustedDistance − clearingBar). An abstain
+    //     election can be defining only if the abstain-gap is large enough
+    //     to enter the top-3 pool — i.e., everyone was so far above the bar
+    //     that "none of these" was a decisive answer.
+    //   - Unopposed years (1820 Monroe, 1789/1792 Washington) and same-party-
+    //     only races with < 2 major-party candidates are skipped.
+    //
+    // The major-party set covers the canonical pairings across the full
+    // 1789–2024 window. Independents/third parties (Bull Moose, Dixiecrat,
+    // Free Soil, Anti-Masonic, Greenback, Populist, Socialist, Progressive,
+    // American Independent, etc.) are excluded.
+    const MAJOR_PARTIES = new Set([
+      'Democratic',
+      'Republican',
+      'Federalist',
+      'Democratic-Republican',
+      'National Republican',
+      'Whig',
+    ]);
+
     function findDefiningElections(predsByYear) {
       const candidates = [];
       for (const [year, p] of Object.entries(predsByYear)) {
         if (!p || !Array.isArray(p.candidates) || p.candidates.length === 0) continue;
-        if (!p.nearest || typeof p.clearingBar !== 'number') continue;
-        const score = p.clearingBar - p.nearest.distance;
-        if (score <= 0) continue;
-        candidates.push({ year: +year, score });
+        if (typeof p.clearingBar !== 'number') continue;
+
+        let gap;
+        if (p.decision === 'abstain') {
+          if (!p.nearest || typeof p.nearest.nonIdeologicalAdjustedDistance !== 'number') continue;
+          gap = p.nearest.nonIdeologicalAdjustedDistance - p.clearingBar;
+          if (gap <= 0) continue;
+        } else {
+          const majorDists = p.candidates
+            .filter(c => MAJOR_PARTIES.has(c.party))
+            .map(c => c.nonIdeologicalAdjustedDistance)
+            .filter(d => typeof d === 'number')
+            .sort((a, b) => a - b);
+          if (majorDists.length < 2) continue;
+          gap = majorDists[1] - majorDists[0];
+        }
+
+        candidates.push({ year: +year, gap });
       }
-      candidates.sort((a, b) => b.score - a.score);
+      candidates.sort((a, b) => b.gap - a.gap);
       return new Set(candidates.slice(0, 3).map(c => c.year));
     }
 

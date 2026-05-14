@@ -425,7 +425,15 @@ const election1876: Election = {
       CU: 3,    // Civic-national reformer, with Reconstruction commitment fading
       MOR: 4,   // Campaign signal still leaned toward equal citizenship / reform Republicanism
       PRO: 5,   // Maximum proceduralist
-      COM: 5,   // Compromiser
+      // COM recalibrated 2026-05-14: 5→4. The COM=5 anchor was driven by the
+      // Compromise of 1877 (a one-time historical act ending Reconstruction),
+      // but Hayes' actual governing record on civil-service reform was
+      // uncompromising — he fought Conkling's spoils-system machine head-on
+      // and lost his own party's nomination over it. COM=4 captures
+      // "willing to deal when necessary" without overstating habitual
+      // compromise. Pre-fix this overpenalized Hayes against Tilden 1876 for
+      // institutionalist respondents.
+      COM: 4,   // Deals when necessary, but principled on reform
       ZS: 3,    // Mixed
       ONT_H: 3, // Pessimistic — Reconstruction fatigue
       ONT_S: 4, // System mostly sound, needs honest reform rather than overhaul

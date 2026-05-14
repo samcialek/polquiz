@@ -232,8 +232,17 @@ const election1928 = {
             party: "Democratic",
             year: 1928,
             MAT: 2, // Redistributive lean - pro-labor, urban working class, public works
-            CD: 1, // Maximum cultural openness - wet (anti-Prohibition), Catholic, urban, immigrant
-            CU: 4, // Pluralist - immigrant tolerance, cultural diversity of NYC
+            // CD/CU recalibrated 2026-05-14: original CD=1 ("maximum cultural openness")
+            // imported a modern-liberal frame onto a 1928 wet-Catholic-Tammany figure.
+            // Smith was pluralist on religion and class (urban immigrants, anti-
+            // Prohibition) but was not a sexual/racial/gender reformer in the way
+            // the CD=1 anchor (cf. Obama 2012 CD=2, Trump 2016 CD=5) implies. CU
+            // softened from 4 to 3 for the same reason — immigrant pluralism, not
+            // maximum particularism. Pre-fix this routed redistribution-friendly
+            // moderately-traditional D respondents to Hoover 1928, which the
+            // narrative doesn't support.
+            CD: 2, // Culturally pluralist - urban immigrant, wet, Catholic
+            CU: 3, // Mixed assimilation - "melting pot" NYC ethos, not maximum particularist
             MOR: 4, // Wide moral circle - championed workers, immigrants, religious minorities
             PRO: 3, // Mixed - Tammany machine pragmatism, not a purist on process
             COM: 4, // Compromiser - machine politician, dealmaker, worked across interests

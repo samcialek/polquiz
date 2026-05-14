@@ -58,7 +58,7 @@ import { predictVote, type ElectionPrediction } from "../historical/respondentVo
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260513-untruncate-labels";
+export const BUNDLE_VERSION = "20260514-defining-elections-rewrite";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 
