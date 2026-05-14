@@ -4218,7 +4218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const universalPct = (data.universal != null ? data.universal : MORAL_CIRCLE_DEFAULT.universal);
       const tagline = document.createElement('div');
       tagline.className = 'moral-circle-tagline';
-      tagline.innerHTML = `In-group inclusion across six boundaries (${sourceLabel}). The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${Math.round(universalPct)}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
+      tagline.innerHTML = `In-group inclusion across six boundaries (${sourceLabel}). The <strong>dashed inner ring</strong> marks 50% — wedges past it are inside the moral circle. The <strong>solid outer ring</strong> marks your <strong>universal</strong> baseline (${universalPct.toFixed(1)}%) — concern for human beings regardless of category. Wedges past it represent <strong>in-group preference</strong> for that group beyond the universal baseline. Saturation reads as salience.`;
       wrap.appendChild(tagline);
 
       const identityHeading = document.createElement('div');
@@ -4311,7 +4311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         path.style.cursor = 'help';
         const wedgeTip = buildTip({
           title: cat.label,
-          desc: `${d.position}%`,
+          desc: `${d.position.toFixed(1)}%`,
         });
         attachTip(path, wedgeTip);
         svg.appendChild(path);
@@ -4348,7 +4348,7 @@ document.addEventListener('DOMContentLoaded', () => {
       uLabel.setAttribute('fill', '#1a1a1a');
       uLabel.setAttribute('text-anchor', 'middle');
       const universalLabelText = 'Universal';
-      const universalMetaText = ` · ${Math.round(universalPct)}%`;
+      const universalMetaText = ` · ${universalPct.toFixed(1)}%`;
       const uWord = document.createElementNS(ns, 'tspan');
       uWord.setAttribute('font-size', '22');
       uWord.setAttribute('font-weight', '700');
@@ -4385,7 +4385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         t.textContent = cat.label;
         attachTip(t, buildTip({
           title: cat.label,
-          desc: `${d.position}%`,
+          desc: `${d.position.toFixed(1)}%`,
         }));
         svg.appendChild(t);
 
@@ -4398,10 +4398,10 @@ document.addEventListener('DOMContentLoaded', () => {
         pct.setAttribute('fill', cat.color);
         pct.setAttribute('text-anchor', anchor);
         pct.setAttribute('dy', dy + 16);
-        pct.textContent = d.position + '%';
+        pct.textContent = d.position.toFixed(1) + '%';
         attachTip(pct, buildTip({
           title: cat.label,
-          desc: `${d.position}%`,
+          desc: `${d.position.toFixed(1)}%`,
         }));
         svg.appendChild(pct);
       });
@@ -4416,8 +4416,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const d = data[cat.key];
         const span = document.createElement('span');
         span.className = 'leg';
-        span.title = `Salience ${d.salience.toFixed(1)} / 3 · Position ${d.position}%`;
-        span.innerHTML = `<span class="swatch" style="background:${cat.color};opacity:${salToOpacity(d.salience).toFixed(2)};"></span>${cat.label}<span class="leg-pos">${d.position}%</span>`;
+        span.title = `Salience ${d.salience.toFixed(1)} / 3 · Position ${d.position.toFixed(1)}%`;
+        span.innerHTML = `<span class="swatch" style="background:${cat.color};opacity:${salToOpacity(d.salience).toFixed(2)};"></span>${cat.label}<span class="leg-pos">${d.position.toFixed(1)}%</span>`;
         legend.appendChild(span);
       });
       wrap.appendChild(legend);
