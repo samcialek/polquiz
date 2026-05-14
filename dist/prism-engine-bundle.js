@@ -4068,13 +4068,16 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.95,
       rewriteNeeded: false,
-      options: ["never_dem", "never_rep", "never_dem_or_rep", "no_categorical_no", "consider_all"],
+      // 2026-05-13: dropped `no_categorical_no` ("I'd consider voting for any
+      // party if the candidate were right") — semantically subsumed by
+      // `consider_all` ("I evaluate every candidate on their own — no
+      // categorical exclusions"). Same answer, different framing.
+      options: ["never_dem", "never_rep", "never_dem_or_rep", "consider_all"],
       touchProfile: [],
       optionEvidence: {
         never_dem: {},
         never_rep: {},
         never_dem_or_rep: {},
-        no_categorical_no: {},
         consider_all: {}
       }
     },
@@ -15918,7 +15921,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-negpartisan-era";
+  var BUNDLE_VERSION = "20260513-q212-drop";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

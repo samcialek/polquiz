@@ -140,7 +140,7 @@ const PARTY_LOYALTY_BASE = (() => {
     const n = Number(env);
     return Number.isFinite(n) && n >= 0 ? n : 5.00;
 })();
-function candidatePartyToCanonical(party) {
+export function candidatePartyToCanonical(party) {
     // Map historical / third-party labels to a canonical 4-bucket scheme so
     // the partyID multiplier can decide "is this candidate my party or not?"
     if (party === "Democratic" || party === "Democratic-Republican" ||

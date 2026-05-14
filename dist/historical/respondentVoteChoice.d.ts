@@ -19,6 +19,7 @@ import type { CandidateProfile } from "./candidates.js";
 import type { ElectionContext } from "./activation.js";
 import type { EngagementLevel } from "../engine/engagementLabel.js";
 import type { PartyID, TrbAnchorDist, MorBoundariesNodeState } from "../types.js";
+export declare function candidatePartyToCanonical(party: string): "D" | "R" | "T" | "O";
 export interface CandidateScore {
     name: string;
     party: string;
