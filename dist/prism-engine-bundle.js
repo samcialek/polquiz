@@ -4483,7 +4483,7 @@ var PrismEngine = (() => {
         ingroup_ideological: "People who share your core political values"
       },
       touchProfile: [
-        { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.1, touchType: "scoped_affinity_legacy_proxy" }
+        { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.1, touchType: "moral_circle_scoped_affinity" }
       ],
       rankingMap: {
         ingroup_national: { moralCircle: { scopedAffinities: { national: 95 } } },
@@ -6082,6 +6082,14 @@ var PrismEngine = (() => {
   }
   function touchInfoGain(state, touch, questionsById) {
     const nodeId = touch.node;
+    if (nodeId === "MORAL_CIRCLE") {
+      const mc = state.moralCircle?.affinity;
+      if (!mc) return Math.log(7);
+      const universal = Math.max(1e-3, Math.min(0.999, mc.universalAffinity / 100));
+      const universalEntropy = entropy([universal, 1 - universal]);
+      const unresolvedScopes = Object.values(mc.scopedAffinities).filter((v) => v == null).length;
+      return universalEntropy + unresolvedScopes * 0.1;
+    }
     if (nodeId === "TRB_ANCHOR") {
       if (trbConverged(state)) return 0;
       return entropy(state.trbAnchor.dist);
@@ -6124,7 +6132,7 @@ var PrismEngine = (() => {
     if (q.uiType === "slider") {
       return Object.values(q.sliderMap ?? {});
     }
-    if (q.uiType === "ranking" || q.uiType === "best_worst") {
+    if (q.uiType === "ranking" || q.uiType === "best_worst" || q.uiType === "priority_sort") {
       const map = q.rankingMap ?? q.bestWorstMap ?? {};
       return Object.values(map);
     }
@@ -6144,6 +6152,9 @@ var PrismEngine = (() => {
     if (t.node === "TRB_ANCHOR") {
       const anchors = ev.trbAnchor;
       return !!anchors && Object.keys(anchors).length > 0;
+    }
+    if (t.node === "MORAL_CIRCLE") {
+      return !!ev.moralCircle;
     }
     if (uiType === "ranking" || uiType === "best_worst") {
       if (t.kind === "continuous" || t.role === "position" || t.role === "salience") {
@@ -15937,7 +15948,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260514-defining-elections-rewrite";
+  var BUNDLE_VERSION = "20260514-q49-decimal-cleanup";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

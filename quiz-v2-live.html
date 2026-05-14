@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260514-defining-elections-rewrite"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260514-q49-decimal-cleanup"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -1643,7 +1643,7 @@ const Q_TEXT = {
     rules_procedures_matter_salience: "When evaluating a political outcome, how much do you care about whether the right process was followed, independent of the result?",
     opponents_matter_to_identity: "How much does having a clearly defined political opponent or outgroup matter to your sense of political identity?",
     views_changed_in_10_years: "How much do you think your political views have changed in the past 10 years?",
-    social_progress_salience: "How much do you personally care about the question of whether society is making social progress?",
+    social_progress_salience: "How much does it matter to your politics whether human nature and institutions can be reshaped through deliberate effort?",
     immigration_national_identity_salience: "How important is the question of immigration and national identity to you personally?",
     national_priorities_bundle: "If the next administration could pursue ONE bold agenda, which would you most want it to be?",
     coalition_vs_principle: "Your political party or movement takes a position you disagree with on an important issue. What do you do?",
@@ -3889,7 +3889,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260514-defining-elections-rewrite';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260514-q49-decimal-cleanup';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
