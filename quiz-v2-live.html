@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-negpartisan-era"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-q212-drop"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -1764,7 +1764,6 @@ const OPT_LABELS = {
     never_dem: "I would never vote Democratic, regardless of the candidate",
     never_rep: "I would never vote Republican, regardless of the candidate",
     never_dem_or_rep: "I would never vote for either major party",
-    no_categorical_no: "I'd consider voting for any party if the candidate were right",
     consider_all: "I evaluate every candidate on their own — no categorical exclusions",
     expert_consensus_breaks_tie: "Domain experts with a clear consensus, even if I can't verify every detail myself",
     primary_evidence_breaks_tie: "Primary sources, data, or methods I can inspect directly, even if experts disagree",
@@ -3780,7 +3779,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-negpartisan-era';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-q212-drop';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
