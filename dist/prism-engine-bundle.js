@@ -29,7 +29,6 @@ var PrismEngine = (() => {
     composeArchetypeDescription: () => composeArchetypeDescription,
     composeArchetypeLabel: () => composeArchetypeLabel,
     composeAtomFallback: () => composeAtomFallback,
-    getArchetypeCount: () => getArchetypeCount,
     getElectionPredictions: () => getElectionPredictions,
     getIdentityPrimaryResult: () => getIdentityPrimaryResult,
     getNextQuestion: () => getNextQuestion,
@@ -46,2760 +45,6 @@ var PrismEngine = (() => {
     tokenizeRespondent: () => tokenizeRespondent
   });
 
-  // src/config/archetypes.ts
-  var ARCHETYPES = [
-    {
-      id: "001",
-      name: "Rawlsian Reformer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "002",
-      name: "Independent Social Democrat",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "003",
-      name: "Consensus Redistributionist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "004",
-      name: "Labor Reformer",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): civic-nationalist progressive
-      // labor pattern; net mid under broader uniformity-vs-pluralism axis.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.5 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 48, gender: 9, ideological: 50 } }
-    },
-    {
-      id: "005",
-      name: "Pluralist Structuralist",
-      tier: "T1",
-      // ONT_S 1 → 4 per ADR-010 reframe (2026-04-26): structuralists who want to
-      // reshape institutions to fix power imbalances believe well-designed
-      // institutions CAN work. Old "system broken" reading at ONT_S=1 was wrong;
-      // they're institutional reformers, not nihilists.
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "006",
-      name: "Fairness Pragmatist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        // raised sal 1→2 (discriminator vs Social Stabilizer)
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        // raised sal 1→2 (discriminator vs Social Stabilizer)
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "007",
-      name: "Solidarist Reformer",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): communal-left wants shared
-      // moral values but pluralism on private lifestyle; net mid.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "008",
-      name: "Procedural Redistributionist",
-      tier: "T1",
-      // ONT_H 2 → 4 per ADR-010 (2026-04-26): proceduralists believe institutions
-      // (when properly designed) reshape incentives and behavior. Under the
-      // malleability framing they are high-malleability-via-state, not skeptics.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "010",
-      name: "Bread-and-Butter Progressive",
-      tier: "T1",
-      // ONT_H 2 → 4 per ADR-010 (2026-04-26): BBP progressives believe state
-      // programs (jobs, welfare, education) improve people's material and moral
-      // condition. High malleability via state.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.19, ethnic_racial: 0.12, religious: 0.1, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 19, religious: 10, ethnic_racial: 12, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "011",
-      name: "Jacobin Egalitarian",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } }
-    },
-    {
-      id: "012",
-      name: "Class-War Leftist",
-      // Archetype-audit Phase 4 (2026-04-26). Two priority-node corrections per
-      // rubric. CU 2→3 (modest move; class-war can pair with internationalism
-      // but ideological-uniformity edge retained — user direction). MOR 3→4
-      // (universalist-class concern; spatial scope is wide). ONT_H 1→4
-      // (ADR-010 reframe: class-warriors believe humans are reshaped by economic
-      // structure → high malleability-via-cultivation; old ONT_H=1 reflected
-      // pre-ADR-010 optimism-vs-pessimism reading). CU 4 jump held back per
-      // user direction.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.48, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 48 } }
-    },
-    {
-      id: "013",
-      name: "Radical Leveler",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 76, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 25 } }
-    },
-    {
-      id: "014",
-      name: "Activist Progressive",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 2→4 per rubric Pattern A
-      // archetype-side: "Activist Progressive" is institutional reform tradition
-      // (Bryan/La Follette/FDR rubric anchor at ONT_S=4), not institutional
-      // nihilism. Old ONT_S=2 reflects pre-ADR-010 "system needs reform"
-      // framing; under capacity-belief framing, progressives believe institutions
-      // CAN be made to work hard.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.1, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 25 } }
-    },
-    {
-      id: "015",
-      name: "Moral Firebrand",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.62, ideological: 0.26, gender: 0.09, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 57, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 62, gender: 9, ideological: 26 } }
-    },
-    {
-      id: "016",
-      name: "Insurgent Equalizer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.81, ideological: 0.34, gender: 0.1, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 43, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 81, gender: 10, ideological: 34 } }
-    },
-    {
-      id: "017",
-      name: "Uncompromising Redistributionist",
-      // Archetype-audit Phase 6 ONT_H sweep (2026-04-27). ONT_H 1→4: parallel
-      // fix to 012 Class-War Leftist. Old ONT_H=1 reflects pre-ADR-010
-      // optimism-vs-pessimism reading ("pessimist about humans under
-      // capitalism"). Under malleability-via-cultivation framing, an
-      // uncompromising redistributionist who fights for max-state-redistribution
-      // believes humans are reshaped by economic structure → high malleability.
-      // Anti direction also flipped (high→low: now antagonistic to humans-fixed).
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        // 1→4 audit Phase 6: humans reshaped by economic structure
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.43, ideological: 0.26, gender: 0.07, political_tribe: 0.25 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 70, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 43, gender: 7, ideological: 26 } }
-    },
-    // 019 Anarchist Mutualist — MERGED into 020 Grassroots Autonomist
-    {
-      id: "019",
-      name: "Anarchist Mutualist",
-      tier: "T1",
-      active: false,
-      // DEACTIVATED — merged into 020
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      // Merged from 019 Anarchist Mutualist + 020 Horizontalist Dissenter
-      // "Grassroots Autonomist" — anti-hierarchical, anti-institutional, bottom-up direct action
-      id: "020",
-      name: "Grassroots Autonomist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        // kept 019's stronger anti-proceduralism
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        // kept 019's uncompromising stance
-        ZS: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        // split the difference (1+3)/2
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        // 019's optimism
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.4, 0.38, 0.04, 0.08], sal: 2 }
-        // blend pastoral+plainspoken
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.16, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      // Merged from 021 Kantian Cosmopolitan + 023 Rights Cosmopolitan + 025 World-Minded Reformer
-      // "Principled Cosmopolitan" — universal moral principles, cross-border ethics, anti-tribal
-      id: "021",
-      name: "Principled Cosmopolitan",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
-      // ONT_S undercoding fix per audit. Principled cosmopolitans use
-      // international institutions hard (UN, ICC, treaty regimes) → institutional
-      // capacity belief, not mid-skepticism. Old ONT_S=3 reflects pre-ADR-010
-      // "system broken vs working" framing.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        // cosmopolitanism is core
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        // procedural (from 023/025)
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        // leans uncompromising (from 023)
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        // 3→4 audit Phase 4: institutional-internationalist anchor
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "022",
-      name: "Pluralist Universalist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2 },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1 },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      // 023 Rights Cosmopolitan — MERGED into 021 Principled Cosmopolitan
-      id: "023",
-      name: "Rights Cosmopolitan",
-      tier: "T1",
-      active: false,
-      // DEACTIVATED
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2, anti: "low" },
-        // added anti:low — not redistributionist
-        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        // added anti:low — strongly optimistic
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.08, 0.05, 0.06, 0.08, 0.67], sal: 2 }
-        // raised sal 1→2
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "024",
-      name: "Ethical Internationalist",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
-      // ONT_S undercoding fix. Ethical internationalism (UN tradition, Marshall
-      // Plan, treaty regime building) is the institutional-internationalist
-      // anchor → ONT_S=4. Old ONT_S=3 reflects pre-ADR-010 framing.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 5, sal: 3 },
-        ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        // 3→4 audit Phase 4: institutional-internationalist anchor
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      // 025 World-Minded Reformer — MERGED into 021 Principled Cosmopolitan
-      id: "025",
-      name: "World-Minded Reformer",
-      tier: "T1",
-      active: false,
-      // DEACTIVATED
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-        // raised sal 2→3: system critique is core
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        // raised sal 1→2
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "026",
-      name: "Cosmopolitan Pragmatist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "027",
-      name: "Popperian Liberal",
-      // Archetype-audit Phase 4 (2026-04-26). MOR 2→4: open-society liberalism
-      // is moral-universalist (wide spatial scope across humanity), not narrow.
-      // Old MOR=2 conflated Popper's individual-rights-first framing with
-      // narrow practiced scope; rubric requires spatial scope only.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "028",
-      name: "Global Caretaker",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→4: cosmopolitan-left
-      // ONT_S undercoding fix. Global care = WHO / Marshall Plan / aid-
-      // institution-builder tradition → institutional capacity belief, not
-      // mid-skepticism.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        // 3→4 audit Phase 4: institutional-internationalist anchor
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "029",
-      name: "Liberationist Progressive",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "031",
-      name: "Planetary Steward",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
-      // user direction). Pattern A archetype-side: "Planetary Steward" implies
-      // institutional climate-care (IPCC, Paris regime, multilateral
-      // stewardship), not eco-anarchism. Old ONT_S=1 anti:high read this as
-      // accelerationist nihilism — opposite of the name. Anti direction also
-      // flipped: anti:high → anti:low (now antagonistic to institutional
-      // nihilism, not to capacity belief).
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        // 1→4 audit Phase 4: institutional climate-care, not eco-anarchism
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.11, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "032",
-      name: "Hamiltonian Technocrat",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 3→5 + sal 1→2. Hamilton is
-      // the literal rubric anchor for ONT_S=5 ("Hamilton, FDR New Dealers,
-      // Progressive-era state-builders"). A literal Hamilton-named archetype
-      // mid-coded on the dimension Hamilton anchors is the most direct rubric-
-      // cite miscoding in the corpus. Sal raised 1→2 per user direction —
-      // Hamiltonian institutional capacity is a defining trait, not a side note.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        // 3→5 sal 1→2 audit Phase 4: Hamilton-anchor for institutional capacity belief
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "033",
-      name: "Systems Modernizer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-        ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 3 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 3 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 19, gender: 6, ideological: 50 } }
-    },
-    // {
-    // id: "034",
-    // name: "Evidence Reformer",
-    // tier: "T1",
-    // prior: 1/112,
-    // nodes: {
-    // MAT: { kind: "continuous", pos: 2, sal: 1 },
-    // CD: { kind: "continuous", pos: 2, sal: 1 },
-    // CU: { kind: "continuous", pos: 4, sal: 1 },
-    // MOR: { kind: "continuous", pos: 4, sal: 1 },
-    // PRO: { kind: "continuous", pos: 3, sal: 2 },
-    // COM: { kind: "continuous", pos: 3, sal: 1 },
-    // ZS: { kind: "continuous", pos: 2, sal: 1 },
-    // ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-    // ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-    // PF: { kind: "continuous", pos: 3 },
-    // TRB: { kind: "continuous", pos: 2, anti: "high" },
-    // ENG: { kind: "continuous", pos: 3 },
-    // EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-    // AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] },
-    // }
-    // },
-    {
-      id: "035",
-      name: "Administrative Liberal",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.09, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 9, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "036",
-      name: "Institutional Optimizer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "037",
-      name: "Fabian Modernizer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "039",
-      name: "Data-Driven Moderate",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): technocratic pragmatist; not
-      // uniformity-seeking, just outcome-oriented. Net mid under broader axis.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 3, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 3, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "040",
-      name: "Reform Engineer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 2, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "042",
-      name: "Localist Progressive",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): participatory-progressive,
-      // civic-local not assimilationist.
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 1 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "043",
-      name: "Quiet Egalitarian",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): communitarian redistributionist
-      // wants shared moral life via solidarity, not uniformity enforcement.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.19, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 19, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "045",
-      name: "Rooted Social Reformer",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): rooted progressive seeking
-      // deep community cohesion, not assimilationism.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.14, 0.33, 0.33, 0.1, 0.07, 0.04], sal: 1 },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.15, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 15, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "046",
-      name: "Pastoral Leftist",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): spiritual-communal, not
-      // uniformity-seeking.
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 3 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    // {
-    // id: "047",
-    // name: "Common-Life Reformer",
-    // tier: "T1",
-    // prior: 1/112,
-    // nodes: {
-    // MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-    // CD: { kind: "continuous", pos: 3, sal: 1 },
-    // CU: { kind: "continuous", pos: 2, sal: 1 },
-    // MOR: { kind: "continuous", pos: 3, sal: 2 },
-    // PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-    // COM: { kind: "continuous", pos: 3, sal: 1 },
-    // ZS: { kind: "continuous", pos: 2, sal: 1 },
-    // ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-    // ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-    // PF: { kind: "continuous", pos: 2 },
-    // TRB: { kind: "continuous", pos: 2 },
-    // ENG: { kind: "continuous", pos: 4 },
-    // EPS: { kind: "categorical", probs: [0.04, 0.08, 0.60, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-    // AES: { kind: "categorical", probs: [0.60, 0.10, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] },
-    // }
-    // },
-    {
-      id: "048",
-      name: "Solidaristic Localist",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): communitarian localist
-      // preferring shared life to uniformity.
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.34, class: 0.48, ideological: 0.12, gender: 0.09, political_tribe: 0.25 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 66, scopedAffinities: { national: 5, religious: 34, ethnic_racial: 5, class: 48, gender: 9, ideological: 25 } }
-    },
-    {
-      id: "049",
-      name: "Moral Egalitarian",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): equality-through-solidarity,
-      // not uniformity. Old CU=2 was narrow-framed.
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "050",
-      name: "Traditionalist Moralist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.22, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 22, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "051",
-      name: "Systemic Redistributionist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.62, 0.17, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.15, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 15, ethnic_racial: 5, class: 17, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "053",
-      name: "Consensus Builder",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "054",
-      name: "Arbiter Moderate",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 3 },
-        // Fixed: Moderate = high compromise
-        ZS: { kind: "continuous", pos: 1, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "056",
-      name: "Institutional Leftist",
-      tier: "T1",
-      // Renamed 2026-04-26 from "Institutional Centrist". The previous name was
-      // misleading — MAT=2 is far-left on the redistribution axis, not centrist.
-      // The archetype represents an economically progressive (MAT=2),
-      // culturally moderate-traditional (CD=4), institutionally trusting
-      // (ONT_S=4), strongly anti-zero-sum, anti-tribal pluralist. The
-      // distinguishing feature vs Pluralist Structuralist (005) is the more
-      // conservative cultural register and the institutional-trust orientation.
-      // CU lowered 2026-04-26 from 5 → 4 under broadened CU framing — still
-      // strongly pluralist on private worldview/lifestyle but not maximally so.
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "057",
-      name: "Temperate Pluralist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "059",
-      name: "Public-Minded Moderate",
-      tier: "T1",
-      centristAnchor: true,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.25, 0.58, 0.05, 0.03, 0.06, 0.03], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "060",
-      name: "Hinge Citizen",
-      tier: "T1",
-      centristAnchor: true,
-      // CU 2→3 (2026-04-26 broadened CU framing): true swing centrist; mid CU
-      // matches mid everything else.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.14, 0.38, 0.33, 0.04, 0.07, 0.04], sal: 1 },
-        AES: { kind: "categorical", probs: [0.6, 0.2, 0.04, 0.06, 0.04, 0.06], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "061",
-      name: "Millian Liberal",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "062",
-      name: "Meritocratic Liberal",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "063",
-      name: "Enterprise Pluralist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    // MERGED into Opportunity Liberal (ID 065) — 2026-04-01
-    // {
-    //   id: "064",
-    //   name: "Market Optimist",
-    //   tier: "T1",
-    //   prior: 1/112,
-    //   nodes: {
-    //     MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-    //     CD: { kind: "continuous", pos: 2, sal: 2 },
-    //     CU: { kind: "continuous", pos: 4, sal: 2 },
-    //     MOR: { kind: "continuous", pos: 2, sal: 2 },
-    //     PRO: { kind: "continuous", pos: 3, sal: 2 },
-    //     COM: { kind: "continuous", pos: 4, sal: 2 },
-    //     ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-    //     ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-    //     ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-    //     PF: { kind: "continuous", pos: 3 },
-    //     TRB: { kind: "continuous", pos: 2, anti: "high" },
-    //     ENG: { kind: "continuous", pos: 5, anti: "low" },
-    //     EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
-    //     AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 },
-    //   }
-    // },
-    {
-      id: "065",
-      name: "Opportunity Liberal",
-      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: rubric
-      // distinguishes "outcome-focused / bureaucracy-skeptical" (PRO 3) from
-      // "outright rule-breaking" (PRO 1). Opportunity Liberals work within
-      // institutions to expand opportunity; not anti-procedural in the
-      // Trump-2020 / Lenin sense. Anti direction also dropped (was anti:high).
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 3, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 3 },
-        // 1→3 audit Phase 6: outcome-focused, not anti-procedural
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "067",
-      name: "Free-Exchange Modernist",
-      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: market-
-      // libertarianism is bureaucracy-skeptical, not anti-procedural; free-
-      // traders work within rule-of-law / WTO / contract-enforcement frames
-      // to liberalize, not break them.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        PRO: { kind: "continuous", pos: 3, sal: 3 },
-        // 1→3 audit Phase 6: bureaucracy-skeptical, not anti-procedural
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.04, 0.15, 0.02], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.18, 0.05, 0.06, 0.08, 0.57], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.11, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "069",
-      name: "Bleeding-Heart Libertarian",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.14, 0.03, 0.08, 0.11, 0.02], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "070",
-      name: "Burkean Steward",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): Burkean tradition
-      // explicitly believes humans are cultivated by family/church/custom (high
-      // malleability via cultural mechanism) AND that lawful institutions are
-      // foundational to ordered liberty (high institutional capacity belief).
-      // Old encoding read these as 3/3 under "moderate optimism / mixed system"
-      // — wrong axis under the new framings.
-      nodes: {
-        // CU 2→3 (2026-04-26 broadened CU framing): Burkean tradition values
-        // shared civic/cultural cohesion but tolerates private pluralism;
-        // anti="high" retained.
-        MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "071",
-      name: "Constitutional Conservative",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): constitutional
-      // conservatism centers on lawful institutions and written tradition shaping
-      // behavior — high malleability via constitutional/legal cultivation. Light
-      // institutional capacity belief (constitutional structure works, but state
-      // overreach bad).
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "072",
-      name: "Blackstone Conservative",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): common-law
-      // traditionalist; institutions (especially law) transmit and shape character.
-      // MOR 5→3 archetype-audit Phase 4 (2026-04-26): Pattern B inverse —
-      // common-law conservatism is hierarchical / English-tradition-oriented.
-      // Natural-law universalism is rhetorical; practiced moral scope is
-      // narrower (Christian-English-tradition in-group). MOR=5 read traditional
-      // moral content as wide spatial scope; rubric requires spatial scope only.
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 2, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.2, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 20, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "073",
-      name: "Civic Traditionalist",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 3 → 4 per ADR-010 (2026-04-26): civic traditionalists
-      // champion civic participation within inherited institutional frameworks —
-      // high cultivation by civic duty + high faith in functioning institutions.
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.11, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 11, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "074",
-      name: "Responsible Conservative",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.05, religious: 0.17, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 25, religious: 17, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "076",
-      name: "Fiscal Gradualist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.18, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 18, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "077",
-      name: "Ordered Libertarian",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.19, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "078",
-      name: "Meritocratic Conservative",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "079",
-      name: "National Developmentalist",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): nationalist but
-      // development-focused; state-led growth, not cultural uniformity.
-      // ONT_S 1→5 archetype-audit Phase 4 (2026-04-26, PROMOTED HIGH).
-      // "Developmentalist" means institutional capacity belief — Hamilton, Lee
-      // Kuan Yew, post-war Japan/South Korea state-developmentalism. ONT_S=1
-      // reads developmentalists as institutional nihilists, opposite of the
-      // name. As direct as Hamiltonian Technocrat.
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 5, sal: 2 },
-        // 1→5 audit Phase 4: developmentalist = institutional capacity belief
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.09, 0.06, 0.09, 0.06], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.05, religious: 0.19, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 19, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
-    },
-    // MERGED: 080 Chestertonian Traditionalist → absorbed into 091 Security Paternalist (no Î”â‰¥2 discriminators)
-    // {
-    //   id: "080",
-    //   name: "Chestertonian Traditionalist",
-    //   ...
-    // },
-    {
-      id: "081",
-      name: "Heritage Guardian",
-      tier: "T1",
-      // ONT_H 2 → 4, ONT_S 1 → 2 per ADR-010 (2026-04-26): heritage preservation
-      // IS belief in cultural transmission (high malleability via tradition).
-      // Anti-state institutionalist preserved (anti:"high" on ONT_S, only raised
-      // to 2 from 1).
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.81, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 91, ethnic_racial: 81, class: 5, gender: 10, ideological: 75 } }
-    },
-    {
-      id: "082",
-      name: "Altar-and-Hearth Conservative",
-      tier: "T1",
-      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): family/religion/
-      // tradition ARE cultivation mechanisms; humans malleable via them. Mid
-      // institutional capacity (church/family yes, state skeptical).
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 48, ethnic_racial: 36, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "083",
-      name: "Closed Traditionalist",
-      tier: "T1",
-      // ONT_H 2 → 4 per ADR-010 (2026-04-26): closed traditionalists believe in
-      // cultivation via tradition/family/religion. ONT_S held at 2 — they reject
-      // modern state institutions while valuing inherited ones.
-      // MOR 4→2 archetype-audit Phase 4 (2026-04-26): a "Closed Traditionalist"
-      // with high MOR is incoherent — closure implies narrow practiced scope
-      // (in-group focus). Old MOR=4 read traditional moral content as wide
-      // spatial scope; rubric requires spatial scope only.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "084",
-      name: "Civilizational Conservative",
-      tier: "T1",
-      // ONT_H 2 → 3 per ADR-010 (2026-04-26): civilizational conservatives
-      // believe modern humans are degenerating — modest malleability via tradition
-      // but institutional nihilism preserved (ONT_S kept at 1, anti:"high").
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.67, religious: 0.91, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 34, scopedAffinities: { national: 95, religious: 91, ethnic_racial: 67, class: 5, gender: 10, ideological: 75 } }
-    },
-    {
-      id: "085",
-      name: "Customary Localist",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): customary localists
-      // believe local custom shapes and improves people (high malleability via
-      // tradition); local institutions trusted more than state but still real.
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.24, religious: 0.26, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 24, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "086",
-      name: "Duty Traditionalist",
-      tier: "T1",
-      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): duty-based traditionalism
-      // explicitly emphasizes character cultivation through obligation and role —
-      // high malleability via tradition + institutional structure.
-      nodes: {
-        // CU 2→3 (2026-04-26 broadened CU framing): duty-bound communitarian
-        // but not uniformity-enforcing.
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 2, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.36, ethnic_racial: 0.05, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 36, religious: 38, ethnic_racial: 5, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "087",
-      name: "Continuity Conservative",
-      tier: "T1",
-      // ONT_H 3 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): continuity conservatism
-      // prioritizes institutional continuity and cultural transmission as
-      // improvement mechanisms.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.43, religious: 0.48, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 48, ethnic_racial: 43, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "088",
-      name: "Gentle Traditionalist",
-      tier: "T1",
-      // ONT_S 2 → 3 per ADR-010 (2026-04-26): already correctly high on ONT_H
-      // (tradition shapes people). Mild upward shift on ONT_S — they trust
-      // inherited institutions even if skeptical of modern state expansion.
-      // anti:"high" preserved.
-      // CU 2→3 (2026-04-26 broadened CU framing): soft conservatism; shared
-      // customs preferred but not enforced uniformity. anti="high" retained.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.16, 0.05, 0.62, 0.07, 0.03, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.28, ethnic_racial: 0.05, religious: 0.22, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 28, religious: 22, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "089",
-      name: "Integral Traditionalist",
-      tier: "T1",
-      // ONT_H 2 → 4, ONT_S 2 → 3 per ADR-010 (2026-04-26): integral traditionalism
-      // blends institutional and cultural transmission — humans cultivated by
-      // sacred order and inherited institutions.
-      nodes: {
-        // CU 2→3 (2026-04-26 broadened CU framing): holistic conservative;
-        // organic community coherence, not assimilationist policy.
-        MAT: { kind: "continuous", pos: 4, sal: 1 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 3, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.36, religious: 0.38, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 38, ethnic_racial: 36, class: 5, gender: 12, ideological: 75 } }
-    },
-    {
-      id: "090",
-      name: "Hobbesian Guardian",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 5, sal: 3 },
-        // Hobbesian: life is zero-sum, strong differentiator
-        ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        // Hobbesian: humans are NOT perfectible
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.53, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.12, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 53, class: 5, gender: 12, ideological: 75 } }
-    },
-    {
-      id: "091",
-      name: "Security Paternalist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.5, ethnic_racial: 0.19, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 50, religious: 29, ethnic_racial: 19, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "092",
-      name: "Partisan Tribalist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.48, religious: 0.53, class: 0.05, ideological: 0.43, gender: 0.1, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 48, class: 5, gender: 10, ideological: 100 } }
-    },
-    {
-      id: "094",
-      name: "Hard-State Manager",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4. Pattern A archetype-
-      // side: name explicitly asserts state-institutional capacity ("Hard-
-      // State"); old ONT_S=1 anti:high flipped this to institutional nihilism,
-      // contradicting the name. PRO=5 (max-rules-bound) is consistent with
-      // managerial authoritarianism but is incoherent with ONT_S=1. Anti
-      // direction also flipped: anti:high → anti:low (now antagonistic to
-      // institutional nihilism, not capacity belief).
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        // 1→4 audit Phase 4: name says state-institutional, must match
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.08, 0.64, 0.04, 0.04, 0.03, 0.17], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "095",
-      name: "Emergency Orderist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "097",
-      name: "Authority Pragmatist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 1 },
-        COM: { kind: "continuous", pos: 4, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.15, 0.05, 0.06, 0.06], sal: 1 },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.04, 0.06, 0.14, 0.06], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.05, ideological: 0.24, gender: 0.07, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 5, gender: 7, ideological: 75 } }
-    },
-    {
-      id: "098",
-      name: "Anti-Elite Populist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1 },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.16, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 17, ethnic_racial: 16, class: 5, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "099",
-      name: "Scarcity Populist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.41, religious: 0.29, class: 0.38, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 63, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 41, class: 38, gender: 7, ideological: 50 } }
-    },
-    {
-      id: "100",
-      name: "Tribal Insurgent",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CD: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 2, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 1, ethnic_racial: 1, religious: 0.53, class: 0.72, ideological: 0.76, gender: 0.19, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 100, class: 72, gender: 19, ideological: 100 } }
-    },
-    {
-      id: "101",
-      name: "Embattled Majoritarian",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.53, ethnic_racial: 0.26, religious: 0.29, class: 0.05, ideological: 0.34, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 53, religious: 29, ethnic_racial: 26, class: 5, gender: 7, ideological: 100 } }
-    },
-    {
-      id: "103",
-      name: "Grievance Mobilizer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.37, religious: 0.41, class: 0.41, ideological: 0.48, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 47, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 37, class: 41, gender: 9, ideological: 75 } }
-    },
-    {
-      id: "104",
-      name: "National Protector",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 1, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.26, religious: 0.41, class: 0.05, ideological: 0.48, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 41, ethnic_racial: 26, class: 5, gender: 9, ideological: 100 } }
-    },
-    {
-      id: "105",
-      name: "Combative Populist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 1, ethnic_racial: 0.76, religious: 0.53, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 100, religious: 53, ethnic_racial: 76, class: 5, gender: 10, ideological: 75 } }
-    },
-    {
-      id: "106",
-      name: "Militant Partisan",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.04, 0.03, 0.04, 0.18, 0.63, 0.08], sal: 3, antiCats: [0, 1] }
-      },
-      morBoundaries: { boundaries: { national: 0.76, ethnic_racial: 0.58, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 76, religious: 41, ethnic_racial: 58, class: 5, gender: 9, ideological: 100 } }
-    },
-    {
-      id: "107",
-      name: "Resentful Localist",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): aggrieved localist; resentment
-      // is anti-pluralist impulse but not uniformity-enforcing.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.58, 0.19, 0.05], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.6, 0.15, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 22, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "108",
-      name: "Passive Cynic",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.1, 0.15, 0.6], sal: 2, antiCats: [1] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.55, 0.2, 0.05], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 1 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
-    },
-    {
-      id: "109",
-      name: "Alienated Outsider",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 25 } }
-    },
-    {
-      id: "110",
-      name: "Principled Abstainer",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.2, 0.5, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 3 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "111",
-      name: "Cosmopolitan Nonconformist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        CU: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 2, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "112",
-      name: "Engaged Cosmopolitan",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 2 },
-        PRO: { kind: "continuous", pos: 2, sal: 1, anti: "high" },
-        COM: { kind: "continuous", pos: 3, sal: 1, anti: "high" },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.08, 0.08, 0.08, 0.1, 0.6, 0.06], sal: 1, antiCats: [2, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.08, 0.7, 0.05, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "113",
-      name: "Disaffected Contrarian",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): populist outsider; oppositional
-      // stance not assimilationist.
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.05, 0.03, 0.07, 0.18, 0.12, 0.55], sal: 2, antiCats: [0, 1] },
-        AES: { kind: "categorical", probs: [0.02, 0.02, 0.04, 0.1, 0.75, 0.07], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 83, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 12, class: 5, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "114",
-      name: "Political Nihilist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 5, sal: 3, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.03, 0.03, 0.03, 0.08, 0.1, 0.73], sal: 3, antiCats: [0, 1, 2] },
-        AES: { kind: "categorical", probs: [0.02, 0.02, 0.03, 0.08, 0.7, 0.15], sal: 2 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 3 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
-    },
-    {
-      id: "115",
-      name: "Quietist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        // raised sal 0→1 (discriminator vs Ecological Localist)
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        // raised sal 0→1 (discriminator vs Ecological Localist)
-        EPS: { kind: "categorical", probs: [0.04, 0.08, 0.6, 0.16, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.06, 0.05, 0.72, 0.07, 0.03, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "116",
-      name: "Quiet Middle",
-      tier: "T1",
-      centristAnchor: true,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "117",
-      name: "Comfortable Bystander",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 5, sal: 1 },
-        ZS: { kind: "continuous", pos: 1, sal: 1, anti: "high" },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1, anti: "low" },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.04, 0.18, 0.6, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.12, religious: 0.15, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 15, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "118",
-      name: "Survival Pragmatist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "119",
-      name: "Apolitical Striver",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "120",
-      name: "Good Neighbor",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        CU: { kind: "continuous", pos: 3, sal: 3 },
-        PRO: { kind: "continuous", pos: 3, sal: 1 },
-        COM: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 2, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 3, anti: "low" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.6, 0.1, 0.14, 0.06, 0.04, 0.06], sal: 2, antiCats: [4] }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.17, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 17, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "121",
-      name: "Spectator Citizen",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 2 },
-        CD: { kind: "continuous", pos: 3, sal: 2 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 4, sal: 3 },
-        COM: { kind: "continuous", pos: 3, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.62, 0.24, 0.03, 0.04, 0.03, 0.04], sal: 1, antiCats: [2, 3, 5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 3 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "122",
-      name: "Civic Minimalist",
-      tier: "T1",
-      centristAnchor: true,
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "124",
-      name: "Latent Alarmist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1 },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "125",
-      name: "Reluctant Partisan",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0, anti: "low" },
-        PRO: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 4, sal: 2, anti: "low" },
-        ZS: { kind: "continuous", pos: 3, sal: 1, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.11, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.15, gender: 0.06, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 11, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 75 } }
-    },
-    {
-      id: "126",
-      name: "Uncompromising Activist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 2, sal: 1 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.19, gender: 0.07, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 7, ideological: 50 } }
-    },
-    {
-      id: "127",
-      name: "Tribal Loyalist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.95, ethnic_racial: 0.05, religious: 0.34, class: 0.05, ideological: 0.62, gender: 0.1, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 95, religious: 34, ethnic_racial: 5, class: 5, gender: 10, ideological: 100 } }
-    },
-    {
-      id: "128",
-      name: "Loyal Democrat",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 2, sal: 1 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.16, ethnic_racial: 0.05, religious: 0.05, class: 0.41, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 2.25 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 16, religious: 5, ethnic_racial: 5, class: 41, gender: 9, ideological: 75 } }
-    },
-    {
-      id: "129",
-      name: "Loyal Republican",
-      tier: "T1",
-      // CU 2→3 (2026-04-26 broadened CU framing): partisan Republican moderate;
-      // civic-bound partisan, not uniformity-minded.
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.73, ethnic_racial: 0.05, religious: 0.26, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 73, religious: 26, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } }
-    },
-    // MERGED into Duty Voter (ID 131) — 2026-04-01
-    // {
-    //   id: "130",
-    //   name: "Habitual Partisan",
-    //   tier: "T1",
-    //   prior: 1/112,
-    //   nodes: {
-    //     MAT: { kind: "continuous", pos: 3, sal: 1 },
-    //     CD: { kind: "continuous", pos: 4, sal: 1 },
-    //     CU: { kind: "continuous", pos: 3, sal: 0 },
-    //     MOR: { kind: "continuous", pos: 2, sal: 1 },
-    //     PRO: { kind: "continuous", pos: 3, sal: 0 },
-    //     COM: { kind: "continuous", pos: 2, sal: 1 },
-    //     ZS: { kind: "continuous", pos: 3, sal: 1 },
-    //     ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-    //     ONT_S: { kind: "continuous", pos: 2, sal: 1 },
-    //     PF: { kind: "continuous", pos: 5, anti: "low" },
-    //     TRB: { kind: "continuous", pos: 4 },
-    //     ENG: { kind: "continuous", pos: 3, anti: "high" },
-    //     EPS: { kind: "categorical", probs: [0.04, 0.18, 0.60, 0.06, 0.08, 0.04], sal: 1, antiCats: [0, 5] },
-    //     AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.60, 0.05, 0.07], sal: 1 },
-    //   }
-    // },
-    {
-      id: "131",
-      name: "Duty Voter",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 3, sal: 1 },
-        PRO: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        COM: { kind: "continuous", pos: 2, sal: 2 },
-        ZS: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 2, sal: 2 },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.12, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 2 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 12, religious: 12, ethnic_racial: 5, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "132",
-      name: "Negative Partisan",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 5, sal: 2, anti: "low" },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        EPS: { kind: "categorical", probs: [0.1, 0.58, 0.05, 0.03, 0.16, 0.08], sal: 1, antiCats: [5] },
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.18, 0.6, 0.05, 0.07], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.23, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 23, religious: 5, ethnic_racial: 5, class: 5, gender: 9, ideological: 100 } }
-    },
-    {
-      id: "134",
-      name: "Progressive Civic Nationalist",
-      tier: "T1",
-      // Re-encoded 2026-04-24: this is the FDR/JFK/LBJ/Obama/Biden mainstream
-      // Democratic tradition. Patriotic + economically progressive + civic-
-      // nationalist + institutionally trusting + universalist-leaning + always
-      // votes Democrat. Previous encoding (CU=4 sal=2, PF=2) misclassified this
-      // as cosmopolitan-progressive — duplicating Activist Progressive — and
-      // failed to fire on actual civic-nationalist progressives. PF bumped 2 → 5
-      // because civic nationalists are the partisan-loyalist mainstream of the
-      // Democratic Party.
-      // CU 2 → 3 update 2026-04-26: under the broadened CU framing (worldview,
-      // religion, lifestyle, conception-of-good-life pluralism, not just
-      // narrow culture), civic-nationalist progressive lands at MID, not low.
-      // The civic-nationalist signature is shared civic values (push CU low) +
-      // pluralist on private life/religion/lifestyle (push CU high) → net mid.
-      // Old CU=2 was calibrated under the narrower CU framing where civic-
-      // nationalist read as assimilationist; under the broader framing CU=2 is
-      // reserved for archetypes who actually want more uniformity in private
-      // worldview/lifestyle (communitarian conservative, shared-thick-culture
-      // advocates).
-      nodes: {
-        MAT: { kind: "continuous", pos: 1, sal: 3, anti: "high" },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 3, sal: 2 },
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 1 },
-        // ONT_S 3 → 4 per ADR-010 (2026-04-26): civic-nationalist progressives
-        // (FDR/Biden/Obama tradition) believe state programs effectively deliver
-        // healthcare/education/redistribution. High institutional capacity belief.
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.3, 0.4, 0.05, 0.1, 0.1, 0.05], sal: 1 },
-        AES: { kind: "categorical", probs: [0.35, 0.2, 0.05, 0.1, 0.2, 0.1], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.12, ethnic_racial: 0.05, religious: 0.05, class: 0.34, ideological: 0.24, gender: 0.07, political_tribe: 1 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 12, religious: 5, ethnic_racial: 5, class: 34, gender: 7, ideological: 100 } }
-    },
-    // ===== NEW ARCHETYPES (added 2026-03-28 from ChatGPT semantic coverage audit) =====
-    {
-      id: "135",
-      name: "Disruptive Cosmopolitan",
-      // Archetype-audit Phase 6 PRO sweep (2026-04-27). PRO 1→3: tech-
-      // entrepreneurial / startup-cosmopolitan disruption operates within
-      // contract law and property regimes; "anti-bureaucratic" reads as
-      // outcome-focused, not actually rule-breaking.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2 },
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        // 1→3 audit Phase 6: bureaucracy-skeptical, not rule-breaking
-        COM: { kind: "continuous", pos: 1, sal: 1 },
-        ZS: { kind: "continuous", pos: 1, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.6, 0.05, 0.15, 0.05, 0.1, 0.05], sal: 1 },
-        AES: { kind: "categorical", probs: [0.05, 0.1, 0.05, 0.05, 0.15, 0.6], sal: 1 }
-        // FIX: Disruptive = visionary, not statesman
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
-    },
-    {
-      id: "136",
-      name: "Aspirational Traditionalist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 5, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        // FIX: Traditionalist = culturally conservative (was 2)
-        CU: { kind: "continuous", pos: 2, sal: 2 },
-        // FIX: Traditionalist = assimilationist (was 4)
-        PRO: { kind: "continuous", pos: 3, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 4, sal: 2 },
-        // Aspirational = optimistic (was 3/sal1)
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.15, 0.5, 0.1, 0.05, 0.1], sal: 1 },
-        AES: { kind: "categorical", probs: [0.1, 0.1, 0.5, 0.15, 0.05, 0.1], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.29, ethnic_racial: 0.09, religious: 0.26, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.25 }, intensity: 2 },
-      moralCircle: { universalAffinity: 80, scopedAffinities: { national: 29, religious: 26, ethnic_racial: 9, class: 5, gender: 6, ideological: 25 } }
-    },
-    {
-      id: "137",
-      name: "Moral Crusader",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 1 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 2, sal: 1 },
-        PRO: { kind: "continuous", pos: 2, sal: 2 },
-        COM: { kind: "continuous", pos: 2, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.05, 0.05, 0.15, 0.6, 0.1, 0.05], sal: 2 },
-        // FIX: Revivalist = intuitionist, not nihilist (was 0.70 nihilist)
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.05, 0.05, 0.1, 0.7], sal: 3 }
-        // Prophetic visionary
-      },
-      morBoundaries: { boundaries: { national: 0.66, ethnic_racial: 0.05, religious: 0.41, class: 0.05, ideological: 0.34, gender: 0.09, political_tribe: 0.75 }, intensity: 3 },
-      moralCircle: { universalAffinity: 48, scopedAffinities: { national: 66, religious: 41, ethnic_racial: 5, class: 5, gender: 9, ideological: 75 } }
-    },
-    {
-      id: "138",
-      name: "Optimistic Challenger",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 1 },
-        CD: { kind: "continuous", pos: 2, sal: 1 },
-        CU: { kind: "continuous", pos: 4, sal: 1 },
-        PRO: { kind: "continuous", pos: 1, sal: 2, anti: "high" },
-        COM: { kind: "continuous", pos: 1, sal: 1 },
-        ZS: { kind: "continuous", pos: 4, sal: 2 },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.05, 0.05, 0.5, 0.25, 0.05], sal: 1 },
-        // FIX: Holistic = intuitionist+autonomous, not nihilist
-        AES: { kind: "categorical", probs: [0.05, 0.05, 0.1, 0.6, 0.1, 0.1], sal: 2 }
-        // Experiential
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.12, gender: 0.06, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 92, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 6, ideological: 12 } }
-    },
-    {
-      id: "139",
-      name: "Civic Assimilationist",
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 4, sal: 2 },
-        CU: { kind: "continuous", pos: 1, sal: 3 },
-        // FIX: Assimilationist = CU=1, not CU=5 (was 5/sal2)
-        PRO: { kind: "continuous", pos: 4, sal: 2 },
-        COM: { kind: "continuous", pos: 3, sal: 1 },
-        ZS: { kind: "continuous", pos: 2, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 1 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 1 },
-        EPS: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 },
-        AES: { kind: "categorical", probs: [0.1, 0.5, 0.15, 0.1, 0.1, 0.05], sal: 1 }
-      },
-      morBoundaries: { boundaries: { national: 0.22, ethnic_racial: 0.12, religious: 0.17, class: 0.05, ideological: 0.07, gender: 0.06, political_tribe: 0.5 }, intensity: 1.5 },
-      moralCircle: { universalAffinity: 65, scopedAffinities: { national: 22, religious: 17, ethnic_racial: 12, class: 5, gender: 6, ideological: 50 } }
-    },
-    {
-      id: "140",
-      name: "Market Green Modernist",
-      // Archetype-audit Phase 4 (2026-04-26). ONT_S 1→4 (PROMOTED HIGH per
-      // user direction). Pattern A archetype-side: "Market" + "Modernist" both
-      // imply institutional-mechanism faith (pricing carbon, regulating markets,
-      // reforming standards). Old ONT_S=1 read this as accelerationist /
-      // institution-nihilist, opposite of the name.
-      tier: "T1",
-      nodes: {
-        MAT: { kind: "continuous", pos: 4, sal: 2 },
-        CD: { kind: "continuous", pos: 1, sal: 2 },
-        CU: { kind: "continuous", pos: 5, sal: 2 },
-        PRO: { kind: "continuous", pos: 5, sal: 2 },
-        COM: { kind: "continuous", pos: 4, sal: 2 },
-        ZS: { kind: "continuous", pos: 1, sal: 1 },
-        ONT_H: { kind: "continuous", pos: 5, sal: 2 },
-        ONT_S: { kind: "continuous", pos: 4, sal: 2 },
-        // 1→4 audit Phase 4: market-mechanism reform = institutional capacity belief
-        EPS: { kind: "categorical", probs: [0.7, 0.05, 0.1, 0.05, 0.05, 0.05], sal: 1 },
-        // Empiricist
-        AES: { kind: "categorical", probs: [0.1, 0.6, 0.1, 0.05, 0.1, 0.05], sal: 1 }
-        // Systematic
-      },
-      morBoundaries: { boundaries: { national: 0.05, ethnic_racial: 0.05, religious: 0.05, class: 0.05, ideological: 0.05, gender: 0.05, political_tribe: 0 }, intensity: 2 },
-      moralCircle: { universalAffinity: 97, scopedAffinities: { national: 5, religious: 5, ethnic_racial: 5, class: 5, gender: 5, ideological: 5 } }
-    },
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Identity-Primary Archetypes (141–146)
-    //
-    // These activate when tribalism and political fusion are the dominant signal
-    // and the respondent's identity anchor + demographics confirm the fit.
-    // Other nodes reflect the group's characteristic political tendencies, but
-    // TRB/PF/ENG are the defining feature — politics is identity-first.
-    // ═══════════════════════════════════════════════════════════════════════════
-    {
-      // ===== Identity-primary archetypes (141-146) =====
-      // Re-encoded 2026-04-24 as policy-flat per ADR-006:
-      //   - All non-SELF nodes: pos=3 sal=0 (no policy posture)
-      //   - EPS/AES: uniform 1/6 distribution sal=0
-      //   - PF=5, TRB=5 (highly fused, highly tribal)
-      //   - No anti flags (no policy positions to anti)
-      // The label of identity is determined by the resolver via:
-      //   anchor + demographic confirmation + ideology-thinness gate
-      // not by encoded policy similarity. A user with strong ideological
-      // commitments (high policy salience) is excluded by the ideology gate
-      // even if anchor + demographic + tribal/fusion conditions otherwise match.
-      // White/Male Grievance are NOT separate ideological postures — per user
-      // (2026-04-24), grievance just labels majority-position identity voting.
-      id: "141",
-      name: "Black Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.35, ethnic_racial: 0.9, religious: 0.3, class: 0.4, ideological: 0.3, gender: 0.15, political_tribe: 0.65 }, intensity: 3 },
-      moralCircle: { universalAffinity: 45, scopedAffinities: { national: 35, religious: 35, ethnic_racial: 85, class: 50, gender: 30, ideological: 60 } }
-    },
-    {
-      id: "142",
-      name: "White Grievance Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.65, ethnic_racial: 0.9, religious: 0.35, class: 0.3, ideological: 0.4, gender: 0.3, political_tribe: 0.7 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 75, religious: 50, ethnic_racial: 80, class: 45, gender: 35, ideological: 55 } }
-    },
-    {
-      id: "143",
-      name: "Evangelical Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.55, ethnic_racial: 0.3, religious: 0.85, class: 0.15, ideological: 0.4, gender: 0.3, political_tribe: 0.6 }, intensity: 3 },
-      moralCircle: { universalAffinity: 35, scopedAffinities: { national: 60, religious: 90, ethnic_racial: 30, class: 30, gender: 35, ideological: 55 } }
-    },
-    {
-      id: "144",
-      name: "LGBTQ Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.2, ethnic_racial: 0.2, religious: 0.1, class: 0.2, ideological: 0.45, gender: 0.9, political_tribe: 0.55 }, intensity: 3 },
-      // 6-scope LGBTQ Voter profile (2026-05-07): original `sexual: 85` was the
-      // primary IDP gate signal under the 8-scope model. With sexual folded into
-      // gender, gender takes that load (was 65 + 85 sexual → 85 merged).
-      // Routing: gender excess + demo_lgbtq=yes → LGBTQ Voter.
-      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 20, ethnic_racial: 35, class: 45, gender: 85, ideological: 60 } }
-    },
-    {
-      id: "145",
-      name: "Feminist Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.25, ethnic_racial: 0.25, religious: 0.1, class: 0.3, ideological: 0.5, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
-      moralCircle: { universalAffinity: 55, scopedAffinities: { national: 30, religious: 25, ethnic_racial: 40, class: 50, gender: 85, ideological: 65 } }
-    },
-    {
-      id: "146",
-      name: "Male Grievance Voter",
-      tier: "T2",
-      nodes: {
-        MAT: { kind: "continuous", pos: 3, sal: 0 },
-        CD: { kind: "continuous", pos: 3, sal: 0 },
-        CU: { kind: "continuous", pos: 3, sal: 0 },
-        PRO: { kind: "continuous", pos: 3, sal: 0 },
-        COM: { kind: "continuous", pos: 3, sal: 0 },
-        ZS: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_H: { kind: "continuous", pos: 3, sal: 0 },
-        ONT_S: { kind: "continuous", pos: 3, sal: 0 },
-        EPS: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 },
-        AES: { kind: "categorical", probs: [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6], sal: 0 }
-      },
-      morBoundaries: { boundaries: { national: 0.45, ethnic_racial: 0.4, religious: 0.25, class: 0.25, ideological: 0.45, gender: 0.85, political_tribe: 0.55 }, intensity: 3 },
-      moralCircle: { universalAffinity: 30, scopedAffinities: { national: 60, religious: 35, ethnic_racial: 45, class: 50, gender: 80, ideological: 55 } }
-    }
-  ];
-
   // src/config/categories.ts
   var UNIFORM_CAT = [
     1 / 6,
@@ -2809,24 +54,6 @@ var PrismEngine = (() => {
     1 / 6,
     1 / 6
   ];
-  var CATEGORY_COST_MATRIX = {
-    EPS: [
-      [0, 0.4, 0.9, 0.8, 0.6, 1.1],
-      [0.4, 0, 0.7, 0.7, 0.5, 1],
-      [0.9, 0.7, 0, 0.7, 0.9, 1],
-      [0.8, 0.7, 0.7, 0, 0.6, 0.9],
-      [0.6, 0.5, 0.9, 0.6, 0, 0.8],
-      [1.1, 1, 1, 0.9, 0.8, 0]
-    ],
-    AES: [
-      [0, 0.4, 0.6, 0.7, 0.9, 0.6],
-      [0.4, 0, 0.6, 0.7, 0.8, 0.5],
-      [0.6, 0.6, 0, 0.5, 0.7, 0.6],
-      [0.7, 0.7, 0.5, 0, 0.6, 0.5],
-      [0.9, 0.8, 0.7, 0.6, 0, 0.7],
-      [0.6, 0.5, 0.6, 0.5, 0.7, 0]
-    ]
-  };
   var EPS_PROTOTYPES = {
     empiricist: [0.72, 0.14, 0.03, 0.04, 0.05, 0.02],
     institutionalist: [0.15, 0.68, 0.05, 0.03, 0.06, 0.03],
@@ -5097,18 +2324,97 @@ var PrismEngine = (() => {
       bwMaxPicks: 2,
       quality: 0.94,
       rewriteNeeded: false,
+      // 2026-05-13 (Sam): each AES prototype option now carries weak continuous
+      // payloads for the belief axes its rhetorical style empirically tracks
+      // with. Each respondent's 4 picks (2 best + 2 worst) now inform 5-7
+      // nodes rather than just AES. Weight 0.20 per side-touch (sub-
+      // MEANINGFUL_POSITION_WEIGHT=0.4, so topKDrill won't treat the node as
+      // drilled). pos shapes are mild leans, peak ratio ~2:1 — easily
+      // overpowered by a single direct position question.
       touchProfile: [
         { node: "AES", kind: "categorical", role: "category", weight: 0.92, touchType: "rhetorical_maxdiff" },
         { node: "AES", kind: "categorical", role: "salience", weight: 0.45, touchType: "rhetorical_maxdiff" },
-        { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" }
+        { node: "EPS", kind: "categorical", role: "category", weight: 0.15, touchType: "style_proxy" },
+        { node: "COM", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "PRO", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "rhetorical_side_signal" }
       ],
       rankingMap: {
-        bridge_builder: { categorical: { AES: AES_PROTOTYPES.statesman } },
-        deep_expertise: { categorical: { AES: AES_PROTOTYPES.technocrat } },
-        community_voice: { categorical: { AES: AES_PROTOTYPES.pastoral } },
-        says_what_they_think: { categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist } },
-        calls_out_power: { categorical: { AES: AES_PROTOTYPES.fighter } },
-        big_picture: { categorical: { AES: AES_PROTOTYPES.visionary } }
+        // bridge_builder (statesman): compromise-friendly, universal-leaning,
+        // process-respecting.
+        bridge_builder: {
+          categorical: { AES: AES_PROTOTYPES.statesman },
+          continuous: {
+            COM: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // high (dealmaking)
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // universal-lean
+            PRO: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // process-oriented
+          }
+        },
+        // deep_expertise (technocrat): expertise + institutions + process.
+        deep_expertise: {
+          categorical: { AES: AES_PROTOTYPES.technocrat, EPS: EPS_PROTOTYPES.empiricist },
+          continuous: {
+            ONT_S: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // institutions matter
+            PRO: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // process-oriented
+          }
+        },
+        // community_voice (pastoral): culturally rooted, in-group focus,
+        // skeptical of distant institutions.
+        community_voice: {
+          categorical: { AES: AES_PROTOTYPES.pastoral },
+          continuous: {
+            CU: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // common-culture lean
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // less institutional
+          }
+        },
+        // says_what_they_think (authentic + intuitionist): anti-compromise,
+        // anti-establishment.
+        says_what_they_think: {
+          categorical: { AES: AES_PROTOTYPES.authentic, EPS: EPS_PROTOTYPES.intuitionist },
+          continuous: {
+            COM: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // anti-compromise
+            PRO: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // anti-procedural
+          }
+        },
+        // calls_out_power (fighter): zero-sum view of conflict, action over
+        // process, suspicious of institutions.
+        calls_out_power: {
+          categorical: { AES: AES_PROTOTYPES.fighter },
+          continuous: {
+            ZS: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // zero-sum lean
+            PRO: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // action > process
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // anti-institutional
+          }
+        },
+        // big_picture (visionary): people can change, humanity-wide concern,
+        // positive-sum vision.
+        big_picture: {
+          categorical: { AES: AES_PROTOTYPES.visionary },
+          continuous: {
+            ONT_H: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // environment shapes
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // universal-lean
+            ZS: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // positive-sum
+          }
+        }
       }
     },
     // Q79 — Expert Disagreement (EPS nihilist dedicated)
@@ -5143,11 +2449,10 @@ var PrismEngine = (() => {
             EPS: { cat: EPS_PROTOTYPES.traditionalist, sal: [0.05, 0.12, 0.33, 0.5] }
           }
         },
-        check_experience: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.intuitionist, sal: [0.05, 0.12, 0.33, 0.5] }
-          }
-        },
+        // 2026-05-13: dropped `check_experience` ("matches my personal experience") —
+        // respondents conflated it with `check_values` ("aligns with my values"). Both
+        // framings read as "trust my own judgment over the experts." Intuitionist
+        // signal is preserved via Q22's `lived_experience_breaks_tie`.
         both_wrong: {
           categorical: {
             EPS: { cat: EPS_PROTOTYPES.autonomous, sal: [0.1, 0.2, 0.35, 0.35] }
@@ -6165,21 +3470,81 @@ var PrismEngine = (() => {
       stage: "fixed12",
       section: "I",
       promptShort: "party_identification",
+      promptFull: "Which best describes how you think of your political affiliation?",
       uiType: "single_choice",
       quality: 0.99,
       rewriteNeeded: false,
-      options: ["dem", "rep", "ind", "third", "none"],
-      // Q200 touchProfile cleaned 2026-04-25 (ADR-009 / P3.7): the previous
-      // PF salience touch was no-op (SELF-cluster nodes skip salience writes
-      // per ADR-005). Q200 is metadata-only — partyID is captured by the
-      // applySingleChoiceAnswer hook and consumed by predictVote, not by the
-      // Bayesian node state.
-      touchProfile: [],
+      options: ["dem", "rep", "ind", "third", "other", "none"],
+      optionLabels: {
+        dem: "Democrat",
+        rep: "Republican",
+        ind: "Independent",
+        third: "Member of a third party",
+        other: "Other",
+        none: "Nothing"
+      },
+      // 2026-05-13 — Q200 carries weak Bayesian priors on the belief axes that
+      // partisan ID most reliably predicts in US politics (ANES/Pew patterns).
+      // Weight 0.20 per touchType "partisan_prior" — well below the typical
+      // direct-position weight (0.60-0.85), so a heterodox respondent (e.g.,
+      // fiscally-conservative Democrat) easily overrides the prior on Q15.
+      // Independent/Third/Other/Nothing carry no continuous evidence.
+      //
+      // partyID metadata is still captured by the applySingleChoiceAnswer
+      // hook → partyIdFromAnswer and consumed by predictVote.
+      touchProfile: [
+        { node: "MAT", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "CD", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "CU", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "MOR", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ZS", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ONT_S", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" },
+        { node: "ONT_H", kind: "continuous", role: "position", weight: 0.2, touchType: "partisan_prior" }
+      ],
       optionEvidence: {
-        dem: {},
-        rep: {},
+        // Mild leans: peak likelihood 0.25 vs lowest 0.14 (~1.8:1 ratio). After
+        // one multiplication from uniform [0.20×5], posterior mean shifts ~0.3
+        // bucket. A direct position question with ~3:1 contrast and weight 0.7
+        // moves the mean further; Q15 alone overpowers this prior.
+        dem: {
+          continuous: {
+            MAT: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (redistributive)
+            CD: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (progressive)
+            CU: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (pluralist)
+            MOR: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (universalist)
+            ZS: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (positive-sum)
+            ONT_S: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (institutions matter)
+            ONT_H: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] }
+            // lean high (environment shapes)
+          }
+        },
+        rep: {
+          continuous: {
+            MAT: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (market)
+            CD: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (traditional)
+            CU: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (uniformity)
+            MOR: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (bounded circle)
+            ZS: { pos: [0.14, 0.16, 0.2, 0.25, 0.25] },
+            // lean high (zero-sum)
+            ONT_S: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] },
+            // lean low (suspicious of state)
+            ONT_H: { pos: [0.25, 0.25, 0.2, 0.16, 0.14] }
+            // lean low (dispositional)
+          }
+        },
         ind: {},
         third: {},
+        other: {},
         none: {}
       }
     },
@@ -6702,13 +4067,16 @@ var PrismEngine = (() => {
       uiType: "single_choice",
       quality: 0.95,
       rewriteNeeded: false,
-      options: ["never_dem", "never_rep", "never_dem_or_rep", "no_categorical_no", "consider_all"],
+      // 2026-05-13: dropped `no_categorical_no` ("I'd consider voting for any
+      // party if the candidate were right") — semantically subsumed by
+      // `consider_all` ("I evaluate every candidate on their own — no
+      // categorical exclusions"). Same answer, different framing.
+      options: ["never_dem", "never_rep", "never_dem_or_rep", "consider_all"],
       touchProfile: [],
       optionEvidence: {
         never_dem: {},
         never_rep: {},
         never_dem_or_rep: {},
-        no_categorical_no: {},
         consider_all: {}
       }
     },
@@ -7430,37 +4798,6 @@ var PrismEngine = (() => {
       }
     }
   }
-  function assertIntensityValid(i, label) {
-    if (typeof i !== "number" || !Number.isFinite(i) || i < 0 || i > 3) {
-      throw new Error(
-        `${label}: intensity invalid (got ${String(i)}); must be a finite number in [0, 3]`
-      );
-    }
-  }
-  function morModuleDistance(respondent, target, weights = {}) {
-    if (!respondent) {
-      throw new Error("morModuleDistance: respondent.morBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
-    }
-    if (!target) {
-      throw new Error("morModuleDistance: target.morBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
-    }
-    assertBoundariesValid(respondent.boundaries, "morModuleDistance respondent");
-    assertBoundariesValid(target.boundaries, "morModuleDistance target");
-    assertIntensityValid(respondent.intensity, "morModuleDistance respondent");
-    assertIntensityValid(target.intensity, "morModuleDistance target");
-    const wB = weights.boundary ?? 0.7;
-    const wI = weights.intensity ?? 0.3;
-    const rb = respondent.boundaries;
-    const tb = target.boundaries;
-    let sumSq = 0;
-    for (const key of MOR_BOUNDARY_ORDER) {
-      const d = rb[key] - tb[key];
-      sumSq += d * d;
-    }
-    const boundaryDist = Math.sqrt(sumSq / MOR_BOUNDARY_ORDER.length);
-    const intensityDist = Math.abs(respondent.intensity - target.intensity) / 3;
-    return wB * boundaryDist + wI * intensityDist;
-  }
   function morTargetVectorDistance(respondentBoundaries, targetBoundaries) {
     if (!respondentBoundaries) {
       throw new Error("morTargetVectorDistance: respondentBoundaries is missing \u2014 caller must gate on useMorModule (PR 6.E.4a invariant)");
@@ -7879,6 +5216,8 @@ var PrismEngine = (() => {
         return "I";
       case "third":
         return "T";
+      case "other":
+        return "O";
       case "none":
         return "N";
       default:
@@ -8421,7 +5760,8 @@ var PrismEngine = (() => {
   // src/engine/config.ts
   var CORE_OPENER = [
     200,
-    // party identification — partyID metadata for election compute
+    // party identification — partyID metadata + weak Bayes prior on
+    //   MAT/CD/CU/MOR/ZS/ONT_S/ONT_H (added 2026-05-13).
     103,
     // issue salience screener — global salience router (priorityBattery)
     97,
@@ -8430,8 +5770,14 @@ var PrismEngine = (() => {
     // politically important identities — TRB anchor
     89,
     // epistemic style battery — EPS category + salience
-    22,
-    // source trust conflict — EPS tie-breaker (load-bearing for top-1)
+    // 2026-05-13: Q22 (source_trust_conflict, EPS tie-breaker) removed from
+    //   CORE_OPENER. Q22 was load-bearing for the 124-centroid scorer when
+    //   empiricist-vs-institutionalist on a knife's edge decided one cluster
+    //   vs another. With the centroid rip, EPS only needs an argmax for the
+    //   composed label — Q89 alone gets empiricist to ~37% (winning), and
+    //   Q22 only tightens confidence without changing the winner. Saves 1
+    //   question. Q22 remains in the bank for the EIG selector to pick
+    //   adaptively when EPS is genuinely close.
     218,
     // aesthetic style ranking — AES category + salience
     211,
@@ -8527,143 +5873,6 @@ var PrismEngine = (() => {
     HARD_CAP_Q: 55
   };
   var _config = { ...DEFAULT_CONFIG };
-
-  // src/engine/archetypeDistance.ts
-  var MOR_MODULE_LEGACY = ["MOR", "TRB", "PF"];
-  function archetypeDistance(state, archetype) {
-    let totalDist = 0;
-    let totalWeight = 0;
-    const useMoralCircle = !!state.moralCircle?.affinity && !!archetype.moralCircle;
-    const useMorModule = !useMoralCircle && !!state.morBoundaries && !!archetype.morBoundaries;
-    for (const nodeId of CONTINUOUS_NODES) {
-      if ((useMoralCircle || useMorModule) && MOR_MODULE_LEGACY.includes(nodeId)) continue;
-      const template = archetype.nodes[nodeId];
-      if (!template || template.kind !== "continuous") continue;
-      const nodeState = state.continuous[nodeId];
-      const expectedPos2 = nodeState.posDist[0] * 1 + nodeState.posDist[1] * 2 + nodeState.posDist[2] * 3 + nodeState.posDist[3] * 4 + nodeState.posDist[4] * 5;
-      const posProb = nodeState.posDist[template.pos - 1] ?? 0.2;
-      const posMeanDiff = Math.abs(expectedPos2 - template.pos) / 4;
-      const posProbDist = 1 - posProb;
-      const positionDist = posMeanDiff * 0.6 + posProbDist * 0.4;
-      let antiPenalty = 0;
-      if (template.anti === "high" && expectedPos2 > 3.8) {
-        antiPenalty = 0.8 * (expectedPos2 - 3.8) / 1.2;
-      } else if (template.anti === "low" && expectedPos2 < 2.2) {
-        antiPenalty = 0.8 * (2.2 - expectedPos2) / 1.2;
-      }
-      let nodeDist;
-      let nodeWeight;
-      if (isSelfNode(nodeId)) {
-        const archSalWeight = 0.5 + (template.pos - 1) * 0.375;
-        const respondentSalWeight = 0.5 + (expectedPos2 - 1) * 0.1875;
-        nodeWeight = archSalWeight * respondentSalWeight;
-        nodeDist = positionDist + antiPenalty;
-      } else {
-        const expectedSal3 = nodeState.salDist[0] * 0 + nodeState.salDist[1] * 1 + nodeState.salDist[2] * 2 + nodeState.salDist[3] * 3;
-        const templateSal = template.sal ?? 0;
-        const salProb = nodeState.salDist[templateSal] ?? 0.25;
-        const salMeanDiff = Math.abs(expectedSal3 - templateSal) / 3;
-        const salProbDist = 1 - salProb;
-        const salienceDist = salMeanDiff * 0.6 + salProbDist * 0.4;
-        const archSalWeight = 0.5 + templateSal * 0.5;
-        const respondentSalWeight = 0.5 + expectedSal3 * 0.25;
-        nodeWeight = archSalWeight * respondentSalWeight;
-        nodeDist = positionDist * 0.65 + salienceDist * 0.35 + antiPenalty;
-      }
-      totalDist += nodeDist * nodeWeight;
-      totalWeight += nodeWeight;
-    }
-    if (useMoralCircle) {
-      const respIntensity03 = state.moralCircle.affinity.intensity03;
-      let archSumSq = 0;
-      const archMc = archetype.moralCircle;
-      for (const scope of ["national", "religious", "ethnic_racial", "class", "gender", "ideological"]) {
-        const v = archMc.scopedAffinities[scope];
-        if (v === null || v === void 0) continue;
-        const e = Math.max(0, v - archMc.universalAffinity);
-        archSumSq += e * e;
-      }
-      const archIntensity03 = 3 * Math.min(1, Math.sqrt(archSumSq) / 100);
-      const archSalWeight = 0.5 + archIntensity03 * 0.5;
-      const respondentSalWeight = 0.5 + respIntensity03 * 0.25;
-      const nodeWeight = archSalWeight * respondentSalWeight;
-      const nodeDist = moralCircleDistance(state.moralCircle.affinity, archMc);
-      totalDist += nodeDist * nodeWeight;
-      totalWeight += nodeWeight;
-    }
-    if (useMorModule) {
-      const archIntensity = archetype.morBoundaries.intensity;
-      const respIntensity = state.morBoundaries.intensity;
-      const archSalWeight = 0.5 + archIntensity * 0.5;
-      const respondentSalWeight = 0.5 + respIntensity * 0.25;
-      const nodeWeight = archSalWeight * respondentSalWeight;
-      const nodeDist = morModuleDistance(state.morBoundaries, archetype.morBoundaries);
-      totalDist += nodeDist * nodeWeight;
-      totalWeight += nodeWeight;
-    }
-    for (const nodeId of CATEGORICAL_NODES) {
-      const template = archetype.nodes[nodeId];
-      if (!template || template.kind !== "categorical") continue;
-      const nodeState = state.categorical[nodeId];
-      const costMatrix = CATEGORY_COST_MATRIX[nodeId];
-      let catCostDist = 0;
-      for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 6; j++) {
-          catCostDist += nodeState.catDist[i] * template.probs[j] * (costMatrix[i]?.[j] ?? 0);
-        }
-      }
-      let dot = 0;
-      for (let i = 0; i < 6; i++) {
-        dot += nodeState.catDist[i] * template.probs[i];
-      }
-      const dotDist = 1 - dot;
-      let antiCatPenalty = 0;
-      if (template.antiCats) {
-        for (const antiIdx of template.antiCats) {
-          if (antiIdx >= 0 && antiIdx < 6) {
-            antiCatPenalty += nodeState.catDist[antiIdx] * 0.5;
-          }
-        }
-      }
-      const expectedSal3 = nodeState.salDist[0] * 0 + nodeState.salDist[1] * 1 + nodeState.salDist[2] * 2 + nodeState.salDist[3] * 3;
-      const sal = template.sal ?? 0;
-      const salDiff = Math.abs(expectedSal3 - sal) / 3;
-      const archSalWeight = 0.5 + sal * 0.5;
-      const respondentSalWeight = 0.5 + expectedSal3 * 0.25;
-      const nodeWeight = archSalWeight * respondentSalWeight;
-      const catDist = catCostDist * 0.5 + dotDist * 0.5;
-      const nodeDist = catDist * 0.65 + salDiff * 0.35 + antiCatPenalty;
-      totalDist += nodeDist * nodeWeight;
-      totalWeight += nodeWeight;
-    }
-    let finalDist = totalWeight > 0 ? totalDist / totalWeight : 0;
-    if (archetype.centristAnchor) {
-      const nonSelfNodes = state.morBoundaries ? ["MAT", "CD", "CU", "PRO", "COM", "ZS", "ONT_H", "ONT_S"] : ["MAT", "CD", "CU", "MOR", "PRO", "COM", "ZS", "ONT_H", "ONT_S"];
-      let highSalCount = 0;
-      for (const nid of nonSelfNodes) {
-        const ns = state.continuous[nid];
-        if (!ns) continue;
-        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
-        if (userSal >= 2) highSalCount++;
-      }
-      for (const nid of ["EPS", "AES"]) {
-        const ns = state.categorical[nid];
-        if (!ns) continue;
-        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
-        if (userSal >= 2) highSalCount++;
-      }
-      if (state.moralCircle?.affinity && state.moralCircle.affinity.intensity03 >= 2) {
-        highSalCount++;
-      } else if (state.morBoundaries && state.morBoundaries.intensity >= 2) {
-        highSalCount++;
-      }
-      if (highSalCount >= 3) {
-        const penaltyMult = Math.min(1.5, 1 + 0.1 * (highSalCount - 2));
-        finalDist *= penaltyMult;
-      }
-    }
-    return finalDist;
-  }
 
   // src/engine/nextQuestion.ts
   var LIVE_OR_UNRESOLVED = /* @__PURE__ */ new Set(["unknown", "live_unresolved"]);
@@ -9137,76 +6346,6 @@ var PrismEngine = (() => {
 
   // src/engine/stopRule.ts
   function resetSimilarityCache() {
-  }
-
-  // src/engine/archetypeFamilies.ts
-  var FAMILY_PERCENTILE = 0.1;
-  function pairwiseDistance(a, b) {
-    let sumSquared = 0;
-    for (const nodeId of CONTINUOUS_NODES) {
-      const tA = a.nodes[nodeId];
-      const tB = b.nodes[nodeId];
-      if (!tA || tA.kind !== "continuous") continue;
-      if (!tB || tB.kind !== "continuous") continue;
-      const dp = tA.pos - tB.pos;
-      const w = Math.max(tA.sal ?? 0, tB.sal ?? 0);
-      sumSquared += dp * dp * w;
-    }
-    for (const nodeId of CATEGORICAL_NODES) {
-      const tA = a.nodes[nodeId];
-      const tB = b.nodes[nodeId];
-      if (!tA || tA.kind !== "categorical") continue;
-      if (!tB || tB.kind !== "categorical") continue;
-      let probDiffSq = 0;
-      for (let k = 0; k < 6; k++) {
-        const d = (tA.probs[k] ?? 0) - (tB.probs[k] ?? 0);
-        probDiffSq += d * d;
-      }
-      const w = Math.max(tA.sal, tB.sal);
-      sumSquared += probDiffSq * w;
-    }
-    return Math.sqrt(sumSquared);
-  }
-  function percentile(sortedAsc, p) {
-    if (sortedAsc.length === 0) return 0;
-    const idx = (sortedAsc.length - 1) * p;
-    const lo = Math.floor(idx);
-    const hi = Math.ceil(idx);
-    if (lo === hi) return sortedAsc[lo];
-    const w = idx - lo;
-    return sortedAsc[lo] * (1 - w) + sortedAsc[hi] * w;
-  }
-  function buildArchetypeFamilies(archetypes) {
-    const pairwise = {};
-    const allDistances = [];
-    for (const a of archetypes) {
-      pairwise[a.id] = {};
-    }
-    for (let i = 0; i < archetypes.length; i++) {
-      for (let j = i + 1; j < archetypes.length; j++) {
-        const a = archetypes[i];
-        const b = archetypes[j];
-        const d = pairwiseDistance(a, b);
-        pairwise[a.id][b.id] = d;
-        pairwise[b.id][a.id] = d;
-        allDistances.push(d);
-      }
-    }
-    allDistances.sort((x, y) => x - y);
-    const threshold = percentile(allDistances, FAMILY_PERCENTILE);
-    const familyOf = {};
-    for (const a of archetypes) {
-      const neighbours = /* @__PURE__ */ new Set();
-      for (const b of archetypes) {
-        if (a.id === b.id) continue;
-        const d = pairwise[a.id][b.id];
-        if (d !== void 0 && d <= threshold) {
-          neighbours.add(b.id);
-        }
-      }
-      familyOf[a.id] = neighbours;
-    }
-    return { pairwise, familyOf, threshold };
   }
 
   // src/identity/resolveIdentityPrimary.ts
@@ -11333,8 +8472,16 @@ var PrismEngine = (() => {
         // Campaign signal still leaned toward equal citizenship / reform Republicanism
         PRO: 5,
         // Maximum proceduralist
-        COM: 5,
-        // Compromiser
+        // COM recalibrated 2026-05-14: 5→4. The COM=5 anchor was driven by the
+        // Compromise of 1877 (a one-time historical act ending Reconstruction),
+        // but Hayes' actual governing record on civil-service reform was
+        // uncompromising — he fought Conkling's spoils-system machine head-on
+        // and lost his own party's nomination over it. COM=4 captures
+        // "willing to deal when necessary" without overstating habitual
+        // compromise. Pre-fix this overpenalized Hayes against Tilden 1876 for
+        // institutionalist respondents.
+        COM: 4,
+        // Deals when necessary, but principled on reform
         ZS: 3,
         // Mixed
         ONT_H: 3,
@@ -12725,10 +9872,19 @@ var PrismEngine = (() => {
         year: 1928,
         MAT: 2,
         // Redistributive lean - pro-labor, urban working class, public works
-        CD: 1,
-        // Maximum cultural openness - wet (anti-Prohibition), Catholic, urban, immigrant
-        CU: 4,
-        // Pluralist - immigrant tolerance, cultural diversity of NYC
+        // CD/CU recalibrated 2026-05-14: original CD=1 ("maximum cultural openness")
+        // imported a modern-liberal frame onto a 1928 wet-Catholic-Tammany figure.
+        // Smith was pluralist on religion and class (urban immigrants, anti-
+        // Prohibition) but was not a sexual/racial/gender reformer in the way
+        // the CD=1 anchor (cf. Obama 2012 CD=2, Trump 2016 CD=5) implies. CU
+        // softened from 4 to 3 for the same reason — immigrant pluralism, not
+        // maximum particularism. Pre-fix this routed redistribution-friendly
+        // moderately-traditional D respondents to Hoover 1928, which the
+        // narrative doesn't support.
+        CD: 2,
+        // Culturally pluralist - urban immigrant, wet, Catholic
+        CU: 3,
+        // Mixed assimilation - "melting pot" NYC ethos, not maximum particularist
         MOR: 4,
         // Wide moral circle - championed workers, immigrants, religious minorities
         PRO: 3,
@@ -17345,10 +14501,10 @@ var PrismEngine = (() => {
     return 1 + 4 * ideoN * intensityFactor;
   }
   function partisanLoyaltyMultiplier(candidateParty, respondentParty, pfPos, electionYear) {
-    if (electionYear < 1932) return 1;
-    if (!respondentParty || respondentParty === "I" || respondentParty === "N") return 1;
+    if (electionYear < 1960) return 1;
+    if (!respondentParty || respondentParty === "I" || respondentParty === "N" || respondentParty === "O" || respondentParty === "T") return 1;
     const candPartyKey = candidatePartyToCanonical(candidateParty);
-    const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : respondentParty === "T" ? "T" : "O";
+    const userPartyKey = respondentParty === "D" ? "D" : respondentParty === "R" ? "R" : "O";
     if (candPartyKey === userPartyKey) return 1;
     const pf = Math.max(1, Math.min(5, pfPos ?? 3));
     return 1 + PARTY_LOYALTY_BASE * (pf / 5);
@@ -17528,7 +14684,7 @@ var PrismEngine = (() => {
       const nonIdeologicalAdjustedDistance = valuesDist - nonIdeologicalModifier;
       const loyaltyMult = partisanLoyaltyMultiplier(c.party, partyID, pfPos, ctx.year);
       let negPenalty = 1;
-      if (negativeParties) {
+      if (negativeParties && ctx.year >= 1960) {
         const cp = candidatePartyToCanonical(c.party);
         if (cp === "D" && negativeParties.has("D") || cp === "R" && negativeParties.has("R") || cp === "T" && negativeParties.has("T")) {
           negPenalty = 1.8;
@@ -17563,6 +14719,13 @@ var PrismEngine = (() => {
         if (majorWithin) nearest = majorWithin;
       }
     }
+    const loyaltyAbstains = nearest.distance > clearingBar;
+    const ideologyClearWin = nearestByValues.nonIdeologicalAdjustedDistance <= clearingBar * 0.85;
+    let decisionDistance = nearest.distance;
+    if (loyaltyAbstains && ideologyClearWin && nearestByValues !== nearest) {
+      nearest = nearestByValues;
+      decisionDistance = nearestByValues.nonIdeologicalAdjustedDistance;
+    }
     return {
       year: ctx.year,
       candidates: scored,
@@ -17570,23 +14733,23 @@ var PrismEngine = (() => {
       nearestByValues,
       nearest,
       valuesDecision: nearestByValues.ideologicalDistance <= clearingBar ? "vote" : "abstain",
-      decision: nearest.distance <= clearingBar ? "vote" : "abstain"
+      decision: decisionDistance <= clearingBar ? "vote" : "abstain"
     };
   }
 
   // src/identity/archetypeLabeler.ts
   var POSITION_LEXICON = {
     MAT: { low: "Redistributionist", mid: "Mixed-Economy", high: "Free-Marketeer" },
-    CD: { low: "Progressive", mid: "Hinge", high: "Traditionalist" },
+    CD: { low: "Progressive", mid: "", high: "Traditionalist" },
     CU: { low: "Assimilationist", mid: "Civic-Pluralist", high: "Pluralist" },
-    MOR: { low: "Particularist", mid: "Civic", high: "Universalist" },
+    MOR: { low: "", mid: "Civic", high: "Universalist" },
     PRO: { low: "Consequentialist", mid: "Pragmatic", high: "Procedural" },
     COM: { low: "Principled", mid: "Practical", high: "Dealmaker" },
     ZS: { low: "Positive-Sum", mid: "Realist", high: "Combative" },
-    ONT_H: { low: "Essentialist", mid: "Tempered", high: "Malleabilist" },
+    ONT_H: { low: "", mid: "Tempered", high: "" },
     ONT_S: { low: "Anti-Institutional", mid: "Reformist", high: "Institutional" },
     PF: { low: "Detached", mid: "Engaged-Civic", high: "Partisan" },
-    TRB: { low: "Inclusivist", mid: "Civic", high: "Tribal" },
+    TRB: { low: "", mid: "Civic", high: "Tribal" },
     ENG: { low: "Tuned-Out", mid: "Casual", high: "Mobilized" }
   };
   var EPS_LEXICON = [
@@ -17726,7 +14889,6 @@ var PrismEngine = (() => {
       return { label: "Civic Generalist", source: "lexicon", signature: "", tokensUsed: [] };
     }
     const fullSig = signatureOf(tokens);
-    const lexicon = tokens.map((t) => t.token).join(" ");
     if (fullSig in mergerTable) {
       return { label: mergerTable[fullSig], source: "merger-full", signature: fullSig, tokensUsed: tokens };
     }
@@ -17736,15 +14898,17 @@ var PrismEngine = (() => {
       if (sig2 in mergerTable) {
         const merged = mergerTable[sig2];
         const leftover = tokens[2];
+        const label = leftover.token ? `${leftover.token} ${merged}` : merged;
         return {
-          label: `${leftover.token} ${merged}`,
+          label,
           source: "merger-partial",
           signature: sig2,
           tokensUsed: tokens
         };
       }
     }
-    const compressed = applyCompression(tokens);
+    const emitted = tokens.filter((t) => t.token.length > 0);
+    const compressed = applyCompression(emitted);
     if (compressed) {
       return {
         label: ensureNounAnchor(reorderByPOS(compressed)).map((t) => t.token).join(" "),
@@ -17753,8 +14917,11 @@ var PrismEngine = (() => {
         tokensUsed: tokens
       };
     }
+    if (emitted.length === 0) {
+      return { label: "Civic Generalist", source: "lexicon", signature: fullSig, tokensUsed: tokens };
+    }
     return {
-      label: ensureNounAnchor(reorderByPOS(tokens)).map((t) => t.token).join(" "),
+      label: ensureNounAnchor(reorderByPOS(emitted)).map((t) => t.token).join(" "),
       source: "lexicon",
       signature: fullSig,
       tokensUsed: tokens
@@ -18770,11 +15937,8 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q229-bucket";
+  var BUNDLE_VERSION = "20260514-defining-elections-rewrite";
   var _state = null;
-  var _archetypes = [];
-  var _activeArchetypes = [];
-  var _familyIndex = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();
   var _ratioBoosts = /* @__PURE__ */ new Map();
@@ -18812,9 +15976,12 @@ var PrismEngine = (() => {
         dist: [...state.trbAnchor.dist],
         touches: state.trbAnchor.touches
       },
-      archetypeDistances: { ...state.archetypeDistances },
-      currentLeader: state.currentLeader,
-      consecutiveLeadCount: state.consecutiveLeadCount,
+      // Centroid posterior fields (archetypeDistances/currentLeader/
+      // consecutiveLeadCount) retained at the type level so RespondentState
+      // contracts still typecheck across legacy eval scripts, but the live
+      // engine no longer populates them (2026-05-13 centroid rip). Leave them
+      // empty in deep copies so back-navigation doesn't fabricate stale state.
+      archetypeDistances: {},
       // Metadata fields written by Q200/Q211/Q212 update hooks. Snapshot must
       // round-trip these or back-navigation will silently drop election-alignment
       // signals that the user already provided.
@@ -18927,28 +16094,11 @@ var PrismEngine = (() => {
         }
       },
       membership: {},
-      archetypeDistances: {},
-      currentLeader: void 0,
-      consecutiveLeadCount: 0
+      // archetypeDistances kept as empty record for type-shape compatibility
+      // with eval/simulation scripts that still read the field. Live engine no
+      // longer populates after 2026-05-13 centroid rip.
+      archetypeDistances: {}
     };
-  }
-  function updateDistances(state, archetypes) {
-    let leaderId;
-    let leaderDist = Infinity;
-    for (const a of archetypes) {
-      const dist = archetypeDistance(state, a);
-      state.archetypeDistances[a.id] = dist;
-      if (dist < leaderDist) {
-        leaderDist = dist;
-        leaderId = a.id;
-      }
-    }
-    if (leaderId === state.currentLeader) {
-      state.consecutiveLeadCount = (state.consecutiveLeadCount ?? 0) + 1;
-    } else {
-      state.currentLeader = leaderId;
-      state.consecutiveLeadCount = 1;
-    }
   }
   function toQuizQuestion(q) {
     const out = {
@@ -19013,14 +16163,8 @@ var PrismEngine = (() => {
     }
     return out;
   }
-  var IDENTITY_PRIMARY_IDS = /* @__PURE__ */ new Set(["141", "142", "143", "144", "145", "146"]);
   var METADATA_QUESTION_IDS = /* @__PURE__ */ new Set([200, 211, 212]);
   function initQuiz() {
-    _archetypes = ARCHETYPES;
-    _activeArchetypes = ARCHETYPES.filter(
-      (a) => a.active !== false && !IDENTITY_PRIMARY_IDS.has(a.id)
-    );
-    _familyIndex = buildArchetypeFamilies(_archetypes);
     _questions = REPRESENTATIVE_QUESTIONS.filter(
       (q) => q.touchProfile.length > 0 || METADATA_QUESTION_IDS.has(q.id)
     );
@@ -19103,39 +16247,17 @@ var PrismEngine = (() => {
         break;
       }
     }
-    updateDistances(_state, _activeArchetypes);
   }
   function getProgress() {
     if (!_state) throw new Error("Call initQuiz() first");
     const nAnswered = Object.keys(_state.answers).length;
-    const sorted = Object.entries(_state.archetypeDistances).filter(([, d]) => Number.isFinite(d)).sort((a, b) => a[1] - b[1]).slice(0, 5);
-    const dLeader = sorted[0]?.[1] ?? Infinity;
-    const dSecond = sorted[1]?.[1] ?? Infinity;
-    const gapRatio = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond) ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader)) : 0;
-    let estimatedTotal;
-    if (nAnswered < 20) {
-      estimatedTotal = 27;
-    } else if (dLeader <= 6) {
-      estimatedTotal = Math.max(nAnswered + 2, 25);
-    } else if (dLeader <= 10) {
-      estimatedTotal = Math.max(nAnswered + 4, 28);
-    } else {
-      estimatedTotal = Math.min(35, Math.max(nAnswered + 8, 33));
-    }
-    estimatedTotal = Math.min(35, estimatedTotal);
-    const topArchetypes = sorted.map(([id, distance]) => {
-      const arch = _archetypes.find((a) => a.id === id);
-      return { id, name: arch?.name ?? "Unknown", distance };
-    });
     let phase;
     if (nAnswered < 16) phase = "salience";
     else if (nAnswered < 28) phase = "discriminate";
     else phase = "converge";
     return {
       questionsAnswered: nAnswered,
-      estimatedTotal,
-      topArchetypes,
-      confidence: gapRatio,
+      estimatedTotal: 32,
       phase
     };
   }
@@ -19145,54 +16267,14 @@ var PrismEngine = (() => {
   }
   function getResults() {
     if (!_state) throw new Error("Call initQuiz() first");
-    const sorted = Object.entries(_state.archetypeDistances).filter(([, d]) => Number.isFinite(d)).sort((a, b) => a[1] - b[1]);
-    const top5 = sorted.slice(0, 5).map(([id, distance]) => {
-      const arch = _archetypes.find((a) => a.id === id);
-      return {
-        id,
-        name: arch.name,
-        tier: arch.tier,
-        distance
-      };
-    });
-    const top3 = top5.slice(0, 3);
-    let family;
-    if (top3.length >= 2 && _familyIndex) {
-      const leaderId = top3[0].id;
-      const runnerUpId = top3[1].id;
-      const leaderFamily = _familyIndex.familyOf[leaderId];
-      if (leaderFamily && leaderFamily.has(runnerUpId)) {
-        family = {
-          isFamily: true,
-          partnerId: runnerUpId,
-          partnerName: top3[1].name
-        };
-      }
-    }
-    const dLeader = top3[0]?.distance ?? Infinity;
-    const dSecond = top3[1]?.distance ?? Infinity;
-    const confidence = Number.isFinite(dLeader) && dLeader > 0 && Number.isFinite(dSecond) ? Math.min(1, Math.max(0, (dSecond - dLeader) / dLeader)) : 0;
-    const marginToRunnerUp = Number.isFinite(dSecond) ? dSecond - dLeader : 0;
-    const confidenceBand = confidence >= 0.05 ? "confident" : confidence >= 0.02 ? "cluster" : "uncertain";
-    const diagnostics = computeWinnerDiagnostics(_state, top3[0]?.id);
     const engagement = computeEngagementLabel(_state);
     detectAndStoreDominantNode(_state);
     const identityResult = resolveIdentityPrimary(_state, engagement, _demographics);
     const identityPrimary = identityResult.state === "active" || identityResult.state === "dominant" ? identityResult : null;
     return {
-      match: top3[0],
-      top3,
-      top5,
       questionsAnswered: Object.keys(_state.answers).length,
-      confidence,
-      confidenceBand,
-      family,
       engagement,
-      identityPrimary,
-      diagnostics: {
-        ...diagnostics,
-        marginToRunnerUp
-      }
+      identityPrimary
     };
   }
   function detectAndStoreDominantNode(state) {
@@ -19227,38 +16309,11 @@ var PrismEngine = (() => {
     const othersMean = others.reduce((s, e) => s + e.sal, 0) / Math.max(1, others.length);
     state.dominantNode = top.sal >= 2.7 && top.sal > 2 * othersMean ? top.nid : null;
   }
-  function computeWinnerDiagnostics(state, winnerId) {
-    if (!winnerId) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
-    const arch = _archetypes.find((a) => a.id === winnerId);
-    if (!arch) return { pullingTowardWinner: [], pushingAwayFromWinner: [] };
-    const items = [];
-    for (const [nodeId, template] of Object.entries(arch.nodes)) {
-      if (template.kind === "continuous") {
-        const ns = state.continuous[nodeId];
-        if (!ns) continue;
-        const userPos = ns.posDist.reduce((s, p, i) => s + p * (i + 1), 0);
-        const diff = userPos - template.pos;
-        const userSal = ns.salDist.reduce((s, p, i) => s + p * i, 0);
-        const archSal = template.sal ?? 1;
-        const weight = (0.5 + archSal * 0.5) * (0.5 + userSal * 0.25);
-        const contribution = weight * Math.abs(diff);
-        items.push({ node: nodeId, contribution, userPos, archetypePos: template.pos });
-      }
-    }
-    items.sort((a, b) => a.contribution - b.contribution);
-    return {
-      pullingTowardWinner: items.slice(0, 5),
-      pushingAwayFromWinner: items.slice(-5).reverse()
-    };
-  }
   function getQuestionIds() {
     return _questions.map((q) => q.id);
   }
   function getQuestionDef(questionId) {
     return _questionsById.get(questionId);
-  }
-  function getArchetypeCount() {
-    return _archetypes.length;
   }
   function getRespondentState() {
     if (!_state) return null;
@@ -19772,31 +16827,13 @@ var PrismEngine = (() => {
     _quiz.container.className = "prism-quiz";
     const el = document.createElement("div");
     el.className = "prism-results";
-    const distances = results.top3.map((r) => r.distance);
-    const dMin = Math.min(...distances);
-    const dMax = Math.max(...distances);
-    const span = dMax - dMin + 1e-6;
-    const matchScore = (d) => (dMax - d) / span;
+    const engLevel = results.engagement?.level ?? "unknown";
+    const idp = results.identityPrimary?.label;
     el.innerHTML = `
-    <h2>Your Political Archetype</h2>
-    <div class="prism-match-name">${results.match.name}</div>
+    <h2>Quiz Complete</h2>
     <div class="prism-confidence">
-      Confidence: ${(results.confidence * 100).toFixed(1)}% |
-      ${results.questionsAnswered} questions answered
-    </div>
-    <div class="prism-top5">
-      <h3>Top 3 Matches</h3>
-      ${results.top3.map((r, i) => `
-        <div class="prism-top5-item">
-          <div>
-            <div class="prism-top5-name">${i + 1}. ${r.name}</div>
-            <div class="prism-top5-bar">
-              <div class="prism-top5-bar-fill" style="width: ${(matchScore(r.distance) * 100).toFixed(1)}%"></div>
-            </div>
-          </div>
-          <div class="prism-top5-score">d=${r.distance.toFixed(2)}</div>
-        </div>
-      `).join("")}
+      ${results.questionsAnswered} questions answered \xB7 engagement: ${engLevel}
+      ${idp ? ` \xB7 ${idp}` : ""}
     </div>
   `;
     _quiz.container.appendChild(el);
