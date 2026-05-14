@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260514-q49-decimal-cleanup"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260514-q82-fifth-option"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -2083,6 +2083,7 @@ const OPT_LABELS = {
     practical_results: "\"I've done it before and I'll do it again—check my record\"",
     practical_tips: "Ten practical tips to organize your home and life",
     pragmatic_dealmaker: "Pragmatic dealmaker - gets things done through negotiation",
+    pluralist_with_common_ground: "Generally favor pluralism on religion, language, and lifestyle — but a country still benefits from light shared civic ground (common language for full participation, basic civic norms) without demanding strict cultural conformity",
     preserve_culture: "Preserve a shared culture, language, religion, and way of life — too much pluralism erodes the country",
     preserve_culture_vs_embrace_diversity: "Preserve culture vs. Embrace diversity",
     preserve_heritage: "Preserve heritage and character of the area",
@@ -3889,7 +3890,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260514-q49-decimal-cleanup';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260514-q82-fifth-option';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
