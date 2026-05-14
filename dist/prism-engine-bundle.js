@@ -2449,11 +2449,10 @@ var PrismEngine = (() => {
             EPS: { cat: EPS_PROTOTYPES.traditionalist, sal: [0.05, 0.12, 0.33, 0.5] }
           }
         },
-        check_experience: {
-          categorical: {
-            EPS: { cat: EPS_PROTOTYPES.intuitionist, sal: [0.05, 0.12, 0.33, 0.5] }
-          }
-        },
+        // 2026-05-13: dropped `check_experience` ("matches my personal experience") —
+        // respondents conflated it with `check_values` ("aligns with my values"). Both
+        // framings read as "trust my own judgment over the experts." Intuitionist
+        // signal is preserved via Q22's `lived_experience_breaks_tie`.
         both_wrong: {
           categorical: {
             EPS: { cat: EPS_PROTOTYPES.autonomous, sal: [0.1, 0.2, 0.35, 0.35] }
@@ -15921,7 +15920,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q212-drop";
+  var BUNDLE_VERSION = "20260513-q79-merge";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

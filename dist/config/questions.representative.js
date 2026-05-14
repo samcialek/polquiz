@@ -2713,11 +2713,10 @@ export const REPRESENTATIVE_QUESTIONS = [
                     EPS: { cat: EPS_PROTOTYPES.traditionalist, sal: [0.05, 0.12, 0.33, 0.50] }
                 }
             },
-            check_experience: {
-                categorical: {
-                    EPS: { cat: EPS_PROTOTYPES.intuitionist, sal: [0.05, 0.12, 0.33, 0.50] }
-                }
-            },
+            // 2026-05-13: dropped `check_experience` ("matches my personal experience") —
+            // respondents conflated it with `check_values` ("aligns with my values"). Both
+            // framings read as "trust my own judgment over the experts." Intuitionist
+            // signal is preserved via Q22's `lived_experience_breaks_tie`.
             both_wrong: {
                 categorical: {
                     EPS: { cat: EPS_PROTOTYPES.autonomous, sal: [0.10, 0.20, 0.35, 0.35] }
