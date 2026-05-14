@@ -15920,7 +15920,7 @@ var PrismEngine = (() => {
   }
 
   // src/browser/api.ts
-  var BUNDLE_VERSION = "20260513-q79-merge";
+  var BUNDLE_VERSION = "20260513-untruncate-labels";
   var _state = null;
   var _questions = [];
   var _questionsById = /* @__PURE__ */ new Map();

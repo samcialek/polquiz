@@ -8,7 +8,7 @@
 <meta http-equiv="Expires" content="0"/>
 <title>PRISM - Political Refraction and Identity Spectrum Model</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="dist/prism-engine-bundle.min.js?v=20260513-q79-merge"></script>
+<script src="dist/prism-engine-bundle.min.js?v=20260513-untruncate-labels"></script>
 <style>
     :root {
         --pool: #d1f6ff;
@@ -1649,7 +1649,7 @@ const OPT_LABELS = {
     business_stakeholders: "Business owners and economic stakeholders",
     bypass: "Quietly ignore when possible",
     calls_out_power: "Someone who calls out power and injustice",
-    cancel: "Cancel the event - some views shouldn",
+    cancel: "Cancel the event — some views shouldn’t be given a platform",
     cant_predict: "Hard to say - depends on the situation",
     cause_over_party: "Party labels matter less than whether the position serves the cause",
     central: "Central—religion shaped daily life, values, and community",
@@ -1777,7 +1777,7 @@ const OPT_LABELS = {
     data_driven: "\"The data shows these three interventions will have the highest impact\"",
     data_driven_campaign: "A warning sign-substance is being replaced by style",
     data_evidence: "Data or evidence that contradicted what I believed",
-    decline: "Progress is mostly an illusion - human nature doesn",
+    decline: "Progress is mostly an illusion — human nature doesn’t really change",
     decline_view: "Mostly illusory-superficial changes hiding deeper problems",
     deep_expertise: "Someone with deep expertise in their field",
     depends_on_issue: "Depends on the issue - some principles are non-negotiable, others aren't",
@@ -1862,7 +1862,7 @@ const OPT_LABELS = {
     gradual_improvement: "Progress is real but slow, uneven, and fragile",
     gradual_progress: "Progress is real but slow, uneven, and fragile",
     gradual_transition: "Gradual transition - move toward renewables but protect jobs and energy security",
-    grassroots_community: "A neutral tool-depends how it",
+    grassroots_community: "A neutral tool — depends how it’s used",
     gut_feeling: "Trust my gut instinct",
     hard_work_talent: "Hard work and talent",
     help_community: "Help my community - politics is how we solve local problems",
@@ -1883,7 +1883,7 @@ const OPT_LABELS = {
     internal_division: "Internal - domestic extremism, inequality, institutional decay",
     international_cooperation: "International cooperation and shared governance",
     justice_first: "It serves a just outcome, even when procedure gets in the way",
-    keep_friendship: "A bit uncomfortable but wouldn",
+    keep_friendship: "A bit uncomfortable, but wouldn’t really change the friendship",
     learn_language: "Learn to speak the national language",
     legal_status: "Having legal citizenship status",
     legitimate_values: "Have different but legitimate values",
@@ -1900,7 +1900,7 @@ const OPT_LABELS = {
     market_decides: "No limit - the market should decide",
     market_led: "Market-led - let innovation and market forces drive the transition",
     master_policy_details: "Master policy details and explain complex tradeoffs clearly",
-    maybe_good_outcome: "Wait and see - maybe the outcome won",
+    maybe_good_outcome: "Wait and see — maybe the outcome won’t be that bad",
     measured_rally: "Sometimes necessary but should be viewed skeptically",
     minimal: "Minimally engaged—they rarely discussed politics or participated",
     misinformed: "Are misinformed or lack information — they would reach a different view if they had better information",
@@ -1931,9 +1931,9 @@ const OPT_LABELS = {
     never_discussed: "Minimally engaged-they rarely discussed politics or participated",
     new_place: "Visit somewhere completely new and unfamiliar",
     no_action_needed: "No major action needed - climate concerns are overstated",
-    no_big_deal: "No big deal - wouldn",
+    no_big_deal: "No big deal — wouldn’t change anything between us",
     no_limit: "No limit - the market should decide",
-    no_problem: "No problem at all - wouldn",
+    no_problem: "No problem at all — wouldn’t bother me",
     no_representation: "Ordinary people have no one who truly speaks for them",
     none: "Not at all—politics was essentially absent from my upbringing",
     none_matters: "None of these—anyone can be truly American regardless",
@@ -1995,7 +1995,7 @@ const OPT_LABELS = {
     rather_convict_innocent: "Letting a guilty person go free",
     rather_free_guilty: "Convicting an innocent person",
     rather_help_undeserving: "Denying benefits to someone who genuinely needs them",
-    rather_miss_needy: "Giving benefits to someone who doesn",
+    rather_miss_needy: "Giving benefits to someone who doesn’t need them is the worse error",
     ratio_10_to_1: "10:1 or less",
     ratio_200_to_1: "300:1 (about current average)",
     ratio_50_to_1: "50:1",
@@ -2027,7 +2027,7 @@ const OPT_LABELS = {
     shared_values: "Sharing core American values and beliefs (freedom, democracy, opportunity)",
     silence: "Empowering authorities to decide what is true, potentially silencing dissent",
     skip_it: "Mostly skip it - I",
-    slight_discomfort: "Slightly uncomfortable but wouldn",
+    slight_discomfort: "Slightly uncomfortable, but wouldn’t object",
     solid_continue: "Solid—likely to continue expanding",
     some_con: "Somewhat conservative",
     some_lib: "Somewhat liberal/progressive",
@@ -2084,7 +2084,7 @@ const OPT_LABELS = {
     whole_system: "The whole system is set up to benefit the powerful",
     winner_takes: "Grew wealthier, often at trading partners' expense",
     worker_choices: "Workers and unions priced themselves out of the market",
-    worried_but_accept: "Worried but accept - that",
+    worried_but_accept: "Worried, but accept — that’s how democracy works",
 
     // Pole-priority battery items — Q93 + Q94 (ENDS+MEANS). Each item encodes
     // both which node matters (salience) and which pole the respondent leans
@@ -3778,7 +3778,7 @@ function finishResults() {
     // If a friend prediction is staged in localStorage (set by predict.html),
     // append ?compare=1 so the results page routes to the friend-vs-user
     // comparison view instead of standard results.
-    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-q79-merge';
+    let resultsUrl = 'examples/results-prototype-v27.html?run=' + encodeURIComponent(runId) + '&v=20260513-untruncate-labels';
     try {
         const friendPred = localStorage.getItem('prism-friend-prediction');
         if (friendPred) {
