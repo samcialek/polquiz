@@ -30,7 +30,7 @@ import { predictVote } from "../historical/respondentVoteChoice.js";
 // Bump whenever the engine changes meaningfully — keep in sync with the
 // quiz-v2-live.html cache-buster string.
 // ---------------------------------------------------------------------------
-export const BUNDLE_VERSION = "20260514-q49-decimal-cleanup";
+export const BUNDLE_VERSION = "20260514-q82-fifth-option";
 export { composeArchetypeLabel, tokenizeRespondent } from "../identity/archetypeLabeler.js";
 export { composeArchetypeDescription, composeAtomFallback, LABEL_DESCRIPTIONS } from "../identity/labelDescriptions.js";
 // ---------------------------------------------------------------------------

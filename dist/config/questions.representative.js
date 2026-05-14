@@ -2837,6 +2837,23 @@ export const REPRESENTATIVE_QUESTIONS = [
                     MOR: { pos: [0.15, 0.25, 0.35, 0.18, 0.07] }
                 }
             },
+            // E: Pluralist with common ground — between civic_assimilation (CD~3)
+            // and open_pluralist (CD~1). Added 2026-05-14 to give evolved-but-not-
+            // fully-realigned moderates a CD~2 anchor. Never-Trump Republicans,
+            // moderate-progressive Democrats who value some civic continuity, and
+            // socially-liberal-but-not-maximalist independents all land here cleanly
+            // instead of being forced into open_pluralist (CD=1) or civic_assimilation
+            // (CD=3). Validated against the never-Trump R election-replication test:
+            // CD=2 + MAT=4.2 + PRO=4.7 + ONT_S=4.0 → routes correctly to Bush/McCain/
+            // Romney 2000-2012 and Clinton/Biden/Harris 2016-2024.
+            pluralist_with_common_ground: {
+                continuous: {
+                    CD: { pos: [0.28, 0.38, 0.22, 0.09, 0.03] }, // peak pos=2 (lean-open)
+                    CU: { pos: [0.08, 0.22, 0.36, 0.22, 0.12] }, // peak pos=3 (mixed)
+                    MOR: { pos: [0.08, 0.16, 0.26, 0.32, 0.18] } // peak pos=4 (wide-leaning)
+                }
+                // No moralCircle override — other questions calibrate scoped affinity.
+            },
             // C: Stay open, don't demand cultural convergence
             // MOR pos=5 (wide): cosmopolitan non-convergence → universalist moral scope.
             open_pluralist: {
@@ -4737,7 +4754,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             ingroup_ideological: "People who share your core political values",
         },
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_scoped_affinity" },
         ],
         rankingMap: {
             ingroup_national: { moralCircle: { scopedAffinities: { national: 95 } } },
