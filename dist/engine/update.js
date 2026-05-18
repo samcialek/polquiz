@@ -1113,10 +1113,13 @@ export function applyPrioritySort(state, q, placements, allItems) {
         if (!map)
             continue;
         const bucket = bucketFor(item);
-        if (bucket === "neutral" || bucket === "opposeHigh")
+        if (bucket === "neutral")
             continue;
-        const weight = bucket === "supportHigh" ? 1.0 : 0.5;
-        if (map.trbAnchor) {
+        const isOppose = bucket === "opposeHigh";
+        const weight = bucket === "supportMid" ? 0.5 : 1.0;
+        // trbAnchor still skips opposeHigh — additive anchor scoring has no clean
+        // inversion ("I oppose X" doesn't cleanly map to a different anchor).
+        if (map.trbAnchor && !isOppose) {
             const scaled = {};
             for (const [k, v] of Object.entries(map.trbAnchor)) {
                 scaled[k] = v * weight;
@@ -1126,25 +1129,37 @@ export function applyPrioritySort(state, q, placements, allItems) {
             anchorApplied = true;
         }
         if (map.moralCircle) {
-            // Bucket-weighted moral-circle emission. supportHigh emits the declared
-            // value as-is; supportMid blends toward the universal-baseline neutral
-            // point (50) by `weight` so a mid-supported item produces a weaker
-            // signal in the running average than a fully-supported one. Without
-            // this, a single supportMid touch raises a scope's average to the same
-            // level as a single supportHigh touch — which the bucket distinction
-            // is meant to prevent (the trbAnchor branch above already weights this
-            // way; this brings moralCircle into alignment).
+            // Bucket-weighted moral-circle emission with opposeHigh inversion
+            // (2026-05-18, audit cycle 18 + architecture cycle 19).
+            //   supportHigh: emits declared value at full weight
+            //                (NEUTRAL + 1.0 * (v - NEUTRAL) = v)
+            //   supportMid:  blends toward NEUTRAL at half weight
+            //                (NEUTRAL + 0.5 * (v - NEUTRAL))
+            //   opposeHigh:  mirrors supportHigh on the LOW side
+            //                (NEUTRAL + (−1) * 1.0 * (v - NEUTRAL) = 2*NEUTRAL − v)
+            //                "I oppose this being central" → scoped affinity below
+            //                neutral, symmetrically opposite to supportHigh.
+            //   neutral:     skipped (no evidence about the scope)
+            //
+            // Why this matters: previously, opposed scopes were skipped, making
+            // anti-tribalists indistinguishable from disengaged centrists on the
+            // moralCircle path. The inversion also enables universal-opposition
+            // (e.g. opposeHigh on global_citizen → universal=25) to walk a
+            // respondent's running universal mean down, which is the dominant
+            // IDP-routing benefit for MAGA-style profiles. trbAnchor keeps the
+            // existing skip — additive anchor inversion has no clean destination.
             const NEUTRAL = 50;
+            const sign = isOppose ? -1 : 1;
             const scaled = {};
             if (typeof map.moralCircle.universal === "number") {
-                scaled.universal = NEUTRAL + weight * (map.moralCircle.universal - NEUTRAL);
+                scaled.universal = NEUTRAL + sign * weight * (map.moralCircle.universal - NEUTRAL);
             }
             if (map.moralCircle.scopedAffinities) {
                 const out = {};
                 for (const [k, v] of Object.entries(map.moralCircle.scopedAffinities)) {
                     if (v === null || v === undefined)
                         continue;
-                    out[k] = NEUTRAL + weight * (v - NEUTRAL);
+                    out[k] = NEUTRAL + sign * weight * (v - NEUTRAL);
                 }
                 scaled.scopedAffinities = out;
             }

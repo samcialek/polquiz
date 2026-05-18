@@ -186,7 +186,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       allow_no_restrictions: {
         continuous: {
           PRO: { pos: [0.01, 0.04, 0.10, 0.30, 0.55] },
-          COM: { pos: [0.10, 0.15, 0.20, 0.25, 0.30] }
+          // 2026-05-18: COM null-out (audit cycle 7). "Allow with no restrictions"
+          // is a PRO-driven response (speech absolutism = process-rights stance),
+          // not a COM-driven response. Previous row [0.10, 0.15, 0.20, 0.25, 0.30]
+          // (mean 3.50) injected a systematic high-COM bump for Never-Trump R /
+          // Libertarian R personas who pick this for PRO reasons. Near-uniform
+          // distribution (mean ~3.10) removes the false signal; dedicated COM
+          // questions carry the COM dimension.
+          COM: { pos: [0.14, 0.19, 0.34, 0.19, 0.14] }
         }
       }
     }
@@ -443,7 +450,16 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       },
       clearly_abroad: {
         continuous: { MOR: { pos: [0.01, 0.04, 0.12, 0.28, 0.55] } },
-        moralCircle: { universal: 90 }
+        // 2026-05-18: universal 90 → 75. Completes the IDP-gate-ceiling cleanup
+        // begun by the Q230/Q231 recalibration. Previously, even after Q230/Q231
+        // were lowered, a clearly_abroad respondent's mean pulled to (90+75+75)/3
+        // = 80 — still above the IDP gate's 75 ceiling. With clearly_abroad → 75,
+        // the same respondent now lands at (75+75+75)/3 = 75 — at the ceiling,
+        // allowing IDP routing for any scope that produces excess ≥ 20.
+        // Semantically defensible: picking "save 100 foreign lives" indicates
+        // strong universalism but not the absolute-maximum 90/100 outlier that
+        // was previously assumed.
+        moralCircle: { universal: 75 }
       }
     }
   },
@@ -3806,18 +3822,35 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.15, touchType: "current_institutional_confidence" },
       { node: "TRB", kind: "continuous", role: "position", weight: 0.30, touchType: "national_identification" }
     ],
+    // 2026-05-18: ADR-007 moralCircle migration. National-identification signal
+    // now routes to moralCircle.scopedAffinities.national in addition to the
+    // legacy TRB write (kept as fallback during transition). Three options
+    // (proud_and_trust, internationalist_trusting, critical_low_trust) get
+    // explicit moralCircle writes; the two "ambivalent" options
+    // (proud_distrustful, moderate_pride_mixed_trust) intentionally omit
+    // moralCircle to avoid biasing the universal baseline with ambiguous signal.
+    //
+    // ONT_S asymmetry trim (modest): the distrust end was previously ~3× weaker
+    // than the trust end (proud_and_trust mean 4.02 dev +1.02; critical_low_trust
+    // mean 2.65 dev −0.35). Halfway correction applied — trims toward symmetry
+    // without overshooting. Audit-proposed values (mean 1.98/2.70) deferred per
+    // Sam's "keep correction modest" directive.
     optionEvidence: {
       // "I'm generally proud of my country and trust most of its core institutions despite their flaws."
       proud_and_trust: {
         continuous: {
           ONT_S: { pos: [0.02, 0.06, 0.18, 0.34, 0.40] },
           TRB: { pos: [0.05, 0.15, 0.30, 0.30, 0.20] }
-        }
+        },
+        moralCircle: { universal: 55, scopedAffinities: { national: 75 } }
       },
       // "I'm proud of my country but distrust most of its current institutions."
+      // Modest ONT_S trim: mean 3.17 → 2.92 (was [0.08, 0.18, 0.36, 0.25, 0.13]).
+      // No moralCircle write — the pride+distrust combination is too ambiguous
+      // to assign a clean universal baseline without conflating frames.
       proud_distrustful: {
         continuous: {
-          ONT_S: { pos: [0.08, 0.18, 0.36, 0.25, 0.13] },
+          ONT_S: { pos: [0.13, 0.23, 0.33, 0.21, 0.10] },
           TRB: { pos: [0.05, 0.15, 0.30, 0.30, 0.20] }
         }
       },
@@ -3833,14 +3866,19 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
         continuous: {
           ONT_S: { pos: [0.02, 0.06, 0.18, 0.34, 0.40] },
           TRB: { pos: [0.40, 0.30, 0.18, 0.08, 0.04] }
-        }
+        },
+        moralCircle: { universal: 80 }
       },
       // "I'm critical of my country and don't trust most institutions."
+      // Modest ONT_S trim: mean 2.65 → 2.42 (was [0.18, 0.27, 0.32, 0.16, 0.07]).
+      // moralCircle: critical-of-country + low trust → meaningful below-baseline
+      // national scoped (negative excess), moderate universal.
       critical_low_trust: {
         continuous: {
-          ONT_S: { pos: [0.18, 0.27, 0.32, 0.16, 0.07] },
+          ONT_S: { pos: [0.26, 0.29, 0.27, 0.13, 0.05] },
           TRB: { pos: [0.30, 0.32, 0.22, 0.10, 0.06] }
-        }
+        },
+        moralCircle: { universal: 55, scopedAffinities: { national: 35 } }
       }
     }
   },
@@ -4856,15 +4894,25 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // "everyone equal"). Now 3-bucket sort over 6 in-groups — quantitative
   // info on ALL six scopes per respondent rather than just the top pick.
   // Universal anchor is no longer carried here (Q8 + Q213 handle it).
-  // The conditional Q228 is retired in favor of this question, which fires
-  // unconditionally for everyone and serves the same purpose.
+  // Q228 is formally retired (its eligibleIf gate is "__retired__"); Q229
+  // serves the same purpose unconditionally for all respondents.
   //
   // Bucket emissions (after applyPrioritySort weight scaling):
-  //   supportHigh (full weight, 1.0): scoped:95 → real excess even when
-  //     respondent's universal sits at 90 (Q8 clearly_abroad).
-  //   supportMid (half weight, 0.5): scoped:72.5 → meaningful for low/mid
-  //     universal respondents, ~0 excess for universalists.
+  //   supportHigh (full weight, 1.0): scoped=95. For respondents with low/mid
+  //     universal (≤75), produces meaningful excess (e.g. excess=20 if
+  //     universal=75, clearing the IDP gate). For universalists (universal=75
+  //     post Q8 clearly_abroad recalibration; previously universal=90), excess
+  //     ranges 5-20 depending on combined Q230/Q231/Q8 arithmetic. That is the
+  //     correct design: true universalists should not be IDP-routed.
+  //   supportMid (half weight, 0.5 applied by engine via NEUTRAL+weight*(v−NEUTRAL)):
+  //     emitted as 72.5 → meaningful only for low-universal respondents.
   //   neutral / opposeHigh: no emission (skip).
+  //   (NOTE 2026-05-18: prior comment claimed supportHigh produces "real excess
+  //   even when respondent's universal sits at 90". That was misleading — at
+  //   universal=90, excess=max(0,95−90)=5, which fails the IDP gate's ≥20
+  //   threshold AND the universal≤75 ceiling. Universal=90 has since been
+  //   lowered to 75 via Q8 recalibration; the gate is now reachable when other
+  //   conditions align.)
   {
     id: 229,
     stage: "fixed12",
