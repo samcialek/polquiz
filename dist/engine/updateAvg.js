@@ -53,7 +53,7 @@ function invertCatDist(d) {
 }
 function registerTouches(state, q) {
     for (const touch of q.touchProfile) {
-        if (touch.node === "TRB_ANCHOR")
+        if (touch.node === "TRB_ANCHOR" || touch.node === "MORAL_CIRCLE")
             continue;
         if (touch.kind === "continuous" && touch.node in state.continuous) {
             registerTouchAvg(state, touch.node, touch.touchType);

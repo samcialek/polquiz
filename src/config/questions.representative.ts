@@ -464,7 +464,14 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     uiType: "priority_sort",
     quality: 0.92,
     rewriteNeeded: false,
-    exposeRules: { eligibleIf: ["answered_q8_abroad"] },
+    // 2026-05-18: Retired. Q229 (priority_sort, fires unconditionally for all
+    // respondents) supersedes Q228 — same six in-group items, same bucket
+    // structure. Q228's own inline comment in Q229 declared this retirement,
+    // but the eligibleIf gate had not been updated. Leaving the definition in
+    // place for historical reference and to preserve the optionLabels (Q229
+    // reuses identical labels). The "__retired__" gate token is not satisfied
+    // by any condition, so this question will never fire.
+    exposeRules: { eligibleIf: ["__retired__"] },
     touchProfile: [
       { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" }
     ],
@@ -3708,7 +3715,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
       cd:    "Direction of the culture — the pace and shape of change on family, gender, sexuality, marriage, and religion.",
       cu:    "Common culture and difference — how a single political community accommodates many ways of life and belief, or whether it asks for one shared standard.",
       mor:   "Reach of moral concern — how wide a circle of obligation reaches: family, country, all of humanity, or somewhere in between.",
-      pro:   "Process and outcomes — the weight of fair rules and due process against the urgency of getting the right result.",
+      pro:   "Procedure and expedience — the weight of fair rules and due process against the urgency of getting the right result.",
       com:   "Dealmaking and conviction — the terms on which political actors give ground, hold the line, or refuse to deal.",
       zs:    "Cooperation and conflict — whether gains in economic, political, and cultural life come from working together or from one side winning at another's expense.",
       ont_h: "Human nature — the weight of disposition versus environment and education in shaping people's character.",
@@ -4903,12 +4910,20 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
     ],
+    // 2026-05-18: Top two buckets recalibrated to match Q231 (which fires AFTER
+    // Q230 in fixed12 order, quality 0.97 < 0.98). The engine uses arithmetic
+    // mean of all universal writes (src/engine/update.ts:440-471) with no
+    // per-question weight, so leaving Q230 at the old values defeats the
+    // Q231 fix for any respondent who answers both sliders high — they get
+    // mean=(95+75)/2=85, still above the IDP gate ceiling of 75. Same shape
+    // as the Q231 fix: 61-80 → 65 (5pt headroom), 81-100 → 75 (at ceiling,
+    // Q229 supportHigh can produce excess=20 clearing the gate).
     sliderMap: {
       "0-20":   { moralCircle: { universal: 10 } },
       "21-40":  { moralCircle: { universal: 30 } },
       "41-60":  { moralCircle: { universal: 50 } },
-      "61-80":  { moralCircle: { universal: 75 } },
-      "81-100": { moralCircle: { universal: 95 } },
+      "61-80":  { moralCircle: { universal: 65 } },
+      "81-100": { moralCircle: { universal: 75 } },
     },
   },
 
@@ -4926,12 +4941,19 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     touchProfile: [
       { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
     ],
+    // 2026-05-18: Top two buckets recalibrated to eliminate the IDP gate cliff
+    // at slider position 80/81. Previously: 61-80 → 75 (at IDP gate ceiling),
+    // 81-100 → 95 (20 pts above ceiling — permanently IDP-ineligible). Now:
+    // 61-80 → 65 (5 pts of headroom below ceiling), 81-100 → 75 (at ceiling,
+    // but Q229 supportHigh writes can produce scoped=95 → excess=20, clearing
+    // the ≥20 gate). Maintains directional ordering; trade-off is that the
+    // "81-100" bucket no longer over-classifies extreme universalists.
     sliderMap: {
       "0-20":   { moralCircle: { universal: 10 } },
       "21-40":  { moralCircle: { universal: 30 } },
       "41-60":  { moralCircle: { universal: 50 } },
-      "61-80":  { moralCircle: { universal: 75 } },
-      "81-100": { moralCircle: { universal: 95 } },
+      "61-80":  { moralCircle: { universal: 65 } },
+      "81-100": { moralCircle: { universal: 75 } },
     },
   },
 

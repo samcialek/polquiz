@@ -69,10 +69,10 @@ export interface Archetype {
 }
 export type QuestionStage = "fixed12" | "screen20" | "stage2" | "stage3";
 export type QuestionUiType = "single_choice" | "slider" | "allocation" | "ranking" | "pairwise" | "best_worst" | "priority_sort" | "dual_axis" | "conjoint" | "multi";
-export type TouchRole = "position" | "salience" | "category" | "anchor";
+export type TouchRole = "position" | "salience" | "category" | "anchor" | "affinity";
 export type TouchKind = "continuous" | "categorical" | "derived";
 export interface TouchTarget {
-    node: NodeId | "TRB_ANCHOR";
+    node: NodeId | "TRB_ANCHOR" | "MORAL_CIRCLE";
     kind: TouchKind;
     role: TouchRole;
     weight: number;

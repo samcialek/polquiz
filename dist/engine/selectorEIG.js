@@ -115,6 +115,15 @@ function trbConverged(state) {
 // ─── Scoring ───────────────────────────────────────────────────────────────
 function touchInfoGain(state, touch, questionsById) {
     const nodeId = touch.node;
+    if (nodeId === "MORAL_CIRCLE") {
+        const mc = state.moralCircle?.affinity;
+        if (!mc)
+            return Math.log(7);
+        const universal = Math.max(0.001, Math.min(0.999, mc.universalAffinity / 100));
+        const universalEntropy = entropy([universal, 1 - universal]);
+        const unresolvedScopes = Object.values(mc.scopedAffinities).filter(v => v == null).length;
+        return universalEntropy + unresolvedScopes * 0.1;
+    }
     if (nodeId === "TRB_ANCHOR") {
         if (trbConverged(state))
             return 0;
@@ -163,7 +172,7 @@ function evidenceEntries(q) {
     if (q.uiType === "slider") {
         return Object.values(q.sliderMap ?? {});
     }
-    if (q.uiType === "ranking" || q.uiType === "best_worst") {
+    if (q.uiType === "ranking" || q.uiType === "best_worst" || q.uiType === "priority_sort") {
         const map = q.rankingMap ?? q.bestWorstMap ?? {};
         return Object.values(map);
     }
@@ -186,6 +195,9 @@ function hasEvidenceFor(ev, t, uiType) {
     if (t.node === "TRB_ANCHOR") {
         const anchors = ev.trbAnchor;
         return !!anchors && Object.keys(anchors).length > 0;
+    }
+    if (t.node === "MORAL_CIRCLE") {
+        return !!ev.moralCircle;
     }
     // Plain-number evidence shapes (ranking/best_worst/allocation/pairwise):
     // a touch is "covered" if the node appears at all — these uiTypes don't
