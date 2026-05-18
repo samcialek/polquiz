@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRISM Results · v27 — Consistent bars, no cell, refreshed colors</title>
+  <link rel="icon" type="image/png" href="../favicon-moc-f.png"/>
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="pragma" content="no-cache" />
   <meta http-equiv="expires" content="0" />
@@ -1783,10 +1784,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const [archetypesData, electionsData, alignmentsData, regimesData, candidatesProfiles, eraActivations, nonIdeoData] = await Promise.all([
       fetch(`${DATA_BASE}/archetypes.json`).then(r => r.json()),
       fetch(`${DATA_BASE}/elections.json`).then(r => r.json()),
-      fetch(`${DATA_BASE}/alignments.json?v=2026-05-12-map-coverage`).then(r => r.json()),
+      fetch(`${DATA_BASE}/alignments.json?v=2026-05-15-moc-data-resync`).then(r => r.json()),
       // Cache-bust bumped to 2026-05-12-map-coverage: world-map payload now
       // carries the restored 69-jurisdiction regime set.
-      fetch(`${DATA_BASE}/regimes.json?v=2026-05-12-map-coverage`).then(r => r.json()).catch(() => ({})),
+      fetch(`${DATA_BASE}/regimes.json?v=2026-05-15-moc-data-resync`).then(r => r.json()).catch(() => ({})),
       // v21.6 click-detail panel: per-candidate node profiles + era-activation
       // multipliers. Used to compute and display the per-node distance
       // breakdown when a user clicks an election cell. Soft-fail to {} so the
@@ -4816,54 +4817,54 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       function computeLiveEmphasis(rs) {
+        // 2026-05-15: salience-only emphasis (sum, not average).
+        //
+        // Previous formula was `(gap × salience)` per node, then averaged.
+        // That produced two surprises that didn't match user intuition:
+        //   (1) High-salience-but-centrist nodes (e.g. respondent at MAT=2.8,
+        //       sal=2.8) collapsed because gap≈0, so ENDS could read tiny
+        //       even when MAT was the respondent's strongest stated salience.
+        //   (2) Categorical concentration (a sharp EPS or AES distribution)
+        //       was treated as a near-max "gap" signal, inflating REALITY/
+        //       MEANS for any respondent with a clear epistemic or aesthetic
+        //       style — even when their EPS/AES salience was modest.
+        // Donut is meant to communicate "share of attention," not "share of
+        // position-extremity-weighted attention." Salience-only matches that.
         if (!rs || !rs.continuous) return null;
         const raw = {};
         for (const cn of clusterOrder) {
           let sum = 0;
-          let count = 0;
           for (const nid of CLUSTER_NODES[cn].continuous) {
             const n = rs.continuous[nid];
             if (!n) continue;
             const isSelf = (nid === 'ENG' || nid === 'PF' || nid === 'TRB');
-            // SELF-cluster nodes (ENG): position IS activation per ADR-005.
-            // Treat gap = (pos - 1) / 4, salience = same (so contribution = gap²).
             if (isSelf) {
+              // SELF-cluster nodes (ENG): position IS activation per ADR-005.
+              // No salience axis — use the position (0–1 normalized) as the
+              // activation contribution directly.
               const pos = (n.expectedPos != null) ? n.expectedPos : 3;
               const g = Math.max(0, Math.min(1, (pos - 1) / 4));
-              sum += g * g;
-              count += 1;
+              sum += g;
               continue;
             }
-            // Non-SELF: gap from neutral × salience.
-            const pos = (n.expectedPos != null) ? n.expectedPos : 3;
             const sal = (n.salience != null) ? n.salience / 3 : 0.5;
-            const g = Math.abs(pos - 3) / 2;
-            sum += Math.max(0, Math.min(1, g)) * Math.max(0, Math.min(1, sal));
-            count += 1;
+            sum += Math.max(0, Math.min(1, sal));
           }
           for (const nid of CLUSTER_NODES[cn].categorical) {
             const n = rs.categorical && rs.categorical[nid];
             if (!n || !Array.isArray(n.catDist)) continue;
-            const maxP = Math.max.apply(null, n.catDist);
-            const g = Math.max(0, Math.min(1, (maxP - 1/6) / (5/6))); // 0..1
             const sal = (n.salience != null) ? n.salience / 3 : 0.5;
-            sum += g * Math.max(0, Math.min(1, sal));
-            count += 1;
+            sum += Math.max(0, Math.min(1, sal));
           }
-          // IDENTITY gets moral-circle intensity only. ENG is displayed in the
-          // panel, but high engagement is not identity-first politics.
           if (cn === 'IDENTITY' && rs.moralCircle) {
             const aff = rs.moralCircle.affinity || rs.moralCircle;
             const intensity = aff.intensity01 != null
               ? aff.intensity01
               : (aff.intensity03 != null ? aff.intensity03 / 3 : 0);
             const signal = Math.max(0, Math.min(1, intensity || 0));
-            if (signal > 0) {
-              sum += signal;
-              count += 1;
-            }
+            if (signal > 0) sum += signal;
           }
-          raw[cn] = count > 0 ? sum / count : 0;
+          raw[cn] = sum;
         }
         return raw;
       }
