@@ -20,7 +20,7 @@
       "ZS": 2,
       "ONT_H": 3,
       "ONT_S": 1,
-      "PF": 4,
+      "PF": 3,
       "TRB": 2,
       "ENG": 5
     },
@@ -76,7 +76,7 @@
         "2020": "ABSTAIN",
         "2024": "R"
       },
-      "voteMatchMin": 2,
+      "voteMatchMin": 3,
       "engagement": "highly-engaged",
       "questionsInRange": [
         20,
@@ -349,31 +349,31 @@
     },
     {
       "idx": 23,
-      "qId": 2,
-      "promptShort": "political_identity_centrality",
-      "uiType": "slider",
-      "answer": 71
-    },
-    {
-      "idx": 24,
       "qId": 49,
       "promptShort": "social_progress_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 25,
+      "idx": 24,
       "qId": 71,
       "promptShort": "rhetoric_style_importance",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 26,
+      "idx": 25,
       "qId": 4,
       "promptShort": "cultural_social_salience",
       "uiType": "slider",
       "answer": 51
+    },
+    {
+      "idx": 26,
+      "qId": 1,
+      "promptShort": "political_content_frequency",
+      "uiType": "single_choice",
+      "answer": "every_day"
     },
     {
       "idx": 27,
@@ -432,7 +432,7 @@
   "votes": {
     "2008": "R",
     "2012": "R",
-    "2016": "D",
+    "2016": "T",
     "2020": "D",
     "2024": "D"
   },
@@ -449,8 +449,8 @@
     },
     "2016": {
       "expected": "T",
-      "actual": "D",
-      "match": false
+      "actual": "T",
+      "match": true
     },
     "2020": {
       "expected": "ABSTAIN",
@@ -491,8 +491,8 @@
     {
       "name": "vote match",
       "pass": true,
-      "expected": "≥2/5",
-      "actual": "2/5"
+      "expected": "≥3/5",
+      "actual": "3/5"
     },
     {
       "name": "composed label contains \"Free-Marketeer\"",

@@ -336,31 +336,31 @@
     },
     {
       "idx": 21,
-      "qId": 2,
-      "promptShort": "political_identity_centrality",
-      "uiType": "slider",
-      "answer": 71
-    },
-    {
-      "idx": 22,
       "qId": 71,
       "promptShort": "rhetoric_style_importance",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 23,
+      "idx": 22,
       "qId": 49,
       "promptShort": "social_progress_salience",
       "uiType": "slider",
       "answer": 71
     },
     {
-      "idx": 24,
+      "idx": 23,
       "qId": 38,
       "promptShort": "rules_procedures_matter_salience",
       "uiType": "slider",
       "answer": 51
+    },
+    {
+      "idx": 24,
+      "qId": 1,
+      "promptShort": "political_content_frequency",
+      "uiType": "single_choice",
+      "answer": "every_day"
     },
     {
       "idx": 25,

@@ -2,7 +2,7 @@
 
 **Persona ID:** `maga-all-in`
 **Date:** 2026-05-19
-**Questions asked:** 28
+**Questions asked:** 26
 
 ## Reachability scorecard
 
@@ -35,7 +35,7 @@
 | identity-primary state | `≥ active` | `dominant` | ✓ |
 | identity-primary label | `White Grievance Voter` | `White Grievance Voter` | ✓ |
 | engagement level | `highly-engaged` | `highly-engaged` | ✓ |
-| questions asked in range | `[20, 35]` | `28` | ✓ |
+| questions asked in range | `[20, 35]` | `26` | ✓ |
 
 ## Vote-prediction scorecard
 
@@ -75,9 +75,7 @@
 | 20 | 207 | single_choice | emergency_powers | `"strong_leader_acts"` |
 | 21 | 79 | single_choice | expert_disagreement_reaction | `"both_wrong"` |
 | 22 | 61 | single_choice | political_pitch_resonance | `"fight_pitch"` |
-| 23 | 81 | single_choice | party_vs_cause_loyalty | `"stick_with_side"` |
-| 24 | 42 | single_choice | close_friends_voted_differently | `"end_friendship"` |
-| 25 | 19 | slider | human_progress_salience | `51` |
-| 26 | 47 | single_choice | political_conflict_with_close_others | `"enjoy_debate"` |
-| 27 | 69 | slider | common_ground_salience | `51` |
-| 28 | 51 | slider | immigration_national_identity_salience | `91` |
+| 23 | 19 | slider | human_progress_salience | `51` |
+| 24 | 47 | single_choice | political_conflict_with_close_others | `"enjoy_debate"` |
+| 25 | 69 | slider | common_ground_salience | `51` |
+| 26 | 51 | slider | immigration_national_identity_salience | `91` |

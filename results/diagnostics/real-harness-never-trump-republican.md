@@ -75,6 +75,6 @@
 | 21 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
 | 22 | 51 | slider | immigration_national_identity_salience | `51` |
 | 23 | 78 | best_worst | speaker_appeal | `{"best":["bridge_builder","big_picture"],"worst":["says_what_they_think","cal...` |
-| 24 | 2 | slider | political_identity_centrality | `71` |
-| 25 | 217 | ranking | epistemic_style_ranking | `["eps_institutionalist","eps_empiricist","eps_traditionalist","eps_intuitioni...` |
-| 26 | 55 | multi | what_changed_your_mind | `["trusted_authority","personal_experience"]` |
+| 24 | 217 | ranking | epistemic_style_ranking | `["eps_institutionalist","eps_empiricist","eps_traditionalist","eps_intuitioni...` |
+| 25 | 55 | multi | what_changed_your_mind | `["trusted_authority","personal_experience"]` |
+| 26 | 1 | single_choice | political_content_frequency | `"every_day"` |

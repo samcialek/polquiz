@@ -72,9 +72,9 @@
 | 18 | 18 | single_choice | human_improvement_capacity | `"substantial_capacity"` |
 | 19 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","bridge_builder"],"worst":["says_what_they_think","...` |
 | 20 | 11 | single_choice | nyt_headline_click | `"weird_science"` |
-| 21 | 2 | slider | political_identity_centrality | `71` |
-| 22 | 71 | slider | rhetoric_style_importance | `51` |
-| 23 | 49 | slider | social_progress_salience | `71` |
-| 24 | 38 | slider | rules_procedures_matter_salience | `51` |
+| 21 | 71 | slider | rhetoric_style_importance | `51` |
+| 22 | 49 | slider | social_progress_salience | `71` |
+| 23 | 38 | slider | rules_procedures_matter_salience | `51` |
+| 24 | 1 | single_choice | political_content_frequency | `"every_day"` |
 | 25 | 69 | slider | common_ground_salience | `31` |
 | 26 | 63 | best_worst | best_worst_battery | `{"best":["fairness"],"worst":["tradition_continuity"]}` |

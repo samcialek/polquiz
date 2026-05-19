@@ -30,7 +30,7 @@
 | Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
 | top-1 archetype in acceptable list | `one of [042, 088, 048, 117, 076]` | `042 Localist Progressive` | ✓ |
-| vote match | `≥2/5` | `2/5` | ✓ |
+| vote match | `≥3/5` | `3/5` | ✓ |
 | composed label contains "Free-Marketeer" | `Free-Marketeer` | `Pragmatic Free-Marketeer` | ✓ |
 | identity-primary state | `≥ none` | `none` | ✓ |
 | engagement level | `highly-engaged` | `highly-engaged` | ✓ |
@@ -38,13 +38,13 @@
 
 ## Vote-prediction scorecard
 
-- Match: 2/5
+- Match: 3/5
 
 | year | expected | actual | match |
 |---|---|---|---|
 | 2008 | R | R | ✓ |
 | 2012 | R | R | ✓ |
-| 2016 | T | D | ❌ |
+| 2016 | T | T | ✓ |
 | 2020 | ABSTAIN | D | ❌ |
 | 2024 | R | D | ❌ |
 
@@ -74,10 +74,10 @@
 | 20 | 78 | best_worst | speaker_appeal | `{"best":["community_voice","bridge_builder"],"worst":["says_what_they_think",...` |
 | 21 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
 | 22 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
-| 23 | 2 | slider | political_identity_centrality | `71` |
-| 24 | 49 | slider | social_progress_salience | `51` |
-| 25 | 71 | slider | rhetoric_style_importance | `51` |
-| 26 | 4 | slider | cultural_social_salience | `51` |
+| 23 | 49 | slider | social_progress_salience | `51` |
+| 24 | 71 | slider | rhetoric_style_importance | `51` |
+| 25 | 4 | slider | cultural_social_salience | `51` |
+| 26 | 1 | single_choice | political_content_frequency | `"every_day"` |
 | 27 | 19 | slider | human_progress_salience | `31` |
 | 28 | 69 | slider | common_ground_salience | `31` |
 | 29 | 51 | slider | immigration_national_identity_salience | `51` |

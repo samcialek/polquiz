@@ -337,48 +337,34 @@
     },
     {
       "idx": 23,
-      "qId": 81,
-      "promptShort": "party_vs_cause_loyalty",
-      "uiType": "single_choice",
-      "answer": "stick_with_side"
-    },
-    {
-      "idx": 24,
-      "qId": 42,
-      "promptShort": "close_friends_voted_differently",
-      "uiType": "single_choice",
-      "answer": "end_friendship"
-    },
-    {
-      "idx": 25,
       "qId": 19,
       "promptShort": "human_progress_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 26,
+      "idx": 24,
       "qId": 47,
       "promptShort": "political_conflict_with_close_others",
       "uiType": "single_choice",
       "answer": "enjoy_debate"
     },
     {
-      "idx": 27,
+      "idx": 25,
       "qId": 69,
       "promptShort": "common_ground_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 28,
+      "idx": 26,
       "qId": 51,
       "promptShort": "immigration_national_identity_salience",
       "uiType": "slider",
       "answer": 91
     }
   ],
-  "questionsAsked": 28,
+  "questionsAsked": 26,
   "composedLabel": "Assimilationist Partisan-Communitarian",
   "identityPrimaryLabel": "White Grievance Voter",
   "identityPrimaryState": "dominant",
@@ -503,7 +489,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "28"
+      "actual": "26"
     }
   ]
 }

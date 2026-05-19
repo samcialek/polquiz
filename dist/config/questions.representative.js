@@ -3177,6 +3177,33 @@ export const REPRESENTATIVE_QUESTIONS = [
         uiType: "single_choice",
         quality: 0.90,
         rewriteNeeded: false,
+        // 2026-05-19 (Phase 7 P1, Path A): PF.pos REMOVED from constantly_
+        // worldview only. The other 3 options keep PF coupling intact.
+        //
+        // Background: Phase 6 found that Q97's PF/ENG entanglement forced
+        // a tradeoff when personas declared independent PF and ENG profiles.
+        // The specific failure: a "highly-engaged but moderate-PF" persona
+        // (ENG=5, PF=3) couldn't pick constantly_worldview because its PF
+        // peak=5 penalized PF=3 by distance² 4, outweighing the ENG match
+        // gain of 1. They got pushed to regularly_daily, landing on
+        // "engaged" instead of "highly-engaged".
+        //
+        // First attempt (Path B / split): drop PF entirely from Q97. Broke
+        // moderate-engaged personas because Q97 has no peak=3 ENG option,
+        // and the tie-breaker between sometimes_events (peak=2) and
+        // regularly_daily (peak=4) flipped to sometimes when PF wasn't
+        // there to disambiguate. 8 personas regressed.
+        //
+        // Path A (this): the *only* problematic coupling is on the highly-
+        // engaged option. The other 3 options' PF/ENG profiles align
+        // semantically (rarely-elections is genuinely low on both; sometimes
+        // is genuinely low-mid on both; regularly is genuinely mid on both).
+        // Removing PF.pos from just constantly_worldview lets the
+        // highly-engaged-moderate-PF persona pick it without penalty,
+        // while preserving all other personas' option choices.
+        //
+        // PF coverage preserved via Q2 (slider weight 0.80) + Q87 (weight 0.88)
+        // + the remaining 3 Q97 options.
         touchProfile: [
             { node: "PF", kind: "continuous", role: "position", weight: 0.70, touchType: "thought_frequency_proxy" },
             { node: "ENG", kind: "continuous", role: "position", weight: 0.55, touchType: "thought_frequency_proxy" },
@@ -3204,9 +3231,9 @@ export const REPRESENTATIVE_QUESTIONS = [
                 }
             },
             // D: Constantly — politics shapes how I see most things
+            // PF.pos intentionally omitted (Phase 7 P1 Path A) — see header.
             constantly_worldview: {
                 continuous: {
-                    PF: { pos: [0.02, 0.05, 0.15, 0.33, 0.45] },
                     ENG: { pos: [0.01, 0.04, 0.12, 0.30, 0.53] }
                 }
             }

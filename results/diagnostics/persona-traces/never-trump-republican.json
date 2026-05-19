@@ -352,13 +352,6 @@
     },
     {
       "idx": 24,
-      "qId": 2,
-      "promptShort": "political_identity_centrality",
-      "uiType": "slider",
-      "answer": 71
-    },
-    {
-      "idx": 25,
       "qId": 217,
       "promptShort": "epistemic_style_ranking",
       "uiType": "ranking",
@@ -372,7 +365,7 @@
       ]
     },
     {
-      "idx": 26,
+      "idx": 25,
       "qId": 55,
       "promptShort": "what_changed_your_mind",
       "uiType": "multi",
@@ -380,6 +373,13 @@
         "trusted_authority",
         "personal_experience"
       ]
+    },
+    {
+      "idx": 26,
+      "qId": 1,
+      "promptShort": "political_content_frequency",
+      "uiType": "single_choice",
+      "answer": "every_day"
     }
   ],
   "questionsAsked": 26,
