@@ -320,6 +320,13 @@
     },
     {
       "idx": 20,
+      "qId": 244,
+      "promptShort": "religion_political_role",
+      "uiType": "single_choice",
+      "answer": "religion_public_authority"
+    },
+    {
+      "idx": 21,
       "qId": 78,
       "promptShort": "speaker_appeal",
       "uiType": "best_worst",
@@ -335,63 +342,63 @@
       }
     },
     {
-      "idx": 21,
+      "idx": 22,
       "qId": 11,
       "promptShort": "nyt_headline_click",
       "uiType": "single_choice",
       "answer": "timeless_principles"
     },
     {
-      "idx": 22,
+      "idx": 23,
       "qId": 56,
       "promptShort": "effective_leader_style",
       "uiType": "single_choice",
       "answer": "channel_anger"
     },
     {
-      "idx": 23,
+      "idx": 24,
       "qId": 49,
       "promptShort": "social_progress_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 24,
+      "idx": 25,
       "qId": 71,
       "promptShort": "rhetoric_style_importance",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 25,
+      "idx": 26,
       "qId": 69,
       "promptShort": "common_ground_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 26,
+      "idx": 27,
       "qId": 19,
       "promptShort": "human_progress_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 27,
+      "idx": 28,
       "qId": 84,
       "promptShort": "institutions_harden_into_domination",
       "uiType": "slider",
       "answer": 71
     },
     {
-      "idx": 28,
+      "idx": 29,
       "qId": 51,
       "promptShort": "immigration_national_identity_salience",
       "uiType": "slider",
       "answer": 91
     }
   ],
-  "questionsAsked": 28,
+  "questionsAsked": 29,
   "composedLabel": "Integralist",
   "identityPrimaryLabel": "Evangelical Voter",
   "identityPrimaryState": "active",
@@ -400,27 +407,27 @@
     {
       "id": "081",
       "name": "Heritage Guardian",
-      "distance": 0.3313104935881154
+      "distance": 0.3313670623640088
     },
     {
       "id": "084",
       "name": "Civilizational Conservative",
-      "distance": 0.3379760519738094
+      "distance": 0.33816763389098914
     },
     {
       "id": "083",
       "name": "Closed Traditionalist",
-      "distance": 0.3572317975156488
+      "distance": 0.35764027592503767
     },
     {
       "id": "082",
       "name": "Altar-and-Hearth Conservative",
-      "distance": 0.3708831030159338
+      "distance": 0.3712736757060587
     },
     {
       "id": "106",
       "name": "Militant Partisan",
-      "distance": 0.37543778883335394
+      "distance": 0.3756544581126046
     }
   ],
   "votes": {
@@ -516,7 +523,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "28"
+      "actual": "29"
     }
   ]
 }

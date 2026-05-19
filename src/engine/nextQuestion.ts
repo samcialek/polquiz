@@ -75,6 +75,22 @@ function evaluatePredicate(state: RespondentState, predicate: string): boolean {
     case "answered_q8_abroad":
       return state.answers[8] === "clearly_abroad";
 
+    // Q244 gate: fires when Q102's `religion` item was placed in supportHigh
+    // or supportMid. Q102's religion item writes religious=75 scoped affinity
+    // for either bucket placement, which over-pulls religious affinity for
+    // culturally-Christian-but-not-religiously-organized respondents (Phase
+    // 6 finding F6, obama-to-trump). Q244 is the conditional separator that
+    // lets these respondents declare whether religion is a political
+    // organizing dimension or just a cultural-heritage marker.
+    case "q102_religion_supported": {
+      const q102Ans = state.answers[102] as
+        | { supportHigh?: string[]; supportMid?: string[] }
+        | undefined;
+      if (!q102Ans) return false;
+      return (q102Ans.supportHigh?.includes("religion") ?? false)
+          || (q102Ans.supportMid?.includes("religion") ?? false);
+    }
+
     default:
       // Unknown predicate — fail closed (ineligible)
       return false;

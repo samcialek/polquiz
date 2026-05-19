@@ -5048,5 +5048,71 @@ export const REPRESENTATIVE_QUESTIONS = [
             much_more: { moralCircle: { scopedAffinities: { ideological: 90 } } },
         },
     },
+    // Q244 — religion's political role (conditional separator for F6).
+    //
+    // Phase 7 P3 (2026-05-19). Fires when Q102's `religion` item was placed
+    // in supportHigh or supportMid (per eligibleIf gate). Lets respondents
+    // who selected religion as a membership criterion distinguish between
+    // "religion should shape public authority" (Christian-right) vs. "religion
+    // is a cultural heritage marker, not a political organizer" (culturally-
+    // Christian-but-pragmatic-on-policy, e.g., obama-to-trump).
+    //
+    // Q102's religion item writes a single value (religious=75) regardless
+    // of the respondent's actual frame; Q244 corrects this by writing the
+    // right religious/universal pair from a 5-option spectrum. Touches only
+    // MORAL_CIRCLE — keeps blast radius minimal.
+    //
+    // priorityBattery: true → guaranteed to fire when eligible (the EIG
+    // selector deprioritizes single-touch questions otherwise).
+    {
+        id: 244,
+        stage: "stage2",
+        section: "I",
+        promptShort: "religion_political_role",
+        promptFull: "You picked religion as something that matters for membership. " +
+            "Which best describes how religion fits into public life for you?",
+        uiType: "single_choice",
+        priorityBattery: true,
+        quality: 0.92,
+        rewriteNeeded: false,
+        options: [
+            "religion_public_authority",
+            "religion_public_moral_source",
+            "religion_cultural_heritage",
+            "religion_private_neutral",
+            "religion_no_public_role",
+        ],
+        optionLabels: {
+            religion_public_authority: "Religious tradition should shape law and public standards",
+            religion_public_moral_source: "Religion can guide values, but laws should serve everyone",
+            religion_cultural_heritage: "It's heritage and community, not a political organizer",
+            religion_private_neutral: "Faith is private; the state should be neutral",
+            religion_no_public_role: "Religion should be kept out of public authority",
+        },
+        exposeRules: { eligibleIf: ["q102_religion_supported"] },
+        touchProfile: [
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.30, touchType: "religion_political_role" },
+        ],
+        optionEvidence: {
+            // religion_public_authority writes religious=80 (not 90 per Sam's
+            // first-pass suggestion). First-pass 90 caused two regressions:
+            // black-moderate-democrat and maga-all-in both correctly picked
+            // religion_public_authority (their religious=85/70 was closest to
+            // the option's universal-religious pair), but the 90 write pushed
+            // their religious posteriors above their actual top scopes
+            // (ethnic_racial), flipping their IDP routing from Black Voter
+            // and White Grievance respectively → Evangelical Voter. Dropping
+            // to 80 keeps the religious-right write strong enough to preserve
+            // christian-right and trump-mobilized-republican as Evangelical
+            // (religious mean stays well above 70), while leaving room for
+            // ethnic_racial-top personas (Q229+Q60 writes 95+70 mean=82.5)
+            // to retain their top scope.
+            religion_public_authority: { moralCircle: { universal: 25, scopedAffinities: { religious: 80 } } },
+            religion_public_moral_source: { moralCircle: { universal: 50, scopedAffinities: { religious: 70 } } },
+            religion_cultural_heritage: { moralCircle: { universal: 55, scopedAffinities: { religious: 50 } } },
+            religion_private_neutral: { moralCircle: { universal: 65, scopedAffinities: { religious: 40 } } },
+            religion_no_public_role: { moralCircle: { universal: 75, scopedAffinities: { religious: 25 } } },
+        },
+    },
 ];
 //# sourceMappingURL=questions.representative.js.map

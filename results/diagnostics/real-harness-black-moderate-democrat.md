@@ -16,11 +16,11 @@
 
 | rank | id | name | distance |
 |---|---|---|---|
-| 1 | 134 | Progressive Civic Nationalist | 0.377 |
-| 2 | 088 | Gentle Traditionalist | 0.382 |
-| 3 | 045 | Rooted Social Reformer | 0.382 |
-| 4 | 050 | Traditionalist Moralist | 0.386 |
-| 5 | 046 | Pastoral Leftist | 0.391 |
+| 1 | 134 | Progressive Civic Nationalist | 0.378 |
+| 2 | 088 | Gentle Traditionalist | 0.387 |
+| 3 | 045 | Rooted Social Reformer | 0.388 |
+| 4 | 050 | Traditionalist Moralist | 0.390 |
+| 5 | 049 | Moral Egalitarian | 0.397 |
 
 ## Assertions (10/10 pass)
 
@@ -71,7 +71,7 @@
 | 16 | 3 | slider | cultural_social_placement | `71` |
 | 17 | 202 | single_choice | state_scope_preference | `"universal_strong_state"` |
 | 18 | 213 | single_choice | equal_standing_within_polity | `"important_one_of_many"` |
-| 19 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","bridge_builder"],"worst":["says_what_they_think","...` |
-| 20 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
-| 21 | 51 | slider | immigration_national_identity_salience | `51` |
-| 22 | 4 | slider | cultural_social_salience | `51` |
+| 19 | 244 | single_choice | religion_political_role | `"religion_public_authority"` |
+| 20 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","bridge_builder"],"worst":["says_what_they_think","...` |
+| 21 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
+| 22 | 51 | slider | immigration_national_identity_salience | `51` |

@@ -2,7 +2,7 @@
 
 **Persona ID:** `abstain-to-trump`
 **Date:** 2026-05-19
-**Questions asked:** 31
+**Questions asked:** 32
 
 ## Reachability scorecard
 
@@ -16,10 +16,10 @@
 
 | rank | id | name | distance |
 |---|---|---|---|
-| 1 | 106 | Militant Partisan | 0.360 |
-| 2 | 104 | National Protector | 0.365 |
+| 1 | 106 | Militant Partisan | 0.359 |
+| 2 | 104 | National Protector | 0.364 |
 | 3 | 084 | Civilizational Conservative | 0.371 |
-| 4 | 100 | Tribal Insurgent | 0.387 |
+| 4 | 100 | Tribal Insurgent | 0.385 |
 | 5 | 101 | Embattled Majoritarian | 0.387 |
 
 ## Assertions (11/11 pass)
@@ -36,7 +36,7 @@
 | composed label contains "Combative" | `Combative` | `Combative Partisan-Communitarian Assimilationist` | ✓ |
 | identity-primary state | `≥ none` | `none` | ✓ |
 | engagement level | `casual` | `casual` | ✓ |
-| questions asked in range | `[20, 35]` | `31` | ✓ |
+| questions asked in range | `[20, 35]` | `32` | ✓ |
 
 ## Vote-prediction scorecard
 
@@ -76,12 +76,13 @@
 | 20 | 7 | single_choice | coalition_vs_principle | `"principle_first"` |
 | 21 | 213 | single_choice | equal_standing_within_polity | `"some_differentiation_acceptable"` |
 | 22 | 207 | single_choice | emergency_powers | `"narrow_emergency"` |
-| 23 | 78 | best_worst | speaker_appeal | `{"best":["calls_out_power","says_what_they_think"],"worst":["bridge_builder",...` |
-| 24 | 79 | single_choice | expert_disagreement_reaction | `"both_wrong"` |
-| 25 | 61 | single_choice | political_pitch_resonance | `"fight_pitch"` |
-| 26 | 38 | slider | rules_procedures_matter_salience | `31` |
-| 27 | 71 | slider | rhetoric_style_importance | `51` |
-| 28 | 69 | slider | common_ground_salience | `31` |
-| 29 | 19 | slider | human_progress_salience | `31` |
-| 30 | 49 | slider | social_progress_salience | `51` |
-| 31 | 63 | best_worst | best_worst_battery | `{"best":["fairness"],"worst":["tradition_continuity"]}` |
+| 23 | 244 | single_choice | religion_political_role | `"religion_public_authority"` |
+| 24 | 78 | best_worst | speaker_appeal | `{"best":["calls_out_power","says_what_they_think"],"worst":["bridge_builder",...` |
+| 25 | 79 | single_choice | expert_disagreement_reaction | `"both_wrong"` |
+| 26 | 61 | single_choice | political_pitch_resonance | `"fight_pitch"` |
+| 27 | 38 | slider | rules_procedures_matter_salience | `31` |
+| 28 | 71 | slider | rhetoric_style_importance | `51` |
+| 29 | 69 | slider | common_ground_salience | `31` |
+| 30 | 19 | slider | human_progress_salience | `31` |
+| 31 | 49 | slider | social_progress_salience | `51` |
+| 32 | 63 | best_worst | best_worst_battery | `{"best":["fairness"],"worst":["tradition_continuity"]}` |

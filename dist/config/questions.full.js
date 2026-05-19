@@ -701,7 +701,12 @@ export const FULL_QUESTIONS = [
         t("ENG", "continuous", "salience", 0.70, "attention_behavior"),
         t("EPS", "categorical", "salience", 0.65, "attention_behavior"),
         t("AES", "categorical", "salience", 0.55, "attention_behavior")
-    ])
+    ]),
+    q(244, "stage2", "I", "religion_political_role", "single_choice", 0.92, false, [
+        t("MORAL_CIRCLE", "derived", "affinity", 0.30, "religion_political_role")
+    ], {
+        eligibleIf: ["q102_religion_supported"]
+    })
 ];
 export const FULL_QUESTIONS_BY_ID = Object.fromEntries(FULL_QUESTIONS.map((q) => [q.id, q]));
 //# sourceMappingURL=questions.full.js.map

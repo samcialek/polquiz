@@ -2,7 +2,7 @@
 
 **Persona ID:** `christian-right-traditionalist`
 **Date:** 2026-05-19
-**Questions asked:** 28
+**Questions asked:** 29
 
 ## Reachability scorecard
 
@@ -17,10 +17,10 @@
 | rank | id | name | distance |
 |---|---|---|---|
 | 1 | 081 | Heritage Guardian | 0.356 |
-| 2 | 084 | Civilizational Conservative | 0.360 |
-| 3 | 106 | Militant Partisan | 0.382 |
+| 2 | 084 | Civilizational Conservative | 0.361 |
+| 3 | 106 | Militant Partisan | 0.383 |
 | 4 | 082 | Altar-and-Hearth Conservative | 0.384 |
-| 5 | 083 | Closed Traditionalist | 0.386 |
+| 5 | 083 | Closed Traditionalist | 0.387 |
 
 ## Assertions (10/10 pass)
 
@@ -35,7 +35,7 @@
 | identity-primary state | `≥ active` | `active` | ✓ |
 | identity-primary label | `Evangelical Voter` | `Evangelical Voter` | ✓ |
 | engagement level | `engaged` | `engaged` | ✓ |
-| questions asked in range | `[20, 35]` | `28` | ✓ |
+| questions asked in range | `[20, 35]` | `29` | ✓ |
 
 ## Vote-prediction scorecard
 
@@ -74,10 +74,11 @@
 | 19 | 7 | single_choice | coalition_vs_principle | `"principle_first"` |
 | 20 | 18 | single_choice | human_improvement_capacity | `"negligible_capacity"` |
 | 21 | 207 | single_choice | emergency_powers | `"never_emergency_bypass"` |
-| 22 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","says_what_they_think"],"worst":["calls_out_power",...` |
-| 23 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
-| 24 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
-| 25 | 71 | slider | rhetoric_style_importance | `51` |
-| 26 | 69 | slider | common_ground_salience | `51` |
-| 27 | 84 | slider | institutions_harden_into_domination | `71` |
-| 28 | 51 | slider | immigration_national_identity_salience | `91` |
+| 22 | 244 | single_choice | religion_political_role | `"religion_public_authority"` |
+| 23 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","says_what_they_think"],"worst":["calls_out_power",...` |
+| 24 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
+| 25 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
+| 26 | 71 | slider | rhetoric_style_importance | `51` |
+| 27 | 69 | slider | common_ground_salience | `51` |
+| 28 | 84 | slider | institutions_harden_into_domination | `71` |
+| 29 | 51 | slider | immigration_national_identity_salience | `91` |

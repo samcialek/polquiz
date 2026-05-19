@@ -101,24 +101,23 @@ export const obamaToTrumpPersona: Persona = {
     //   Combative or Fighter — ZS high + AES leans
     //   Communitarian variant — national scope excess
     archetypeLabelContains: ["Assimilationist"],
-    // Persona declared national=90 as the dominant loaded scope, but the
-    // engine's final state pushes religious=75 above national=70 because
-    // Q102's `religion` rankingMap item (placed in supportMid by the
-    // alignment scorer for an assimilationist persona) writes religious=75
-    // via moralCircle.scopedAffinities — bumping religious excess (36.67)
-    // above national excess (31.67). With demo_religion=christian, this
-    // routes to Evangelical Voter.
+    // RESOLVED Phase 7 P3 (2026-05-19): Q244 religion-political-role
+    // separator fixed the spurious Evangelical Voter routing. The persona
+    // now picks religion_cultural_heritage on Q244 (religious=50,
+    // universal=55), which corrects the religious=75 over-write from
+    // Q102's supportMid placement. Religious posterior drops below the
+    // IDP threshold; top excess scope becomes national again (no IDP
+    // overlay defined for national → state stays unresolved → results
+    // returns null per the active/dominant filter in api.ts:670).
     //
-    // FINDING: the model can't cleanly differentiate this cross-pressured-
-    // economic persona from the religious-traditionalist persona (#3) when
-    // both are Christian and culturally conservative. Both land at
-    // Evangelical Voter IDP. Real signal for future work: either (a)
-    // refine Q102's religion item to require explicit religious-membership
-    // claims (not just culturally-Christian assimilationism), or (b) add
-    // a question that separates ethnic-national in-group from religious
-    // in-group affinity.
-    identityPrimaryState: "active",
-    identityPrimaryLabel: "Evangelical Voter",
+    // Previously this persona was force-routed to Evangelical Voter
+    // because Q102's religion item placement in supportMid (driven by
+    // an assimilationist CU=2 + moderate religious=55 alignment) wrote
+    // religious=75 — enough to push religious excess above national.
+    // Q244 corrects by giving culturally-Christian-but-pragmatic
+    // respondents a way to declare "religion is heritage, not a
+    // political organizer."
+    identityPrimaryState: "none",
     votes: {
       2008: "D",
       2012: "D",

@@ -2,7 +2,7 @@
 
 **Persona ID:** `trump-mobilized-republican`
 **Date:** 2026-05-19
-**Questions asked:** 28
+**Questions asked:** 29
 
 ## Reachability scorecard
 
@@ -18,9 +18,9 @@
 |---|---|---|---|
 | 1 | 081 | Heritage Guardian | 0.331 |
 | 2 | 084 | Civilizational Conservative | 0.338 |
-| 3 | 083 | Closed Traditionalist | 0.357 |
+| 3 | 083 | Closed Traditionalist | 0.358 |
 | 4 | 082 | Altar-and-Hearth Conservative | 0.371 |
-| 5 | 106 | Militant Partisan | 0.375 |
+| 5 | 106 | Militant Partisan | 0.376 |
 
 ## Assertions (10/10 pass)
 
@@ -35,7 +35,7 @@
 | identity-primary state | `≥ active` | `active` | ✓ |
 | identity-primary label | `Evangelical Voter` | `Evangelical Voter` | ✓ |
 | engagement level | `engaged` | `engaged` | ✓ |
-| questions asked in range | `[20, 35]` | `28` | ✓ |
+| questions asked in range | `[20, 35]` | `29` | ✓ |
 
 ## Vote-prediction scorecard
 
@@ -72,12 +72,13 @@
 | 17 | 213 | single_choice | equal_standing_within_polity | `"natural_hierarchy"` |
 | 18 | 82 | single_choice | openness_assimilation_closure | `"preserve_culture"` |
 | 19 | 7 | single_choice | coalition_vs_principle | `"principle_first"` |
-| 20 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","says_what_they_think"],"worst":["bridge_builder","...` |
-| 21 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
-| 22 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
-| 23 | 49 | slider | social_progress_salience | `31` |
-| 24 | 71 | slider | rhetoric_style_importance | `51` |
-| 25 | 69 | slider | common_ground_salience | `31` |
-| 26 | 19 | slider | human_progress_salience | `31` |
-| 27 | 84 | slider | institutions_harden_into_domination | `71` |
-| 28 | 51 | slider | immigration_national_identity_salience | `91` |
+| 20 | 244 | single_choice | religion_political_role | `"religion_public_authority"` |
+| 21 | 78 | best_worst | speaker_appeal | `{"best":["deep_expertise","says_what_they_think"],"worst":["bridge_builder","...` |
+| 22 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
+| 23 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
+| 24 | 49 | slider | social_progress_salience | `31` |
+| 25 | 71 | slider | rhetoric_style_importance | `51` |
+| 26 | 69 | slider | common_ground_salience | `31` |
+| 27 | 19 | slider | human_progress_salience | `31` |
+| 28 | 84 | slider | institutions_harden_into_domination | `71` |
+| 29 | 51 | slider | immigration_national_identity_salience | `91` |

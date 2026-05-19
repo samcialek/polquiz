@@ -22,13 +22,14 @@
 | 4 | 002 | Independent Social Democrat | 0.393 |
 | 5 | 043 | Quiet Egalitarian | 0.399 |
 
-## Assertions (7/7 pass)
+## Assertions (8/8 pass)
 
 | check | expected | actual | result |
 |---|---|---|---|
 | Q103: high-salience nodes in supportHigh | `all nodes with sal≥2.5 in supportHigh` | `all placed correctly` | ✓ |
 | Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
+| top-1 archetype in acceptable list | `one of [042, 050, 048, 002, 043]` | `042 Localist Progressive` | ✓ |
 | vote match | `≥3/5` | `3/5` | ✓ |
 | identity-primary state | `≥ none` | `none` | ✓ |
 | engagement level | `apolitical` | `apolitical` | ✓ |

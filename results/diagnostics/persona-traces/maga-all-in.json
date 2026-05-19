@@ -323,48 +323,55 @@
     },
     {
       "idx": 21,
+      "qId": 244,
+      "promptShort": "religion_political_role",
+      "uiType": "single_choice",
+      "answer": "religion_public_authority"
+    },
+    {
+      "idx": 22,
       "qId": 79,
       "promptShort": "expert_disagreement_reaction",
       "uiType": "single_choice",
       "answer": "both_wrong"
     },
     {
-      "idx": 22,
+      "idx": 23,
       "qId": 61,
       "promptShort": "political_pitch_resonance",
       "uiType": "single_choice",
       "answer": "fight_pitch"
     },
     {
-      "idx": 23,
+      "idx": 24,
       "qId": 19,
       "promptShort": "human_progress_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 24,
+      "idx": 25,
       "qId": 47,
       "promptShort": "political_conflict_with_close_others",
       "uiType": "single_choice",
       "answer": "enjoy_debate"
     },
     {
-      "idx": 25,
+      "idx": 26,
       "qId": 69,
       "promptShort": "common_ground_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 26,
+      "idx": 27,
       "qId": 51,
       "promptShort": "immigration_national_identity_salience",
       "uiType": "slider",
       "answer": 91
     }
   ],
-  "questionsAsked": 26,
+  "questionsAsked": 27,
   "composedLabel": "Assimilationist Partisan-Communitarian",
   "identityPrimaryLabel": "White Grievance Voter",
   "identityPrimaryState": "dominant",
@@ -373,27 +380,27 @@
     {
       "id": "105",
       "name": "Combative Populist",
-      "distance": 0.3612405488290757
+      "distance": 0.360907349818675
     },
     {
       "id": "106",
       "name": "Militant Partisan",
-      "distance": 0.3690420765784664
+      "distance": 0.3688041982658258
     },
     {
       "id": "100",
       "name": "Tribal Insurgent",
-      "distance": 0.37726805625796356
+      "distance": 0.3765409252741222
     },
     {
       "id": "104",
       "name": "National Protector",
-      "distance": 0.3923032717818569
+      "distance": 0.3920927208048855
     },
     {
       "id": "101",
       "name": "Embattled Majoritarian",
-      "distance": 0.39779164731972577
+      "distance": 0.3976533078699343
     }
   ],
   "votes": {
@@ -489,7 +496,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "26"
+      "actual": "27"
     }
   ]
 }

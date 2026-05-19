@@ -16,11 +16,11 @@
 
 | rank | id | name | distance |
 |---|---|---|---|
-| 1 | 088 | Gentle Traditionalist | 0.404 |
-| 2 | 050 | Traditionalist Moralist | 0.407 |
-| 3 | 083 | Closed Traditionalist | 0.412 |
-| 4 | 084 | Civilizational Conservative | 0.414 |
-| 5 | 079 | National Developmentalist | 0.417 |
+| 1 | 088 | Gentle Traditionalist | 0.396 |
+| 2 | 089 | Integral Traditionalist | 0.397 |
+| 3 | 050 | Traditionalist Moralist | 0.403 |
+| 4 | 083 | Closed Traditionalist | 0.405 |
+| 5 | 079 | National Developmentalist | 0.408 |
 
 ## Assertions (9/9 pass)
 
@@ -70,7 +70,7 @@
 | 16 | 3 | slider | cultural_social_placement | `71` |
 | 17 | 20 | allocation | bad_outcomes_blame_allocation | `{"complex_forces":25,"powerful_incompetent":25,"powerful_selfish":25,"ordinar...` |
 | 18 | 213 | single_choice | equal_standing_within_polity | `"important_one_of_many"` |
-| 19 | 78 | best_worst | speaker_appeal | `{"best":["bridge_builder","deep_expertise"],"worst":["says_what_they_think","...` |
-| 20 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
-| 21 | 51 | slider | immigration_national_identity_salience | `51` |
-| 22 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
+| 19 | 244 | single_choice | religion_political_role | `"religion_public_moral_source"` |
+| 20 | 78 | best_worst | speaker_appeal | `{"best":["bridge_builder","deep_expertise"],"worst":["says_what_they_think","...` |
+| 21 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
+| 22 | 51 | slider | immigration_national_identity_salience | `51` |

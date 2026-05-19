@@ -313,6 +313,13 @@
     },
     {
       "idx": 19,
+      "qId": 244,
+      "promptShort": "religion_political_role",
+      "uiType": "single_choice",
+      "answer": "religion_public_authority"
+    },
+    {
+      "idx": 20,
       "qId": 78,
       "promptShort": "speaker_appeal",
       "uiType": "best_worst",
@@ -328,23 +335,16 @@
       }
     },
     {
-      "idx": 20,
+      "idx": 21,
       "qId": 11,
       "promptShort": "nyt_headline_click",
       "uiType": "single_choice",
       "answer": "timeless_principles"
     },
     {
-      "idx": 21,
+      "idx": 22,
       "qId": 51,
       "promptShort": "immigration_national_identity_salience",
-      "uiType": "slider",
-      "answer": 51
-    },
-    {
-      "idx": 22,
-      "qId": 4,
-      "promptShort": "cultural_social_salience",
       "uiType": "slider",
       "answer": 51
     }
@@ -358,27 +358,27 @@
     {
       "id": "134",
       "name": "Progressive Civic Nationalist",
-      "distance": 0.37738613836284474
+      "distance": 0.37758111655281845
     },
     {
       "id": "088",
       "name": "Gentle Traditionalist",
-      "distance": 0.38181571433476147
+      "distance": 0.38677823660086935
     },
     {
       "id": "045",
       "name": "Rooted Social Reformer",
-      "distance": 0.3822552902393381
+      "distance": 0.38832994428611955
     },
     {
       "id": "050",
       "name": "Traditionalist Moralist",
-      "distance": 0.3856682893860719
+      "distance": 0.3902053420325022
     },
     {
-      "id": "046",
-      "name": "Pastoral Leftist",
-      "distance": 0.3906911976778486
+      "id": "049",
+      "name": "Moral Egalitarian",
+      "distance": 0.3966407648833149
     }
   ],
   "votes": {

@@ -346,6 +346,13 @@
     },
     {
       "idx": 23,
+      "qId": 244,
+      "promptShort": "religion_political_role",
+      "uiType": "single_choice",
+      "answer": "religion_public_authority"
+    },
+    {
+      "idx": 24,
       "qId": 78,
       "promptShort": "speaker_appeal",
       "uiType": "best_worst",
@@ -361,56 +368,56 @@
       }
     },
     {
-      "idx": 24,
+      "idx": 25,
       "qId": 79,
       "promptShort": "expert_disagreement_reaction",
       "uiType": "single_choice",
       "answer": "both_wrong"
     },
     {
-      "idx": 25,
+      "idx": 26,
       "qId": 61,
       "promptShort": "political_pitch_resonance",
       "uiType": "single_choice",
       "answer": "fight_pitch"
     },
     {
-      "idx": 26,
+      "idx": 27,
       "qId": 38,
       "promptShort": "rules_procedures_matter_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 27,
+      "idx": 28,
       "qId": 71,
       "promptShort": "rhetoric_style_importance",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 28,
+      "idx": 29,
       "qId": 69,
       "promptShort": "common_ground_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 29,
+      "idx": 30,
       "qId": 19,
       "promptShort": "human_progress_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 30,
+      "idx": 31,
       "qId": 49,
       "promptShort": "social_progress_salience",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 31,
+      "idx": 32,
       "qId": 63,
       "promptShort": "best_worst_battery",
       "uiType": "best_worst",
@@ -424,7 +431,7 @@
       }
     }
   ],
-  "questionsAsked": 31,
+  "questionsAsked": 32,
   "composedLabel": "Combative Partisan-Communitarian Assimilationist",
   "identityPrimaryLabel": null,
   "identityPrimaryState": null,
@@ -433,27 +440,27 @@
     {
       "id": "106",
       "name": "Militant Partisan",
-      "distance": 0.3600830504652623
+      "distance": 0.3589886761669142
     },
     {
       "id": "104",
       "name": "National Protector",
-      "distance": 0.3648868660177359
+      "distance": 0.3640353292407475
     },
     {
       "id": "084",
       "name": "Civilizational Conservative",
-      "distance": 0.3709200188590415
+      "distance": 0.37068888475679157
     },
     {
       "id": "100",
       "name": "Tribal Insurgent",
-      "distance": 0.38682176313589134
+      "distance": 0.3854584966848552
     },
     {
       "id": "101",
       "name": "Embattled Majoritarian",
-      "distance": 0.3872228403744376
+      "distance": 0.38661559904971754
     }
   ],
   "votes": {
@@ -555,7 +562,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "31"
+      "actual": "32"
     }
   ]
 }

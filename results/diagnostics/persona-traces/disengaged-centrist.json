@@ -58,7 +58,13 @@
     "negativePartisanship": "consider_all",
     "expected": {
       "archetypeFamily": "disengaged / functionally apolitical",
-      "archetypeIds": [],
+      "archetypeIds": [
+        "042",
+        "050",
+        "048",
+        "002",
+        "043"
+      ],
       "archetypeLabelContains": [],
       "identityPrimaryState": "none",
       "votes": {
@@ -434,6 +440,12 @@
       "pass": true,
       "expected": "all nodes with sal<1.5 in neutral",
       "actual": "all placed correctly"
+    },
+    {
+      "name": "top-1 archetype in acceptable list",
+      "pass": true,
+      "expected": "one of [042, 050, 048, 002, 043]",
+      "actual": "042 Localist Progressive"
     },
     {
       "name": "vote match",

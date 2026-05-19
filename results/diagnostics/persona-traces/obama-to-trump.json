@@ -68,8 +68,7 @@
       "archetypeLabelContains": [
         "Assimilationist"
       ],
-      "identityPrimaryState": "active",
-      "identityPrimaryLabel": "Evangelical Voter",
+      "identityPrimaryState": "none",
       "votes": {
         "2008": "D",
         "2012": "D",
@@ -332,6 +331,13 @@
     },
     {
       "idx": 22,
+      "qId": 244,
+      "promptShort": "religion_political_role",
+      "uiType": "single_choice",
+      "answer": "religion_cultural_heritage"
+    },
+    {
+      "idx": 23,
       "qId": 78,
       "promptShort": "speaker_appeal",
       "uiType": "best_worst",
@@ -347,7 +353,7 @@
       }
     },
     {
-      "idx": 23,
+      "idx": 24,
       "qId": 20,
       "promptShort": "bad_outcomes_blame_allocation",
       "uiType": "allocation",
@@ -359,70 +365,70 @@
       }
     },
     {
-      "idx": 24,
+      "idx": 25,
       "qId": 79,
       "promptShort": "expert_disagreement_reaction",
       "uiType": "single_choice",
       "answer": "both_wrong"
     },
     {
-      "idx": 25,
+      "idx": 26,
       "qId": 61,
       "promptShort": "political_pitch_resonance",
       "uiType": "single_choice",
       "answer": "values_pitch"
     },
     {
-      "idx": 26,
+      "idx": 27,
       "qId": 11,
       "promptShort": "nyt_headline_click",
       "uiType": "single_choice",
       "answer": "timeless_principles"
     },
     {
-      "idx": 27,
+      "idx": 28,
       "qId": 56,
       "promptShort": "effective_leader_style",
       "uiType": "single_choice",
       "answer": "channel_anger"
     },
     {
-      "idx": 28,
+      "idx": 29,
       "qId": 38,
       "promptShort": "rules_procedures_matter_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 29,
+      "idx": 30,
       "qId": 49,
       "promptShort": "social_progress_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 30,
+      "idx": 31,
       "qId": 71,
       "promptShort": "rhetoric_style_importance",
       "uiType": "slider",
       "answer": 51
     },
     {
-      "idx": 31,
+      "idx": 32,
       "qId": 69,
       "promptShort": "common_ground_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 32,
+      "idx": 33,
       "qId": 19,
       "promptShort": "human_progress_salience",
       "uiType": "slider",
       "answer": 31
     },
     {
-      "idx": 33,
+      "idx": 34,
       "qId": 63,
       "promptShort": "best_worst_battery",
       "uiType": "best_worst",
@@ -436,36 +442,36 @@
       }
     }
   ],
-  "questionsAsked": 33,
+  "questionsAsked": 34,
   "composedLabel": "Combative Assimilationist Redistributionist",
-  "identityPrimaryLabel": "Evangelical Voter",
-  "identityPrimaryState": "active",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
   "engagementLevel": "engaged",
   "topArchetypes": [
     {
-      "id": "084",
-      "name": "Civilizational Conservative",
-      "distance": 0.4124713383150661
-    },
-    {
       "id": "104",
       "name": "National Protector",
-      "distance": 0.4126866149147191
+      "distance": 0.41717814984650253
     },
     {
-      "id": "100",
-      "name": "Tribal Insurgent",
-      "distance": 0.42045175734164164
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "distance": 0.4198757491090793
     },
     {
       "id": "088",
       "name": "Gentle Traditionalist",
-      "distance": 0.42344829723077204
+      "distance": 0.42231959799624086
     },
     {
       "id": "083",
       "name": "Closed Traditionalist",
-      "distance": 0.4261330968964525
+      "distance": 0.4252268365167681
+    },
+    {
+      "id": "100",
+      "name": "Tribal Insurgent",
+      "distance": 0.4256195091167042
     }
   ],
   "votes": {
@@ -525,7 +531,7 @@
       "name": "top-1 archetype in acceptable list",
       "pass": true,
       "expected": "one of [084, 104, 100, 088, 083]",
-      "actual": "084 Civilizational Conservative"
+      "actual": "104 National Protector"
     },
     {
       "name": "vote match",
@@ -542,14 +548,8 @@
     {
       "name": "identity-primary state",
       "pass": true,
-      "expected": "≥ active",
-      "actual": "active"
-    },
-    {
-      "name": "identity-primary label",
-      "pass": true,
-      "expected": "Evangelical Voter",
-      "actual": "Evangelical Voter"
+      "expected": "≥ none",
+      "actual": "none"
     },
     {
       "name": "engagement level",
@@ -561,7 +561,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "33"
+      "actual": "34"
     }
   ]
 }

@@ -2,12 +2,12 @@
 
 **Persona ID:** `obama-to-trump`
 **Date:** 2026-05-19
-**Questions asked:** 33
+**Questions asked:** 34
 
 ## Reachability scorecard
 
 - Composed archetype label: **Combative Assimilationist Redistributionist**
-- Identity-primary overlay: Evangelical Voter
+- Identity-primary overlay: (none)
 - Engagement level: engaged
 
 **Expected archetype family:** cross-pressured populist-communitarian
@@ -16,26 +16,25 @@
 
 | rank | id | name | distance |
 |---|---|---|---|
-| 1 | 084 | Civilizational Conservative | 0.412 |
-| 2 | 104 | National Protector | 0.413 |
-| 3 | 100 | Tribal Insurgent | 0.420 |
-| 4 | 088 | Gentle Traditionalist | 0.423 |
-| 5 | 083 | Closed Traditionalist | 0.426 |
+| 1 | 104 | National Protector | 0.417 |
+| 2 | 084 | Civilizational Conservative | 0.420 |
+| 3 | 088 | Gentle Traditionalist | 0.422 |
+| 4 | 083 | Closed Traditionalist | 0.425 |
+| 5 | 100 | Tribal Insurgent | 0.426 |
 
-## Assertions (10/10 pass)
+## Assertions (9/9 pass)
 
 | check | expected | actual | result |
 |---|---|---|---|
 | Q103: high-salience nodes in supportHigh | `all nodes with sal≥2.5 in supportHigh` | `all placed correctly` | ✓ |
 | Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
-| top-1 archetype in acceptable list | `one of [084, 104, 100, 088, 083]` | `084 Civilizational Conservative` | ✓ |
+| top-1 archetype in acceptable list | `one of [084, 104, 100, 088, 083]` | `104 National Protector` | ✓ |
 | vote match | `≥4/5` | `4/5` | ✓ |
 | composed label contains "Assimilationist" | `Assimilationist` | `Combative Assimilationist Redistributionist` | ✓ |
-| identity-primary state | `≥ active` | `active` | ✓ |
-| identity-primary label | `Evangelical Voter` | `Evangelical Voter` | ✓ |
+| identity-primary state | `≥ none` | `none` | ✓ |
 | engagement level | `engaged` | `engaged` | ✓ |
-| questions asked in range | `[20, 35]` | `33` | ✓ |
+| questions asked in range | `[20, 35]` | `34` | ✓ |
 
 ## Vote-prediction scorecard
 
@@ -74,15 +73,16 @@
 | 19 | 7 | single_choice | coalition_vs_principle | `"principle_first"` |
 | 20 | 213 | single_choice | equal_standing_within_polity | `"some_differentiation_acceptable"` |
 | 21 | 207 | single_choice | emergency_powers | `"moderate_emergency"` |
-| 22 | 78 | best_worst | speaker_appeal | `{"best":["says_what_they_think","calls_out_power"],"worst":["bridge_builder",...` |
-| 23 | 20 | allocation | bad_outcomes_blame_allocation | `{"complex_forces":25,"powerful_incompetent":25,"powerful_selfish":25,"ordinar...` |
-| 24 | 79 | single_choice | expert_disagreement_reaction | `"both_wrong"` |
-| 25 | 61 | single_choice | political_pitch_resonance | `"values_pitch"` |
-| 26 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
-| 27 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
-| 28 | 38 | slider | rules_procedures_matter_salience | `31` |
-| 29 | 49 | slider | social_progress_salience | `31` |
-| 30 | 71 | slider | rhetoric_style_importance | `51` |
-| 31 | 69 | slider | common_ground_salience | `31` |
-| 32 | 19 | slider | human_progress_salience | `31` |
-| 33 | 63 | best_worst | best_worst_battery | `{"best":["fairness"],"worst":["tradition_continuity"]}` |
+| 22 | 244 | single_choice | religion_political_role | `"religion_cultural_heritage"` |
+| 23 | 78 | best_worst | speaker_appeal | `{"best":["says_what_they_think","calls_out_power"],"worst":["bridge_builder",...` |
+| 24 | 20 | allocation | bad_outcomes_blame_allocation | `{"complex_forces":25,"powerful_incompetent":25,"powerful_selfish":25,"ordinar...` |
+| 25 | 79 | single_choice | expert_disagreement_reaction | `"both_wrong"` |
+| 26 | 61 | single_choice | political_pitch_resonance | `"values_pitch"` |
+| 27 | 11 | single_choice | nyt_headline_click | `"timeless_principles"` |
+| 28 | 56 | single_choice | effective_leader_style | `"channel_anger"` |
+| 29 | 38 | slider | rules_procedures_matter_salience | `31` |
+| 30 | 49 | slider | social_progress_salience | `31` |
+| 31 | 71 | slider | rhetoric_style_importance | `51` |
+| 32 | 69 | slider | common_ground_salience | `31` |
+| 33 | 19 | slider | human_progress_salience | `31` |
+| 34 | 63 | best_worst | best_worst_battery | `{"best":["fairness"],"worst":["tradition_continuity"]}` |
