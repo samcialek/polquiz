@@ -205,7 +205,7 @@ rankings. Low impact (diagnostic only) but conceptually clean to fix.
 | 1 | F2 — weaken Q97 PF emission to weight 0.30 | 1 hour | Next |
 | 2 | F3 — filter IDP IDs 141-146 from `getTopArchetypesForDiagnostics()` | 30 min | DONE Phase 7 P2 |
 | 3 | F6 — design + add Q244 religion-as-organizing separator | 1 session | After P2 verified |
-| 4 | F1 — document architectural limitation; ticket for future roadmap | 1 session | Anytime; doesn't block |
+| 4 | F1 — document architectural limitation; ticket for future roadmap | 1 session | DONE — see `f1-temporal-vote-architectural-ceiling.md` |
 | n/a | F4 — minor edge-case; accept current behavior | — | Skip |
 | n/a | F5 archetype additions | — | Defer indefinitely (CLAUDE.md count anchor) |
 | n/a | Q240–Q243 | — | Defer all four; none solve Phase-6 findings |
