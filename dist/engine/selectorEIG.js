@@ -116,6 +116,17 @@ function trbConverged(state) {
 function touchInfoGain(state, touch, questionsById) {
     const nodeId = touch.node;
     if (nodeId === "MORAL_CIRCLE") {
+        // Heuristic info-gain (first pass, post-ADR-007). The score reflects
+        // generic moral-circle uncertainty — universalEntropy on a binary
+        // universal/non-universal split, plus 0.1 per unresolved scope. It is
+        // NOT scope-specific: a question that probes only the religious scope
+        // gets the same value as a question that probes only the gender scope,
+        // even when only one of them is unresolved. This is acceptable as a
+        // first pass with low touch weight (0.10) on the affinity touches —
+        // the EIG scorer credits the question for the moral-circle dimension
+        // without being precise about which scope it sharpens. Revisit if the
+        // selector under- or over-prioritizes individual scope probes
+        // (Q232–Q238) once persona-suite harness data is available.
         const mc = state.moralCircle?.affinity;
         if (!mc)
             return Math.log(7);

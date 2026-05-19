@@ -15,7 +15,26 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { REPRESENTATIVE_QUESTIONS } from "../dist/config/questions.representative.js";
+
+// Freshness check: refuse to run if the compiled bundle is older than the
+// source. The audit reads `dist/config/questions.representative.js` (compiled)
+// to avoid needing tsx at runtime, but stale dist will silently audit the
+// wrong file. Fail loudly instead.
+const SRC = path.join("src", "config", "questions.representative.ts");
+const DIST = path.join("dist", "config", "questions.representative.js");
+if (!fs.existsSync(DIST)) {
+  console.error(`Missing ${DIST}. Run \`npm run build\` first.`);
+  process.exit(1);
+}
+const srcMtime = fs.statSync(SRC).mtimeMs;
+const distMtime = fs.statSync(DIST).mtimeMs;
+if (distMtime < srcMtime) {
+  const lagSec = ((srcMtime - distMtime) / 1000).toFixed(1);
+  console.error(`Stale build: ${DIST} is ${lagSec}s older than ${SRC}. Run \`npm run build\` and retry.`);
+  process.exit(1);
+}
+
+const { REPRESENTATIVE_QUESTIONS } = await import("../dist/config/questions.representative.js");
 
 const OUT_DIR = path.join("results", "diagnostics");
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -57,7 +76,7 @@ function extractRowsForQuestion(q) {
     ["bestWorstMap", q.bestWorstMap],
   ];
 
-  // pairMaps and dualAxisMap handled separately
+  // pairMaps and dualAxisMap handled separately (below)
   for (const [shape, map] of sources) {
     if (!map) continue;
     for (const [key, ev] of Object.entries(map)) {
@@ -161,6 +180,113 @@ function extractRowsForQuestion(q) {
               kind: "moralCircle_scoped", scalar: val,
               touchDeclared: touchDeclares(q, "MORAL_CIRCLE", null),
             });
+          }
+        }
+      }
+    }
+  }
+
+  // pairMaps — pairwise UI. Shape: { pairId: { sideA: evBlock, sideB: evBlock } }.
+  if (q.pairMaps) {
+    for (const [pairId, sides] of Object.entries(q.pairMaps)) {
+      for (const [side, ev] of Object.entries(sides)) {
+        const optionKey = `${pairId}.${side}`;
+        if (ev.continuous) {
+          for (const [node, fields] of Object.entries(ev.continuous)) {
+            if (fields && typeof fields === "object" && "pos" in fields) {
+              const s = distSummary(fields.pos);
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.pos`,
+                kind: "continuous_pos", dist: fields.pos,
+                peak: s.peak, maxVal: s.maxVal, sum: s.sum,
+                hollow: isHollowDist(fields.pos),
+                sharp: s.maxVal !== null && s.maxVal >= SHARP_PEAK,
+                touchDeclared: touchDeclares(q, node, "position"),
+              });
+            }
+            if (fields && typeof fields === "object" && "sal" in fields) {
+              const s = distSummary(fields.sal);
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.sal`,
+                kind: "continuous_sal", dist: fields.sal,
+                peak: s.peak, maxVal: s.maxVal, sum: s.sum,
+                hollow: isHollowDist(fields.sal),
+                sharp: s.maxVal !== null && s.maxVal >= SHARP_PEAK,
+                touchDeclared: touchDeclares(q, node, "salience"),
+              });
+            }
+            if (typeof fields === "number") {
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.scalar`,
+                kind: "continuous_scalar", scalar: fields,
+                touchDeclared: touchDeclares(q, node, null),
+              });
+            }
+          }
+        }
+        if (ev.categorical) {
+          for (const [node, fields] of Object.entries(ev.categorical)) {
+            if (fields && typeof fields === "object" && "cat" in fields) {
+              const s = distSummary(fields.cat);
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.cat`,
+                kind: "categorical_cat", dist: fields.cat,
+                peak: s.peak, maxVal: s.maxVal, sum: s.sum,
+                hollow: isHollowDist(fields.cat),
+                sharp: s.maxVal !== null && s.maxVal >= SHARP_PEAK,
+                touchDeclared: touchDeclares(q, node, "category"),
+              });
+            }
+            if (fields && typeof fields === "object" && "probs" in fields) {
+              const s = distSummary(fields.probs);
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.probs`,
+                kind: "categorical_probs", dist: fields.probs,
+                peak: s.peak, maxVal: s.maxVal, sum: s.sum,
+                hollow: isHollowDist(fields.probs),
+                sharp: s.maxVal !== null && s.maxVal >= SHARP_PEAK,
+                touchDeclared: touchDeclares(q, node, "category"),
+              });
+            }
+            if (fields && typeof fields === "object" && "sal" in fields) {
+              const s = distSummary(fields.sal);
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `${node}.sal`,
+                kind: "categorical_sal", dist: fields.sal,
+                peak: s.peak, maxVal: s.maxVal, sum: s.sum,
+                hollow: isHollowDist(fields.sal),
+                sharp: s.maxVal !== null && s.maxVal >= SHARP_PEAK,
+                touchDeclared: touchDeclares(q, node, "salience"),
+              });
+            }
+          }
+        }
+        if (ev.trbAnchor) {
+          const anchors = Object.keys(ev.trbAnchor);
+          rows.push({
+            source: "pairMaps", optionKey, evidenceTarget: `TRB_ANCHOR.anchor`,
+            kind: "trb_anchor", anchors, anchorValues: ev.trbAnchor,
+            hollow: anchors.length === 0,
+            touchDeclared: touchDeclares(q, "TRB_ANCHOR", null),
+          });
+        }
+        if (ev.moralCircle) {
+          const mc = ev.moralCircle;
+          if (mc.universal !== undefined) {
+            rows.push({
+              source: "pairMaps", optionKey, evidenceTarget: `MORAL_CIRCLE.universal`,
+              kind: "moralCircle_universal", scalar: mc.universal,
+              touchDeclared: touchDeclares(q, "MORAL_CIRCLE", null),
+            });
+          }
+          if (mc.scopedAffinities) {
+            for (const [scope, val] of Object.entries(mc.scopedAffinities)) {
+              rows.push({
+                source: "pairMaps", optionKey, evidenceTarget: `MORAL_CIRCLE.scoped.${scope}`,
+                kind: "moralCircle_scoped", scalar: val,
+                touchDeclared: touchDeclares(q, "MORAL_CIRCLE", null),
+              });
+            }
           }
         }
       }

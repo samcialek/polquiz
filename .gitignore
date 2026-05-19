@@ -1,0 +1,3 @@
+# Reproducible audit output (regenerate via scripts/audit-per-response.mjs).
+# The script + curated summary are tracked; the 18k+ line inventory is not.
+results/diagnostics/per-response-inventory.json

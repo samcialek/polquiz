@@ -58,14 +58,34 @@ Weight choice: **0.10** matches Q229's existing precedent (the only previously-c
 
 Remaining 12 flags are all on **Q228** which is retired (`exposeRules.eligibleIf: ["__retired__"]`). Dead code; left alone.
 
-## Verification
+## Phase 2b — selector support (load-bearing complement)
+
+The touchProfile additions only matter if the selector knows how to score `MORAL_CIRCLE` touches and how to read evidence from `priority_sort` questions. Three minimal edits in `src/engine/selectorEIG.ts` complete the chain:
+
+1. `touchInfoGain()` — added a `MORAL_CIRCLE` branch returning `Math.log(7)` when `state.moralCircle.affinity` is unset, else `universalEntropy + 0.1 × unresolvedScopes`. **Heuristic, not scope-specific** — explicitly documented in the source as a first pass.
+2. `evidenceEntries()` — added `priority_sort` to the UI types whose `rankingMap` is consumed for coverage calculation (without this, Q60/Q102/Q229/Q103 contribute 0 coverage on any node).
+3. `hasEvidenceFor()` — added a `MORAL_CIRCLE` branch that returns true iff `ev.moralCircle` is present.
+
+Plus the `moralCircle?: unknown` field on the `EvidenceBlock` type.
+
+Without these, the touchProfile entries added in Phase 2 would be inert — the EIG scorer would still return 0 for them. This patch had been sitting uncommitted in the working tree; committing it makes the Phase 2 fix real.
+
+## Verification (post-commit, full chain)
 
 - `npm run build` — clean
+- `node scripts/audit-per-response.mjs` — router slice 0 flags; 12 remaining on retired Q228 only; pairMaps now covered (Q24 surfaces 4 rows, 0 flags)
 - `npx tsx src/test/opener-smoke.ts` — 15/15 fixed router items reached
-- `npx tsx src/test/opposehigh-dryrun.ts` — MAGA-tribalist universalAffinity=27.5; IDP gate passes; identical to pre-fix output
-- `npm run diagnose:personas` — 10/10 personas ran without crashes; vote tallies plausible
+- `npx tsx src/test/opposehigh-dryrun.ts` — MAGA-tribalist universalAffinity=27.5; IDP gate passes
+- `npm run diagnose:personas` — 10/10 ran without crashes; vote tallies plausible
 
-**Behavioral change observed (expected and correct):** in opener-smoke, the adaptive phase now selects moral-circle questions (Q230, Q231, Q232-Q236) earlier than before, and additionally reaches Q203/Q204/Q206/Q213/Q82 that the previous selection left unreached. This is the EIG selector correctly responding to the newly-credited moral-circle signal in those questions' touchProfiles.
+**Behavioral change observed (expected, correct):** in opener-smoke, the adaptive phase now selects moral-circle questions (Q230, Q231, Q232-Q236) earlier than before, and additionally reaches Q203/Q204/Q206/Q213/Q82 that the previous selection left unreached. This is the EIG selector correctly responding to the newly-credited moral-circle signal — which only works because **both** the touchProfile entries (Phase 2) **and** the selectorEIG handlers (Phase 2b) are in place.
+
+## Audit script hygiene
+
+`scripts/audit-per-response.mjs` was hardened after first run:
+- Added a freshness check — refuses to run if `dist/config/questions.representative.js` is older than its `.ts` source. Prevents silent stale-data audits.
+- Added `pairMaps` coverage (previously skipped — Q24 was invisible). Live bank has only Q24 as pairwise; Q67/Q74 referenced in older docs live in `questions.full.ts` (metadata stub), not the representative bank.
+- The 18k-line `per-response-inventory.json` is reproducible output; now gitignored. Script + curated summary are tracked.
 
 ## What's NOT yet done
 

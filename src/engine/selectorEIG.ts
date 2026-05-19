@@ -149,6 +149,26 @@ function touchInfoGain(
 ): number {
   const nodeId = touch.node;
 
+  if (nodeId === "MORAL_CIRCLE") {
+    // Heuristic info-gain (first pass, post-ADR-007). The score reflects
+    // generic moral-circle uncertainty — universalEntropy on a binary
+    // universal/non-universal split, plus 0.1 per unresolved scope. It is
+    // NOT scope-specific: a question that probes only the religious scope
+    // gets the same value as a question that probes only the gender scope,
+    // even when only one of them is unresolved. This is acceptable as a
+    // first pass with low touch weight (0.10) on the affinity touches —
+    // the EIG scorer credits the question for the moral-circle dimension
+    // without being precise about which scope it sharpens. Revisit if the
+    // selector under- or over-prioritizes individual scope probes
+    // (Q232–Q238) once persona-suite harness data is available.
+    const mc = state.moralCircle?.affinity;
+    if (!mc) return Math.log(7);
+    const universal = Math.max(0.001, Math.min(0.999, mc.universalAffinity / 100));
+    const universalEntropy = entropy([universal, 1 - universal]);
+    const unresolvedScopes = Object.values(mc.scopedAffinities).filter(v => v == null).length;
+    return universalEntropy + unresolvedScopes * 0.1;
+  }
+
   if (nodeId === "TRB_ANCHOR") {
     if (trbConverged(state)) return 0;
     return entropy(state.trbAnchor.dist);
@@ -198,6 +218,7 @@ type EvidenceBlock = {
   continuous?: Record<string, unknown>;
   categorical?: Record<string, unknown>;
   trbAnchor?: Record<string, number>;
+  moralCircle?: unknown;
 };
 
 function evidenceEntries(q: QuestionDef): EvidenceBlock[] {
@@ -207,7 +228,7 @@ function evidenceEntries(q: QuestionDef): EvidenceBlock[] {
   if (q.uiType === "slider") {
     return Object.values(q.sliderMap ?? {}) as EvidenceBlock[];
   }
-  if (q.uiType === "ranking" || q.uiType === "best_worst") {
+  if (q.uiType === "ranking" || q.uiType === "best_worst" || q.uiType === "priority_sort") {
     const map = q.rankingMap ?? q.bestWorstMap ?? {};
     return Object.values(map) as EvidenceBlock[];
   }
@@ -228,6 +249,9 @@ function hasEvidenceFor(ev: EvidenceBlock | undefined, t: TouchTarget, uiType: Q
   if (t.node === "TRB_ANCHOR") {
     const anchors = ev.trbAnchor;
     return !!anchors && Object.keys(anchors).length > 0;
+  }
+  if (t.node === "MORAL_CIRCLE") {
+    return !!ev.moralCircle;
   }
   // Plain-number evidence shapes (ranking/best_worst/allocation/pairwise):
   // a touch is "covered" if the node appears at all — these uiTypes don't

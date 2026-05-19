@@ -14,7 +14,7 @@ Each row reports the mechanical findings only. Manual SIGN / UNDER-PULL / OVER-P
 
 **Full-bank totals (for context):**
 - Questions: 106
-- Evidence rows: 883
+- Evidence rows: 887
 - Mechanical flags: 12
   - EVIDENCE_NOT_IN_TOUCHPROFILE: 12
 
