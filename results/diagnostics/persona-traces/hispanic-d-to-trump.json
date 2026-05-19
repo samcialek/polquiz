@@ -1,25 +1,25 @@
 {
   "persona": {
-    "id": "black-moderate-democrat",
-    "name": "Black Moderate Religious Democrat (lifelong D)",
+    "id": "hispanic-d-to-trump",
+    "name": "Hispanic D → Trump (2020/2024 shift)",
     "demographics": {
-      "age": "45-54",
+      "age": "35-44",
       "gender": "male",
-      "race": "black",
+      "race": "hispanic",
       "lgbtq": "no",
       "religion": "christian"
     },
-    "partyID": "dem",
+    "partyID": "ind_pure",
     "positions": {
-      "MAT": 2,
+      "MAT": 3,
       "CD": 4,
       "CU": 3,
       "MOR": 3,
       "PRO": 3,
       "COM": 3,
-      "ZS": 3,
-      "ONT_H": 4,
-      "ONT_S": 4,
+      "ZS": 4,
+      "ONT_H": 3,
+      "ONT_S": 3,
       "PF": 3,
       "TRB": 4,
       "ENG": 3
@@ -29,9 +29,9 @@
       "CD": 2,
       "CU": 2,
       "MOR": 3,
-      "PRO": 2,
-      "COM": 2,
-      "ZS": 2,
+      "PRO": 1,
+      "COM": 1,
+      "ZS": 3,
       "ONT_H": 1,
       "ONT_S": 2,
       "PF": 2,
@@ -41,43 +41,42 @@
       "AES": 2
     },
     "moralCircle": {
-      "universal": 40,
+      "universal": 50,
       "scopedAffinities": {
         "national": 70,
-        "religious": 90,
-        "ethnic_racial": 95,
-        "class": 60,
+        "religious": 75,
+        "ethnic_racial": 80,
+        "class": 65,
         "gender": 55,
-        "ideological": 65
+        "ideological": 60
       }
     },
-    "eps": "institutionalist",
+    "eps": "traditionalist",
     "aes": "pastoral",
     "engagement": "engaged",
     "strategicVoting": "depends_on_stakes",
-    "negativePartisanship": "never_rep",
+    "negativePartisanship": "consider_all",
     "expected": {
-      "archetypeFamily": "communitarian Democrat / Black voter",
+      "archetypeFamily": "cross-pressured moderate / new-coalition",
       "archetypeIds": [
-        "134",
+        "088",
         "050",
-        "049",
-        "045",
-        "088"
+        "083",
+        "084",
+        "079"
       ],
       "archetypeLabelContains": [
         "Traditionalist"
       ],
-      "identityPrimaryState": "active",
-      "identityPrimaryLabel": "Black Voter",
+      "identityPrimaryState": "none",
       "votes": {
         "2008": "D",
         "2012": "D",
         "2016": "D",
-        "2020": "D",
-        "2024": "D"
+        "2020": "R",
+        "2024": "R"
       },
-      "voteMatchMin": 5,
+      "voteMatchMin": 2,
       "engagement": "engaged",
       "questionsInRange": [
         20,
@@ -91,7 +90,7 @@
       "qId": 200,
       "promptShort": "party_identification",
       "uiType": "single_choice",
-      "answer": "dem"
+      "answer": "ind"
     },
     {
       "idx": 2,
@@ -101,19 +100,19 @@
       "answer": {
         "supportHigh": [
           "mat",
-          "mor"
+          "mor",
+          "zs"
         ],
         "supportMid": [
           "cd",
           "cu",
-          "pro",
-          "com",
-          "zs",
           "ont_s",
           "eps",
           "aes"
         ],
         "neutral": [
+          "pro",
+          "com",
           "ont_h"
         ],
         "opposeHigh": []
@@ -142,11 +141,10 @@
           "class_identity"
         ],
         "neutral": [
-          "gender_identity"
-        ],
-        "opposeHigh": [
+          "gender_identity",
           "global_citizen"
-        ]
+        ],
+        "opposeHigh": []
       }
     },
     {
@@ -156,7 +154,7 @@
       "uiType": "best_worst",
       "answer": {
         "best": [
-          "eps_institutionalist"
+          "eps_traditionalist"
         ],
         "worst": [
           "eps_autonomous"
@@ -189,7 +187,7 @@
       "qId": 212,
       "promptShort": "negative_partisanship",
       "uiType": "single_choice",
-      "answer": "never_rep"
+      "answer": "consider_all"
     },
     {
       "idx": 9,
@@ -198,11 +196,12 @@
       "uiType": "priority_sort",
       "answer": {
         "supportHigh": [
-          "mat_low",
           "cd_high"
         ],
         "supportMid": [],
         "neutral": [
+          "mat_low",
+          "mat_high",
           "cu_low",
           "cu_high",
           "mor_low",
@@ -213,7 +212,6 @@
           "com_high"
         ],
         "opposeHigh": [
-          "mat_high",
           "cd_low"
         ]
       }
@@ -224,14 +222,13 @@
       "promptShort": "membership_criteria_priority_sort",
       "uiType": "priority_sort",
       "answer": {
-        "supportHigh": [
-          "religion"
-        ],
+        "supportHigh": [],
         "supportMid": [
           "born_here",
           "speak_lang",
           "cultural",
           "ancestry",
+          "religion",
           "economic"
         ],
         "neutral": [
@@ -246,14 +243,14 @@
       "qId": 209,
       "promptShort": "zero_sum_economics_view",
       "uiType": "single_choice",
-      "answer": "growth_with_distribution"
+      "answer": "winners_at_others_expense"
     },
     {
       "idx": 12,
       "qId": 210,
       "promptShort": "human_malleability_view",
       "uiType": "single_choice",
-      "answer": "substantial_shaping"
+      "answer": "modest_shaping"
     },
     {
       "idx": 13,
@@ -299,10 +296,15 @@
     },
     {
       "idx": 17,
-      "qId": 202,
-      "promptShort": "state_scope_preference",
-      "uiType": "single_choice",
-      "answer": "universal_strong_state"
+      "qId": 20,
+      "promptShort": "bad_outcomes_blame_allocation",
+      "uiType": "allocation",
+      "answer": {
+        "complex_forces": 25,
+        "powerful_incompetent": 25,
+        "powerful_selfish": 25,
+        "ordinary_choices": 25
+      }
     },
     {
       "idx": 18,
@@ -318,12 +320,12 @@
       "uiType": "best_worst",
       "answer": {
         "best": [
-          "deep_expertise",
-          "bridge_builder"
+          "bridge_builder",
+          "deep_expertise"
         ],
         "worst": [
           "says_what_they_think",
-          "calls_out_power"
+          "big_picture"
         ]
       }
     },
@@ -343,75 +345,75 @@
     },
     {
       "idx": 22,
-      "qId": 4,
-      "promptShort": "cultural_social_salience",
-      "uiType": "slider",
-      "answer": 51
+      "qId": 56,
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "answer": "channel_anger"
     }
   ],
   "questionsAsked": 22,
-  "composedLabel": "Traditionalist Populist-Left",
-  "identityPrimaryLabel": "Black Voter",
-  "identityPrimaryState": "active",
+  "composedLabel": "Traditionalist Culture Warrior",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
   "engagementLevel": "engaged",
   "topArchetypes": [
     {
-      "id": "134",
-      "name": "Progressive Civic Nationalist",
-      "distance": 0.37738613836284474
-    },
-    {
       "id": "088",
       "name": "Gentle Traditionalist",
-      "distance": 0.38181571433476147
-    },
-    {
-      "id": "045",
-      "name": "Rooted Social Reformer",
-      "distance": 0.3822552902393381
+      "distance": 0.40386119610035304
     },
     {
       "id": "050",
       "name": "Traditionalist Moralist",
-      "distance": 0.3856682893860719
+      "distance": 0.40682512033103024
     },
     {
-      "id": "046",
-      "name": "Pastoral Leftist",
-      "distance": 0.3906911976778486
+      "id": "083",
+      "name": "Closed Traditionalist",
+      "distance": 0.41182745531403536
+    },
+    {
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "distance": 0.41414790737078355
+    },
+    {
+      "id": "079",
+      "name": "National Developmentalist",
+      "distance": 0.41665709863831485
     }
   ],
   "votes": {
-    "2008": "D",
-    "2012": "D",
-    "2016": "D",
-    "2020": "D",
-    "2024": "D"
+    "2008": "R",
+    "2012": "R",
+    "2016": "R",
+    "2020": "R",
+    "2024": "R"
   },
   "voteMatches": {
     "2008": {
       "expected": "D",
-      "actual": "D",
-      "match": true
+      "actual": "R",
+      "match": false
     },
     "2012": {
       "expected": "D",
-      "actual": "D",
-      "match": true
+      "actual": "R",
+      "match": false
     },
     "2016": {
       "expected": "D",
-      "actual": "D",
-      "match": true
+      "actual": "R",
+      "match": false
     },
     "2020": {
-      "expected": "D",
-      "actual": "D",
+      "expected": "R",
+      "actual": "R",
       "match": true
     },
     "2024": {
-      "expected": "D",
-      "actual": "D",
+      "expected": "R",
+      "actual": "R",
       "match": true
     }
   },
@@ -437,32 +439,26 @@
     {
       "name": "top-1 archetype in acceptable list",
       "pass": true,
-      "expected": "one of [134, 050, 049, 045, 088]",
-      "actual": "134 Progressive Civic Nationalist"
+      "expected": "one of [088, 050, 083, 084, 079]",
+      "actual": "088 Gentle Traditionalist"
     },
     {
       "name": "vote match",
       "pass": true,
-      "expected": "≥5/5",
-      "actual": "5/5"
+      "expected": "≥2/5",
+      "actual": "2/5"
     },
     {
       "name": "composed label contains \"Traditionalist\"",
       "pass": true,
       "expected": "Traditionalist",
-      "actual": "Traditionalist Populist-Left"
+      "actual": "Traditionalist Culture Warrior"
     },
     {
       "name": "identity-primary state",
       "pass": true,
-      "expected": "≥ active",
-      "actual": "active"
-    },
-    {
-      "name": "identity-primary label",
-      "pass": true,
-      "expected": "Black Voter",
-      "actual": "Black Voter"
+      "expected": "≥ none",
+      "actual": "none"
     },
     {
       "name": "engagement level",

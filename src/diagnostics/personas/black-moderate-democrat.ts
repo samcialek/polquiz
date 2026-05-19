@@ -88,10 +88,12 @@ export const blackModerateDemocratPersona: Persona = {
   negativePartisanship: "never_rep",
   expected: {
     archetypeFamily: "communitarian Democrat / Black voter",
-    // Observed top-1 #050 Traditionalist Moralist; top-5 cluster mixes
-    // economic-Democrat + cultural-traditionalist archetypes — accurate
+    // Observed top-1 #134 Progressive Civic Nationalist after the moral-
+    // circle tuning (universal 60→40, religious 80→90, ethnic_racial 85→95)
+    // pushed the persona deeper into the civic-progressive cluster. Top-5
+    // mix economic-Democrat + cultural-traditionalist archetypes — accurate
     // for the persona (CD=4 traditional + MAT=2 redistributive).
-    archetypeIds: ["050", "049", "134", "045", "088"],
+    archetypeIds: ["134", "050", "049", "045", "088"],
     // Composed label "Traditionalist Populist-Left" is the merger of CD=4
     // (Traditionalist) + MAT=2 (Populist-Left). Both are semantically
     // correct markers of the persona.

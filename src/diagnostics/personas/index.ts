@@ -9,6 +9,10 @@ import { trumpMobilizedRepublicanPersona } from "./trump-mobilized-republican.js
 import { urbanProgressiveDemocratPersona } from "./urban-progressive-democrat.js";
 import { blackModerateDemocratPersona } from "./black-moderate-democrat.js";
 import { magaAllInPersona } from "./maga-all-in.js";
+import { hispanicDToTrumpPersona } from "./hispanic-d-to-trump.js";
+import { neverTrumpRepublicanPersona } from "./never-trump-republican.js";
+import { bernieProgressivePersona } from "./bernie-progressive.js";
+import { christianRightTraditionalistPersona } from "./christian-right-traditionalist.js";
 
 export const ALL_PERSONAS: Persona[] = [
   abstainToTrumpPersona,
@@ -17,6 +21,10 @@ export const ALL_PERSONAS: Persona[] = [
   urbanProgressiveDemocratPersona,
   blackModerateDemocratPersona,
   magaAllInPersona,
+  hispanicDToTrumpPersona,
+  neverTrumpRepublicanPersona,
+  bernieProgressivePersona,
+  christianRightTraditionalistPersona,
 ];
 
 export function getPersonaById(id: string): Persona | undefined {

@@ -29,7 +29,7 @@
 | Q103: high-salience nodes in supportHigh | `all nodes with sal≥2.5 in supportHigh` | `all placed correctly` | ✓ |
 | Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
-| top-1 archetype in acceptable list | `one of [050, 049, 134, 045, 088]` | `134 Progressive Civic Nationalist` | ✓ |
+| top-1 archetype in acceptable list | `one of [134, 050, 049, 045, 088]` | `134 Progressive Civic Nationalist` | ✓ |
 | vote match | `≥5/5` | `5/5` | ✓ |
 | composed label contains "Traditionalist" | `Traditionalist` | `Traditionalist Populist-Left` | ✓ |
 | identity-primary state | `≥ active` | `active` | ✓ |
