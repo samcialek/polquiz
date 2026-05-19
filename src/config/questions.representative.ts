@@ -5189,6 +5189,45 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
     },
   },
 
+  // Q243 — legislative_compromise_threshold (slider, stage2).
+  //
+  // Per overnight-ideation/ideas-claude/new-questions.md cycle 15. Replaces
+  // Q7's ambiguous "coalition vs principle" framing with a concrete
+  // legislative-package scenario. Designed to break the 021 Principled
+  // Cosmopolitan → 001 Rawlsian Reformer attractor (Q7's `depends_on_issue`
+  // option semantically traps both at COM≈2.92) and to discriminate the
+  // nihilist pair (108 Passive Cynic, COM=3 sal=0 vs 114 Political
+  // Nihilist, COM=1 sal=2). COM-only direct probe at weight 0.90.
+  //
+  // sliderAnchorLow/sliderAnchorHigh fields from the spec dropped — not
+  // part of the current QuestionDef shape. UI renders generic slider
+  // anchors; the promptFull conveys the scenario.
+  {
+    id: 243,
+    stage: "stage2",
+    section: "III",
+    promptShort: "legislative_compromise_threshold",
+    promptFull:
+      "A policy you support is only passable as part of a package deal " +
+      "that also funds or authorizes something you strongly oppose. The " +
+      "opposed provision passes either way — only the supported policy " +
+      "depends on your backing. How often do you accept that deal? " +
+      "(0 = almost never; 100 = almost always)",
+    uiType: "slider",
+    quality: 0.91,
+    rewriteNeeded: false,
+    touchProfile: [
+      { node: "COM", kind: "continuous", role: "position", weight: 0.90, touchType: "legislative_compromise_threshold" }
+    ],
+    sliderMap: {
+      "0-20":   { continuous: { COM: { pos: [0.55, 0.30, 0.12, 0.02, 0.01] } } },
+      "21-40":  { continuous: { COM: { pos: [0.25, 0.40, 0.25, 0.08, 0.02] } } },
+      "41-60":  { continuous: { COM: { pos: [0.08, 0.22, 0.40, 0.22, 0.08] } } },
+      "61-80":  { continuous: { COM: { pos: [0.02, 0.08, 0.25, 0.40, 0.25] } } },
+      "81-100": { continuous: { COM: { pos: [0.01, 0.02, 0.12, 0.30, 0.55] } } }
+    }
+  },
+
   // Q244 — religion's political role (conditional separator for F6).
   //
   // Phase 7 P3 (2026-05-19). Fires when Q102's `religion` item was placed

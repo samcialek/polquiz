@@ -706,7 +706,10 @@ export const FULL_QUESTIONS = [
         t("MORAL_CIRCLE", "derived", "affinity", 0.30, "religion_political_role")
     ], {
         eligibleIf: ["q102_religion_supported"]
-    })
+    }),
+    q(243, "stage2", "III", "legislative_compromise_threshold", "slider", 0.91, false, [
+        t("COM", "continuous", "position", 0.90, "legislative_compromise_threshold")
+    ])
 ];
 export const FULL_QUESTIONS_BY_ID = Object.fromEntries(FULL_QUESTIONS.map((q) => [q.id, q]));
 //# sourceMappingURL=questions.full.js.map

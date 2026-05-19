@@ -1452,6 +1452,18 @@ export const FULL_QUESTIONS: QuestionDef[] = [
     {
       eligibleIf: ["q102_religion_supported"]
     }
+  ),
+  q(
+    243,
+    "stage2",
+    "III",
+    "legislative_compromise_threshold",
+    "slider",
+    0.91,
+    false,
+    [
+      t("COM", "continuous", "position", 0.90, "legislative_compromise_threshold")
+    ]
   )
 ];
 

@@ -43,7 +43,7 @@ export const JURISDICTION_DYSFUNCTION = {
     "Argentina|Instability/Coups|1956": 3,
     "Argentina|Dirty War|1973": 4,
     "Argentina|Democratic Restoration|1984": 3,
-    "Argentina|Kirchner Era Argentina|2002": 2,
+    "Argentina|Kirchner Era Argentina|2002": 4,
     "Argentina|Macri-Fernández Oscillation|2015": 3,
     "Argentina|Milei Libertarian Argentina|2023": 3,
     "Canada|British North America|1789": 2,
