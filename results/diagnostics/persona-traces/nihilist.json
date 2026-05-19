@@ -1,0 +1,500 @@
+{
+  "persona": {
+    "id": "nihilist",
+    "name": "Young Low-Trust Nihilist",
+    "demographics": {
+      "age": "25-34",
+      "gender": "male",
+      "race": "white",
+      "lgbtq": "no",
+      "religion": "none"
+    },
+    "partyID": "none",
+    "positions": {
+      "MAT": 3,
+      "CD": 3,
+      "CU": 3,
+      "MOR": 2,
+      "PRO": 2,
+      "COM": 2,
+      "ZS": 4,
+      "ONT_H": 2,
+      "ONT_S": 1,
+      "PF": 1,
+      "TRB": 2,
+      "ENG": 2
+    },
+    "saliences": {
+      "MAT": 1,
+      "CD": 1,
+      "CU": 1,
+      "MOR": 1,
+      "PRO": 1,
+      "COM": 1,
+      "ZS": 2,
+      "ONT_H": 1,
+      "ONT_S": 2,
+      "PF": 0,
+      "TRB": 1,
+      "ENG": 1,
+      "EPS": 1,
+      "AES": 1
+    },
+    "moralCircle": {
+      "universal": 35,
+      "scopedAffinities": {
+        "national": 40,
+        "religious": 25,
+        "ethnic_racial": 45,
+        "class": 45,
+        "gender": 45,
+        "ideological": 35
+      }
+    },
+    "eps": "nihilist",
+    "aes": "authentic",
+    "engagement": "apolitical",
+    "strategicVoting": "not_sure",
+    "negativePartisanship": "consider_all",
+    "expected": {
+      "archetypeFamily": "nihilist / disaffected non-voter",
+      "archetypeIds": [
+        "124",
+        "126",
+        "098",
+        "132",
+        "118"
+      ],
+      "archetypeLabelContains": [],
+      "identityPrimaryState": "none",
+      "votes": {
+        "2008": "ABSTAIN",
+        "2012": "ABSTAIN",
+        "2016": "R",
+        "2020": "ABSTAIN",
+        "2024": "ABSTAIN"
+      },
+      "voteMatchMin": 3,
+      "engagement": "apolitical",
+      "questionsInRange": [
+        20,
+        35
+      ]
+    }
+  },
+  "trace": [
+    {
+      "idx": 1,
+      "qId": 200,
+      "promptShort": "party_identification",
+      "uiType": "single_choice",
+      "answer": "none"
+    },
+    {
+      "idx": 2,
+      "qId": 103,
+      "promptShort": "issue_salience_screener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [
+          "zs",
+          "ont_s"
+        ],
+        "neutral": [
+          "mat",
+          "cd",
+          "cu",
+          "mor",
+          "pro",
+          "com",
+          "ont_h",
+          "eps",
+          "aes"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 3,
+      "qId": 97,
+      "promptShort": "political_thought_frequency",
+      "uiType": "single_choice",
+      "answer": "rarely_elections"
+    },
+    {
+      "idx": 4,
+      "qId": 60,
+      "promptShort": "politically_important_identities",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "class_identity",
+          "ethnic_racial_identity",
+          "gender_identity"
+        ],
+        "opposeHigh": [
+          "national_identity",
+          "ideological_identity",
+          "religious_identity",
+          "global_citizen"
+        ]
+      }
+    },
+    {
+      "idx": 5,
+      "qId": 89,
+      "promptShort": "epistemic_style_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "eps_empiricist"
+        ],
+        "worst": [
+          "eps_autonomous"
+        ]
+      }
+    },
+    {
+      "idx": 6,
+      "qId": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "aes_authentic"
+        ],
+        "worst": [
+          "aes_visionary"
+        ]
+      }
+    },
+    {
+      "idx": 7,
+      "qId": 211,
+      "promptShort": "strategic_voting",
+      "uiType": "single_choice",
+      "answer": "not_sure"
+    },
+    {
+      "idx": 8,
+      "qId": 212,
+      "promptShort": "negative_partisanship",
+      "uiType": "single_choice",
+      "answer": "consider_all"
+    },
+    {
+      "idx": 9,
+      "qId": 93,
+      "promptShort": "priority_sort_opener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "mor_low",
+          "pro_low",
+          "com_low"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "mat_low",
+          "mat_high",
+          "cd_low",
+          "cd_high",
+          "cu_low",
+          "cu_high"
+        ],
+        "opposeHigh": [
+          "mor_high",
+          "pro_high",
+          "com_high"
+        ]
+      }
+    },
+    {
+      "idx": 10,
+      "qId": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "born_here",
+          "speak_lang",
+          "shared_values",
+          "civic_part",
+          "cultural",
+          "ancestry",
+          "economic"
+        ],
+        "opposeHigh": [
+          "religion"
+        ]
+      }
+    },
+    {
+      "idx": 11,
+      "qId": 209,
+      "promptShort": "zero_sum_economics_view",
+      "uiType": "single_choice",
+      "answer": "winners_at_others_expense"
+    },
+    {
+      "idx": 12,
+      "qId": 210,
+      "promptShort": "human_malleability_view",
+      "uiType": "single_choice",
+      "answer": "modest_shaping"
+    },
+    {
+      "idx": 13,
+      "qId": 214,
+      "promptShort": "institutions_foundational",
+      "uiType": "single_choice",
+      "answer": "obstacles_to_progress"
+    },
+    {
+      "idx": 14,
+      "qId": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "single_choice",
+      "answer": "hard_to_say"
+    },
+    {
+      "idx": 15,
+      "qId": 229,
+      "promptShort": "moral_circle_in_group_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "ingroup_ethnic_racial",
+          "ingroup_class",
+          "ingroup_gender"
+        ],
+        "opposeHigh": [
+          "ingroup_national",
+          "ingroup_religious",
+          "ingroup_ideological"
+        ]
+      }
+    },
+    {
+      "idx": 16,
+      "qId": 31,
+      "promptShort": "trade_liberalization_effects",
+      "uiType": "single_choice",
+      "answer": "mixed_effects"
+    },
+    {
+      "idx": 17,
+      "qId": 21,
+      "promptShort": "controversial_speaker",
+      "uiType": "single_choice",
+      "answer": "restricted"
+    },
+    {
+      "idx": 18,
+      "qId": 7,
+      "promptShort": "coalition_vs_principle",
+      "uiType": "single_choice",
+      "answer": "principle_first"
+    },
+    {
+      "idx": 19,
+      "qId": 213,
+      "promptShort": "equal_standing_within_polity",
+      "uiType": "single_choice",
+      "answer": "some_differentiation_acceptable"
+    },
+    {
+      "idx": 20,
+      "qId": 11,
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "answer": "timeless_principles"
+    },
+    {
+      "idx": 21,
+      "qId": 56,
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "answer": "channel_anger"
+    },
+    {
+      "idx": 22,
+      "qId": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 23,
+      "qId": 2,
+      "promptShort": "political_identity_centrality",
+      "uiType": "slider",
+      "answer": 10
+    },
+    {
+      "idx": 24,
+      "qId": 49,
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 25,
+      "qId": 38,
+      "promptShort": "rules_procedures_matter_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 26,
+      "qId": 69,
+      "promptShort": "common_ground_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 27,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 28,
+      "qId": 63,
+      "promptShort": "best_worst_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "fairness"
+        ],
+        "worst": [
+          "tradition_continuity"
+        ]
+      }
+    }
+  ],
+  "questionsAsked": 28,
+  "composedLabel": "Combative Apolitical Voter",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
+  "engagementLevel": "apolitical",
+  "topArchetypes": [
+    {
+      "id": "124",
+      "name": "Latent Alarmist",
+      "distance": 0.33083373198754606
+    },
+    {
+      "id": "126",
+      "name": "Uncompromising Activist",
+      "distance": 0.39435542524721184
+    },
+    {
+      "id": "098",
+      "name": "Anti-Elite Populist",
+      "distance": 0.3974719199138779
+    },
+    {
+      "id": "132",
+      "name": "Negative Partisan",
+      "distance": 0.39824346972780683
+    },
+    {
+      "id": "118",
+      "name": "Survival Pragmatist",
+      "distance": 0.3986249129773503
+    }
+  ],
+  "votes": {
+    "2008": "ABSTAIN",
+    "2012": "ABSTAIN",
+    "2016": "ABSTAIN",
+    "2020": "ABSTAIN",
+    "2024": "R"
+  },
+  "voteMatches": {
+    "2008": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    },
+    "2012": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    },
+    "2016": {
+      "expected": "R",
+      "actual": "ABSTAIN",
+      "match": false
+    },
+    "2020": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    },
+    "2024": {
+      "expected": "ABSTAIN",
+      "actual": "R",
+      "match": false
+    }
+  },
+  "assertions": [
+    {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: mid-salience nodes in supportMid",
+      "pass": true,
+      "expected": "all nodes with 1.5≤sal<2.5 in supportMid",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "top-1 archetype in acceptable list",
+      "pass": true,
+      "expected": "one of [124, 126, 098, 132, 118]",
+      "actual": "124 Latent Alarmist"
+    },
+    {
+      "name": "vote match",
+      "pass": true,
+      "expected": "≥3/5",
+      "actual": "3/5"
+    },
+    {
+      "name": "identity-primary state",
+      "pass": true,
+      "expected": "≥ none",
+      "actual": "none"
+    },
+    {
+      "name": "engagement level",
+      "pass": true,
+      "expected": "apolitical",
+      "actual": "apolitical"
+    },
+    {
+      "name": "questions asked in range",
+      "pass": true,
+      "expected": "[20, 35]",
+      "actual": "28"
+    }
+  ]
+}

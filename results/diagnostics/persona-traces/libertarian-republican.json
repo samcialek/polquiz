@@ -1,0 +1,522 @@
+{
+  "persona": {
+    "id": "libertarian-republican",
+    "name": "Libertarian Republican (Ron Paul / Justin Amash family)",
+    "demographics": {
+      "age": "35-44",
+      "gender": "male",
+      "race": "white",
+      "lgbtq": "no",
+      "religion": "none"
+    },
+    "partyID": "ind_lean_r",
+    "positions": {
+      "MAT": 5,
+      "CD": 2,
+      "CU": 4,
+      "MOR": 4,
+      "PRO": 4,
+      "COM": 3,
+      "ZS": 2,
+      "ONT_H": 3,
+      "ONT_S": 1,
+      "PF": 4,
+      "TRB": 2,
+      "ENG": 5
+    },
+    "saliences": {
+      "MAT": 3,
+      "CD": 2,
+      "CU": 2,
+      "MOR": 2,
+      "PRO": 3,
+      "COM": 1,
+      "ZS": 2,
+      "ONT_H": 1,
+      "ONT_S": 3,
+      "PF": 2,
+      "TRB": 1,
+      "ENG": 3,
+      "EPS": 3,
+      "AES": 2
+    },
+    "moralCircle": {
+      "universal": 75,
+      "scopedAffinities": {
+        "national": 55,
+        "religious": 35,
+        "ethnic_racial": 50,
+        "class": 50,
+        "gender": 55,
+        "ideological": 60
+      }
+    },
+    "eps": "autonomous",
+    "aes": "authentic",
+    "engagement": "highly-engaged",
+    "strategicVoting": "sincere_always",
+    "negativePartisanship": "consider_all",
+    "expected": {
+      "archetypeFamily": "libertarian / classical liberal",
+      "archetypeIds": [
+        "042",
+        "088",
+        "048",
+        "117",
+        "076"
+      ],
+      "archetypeLabelContains": [
+        "Free-Marketeer"
+      ],
+      "identityPrimaryState": "none",
+      "votes": {
+        "2008": "R",
+        "2012": "R",
+        "2016": "T",
+        "2020": "ABSTAIN",
+        "2024": "R"
+      },
+      "voteMatchMin": 2,
+      "engagement": "highly-engaged",
+      "questionsInRange": [
+        20,
+        35
+      ]
+    }
+  },
+  "trace": [
+    {
+      "idx": 1,
+      "qId": 200,
+      "promptShort": "party_identification",
+      "uiType": "single_choice",
+      "answer": "ind"
+    },
+    {
+      "idx": 2,
+      "qId": 103,
+      "promptShort": "issue_salience_screener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "mat",
+          "pro",
+          "ont_s",
+          "eps"
+        ],
+        "supportMid": [
+          "cd",
+          "cu",
+          "mor",
+          "zs",
+          "aes"
+        ],
+        "neutral": [
+          "com",
+          "ont_h"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 3,
+      "qId": 97,
+      "promptShort": "political_thought_frequency",
+      "uiType": "single_choice",
+      "answer": "constantly_worldview"
+    },
+    {
+      "idx": 4,
+      "qId": 60,
+      "promptShort": "politically_important_identities",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "global_citizen"
+        ],
+        "supportMid": [
+          "ideological_identity"
+        ],
+        "neutral": [
+          "national_identity",
+          "class_identity",
+          "ethnic_racial_identity",
+          "gender_identity"
+        ],
+        "opposeHigh": [
+          "religious_identity"
+        ]
+      }
+    },
+    {
+      "idx": 5,
+      "qId": 89,
+      "promptShort": "epistemic_style_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "eps_autonomous"
+        ],
+        "worst": [
+          "eps_intuitionist"
+        ]
+      }
+    },
+    {
+      "idx": 6,
+      "qId": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "aes_authentic"
+        ],
+        "worst": [
+          "aes_visionary"
+        ]
+      }
+    },
+    {
+      "idx": 7,
+      "qId": 211,
+      "promptShort": "strategic_voting",
+      "uiType": "single_choice",
+      "answer": "sincere_always"
+    },
+    {
+      "idx": 8,
+      "qId": 212,
+      "promptShort": "negative_partisanship",
+      "uiType": "single_choice",
+      "answer": "consider_all"
+    },
+    {
+      "idx": 9,
+      "qId": 93,
+      "promptShort": "priority_sort_opener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "mat_high",
+          "cd_low",
+          "cu_high",
+          "mor_high",
+          "pro_high"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "com_low",
+          "com_high"
+        ],
+        "opposeHigh": [
+          "mat_low",
+          "cd_high",
+          "cu_low",
+          "mor_low",
+          "pro_low"
+        ]
+      }
+    },
+    {
+      "idx": 10,
+      "qId": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [
+          "shared_values",
+          "civic_part"
+        ],
+        "neutral": [
+          "speak_lang",
+          "cultural",
+          "economic"
+        ],
+        "opposeHigh": [
+          "born_here",
+          "ancestry",
+          "religion"
+        ]
+      }
+    },
+    {
+      "idx": 11,
+      "qId": 209,
+      "promptShort": "zero_sum_economics_view",
+      "uiType": "single_choice",
+      "answer": "growth_with_distribution"
+    },
+    {
+      "idx": 12,
+      "qId": 210,
+      "promptShort": "human_malleability_view",
+      "uiType": "single_choice",
+      "answer": "modest_shaping"
+    },
+    {
+      "idx": 13,
+      "qId": 214,
+      "promptShort": "institutions_foundational",
+      "uiType": "single_choice",
+      "answer": "depends_on_design"
+    },
+    {
+      "idx": 14,
+      "qId": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "single_choice",
+      "answer": "clearly_abroad"
+    },
+    {
+      "idx": 15,
+      "qId": 229,
+      "promptShort": "moral_circle_in_group_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [
+          "ingroup_ideological"
+        ],
+        "neutral": [
+          "ingroup_national",
+          "ingroup_ethnic_racial",
+          "ingroup_class",
+          "ingroup_gender"
+        ],
+        "opposeHigh": [
+          "ingroup_religious"
+        ]
+      }
+    },
+    {
+      "idx": 16,
+      "qId": 202,
+      "promptShort": "state_scope_preference",
+      "uiType": "single_choice",
+      "answer": "market_enabling_limited"
+    },
+    {
+      "idx": 17,
+      "qId": 21,
+      "promptShort": "controversial_speaker",
+      "uiType": "single_choice",
+      "answer": "allow_no_restrictions"
+    },
+    {
+      "idx": 18,
+      "qId": 82,
+      "promptShort": "openness_assimilation_closure",
+      "uiType": "single_choice",
+      "answer": "pluralist_with_common_ground"
+    },
+    {
+      "idx": 19,
+      "qId": 213,
+      "promptShort": "equal_standing_within_polity",
+      "uiType": "single_choice",
+      "answer": "important_one_of_many"
+    },
+    {
+      "idx": 20,
+      "qId": 78,
+      "promptShort": "speaker_appeal",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "community_voice",
+          "bridge_builder"
+        ],
+        "worst": [
+          "says_what_they_think",
+          "calls_out_power"
+        ]
+      }
+    },
+    {
+      "idx": 21,
+      "qId": 11,
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "answer": "timeless_principles"
+    },
+    {
+      "idx": 22,
+      "qId": 56,
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "answer": "channel_anger"
+    },
+    {
+      "idx": 23,
+      "qId": 2,
+      "promptShort": "political_identity_centrality",
+      "uiType": "slider",
+      "answer": 71
+    },
+    {
+      "idx": 24,
+      "qId": 49,
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 25,
+      "qId": 71,
+      "promptShort": "rhetoric_style_importance",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 26,
+      "qId": 4,
+      "promptShort": "cultural_social_salience",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 27,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 28,
+      "qId": 69,
+      "promptShort": "common_ground_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 29,
+      "qId": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "answer": 51
+    }
+  ],
+  "questionsAsked": 29,
+  "composedLabel": "Pragmatic Free-Marketeer",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
+  "engagementLevel": "highly-engaged",
+  "topArchetypes": [
+    {
+      "id": "042",
+      "name": "Localist Progressive",
+      "distance": 0.425952189837764
+    },
+    {
+      "id": "088",
+      "name": "Gentle Traditionalist",
+      "distance": 0.4265483469214247
+    },
+    {
+      "id": "048",
+      "name": "Solidaristic Localist",
+      "distance": 0.4289344198213537
+    },
+    {
+      "id": "117",
+      "name": "Comfortable Bystander",
+      "distance": 0.44581622108108293
+    },
+    {
+      "id": "076",
+      "name": "Fiscal Gradualist",
+      "distance": 0.44695810727896407
+    }
+  ],
+  "votes": {
+    "2008": "R",
+    "2012": "R",
+    "2016": "D",
+    "2020": "D",
+    "2024": "D"
+  },
+  "voteMatches": {
+    "2008": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    },
+    "2012": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    },
+    "2016": {
+      "expected": "T",
+      "actual": "D",
+      "match": false
+    },
+    "2020": {
+      "expected": "ABSTAIN",
+      "actual": "D",
+      "match": false
+    },
+    "2024": {
+      "expected": "R",
+      "actual": "D",
+      "match": false
+    }
+  },
+  "assertions": [
+    {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: mid-salience nodes in supportMid",
+      "pass": true,
+      "expected": "all nodes with 1.5≤sal<2.5 in supportMid",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "top-1 archetype in acceptable list",
+      "pass": true,
+      "expected": "one of [042, 088, 048, 117, 076]",
+      "actual": "042 Localist Progressive"
+    },
+    {
+      "name": "vote match",
+      "pass": true,
+      "expected": "≥2/5",
+      "actual": "2/5"
+    },
+    {
+      "name": "composed label contains \"Free-Marketeer\"",
+      "pass": true,
+      "expected": "Free-Marketeer",
+      "actual": "Pragmatic Free-Marketeer"
+    },
+    {
+      "name": "identity-primary state",
+      "pass": true,
+      "expected": "≥ none",
+      "actual": "none"
+    },
+    {
+      "name": "engagement level",
+      "pass": true,
+      "expected": "highly-engaged",
+      "actual": "highly-engaged"
+    },
+    {
+      "name": "questions asked in range",
+      "pass": true,
+      "expected": "[20, 35]",
+      "actual": "29"
+    }
+  ]
+}

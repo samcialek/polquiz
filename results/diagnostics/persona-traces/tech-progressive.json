@@ -1,0 +1,487 @@
+{
+  "persona": {
+    "id": "tech-progressive",
+    "name": "Tech-Progressive / Yang-curious Democrat",
+    "demographics": {
+      "age": "25-34",
+      "gender": "female",
+      "race": "asian",
+      "lgbtq": "no",
+      "religion": "none"
+    },
+    "partyID": "dem",
+    "positions": {
+      "MAT": 3,
+      "CD": 2,
+      "CU": 4,
+      "MOR": 4,
+      "PRO": 4,
+      "COM": 4,
+      "ZS": 2,
+      "ONT_H": 4,
+      "ONT_S": 4,
+      "PF": 3,
+      "TRB": 2,
+      "ENG": 3
+    },
+    "saliences": {
+      "MAT": 3,
+      "CD": 2,
+      "CU": 2,
+      "MOR": 3,
+      "PRO": 2,
+      "COM": 2,
+      "ZS": 2,
+      "ONT_H": 2,
+      "ONT_S": 3,
+      "PF": 1,
+      "TRB": 1,
+      "ENG": 3,
+      "EPS": 3,
+      "AES": 3
+    },
+    "moralCircle": {
+      "universal": 75,
+      "scopedAffinities": {
+        "national": 50,
+        "religious": 30,
+        "ethnic_racial": 55,
+        "class": 55,
+        "gender": 60,
+        "ideological": 60
+      }
+    },
+    "eps": "empiricist",
+    "aes": "technocrat",
+    "engagement": "engaged",
+    "strategicVoting": "depends_on_stakes",
+    "negativePartisanship": "never_rep",
+    "expected": {
+      "archetypeFamily": "tech-progressive / modernizing institutional liberal",
+      "archetypeIds": [],
+      "archetypeLabelContains": [],
+      "identityPrimaryState": "none",
+      "votes": {
+        "2008": "D",
+        "2012": "D",
+        "2016": "D",
+        "2020": "D",
+        "2024": "D"
+      },
+      "voteMatchMin": 5,
+      "engagement": "engaged",
+      "questionsInRange": [
+        20,
+        35
+      ]
+    }
+  },
+  "trace": [
+    {
+      "idx": 1,
+      "qId": 200,
+      "promptShort": "party_identification",
+      "uiType": "single_choice",
+      "answer": "dem"
+    },
+    {
+      "idx": 2,
+      "qId": 103,
+      "promptShort": "issue_salience_screener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "mat",
+          "mor",
+          "ont_s",
+          "eps",
+          "aes"
+        ],
+        "supportMid": [
+          "cd",
+          "cu",
+          "pro",
+          "com",
+          "zs",
+          "ont_h"
+        ],
+        "neutral": [],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 3,
+      "qId": 97,
+      "promptShort": "political_thought_frequency",
+      "uiType": "single_choice",
+      "answer": "regularly_daily"
+    },
+    {
+      "idx": 4,
+      "qId": 60,
+      "promptShort": "politically_important_identities",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "global_citizen"
+        ],
+        "supportMid": [
+          "ideological_identity",
+          "gender_identity"
+        ],
+        "neutral": [
+          "national_identity",
+          "class_identity",
+          "ethnic_racial_identity"
+        ],
+        "opposeHigh": [
+          "religious_identity"
+        ]
+      }
+    },
+    {
+      "idx": 5,
+      "qId": 89,
+      "promptShort": "epistemic_style_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "eps_empiricist"
+        ],
+        "worst": [
+          "eps_autonomous"
+        ]
+      }
+    },
+    {
+      "idx": 6,
+      "qId": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "aes_technocrat"
+        ],
+        "worst": [
+          "aes_visionary"
+        ]
+      }
+    },
+    {
+      "idx": 7,
+      "qId": 211,
+      "promptShort": "strategic_voting",
+      "uiType": "single_choice",
+      "answer": "depends_on_stakes"
+    },
+    {
+      "idx": 8,
+      "qId": 212,
+      "promptShort": "negative_partisanship",
+      "uiType": "single_choice",
+      "answer": "never_rep"
+    },
+    {
+      "idx": 9,
+      "qId": 93,
+      "promptShort": "priority_sort_opener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "cd_low",
+          "cu_high",
+          "mor_high",
+          "pro_high",
+          "com_high"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "mat_low",
+          "mat_high"
+        ],
+        "opposeHigh": [
+          "cd_high",
+          "cu_low",
+          "mor_low",
+          "pro_low",
+          "com_low"
+        ]
+      }
+    },
+    {
+      "idx": 10,
+      "qId": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [
+          "shared_values",
+          "civic_part"
+        ],
+        "neutral": [
+          "speak_lang",
+          "cultural",
+          "economic"
+        ],
+        "opposeHigh": [
+          "born_here",
+          "ancestry",
+          "religion"
+        ]
+      }
+    },
+    {
+      "idx": 11,
+      "qId": 209,
+      "promptShort": "zero_sum_economics_view",
+      "uiType": "single_choice",
+      "answer": "growth_with_distribution"
+    },
+    {
+      "idx": 12,
+      "qId": 210,
+      "promptShort": "human_malleability_view",
+      "uiType": "single_choice",
+      "answer": "substantial_shaping"
+    },
+    {
+      "idx": 13,
+      "qId": 214,
+      "promptShort": "institutions_foundational",
+      "uiType": "single_choice",
+      "answer": "foundational_essential"
+    },
+    {
+      "idx": 14,
+      "qId": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "single_choice",
+      "answer": "clearly_abroad"
+    },
+    {
+      "idx": 15,
+      "qId": 229,
+      "promptShort": "moral_circle_in_group_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [
+          "ingroup_gender",
+          "ingroup_ideological"
+        ],
+        "neutral": [
+          "ingroup_national",
+          "ingroup_ethnic_racial",
+          "ingroup_class"
+        ],
+        "opposeHigh": [
+          "ingroup_religious"
+        ]
+      }
+    },
+    {
+      "idx": 16,
+      "qId": 215,
+      "promptShort": "theory_of_change_progress",
+      "uiType": "single_choice",
+      "answer": "institutions_and_laws"
+    },
+    {
+      "idx": 17,
+      "qId": 213,
+      "promptShort": "equal_standing_within_polity",
+      "uiType": "single_choice",
+      "answer": "central_universalism"
+    },
+    {
+      "idx": 18,
+      "qId": 82,
+      "promptShort": "openness_assimilation_closure",
+      "uiType": "single_choice",
+      "answer": "pluralist_with_common_ground"
+    },
+    {
+      "idx": 19,
+      "qId": 7,
+      "promptShort": "coalition_vs_principle",
+      "uiType": "single_choice",
+      "answer": "coalition_first"
+    },
+    {
+      "idx": 20,
+      "qId": 18,
+      "promptShort": "human_improvement_capacity",
+      "uiType": "single_choice",
+      "answer": "gradual_with_limits"
+    },
+    {
+      "idx": 21,
+      "qId": 207,
+      "promptShort": "emergency_powers",
+      "uiType": "single_choice",
+      "answer": "narrow_emergency"
+    },
+    {
+      "idx": 22,
+      "qId": 11,
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "answer": "timeless_principles"
+    },
+    {
+      "idx": 23,
+      "qId": 78,
+      "promptShort": "speaker_appeal",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "deep_expertise",
+          "bridge_builder"
+        ],
+        "worst": [
+          "says_what_they_think",
+          "calls_out_power"
+        ]
+      }
+    },
+    {
+      "idx": 24,
+      "qId": 61,
+      "promptShort": "political_pitch_resonance",
+      "uiType": "single_choice",
+      "answer": "evidence_pitch"
+    },
+    {
+      "idx": 25,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 26,
+      "qId": 4,
+      "promptShort": "cultural_social_salience",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 27,
+      "qId": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "answer": 51
+    }
+  ],
+  "questionsAsked": 27,
+  "composedLabel": "Empiricist Reformer",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
+  "engagementLevel": "engaged",
+  "topArchetypes": [
+    {
+      "id": "039",
+      "name": "Data-Driven Moderate",
+      "distance": 0.33685747001300537
+    },
+    {
+      "id": "036",
+      "name": "Institutional Optimizer",
+      "distance": 0.3433571039700952
+    },
+    {
+      "id": "032",
+      "name": "Hamiltonian Technocrat",
+      "distance": 0.3483695442075115
+    },
+    {
+      "id": "056",
+      "name": "Institutional Leftist",
+      "distance": 0.36728410527624583
+    },
+    {
+      "id": "057",
+      "name": "Temperate Pluralist",
+      "distance": 0.38023026527136056
+    }
+  ],
+  "votes": {
+    "2008": "D",
+    "2012": "D",
+    "2016": "D",
+    "2020": "D",
+    "2024": "D"
+  },
+  "voteMatches": {
+    "2008": {
+      "expected": "D",
+      "actual": "D",
+      "match": true
+    },
+    "2012": {
+      "expected": "D",
+      "actual": "D",
+      "match": true
+    },
+    "2016": {
+      "expected": "D",
+      "actual": "D",
+      "match": true
+    },
+    "2020": {
+      "expected": "D",
+      "actual": "D",
+      "match": true
+    },
+    "2024": {
+      "expected": "D",
+      "actual": "D",
+      "match": true
+    }
+  },
+  "assertions": [
+    {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: mid-salience nodes in supportMid",
+      "pass": true,
+      "expected": "all nodes with 1.5≤sal<2.5 in supportMid",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "vote match",
+      "pass": true,
+      "expected": "≥5/5",
+      "actual": "5/5"
+    },
+    {
+      "name": "identity-primary state",
+      "pass": true,
+      "expected": "≥ none",
+      "actual": "none"
+    },
+    {
+      "name": "engagement level",
+      "pass": true,
+      "expected": "engaged",
+      "actual": "engaged"
+    },
+    {
+      "name": "questions asked in range",
+      "pass": true,
+      "expected": "[20, 35]",
+      "actual": "27"
+    }
+  ]
+}

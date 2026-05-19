@@ -1,12 +1,12 @@
 # Harness Battery — Aggregate Report
 
 **Date:** 2026-05-19
-**Personas run:** 10
+**Personas run:** 15
 
 ## Aggregate scorecard
 
-- Personas with all assertions passing: **10/10**
-- Total assertions: **97/97** pass
+- Personas with all assertions passing: **15/15**
+- Total assertions: **136/136** pass
 
 ## Per-persona summary
 
@@ -22,6 +22,11 @@
 | never-trump-republican | 26 | Dealmaker Reformer | #053 Consensus Builder | (none) | 3/5 | ✓ 9/9 |
 | bernie-progressive | 26 | Cosmopolitan Reformer | #001 Rawlsian Reformer | (none) | 5/5 | ✓ 9/9 |
 | christian-right-traditionalist | 28 | Communitarian Traditionalist | #081 Heritage Guardian | Evangelical Voter | 5/5 | ✓ 10/10 |
+| triple-switcher | 22 | Consequentialist Cynic | #124 Latent Alarmist | (none) | 4/5 | ✓ 8/8 |
+| libertarian-republican | 29 | Pragmatic Free-Marketeer | #042 Localist Progressive | (none) | 2/5 | ✓ 9/9 |
+| tech-progressive | 27 | Empiricist Reformer | #039 Data-Driven Moderate | (none) | 5/5 | ✓ 7/7 |
+| disengaged-centrist | 24 | Redistributionist Apolitical Voter | #145 Feminist Voter | (none) | 3/5 | ✓ 7/7 |
+| nihilist | 28 | Combative Apolitical Voter | #124 Latent Alarmist | (none) | 3/5 | ✓ 8/8 |
 
 ## Vote-pattern coverage matrix
 
@@ -37,3 +42,8 @@
 | never-trump-republican | D (exp R) | D (exp R) | D | D | D |
 | bernie-progressive | D | D | D | D | D |
 | christian-right-traditionalist | ABSTAIN | R | R | R | R |
+| triple-switcher | ABSTAIN | ABSTAIN | R | R (exp D) | R |
+| libertarian-republican | R | R | D (exp T) | D (exp ABSTAIN) | D (exp R) |
+| tech-progressive | D | D | D | D | D |
+| disengaged-centrist | D (exp ABSTAIN) | D (exp ABSTAIN) | ABSTAIN | ABSTAIN | ABSTAIN |
+| nihilist | ABSTAIN | ABSTAIN | ABSTAIN (exp R) | ABSTAIN | R (exp ABSTAIN) |

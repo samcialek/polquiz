@@ -1,0 +1,463 @@
+{
+  "persona": {
+    "id": "disengaged-centrist",
+    "name": "Disengaged Centrist (mostly abstains)",
+    "demographics": {
+      "age": "35-44",
+      "gender": "female",
+      "race": "white",
+      "lgbtq": "no",
+      "religion": "none"
+    },
+    "partyID": "none",
+    "positions": {
+      "MAT": 3,
+      "CD": 3,
+      "CU": 3,
+      "MOR": 3,
+      "PRO": 3,
+      "COM": 3,
+      "ZS": 3,
+      "ONT_H": 3,
+      "ONT_S": 3,
+      "PF": 1,
+      "TRB": 1,
+      "ENG": 1
+    },
+    "saliences": {
+      "MAT": 0,
+      "CD": 0,
+      "CU": 0,
+      "MOR": 0,
+      "PRO": 0,
+      "COM": 0,
+      "ZS": 0,
+      "ONT_H": 0,
+      "ONT_S": 0,
+      "PF": 0,
+      "TRB": 0,
+      "ENG": 1,
+      "EPS": 0,
+      "AES": 0
+    },
+    "moralCircle": {
+      "universal": 50,
+      "scopedAffinities": {
+        "national": 50,
+        "religious": 40,
+        "ethnic_racial": 50,
+        "class": 50,
+        "gender": 50,
+        "ideological": 50
+      }
+    },
+    "eps": "empiricist",
+    "aes": "statesman",
+    "engagement": "apolitical",
+    "strategicVoting": "not_sure",
+    "negativePartisanship": "consider_all",
+    "expected": {
+      "archetypeFamily": "disengaged / functionally apolitical",
+      "archetypeIds": [],
+      "archetypeLabelContains": [],
+      "identityPrimaryState": "none",
+      "votes": {
+        "2008": "ABSTAIN",
+        "2012": "ABSTAIN",
+        "2016": "ABSTAIN",
+        "2020": "ABSTAIN",
+        "2024": "ABSTAIN"
+      },
+      "voteMatchMin": 3,
+      "engagement": "apolitical",
+      "questionsInRange": [
+        20,
+        35
+      ]
+    }
+  },
+  "trace": [
+    {
+      "idx": 1,
+      "qId": 200,
+      "promptShort": "party_identification",
+      "uiType": "single_choice",
+      "answer": "none"
+    },
+    {
+      "idx": 2,
+      "qId": 103,
+      "promptShort": "issue_salience_screener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "mat",
+          "cd",
+          "cu",
+          "mor",
+          "pro",
+          "com",
+          "zs",
+          "ont_h",
+          "ont_s",
+          "eps",
+          "aes"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 3,
+      "qId": 97,
+      "promptShort": "political_thought_frequency",
+      "uiType": "single_choice",
+      "answer": "rarely_elections"
+    },
+    {
+      "idx": 4,
+      "qId": 60,
+      "promptShort": "politically_important_identities",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "national_identity",
+          "ideological_identity",
+          "class_identity",
+          "ethnic_racial_identity",
+          "gender_identity",
+          "global_citizen"
+        ],
+        "opposeHigh": [
+          "religious_identity"
+        ]
+      }
+    },
+    {
+      "idx": 5,
+      "qId": 89,
+      "promptShort": "epistemic_style_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "eps_empiricist"
+        ],
+        "worst": [
+          "eps_autonomous"
+        ]
+      }
+    },
+    {
+      "idx": 6,
+      "qId": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "aes_statesman"
+        ],
+        "worst": [
+          "aes_visionary"
+        ]
+      }
+    },
+    {
+      "idx": 7,
+      "qId": 211,
+      "promptShort": "strategic_voting",
+      "uiType": "single_choice",
+      "answer": "not_sure"
+    },
+    {
+      "idx": 8,
+      "qId": 212,
+      "promptShort": "negative_partisanship",
+      "uiType": "single_choice",
+      "answer": "consider_all"
+    },
+    {
+      "idx": 9,
+      "qId": 93,
+      "promptShort": "priority_sort_opener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "mat_low"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "mat_high",
+          "cd_low",
+          "cd_high",
+          "cu_low",
+          "cu_high",
+          "mor_low",
+          "mor_high",
+          "pro_low",
+          "pro_high",
+          "com_low",
+          "com_high"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 10,
+      "qId": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "born_here"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "speak_lang",
+          "shared_values",
+          "civic_part",
+          "cultural",
+          "ancestry",
+          "religion",
+          "economic"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 11,
+      "qId": 209,
+      "promptShort": "zero_sum_economics_view",
+      "uiType": "single_choice",
+      "answer": "growth_with_distribution"
+    },
+    {
+      "idx": 12,
+      "qId": 210,
+      "promptShort": "human_malleability_view",
+      "uiType": "single_choice",
+      "answer": "modest_shaping"
+    },
+    {
+      "idx": 13,
+      "qId": 214,
+      "promptShort": "institutions_foundational",
+      "uiType": "single_choice",
+      "answer": "depends_on_design"
+    },
+    {
+      "idx": 14,
+      "qId": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "single_choice",
+      "answer": "hard_to_say"
+    },
+    {
+      "idx": 15,
+      "qId": 229,
+      "promptShort": "moral_circle_in_group_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [],
+        "supportMid": [],
+        "neutral": [
+          "ingroup_national",
+          "ingroup_ethnic_racial",
+          "ingroup_class",
+          "ingroup_gender",
+          "ingroup_ideological"
+        ],
+        "opposeHigh": [
+          "ingroup_religious"
+        ]
+      }
+    },
+    {
+      "idx": 16,
+      "qId": 202,
+      "promptShort": "state_scope_preference",
+      "uiType": "single_choice",
+      "answer": "basic_safety_net_mixed"
+    },
+    {
+      "idx": 17,
+      "qId": 11,
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "answer": "timeless_principles"
+    },
+    {
+      "idx": 18,
+      "qId": 56,
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "answer": "build_expert_coalitions"
+    },
+    {
+      "idx": 19,
+      "qId": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "answer": 10
+    },
+    {
+      "idx": 20,
+      "qId": 2,
+      "promptShort": "political_identity_centrality",
+      "uiType": "slider",
+      "answer": 10
+    },
+    {
+      "idx": 21,
+      "qId": 49,
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "answer": 10
+    },
+    {
+      "idx": 22,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 10
+    },
+    {
+      "idx": 23,
+      "qId": 15,
+      "promptShort": "inequality_causes_allocation",
+      "uiType": "allocation",
+      "answer": {
+        "effort_choices": 25,
+        "family_background": 25,
+        "discrimination_bias": 25,
+        "luck_random": 25
+      }
+    },
+    {
+      "idx": 24,
+      "qId": 63,
+      "promptShort": "best_worst_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "fairness"
+        ],
+        "worst": [
+          "tradition_continuity"
+        ]
+      }
+    }
+  ],
+  "questionsAsked": 24,
+  "composedLabel": "Redistributionist Apolitical Voter",
+  "identityPrimaryLabel": null,
+  "identityPrimaryState": null,
+  "engagementLevel": "apolitical",
+  "topArchetypes": [
+    {
+      "id": "145",
+      "name": "Feminist Voter",
+      "distance": 0.3623551978479093
+    },
+    {
+      "id": "144",
+      "name": "LGBTQ Voter",
+      "distance": 0.3623966788840364
+    },
+    {
+      "id": "143",
+      "name": "Evangelical Voter",
+      "distance": 0.3656400269465055
+    },
+    {
+      "id": "042",
+      "name": "Localist Progressive",
+      "distance": 0.368568779950889
+    },
+    {
+      "id": "141",
+      "name": "Black Voter",
+      "distance": 0.3699648376783008
+    }
+  ],
+  "votes": {
+    "2008": "D",
+    "2012": "D",
+    "2016": "ABSTAIN",
+    "2020": "ABSTAIN",
+    "2024": "ABSTAIN"
+  },
+  "voteMatches": {
+    "2008": {
+      "expected": "ABSTAIN",
+      "actual": "D",
+      "match": false
+    },
+    "2012": {
+      "expected": "ABSTAIN",
+      "actual": "D",
+      "match": false
+    },
+    "2016": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    },
+    "2020": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    },
+    "2024": {
+      "expected": "ABSTAIN",
+      "actual": "ABSTAIN",
+      "match": true
+    }
+  },
+  "assertions": [
+    {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: mid-salience nodes in supportMid",
+      "pass": true,
+      "expected": "all nodes with 1.5≤sal<2.5 in supportMid",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "vote match",
+      "pass": true,
+      "expected": "≥3/5",
+      "actual": "3/5"
+    },
+    {
+      "name": "identity-primary state",
+      "pass": true,
+      "expected": "≥ none",
+      "actual": "none"
+    },
+    {
+      "name": "engagement level",
+      "pass": true,
+      "expected": "apolitical",
+      "actual": "apolitical"
+    },
+    {
+      "name": "questions asked in range",
+      "pass": true,
+      "expected": "[20, 35]",
+      "actual": "24"
+    }
+  ]
+}
