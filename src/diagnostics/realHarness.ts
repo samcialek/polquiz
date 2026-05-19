@@ -88,18 +88,26 @@ function q103PlacementAssertions(persona: Persona, trace: TraceEntry[]): Asserti
     zs: "ZS", ont_h: "ONT_H", ont_s: "ONT_S", eps: "EPS", aes: "AES",
   };
   const missingHigh: string[] = [];
+  const missingMid: string[] = [];
   const missingNeutral: string[] = [];
   for (const [item, node] of Object.entries(itemToNode)) {
     const sal = (persona.saliences as any)[node];
     if (sal == null) continue;
     if (sal >= 2.5 && !ans.supportHigh.includes(item)) missingHigh.push(`${item}(sal=${sal})`);
-    if (sal < 1.5 && !ans.neutral.includes(item)) missingNeutral.push(`${item}(sal=${sal})`);
+    else if (sal >= 1.5 && sal < 2.5 && !ans.supportMid.includes(item)) missingMid.push(`${item}(sal=${sal})`);
+    else if (sal < 1.5 && !ans.neutral.includes(item)) missingNeutral.push(`${item}(sal=${sal})`);
   }
   out.push({
     name: "Q103: high-salience nodes in supportHigh",
     pass: missingHigh.length === 0,
     expected: "all nodes with sal≥2.5 in supportHigh",
     actual: missingHigh.length ? `missing: ${missingHigh.join(", ")}` : "all placed correctly",
+  });
+  out.push({
+    name: "Q103: mid-salience nodes in supportMid",
+    pass: missingMid.length === 0,
+    expected: "all nodes with 1.5≤sal<2.5 in supportMid",
+    actual: missingMid.length ? `missing: ${missingMid.join(", ")}` : "all placed correctly",
   });
   out.push({
     name: "Q103: low-salience nodes in neutral",
@@ -115,6 +123,20 @@ function runAssertions(persona: Persona, r: Omit<RunResult, "assertions">): Asse
 
   // Q103 placement (always checked when Q103 was asked)
   out.push(...q103PlacementAssertions(persona, r.trace));
+
+  // Top archetype must be in acceptable list (HARNESS-HANDOFF §4.1)
+  if (persona.expected.archetypeIds && persona.expected.archetypeIds.length > 0) {
+    const top1 = r.topArchetypes[0];
+    const top1Id = top1?.id ?? "(none)";
+    const top1Name = top1?.name ?? "(none)";
+    const acceptable = persona.expected.archetypeIds;
+    out.push({
+      name: "top-1 archetype in acceptable list",
+      pass: top1 != null && acceptable.includes(top1Id),
+      expected: `one of [${acceptable.join(", ")}]`,
+      actual: `${top1Id} ${top1Name}`,
+    });
+  }
 
   // Vote match
   const voteTotal = Object.keys(persona.expected.votes).length;
@@ -139,19 +161,31 @@ function runAssertions(persona: Persona, r: Omit<RunResult, "assertions">): Asse
     }
   }
 
-  // Identity-primary state
+  // Identity-primary state.
+  //
+  // The resolver returns one of: "none" / "unresolved" / "latent" / "active"
+  // / "dominant". Higher tiers subsume lower in the sense that "dominant"
+  // implies "active" thresholds also passed. The assertion semantics:
+  //   expected "none"     → actual must be "none" OR "unresolved"
+  //   expected "latent"   → actual must be "latent" OR "active" OR "dominant"
+  //   expected "active"   → actual must be "active" OR "dominant"
+  //   expected "dominant" → actual must be exactly "dominant"
   if (persona.expected.identityPrimaryState !== undefined && persona.expected.identityPrimaryState !== null) {
     const expectedState = persona.expected.identityPrimaryState;
-    // "none" persona-expectation maps to API returning either null or
-    // identityPrimary.state === "none" / "unresolved".
     const actualState = r.identityPrimaryState ?? "none";
-    const pass = expectedState === "none"
-      ? (actualState === "none" || actualState === "unresolved")
-      : actualState === expectedState;
+    const ladder = ["none", "unresolved", "latent", "active", "dominant"];
+    const expectedIdx = ladder.indexOf(expectedState);
+    const actualIdx = ladder.indexOf(actualState);
+    let pass: boolean;
+    if (expectedState === "none") {
+      pass = actualState === "none" || actualState === "unresolved";
+    } else {
+      pass = expectedIdx >= 0 && actualIdx >= expectedIdx;
+    }
     out.push({
       name: "identity-primary state",
       pass,
-      expected: expectedState,
+      expected: `≥ ${expectedState}`,
       actual: actualState,
     });
   }

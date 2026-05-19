@@ -22,17 +22,19 @@
 | 4 | 100 | Tribal Insurgent | 0.387 |
 | 5 | 101 | Embattled Majoritarian | 0.387 |
 
-## Assertions (9/9 pass)
+## Assertions (11/11 pass)
 
 | check | expected | actual | result |
 |---|---|---|---|
 | Q103: high-salience nodes in supportHigh | `all nodes with sal≥2.5 in supportHigh` | `all placed correctly` | ✓ |
+| Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
+| top-1 archetype in acceptable list | `one of [106, 104, 084, 100, 101]` | `106 Militant Partisan` | ✓ |
 | vote match | `≥5/5` | `5/5` | ✓ |
 | composed label contains "Assimilationist" | `Assimilationist` | `Combative Partisan-Communitarian Assimilationist` | ✓ |
 | composed label contains "Partisan-Communitarian" | `Partisan-Communitarian` | `Combative Partisan-Communitarian Assimilationist` | ✓ |
 | composed label contains "Combative" | `Combative` | `Combative Partisan-Communitarian Assimilationist` | ✓ |
-| identity-primary state | `none` | `none` | ✓ |
+| identity-primary state | `≥ none` | `none` | ✓ |
 | engagement level | `casual` | `casual` | ✓ |
 | questions asked in range | `[20, 35]` | `31` | ✓ |
 

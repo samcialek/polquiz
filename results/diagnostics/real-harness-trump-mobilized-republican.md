@@ -22,15 +22,17 @@
 | 4 | 082 | Altar-and-Hearth Conservative | 0.371 |
 | 5 | 106 | Militant Partisan | 0.375 |
 
-## Assertions (8/8 pass)
+## Assertions (10/10 pass)
 
 | check | expected | actual | result |
 |---|---|---|---|
 | Q103: high-salience nodes in supportHigh | `all nodes with sal≥2.5 in supportHigh` | `all placed correctly` | ✓ |
+| Q103: mid-salience nodes in supportMid | `all nodes with 1.5≤sal<2.5 in supportMid` | `all placed correctly` | ✓ |
 | Q103: low-salience nodes in neutral | `all nodes with sal<1.5 in neutral` | `all placed correctly` | ✓ |
+| top-1 archetype in acceptable list | `one of [081, 084, 083, 082, 106]` | `081 Heritage Guardian` | ✓ |
 | vote match | `≥4/5` | `4/5` | ✓ |
 | composed label contains "Integralist" | `Integralist` | `Integralist` | ✓ |
-| identity-primary state | `active` | `active` | ✓ |
+| identity-primary state | `≥ active` | `active` | ✓ |
 | identity-primary label | `Evangelical Voter` | `Evangelical Voter` | ✓ |
 | engagement level | `engaged` | `engaged` | ✓ |
 | questions asked in range | `[20, 35]` | `28` | ✓ |

@@ -58,6 +58,13 @@
     "negativePartisanship": "consider_all",
     "expected": {
       "archetypeFamily": "cross-pressured populist-communitarian",
+      "archetypeIds": [
+        "084",
+        "104",
+        "100",
+        "088",
+        "083"
+      ],
       "archetypeLabelContains": [
         "Assimilationist"
       ],
@@ -503,10 +510,22 @@
       "actual": "all placed correctly"
     },
     {
+      "name": "Q103: mid-salience nodes in supportMid",
+      "pass": true,
+      "expected": "all nodes with 1.5≤sal<2.5 in supportMid",
+      "actual": "all placed correctly"
+    },
+    {
       "name": "Q103: low-salience nodes in neutral",
       "pass": true,
       "expected": "all nodes with sal<1.5 in neutral",
       "actual": "all placed correctly"
+    },
+    {
+      "name": "top-1 archetype in acceptable list",
+      "pass": true,
+      "expected": "one of [084, 104, 100, 088, 083]",
+      "actual": "084 Civilizational Conservative"
     },
     {
       "name": "vote match",
@@ -523,7 +542,7 @@
     {
       "name": "identity-primary state",
       "pass": true,
-      "expected": "active",
+      "expected": "≥ active",
       "actual": "active"
     },
     {

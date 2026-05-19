@@ -84,6 +84,12 @@ export const trumpMobilizedRepublicanPersona: Persona = {
   negativePartisanship: "never_dem",
   expected: {
     archetypeFamily: "religious traditionalist / Christian-right",
+    // Religious-traditionalist cluster. Observed top-1 #081; top-5: 081
+    // Heritage Guardian, 084 Civilizational Conservative, 083 Closed
+    // Traditionalist, 082 Altar-and-Hearth Conservative, 106 Militant
+    // Partisan. The cluster fuses religious-right and Trump-populist
+    // archetypes — the merger label "Integralist" reflects this.
+    archetypeIds: ["081", "084", "083", "082", "106"],
     // CD:high + CU:low + MORAL_CIRCLE:religious is a merger entry in
     // archetypeLabeler.ts:549 producing the single token "Integralist".
     // Semantically richer than the underlying tokens — captures the

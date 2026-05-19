@@ -91,6 +91,10 @@ export const obamaToTrumpPersona: Persona = {
   negativePartisanship: "consider_all",
   expected: {
     archetypeFamily: "cross-pressured populist-communitarian",
+    // Cross-pressured conservative-nationalist cluster. Observed top-1 #084;
+    // top-5: 084 Civilizational Conservative, 104 National Protector, 100
+    // Tribal Insurgent, 088 Gentle Traditionalist, 083 Closed Traditionalist.
+    archetypeIds: ["084", "104", "100", "088", "083"],
     // Cross-pressured persona: economically left-leaning, culturally
     // right-leaning. Expected label markers:
     //   Assimilationist — CU low (cultural uniformity preference)

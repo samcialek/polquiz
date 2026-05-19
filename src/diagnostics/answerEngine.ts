@@ -60,14 +60,18 @@ export interface Persona {
   eps: string;
   /** Preferred AES category — one of: statesman, technocrat, pastoral, authentic, fighter, visionary */
   aes: string;
-  engagement: "tuned_out" | "casual" | "engaged" | "all_in";
+  engagement: "apolitical" | "casual" | "engaged" | "highly-engaged";
   strategicVoting: "strategic_lesser_evil" | "sincere_always" | "depends_on_stakes" | "not_sure";
   negativePartisanship: "never_dem" | "never_rep" | "never_dem_or_rep" | "consider_all";
   expected: {
     /** Human-readable family for context (not asserted directly). */
     archetypeFamily: string;
-    /** Specific archetype IDs that are acceptable top-1 outcomes (optional). */
-    archetypeIds?: number[];
+    /**
+     * Acceptable archetype IDs for the top-1 slot. Top-1 must appear in this
+     * list to pass the assertion. IDs are strings ("001", "002", ...) per
+     * the canonical archetype encoding.
+     */
+    archetypeIds?: string[];
     /** Tokens that must all appear in the composed label string. */
     archetypeLabelContains?: string[];
     /**
@@ -83,7 +87,7 @@ export interface Persona {
     /** Minimum vote-match count out of `Object.keys(votes).length` required to pass. */
     voteMatchMin?: number;
     /** Expected engagement level. */
-    engagement?: "tuned_out" | "casual" | "engaged" | "highly-engaged";
+    engagement?: "apolitical" | "casual" | "engaged" | "highly-engaged";
     /** Acceptable question-count band (inclusive). */
     questionsInRange?: [number, number];
   };

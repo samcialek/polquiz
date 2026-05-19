@@ -87,6 +87,11 @@ export const abstainToTrumpPersona: Persona = {
   negativePartisanship: "consider_all",
   expected: {
     archetypeFamily: "populist-nationalist",
+    // Populist-nationalist cluster. Observed top-1 #106; top-5 are tight
+    // (d range 0.36–0.39) and all in-family: 106 Militant Partisan, 104
+    // National Protector, 084 Civilizational Conservative, 100 Tribal
+    // Insurgent, 101 Embattled Majoritarian.
+    archetypeIds: ["106", "104", "084", "100", "101"],
     // The composed label must signal the populist-nationalist family. Three
     // tokens fire under the current labeler:
     //   "Combative"            (ZS=high, conflict-oriented)
