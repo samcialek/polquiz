@@ -342,7 +342,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             // fallback path) AND new moralCircle scoped evidence. When a user
             // ranks an identity highly, we infer above-baseline scoped affinity
             // for that group. global_citizen flips to universalAffinity.
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" }
+            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.95, touchType: "identity_ranking" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         rankingMap: {
             // Each highly-ranked identity boosts the matching scoped affinity to
@@ -428,7 +429,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             clearly_abroad: "Program B — save 100 lives in a developing nation",
         },
         touchProfile: [
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.30, touchType: "moral_scope_tradeoff_legacy_proxy" }
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.30, touchType: "moral_scope_tradeoff_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             clearly_domestic: {
@@ -2569,7 +2571,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         // visionary). Engine never updated AES from this question. Orphan reference
         // in `gut_feeling.categorical.AES` is silently no-op at runtime.
         touchProfile: [
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" }
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.95, touchType: "decision_style" },
+            { node: "AES", kind: "categorical", role: "category", weight: 0.10, touchType: "decision_style_aes_secondary" },
         ],
         optionEvidence: {
             research_data: {
@@ -2829,7 +2832,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "CD", kind: "continuous", role: "position", weight: 0.90, touchType: "cultural_direction" },
             { node: "CU", kind: "continuous", role: "position", weight: 0.88, touchType: "cultural_uniformity" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.24, touchType: "moral_scope" },
-            { node: "MAT", kind: "continuous", role: "position", weight: 0.08, touchType: "economics_signal" }
+            { node: "MAT", kind: "continuous", role: "position", weight: 0.08, touchType: "economics_signal" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // A: Preserve inherited culture, tighter limits on openness
@@ -3218,7 +3222,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         rewriteNeeded: false,
         touchProfile: [
             { node: "TRB", kind: "continuous", role: "position", weight: 0.85, touchType: "group_solidarity" },
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "in_group_proxy" }
+            { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "in_group_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // A: Personal — like it's happening to me
@@ -3556,6 +3561,7 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "CU", kind: "continuous", role: "salience", weight: 0.80, touchType: "membership_criteria" },
             // Other continuous position touches removed 2026-05-02: rankingMap only
             // carries CU evidence, so MOR/TRB/CD/MAT/ZS/PRO rows were hollow.
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         rankingMap: {
             // Civic-membership likelihoods recalibrated 2026-04-25 per ADR-009.
@@ -3721,7 +3727,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         touchProfile: [
             { node: "ONT_S", kind: "continuous", role: "position", weight: 0.20, touchType: "current_institutional_confidence" },
             { node: "ONT_S", kind: "continuous", role: "salience", weight: 0.15, touchType: "current_institutional_confidence" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.30, touchType: "national_identification" }
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.30, touchType: "national_identification" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         // 2026-05-18: ADR-007 moralCircle migration. National-identification signal
         // now routes to moralCircle.scopedAffinities.national in addition to the
@@ -3943,7 +3950,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         touchProfile: [
             { node: "MOR", kind: "continuous", role: "position", weight: 0.30, touchType: "interventionism" },
             { node: "ZS", kind: "continuous", role: "position", weight: 0.30, touchType: "interventionism" },
-            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "interventionism" }
+            { node: "ONT_H", kind: "continuous", role: "position", weight: 0.20, touchType: "interventionism" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // "Use military force decisively when American interests / values demand it"
@@ -4005,7 +4013,8 @@ export const REPRESENTATIVE_QUESTIONS = [
         touchProfile: [
             { node: "CU", kind: "continuous", role: "position", weight: 0.35, touchType: "international_orientation" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.25, touchType: "moral_scope_global" },
-            { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "national_identification" }
+            { node: "TRB", kind: "continuous", role: "position", weight: 0.20, touchType: "national_identification" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // "America should engage deeply in international institutions and treaties"
@@ -4118,7 +4127,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "CD", kind: "continuous", role: "position", weight: 0.40, touchType: "religion_traditionalism" },
             { node: "MOR", kind: "continuous", role: "position", weight: 0.20, touchType: "religion_morality" },
             { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "religion_neutrality" },
-            { node: "EPS", kind: "categorical", role: "category", weight: 0.30, touchType: "religion_epistemic" }
+            { node: "EPS", kind: "categorical", role: "category", weight: 0.30, touchType: "religion_epistemic" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // "Religious values should be central to public policy and law"
@@ -4432,7 +4442,8 @@ export const REPRESENTATIVE_QUESTIONS = [
             { node: "MOR", kind: "continuous", role: "position", weight: 0.85, touchType: "within_polity_universalism" },
             { node: "MOR", kind: "continuous", role: "salience", weight: 0.50, touchType: "within_polity_universalism" },
             { node: "CU", kind: "continuous", role: "position", weight: 0.30, touchType: "within_polity_pluralism" },
-            { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "rights_proceduralism" }
+            { node: "PRO", kind: "continuous", role: "position", weight: 0.20, touchType: "rights_proceduralism" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "moral_circle_affinity" },
         ],
         optionEvidence: {
             // "Central — equal full personhood for everyone within the country is
@@ -4831,7 +4842,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.98,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "universal_baseline" },
         ],
         // 2026-05-18: Top two buckets recalibrated to match Q231 (which fires AFTER
         // Q230 in fixed12 order, quality 0.97 < 0.98). The engine uses arithmetic
@@ -4860,7 +4871,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.97,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "MOR", kind: "continuous", role: "position", weight: 0.10, touchType: "universal_baseline_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "universal_baseline" },
         ],
         // 2026-05-18: Top two buckets recalibrated to eliminate the IDP gate cliff
         // at slider position 80/81. Previously: 61-80 → 75 (at IDP gate ceiling),
@@ -4892,7 +4903,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { national: null } } },
@@ -4912,7 +4923,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { religious: null } } },
@@ -4932,7 +4943,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { ethnic_racial: null } } },
@@ -4952,7 +4963,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { class: null } } },
@@ -4976,7 +4987,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { gender: null } } },
@@ -5000,7 +5011,7 @@ export const REPRESENTATIVE_QUESTIONS = [
         quality: 0.95,
         rewriteNeeded: false,
         touchProfile: [
-            { node: "TRB_ANCHOR", kind: "derived", role: "anchor", weight: 0.10, touchType: "scoped_affinity_legacy_proxy" },
+            { node: "MORAL_CIRCLE", kind: "derived", role: "affinity", weight: 0.10, touchType: "scoped_affinity_probe" },
         ],
         optionEvidence: {
             not_meaningful: { moralCircle: { scopedAffinities: { ideological: null } } },
