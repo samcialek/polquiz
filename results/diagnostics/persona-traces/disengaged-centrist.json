@@ -357,29 +357,29 @@
   "engagementLevel": "apolitical",
   "topArchetypes": [
     {
-      "id": "145",
-      "name": "Feminist Voter",
-      "distance": 0.3623551978479093
-    },
-    {
-      "id": "144",
-      "name": "LGBTQ Voter",
-      "distance": 0.3623966788840364
-    },
-    {
-      "id": "143",
-      "name": "Evangelical Voter",
-      "distance": 0.3656400269465055
-    },
-    {
       "id": "042",
       "name": "Localist Progressive",
       "distance": 0.368568779950889
     },
     {
-      "id": "141",
-      "name": "Black Voter",
-      "distance": 0.3699648376783008
+      "id": "050",
+      "name": "Traditionalist Moralist",
+      "distance": 0.3779274920771329
+    },
+    {
+      "id": "048",
+      "name": "Solidaristic Localist",
+      "distance": 0.3809240077805352
+    },
+    {
+      "id": "002",
+      "name": "Independent Social Democrat",
+      "distance": 0.3925667752039076
+    },
+    {
+      "id": "043",
+      "name": "Quiet Egalitarian",
+      "distance": 0.39899179501635984
     }
   ],
   "votes": {

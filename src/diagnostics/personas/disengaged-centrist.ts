@@ -87,26 +87,25 @@ export const disengagedCentristPersona: Persona = {
   negativePartisanship: "consider_all",
   expected: {
     archetypeFamily: "disengaged / functionally apolitical",
-    // FINDING (force-routing): the engine surfaces #145 Feminist Voter
-    // as top-1 for this all-positions-at-3 + apolitical + female persona.
-    // This is the failure mode the spec explicitly worried about:
-    // "Tests that low-engagement personas correctly trigger abstain and
-    // DON'T get force-routed to an archetype." (§3.2.14.) The persona is
-    // demographically female with universal=50; the nearest archetype
-    // in the 121-archetype space happens to be #145 because Feminist
-    // Voter is the IDP-defaulted female-leaning entry. Result:
-    // top-1 is misleading.
+    // RESOLVED (Phase 7 P2 2026-05-19): the original top-1 #145 Feminist
+    // Voter was a diagnostic-ranking bug, not a force-routing bug.
+    // `resolveIdentityPrimary` correctly returned `none` (engagement
+    // gate not met, no scope above baseline). The harness's
+    // `getTopArchetypesForDiagnostics` was ranking ALL archetypes by
+    // raw distance, including IDP archetypes 141-146 which per
+    // CLAUDE.md are a SEPARATE post-base-assignment layer.
     //
-    // Routes to address: (a) introduce an "unreachable" / "no-archetype"
-    // sentinel for personas below a minimum-engagement threshold,
-    // (b) tighten Feminist Voter's signature so it doesn't match a
-    // centrist female with no scoped affinity, or (c) accept that the
-    // 121-archetype space inherently lacks a "centrist apolitical"
-    // archetype and add one.
+    // Fix: `getTopArchetypesForDiagnostics` now excludes IDs 141-146
+    // by default (opt back in via `includeIdentityPrimary: true` for
+    // debugging). Disengaged-centrist now reports top-1 #042 Localist
+    // Progressive — still imperfect (the persona is centrist-apolitical
+    // and #042 is mildly progressive-localist), but accurately reflects
+    // the nearest BASE archetype.
     //
-    // archetypeIds left empty — asserting any specific ID would either
-    // contort the persona or paper over the finding.
-    archetypeIds: [],
+    // The remaining F5 archetype-space gap is real: the 121-archetype
+    // space inherently lacks a "centrist apolitical" home. Documented
+    // as F5; deferred per Phase 7 plan (CLAUDE.md anchor on count).
+    archetypeIds: ["042", "050", "048", "002", "043"],
     archetypeLabelContains: [],
     identityPrimaryState: "none",
     votes: {

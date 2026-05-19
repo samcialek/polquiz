@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 | F1 | Static-position model can't capture temporal vote evolution | HIGH (architectural) | obama-to-trump, hispanic-d-to-trump, never-trump-republican, triple-switcher, libertarian-republican | Vote prediction is wrong for ~5 of 15 personas in specific years |
 | F2 | Q97 PF/ENG coupling forces tradeoff between highly-engaged and 2016-T vote capture | MEDIUM | bernie-progressive, never-trump-republican, libertarian-republican | Personas needing both highly-engaged + protest-vote routing can't have both |
-| F3 | Disengaged centrist force-routed to #145 Feminist Voter IDP | HIGH (product) | disengaged-centrist (+ likely other low-engagement female demos) | User sees Feminist Voter when there's no signal warranting it |
+| F3 | Diagnostic top-K includes IDP archetypes even when overlay is `none` | LOW (diagnostic, not user-visible) — RESOLVED Phase 7 P2 | disengaged-centrist top-1 reported as #145 Feminist Voter | Only visible in harness reports; user-facing composed label was always correct |
 | F4 | Engagement→abstain doesn't fully suppress Obama-era D votes for centrists | LOW | disengaged-centrist 2008/2012 | Cosmetic mis-prediction at edge of voting threshold |
 | F5 | Archetype-space gaps: libertarian, nihilist, centrist-apolitical | MEDIUM | libertarian-republican (→#042), nihilist (→#124), disengaged-centrist (→#145) | Three personas land at archetypes that don't really own their family |
 | F6 | Q102 religion item over-pulls scoped religious affinity for assimilationist Christians | LOW (silent) | obama-to-trump (routes to Evangelical Voter despite cross-pressured framing) | Spurious Evangelical Voter routing for non-religious-frame voters |
@@ -130,23 +130,27 @@ The 021→001 attractor was documented in `CLAUDE.md` (Stage 4 deferred), not in
 
 ---
 
-### Priority 2 — F3 + F5 (centrist-apolitical IDP force-route + archetype gaps)
+### Priority 2 — F3 + F5 (diagnostic-ranking IDP leakage + archetype gaps)
 
-**Scope:** Architectural — adds floor mechanism + potentially new archetypes.
+**F3 resolved Phase 7 P2 (2026-05-19):** initial diagnosis was wrong.
+`resolveIdentityPrimary` correctly returned `none` for disengaged-
+centrist all along. The unwanted #145 Feminist Voter top-1 was coming
+from `getTopArchetypesForDiagnostics()` ranking IDP archetypes
+(IDs 141-146) against base archetypes by raw distance. Per CLAUDE.md
+"Do NOT conflate Identity Primary overlays with base archetypes —
+they are a separate layer applied *after* archetype assignment."
+Fix: filter IDs 141-146 from the diagnostic ranking by default;
+opt-in via `includeIdentityPrimary: true` for debugging. The
+user-facing composed label (`Redistributionist Apolitical Voter`)
+was always correct.
 
-**Problem statement (F3):** Disengaged centrist with all positions=3 + female + universal=50 gets routed to #145 Feminist Voter IDP because nearest-neighbor archetype lookup has no centrist-apolitical archetype to anchor. Same mechanism risks affecting other low-engagement profiles.
+**Problem statement (F3, post-correction):** Diagnostic top-K
+included IDP archetypes that should never appear in base-archetype
+rankings. Low impact (diagnostic only) but conceptually clean to fix.
 
-**Problem statement (F5):** Libertarian (#042 Localist Progressive instead of a true libertarian archetype), nihilist (#124 Latent Alarmist instead of a nihilist-specific archetype) hit archetype-space gaps.
+**Problem statement (F5):** Libertarian (#042 Localist Progressive instead of a true libertarian archetype), nihilist (#124 Latent Alarmist instead of a nihilist-specific archetype), and disengaged-centrist (now #042 Localist Progressive after the F3 fix — still imperfect) hit archetype-space gaps.
 
-**Fix options for F3:**
-
-| Option | Description | Effort | Risk |
-|---|---|---|---|
-| A | Engagement floor on IDP resolver: require ENG.expectedPos ≥ 2.5 before allowing IDP overlay | 1 hour | Suppresses IDP for low-engagement voters generally — may suppress some valid Feminist/Black/LGBTQ low-engagement voters too |
-| B | Tighten IDP archetype signatures (require non-baseline saliences on signature nodes) | 2 sessions | Risk of breaking the current battery's IDP routes (Black Voter, Evangelical Voter, etc.) |
-| C | Add a "no-archetype" sentinel for sub-threshold-engagement profiles | 1 session | New shape in archetype-distance output — touches consumer code |
-
-**Recommended for F3:** **Option A.** Lowest risk, matches the spec's explicit intent ("low-engagement personas correctly trigger abstain and don't get force-routed"). The engagement floor at 2.5 maps to "engaged or above" — disengaged-centrist (ENG=apolitical, pos~1) cleanly excludes; current Feminist/Black/Evangelical routes (engaged personas) preserved.
+**F3 was fixed by a small diagnostic-hygiene change, not the originally-proposed resolver gating.** See "F3 resolved" note above.
 
 **Fix options for F5:** Adding new archetypes is a bigger move — 121-archetype count is in CLAUDE.md "DO NOT CHANGE" as a deliberate stability anchor. Don't add archetypes unless an existing one is being replaced. For the libertarian/nihilist gaps, the answer is probably "accept routing via co-located dimensions, document as known semantic gap." For centrist-apolitical, Option A above (engagement floor on IDP) handles the disengaged-centrist case.
 
@@ -199,7 +203,7 @@ The 021→001 attractor was documented in `CLAUDE.md` (Stage 4 deferred), not in
 | Priority | Item | Effort | Sequence |
 |---|---|---|---|
 | 1 | F2 — weaken Q97 PF emission to weight 0.30 | 1 hour | Next |
-| 2 | F3 — add engagement floor (ENG≥2.5) to IDP resolver | 1 hour | After P1 verified |
+| 2 | F3 — filter IDP IDs 141-146 from `getTopArchetypesForDiagnostics()` | 30 min | DONE Phase 7 P2 |
 | 3 | F6 — design + add Q244 religion-as-organizing separator | 1 session | After P2 verified |
 | 4 | F1 — document architectural limitation; ticket for future roadmap | 1 session | Anytime; doesn't block |
 | n/a | F4 — minor edge-case; accept current behavior | — | Skip |

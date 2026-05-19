@@ -684,12 +684,27 @@ export function getElectionPredictions() {
  * Returns null if no quiz is active. The function reads the internal raw
  * state without exposing it (so callers can't mutate); the returned objects
  * are plain data.
+ *
+ * Identity-primary archetypes (IDs 141-146) are excluded by default per
+ * CLAUDE.md: "Do NOT conflate Identity Primary overlays with base archetypes
+ * — they are a separate layer applied *after* archetype assignment." When
+ * the IDP overlay fires, it's surfaced via `getResults().identityPrimary`,
+ * not via this base-archetype ranking. Including them here was producing
+ * false top-1 results for personas like disengaged-centrist where the IDP
+ * overlay correctly returned `none` but #145 Feminist Voter was the
+ * nearest archetype by raw distance.
+ *
+ * Pass `includeIdentityPrimary: true` to opt back into the unfiltered
+ * ranking for debugging.
  */
-export function getTopArchetypesForDiagnostics(k = 5) {
+const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
+export function getTopArchetypesForDiagnostics(k = 5, options) {
     if (!_state)
         return null;
+    const includeIdp = options?.includeIdentityPrimary === true;
     const ranked = ARCHETYPES
         .filter(a => a.active !== false)
+        .filter(a => includeIdp || !IDENTITY_PRIMARY_IDS.has(a.id))
         .map(a => ({ id: a.id, name: a.name, distance: archetypeDistance(_state, a) }))
         .filter(r => Number.isFinite(r.distance))
         .sort((a, b) => a.distance - b.distance)

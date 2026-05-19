@@ -25,7 +25,7 @@
 | triple-switcher | 22 | Consequentialist Cynic | #124 Latent Alarmist | (none) | 4/5 | ✓ 8/8 |
 | libertarian-republican | 29 | Pragmatic Free-Marketeer | #042 Localist Progressive | (none) | 3/5 | ✓ 9/9 |
 | tech-progressive | 27 | Empiricist Reformer | #039 Data-Driven Moderate | (none) | 5/5 | ✓ 9/9 |
-| disengaged-centrist | 24 | Redistributionist Apolitical Voter | #145 Feminist Voter | (none) | 3/5 | ✓ 7/7 |
+| disengaged-centrist | 24 | Redistributionist Apolitical Voter | #042 Localist Progressive | (none) | 3/5 | ✓ 7/7 |
 | nihilist | 28 | Combative Apolitical Voter | #124 Latent Alarmist | (none) | 3/5 | ✓ 8/8 |
 
 ## Vote-pattern coverage matrix

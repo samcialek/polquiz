@@ -16,11 +16,11 @@
 
 | rank | id | name | distance |
 |---|---|---|---|
-| 1 | 145 | Feminist Voter | 0.362 |
-| 2 | 144 | LGBTQ Voter | 0.362 |
-| 3 | 143 | Evangelical Voter | 0.366 |
-| 4 | 042 | Localist Progressive | 0.369 |
-| 5 | 141 | Black Voter | 0.370 |
+| 1 | 042 | Localist Progressive | 0.369 |
+| 2 | 050 | Traditionalist Moralist | 0.378 |
+| 3 | 048 | Solidaristic Localist | 0.381 |
+| 4 | 002 | Independent Social Democrat | 0.393 |
+| 5 | 043 | Quiet Egalitarian | 0.399 |
 
 ## Assertions (7/7 pass)
 
