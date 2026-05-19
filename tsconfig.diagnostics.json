@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "src/types.ts",
+    "src/browser/**/*.ts",
+    "src/config/**/*.ts",
+    "src/engine/**/*.ts",
+    "src/global/**/*.ts",
+    "src/historical/**/*.ts",
+    "src/identity/**/*.ts",
+    "src/diagnostics/answerEngine.ts",
+    "src/diagnostics/realHarness.ts",
+    "src/diagnostics/personas/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

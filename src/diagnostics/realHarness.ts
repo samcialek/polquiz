@@ -47,6 +47,13 @@ interface TraceEntry {
   answer: unknown;
 }
 
+interface AssertionResult {
+  name: string;
+  pass: boolean;
+  expected: string;
+  actual: string;
+}
+
 interface RunResult {
   persona: Persona;
   trace: TraceEntry[];
@@ -54,10 +61,91 @@ interface RunResult {
   finalState: Record<string, unknown> | null;
   composedLabel: string | null;
   identityPrimaryLabel: string | null;
+  identityPrimaryState: string | null;
   engagementLevel: string;
   votes: Record<number, string>;
   voteMatches: Record<number, { expected: string; actual: string; match: boolean }>;
   voteMatchCount: number;
+  assertions: AssertionResult[];
+}
+
+function runAssertions(persona: Persona, r: Omit<RunResult, "assertions">): AssertionResult[] {
+  const out: AssertionResult[] = [];
+
+  // Vote match
+  const voteTotal = Object.keys(persona.expected.votes).length;
+  const voteMatchMin = persona.expected.voteMatchMin ?? voteTotal;
+  out.push({
+    name: "vote match",
+    pass: r.voteMatchCount >= voteMatchMin,
+    expected: `≥${voteMatchMin}/${voteTotal}`,
+    actual: `${r.voteMatchCount}/${voteTotal}`,
+  });
+
+  // Composed label contains tokens
+  if (persona.expected.archetypeLabelContains) {
+    const label = r.composedLabel ?? "";
+    for (const token of persona.expected.archetypeLabelContains) {
+      out.push({
+        name: `composed label contains "${token}"`,
+        pass: label.includes(token),
+        expected: token,
+        actual: label || "(none)",
+      });
+    }
+  }
+
+  // Identity-primary state
+  if (persona.expected.identityPrimaryState !== undefined && persona.expected.identityPrimaryState !== null) {
+    const expectedState = persona.expected.identityPrimaryState;
+    // "none" persona-expectation maps to API returning either null or
+    // identityPrimary.state === "none" / "unresolved".
+    const actualState = r.identityPrimaryState ?? "none";
+    const pass = expectedState === "none"
+      ? (actualState === "none" || actualState === "unresolved")
+      : actualState === expectedState;
+    out.push({
+      name: "identity-primary state",
+      pass,
+      expected: expectedState,
+      actual: actualState,
+    });
+  }
+
+  // Identity-primary label (if specified)
+  if (persona.expected.identityPrimaryLabel !== undefined) {
+    const expected = persona.expected.identityPrimaryLabel;
+    const actual = r.identityPrimaryLabel;
+    out.push({
+      name: "identity-primary label",
+      pass: expected === actual,
+      expected: expected ?? "(none)",
+      actual: actual ?? "(none)",
+    });
+  }
+
+  // Engagement level
+  if (persona.expected.engagement) {
+    out.push({
+      name: "engagement level",
+      pass: r.engagementLevel === persona.expected.engagement,
+      expected: persona.expected.engagement,
+      actual: r.engagementLevel,
+    });
+  }
+
+  // Question-count range
+  if (persona.expected.questionsInRange) {
+    const [lo, hi] = persona.expected.questionsInRange;
+    out.push({
+      name: "questions asked in range",
+      pass: r.questionsAsked >= lo && r.questionsAsked <= hi,
+      expected: `[${lo}, ${hi}]`,
+      actual: String(r.questionsAsked),
+    });
+  }
+
+  return out;
 }
 
 function runPersona(persona: Persona): RunResult {
@@ -123,17 +211,23 @@ function runPersona(persona: Persona): RunResult {
     if (match) voteMatchCount++;
   }
 
-  return {
+  const partial = {
     persona,
     trace,
     questionsAsked: idx,
     finalState: state,
     composedLabel,
     identityPrimaryLabel: results.identityPrimary?.label ?? null,
+    identityPrimaryState: results.identityPrimary?.state ?? null,
     engagementLevel: results.engagement.level,
     votes,
     voteMatches,
     voteMatchCount,
+  };
+
+  return {
+    ...partial,
+    assertions: runAssertions(persona, partial),
   };
 }
 
@@ -155,6 +249,18 @@ function renderReport(r: RunResult): string {
   lines.push("**Expected archetype family:** " + r.persona.expected.archetypeFamily);
   lines.push("");
   lines.push("*Top-K archetype-id ranking is deferred — requires the internal RespondentState shape (posDist/salDist arrays) which `getRespondentState` does not expose. Composed label above is the canonical user-facing archetype identity (post-centroid-retirement).*");
+  lines.push("");
+
+  // Assertions
+  const failed = r.assertions.filter(a => !a.pass);
+  lines.push(`## Assertions (${r.assertions.length - failed.length}/${r.assertions.length} pass)`);
+  lines.push("");
+  lines.push("| check | expected | actual | result |");
+  lines.push("|---|---|---|---|");
+  for (const a of r.assertions) {
+    const result = a.pass ? "✓" : "❌";
+    lines.push(`| ${a.name} | \`${a.expected}\` | \`${a.actual}\` | ${result} |`);
+  }
   lines.push("");
 
   lines.push("## Vote-prediction scorecard");
@@ -196,16 +302,31 @@ fs.writeFileSync(tracePath, JSON.stringify({
   questionsAsked: result.questionsAsked,
   composedLabel: result.composedLabel,
   identityPrimaryLabel: result.identityPrimaryLabel,
+  identityPrimaryState: result.identityPrimaryState,
   engagementLevel: result.engagementLevel,
   votes: result.votes,
   voteMatches: result.voteMatches,
+  assertions: result.assertions,
 }, null, 2));
 
 console.log(`Persona: ${persona.name}`);
 console.log(`Questions asked: ${result.questionsAsked}`);
 console.log(`Composed label: ${result.composedLabel}`);
-console.log(`Identity-primary: ${result.identityPrimaryLabel ?? "(none)"}`);
+console.log(`Identity-primary: ${result.identityPrimaryLabel ?? "(none)"} [${result.identityPrimaryState ?? "n/a"}]`);
 console.log(`Engagement: ${result.engagementLevel}`);
 console.log(`Vote match: ${result.voteMatchCount}/${Object.keys(persona.expected.votes).length}`);
+
+const failedAssertions = result.assertions.filter(a => !a.pass);
+const passedAssertions = result.assertions.filter(a => a.pass);
+console.log(`\nAssertions: ${passedAssertions.length}/${result.assertions.length} pass`);
+for (const a of result.assertions) {
+  const mark = a.pass ? "✓" : "❌";
+  console.log(`  ${mark} ${a.name}: expected ${a.expected}, got ${a.actual}`);
+}
 console.log(`\nReport: ${reportPath}`);
 console.log(`Trace:  ${tracePath}`);
+
+if (failedAssertions.length > 0) {
+  console.error(`\n${failedAssertions.length} assertion(s) failed — exiting nonzero.`);
+  process.exit(1);
+}

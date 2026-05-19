@@ -29,7 +29,55 @@ Run via `npx tsx src/diagnostics/realHarness.ts`. Outputs:
 
 The vote-prediction chain — engine → respondent signature → election alignment → engagement gate → predictVote — is **functional end-to-end** for this persona. The composed label "Fighter Assimilationist" sits in the populist-nationalist family the persona was designed to land at.
 
-## Known issues — Phase 5b iteration targets
+## Phase 5b — fixes applied
+
+All four issues flagged in the original Phase 5 review have been addressed:
+
+| # | Issue | Fix |
+|---|---|---|
+| 1 | Quartile-based priority_sort bucketing under-placed loaded scopes | Replaced with `alignmentForItem(persona, ev)` per-item semantic scoring + absolute thresholds. Q229/Q60 now place all 3 of `{national, religious, ideological}` in supportHigh when persona has scoped affinities >70 on them; ethnic_racial → supportMid at 60; class/gender → neutral at 50. |
+| 2 | Categorical raw-array shape unhandled | `scoreEvidence` now detects `Array.isArray(fields)` and treats the array as the category distribution directly (covers Q89 EPS_PROTOTYPES, Q218 AES_PROTOTYPES delegations). Q89 now correctly picks `eps_intuitionist` for the intuitionist persona. |
+| 3 | One-pole question logic (Q102) inverted intensity-vs-distance | Same `alignmentForItem` fix — items pulling toward the persona's pole at greater intensity bucket higher. Q102 now places born_here/ancestry/religion in supportHigh; civic_values/civic_part in opposeHigh (correctly opposed by the assimilationist persona). |
+| 4 | Diagnostics not in build typecheck | New `tsconfig.diagnostics.json` includes `src/diagnostics/{answerEngine,realHarness,personas/**}` + their deps. New script `npm run typecheck:harness` catches type errors that `npm run build` ignores. Caught (and fixed) the real `partyID: "ind_lean_r"` type mismatch on first run. |
+
+**Plus:** harness now runs assertions per persona expectation, prints pass/fail per-check, and `process.exit(1)` on any failure. Six assertions for Abstain → Trump:
+1. Vote match ≥ 5/5 (got 5/5 ✓)
+2. Composed label contains "Assimilationist" (got "Fighter Partisan-Communitarian Assimilationist" ✓)
+3. Composed label contains "Fighter" ✓
+4. Identity-primary state = "none" (got "none" ✓ — top excess scope is `ideological`, which has no IDP overlay by design)
+5. Engagement = casual ✓
+6. Questions asked in [20, 35] (got 23 ✓)
+
+## Phase 5b results — Abstain → Trump re-run
+
+| Field | Phase 5 | Phase 5b |
+|---|---|---|
+| Questions asked | 28 | **23** |
+| Composed label | Fighter Assimilationist | **Fighter Partisan-Communitarian Assimilationist** |
+| Vote match | 5/5 | **5/5** |
+| Identity-primary | (none) | **(none)** — by design, not under-pull |
+| Engagement | casual | casual |
+| Q229 supportHigh | 1 item (national only) | **3 items (national, religious, ideological)** |
+| moralCircle scoped national | 66.78 | **70.56** (above 70 IDP threshold) |
+| moralCircle scoped religious | 66.25 | **80** |
+| moralCircle scoped ideological | 70 | **82.5** |
+| Q89 EPS choice | empiricist (wrong) | **intuitionist (correct)** |
+
+The Phase 5 under-pull was real — three loaded scopes had been collapsing into one supportHigh slot. With semantic bucketing they now all clear the 70 threshold cleanly.
+
+The remaining `identityPrimary: (none)` is now correct-by-design rather than under-pull: the top scope by excess is `ideological` (50.5), which by `resolveIdentityPrimary.ts:565` has no IDP overlay defined. This persona is a base-archetype populist-nationalist, not an IDP archetype.
+
+## Verification (Phase 5b, post-commit)
+
+```
+npm run typecheck:harness    # 0 errors
+npm run build                # clean
+npm run harness:abstain-trump  # 6/6 assertions pass, exit 0
+npx tsx src/test/opener-smoke.ts        # PASS — 15/15 fixed router reached
+npx tsx src/test/opposehigh-dryrun.ts   # IDP gate passes (unchanged)
+```
+
+## Historical: original known issues — Phase 5b iteration targets
 
 The answer engine is intentionally minimal in this first pass (HARNESS-HANDOFF §11.9: "iterate from observed misroutings"). Three issues observed in the trace:
 
@@ -59,13 +107,7 @@ Fix: for one-pole questions, items pulling toward the persona's pole at greater 
 
 ## Updated contingency tree
 
-Phase 5 is **functionally validated**. The architecture works. The next iteration is:
-
-**Phase 5b — answer-engine refinement** (~1 session):
-- Fix priority_sort bucketing per Issues 1 + 3
-- Fix categorical raw-array handling per Issue 2
-- Re-run abstain-to-trump → expect IDP overlay to trigger this time
-- Verify composed label sharpens (currently "Fighter Assimilationist"; with proper sort placement could narrow further)
+Phases 5 + 5b are **complete**. The next iteration is:
 
 **Phase 6 — scale to 15-persona battery**:
 - Build remaining 14 persona files (Tier-A #2, #3 + Tier-B 12)

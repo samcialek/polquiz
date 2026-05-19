@@ -87,6 +87,17 @@ export const abstainToTrumpPersona: Persona = {
   negativePartisanship: "consider_all",
   expected: {
     archetypeFamily: "populist-nationalist",
+    // The composed label must signal assimilationist CU + fighter AES tokens.
+    // Both surfaced in Phase 5b validation as "Fighter Partisan-Communitarian
+    // Assimilationist". The exact merger tokens can drift as the labeler
+    // evolves; assert on the load-bearing pair.
+    archetypeLabelContains: ["Assimilationist", "Fighter"],
+    // IDP routing not expected: top scope by excess is `ideological` (loaded
+    // by Q229 supportHigh writes on ingroup_ideological at 95), which has no
+    // IDP overlay per resolveIdentityPrimary.ts:565. The Abstain → Trump
+    // persona maps to a *base* archetype in the populist-nationalist family,
+    // not an identity-primary overlay archetype.
+    identityPrimaryState: "none",
     votes: {
       2008: "ABSTAIN",
       2012: "ABSTAIN",
@@ -94,5 +105,8 @@ export const abstainToTrumpPersona: Persona = {
       2020: "R",
       2024: "R",
     },
+    voteMatchMin: 5,
+    engagement: "casual",
+    questionsInRange: [20, 35],
   },
 };

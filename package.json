@@ -8,6 +8,8 @@
     "build:all": "tsc",
     "build:browser": "node scripts/build-browser.mjs",
     "typecheck:all": "tsc -p tsconfig.tests.json",
+    "typecheck:harness": "tsc -p tsconfig.diagnostics.json",
+    "harness:abstain-trump": "tsx src/diagnostics/realHarness.ts",
     "sim": "tsx src/test/simulation.ts",
     "sim:quick": "tsx src/test/simulation.ts --quick",
     "diagnostic": "tsx src/test/full-diagnostic.ts",
