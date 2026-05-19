@@ -1,0 +1,503 @@
+{
+  "persona": {
+    "id": "trump-mobilized-republican",
+    "name": "Trump-mobilized Republican (cultural-traditionalist)",
+    "demographics": {
+      "age": "55-64",
+      "gender": "male",
+      "race": "white",
+      "lgbtq": "no",
+      "religion": "christian"
+    },
+    "partyID": "rep",
+    "positions": {
+      "MAT": 3,
+      "CD": 5,
+      "CU": 1,
+      "MOR": 1,
+      "PRO": 3,
+      "COM": 2,
+      "ZS": 4,
+      "ONT_H": 2,
+      "ONT_S": 3,
+      "PF": 3,
+      "TRB": 4,
+      "ENG": 3
+    },
+    "saliences": {
+      "MAT": 2,
+      "CD": 3,
+      "CU": 3,
+      "MOR": 3,
+      "PRO": 1,
+      "COM": 1,
+      "ZS": 2,
+      "ONT_H": 1,
+      "ONT_S": 2,
+      "PF": 2,
+      "TRB": 3,
+      "ENG": 3,
+      "EPS": 2,
+      "AES": 2
+    },
+    "moralCircle": {
+      "universal": 25,
+      "scopedAffinities": {
+        "national": 85,
+        "religious": 90,
+        "ethnic_racial": 60,
+        "class": 55,
+        "gender": 60,
+        "ideological": 65
+      }
+    },
+    "eps": "traditionalist",
+    "aes": "fighter",
+    "engagement": "engaged",
+    "strategicVoting": "sincere_always",
+    "negativePartisanship": "never_dem",
+    "expected": {
+      "archetypeFamily": "religious traditionalist / Christian-right",
+      "archetypeLabelContains": [
+        "Integralist"
+      ],
+      "identityPrimaryState": "active",
+      "identityPrimaryLabel": "Evangelical Voter",
+      "votes": {
+        "2008": "R",
+        "2012": "R",
+        "2016": "R",
+        "2020": "R",
+        "2024": "R"
+      },
+      "voteMatchMin": 4,
+      "engagement": "engaged",
+      "questionsInRange": [
+        20,
+        35
+      ]
+    }
+  },
+  "trace": [
+    {
+      "idx": 1,
+      "qId": 200,
+      "promptShort": "party_identification",
+      "uiType": "single_choice",
+      "answer": "rep"
+    },
+    {
+      "idx": 2,
+      "qId": 103,
+      "promptShort": "issue_salience_screener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "cd",
+          "cu",
+          "mor"
+        ],
+        "supportMid": [
+          "mat",
+          "zs",
+          "ont_s",
+          "eps",
+          "aes"
+        ],
+        "neutral": [
+          "pro",
+          "com",
+          "ont_h"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 3,
+      "qId": 97,
+      "promptShort": "political_thought_frequency",
+      "uiType": "single_choice",
+      "answer": "regularly_daily"
+    },
+    {
+      "idx": 4,
+      "qId": 60,
+      "promptShort": "politically_important_identities",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "national_identity",
+          "religious_identity"
+        ],
+        "supportMid": [
+          "ideological_identity",
+          "ethnic_racial_identity",
+          "gender_identity"
+        ],
+        "neutral": [
+          "class_identity"
+        ],
+        "opposeHigh": [
+          "global_citizen"
+        ]
+      }
+    },
+    {
+      "idx": 5,
+      "qId": 89,
+      "promptShort": "epistemic_style_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "eps_traditionalist"
+        ],
+        "worst": [
+          "eps_autonomous"
+        ]
+      }
+    },
+    {
+      "idx": 6,
+      "qId": 218,
+      "promptShort": "aesthetic_style_ranking",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "aes_fighter"
+        ],
+        "worst": [
+          "aes_visionary"
+        ]
+      }
+    },
+    {
+      "idx": 7,
+      "qId": 211,
+      "promptShort": "strategic_voting",
+      "uiType": "single_choice",
+      "answer": "sincere_always"
+    },
+    {
+      "idx": 8,
+      "qId": 212,
+      "promptShort": "negative_partisanship",
+      "uiType": "single_choice",
+      "answer": "never_dem"
+    },
+    {
+      "idx": 9,
+      "qId": 93,
+      "promptShort": "priority_sort_opener",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "cd_high",
+          "cu_low",
+          "mor_low",
+          "com_low"
+        ],
+        "supportMid": [],
+        "neutral": [
+          "mat_low",
+          "mat_high",
+          "pro_low",
+          "pro_high"
+        ],
+        "opposeHigh": [
+          "cd_low",
+          "cu_high",
+          "mor_high",
+          "com_high"
+        ]
+      }
+    },
+    {
+      "idx": 10,
+      "qId": 102,
+      "promptShort": "membership_criteria_priority_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "born_here",
+          "speak_lang",
+          "cultural",
+          "ancestry",
+          "religion"
+        ],
+        "supportMid": [
+          "economic"
+        ],
+        "neutral": [],
+        "opposeHigh": [
+          "shared_values",
+          "civic_part"
+        ]
+      }
+    },
+    {
+      "idx": 11,
+      "qId": 209,
+      "promptShort": "zero_sum_economics_view",
+      "uiType": "single_choice",
+      "answer": "winners_at_others_expense"
+    },
+    {
+      "idx": 12,
+      "qId": 210,
+      "promptShort": "human_malleability_view",
+      "uiType": "single_choice",
+      "answer": "modest_shaping"
+    },
+    {
+      "idx": 13,
+      "qId": 214,
+      "promptShort": "institutions_foundational",
+      "uiType": "single_choice",
+      "answer": "depends_on_design"
+    },
+    {
+      "idx": 14,
+      "qId": 8,
+      "promptShort": "domestic_vs_abroad_lives",
+      "uiType": "single_choice",
+      "answer": "clearly_domestic"
+    },
+    {
+      "idx": 15,
+      "qId": 229,
+      "promptShort": "moral_circle_in_group_sort",
+      "uiType": "priority_sort",
+      "answer": {
+        "supportHigh": [
+          "ingroup_national",
+          "ingroup_religious"
+        ],
+        "supportMid": [
+          "ingroup_ethnic_racial",
+          "ingroup_gender",
+          "ingroup_ideological"
+        ],
+        "neutral": [
+          "ingroup_class"
+        ],
+        "opposeHigh": []
+      }
+    },
+    {
+      "idx": 16,
+      "qId": 3,
+      "promptShort": "cultural_social_placement",
+      "uiType": "slider",
+      "answer": 91
+    },
+    {
+      "idx": 17,
+      "qId": 213,
+      "promptShort": "equal_standing_within_polity",
+      "uiType": "single_choice",
+      "answer": "natural_hierarchy"
+    },
+    {
+      "idx": 18,
+      "qId": 82,
+      "promptShort": "openness_assimilation_closure",
+      "uiType": "single_choice",
+      "answer": "preserve_culture"
+    },
+    {
+      "idx": 19,
+      "qId": 7,
+      "promptShort": "coalition_vs_principle",
+      "uiType": "single_choice",
+      "answer": "principle_first"
+    },
+    {
+      "idx": 20,
+      "qId": 78,
+      "promptShort": "speaker_appeal",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "deep_expertise",
+          "says_what_they_think"
+        ],
+        "worst": [
+          "bridge_builder",
+          "big_picture"
+        ]
+      }
+    },
+    {
+      "idx": 21,
+      "qId": 11,
+      "promptShort": "nyt_headline_click",
+      "uiType": "single_choice",
+      "answer": "timeless_principles"
+    },
+    {
+      "idx": 22,
+      "qId": 56,
+      "promptShort": "effective_leader_style",
+      "uiType": "single_choice",
+      "answer": "channel_anger"
+    },
+    {
+      "idx": 23,
+      "qId": 49,
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 24,
+      "qId": 71,
+      "promptShort": "rhetoric_style_importance",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 25,
+      "qId": 69,
+      "promptShort": "common_ground_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 26,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 27,
+      "qId": 84,
+      "promptShort": "institutions_harden_into_domination",
+      "uiType": "slider",
+      "answer": 71
+    },
+    {
+      "idx": 28,
+      "qId": 51,
+      "promptShort": "immigration_national_identity_salience",
+      "uiType": "slider",
+      "answer": 91
+    }
+  ],
+  "questionsAsked": 28,
+  "composedLabel": "Integralist",
+  "identityPrimaryLabel": "Evangelical Voter",
+  "identityPrimaryState": "active",
+  "engagementLevel": "engaged",
+  "topArchetypes": [
+    {
+      "id": "081",
+      "name": "Heritage Guardian",
+      "distance": 0.3313104935881154
+    },
+    {
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "distance": 0.3379760519738094
+    },
+    {
+      "id": "083",
+      "name": "Closed Traditionalist",
+      "distance": 0.3572317975156488
+    },
+    {
+      "id": "082",
+      "name": "Altar-and-Hearth Conservative",
+      "distance": 0.3708831030159338
+    },
+    {
+      "id": "106",
+      "name": "Militant Partisan",
+      "distance": 0.37543778883335394
+    }
+  ],
+  "votes": {
+    "2008": "ABSTAIN",
+    "2012": "R",
+    "2016": "R",
+    "2020": "R",
+    "2024": "R"
+  },
+  "voteMatches": {
+    "2008": {
+      "expected": "R",
+      "actual": "ABSTAIN",
+      "match": false
+    },
+    "2012": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    },
+    "2016": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    },
+    "2020": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    },
+    "2024": {
+      "expected": "R",
+      "actual": "R",
+      "match": true
+    }
+  },
+  "assertions": [
+    {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "vote match",
+      "pass": true,
+      "expected": "≥4/5",
+      "actual": "4/5"
+    },
+    {
+      "name": "composed label contains \"Integralist\"",
+      "pass": true,
+      "expected": "Integralist",
+      "actual": "Integralist"
+    },
+    {
+      "name": "identity-primary state",
+      "pass": true,
+      "expected": "active",
+      "actual": "active"
+    },
+    {
+      "name": "identity-primary label",
+      "pass": true,
+      "expected": "Evangelical Voter",
+      "actual": "Evangelical Voter"
+    },
+    {
+      "name": "engagement level",
+      "pass": true,
+      "expected": "engaged",
+      "actual": "engaged"
+    },
+    {
+      "name": "questions asked in range",
+      "pass": true,
+      "expected": "[20, 35]",
+      "actual": "28"
+    }
+  ]
+}

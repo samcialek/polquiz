@@ -27,7 +27,7 @@ import {
 } from "../browser/api.js";
 
 import { decideAnswer, type Persona } from "./answerEngine.js";
-import { abstainToTrumpPersona } from "./personas/abstain-to-trump.js";
+import { ALL_PERSONAS, getPersonaById } from "./personas/index.js";
 
 // Phase 5c (2026-05-19): top-K archetype ranking now provided by
 // `getTopArchetypesForDiagnostics(k)` in browser/api.ts — a small accessor
@@ -345,49 +345,173 @@ function renderReport(r: RunResult): string {
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────
+//
+// Two modes:
+//   `npx tsx src/diagnostics/realHarness.ts`                 → battery (all)
+//   `npx tsx src/diagnostics/realHarness.ts --persona <id>`  → single persona
 
-const persona = abstainToTrumpPersona;
-const result = runPersona(persona);
-
-const reportPath = path.join(OUT_DIR, `real-harness-${persona.id}.md`);
-const tracePath = path.join(TRACE_DIR, `${persona.id}.json`);
-fs.writeFileSync(reportPath, renderReport(result));
-fs.writeFileSync(tracePath, JSON.stringify({
-  persona: result.persona,
-  trace: result.trace,
-  questionsAsked: result.questionsAsked,
-  composedLabel: result.composedLabel,
-  identityPrimaryLabel: result.identityPrimaryLabel,
-  identityPrimaryState: result.identityPrimaryState,
-  engagementLevel: result.engagementLevel,
-  topArchetypes: result.topArchetypes,
-  votes: result.votes,
-  voteMatches: result.voteMatches,
-  assertions: result.assertions,
-}, null, 2));
-
-console.log(`Persona: ${persona.name}`);
-console.log(`Questions asked: ${result.questionsAsked}`);
-console.log(`Composed label: ${result.composedLabel}`);
-console.log(`Identity-primary: ${result.identityPrimaryLabel ?? "(none)"} [${result.identityPrimaryState ?? "n/a"}]`);
-console.log(`Engagement: ${result.engagementLevel}`);
-console.log(`Vote match: ${result.voteMatchCount}/${Object.keys(persona.expected.votes).length}`);
-if (result.topArchetypes.length) {
-  const top = result.topArchetypes[0]!;
-  console.log(`Top archetype: #${top.id} ${top.name} (d=${top.distance.toFixed(3)})`);
+function parseArgs(): { personaId: string | null } {
+  const args = process.argv.slice(2);
+  let personaId: string | null = null;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "--persona" && i + 1 < args.length) {
+      personaId = args[i + 1]!;
+      i++;
+    }
+  }
+  return { personaId };
 }
 
-const failedAssertions = result.assertions.filter(a => !a.pass);
-const passedAssertions = result.assertions.filter(a => a.pass);
-console.log(`\nAssertions: ${passedAssertions.length}/${result.assertions.length} pass`);
-for (const a of result.assertions) {
-  const mark = a.pass ? "✓" : "❌";
-  console.log(`  ${mark} ${a.name}: expected ${a.expected}, got ${a.actual}`);
+function writePersonaArtifacts(result: RunResult): { reportPath: string; tracePath: string } {
+  const reportPath = path.join(OUT_DIR, `real-harness-${result.persona.id}.md`);
+  const tracePath = path.join(TRACE_DIR, `${result.persona.id}.json`);
+  fs.writeFileSync(reportPath, renderReport(result));
+  fs.writeFileSync(tracePath, JSON.stringify({
+    persona: result.persona,
+    trace: result.trace,
+    questionsAsked: result.questionsAsked,
+    composedLabel: result.composedLabel,
+    identityPrimaryLabel: result.identityPrimaryLabel,
+    identityPrimaryState: result.identityPrimaryState,
+    engagementLevel: result.engagementLevel,
+    topArchetypes: result.topArchetypes,
+    votes: result.votes,
+    voteMatches: result.voteMatches,
+    assertions: result.assertions,
+  }, null, 2));
+  return { reportPath, tracePath };
 }
-console.log(`\nReport: ${reportPath}`);
-console.log(`Trace:  ${tracePath}`);
 
-if (failedAssertions.length > 0) {
-  console.error(`\n${failedAssertions.length} assertion(s) failed — exiting nonzero.`);
-  process.exit(1);
+function summarizeSingle(result: RunResult, reportPath: string, tracePath: string): void {
+  console.log(`Persona: ${result.persona.name}`);
+  console.log(`Questions asked: ${result.questionsAsked}`);
+  console.log(`Composed label: ${result.composedLabel}`);
+  console.log(`Identity-primary: ${result.identityPrimaryLabel ?? "(none)"} [${result.identityPrimaryState ?? "n/a"}]`);
+  console.log(`Engagement: ${result.engagementLevel}`);
+  console.log(`Vote match: ${result.voteMatchCount}/${Object.keys(result.persona.expected.votes).length}`);
+  if (result.topArchetypes.length) {
+    const top = result.topArchetypes[0]!;
+    console.log(`Top archetype: #${top.id} ${top.name} (d=${top.distance.toFixed(3)})`);
+  }
+  const passed = result.assertions.filter(a => a.pass);
+  console.log(`\nAssertions: ${passed.length}/${result.assertions.length} pass`);
+  for (const a of result.assertions) {
+    const mark = a.pass ? "✓" : "❌";
+    console.log(`  ${mark} ${a.name}: expected ${a.expected}, got ${a.actual}`);
+  }
+  console.log(`\nReport: ${reportPath}`);
+  console.log(`Trace:  ${tracePath}`);
+}
+
+function renderBatteryAggregate(results: RunResult[], date: string): string {
+  const lines: string[] = [];
+  lines.push(`# Harness Battery — Aggregate Report`);
+  lines.push("");
+  lines.push(`**Date:** ${date}`);
+  lines.push(`**Personas run:** ${results.length}`);
+  lines.push("");
+
+  // Aggregate scorecard
+  const totalAssertions = results.reduce((s, r) => s + r.assertions.length, 0);
+  const passedAssertions = results.reduce((s, r) => s + r.assertions.filter(a => a.pass).length, 0);
+  const personasClean = results.filter(r => r.assertions.every(a => a.pass)).length;
+  lines.push("## Aggregate scorecard");
+  lines.push("");
+  lines.push(`- Personas with all assertions passing: **${personasClean}/${results.length}**`);
+  lines.push(`- Total assertions: **${passedAssertions}/${totalAssertions}** pass`);
+  lines.push("");
+
+  // Per-persona summary table
+  lines.push("## Per-persona summary");
+  lines.push("");
+  lines.push("| persona | questions | composed label | top archetype | IDP | vote match | assertions |");
+  lines.push("|---|---|---|---|---|---|---|");
+  for (const r of results) {
+    const top = r.topArchetypes[0];
+    const topStr = top ? `#${top.id} ${top.name}` : "—";
+    const ipStr = r.identityPrimaryLabel ?? `(${r.identityPrimaryState ?? "none"})`;
+    const passedN = r.assertions.filter(a => a.pass).length;
+    const status = passedN === r.assertions.length ? "✓" : "❌";
+    lines.push(
+      `| ${r.persona.id} | ${r.questionsAsked} | ${r.composedLabel ?? "—"} | ${topStr} | ${ipStr} | ${r.voteMatchCount}/${Object.keys(r.persona.expected.votes).length} | ${status} ${passedN}/${r.assertions.length} |`
+    );
+  }
+  lines.push("");
+
+  // Failures detail
+  const failedPersonas = results.filter(r => r.assertions.some(a => !a.pass));
+  if (failedPersonas.length) {
+    lines.push("## Failing assertions");
+    lines.push("");
+    for (const r of failedPersonas) {
+      lines.push(`### ${r.persona.id}`);
+      lines.push("");
+      for (const a of r.assertions.filter(x => !x.pass)) {
+        lines.push(`- ❌ \`${a.name}\` — expected \`${a.expected}\`, got \`${a.actual}\``);
+      }
+      lines.push("");
+    }
+  }
+
+  // Vote-pattern coverage matrix per HARNESS-HANDOFF §4.5
+  lines.push("## Vote-pattern coverage matrix");
+  lines.push("");
+  const years = [2008, 2012, 2016, 2020, 2024];
+  lines.push(`| persona | ${years.join(" | ")} |`);
+  lines.push(`|---|${years.map(() => "---").join("|")}|`);
+  for (const r of results) {
+    const row = years.map(y => {
+      const m = r.voteMatches[y];
+      if (!m) return "—";
+      return `${m.actual}${m.match ? "" : ` (exp ${m.expected})`}`;
+    });
+    lines.push(`| ${r.persona.id} | ${row.join(" | ")} |`);
+  }
+  lines.push("");
+
+  return lines.join("\n");
+}
+
+const { personaId } = parseArgs();
+
+if (personaId) {
+  const persona = getPersonaById(personaId);
+  if (!persona) {
+    console.error(`Unknown persona id: ${personaId}`);
+    console.error(`Known: ${ALL_PERSONAS.map(p => p.id).join(", ")}`);
+    process.exit(1);
+  }
+  const result = runPersona(persona);
+  const { reportPath, tracePath } = writePersonaArtifacts(result);
+  summarizeSingle(result, reportPath, tracePath);
+  const failed = result.assertions.filter(a => !a.pass);
+  if (failed.length > 0) {
+    console.error(`\n${failed.length} assertion(s) failed — exiting nonzero.`);
+    process.exit(1);
+  }
+} else {
+  // Battery mode
+  const date = new Date().toISOString().slice(0, 10);
+  const results: RunResult[] = [];
+  console.log(`Running battery of ${ALL_PERSONAS.length} persona(s)...\n`);
+  for (const persona of ALL_PERSONAS) {
+    process.stdout.write(`  ${persona.id} ... `);
+    const result = runPersona(persona);
+    writePersonaArtifacts(result);
+    results.push(result);
+    const passedN = result.assertions.filter(a => a.pass).length;
+    const status = passedN === result.assertions.length ? "✓" : "❌";
+    console.log(`${status} ${passedN}/${result.assertions.length} assertions, ${result.voteMatchCount}/${Object.keys(persona.expected.votes).length} vote, top: #${result.topArchetypes[0]?.id ?? "—"}`);
+  }
+  const aggregatePath = path.join(OUT_DIR, `real-harness-battery-${date}.md`);
+  fs.writeFileSync(aggregatePath, renderBatteryAggregate(results, date));
+  const totalAssertions = results.reduce((s, r) => s + r.assertions.length, 0);
+  const passedAssertions = results.reduce((s, r) => s + r.assertions.filter(a => a.pass).length, 0);
+  const failedPersonas = results.filter(r => r.assertions.some(a => !a.pass));
+  console.log(`\nBattery: ${passedAssertions}/${totalAssertions} assertions pass; ${results.length - failedPersonas.length}/${results.length} personas clean.`);
+  console.log(`Aggregate report: ${aggregatePath}`);
+  if (failedPersonas.length > 0) {
+    console.error(`\n${failedPersonas.length} persona(s) had failing assertions — exiting nonzero.`);
+    process.exit(1);
+  }
 }
