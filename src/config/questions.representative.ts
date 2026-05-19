@@ -7,7 +7,7 @@ import {
 export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   {
     id: 1,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "political_content_frequency",
     uiType: "single_choice",
@@ -41,7 +41,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 2,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "political_identity_centrality",
     uiType: "slider",
@@ -61,7 +61,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 11,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "nyt_headline_click",
     uiType: "single_choice",
@@ -97,7 +97,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 15,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "inequality_causes_allocation",
     uiType: "allocation",
@@ -125,7 +125,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 20,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "bad_outcomes_blame_allocation",
     uiType: "allocation",
@@ -154,7 +154,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 21,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "controversial_speaker",
     uiType: "single_choice",
@@ -200,7 +200,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   },
   {
     id: 23,
-    stage: "fixed12",
+    stage: "stage2",
     section: "III",
     promptShort: "who_should_shape_a_law",
     uiType: "ranking",
@@ -374,7 +374,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q3 — cultural_social_placement (slider)
   {
     id: 3,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "cultural_social_placement",
     uiType: "slider",
@@ -395,7 +395,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q4 — cultural_social_salience (slider)
   {
     id: 4,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "cultural_social_salience",
     uiType: "slider",
@@ -472,7 +472,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // is enough to register positive excess after engine averaging.
   {
     id: 228,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "remaining_in_group_pull",
     promptFull:
@@ -619,7 +619,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q40 — opponents_matter_to_identity (slider)
   {
     id: 40,
-    stage: "fixed12",
+    stage: "stage2",
     section: "IV",
     promptShort: "opponents_matter_to_identity",
     uiType: "slider",
@@ -1238,7 +1238,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q31 — trade_liberalization_effects
   {
     id: 31,
-    stage: "fixed12",
+    stage: "stage2",
     section: "III",
     promptShort: "trade_liberalization_effects",
     uiType: "single_choice",
@@ -1541,7 +1541,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q47 — political_conflict_with_close_others
   {
     id: 47,
-    stage: "fixed12",
+    stage: "stage2",
     section: "IV",
     promptShort: "political_conflict_with_close_others",
     uiType: "single_choice",
@@ -1925,7 +1925,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // distinct authority claims.
   {
     id: 22,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "source_trust_conflict",
     uiType: "single_choice",
@@ -3296,7 +3296,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
 
   {
     id: 98,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "group_solidarity_feeling",
     uiType: "single_choice",
@@ -3438,7 +3438,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: 99,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "cross_partisan_priority_sort",
     uiType: "priority_sort",
@@ -3482,7 +3482,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: 100,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "leader_conjoint",
     uiType: "conjoint",
@@ -3503,7 +3503,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // canonical epistemic styles directly and rank-weights the full order.
   {
     id: 217,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "epistemic_style_ranking",
     promptFull:
@@ -3583,7 +3583,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: 101,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "cultural_social_placement_dual",
     uiType: "dual_axis",
@@ -3795,7 +3795,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // (institutional trust) and TRB (national identification).
   {
     id: 201,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "patriotism_institutional_trust",
     uiType: "single_choice",
@@ -3972,7 +3972,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // axis; this question separates them via overlay.
   {
     id: 202,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "state_scope_preference",
     uiType: "single_choice",
@@ -4036,7 +4036,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q203 — Hawk-dove / military intervention
   {
     id: 203,
-    stage: "fixed12",
+    stage: "stage2",
     section: "III",
     promptShort: "military_intervention",
     uiType: "single_choice",
@@ -4099,7 +4099,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q204 — Internationalist vs isolationist (alliances, institutions, treaties)
   {
     id: 204,
-    stage: "fixed12",
+    stage: "stage2",
     section: "III",
     promptShort: "international_engagement",
     uiType: "single_choice",
@@ -4156,7 +4156,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q205 — Trade / economic nationalism
   {
     id: 205,
-    stage: "fixed12",
+    stage: "stage2",
     section: "III",
     promptShort: "trade_nationalism",
     uiType: "single_choice",
@@ -4213,7 +4213,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q206 — Religion in public life. Maps to CD, CU, MOR, PRO. Added 2026-04-25.
   {
     id: 206,
-    stage: "fixed12",
+    stage: "stage2",
     section: "IV",
     promptShort: "religion_in_public_life",
     uiType: "single_choice",
@@ -4273,7 +4273,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q207 — Emergency powers tolerance. PRO probe with anti-democratic-shortcut framing.
   {
     id: 207,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "emergency_powers",
     uiType: "single_choice",
@@ -4319,7 +4319,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q208 — Courts vs majority will
   {
     id: 208,
-    stage: "fixed12",
+    stage: "stage2",
     section: "II",
     promptShort: "courts_vs_majority",
     uiType: "single_choice",
@@ -4525,7 +4525,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // for users where the two diverge.
   {
     id: 213,
-    stage: "fixed12",
+    stage: "stage2",
     section: "IV",
     promptShort: "equal_standing_within_polity",
     promptFull:
@@ -4947,7 +4947,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q-A1: universal_baseline_humanity
   {
     id: 230,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "universal_baseline_humanity",
     promptFull:
@@ -4978,7 +4978,7 @@ export const REPRESENTATIVE_QUESTIONS: QuestionDef[] = [
   // Q-A2: universal_baseline_stranger
   {
     id: 231,
-    stage: "fixed12",
+    stage: "stage2",
     section: "I",
     promptShort: "universal_baseline_stranger",
     promptFull:

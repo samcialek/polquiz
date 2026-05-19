@@ -86,6 +86,14 @@ export interface Archetype {
   moralCircle?: ArchetypeMoralCircle;
 }
 
+/**
+ * Display-only metadata. The live engine does NOT read this field — question
+ * scheduling is governed by `SALIENCE_ROUTER_FIXED` in `src/engine/config.ts`
+ * plus the EIG selector + forced-coverage probes. The value names predate the
+ * Salience-Router architecture (2026-04-27) and persist for diagnostic
+ * dashboards only. Do not infer fixed-router membership from `stage: "fixed12"`
+ * — check `SALIENCE_ROUTER_FIXED` instead.
+ */
 export type QuestionStage = "fixed12" | "screen20" | "stage2" | "stage3";
 
 export type QuestionUiType =
@@ -100,11 +108,11 @@ export type QuestionUiType =
   | "conjoint"
   | "multi";
 
-export type TouchRole = "position" | "salience" | "category" | "anchor";
+export type TouchRole = "position" | "salience" | "category" | "anchor" | "affinity";
 export type TouchKind = "continuous" | "categorical" | "derived";
 
 export interface TouchTarget {
-  node: NodeId | "TRB_ANCHOR";
+  node: NodeId | "TRB_ANCHOR" | "MORAL_CIRCLE";
   kind: TouchKind;
   role: TouchRole;
   weight: number;

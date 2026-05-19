@@ -160,6 +160,12 @@ export const UNIVERSAL_SCREENERS = [
 // Combined list — used by getNextQuestion to iterate the fixed front door
 // in order. CORE first (establish salience + metadata), then UNIVERSAL
 // (give every node a light position read regardless of salience).
+//
+// This array is the SOLE source of truth for fixed-router membership. The
+// `stage` field on question definitions (e.g. `stage: "fixed12"`) is display-
+// only metadata for diagnostic dashboards — the engine does not read it.
+// Don't infer "this question fires for every respondent" from `stage`; check
+// here. Stale `fixed12` labels on non-router questions were demoted 2026-05-19.
 export const SALIENCE_ROUTER_FIXED = [
     ...CORE_OPENER,
     ...UNIVERSAL_SCREENERS,
