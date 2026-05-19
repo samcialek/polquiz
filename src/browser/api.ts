@@ -838,6 +838,8 @@ export function getElectionPredictions(): ElectionPrediction[] {
   return out;
 }
 
+const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
+
 /**
  * Diagnostic-only: rank archetypes by `archetypeDistance` over the current
  * internal state, returning the top-K with their distances. Intended for
@@ -860,8 +862,6 @@ export function getElectionPredictions(): ElectionPrediction[] {
  * Pass `includeIdentityPrimary: true` to opt back into the unfiltered
  * ranking for debugging.
  */
-const IDENTITY_PRIMARY_IDS = new Set(["141", "142", "143", "144", "145", "146"]);
-
 export function getTopArchetypesForDiagnostics(
   k: number = 5,
   options?: { includeIdentityPrimary?: boolean },

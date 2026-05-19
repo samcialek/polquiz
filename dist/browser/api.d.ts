@@ -162,6 +162,28 @@ export declare function applyRatioBoost(questionId: number, ratio: number): void
  * Independent of archetype classification — archetype is a label only.
  */
 export declare function getElectionPredictions(): ElectionPrediction[];
+/**
+ * Diagnostic-only: rank archetypes by `archetypeDistance` over the current
+ * internal state, returning the top-K with their distances. Intended for
+ * harness reporting (HARNESS-HANDOFF §4.1) — NOT for production UI, which
+ * uses the composed archetype label post-centroid-retirement.
+ *
+ * Returns null if no quiz is active. The function reads the internal raw
+ * state without exposing it (so callers can't mutate); the returned objects
+ * are plain data.
+ *
+ * Identity-primary archetypes (IDs 141-146) are excluded by default per
+ * CLAUDE.md: "Do NOT conflate Identity Primary overlays with base archetypes
+ * — they are a separate layer applied *after* archetype assignment." When
+ * the IDP overlay fires, it's surfaced via `getResults().identityPrimary`,
+ * not via this base-archetype ranking. Including them here was producing
+ * false top-1 results for personas like disengaged-centrist where the IDP
+ * overlay correctly returned `none` but #145 Feminist Voter was the
+ * nearest archetype by raw distance.
+ *
+ * Pass `includeIdentityPrimary: true` to opt back into the unfiltered
+ * ranking for debugging.
+ */
 export declare function getTopArchetypesForDiagnostics(k?: number, options?: {
     includeIdentityPrimary?: boolean;
 }): Array<{

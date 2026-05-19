@@ -1,7 +1,7 @@
 # Phase 7 — Gap Analysis Decision Matrix
 
 **Date:** 2026-05-19
-**Source:** Phase 6 battery findings (15/15 personas, 138/138 assertions, exit 0)
+**Source:** Phase 6 battery findings (15/15 personas, 139/139 assertions post-P2, exit 0)
 **Specs evaluated:** Q240 (anti-establishment frame), Q241 (econ vs cultural primacy), Q242 (party alignment self-assessment), Q243 (legislative compromise threshold)
 **Recommended priority:** F2 → F3/F5 → F6 → F1
 
@@ -15,7 +15,7 @@
 | F2 | Q97 PF/ENG coupling forces tradeoff between highly-engaged and 2016-T vote capture | MEDIUM | bernie-progressive, never-trump-republican, libertarian-republican | Personas needing both highly-engaged + protest-vote routing can't have both |
 | F3 | Diagnostic top-K includes IDP archetypes even when overlay is `none` | LOW (diagnostic, not user-visible) — RESOLVED Phase 7 P2 | disengaged-centrist top-1 reported as #145 Feminist Voter | Only visible in harness reports; user-facing composed label was always correct |
 | F4 | Engagement→abstain doesn't fully suppress Obama-era D votes for centrists | LOW | disengaged-centrist 2008/2012 | Cosmetic mis-prediction at edge of voting threshold |
-| F5 | Archetype-space gaps: libertarian, nihilist, centrist-apolitical | MEDIUM | libertarian-republican (→#042), nihilist (→#124), disengaged-centrist (→#145) | Three personas land at archetypes that don't really own their family |
+| F5 | Archetype-space gaps: libertarian, nihilist, centrist-apolitical | MEDIUM | libertarian-republican (→#042), nihilist (→#124), disengaged-centrist (→#042 after P2) | Three personas land at archetypes that don't really own their family |
 | F6 | Q102 religion item over-pulls scoped religious affinity for assimilationist Christians | LOW (silent) | obama-to-trump (routes to Evangelical Voter despite cross-pressured framing) | Spurious Evangelical Voter routing for non-religious-frame voters |
 
 ---
@@ -152,7 +152,7 @@ rankings. Low impact (diagnostic only) but conceptually clean to fix.
 
 **F3 was fixed by a small diagnostic-hygiene change, not the originally-proposed resolver gating.** See "F3 resolved" note above.
 
-**Fix options for F5:** Adding new archetypes is a bigger move — 121-archetype count is in CLAUDE.md "DO NOT CHANGE" as a deliberate stability anchor. Don't add archetypes unless an existing one is being replaced. For the libertarian/nihilist gaps, the answer is probably "accept routing via co-located dimensions, document as known semantic gap." For centrist-apolitical, Option A above (engagement floor on IDP) handles the disengaged-centrist case.
+**Fix options for F5:** Adding new archetypes is a bigger move — 121-archetype count is in CLAUDE.md "DO NOT CHANGE" as a deliberate stability anchor. Don't add archetypes unless an existing one is being replaced. For the libertarian/nihilist/centrist-apolitical gaps, the answer is probably "accept routing via co-located dimensions, document as known semantic gap." P2's diagnostic-ranking fix already removed the false-IDP-routing confusion; the remaining issue (no clean centrist-apolitical home archetype) is a real space-coverage gap, not a routing bug.
 
 **Recommended for F5:** **Document and accept.** The libertarian / nihilist personas land at semantically-related archetypes; they're not catastrophically misrouted. Defer archetype additions until a stronger product case emerges.
 
