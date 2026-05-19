@@ -58,8 +58,16 @@
     "negativePartisanship": "never_rep",
     "expected": {
       "archetypeFamily": "tech-progressive / modernizing institutional liberal",
-      "archetypeIds": [],
-      "archetypeLabelContains": [],
+      "archetypeIds": [
+        "039",
+        "036",
+        "032",
+        "056",
+        "057"
+      ],
+      "archetypeLabelContains": [
+        "Empiricist"
+      ],
       "identityPrimaryState": "none",
       "votes": {
         "2008": "D",
@@ -460,10 +468,22 @@
       "actual": "all placed correctly"
     },
     {
+      "name": "top-1 archetype in acceptable list",
+      "pass": true,
+      "expected": "one of [039, 036, 032, 056, 057]",
+      "actual": "039 Data-Driven Moderate"
+    },
+    {
       "name": "vote match",
       "pass": true,
       "expected": "≥5/5",
       "actual": "5/5"
+    },
+    {
+      "name": "composed label contains \"Empiricist\"",
+      "pass": true,
+      "expected": "Empiricist",
+      "actual": "Empiricist Reformer"
     },
     {
       "name": "identity-primary state",

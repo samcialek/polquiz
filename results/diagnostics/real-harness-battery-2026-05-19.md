@@ -6,7 +6,7 @@
 ## Aggregate scorecard
 
 - Personas with all assertions passing: **15/15**
-- Total assertions: **136/136** pass
+- Total assertions: **138/138** pass
 
 ## Per-persona summary
 
@@ -24,7 +24,7 @@
 | christian-right-traditionalist | 28 | Communitarian Traditionalist | #081 Heritage Guardian | Evangelical Voter | 5/5 | ✓ 10/10 |
 | triple-switcher | 22 | Consequentialist Cynic | #124 Latent Alarmist | (none) | 4/5 | ✓ 8/8 |
 | libertarian-republican | 29 | Pragmatic Free-Marketeer | #042 Localist Progressive | (none) | 2/5 | ✓ 9/9 |
-| tech-progressive | 27 | Empiricist Reformer | #039 Data-Driven Moderate | (none) | 5/5 | ✓ 7/7 |
+| tech-progressive | 27 | Empiricist Reformer | #039 Data-Driven Moderate | (none) | 5/5 | ✓ 9/9 |
 | disengaged-centrist | 24 | Redistributionist Apolitical Voter | #145 Feminist Voter | (none) | 3/5 | ✓ 7/7 |
 | nihilist | 28 | Combative Apolitical Voter | #124 Latent Alarmist | (none) | 3/5 | ✓ 8/8 |
 

@@ -84,11 +84,18 @@ export const techProgressivePersona: Persona = {
   negativePartisanship: "never_rep",
   expected: {
     archetypeFamily: "tech-progressive / modernizing institutional liberal",
-    // First-pass guess: institutional-progressive cluster overlapping
-    // urban-progressive-democrat but distinguished by MAT=3 (modernizer,
-    // not redistributionist).
-    archetypeIds: [],
-    archetypeLabelContains: [],
+    // Observed top-1 #039 Data-Driven Moderate (top-5: 039, 036
+    // Institutional Optimizer, 032 Hamiltonian Technocrat, 056
+    // Institutional Leftist, 057 Temperate Pluralist). The cluster fits
+    // the persona's empiricist-technocrat-modernizer signature cleanly —
+    // distinguished from urban-progressive-democrat's pure-redistributive
+    // cluster (#056 Institutional Leftist family) by MAT=3 mixed vs MAT=2
+    // redistributive.
+    archetypeIds: ["039", "036", "032", "056", "057"],
+    // Composed label "Empiricist Reformer" — EPS:empiricist (lexicon) +
+    // reformer institutional tilt. Empiricist is the EPS-categorical
+    // token; Reformer reflects MAT=3 mixed + ONT_S=4 institutional.
+    archetypeLabelContains: ["Empiricist"],
     identityPrimaryState: "none",
     votes: {
       2008: "D",
