@@ -23,17 +23,17 @@ import {
   getElectionPredictions,
   getQuestionDef,
   composeArchetypeLabel,
+  getTopArchetypesForDiagnostics,
 } from "../browser/api.js";
 
 import { decideAnswer, type Persona } from "./answerEngine.js";
 import { abstainToTrumpPersona } from "./personas/abstain-to-trump.js";
 
-// Note: explicit top-K archetype ranking would need `archetypeDistance(state, a)`,
-// which requires the internal RespondentState shape (posDist/salDist arrays).
-// `getRespondentState()` returns a sanitized shape (expectedPos/salience scalars).
-// For Phase 5 we report the composed archetype label (which is the user-facing
-// identity, post-centroid-retirement) plus vote predictions. A top-K accessor
-// is a follow-up if needed for the full battery (Phase 6).
+// Phase 5c (2026-05-19): top-K archetype ranking now provided by
+// `getTopArchetypesForDiagnostics(k)` in browser/api.ts — a small accessor
+// that computes archetypeDistance against the internal state without exposing
+// the mutable state object itself. Returned objects are plain { id, name,
+// distance }.
 
 const OUT_DIR = path.join("results", "diagnostics");
 const TRACE_DIR = path.join(OUT_DIR, "persona-traces");
@@ -63,14 +63,58 @@ interface RunResult {
   identityPrimaryLabel: string | null;
   identityPrimaryState: string | null;
   engagementLevel: string;
+  topArchetypes: Array<{ id: string; name: string; distance: number }>;
   votes: Record<number, string>;
   voteMatches: Record<number, { expected: string; actual: string; match: boolean }>;
   voteMatchCount: number;
   assertions: AssertionResult[];
 }
 
+/**
+ * Q103 placement check: items the persona declared as highly salient
+ * (sal >= 2.5) MUST land in supportHigh; items declared not salient
+ * (sal < 1.5) MUST land in neutral. Q103 is load-bearing for the
+ * salience-router phase that follows it — if the answer engine routes
+ * Q103 wrong, the rest of the adaptive selection cascades wrong.
+ */
+function q103PlacementAssertions(persona: Persona, trace: TraceEntry[]): AssertionResult[] {
+  const out: AssertionResult[] = [];
+  const q103 = trace.find(t => t.qId === 103);
+  if (!q103 || typeof q103.answer !== "object" || q103.answer == null) return out;
+  const ans = q103.answer as { supportHigh: string[]; supportMid: string[]; neutral: string[]; opposeHigh: string[] };
+  // Q103 item keys are lowercase node IDs (mat, cd, cu, mor, pro, com, zs, ont_h, ont_s, eps, aes)
+  const itemToNode: Record<string, string> = {
+    mat: "MAT", cd: "CD", cu: "CU", mor: "MOR", pro: "PRO", com: "COM",
+    zs: "ZS", ont_h: "ONT_H", ont_s: "ONT_S", eps: "EPS", aes: "AES",
+  };
+  const missingHigh: string[] = [];
+  const missingNeutral: string[] = [];
+  for (const [item, node] of Object.entries(itemToNode)) {
+    const sal = (persona.saliences as any)[node];
+    if (sal == null) continue;
+    if (sal >= 2.5 && !ans.supportHigh.includes(item)) missingHigh.push(`${item}(sal=${sal})`);
+    if (sal < 1.5 && !ans.neutral.includes(item)) missingNeutral.push(`${item}(sal=${sal})`);
+  }
+  out.push({
+    name: "Q103: high-salience nodes in supportHigh",
+    pass: missingHigh.length === 0,
+    expected: "all nodes with sal≥2.5 in supportHigh",
+    actual: missingHigh.length ? `missing: ${missingHigh.join(", ")}` : "all placed correctly",
+  });
+  out.push({
+    name: "Q103: low-salience nodes in neutral",
+    pass: missingNeutral.length === 0,
+    expected: "all nodes with sal<1.5 in neutral",
+    actual: missingNeutral.length ? `missing: ${missingNeutral.join(", ")}` : "all placed correctly",
+  });
+  return out;
+}
+
 function runAssertions(persona: Persona, r: Omit<RunResult, "assertions">): AssertionResult[] {
   const out: AssertionResult[] = [];
+
+  // Q103 placement (always checked when Q103 was asked)
+  out.push(...q103PlacementAssertions(persona, r.trace));
 
   // Vote match
   const voteTotal = Object.keys(persona.expected.votes).length;
@@ -211,6 +255,8 @@ function runPersona(persona: Persona): RunResult {
     if (match) voteMatchCount++;
   }
 
+  const topArchetypes = getTopArchetypesForDiagnostics(5) ?? [];
+
   const partial = {
     persona,
     trace,
@@ -220,6 +266,7 @@ function runPersona(persona: Persona): RunResult {
     identityPrimaryLabel: results.identityPrimary?.label ?? null,
     identityPrimaryState: results.identityPrimary?.state ?? null,
     engagementLevel: results.engagement.level,
+    topArchetypes,
     votes,
     voteMatches,
     voteMatchCount,
@@ -248,7 +295,16 @@ function renderReport(r: RunResult): string {
   lines.push("");
   lines.push("**Expected archetype family:** " + r.persona.expected.archetypeFamily);
   lines.push("");
-  lines.push("*Top-K archetype-id ranking is deferred — requires the internal RespondentState shape (posDist/salDist arrays) which `getRespondentState` does not expose. Composed label above is the canonical user-facing archetype identity (post-centroid-retirement).*");
+
+  // Top-K archetype ranking (Phase 5c)
+  lines.push("**Top-5 by archetype distance** (via `getTopArchetypesForDiagnostics`):");
+  lines.push("");
+  lines.push("| rank | id | name | distance |");
+  lines.push("|---|---|---|---|");
+  for (let i = 0; i < r.topArchetypes.length; i++) {
+    const a = r.topArchetypes[i]!;
+    lines.push(`| ${i + 1} | ${a.id} | ${a.name} | ${a.distance.toFixed(3)} |`);
+  }
   lines.push("");
 
   // Assertions
@@ -304,6 +360,7 @@ fs.writeFileSync(tracePath, JSON.stringify({
   identityPrimaryLabel: result.identityPrimaryLabel,
   identityPrimaryState: result.identityPrimaryState,
   engagementLevel: result.engagementLevel,
+  topArchetypes: result.topArchetypes,
   votes: result.votes,
   voteMatches: result.voteMatches,
   assertions: result.assertions,
@@ -315,6 +372,10 @@ console.log(`Composed label: ${result.composedLabel}`);
 console.log(`Identity-primary: ${result.identityPrimaryLabel ?? "(none)"} [${result.identityPrimaryState ?? "n/a"}]`);
 console.log(`Engagement: ${result.engagementLevel}`);
 console.log(`Vote match: ${result.voteMatchCount}/${Object.keys(persona.expected.votes).length}`);
+if (result.topArchetypes.length) {
+  const top = result.topArchetypes[0]!;
+  console.log(`Top archetype: #${top.id} ${top.name} (d=${top.distance.toFixed(3)})`);
+}
 
 const failedAssertions = result.assertions.filter(a => !a.pass);
 const passedAssertions = result.assertions.filter(a => a.pass);

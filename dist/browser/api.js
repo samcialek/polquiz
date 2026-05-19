@@ -20,6 +20,8 @@ import { getTopSalientNodes, selectTopKDrillQuestion, } from "../engine/topKDril
 import { resolveIdentityPrimary } from "../identity/resolveIdentityPrimary.js";
 import { computeEngagementLabel } from "../engine/engagementLabel.js";
 import { respondentSignatureFromState } from "../engine/respondentSignature.js";
+import { archetypeDistance } from "../engine/archetypeDistance.js";
+import { ARCHETYPES } from "../config/archetypes.js";
 import { ELECTIONS } from "../historical/candidates.js";
 import { getContext } from "../historical/contexts.js";
 import { predictVote } from "../historical/respondentVoteChoice.js";
@@ -672,6 +674,27 @@ export function getElectionPredictions() {
         out.push(predictVote(sig, election.candidates, ctx, engagement.level, _state.partyID ?? null, _state.trbAnchor.dist, _state.negativeParties ?? null, _state.strategicVoting ?? false, _state.dominantNode ?? null, _state.morBoundaries ?? null));
     }
     return out;
+}
+/**
+ * Diagnostic-only: rank archetypes by `archetypeDistance` over the current
+ * internal state, returning the top-K with their distances. Intended for
+ * harness reporting (HARNESS-HANDOFF §4.1) — NOT for production UI, which
+ * uses the composed archetype label post-centroid-retirement.
+ *
+ * Returns null if no quiz is active. The function reads the internal raw
+ * state without exposing it (so callers can't mutate); the returned objects
+ * are plain data.
+ */
+export function getTopArchetypesForDiagnostics(k = 5) {
+    if (!_state)
+        return null;
+    const ranked = ARCHETYPES
+        .filter(a => a.active !== false)
+        .map(a => ({ id: a.id, name: a.name, distance: archetypeDistance(_state, a) }))
+        .filter(r => Number.isFinite(r.distance))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, k);
+    return ranked;
 }
 /**
  * Check if the user can go back to the previous question.

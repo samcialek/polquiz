@@ -60,7 +60,8 @@
       "archetypeFamily": "populist-nationalist",
       "archetypeLabelContains": [
         "Assimilationist",
-        "Fighter"
+        "Partisan-Communitarian",
+        "Combative"
       ],
       "identityPrimaryState": "none",
       "votes": {
@@ -92,23 +93,24 @@
       "promptShort": "issue_salience_screener",
       "uiType": "priority_sort",
       "answer": {
-        "supportHigh": [],
-        "supportMid": [],
-        "neutral": [
-          "mat",
+        "supportHigh": [
           "cd",
           "cu",
-          "mor",
-          "pro",
-          "com",
           "zs",
-          "ont_h",
           "ont_s"
         ],
-        "opposeHigh": [
+        "supportMid": [
+          "mat",
+          "mor",
           "eps",
           "aes"
-        ]
+        ],
+        "neutral": [
+          "pro",
+          "com",
+          "ont_h"
+        ],
+        "opposeHigh": []
       }
     },
     {
@@ -283,66 +285,170 @@
     },
     {
       "idx": 16,
-      "qId": 213,
-      "promptShort": "equal_standing_within_polity",
-      "uiType": "single_choice",
-      "answer": "some_differentiation_acceptable"
+      "qId": 3,
+      "promptShort": "cultural_social_placement",
+      "uiType": "slider",
+      "answer": 71
     },
     {
       "idx": 17,
-      "qId": 21,
-      "promptShort": "controversial_speaker",
-      "uiType": "single_choice",
-      "answer": "restricted"
-    },
-    {
-      "idx": 18,
       "qId": 82,
       "promptShort": "openness_assimilation_closure",
       "uiType": "single_choice",
       "answer": "civic_assimilation"
     },
     {
+      "idx": 18,
+      "qId": 20,
+      "promptShort": "bad_outcomes_blame_allocation",
+      "uiType": "allocation",
+      "answer": {
+        "complex_forces": 25,
+        "powerful_incompetent": 25,
+        "powerful_selfish": 25,
+        "ordinary_choices": 25
+      }
+    },
+    {
       "idx": 19,
+      "qId": 215,
+      "promptShort": "theory_of_change_progress",
+      "uiType": "single_choice",
+      "answer": "movements_against_power"
+    },
+    {
+      "idx": 20,
       "qId": 7,
       "promptShort": "coalition_vs_principle",
       "uiType": "single_choice",
       "answer": "principle_first"
     },
     {
-      "idx": 20,
-      "qId": 11,
-      "promptShort": "nyt_headline_click",
-      "uiType": "single_choice",
-      "answer": "timeless_principles"
-    },
-    {
       "idx": 21,
-      "qId": 4,
-      "promptShort": "cultural_social_salience",
-      "uiType": "slider",
-      "answer": 71
+      "qId": 213,
+      "promptShort": "equal_standing_within_polity",
+      "uiType": "single_choice",
+      "answer": "some_differentiation_acceptable"
     },
     {
       "idx": 22,
-      "qId": 56,
-      "promptShort": "effective_leader_style",
+      "qId": 207,
+      "promptShort": "emergency_powers",
       "uiType": "single_choice",
-      "answer": "channel_anger"
+      "answer": "narrow_emergency"
     },
     {
       "idx": 23,
-      "qId": 51,
-      "promptShort": "immigration_national_identity_salience",
+      "qId": 78,
+      "promptShort": "speaker_appeal",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "calls_out_power",
+          "says_what_they_think"
+        ],
+        "worst": [
+          "bridge_builder",
+          "big_picture"
+        ]
+      }
+    },
+    {
+      "idx": 24,
+      "qId": 79,
+      "promptShort": "expert_disagreement_reaction",
+      "uiType": "single_choice",
+      "answer": "both_wrong"
+    },
+    {
+      "idx": 25,
+      "qId": 61,
+      "promptShort": "political_pitch_resonance",
+      "uiType": "single_choice",
+      "answer": "fight_pitch"
+    },
+    {
+      "idx": 26,
+      "qId": 38,
+      "promptShort": "rules_procedures_matter_salience",
       "uiType": "slider",
-      "answer": 91
+      "answer": 31
+    },
+    {
+      "idx": 27,
+      "qId": 71,
+      "promptShort": "rhetoric_style_importance",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 28,
+      "qId": 69,
+      "promptShort": "common_ground_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 29,
+      "qId": 19,
+      "promptShort": "human_progress_salience",
+      "uiType": "slider",
+      "answer": 31
+    },
+    {
+      "idx": 30,
+      "qId": 49,
+      "promptShort": "social_progress_salience",
+      "uiType": "slider",
+      "answer": 51
+    },
+    {
+      "idx": 31,
+      "qId": 63,
+      "promptShort": "best_worst_battery",
+      "uiType": "best_worst",
+      "answer": {
+        "best": [
+          "fairness"
+        ],
+        "worst": [
+          "tradition_continuity"
+        ]
+      }
     }
   ],
-  "questionsAsked": 23,
-  "composedLabel": "Fighter Partisan-Communitarian Assimilationist",
+  "questionsAsked": 31,
+  "composedLabel": "Combative Partisan-Communitarian Assimilationist",
   "identityPrimaryLabel": null,
   "identityPrimaryState": null,
   "engagementLevel": "casual",
+  "topArchetypes": [
+    {
+      "id": "106",
+      "name": "Militant Partisan",
+      "distance": 0.3600830504652623
+    },
+    {
+      "id": "104",
+      "name": "National Protector",
+      "distance": 0.3648868660177359
+    },
+    {
+      "id": "084",
+      "name": "Civilizational Conservative",
+      "distance": 0.3709200188590415
+    },
+    {
+      "id": "100",
+      "name": "Tribal Insurgent",
+      "distance": 0.38682176313589134
+    },
+    {
+      "id": "101",
+      "name": "Embattled Majoritarian",
+      "distance": 0.3872228403744376
+    }
+  ],
   "votes": {
     "2008": "ABSTAIN",
     "2012": "ABSTAIN",
@@ -379,6 +485,18 @@
   },
   "assertions": [
     {
+      "name": "Q103: high-salience nodes in supportHigh",
+      "pass": true,
+      "expected": "all nodes with sal≥2.5 in supportHigh",
+      "actual": "all placed correctly"
+    },
+    {
+      "name": "Q103: low-salience nodes in neutral",
+      "pass": true,
+      "expected": "all nodes with sal<1.5 in neutral",
+      "actual": "all placed correctly"
+    },
+    {
       "name": "vote match",
       "pass": true,
       "expected": "≥5/5",
@@ -388,13 +506,19 @@
       "name": "composed label contains \"Assimilationist\"",
       "pass": true,
       "expected": "Assimilationist",
-      "actual": "Fighter Partisan-Communitarian Assimilationist"
+      "actual": "Combative Partisan-Communitarian Assimilationist"
     },
     {
-      "name": "composed label contains \"Fighter\"",
+      "name": "composed label contains \"Partisan-Communitarian\"",
       "pass": true,
-      "expected": "Fighter",
-      "actual": "Fighter Partisan-Communitarian Assimilationist"
+      "expected": "Partisan-Communitarian",
+      "actual": "Combative Partisan-Communitarian Assimilationist"
+    },
+    {
+      "name": "composed label contains \"Combative\"",
+      "pass": true,
+      "expected": "Combative",
+      "actual": "Combative Partisan-Communitarian Assimilationist"
     },
     {
       "name": "identity-primary state",
@@ -412,7 +536,7 @@
       "name": "questions asked in range",
       "pass": true,
       "expected": "[20, 35]",
-      "actual": "23"
+      "actual": "31"
     }
   ]
 }

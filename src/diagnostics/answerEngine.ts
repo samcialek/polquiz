@@ -340,6 +340,66 @@ function alignmentForItem(persona: Persona, ev: any): number {
   return count > 0 ? Math.max(-1, Math.min(1, total / count)) : 0;
 }
 
+/**
+ * Detect the node a priority_sort item routes to when its rankingMap entry
+ * carries only an empty evidence object (e.g., `{ continuous: { MAT: {} } }`).
+ * These items are placeholder routings — the actual salience signal is emitted
+ * by `salienceBuckets` aggregation at the engine layer (Q103-style). Returns
+ * the first node key present in either `continuous` or `categorical`.
+ */
+function itemTargetNode(ev: any): ContinuousNodeId | CategoricalNodeId | null {
+  if (!ev || typeof ev !== "object") return null;
+  if (ev.continuous) {
+    const keys = Object.keys(ev.continuous);
+    if (keys.length) return keys[0] as ContinuousNodeId;
+  }
+  if (ev.categorical) {
+    const keys = Object.keys(ev.categorical);
+    if (keys.length) return keys[0] as CategoricalNodeId;
+  }
+  return null;
+}
+
+/**
+ * Q103-style placement: when the question carries `salienceBuckets`, the
+ * per-item evidence is intentionally empty and the engine derives all signal
+ * from which BUCKET the respondent dropped each item into. The right strategy
+ * is to read `persona.saliences[targetNode]` for each item and bucket by
+ * absolute salience thresholds (0-3 scale):
+ *
+ *   sal ≥ 2.5  → supportHigh   (peak at sal=3 — central to my politics)
+ *   1.5–2.5    → supportMid    (somewhat salient)
+ *   < 1.5      → neutral       (peak at sal=0 — doesn't register for me)
+ *
+ * `opposeHigh` is not used here — Q103's UI is 3-bucket (central / somewhat
+ * / doesn't register); the 4th bucket exists internally but has no semantic
+ * "I oppose this dimension being part of politics" meaning.
+ */
+function decideSalienceBucketSort(persona: Persona, q: QuestionDef): {
+  supportHigh: string[];
+  supportMid: string[];
+  neutral: string[];
+  opposeHigh: string[];
+} {
+  const items = q.rankingMap ? Object.keys(q.rankingMap) : [];
+  const supportHigh: string[] = [];
+  const supportMid: string[] = [];
+  const neutral: string[] = [];
+  const opposeHigh: string[] = [];
+
+  for (const item of items) {
+    const targetNode = itemTargetNode(q.rankingMap![item]);
+    if (!targetNode) { neutral.push(item); continue; }
+    const sal = persona.saliences[targetNode];
+    if (sal == null) { neutral.push(item); continue; }
+    if (sal >= 2.5) supportHigh.push(item);
+    else if (sal >= 1.5) supportMid.push(item);
+    else neutral.push(item);
+  }
+
+  return { supportHigh, supportMid, neutral, opposeHigh };
+}
+
 function decidePrioritySort(persona: Persona, q: QuestionDef): {
   supportHigh: string[];
   supportMid: string[];
@@ -348,6 +408,13 @@ function decidePrioritySort(persona: Persona, q: QuestionDef): {
 } {
   const items = q.rankingMap ? Object.keys(q.rankingMap) : [];
   if (items.length === 0) return { supportHigh: [], supportMid: [], neutral: [], opposeHigh: [] };
+
+  // salienceBuckets routing (Q103-style): per-item evidence is empty by
+  // design; the engine derives signal from bucket placement via
+  // salienceBuckets. Bucket items by persona.saliences[targetNode] directly.
+  if ((q as any).salienceBuckets) {
+    return decideSalienceBucketSort(persona, q);
+  }
 
   // Score by semantic alignment, then bucket by absolute thresholds.
   // A persona with 3 strongly-loaded scopes (e.g., national+religious+ideological)

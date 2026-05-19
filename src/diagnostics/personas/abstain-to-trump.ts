@@ -87,11 +87,19 @@ export const abstainToTrumpPersona: Persona = {
   negativePartisanship: "consider_all",
   expected: {
     archetypeFamily: "populist-nationalist",
-    // The composed label must signal assimilationist CU + fighter AES tokens.
-    // Both surfaced in Phase 5b validation as "Fighter Partisan-Communitarian
-    // Assimilationist". The exact merger tokens can drift as the labeler
-    // evolves; assert on the load-bearing pair.
-    archetypeLabelContains: ["Assimilationist", "Fighter"],
+    // The composed label must signal the populist-nationalist family. Three
+    // tokens fire under the current labeler:
+    //   "Combative"            (ZS=high, conflict-oriented)
+    //   "Partisan-Communitarian" (ideological scope excess, in-group loyalty)
+    //   "Assimilationist"       (CU=low, cultural uniformity)
+    // Together these compose "Combative Partisan-Communitarian Assimilationist"
+    // — a coherent populist-nationalist signature. (In Phase 5b, when Q103
+    // routed AES to opposeHigh under the broken salience-bucket handling, the
+    // label surfaced "Fighter" — the AES=fighter lexicon token — instead of
+    // "Combative". Phase 5c's correct Q103 routing means AES sits at sal=2
+    // mid-load and the label leans on the ZS-high token instead. Both signal
+    // the same combative orientation, just from different nodes.)
+    archetypeLabelContains: ["Assimilationist", "Partisan-Communitarian", "Combative"],
     // IDP routing not expected: top scope by excess is `ideological` (loaded
     // by Q229 supportHigh writes on ingroup_ideological at 95), which has no
     // IDP overlay per resolveIdentityPrimary.ts:565. The Abstain → Trump
